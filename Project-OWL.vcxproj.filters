@@ -83,11 +83,17 @@
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Source Files\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="DebugSystem.cpp">
+    <ClCompile Include="Source\DebugSystem.cpp">
       <Filter>Engine\Systems\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Engine\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Engine\Entities\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,14 +124,20 @@
     <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="DebugSystem.h">
-      <Filter>Engine\Systems\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="basics.h">
+    <ClInclude Include="Source\basics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BaseSystem.h">
-      <Filter>Engine\Systems\Scene</Filter>
+    <ClInclude Include="Source\BaseSystem.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DebugSystem.h">
+      <Filter>Engine\Systems\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Engine\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Engine\Entities\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
