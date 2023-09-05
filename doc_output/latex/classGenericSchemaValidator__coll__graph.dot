@@ -1,0 +1,14 @@
+digraph "GenericSchemaValidator&lt; SchemaDocumentType, OutputHandler, StateAllocator &gt;"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="GenericSchemaValidator\l\< SchemaDocumentType,\l OutputHandler, StateAllocator \>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="JSON Schema Validator."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="internal::ISchemaStateFactory\l\< SchemaDocumentType::SchemaType \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classinternal_1_1ISchemaStateFactory.html",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="internal::ISchemaValidator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classinternal_1_1ISchemaValidator.html",tooltip=" "];
+  Node4 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="internal::IValidationError\lHandler\< SchemaDocumentType\l::SchemaType \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classinternal_1_1IValidationErrorHandler.html",tooltip=" "];
+}

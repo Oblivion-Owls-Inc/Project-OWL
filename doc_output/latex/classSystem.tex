@@ -1,0 +1,72 @@
+\hypertarget{classSystem}{}\doxysection{System Class Reference}
+\label{classSystem}\index{System@{System}}
+
+
+Base class for all Systems.  
+
+
+
+
+{\ttfamily \#include $<$Base\+System.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSystem_aaf0038a8ded8c50370b1c693f11ddc60}\label{classSystem_aaf0038a8ded8c50370b1c693f11ddc60}} 
+virtual void \mbox{\hyperlink{classSystem_aaf0038a8ded8c50370b1c693f11ddc60}{On\+Init}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets called once when this \mbox{\hyperlink{classSystem}{System}} is added to the Engine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSystem_a6df85d6baf098f16b9c18a1614af39b5}\label{classSystem_a6df85d6baf098f16b9c18a1614af39b5}} 
+virtual void \mbox{\hyperlink{classSystem_a6df85d6baf098f16b9c18a1614af39b5}{On\+Fixed\+Update}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets called once every simulation frame. Use this function for anything that affects the simulation. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSystem_afa0b86e4b56d71de03a702867aa951fb}{On\+Update}} (float dt)=0
+\begin{DoxyCompactList}\small\item\em Gets called once every graphics frame. Do not use this function for anything that affects the simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSystem_af9cbab3440ffa313478862afa8a787f1}\label{classSystem_af9cbab3440ffa313478862afa8a787f1}} 
+virtual void \mbox{\hyperlink{classSystem_af9cbab3440ffa313478862afa8a787f1}{On\+Exit}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets called once before the Engine closes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSystem_a9657db47b661f06fb2b96cdadea054aa}\label{classSystem_a9657db47b661f06fb2b96cdadea054aa}} 
+virtual void \mbox{\hyperlink{classSystem_a9657db47b661f06fb2b96cdadea054aa}{On\+Scene\+Load}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets called whenever a new Scene is loaded. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSystem_a3679c65e097e2c0e9b8b4cef86e7619d}\label{classSystem_a3679c65e097e2c0e9b8b4cef86e7619d}} 
+virtual void \mbox{\hyperlink{classSystem_a3679c65e097e2c0e9b8b4cef86e7619d}{On\+Scene\+Init}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets called whenever a scene is initialized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSystem_ae18f56cc6886ab7a6360ebd837326d7d}\label{classSystem_ae18f56cc6886ab7a6360ebd837326d7d}} 
+virtual void \mbox{\hyperlink{classSystem_ae18f56cc6886ab7a6360ebd837326d7d}{On\+Scene\+Exit}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets called whenever a scene is exited. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSystem_a6b75872f421f9ae9a720502d37223d49}\label{classSystem_a6b75872f421f9ae9a720502d37223d49}} 
+{\bfseries System} (\mbox{\hyperlink{classSystem}{System}} \&other)=delete
+\item 
+\mbox{\Hypertarget{classSystem_a1c2cb035d0f63fabe49c0af69238208f}\label{classSystem_a1c2cb035d0f63fabe49c0af69238208f}} 
+void {\bfseries operator=} (const \mbox{\hyperlink{classSystem}{System}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a}\label{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a}} 
+\mbox{\hyperlink{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a}{System}} ()=default
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classSystem}{System}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for all Systems. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSystem_afa0b86e4b56d71de03a702867aa951fb}\label{classSystem_afa0b86e4b56d71de03a702867aa951fb}} 
+\index{System@{System}!OnUpdate@{OnUpdate}}
+\index{OnUpdate@{OnUpdate}!System@{System}}
+\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
+{\footnotesize\ttfamily virtual void System\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gets called once every graphics frame. Do not use this function for anything that affects the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & the elapsed time in seconds since the previous frame \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{BaseSystem_8h}{Base\+System.\+h}}\end{DoxyCompactItemize}
