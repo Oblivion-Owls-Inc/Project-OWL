@@ -39,6 +39,12 @@ jobs:
           # Change directory to the temporary directory
           cd "$TMP_DIR"
           
+          # List the contents of the directory (you can use "ls" or "la" here)
+          ls
+          
+          # Pause for 1 minute
+          sleep 60
+          
           # Add, commit, and push changes to SVN
           svn add --force .
           svn commit -m "Sync from GitHub"
