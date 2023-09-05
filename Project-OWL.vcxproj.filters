@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Source Files\imgui">
       <UniqueIdentifier>{e98f05e0-70c3-4db0-9a77-990cf7228926}</UniqueIdentifier>
     </Filter>
@@ -21,6 +17,48 @@
     </Filter>
     <Filter Include="Header Files\rapidjson">
       <UniqueIdentifier>{5194cf1f-3e00-488a-ac36-0881b752bbd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{1f13bab0-cc86-495a-bd61-9103db20cdeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{21151224-e8aa-435e-a256-bbdc0e98be68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems">
+      <UniqueIdentifier>{4911b27f-957e-488c-b588-8de42195d337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entities">
+      <UniqueIdentifier>{37309716-2310-4e1f-aca9-f0363ee3e5cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\Platform">
+      <UniqueIdentifier>{94ec95c5-fe9e-4b0b-ab0b-41b033d724e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\Debug">
+      <UniqueIdentifier>{35a2fdc3-17cc-41a8-9530-6bd146dfe9e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\Entity">
+      <UniqueIdentifier>{80f015c3-9063-413e-bce3-1f9d424969b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\Scene">
+      <UniqueIdentifier>{358aaf0f-9beb-4093-b60f-dc94719c6f46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\Render">
+      <UniqueIdentifier>{1d91243d-7016-4354-a2b6-55864bb154ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\Physics">
+      <UniqueIdentifier>{fcaed326-9e5b-4472-8aea-cb32ce5bc950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entities\Components">
+      <UniqueIdentifier>{616de983-970b-433c-9d1e-30e9fe00b5af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entities\Components\Transform">
+      <UniqueIdentifier>{afa3c74c-ca28-4ed1-9438-dbf7c8f1e062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entities\Components\Graphics">
+      <UniqueIdentifier>{7d0486d1-10e0-404b-aee8-d6f2c68152c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entities\Components\Physics">
+      <UniqueIdentifier>{5a3d7762-28a8-440c-82cc-f3dd219ac24b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -77,8 +115,8 @@
     <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="Source\System.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Source\BaseSystem.h">
+      <Filter>Engine\Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
