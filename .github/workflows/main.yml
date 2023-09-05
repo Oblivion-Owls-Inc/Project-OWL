@@ -22,7 +22,7 @@ jobs:
           # svn --username <USERNAME> --password <PASSWORD> info
           
           # Set SVN URL
-          SVN_URL="<YOUR_SVN_URL>"
+          SVN_URL="$SVN_URL"
           
           # Create a temporary directory
           TMP_DIR="$(mktemp -d)"
