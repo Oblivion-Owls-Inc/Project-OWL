@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 *.vs
+.vs/
 
 # Compiled Object files
 *.slo
@@ -30,4 +31,3 @@
 *.exe
 *.out
 *.app
-*.vs/
