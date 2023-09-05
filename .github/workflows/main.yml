@@ -19,7 +19,7 @@ jobs:
       - name: Sync to SVN
         run: |
           # Configure SVN username and password if needed
-          # svn --username "$USER" --password "$PASS" info
+          # svn --username $USER --password $PASS info
           
           # Set SVN URL
           SVN_URL="$SVN_URL"
