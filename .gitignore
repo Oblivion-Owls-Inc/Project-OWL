@@ -30,5 +30,4 @@
 *.exe
 *.out
 *.app
-*/.vs
-/.vs/Project-OWL/v17/Browse.VC.db
+*.vs/
