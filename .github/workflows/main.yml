@@ -23,6 +23,7 @@ jobs:
           
           # Perform SVN checkout to the temporary directory
           svn checkout "$SVN_URL" --username "${{ secrets.USER }}" --password "${{ secrets.PASS }}"
+          echo ---------------MAIN FOLDER---------------
           
           # List the contents of the directory (you can use "ls" or "la" here)
           ls
@@ -35,6 +36,7 @@ jobs:
 
           # Change directory to the "oblivion_owls_inc" directory
           cd oblivion_owls_inc
+          echo ---------------OWL FOlder---------------
           
           # List the contents of the directory (you can use "ls" or "la" here)
           ls
@@ -44,12 +46,13 @@ jobs:
 
           # Change directory to the "Project-OWL" directory
           cd Project-OWL
+          echo ---------------PROJECT FOLDER-----------
           
           # List the contents of the directory (you can use "ls" or "la" here)
           ls
           
           # Pause for 1 minute
-          sleep 60
+          sleep 30
 
           # Add, commit, and push changes to SVN
           #svn add --force .
