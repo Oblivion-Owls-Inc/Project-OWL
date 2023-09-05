@@ -18,11 +18,11 @@ jobs:
 
       - name: Sync to SVN
         run: |
-          # Configure SVN username and password if needed
-          svn --username "${{ secrets.USER }}" --password "${{ secrets.PASS }}" info
-          
           # Set SVN URL
           SVN_URL="${{ secrets.SVN_URL }}"
+          
+          # Perform SVN checkout to the temporary directory
+          svn checkout "$SVN_URL" --username "${{ secrets.USER }}" --password "${{ secrets.PASS }}"
           
           # Create a temporary directory
           TMP_DIR="$(mktemp -d)"
@@ -33,22 +33,11 @@ jobs:
           # Pause for 1 minute
           sleep 60
           
-          
           # Copy the repository contents to the temporary directory
           cp -r ./* "$TMP_DIR"
           
           # Change directory to the temporary directory
           cd "$TMP_DIR"
-          
-          # List the contents of the directory (you can use "ls" or "la" here)
-          la
-          
-          # Pause for 1 minute
-          sleep 60
-          
-          # Perform SVN checkout to the temporary directory
-          svn checkout "$SVN_URL" .
-          
           
           # Add, commit, and push changes to SVN
           svn add --force .
