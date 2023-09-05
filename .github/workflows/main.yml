@@ -28,7 +28,7 @@ jobs:
           TMP_DIR="$(mktemp -d)"
           
           # List the contents of the directory (you can use "ls" or "la" here)
-          la
+          ls
           
           # Pause for 1 minute
           sleep 60
