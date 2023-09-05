@@ -31,3 +31,5 @@
 *.exe
 *.out
 *.app
+/Project-OWL.vcxproj.user
+/x64/Debug
