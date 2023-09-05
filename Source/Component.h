@@ -32,5 +32,4 @@ protected:
 	std::type_index type;
 private:
 	Entity* cParent = nullptr;
-
 };
