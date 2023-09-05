@@ -1,0 +1,49 @@
+name: Sync to SVN
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to sync
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install Subversion
+        run: sudo apt-get install subversion
+
+      - name: Sync to SVN
+        run: |
+          # Configure SVN username and password if needed
+          # svn --username <USERNAME> --password <PASSWORD> info
+          
+          # Set SVN URL
+          SVN_URL="<YOUR_SVN_URL>"
+          
+          # Create a temporary directory
+          TMP_DIR="$(mktemp -d)"
+          
+          # Copy the repository contents to the temporary directory
+          cp -r ./* "$TMP_DIR"
+          
+          # Change directory to the temporary directory
+          cd "$TMP_DIR"
+          
+          # Perform SVN checkout
+          svn checkout "$SVN_URL" .
+          
+          # Add, commit, and push changes to SVN
+          svn add --force .
+          svn commit -m "Sync from GitHub"
+          svn update
+          
+          # Clean up
+          rm -rf "$TMP_DIR"
+
+        env:
+          SVN_URL: ${{ secrets.SVN_URL }}  # Store your SVN URL as a secret in GitHub
+
