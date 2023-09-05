@@ -35,6 +35,12 @@ jobs:
           
           # Perform SVN checkout
           svn checkout "$SVN_URL" .
+
+          # Change directory to the oblivion_owls_inc directory
+          cd "$oblivion_owls_inc"
+
+          # Change directory to the oblivion_owls_inc directory
+          cd "$Project-OWL"
           
           # Add, commit, and push changes to SVN
           svn add --force .
