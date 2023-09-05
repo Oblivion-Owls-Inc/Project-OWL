@@ -33,14 +33,15 @@ jobs:
           # Change directory to the temporary directory
           cd "$TMP_DIR"
           
-          # Perform SVN checkout
+          # Perform SVN checkout to the temporary directory
           svn checkout "$SVN_URL" .
-
-          # Change directory to the oblivion_owls_inc directory
-          cd "$oblivion_owls_inc"
-
-          # Change directory to the oblivion_owls_inc directory
-          cd "$Project-OWL"
+          
+          # List the contents of the directory (you can use "ls" or "la" here)
+          la
+          
+          # Pause for 1 minute
+          sleep 60
+          
           
           # Add, commit, and push changes to SVN
           svn add --force .
@@ -54,3 +55,4 @@ jobs:
           SVN_URL: ${{ secrets.SVN_URL }}  # Store your SVN URL as a secret in GitHub
           USER: ${{ secrets.USER }} # Store my user
           PASS: ${{ secrets.PASS }} # Store password
+
