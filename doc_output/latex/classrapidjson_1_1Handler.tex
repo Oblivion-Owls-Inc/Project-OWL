@@ -1,0 +1,43 @@
+\hypertarget{classrapidjson_1_1Handler}{}\doxysection{Handler Class Reference}
+\label{classrapidjson_1_1Handler}\index{Handler@{Handler}}
+
+
+Concept for receiving events from \mbox{\hyperlink{classGenericReader}{Generic\+Reader}} upon parsing. The functions return true if no error occurs. If they return false, the event publisher should terminate the process.  
+
+
+
+
+{\ttfamily \#include $<$reader.\+h$>$}
+
+
+
+\doxysubsection{Detailed Description}
+Concept for receiving events from \mbox{\hyperlink{classGenericReader}{Generic\+Reader}} upon parsing. The functions return true if no error occurs. If they return false, the event publisher should terminate the process. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{concept \mbox{\hyperlink{classrapidjson_1_1Handler}{Handler}} \{}
+\DoxyCodeLine{    \textcolor{keyword}{typename} Ch;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} Null();}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} Bool(\textcolor{keywordtype}{bool} b);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} Int(\textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} Uint(\textcolor{keywordtype}{unsigned} i);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} Int64(int64\_t i);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} Uint64(uint64\_t i);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} Double(\textcolor{keywordtype}{double} d);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} RawNumber(\textcolor{keyword}{const} Ch* str, \mbox{\hyperlink{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{SizeType}} length, \textcolor{keywordtype}{bool} copy);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} String(\textcolor{keyword}{const} Ch* str, \mbox{\hyperlink{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{SizeType}} length, \textcolor{keywordtype}{bool} copy);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} StartObject();}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} Key(\textcolor{keyword}{const} Ch* str, \mbox{\hyperlink{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{SizeType}} length, \textcolor{keywordtype}{bool} copy);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} EndObject(\mbox{\hyperlink{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{SizeType}} memberCount);}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} StartArray();}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool} EndArray(\mbox{\hyperlink{rapidjson_8h_a5ed6e6e67250fadbd041127e6386dcb5}{SizeType}} elementCount);}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/rapidjson/\mbox{\hyperlink{reader_8h}{reader.\+h}}\end{DoxyCompactItemize}
