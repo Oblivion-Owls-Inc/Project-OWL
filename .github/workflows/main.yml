@@ -27,20 +27,27 @@ jobs:
           # Create a temporary directory
           TMP_DIR="$(mktemp -d)"
           
+          # List the contents of the directory (you can use "ls" or "la" here)
+          la
+          
+          # Pause for 1 minute
+          sleep 60
+          
+          
           # Copy the repository contents to the temporary directory
           cp -r ./* "$TMP_DIR"
           
           # Change directory to the temporary directory
           cd "$TMP_DIR"
           
-          # Perform SVN checkout to the temporary directory
-          svn checkout "$SVN_URL" .
-          
           # List the contents of the directory (you can use "ls" or "la" here)
           la
           
           # Pause for 1 minute
           sleep 60
+          
+          # Perform SVN checkout to the temporary directory
+          svn checkout "$SVN_URL" .
           
           
           # Add, commit, and push changes to SVN
