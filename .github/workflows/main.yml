@@ -35,6 +35,7 @@ jobs:
           
           # Copy the repository contents to the temporary directory
           cp -r ./* "$TMP_DIR"
+
           
           # Change directory to the temporary directory
           cd "$TMP_DIR"
