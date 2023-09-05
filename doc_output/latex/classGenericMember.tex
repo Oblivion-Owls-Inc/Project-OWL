@@ -1,0 +1,67 @@
+\hypertarget{classGenericMember}{}\doxysection{Generic\+Member$<$ Encoding, Allocator $>$ Class Template Reference}
+\label{classGenericMember}\index{GenericMember$<$ Encoding, Allocator $>$@{GenericMember$<$ Encoding, Allocator $>$}}
+
+
+Name-\/value pair in a JSON object value.  
+
+
+
+
+{\ttfamily \#include $<$document.\+h$>$}
+
+
+
+Collaboration diagram for Generic\+Member$<$ Encoding, Allocator $>$\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGenericMember}{Generic\+Member}} \& \mbox{\hyperlink{classGenericMember_aa6983171b50bdcbb6a456d369680b379}{operator=}} (\mbox{\hyperlink{classGenericMember}{Generic\+Member}} \&rhs) RAPIDJSON\+\_\+\+NOEXCEPT
+\begin{DoxyCompactList}\small\item\em Assignment with move semantics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGenericMember_a7124f7ccd67421533d33139938604fac}\label{classGenericMember_a7124f7ccd67421533d33139938604fac}} 
+\mbox{\hyperlink{classGenericValue}{Generic\+Value}}$<$ \mbox{\hyperlink{classrapidjson_1_1Encoding}{Encoding}}, \mbox{\hyperlink{classrapidjson_1_1Allocator}{Allocator}} $>$ \mbox{\hyperlink{classGenericMember_a7124f7ccd67421533d33139938604fac}{name}}
+\begin{DoxyCompactList}\small\item\em name of member (must be a string) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGenericMember_aad3cfa4f9e8b9018068c8bc865723083}\label{classGenericMember_aad3cfa4f9e8b9018068c8bc865723083}} 
+\mbox{\hyperlink{classGenericValue}{Generic\+Value}}$<$ \mbox{\hyperlink{classrapidjson_1_1Encoding}{Encoding}}, \mbox{\hyperlink{classrapidjson_1_1Allocator}{Allocator}} $>$ \mbox{\hyperlink{classGenericMember_aad3cfa4f9e8b9018068c8bc865723083}{value}}
+\begin{DoxyCompactList}\small\item\em value of member. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGenericMember_af72094da5f8967de3fab3d2c34bc71cc}\label{classGenericMember_af72094da5f8967de3fab3d2c34bc71cc}} 
+void {\bfseries swap} (\mbox{\hyperlink{classGenericMember}{Generic\+Member}} \&a, \mbox{\hyperlink{classGenericMember}{Generic\+Member}} \&b) RAPIDJSON\+\_\+\+NOEXCEPT
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Encoding, typename Allocator$>$\newline
+class Generic\+Member$<$ Encoding, Allocator $>$}
+
+Name-\/value pair in a JSON object value. 
+
+This class was internal to \mbox{\hyperlink{classGenericValue}{Generic\+Value}}. It used to be a inner struct. But a compiler (IBM XL C/\+C++ for AIX) have reported to have problem with that so it moved as a namespace scope struct. \href{https://code.google.com/p/rapidjson/issues/detail?id=64}{\texttt{ https\+://code.\+google.\+com/p/rapidjson/issues/detail?id=64}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGenericMember_aa6983171b50bdcbb6a456d369680b379}\label{classGenericMember_aa6983171b50bdcbb6a456d369680b379}} 
+\index{GenericMember$<$ Encoding, Allocator $>$@{GenericMember$<$ Encoding, Allocator $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!GenericMember$<$ Encoding, Allocator $>$@{GenericMember$<$ Encoding, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename Encoding , typename Allocator $>$ \\
+\mbox{\hyperlink{classGenericMember}{Generic\+Member}}\& \mbox{\hyperlink{classGenericMember}{Generic\+Member}}$<$ \mbox{\hyperlink{classrapidjson_1_1Encoding}{Encoding}}, \mbox{\hyperlink{classrapidjson_1_1Allocator}{Allocator}} $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGenericMember}{Generic\+Member}}$<$ \mbox{\hyperlink{classrapidjson_1_1Encoding}{Encoding}}, \mbox{\hyperlink{classrapidjson_1_1Allocator}{Allocator}} $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assignment with move semantics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Source of the assignment. Its name and value will become a null value after assignment. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/rapidjson/\mbox{\hyperlink{document_8h}{document.\+h}}\end{DoxyCompactItemize}

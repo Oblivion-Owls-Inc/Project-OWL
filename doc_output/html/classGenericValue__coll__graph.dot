@@ -1,0 +1,32 @@
+digraph "GenericValue&lt; Encoding, Allocator &gt;"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="GenericValue\< Encoding,\l Allocator \>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Represents a JSON value. Use Value for UTF8 encoding and default allocator."];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" data_" ,fontname="Helvetica"];
+  Node2 [label="GenericValue\< Encoding,\l Allocator \>::Data",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$unionGenericValue_1_1Data.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" s" ,fontname="Helvetica"];
+  Node3 [label="GenericValue\< Encoding,\l Allocator \>::String",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structGenericValue_1_1String.html",tooltip=" "];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" a" ,fontname="Helvetica"];
+  Node4 [label="GenericValue\< Encoding,\l Allocator \>::ArrayData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structGenericValue_1_1ArrayData.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node5 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" o" ,fontname="Helvetica"];
+  Node5 [label="GenericValue\< Encoding,\l Allocator \>::ObjectData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structGenericValue_1_1ObjectData.html",tooltip=" "];
+  Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" members" ,fontname="Helvetica"];
+  Node6 [label="GenericMember\< Encoding,\l Allocator \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classGenericMember.html",tooltip="Name-value pair in a JSON object value."];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" name\nvalue" ,fontname="Helvetica"];
+  Node7 [label="GenericValue\< rapidjson\l::Encoding, rapidjson\l::Allocator \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classGenericValue.html",tooltip=" "];
+  Node2 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" data_" ,fontname="Helvetica"];
+  Node8 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" n" ,fontname="Helvetica"];
+  Node8 [label="GenericValue\< Encoding,\l Allocator \>::Number",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$unionGenericValue_1_1Number.html",tooltip=" "];
+  Node9 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" u" ,fontname="Helvetica"];
+  Node9 [label="GenericValue\< Encoding,\l Allocator \>::Number::U",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structGenericValue_1_1Number_1_1U.html",tooltip=" "];
+  Node10 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" i" ,fontname="Helvetica"];
+  Node10 [label="GenericValue\< Encoding,\l Allocator \>::Number::I",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structGenericValue_1_1Number_1_1I.html",tooltip=" "];
+  Node11 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ss" ,fontname="Helvetica"];
+  Node11 [label="GenericValue\< Encoding,\l Allocator \>::ShortString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structGenericValue_1_1ShortString.html",tooltip=" "];
+  Node12 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" f" ,fontname="Helvetica"];
+  Node12 [label="GenericValue\< Encoding,\l Allocator \>::Flag",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structGenericValue_1_1Flag.html",tooltip=" "];
+}
