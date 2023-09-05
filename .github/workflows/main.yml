@@ -1,0 +1,69 @@
+name: Sync to SVN
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to sync
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install Subversion
+        run: sudo apt-get install subversion
+
+      - name: Sync to SVN
+        run: |
+          # Set SVN URL
+          SVN_URL="${{ secrets.SVN_URL }}"
+          
+          # Perform SVN checkout to the temporary directory
+          svn checkout "$SVN_URL" --username "${{ secrets.USER }}" --password "${{ secrets.PASS }}"
+          echo ---------------MAIN FOLDER---------------
+          
+          # List the contents of the directory (you can use "ls" or "la" here)
+          ls
+          
+          # Pause for 1 minute
+          sleep 30
+
+          # Move the contents into the "Project-OWL" directory
+          # mv * oblivion_owls_inc / Project-OWL/
+
+          # Change directory to the "oblivion_owls_inc" directory
+          cd oblivion_owls_inc
+          echo ---------------OWL FOlder---------------
+          
+          # List the contents of the directory (you can use "ls" or "la" here)
+          ls
+          
+          # Pause for 1 minute
+          sleep 30
+
+          # Change directory to the "Project-OWL" directory
+          cd Project-OWL
+          echo ---------------PROJECT FOLDER-----------
+          
+          # List the contents of the directory (you can use "ls" or "la" here)
+          ls
+          
+          # Pause for 1 minute
+          sleep 30
+
+          # Add, commit, and push changes to SVN
+          #svn add --force .
+          #svn commit -m "Sync from GitHub"
+          #svn update
+          
+          # Clean up
+          rm -rf "$TMP_DIR"
+
+        env:
+          SVN_URL: ${{ secrets.SVN_URL }}  # Store your SVN URL as a secret in GitHub
+          USER: ${{ secrets.USER }} # Store my user
+          PASS: ${{ secrets.PASS }} # Store password
+
