@@ -1,10 +1,6 @@
 
 
 #include "DebugSystem.h"
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
-#include "basics.h"
 
 DebugSystem::DebugSystem(GLFWwindow* window) : window(window), io(ImGui::GetIO())
 {
