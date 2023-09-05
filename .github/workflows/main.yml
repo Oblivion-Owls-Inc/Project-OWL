@@ -24,28 +24,27 @@ jobs:
           # Perform SVN checkout to the temporary directory
           svn checkout "$SVN_URL" --username "${{ secrets.USER }}" --password "${{ secrets.PASS }}"
           
-          # Create a temporary directory
-          TMP_DIR="$(mktemp -d)"
-          
           # List the contents of the directory (you can use "ls" or "la" here)
           ls
           
           # Pause for 1 minute
           sleep 60
-          
-          # Copy the repository contents to the temporary directory
-          cp -r ./* "$TMP_DIR"
 
+          # Move the contents into the "Project-OWL" directory
+          mv * oblivion_owls_inc / Project-OWL/
+
+          # Change directory to the "oblivion_owls_inc" directory
+          cd oblivion_owls_inc
           
-          # Change directory to the temporary directory
-          cd "$TMP_DIR"
+          # Change directory to the "Project-OWL" directory
+          cd Project-OWL
           
           # List the contents of the directory (you can use "ls" or "la" here)
           ls
           
           # Pause for 1 minute
           sleep 60
-          
+
           # Add, commit, and push changes to SVN
           svn add --force .
           svn commit -m "Sync from GitHub"
