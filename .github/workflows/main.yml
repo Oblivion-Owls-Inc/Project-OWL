@@ -28,14 +28,20 @@ jobs:
           ls
           
           # Pause for 1 minute
-          sleep 60
+          sleep 30
 
           # Move the contents into the "Project-OWL" directory
-          mv * oblivion_owls_inc / Project-OWL/
+          # mv * oblivion_owls_inc / Project-OWL/
 
           # Change directory to the "oblivion_owls_inc" directory
           cd oblivion_owls_inc
           
+          # List the contents of the directory (you can use "ls" or "la" here)
+          ls
+          
+          # Pause for 1 minute
+          sleep 30
+
           # Change directory to the "Project-OWL" directory
           cd Project-OWL
           
@@ -46,9 +52,9 @@ jobs:
           sleep 60
 
           # Add, commit, and push changes to SVN
-          svn add --force .
-          svn commit -m "Sync from GitHub"
-          svn update
+          #svn add --force .
+          #svn commit -m "Sync from GitHub"
+          #svn update
           
           # Clean up
           rm -rf "$TMP_DIR"
