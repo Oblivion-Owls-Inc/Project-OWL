@@ -19,7 +19,7 @@ jobs:
       - name: Sync to SVN
         run: |
           # Configure SVN username and password if needed
-          # svn --username <USERNAME> --password <PASSWORD> info
+          # svn --username "$USER" --password "$PASS" info
           
           # Set SVN URL
           SVN_URL="$SVN_URL"
@@ -46,4 +46,6 @@ jobs:
 
         env:
           SVN_URL: ${{ secrets.SVN_URL }}  # Store your SVN URL as a secret in GitHub
+          USER: ${{secrets.USER}} # Store my user
+          PASS: ${{secrets.PASS}} # Store password
 
