@@ -1,6 +1,7 @@
 
 
 #include "DebugSystem.h"
+#include "GUI.h"
 
 DebugSystem::DebugSystem(GLFWwindow* window) : window(window), io(ImGui::GetIO())
 {

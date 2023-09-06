@@ -15,6 +15,8 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "System.h"
+#include <vector>
+
 
 /**
  * @brief Debug System Class For Debugging
@@ -33,6 +35,7 @@ class DebugSystem : public System
         void OnSceneInit() override;
         void OnSceneExit() override;
     private:
+        std::vector< GUI* > windows;
         GLFWwindow* window;
         ImGuiIO& io;
 };
