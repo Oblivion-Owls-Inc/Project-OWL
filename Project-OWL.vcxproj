@@ -163,6 +163,7 @@
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\System.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +181,7 @@
     <ClInclude Include="Source\Component.h" />
     <ClInclude Include="Source\DebugSystem.h" />
     <ClInclude Include="Source\Entity.h" />
+    <ClInclude Include="Source\PlatformSystem.h" />
     <ClInclude Include="Source\System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
