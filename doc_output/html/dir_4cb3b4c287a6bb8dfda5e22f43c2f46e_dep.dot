@@ -1,0 +1,16 @@
+digraph "Source/rapidjson" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_74389ed8173ad57b461b9d623a1f3867 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Source" fontname="Helvetica", fontsize="10", URL="dir_74389ed8173ad57b461b9d623a1f3867.html"]
+  subgraph clusterdir_4cb3b4c287a6bb8dfda5e22f43c2f46e {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_4cb3b4c287a6bb8dfda5e22f43c2f46e.html"];
+    dir_4cb3b4c287a6bb8dfda5e22f43c2f46e [shape=plaintext label="rapidjson"];
+  dir_f196ac8465eafc7acd95468af5a45910 [shape=box label="error" fillcolor="white" style="filled" URL="dir_f196ac8465eafc7acd95468af5a45910.html"];
+  dir_b1eae46fb6f924d2df72308147b28781 [shape=box label="internal" fillcolor="white" style="filled" URL="dir_b1eae46fb6f924d2df72308147b28781.html"];
+  dir_07264ee877e957f67670c5e6ee5dc81b [shape=box label="msinttypes" fillcolor="white" style="filled" URL="dir_07264ee877e957f67670c5e6ee5dc81b.html"];
+  }
+  }
+  dir_4cb3b4c287a6bb8dfda5e22f43c2f46e->dir_f196ac8465eafc7acd95468af5a45910 [headlabel="2", labeldistance=1.5 headhref="dir_000001_000002.html"];
+}
