@@ -162,9 +162,12 @@
     <ClCompile Include="Source\Component.cpp" />
     <ClCompile Include="Source\DebugSystem.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
+    <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\System.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="BaseSystem.h" />
     <ClInclude Include="basics.h" />
     <ClInclude Include="DebugSystem.h" />
@@ -177,11 +180,11 @@
     <ClInclude Include="imgui\imstb_rectpack.h" />
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
-    <ClInclude Include="Source\BaseSystem.h" />
     <ClInclude Include="Source\basics.h" />
     <ClInclude Include="Source\Component.h" />
     <ClInclude Include="Source\DebugSystem.h" />
     <ClInclude Include="Source\Entity.h" />
+    <ClInclude Include="Source\System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
