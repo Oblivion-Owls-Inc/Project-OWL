@@ -1,21 +1,26 @@
 /**
-* @file PlatformSystem.cpp
-* @author Eli Tsereteli (ilya.tsereteli@digipen.edu)
-* @brief Patform System class: initializes window and graphics (GLFW and GLEW) when created, 
-*                              asserts during init if any of those failed. Shuts them down on exit.
-* @version 0.1
+* @file         PlatformSystem.cpp
+* @author       Eli Tsereteli (ilya.tsereteli@digipen.edu)
+* @brief        Patform System class: initializes window and graphics (GLFW and GLEW), 
+                shuts them down on exit.
 *
-* @copyright Copyright (c) 2023
-*
+* @version      0.1
+* @copyright    Copyright (c) 2023
 */
 #include "PlatformSystem.h"
-#include "glew.h"
-#include "glfw3.h"
-#include "glm/vec2.hpp" // return window dimensions
+#include "glew.h"       // initialize, error callback
+#include "glfw3.h"      // initialize / shutdown
+#include "glm/vec2.hpp" // for returning window dimensions
 #include <iostream>     // cout
 #include <assert.h>
 
-// This function will get called when there's some OpenGL error.
+/**
+* @brief            (callback) Gets called when there's some OpenGL error. Prints error message
+*                   to console, asserts for high severity errors.
+* @param message    Error message (text)
+* @param severity   Severity of the error.
+* @param others     They don't really matter. Can be used for more advanced debugging.
+*/
 static void GLAPIENTRY ErrorHandler(GLenum source, GLenum type, GLuint id, GLenum severity, 
                                 GLsizei length, const GLchar* message, const void* userparam)
 {
@@ -34,6 +39,12 @@ static void GLAPIENTRY ErrorHandler(GLenum source, GLenum type, GLuint id, GLenu
     (void) userparam;
 }
 
+/**
+* @brief            Constructor: initializes GLFW window and GLEW, enables error callback.
+* @param w_name     Window name.
+* @param w_width    Window width.
+* @param w_height   Window height.
+*/
 PlatformSystem::PlatformSystem(const char* w_name, int w_width, int w_height) : 
 	_window(nullptr),
 	_width(w_width), _height(w_height) 
@@ -50,7 +61,7 @@ PlatformSystem::PlatformSystem(const char* w_name, int w_width, int w_height) :
     glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);    // enable error callback
     glfwWindowHint(GLFW_RESIZABLE, false);              // fixed window size
 
-    //    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  needed or nah?
+    //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); TODO: needed or nah?
 
     // Window
     _window = glfwCreateWindow(w_width, w_height, w_name, NULL, NULL);
@@ -75,16 +86,9 @@ PlatformSystem::PlatformSystem(const char* w_name, int w_width, int w_height) :
     glDebugMessageCallback(ErrorHandler, NULL);                             // set error callback func
 }
 
-
-void PlatformSystem::OnInit()
-{
-}
-
-void PlatformSystem::OnUpdate(float dt)
-{
-
-}
-
+/**
+* @brief    Shuts down the the platform.
+*/
 void PlatformSystem::OnExit()
 {
     glfwDestroyWindow(_window);
@@ -92,15 +96,29 @@ void PlatformSystem::OnExit()
     std::cout << "\nShutdown complete." << std::endl;
 }
 
-
+/**
+* @brief    Returns the window handle.
+* @return   GLFWwindow pointer: Current window handle.
+*/
 GLFWwindow* PlatformSystem::GetWindowHandle() const { return _window; }
 
+/**
+* @brief    Returns window dimensions as a vec2.
+* @return   glm vec2: x = width, y = height.
+*/
 glm::vec2 PlatformSystem::GetWindowDimensions() const { return { _width, _height }; }
 
+/**
+* @brief    Checks if the window is closing.
+* @return   bool: true if the window is closing.
+*/
 bool PlatformSystem::WindowClosing() const { return glfwWindowShouldClose(_window); }
 
 
-// standard GetInstance method
+/**
+* @brief    (Singleton) Gets the instance of this system.
+* @return   PlatformSystem pointer: new or existing instance of this system.
+*/
 PlatformSystem * PlatformSystem::getInstance()
 {
     static PlatformSystem * instance = nullptr;
@@ -110,7 +128,14 @@ PlatformSystem * PlatformSystem::getInstance()
     return instance;
 }
 
-// Constructor getInstance method, should only be called in main.cpp
+/**
+* @brief            (Singleton) Constructor getInstance method, should only be called in main.cpp
+* @param w_name     Window name.
+* @param w_width    Window width.
+* @param w_height   Window height.
+* @return           PlatformSystem pointer: new or existing instance of this system.
+*/
+// 
 PlatformSystem * PlatformSystem::getInstance( const char* w_name = "Prototype", int w_width = 800, int w_height = 600 )
 {
     static PlatformSystem * instance = nullptr;
