@@ -22,7 +22,6 @@ public:
 private:
 	int _width, _height;
 	GLFWwindow* _window;
-	bool _initialized;
 
 	// Inherited via System
 	virtual void OnInit() override;

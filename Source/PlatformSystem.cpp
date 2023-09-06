@@ -35,7 +35,7 @@ static void GLAPIENTRY ErrorHandler(GLenum source, GLenum type, GLuint id, GLenu
 }
 
 PlatformSystem::PlatformSystem(const char* w_name, int w_width, int w_height) : 
-	_window(nullptr), _initialized(false),
+	_window(nullptr),
 	_width(w_width), _height(w_height) 
 {
     // GLFW
@@ -58,7 +58,7 @@ PlatformSystem::PlatformSystem(const char* w_name, int w_width, int w_height) :
     {
         glfwTerminate();
         std::cerr << "Failed to create GLFW window" << std::endl;
-        return;
+        assert(false);
     }
     glfwMakeContextCurrent(_window);
 
@@ -68,19 +68,16 @@ PlatformSystem::PlatformSystem(const char* w_name, int w_width, int w_height) :
         glfwTerminate();
         glfwDestroyWindow(_window);
         std::cerr << "Failed to initialize GLEW" << std::endl;
-        return;
+        assert(false);
     }
 
     std::cout << "Running OpenGL " << glGetString(GL_VERSION) << std::endl; // display OpenGL version
     glDebugMessageCallback(ErrorHandler, NULL);                             // set error callback func
-
-    _initialized = true;
 }
 
 
 void PlatformSystem::OnInit()
 {
-    assert(_initialized); // asserts if prior initialization failed
 }
 
 void PlatformSystem::OnUpdate(float dt)
@@ -90,12 +87,9 @@ void PlatformSystem::OnUpdate(float dt)
 
 void PlatformSystem::OnExit()
 {
-    if (_initialized)
-    {
-        glfwDestroyWindow(_window);
-        glfwTerminate();
-        std::cout << "\nShutdown complete." << std::endl;
-    }
+    glfwDestroyWindow(_window);
+    glfwTerminate();
+    std::cout << "\nShutdown complete." << std::endl;
 }
 
 
