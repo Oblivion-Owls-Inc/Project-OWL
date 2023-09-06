@@ -21,19 +21,10 @@ class Engine
 {
     public:
 
-        // ----- (ELI)   TEMPORARY - for testing  ------------
-        System* GetPlatform() { return systems[0]; }
-
         /**
         * @brief Constructs a new Engine
         */
         Engine();
-
-
-        /**
-        * @brief Initializes the engine. Should be called beofr
-        */
-        void Init();
 
         /**
         * @brief Adds a System to the Engine.
@@ -90,6 +81,12 @@ class Engine
         * @brief The duration of each fixed frame
         */
         float fixedFrameDuration;
+
+
+        /**
+        * @brief Initializes the engine and all Systems in the Engine.
+        */
+        void Init();
 
         /**
          * @brief Updates the engine each frame

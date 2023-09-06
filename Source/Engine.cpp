@@ -19,7 +19,6 @@
 #include "Engine.h"
 
 #include "PlatformSystem.h"
-PlatformSystem *platform;
 
 // TODO: move this out of the engine into its own System
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -73,9 +72,9 @@ void Engine::AddSystem( System * system, unsigned index )
 void Engine::Run()
 {
 
-    // TODO: move glfwWindowShouldClose out of the Engine and into its own System? 
-    // ELI: yea
-    while (shouldExit == false && !platform->WindowClosing()) {
+    Init();
+
+    while (shouldExit == false && PlatformSystem::getInstance()->WindowClosing() == false) {
         Update();
     }
 
@@ -101,35 +100,33 @@ float Engine::getFixedFrameDuration() const
 
 
 /**
-* @brief Initializes the engine before running it
+* @brief Initializes the engine and all Systems in the Engine
 */
 void Engine::Init()
 {
-    // TODO: initialize the engine
     previousTime = glfwGetTime();
     previousFixedTime = previousTime;
 
-    // ELI: moved systems init here
-    for (auto system : systems)
+    for (System * system : systems) {
         system->OnInit();
+    }
 
-    platform = (PlatformSystem*)GetPlatform();
+    // TODO: move the below code into its own system
 
+        GLFWwindow * window = PlatformSystem::getInstance()->GetWindowHandle();
 
-    GLFWwindow* window = platform->GetWindowHandle();
+        // Setup ImGui context
+        ImGui::CreateContext();
+        ImGuiIO& io = ImGui::GetIO();
+        (void)io;
+        ImGui_ImplGlfw_InitForOpenGL(window, true);
+        ImGui_ImplOpenGL3_Init("#version 430");
 
-    // Setup ImGui context
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
-    (void)io;
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init("#version 430");
+        // Set the clear color (background color)
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-    // Set the clear color (background color)
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-
-    // Set up a callback for the Escape key
-    glfwSetKeyCallback(window, keyCallback);
+        // Set up a callback for the Escape key
+        glfwSetKeyCallback(window, keyCallback);
 
     // TODO: move the above code out of the engine and into its own systems
 }
@@ -139,7 +136,7 @@ void Engine::Init()
 */
 void Engine::Update()
 {
-    GLFWwindow* window = platform->GetWindowHandle();
+    GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
 
     double currentTime = glfwGetTime();
 

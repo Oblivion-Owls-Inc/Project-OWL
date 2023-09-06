@@ -99,3 +99,24 @@ glm::vec2 PlatformSystem::GetWindowDimensions() const { return { _width, _height
 
 bool PlatformSystem::WindowClosing() const { return glfwWindowShouldClose(_window); }
 
+
+// standard GetInstance method
+PlatformSystem * PlatformSystem::getInstance()
+{
+    static PlatformSystem * instance = nullptr;
+    if ( instance == nullptr ) {
+        instance = new PlatformSystem();
+    }
+    return instance;
+}
+
+// Constructor getInstance method, should only be called in main.cpp
+PlatformSystem * PlatformSystem::getInstance( const char* w_name = "Prototype", int w_width = 800, int w_height = 600 )
+{
+    static PlatformSystem * instance = nullptr;
+    if (instance == nullptr) {
+        instance = new PlatformSystem( w_name, w_width, w_height );
+    }
+    return instance;
+}
+
