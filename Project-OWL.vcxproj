@@ -151,7 +151,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DebugSystem.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -168,9 +167,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h" />
-    <ClInclude Include="BaseSystem.h" />
-    <ClInclude Include="basics.h" />
-    <ClInclude Include="DebugSystem.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_impl_glfw.h" />
