@@ -11,6 +11,8 @@
 
 #pragma once
 
+#include <glfw3.h>
+
 #include "Engine.h"
 
 
@@ -19,11 +21,9 @@
 */
 Engine::Engine()
   : shouldExit( false ),
-    fixedFrameDuration(
-        std::chrono::duration_cast< std::chrono::high_resolution_clock::duration >(
-            std::chrono::duration< float, std::chrono::seconds >( 1.0f / 20.0f )
-        )
-    )
+    fixedFrameDuration( 1.0 / 20.0 ),
+    previousFixedTime(0.0),
+    previousTime(0.0)
 {}
 
 /**
@@ -33,7 +33,7 @@ Engine::Engine()
 void Engine::AddSystem( System * system )
 {
     systems.push_back( system );
-    system->setIndex( systems.size() - 1 );
+    system->setIndex( static_cast<int>(systems.size() - 1) );
     system->OnInit(); // TODO: maybe move this so that all systems are added, then all systems initialize?
 }
 
@@ -80,7 +80,7 @@ void Engine::Close()
 void Engine::Init()
 {
     // TODO: initialize the engine
-    previousTime = std::chrono::high_resolution_clock::now();
+    previousTime = glfwGetTime();
     previousFixedTime = previousTime;
 }
 
@@ -89,14 +89,14 @@ void Engine::Init()
 */
 void Engine::Update()
 {
-    std::chrono::high_resolution_clock::time_point currentTime = std::chrono::high_resolution_clock::now();
+    double currentTime = glfwGetTime();
 
     if (currentTime - previousFixedTime > fixedFrameDuration) {
         FixedUpdateSystems();
         previousFixedTime += fixedFrameDuration;
     }
 
-    UpdateSystems( std::chrono::duration<float>( currentTime - previousTime ).count() );
+    UpdateSystems( static_cast<float>(currentTime - previousTime) );
     previousTime = currentTime;
 }
 

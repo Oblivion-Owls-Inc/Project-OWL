@@ -12,7 +12,6 @@
 #pragma once
 
 #include <vector>
-#include <chrono>
 
 #include "System.h"
 
@@ -64,17 +63,17 @@ class Engine
         /**
          * @brief The timestamp of the previous frame
         */
-        std::chrono::high_resolution_clock::time_point previousTime;
+        double previousTime;
 
         /**
          * @brief The timestamp of the previous fixed frame
         */
-        std::chrono::high_resolution_clock::time_point previousFixedTime;
+        double previousFixedTime;
 
         /**
         * @brief The duration of each fixed frame
         */
-        std::chrono::high_resolution_clock::duration fixedFrameDuration;
+        double fixedFrameDuration;
 
 
         /**
@@ -101,13 +100,6 @@ class Engine
          * @brief exits and closes the Engine
         */
         void Exit();
-
-        /**
-         * @brief Helper function for AddSystem() to insert systems into the middle of the array.
-         * @param system 
-         * @param index 
-        */
-        void InsertSystem( System * system, int index );
 
     public:
 
