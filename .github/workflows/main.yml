@@ -18,34 +18,52 @@ jobs:
 
       - name: Sync to SVN
         run: |
-          # Configure SVN username and password if needed
-          # svn --username $USER --password $PASS info
-          
           # Set SVN URL
-          SVN_URL="$SVN_URL"
+          SVN_URL="${{ secrets.SVN_URL }}"
           
-          # Create a temporary directory
-          TMP_DIR="$(mktemp -d)"
+          # Perform SVN checkout to the temporary directory
+          svn checkout "$SVN_URL" --username "${{ secrets.USER }}" --password "${{ secrets.PASS }}"
+          echo ---------------MAIN FOLDER---------------
           
-          # Copy the repository contents to the temporary directory
-          cp -r ./* "$TMP_DIR"
+          # List the contents of the directory (you can use "ls" or "la" here)
+          ls
           
-          # Change directory to the temporary directory
-          cd "$TMP_DIR"
+          # Pause for 1 minute
+          sleep 30
+
+          # Move the contents into the "Project-OWL" directory
+          # mv * oblivion_owls_inc / Project-OWL/
+
+          # Change directory to the "oblivion_owls_inc" directory
+          cd oblivion_owls_inc
+          echo ---------------OWL FOlder---------------
           
-          # Perform SVN checkout
-          svn checkout "$SVN_URL" .
+          # List the contents of the directory (you can use "ls" or "la" here)
+          ls
           
+          # Pause for 1 minute
+          sleep 30
+
+          # Change directory to the "Project-OWL" directory
+          cd Project-OWL
+          echo ---------------PROJECT FOLDER-----------
+          
+          # List the contents of the directory (you can use "ls" or "la" here)
+          ls
+          
+          # Pause for 1 minute
+          sleep 30
+
           # Add, commit, and push changes to SVN
-          svn add --force .
-          svn commit -m "Sync from GitHub"
-          svn update
+          #svn add --force .
+          #svn commit -m "Sync from GitHub"
+          #svn update
           
           # Clean up
           rm -rf "$TMP_DIR"
 
         env:
           SVN_URL: ${{ secrets.SVN_URL }}  # Store your SVN URL as a secret in GitHub
-          USER: ${{secrets.USER}} # Store my user
-          PASS: ${{secrets.PASS}} # Store password
+          USER: ${{ secrets.USER }} # Store my user
+          PASS: ${{ secrets.PASS }} # Store password
 

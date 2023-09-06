@@ -1,0 +1,13 @@
+digraph "PrettyWriter&lt; OutputStream, SourceEncoding, TargetEncoding, StackAllocator, writeFlags &gt;"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="PrettyWriter\< OutputStream,\l SourceEncoding, TargetEncoding,\l StackAllocator, writeFlags \>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Writer with indentation and spacing."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Writer\< OutputStream,\l UTF8\<\>, UTF8\<\>, CrtAllocator,\l kWriteDefaultFlags \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWriter.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" level_stack_" ];
+  Node3 [label="internal::Stack\< CrtAllocator \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classinternal_1_1Stack.html",tooltip=" "];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" kDefaultLevelDepth" ];
+  Node4 [label="size_t",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}

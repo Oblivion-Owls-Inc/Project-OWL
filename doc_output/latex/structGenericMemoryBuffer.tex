@@ -1,0 +1,95 @@
+\hypertarget{structGenericMemoryBuffer}{}\doxysection{Generic\+Memory\+Buffer$<$ Allocator $>$ Struct Template Reference}
+\label{structGenericMemoryBuffer}\index{GenericMemoryBuffer$<$ Allocator $>$@{GenericMemoryBuffer$<$ Allocator $>$}}
+
+
+Represents an in-\/memory output byte stream.  
+
+
+
+
+{\ttfamily \#include $<$memorybuffer.\+h$>$}
+
+
+
+Collaboration diagram for Generic\+Memory\+Buffer$<$ Allocator $>$\+:
+% FIG 0
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_a212f137abfd8bce2ad216b2d960c027f}\label{structGenericMemoryBuffer_a212f137abfd8bce2ad216b2d960c027f}} 
+typedef char {\bfseries Ch}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_ad08f7da47bca43fcdb0c3b10e22dfa1d}\label{structGenericMemoryBuffer_ad08f7da47bca43fcdb0c3b10e22dfa1d}} 
+{\bfseries Generic\+Memory\+Buffer} (\mbox{\hyperlink{classrapidjson_1_1Allocator}{Allocator}} $\ast$allocator=0, size\+\_\+t capacity=k\+Default\+Capacity)
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_a9dfb477983e211893601f8ab637b42d8}\label{structGenericMemoryBuffer_a9dfb477983e211893601f8ab637b42d8}} 
+void {\bfseries Put} (Ch c)
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_a9861181cab6f5bec2ec08b601aa53575}\label{structGenericMemoryBuffer_a9861181cab6f5bec2ec08b601aa53575}} 
+void {\bfseries Flush} ()
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_a036cbe2556778e1edc525602a9821df2}\label{structGenericMemoryBuffer_a036cbe2556778e1edc525602a9821df2}} 
+void {\bfseries Clear} ()
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_a3b87deb9bf34c394c8fb262ab53c0c4b}\label{structGenericMemoryBuffer_a3b87deb9bf34c394c8fb262ab53c0c4b}} 
+void {\bfseries Shrink\+To\+Fit} ()
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_a56f7b14d2940b682fe592f598d6792ec}\label{structGenericMemoryBuffer_a56f7b14d2940b682fe592f598d6792ec}} 
+Ch $\ast$ {\bfseries Push} (size\+\_\+t count)
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_a82a6706286f1356e1769282f5d496005}\label{structGenericMemoryBuffer_a82a6706286f1356e1769282f5d496005}} 
+void {\bfseries Pop} (size\+\_\+t count)
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_a8d7be8b1d64285b787571541a7c4bb37}\label{structGenericMemoryBuffer_a8d7be8b1d64285b787571541a7c4bb37}} 
+const Ch $\ast$ {\bfseries Get\+Buffer} () const
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_aaab1f18d03109ab01213d3e3d8368ff9}\label{structGenericMemoryBuffer_aaab1f18d03109ab01213d3e3d8368ff9}} 
+size\+\_\+t {\bfseries Get\+Size} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_a977b479180bebe8ae14ca1c11d52a486}\label{structGenericMemoryBuffer_a977b479180bebe8ae14ca1c11d52a486}} 
+\mbox{\hyperlink{classinternal_1_1Stack}{internal\+::\+Stack}}$<$ \mbox{\hyperlink{classrapidjson_1_1Allocator}{Allocator}} $>$ {\bfseries stack\+\_\+}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structGenericMemoryBuffer_af6ecdbdbb8d3aa53cdef6e788e4980be}\label{structGenericMemoryBuffer_af6ecdbdbb8d3aa53cdef6e788e4980be}} 
+static const size\+\_\+t {\bfseries k\+Default\+Capacity} = 256
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Allocator = Crt\+Allocator$>$\newline
+struct Generic\+Memory\+Buffer$<$ Allocator $>$}
+
+Represents an in-\/memory output byte stream. 
+
+This class is mainly for being wrapped by \mbox{\hyperlink{classEncodedOutputStream}{Encoded\+Output\+Stream}} or \mbox{\hyperlink{classAutoUTFOutputStream}{Auto\+UTFOutput\+Stream}}.
+
+It is similar to File\+Write\+Buffer but the destination is an in-\/memory buffer instead of a file.
+
+Differences between Memory\+Buffer and String\+Buffer\+:
+\begin{DoxyEnumerate}
+\item String\+Buffer has Encoding but Memory\+Buffer is only a byte buffer.
+\item String\+Buffer\+::\+Get\+String() returns a null-\/terminated string. Memory\+Buffer\+::\+Get\+Buffer() returns a buffer without terminator.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Allocator} & type for allocating memory buffer. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+implements Stream concept 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/rapidjson/fwd.\+h\item 
+Source/rapidjson/memorybuffer.\+h\end{DoxyCompactItemize}

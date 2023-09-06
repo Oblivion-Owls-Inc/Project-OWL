@@ -1,0 +1,52 @@
+\hypertarget{structAutoUTF}{}\doxysection{Auto\+UTF$<$ Char\+Type $>$ Struct Template Reference}
+\label{structAutoUTF}\index{AutoUTF$<$ CharType $>$@{AutoUTF$<$ CharType $>$}}
+
+
+Dynamically select encoding according to stream\textquotesingle{}s runtime-\/specified UTF encoding type.  
+
+
+
+
+{\ttfamily \#include $<$encodings.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structAutoUTF_a678e20a7f8d022be68adbb49fa56a094}\label{structAutoUTF_a678e20a7f8d022be68adbb49fa56a094}} 
+enum \{ {\bfseries support\+Unicode} = 1
+ \}
+\item 
+\mbox{\Hypertarget{structAutoUTF_a0609343de776df3bc31b4c980eb3cf1c}\label{structAutoUTF_a0609343de776df3bc31b4c980eb3cf1c}} 
+typedef Char\+Type {\bfseries Ch}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structAutoUTF_a414946115261f886e74dd42cb4b98781}\label{structAutoUTF_a414946115261f886e74dd42cb4b98781}} 
+{\footnotesize template$<$typename Output\+Stream $>$ }\\static RAPIDJSON\+\_\+\+FORCEINLINE void {\bfseries Encode} (Output\+Stream \&os, unsigned codepoint)
+\item 
+\mbox{\Hypertarget{structAutoUTF_a05f5dcd1f153b61b763e44ed452de251}\label{structAutoUTF_a05f5dcd1f153b61b763e44ed452de251}} 
+{\footnotesize template$<$typename Output\+Stream $>$ }\\static RAPIDJSON\+\_\+\+FORCEINLINE void {\bfseries Encode\+Unsafe} (Output\+Stream \&os, unsigned codepoint)
+\item 
+\mbox{\Hypertarget{structAutoUTF_aa5e3c1dc23dbb75f6442ff69500a35b0}\label{structAutoUTF_aa5e3c1dc23dbb75f6442ff69500a35b0}} 
+{\footnotesize template$<$typename Input\+Stream $>$ }\\static RAPIDJSON\+\_\+\+FORCEINLINE bool {\bfseries Decode} (Input\+Stream \&is, unsigned $\ast$codepoint)
+\item 
+\mbox{\Hypertarget{structAutoUTF_a36dd6f226d6a07c12161e21c0aff20b1}\label{structAutoUTF_a36dd6f226d6a07c12161e21c0aff20b1}} 
+{\footnotesize template$<$typename Input\+Stream , typename Output\+Stream $>$ }\\static RAPIDJSON\+\_\+\+FORCEINLINE bool {\bfseries Validate} (Input\+Stream \&is, Output\+Stream \&os)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Char\+Type$>$\newline
+struct Auto\+UTF$<$ Char\+Type $>$}
+
+Dynamically select encoding according to stream\textquotesingle{}s runtime-\/specified UTF encoding type. 
+
+\begin{DoxyNote}{Note}
+This class can be used with Auto\+UTFInputt\+Stream and \mbox{\hyperlink{classAutoUTFOutputStream}{Auto\+UTFOutput\+Stream}}, which provides Get\+Type(). 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/rapidjson/encodings.\+h\end{DoxyCompactItemize}
