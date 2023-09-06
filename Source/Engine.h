@@ -19,8 +19,10 @@
 
 class Engine
 {
-
     public:
+
+        // ----- (ELI)   TEMPORARY - for testing  ------------
+        System* GetPlatform() { return systems[0]; }
 
         /**
         * @brief Constructs a new Engine
@@ -62,12 +64,6 @@ class Engine
         */
         float getFixedFrameDuration() const;
 
-        /**
-         * @brief gets the GLFWwindow of the Engine
-         * @return the GLFWwindow in use by the engine
-        */
-        GLFWwindow * getWindow() const;
-
     private:
 
         /**
@@ -94,9 +90,6 @@ class Engine
         * @brief The duration of each fixed frame
         */
         float fixedFrameDuration;
-
-        // TODO: maybe this out of Engine and into its own System?
-        GLFWwindow * window;
 
         /**
          * @brief Updates the engine each frame

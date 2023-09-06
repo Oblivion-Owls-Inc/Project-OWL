@@ -89,6 +89,15 @@
     <ClCompile Include="GUI.cpp">
       <Filter>Engine\Systems\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlatformSystem.cpp">
+      <Filter>Engine\Systems\Platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -131,11 +140,15 @@
       <Filter>Engine\Systems</Filter>
     </ClInclude>
     <ClInclude Include="Source\Component.h">
+    <ClInclude Include="Source\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Entity.h">
+    <ClInclude Include="Source\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PlatformSystem.h">
+      <Filter>Engine\Systems\Platform</Filter>
     <ClInclude Include="GUI.h">
       <Filter>Engine\Systems\Debug</Filter>
     </ClInclude>
