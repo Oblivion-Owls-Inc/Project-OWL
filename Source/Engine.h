@@ -13,6 +13,8 @@
 
 #include <vector>
 
+#include "basics.h"
+
 #include "System.h"
 
 class Engine
@@ -24,6 +26,12 @@ class Engine
         * @brief Constructs a new Engine
         */
         Engine();
+
+
+        /**
+        * @brief Initializes the engine. Should be called beofr
+        */
+        void Init();
 
         /**
         * @brief Adds a System to the Engine.
@@ -47,6 +55,18 @@ class Engine
          * @brief Flags the engine to close once it finishes this loop
         */
         void Close();
+
+        /**
+         * @brief gets the duration of each fixed frame
+         * @return the amount of time in seconds that each fixed frame lasts
+        */
+        float getFixedFrameDuration() const;
+
+        /**
+         * @brief gets the GLFWwindow of the Engine
+         * @return the GLFWwindow in use by the engine
+        */
+        GLFWwindow * getWindow() const;
 
     private:
 
@@ -73,13 +93,10 @@ class Engine
         /**
         * @brief The duration of each fixed frame
         */
-        double fixedFrameDuration;
+        float fixedFrameDuration;
 
-
-        /**
-         * @brief Initializes the engine before running it
-        */
-        void Init();
+        // TODO: maybe this out of Engine and into its own System?
+        GLFWwindow * window;
 
         /**
          * @brief Updates the engine each frame
@@ -100,6 +117,8 @@ class Engine
          * @brief exits and closes the Engine
         */
         void Exit();
+
+
 
     public:
 

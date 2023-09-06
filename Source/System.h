@@ -1,5 +1,5 @@
 /**
-* @file BaseSystem.h
+* @file System.h
 * @author Steve Bukowinski (steve.bukowinski@digipen.edu)
 * @brief Base class for all Systems
 * @version 0.1
