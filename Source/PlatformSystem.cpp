@@ -135,7 +135,6 @@ PlatformSystem * PlatformSystem::getInstance()
 * @param w_height   Window height.
 * @return           PlatformSystem pointer: new or existing instance of this system.
 */
-// 
 PlatformSystem * PlatformSystem::getInstance( const char* w_name = "Prototype", int w_width = 800, int w_height = 600 )
 {
     static PlatformSystem * instance = nullptr;

@@ -1,11 +1,11 @@
 /**
-* @file PlatformSystem.h
-* @author Eli Tsereteli (ilya.tsereteli@digipen.edu)
-* @brief Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit.
-* @version 0.1
+* @file         PlatformSystem.h
+* @author       Eli Tsereteli (ilya.tsereteli@digipen.edu)
+* @brief        Patform System class: initializes window and graphics (GLFW and GLEW),
+                shuts them down on exit.
 *
-* @copyright Copyright (c) 2023
-*
+* @version      0.1
+* @copyright    Copyright (c) 2023
 */
 #pragma once
 #include "System.h"
