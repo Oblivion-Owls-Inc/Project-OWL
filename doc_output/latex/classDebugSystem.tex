@@ -1,0 +1,74 @@
+\hypertarget{classDebugSystem}{}\doxysection{Debug\+System Class Reference}
+\label{classDebugSystem}\index{DebugSystem@{DebugSystem}}
+
+
+Debug \mbox{\hyperlink{classSystem}{System}} Class For Debugging.  
+
+
+
+
+{\ttfamily \#include $<$Debug\+System.\+h$>$}
+
+
+
+Inheritance diagram for Debug\+System\+:
+% FIG 0
+
+
+Collaboration diagram for Debug\+System\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDebugSystem_a19de560b73dd0ed49eb314a07a138f5d}\label{classDebugSystem_a19de560b73dd0ed49eb314a07a138f5d}} 
+void \mbox{\hyperlink{classDebugSystem_a19de560b73dd0ed49eb314a07a138f5d}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em Gets called once when this \mbox{\hyperlink{classSystem}{System}} is added to the \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugSystem_a9ef7b923f0690259e70e69a533afa7e4}\label{classDebugSystem_a9ef7b923f0690259e70e69a533afa7e4}} 
+void \mbox{\hyperlink{classDebugSystem_a9ef7b923f0690259e70e69a533afa7e4}{On\+Fixed\+Update}} () override
+\begin{DoxyCompactList}\small\item\em Gets called once every simulation frame. Use this function for anything that affects the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDebugSystem_a2e42eb16bc553dcaf7fd3dc8feb764ea}{On\+Update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Gets called once every graphics frame. Do not use this function for anything that affects the simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}\label{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}} 
+void \mbox{\hyperlink{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em Gets called once before the \mbox{\hyperlink{classEngine}{Engine}} closes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugSystem_ab225528599272d6606e46eb908d305a3}\label{classDebugSystem_ab225528599272d6606e46eb908d305a3}} 
+void \mbox{\hyperlink{classDebugSystem_ab225528599272d6606e46eb908d305a3}{On\+Scene\+Load}} () override
+\begin{DoxyCompactList}\small\item\em Gets called whenever a new Scene is loaded. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugSystem_a35496f55a61a12df82257d78df887231}\label{classDebugSystem_a35496f55a61a12df82257d78df887231}} 
+void \mbox{\hyperlink{classDebugSystem_a35496f55a61a12df82257d78df887231}{On\+Scene\+Init}} () override
+\begin{DoxyCompactList}\small\item\em Gets called whenever a scene is initialized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugSystem_aad8fe04c79614333a219cfc148744fbd}\label{classDebugSystem_aad8fe04c79614333a219cfc148744fbd}} 
+void \mbox{\hyperlink{classDebugSystem_aad8fe04c79614333a219cfc148744fbd}{On\+Scene\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em Gets called whenever a scene is exited. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Debug \mbox{\hyperlink{classSystem}{System}} Class For Debugging. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDebugSystem_a2e42eb16bc553dcaf7fd3dc8feb764ea}\label{classDebugSystem_a2e42eb16bc553dcaf7fd3dc8feb764ea}} 
+\index{DebugSystem@{DebugSystem}!OnUpdate@{OnUpdate}}
+\index{OnUpdate@{OnUpdate}!DebugSystem@{DebugSystem}}
+\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
+{\footnotesize\ttfamily void Debug\+System\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets called once every graphics frame. Do not use this function for anything that affects the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & the elapsed time in seconds since the previous frame \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classSystem_afa0b86e4b56d71de03a702867aa951fb}{System}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{DebugSystem_8h}{Debug\+System.\+h}}\item 
+Source/Debug\+System.\+cpp\end{DoxyCompactItemize}

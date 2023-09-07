@@ -23,7 +23,7 @@ class Engine
 
         // ----- (ELI)   TEMPORARY - for testing  ------------
         System* GetPlatform() { return systems[0]; }
-
+        System* GetDebug() { return systems[1]; }
         /**
         * @brief Constructs a new Engine
         */

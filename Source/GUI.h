@@ -7,15 +7,17 @@
 class GUI 
 {
     public:
-        GUI(GLFWwindow* window);
+        GUI();
         ~GUI();
         void Render();
-        // Add other GUI-related functions here
 
     private:
-        GLFWwindow* window;
+        float color[5];
         bool active;
-        float *color;
         ImGuiIO io;
 };
 
+class DebugMenu : public GUI
+{
+
+};

@@ -11,9 +11,7 @@
 
 #pragma once
 #include "basics.h"
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
+#include "GUI.h"
 #include "System.h"
 #include <vector>
 
@@ -24,19 +22,25 @@
  */
 class DebugSystem : public System
 {
-    DebugSystem(GLFWwindow* window);
+    public:
+    DebugSystem(GLFWwindow* window = glfwGetCurrentContext());
 
     public:
+
+        void SetWindowHandle(GLFWwindow* window) { _window = window; }
         void OnInit() override;
-        void OnFixedUpdate() override;
         void OnUpdate(float dt) override;
         void OnExit() override;
+        static void ShowFPS();
+        //unused
+        void OnFixedUpdate() override;
         void OnSceneLoad() override;
         void OnSceneInit() override;
         void OnSceneExit() override;
     private:
         std::vector< GUI* > windows;
-        GLFWwindow* window;
-        ImGuiIO& io;
+        GLFWwindow* _window;
+        static bool FPS;
+        ImGuiIO* io;
 };
 

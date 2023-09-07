@@ -1,30 +1,19 @@
 #include "GUI.h"
 #include <cmath>
 
-GUI::GUI(GLFWwindow* window) : window(window), active(1), color(0)
+GUI::GUI() 
 {
-    color = new float[5]; // Allocate memory for an array of 5 floats
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    io = ImGui::GetIO(); 
-    (void)io;
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init("#version 330");
-    ImGui::StyleColorsDark();
 }
 
 GUI::~GUI() 
 {
-    delete color;
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
 }
 
 void GUI::Render() 
 {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
+
     ImGui::NewFrame();
 
     // Rendering code goes here
@@ -54,13 +43,8 @@ void GUI::Render()
     for (int n = 0; n < 50; n++)
         ImGui::Text("%04d: Some text", n);
     ImGui::EndChild();
-    ImGui::End();
 
-    // Render ImGui
-    ImGui::Render();
-    glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
-    glClear(GL_COLOR_BUFFER_BIT);
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    ImGui::End();
 
 }
 

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['rapidjson_2eh_527',['rapidjson.h',['../rapidjson_8h.html',1,'']]],
-  ['reader_2eh_528',['reader.h',['../reader_8h.html',1,'']]]
+  ['platformsystem_2ecpp_39',['PlatformSystem.cpp',['../PlatformSystem_8cpp.html',1,'']]]
 ];

@@ -19,7 +19,10 @@
 #include "Engine.h"
 
 #include "PlatformSystem.h"
+#include "DebugSystem.h"
+
 PlatformSystem *platform;
+DebugSystem* Debug;
 
 // TODO: move this out of the engine into its own System
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -114,17 +117,11 @@ void Engine::Init()
         system->OnInit();
 
     platform = (PlatformSystem*)GetPlatform();
-
+    Debug = (DebugSystem*)GetDebug();
 
     GLFWwindow* window = platform->GetWindowHandle();
 
-    // Setup ImGui context
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
-    (void)io;
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init("#version 430");
-
+    Debug->SetWindowHandle(window);
     // Set the clear color (background color)
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
@@ -151,43 +148,24 @@ void Engine::Update()
     UpdateSystems( static_cast<float>(currentTime - previousTime) );
     previousTime = currentTime;
 
+    DebugSystem::ShowFPS();
+
+
+
     // TODO: move the below code out of Engine and into its own Systems
         // Poll for and process events
         glfwPollEvents();
 
-        // Start the ImGui frame
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
-        
-        // Rendering code goes here
-        ImGui::Begin("Mouse Position");
-
-        // Get the mouse cursor position
-        double mouseX, mouseY;
-
-        glfwGetCursorPos(window, &mouseX, &mouseY);
-
-        // Display mouse position in ImGui window
-        ImGui::Text("Mouse X: %.2f", mouseX);
-        ImGui::Text("Mouse Y: %.2f", mouseY);
-        
-        ImGui::End();
-        
-        // ImGui rendering
-        ImGui::Render();
 
         int display_w, display_h;
 
         glfwGetFramebufferSize(window, &display_w, &display_h);
 
         glViewport(0, 0, display_w, display_h);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         // Swap front and back buffers
         glfwSwapBuffers(window);
+        glClear(GL_COLOR_BUFFER_BIT);
     // TODO: move the above code out of Engine and into its own System
 }
 

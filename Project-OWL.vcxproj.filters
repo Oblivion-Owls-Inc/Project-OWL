@@ -45,6 +45,9 @@
     <Filter Include="Engine\Systems\Physics">
       <UniqueIdentifier>{fcaed326-9e5b-4472-8aea-cb32ce5bc950}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\Entity\Component">
+      <UniqueIdentifier>{bbebb13f-15ac-4bdd-80dc-0cad07cd2a7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -80,23 +83,17 @@
     <ClCompile Include="Source\System.cpp">
       <Filter>Engine\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUI.cpp">
-      <Filter>Engine\Systems\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\PlatformSystem.cpp">
       <Filter>Engine\Systems\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity.cpp">
+      <Filter>Engine\Systems\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component.cpp">
+      <Filter>Engine\Systems\Entity\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI.cpp">
+      <Filter>Engine\Systems\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,17 +136,16 @@
     <ClInclude Include="Source\System.h">
       <Filter>Engine\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Component.h">
-    <ClInclude Include="Source\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Entity.h">
-    <ClInclude Include="Source\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\PlatformSystem.h">
       <Filter>Engine\Systems\Platform</Filter>
-    <ClInclude Include="GUI.h">
+    </ClInclude>
+    <ClInclude Include="Source\Entity.h">
+      <Filter>Engine\Systems\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Component.h">
+      <Filter>Engine\Systems\Entity\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GUI.h">
       <Filter>Engine\Systems\Debug</Filter>
     </ClInclude>
   </ItemGroup>
