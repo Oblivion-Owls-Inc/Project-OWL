@@ -63,6 +63,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classDebugSystem-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">DebugSystem Class Reference</div>  </div>
@@ -86,32 +88,36 @@ Collaboration diagram for DebugSystem:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a19de560b73dd0ed49eb314a07a138f5d"><td class="memItemLeft" align="right" valign="top"><a id="a19de560b73dd0ed49eb314a07a138f5d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a19de560b73dd0ed49eb314a07a138f5d">OnInit</a> () override</td></tr>
-<tr class="memdesc:a19de560b73dd0ed49eb314a07a138f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once when this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is added to the <a class="el" href="classEngine.html">Engine</a>. <br /></td></tr>
+<tr class="memitem:a3dd4d19afeda817bae160575ed447390"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a3dd4d19afeda817bae160575ed447390">DebugSystem</a> (GLFWwindow *window=glfwGetCurrentContext())</td></tr>
+<tr class="memdesc:a3dd4d19afeda817bae160575ed447390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>.  <a href="classDebugSystem.html#a3dd4d19afeda817bae160575ed447390">More...</a><br /></td></tr>
+<tr class="separator:a3dd4d19afeda817bae160575ed447390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f04a27b70187956bf31a268ca12054f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a1f04a27b70187956bf31a268ca12054f">SetWindowHandle</a> (GLFWwindow *window)</td></tr>
+<tr class="memdesc:a1f04a27b70187956bf31a268ca12054f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the GLFW window handle.  <a href="classDebugSystem.html#a1f04a27b70187956bf31a268ca12054f">More...</a><br /></td></tr>
+<tr class="separator:a1f04a27b70187956bf31a268ca12054f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19de560b73dd0ed49eb314a07a138f5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a19de560b73dd0ed49eb314a07a138f5d">OnInit</a> () override</td></tr>
+<tr class="memdesc:a19de560b73dd0ed49eb314a07a138f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>.  <a href="classDebugSystem.html#a19de560b73dd0ed49eb314a07a138f5d">More...</a><br /></td></tr>
 <tr class="separator:a19de560b73dd0ed49eb314a07a138f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e42eb16bc553dcaf7fd3dc8feb764ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a2e42eb16bc553dcaf7fd3dc8feb764ea">OnUpdate</a> (float dt) override</td></tr>
+<tr class="memdesc:a2e42eb16bc553dcaf7fd3dc8feb764ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>.  <a href="classDebugSystem.html#a2e42eb16bc553dcaf7fd3dc8feb764ea">More...</a><br /></td></tr>
+<tr class="separator:a2e42eb16bc553dcaf7fd3dc8feb764ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78f423fc5d74b31b09ce8490355d5eff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a78f423fc5d74b31b09ce8490355d5eff">OnExit</a> () override</td></tr>
+<tr class="memdesc:a78f423fc5d74b31b09ce8490355d5eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit and clean up the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>.  <a href="classDebugSystem.html#a78f423fc5d74b31b09ce8490355d5eff">More...</a><br /></td></tr>
+<tr class="separator:a78f423fc5d74b31b09ce8490355d5eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ef7b923f0690259e70e69a533afa7e4"><td class="memItemLeft" align="right" valign="top"><a id="a9ef7b923f0690259e70e69a533afa7e4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a9ef7b923f0690259e70e69a533afa7e4">OnFixedUpdate</a> () override</td></tr>
-<tr class="memdesc:a9ef7b923f0690259e70e69a533afa7e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every simulation frame. Use this function for anything that affects the simulation. <br /></td></tr>
+<tr class="memdesc:a9ef7b923f0690259e70e69a533afa7e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform updates at a fixed time step. <br /></td></tr>
 <tr class="separator:a9ef7b923f0690259e70e69a533afa7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e42eb16bc553dcaf7fd3dc8feb764ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a2e42eb16bc553dcaf7fd3dc8feb764ea">OnUpdate</a> (float dt) override</td></tr>
-<tr class="memdesc:a2e42eb16bc553dcaf7fd3dc8feb764ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every graphics frame. Do not use this function for anything that affects the simulation.  <a href="classDebugSystem.html#a2e42eb16bc553dcaf7fd3dc8feb764ea">More...</a><br /></td></tr>
-<tr class="separator:a2e42eb16bc553dcaf7fd3dc8feb764ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78f423fc5d74b31b09ce8490355d5eff"><td class="memItemLeft" align="right" valign="top"><a id="a78f423fc5d74b31b09ce8490355d5eff"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a78f423fc5d74b31b09ce8490355d5eff">OnExit</a> () override</td></tr>
-<tr class="memdesc:a78f423fc5d74b31b09ce8490355d5eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once before the <a class="el" href="classEngine.html">Engine</a> closes. <br /></td></tr>
-<tr class="separator:a78f423fc5d74b31b09ce8490355d5eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab225528599272d6606e46eb908d305a3"><td class="memItemLeft" align="right" valign="top"><a id="ab225528599272d6606e46eb908d305a3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#ab225528599272d6606e46eb908d305a3">OnSceneLoad</a> () override</td></tr>
-<tr class="memdesc:ab225528599272d6606e46eb908d305a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a new Scene is loaded. <br /></td></tr>
+<tr class="memdesc:ab225528599272d6606e46eb908d305a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a scene is loaded. <br /></td></tr>
 <tr class="separator:ab225528599272d6606e46eb908d305a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35496f55a61a12df82257d78df887231"><td class="memItemLeft" align="right" valign="top"><a id="a35496f55a61a12df82257d78df887231"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a35496f55a61a12df82257d78df887231">OnSceneInit</a> () override</td></tr>
-<tr class="memdesc:a35496f55a61a12df82257d78df887231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
+<tr class="memdesc:a35496f55a61a12df82257d78df887231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a scene is initialized. <br /></td></tr>
 <tr class="separator:a35496f55a61a12df82257d78df887231"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad8fe04c79614333a219cfc148744fbd"><td class="memItemLeft" align="right" valign="top"><a id="aad8fe04c79614333a219cfc148744fbd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#aad8fe04c79614333a219cfc148744fbd">OnSceneExit</a> () override</td></tr>
-<tr class="memdesc:aad8fe04c79614333a219cfc148744fbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
+<tr class="memdesc:aad8fe04c79614333a219cfc148744fbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a scene is exited. <br /></td></tr>
 <tr class="separator:aad8fe04c79614333a219cfc148744fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classSystem"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classSystem')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classSystem.html">System</a></td></tr>
 <tr class="memitem:a730bbd1f35102d76d281e5d52afb33b9 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a730bbd1f35102d76d281e5d52afb33b9">getIndex</a> () const</td></tr>
@@ -127,6 +133,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classSystem.html">System</a> &amp;)=delete</td></tr>
 <tr class="separator:a1c2cb035d0f63fabe49c0af69238208f inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a81175440df77dcbb9c2fa42c4ef4b591"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a81175440df77dcbb9c2fa42c4ef4b591">ShowFPS</a> ()</td></tr>
+<tr class="memdesc:a81175440df77dcbb9c2fa42c4ef4b591"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show the Frames Per Second (FPS) in a debug window.  <a href="classDebugSystem.html#a81175440df77dcbb9c2fa42c4ef4b591">More...</a><br /></td></tr>
+<tr class="separator:a81175440df77dcbb9c2fa42c4ef4b591"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a90310ccd94c0303b5594e9b94bc2a3dd">ScreenPrint</a> (const char *format,...)</td></tr>
+<tr class="memdesc:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a formatted message to the screen.  <a href="classDebugSystem.html#a90310ccd94c0303b5594e9b94bc2a3dd">More...</a><br /></td></tr>
+<tr class="separator:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74681dbee9160aab7f7c279fdb087732"><td class="memItemLeft" align="right" valign="top"><a id="a74681dbee9160aab7f7c279fdb087732"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a74681dbee9160aab7f7c279fdb087732">ShowDebugMenu</a> ()</td></tr>
+<tr class="memdesc:a74681dbee9160aab7f7c279fdb087732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show or create the <a class="el" href="classDebugMenu.html" title="Debugging menu class derived from GUI.">DebugMenu</a> <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> window. <br /></td></tr>
+<tr class="separator:a74681dbee9160aab7f7c279fdb087732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a0c8288bc7aeca4c89d99cb2014880218"><td class="memItemLeft" align="right" valign="top"><a id="a0c8288bc7aeca4c89d99cb2014880218"></a>
+static ImGuiTextBuffer&#160;</td><td class="memItemRight" valign="bottom"><b>logBuffer</b></td></tr>
+<tr class="separator:a0c8288bc7aeca4c89d99cb2014880218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classSystem"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classSystem')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classSystem.html">System</a></td></tr>
@@ -137,7 +162,97 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> Class For Debugging. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<p>This class provides functionality for debugging within your application. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3dd4d19afeda817bae160575ed447390"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dd4d19afeda817bae160575ed447390">&#9670;&nbsp;</a></span>DebugSystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DebugSystem::DebugSystem </td>
+          <td>(</td>
+          <td class="paramtype">GLFWwindow *&#160;</td>
+          <td class="paramname"><em>window</em> = <code>glfwGetCurrentContext()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>. </p>
+<p>Initialize the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The GLFW window handle (default is the current context)</td></tr>
+    <tr><td class="paramname">window</td><td>The GLFW window handle (default is the current context). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a78f423fc5d74b31b09ce8490355d5eff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78f423fc5d74b31b09ce8490355d5eff">&#9670;&nbsp;</a></span>OnExit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugSystem::OnExit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Exit and clean up the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>. </p>
+<p>Perform cleanup and shutdown. </p>
+
+<p>Implements <a class="el" href="classSystem.html#af9cbab3440ffa313478862afa8a787f1">System</a>.</p>
+
+</div>
+</div>
+<a id="a19de560b73dd0ed49eb314a07a138f5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19de560b73dd0ed49eb314a07a138f5d">&#9670;&nbsp;</a></span>OnInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugSystem::OnInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>. </p>
+<p>Perform initialization. </p>
+
+<p>Implements <a class="el" href="classSystem.html#aaf0038a8ded8c50370b1c693f11ddc60">System</a>.</p>
+
+</div>
+</div>
 <a id="a2e42eb16bc553dcaf7fd3dc8feb764ea"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e42eb16bc553dcaf7fd3dc8feb764ea">&#9670;&nbsp;</a></span>OnUpdate()</h2>
 
@@ -162,15 +277,131 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets called once every graphics frame. Do not use this function for anything that affects the simulation. </p>
+<p>Update the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>. </p>
+<p>Perform updates.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dt</td><td>the elapsed time in seconds since the previous frame </td></tr>
+    <tr><td class="paramname">dt</td><td>The time elapsed since the last update</td></tr>
+    <tr><td class="paramname">dt</td><td>The time elapsed since the last update. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Implements <a class="el" href="classSystem.html#afa0b86e4b56d71de03a702867aa951fb">System</a>.</p>
+
+</div>
+</div>
+<a id="a90310ccd94c0303b5594e9b94bc2a3dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90310ccd94c0303b5594e9b94bc2a3dd">&#9670;&nbsp;</a></span>ScreenPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugSystem::ScreenPrint </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Print a formatted message to the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>The format string, similar to printf</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function allows you to print a formatted message to the screen using ImGui.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>The format string, similar to printf. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1f04a27b70187956bf31a268ca12054f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f04a27b70187956bf31a268ca12054f">&#9670;&nbsp;</a></span>SetWindowHandle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugSystem::SetWindowHandle </td>
+          <td>(</td>
+          <td class="paramtype">GLFWwindow *&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the GLFW window handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>The GLFW window handle to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a81175440df77dcbb9c2fa42c4ef4b591"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81175440df77dcbb9c2fa42c4ef4b591">&#9670;&nbsp;</a></span>ShowFPS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugSystem::ShowFPS </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Show the Frames Per Second (FPS) in a debug window. </p>
+<p>Show the Frames Per Second (FPS) display.</p>
+<p>This function displays the Frames Per Second (FPS) in a debug window when called. </p>
 
 </div>
 </div>

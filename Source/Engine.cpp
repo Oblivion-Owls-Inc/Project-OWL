@@ -146,10 +146,12 @@ void Engine::Update()
     }
 
     UpdateSystems( static_cast<float>(currentTime - previousTime) );
+
+    
     previousTime = currentTime;
 
     DebugSystem::ShowFPS();
-
+    //DebugSystem::ShowDebugMenu();
 
 
     // TODO: move the below code out of Engine and into its own Systems

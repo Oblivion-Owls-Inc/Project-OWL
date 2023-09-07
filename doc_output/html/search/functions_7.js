@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['setindex_56',['setIndex',['../classSystem.html#ac0d3af24f278882ec7f11b1e517650a6',1,'System']]],
-  ['system_57',['System',['../classSystem.html#ae317936c9bcf1374d61745572e0f2f8a',1,'System']]]
+  ['render_77',['Render',['../classGUI.html#a4905ff37be14b83496d098096f5848b6',1,'GUI::Render()'],['../classDebugMenu.html#a3d1089d4541a4b246a49e0bbbaf55b9b',1,'DebugMenu::Render()']]],
+  ['run_78',['Run',['../classEngine.html#af4c789fb939a0870426c698a5124a0ee',1,'Engine']]]
 ];

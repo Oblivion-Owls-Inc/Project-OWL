@@ -68,19 +68,200 @@ $(function() {
 <div class="title">GUI Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base class for user interface elements.  
+ <a href="classGUI.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="GUI_8h_source.html">GUI.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for GUI:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGUI__inherit__graph.png" border="0" usemap="#aGUI_inherit__map" alt="Inheritance graph"/></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6ce5bedf680ffe174abaa35215d40423"><td class="memItemLeft" align="right" valign="top"><a id="a6ce5bedf680ffe174abaa35215d40423"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GUI</b> (GLFWwindow *window)</td></tr>
-<tr class="separator:a6ce5bedf680ffe174abaa35215d40423"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4905ff37be14b83496d098096f5848b6"><td class="memItemLeft" align="right" valign="top"><a id="a4905ff37be14b83496d098096f5848b6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Render</b> ()</td></tr>
+<tr class="memitem:a8cbb3140b7d3c9d8e942d6ce6b60a0e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#a8cbb3140b7d3c9d8e942d6ce6b60a0e8">GUI</a> ()</td></tr>
+<tr class="memdesc:a8cbb3140b7d3c9d8e942d6ce6b60a0e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a>.  <a href="classGUI.html#a8cbb3140b7d3c9d8e942d6ce6b60a0e8">More...</a><br /></td></tr>
+<tr class="separator:a8cbb3140b7d3c9d8e942d6ce6b60a0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cb541eb38124318ad314ac93db4b405"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#a4cb541eb38124318ad314ac93db4b405">GUI</a> (const char *windowTitle, bool initialVisibility=true)</td></tr>
+<tr class="memdesc:a4cb541eb38124318ad314ac93db4b405"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> with window title and initial visibility.  <a href="classGUI.html#a4cb541eb38124318ad314ac93db4b405">More...</a><br /></td></tr>
+<tr class="separator:a4cb541eb38124318ad314ac93db4b405"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9cae2328dcb5d83bdfaeca49a2eb695"><td class="memItemLeft" align="right" valign="top"><a id="ac9cae2328dcb5d83bdfaeca49a2eb695"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#ac9cae2328dcb5d83bdfaeca49a2eb695">~GUI</a> ()</td></tr>
+<tr class="memdesc:ac9cae2328dcb5d83bdfaeca49a2eb695"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> to support proper inheritance. <br /></td></tr>
+<tr class="separator:ac9cae2328dcb5d83bdfaeca49a2eb695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4905ff37be14b83496d098096f5848b6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#a4905ff37be14b83496d098096f5848b6">Render</a> ()</td></tr>
+<tr class="memdesc:a4905ff37be14b83496d098096f5848b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render function for the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element.  <a href="classGUI.html#a4905ff37be14b83496d098096f5848b6">More...</a><br /></td></tr>
 <tr class="separator:a4905ff37be14b83496d098096f5848b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a105fb7430496f3ad447831cc0d7af8b2"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#a105fb7430496f3ad447831cc0d7af8b2">IsVisible</a> () const</td></tr>
+<tr class="memdesc:a105fb7430496f3ad447831cc0d7af8b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element is visible.  <a href="classGUI.html#a105fb7430496f3ad447831cc0d7af8b2">More...</a><br /></td></tr>
+<tr class="separator:a105fb7430496f3ad447831cc0d7af8b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88411d5086d9462359afb0b96f59a48c"><td class="memItemLeft" align="right" valign="top"><a id="a88411d5086d9462359afb0b96f59a48c"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#a88411d5086d9462359afb0b96f59a48c">setInactive</a> ()</td></tr>
+<tr class="memdesc:a88411d5086d9462359afb0b96f59a48c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element as inactive. <br /></td></tr>
+<tr class="separator:a88411d5086d9462359afb0b96f59a48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad211c1e2a608b1df4fb43d3e6d1a69c9"><td class="memItemLeft" align="right" valign="top"><a id="ad211c1e2a608b1df4fb43d3e6d1a69c9"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#ad211c1e2a608b1df4fb43d3e6d1a69c9">setActive</a> ()</td></tr>
+<tr class="memdesc:ad211c1e2a608b1df4fb43d3e6d1a69c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element as active. <br /></td></tr>
+<tr class="separator:ad211c1e2a608b1df4fb43d3e6d1a69c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c0a50c69ba833dfdf7b225434e03051"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#a4c0a50c69ba833dfdf7b225434e03051">GetWindowTitle</a> () const</td></tr>
+<tr class="memdesc:a4c0a50c69ba833dfdf7b225434e03051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the window title of the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element.  <a href="classGUI.html#a4c0a50c69ba833dfdf7b225434e03051">More...</a><br /></td></tr>
+<tr class="separator:a4c0a50c69ba833dfdf7b225434e03051"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class for user interface elements. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8cbb3140b7d3c9d8e942d6ce6b60a0e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cbb3140b7d3c9d8e942d6ce6b60a0e8">&#9670;&nbsp;</a></span>GUI() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GUI::GUI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default constructor for <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a>. </p>
+<p>Construct a new <a class="el" href="classGUI.html#a8cbb3140b7d3c9d8e942d6ce6b60a0e8" title="Default constructor for GUI.">GUI::GUI</a> object <br  />
+ </p>
+
+</div>
+</div>
+<a id="a4cb541eb38124318ad314ac93db4b405"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cb541eb38124318ad314ac93db4b405">&#9670;&nbsp;</a></span>GUI() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GUI::GUI </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>windowTitle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>initialVisibility</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> with window title and initial visibility. </p>
+<p>Construct a new <a class="el" href="classGUI.html#a8cbb3140b7d3c9d8e942d6ce6b60a0e8" title="Default constructor for GUI.">GUI::GUI</a> object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">windowTitle</td><td>The title of the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> window. </td></tr>
+    <tr><td class="paramname">initialVisibility</td><td>The initial visibility state (default is true).</td></tr>
+    <tr><td class="paramname">windowTitle</td><td></td></tr>
+    <tr><td class="paramname">initialVisibility</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4c0a50c69ba833dfdf7b225434e03051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c0a50c69ba833dfdf7b225434e03051">&#9670;&nbsp;</a></span>GetWindowTitle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * GUI::GetWindowTitle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the window title of the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element. </p>
+<p>Get the window title.</p>
+<dl class="section return"><dt>Returns</dt><dd>The window title as a const char pointer.</dd>
+<dd>
+const char* </dd></dl>
+
+</div>
+</div>
+<a id="a105fb7430496f3ad447831cc0d7af8b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a105fb7430496f3ad447831cc0d7af8b2">&#9670;&nbsp;</a></span>IsVisible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GUI::IsVisible </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element is visible. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element is visible, false otherwise.</dd>
+<dd>
+true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
+<a id="a4905ff37be14b83496d098096f5848b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4905ff37be14b83496d098096f5848b6">&#9670;&nbsp;</a></span>Render()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GUI::Render </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Render function for the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element. </p>
+<p>This function is responsible for rendering the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element. </p>
+
+<p>Reimplemented in <a class="el" href="classDebugMenu.html#a3d1089d4541a4b246a49e0bbbaf55b9b">DebugMenu</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/<a class="el" href="GUI_8h_source.html">GUI.h</a></li>
-<li>Source/GUI.cpp</li>
+<li>Source/<a class="el" href="GUI_8cpp.html">GUI.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

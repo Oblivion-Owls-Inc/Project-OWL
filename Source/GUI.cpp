@@ -1,50 +1,148 @@
+/**
+ * @file GUI.cpp
+ * @author Jax Clayton (jax.clayton@digipen.edu)
+ * @brief Defines the DebugSystem class for debugging functionality.
+ * @version 0.1
+ * @date 2023-09-07
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+#include "DebugSystem.h"
 #include "GUI.h"
 #include <cmath>
 
+/**
+ * @brief Construct a new GUI::GUI object   
+ * 
+ */
 GUI::GUI() 
 {
 }
 
-GUI::~GUI() 
+/**
+ * @brief Construct a new GUI::GUI object
+ * 
+ * @param windowTitle 
+ * @param initialVisibility 
+ */
+GUI::GUI(const char* windowTitle, bool initialVisibility) : active(initialVisibility), windowTitle(windowTitle) 
+{
+}
+
+GUI::~GUI()
 {
 }
 
 void GUI::Render() 
 {
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
-
-    ImGui::NewFrame();
-
-    // Rendering code goes here
-    ImGui::Begin("My First Tool", &this->active, ImGuiWindowFlags_MenuBar);
-    if (ImGui::BeginMenuBar()) {
-        if (ImGui::BeginMenu("File")) {
-            if (ImGui::MenuItem("Open..", "Ctrl+O")) { /* Do stuff */ }
-            if (ImGui::MenuItem("Save", "Ctrl+S")) { /* Do stuff */ }
-            if (ImGui::MenuItem("Close", "Ctrl+W")) { this->active = false; }
-            ImGui::EndMenu();
-        }
-        ImGui::EndMenuBar();
-    }
-
-    // Edit a color stored as 4 floats
-    ImGui::ColorEdit4("Color", color);
-
-    // Generate samples and plot them
-    float samples[100];
-    for (int n = 0; n < 100; n++)
-        samples[n] = sinf(n * 0.2f + ImGui::GetTime() * 1.5f);
-    ImGui::PlotLines("Samples", samples, 100);
-
-    // Display contents in a scrolling region
-    ImGui::TextColored(ImVec4(1, 1, 0, 1), "Important Stuff");
-    ImGui::BeginChild("Scrolling");
-    for (int n = 0; n < 50; n++)
-        ImGui::Text("%04d: Some text", n);
-    ImGui::EndChild();
-
-    ImGui::End();
-
+   
 }
 
+/**
+ * @brief Check if the GUI element is visible.
+ * 
+ * @return true 
+ * @return false 
+ */
+bool GUI::IsVisible() const
+{
+    return active;
+}
+
+/**
+ * @brief Set the GUI element as inactive.
+ * 
+ */
+
+void GUI::setInactive()
+{
+    active = false;
+}
+
+/**
+ * @brief Set the GUI element as active.
+ * 
+ */
+void GUI::setActive()
+{
+    active = true;
+}
+
+/**
+ * @brief Get the window title.
+ * 
+ * @return const char* 
+ */
+const char* GUI::GetWindowTitle() const
+{
+    return windowTitle;
+}
+
+/**
+ * @class DebugMenu
+ * @brief Debugging menu class derived from GUI.
+ */
+DebugMenu::DebugMenu() : active(true), color{ 0.0f, 0.0f, 0.0f, 1.0f }, GUI("Debug Menu", true)   
+{
+}
+
+DebugMenu::~DebugMenu()
+{
+}
+
+/**
+ * @brief Set the GUI element as inactive.
+ * 
+ */
+void DebugMenu::setActive()
+{
+    active = true;
+}
+
+/**
+ * @brief Render the GUI element.
+ * 
+ */
+void DebugMenu::Render()
+{
+    if (active)
+    {
+        // Rendering code goes here
+        ImGui::Begin(GetWindowTitle(), &this->active, ImGuiWindowFlags_MenuBar);
+        if (ImGui::BeginMenuBar()) {
+            if (ImGui::BeginMenu("File")) {
+                if (ImGui::MenuItem("Open..", "Ctrl+O")) {  }
+                if (ImGui::MenuItem("Save", "Ctrl+S")) {  }
+                if (ImGui::MenuItem("Close", "Ctrl+W")) { this->active = false; }
+                ImGui::EndMenu();
+            }
+            ImGui::EndMenuBar();
+        }
+
+        // Edit a color stored as 4 floats
+        ImGui::ColorEdit4("Color", color);
+
+        float deltaTime = ImGui::GetIO().DeltaTime;
+
+        // Define the number of samples
+        const int numSamples = 100;
+
+        // Generate and plot the samples
+        float samples[numSamples];
+        for (int n = 0; n < numSamples; n++) {
+            samples[n] = 1.0f / deltaTime;
+        }
+
+        ImGui::PlotLines("FPS", samples, numSamples);
+        // Display contents in a scrolling region
+        ImGui::TextColored(ImVec4(1, 1, 0, 1), "Console View");
+        ImGui::BeginChild("Scrolling");
+        ImGui::TextUnformatted(DebugSystem::logBuffer.begin(), DebugSystem::logBuffer.end()); // Display the text buffer
+        ImGui::EndChild();
+
+        ImGui::End();
+
+    }
+
+}
