@@ -1,0 +1,102 @@
+\hypertarget{classEngine}{}\doxysection{Engine Class Reference}
+\label{classEngine}\index{Engine@{Engine}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEngine_a571d26df56cb3630706d297177de1eb3}\label{classEngine_a571d26df56cb3630706d297177de1eb3}} 
+\mbox{\hyperlink{classSystem}{System}} $\ast$ {\bfseries Get\+Platform} ()
+\item 
+\mbox{\Hypertarget{classEngine_a179ec854ba21d26ab29c64c7fcabd88d}\label{classEngine_a179ec854ba21d26ab29c64c7fcabd88d}} 
+\mbox{\hyperlink{classSystem}{System}} $\ast$ {\bfseries Get\+Debug} ()
+\item 
+\mbox{\Hypertarget{classEngine_a8c98683b0a3aa28d8ab72a8bcd0d52f2}\label{classEngine_a8c98683b0a3aa28d8ab72a8bcd0d52f2}} 
+\mbox{\hyperlink{classEngine_a8c98683b0a3aa28d8ab72a8bcd0d52f2}{Engine}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_aa425192c63c4e258588db980ddf18d0d}{Init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the engine. Should be called beofr. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_a5054eb56a36659e3a209cebd17a523cc}{Add\+System}} (\mbox{\hyperlink{classSystem}{System}} $\ast$system)
+\begin{DoxyCompactList}\small\item\em Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_acd5804e7140a1b5041c9046c8dc66894}{Add\+System}} (\mbox{\hyperlink{classSystem}{System}} $\ast$system, unsigned index)
+\begin{DoxyCompactList}\small\item\em Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEngine_af4c789fb939a0870426c698a5124a0ee}\label{classEngine_af4c789fb939a0870426c698a5124a0ee}} 
+void \mbox{\hyperlink{classEngine_af4c789fb939a0870426c698a5124a0ee}{Run}} ()
+\begin{DoxyCompactList}\small\item\em Starts running the engine. Code will not advance past this point until the engine stops running. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEngine_ac7dc8c00262aee2a11183e4080fa5faf}\label{classEngine_ac7dc8c00262aee2a11183e4080fa5faf}} 
+void \mbox{\hyperlink{classEngine_ac7dc8c00262aee2a11183e4080fa5faf}{Close}} ()
+\begin{DoxyCompactList}\small\item\em Flags the engine to close once it finishes this loop. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classEngine_a245154753498d3119b44a04e31b470ef}{get\+Fixed\+Frame\+Duration}} () const
+\begin{DoxyCompactList}\small\item\em gets the duration of each fixed frame \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEngine_a821022ae1158a5214797a1a3b678e71b}\label{classEngine_a821022ae1158a5214797a1a3b678e71b}} 
+{\bfseries Engine} (\mbox{\hyperlink{classEngine}{Engine}} \&other)=delete
+\item 
+\mbox{\Hypertarget{classEngine_a5d7e8ec8383567cfe24b2b94c5730729}\label{classEngine_a5d7e8ec8383567cfe24b2b94c5730729}} 
+void {\bfseries operator=} (const \mbox{\hyperlink{classEngine}{Engine}} \&)=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEngine_a5054eb56a36659e3a209cebd17a523cc}\label{classEngine_a5054eb56a36659e3a209cebd17a523cc}} 
+\index{Engine@{Engine}!AddSystem@{AddSystem}}
+\index{AddSystem@{AddSystem}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{AddSystem()}{AddSystem()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Engine\+::\+Add\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSystem}{System}} $\ast$}]{system }\end{DoxyParamCaption})}
+
+
+
+Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}. 
+
+Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}, at the back of the systems array.
+
+
+\begin{DoxyParams}{Parameters}
+{\em system} & The system to add the \mbox{\hyperlink{classEngine}{Engine}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_acd5804e7140a1b5041c9046c8dc66894}\label{classEngine_acd5804e7140a1b5041c9046c8dc66894}} 
+\index{Engine@{Engine}!AddSystem@{AddSystem}}
+\index{AddSystem@{AddSystem}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{AddSystem()}{AddSystem()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Engine\+::\+Add\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSystem}{System}} $\ast$}]{system,  }\item[{unsigned}]{index }\end{DoxyParamCaption})}
+
+
+
+Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}. 
+
+Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}} at the specified location in the systems array.
+
+
+\begin{DoxyParams}{Parameters}
+{\em system} & The system to add the \mbox{\hyperlink{classEngine}{Engine}} \\
+\hline
+{\em index} & The index in the \mbox{\hyperlink{classEngine}{Engine}} to insert the \mbox{\hyperlink{classSystem}{System}} into. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEngine_a245154753498d3119b44a04e31b470ef}\label{classEngine_a245154753498d3119b44a04e31b470ef}} 
+\index{Engine@{Engine}!getFixedFrameDuration@{getFixedFrameDuration}}
+\index{getFixedFrameDuration@{getFixedFrameDuration}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{getFixedFrameDuration()}{getFixedFrameDuration()}}
+{\footnotesize\ttfamily float Engine\+::get\+Fixed\+Frame\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the duration of each fixed frame 
+
+\begin{DoxyReturn}{Returns}
+the amount of time in seconds that each fixed frame lasts 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_aa425192c63c4e258588db980ddf18d0d}\label{classEngine_aa425192c63c4e258588db980ddf18d0d}} 
+\index{Engine@{Engine}!Init@{Init}}
+\index{Init@{Init}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void Engine\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the engine. Should be called beofr. 
+
+Initializes the engine before running it. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Engine_8h}{Engine.\+h}}\item 
+Source/\mbox{\hyperlink{Engine_8cpp}{Engine.\+cpp}}\end{DoxyCompactItemize}

@@ -4,5 +4,9 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="AutoUTFOutputStream\l\< CharType, OutputByteStream \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAutoUTFOutputStream.html",tooltip="Output stream wrapper with dynamically bound encoding and automatic encoding detection."];
+  Node0 [label="System",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classSystem.html",tooltip="Base class for all Systems."];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="DebugSystem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classDebugSystem.html",tooltip="Debug System Class For Debugging."];
+  Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PlatformSystem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPlatformSystem.html",tooltip=" "];
 }

@@ -21,6 +21,8 @@ class Engine
 {
     public:
 
+        // ----- (JAX)   TEMPORARY - for testing  ------------
+        System* GetDebug() { return systems[1]; }
         /**
         * @brief Constructs a new Engine
         */
