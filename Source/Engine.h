@@ -19,19 +19,14 @@
 
 class Engine
 {
-
     public:
 
+        // ----- (JAX)   TEMPORARY - for testing  ------------
+        System* GetDebug() { return systems[1]; }
         /**
         * @brief Constructs a new Engine
         */
         Engine();
-
-
-        /**
-        * @brief Initializes the engine. Should be called beofr
-        */
-        void Init();
 
         /**
         * @brief Adds a System to the Engine.
@@ -62,12 +57,6 @@ class Engine
         */
         float getFixedFrameDuration() const;
 
-        /**
-         * @brief gets the GLFWwindow of the Engine
-         * @return the GLFWwindow in use by the engine
-        */
-        GLFWwindow * getWindow() const;
-
     private:
 
         /**
@@ -95,8 +84,11 @@ class Engine
         */
         float fixedFrameDuration;
 
-        // TODO: maybe this out of Engine and into its own System?
-        GLFWwindow * window;
+
+        /**
+        * @brief Initializes the engine and all Systems in the Engine.
+        */
+        void Init();
 
         /**
          * @brief Updates the engine each frame

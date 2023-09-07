@@ -151,7 +151,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DebugSystem.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -163,14 +162,13 @@
     <ClCompile Include="Source\DebugSystem.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\System.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h" />
-    <ClInclude Include="BaseSystem.h" />
-    <ClInclude Include="basics.h" />
-    <ClInclude Include="DebugSystem.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_impl_glfw.h" />
@@ -184,6 +182,8 @@
     <ClInclude Include="Source\Component.h" />
     <ClInclude Include="Source\DebugSystem.h" />
     <ClInclude Include="Source\Entity.h" />
+    <ClInclude Include="Source\GUI.h" />
+    <ClInclude Include="Source\PlatformSystem.h" />
     <ClInclude Include="Source\System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
