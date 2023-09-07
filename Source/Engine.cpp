@@ -20,8 +20,6 @@
 
 #include "PlatformSystem.h"
 #include "DebugSystem.h"
-
-PlatformSystem *platform;
 DebugSystem* Debug;
 
 // TODO: move this out of the engine into its own System
@@ -76,9 +74,9 @@ void Engine::AddSystem( System * system, unsigned index )
 void Engine::Run()
 {
 
-    // TODO: move glfwWindowShouldClose out of the Engine and into its own System? 
-    // ELI: yea
-    while (shouldExit == false && !platform->WindowClosing()) {
+    Init();
+
+    while (shouldExit == false && PlatformSystem::getInstance()->WindowClosing() == false) {
         Update();
     }
 
@@ -104,17 +102,16 @@ float Engine::getFixedFrameDuration() const
 
 
 /**
-* @brief Initializes the engine before running it
+* @brief Initializes the engine and all Systems in the Engine
 */
 void Engine::Init()
 {
-    // TODO: initialize the engine
     previousTime = glfwGetTime();
     previousFixedTime = previousTime;
 
-    // ELI: moved systems init here
-    for (auto system : systems)
+    for (System * system : systems) {
         system->OnInit();
+    }
 
     platform = (PlatformSystem*)GetPlatform();
     Debug = (DebugSystem*)GetDebug();
@@ -125,8 +122,8 @@ void Engine::Init()
     // Set the clear color (background color)
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-    // Set up a callback for the Escape key
-    glfwSetKeyCallback(window, keyCallback);
+        // Set up a callback for the Escape key
+        glfwSetKeyCallback(window, keyCallback);
 
     // TODO: move the above code out of the engine and into its own systems
 }
@@ -136,7 +133,7 @@ void Engine::Init()
 */
 void Engine::Update()
 {
-    GLFWwindow* window = platform->GetWindowHandle();
+    GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
 
     double currentTime = glfwGetTime();
 

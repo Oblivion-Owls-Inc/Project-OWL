@@ -7,9 +7,8 @@ int main() {
     Engine engine;
 
     // TODO: add Systems to the engine here
-    engine.AddSystem(new PlatformSystem);
+    engine.AddSystem(PlatformSystem::getInstance());
     engine.AddSystem(new DebugSystem);
-    engine.Init();
 
     engine.Run();
 
