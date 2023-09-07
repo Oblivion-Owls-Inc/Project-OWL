@@ -1,6 +1,34 @@
 #include "DebugSystem.h"
 #include "GUI.h"
 
+
+ImGuiTextBuffer DebugSystem::logBuffer;
+std::vector<GUI*> DebugSystem::windows;
+bool DebugSystem::FPS = false;
+
+
+DebugSystem* DebugSystem::getInstance()
+{
+
+    static DebugSystem* instance = nullptr;
+    if (instance == nullptr) {
+        instance = new DebugSystem();
+    }
+    return instance;
+
+}
+
+DebugSystem* DebugSystem::getInstance(const char* w_name, int w_width, int w_height)
+{
+    
+    static DebugSystem* instance = nullptr;
+    if (instance == nullptr) {
+        instance = new DebugSystem();
+    }
+    return instance;
+    
+}
+
 /**
  * @brief Initialize the DebugSystem.
  * @param window The GLFW window handle (default is the current context).

@@ -113,17 +113,12 @@ void Engine::Init()
         system->OnInit();
     }
 
-    platform = (PlatformSystem*)GetPlatform();
-    Debug = (DebugSystem*)GetDebug();
-
-    GLFWwindow* window = platform->GetWindowHandle();
-
-    Debug->SetWindowHandle(window);
+    GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
     // Set the clear color (background color)
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
         // Set up a callback for the Escape key
-        glfwSetKeyCallback(window, keyCallback);
+    glfwSetKeyCallback(window, keyCallback);
 
     // TODO: move the above code out of the engine and into its own systems
 }
@@ -148,8 +143,6 @@ void Engine::Update()
     previousTime = currentTime;
 
     DebugSystem::ShowFPS();
-    //DebugSystem::ShowDebugMenu();
-
 
     // TODO: move the below code out of Engine and into its own Systems
         // Poll for and process events

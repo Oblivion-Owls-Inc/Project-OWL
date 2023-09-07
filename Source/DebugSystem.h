@@ -17,6 +17,10 @@
 class DebugSystem : public System
 {
     public:
+
+        static DebugSystem* getInstance(const char* w_name, int w_width, int w_height);
+        static DebugSystem* getInstance();
+
         /**
          * @brief Constructor for DebugSystem
          * @param window The GLFW window handle (default is the current context)
@@ -59,6 +63,7 @@ class DebugSystem : public System
         static void ScreenPrint(const char* format, ...);
 
         static void ShowDebugMenu();
+
 
         // Unused functions (from the base class)
         void OnFixedUpdate() override;
