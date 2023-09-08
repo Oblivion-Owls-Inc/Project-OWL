@@ -27,7 +27,6 @@ class System
         */
         virtual void OnFixedUpdate() = 0;
 
-        // NOTE: it may be better to replace float with a type from the <chrono> header
         /**
          * @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
          * @param dt the elapsed time in seconds since the previous frame
@@ -88,3 +87,4 @@ class System
         void operator=(const System&) = delete;
 
 };
+

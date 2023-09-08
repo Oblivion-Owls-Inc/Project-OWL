@@ -18,7 +18,8 @@
 * @brief Gets this System's index in the Engine
 * @return The index of this System in the Engine
 */
-int System::getIndex() const {
+int System::getIndex() const
+{
     return index;
 }
 
@@ -34,6 +35,6 @@ void System::setIndex( int _index )
 /**
 * @brief Constructs a System
 */
-System::System()
-  : index(-1)
+System::System() :
+    index(-1)
 {}

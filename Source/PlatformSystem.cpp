@@ -12,7 +12,7 @@
 #include "glfw3.h"      // initialize / shutdown
 #include "glm/vec2.hpp" // for returning window dimensions
 #include <iostream>     // cout
-#include <assert.h>
+#include <cassert>
 
 /**
 * @brief            (callback) Gets called when there's some OpenGL error. Prints error message
@@ -91,7 +91,7 @@ PlatformSystem::PlatformSystem(const char* w_name, int w_width, int w_height) :
 */
 void PlatformSystem::OnExit()
 {
-    glfwDestroyWindow(_window);
+    glfwDestroyWindow( _window );
     glfwTerminate();
     std::cout << "\nShutdown complete." << std::endl;
 }
@@ -100,20 +100,33 @@ void PlatformSystem::OnExit()
 * @brief    Returns the window handle.
 * @return   GLFWwindow pointer: Current window handle.
 */
-GLFWwindow* PlatformSystem::GetWindowHandle() const { return _window; }
+GLFWwindow* PlatformSystem::GetWindowHandle() const
+{
+    return _window;
+}
 
 /**
 * @brief    Returns window dimensions as a vec2.
 * @return   glm vec2: x = width, y = height.
 */
-glm::vec2 PlatformSystem::GetWindowDimensions() const { return { _width, _height }; }
+glm::vec2 PlatformSystem::GetWindowDimensions() const
+{
+    return { _width, _height };
+}
 
 /**
 * @brief    Checks if the window is closing.
 * @return   bool: true if the window is closing.
 */
-bool PlatformSystem::WindowClosing() const { return glfwWindowShouldClose(_window); }
+bool PlatformSystem::WindowClosing() const
+{
+    return glfwWindowShouldClose(_window);
+}
 
+
+
+/// @brief The singleton instance of ExampleSystem
+PlatformSystem * PlatformSystem::instance = nullptr;
 
 /**
 * @brief    (Singleton) Gets the instance of this system.
@@ -121,8 +134,8 @@ bool PlatformSystem::WindowClosing() const { return glfwWindowShouldClose(_windo
 */
 PlatformSystem * PlatformSystem::getInstance()
 {
-    static PlatformSystem * instance = nullptr;
-    if ( instance == nullptr ) {
+    if ( instance == nullptr )
+    {
         instance = new PlatformSystem();
     }
     return instance;
@@ -137,8 +150,8 @@ PlatformSystem * PlatformSystem::getInstance()
 */
 PlatformSystem * PlatformSystem::getInstance( const char* w_name = "Prototype", int w_width = 800, int w_height = 600 )
 {
-    static PlatformSystem * instance = nullptr;
-    if (instance == nullptr) {
+    if (instance == nullptr)
+    {
         instance = new PlatformSystem( w_name, w_width, w_height );
     }
     return instance;

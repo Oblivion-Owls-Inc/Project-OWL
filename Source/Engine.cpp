@@ -19,10 +19,13 @@
 #include "Engine.h"
 
 #include "PlatformSystem.h"
+#include "DebugSystem.h"
 
 // TODO: move this out of the engine into its own System
-void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    {
         glfwSetWindowShouldClose(window, GLFW_TRUE);
     }
 }
@@ -31,11 +34,11 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 /**
 * @brief Constructs a new Engine
 */
-Engine::Engine()
-  : shouldExit( false ),
+Engine::Engine() :
+    shouldExit( false ),
     fixedFrameDuration( 1.0f / 20.0f ),
-    previousFixedTime(0.0),
-    previousTime(0.0)
+    previousFixedTime( 0.0 ),
+    previousTime( 0.0 )
 {}
 
 /**
@@ -46,8 +49,6 @@ void Engine::AddSystem( System * system )
 {
     systems.push_back( system );
     system->setIndex( static_cast<int>(systems.size() - 1) );
-    
-    // ELI: removed systems init
 }
 
 /**
@@ -58,12 +59,12 @@ void Engine::AddSystem( System * system )
 void Engine::AddSystem( System * system, unsigned index )
 {
     systems.insert( systems.begin() + index, system );
+
     // keep all indices valid.
-    for ( ; index < systems.size(); ++index ) {
+    for ( ; index < systems.size(); ++index )
+    {
         systems[index]->setIndex(index);
     }
-
-    // ELI: removed systems init
 }
 
 /**
@@ -74,7 +75,10 @@ void Engine::Run()
 
     Init();
 
-    while (shouldExit == false && PlatformSystem::getInstance()->WindowClosing() == false) {
+    while (
+        shouldExit == false &&
+        PlatformSystem::getInstance()->WindowClosing() == false
+    ) {
         Update();
     }
 
@@ -104,29 +108,26 @@ float Engine::getFixedFrameDuration() const
 */
 void Engine::Init()
 {
+    // initialize the time values
     previousTime = glfwGetTime();
     previousFixedTime = previousTime;
 
-    for (System * system : systems) {
+    // initialize all the systems
+    for (System * system : systems)
+    {
         system->OnInit();
     }
 
-    // TODO: move the below code into its own system
+    // TODO: move the below code out of the engine into its own systems
 
-        GLFWwindow * window = PlatformSystem::getInstance()->GetWindowHandle();
+        // this will go in GraphicsSystem
+            // Set the clear color (background color)
+            glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-        // Setup ImGui context
-        ImGui::CreateContext();
-        ImGuiIO& io = ImGui::GetIO();
-        (void)io;
-        ImGui_ImplGlfw_InitForOpenGL(window, true);
-        ImGui_ImplOpenGL3_Init("#version 430");
-
-        // Set the clear color (background color)
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-
-        // Set up a callback for the Escape key
-        glfwSetKeyCallback(window, keyCallback);
+        // this will stay here until we figure out a better way of replacing it
+            // Set up a callback for the Escape key
+            GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
+            glfwSetKeyCallback( window, keyCallback );
 
     // TODO: move the above code out of the engine and into its own systems
 }
@@ -136,55 +137,40 @@ void Engine::Init()
 */
 void Engine::Update()
 {
-    GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
 
     double currentTime = glfwGetTime();
 
-    if (currentTime - previousFixedTime > fixedFrameDuration) {
+    UpdateSystems( static_cast<float>(currentTime - previousTime) );
+
+    if (currentTime - previousFixedTime > fixedFrameDuration)
+    {
         FixedUpdateSystems();
         previousFixedTime += fixedFrameDuration;
     }
-
-    UpdateSystems( static_cast<float>(currentTime - previousTime) );
+    
     previousTime = currentTime;
 
+
     // TODO: move the below code out of Engine and into its own Systems
-        // Poll for and process events
-        glfwPollEvents();
-
-        // Start the ImGui frame
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
         
-        // Rendering code goes here
-        ImGui::Begin("Mouse Position");
+        // this goes to GraphicsSystem
+            
+            GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
 
-        // Get the mouse cursor position
-        double mouseX, mouseY;
+            // ensure viewport size matches window size
+            int display_w, display_h;
+            glfwGetFramebufferSize(window, &display_w, &display_h);
+            glViewport(0, 0, display_w, display_h);
 
-        glfwGetCursorPos(window, &mouseX, &mouseY);
+            // Swap front and back buffers
+            glfwSwapBuffers(window);
+            glClear(GL_COLOR_BUFFER_BIT);
 
-        // Display mouse position in ImGui window
-        ImGui::Text("Mouse X: %.2f", mouseX);
-        ImGui::Text("Mouse Y: %.2f", mouseY);
-        
-        ImGui::End();
-        
-        // ImGui rendering
-        ImGui::Render();
+        // this goes to InputSystem
+            
+            // Poll for and process events
+            glfwPollEvents();
 
-        int display_w, display_h;
-
-        glfwGetFramebufferSize(window, &display_w, &display_h);
-
-        glViewport(0, 0, display_w, display_h);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-        // Swap front and back buffers
-        glfwSwapBuffers(window);
     // TODO: move the above code out of Engine and into its own System
 }
 
