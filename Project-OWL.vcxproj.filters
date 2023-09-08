@@ -97,6 +97,7 @@
     </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Systems</Filter>
+    </ClCompile>
     <ClCompile Include="Source\GUI.cpp">
       <Filter>Engine\Systems\Debug</Filter>
     </ClCompile>
@@ -151,11 +152,11 @@
       <Filter>Engine\Systems\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Source\Component.h">
-      <Filter>Engine\Systems</Filter>
       <Filter>Engine\Systems\Entity\Component</Filter>
     </ClInclude>
     <ClInclude Include="Source\GUI.h">
       <Filter>Engine\Systems\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Entity.h">
       <Filter>Engine\Systems\Entity</Filter>
     </ClInclude>
