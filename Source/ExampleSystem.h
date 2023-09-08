@@ -22,39 +22,39 @@ public:
     /**
     * @brief Gets called once when this System is added to the Engine
     */
-    virtual void OnInit() {}
+    virtual void OnInit() override {}
 
     /**
     * @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
     */
-    virtual void OnFixedUpdate() {}
+    virtual void OnFixedUpdate() override {}
 
     // NOTE: it may be better to replace float with a type from the <chrono> header
     /**
     * @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
     * @param dt the elapsed time in seconds since the previous frame
     */
-    virtual void OnUpdate(float dt) {}
+    virtual void OnUpdate(float dt) override {}
 
     /**
     * @brief Gets called once before the Engine closes
     */
-    virtual void OnExit() {}
+    virtual void OnExit() override {}
 
     /**
     * @brief Gets called whenever a new Scene is loaded
     */
-    virtual void OnSceneLoad() {}
+    virtual void OnSceneLoad() override {}
 
     /**
     * @brief Gets called whenever a scene is initialized
     */
-    virtual void OnSceneInit() {}
+    virtual void OnSceneInit() override {}
 
     /**
     * @brief Gets called whenever a scene is exited
     */
-    virtual void OnSceneExit() {}
+    virtual void OnSceneExit() override {}
 
 private:
 
@@ -78,5 +78,9 @@ public:
 
     // MAY INCLUDE A DUPLICATE OF THE ABOVE FUNCTION WITH CONSTRUCTOR ARGUMENTS HERE
 
+
+    // Prevent copying
+    ExampleSystem(ExampleSystem& other) = delete;
+    void operator=(const ExampleSystem&) = delete;
 };
 

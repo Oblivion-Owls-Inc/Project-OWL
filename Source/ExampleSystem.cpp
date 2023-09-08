@@ -24,9 +24,7 @@ ExampleSystem::ExampleSystem() {}
 
 // ^ ^ ^ YOUR CODE HERE ^ ^ ^
 
-/**
-* @brief The singleton instance of ExampleSystem
-*/
+/// @brief The singleton instance of ExampleSystem
 ExampleSystem * ExampleSystem::instance = nullptr;
 
 /**
@@ -35,7 +33,8 @@ ExampleSystem * ExampleSystem::instance = nullptr;
 */
 ExampleSystem * ExampleSystem::getInstance()
 {
-    if ( instance == nullptr ) {
+    if ( instance == nullptr )
+    {
         instance = new ExampleSystem();
     }
     return instance;
