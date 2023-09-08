@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['length_211',['length',['../structGenericStringRef.html#a4a96d618744ad73f766a1551b1d517fe',1,'GenericStringRef::length()'],['../structGenericPointer_1_1Token.html#a67383574032a3289d34002bb2d95df6d',1,'GenericPointer::Token::length()']]],
-  ['level_212',['Level',['../structWriter_1_1Level.html',1,'Writer']]]
+  ['_7edebugmenu_40',['~DebugMenu',['../classDebugMenu.html#afd084a5f52b2815dbb79c0b90fa3dda8',1,'DebugMenu']]],
+  ['_7egui_41',['~GUI',['../classGUI.html#ac9cae2328dcb5d83bdfaeca49a2eb695',1,'GUI']]]
 ];
