@@ -20,7 +20,6 @@
 
 #include "PlatformSystem.h"
 #include "DebugSystem.h"
-DebugSystem* Debug;
 
 // TODO: move this out of the engine into its own System
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -128,7 +127,6 @@ void Engine::Init()
 */
 void Engine::Update()
 {
-    GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
 
     double currentTime = glfwGetTime();
 
@@ -138,16 +136,17 @@ void Engine::Update()
     }
 
     UpdateSystems( static_cast<float>(currentTime - previousTime) );
-
     
     previousTime = currentTime;
 
-    DebugSystem::ShowFPS();
 
     // TODO: move the below code out of Engine and into its own Systems
+        GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
+
+        DebugSystem::ShowFPS();
+
         // Poll for and process events
         glfwPollEvents();
-
 
         int display_w, display_h;
 
