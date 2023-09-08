@@ -6,27 +6,15 @@ ImGuiTextBuffer DebugSystem::logBuffer;
 std::vector<GUI*> DebugSystem::windows;
 bool DebugSystem::FPS = false;
 
+DebugSystem * DebugSystem::instance = nullptr;
 
 DebugSystem* DebugSystem::getInstance()
 {
-
-    static DebugSystem* instance = nullptr;
-    if (instance == nullptr) {
+    if (instance == nullptr)
+    {
         instance = new DebugSystem();
     }
     return instance;
-
-}
-
-DebugSystem* DebugSystem::getInstance(const char* w_name, int w_width, int w_height)
-{
-    
-    static DebugSystem* instance = nullptr;
-    if (instance == nullptr) {
-        instance = new DebugSystem();
-    }
-    return instance;
-    
 }
 
 /**
