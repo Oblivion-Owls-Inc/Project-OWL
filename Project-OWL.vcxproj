@@ -162,12 +162,14 @@
     <ClCompile Include="Source\DebugSystem.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\ExampleSystem.cpp" />
     <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\System.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\ExampleSystem.h" />
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />

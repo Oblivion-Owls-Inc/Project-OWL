@@ -64,6 +64,9 @@ private:
 	virtual void OnSceneInit() override {}
 	virtual void OnSceneExit() override {}
 
+    /// @brief The singleton instance of the PlatformSystem
+    static PlatformSystem * instance;
+
 public:
 
     /**

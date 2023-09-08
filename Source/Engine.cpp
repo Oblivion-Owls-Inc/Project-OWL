@@ -20,11 +20,12 @@
 
 #include "PlatformSystem.h"
 #include "DebugSystem.h"
-DebugSystem* Debug;
 
 // TODO: move this out of the engine into its own System
-void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    {
         glfwSetWindowShouldClose(window, GLFW_TRUE);
     }
 }
@@ -33,11 +34,11 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 /**
 * @brief Constructs a new Engine
 */
-Engine::Engine()
-  : shouldExit( false ),
+Engine::Engine() :
+    shouldExit( false ),
     fixedFrameDuration( 1.0f / 20.0f ),
-    previousFixedTime(0.0),
-    previousTime(0.0)
+    previousFixedTime( 0.0 ),
+    previousTime( 0.0 )
 {}
 
 /**
@@ -48,8 +49,6 @@ void Engine::AddSystem( System * system )
 {
     systems.push_back( system );
     system->setIndex( static_cast<int>(systems.size() - 1) );
-    
-    // ELI: removed systems init
 }
 
 /**
@@ -60,12 +59,12 @@ void Engine::AddSystem( System * system )
 void Engine::AddSystem( System * system, unsigned index )
 {
     systems.insert( systems.begin() + index, system );
+
     // keep all indices valid.
-    for ( ; index < systems.size(); ++index ) {
+    for ( ; index < systems.size(); ++index )
+    {
         systems[index]->setIndex(index);
     }
-
-    // ELI: removed systems init
 }
 
 /**
@@ -76,7 +75,10 @@ void Engine::Run()
 
     Init();
 
-    while (shouldExit == false && PlatformSystem::getInstance()->WindowClosing() == false) {
+    while (
+        shouldExit == false &&
+        PlatformSystem::getInstance()->WindowClosing() == false
+    ) {
         Update();
     }
 
@@ -106,19 +108,26 @@ float Engine::getFixedFrameDuration() const
 */
 void Engine::Init()
 {
+    // initialize the time values
     previousTime = glfwGetTime();
     previousFixedTime = previousTime;
 
-    for (System * system : systems) {
+    // initialize all the systems
+    for (System * system : systems)
+    {
         system->OnInit();
     }
 
-    GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
-    // Set the clear color (background color)
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    // TODO: move the below code out of the engine into its own systems
 
-        // Set up a callback for the Escape key
-    glfwSetKeyCallback(window, keyCallback);
+        // this will go in GraphicsSystem
+            // Set the clear color (background color)
+            glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+        // this will stay here until we figure out a better way of replacing it
+            // Set up a callback for the Escape key
+            GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
+            glfwSetKeyCallback( window, keyCallback );
 
     // TODO: move the above code out of the engine and into its own systems
 }
@@ -128,36 +137,40 @@ void Engine::Init()
 */
 void Engine::Update()
 {
-    GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
 
     double currentTime = glfwGetTime();
 
-    if (currentTime - previousFixedTime > fixedFrameDuration) {
+    UpdateSystems( static_cast<float>(currentTime - previousTime) );
+
+    if (currentTime - previousFixedTime > fixedFrameDuration)
+    {
         FixedUpdateSystems();
         previousFixedTime += fixedFrameDuration;
     }
-
-    UpdateSystems( static_cast<float>(currentTime - previousTime) );
-
     
     previousTime = currentTime;
 
-    DebugSystem::ShowFPS();
 
     // TODO: move the below code out of Engine and into its own Systems
-        // Poll for and process events
-        glfwPollEvents();
+        
+        // this goes to GraphicsSystem
+            
+            GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
 
+            // ensure viewport size matches window size
+            int display_w, display_h;
+            glfwGetFramebufferSize(window, &display_w, &display_h);
+            glViewport(0, 0, display_w, display_h);
 
-        int display_w, display_h;
+            // Swap front and back buffers
+            glfwSwapBuffers(window);
+            glClear(GL_COLOR_BUFFER_BIT);
 
-        glfwGetFramebufferSize(window, &display_w, &display_h);
+        // this goes to InputSystem
+            
+            // Poll for and process events
+            glfwPollEvents();
 
-        glViewport(0, 0, display_w, display_h);
-
-        // Swap front and back buffers
-        glfwSwapBuffers(window);
-        glClear(GL_COLOR_BUFFER_BIT);
     // TODO: move the above code out of Engine and into its own System
 }
 
