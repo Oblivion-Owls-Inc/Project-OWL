@@ -18,7 +18,8 @@
 */
 class ExampleSystem : System
 {
-public:
+private:
+
     /**
     * @brief Gets called once when this System is added to the Engine
     */
@@ -29,7 +30,6 @@ public:
     */
     virtual void OnFixedUpdate() override {}
 
-    // NOTE: it may be better to replace float with a type from the <chrono> header
     /**
     * @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
     * @param dt the elapsed time in seconds since the previous frame
@@ -55,8 +55,6 @@ public:
     * @brief Gets called whenever a scene is exited
     */
     virtual void OnSceneExit() override {}
-
-private:
 
     /**
      * @brief Constructs the ExampleSystem
