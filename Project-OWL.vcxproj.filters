@@ -148,5 +148,20 @@
     <ClInclude Include="Source\GUI.h">
       <Filter>Engine\Systems\Debug</Filter>
     </ClInclude>
+    <ClInclude Include="BaseSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="basics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Component.h">
+      <Filter>Engine\Entities\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Entity.h">
+      <Filter>Engine\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
