@@ -18,8 +18,8 @@ class DebugSystem : public System
 {
     public:
 
-        static DebugSystem* getInstance(const char* w_name, int w_width, int w_height);
-        static DebugSystem* getInstance();
+        static DebugSystem * instance;
+        static DebugSystem * getInstance();
 
         /**
          * @brief Constructor for DebugSystem
