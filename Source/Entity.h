@@ -15,7 +15,7 @@
 //------------------------------------------------------------------------------
 
 #include "Component.h"
-#include <vector>  // std::vector
+#include <map>  // std::map
 #include <string>  // std::string
 #include <fstream> // std::ifstream
 
@@ -70,7 +70,7 @@ private:
 	// Flag to indicate the entity is dead and should be destroyed
 	bool mIsDestroyed;
 	// Container for attached components
-	std::vector<Component*> components;
+	std::map<std::type_index, Component*> components;
 
 	// Private Member Function
 

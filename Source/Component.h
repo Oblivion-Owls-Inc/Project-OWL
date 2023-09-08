@@ -22,6 +22,8 @@ public:
 
 	__inline std::type_index Type() const { return type; }
 
+	virtual ~Component() = 0;
+
 	__inline void Parent( Entity* parent_ ) { parent = parent_; }
 
 	__inline Entity* Parent() const { return parent; }
