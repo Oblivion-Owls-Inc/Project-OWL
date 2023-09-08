@@ -22,15 +22,20 @@ public:
 
 	__inline std::type_index Type() const { return type; }
 
-	__inline void Parent(Entity* parent) { cParent = parent; }
+	__inline void Parent( Entity* parent_ ) { parent = parent_; }
 
-	__inline Entity* Parent() const { return cParent; }
+	__inline Entity* Parent() const { return parent; }
 	
 	virtual Component* Clone() const = 0;
 
 protected:
-	std::type_index type;
+
+	Component( std::type_index type );
+
 private:
-	Entity* cParent = nullptr;
+
+	std::type_index type;
+
+	Entity* parent = nullptr;
 
 };
