@@ -48,6 +48,9 @@
     <Filter Include="Engine\Systems\Entity\Component">
       <UniqueIdentifier>{bbebb13f-15ac-4bdd-80dc-0cad07cd2a7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\ExampleSystem">
+      <UniqueIdentifier>{ce724d9b-cf05-4e3b-8077-b87c91f114a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -92,8 +95,20 @@
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Systems\Entity\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Source\System.cpp">
+      <Filter>Engine\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component.cpp">
+      <Filter>Engine\Systems</Filter>
+    </ClCompile>
     <ClCompile Include="Source\GUI.cpp">
       <Filter>Engine\Systems\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity.cpp">
+      <Filter>Engine\Systems\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExampleSystem.cpp">
+      <Filter>Engine\Systems\ExampleSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +162,12 @@
     </ClInclude>
     <ClInclude Include="Source\GUI.h">
       <Filter>Engine\Systems\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Entity.h">
+      <Filter>Engine\Systems\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExampleSystem.h">
+      <Filter>Engine\Systems\ExampleSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
