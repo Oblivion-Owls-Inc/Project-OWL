@@ -1,16 +1,26 @@
+/******************************************************************************
+filename    Entity.cpp
+author      Aidan Straker
+DP email    aidan.straker@digipen.edu
+course      GAM200
+section     A
+Project		Dig Deeper
+
+Brief Description:
+  Function declerations for the entity class.
+
+******************************************************************************/
+
 #include "Entity.h"
-#include <algorithm> // std::sort
+#include <algorithm>   // std::sort
+#include "Component.h" // Type
+#include <cassert>	   // assert
 
 //------------------------------------------------------------------------------
 // Public Functions:
 //------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------
-// Function:    Constrcutor
-// Description: Dynamically allocate an entity.
-// Input:		None
-// Output:		An entity is created.
-//------------------------------------------------------------------------------
+/// @brief Default constrcutor for the entity class.
 Entity::Entity()
 	: mName("")
 	, mIsDestroyed(false)
@@ -18,104 +28,68 @@ Entity::Entity()
 {
 }
 
-//------------------------------------------------------------------------------
-// Function:    Copy Constrcutor
-// Description: Creates an entity by copying another one
-// Input:		other - reference to another entity
-// Output:		An entity is created.
-//------------------------------------------------------------------------------
+/// @brief  Copy constructor for the entity class
+/// @param  other - the entity to be copied.
 Entity::Entity(const Entity& other)
 	: mName(other.mName)
 	, mIsDestroyed(other.mIsDestroyed)
 {
 	for (auto component : other.components)
 	{
-		Component* clone = component->Clone();
+		Component* clone = component.second->Clone();
 		Add(clone);
 	}
 }
 
-//------------------------------------------------------------------------------
-// Function:    Destructor
-// Description: Destrys an entity
-// Input:		None
-// Output:		An entity is destroyed.
-//------------------------------------------------------------------------------
+/// @brief Destructor for the entity class.
 Entity::~Entity() { Free(); }
 
-//------------------------------------------------------------------------------
-// Function:    Clone
-// Description: Clones an entity
-// Input:		other - reference to an entity
-// Output:		A pointer to the new entity (Entity*)
-//------------------------------------------------------------------------------
+/// @brief  Clones an entity.
+/// @return A clone of an entity.
 Entity* Entity::Clone() const { return new Entity(*this); }
 
-//------------------------------------------------------------------------------
-// Function:    Free
-// Description: Deallocates all the memory used by an entity
-// Input:		entity - pointer to an entity pointer
-// Output:		All the memory deallocated (void).
-//------------------------------------------------------------------------------
+/// @brief Deallocates all memory associated with an entity.
 void Entity::Free()
 {
 	// Traverse the component list
 	for (auto component : components)
 	{
-		// Make sure the component is valid.
-		if (component)
+	// Make sure the component is valid.
+		if (component.second)
 		{
-			// Delete the component.
-			delete component;
+	// Delete the component.
+			delete component.second;
 		}
 	}
 	// Clear the component list.
 	components.clear();
 }
 
-//------------------------------------------------------------------------------
-// Function:    Add
-// Description: Adds a component to an entity
-// Input:		component - the component to be added
-// Output:		The component's parent is set and the component
-//				is added to entity's component list (void).
-//------------------------------------------------------------------------------
+/// @brief Adds a component to an entity.
+/// @param component - the component to be added.
 void Entity::Add(Component* component)
 {
 	// Make sure the parameter is valid
 	if (component)
 	{
-		// Set the component's parent as this entity
+	// Set the component's parent as this entity
 		component->Parent(this);
-		// Add the component to the components list
-		components.push_back(component);
-		// Sort the list for faster access using a binary search
-		//std::sort(components.begin(), components.end(), Component::Comparator);
+	// Check if the component already exists.
+		assert( components.find( component->Type() ) == components.end() );
+	// If it does not, add it to the entity.
+		components[component->Type()] = component;
 	}
 }
 
-//------------------------------------------------------------------------------
-// Function:    Destroy
-// Description: Flag an entity for destruction
-// Input:		None
-// Output:		The entity is marked for destruction (void).
-//------------------------------------------------------------------------------
+/// @brief Flag an entity for destruction.
 void Entity::Destroy() { mIsDestroyed = true; }
 
-//------------------------------------------------------------------------------
-// Function:    Destroyed
-// Description: Checks whether an entity has been flagged for destruction
-// Input:		None
-// Output:		Whether the entity has been marked for destruction (bool).
-//------------------------------------------------------------------------------
+/// @brief  Checks if an entity has been destroyed or not.
+/// @return If the entity has been destroyed (bool).
 bool Entity::Destroyed() { return mIsDestroyed; }
 
-//------------------------------------------------------------------------------
-// Function:    SetName
-// Description: Set the entity's name
-// Input:		name - the entity's new name
-// Output:		The entity has a new name (void).
-//------------------------------------------------------------------------------
+/// @brief Set the entity's name.
+/// @param name - name of the entity.
 void Entity::SetName(const std::string& name)
 {
 	// Make sure the name is valid.
@@ -125,20 +99,13 @@ void Entity::SetName(const std::string& name)
 	}
 }
 
-//------------------------------------------------------------------------------
-// Function:    GetName
-// Description: Get the entity's name
-// Input:		None
-// Output:		The name of the entity (string).
-//------------------------------------------------------------------------------
+/// @brief Get the name of the entity.
+/// @return The name of the entity (string).
 const std::string& Entity::GetName() { return mName; }
 
-//------------------------------------------------------------------------------
-// Function:    IsNamed
-// Description: Compare the entity's name with the specified name
-// Input:		name - the specified name
-// Output:		Whether the two names match
-//------------------------------------------------------------------------------
+/// @brief Compares an entity's name.
+/// @param name - the name to compare against.
+/// @return does the name match (bool).
 bool Entity::IsNamed(const std::string& name)
 {
 	if (!name.empty())
