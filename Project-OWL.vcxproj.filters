@@ -175,9 +175,6 @@
     <ClInclude Include="Source\Entity.h">
       <Filter>Engine\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Transform.h">
       <Filter>Engine\Systems\Entity\Component\Transform</Filter>
     </ClInclude>
@@ -186,6 +183,7 @@
     </ClInclude>
     <ClInclude Include="Source\Transform.h">
       <Filter>Engine\Systems\Entity\Component\Transform</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Entity.h">
       <Filter>Engine\Systems\Entity</Filter>
     </ClInclude>

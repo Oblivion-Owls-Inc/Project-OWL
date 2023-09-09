@@ -189,7 +189,6 @@
     <ClInclude Include="Source\PlatformSystem.h" />
     <ClInclude Include="Source\System.h" />
     <ClInclude Include="Source\Transform.h" />
-    <ClInclude Include="transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
