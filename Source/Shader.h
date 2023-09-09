@@ -1,11 +1,11 @@
 #pragma once
+#include <map>
 
 class Shader
 {
 private:
     unsigned int shaderID;
-    unsigned int u_transform;   // TODO: map to support more uniforms (store their ID's)
-    // (yes, map needs to be stored in individual Shader object)
+    std::map<const char*, unsigned int> uniformIDs;
 
 public:
 
@@ -13,6 +13,6 @@ public:
     ~Shader();
 
     unsigned int GetID();
-    unsigned int GetUniformID();  // TODO: accept const char* to retreive uniform by name
+    unsigned int GetUniformID(const char* uniform_name);
     void use();
 };

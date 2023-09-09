@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include "Shader.h"
 #include "glew.h"
+#include "Shader.h"
 
 
 /// @brief              (helper) Reads shader source code from a file.
@@ -66,9 +66,6 @@ Shader::Shader(const char* vertex_filepath, const char* fragment_filepath) : sha
     // Separate shader objects are no longer needed, get rid of them.
     if (vertID)     glDeleteShader(vertID);
     if (fragID)     glDeleteShader(fragID);
-
-    u_transform = glGetUniformLocation(shaderID, "transform");
-    glUseProgram(shaderID);
 }
 
 
@@ -81,6 +78,25 @@ Shader::~Shader()
 }
 
 
-unsigned int Shader::GetID() { return shaderID; }
-unsigned int Shader::GetUniformID() { return u_transform; }
 void Shader::use() { glUseProgram(shaderID); }
+unsigned int Shader::GetID() { return shaderID; }
+
+unsigned int Shader::GetUniformID(const char* uniform_name) 
+{
+    try
+    {
+        return uniformIDs.at(uniform_name);
+    }
+    catch (std::out_of_range &exception)
+    {
+        (void)exception;
+
+        unsigned int u = glGetUniformLocation(shaderID, uniform_name);
+        // (returns -1 for undeclared uniforms)
+        
+        if (u != -1)    uniformIDs[uniform_name] = u;
+        else            std::cout << "SHADER ERROR: this uniform does not exist." << std::endl;
+        
+        return u;
+    }
+}

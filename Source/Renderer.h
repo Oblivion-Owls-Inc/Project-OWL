@@ -1,23 +1,23 @@
 /// @file     Renderer.h
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 ///
-/// @brief    Example System meant to be copy-pasted when creating new Systems
+/// @brief    System responsible for drawing sprites and basic shapes.
 #pragma once
 #include "System.h"
 #include "Shader.h"
+#include "glm/glm.hpp"
 
-// Renderer will compile and store the shaders, and allow to set them as active.
-// Managing uniforms can be done anywhere.
-
+#define _renderer Renderer::getInstance()
 
 class Renderer : public System
 {
 public:
-    
+    void DrawRect(const glm::vec2& position, const glm::vec2& scale = {100,100}, 
+                  float angle = 0.0f, const glm::vec4& color = {0.3,0.8,0.3,1.0});
 
+    void DrawLine(const glm::vec2& P1, const glm::vec2& P2, float thickness = 8,
+                  const glm::vec4& color = { 0,0,0.2,1 });
 
-    // Sets active shader and returns its ID
-    Shader* GetShader();   // TODO: accepts const char* (shaders stored in a map)
 
     /// @brief      Gets the instance of Renderer
     /// @return     Renderer pointer: new or existing instance of this system
@@ -27,14 +27,15 @@ public:
     Renderer(Renderer& other) = delete;
     void operator=(const Renderer&) = delete;
 
-private:
-    // ----------------------------- DATA ------------------------------ //
 
-    // TODO: map instead of single shader
+private:
+    // ============================= DATA ============================== //
+
     Shader *_colorShader;       /// @brief      Simple color shader
+    Shader* _textureShader;     /// @brief      Simple texture shader
     static Renderer* instance;  /// @brief      The singleton instance of Renderer 
     
-    // ----------------------------------------------------------------- //
+    // ================================================================= //
 
 
     /// @brief      Private constructor - only used by getInstance()
