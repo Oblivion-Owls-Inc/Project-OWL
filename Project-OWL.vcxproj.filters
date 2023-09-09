@@ -48,6 +48,9 @@
     <Filter Include="Engine\Systems\Entity\Component">
       <UniqueIdentifier>{bbebb13f-15ac-4bdd-80dc-0cad07cd2a7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\Entity\Component\Transform">
+      <UniqueIdentifier>{898b8581-89b9-4d97-ba37-c4ea3c3c4bb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -94,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="Source\GUI.cpp">
       <Filter>Engine\Systems\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transform.cpp">
+      <Filter>Engine\Systems\Entity\Component\Transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,20 +154,23 @@
     <ClInclude Include="Source\GUI.h">
       <Filter>Engine\Systems\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="BaseSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="basics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Component.h">
       <Filter>Engine\Entities\Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\Entity.h">
       <Filter>Engine\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transform.h">
+      <Filter>Engine\Systems\Entity\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transform.h">
+      <Filter>Engine\Systems\Entity\Component\Transform</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
