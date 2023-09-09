@@ -158,6 +158,8 @@
     <ClCompile Include="imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\Shader.cpp" />
+    <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\Component.cpp" />
     <ClCompile Include="Source\DebugSystem.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
@@ -173,6 +175,8 @@
     <ClCompile Include="Source\System.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Shader.h" />
+    <ClInclude Include="Source\Mesh.h" />
     <ClInclude Include="Source\ExampleSystem.h" />
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="imgui\imconfig.h" />
