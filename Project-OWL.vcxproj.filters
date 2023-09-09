@@ -45,14 +45,17 @@
     <Filter Include="Engine\Systems\ExampleSystem">
       <UniqueIdentifier>{ce724d9b-cf05-4e3b-8077-b87c91f114a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Systems\ExampleSystem\Entity">
+    <Filter Include="Engine\Entity">
       <UniqueIdentifier>{80f015c3-9063-413e-bce3-1f9d424969b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Systems\ExampleSystem\Entity\Component">
+    <Filter Include="Engine\Entity\Component">
       <UniqueIdentifier>{bbebb13f-15ac-4bdd-80dc-0cad07cd2a7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Systems\ExampleSystem\Entity\Component\Transform">
+    <Filter Include="Engine\Entity\Component\Transform">
       <UniqueIdentifier>{898b8581-89b9-4d97-ba37-c4ea3c3c4bb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Ridged Body">
+      <UniqueIdentifier>{b80ae33f-b97e-4efd-b564-cef386ad417e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,10 +96,10 @@
       <Filter>Engine\Systems\Platform</Filter>
     </ClCompile>
     <ClCompile Include="Source\Entity.cpp">
-      <Filter>Engine\Systems\ExampleSystem\Entity</Filter>
+      <Filter>Engine\Entity</Filter>
     </ClCompile>
     <ClCompile Include="Source\Component.cpp">
-      <Filter>Engine\Systems\ExampleSystem\Entity\Component</Filter>
+      <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\System.cpp">
       <Filter>Engine\Systems</Filter>
@@ -114,7 +117,13 @@
       <Filter>Engine\Systems\ExampleSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\Transform.cpp">
-      <Filter>Engine\Systems\ExampleSystem\Entity\Component\Transform</Filter>
+      <Filter>Engine\Entity\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneSystem.cpp">
+      <Filter>Engine\Systems\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RidgedBody.cpp">
+      <Filter>Engine\Entity\Component\Ridged Body</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,10 +170,10 @@
       <Filter>Engine\Systems\Platform</Filter>
     </ClInclude>
     <ClInclude Include="Source\Entity.h">
-      <Filter>Engine\Systems\ExampleSystem\Entity</Filter>
+      <Filter>Engine\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Source\Component.h">
-      <Filter>Engine\Systems\ExampleSystem\Entity\Component</Filter>
+      <Filter>Engine\Entity\Component</Filter>
     </ClInclude>
     <ClInclude Include="Source\GUI.h">
       <Filter>Engine\Systems\Debug</Filter>
@@ -176,7 +185,7 @@
       <Filter>Engine\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Source\Transform.h">
-      <Filter>Engine\Systems\ExampleSystem\Entity\Component\Transform</Filter>
+      <Filter>Engine\Entity\Component\Transform</Filter>
     </ClInclude>
     <ClInclude Include="Source\Transform.h">
       <Filter>Engine\Systems\Entity\Component\Transform</Filter>
@@ -186,6 +195,12 @@
     </ClInclude>
     <ClInclude Include="Source\ExampleSystem.h">
       <Filter>Engine\Systems\ExampleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneSystem.h">
+      <Filter>Engine\Systems\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RidgedBody.h">
+      <Filter>Engine\Entity\Component\Ridged Body</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

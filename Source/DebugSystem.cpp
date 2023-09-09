@@ -4,40 +4,39 @@
 
 ImGuiTextBuffer DebugSystem::logBuffer;
 std::vector<GUI*> DebugSystem::windows;
+DebugSystem* DebugSystem::instance = nullptr;
 bool DebugSystem::FPS = false;
+bool DebugSystem::dev = false;
 
-DebugSystem * DebugSystem::instance = nullptr;
+
 
 DebugSystem* DebugSystem::getInstance()
 {
-    if (instance == nullptr)
+
+    if (instance == nullptr) 
     {
         instance = new DebugSystem();
     }
+
     return instance;
+
 }
 
 /**
  * @brief Initialize the DebugSystem.
  * @param window The GLFW window handle (default is the current context).
  */
-DebugSystem::DebugSystem(GLFWwindow* window) :
-    _window(window),
-    io(nullptr)
-{}
+DebugSystem::DebugSystem(GLFWwindow* window) : _window(window), io(nullptr)
+{
+
+}
 
 /**
  * @brief Perform initialization.
  */
 void DebugSystem::OnInit()
 {
-    // Setup ImGui context
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    io = &ImGui::GetIO();
-    ImGui_ImplGlfw_InitForOpenGL(_window, true);
-    ImGui_ImplOpenGL3_Init("#version 430");
-    ImGui::StyleColorsDark();
+
 }
 
 /**
@@ -93,9 +92,28 @@ void DebugSystem::OnExit()
 /**
  * @brief Show the Frames Per Second (FPS) display.
  */
-void DebugSystem::ShowFPS()
+void DebugSystem::ToggleFPS()
 {
-    FPS = true;
+    if (FPS)
+    {
+        FPS = false;
+    }
+    else
+    {
+        FPS = true;
+    }
+}
+
+void DebugSystem::ToggleDev()
+{
+    if (dev)
+    {
+		dev = false;
+	}
+    else
+    {
+		dev = true;
+	}
 }
 
 /**
@@ -139,15 +157,26 @@ void DebugSystem::ShowDebugMenu()
  */
 void DebugSystem::OnSceneLoad()
 {
-    // Your scene loading code goes here.
+    // Setup ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    io = &ImGui::GetIO();
+    ImGui_ImplGlfw_InitForOpenGL(_window, true);
+    ImGui_ImplOpenGL3_Init("#version 430");
+    ImGui::StyleColorsDark();
 }
 
 /**
  * @brief Called when a scene is initialized.
  */
-void DebugSystem::OnSceneInit() {}
+void DebugSystem::OnSceneInit()
+{
+    OnInit();
+}
 
 /**
  * @brief Called when a scene is exited.
  */
-void DebugSystem::OnSceneExit() {}
+void DebugSystem::OnSceneExit()
+{
+}

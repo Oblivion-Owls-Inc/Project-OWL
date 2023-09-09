@@ -26,18 +26,17 @@ public:
     Component* Clone() const override;
 
 	vec3* getTranslation();
-	const vec3* getTranslationConst() const;
+	const vec3* getTranslation() const;
 	void setTranslation(vec3 newTranslation);
 
 	float getRotation() const;
 	void setRotation(float newRotation);
 
 	vec3* getScale();
-	const vec3* getScaleConst() const;
+	const vec3* getScale() const;
 	void setScale(vec3 newScale);
 
 	glm::mat4* getMatrix();
-	static void matrixRotate(glm::mat4* matrix, float angle);
 
 	void setMatrix(glm::mat4 newMatrix);
 
