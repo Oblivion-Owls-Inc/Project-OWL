@@ -21,7 +21,15 @@ DebugSystem* DebugSystem::getInstance()
  * @brief Initialize the DebugSystem.
  * @param window The GLFW window handle (default is the current context).
  */
-DebugSystem::DebugSystem(GLFWwindow* window) : _window(window), io(nullptr)
+DebugSystem::DebugSystem(GLFWwindow* window) :
+    _window(window),
+    io(nullptr)
+{}
+
+/**
+ * @brief Perform initialization.
+ */
+void DebugSystem::OnInit()
 {
     // Setup ImGui context
     IMGUI_CHECKVERSION();
@@ -30,13 +38,6 @@ DebugSystem::DebugSystem(GLFWwindow* window) : _window(window), io(nullptr)
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
     ImGui_ImplOpenGL3_Init("#version 430");
     ImGui::StyleColorsDark();
-}
-
-/**
- * @brief Perform initialization.
- */
-void DebugSystem::OnInit()
-{
 }
 
 /**
@@ -144,15 +145,9 @@ void DebugSystem::OnSceneLoad()
 /**
  * @brief Called when a scene is initialized.
  */
-void DebugSystem::OnSceneInit()
-{
-    OnInit();
-}
+void DebugSystem::OnSceneInit() {}
 
 /**
  * @brief Called when a scene is exited.
  */
-void DebugSystem::OnSceneExit()
-{
-    OnExit();
-}
+void DebugSystem::OnSceneExit() {}

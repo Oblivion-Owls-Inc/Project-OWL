@@ -1,0 +1,12 @@
+{
+    "FixedFrameDuration": 0.05,
+    "Systems": {
+        "PlatformSystem": {
+            "windowSize": [ 400, 400 ]
+        },
+        "SceneSystem": {
+            "initialSceneName": "testScene"
+        },
+        "DebugSystem": {}
+    }
+}

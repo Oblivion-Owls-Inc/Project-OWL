@@ -1,13 +1,10 @@
-/**
-* @file Engine.cpp
-* @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-* @brief Engine class
-* @version 0.1
-* @date 2023-09-05
-* 
-* @copyright Copyright (c) 2023
-* 
-*/
+/// @file Engine.cpp
+/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief Engine class
+/// @version 0.1
+/// @date 2023-09-05
+///
+/// @copyright Copyright (c) 2023
 
 #pragma once
 
@@ -30,32 +27,17 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
     }
 }
 
-
-/**
-* @brief Constructs a new Engine
-*/
-Engine::Engine() :
-    shouldExit( false ),
-    fixedFrameDuration( 1.0f / 20.0f ),
-    previousFixedTime( 0.0 ),
-    previousTime( 0.0 )
-{}
-
-/**
-* @brief Adds a System to the Engine, at the back of the systems array
-* @param system The system to add the Engine
-*/
+/// @brief Adds a System to the Engine, at the back of the systems array
+/// @param system The system to add the Engine
 void Engine::AddSystem( System * system )
 {
     systems.push_back( system );
     system->setIndex( static_cast<int>(systems.size() - 1) );
 }
 
-/**
-* @brief Adds a System to the Engine at the specified location in the systems array.
-* @param system The system to add the Engine
-* @param index The index in the Engine to insert the System into.
-*/
+/// @brief Adds a System to the Engine at the specified location in the systems array.
+/// @param system The system to add the Engine
+/// @param index The index in the Engine to insert the System into.
 void Engine::AddSystem( System * system, unsigned index )
 {
     systems.insert( systems.begin() + index, system );
@@ -67,9 +49,7 @@ void Engine::AddSystem( System * system, unsigned index )
     }
 }
 
-/**
-* @brief Starts running the engine. Code will not advance past this point until the engine stops running.
-*/
+/// @brief Starts running the engine. Code will not advance past this point until the engine stops running.
 void Engine::Run()
 {
 
@@ -85,27 +65,28 @@ void Engine::Run()
     Exit();
 }
 
-/**
-* @brief Flags the engine to close once it finishes this loop
-*/
+/// @brief Flags the engine to close once it finishes this loop
 void Engine::Close()
 {
     shouldExit = true;
 }
 
-/**
-* @brief gets the duration of each fixed frame
-* @return the amount of time in seconds that each fixed frame lasts
-*/
+/// @brief gets the duration of each fixed frame
+/// @return the amount of time in seconds that each fixed frame lasts
 float Engine::getFixedFrameDuration() const
 {
     return fixedFrameDuration;
 }
 
+/// @brief Gets the array of all Systems in the engine.
+/// @return the array of all Systems in the engine
+std::vector< System* > const& Engine::getSystems() const
+{
+    return systems;
+}
 
-/**
-* @brief Initializes the engine and all Systems in the Engine
-*/
+
+/// @brief Initializes the engine and all Systems in the Engine
 void Engine::Init()
 {
     // initialize the time values
@@ -132,9 +113,7 @@ void Engine::Init()
     // TODO: move the above code out of the engine and into its own systems
 }
 
-/**
-* @brief Updates the engine each frame
-*/
+/// @brief Updates the engine each frame
 void Engine::Update()
 {
 
@@ -174,9 +153,7 @@ void Engine::Update()
     // TODO: move the above code out of Engine and into its own System
 }
 
-/**
-* @brief Calls all Systems' OnUpdate function
-*/
+/// @brief Calls all Systems' OnUpdate function
 void Engine::UpdateSystems( float dt )
 {
     for ( System * system : systems )
@@ -185,9 +162,7 @@ void Engine::UpdateSystems( float dt )
     }
 }
 
-/**
-* @brief Calls all Systems' OnFixedUpdate function
-*/
+/// @brief Calls all Systems' OnFixedUpdate function
 void Engine::FixedUpdateSystems()
 {
     for ( System * system : systems )
@@ -196,9 +171,7 @@ void Engine::FixedUpdateSystems()
     }
 }
 
-/**
-* @brief Calls all Systems' OnExit function
-*/
+/// @brief Calls all Systems' OnExit function
 void Engine::Exit()
 {
     for ( System * system : systems )
@@ -207,3 +180,26 @@ void Engine::Exit()
     }
 }
 
+
+
+/// @brief The singleton instance of the Engine
+Engine * Engine::instance;
+
+/// @brief Constructs a new Engine
+Engine::Engine() :
+    shouldExit( false ),
+    fixedFrameDuration( 1.0f / 20.0f ),
+    previousFixedTime( 0.0 ),
+    previousTime( 0.0 )
+{}
+
+/// @brief gets the singleton instance of the Engine
+/// @return the singleton instance of the Engine
+Engine* Engine::getInstance()
+{
+    if ( instance == nullptr )
+    {
+        instance = new Engine();
+    }
+    return instance;
+}

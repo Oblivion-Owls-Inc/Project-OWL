@@ -166,6 +166,7 @@
     <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\PlatformSystem.cpp" />
+    <ClCompile Include="Source\SceneSystem.cpp" />
     <ClCompile Include="Source\System.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
   </ItemGroup>
@@ -187,6 +188,7 @@
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\GUI.h" />
     <ClInclude Include="Source\PlatformSystem.h" />
+    <ClInclude Include="Source\SceneSystem.h" />
     <ClInclude Include="Source\System.h" />
     <ClInclude Include="Source\Transform.h" />
   </ItemGroup>
