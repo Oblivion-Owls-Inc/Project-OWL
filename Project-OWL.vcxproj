@@ -166,6 +166,10 @@
     <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\PlatformSystem.cpp" />
+    <ClCompile Include="Source\Renderer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\System.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +190,10 @@
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\GUI.h" />
     <ClInclude Include="Source\PlatformSystem.h" />
+    <ClInclude Include="Source\Renderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
