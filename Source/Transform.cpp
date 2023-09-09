@@ -46,7 +46,7 @@ glm::vec3* Transform::getTranslation()
 	return &translation;
 }
 
-const glm::vec3* Transform::getTranslationConst() const
+const glm::vec3* Transform::getTranslation() const
 {
 	return &translation;
 }
@@ -73,7 +73,7 @@ glm::vec3* Transform::getScale()
 	return &scale;
 }
 
-const glm::vec3* Transform::getScaleConst() const
+const glm::vec3* Transform::getScale() const
 {
 	return &scale;
 }

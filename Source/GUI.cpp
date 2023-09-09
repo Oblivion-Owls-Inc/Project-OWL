@@ -16,7 +16,7 @@
  * @brief Construct a new GUI::GUI object   
  * 
  */
-GUI::GUI() 
+GUI::GUI() : active(true), windowTitle("GUI")
 {
 }
 
@@ -110,13 +110,26 @@ void DebugMenu::Render()
     {
         // Rendering code goes here
         ImGui::Begin(GetWindowTitle(), &this->active, ImGuiWindowFlags_MenuBar);
-        if (ImGui::BeginMenuBar()) {
-            if (ImGui::BeginMenu("File")) {
+        if (ImGui::BeginMenuBar()) 
+        {
+            if (ImGui::BeginMenu("File")) 
+            {
                 if (ImGui::MenuItem("Open..", "Ctrl+O")) {  }
                 if (ImGui::MenuItem("Save", "Ctrl+S")) {  }
                 if (ImGui::MenuItem("Close", "Ctrl+W")) { this->active = false; }
                 ImGui::EndMenu();
             }
+            if (ImGui::BeginMenu("Show"))
+            {
+                if (ImGui::MenuItem("FPS", "Shift+O")) 
+                {
+					DebugSystem::ToggleFPS(); 
+                }
+                if (ImGui::MenuItem("Dev Console", "Ctrl+Shift+S")) {}
+                if (ImGui::MenuItem("TBD", "Ctrl+Shift+W")) {}
+                ImGui::EndMenu();
+            }
+
             ImGui::EndMenuBar();
         }
 
