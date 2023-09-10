@@ -1,12 +1,10 @@
-/**
-* @file         PlatformSystem.cpp
-* @author       Eli Tsereteli (ilya.tsereteli@digipen.edu)
-* @brief        Patform System class: initializes window and graphics (GLFW and GLEW), 
-                shuts them down on exit.
-*
-* @version      0.1
-* @copyright    Copyright (c) 2023
-*/
+/// @file         PlatformSystem.cpp
+/// @author       Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// @brief        Patform System class: initializes window and graphics (GLFW and GLEW), 
+///               shuts them down on exit.
+///
+/// @version      0.1
+/// @copyright    Copyright (c) 2023
 #include "PlatformSystem.h"
 #include "glew.h"       // initialize, error callback
 #include "glfw3.h"      // initialize / shutdown
@@ -14,13 +12,11 @@
 #include <iostream>     // cout
 #include <cassert>
 
-/**
-* @brief            (callback) Gets called when there's some OpenGL error. Prints error message
-*                   to console, asserts for high severity errors.
-* @param message    Error message (text)
-* @param severity   Severity of the error.
-* @param others     They don't really matter. Can be used for more advanced debugging.
-*/
+/// @brief            (callback) Gets called when there's some OpenGL error. Prints error message
+///                   to console, asserts for high severity errors.
+/// @param message    Error message (text)
+/// @param severity   Severity of the error.
+/// @param others     They don't really matter. Can be used for more advanced debugging.
 static void GLAPIENTRY ErrorHandler(GLenum source, GLenum type, GLuint id, GLenum severity, 
                                 GLsizei length, const GLchar* message, const void* userparam)
 {
@@ -39,18 +35,19 @@ static void GLAPIENTRY ErrorHandler(GLenum source, GLenum type, GLuint id, GLenu
     (void) userparam;
 }
 
-/**
-* @brief            Constructor: initializes GLFW window and GLEW, enables error callback.
-* @param w_name     Window name.
-* @param w_width    Window width.
-* @param w_height   Window height.
-*/
-PlatformSystem::PlatformSystem(const char* w_name, int w_width, int w_height) : 
-	_window(nullptr),
-	_width(w_width), _height(w_height) 
+/// @brief Constructor
+PlatformSystem::PlatformSystem() : 
+	window( nullptr ),
+	windowWidth( 600 ),
+    windowHeight( 400 ),
+    windowName( "engineTest" )
+{}
+
+/// @brief Initializes the PlatformSystem
+void PlatformSystem::OnInit()
 {
     // GLFW
-    if (!glfwInit())
+    if ( !glfwInit() )
     {
         std::cerr << "Failed to initialize GLFW" << std::endl;
         return;
@@ -64,20 +61,20 @@ PlatformSystem::PlatformSystem(const char* w_name, int w_width, int w_height) :
     //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); TODO: needed or nah?
 
     // Window
-    _window = glfwCreateWindow(w_width, w_height, w_name, NULL, NULL);
-    if (!_window)
+    window = glfwCreateWindow( windowWidth, windowHeight, windowName.c_str(), NULL, NULL);
+    if (window)
     {
         glfwTerminate();
         std::cerr << "Failed to create GLFW window" << std::endl;
         assert(false);
     }
-    glfwMakeContextCurrent(_window);
+    glfwMakeContextCurrent(window);
 
     // GLEW
     if (glewInit() != GLEW_OK)
     {
         glfwTerminate();
-        glfwDestroyWindow(_window);
+        glfwDestroyWindow(window);
         std::cerr << "Failed to initialize GLEW" << std::endl;
         assert(false);
     }
@@ -86,41 +83,33 @@ PlatformSystem::PlatformSystem(const char* w_name, int w_width, int w_height) :
     glDebugMessageCallback(ErrorHandler, NULL);                             // set error callback func
 }
 
-/**
-* @brief    Shuts down the the platform.
-*/
+/// @brief    Shuts down the the platform.
 void PlatformSystem::OnExit()
 {
-    glfwDestroyWindow( _window );
+    glfwDestroyWindow( window );
     glfwTerminate();
     std::cout << "\nShutdown complete." << std::endl;
 }
 
-/**
-* @brief    Returns the window handle.
-* @return   GLFWwindow pointer: Current window handle.
-*/
+/// @brief    Returns the window handle.
+/// @return   GLFWwindow pointer: Current window handle.
 GLFWwindow* PlatformSystem::GetWindowHandle() const
 {
-    return _window;
+    return window;
 }
 
-/**
-* @brief    Returns window dimensions as a vec2.
-* @return   glm vec2: x = width, y = height.
-*/
+/// @brief    Returns window dimensions as a vec2.
+/// @return   glm vec2: x = width, y = height.
 glm::vec2 PlatformSystem::GetWindowDimensions() const
 {
-    return { _width, _height };
+    return { windowWidth, windowHeight};
 }
 
-/**
-* @brief    Checks if the window is closing.
-* @return   bool: true if the window is closing.
-*/
+/// @brief    Checks if the window is closing.
+/// @return   bool: true if the window is closing.
 bool PlatformSystem::WindowClosing() const
 {
-    return glfwWindowShouldClose(_window);
+    return glfwWindowShouldClose(window);
 }
 
 
@@ -128,10 +117,8 @@ bool PlatformSystem::WindowClosing() const
 /// @brief The singleton instance of ExampleSystem
 PlatformSystem * PlatformSystem::instance = nullptr;
 
-/**
-* @brief    (Singleton) Gets the instance of this system.
-* @return   PlatformSystem pointer: new or existing instance of this system.
-*/
+/// @brief    (Singleton) Gets the instance of this system.
+/// @return   PlatformSystem pointer: new or existing instance of this system.
 PlatformSystem * PlatformSystem::getInstance()
 {
     if ( instance == nullptr )
@@ -140,20 +127,3 @@ PlatformSystem * PlatformSystem::getInstance()
     }
     return instance;
 }
-
-/**
-* @brief            (Singleton) Constructor getInstance method, should only be called in main.cpp
-* @param w_name     Window name.
-* @param w_width    Window width.
-* @param w_height   Window height.
-* @return           PlatformSystem pointer: new or existing instance of this system.
-*/
-PlatformSystem * PlatformSystem::getInstance( const char* w_name = "Prototype", int w_width = 800, int w_height = 600 )
-{
-    if (instance == nullptr)
-    {
-        instance = new PlatformSystem( w_name, w_width, w_height );
-    }
-    return instance;
-}
-
