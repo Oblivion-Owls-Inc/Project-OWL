@@ -1,8 +1,13 @@
+/// @file     Mesh.cpp
+/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// 
+/// @brief    Implementation of Mesh class.
 #include "Mesh.h"
 #include "glew.h"
-#include "Renderer.h"
+#include "RenderSystem.h"
 
-// Creates centered unit square
+/// @brief              Constructor: inits data to 0, loads unit square vertices if needed.
+/// @param init_square  true/false: should unit square be initialized
 Mesh::Mesh(bool init_square) : _vaoID(0), _bufferID(0), _vertexCount(0)
 {
     if (!init_square)
@@ -11,11 +16,15 @@ Mesh::Mesh(bool init_square) : _vaoID(0), _bufferID(0), _vertexCount(0)
     load_square();
 }
 
-// Creates custom mesh out of passed vertices
-Mesh::Mesh(std::vector<Vertex> vertices) {  load_vertices(vertices);  }
+/// @brief              Constructor: inits data to 0, loads provided vertices to make a mesh.
+/// @param vertices     Vector of vertices to initialize this mesh with
+Mesh::Mesh(std::vector<Vertex> vertices) : _vaoID(0), _bufferID(0), _vertexCount(0)
+{  
+    load_vertices(vertices);
+}
 
 
-// Delete stuff
+/// @brief              Cleans up memory
 Mesh::~Mesh()
 {
     glDeleteBuffers(1, &_bufferID);
@@ -23,6 +32,8 @@ Mesh::~Mesh()
 }
 
 
+/// @brief              Loads vertices into the buffer.
+/// @param vertices     Vector of vertices to load.
 void Mesh::load_vertices(std::vector<Vertex> vertices)
 {
     if (!_vaoID)
@@ -34,7 +45,7 @@ void Mesh::load_vertices(std::vector<Vertex> vertices)
     _vertexCount = (unsigned int)vertices.size();
 }
 
-
+/// @brief      Loads a list of vertices that make a centered unit square.
 void Mesh::load_square()
 {
     load_vertices({ {{-0.5,  0.5}, {0.0, 0.0}},
@@ -44,7 +55,7 @@ void Mesh::load_square()
 }
 
 
-// Initialize VAO and buffer
+/// @brief      Initializes the Vertex Array Object and the buffer tied to this mesh.
 void Mesh::initVAO()
 {
     // Vertex array object (contains the rest)
@@ -61,12 +72,11 @@ void Mesh::initVAO()
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, UV));    // index 2: UV (2 floats)
     glEnableVertexAttribArray(1);
 
-    // No index buffer, I'll just use trianglestrip.
+    // No index buffer, I'll just use trianglestrip. Some other type of mesh class could be different.
 }
 
 
-// Draws contents of the buffer/VAO using triangle strip mode.
-// Make sure proper shader is already chosen when calling this function.
+/// @brief      Draws the mesh.
 void Mesh::draw()
 {
     glBindVertexArray(_vaoID);

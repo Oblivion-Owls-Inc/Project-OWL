@@ -57,6 +57,12 @@
     <Filter Include="Engine\Entity\Component\Ridged Body">
       <UniqueIdentifier>{b80ae33f-b97e-4efd-b564-cef386ad417e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\Render\Mesh">
+      <UniqueIdentifier>{dc9586ac-3bd2-48df-8f04-975e142cb371}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\Render\Shader">
+      <UniqueIdentifier>{204bbd04-68c1-4367-9897-c58703fca321}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -124,6 +130,15 @@
     </ClCompile>
     <ClCompile Include="Source\RidgedBody.cpp">
       <Filter>Engine\Entity\Component\Ridged Body</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RenderSystem.cpp">
+      <Filter>Engine\Systems\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mesh.cpp">
+      <Filter>Engine\Systems\Render\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Shader.cpp">
+      <Filter>Engine\Systems\Render\Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +216,15 @@
     </ClInclude>
     <ClInclude Include="Source\RidgedBody.h">
       <Filter>Engine\Entity\Component\Ridged Body</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RenderSystem.h">
+      <Filter>Engine\Systems\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mesh.h">
+      <Filter>Engine\Systems\Render\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shader.h">
+      <Filter>Engine\Systems\Render\Shader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
