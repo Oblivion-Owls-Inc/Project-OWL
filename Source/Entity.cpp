@@ -81,6 +81,18 @@ void Entity::Add(Component* component)
 	}
 }
 
+Component* Entity::HasComponent(std::type_index type)
+{
+	// Check if the component exists.
+	if (components.find(type) != components.end())
+	{
+		// If it does, return it.
+			return components[type];
+	}
+	// Otherwise, return null.
+	return nullptr;
+}
+
 /// @brief Flag an entity for destruction.
 void Entity::Destroy() { mIsDestroyed = true; }
 

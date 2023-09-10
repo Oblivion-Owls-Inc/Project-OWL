@@ -4,29 +4,22 @@
 
 ImGuiTextBuffer DebugSystem::logBuffer;
 std::vector<GUI*> DebugSystem::windows;
+DebugSystem* DebugSystem::instance = nullptr;
 bool DebugSystem::FPS = false;
+bool DebugSystem::dev = false;
+
 
 
 DebugSystem* DebugSystem::getInstance()
 {
 
-    static DebugSystem* instance = nullptr;
-    if (instance == nullptr) {
+    if (instance == nullptr) 
+    {
         instance = new DebugSystem();
     }
+
     return instance;
 
-}
-
-DebugSystem* DebugSystem::getInstance(const char* w_name, int w_width, int w_height)
-{
-    
-    static DebugSystem* instance = nullptr;
-    if (instance == nullptr) {
-        instance = new DebugSystem();
-    }
-    return instance;
-    
 }
 
 /**
@@ -35,13 +28,7 @@ DebugSystem* DebugSystem::getInstance(const char* w_name, int w_width, int w_hei
  */
 DebugSystem::DebugSystem(GLFWwindow* window) : _window(window), io(nullptr)
 {
-    // Setup ImGui context
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    io = &ImGui::GetIO();
-    ImGui_ImplGlfw_InitForOpenGL(_window, true);
-    ImGui_ImplOpenGL3_Init("#version 430");
-    ImGui::StyleColorsDark();
+
 }
 
 /**
@@ -49,6 +36,7 @@ DebugSystem::DebugSystem(GLFWwindow* window) : _window(window), io(nullptr)
  */
 void DebugSystem::OnInit()
 {
+
 }
 
 /**
@@ -104,9 +92,28 @@ void DebugSystem::OnExit()
 /**
  * @brief Show the Frames Per Second (FPS) display.
  */
-void DebugSystem::ShowFPS()
+void DebugSystem::ToggleFPS()
 {
-    FPS = true;
+    if (FPS)
+    {
+        FPS = false;
+    }
+    else
+    {
+        FPS = true;
+    }
+}
+
+void DebugSystem::ToggleDev()
+{
+    if (dev)
+    {
+		dev = false;
+	}
+    else
+    {
+		dev = true;
+	}
 }
 
 /**
@@ -150,7 +157,13 @@ void DebugSystem::ShowDebugMenu()
  */
 void DebugSystem::OnSceneLoad()
 {
-    // Your scene loading code goes here.
+    // Setup ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    io = &ImGui::GetIO();
+    ImGui_ImplGlfw_InitForOpenGL(_window, true);
+    ImGui_ImplOpenGL3_Init("#version 430");
+    ImGui::StyleColorsDark();
 }
 
 /**
@@ -166,5 +179,4 @@ void DebugSystem::OnSceneInit()
  */
 void DebugSystem::OnSceneExit()
 {
-    OnExit();
 }

@@ -8,7 +8,8 @@
 #include "GUI.h"
 #include "System.h"
 #include <vector>
-
+#include <iostream>
+#include <sstream>
  /**
   * @class DebugSystem
   * @brief Debug System Class For Debugging
@@ -17,8 +18,8 @@
 class DebugSystem : public System
 {
     public:
-
-        static DebugSystem* getInstance(const char* w_name, int w_width, int w_height);
+        static ImGuiTextBuffer logBuffer;
+        static DebugSystem* instance;
         static DebugSystem* getInstance();
 
         /**
@@ -53,7 +54,9 @@ class DebugSystem : public System
          * @brief Show the Frames Per Second (FPS) in a debug window
          * @details This function displays the Frames Per Second (FPS) in a debug window when called.
          */
-        static void ShowFPS();
+        static void ToggleFPS();
+
+        static void ToggleDev();
 
         /**
          * @brief Print a formatted message to the screen
@@ -64,17 +67,38 @@ class DebugSystem : public System
 
         static void ShowDebugMenu();
 
-
         // Unused functions (from the base class)
         void OnFixedUpdate() override;
         void OnSceneLoad() override;
         void OnSceneInit() override;
         void OnSceneExit() override;
-        static ImGuiTextBuffer logBuffer;
 
     private:
         static std::vector<GUI*> windows; /**< A collection of GUI windows */
         GLFWwindow* _window; /**< The GLFW window handle */
         static bool FPS; /**< Flag to control FPS display */
+        static bool dev; /**< Flag to control FPS display */
         ImGuiIO* io; /**< Pointer to the ImGui Input/Output structure */
+};
+
+class DebugConsole
+{
+    public:
+        DebugConsole(DebugSystem& system) : _system(system) {}
+
+        template <typename T>
+        DebugConsole& operator<<(const T& value)
+        {
+            _messageStream << value;
+            return *this;
+        }
+
+        ~DebugConsole()
+        {
+            _system.ScreenPrint(_messageStream.str().c_str());
+        }
+
+    private:
+        std::stringstream _messageStream;
+        DebugSystem& _system;
 };

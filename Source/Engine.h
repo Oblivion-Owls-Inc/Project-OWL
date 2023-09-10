@@ -1,13 +1,10 @@
-/**
-* @file Engine.h
-* @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-* @brief Engine class
-* @version 0.1
-* @date 2023-09-05
-* 
-* @copyright Copyright (c) 2023
-* 
-*/
+/// @file Engine.h
+/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief Engine class
+/// @version 0.1
+/// @date 2023-09-05
+/// 
+/// @copyright Copyright (c) 2023
 
 #pragma once
 
@@ -21,98 +18,75 @@ class Engine
 {
     public:
 
-        // ----- (JAX)   TEMPORARY - for testing  ------------
-        System* GetDebug() { return systems[1]; }
-        /**
-        * @brief Constructs a new Engine
-        */
-        Engine();
-
-        /**
-        * @brief Adds a System to the Engine.
-        * @param system The system to add the Engine
-        */
+        /// @brief Adds a System to the Engine.
+        /// @param system The system to add the Engine
         void AddSystem( System * system );
 
-        /**
-         * @brief Adds a System to the Engine.
-         * @param system The system to add the Engine
-         * @param index The index in the Engine to insert the System into.
-        */
+        /// @brief Adds a System to the Engine.
+        /// @param system The system to add the Engine
+        /// @param index The index in the Engine to insert the System into.
         void AddSystem( System * system, unsigned index );
 
-        /**
-         * @brief Starts running the engine. Code will not advance past this point until the engine stops running.
-        */
+        /// @brief Starts running the engine. Code will not advance past this point until the engine stops running.
         void Run();
 
-        /**
-         * @brief Flags the engine to close once it finishes this loop
-        */
+        /// @brief Flags the engine to close once it finishes this loop
         void Close();
 
-        /**
-         * @brief gets the duration of each fixed frame
-         * @return the amount of time in seconds that each fixed frame lasts
-        */
+        /// @brief gets the duration of each fixed frame
+        /// @return the amount of time in seconds that each fixed frame lasts
         float getFixedFrameDuration() const;
+
+        /// @brief Gets the array of all Systems in the engine.
+        /// @return the array of all Systems in the engine
+        std::vector< System * > const& getSystems() const;
 
     private:
 
-        /**
-         * @brief Container of all the Systems in the engine
-        */
+        /// @brief Container of all the Systems in the engine
         std::vector< System * > systems;
 
-        /**
-         * @brief flag set to true when the engine needs to exit
-        */
+        /// @brief flag set to true when the engine needs to exit
         bool shouldExit;
 
-        /**
-         * @brief The timestamp of the previous frame
-        */
+        /// @brief The timestamp of the previous frame
         double previousTime;
 
-        /**
-         * @brief The timestamp of the previous fixed frame
-        */
+        /// @brief The timestamp of the previous fixed frame
         double previousFixedTime;
 
-        /**
-        * @brief The duration of each fixed frame
-        */
+        /// @brief The duration of each fixed frame
         float fixedFrameDuration;
 
 
-        /**
-        * @brief Initializes the engine and all Systems in the Engine.
-        */
+        /// @brief Initializes the engine and all Systems in the Engine.
         void Init();
 
-        /**
-         * @brief Updates the engine each frame
-        */
+        /// @brief Updates the engine each frame
         void Update();
 
-        /**
-         * @brief Calls all Systems in the Engine's Update function
-        */
+        /// @brief Calls all Systems in the Engine's Update function
         void UpdateSystems(float dt);
 
-        /**
-         * @brief Calls all Systems in the Engine's FixedUpdate function
-        */
+        /// @brief Calls all Systems in the Engine's FixedUpdate function
         void FixedUpdateSystems();
 
-        /**
-         * @brief exits and closes the Engine
-        */
+        /// @brief exits and closes the Engine
         void Exit();
 
 
+        /// @brief The singleton instance of the Engine
+        static Engine * instance;
+
+        /// @brief Constructs a new Engine
+        Engine();
+
 
     public:
+
+        /// @brief gets the singleton instance of the Engine
+        /// @return the singleton instance of the Engine
+        static Engine * getInstance();
 
         // Prevent Engine from being copied
         Engine(Engine& other) = delete;

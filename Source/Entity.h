@@ -50,6 +50,8 @@ public:
 	void Read(std::ifstream& stream);
 	// Attach a component to an Entity.
 	void Add(Component* component);
+
+	Component* HasComponent(std::type_index type);
 	// Type safe method for accessing the components.
 	// template <typename type>
 	// type* GetComponent(Component::TypeEnum typeID) { return static_cast<type*>(Get(typeID)); }
