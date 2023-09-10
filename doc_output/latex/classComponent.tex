@@ -1,13 +1,17 @@
 \hypertarget{classComponent}{}\doxysection{Component Class Reference}
 \label{classComponent}\index{Component@{Component}}
+
+
+Inheritance diagram for Component\+:
+% FIG 0
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classComponent_abb1ff4c8886143bda928db7b33951a61}\label{classComponent_abb1ff4c8886143bda928db7b33951a61}} 
 \+\_\+\+\_\+inline std\+::type\+\_\+index {\bfseries Type} () const
 \item 
-\mbox{\Hypertarget{classComponent_a30f52f03435c31d76fa8a2ff73e5060f}\label{classComponent_a30f52f03435c31d76fa8a2ff73e5060f}} 
-\+\_\+\+\_\+inline void {\bfseries Parent} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$parent)
+\mbox{\Hypertarget{classComponent_a842ce1f3d674b4c17ea8da9e887199bd}\label{classComponent_a842ce1f3d674b4c17ea8da9e887199bd}} 
+\+\_\+\+\_\+inline void {\bfseries Parent} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$parent\+\_\+)
 \item 
 \mbox{\Hypertarget{classComponent_a92a6487f34b48ce8ec4c25d8e6b379d9}\label{classComponent_a92a6487f34b48ce8ec4c25d8e6b379d9}} 
 \+\_\+\+\_\+inline \mbox{\hyperlink{classEntity}{Entity}} $\ast$ {\bfseries Parent} () const
@@ -15,14 +19,32 @@
 \mbox{\Hypertarget{classComponent_a84ffb31637b6208fc8114114fb60dc4a}\label{classComponent_a84ffb31637b6208fc8114114fb60dc4a}} 
 virtual \mbox{\hyperlink{classComponent}{Component}} $\ast$ {\bfseries Clone} () const =0
 \end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes}
+\doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classComponent_a6997b4ae48375343cf6920ff23ecbecb}\label{classComponent_a6997b4ae48375343cf6920ff23ecbecb}} 
-std\+::type\+\_\+index {\bfseries type}
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{classComponent_a3e7617a89d170d6b71e6ca70027a08ee}{Component}} (std\+::type\+\_\+index type)
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classComponent_a3e7617a89d170d6b71e6ca70027a08ee}\label{classComponent_a3e7617a89d170d6b71e6ca70027a08ee}} 
+\index{Component@{Component}!Component@{Component}}
+\index{Component@{Component}!Component@{Component}}
+\doxysubsubsection{\texorpdfstring{Component()}{Component()}}
+{\footnotesize\ttfamily Component\+::\+Component (\begin{DoxyParamCaption}\item[{std\+::type\+\_\+index}]{type\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Default constructor for \mbox{\hyperlink{classComponent}{Component}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type\+\_\+} & type of component being created. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Source/\mbox{\hyperlink{Component_8h}{Component.\+h}}\end{DoxyCompactItemize}
+Source/\mbox{\hyperlink{Component_8h}{Component.\+h}}\item 
+Source/Component.\+cpp\end{DoxyCompactItemize}

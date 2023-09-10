@@ -61,12 +61,230 @@ $(function() {
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classEntity-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Entity Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<hr/>The documentation for this class was generated from the following file:<ul>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a980f368aa07ce358583982821533a54a"><td class="memItemLeft" align="right" valign="top"><a id="a980f368aa07ce358583982821533a54a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#a980f368aa07ce358583982821533a54a">Entity</a> ()</td></tr>
+<tr class="memdesc:a980f368aa07ce358583982821533a54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constrcutor for the entity class. <br /></td></tr>
+<tr class="separator:a980f368aa07ce358583982821533a54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cee18c049f0c60ed610ca825aecd53d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#a8cee18c049f0c60ed610ca825aecd53d">Entity</a> (const <a class="el" href="classEntity.html">Entity</a> &amp;other)</td></tr>
+<tr class="memdesc:a8cee18c049f0c60ed610ca825aecd53d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor for the entity class.  <a href="classEntity.html#a8cee18c049f0c60ed610ca825aecd53d">More...</a><br /></td></tr>
+<tr class="separator:a8cee18c049f0c60ed610ca825aecd53d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf6d3f7cb1b2ba029b6b048a395cc8ae"><td class="memItemLeft" align="right" valign="top"><a id="adf6d3f7cb1b2ba029b6b048a395cc8ae"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#adf6d3f7cb1b2ba029b6b048a395cc8ae">~Entity</a> ()</td></tr>
+<tr class="memdesc:adf6d3f7cb1b2ba029b6b048a395cc8ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the entity class. <br /></td></tr>
+<tr class="separator:adf6d3f7cb1b2ba029b6b048a395cc8ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd6b24f8e760d7c4fd47be13a8cb512c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#afd6b24f8e760d7c4fd47be13a8cb512c">Clone</a> () const</td></tr>
+<tr class="memdesc:afd6b24f8e760d7c4fd47be13a8cb512c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clones an entity.  <a href="classEntity.html#afd6b24f8e760d7c4fd47be13a8cb512c">More...</a><br /></td></tr>
+<tr class="separator:afd6b24f8e760d7c4fd47be13a8cb512c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa03af3d49bbddca7d395597bd47f346f"><td class="memItemLeft" align="right" valign="top"><a id="aa03af3d49bbddca7d395597bd47f346f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#aa03af3d49bbddca7d395597bd47f346f">Free</a> ()</td></tr>
+<tr class="memdesc:aa03af3d49bbddca7d395597bd47f346f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocates all memory associated with an entity. <br /></td></tr>
+<tr class="separator:aa03af3d49bbddca7d395597bd47f346f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a051b990b4acb6099c7243fef061eb54b"><td class="memItemLeft" align="right" valign="top"><a id="a051b990b4acb6099c7243fef061eb54b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Read</b> (std::ifstream &amp;stream)</td></tr>
+<tr class="separator:a051b990b4acb6099c7243fef061eb54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab268e95b3801ab5660a5274f2028debe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#ab268e95b3801ab5660a5274f2028debe">Add</a> (<a class="el" href="classComponent.html">Component</a> *component)</td></tr>
+<tr class="memdesc:ab268e95b3801ab5660a5274f2028debe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a component to an entity.  <a href="classEntity.html#ab268e95b3801ab5660a5274f2028debe">More...</a><br /></td></tr>
+<tr class="separator:ab268e95b3801ab5660a5274f2028debe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bce7d742bf71daf5a2ac1dd093c84b6"><td class="memItemLeft" align="right" valign="top"><a id="a9bce7d742bf71daf5a2ac1dd093c84b6"></a>
+<a class="el" href="classComponent.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>HasComponent</b> (std::type_index type)</td></tr>
+<tr class="separator:a9bce7d742bf71daf5a2ac1dd093c84b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa75151fc607686b42d27f8c3ba73143d"><td class="memItemLeft" align="right" valign="top"><a id="aa75151fc607686b42d27f8c3ba73143d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#aa75151fc607686b42d27f8c3ba73143d">Destroy</a> ()</td></tr>
+<tr class="memdesc:aa75151fc607686b42d27f8c3ba73143d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag an entity for destruction. <br /></td></tr>
+<tr class="separator:aa75151fc607686b42d27f8c3ba73143d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6a2f4f2b4098583862dcfc55f80b57f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#ae6a2f4f2b4098583862dcfc55f80b57f">Destroyed</a> ()</td></tr>
+<tr class="memdesc:ae6a2f4f2b4098583862dcfc55f80b57f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if an entity has been destroyed or not.  <a href="classEntity.html#ae6a2f4f2b4098583862dcfc55f80b57f">More...</a><br /></td></tr>
+<tr class="separator:ae6a2f4f2b4098583862dcfc55f80b57f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c907130862ad55702fa982808af62bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#a3c907130862ad55702fa982808af62bf">SetName</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a3c907130862ad55702fa982808af62bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the entity's name.  <a href="classEntity.html#a3c907130862ad55702fa982808af62bf">More...</a><br /></td></tr>
+<tr class="separator:a3c907130862ad55702fa982808af62bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af86a55214d18327f5f7a99ed84e0275d"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#af86a55214d18327f5f7a99ed84e0275d">GetName</a> ()</td></tr>
+<tr class="memdesc:af86a55214d18327f5f7a99ed84e0275d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the entity.  <a href="classEntity.html#af86a55214d18327f5f7a99ed84e0275d">More...</a><br /></td></tr>
+<tr class="separator:af86a55214d18327f5f7a99ed84e0275d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca6fd909b270480b497d2da24d8a5277"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#aca6fd909b270480b497d2da24d8a5277">IsNamed</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:aca6fd909b270480b497d2da24d8a5277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares an entity's name.  <a href="classEntity.html#aca6fd909b270480b497d2da24d8a5277">More...</a><br /></td></tr>
+<tr class="separator:aca6fd909b270480b497d2da24d8a5277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8cee18c049f0c60ed610ca825aecd53d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cee18c049f0c60ed610ca825aecd53d">&#9670;&nbsp;</a></span>Entity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Entity::Entity </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classEntity.html">Entity</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor for the entity class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>- the entity to be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab268e95b3801ab5660a5274f2028debe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab268e95b3801ab5660a5274f2028debe">&#9670;&nbsp;</a></span>Add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Entity::Add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classComponent.html">Component</a> *&#160;</td>
+          <td class="paramname"><em>component</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a component to an entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component</td><td>- the component to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afd6b24f8e760d7c4fd47be13a8cb512c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd6b24f8e760d7c4fd47be13a8cb512c">&#9670;&nbsp;</a></span>Clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classEntity.html">Entity</a> * Entity::Clone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clones an entity. </p>
+<dl class="section return"><dt>Returns</dt><dd>A clone of an entity. </dd></dl>
+
+</div>
+</div>
+<a id="ae6a2f4f2b4098583862dcfc55f80b57f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6a2f4f2b4098583862dcfc55f80b57f">&#9670;&nbsp;</a></span>Destroyed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Entity::Destroyed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if an entity has been destroyed or not. </p>
+<dl class="section return"><dt>Returns</dt><dd>If the entity has been destroyed (bool). </dd></dl>
+
+</div>
+</div>
+<a id="af86a55214d18327f5f7a99ed84e0275d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af86a55214d18327f5f7a99ed84e0275d">&#9670;&nbsp;</a></span>GetName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; Entity::GetName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the name of the entity. </p>
+<dl class="section return"><dt>Returns</dt><dd>The name of the entity (string). </dd></dl>
+
+</div>
+</div>
+<a id="aca6fd909b270480b497d2da24d8a5277"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca6fd909b270480b497d2da24d8a5277">&#9670;&nbsp;</a></span>IsNamed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Entity::IsNamed </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares an entity's name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>- the name to compare against. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>does the name match (bool). </dd></dl>
+
+</div>
+</div>
+<a id="a3c907130862ad55702fa982808af62bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c907130862ad55702fa982808af62bf">&#9670;&nbsp;</a></span>SetName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Entity::SetName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the entity's name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>- name of the entity. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/<a class="el" href="Entity_8h_source.html">Entity.h</a></li>
+<li>Source/Entity.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

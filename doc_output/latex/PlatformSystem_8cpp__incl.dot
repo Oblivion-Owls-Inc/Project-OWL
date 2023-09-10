@@ -3,9 +3,9 @@ digraph "Source/PlatformSystem.cpp"
  // LATEX_PDF_SIZE
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="Source/PlatformSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Patform System class: initializes window and graphics (GLFW and GLEW) when created,..."];
+  Node1 [label="Source/PlatformSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
-  Node2 [label="PlatformSystem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlatformSystem_8h_source.html",tooltip=" "];
+  Node2 [label="PlatformSystem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlatformSystem_8h.html",tooltip="Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit."];
   Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
   Node3 [label="System.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$System_8h.html",tooltip="Base class for all Systems."];
   Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
@@ -18,5 +18,5 @@ digraph "Source/PlatformSystem.cpp"
   Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
   Node7 [label="iostream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
-  Node8 [label="assert.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node8 [label="cassert",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
 }

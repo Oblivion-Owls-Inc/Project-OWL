@@ -45,8 +45,14 @@ void \mbox{\hyperlink{classDebugSystem_aad8fe04c79614333a219cfc148744fbd}{On\+Sc
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{classDebugSystem_a81175440df77dcbb9c2fa42c4ef4b591}{Show\+FPS}} ()
+\mbox{\Hypertarget{classDebugSystem_aa806a0749614d5c15bc73d2f8fb56035}\label{classDebugSystem_aa806a0749614d5c15bc73d2f8fb56035}} 
+static \mbox{\hyperlink{classDebugSystem}{Debug\+System}} $\ast$ {\bfseries get\+Instance} ()
+\item 
+static void \mbox{\hyperlink{classDebugSystem_ae879cebdfe289045c82cb0fc33c48bbf}{Toggle\+FPS}} ()
 \begin{DoxyCompactList}\small\item\em Show the Frames Per Second (FPS) in a debug window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugSystem_a2c63e065c5546a8e08b5722b7cd03ea5}\label{classDebugSystem_a2c63e065c5546a8e08b5722b7cd03ea5}} 
+static void {\bfseries Toggle\+Dev} ()
+\item 
 static void \mbox{\hyperlink{classDebugSystem_a90310ccd94c0303b5594e9b94bc2a3dd}{Screen\+Print}} (const char $\ast$format,...)
 \begin{DoxyCompactList}\small\item\em Print a formatted message to the screen. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classDebugSystem_a74681dbee9160aab7f7c279fdb087732}\label{classDebugSystem_a74681dbee9160aab7f7c279fdb087732}} 
@@ -57,6 +63,9 @@ static void \mbox{\hyperlink{classDebugSystem_a74681dbee9160aab7f7c279fdb087732}
 \item 
 \mbox{\Hypertarget{classDebugSystem_a0c8288bc7aeca4c89d99cb2014880218}\label{classDebugSystem_a0c8288bc7aeca4c89d99cb2014880218}} 
 static Im\+Gui\+Text\+Buffer {\bfseries log\+Buffer}
+\item 
+\mbox{\Hypertarget{classDebugSystem_ab20cb70f1bdbee543d150ddaa35fc82f}\label{classDebugSystem_ab20cb70f1bdbee543d150ddaa35fc82f}} 
+static \mbox{\hyperlink{classDebugSystem}{Debug\+System}} $\ast$ {\bfseries instance} = nullptr
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -177,11 +186,11 @@ Set the GLFW window handle.
 {\em window} & The GLFW window handle to set \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classDebugSystem_a81175440df77dcbb9c2fa42c4ef4b591}\label{classDebugSystem_a81175440df77dcbb9c2fa42c4ef4b591}} 
-\index{DebugSystem@{DebugSystem}!ShowFPS@{ShowFPS}}
-\index{ShowFPS@{ShowFPS}!DebugSystem@{DebugSystem}}
-\doxysubsubsection{\texorpdfstring{ShowFPS()}{ShowFPS()}}
-{\footnotesize\ttfamily void Debug\+System\+::\+Show\+FPS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\mbox{\Hypertarget{classDebugSystem_ae879cebdfe289045c82cb0fc33c48bbf}\label{classDebugSystem_ae879cebdfe289045c82cb0fc33c48bbf}} 
+\index{DebugSystem@{DebugSystem}!ToggleFPS@{ToggleFPS}}
+\index{ToggleFPS@{ToggleFPS}!DebugSystem@{DebugSystem}}
+\doxysubsubsection{\texorpdfstring{ToggleFPS()}{ToggleFPS()}}
+{\footnotesize\ttfamily void Debug\+System\+::\+Toggle\+FPS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
