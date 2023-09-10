@@ -23,8 +23,8 @@ RenderSystem::RenderSystem() : _colorShader(nullptr), _textureShader(nullptr) {}
 /// @brief      Initializes color and texture shaders for sprites
 void RenderSystem::OnInit()
 {
-    _colorShader = new Shader("shaders/vshader.vert", "shaders/color.frag");
-    _textureShader = new Shader("shaders/vshader.vert", "shaders/texture.frag");
+    _colorShader = new Shader("Data/shaders/vshader.vert", "Data/shaders/color.frag");
+    _textureShader = new Shader("Data/shaders/vshader.vert", "Data/shaders/texture.frag");
 
     // TODO: screen2clip should be built elsewhere
     glm::vec2 s = PlatformSystem::getInstance()->GetWindowDimensions();

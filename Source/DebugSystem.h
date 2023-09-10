@@ -26,7 +26,7 @@ class DebugSystem : public System
          * @brief Constructor for DebugSystem
          * @param window The GLFW window handle (default is the current context)
          */
-        DebugSystem(GLFWwindow* window = glfwGetCurrentContext());
+        DebugSystem();
 
         /**
          * @brief Set the GLFW window handle
@@ -71,9 +71,10 @@ class DebugSystem : public System
 
 
         // Unused functions (from the base class)
-        void OnSceneLoad() override;
-        void OnSceneInit() override;
-        void OnSceneExit() override;
+        virtual void OnSceneLoad() override;
+        virtual void OnSceneInit() override;
+        virtual void OnSceneExit() override;
+        virtual void Load( rapidjson::Value const& ) override {}
 
     private:
         static std::vector<GUI*> windows; /**< A collection of GUI windows */
