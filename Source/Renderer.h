@@ -51,5 +51,6 @@ private:
     virtual void OnSceneLoad() override {}
     virtual void OnSceneInit() override {}
     virtual void OnSceneExit() override {}
+    virtual void Load( rapidjson::Value const& ) override {}
 };
 
