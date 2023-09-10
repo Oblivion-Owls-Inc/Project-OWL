@@ -1,83 +1,63 @@
-/**
-* @file System.h
-* @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-* @brief Base class for all Systems
-* @version 0.1
-* @date 2023-09-05
-* 
-* @copyright Copyright (c) 2023
-* 
-*/
+/// @file System.h
+/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief Base class for all Systems
+/// @version 0.1
+/// @date 2023-09-05
+/// 
+/// @copyright Copyright (c) 2023
 
 #pragma once
 
-/**
- * @brief Base class for all Systems
-*/
+#include "../rapidjson/document.h"
+
+/// @brief Base class for all Systems
 class System
 {
     public:
-        /**
-         * @brief Gets called once when this System is added to the Engine
-        */
+        /// @brief Gets called once when this System is added to the Engine
         virtual void OnInit() = 0;
 
-        /**
-         * @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
-        */
+        /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
         virtual void OnFixedUpdate() = 0;
 
-        /**
-         * @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-         * @param dt the elapsed time in seconds since the previous frame
-        */
+        /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+        /// @param dt the elapsed time in seconds since the previous frame
         virtual void OnUpdate(float dt) = 0;
 
-        /**
-         * @brief Gets called once before the Engine closes
-        */
+        /// @brief Gets called once before the Engine closes
         virtual void OnExit() = 0;
 
-        /**
-         * @brief Gets called whenever a new Scene is loaded
-        */
+        /// @brief Gets called whenever a new Scene is loaded
         virtual void OnSceneLoad() = 0;
 
-        /**
-         * @brief Gets called whenever a scene is initialized
-        */
+        /// @brief Gets called whenever a scene is initialized
         virtual void OnSceneInit() = 0;
 
-        /**
-         * @brief Gets called whenever a scene is exited
-        */
+        /// @brief Gets called whenever a scene is exited
         virtual void OnSceneExit() = 0;
 
-        /**
-         * @brief Gets this System's index in the Engine
-         * @return The index of this System in the Engine
-        */
+        /// @brief Loads the config data of this System
+        /// @param configData the JSON object with all of the configData for this System
+        virtual void Load( rapidjson::Value const& configData ) = 0;
+
+        /// @brief Gets this System's index in the Engine
+        /// @return The index of this System in the Engine
         int getIndex() const;
 
-        /**
-         * @brief Sets this System's internal index value. SHOULD ONLY BE CALLED BY THE ENGINE.
-         * @param index the index to be set to
-        */
+        /// @brief Sets this System's internal index value. SHOULD ONLY BE CALLED BY THE ENGINE.
+        /// @param index the index to be set to
         void setIndex(int index);
+
 
     protected:
     
-        /**
-         * @brief Constructs a System
-        */
+        /// @brief Constructs a System
         System();
 
     private:
 
-        /**
-         * @brief This System's index in the Engine
-         * set to -1 if this System is not in the Engine
-        */
+        /// @brief This System's index in the Engine
+        /// set to -1 if this System is not in the Engine
         int index = -1;
 
     public:
