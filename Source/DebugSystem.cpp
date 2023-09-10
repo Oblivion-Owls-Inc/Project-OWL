@@ -36,7 +36,6 @@ DebugSystem::DebugSystem(GLFWwindow* window) : _window(window), io(nullptr)
  */
 void DebugSystem::OnInit()
 {
-
 }
 
 /**
@@ -171,7 +170,6 @@ void DebugSystem::OnSceneLoad()
  */
 void DebugSystem::OnSceneInit()
 {
-    OnInit();
 }
 
 /**
