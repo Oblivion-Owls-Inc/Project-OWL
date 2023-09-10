@@ -1,4 +1,6 @@
 #include "DebugSystem.h"
+
+#include "PlatformSystem.h"
 #include "GUI.h"
 
 
@@ -26,8 +28,17 @@ DebugSystem* DebugSystem::getInstance()
  * @brief Initialize the DebugSystem.
  * @param window The GLFW window handle (default is the current context).
  */
-DebugSystem::DebugSystem(GLFWwindow* window) : _window(window), io(nullptr)
+DebugSystem::DebugSystem() :
+    _window(nullptr),
+    io(nullptr)
+{}
+
+/**
+ * @brief Perform initialization.
+ */
+void DebugSystem::OnInit()
 {
+    _window = PlatformSystem::getInstance()->GetWindowHandle();
     // Setup ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -35,20 +46,6 @@ DebugSystem::DebugSystem(GLFWwindow* window) : _window(window), io(nullptr)
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
     ImGui_ImplOpenGL3_Init("#version 430");
     ImGui::StyleColorsDark();
-}
-
-/**
- * @brief Perform initialization.
- */
-void DebugSystem::OnInit()
-{
-    // Setup ImGui context
-    //IMGUI_CHECKVERSION();
-    //ImGui::CreateContext();
-    //io = &ImGui::GetIO();
-    //ImGui_ImplGlfw_InitForOpenGL(_window, true);
-    //ImGui_ImplOpenGL3_Init("#version 430");
-    //ImGui::StyleColorsDark();
 }
 
 /**

@@ -26,7 +26,7 @@ class DebugSystem : public System
          * @brief Constructor for DebugSystem
          * @param window The GLFW window handle (default is the current context)
          */
-        DebugSystem(GLFWwindow* window = glfwGetCurrentContext());
+        DebugSystem();
 
         /**
          * @brief Set the GLFW window handle

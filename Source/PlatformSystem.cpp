@@ -38,8 +38,8 @@ static void GLAPIENTRY ErrorHandler(GLenum source, GLenum type, GLuint id, GLenu
 /// @brief Constructor
 PlatformSystem::PlatformSystem() : 
 	window( nullptr ),
-	windowWidth( 600 ),
-    windowHeight( 400 ),
+	windowWidth( 800 ),
+    windowHeight( 600 ),
     windowName( "engineTest" )
 {}
 
@@ -63,7 +63,7 @@ void PlatformSystem::OnInit()
 
     // Window
     window = glfwCreateWindow( windowWidth, windowHeight, windowName.c_str(), NULL, NULL);
-    if (window)
+    if (!window)
     {
         glfwTerminate();
         std::cerr << "Failed to create GLFW window" << std::endl;
