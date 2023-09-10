@@ -67,8 +67,10 @@ class DebugSystem : public System
 
         static void ShowDebugMenu();
 
-        // Unused functions (from the base class)
         void OnFixedUpdate() override;
+
+
+        // Unused functions (from the base class)
         void OnSceneLoad() override;
         void OnSceneInit() override;
         void OnSceneExit() override;

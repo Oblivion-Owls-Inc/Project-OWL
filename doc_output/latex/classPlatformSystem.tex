@@ -11,28 +11,124 @@ Collaboration diagram for Platform\+System\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classPlatformSystem_a5ccb47ebe2897dc857eb057be81f1fa8}\label{classPlatformSystem_a5ccb47ebe2897dc857eb057be81f1fa8}} 
-{\bfseries Platform\+System} (const char $\ast$w\+\_\+name=\char`\"{}Prototype\char`\"{}, int w\+\_\+width=800, int w\+\_\+height=600)
-\item 
-\mbox{\Hypertarget{classPlatformSystem_a31290a935b15d34058ca8f127e329e7e}\label{classPlatformSystem_a31290a935b15d34058ca8f127e329e7e}} 
-GLFWwindow $\ast$ {\bfseries Get\+Window\+Handle} () const
-\item 
-\mbox{\Hypertarget{classPlatformSystem_a584ec85c50d98f503a727de4b75a18f6}\label{classPlatformSystem_a584ec85c50d98f503a727de4b75a18f6}} 
-bool {\bfseries Window\+Closing} () const
-\item 
-\mbox{\Hypertarget{classPlatformSystem_a643ac0cd4f064af4a0a22143c621bc6e}\label{classPlatformSystem_a643ac0cd4f064af4a0a22143c621bc6e}} 
-glm\+::vec2 {\bfseries Get\+Window\+Dimensions} () const
-\item 
+GLFWwindow $\ast$ \mbox{\hyperlink{classPlatformSystem_a31290a935b15d34058ca8f127e329e7e}{Get\+Window\+Handle}} () const
+\begin{DoxyCompactList}\small\item\em Returns the window handle. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlatformSystem_a584ec85c50d98f503a727de4b75a18f6}{Window\+Closing}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the window is closing. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{classPlatformSystem_a643ac0cd4f064af4a0a22143c621bc6e}{Get\+Window\+Dimensions}} () const
+\begin{DoxyCompactList}\small\item\em Returns window dimensions as a vec2. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classPlatformSystem_a3917de7d7e255d5678c4a8eb8f07ece3}\label{classPlatformSystem_a3917de7d7e255d5678c4a8eb8f07ece3}} 
 {\bfseries Platform\+System} (\mbox{\hyperlink{classPlatformSystem}{Platform\+System}} \&other)=delete
 \item 
 \mbox{\Hypertarget{classPlatformSystem_a3a9c75762fdf80d9a759df2d02f021e8}\label{classPlatformSystem_a3a9c75762fdf80d9a759df2d02f021e8}} 
 void {\bfseries operator=} (const \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} \&)=delete
 \end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} $\ast$ \mbox{\hyperlink{classPlatformSystem_a4bdac25dc7c8cf62371f953412a996ce}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} instance, creating one if it doesn\textquotesingle{}t exist \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} $\ast$ \mbox{\hyperlink{classPlatformSystem_a806111fc29a70b1dc64bd89a9bf24151}{get\+Instance}} (const char $\ast$w\+\_\+name, int w\+\_\+width, int w\+\_\+height)
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} instance, creating one if it doesn\textquotesingle{}t exist \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPlatformSystem_a4bdac25dc7c8cf62371f953412a996ce}\label{classPlatformSystem_a4bdac25dc7c8cf62371f953412a996ce}} 
+\index{PlatformSystem@{PlatformSystem}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} $\ast$ Platform\+System\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+gets the \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} instance, creating one if it doesn\textquotesingle{}t exist 
+
+(Singleton) Gets the instance of this system.
+
+\begin{DoxyReturn}{Returns}
+a pointer to the \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} instance
+
+\mbox{\hyperlink{classPlatformSystem}{Platform\+System}} pointer\+: new or existing instance of this system. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPlatformSystem_a806111fc29a70b1dc64bd89a9bf24151}\label{classPlatformSystem_a806111fc29a70b1dc64bd89a9bf24151}} 
+\index{PlatformSystem@{PlatformSystem}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} $\ast$ Platform\+System\+::get\+Instance (\begin{DoxyParamCaption}\item[{const char $\ast$}]{w\+\_\+name = {\ttfamily \char`\"{}Prototype\char`\"{}},  }\item[{int}]{w\+\_\+width = {\ttfamily 800},  }\item[{int}]{w\+\_\+height = {\ttfamily 600} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+gets the \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} instance, creating one if it doesn\textquotesingle{}t exist 
+
+(Singleton) Constructor get\+Instance method, should only be called in main.\+cpp
+
+
+\begin{DoxyParams}{Parameters}
+{\em w\+\_\+name} & the name of the window to create \\
+\hline
+{\em w\+\_\+width} & the width of the window to create \\
+\hline
+{\em w\+\_\+height} & the height of the window to create \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} instance
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em w\+\_\+name} & Window name. \\
+\hline
+{\em w\+\_\+width} & Window width. \\
+\hline
+{\em w\+\_\+height} & Window height. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classPlatformSystem}{Platform\+System}} pointer\+: new or existing instance of this system. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPlatformSystem_a643ac0cd4f064af4a0a22143c621bc6e}\label{classPlatformSystem_a643ac0cd4f064af4a0a22143c621bc6e}} 
+\index{PlatformSystem@{PlatformSystem}!GetWindowDimensions@{GetWindowDimensions}}
+\index{GetWindowDimensions@{GetWindowDimensions}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{GetWindowDimensions()}{GetWindowDimensions()}}
+{\footnotesize\ttfamily glm\+::vec2 Platform\+System\+::\+Get\+Window\+Dimensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns window dimensions as a vec2. 
+
+\begin{DoxyReturn}{Returns}
+glm vec2\+: x = width, y = height. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPlatformSystem_a31290a935b15d34058ca8f127e329e7e}\label{classPlatformSystem_a31290a935b15d34058ca8f127e329e7e}} 
+\index{PlatformSystem@{PlatformSystem}!GetWindowHandle@{GetWindowHandle}}
+\index{GetWindowHandle@{GetWindowHandle}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{GetWindowHandle()}{GetWindowHandle()}}
+{\footnotesize\ttfamily GLFWwindow $\ast$ Platform\+System\+::\+Get\+Window\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the window handle. 
+
+\begin{DoxyReturn}{Returns}
+GLFWwindow pointer\+: Current window handle. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPlatformSystem_a584ec85c50d98f503a727de4b75a18f6}\label{classPlatformSystem_a584ec85c50d98f503a727de4b75a18f6}} 
+\index{PlatformSystem@{PlatformSystem}!WindowClosing@{WindowClosing}}
+\index{WindowClosing@{WindowClosing}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{WindowClosing()}{WindowClosing()}}
+{\footnotesize\ttfamily bool Platform\+System\+::\+Window\+Closing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the window is closing. 
+
+\begin{DoxyReturn}{Returns}
+bool\+: true if the window is closing. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Source/Platform\+System.\+h\item 
+Source/\mbox{\hyperlink{PlatformSystem_8h}{Platform\+System.\+h}}\item 
 Source/\mbox{\hyperlink{PlatformSystem_8cpp}{Platform\+System.\+cpp}}\end{DoxyCompactItemize}

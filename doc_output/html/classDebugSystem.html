@@ -135,9 +135,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a81175440df77dcbb9c2fa42c4ef4b591"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a81175440df77dcbb9c2fa42c4ef4b591">ShowFPS</a> ()</td></tr>
-<tr class="memdesc:a81175440df77dcbb9c2fa42c4ef4b591"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show the Frames Per Second (FPS) in a debug window.  <a href="classDebugSystem.html#a81175440df77dcbb9c2fa42c4ef4b591">More...</a><br /></td></tr>
-<tr class="separator:a81175440df77dcbb9c2fa42c4ef4b591"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa806a0749614d5c15bc73d2f8fb56035"><td class="memItemLeft" align="right" valign="top"><a id="aa806a0749614d5c15bc73d2f8fb56035"></a>
+static <a class="el" href="classDebugSystem.html">DebugSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getInstance</b> ()</td></tr>
+<tr class="separator:aa806a0749614d5c15bc73d2f8fb56035"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae879cebdfe289045c82cb0fc33c48bbf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#ae879cebdfe289045c82cb0fc33c48bbf">ToggleFPS</a> ()</td></tr>
+<tr class="memdesc:ae879cebdfe289045c82cb0fc33c48bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show the Frames Per Second (FPS) in a debug window.  <a href="classDebugSystem.html#ae879cebdfe289045c82cb0fc33c48bbf">More...</a><br /></td></tr>
+<tr class="separator:ae879cebdfe289045c82cb0fc33c48bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c63e065c5546a8e08b5722b7cd03ea5"><td class="memItemLeft" align="right" valign="top"><a id="a2c63e065c5546a8e08b5722b7cd03ea5"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>ToggleDev</b> ()</td></tr>
+<tr class="separator:a2c63e065c5546a8e08b5722b7cd03ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a90310ccd94c0303b5594e9b94bc2a3dd">ScreenPrint</a> (const char *format,...)</td></tr>
 <tr class="memdesc:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a formatted message to the screen.  <a href="classDebugSystem.html#a90310ccd94c0303b5594e9b94bc2a3dd">More...</a><br /></td></tr>
 <tr class="separator:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,6 +157,9 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a0c8288bc7aeca4c89d99cb2014880218"><td class="memItemLeft" align="right" valign="top"><a id="a0c8288bc7aeca4c89d99cb2014880218"></a>
 static ImGuiTextBuffer&#160;</td><td class="memItemRight" valign="bottom"><b>logBuffer</b></td></tr>
 <tr class="separator:a0c8288bc7aeca4c89d99cb2014880218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab20cb70f1bdbee543d150ddaa35fc82f"><td class="memItemLeft" align="right" valign="top"><a id="ab20cb70f1bdbee543d150ddaa35fc82f"></a>
+static <a class="el" href="classDebugSystem.html">DebugSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>instance</b> = nullptr</td></tr>
+<tr class="separator:ab20cb70f1bdbee543d150ddaa35fc82f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -376,8 +385,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a81175440df77dcbb9c2fa42c4ef4b591"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81175440df77dcbb9c2fa42c4ef4b591">&#9670;&nbsp;</a></span>ShowFPS()</h2>
+<a id="ae879cebdfe289045c82cb0fc33c48bbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae879cebdfe289045c82cb0fc33c48bbf">&#9670;&nbsp;</a></span>ToggleFPS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -386,7 +395,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DebugSystem::ShowFPS </td>
+          <td class="memname">void DebugSystem::ToggleFPS </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
