@@ -1,3 +1,7 @@
+/// @file     Shader.cpp
+/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// 
+/// @brief    Shader class implementation.
 #include <iostream>
 #include <fstream>
 #include "glew.h"
@@ -68,7 +72,7 @@ Shader::Shader(const char* vertex_filepath, const char* fragment_filepath) : sha
     if (fragID)     glDeleteShader(fragID);
 }
 
-
+/// @brief      Cleans up memory (deletes shader program)
 Shader::~Shader()
 {
     glUseProgram(0);
@@ -77,10 +81,14 @@ Shader::~Shader()
         glDeleteProgram(shaderID);
 }
 
-
+/// @brief      Sets this shader as active.
 void Shader::use() { glUseProgram(shaderID); }
+
+/// @brief      Gets this shader's ID  
 unsigned int Shader::GetID() { return shaderID; }
 
+/// @brief      Gets the location of a uniform declared in the shader. Obtains it from the shader
+///             on first request, then stores it for faster subsequent retrieval.
 unsigned int Shader::GetUniformID(const char* uniform_name) 
 {
     try
@@ -89,7 +97,7 @@ unsigned int Shader::GetUniformID(const char* uniform_name)
     }
     catch (std::out_of_range &exception)
     {
-        (void)exception;
+        (void)exception;  // don't need it
 
         unsigned int u = glGetUniformLocation(shaderID, uniform_name);
         // (returns -1 for undeclared uniforms)
