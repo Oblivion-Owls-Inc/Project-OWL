@@ -31,8 +31,8 @@ Renderer::Renderer() : _colorShader(nullptr), _textureShader(nullptr) {}
 
 void Renderer::OnInit()
 {
-    _colorShader = new Shader("shaders/vshader.vert", "shaders/color.frag");
-    _textureShader = new Shader("shaders/vshader.vert", "shaders/texture.frag");
+    _colorShader = new Shader("Data/shaders/vshader.vert", "Data/shaders/color.frag");
+    _textureShader = new Shader("Data/shaders/vshader.vert", "Data/shaders/texture.frag");
     
     // TEMPORARY   ============================================================= //
     mesh.load_square();                                                          //
