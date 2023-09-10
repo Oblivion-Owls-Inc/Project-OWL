@@ -101,15 +101,14 @@ void Engine::Init()
 
     // TODO: move the below code out of the engine into its own systems
 
-        // this will go in GraphicsSystem
-            // Set the clear color (background color)
-            glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    // this will go in GraphicsSystem
+        // Set the clear color (background color)
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-        // this will stay here until we figure out a better way of replacing it
-            // Set up a callback for the Escape key
-            GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
-            glfwSetKeyCallback( window, keyCallback );
-
+    // this will stay here until we figure out a better way of replacing it
+        // Set up a callback for the Escape key
+        GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
+        glfwSetKeyCallback( window, keyCallback );
     // TODO: move the above code out of the engine and into its own systems
 }
 
@@ -130,27 +129,27 @@ void Engine::Update()
     previousTime = currentTime;
 
 
-    // TODO: move the below code out of Engine and into its own Systems
+// TODO: move the below code out of Engine and into its own Systems
         
-        // this goes to GraphicsSystem
+// this goes to GraphicsSystem
             
-            GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
+    GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
 
-            // ensure viewport size matches window size
-            int display_w, display_h;
-            glfwGetFramebufferSize(window, &display_w, &display_h);
-            glViewport(0, 0, display_w, display_h);
+    // ensure viewport size matches window size
+    int display_w, display_h;
+    glfwGetFramebufferSize(window, &display_w, &display_h);
+    glViewport(0, 0, display_w, display_h);
 
-            // Swap front and back buffers
-            glfwSwapBuffers(window);
-            glClear(GL_COLOR_BUFFER_BIT);
+    // Swap front and back buffers
+    glfwSwapBuffers(window);
+    glClear(GL_COLOR_BUFFER_BIT);
 
-        // this goes to InputSystem
+// this goes to InputSystem
             
-            // Poll for and process events
-            glfwPollEvents();
+    // Poll for and process events
+    glfwPollEvents();
 
-    // TODO: move the above code out of Engine and into its own System
+// TODO: move the above code out of Engine and into its own System
 }
 
 /// @brief Calls all Systems' OnUpdate function

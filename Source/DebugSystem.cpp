@@ -28,7 +28,13 @@ DebugSystem* DebugSystem::getInstance()
  */
 DebugSystem::DebugSystem(GLFWwindow* window) : _window(window), io(nullptr)
 {
-
+    // Setup ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    io = &ImGui::GetIO();
+    ImGui_ImplGlfw_InitForOpenGL(_window, true);
+    ImGui_ImplOpenGL3_Init("#version 430");
+    ImGui::StyleColorsDark();
 }
 
 /**
@@ -36,11 +42,17 @@ DebugSystem::DebugSystem(GLFWwindow* window) : _window(window), io(nullptr)
  */
 void DebugSystem::OnInit()
 {
-
+    // Setup ImGui context
+    //IMGUI_CHECKVERSION();
+    //ImGui::CreateContext();
+    //io = &ImGui::GetIO();
+    //ImGui_ImplGlfw_InitForOpenGL(_window, true);
+    //ImGui_ImplOpenGL3_Init("#version 430");
+    //ImGui::StyleColorsDark();
 }
 
 /**
- * @brief Perform updates at a fixed time step.
+ * @brief PerDorm updates at a fixed time step.
  */
 void DebugSystem::OnFixedUpdate()
 {
@@ -152,18 +164,16 @@ void DebugSystem::ShowDebugMenu()
     windows.push_back(newWindow);
 }
 
+
+
+
+
+
 /**
  * @brief Called when a scene is loaded.
  */
 void DebugSystem::OnSceneLoad()
 {
-    // Setup ImGui context
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    io = &ImGui::GetIO();
-    ImGui_ImplGlfw_InitForOpenGL(_window, true);
-    ImGui_ImplOpenGL3_Init("#version 430");
-    ImGui::StyleColorsDark();
 }
 
 /**
@@ -171,7 +181,6 @@ void DebugSystem::OnSceneLoad()
  */
 void DebugSystem::OnSceneInit()
 {
-    OnInit();
 }
 
 /**

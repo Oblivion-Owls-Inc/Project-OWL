@@ -57,6 +57,7 @@ void PlatformSystem::OnInit()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, true);    // enable error callback
     glfwWindowHint(GLFW_RESIZABLE, false);              // fixed window size
+    glfwSwapInterval(1); // enable vsync
 
     //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); TODO: needed or nah?
 

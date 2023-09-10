@@ -101,6 +101,6 @@ public:
     void Render() override;
 
 private:
-    bool active; /**< Flag to track the visibility state of the DebugMenu. */
+    bool active; 
     float color[5]; /**< An array representing the color Picker. */
 };
