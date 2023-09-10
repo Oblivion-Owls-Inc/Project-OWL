@@ -63,6 +63,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classEngine-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Engine Class Reference</div>  </div>
@@ -71,19 +72,6 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a571d26df56cb3630706d297177de1eb3"><td class="memItemLeft" align="right" valign="top"><a id="a571d26df56cb3630706d297177de1eb3"></a>
-<a class="el" href="classSystem.html">System</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetPlatform</b> ()</td></tr>
-<tr class="separator:a571d26df56cb3630706d297177de1eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a179ec854ba21d26ab29c64c7fcabd88d"><td class="memItemLeft" align="right" valign="top"><a id="a179ec854ba21d26ab29c64c7fcabd88d"></a>
-<a class="el" href="classSystem.html">System</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDebug</b> ()</td></tr>
-<tr class="separator:a179ec854ba21d26ab29c64c7fcabd88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c98683b0a3aa28d8ab72a8bcd0d52f2"><td class="memItemLeft" align="right" valign="top"><a id="a8c98683b0a3aa28d8ab72a8bcd0d52f2"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a8c98683b0a3aa28d8ab72a8bcd0d52f2">Engine</a> ()</td></tr>
-<tr class="memdesc:a8c98683b0a3aa28d8ab72a8bcd0d52f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classEngine.html">Engine</a>. <br /></td></tr>
-<tr class="separator:a8c98683b0a3aa28d8ab72a8bcd0d52f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa425192c63c4e258588db980ddf18d0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#aa425192c63c4e258588db980ddf18d0d">Init</a> ()</td></tr>
-<tr class="memdesc:aa425192c63c4e258588db980ddf18d0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the engine. Should be called beofr.  <a href="classEngine.html#aa425192c63c4e258588db980ddf18d0d">More...</a><br /></td></tr>
-<tr class="separator:aa425192c63c4e258588db980ddf18d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5054eb56a36659e3a209cebd17a523cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a5054eb56a36659e3a209cebd17a523cc">AddSystem</a> (<a class="el" href="classSystem.html">System</a> *system)</td></tr>
 <tr class="memdesc:a5054eb56a36659e3a209cebd17a523cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to the <a class="el" href="classEngine.html">Engine</a>.  <a href="classEngine.html#a5054eb56a36659e3a209cebd17a523cc">More...</a><br /></td></tr>
 <tr class="separator:a5054eb56a36659e3a209cebd17a523cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -101,12 +89,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a245154753498d3119b44a04e31b470ef"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a245154753498d3119b44a04e31b470ef">getFixedFrameDuration</a> () const</td></tr>
 <tr class="memdesc:a245154753498d3119b44a04e31b470ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the duration of each fixed frame  <a href="classEngine.html#a245154753498d3119b44a04e31b470ef">More...</a><br /></td></tr>
 <tr class="separator:a245154753498d3119b44a04e31b470ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cb37bc0114aeb9e9592c9dfa9739153"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classSystem.html">System</a> * &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a4cb37bc0114aeb9e9592c9dfa9739153">getSystems</a> () const</td></tr>
+<tr class="memdesc:a4cb37bc0114aeb9e9592c9dfa9739153"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the array of all Systems in the engine.  <a href="classEngine.html#a4cb37bc0114aeb9e9592c9dfa9739153">More...</a><br /></td></tr>
+<tr class="separator:a4cb37bc0114aeb9e9592c9dfa9739153"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a821022ae1158a5214797a1a3b678e71b"><td class="memItemLeft" align="right" valign="top"><a id="a821022ae1158a5214797a1a3b678e71b"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Engine</b> (<a class="el" href="classEngine.html">Engine</a> &amp;other)=delete</td></tr>
 <tr class="separator:a821022ae1158a5214797a1a3b678e71b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d7e8ec8383567cfe24b2b94c5730729"><td class="memItemLeft" align="right" valign="top"><a id="a5d7e8ec8383567cfe24b2b94c5730729"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classEngine.html">Engine</a> &amp;)=delete</td></tr>
 <tr class="separator:a5d7e8ec8383567cfe24b2b94c5730729"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ae8f7319cf3683c23f6a215952d47ebdf"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classEngine.html">Engine</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#ae8f7319cf3683c23f6a215952d47ebdf">getInstance</a> ()</td></tr>
+<tr class="memdesc:ae8f7319cf3683c23f6a215952d47ebdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the singleton instance of the <a class="el" href="classEngine.html">Engine</a>  <a href="classEngine.html#ae8f7319cf3683c23f6a215952d47ebdf">More...</a><br /></td></tr>
+<tr class="separator:ae8f7319cf3683c23f6a215952d47ebdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a5054eb56a36659e3a209cebd17a523cc"></a>
@@ -194,23 +191,51 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 
 </div>
 </div>
-<a id="aa425192c63c4e258588db980ddf18d0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa425192c63c4e258588db980ddf18d0d">&#9670;&nbsp;</a></span>Init()</h2>
+<a id="ae8f7319cf3683c23f6a215952d47ebdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8f7319cf3683c23f6a215952d47ebdf">&#9670;&nbsp;</a></span>getInstance()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Engine::Init </td>
+          <td class="memname"><a class="el" href="classEngine.html">Engine</a> * Engine::getInstance </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Initializes the engine. Should be called beofr. </p>
-<p>Initializes the engine before running it. </p>
+<p>gets the singleton instance of the <a class="el" href="classEngine.html">Engine</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>the singleton instance of the <a class="el" href="classEngine.html">Engine</a> </dd></dl>
+
+</div>
+</div>
+<a id="a4cb37bc0114aeb9e9592c9dfa9739153"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cb37bc0114aeb9e9592c9dfa9739153">&#9670;&nbsp;</a></span>getSystems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classSystem.html">System</a> * &gt; const  &amp; Engine::getSystems </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the array of all Systems in the engine. </p>
+<dl class="section return"><dt>Returns</dt><dd>the array of all Systems in the engine </dd></dl>
 
 </div>
 </div>

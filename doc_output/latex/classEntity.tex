@@ -1,7 +1,151 @@
 \hypertarget{classEntity}{}\doxysection{Entity Class Reference}
 \label{classEntity}\index{Entity@{Entity}}
-
-
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-Source/Entity.\+h\end{DoxyCompactItemize}
+\mbox{\Hypertarget{classEntity_a980f368aa07ce358583982821533a54a}\label{classEntity_a980f368aa07ce358583982821533a54a}} 
+\mbox{\hyperlink{classEntity_a980f368aa07ce358583982821533a54a}{Entity}} ()
+\begin{DoxyCompactList}\small\item\em Default constrcutor for the entity class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity_a8cee18c049f0c60ed610ca825aecd53d}{Entity}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the entity class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntity_adf6d3f7cb1b2ba029b6b048a395cc8ae}\label{classEntity_adf6d3f7cb1b2ba029b6b048a395cc8ae}} 
+\mbox{\hyperlink{classEntity_adf6d3f7cb1b2ba029b6b048a395cc8ae}{$\sim$\+Entity}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the entity class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} $\ast$ \mbox{\hyperlink{classEntity_afd6b24f8e760d7c4fd47be13a8cb512c}{Clone}} () const
+\begin{DoxyCompactList}\small\item\em Clones an entity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntity_aa03af3d49bbddca7d395597bd47f346f}\label{classEntity_aa03af3d49bbddca7d395597bd47f346f}} 
+void \mbox{\hyperlink{classEntity_aa03af3d49bbddca7d395597bd47f346f}{Free}} ()
+\begin{DoxyCompactList}\small\item\em Deallocates all memory associated with an entity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntity_a051b990b4acb6099c7243fef061eb54b}\label{classEntity_a051b990b4acb6099c7243fef061eb54b}} 
+void {\bfseries Read} (std\+::ifstream \&stream)
+\item 
+void \mbox{\hyperlink{classEntity_ab268e95b3801ab5660a5274f2028debe}{Add}} (\mbox{\hyperlink{classComponent}{Component}} $\ast$component)
+\begin{DoxyCompactList}\small\item\em Adds a component to an entity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntity_a9bce7d742bf71daf5a2ac1dd093c84b6}\label{classEntity_a9bce7d742bf71daf5a2ac1dd093c84b6}} 
+\mbox{\hyperlink{classComponent}{Component}} $\ast$ {\bfseries Has\+Component} (std\+::type\+\_\+index type)
+\item 
+\mbox{\Hypertarget{classEntity_aa75151fc607686b42d27f8c3ba73143d}\label{classEntity_aa75151fc607686b42d27f8c3ba73143d}} 
+void \mbox{\hyperlink{classEntity_aa75151fc607686b42d27f8c3ba73143d}{Destroy}} ()
+\begin{DoxyCompactList}\small\item\em Flag an entity for destruction. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_ae6a2f4f2b4098583862dcfc55f80b57f}{Destroyed}} ()
+\begin{DoxyCompactList}\small\item\em Checks if an entity has been destroyed or not. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a3c907130862ad55702fa982808af62bf}{Set\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Set the entity\textquotesingle{}s name. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{classEntity_af86a55214d18327f5f7a99ed84e0275d}{Get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_aca6fd909b270480b497d2da24d8a5277}{Is\+Named}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Compares an entity\textquotesingle{}s name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEntity_a8cee18c049f0c60ed610ca825aecd53d}\label{classEntity_a8cee18c049f0c60ed610ca825aecd53d}} 
+\index{Entity@{Entity}!Entity@{Entity}}
+\index{Entity@{Entity}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Entity()}{Entity()}}
+{\footnotesize\ttfamily Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEntity}{Entity}} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Copy constructor for the entity class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & -\/ the entity to be copied. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEntity_ab268e95b3801ab5660a5274f2028debe}\label{classEntity_ab268e95b3801ab5660a5274f2028debe}} 
+\index{Entity@{Entity}!Add@{Add}}
+\index{Add@{Add}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Add()}{Add()}}
+{\footnotesize\ttfamily void Entity\+::\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classComponent}{Component}} $\ast$}]{component }\end{DoxyParamCaption})}
+
+
+
+Adds a component to an entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & -\/ the component to be added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEntity_afd6b24f8e760d7c4fd47be13a8cb512c}\label{classEntity_afd6b24f8e760d7c4fd47be13a8cb512c}} 
+\index{Entity@{Entity}!Clone@{Clone}}
+\index{Clone@{Clone}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}} $\ast$ Entity\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Clones an entity. 
+
+\begin{DoxyReturn}{Returns}
+A clone of an entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_ae6a2f4f2b4098583862dcfc55f80b57f}\label{classEntity_ae6a2f4f2b4098583862dcfc55f80b57f}} 
+\index{Entity@{Entity}!Destroyed@{Destroyed}}
+\index{Destroyed@{Destroyed}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Destroyed()}{Destroyed()}}
+{\footnotesize\ttfamily bool Entity\+::\+Destroyed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if an entity has been destroyed or not. 
+
+\begin{DoxyReturn}{Returns}
+If the entity has been destroyed (bool). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_af86a55214d18327f5f7a99ed84e0275d}\label{classEntity_af86a55214d18327f5f7a99ed84e0275d}} 
+\index{Entity@{Entity}!GetName@{GetName}}
+\index{GetName@{GetName}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily const std\+::string \& Entity\+::\+Get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the name of the entity. 
+
+\begin{DoxyReturn}{Returns}
+The name of the entity (string). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_aca6fd909b270480b497d2da24d8a5277}\label{classEntity_aca6fd909b270480b497d2da24d8a5277}} 
+\index{Entity@{Entity}!IsNamed@{IsNamed}}
+\index{IsNamed@{IsNamed}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{IsNamed()}{IsNamed()}}
+{\footnotesize\ttfamily bool Entity\+::\+Is\+Named (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Compares an entity\textquotesingle{}s name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the name to compare against. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+does the name match (bool). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_a3c907130862ad55702fa982808af62bf}\label{classEntity_a3c907130862ad55702fa982808af62bf}} 
+\index{Entity@{Entity}!SetName@{SetName}}
+\index{SetName@{SetName}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{SetName()}{SetName()}}
+{\footnotesize\ttfamily void Entity\+::\+Set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Set the entity\textquotesingle{}s name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ name of the entity. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Entity_8h}{Entity.\+h}}\item 
+Source/Entity.\+cpp\end{DoxyCompactItemize}

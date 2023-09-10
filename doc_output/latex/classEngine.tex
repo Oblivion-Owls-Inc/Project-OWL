@@ -3,17 +3,6 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classEngine_a571d26df56cb3630706d297177de1eb3}\label{classEngine_a571d26df56cb3630706d297177de1eb3}} 
-\mbox{\hyperlink{classSystem}{System}} $\ast$ {\bfseries Get\+Platform} ()
-\item 
-\mbox{\Hypertarget{classEngine_a179ec854ba21d26ab29c64c7fcabd88d}\label{classEngine_a179ec854ba21d26ab29c64c7fcabd88d}} 
-\mbox{\hyperlink{classSystem}{System}} $\ast$ {\bfseries Get\+Debug} ()
-\item 
-\mbox{\Hypertarget{classEngine_a8c98683b0a3aa28d8ab72a8bcd0d52f2}\label{classEngine_a8c98683b0a3aa28d8ab72a8bcd0d52f2}} 
-\mbox{\hyperlink{classEngine_a8c98683b0a3aa28d8ab72a8bcd0d52f2}{Engine}} ()
-\begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classEngine_aa425192c63c4e258588db980ddf18d0d}{Init}} ()
-\begin{DoxyCompactList}\small\item\em Initializes the engine. Should be called beofr. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEngine_a5054eb56a36659e3a209cebd17a523cc}{Add\+System}} (\mbox{\hyperlink{classSystem}{System}} $\ast$system)
 \begin{DoxyCompactList}\small\item\em Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEngine_acd5804e7140a1b5041c9046c8dc66894}{Add\+System}} (\mbox{\hyperlink{classSystem}{System}} $\ast$system, unsigned index)
@@ -26,12 +15,19 @@ void \mbox{\hyperlink{classEngine_ac7dc8c00262aee2a11183e4080fa5faf}{Close}} ()
 \begin{DoxyCompactList}\small\item\em Flags the engine to close once it finishes this loop. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classEngine_a245154753498d3119b44a04e31b470ef}{get\+Fixed\+Frame\+Duration}} () const
 \begin{DoxyCompactList}\small\item\em gets the duration of each fixed frame \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classSystem}{System}} $\ast$ $>$ const  \& \mbox{\hyperlink{classEngine_a4cb37bc0114aeb9e9592c9dfa9739153}{get\+Systems}} () const
+\begin{DoxyCompactList}\small\item\em Gets the array of all Systems in the engine. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classEngine_a821022ae1158a5214797a1a3b678e71b}\label{classEngine_a821022ae1158a5214797a1a3b678e71b}} 
 {\bfseries Engine} (\mbox{\hyperlink{classEngine}{Engine}} \&other)=delete
 \item 
 \mbox{\Hypertarget{classEngine_a5d7e8ec8383567cfe24b2b94c5730729}\label{classEngine_a5d7e8ec8383567cfe24b2b94c5730729}} 
 void {\bfseries operator=} (const \mbox{\hyperlink{classEngine}{Engine}} \&)=delete
 \end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classEngine}{Engine}} $\ast$ \mbox{\hyperlink{classEngine_ae8f7319cf3683c23f6a215952d47ebdf}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em gets the singleton instance of the \mbox{\hyperlink{classEngine}{Engine}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
@@ -84,17 +80,33 @@ gets the duration of each fixed frame
 \begin{DoxyReturn}{Returns}
 the amount of time in seconds that each fixed frame lasts 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classEngine_aa425192c63c4e258588db980ddf18d0d}\label{classEngine_aa425192c63c4e258588db980ddf18d0d}} 
-\index{Engine@{Engine}!Init@{Init}}
-\index{Init@{Init}!Engine@{Engine}}
-\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
-{\footnotesize\ttfamily void Engine\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classEngine_ae8f7319cf3683c23f6a215952d47ebdf}\label{classEngine_ae8f7319cf3683c23f6a215952d47ebdf}} 
+\index{Engine@{Engine}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEngine}{Engine}} $\ast$ Engine\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
-Initializes the engine. Should be called beofr. 
+gets the singleton instance of the \mbox{\hyperlink{classEngine}{Engine}} 
 
-Initializes the engine before running it. 
+\begin{DoxyReturn}{Returns}
+the singleton instance of the \mbox{\hyperlink{classEngine}{Engine}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_a4cb37bc0114aeb9e9592c9dfa9739153}\label{classEngine_a4cb37bc0114aeb9e9592c9dfa9739153}} 
+\index{Engine@{Engine}!getSystems@{getSystems}}
+\index{getSystems@{getSystems}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{getSystems()}{getSystems()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classSystem}{System}} $\ast$ $>$ const  \& Engine\+::get\+Systems (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the array of all Systems in the engine. 
+
+\begin{DoxyReturn}{Returns}
+the array of all Systems in the engine 
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

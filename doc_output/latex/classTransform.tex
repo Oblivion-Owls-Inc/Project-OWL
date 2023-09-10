@@ -1,0 +1,81 @@
+\hypertarget{classTransform}{}\doxysection{Transform Class Reference}
+\label{classTransform}\index{Transform@{Transform}}
+
+
+Inheritance diagram for Transform\+:
+% FIG 0
+
+
+Collaboration diagram for Transform\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTransform_a32e14e9f06877459a5731ad34656798b}\label{classTransform_a32e14e9f06877459a5731ad34656798b}} 
+{\bfseries Transform} (const \mbox{\hyperlink{classTransform}{Transform}} \&other)
+\item 
+\mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classTransform_a9df912719db3853eccb6a4934d6ad37f}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em Clones a transform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTransform_a2d684d249a443d8cb4defbbb8b435697}\label{classTransform_a2d684d249a443d8cb4defbbb8b435697}} 
+vec3 $\ast$ {\bfseries get\+Translation} ()
+\item 
+\mbox{\Hypertarget{classTransform_af2e538229b4f9378ec1ff5fa8c6f01da}\label{classTransform_af2e538229b4f9378ec1ff5fa8c6f01da}} 
+const vec3 $\ast$ {\bfseries get\+Translation} () const
+\item 
+\mbox{\Hypertarget{classTransform_a8640cc0ea6a42ba81d331aaf3cbcae16}\label{classTransform_a8640cc0ea6a42ba81d331aaf3cbcae16}} 
+void {\bfseries set\+Translation} (vec3 new\+Translation)
+\item 
+\mbox{\Hypertarget{classTransform_a58b6b97bbe83f323086b9a24511addc0}\label{classTransform_a58b6b97bbe83f323086b9a24511addc0}} 
+float {\bfseries get\+Rotation} () const
+\item 
+\mbox{\Hypertarget{classTransform_a350bf91f2782b4878725ebaf99608bd3}\label{classTransform_a350bf91f2782b4878725ebaf99608bd3}} 
+void {\bfseries set\+Rotation} (float new\+Rotation)
+\item 
+\mbox{\Hypertarget{classTransform_af287708d66193c84d91b41765831f141}\label{classTransform_af287708d66193c84d91b41765831f141}} 
+vec3 $\ast$ {\bfseries get\+Scale} ()
+\item 
+\mbox{\Hypertarget{classTransform_a9031999355cd2025ec3278f4c2507df3}\label{classTransform_a9031999355cd2025ec3278f4c2507df3}} 
+const vec3 $\ast$ {\bfseries get\+Scale} () const
+\item 
+\mbox{\Hypertarget{classTransform_aff980836a9a457bf73e76e2a9e273bf2}\label{classTransform_aff980836a9a457bf73e76e2a9e273bf2}} 
+void {\bfseries set\+Scale} (vec3 new\+Scale)
+\item 
+\mbox{\Hypertarget{classTransform_aede6d0c6799cc28aecdc02e805045db3}\label{classTransform_aede6d0c6799cc28aecdc02e805045db3}} 
+glm\+::mat4 $\ast$ {\bfseries get\+Matrix} ()
+\item 
+\mbox{\Hypertarget{classTransform_a662a39bea380e8b9fe03cddcacb77ee2}\label{classTransform_a662a39bea380e8b9fe03cddcacb77ee2}} 
+void {\bfseries set\+Matrix} (glm\+::mat4 new\+Matrix)
+\item 
+\mbox{\Hypertarget{classTransform_adb6152607f9bd20b275ed36c2b7d5302}\label{classTransform_adb6152607f9bd20b275ed36c2b7d5302}} 
+bool {\bfseries get\+Is\+Dirty} () const
+\item 
+\mbox{\Hypertarget{classTransform_a80cbad3c7c141c1c7d0f8de418943996}\label{classTransform_a80cbad3c7c141c1c7d0f8de418943996}} 
+void {\bfseries set\+Is\+Dirty} (bool new\+Is\+Dirty)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTransform_a9df912719db3853eccb6a4934d6ad37f}\label{classTransform_a9df912719db3853eccb6a4934d6ad37f}} 
+\index{Transform@{Transform}!Clone@{Clone}}
+\index{Clone@{Clone}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Transform\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Clones a transform. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent}{Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Transform_8h}{Transform.\+h}}\item 
+Source/\mbox{\hyperlink{Transform_8cpp}{Transform.\+cpp}}\end{DoxyCompactItemize}
