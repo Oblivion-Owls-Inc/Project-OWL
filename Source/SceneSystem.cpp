@@ -26,6 +26,20 @@ std::string const& SceneSystem::getSceneName() const
 }
 
 
+
+/// @brief The file extension for Scene files
+std::string const SceneSystem::sceneFileExtension = ".scene.json";
+
+
+/// @brief assembles the filepath of a scene with the given name
+/// @param sceneName the name of the scene to assemble the filepath of
+/// @return the filepath of the scene
+std::string SceneSystem::ScenePath( std::string const& sceneName )
+{
+    return baseScenePath + sceneName + sceneFileExtension;
+}
+
+
 /// @brief Loads the next Scene
 void SceneSystem::LoadScene()
 {
@@ -98,11 +112,21 @@ void SceneSystem::OnExit()
     currentSceneName = "";
 }
 
+/// @brief Loads the configData of the SceneSystem from JSON
+/// @param configData the JSON config data to load
+void SceneSystem::Load( rapidjson::Value const& configData )
+{
+    // TODO: JSON error handling
+    baseScenePath = configData[ "baseScenePath" ].GetString();
+    nextSceneName = configData[ "nextSceneName" ].GetString();
+}
+
 
 /// @brief Constructs the SceneSystem
-SceneSystem::SceneSystem( std::string const& initialSceneName ) :
-    nextSceneName(initialSceneName),
-    currentSceneName("")
+SceneSystem::SceneSystem() :
+    nextSceneName(""),
+    currentSceneName(""),
+    baseScenePath("Data/Scenes")
 {}
 
 /// @brief The singleton instance of SceneSystem
@@ -110,11 +134,11 @@ SceneSystem* SceneSystem::instance = nullptr;
 
 /// @brief gets the instance of SceneSystem
 /// @return the instance of the SceneSystem
-SceneSystem* SceneSystem::getInstance( std::string const& initialSceneName )
+SceneSystem* SceneSystem::getInstance()
 {
     if ( instance == nullptr )
     {
-        instance = new SceneSystem( initialSceneName );
+        instance = new SceneSystem();
     }
     return instance;
 }

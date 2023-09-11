@@ -1,12 +1,17 @@
 {
-    "FixedFrameDuration": 0.05,
-    "Systems": {
+    "fixedFrameDuration": 0.05,
+    "systems": {
         "PlatformSystem": {
-            "windowSize": [ 400, 400 ]
+            "windowWidth": 800,
+            "windowHeight": 600
         },
         "SceneSystem": {
-            "initialSceneName": "testScene"
+            "baseScenePath": "Data/Scenes/",
+            "nextSceneName": "TestScene"
         },
-        "DebugSystem": {}
+        "RenderSystem": {},
+        "DebugSystem": {
+            "showFpsWindow": true
+        }
     }
 }

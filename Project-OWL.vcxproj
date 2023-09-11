@@ -171,7 +171,6 @@
     <ClCompile Include="Source\RidgedBody.cpp" />
     <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\SceneSystem.cpp" />
-    <ClCompile Include="Source\System.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
