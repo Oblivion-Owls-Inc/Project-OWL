@@ -63,6 +63,12 @@
     <Filter Include="Engine\Systems\Render\Shader">
       <UniqueIdentifier>{204bbd04-68c1-4367-9897-c58703fca321}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\Render\Texture">
+      <UniqueIdentifier>{96fa4141-f9df-4367-886e-449a37f34105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Sprite">
+      <UniqueIdentifier>{0b2d7c16-b492-4fc6-8711-cea7ff213522}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -104,9 +110,6 @@
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Source\System.cpp">
-      <Filter>Engine\Systems</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Systems</Filter>
     </ClCompile>
@@ -136,6 +139,12 @@
     </ClCompile>
     <ClCompile Include="Source\Shader.cpp">
       <Filter>Engine\Systems\Render\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Texture.cpp">
+      <Filter>Engine\Systems\Render\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.cpp">
+      <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +231,12 @@
     </ClInclude>
     <ClInclude Include="Source\Shader.h">
       <Filter>Engine\Systems\Render\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Texture.h">
+      <Filter>Engine\Systems\Render\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sprite.h">
+      <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
