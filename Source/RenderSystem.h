@@ -5,7 +5,7 @@
 #pragma once
 #include "System.h"
 #include "Shader.h"
-#include "glm/glm.hpp"  // vec4 for color, mat4 for transform and scree2clip
+#include "glm/glm.hpp"
 #include <set>          // for sprite references
 
 class Sprite;   // fwd reference
@@ -29,23 +29,13 @@ public:
     void DrawLine(const glm::vec2& P1, const glm::vec2& P2, float thickness = 8,
                   const glm::vec4& color = { 0,0,0.2,1 });
 
-    /// @brief      Switch to color shader.
     void ColorMode();
-    /// @brief      Switch to texture shader.
     void TextureMode();
-    /// @brief      Set color for the color shader
     void SetColor(glm::vec4 const& color);
-    /// @brief      Set UV offset for the texture shader
     void SetUV(float u, float v);
-    /// @brief      Set transformation matrix for currently active shader
     void SetTransformMat(glm::mat4 const& mat) const;
 
-    /// @brief          Add sprite so it can be rendered during update. To be used by Sprite constructor.
-    /// @param sprite   Sprite pointer to add and keep track of
     void AddSprite(Sprite* sprite);
-    
-    /// @brief          Remove sprite from the list to stop rendering it on update. To be used by Sprite destructor.
-    /// @param sprite   Sprite pointer to remove
     void RemoveSprite(Sprite* sprite);
 
 
@@ -61,12 +51,11 @@ public:
 private:
     // ============================= DATA ============================== //
 
-    Shader* _colorShader = nullptr;  /// @brief      Simple color shader
-    Shader* _textureShader = nullptr;/// @brief      Simple texture shader
-    Shader* _activeShader = nullptr; /// @brief      Keep track of currently bound shader
-    std::set<Sprite*> _sprites;      /// @brief      Sprite references
-    glm::mat4 screen2clip = {};      /// @brief      Screen space to clip space projection matrix
-    static RenderSystem* instance;   /// @brief      The singleton instance of RenderSystem
+    Shader *_colorShader;           /// @brief      Simple color shader
+    Shader *_textureShader;         /// @brief      Simple texture shader
+    Shader* _activeShader = nullptr;/// @brief      Keep track of currently bound shader
+    std::set<Sprite*> _sprites;     /// @brief      Sprite references
+    static RenderSystem* instance;  /// @brief      The singleton instance of RenderSystem 
     
     // ================================================================= //
 

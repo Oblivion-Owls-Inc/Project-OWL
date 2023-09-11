@@ -12,19 +12,18 @@
 #include "Entity.h"
 #include "Mesh.h"
 #include "Transform.h"
-static Mesh mesh;   // this should be stored in a different system... probably
+static glm::mat4 screen2clip;
+static Mesh mesh;   // also, this should be stored in a different system... probably
 
 // TEST ============================================================================================================
-#include "imgui.h"
 static Entity* testEnt;
-static glm::vec3 pos = { 100,400,0 }; float jump = 0.0f;
 static float frametime = 0.0f;
 static void make_Ent()
 {
     Sprite* s = new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22, 17);
     Transform* t = new Transform;
-    t->setScale({ 800, -800 * s->getHeightMultiplier(), 0 }); // for screen space, y is flipped, so flip the image.
-    t->setTranslation(pos);
+    t->setScale({800, -800 * s->getHeightMultiplier(), 0}); // for screen space, y is flipped, so flip the image.
+    t->setTranslation({ 100,400,0 });
     testEnt = new Entity; testEnt->Add(s); testEnt->Add(t);
 }
 //      ============================================================================================================
@@ -51,9 +50,6 @@ void RenderSystem::OnInit()
     make_Ent();  // TEST -----------------------------------------------------------------------------------------
 }
 
-
-/// @brief      Draws all sprites.  (TEST) animates the archer dude
-/// @param dt   Time since last frame
 void RenderSystem::OnUpdate(float dt)
 {
     for (Sprite* sprite : _sprites)
@@ -61,34 +57,13 @@ void RenderSystem::OnUpdate(float dt)
             sprite->draw();
     
     // TEST ======================================================================================================
-    // advance frames
-    static float speed = 13.0f;
-    frametime += dt * speed;
+    frametime += dt*10;
     if (frametime < 44.0f && frametime >= 12.0f)
-        frametime = 44.0f;
+        frametime = 0.0f;
     if (frametime >= 65.0f)
         frametime = 0.0f;
 
     ((Sprite*)testEnt->HasComponent(typeid(Sprite)))->setFrame((int)frametime);
-
-    // ImGui test
-    ImGui::Begin("Animation System");
-    ImGui::DragFloat("anim speed", & speed, 0.2f, 0.0f, 30.0f);
-    ImGui::End();    
-
-    // move up/down
-    if (frametime > 46.0f && frametime < 62.0f)
-    {
-        jump += dt * speed * (2.5f / 13.0f);
-        pos.y = 400.0f - glm::sin(jump) * 150;
-    }
-    else
-    {
-        jump = 0.0f;
-        pos.y = 400.0f;
-    }
-
-    ((Transform*)testEnt->HasComponent(typeid(Transform)))->setTranslation(pos);
     //      ======================================================================================================
 }
 
@@ -142,21 +117,20 @@ void RenderSystem::DrawLine(const glm::vec2& P1, const glm::vec2& P2, float thic
     DrawRect(midpoint, { length, thickness }, angle, color);
 }
 
-/// @brief      Switch to color shader.
+
 void RenderSystem::ColorMode() { _colorShader->use(); _activeShader = _colorShader; }
-/// @brief      Switch to texture shader.
 void RenderSystem::TextureMode() { _textureShader->use(); _activeShader = _textureShader; }
-/// @brief      Set color for the color shader
+
 void RenderSystem::SetColor(glm::vec4 const& color)
 {
     glUniform4fv(_colorShader->GetUniformID("color"), 1, &color[0]);
 }
-/// @brief      Set UV offset for the texture shader
+
 void RenderSystem::SetUV(float u, float v)
 {
     glUniform2f(_textureShader->GetUniformID("UV_offset"), u, v);
 }
-/// @brief      Set transformation matrix for either color or texture shader
+
 void RenderSystem::SetTransformMat(glm::mat4 const& mat) const
 {
     // Assume mat is screen transform     TODO: Transform should prolly have a flag that says which space it's in.
@@ -165,12 +139,8 @@ void RenderSystem::SetTransformMat(glm::mat4 const& mat) const
     glUniformMatrix4fv(_activeShader->GetUniformID("mvp"), 1, 0, &mvp[0][0]);
 }
 
-/// @brief          Add sprite so it can be rendered during update. To be used by Sprite constructor.
-/// @param sprite   Sprite pointer to add and keep track of
-void RenderSystem::AddSprite(Sprite* sprite) { _sprites.emplace(sprite); }
 
-/// @brief          Remove sprite from the list to stop rendering it on update. To be used by Sprite destructor.
-/// @param sprite   Sprite pointer to remove
+void RenderSystem::AddSprite(Sprite* sprite) { _sprites.emplace(sprite); }
 void RenderSystem::RemoveSprite(Sprite* sprite) { _sprites.erase(sprite); }
 
 
