@@ -4,13 +4,7 @@
 #include "GUI.h"
 
 
-ImGuiTextBuffer DebugSystem::logBuffer;
-std::vector<GUI*> DebugSystem::windows;
 DebugSystem* DebugSystem::instance = nullptr;
-bool DebugSystem::FPS = false;
-bool DebugSystem::dev = false;
-
-
 
 DebugSystem* DebugSystem::getInstance()
 {
@@ -24,18 +18,16 @@ DebugSystem* DebugSystem::getInstance()
 
 }
 
-/**
- * @brief Initialize the DebugSystem.
- * @param window The GLFW window handle (default is the current context).
- */
+/// @brief Initialize the DebugSystem.
+/// @param window The GLFW window handle (default is the current context).
 DebugSystem::DebugSystem() :
     _window(nullptr),
-    io(nullptr)
+    io(nullptr),
+    showFpsWindow(false),
+    showDevWindow(false)
 {}
 
-/**
- * @brief Perform initialization.
- */
+/// @brief Perform initialization.
 void DebugSystem::OnInit()
 {
     _window = PlatformSystem::getInstance()->GetWindowHandle();
@@ -48,9 +40,7 @@ void DebugSystem::OnInit()
     ImGui::StyleColorsDark();
 }
 
-/**
- * @brief PerDorm updates at a fixed time step.
- */
+/// @brief PerDorm updates at a fixed time step.
 void DebugSystem::OnFixedUpdate()
 {
     if (glfwGetKey(_window, GLFW_KEY_F1) == GLFW_PRESS)
@@ -59,10 +49,8 @@ void DebugSystem::OnFixedUpdate()
     }
 }
 
-/**
- * @brief Perform updates.
- * @param dt The time elapsed since the last update.
- */
+/// @brief Perform updates.
+/// @param dt The time elapsed since the last update.
 void DebugSystem::OnUpdate(float dt)
 {
     ImGui_ImplOpenGL3_NewFrame();
@@ -70,7 +58,7 @@ void DebugSystem::OnUpdate(float dt)
     ImGui::NewFrame();
     // Stays at the Top
 
-    if (FPS)
+    if (showFpsWindow)
     {
         ImGui::Begin("FPS");
         ImGui::Text("FPS: %d", static_cast<int>(1.0f / dt));
@@ -88,9 +76,7 @@ void DebugSystem::OnUpdate(float dt)
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-/**
- * @brief Perform cleanup and shutdown.
- */
+/// @brief Perform cleanup and shutdown.
 void DebugSystem::OnExit()
 {
     ImGui_ImplOpenGL3_Shutdown();
@@ -98,37 +84,33 @@ void DebugSystem::OnExit()
     ImGui::DestroyContext();
 }
 
-/**
- * @brief Show the Frames Per Second (FPS) display.
- */
+/// @brief Show the Frames Per Second (FPS) display.
 void DebugSystem::ToggleFPS()
 {
-    if (FPS)
+    if (showFpsWindow)
     {
-        FPS = false;
+        showFpsWindow = false;
     }
     else
     {
-        FPS = true;
+        showFpsWindow = true;
     }
 }
 
 void DebugSystem::ToggleDev()
 {
-    if (dev)
+    if (showDevWindow)
     {
-		dev = false;
+		showDevWindow = false;
 	}
     else
     {
-		dev = true;
+		showDevWindow = true;
 	}
 }
 
-/**
- * @brief Print a formatted message to the screen.
- * @param format The format string, similar to printf.
- */
+/// @brief Print a formatted message to the screen.
+/// @param format The format string, similar to printf.
 void DebugSystem::ScreenPrint(const char* format, ...)
 {
     va_list args;
@@ -137,9 +119,7 @@ void DebugSystem::ScreenPrint(const char* format, ...)
     va_end(args);
 }
 
-/**
- * @brief Show or create the DebugMenu GUI window.
- */
+/// @brief Show or create the DebugMenu GUI window.
 void DebugSystem::ShowDebugMenu()
 {
     for (GUI* Menu : windows)
@@ -159,30 +139,4 @@ void DebugSystem::ShowDebugMenu()
 
     DebugMenu* newWindow = new DebugMenu();
     windows.push_back(newWindow);
-}
-
-
-
-
-
-
-/**
- * @brief Called when a scene is loaded.
- */
-void DebugSystem::OnSceneLoad()
-{
-}
-
-/**
- * @brief Called when a scene is initialized.
- */
-void DebugSystem::OnSceneInit()
-{
-}
-
-/**
- * @brief Called when a scene is exited.
- */
-void DebugSystem::OnSceneExit()
-{
 }
