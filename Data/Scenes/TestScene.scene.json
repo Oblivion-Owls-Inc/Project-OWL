@@ -1,0 +1,13 @@
+{
+    "assets": {
+        "textures": [],
+        "meshes": [],
+        "shaders": []
+    },
+    "entities": [
+        {
+            "name": "Test Entity",
+            "components": {}
+        }
+    ]
+}

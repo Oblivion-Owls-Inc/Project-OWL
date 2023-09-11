@@ -16,14 +16,7 @@
 /// @brief Example System meant to be copy-pasted when creating new Systems
 class SceneSystem : public System
 {
-private:
-
-    /// @brief The name of the current Scene
-    std::string currentSceneName;
-
-    /// @brief The name of the next Scene
-    std::string nextSceneName;
-
+public:
 
     /// @brief sets the next Scene to change to
     /// @param nextSceneName the name of the next scene
@@ -33,6 +26,24 @@ private:
     /// @return the name of the current scene
     std::string const& getSceneName() const;
 
+private:
+
+    /// @brief The name of the current Scene
+    std::string currentSceneName;
+
+    /// @brief The name of the next Scene
+    std::string nextSceneName;
+
+    /// @brief The base path of all Scene files
+    std::string baseScenePath;
+
+    /// @brief The file extension for Scene files
+    static std::string const sceneFileExtension;
+
+    /// @brief assembles the filepath of a scene with the given name
+    /// @param sceneName the name of the scene to assemble the filepath of
+    /// @return the filepath of the scene
+    std::string ScenePath( std::string const& sceneName );
 
     /// @brief Loads the next Scene
     void LoadScene();
@@ -52,17 +63,19 @@ private:
     /// @brief Gets called once before the Engine closes
     virtual void OnExit() override;
 
+    /// @brief Loads the configData of the SceneSystem from JSON
+    /// @param configData the JSON config data to load
+    virtual void Load( rapidjson::Value const& configData ) override;
 
     // unused virtual methods
     virtual void OnUpdate( float dt ) override {}
     virtual void OnSceneLoad() override {}
     virtual void OnSceneInit() override {}
     virtual void OnSceneExit() override {}
-    virtual void Load( rapidjson::Value const& ) override {}
 
 
     /// @brief Constructs the SceneSystem
-    SceneSystem( std::string const& initialSceneName = "" );
+    SceneSystem();
 
     /// @brief The singleton instance of SceneSystem
     static SceneSystem * instance;
@@ -71,7 +84,7 @@ public:
 
     /// @brief gets the instance of SceneSystem
     /// @return the instance of the SceneSystem
-    static SceneSystem * getInstance( std::string const& initialSceneName = "" );
+    static SceneSystem * getInstance();
 
     // Prevent copying
     SceneSystem( SceneSystem& other ) = delete;

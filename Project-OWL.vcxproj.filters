@@ -95,9 +95,6 @@
     <ClCompile Include="Source\Engine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Source\System.cpp">
-      <Filter>Engine\Systems</Filter>
-    </ClCompile>
     <ClCompile Include="Source\PlatformSystem.cpp">
       <Filter>Engine\Systems\Platform</Filter>
     </ClCompile>

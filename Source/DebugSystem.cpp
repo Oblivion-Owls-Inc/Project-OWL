@@ -84,6 +84,14 @@ void DebugSystem::OnExit()
     ImGui::DestroyContext();
 }
 
+/// @brief Loads the DebugSystem config data from JSON
+/// @param configData the JSON to load the config data from
+void DebugSystem::Load( rapidjson::Value const& configData )
+{
+    // TODO: JSON error handling
+    showFpsWindow = configData[ "showFpsWindow" ].GetBool();
+}
+
 /// @brief Show the Frames Per Second (FPS) display.
 void DebugSystem::ToggleFPS()
 {

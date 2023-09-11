@@ -38,6 +38,10 @@ class DebugSystem : public System
         /// @brief Exit and clean up the DebugSystem
         void OnExit() override;
 
+        /// @brief Loads the DebugSystem config data from JSON
+        /// @param configData the JSON to load the config data from
+        virtual void Load( rapidjson::Value const& configData ) override;
+
         /// @brief Show the Frames Per Second (FPS) in a debug window
         /// @details This function displays the Frames Per Second (FPS) in a debug window when called.
         void ToggleFPS();
@@ -58,7 +62,6 @@ class DebugSystem : public System
         virtual void OnSceneLoad() override {}
         virtual void OnSceneInit() override {}
         virtual void OnSceneExit() override {}
-        virtual void Load( rapidjson::Value const& ) override {}
 
     private:
         std::vector<GUI*> windows; /// @brief A collection of GUI windows
