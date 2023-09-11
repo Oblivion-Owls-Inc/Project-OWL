@@ -6,14 +6,14 @@ layout(location = 1) in vec2 UV;
 out vec2 v_UV;
 
 // init to identity matrix by default
-uniform mat4 transform = mat4(1,0,0,0, 
-                              0,1,0,0, 
-                              0,0,1,0, 
-                              0,0,0,1); // (it's transposed btw)
+uniform mat4 mvp = mat4(1,0,0,0, 
+                        0,1,0,0, 
+                        0,0,1,0, 
+                        0,0,0,1); // (it's transposed btw)
 
 void main()
 {
-    gl_Position = transform * position;
+    gl_Position = mvp * position;
 
     v_UV = UV;
 }

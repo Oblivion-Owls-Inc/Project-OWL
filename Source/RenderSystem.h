@@ -6,6 +6,9 @@
 #include "System.h"
 #include "Shader.h"
 #include "glm/glm.hpp"
+#include <set>          // for sprite references
+
+class Sprite;   // fwd reference
 
 class RenderSystem : public System
 {
@@ -26,6 +29,15 @@ public:
     void DrawLine(const glm::vec2& P1, const glm::vec2& P2, float thickness = 8,
                   const glm::vec4& color = { 0,0,0.2,1 });
 
+    void ColorMode();
+    void TextureMode();
+    void SetColor(glm::vec4 const& color);
+    void SetUV(float u, float v);
+    void SetTransformMat(glm::mat4 const& mat) const;
+
+    void AddSprite(Sprite* sprite);
+    void RemoveSprite(Sprite* sprite);
+
 
     /// @brief      Gets the instance of RenderSystem
     /// @return     RenderSystem pointer: new or existing instance of this system
@@ -41,6 +53,8 @@ private:
 
     Shader *_colorShader;           /// @brief      Simple color shader
     Shader *_textureShader;         /// @brief      Simple texture shader
+    Shader* _activeShader = nullptr;/// @brief      Keep track of currently bound shader
+    std::set<Sprite*> _sprites;     /// @brief      Sprite references
     static RenderSystem* instance;  /// @brief      The singleton instance of RenderSystem 
     
     // ================================================================= //
@@ -52,9 +66,9 @@ private:
     // Inherited virtuals
     virtual void OnInit() override;
     virtual void OnExit() override;
+    virtual void OnUpdate(float dt) override;
 
     // Unused virtuals
-    virtual void OnUpdate(float dt) override {}
     virtual void OnFixedUpdate() override {}
     virtual void OnSceneLoad() override {}
     virtual void OnSceneInit() override {}
