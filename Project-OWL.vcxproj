@@ -151,6 +151,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\BehaviorSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -174,6 +178,10 @@
     <ClCompile Include="Source\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\BehaviorSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\RenderSystem.h" />
     <ClInclude Include="Source\Shader.h" />
     <ClInclude Include="Source\Mesh.h" />
