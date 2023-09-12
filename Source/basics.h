@@ -5,3 +5,4 @@
 
 #include <iostream>
 #include <cassert>
+#pragma warning(disable : 26451)
