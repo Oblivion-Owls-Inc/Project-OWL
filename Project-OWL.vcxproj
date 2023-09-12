@@ -173,6 +173,7 @@
     <ClCompile Include="Source\SceneSystem.cpp" />
     <ClCompile Include="Source\System.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
+    <ClCompile Include="Source\Stream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\RenderSystem.h" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Source\SceneSystem.h" />
     <ClInclude Include="Source\System.h" />
     <ClInclude Include="Source\Transform.h" />
+    <ClInclude Include="Source\Stream.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

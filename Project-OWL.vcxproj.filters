@@ -63,6 +63,9 @@
     <Filter Include="Engine\Systems\Render\Shader">
       <UniqueIdentifier>{204bbd04-68c1-4367-9897-c58703fca321}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Framework">
+      <UniqueIdentifier>{1df13f59-c171-419c-b6f6-6903cce4b837}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -139,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="Source\Shader.cpp">
       <Filter>Engine\Systems\Render\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stream.cpp">
+      <Filter>Engine\Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +231,9 @@
     </ClInclude>
     <ClInclude Include="Source\Shader.h">
       <Filter>Engine\Systems\Render\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stream.h">
+      <Filter>Engine\Framework</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
