@@ -92,6 +92,15 @@ void PlatformSystem::OnExit()
     std::cout << "\nShutdown complete." << std::endl;
 }
 
+/// @brief Loads the configuration data of the PlatformSystem
+/// @param configData the configuration data for this System
+void PlatformSystem::Load( rapidjson::Value const& configData )
+{
+    // TODO: JSON error handling
+    windowWidth = configData[ "windowWidth" ].GetInt();
+    windowHeight = configData[ "windowHeight" ].GetInt();
+}
+
 /// @brief    Returns the window handle.
 /// @return   GLFWwindow pointer: Current window handle.
 GLFWwindow* PlatformSystem::GetWindowHandle() const

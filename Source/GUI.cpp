@@ -123,7 +123,7 @@ void DebugMenu::Render()
             {
                 if (ImGui::MenuItem("FPS", "Shift+O")) 
                 {
-					DebugSystem::ToggleFPS(); 
+					DebugSystem::getInstance()->ToggleFPS(); 
                 }
                 if (ImGui::MenuItem("Dev Console", "Ctrl+Shift+S")) {}
                 if (ImGui::MenuItem("TBD", "Ctrl+Shift+W")) {}
@@ -151,7 +151,7 @@ void DebugMenu::Render()
         // Display contents in a scrolling region
         ImGui::TextColored(ImVec4(1, 1, 0, 1), "Console View");
         ImGui::BeginChild("Scrolling");
-        ImGui::TextUnformatted(DebugSystem::logBuffer.begin(), DebugSystem::logBuffer.end()); // Display the text buffer
+        ImGui::TextUnformatted(DebugSystem::getInstance()->logBuffer.begin(), DebugSystem::getInstance()->logBuffer.end()); // Display the text buffer
         ImGui::EndChild();
 
         ImGui::End();

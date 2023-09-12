@@ -8,15 +8,19 @@
 
 #pragma once
 
-#include "basics.h"
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
-
 #include "Engine.h"
 
+#include "basics.h"
+#include "../rapidjson/document.h"
+#include <fstream>
+// #include "imgui.h"
+// #include "imgui_impl_glfw.h"
+// #include "imgui_impl_opengl3.h"
+
 #include "PlatformSystem.h"
+#include "SceneSystem.h"
 #include "DebugSystem.h"
+#include "RenderSystem.h"
 
 // TODO: move this out of the engine into its own System
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -27,31 +31,11 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
     }
 }
 
-/// @brief Adds a System to the Engine, at the back of the systems array
-/// @param system The system to add the Engine
-void Engine::AddSystem( System * system )
-{
-    systems.push_back( system );
-    system->setIndex( static_cast<int>(systems.size() - 1) );
-}
-
-/// @brief Adds a System to the Engine at the specified location in the systems array.
-/// @param system The system to add the Engine
-/// @param index The index in the Engine to insert the System into.
-void Engine::AddSystem( System * system, unsigned index )
-{
-    systems.insert( systems.begin() + index, system );
-
-    // keep all indices valid.
-    for ( ; index < systems.size(); ++index )
-    {
-        systems[index]->setIndex(index);
-    }
-}
-
 /// @brief Starts running the engine. Code will not advance past this point until the engine stops running.
 void Engine::Run()
 {
+
+    Load();
 
     Init();
 
@@ -78,6 +62,13 @@ float Engine::getFixedFrameDuration() const
     return fixedFrameDuration;
 }
 
+/// @brief sets the duration of each fixed frame
+/// @param _fixedFrameDuration the amount of time in seconds that each fixed frame lasts
+void Engine::setFixedFrameDuration( float _fixedFrameDuration )
+{
+    fixedFrameDuration = _fixedFrameDuration;
+}
+
 /// @brief Gets the array of all Systems in the engine.
 /// @return the array of all Systems in the engine
 std::vector< System* > const& Engine::getSystems() const
@@ -85,6 +76,52 @@ std::vector< System* > const& Engine::getSystems() const
     return systems;
 }
 
+
+/// @brief Adds a System to the Engine.
+/// @tparam SystemType The type of system to add the Engine
+template < class SystemType >
+System* Engine::AddSystem()
+{
+    System* system = SystemType::getInstance();
+    systems.push_back( system );
+    return system;
+}
+
+/// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
+std::map< std::string, System* (Engine::*)()> Engine::addSystemMethods = {
+    { "PlatformSystem", &AddSystem< PlatformSystem >  },
+    { "SceneSystem",    &AddSystem< SceneSystem >     },
+    { "RenderSystem",   &AddSystem< RenderSystem >    },
+    { "DebugSystem",    &AddSystem< DebugSystem >     }
+};
+
+/// @brief Loads the engine config from "Data/EngineConfig.json"
+void Engine::Load()
+{
+    // v v v TODO: put this in a helper function in its own class v v v
+        std::ifstream configFile( "Data/EngineConfig.json" );
+
+        std::stringstream configStream;
+        configStream << configFile.rdbuf();
+
+        configFile.close();
+
+        rapidjson::Document configData;
+        configData.Parse( configStream.str().c_str() );
+    // ^ ^ ^ TODO: put this in a helper function in its own class ^ ^ ^
+
+    // v v v TODO: JSON error handing (maybe w/ helper functions in their own class) v v v
+        fixedFrameDuration = configData[ "fixedFrameDuration" ].GetFloat();
+
+        for ( auto& systemConfig : configData[ "systems" ].GetObject() )
+        {
+            auto addSystemMethod = addSystemMethods.at( systemConfig.name.GetString() ); // get the appropriate System creation method
+            System* system = (this->*addSystemMethod)(); // create and add the System to the Engine
+            system->Load( systemConfig.value ); // have the System load itself
+        }
+    /// ^ ^ ^ TODO: JSON error handling (maybe w/ helper functions in their own class) ^ ^ ^
+
+}
 
 /// @brief Initializes the engine and all Systems in the Engine
 void Engine::Init()

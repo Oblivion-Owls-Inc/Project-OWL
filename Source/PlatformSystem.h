@@ -43,8 +43,12 @@ private:
     /// @brief Initializes the PlatformSystem
     virtual void OnInit() override;
 
-    /// @brief    Shuts down window / GLFW.
+    /// @brief Shuts down window / GLFW.
 	virtual void OnExit() override;
+
+    /// @brief Loads the configuration data of the PlatformSystem
+    /// @param configData the configuration data for this System
+    virtual void Load( rapidjson::Value const& configData ) override;
 
 	// Unused virtuals
     virtual void OnUpdate(float dt) override {}
@@ -52,7 +56,6 @@ private:
 	virtual void OnSceneLoad() override {}
 	virtual void OnSceneInit() override {}
 	virtual void OnSceneExit() override {}
-    virtual void Load( rapidjson::Value const& ) {}
 
     /// @brief The singleton instance of the PlatformSystem
     static PlatformSystem * instance;

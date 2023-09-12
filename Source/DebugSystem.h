@@ -1,7 +1,5 @@
-/**
- * @file DebugSystem.h
- * @brief Debug System Class For Debugging
- */
+/// @file DebugSystem.h
+/// @brief Debug System Class For Debugging
 
 #pragma once
 #include "basics.h"
@@ -10,78 +8,67 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
- /**
-  * @class DebugSystem
-  * @brief Debug System Class For Debugging
-  * @details This class provides functionality for debugging within your application.
-  */
+
+/// @class DebugSystem
+/// @brief Debug System Class For Debugging
+/// @details This class provides functionality for debugging within your application.
 class DebugSystem : public System
 {
     public:
-        static ImGuiTextBuffer logBuffer;
         static DebugSystem* instance;
         static DebugSystem* getInstance();
 
-        /**
-         * @brief Constructor for DebugSystem
-         * @param window The GLFW window handle (default is the current context)
-         */
+        ImGuiTextBuffer logBuffer;
+
+        /// @brief Constructor for DebugSystem
+        /// @param window The GLFW window handle (default is the current context)
         DebugSystem();
 
-        /**
-         * @brief Set the GLFW window handle
-         * @param window The GLFW window handle to set
-         */
+        /// @brief Set the GLFW window handle
+        /// @param window The GLFW window handle to set
         void SetWindowHandle(GLFWwindow* window) { _window = window; }
 
-        /**
-         * @brief Initialize the DebugSystem
-         */
+        /// @brief Initialize the DebugSystem
         void OnInit() override;
 
-        /**
-         * @brief Update the DebugSystem
-         * @param dt The time elapsed since the last update
-         */
+        /// @brief Update the DebugSystem
+        /// @param dt The time elapsed since the last update
         void OnUpdate(float dt) override;
 
-        /**
-         * @brief Exit and clean up the DebugSystem
-         */
+        /// @brief Exit and clean up the DebugSystem
         void OnExit() override;
 
-        /**
-         * @brief Show the Frames Per Second (FPS) in a debug window
-         * @details This function displays the Frames Per Second (FPS) in a debug window when called.
-         */
-        static void ToggleFPS();
+        /// @brief Loads the DebugSystem config data from JSON
+        /// @param configData the JSON to load the config data from
+        virtual void Load( rapidjson::Value const& configData ) override;
 
-        static void ToggleDev();
+        /// @brief Show the Frames Per Second (FPS) in a debug window
+        /// @details This function displays the Frames Per Second (FPS) in a debug window when called.
+        void ToggleFPS();
 
-        /**
-         * @brief Print a formatted message to the screen
-         * @param format The format string, similar to printf
-         * @details This function allows you to print a formatted message to the screen using ImGui.
-         */
-        static void ScreenPrint(const char* format, ...);
+        void ToggleDev();
 
-        static void ShowDebugMenu();
+        /// @brief Print a formatted message to the screen
+        /// @param format The format string, similar to printf
+        /// @details This function allows you to print a formatted message to the screen using ImGui.
+        void ScreenPrint(const char* format, ...);
+
+        void ShowDebugMenu();
 
         void OnFixedUpdate() override;
 
 
         // Unused functions (from the base class)
-        virtual void OnSceneLoad() override;
-        virtual void OnSceneInit() override;
-        virtual void OnSceneExit() override;
-        virtual void Load( rapidjson::Value const& ) override {}
+        virtual void OnSceneLoad() override {}
+        virtual void OnSceneInit() override {}
+        virtual void OnSceneExit() override {}
 
     private:
-        static std::vector<GUI*> windows; /**< A collection of GUI windows */
-        GLFWwindow* _window; /**< The GLFW window handle */
-        static bool FPS; /**< Flag to control FPS display */
-        static bool dev; /**< Flag to control FPS display */
-        ImGuiIO* io; /**< Pointer to the ImGui Input/Output structure */
+        std::vector<GUI*> windows; /// @brief A collection of GUI windows
+        GLFWwindow* _window; /// @brief The GLFW window handle
+        bool showFpsWindow; /// @brief Flag to control FPS display
+        bool showDevWindow; /// @brief Flag to control dev display
+        ImGuiIO* io; /// @brief Pointer to the ImGui Input/Output structure
 };
 
 class DebugConsole
