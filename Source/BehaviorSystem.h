@@ -47,9 +47,6 @@ public:
     static BehaviorSystem* getInstance();
 
 private:
-    std::vector<T> behaviors;
-
-
     // MAY INCLUDE A DUPLICATE OF THE ABOVE FUNCTION WITH CONSTRUCTOR ARGUMENTS HERE
 
 
