@@ -16,7 +16,7 @@
 #define RAPIDJSON_IEEE754_
 
 #include "../rapidjson.h"
-
+#pragma warning(disable : 26495)
 RAPIDJSON_NAMESPACE_BEGIN
 namespace internal {
 

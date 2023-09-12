@@ -27,7 +27,7 @@
 #ifdef __cpp_lib_three_way_comparison
 #include <compare>
 #endif
-
+#pragma warning(disable : 26451)
 RAPIDJSON_DIAG_PUSH
 #ifdef __clang__
 RAPIDJSON_DIAG_OFF(padded)

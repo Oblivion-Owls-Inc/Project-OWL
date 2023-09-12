@@ -25,6 +25,7 @@
 #include "internal/stack.h"
 #include "internal/strtod.h"
 #include <limits>
+#pragma warning(disable : 26451)
 
 #if defined(RAPIDJSON_SIMD) && defined(_MSC_VER)
 #include <intrin.h>
