@@ -3,6 +3,8 @@
 #include "DebugSystem.h"
 #include "SceneSystem.h"
 #include "RenderSystem.h"
+#pragma warning(disable : 4099) //Disabling warning for missing PDB files
+
 
 int main() {
 
