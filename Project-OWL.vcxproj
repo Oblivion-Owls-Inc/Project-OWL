@@ -179,6 +179,7 @@
     <ClCompile Include="Source\Sprite.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
+    <ClCompile Include="Source\Stream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\BehaviorComponent.h" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Source\System.h" />
     <ClInclude Include="Source\Texture.h" />
     <ClInclude Include="Source\Transform.h" />
+    <ClInclude Include="Source\Stream.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
