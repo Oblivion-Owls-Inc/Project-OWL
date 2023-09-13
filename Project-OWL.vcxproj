@@ -194,9 +194,11 @@
     <ClCompile Include="Source\RidgedBody.cpp" />
     <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\SceneSystem.cpp" />
+    <ClCompile Include="Source\Sound.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Sound.h" />
     <ClInclude Include="Source\AudioSystem.h" />
     <ClInclude Include="Source\RenderSystem.h" />
     <ClInclude Include="Source\Shader.h" />
