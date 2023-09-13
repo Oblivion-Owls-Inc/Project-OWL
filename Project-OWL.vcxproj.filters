@@ -63,6 +63,9 @@
     <Filter Include="Engine\Systems\Render\Shader">
       <UniqueIdentifier>{204bbd04-68c1-4367-9897-c58703fca321}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\AudioSystem">
+      <UniqueIdentifier>{83b43373-cf0c-4350-87ba-c9ca68c4c58a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -104,9 +107,6 @@
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Source\System.cpp">
-      <Filter>Engine\Systems</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Systems</Filter>
     </ClCompile>
@@ -136,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="Source\Shader.cpp">
       <Filter>Engine\Systems\Render\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AudioSystem.cpp">
+      <Filter>Engine\Systems\AudioSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +225,9 @@
     </ClInclude>
     <ClInclude Include="Source\Shader.h">
       <Filter>Engine\Systems\Render\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AudioSystem.h">
+      <Filter>Engine\Systems\AudioSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -32,5 +32,3 @@ ExampleSystem * ExampleSystem::getInstance()
     }
     return instance;
 }
-
-// MAY INCLUDE A DUPLICATE OF THE ABOVE FUNCTION WITH CONSTRUCTOR ARGUMENTS HERE
