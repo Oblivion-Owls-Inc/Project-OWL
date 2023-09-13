@@ -63,6 +63,15 @@
     <Filter Include="Engine\Systems\Render\Shader">
       <UniqueIdentifier>{204bbd04-68c1-4367-9897-c58703fca321}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\Render\Texture">
+      <UniqueIdentifier>{96fa4141-f9df-4367-886e-449a37f34105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Sprite">
+      <UniqueIdentifier>{0b2d7c16-b492-4fc6-8711-cea7ff213522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework">
+      <UniqueIdentifier>{1df13f59-c171-419c-b6f6-6903cce4b837}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Engine\Systems\Input">
       <UniqueIdentifier>{29e8ccc0-6f52-4fd2-bbe9-f9551998e2d8}</UniqueIdentifier>
     </Filter>
@@ -139,6 +148,15 @@
     </ClCompile>
     <ClCompile Include="Source\Shader.cpp">
       <Filter>Engine\Systems\Render\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Texture.cpp">
+      <Filter>Engine\Systems\Render\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.cpp">
+      <Filter>Engine\Entity\Component\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stream.cpp">
+      <Filter>Engine\Framework</Filter>
     </ClCompile>
     <ClCompile Include="Source\InputSystem.cpp">
       <Filter>Engine\Systems\Input</Filter>
@@ -234,6 +252,15 @@
     </ClInclude>
     <ClInclude Include="Source\BehaviorComponent.h">
       <Filter>Engine\Entity\Component\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Texture.h">
+      <Filter>Engine\Systems\Render\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sprite.h">
+      <Filter>Engine\Entity\Component\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stream.h">
+      <Filter>Engine\Framework</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

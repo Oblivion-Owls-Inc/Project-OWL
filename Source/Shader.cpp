@@ -2,8 +2,8 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    Shader class implementation.
-#include <iostream>
-#include <fstream>
+#include <iostream>     // error output (temporary?)
+#include <fstream>      // reading shader source code from files
 #include "glew.h"
 #include "Shader.h"
 
