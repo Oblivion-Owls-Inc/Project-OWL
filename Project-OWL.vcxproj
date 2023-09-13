@@ -162,6 +162,7 @@
     <ClCompile Include="imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
@@ -180,10 +181,8 @@
     <ClCompile Include="Source\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\BehaviorSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="Source\BehaviorComponent.h" />
+    <ClInclude Include="Source\InputSystem.h" />
     <ClInclude Include="Source\RenderSystem.h" />
     <ClInclude Include="Source\Shader.h" />
     <ClInclude Include="Source\Mesh.h" />
