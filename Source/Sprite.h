@@ -1,3 +1,7 @@
+/// @file     Sprite.cpp
+/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// 
+/// @brief    Sprite component - stores mesh and texture that together draw an image on screen. Supports spritesheets.
 #pragma once
 #include "Component.h"
 #include "glm/glm.hpp"  // vec4
@@ -19,22 +23,45 @@ class Sprite : public Component
     glm::vec4 _color;
 
 public:
-    Sprite(const char* image_file, int columns = 1, int rows = 1, int layer = 2);    // with texture
-    Sprite(bool init_square = false, glm::vec4 color = { 0,0,0,1 }, int layer = 2); // just mesh
-    ~Sprite();
-    // TODO: copy ctor
+    /// @brief              Textured sprite constructor. Accepts image file, and (optional) rows and 
+    ///                     columns if it's a spritesheet. Also adds this sprite's pointer to RenderSystem.
+    /// @param image_file   Path to the image file to load (single image or spritesheet)
+    /// @param columns      (optional) Columns of the spritesheet
+    /// @param rows         (optional) Rows of the spritesheet
+    /// @param layer        (optional) Rendering layer: 0-4. 0 is front, 4 is back.
+    Sprite(const char* image_file, int columns = 1, int rows = 1, int layer = 2);
 
+    /// @brief              Plain square sprite constructor. Accepts boolean, which needs to be true for
+    ///                     the square to be generated, or false to create uninitialized sprite. Also adds 
+    ///                     this sprite's pointer to RenderSystem.
+    /// @param init_square  true/false - initialize the square or nah?
+    /// @param color        (optional) Color to initialize the square to
+    /// @param layer        (optional) Rendering layer: 0-4. 0 is front, 4 is back.
+    Sprite(bool init_square = false, glm::vec4 color = { 0,0,0,1 }, int layer = 2); // just mesh
+
+    /// @brief              Copy constructor: shallow copy. Flyweight mesh and texture (eventually). Do not use rn.
+    Sprite(Sprite const& other);
+
+    /// @brief              Destructor: frees texture and mesh... for now. Resource library should take care of it.
+    ~Sprite();
+
+    /// @brief          Draws the mesh with texture (if one is present), or color.
     void draw();
 
+    /// @brief          Sets current frame of the spritesheet.
+    /// @param frame    New frame index
     void setFrame(int frame);
 
+    /// @brief          Sets the rendering layer : 0 - 4. 0 is front, 4 is back.
+    /// @param layer    Rendering layer to move this sprite to.
     void setLayer(int layer);
-    int getLayer() const;
 
     /// @brief       Number to multiply width by, to get proportional height based on original image
     /// @return      float: original image's (height/width)
     float getHeightMultiplier() const;
 
+    /// @brief      Returns the 'visible' flag, which RenderSystem uses to determine whether to draw this sprite.
+    /// @return     true/false:  is it supposed to be visible
     bool isVisible() const;
 
     // Inherited via Component
