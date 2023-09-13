@@ -22,9 +22,6 @@
 #include "DebugSystem.h"
 #include "RenderSystem.h"
 #include "AudioSystem.h"
-#include "SandboxSystem.h"
-#include "InputSystem.h"
-#include "EntitySystem.h"
 
 // TODO: move this out of the engine into its own System
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -94,13 +91,10 @@ System* Engine::AddSystem()
 /// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
 std::map< std::string, System* (Engine::*)()> Engine::addSystemMethods = {
     { "PlatformSystem", &AddSystem< PlatformSystem >    },
-    { "InputSystem",    &AddSystem< InputSystem >       },
     { "SceneSystem",    &AddSystem< SceneSystem >       },
     { "RenderSystem",   &AddSystem< RenderSystem >      },
     { "DebugSystem",    &AddSystem< DebugSystem >       },
-    { "AudioSystem",    &AddSystem< AudioSystem >       },
-    { "EntitySystem",   &AddSystem< EntitySystem >      },
-    { "SandboxSystem",  &AddSystem< SandboxSystem >     }
+    { "AudioSystem",    &AddSystem< AudioSystem >       }
 };
 
 /// @brief Loads the engine config from "Data/EngineConfig.json"

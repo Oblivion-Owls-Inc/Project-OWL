@@ -38,20 +38,8 @@
         void* commandData2,
         void* userData
     ) {
-        
-        if ( type == FMOD_SYSTEM_CALLBACK_ERROR )
-        {
-            FMOD_ERRORCALLBACK_INFO* info = (FMOD_ERRORCALLBACK_INFO*)commandData1;
-
-            std::cerr << "There was an FMOD error:\n" <<
-                "\tError Code:              " << info->result << '\n' <<
-                "\tInstance Type:           " << info->instancetype << '\n' <<
-                "\tFunction Name:           " << info->functionname << '\n' <<
-                "\tFunction Parameters :    " << info->functionparams << '\n' << std::endl;
-
-            return info->result;
-        }
-
+        std::cerr << "There was an FMOD error" << std::endl;
+        // TODO: handle FMOD errors better
         return FMOD_OK;
     }
 
@@ -104,10 +92,7 @@
 //-----------------------------------------------------------------------------
 
     /// @brief Constructs the AudioSystem
-    AudioSystem::AudioSystem() :
-        system( nullptr ),
-        maxChannels( 1024 )
-    {}
+    AudioSystem::AudioSystem() {}
 
     /// @brief The singleton instance of AudioSystem
     AudioSystem * AudioSystem::instance = nullptr;

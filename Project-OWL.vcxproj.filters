@@ -66,6 +66,9 @@
     <Filter Include="Engine\Systems\AudioSystem">
       <UniqueIdentifier>{83b43373-cf0c-4350-87ba-c9ca68c4c58a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\AudioSystem\Sound">
+      <UniqueIdentifier>{d2640bbd-cee1-4b6d-a8a2-93acd7001ddf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -139,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="Source\AudioSystem.cpp">
       <Filter>Engine\Systems\AudioSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound.cpp">
+      <Filter>Engine\Systems\AudioSystem\Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +234,9 @@
     </ClInclude>
     <ClInclude Include="Source\AudioSystem.h">
       <Filter>Engine\Systems\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sound.h">
+      <Filter>Engine\Systems\AudioSystem\Sound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
