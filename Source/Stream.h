@@ -21,8 +21,6 @@
 
 //------------------------------------------------------------------------------
 
-
-
 class Stream
 {
 public:
@@ -30,33 +28,27 @@ public:
 	~Stream();
 
 public:
+	// Read an integer from a json document.
 	void Read( const rapidjson::Value& data, int& value, const char* key );
+	// Read a float from a json document.
 	void Read( const rapidjson::Value& data, float& value, const char* key );
+	// Read a string from a json document.
+	void Read( const rapidjson::Value& data, std::string& name, const char* key );
+	// Read a vector from a json document.
 	void Read( const rapidjson::Value& data, glm::vec3& value, const char* key );
+	// Read a double from a json document.
+	void Read( const rapidjson::Value& data, double& value, const char* key );
+	// Read an unsigned integer from a json document.
+	void Read( const rapidjson::Value& data, unsigned int& value, const char* key );
 
 public:
-	rapidjson::Document ReadEntityFromJSON( const std::string& name );
+	// Opens and parses a json document.
+	rapidjson::Document ReadFromJSON( const std::string& name );
 
 
 private:
-
 /// @brief Read the data for a vector from a document.
-/// @param doc - the document to read from.
-	void ReadVector( const rapidjson::Value& doc, glm::vec3& vector );
+/// @param doc    - the document to read from.
+/// @param vector - read the data in the document into the variable.
+	void ReadVector( const rapidjson::Value& doc, glm::vec3& value );
 };
-
-
-
-/// @brief Open a json file and parse a rapidjson document.
-/// @param filePath - name of the json file.
-/// @return rapidjson document
-rapidjson::Document StreamOpen( const std::string& name );
-
-
-
-/// @brief Read the data from a json document.
-/// @param doc 
-/// @return 
-
-
-
