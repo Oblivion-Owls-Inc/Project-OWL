@@ -38,6 +38,10 @@ void DebugSystem::OnInit()
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
     ImGui_ImplOpenGL3_Init("#version 430");
     ImGui::StyleColorsDark();
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+    // Stays at the Top
 }
 
 /// @brief PerDorm updates at a fixed time step.
@@ -53,10 +57,6 @@ void DebugSystem::OnFixedUpdate()
 /// @param dt The time elapsed since the last update.
 void DebugSystem::OnUpdate(float dt)
 {
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
-    ImGui::NewFrame();
-    // Stays at the Top
 
     if (showFpsWindow)
     {
@@ -74,11 +74,18 @@ void DebugSystem::OnUpdate(float dt)
     // Render ImGui
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+    // Stays at the Top
 }
 
 /// @brief Perform cleanup and shutdown.
 void DebugSystem::OnExit()
 {
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
