@@ -15,7 +15,7 @@
 /// @brief Open and parse a json file.
 /// @param name - name of the json file. 
 /// @return rapid::json document parsed from the specified file.
-rapidjson::Document StreamOpen( const std::string& name )
+rapidjson::Document Stream::ReadEntityFromJSON( const std::string& name )
 {
 	// Check if the string is empty.
 	if ( name.empty() )
@@ -51,14 +51,49 @@ rapidjson::Document StreamOpen( const std::string& name )
 	return doc;
 }
 
+Stream::Stream()
+{
+}
+
+Stream::~Stream()
+{
+}
+
+void Stream::Read( const rapidjson::Value& data, int& value, const char* key )
+{
+	if ( data.HasMember(key) )
+	{
+		value = data[key].GetInt();
+	}
+}
+
+void Stream::Read( const rapidjson::Value& data, float& value, const char* key )
+{
+	if ( data.HasMember(key))
+	{
+		value = data[key].GetFloat();
+	}
+}
+
+void Stream::Read( const rapidjson::Value& data, glm::vec3& value, const char* key )
+{
+	if ( data.HasMember( key ) )
+	{
+		ReadVector( data.GetArray(), value );
+	}
+}
+
+
+
 /// @brief Reads in a vector from a JSON File.
 /// @param doc - the json file to read from
 /// @param property - name of the vector to be read.
-void StreamReadVector( const rapidjson::Value& doc, const std::string& property, glm::vec3* vector )
+void Stream::ReadVector( const rapidjson::Value& data, glm::vec3& vector )
 {
 	// Make sure both the array and vector are valid.
-	assert( vector && doc.IsArray() );
+	assert( data.IsArray() );
 	// Gte the x and y values from the array.
-	vector->x = doc[0].GetFloat();
-	vector->y = doc[1].GetFloat();
+	vector.x = data[0].GetFloat();
+	vector.y = data[1].GetFloat();
+	vector.z = data[2].GetFloat();
 }

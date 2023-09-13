@@ -21,14 +21,42 @@
 
 //------------------------------------------------------------------------------
 
+
+
+class Stream
+{
+public:
+	Stream();
+	~Stream();
+
+public:
+	void Read( const rapidjson::Value& data, int& value, const char* key );
+	void Read( const rapidjson::Value& data, float& value, const char* key );
+	void Read( const rapidjson::Value& data, glm::vec3& value, const char* key );
+
+public:
+	rapidjson::Document ReadEntityFromJSON( const std::string& name );
+
+
+private:
+
+/// @brief Read the data for a vector from a document.
+/// @param doc - the document to read from.
+	void ReadVector( const rapidjson::Value& doc, glm::vec3& vector );
+};
+
+
+
 /// @brief Open a json file and parse a rapidjson document.
 /// @param filePath - name of the json file.
 /// @return rapidjson document
 rapidjson::Document StreamOpen( const std::string& name );
 
-/// @brief Read the data for a vector from a document.
-/// @param doc - the document to read from.
-void StreamReadVector( const rapidjson::Document& doc, const std::string& property, glm::vec3* vector );
+
+
+/// @brief Read the data from a json document.
+/// @param doc 
+/// @return 
 
 
 
