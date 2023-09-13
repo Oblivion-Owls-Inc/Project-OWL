@@ -11,6 +11,7 @@
         },
         "SandboxSystem": {},
         "RenderSystem": {},
+        "AudioSystem": {},
         "DebugSystem": {
             "showFpsWindow": true
         }

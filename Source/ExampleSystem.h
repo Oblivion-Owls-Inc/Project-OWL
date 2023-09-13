@@ -11,7 +11,7 @@
 #include "System.h"
 
 /// @brief Example System meant to be copy-pasted when creating new Systems
-class ExampleSystem : System
+class ExampleSystem : public System
 {
 private:
 
@@ -49,21 +49,18 @@ private:
     virtual void Load( rapidjson::Value const& configData ) override {}
 
 
-     /// @brief Constructs the ExampleSystem
+    /// @brief Constructs the ExampleSystem
     ExampleSystem();
 
 
-     /// @brief The singleton instance of ExampleSystem
+    /// @brief The singleton instance of ExampleSystem
     static ExampleSystem * instance;
 
 public:
 
-     /// @brief gets the instance of ExampleSystem
-     /// @return the instance of the ExampleSystem
+    /// @brief gets the instance of ExampleSystem
+    /// @return the instance of the ExampleSystem
     static ExampleSystem * getInstance();
-
-    // MAY INCLUDE A DUPLICATE OF THE ABOVE FUNCTION WITH CONSTRUCTOR ARGUMENTS HERE
-
 
     // Prevent copying
     ExampleSystem(ExampleSystem& other) = delete;
