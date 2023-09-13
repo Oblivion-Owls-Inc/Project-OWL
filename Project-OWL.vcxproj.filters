@@ -63,6 +63,12 @@
     <Filter Include="Engine\Systems\Render\Shader">
       <UniqueIdentifier>{204bbd04-68c1-4367-9897-c58703fca321}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\Input">
+      <UniqueIdentifier>{29e8ccc0-6f52-4fd2-bbe9-f9551998e2d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior">
+      <UniqueIdentifier>{3fe1d63e-80e0-48a7-a7d1-add896326ffb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -104,9 +110,6 @@
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Source\System.cpp">
-      <Filter>Engine\Systems</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Systems</Filter>
     </ClCompile>
@@ -136,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="Source\Shader.cpp">
       <Filter>Engine\Systems\Render\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InputSystem.cpp">
+      <Filter>Engine\Systems\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +228,12 @@
     </ClInclude>
     <ClInclude Include="Source\Shader.h">
       <Filter>Engine\Systems\Render\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InputSystem.h">
+      <Filter>Engine\Systems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BehaviorComponent.h">
+      <Filter>Engine\Entity\Component\Behavior</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
