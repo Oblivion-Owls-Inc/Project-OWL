@@ -63,20 +63,8 @@
     <Filter Include="Engine\Systems\Render\Shader">
       <UniqueIdentifier>{204bbd04-68c1-4367-9897-c58703fca321}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Systems\Render\Texture">
-      <UniqueIdentifier>{96fa4141-f9df-4367-886e-449a37f34105}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Entity\Component\Sprite">
-      <UniqueIdentifier>{0b2d7c16-b492-4fc6-8711-cea7ff213522}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Systems\Behavior">
-      <UniqueIdentifier>{9409e403-6435-4204-8018-078cfa5ac289}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Entity\Component\Collider">
-      <UniqueIdentifier>{d9911df2-a594-4ecf-8716-6849d3dae861}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Entity\Component\Collider\LinesCollider">
-      <UniqueIdentifier>{4e33509b-2cfc-4de7-9b04-c5540f7cf14c}</UniqueIdentifier>
+    <Filter Include="Engine\Systems\AudioSystem">
+      <UniqueIdentifier>{83b43373-cf0c-4350-87ba-c9ca68c4c58a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -149,35 +137,8 @@
     <ClCompile Include="Source\Shader.cpp">
       <Filter>Engine\Systems\Render\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Texture.cpp">
-      <Filter>Engine\Systems\Render\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Sprite.cpp">
-      <Filter>Engine\Entity\Component\Sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InputSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Stream.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BehaviorSystem.cpp">
-      <Filter>Engine\Systems\Behavior</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PhysicsSystem.cpp">
-      <Filter>Engine\Systems\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Collider.h">
-      <Filter>Engine\Entity\Component\Collider</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SandboxSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Collider.cpp">
-      <Filter>Engine\Entity\Component\Collider</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LinesCollider.cpp">
-      <Filter>Engine\Entity\Component\Collider\LinesCollider</Filter>
+    <ClCompile Include="Source\AudioSystem.cpp">
+      <Filter>Engine\Systems\AudioSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,32 +226,8 @@
     <ClInclude Include="Source\Shader.h">
       <Filter>Engine\Systems\Render\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Texture.h">
-      <Filter>Engine\Systems\Render\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Sprite.h">
-      <Filter>Engine\Entity\Component\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Behavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InputSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Stream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BehaviorSystem.h">
-      <Filter>Engine\Systems\Behavior</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PhysicsSystem.h">
-      <Filter>Engine\Systems\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SandboxSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LinesCollider.h">
-      <Filter>Engine\Entity\Component\Collider\LinesCollider</Filter>
+    <ClInclude Include="Source\AudioSystem.h">
+      <Filter>Engine\Systems\AudioSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
