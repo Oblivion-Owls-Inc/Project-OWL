@@ -8,17 +8,17 @@
 
 /// @brief              Constructor: inits data to 0, loads unit square vertices if needed.
 /// @param init_square  true/false: should unit square be initialized
-Mesh::Mesh(bool init_square) : _vaoID(0), _bufferID(0), _vertexCount(0)
+Mesh::Mesh(bool init_square, int rows, int columns) : _vaoID(0), _bufferID(0), _vertexCount(0), _uvSize{}
 {
     if (!init_square)
         return;
 
-    load_square();
+    load_square(rows, columns);
 }
 
 /// @brief              Constructor: inits data to 0, loads provided vertices to make a mesh.
 /// @param vertices     Vector of vertices to initialize this mesh with
-Mesh::Mesh(std::vector<Vertex> vertices) : _vaoID(0), _bufferID(0), _vertexCount(0)
+Mesh::Mesh(std::vector<Vertex> vertices) : _vaoID(0), _bufferID(0), _vertexCount(0), _uvSize{}
 {  
     load_vertices(vertices);
 }
@@ -45,13 +45,17 @@ void Mesh::load_vertices(std::vector<Vertex> vertices)
     _vertexCount = (unsigned int)vertices.size();
 }
 
-/// @brief      Loads a list of vertices that make a centered unit square.
-void Mesh::load_square()
+/// @brief      Loads a list of vertices that make a centered unit square. (rows/columns for spritesheet)
+void Mesh::load_square(int rows, int columns)
 {
-    load_vertices({ {{-0.5,  0.5}, {0.0, 0.0}},
-                    {{ 0.5,  0.5}, {1.0, 0.0}},
-                    {{-0.5, -0.5}, {0.0, 1.0}},
-                    {{ 0.5, -0.5}, {1.0, 1.0}} });   // unit square
+    float usize = 1.0f / columns;
+    float vsize = 1.0f / rows;
+    load_vertices({ {{-0.5,  0.5}, {0.0,   0.0}},
+                    {{ 0.5,  0.5}, {usize, 0.0}},
+                    {{-0.5, -0.5}, {0.0,   vsize}},
+                    {{ 0.5, -0.5}, {usize, vsize}} });   // unit square
+
+    _uvSize = { usize, vsize };
 }
 
 
@@ -76,9 +80,11 @@ void Mesh::initVAO()
 }
 
 
-/// @brief      Draws the mesh.
+/// @brief      Draws the mesh. Make sure proper shader is selected prior to calling this.
 void Mesh::draw()
 {
     glBindVertexArray(_vaoID);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, _vertexCount);
 }
+
+glm::vec2 Mesh::get_uvSize() { return _uvSize; }

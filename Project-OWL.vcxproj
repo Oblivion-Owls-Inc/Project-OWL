@@ -171,6 +171,8 @@
     <ClCompile Include="Source\RidgedBody.cpp" />
     <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\SceneSystem.cpp" />
+    <ClCompile Include="Source\Sprite.cpp" />
+    <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\Stream.cpp" />
   </ItemGroup>
@@ -197,7 +199,9 @@
     <ClInclude Include="Source\RidgedBody.h" />
     <ClInclude Include="Source\PlatformSystem.h" />
     <ClInclude Include="Source\SceneSystem.h" />
+    <ClInclude Include="Source\Sprite.h" />
     <ClInclude Include="Source\System.h" />
+    <ClInclude Include="Source\Texture.h" />
     <ClInclude Include="Source\Transform.h" />
     <ClInclude Include="Source\Stream.h" />
   </ItemGroup>
