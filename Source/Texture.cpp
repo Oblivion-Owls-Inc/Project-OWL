@@ -9,7 +9,9 @@
 
 #include <iostream>        // temporary, until DebugConsole is complete
 
-Texture::Texture(const char* file_path) : _textureID(0), _w(0), _h(0), _BPP(0)
+/// @brief              Constructor: loads texture image from file upon initialization
+/// @param file_path    File to load
+Texture::Texture(const char* file_path) 
 {
     if (file_path)
         loadImage(file_path);
@@ -22,7 +24,8 @@ Texture::~Texture()
         glDeleteTextures(1, &_textureID);
 }
 
-
+/// @brief              Loads texture image from file (deletes old one if present)
+/// @param file_path    File to load
 void Texture::loadImage(const char* file_path)
 {
     if (_textureID)            // reloading with new data?
@@ -37,7 +40,7 @@ void Texture::loadImage(const char* file_path)
     int BPP; // throwaway (don't need it) - bytes per pixel (?), the amount of channels received.
 
     // load the file as a chunk of pixels
-    unsigned char* content = stbi_load(file_path, &_w, &_h, &_BPP, 4); // 4 channels - r,g,b,a
+    unsigned char* content = stbi_load(file_path, &_w, &_h, &BPP, 4); // 4 channels - r,g,b,a
 
     if (content)
     {
@@ -56,7 +59,7 @@ void Texture::loadImage(const char* file_path)
         std::cout << "TEXTURE ERROR: could not load file " << file_path << std::endl;
 }
 
-
+/// @brief      Binds this texture (sets it as active, so it can be used by texture shader)
 void Texture::bind(unsigned int slot)
 {
     glActiveTexture(GL_TEXTURE0 + slot);

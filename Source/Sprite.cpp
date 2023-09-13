@@ -23,7 +23,13 @@ Sprite::Sprite(Sprite const& other) : Component(typeid(Sprite))
                     // (to avoid double deletion of resources.)
 }
 
-// Texture / spritesheet
+
+/// @brief              Textured sprite constructor. Accepts image file, and (optional) rows and 
+///                     columns if it's a spritesheet. Also adds this sprite's pointer to RenderSystem.
+/// @param image_file   Path to the image file to load (single image or spritesheet)
+/// @param columns      (optional) Columns of the spritesheet
+/// @param rows         (optional) Rows of the spritesheet
+/// @param layer        (optional) Rendering layer: 0-4. 0 is front, 4 is back.
 Sprite::Sprite(const char* image_file, int columns, int rows, int layer) : 
         Component(typeid(Sprite)), 
         _rows(rows), _columns(columns),
@@ -44,7 +50,12 @@ Sprite::Sprite(const char* image_file, int columns, int rows, int layer) :
 }
 
 
-// Plain mesh
+/// @brief              Plain square sprite constructor. Accepts boolean, which needs to be true for
+///                     the square to be generated, or false to create uninitialized sprite. Also adds 
+///                     this sprite's pointer to RenderSystem.
+/// @param init_square  true/false - initialize the square or nah?
+/// @param color        (optional) Color to initialize the square to
+/// @param layer        (optional) Rendering layer: 0-4. 0 is front, 4 is back.
 Sprite::Sprite(bool init_square, glm::vec4 color, int layer) :
         Component(typeid(Sprite)),
         _rows(1), _columns(1),
@@ -66,7 +77,8 @@ Sprite::~Sprite()
     delete _texture;
 }
 
-
+/// @brief          Sets current frame of the spritesheet.
+/// @param frame    New frame index
 void Sprite::setFrame(int frame)
 {
     if (frame < _rows * _columns)
@@ -120,7 +132,6 @@ void Sprite::draw()
     _mesh->draw();
 }
 
-
-int Sprite::getLayer() const { return _layer; }
-
+/// @brief      Returns the 'visible' flag, which RenderSystem uses to determine whether to draw this sprite.
+/// @return     true/false:  is it supposed to be visible 
 bool Sprite::isVisible() const { return _visible; }

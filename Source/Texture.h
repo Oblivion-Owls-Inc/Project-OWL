@@ -7,8 +7,8 @@
 
 class Texture
 {
-    unsigned int _textureID;
-    int _w, _h, _BPP;
+    unsigned int _textureID = 0;    /// @brief      ID that texture is tracked with on GPU
+    int _w = 0, _h = 0;             /// @brief      Width and height of the original image
 
 public:
     /// @brief              Constructor: loads texture image from file upon initialization
