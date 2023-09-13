@@ -12,6 +12,7 @@
 #pragma once
 
 #include <typeindex>
+#include "document.h"
 class Entity;
 
 
@@ -28,6 +29,8 @@ public:
 	__inline Entity* Parent() const { return parent; }
 	
 	virtual Component* Clone() const = 0;
+
+	virtual void Read( const rapidjson::Value& data ) { (void)data; }
 
 protected:
 
