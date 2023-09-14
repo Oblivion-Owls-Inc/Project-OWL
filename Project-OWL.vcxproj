@@ -184,6 +184,7 @@
     <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\AudioSystem.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
+    <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\Component.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="Source\Stream.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
     <ClInclude Include="Source\BehaviorComponent.h" />
     <ClInclude Include="Source\InputSystem.h" />
@@ -235,6 +237,9 @@
     <ClInclude Include="Source\Texture.h" />
     <ClInclude Include="Source\Transform.h" />
     <ClInclude Include="Source\Stream.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\EngineConfig.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
