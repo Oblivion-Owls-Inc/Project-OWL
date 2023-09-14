@@ -5,6 +5,10 @@
 
 #include <iostream>
 #include <cassert>
+#include <cstdlib>
 #pragma warning(disable : 26451)
-using namespace std;
-using namespace glm;
+
+__inline float random( float min, float max )
+{
+    return rand() * (max - min) / RAND_MAX + min;
+}

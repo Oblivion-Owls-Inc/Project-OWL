@@ -36,10 +36,12 @@ protected:
 
 	Component( std::type_index type );
 
+    Component( Component const& other );
+
 private:
 
 	std::type_index type;
 
-	Entity* parent = nullptr;
+	Entity* parent;
 
 };
