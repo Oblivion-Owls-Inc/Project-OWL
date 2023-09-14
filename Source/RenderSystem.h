@@ -12,6 +12,12 @@ class Sprite;   // fwd reference
 
 class RenderSystem : public System
 {
+    Shader* _colorShader = nullptr;  /// @brief      Simple color shader
+    Shader* _textureShader = nullptr;/// @brief      Simple texture shader
+    Shader* _activeShader = nullptr; /// @brief      Keep track of currently bound shader
+    std::set<Sprite*> _sprites[5];   /// @brief      Sprite references - with layers
+    glm::mat4 screen2clip = {};      /// @brief      Screen space to clip space projection matrix
+
 public:
     /// @brief              Draws a rectangle.
     /// @param position     Position
@@ -19,7 +25,7 @@ public:
     /// @param angle        (optional) Angle
     /// @param color        (optional) Color
     void DrawRect(const glm::vec2& position, const glm::vec2& scale = {100,100}, 
-                  float angle = 0.0f, const glm::vec4& color = {0.3,0.8,0.3,1.0});
+                  float angle = 0.0f, const glm::vec4& color = {0.1,0.6,0.1,1.0});
 
     /// @brief              Draws a line between 2 points.
     /// @param P1           Point 1
@@ -39,14 +45,16 @@ public:
     void SetUV(float u, float v);
     /// @brief      Set transformation matrix for currently active shader
     void SetTransformMat(glm::mat4 const& mat) const;
+    /// @brief      Set opacity for currently active shader
+    void SetOpacity(float opacity) const;
 
     /// @brief          Add sprite so it can be rendered during update. To be used by Sprite constructor.
     /// @param sprite   Sprite pointer to add and keep track of
-    void AddSprite(Sprite* sprite);
+    void AddSprite(Sprite* sprite, int layer);
     
     /// @brief          Remove sprite from the list to stop rendering it on update. To be used by Sprite destructor.
     /// @param sprite   Sprite pointer to remove
-    void RemoveSprite(Sprite* sprite);
+    void RemoveSprite(Sprite* sprite, int layer);
 
 
     /// @brief      Gets the instance of RenderSystem
@@ -59,17 +67,7 @@ public:
 
 
 private:
-    // ============================= DATA ============================== //
-
-    Shader* _colorShader = nullptr;  /// @brief      Simple color shader
-    Shader* _textureShader = nullptr;/// @brief      Simple texture shader
-    Shader* _activeShader = nullptr; /// @brief      Keep track of currently bound shader
-    std::set<Sprite*> _sprites;      /// @brief      Sprite references
-    glm::mat4 screen2clip = {};      /// @brief      Screen space to clip space projection matrix
     static RenderSystem* instance;   /// @brief      The singleton instance of RenderSystem
-    
-    // ================================================================= //
-
 
     /// @brief      Private constructor - only used by getInstance()
     RenderSystem();

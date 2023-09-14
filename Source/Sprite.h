@@ -16,7 +16,7 @@ class Sprite : public Component
     int _layer;
     int _frame = 0;
     float _heightMult = 1.0f;
-    bool _visible = true;
+    float _opacity = 1.0f;
 
     Mesh* _mesh = nullptr;
     Texture* _texture = nullptr;
@@ -28,7 +28,7 @@ public:
     /// @param image_file   Path to the image file to load (single image or spritesheet)
     /// @param columns      (optional) Columns of the spritesheet
     /// @param rows         (optional) Rows of the spritesheet
-    /// @param layer        (optional) Rendering layer: 0-4. 0 is front, 4 is back.
+    /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
     Sprite(const char* image_file, int columns = 1, int rows = 1, int layer = 2);
 
     /// @brief              Plain square sprite constructor. Accepts boolean, which needs to be true for
@@ -36,7 +36,7 @@ public:
     ///                     this sprite's pointer to RenderSystem.
     /// @param init_square  true/false - initialize the square or nah?
     /// @param color        (optional) Color to initialize the square to
-    /// @param layer        (optional) Rendering layer: 0-4. 0 is front, 4 is back.
+    /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
     Sprite(bool init_square = false, glm::vec4 color = { 0,0,0,1 }, int layer = 2); // just mesh
 
     /// @brief              Copy constructor: shallow copy. Flyweight mesh and texture (eventually). Do not use rn.
@@ -52,17 +52,17 @@ public:
     /// @param frame    New frame index
     void setFrame(int frame);
 
-    /// @brief          Sets the rendering layer : 0 - 4. 0 is front, 4 is back.
+    /// @brief          Sets the rendering layer : 0 - 4.  0 is back, 4 is front.
     /// @param layer    Rendering layer to move this sprite to.
     void setLayer(int layer);
+
+    /// @brief          Sets the opacity.
+    /// param opacity   I'm not explaining this.
+    void setOpacity(float opacity);
 
     /// @brief       Number to multiply width by, to get proportional height based on original image
     /// @return      float: original image's (height/width)
     float getHeightMultiplier() const;
-
-    /// @brief      Returns the 'visible' flag, which RenderSystem uses to determine whether to draw this sprite.
-    /// @return     true/false:  is it supposed to be visible
-    bool isVisible() const;
 
     // Inherited via Component
     virtual Component* Clone() const override;

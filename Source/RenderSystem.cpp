@@ -5,36 +5,19 @@
 #include "glew.h"
 #include "RenderSystem.h"
 #include "Sprite.h"
-
-// TODO: screen2clip should be built in a different system
+#include "PlatformSystem.h"     // for building screen2clip matrix
 #include "glm/gtc/matrix_transform.hpp"
-#include "PlatformSystem.h" 
-#include "Entity.h"
+
+// TODO: remove this once we have resource library
 #include "Mesh.h"
-#include "Transform.h"
-static Mesh mesh;   // this should be stored in a different system... probably
+static Mesh mesh;
 
-// TEST ============================================================================================================
-#include "imgui.h"
-static Entity* testEnt;
-static glm::vec3 pos = { 100,400,0 }; float jump = 0.0f;
-static float frametime = 0.0f;
-static void make_Ent()
-{
-    Sprite* s = new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22, 17);
-    Transform* t = new Transform;
-    t->setScale({ 800, -800 * s->getHeightMultiplier(), 0 }); // for screen space, y is flipped, so flip the image.
-    t->setTranslation(pos);
-    testEnt = new Entity; testEnt->Add(s); testEnt->Add(t);
-}
-//      ============================================================================================================
-
-
+// Singleton stuff
 RenderSystem* RenderSystem::instance = nullptr; // Init the instance pointer
-
 RenderSystem::RenderSystem() {}
 
-/// @brief      Initializes color and texture shaders for sprites
+
+/// @brief      Initializes color and texture shaders for sprites, as well as screen2clip matrix
 void RenderSystem::OnInit()
 {
     _colorShader = new Shader("Data/shaders/vshader.vert", "Data/shaders/color.frag");
@@ -48,48 +31,19 @@ void RenderSystem::OnInit()
     screen2clip = glm::translate(glm::mat4(1), glm::vec3(-1, 1, 0)) *
         glm::scale(glm::mat4(1), glm::vec3(2.0f / s.x, -2.0f / s.y, 0.0));
 
-    make_Ent();  // TEST -----------------------------------------------------------------------------------------
+    mesh.load_square(); // for shapes (TODO: figure out a better system for this)
 }
 
 
-/// @brief      Draws all sprites.  (TEST) animates the archer dude
+/// @brief      Draws all sprites layer by layer.
 /// @param dt   Time since last frame
 void RenderSystem::OnUpdate(float dt)
 {
-    for (Sprite* sprite : _sprites)
-        if (sprite->isVisible())
+    for (std::set<Sprite*>& layer : _sprites)
+        for (Sprite* sprite : layer)
             sprite->draw();
-    
-    // TEST ======================================================================================================
-    // advance frames
-    static float speed = 13.0f;
-    frametime += dt * speed;
-    if (frametime < 44.0f && frametime >= 12.0f)
-        frametime = 44.0f;
-    if (frametime >= 65.0f)
-        frametime = 0.0f;
 
-    ((Sprite*)testEnt->HasComponent(typeid(Sprite)))->setFrame((int)frametime);
-
-    // ImGui test
-    ImGui::Begin("Animation System");
-    ImGui::DragFloat("anim speed", & speed, 0.2f, 0.0f, 30.0f);
-    ImGui::End();    
-
-    // move up/down
-    if (frametime > 46.0f && frametime < 62.0f)
-    {
-        jump += dt * speed * (2.5f / 13.0f);
-        pos.y = 400.0f - glm::sin(jump) * 150;
-    }
-    else
-    {
-        jump = 0.0f;
-        pos.y = 400.0f;
-    }
-
-    ((Transform*)testEnt->HasComponent(typeid(Transform)))->setTranslation(pos);
-    //      ======================================================================================================
+    (void)dt;
 }
 
 
@@ -98,8 +52,6 @@ void RenderSystem::OnExit()
 {
     delete _colorShader;
     delete _textureShader;
-
-    delete testEnt;      // TEST ---------------------------------------------------------------------------------
 }
 
 
@@ -116,11 +68,12 @@ void RenderSystem::DrawRect(const glm::vec2& position, const glm::vec2& scale,
     glm::mat4 s = glm::scale(I, {scale.x, scale.y, 0});
     glm::mat4 r = glm::rotate(I, angle, {0,0,1});
     glm::mat4 t = glm::translate(I, {position.x, position.y, 0});
-    glm::mat4 transform = screen2clip * t * r * s;
-
+    glm::mat4 transform = t * r * s;
+    
     // Set the matrix and color, draw the mesh
-    _colorShader->use();
+    ColorMode();
     SetTransformMat(transform);
+
     SetColor(color);
     mesh.draw();
 }
@@ -165,13 +118,18 @@ void RenderSystem::SetTransformMat(glm::mat4 const& mat) const
     glUniformMatrix4fv(_activeShader->GetUniformID("mvp"), 1, 0, &mvp[0][0]);
 }
 
+void RenderSystem::SetOpacity(float opacity) const
+{
+    glUniform1f(_activeShader->GetUniformID("opacity"), opacity);
+}
+
 /// @brief          Add sprite so it can be rendered during update. To be used by Sprite constructor.
 /// @param sprite   Sprite pointer to add and keep track of
-void RenderSystem::AddSprite(Sprite* sprite) { _sprites.emplace(sprite); }
+void RenderSystem::AddSprite(Sprite* sprite, int layer) { _sprites[layer].emplace(sprite); }
 
 /// @brief          Remove sprite from the list to stop rendering it on update. To be used by Sprite destructor.
 /// @param sprite   Sprite pointer to remove
-void RenderSystem::RemoveSprite(Sprite* sprite) { _sprites.erase(sprite); }
+void RenderSystem::RemoveSprite(Sprite* sprite, int layer) { _sprites[layer].erase(sprite); }
 
 
 
