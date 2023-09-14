@@ -6,8 +6,8 @@
 #include "RenderSystem.h"
 #include "Mesh.h"
 #include "Texture.h"
-#include "Transform.h"
-#include "Entity.h"
+#include "Transform.h"  // matrix
+#include "Entity.h"     // parent
 #include <algorithm>    // min/max
 
 #include <iostream>     // error msg (temporary)
@@ -29,21 +29,22 @@ Sprite::Sprite(Sprite const& other) : Component(typeid(Sprite))
 /// @param image_file   Path to the image file to load (single image or spritesheet)
 /// @param columns      (optional) Columns of the spritesheet
 /// @param rows         (optional) Rows of the spritesheet
-/// @param layer        (optional) Rendering layer: 0-4. 0 is front, 4 is back.
+/// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
 Sprite::Sprite(const char* image_file, int columns, int rows, int layer) : 
         Component(typeid(Sprite)), 
         _rows(rows), _columns(columns),
         _color(0,0,0,1), _layer(std::max(0, std::min(layer, 4)))
 {
-    Renderer()->AddSprite(this);
+    Renderer()->AddSprite(this, layer);
 
     if (image_file)
     {
         _mesh = new Mesh(true, rows, columns);    // TODO: obtain it from mesh library
         _texture = new Texture(image_file);
+
+        // calculate height multiplier
         glm::vec2 size = _texture->getImageDimensions();
         glm::vec2 uvsize = _mesh->get_uvSize();
-
         _heightMult = (size.y / size.x) * (uvsize.y / uvsize.x);
     }
 
@@ -55,13 +56,13 @@ Sprite::Sprite(const char* image_file, int columns, int rows, int layer) :
 ///                     this sprite's pointer to RenderSystem.
 /// @param init_square  true/false - initialize the square or nah?
 /// @param color        (optional) Color to initialize the square to
-/// @param layer        (optional) Rendering layer: 0-4. 0 is front, 4 is back.
+/// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
 Sprite::Sprite(bool init_square, glm::vec4 color, int layer) :
         Component(typeid(Sprite)),
         _rows(1), _columns(1),
         _color(color), _layer(std::max(0, std::min(layer, 4)))
 {
-    Renderer()->AddSprite(this);
+    Renderer()->AddSprite(this, _layer);
 
     if (init_square)
         _mesh = new Mesh(true, 1, 1);
@@ -70,7 +71,7 @@ Sprite::Sprite(bool init_square, glm::vec4 color, int layer) :
 /// @param      Clears out memory, removes this sprite's pointer from RenderSystem.
 Sprite::~Sprite()
 {
-    Renderer()->RemoveSprite(this);
+    Renderer()->RemoveSprite(this, _layer);
 
     // TODO: remove this after data library is implemented
     delete _mesh;
@@ -88,10 +89,18 @@ void Sprite::setFrame(int frame)
                   << (_rows * _columns - 1) << std::endl;
 }
 
-/// @brief          Sets the rendering layer : 0 - 4. 0 is front, 4 is back.
+/// @brief          Sets the rendering layer : 0 - 4. 0 is back, 4 is front.
 /// @param layer    Rendering layer to move this sprite to.
-void Sprite::setLayer(int layer) {   _layer = std::max(0, std::min(layer, 4));   }
+void Sprite::setLayer(int layer) 
+{   
+    Renderer()->RemoveSprite(this, _layer);
+    _layer = std::max(0, std::min(layer, 4));
+    Renderer()->AddSprite(this, _layer);
+}
 
+/// @brief          Sets the opacity.
+/// param opacity   I'm not explaining this.
+void Sprite::setOpacity(float opacity) { _opacity = opacity; }
 
 /// @brief          Returns the number (for transform) to multiply width by, in order to maintain scale
 ///                 proportions of the original image. (accounts for uv size of frames as well)
@@ -129,9 +138,7 @@ void Sprite::draw()
     if (Parent() && Parent()->HasComponent(typeid(Transform)))      // what a mess
         Renderer()->SetTransformMat( *((Transform*)Parent()->HasComponent(typeid(Transform)))->getMatrix() );
 
+    Renderer()->SetOpacity(_opacity);
+
     _mesh->draw();
 }
-
-/// @brief      Returns the 'visible' flag, which RenderSystem uses to determine whether to draw this sprite.
-/// @return     true/false:  is it supposed to be visible 
-bool Sprite::isVisible() const { return _visible; }

@@ -211,6 +211,10 @@
     <ClInclude Include="Source\Sound.h" />
     <ClInclude Include="Source\AudioSystem.h" />
     <ClInclude Include="Source\RenderSystem.h" />
+    <ClInclude Include="Source\SandboxSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Shader.h" />
     <ClInclude Include="Source\Mesh.h" />
     <ClInclude Include="Source\ExampleSystem.h" />

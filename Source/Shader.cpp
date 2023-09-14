@@ -14,9 +14,9 @@
 static unsigned int CompileShader(const char* filepath, unsigned int GL_type_SHADER)
 {
 #define LINE_LENGTH 200     // I don't think I'll ever write GLSL lines longer than that...
-
+    
     std::string code;
-
+    
     // open the file, read its contents (source code)
     std::ifstream file(filepath);
     if (!file.fail())
@@ -91,14 +91,12 @@ unsigned int Shader::GetID() { return shaderID; }
 ///             on first request, then stores it for faster subsequent retrieval.
 unsigned int Shader::GetUniformID(const char* uniform_name) 
 {
-    try
+    // Check if key exists. If it does, return what's there.
+    std::map<const  char*, unsigned int>::iterator itr = uniformIDs.find(uniform_name);
+    if (itr != uniformIDs.end())
+        return itr->second;
+    else
     {
-        return uniformIDs.at(uniform_name);
-    }
-    catch (std::out_of_range &exception)
-    {
-        (void)exception;  // don't need it
-
         unsigned int u = glGetUniformLocation(shaderID, uniform_name);
         // (returns -1 for undeclared uniforms)
         
