@@ -52,9 +52,19 @@ public:
 	void Add(Component* component);
 
 	Component* HasComponent(std::type_index type);
+
 	// Type safe method for accessing the components.
-	// template <typename type>
-	// type* GetComponent(Component::TypeEnum typeID) { return static_cast<type*>(Get(typeID)); }
+    template < typename ComponentType >
+    ComponentType* GetComponent()
+    {
+        auto componentIterator = components.find( typeid( ComponentType ) );
+        if ( componentIterator == components.end() )
+        {
+            return nullptr;
+        }
+        return static_cast<ComponentType*>( componentIterator->second );
+    }
+    
 	// Flag an entity for destruction
 	void Destroy();
 	// Checks whether an entity has been flagged for destruction.
