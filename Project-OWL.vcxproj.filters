@@ -78,6 +78,9 @@
     <Filter Include="Engine\Entity\Component\Behavior">
       <UniqueIdentifier>{3fe1d63e-80e0-48a7-a7d1-add896326ffb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\Sandbox">
+      <UniqueIdentifier>{72e43bd6-cc45-4ed2-8f01-4980711ec0c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -160,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="Source\InputSystem.cpp">
       <Filter>Engine\Systems\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SandboxSystem.cpp">
+      <Filter>Engine\Systems\Sandbox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +267,9 @@
     </ClInclude>
     <ClInclude Include="Source\Stream.h">
       <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SandboxSystem.h">
+      <Filter>Engine\Systems\Sandbox</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

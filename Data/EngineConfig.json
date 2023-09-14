@@ -7,8 +7,9 @@
         },
         "SceneSystem": {
             "baseScenePath": "Data/Scenes/",
-            "nextSceneName": "TestScene"
+            "nextSceneName": "Sandbox"
         },
+        "SandboxSystem": {},
         "RenderSystem": {},
         "DebugSystem": {
             "showFpsWindow": true
