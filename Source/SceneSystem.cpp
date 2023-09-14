@@ -70,21 +70,6 @@ void SceneSystem::ExitScene()
     }
 }
 
-
-/// @brief Gets called once when this System is added to the Engine
-void SceneSystem::OnInit()
-{
-
-    // TODO: add the following line once JSON deserialization is implemented
-    // assert( nextSceneName != "" );
-    
-    currentSceneName = nextSceneName;
-    nextSceneName = "";
-
-    LoadScene();
-    InitScene();
-}
-
 /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.    
 void SceneSystem::OnFixedUpdate()
 {

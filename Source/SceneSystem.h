@@ -54,8 +54,6 @@ private:
     /// @brief Exits the current Scene
     void ExitScene();
 
-    /// @brief Gets called once when this System is added to the Engine
-    virtual void OnInit() override;
 
     /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.    
     virtual void OnFixedUpdate() override;
@@ -68,6 +66,7 @@ private:
     virtual void Load( rapidjson::Value const& configData ) override;
 
     // unused virtual methods
+    virtual void OnInit() override {}
     virtual void OnUpdate( float dt ) override {}
     virtual void OnSceneLoad() override {}
     virtual void OnSceneInit() override {}

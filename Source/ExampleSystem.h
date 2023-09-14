@@ -13,7 +13,11 @@
 /// @brief Example System meant to be copy-pasted when creating new Systems
 class ExampleSystem : public System
 {
-private:
+private: // virtual override methods
+
+    
+
+private: // unused virtual overrides
 
     /// @brief Gets called once when this System is added to the Engine
     virtual void OnInit() override {}
@@ -48,6 +52,7 @@ private:
     /// @param configData the JSON object with all of the configData for this System
     virtual void Load( rapidjson::Value const& configData ) override {}
 
+private: // singleton stuff
 
     /// @brief Constructs the ExampleSystem
     ExampleSystem();
@@ -56,7 +61,7 @@ private:
     /// @brief The singleton instance of ExampleSystem
     static ExampleSystem * instance;
 
-public:
+public: // singleton stuff
 
     /// @brief gets the instance of ExampleSystem
     /// @return the instance of the ExampleSystem
