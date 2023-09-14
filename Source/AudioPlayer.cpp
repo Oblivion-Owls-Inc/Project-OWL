@@ -28,6 +28,22 @@
         pitchVariance( 0.0f )
     {}
 
+    /// @brief destroys this AudioPlayer
+    AudioPlayer::~AudioPlayer()
+    {
+        bool isPlaying;
+        channel->isPlaying( &isPlaying );
+        if ( isPlaying )
+        {
+            return;
+        }
+
+        if ( this->isPlaying() )
+        {
+            channel->stop();
+        }
+    }
+
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------

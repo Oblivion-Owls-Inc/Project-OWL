@@ -22,7 +22,7 @@ public: // constructor / Destructor
     AudioPlayer();
 
     /// @brief destroys this AudioPlayer
-    ~AudioPlayer() = default;
+    ~AudioPlayer();
 
 public: // methods
 
@@ -104,3 +104,4 @@ public:
     void operator=( const AudioPlayer& ) = delete;
 
 };
+
