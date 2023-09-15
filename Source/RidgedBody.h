@@ -5,7 +5,7 @@
 #include "Entity.h"
 #include "Behavior.h"
 
-class RidgedBody : public Component
+class RidgedBody : public Behavior
 {
     public:
         RidgedBody();
@@ -25,6 +25,7 @@ class RidgedBody : public Component
         void setOldTranslation(const vec3* OldTranslation);
         void setTranslation(const vec3* Translation);
         void SetRotationalVelocity(float rotational_velocity);
+        virtual void CollisionEvent(Entity* other);
     private:
         vec3 _velocity;
         vec3 _acceleration;

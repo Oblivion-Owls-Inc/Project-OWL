@@ -7,11 +7,11 @@ RidgedBody::RidgedBody() :
 	_translation(vec3(0, 0, 0)),
 	_oldTranslation(vec3(0, 0, 0)),
 	_rotationalVelocity(0), 
-	Component(typeid(RidgedBody))
+	Behavior(typeid(RidgedBody))
 {
 }
 
-RidgedBody::RidgedBody(const RidgedBody& other) : Component(typeid(RidgedBody))
+RidgedBody::RidgedBody(const RidgedBody& other) : Behavior(typeid(RidgedBody))
 {
 	_rotationalVelocity = other._rotationalVelocity;
 	_acceleration = other._acceleration;
@@ -95,5 +95,10 @@ void RidgedBody::setTranslation(const vec3* Translation)
 void RidgedBody::SetRotationalVelocity(float rotational_velocity)
 {
 	_rotationalVelocity = rotational_velocity;
+}
+
+void RidgedBody::CollisionEvent(Entity* other)
+{
+	(void)other;
 }
 
