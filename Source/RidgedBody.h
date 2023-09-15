@@ -3,10 +3,12 @@
 #include "basics.h"
 #include "Transform.h"
 #include "Entity.h"
+#include "Behavior.h"
+
 using namespace glm;
 
 
-class RidgedBody: public Component
+class RidgedBody: public Behavior
 {
     public:
         RidgedBody();

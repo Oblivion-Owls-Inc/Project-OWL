@@ -54,12 +54,12 @@ void Entity::Free()
 	// Traverse the component list
 	for (auto component : components)
 	{
-	// Make sure the component is valid.
-		if (component.second)
-		{
-	// Delete the component.
-			delete component.second;
-		}
+		// Make sure the component is valid.
+		assert(component.second);
+		
+		// Delete the component.
+		delete component.second;
+		
 	}
 	// Clear the component list.
 	components.clear();
