@@ -75,6 +75,9 @@
     <Filter Include="Engine\Entity\Component\Collider">
       <UniqueIdentifier>{d9911df2-a594-4ecf-8716-6849d3dae861}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Collider\LinesCollider">
+      <UniqueIdentifier>{4e33509b-2cfc-4de7-9b04-c5540f7cf14c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -166,6 +169,15 @@
     </ClCompile>
     <ClCompile Include="Source\Collider.h">
       <Filter>Engine\Entity\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SandboxSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collider.cpp">
+      <Filter>Engine\Entity\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LinesCollider.cpp">
+      <Filter>Engine\Entity\Component\Collider\LinesCollider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +285,12 @@
     </ClInclude>
     <ClInclude Include="Source\PhysicsSystem.h">
       <Filter>Engine\Systems\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SandboxSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LinesCollider.h">
+      <Filter>Engine\Entity\Component\Collider\LinesCollider</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

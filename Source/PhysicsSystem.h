@@ -16,5 +16,5 @@ class PhysicsSystem : public BehaviorSystem<PhysicsSystem>
     private:
     std::vector<RidgedBody *> m_ridgedBodies;
     std::vector<Transform *> m_transforms;
-    //std::vector m_colliders;
+    std::vector<Collider *> m_colliders;
 };
