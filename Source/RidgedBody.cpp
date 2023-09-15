@@ -1,11 +1,17 @@
 #include "RidgedBody.h"
-#
 
-RidgedBody::RidgedBody() : _velocity(vec3(0, 0, 0)), _acceleration(vec3(0, 0, 0)), _translation(vec3(0, 0, 0)) , _oldTranslation(vec3(0, 0, 0)), _rotationalVelocity(0), Component(typeid(RidgedBody))
+
+RidgedBody::RidgedBody() : 
+	_velocity(vec3(0, 0, 0)),
+	_acceleration(vec3(0, 0, 0)),
+	_translation(vec3(0, 0, 0)),
+	_oldTranslation(vec3(0, 0, 0)),
+	_rotationalVelocity(0), 
+	Behavior(typeid(RidgedBody))
 {
 }
 
-RidgedBody::RidgedBody(const RidgedBody& other) : Component(other)
+RidgedBody::RidgedBody(const RidgedBody& other) : Behavior(typeid(RidgedBody))
 {
 	_rotationalVelocity = other._rotationalVelocity;
 	_acceleration = other._acceleration;

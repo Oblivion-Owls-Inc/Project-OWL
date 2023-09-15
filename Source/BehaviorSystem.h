@@ -4,6 +4,7 @@
 /// @brief    Example System meant to be copy-pasted when creating new Systems
 #pragma once
 #include "System.h"
+#include <vector>
 
 
 template <typename BehaviorType>
@@ -12,18 +13,18 @@ class BehaviorSystem : System
 private:
 
     /// @brief      Gets called once when this System is added to the Engine
-    virtual void OnInit() override {}
+    virtual void OnInit() override;
 
     /// @brief      Gets called once every simulation frame. Use this function for anything that affects the simulation.
-    virtual void OnFixedUpdate() override {}
+    virtual void OnFixedUpdate() override;
 
     /// @brief      Gets called once every graphics frame. Do not use this function for anything 
     ///             that affects the simulation.
     /// @param dt   The elapsed time in seconds since the previous frame
-    virtual void OnUpdate(float dt) override {}
+    virtual void OnUpdate(float dt) override;
 
     /// @brief      Gets called once before the Engine closes
-    virtual void OnExit() override {}
+    virtual void OnExit() override;
 
     /// @brief      Gets called whenever a new Scene is loaded
     virtual void OnSceneLoad() override {}
@@ -32,7 +33,7 @@ private:
     virtual void OnSceneInit() override {}
 
     /// @brief      Gets called whenever a scene is exited
-    virtual void OnSceneExit() override {}
+    virtual void OnSceneExit() override;
 
     /// @brief      Constructs the BehaviorSystem 
     BehaviorSystem();
@@ -45,10 +46,10 @@ public:
     /// @brief      Gets the instance of BehaviorSystem
     /// @return     BehaviorSystem pointer: new or existing instance of this system
     static BehaviorSystem* getInstance();
+    std::vector<BehaviorType*>& getBehaviors() const;
 
 private:
-    // MAY INCLUDE A DUPLICATE OF THE ABOVE FUNCTION WITH CONSTRUCTOR ARGUMENTS HERE
-
+    std::vector<BehaviorType*> behaviorsList;
 
     // Prevent copying
     BehaviorSystem(BehaviorSystem& other) = delete;
