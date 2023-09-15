@@ -21,6 +21,7 @@
 #include "SceneSystem.h"
 #include "DebugSystem.h"
 #include "RenderSystem.h"
+#include "SandboxSystem.h"
 
 // TODO: move this out of the engine into its own System
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -91,6 +92,7 @@ System* Engine::AddSystem()
 std::map< std::string, System* (Engine::*)()> Engine::addSystemMethods = {
     { "PlatformSystem", &AddSystem< PlatformSystem >  },
     { "SceneSystem",    &AddSystem< SceneSystem >     },
+    { "SandboxSystem",  &AddSystem< SandboxSystem >   },
     { "RenderSystem",   &AddSystem< RenderSystem >    },
     { "DebugSystem",    &AddSystem< DebugSystem >     }
 };
