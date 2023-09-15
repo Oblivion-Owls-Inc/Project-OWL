@@ -1,5 +1,5 @@
 /**
-* @file Component.h
+* @file Behavior.h
 * @author Tyler Birdsall (tyler.birdsall@digipen.edu)
 * @brief Virtual behavior component header
 * @version 0.1
@@ -12,10 +12,18 @@
 #pragma once
 #include "Component.h"
 
-class Behavior
-	: public Component
+class Behavior : public Component
 {
+
+protected:
+
+	Behavior(std::type_index type) :
+		Component(type)
+	{}
+
 public:
+
+
 	virtual void OnUpdate(float dt) {};
 
 	virtual void OnFixedUpdate() {};

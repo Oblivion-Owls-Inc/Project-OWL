@@ -3,15 +3,17 @@
 #include "basics.h"
 #include "Transform.h"
 #include "Entity.h"
+#include "Behavior.h"
+
 using namespace glm;
 
 
-class RidgedBody: public Component
+class RigidBody: public Behavior
 {
     public:
-        RidgedBody();
-        RidgedBody(const RidgedBody& other);
-        ~RidgedBody();
+        RigidBody();
+        RigidBody(const RigidBody& other);
+        ~RigidBody();
         Component* Clone() const override;
         void FixedUpdate(float dt);
 

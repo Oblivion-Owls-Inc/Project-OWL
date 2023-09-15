@@ -10,6 +10,7 @@
             "baseScenePath": "Data/Scenes/",
             "nextSceneName": "Sandbox"
         },
+        "EntitySystem": {},
         "SandboxSystem": {},
         "RenderSystem": {},
         "AudioSystem": {},
