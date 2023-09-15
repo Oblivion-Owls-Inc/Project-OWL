@@ -3,6 +3,7 @@
 ///
 /// @brief    Sandbox "scene" for experimenting
 #pragma once
+
 #include "System.h"
 
 
@@ -28,7 +29,6 @@ private:
     virtual void OnSceneInit() override {}
     virtual void OnSceneExit() override {}
     virtual void Load(rapidjson::Value const& configData) override {}
-
 
 public:
 

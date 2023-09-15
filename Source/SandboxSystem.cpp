@@ -12,11 +12,11 @@
 #include "Sprite.h"
 #include "Transform.h"
 
+#include "EntitySystem.h"
+
 // for archer
-static Entity testEnt, square;
 static float frametime = 0.0f, speed = 13.0f, opacity = 1.0f;
 static int layer = 2;
-
 
 
 static void SceneInit()
@@ -26,12 +26,22 @@ static void SceneInit()
     Transform* t = new Transform, * t2 = new Transform;
     t->setScale({ 800, -800 * s->getHeightMultiplier(), 0 }); // for screen space, y is flipped, so flip the image.
     t->setTranslation({ 100,400,0 });
-    testEnt.Add(s); testEnt.Add(t);
+
+    Entity* testEnt = new Entity();
+    testEnt->SetName( "testEnt" );
+    testEnt->Add( s );
+    testEnt->Add( t );
+    Entities()->AddEntity( testEnt );
 
     // this one's just a square
     t2->setScale({ 100,100,0 });
     t2->setTranslation({ 100,500,0 });
-    square.Add(new Sprite(true)); square.Add(t2);
+
+    Entity* square = new Entity();
+    square->SetName( "square" );
+    square->Add( new Sprite( true ) );
+    square->Add( t2 );
+    Entities()->AddEntity( square );
 
 
 
@@ -55,12 +65,12 @@ static void SceneUpdate(float dt)
         frametime = 0.0f;
 
     // set sprite properties
-    Sprite* s = (Sprite*)testEnt.HasComponent(typeid(Sprite));
-    s->setFrame((int)frametime);
-    s->setLayer(layer);
-    s->setOpacity(opacity);
+    Entity* testEnt = Entities()->GetEntity( "testEnt" );
 
-
+    Sprite* s = (Sprite*)testEnt->GetComponent< Sprite >();
+    s->setFrame( (int)frametime );
+    s->setLayer( layer );
+    s->setOpacity( opacity );
 
 }
 
@@ -113,6 +123,9 @@ void SandboxSystem::OnExit()
         SceneExit();
 }
 
+//-----------------------------------------------------------------------------
+// singleton stuff
+//-----------------------------------------------------------------------------
 
 /// @brief      Calls static version if active
 void SandboxSystem::OnFixedUpdate()
@@ -134,3 +147,5 @@ SandboxSystem* SandboxSystem::getInstance()
     }
     return instance;
 }
+
+//-----------------------------------------------------------------------------

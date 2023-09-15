@@ -8,29 +8,31 @@
 
 #include "ExampleSystem.h"
 
+//-----------------------------------------------------------------------------
+// virtual override methods
+//-----------------------------------------------------------------------------
 
-/// @brief Constructs the ExampleSystem
-ExampleSystem::ExampleSystem() {}
+    
 
-// v v v YOUR CODE HERE v v v
+//-----------------------------------------------------------------------------
+// singleton stuff
+//-----------------------------------------------------------------------------
 
+    /// @brief Constructs the ExampleSystem
+    ExampleSystem::ExampleSystem() {}
 
+    /// @brief The singleton instance of ExampleSystem
+    ExampleSystem * ExampleSystem::instance = nullptr;
 
-
-// ^ ^ ^ YOUR CODE HERE ^ ^ ^
-
-/// @brief The singleton instance of ExampleSystem
-ExampleSystem * ExampleSystem::instance = nullptr;
-
-/// @brief gets the instance of ExampleSystem
-/// @return the instance of the ExampleSystem
-ExampleSystem * ExampleSystem::getInstance()
-{
-    if ( instance == nullptr )
+    /// @brief gets the instance of ExampleSystem
+    /// @return the instance of the ExampleSystem
+    ExampleSystem * ExampleSystem::getInstance()
     {
-        instance = new ExampleSystem();
+        if ( instance == nullptr )
+        {
+            instance = new ExampleSystem();
+        }
+        return instance;
     }
-    return instance;
-}
 
-// MAY INCLUDE A DUPLICATE OF THE ABOVE FUNCTION WITH CONSTRUCTOR ARGUMENTS HERE
+//-----------------------------------------------------------------------------
