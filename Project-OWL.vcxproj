@@ -169,6 +169,9 @@
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies);fmod_vc.lib;</AdditionalDependencies>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(SolutionDir)FMOD\lib\x64\fmod.dll" "$(OutDir)fmod.dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Collider.cpp" />
