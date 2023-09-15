@@ -7,11 +7,11 @@ RidgedBody::RidgedBody() :
 	_translation(vec3(0, 0, 0)),
 	_oldTranslation(vec3(0, 0, 0)),
 	_rotationalVelocity(0), 
-	Behavior(typeid(RidgedBody))
+	Component(typeid(RidgedBody))
 {
 }
 
-RidgedBody::RidgedBody(const RidgedBody& other) : Behavior(typeid(RidgedBody))
+RidgedBody::RidgedBody(const RidgedBody& other) : Component(typeid(RidgedBody))
 {
 	_rotationalVelocity = other._rotationalVelocity;
 	_acceleration = other._acceleration;
@@ -44,7 +44,7 @@ void RidgedBody::FixedUpdate(float dt)
 
 Component* RidgedBody::Clone() const
 {
-	return (Component *)new RidgedBody(*this);
+	return (Component*)new RidgedBody(*this);
 }
 
 vec3* RidgedBody::getAcceleration()
@@ -96,3 +96,4 @@ void RidgedBody::SetRotationalVelocity(float rotational_velocity)
 {
 	_rotationalVelocity = rotational_velocity;
 }
+
