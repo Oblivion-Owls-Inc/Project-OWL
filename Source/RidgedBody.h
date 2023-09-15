@@ -5,10 +5,7 @@
 #include "Entity.h"
 #include "Behavior.h"
 
-using namespace glm;
-
-
-class RidgedBody: public Behavior
+class RidgedBody : public Component
 {
     public:
         RidgedBody();
@@ -28,7 +25,6 @@ class RidgedBody: public Behavior
         void setOldTranslation(const vec3* OldTranslation);
         void setTranslation(const vec3* Translation);
         void SetRotationalVelocity(float rotational_velocity);
-
     private:
         vec3 _velocity;
         vec3 _acceleration;

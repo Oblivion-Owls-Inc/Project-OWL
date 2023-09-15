@@ -152,6 +152,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Collider.cpp" />
+    <ClCompile Include="Source\LinesCollider.cpp" />
     <ClCompile Include="Source\Collider.h" />
     <ClCompile Include="Source\PhysicsSystem.cpp">
       <SubType>
@@ -189,6 +191,7 @@
     <ClCompile Include="Source\Stream.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\LinesCollider.h" />
     <ClInclude Include="Source\PhysicsSystem.h">
       <SubType>
       </SubType>

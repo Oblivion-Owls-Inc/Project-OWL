@@ -6,3 +6,5 @@
 #include <iostream>
 #include <cassert>
 #pragma warning(disable : 26451)
+using namespace std;
+using namespace glm;
