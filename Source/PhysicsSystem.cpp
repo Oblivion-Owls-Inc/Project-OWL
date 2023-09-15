@@ -7,5 +7,14 @@
 
 #include "PhysicsSystem.h"
 
+PhysicsSystem::PhysicsSystem()
+{
+}
 
+void PhysicsSystem::OnFixedUpdate()
+{
+}
 
+void PhysicsSystem::OnSceneExit()
+{
+}

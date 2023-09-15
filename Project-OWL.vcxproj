@@ -139,7 +139,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)rapidjson;$(SolutionDir)imgui;$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)rapidjson;$(SolutionDir)libraries</AdditionalLibraryDirectories>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT.lib /NODEFAULTLIB:LIBCMT.lib %(AdditionalOptions)</AdditionalOptions>
@@ -155,12 +155,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;NDEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)rapidjson;$(SolutionDir)imgui;$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -181,8 +182,11 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\AudioPlayer.cpp" />
+    <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\AudioSystem.cpp" />
+    <ClCompile Include="Source\LinesCollider.cpp" />
+    <ClCompile Include="Source\PhysicsSystem.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
@@ -204,9 +208,12 @@
     <ClCompile Include="Source\Stream.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Behavior.h" />
+    <ClInclude Include="Source\Collider.h" />
+    <ClInclude Include="Source\LinesCollider.h" />
+    <ClInclude Include="Source\PhysicsSystem.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
-    <ClInclude Include="Source\BehaviorComponent.h" />
     <ClInclude Include="Source\InputSystem.h" />
     <ClInclude Include="Source\Sound.h" />
     <ClInclude Include="Source\AudioSystem.h" />
