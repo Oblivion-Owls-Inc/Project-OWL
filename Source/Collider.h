@@ -3,20 +3,34 @@
 /// 
 /// 
 ///
+///
 #include "Component.h"
 #include "rapidjson.h"
 
 using namespace rapidjson;
 
-template<typename ColliderType>
 class Collider : public Component
 {
+	protected:
+		Collider() : Component(typeid(Collider)), type() {}
+
 	public:
-		Collider() : Component(typeid(ColliderType)) {}
+		Collider(const Collider& other);
 		~Collider();
 		virtual Component* Clone() const override;
 		virtual void Update();
-		virtual bool isColliding(ColliderType* collider);
-		void SetCollider(ColliderType* collider);
-		ColliderType* GetCollider();
+		void Check(const Collider* other);
+		virtual bool IsColliding(const Collider* other);
+		void SetCollider(Collider* collider);
+		Collider* GetCollider();
+	private:
+		typedef enum ColliderType
+		{
+			ColliderTypeNone,
+			ColliderTypeCircle,
+			ColliderTypeLine,
+
+		} ColliderType;
+
+		ColliderType type;
 };

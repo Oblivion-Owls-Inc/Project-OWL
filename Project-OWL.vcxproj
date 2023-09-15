@@ -171,6 +171,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Collider.cpp" />
+    <ClCompile Include="Source\LinesCollider.cpp" />
     <ClCompile Include="Source\Collider.h" />
     <ClCompile Include="Source\EntitySystem.cpp" />
     <ClCompile Include="Source\PhysicsSystem.cpp">
@@ -213,7 +215,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\AudioPlayer.h" />
+    <ClInclude Include="Source\AudioSystem.h" />
     <ClInclude Include="Source\EntitySystem.h" />
+    <ClInclude Include="Source\LinesCollider.h" />
     <ClInclude Include="Source\PhysicsSystem.h">
       <SubType>
       </SubType>

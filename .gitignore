@@ -16,7 +16,6 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Fortran module files
 *.mod
@@ -36,3 +35,4 @@
 /Debug
 /x64/Release
 /Release
+/imgui.ini
