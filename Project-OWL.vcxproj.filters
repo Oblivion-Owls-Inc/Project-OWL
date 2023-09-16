@@ -78,15 +78,6 @@
     <Filter Include="Engine\Entity\Component\Collider">
       <UniqueIdentifier>{d9911df2-a594-4ecf-8716-6849d3dae861}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Systems\Input">
-      <UniqueIdentifier>{7951cf07-d458-42ca-a3d0-e485523d675f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Entity\Component\Animation">
-      <UniqueIdentifier>{54676506-428e-482d-b892-a74344c38d41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Entity\Component\Behavior">
-      <UniqueIdentifier>{8178e875-800a-4ee8-ab1e-b0555bfbb8d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\SandboxSystem">
       <UniqueIdentifier>{2e6eff95-6e99-4d15-bb46-87a201aa10e7}</UniqueIdentifier>
     </Filter>
@@ -113,6 +104,9 @@
     </Filter>
     <Filter Include="Data">
       <UniqueIdentifier>{93c4d7b5-a3df-4eb6-ae45-9a5eac6d1d02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Animation">
+      <UniqueIdentifier>{a02009f5-d770-45e6-b0c2-4b9466f6fd2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -221,20 +215,11 @@
     <ClCompile Include="Source\BehaviorSystem.cpp">
       <Filter>Engine\Systems\Behavior</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PhysicsSystem.cpp">
-      <Filter>Engine\Systems\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Collider.h">
-      <Filter>Engine\Entity\Component\Collider</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SandboxSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InputSystem.cpp">
-      <Filter>Engine\Systems\Input</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Animation.cpp">
       <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntitySystem.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -361,20 +346,11 @@
     <ClInclude Include="Source\BehaviorSystem.h">
       <Filter>Engine\Systems\Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PhysicsSystem.h">
-      <Filter>Engine\Systems\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SandboxSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\InputSystem.h">
-      <Filter>Engine\Systems\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Behavior.h">
-      <Filter>Engine\Entity\Component\Behavior</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Animation.h">
       <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntitySystem.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

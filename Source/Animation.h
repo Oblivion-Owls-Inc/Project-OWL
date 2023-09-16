@@ -37,10 +37,14 @@ public:
 	const bool getDone() const;
 	void setDone(bool newDone);
 
+	
+	virtual void CollisionEvent(Entity* other) {}
+
 private:
-	Animation(const Animation& other);
+
 	virtual Component* Behavior::Clone() const override;
 	virtual void OnUpdate(float dt) override;
+	virtual void OnFixedUpdate() override {}
 	void AdvanceFrame();
 	Animation(Animation const&);
 	unsigned frameIndex;

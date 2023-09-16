@@ -9,6 +9,7 @@
 #include "Animation.h"
 #include "Sprite.h"
 #include "Behavior.h"
+#include "Entity.h"
 
 Animation::Animation() : 
 	Behavior( typeid( Animation ) ),
@@ -55,7 +56,7 @@ void Animation::setCount(unsigned newCount)
 
 const float Animation::getDelay() const
 {
-	return frameCount;
+	return frameDelay;
 }
 
 void Animation::setDelay(float newDelay)
