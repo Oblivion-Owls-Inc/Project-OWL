@@ -13,7 +13,7 @@
 
 #include <typeindex>
 #include "document.h"
-class Entity;
+#include "Entity.h"
 
 
 class Component

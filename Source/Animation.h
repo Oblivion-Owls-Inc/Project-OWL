@@ -1,0 +1,53 @@
+/*****************************************************************//**
+ * \file   Animation.h
+ * \brief  animation component class
+ * 
+ * \author Tyler Birdsall (tyler.birdsall@digipen.edu)
+ * \date   September 2023
+ *********************************************************************/
+
+#pragma once
+
+#include "Sprite.h"
+#include "Behavior.h"
+
+class Animation : public Behavior
+{
+public:
+	Animation();
+	
+	const unsigned getIndex() const;
+	void setIndex(unsigned newIndex);
+
+	const unsigned getCount() const;
+	void setCount(unsigned newCount);
+
+	const float getDelay() const;
+	void setDelay(float newDelay);
+
+	const float getDuration() const;
+	void setDuration(float newDuration);
+
+	const bool getRunning() const;
+	void setRunning(bool newRunning);
+
+	const bool getLooping() const;
+	void setLooping(bool newLooping);
+
+	const bool getDone() const;
+	void setDone(bool newDone);
+
+private:
+	Animation(const Animation& other);
+	virtual Component* Behavior::Clone() const override;
+	virtual void OnUpdate(float dt) override;
+	void AdvanceFrame();
+	Animation(Animation const&);
+	unsigned frameIndex;
+	unsigned frameCount;
+	float frameDelay;
+	float frameDuration;
+	bool isRunning;
+	bool isLooping;
+	bool isDone;
+};

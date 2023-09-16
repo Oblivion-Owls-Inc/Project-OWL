@@ -78,6 +78,12 @@
     <Filter Include="Engine\Systems\Input">
       <UniqueIdentifier>{7951cf07-d458-42ca-a3d0-e485523d675f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Animation">
+      <UniqueIdentifier>{54676506-428e-482d-b892-a74344c38d41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior">
+      <UniqueIdentifier>{8178e875-800a-4ee8-ab1e-b0555bfbb8d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -173,6 +179,9 @@
     <ClCompile Include="Source\InputSystem.cpp">
       <Filter>Engine\Systems\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -265,9 +274,6 @@
     <ClInclude Include="Source\Sprite.h">
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Behavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Stream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -282,6 +288,12 @@
     </ClInclude>
     <ClInclude Include="Source\InputSystem.h">
       <Filter>Engine\Systems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Behavior.h">
+      <Filter>Engine\Entity\Component\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation.h">
+      <Filter>Engine\Entity\Component\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
