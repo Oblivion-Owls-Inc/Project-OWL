@@ -15,8 +15,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
     UNREFERENCED_PARAMETER(pCmdLine);
     UNREFERENCED_PARAMETER(nCmdShow);
 
-
-
     // *** Initialize the window using glfw *******************************************************
 
     Engine* engine = Engine::getInstance();

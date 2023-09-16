@@ -44,7 +44,7 @@ void RidgedBody::FixedUpdate(float dt)
 
 Component* RidgedBody::Clone() const
 {
-	return (Component *)new RidgedBody(*this);
+	return (Component*)new RidgedBody(*this);
 }
 
 vec3* RidgedBody::getAcceleration()
@@ -96,3 +96,9 @@ void RidgedBody::SetRotationalVelocity(float rotational_velocity)
 {
 	_rotationalVelocity = rotational_velocity;
 }
+
+void RidgedBody::CollisionEvent(Entity* other)
+{
+	(void)other;
+}
+

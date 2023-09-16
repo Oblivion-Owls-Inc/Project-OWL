@@ -47,8 +47,8 @@ public:
 
 
 private:
-/// @brief Read the data for a vector from a document.
-/// @param doc    - the document to read from.
-/// @param vector - read the data in the document into the variable.
+    /// @brief Read the data for a vector from a document.
+    /// @param doc    - the document to read from.
+    /// @param vector - read the data in the document into the variable.
 	void ReadVector( const rapidjson::Value& doc, glm::vec3& value );
 };
