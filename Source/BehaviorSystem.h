@@ -8,7 +8,7 @@
 
 
 template <typename BehaviorType>
-class BehaviorSystem : System
+class BehaviorSystem : public System
 {
 private:
 
