@@ -184,6 +184,7 @@
     <ClCompile Include="Source\AudioPlayer.cpp" />
     <ClCompile Include="Source\BehaviorSystem.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
+    <ClCompile Include="Source\EntitySystem.cpp" />
     <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\AudioSystem.cpp" />
     <ClCompile Include="Source\LinesCollider.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="Source\Behavior.h" />
     <ClInclude Include="Source\BehaviorSystem.h" />
     <ClInclude Include="Source\Collider.h" />
+    <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\LinesCollider.h" />
     <ClInclude Include="Source\PhysicsSystem.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
