@@ -28,7 +28,7 @@
     void SandboxSystem::OnSceneLoad()
     {
         std::cout << "test" << std::endl;
-        sound = new Sound( "Data/Sounds/test.wav", false );
+        sound = new Sound( "Data/Sounds/test.mp3", false );
     }
 
     /// @brief Gets called whenever a scene is initialized
