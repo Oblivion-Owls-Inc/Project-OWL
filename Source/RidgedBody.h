@@ -12,7 +12,7 @@ class RidgedBody : public Behavior
         RidgedBody(const RidgedBody& other);
         ~RidgedBody();
         Component* Clone() const override;
-        void FixedUpdate(float dt);
+        void OnUpdate(float dt) override;
 
     public:
         vec3* getAcceleration();

@@ -25,7 +25,7 @@ RidgedBody::~RidgedBody()
 
 }
 
-void RidgedBody::FixedUpdate(float dt)
+void RidgedBody::OnUpdate(float dt)
 {
 	vec3 temptranslation(0);
 	Transform* transform = (Transform *)Parent()->HasComponent(typeid(Transform));

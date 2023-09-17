@@ -35,7 +35,7 @@
     void SandboxSystem::OnSceneInit()
     {
         entity = new Entity();
-        entity->Add( new AudioPlayer( ) );
+        entity->Add( new AudioPlayer( ) )
         entity->GetComponent<AudioPlayer>()->setSound(sound);
     }
 
