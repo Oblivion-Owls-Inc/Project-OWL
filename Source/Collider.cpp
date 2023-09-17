@@ -15,8 +15,7 @@ Component* Collider::Clone() const
 {
 	return nullptr;
 }
-
-void Collider::Update()
+void Collider::OnUpdate(float dt)
 {
 }
 

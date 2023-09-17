@@ -27,6 +27,21 @@ void PhysicsSystem::OnSceneExit()
 
 void PhysicsSystem::OnUpdate(float dt)
 {
+    // Loop through all of the behaviors
+    for (auto behavior : m_behaviors)
+    {
+		// Update the behavior
+		behavior->OnUpdate(dt);
+		
+	}
+
+	// Loop through all of the colliders
+    for (auto collider : m_colliders)
+    {
+		// Update the collider
+		collider->OnUpdate(dt);
+	
+	}
 }
 
 void PhysicsSystem::OnExit()

@@ -18,7 +18,7 @@ class Collider : public Component
 		Collider(const Collider& other);
 		~Collider();
 		virtual Component* Clone() const override;
-		virtual void Update();
+		virtual void OnUpdate(float dt);
 		void Check(const Collider* other);
 		virtual bool IsColliding(const Collider* other);
 		void SetCollider(Collider* collider);
