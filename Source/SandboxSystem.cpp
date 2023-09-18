@@ -62,6 +62,26 @@
         delete sound;
     }
 
+
+//-----------------------------------------------------------------------------
+// class specific Read methods
+//-----------------------------------------------------------------------------
+
+    /// @brief the Read Methods used in this System
+    std::map< std::string, ReadMethod< SandboxSystem > > const SandboxSystem::ReadMethods = {};
+
+
+//-----------------------------------------------------------------------------
+// default Read method stuff
+//-----------------------------------------------------------------------------
+
+    /// @brief Gets the read methods of this System
+    /// @return the map of read methods of this System
+    std::map< std::string, ReadMethod< System > > const& SandboxSystem::GetReadMethods()
+    {
+        return (std::map< std::string, ReadMethod< System > > const&)ReadMethods;
+    }
+
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------

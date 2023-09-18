@@ -10,120 +10,160 @@
 
 #include "basics.h"
 
+//-----------------------------------------------------------------------------
+// public methods
+//-----------------------------------------------------------------------------
 
-/// @brief sets the next Scene to change to
-/// @param nextSceneName the name of the next scene
-void SceneSystem::SetNextScene( std::string nextSceneName_ )
-{
-    nextSceneName = nextSceneName_;
-}
-
-/// @brief gets the name of the current scene
-/// @return the name of the current scene
-std::string const& SceneSystem::getSceneName() const
-{
-    return currentSceneName;
-}
-
-
-
-/// @brief The file extension for Scene files
-std::string const SceneSystem::sceneFileExtension = ".scene.json";
-
-
-/// @brief assembles the filepath of a scene with the given name
-/// @param sceneName the name of the scene to assemble the filepath of
-/// @return the filepath of the scene
-std::string SceneSystem::ScenePath( std::string const& sceneName )
-{
-    return baseScenePath + sceneName + sceneFileExtension;
-}
-
-
-/// @brief Loads the next Scene
-void SceneSystem::LoadScene()
-{
-
-    // TODO: load from JSON
-
-    for ( System* system : Engine::getInstance()->getSystems() )
+    /// @brief sets the next Scene to change to
+    /// @param nextSceneName the name of the next scene
+    void SceneSystem::SetNextScene( std::string nextSceneName_ )
     {
-        system->OnSceneLoad();
+        nextSceneName = nextSceneName_;
     }
-}
 
-/// @brief Initializes the current Scene
-void SceneSystem::InitScene()
-{
-    for ( System* system : Engine::getInstance()->getSystems() )
+//-----------------------------------------------------------------------------
+// private methods
+//-----------------------------------------------------------------------------
+
+    /// @brief assembles the filepath of a scene with the given name
+    /// @param sceneName the name of the scene to assemble the filepath of
+    /// @return the filepath of the scene
+    std::string SceneSystem::GetScenePath( std::string const& sceneName )
     {
-        system->OnSceneInit();
+        return baseScenePath + sceneName + sceneFileExtension;
     }
-}
 
-/// @brief Exits the current Scene
-void SceneSystem::ExitScene()
-{
-    for ( System* system : Engine::getInstance()->getSystems() )
+
+    /// @brief Loads the next Scene
+    void SceneSystem::LoadScene()
     {
-        system->OnSceneExit();
-    }
-}
 
-/// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.    
-void SceneSystem::OnFixedUpdate()
-{
-    if ( nextSceneName == "" ) {
-        return;
+        // TODO: load from JSON
+
+        for ( System* system : Engine::getInstance()->getSystems() )
+        {
+            system->OnSceneLoad();
+        }
     }
 
-    ExitScene();
-
-    currentSceneName = nextSceneName;
-    nextSceneName = "";
-
-    LoadScene();
-    InitScene();
-}
-
-/// @brief Gets called once before the Engine closes
-void SceneSystem::OnExit()
-{
-    // TODO: add the following line once JSON deserialization is implemented
-    // assert ( currentSceneName != "" );
-
-    ExitScene();
-
-    currentSceneName = "";
-}
-
-/// @brief Loads the configData of the SceneSystem from JSON
-/// @param configData the JSON config data to load
-void SceneSystem::Load( rapidjson::Value const& configData )
-{
-    // TODO: JSON error handling
-    baseScenePath = configData[ "baseScenePath" ].GetString();
-    nextSceneName = configData[ "nextSceneName" ].GetString();
-}
-
-
-/// @brief Constructs the SceneSystem
-SceneSystem::SceneSystem() :
-    nextSceneName(""),
-    currentSceneName(""),
-    baseScenePath("Data/Scenes")
-{}
-
-/// @brief The singleton instance of SceneSystem
-SceneSystem* SceneSystem::instance = nullptr;
-
-/// @brief gets the instance of SceneSystem
-/// @return the instance of the SceneSystem
-SceneSystem* SceneSystem::getInstance()
-{
-    if ( instance == nullptr )
+    /// @brief Initializes the current Scene
+    void SceneSystem::InitScene()
     {
-        instance = new SceneSystem();
+        for ( System* system : Engine::getInstance()->getSystems() )
+        {
+            system->OnSceneInit();
+        }
     }
-    return instance;
-}
+
+    /// @brief Exits the current Scene
+    void SceneSystem::ExitScene()
+    {
+        for ( System* system : Engine::getInstance()->getSystems() )
+        {
+            system->OnSceneExit();
+        }
+    }
+
+//-----------------------------------------------------------------------------
+// private static methods
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// virtual override methods
+//-----------------------------------------------------------------------------
+
+    /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.    
+    void SceneSystem::OnFixedUpdate()
+    {
+        if ( nextSceneName == "" ) {
+            return;
+        }
+
+        ExitScene();
+
+        currentSceneName = nextSceneName;
+        nextSceneName = "";
+
+        LoadScene();
+        InitScene();
+    }
+
+    /// @brief Gets called once before the Engine closes
+    void SceneSystem::OnExit()
+    {
+        // TODO: add the following line once JSON deserialization is implemented
+        // assert ( currentSceneName != "" );
+
+        ExitScene();
+
+        currentSceneName = "";
+    }
+
+//-----------------------------------------------------------------------------
+// private constants
+//-----------------------------------------------------------------------------
+
+    /// @brief The file extension for Scene files
+    std::string const SceneSystem::sceneFileExtension = ".scene.json";
+
+//-----------------------------------------------------------------------------
+// class specific Read methods
+//-----------------------------------------------------------------------------
+
+    /// @brief reads a JSON value into baseScenePath
+    /// @param jsonValue the JSON value storing the data to be put into baseScenePath
+    void SceneSystem::ReadBaseScenePath( rapidjson::Value const& jsonValue )
+    {
+        baseScenePath = jsonValue.GetString();
+    }
+
+    /// @brief reads a JSON value into nextSceneName
+    /// @param jsonValue the JSON value storing the data to be put into nextSceneName
+    void SceneSystem::ReadNextSceneName( rapidjson::Value const& jsonValue )
+    {
+        nextSceneName = jsonValue.GetString();
+    }
+
+    /// @brief the Read Methods used in this System
+    std::map< std::string, ReadMethod< SceneSystem > > const SceneSystem::ReadMethods = {
+        { "baseScenePath", &ReadBaseScenePath },
+        { "nextSceneName", &ReadNextSceneName }
+    };
+
+//-----------------------------------------------------------------------------
+// default Read method stuff
+//-----------------------------------------------------------------------------
+
+    /// @brief Gets the read methods of this System
+    /// @return the map of read methods of this System
+    std::map< std::string, ReadMethod< System > > const& SceneSystem::GetReadMethods()
+    {
+        return (std::map< std::string, ReadMethod< System > > const&)ReadMethods;
+    }
+
+//-----------------------------------------------------------------------------
+// singleton stuff
+//-----------------------------------------------------------------------------
+
+    /// @brief Constructs the SceneSystem
+    SceneSystem::SceneSystem() :
+        nextSceneName(""),
+        currentSceneName(""),
+        baseScenePath("Data/Scenes")
+    {}
+
+    /// @brief The singleton instance of SceneSystem
+    SceneSystem* SceneSystem::instance = nullptr;
+
+    /// @brief gets the instance of SceneSystem
+    /// @return the instance of the SceneSystem
+    SceneSystem* SceneSystem::getInstance()
+    {
+        if ( instance == nullptr )
+        {
+            instance = new SceneSystem();
+        }
+        return instance;
+    }
+
+//-----------------------------------------------------------------------------

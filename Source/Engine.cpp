@@ -24,6 +24,7 @@
 #include "AudioSystem.h"
 #include "SandboxSystem.h"
 #include "InputSystem.h"
+#include "EntitySystem.h"
 
 // TODO: move this out of the engine into its own System
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -98,35 +99,53 @@ std::map< std::string, System* (Engine::*)()> Engine::addSystemMethods = {
     { "RenderSystem",   &AddSystem< RenderSystem >      },
     { "DebugSystem",    &AddSystem< DebugSystem >       },
     { "AudioSystem",    &AddSystem< AudioSystem >       },
-    // { "SandboxSystem",  &AddSystem< SandboxSystem >     }
+    { "EntitySystem",   &AddSystem< EntitySystem >      },
+    { "SandboxSystem",  &AddSystem< SandboxSystem >     }
 };
 
 /// @brief Loads the engine config from "Data/EngineConfig.json"
 void Engine::Load()
 {
     // v v v TODO: put this in a helper function in its own class v v v
-        std::ifstream configFile( "Data/EngineConfig.json" );
+    std::ifstream configFile( "Data/EngineConfig.json" );
 
-        std::stringstream configStream;
-        configStream << configFile.rdbuf();
+    std::stringstream configStream;
+    configStream << configFile.rdbuf();
 
-        configFile.close();
+    configFile.close();
 
-        rapidjson::Document configData;
-        configData.Parse( configStream.str().c_str() );
+    rapidjson::Document configData;
+    configData.Parse( configStream.str().c_str() );
     // ^ ^ ^ TODO: put this in a helper function in its own class ^ ^ ^
 
     // v v v TODO: JSON error handing (maybe w/ helper functions in their own class) v v v
-        fixedFrameDuration = configData[ "fixedFrameDuration" ].GetFloat();
+    fixedFrameDuration = configData[ "fixedFrameDuration" ].GetFloat();
 
-        for ( auto& systemConfig : configData[ "systems" ].GetObject() )
-        {
-            auto addSystemMethod = addSystemMethods.at( systemConfig.name.GetString() ); // get the appropriate System creation method
-            System* system = (this->*addSystemMethod)(); // create and add the System to the Engine
-            system->Load( systemConfig.value ); // have the System load itself
-        }
-    /// ^ ^ ^ TODO: JSON error handling (maybe w/ helper functions in their own class) ^ ^ ^
+    for ( auto& systemConfig : configData[ "systems" ].GetObject() )
+    {
+        auto addSystemMethod = addSystemMethods.at( systemConfig.name.GetString() ); // get the appropriate System creation method
+        System* system = (this->*addSystemMethod)(); // create and add the System to the Engine
+        ReadSystem( system, systemConfig.value ); // Load the System's config
+    }
+    // ^ ^ ^ TODO: JSON error handling (maybe w/ helper functions in their own class) ^ ^ ^
 
+}
+
+
+/// @brief Reads and loads the specified System config from JSON
+/// @param system the system to load
+/// @param systemConfig the JSON data of the System's configuration
+void Engine::ReadSystem( System* system, rapidjson::Value const& systemConfig )
+{
+    std::map< std::string, ReadMethod< System > > readMethods = system->GetReadMethods();
+
+    // v v v TODO: JSON error handling v v v
+    for ( auto& setting : systemConfig.GetObject() )
+    {
+        ReadMethod< System > readMethod = readMethods.at( setting.name.GetString() ); // get the appropriate System read method
+        (system->*readMethod)( setting.value ); // call the system read method to have the system read the value
+    }
+    // ^ ^ ^ TODO: JSON error handling ^ ^ ^
 }
 
 /// @brief Initializes the engine and all Systems in the Engine
@@ -220,6 +239,8 @@ void Engine::Exit()
     {
         system->OnExit();
     }
+
+    // TODO: properly delete systems
 }
 
 

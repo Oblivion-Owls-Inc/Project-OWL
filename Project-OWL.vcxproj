@@ -86,7 +86,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)FMOD\inc;</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)FMOD\inc\x86</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)FMOD\lib\x86</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -184,11 +184,13 @@
     <ClCompile Include="Source\AudioPlayer.cpp" />
     <ClCompile Include="Source\BehaviorSystem.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
+    <ClCompile Include="Source\EntitySystem.cpp" />
     <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\AudioSystem.cpp" />
     <ClCompile Include="Source\LinesCollider.cpp" />
     <ClCompile Include="Source\PhysicsSystem.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
+    <ClCompile Include="Source\RigidBody.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
@@ -199,7 +201,6 @@
     <ClCompile Include="Source\ExampleSystem.cpp" />
     <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\RidgedBody.cpp" />
     <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\SceneSystem.cpp" />
     <ClCompile Include="Source\Sprite.cpp" />
@@ -212,8 +213,10 @@
     <ClInclude Include="Source\Behavior.h" />
     <ClInclude Include="Source\BehaviorSystem.h" />
     <ClInclude Include="Source\Collider.h" />
+    <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\LinesCollider.h" />
     <ClInclude Include="Source\PhysicsSystem.h" />
+    <ClInclude Include="Source\RigidBody.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
     <ClInclude Include="Source\InputSystem.h" />
@@ -238,7 +241,6 @@
     <ClInclude Include="Source\DebugSystem.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\GUI.h" />
-    <ClInclude Include="Source\RidgedBody.h" />
     <ClInclude Include="Source\PlatformSystem.h" />
     <ClInclude Include="Source\SceneSystem.h" />
     <ClInclude Include="Source\Sprite.h" />

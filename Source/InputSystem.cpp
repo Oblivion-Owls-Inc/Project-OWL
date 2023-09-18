@@ -120,6 +120,17 @@ glm::vec2 InputSystem::getMousePos()
 }
 
 
+/// @brief the Read Methods used in this System
+std::map< std::string, ReadMethod< InputSystem > > const InputSystem::ReadMethods = {};
+
+/// @brief Gets the read methods of this System
+/// @return the map of read methods of this System
+std::map< std::string, ReadMethod< System > > const& InputSystem::GetReadMethods()
+{
+    return (std::map< std::string, ReadMethod< System > > const&)ReadMethods;
+}
+
+
 /// @brief The singleton instance of InputSystem
 InputSystem * InputSystem::instance = nullptr;
 

@@ -66,6 +66,11 @@ class Engine
         /// @brief Loads the engine config from "Data/EngineConfig.json"
         void Load();
 
+        /// @brief Reads and loads the specified System config from JSON
+        /// @param system the system to load
+        /// @param systemConfig the JSON data of the System's configuration
+        static void ReadSystem( System* system, rapidjson::Value const& systemConfig );
+
         /// @brief Initializes the engine and all Systems in the Engine.
         void Init();
 

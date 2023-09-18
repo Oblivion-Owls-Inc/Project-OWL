@@ -10,10 +10,17 @@
 
 #include "../rapidjson/document.h"
 
+#include <map>
+#include <string>
+
+template < typename SystemType >
+using ReadMethod = void (SystemType::*)( rapidjson::Value const& jsonValue );
+
 /// @brief Base class for all Systems
 class System
 {
-    public:
+    public: // virtual methods
+
         /// @brief Gets called once when this System is added to the Engine
         virtual void OnInit() = 0;
 
@@ -36,17 +43,18 @@ class System
         /// @brief Gets called whenever a scene is exited
         virtual void OnSceneExit() = 0;
 
-        /// @brief Loads the config data of this System
-        /// @param configData the JSON object with all of the configData for this System
-        virtual void Load( rapidjson::Value const& configData ) = 0;
+    public: // read method handle
+    
+        /// @brief Gets the read methods of this System
+        /// @return the map of read methods of this System
+        virtual std::map< std::string, ReadMethod< System > > const& GetReadMethods() = 0;
 
-
-    protected:
+    protected: // constructor
     
         /// @brief Constructs a System
         System() = default;
 
-    public:
+    public: // singleton stuff
     
         // Prevent Systems from being copied
         System( System& other ) = delete;

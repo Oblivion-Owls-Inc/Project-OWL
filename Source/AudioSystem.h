@@ -20,6 +20,18 @@ public: // methods
     /// @return the FMOD::System
     FMOD::System* getFMOD();
 
+private: // virtual override methods
+
+    /// @brief Gets called once when this System is added to the Engine
+    virtual void OnInit() override;
+
+    /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+    /// @param dt the elapsed time in seconds since the previous frame
+    virtual void OnUpdate( float dt ) override;
+
+    /// @brief Gets called once before the Engine closes
+    virtual void OnExit() override;
+
 private: // member variables
 
     /// @brief The FMOD system
@@ -36,7 +48,7 @@ private: // static methods
     /// @param commandData1 first callback parameter, dependent on callback type
     /// @param commandData2 second callback parameter, dependent on callback type
     /// @param userData user data associated with the FMOD system
-    static FMOD_RESULT FMODCallback(
+    static FMOD_RESULT F_CALLBACK FMODCallback(
         FMOD_SYSTEM* system,
         FMOD_SYSTEM_CALLBACK_TYPE type,
         void* commandData1,
@@ -44,19 +56,13 @@ private: // static methods
         void* userData
     );
 
-private: // virtual methods
+private: // class-specific Read Methods
 
-    /// @brief Gets called once when this System is added to the Engine
-    virtual void OnInit() override;
+    /// @brief method that read a JSON value into exampleMember
+    /// @param readValue the JSON value storing the data to be put into exampleMember
+    void ReadMaxChannels( rapidjson::Value const& readValue );
 
-    /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-    /// @param dt the elapsed time in seconds since the previous frame
-    virtual void OnUpdate( float dt ) override;
-
-    /// @brief Gets called once before the Engine closes
-    virtual void OnExit() override;
-
-private: // unused virtual methods
+private: // unused virtual overrides
 
     /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
     virtual void OnFixedUpdate() override {}
@@ -72,12 +78,16 @@ private: // unused virtual methods
     /// @brief Gets called whenever a scene is exited
     virtual void OnSceneExit() override {}
 
+private: // default Read method stuff
 
-    /// @brief Loads the config data of this System
-    /// @param configData the JSON object with all of the configData for this System
-    virtual void Load( rapidjson::Value const& configData ) override {}
+    /// @brief the Read Methods used in this System
+    static std::map< std::string, ReadMethod< AudioSystem > > const ReadMethods;
 
-private: // constructor/singleton stuff
+    /// @brief Gets the read methods of this System
+    /// @return the map of read methods of this System
+    virtual std::map< std::string, ReadMethod< System > > const& GetReadMethods() override;
+
+private: // singleton stuff
 
     /// @brief Constructs the AudioSystem
     AudioSystem();
