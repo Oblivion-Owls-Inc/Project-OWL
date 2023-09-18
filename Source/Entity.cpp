@@ -15,6 +15,7 @@ Brief Description:
 #include <algorithm>   // std::sort
 #include "Component.h" // Type
 #include <cassert>	   // assert
+#include "ComponentFactory.h" // Create.
 
 //------------------------------------------------------------------------------
 // Public Functions:
@@ -59,7 +60,6 @@ void Entity::Free()
 		
 		// Delete the component.
 		delete component.second;
-		
 	}
 	// Clear the component list.
 	components.clear();
@@ -125,4 +125,21 @@ bool Entity::IsNamed(const std::string& name)
 		return (mName == name);
 	}
 	return false;
+}
+
+/// @brief Read in the name of entity.
+/// @param stream the json value to read from.
+void Entity::ReadName(Stream stream)
+{
+	mName = stream.Read<std::string>();
+}
+
+/// @brief Read in the data for all the components of entity.
+/// @param stream the json object to read from.
+void Entity::ReadComponents( Stream stream )
+{
+	for ( auto& componentData : stream.getObject() )
+	{
+
+	}
 }

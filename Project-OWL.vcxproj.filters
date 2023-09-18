@@ -167,6 +167,12 @@
     <ClCompile Include="Source\Collider.h">
       <Filter>Engine\Entity\Component\Collider</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SandboxSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ComponentFactory.cpp">
+      <Filter>Engine\Entity\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -273,6 +279,12 @@
     </ClInclude>
     <ClInclude Include="Source\PhysicsSystem.h">
       <Filter>Engine\Systems\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SandboxSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ComponentFactory.h">
+      <Filter>Engine\Entity\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
