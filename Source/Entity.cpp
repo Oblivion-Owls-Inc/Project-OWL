@@ -42,8 +42,11 @@ Entity::Entity(const Entity& other)
 	}
 }
 
-/// @brief Destructor for the entity class.
-Entity::~Entity() { Free(); }
+/// @brief Destructor for the entity class. SHOULD ONLY BE CALLED AFTER ENTITY HAS BEEN REMOVED FROM ENTITYSYSTEM
+Entity::~Entity()
+{
+    Free();
+}
 
 /// @brief  Clones an entity.
 /// @return A clone of an entity.
@@ -56,7 +59,7 @@ void Entity::Free()
 	for (auto component : components)
 	{
 		// Make sure the component is valid.
-		assert(component.second);
+		assert( component.second );
 		
 		// Delete the component.
 		delete component.second;

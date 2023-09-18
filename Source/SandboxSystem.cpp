@@ -1,136 +1,86 @@
-/// @file     SandboxSystem.cpp
-/// @author   Anyone
+/// @file SandboxSystem.cpp
+/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief Sandbox system meant to mimic CS-230 scenes
+/// @version 0.1
+/// @date 2023-09-05
 /// 
-/// @brief    Sandbox scene for experimenting.
-#include "SandboxSystem.h"
-#include "SceneSystem.h"
-#include "imgui.h"
-// ===========================================
+/// @copyright Copyright (c) 2023
 
+#include "SandboxSystem.h"
 
 #include "Entity.h"
-#include "Sprite.h"
-#include "Transform.h"
+#include "AudioPlayer.h"
+#include "InputSystem.h"
 
-// for archer
-static Entity testEnt, square;
-static float frametime = 0.0f, speed = 13.0f, opacity = 1.0f;
-static int layer = 2;
+//-----------------------------------------------------------------------------
+// variables
+//-----------------------------------------------------------------------------
 
+    static Entity* entity;
 
+    static Sound* sound;
 
-static void SceneInit()
-{
-    // give this entity a Sprite and a Transform.
-    Sprite* s = new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22, 17);
-    Transform* t = new Transform, * t2 = new Transform;
-    t->setScale({ 800, -800 * s->getHeightMultiplier(), 0 }); // for screen space, y is flipped, so flip the image.
-    t->setTranslation({ 100,400,0 });
-    testEnt.Add(s); testEnt.Add(t);
+//-----------------------------------------------------------------------------
+// virtual override methods
+//-----------------------------------------------------------------------------
 
-    // this one's just a square
-    t2->setScale({ 100,100,0 });
-    t2->setTranslation({ 100,500,0 });
-    square.Add(new Sprite(true)); square.Add(t2);
-
-
-
-}
-
-
-
-
-static void SceneUpdate(float dt)
-{
-    // ImGui constrols
-    ImGui::Begin("Sandbox Scene: archer");
-    ImGui::SliderFloat("anim speed", &speed, 0.0f, 30.0f);
-    ImGui::SliderInt("layer", &layer, 0, 4);
-    ImGui::SliderFloat("opacity", &opacity, 0.0f, 1.0f);
-    ImGui::End();
-
-    // advance frames
-    frametime += dt * speed;
-    if (frametime >= 12.0f)
-        frametime = 0.0f;
-
-    // set sprite properties
-    Sprite* s = (Sprite*)testEnt.HasComponent(typeid(Sprite));
-    s->setFrame((int)frametime);
-    s->setLayer(layer);
-    s->setOpacity(opacity);
-
-
-
-}
-
-
-
-
-static void SceneFixedUpdate()
-{
-
-}
-
-
-static void SceneExit()
-{
-
-}
-
-
-
-
-
-
-
-// ------------------- System needs ----------------- //
-
-/// @brief      Calls SceneInit or SceneUpdate when current scene is Sandbox
-void SandboxSystem::OnUpdate(float dt)
-{
-    if (_active)
+    /// @brief Gets called whenever a new Scene is loaded
+    void SandboxSystem::OnSceneLoad()
     {
-        if (SceneSystem::getInstance()->getSceneName() == "Sandbox")
-            SceneUpdate(dt);
-        else
+        std::cout << "test" << std::endl;
+        sound = new Sound( "Data/Sounds/test.wav", false );
+    }
+
+    /// @brief Gets called whenever a scene is initialized
+    void SandboxSystem::OnSceneInit()
+    {
+        entity = new Entity();
+        entity->Add( new AudioPlayer( ) );
+        entity->GetComponent<AudioPlayer>()->setSound(sound);
+    }
+
+    /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
+    void SandboxSystem::OnFixedUpdate()
+    {
+        if ( Input()->getKeyTriggered( GLFW_KEY_SPACE ) )
         {
-            _active = false;
-            SceneExit();
+            entity->GetComponent<AudioPlayer>()->Play();
         }
     }
-    else if (SceneSystem::getInstance()->getSceneName() == "Sandbox")
+
+    /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+    /// @param dt the elapsed time in seconds since the previous frame
+    void SandboxSystem::OnUpdate( float dt )
     {
-        _active = true;
-        SceneInit();
+
     }
-}
 
-/// @brief      Calls SceneExit if active
-void SandboxSystem::OnExit()
+    /// @brief Gets called whenever a scene is exited
+    void SandboxSystem::OnSceneExit()
+    {
+        delete entity;
+        delete sound;
+    }
+
+//-----------------------------------------------------------------------------
+// singleton stuff
+//-----------------------------------------------------------------------------
+
+/// @brief Constructs the SandboxSystem
+SandboxSystem::SandboxSystem() {}
+
+/// @brief The singleton instance of SandboxSystem
+SandboxSystem * SandboxSystem::instance = nullptr;
+
+/// @brief gets the instance of SandboxSystem
+/// @return the instance of the SandboxSystem
+SandboxSystem * SandboxSystem::getInstance()
 {
-    if (_active)
-        SceneExit();
-}
-
-
-/// @brief      Calls static version if active
-void SandboxSystem::OnFixedUpdate()
-{
-    if (_active)
-        SceneFixedUpdate();
-}
-
-/// @brief    The singleton instance of SandboxSystem 
-SandboxSystem* SandboxSystem::instance = nullptr;
-
-/// @brief    Gets the instance of SandboxSystem
-/// @return   SandboxSystem pointer: new or existing instance of this system
-SandboxSystem* SandboxSystem::getInstance()
-{
-    if (instance == nullptr)
+    if ( instance == nullptr )
     {
         instance = new SandboxSystem();
     }
     return instance;
 }
+
+//-----------------------------------------------------------------------------

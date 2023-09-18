@@ -11,9 +11,13 @@
 #include "System.h"
 
 /// @brief Example System meant to be copy-pasted when creating new Systems
-class ExampleSystem : System
+class ExampleSystem : public System
 {
-private:
+private: // virtual override methods
+
+    
+
+private: // unused virtual overrides
 
     /// @brief Gets called once when this System is added to the Engine
     virtual void OnInit() override {}
@@ -48,22 +52,20 @@ private:
     /// @param configData the JSON object with all of the configData for this System
     virtual void Load( rapidjson::Value const& configData ) override {}
 
+private: // singleton stuff
 
-     /// @brief Constructs the ExampleSystem
+    /// @brief Constructs the ExampleSystem
     ExampleSystem();
 
 
-     /// @brief The singleton instance of ExampleSystem
+    /// @brief The singleton instance of ExampleSystem
     static ExampleSystem * instance;
 
-public:
+public: // singleton stuff
 
-     /// @brief gets the instance of ExampleSystem
-     /// @return the instance of the ExampleSystem
+    /// @brief gets the instance of ExampleSystem
+    /// @return the instance of the ExampleSystem
     static ExampleSystem * getInstance();
-
-    // MAY INCLUDE A DUPLICATE OF THE ABOVE FUNCTION WITH CONSTRUCTOR ARGUMENTS HERE
-
 
     // Prevent copying
     ExampleSystem(ExampleSystem& other) = delete;

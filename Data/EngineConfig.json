@@ -5,12 +5,15 @@
             "windowWidth": 800,
             "windowHeight": 600
         },
+        "InputSystem": {},
         "SceneSystem": {
             "baseScenePath": "Data/Scenes/",
             "nextSceneName": "Sandbox"
         },
+        "EntitySystem": {},
         "SandboxSystem": {},
         "RenderSystem": {},
+        "AudioSystem": {},
         "DebugSystem": {
             "showFpsWindow": true
         }
