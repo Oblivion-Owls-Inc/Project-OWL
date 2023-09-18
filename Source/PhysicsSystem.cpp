@@ -33,9 +33,17 @@ void PhysicsSystem::OnExit()
 {
 }
 
-void PhysicsSystem::Load(rapidjson::Value const& configData)
+
+/// @brief the Read Methods used in this System
+std::map< std::string, ReadMethod< PhysicsSystem > > const PhysicsSystem::ReadMethods = {};
+
+/// @brief Gets the read methods of this System
+/// @return the map of read methods of this System
+std::map< std::string, ReadMethod< System > > const& PhysicsSystem::GetReadMethods()
 {
+    return (std::map< std::string, ReadMethod< System > > const&)ReadMethods;
 }
+
 
 PhysicsSystem* PhysicsSystem::getInstance()
 {
