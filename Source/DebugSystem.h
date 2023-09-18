@@ -14,62 +14,101 @@
 /// @details This class provides functionality for debugging within your application.
 class DebugSystem : public System
 {
-    public:
-        static DebugSystem* instance;
-        static DebugSystem* getInstance();
+public: // methods
 
-        ImGuiTextBuffer logBuffer;
+    /// @brief Show the Frames Per Second (FPS) in a debug window
+    /// @details This function displays the Frames Per Second (FPS) in a debug window when called.
+    void ToggleFPS();
 
-        /// @brief Constructor for DebugSystem
-        /// @param window The GLFW window handle (default is the current context)
-        DebugSystem();
+    void ToggleDev();
 
-        /// @brief Set the GLFW window handle
-        /// @param window The GLFW window handle to set
-        void SetWindowHandle(GLFWwindow* window) { _window = window; }
+    /// @brief Print a formatted message to the screen
+    /// @param format The format string, similar to printf
+    /// @details This function allows you to print a formatted message to the screen using ImGui.
+    void ScreenPrint(const char* format, ...);
 
-        /// @brief Initialize the DebugSystem
-        void OnInit() override;
+    void ShowDebugMenu();
 
-        /// @brief Update the DebugSystem
-        /// @param dt The time elapsed since the last update
-        void OnUpdate(float dt) override;
+public: // accessors
 
-        /// @brief Exit and clean up the DebugSystem
-        void OnExit() override;
+    /// @brief Set the GLFW window handle
+    /// @param window The GLFW window handle to set
+    __inline void SetWindowHandle( GLFWwindow* window ) { _window = window; }
 
-        /// @brief Loads the DebugSystem config data from JSON
-        /// @param configData the JSON to load the config data from
-        virtual void Load( rapidjson::Value const& configData ) override;
+    /// @brief gets the log buffer of the DebugSystem
+    /// @return the log buffer of the DebugSystem
+    __inline ImGuiTextBuffer& getLogBuffer() { return logBuffer; }
 
-        /// @brief Show the Frames Per Second (FPS) in a debug window
-        /// @details This function displays the Frames Per Second (FPS) in a debug window when called.
-        void ToggleFPS();
+private: // virtual override methods
 
-        void ToggleDev();
+    /// @brief Initialize the DebugSystem
+    void OnInit() override;
 
-        /// @brief Print a formatted message to the screen
-        /// @param format The format string, similar to printf
-        /// @details This function allows you to print a formatted message to the screen using ImGui.
-        void ScreenPrint(const char* format, ...);
+    /// @brief Update the DebugSystem
+    /// @param dt The time elapsed since the last update
+    void OnUpdate(float dt) override;
 
-        void ShowDebugMenu();
+    /// @brief Exit and clean up the DebugSystem
+    void OnExit() override;
 
-        void OnFixedUpdate() override;
+    void OnFixedUpdate() override;
 
+private: // member variables
 
-        // Unused functions (from the base class)
-        virtual void OnSceneLoad() override {}
-        virtual void OnSceneInit() override {}
-        virtual void OnSceneExit() override {}
+    ImGuiTextBuffer logBuffer; /// @brief the TextBuffer for ImGui console
+    std::vector<GUI*> windows; /// @brief A collection of GUI windows
+    GLFWwindow* _window; /// @brief The GLFW window handle
+    bool showFpsWindow; /// @brief Flag to control FPS display
+    bool showDevWindow; /// @brief Flag to control dev display
+    ImGuiIO* io; /// @brief Pointer to the ImGui Input/Output structure
 
-    private:
-        std::vector<GUI*> windows; /// @brief A collection of GUI windows
-        GLFWwindow* _window; /// @brief The GLFW window handle
-        bool showFpsWindow; /// @brief Flag to control FPS display
-        bool showDevWindow; /// @brief Flag to control dev display
-        ImGuiIO* io; /// @brief Pointer to the ImGui Input/Output structure
+private: // class-specific Read Methods
+
+    void ReadShowFPSWindow( rapidjson::Value const& jsonValue );
+
+private: // unused virtual overrides
+
+    /// @brief Gets called whenever a new Scene is loaded
+    virtual void OnSceneLoad() override {}
+
+    /// @brief Gets called whenever a scene is initialized
+    virtual void OnSceneInit() override {}
+
+    /// @brief Gets called whenever a scene is exited
+    virtual void OnSceneExit() override {}
+
+private: // default Read method stuff
+
+    /// @brief the Read Methods used in this System
+    static std::map< std::string, ReadMethod< DebugSystem > > const ReadMethods;
+
+    /// @brief Gets the read methods of this System
+    /// @return the map of read methods of this System
+    virtual std::map< std::string, ReadMethod< System > > const& GetReadMethods() override;
+
+private: // singleton stuff
+
+    /// @brief Constructs the DebugSystem
+    DebugSystem();
+
+    /// @brief The singleton instance of DebugSystem
+    static DebugSystem * instance;
+
+public: // singleton stuff
+
+    /// @brief gets the instance of DebugSystem
+    /// @return the instance of the DebugSystem
+    static DebugSystem * getInstance();
+
+    // Prevent copying
+    DebugSystem(DebugSystem& other) = delete;
+    void operator=(const DebugSystem&) = delete;
+
 };
+
+/// @brief shorthand method for DebugSystem::getInstance()
+/// @return the DebugSystem instance
+__inline DebugSystem* Debug() { return DebugSystem::getInstance(); }
 
 class DebugConsole
 {
