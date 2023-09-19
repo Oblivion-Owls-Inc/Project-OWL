@@ -37,7 +37,8 @@ void DebugSystem::OnInit()
     io = &ImGui::GetIO();
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
     ImGui_ImplOpenGL3_Init("#version 430");
-    ImGui::StyleColorsDark();
+    ImGui::StyleColorsClassic();
+    io->ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -62,7 +63,21 @@ void DebugSystem::OnUpdate(float dt)
     {
         ImGui::Begin("FPS");
         ImGui::Text("FPS: %d", static_cast<int>(1.0f / dt));
+        float deltaTime = ImGui::GetIO().DeltaTime;
+
+        // Define the number of samples
+        const int numSamples = 100;
+
+        // Generate and plot the samples
+        float samples[numSamples];
+        for (int n = 0; n < numSamples; n++) {
+            samples[n] = 1.0f / deltaTime;
+        }
+
+        ImGui::PlotLines("FPS", samples, numSamples);
         ImGui::End();
+
+
     }
 
     for (GUI* Menu : windows)

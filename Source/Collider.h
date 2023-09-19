@@ -6,19 +6,19 @@
 ///
 #include "Component.h"
 #include "rapidjson.h"
-
+#include "PhysicsSystem.h"
 using namespace rapidjson;
 
 class Collider : public Component
 {
 	protected:
-		Collider() : Component(typeid(Collider)), type() {}
+		Collider();
 
 	public:
 		Collider(const Collider& other);
 		~Collider();
 		virtual Component* Clone() const override;
-		virtual void Update();
+		virtual void OnUpdate(float dt);
 		void Check(const Collider* other);
 		virtual bool IsColliding(const Collider* other);
 		void SetCollider(Collider* collider);

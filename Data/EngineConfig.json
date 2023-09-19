@@ -10,10 +10,10 @@
             "baseScenePath": "Data/Scenes/",
             "nextSceneName": "Sandbox"
         },
-        "EntitySystem": {},
         "SandboxSystem": {},
         "RenderSystem": {},
         "AudioSystem": {},
+        "PhysicsSystem": {},
         "DebugSystem": {
             "showFpsWindow": true
         }

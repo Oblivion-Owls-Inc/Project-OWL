@@ -1,44 +1,43 @@
 #include "RidgedBody.h"
-
+#include "PhysicsSystem.h"
 
 RidgedBody::RidgedBody() : 
 	_velocity(vec3(0, 0, 0)),
-	_acceleration(vec3(0, 0, 0)),
-	_translation(vec3(0, 0, 0)),
+	_acceleration(vec3(1, 1, 0)),
 	_oldTranslation(vec3(0, 0, 0)),
 	_rotationalVelocity(0), 
 	Behavior(typeid(RidgedBody))
 {
+	PhysicsSystem::getInstance()->AddBehavior(this);
 }
 
 RidgedBody::RidgedBody(const RidgedBody& other) : Behavior(typeid(RidgedBody))
 {
 	_rotationalVelocity = other._rotationalVelocity;
 	_acceleration = other._acceleration;
-	_translation = other._translation;
 	_oldTranslation = other._oldTranslation;
 	_velocity = other._velocity;
 }
 
 RidgedBody::~RidgedBody()
 {
-
+	PhysicsSystem::getInstance()->RemoveBehavior(this);
 }
 
-void RidgedBody::FixedUpdate(float dt)
+void RidgedBody::OnUpdate(float dt)
 {
-	vec3 temptranslation(0);
-	Transform* transform = (Transform *)Parent()->HasComponent(typeid(Transform));
+	//vec3 temptranslation(0);
+	//Transform* transform = (Transform *)Parent()->HasComponent(typeid(Transform));
 
-	_oldTranslation = *transform->getTranslation();
-	_velocity += _acceleration * dt;
-	temptranslation = _translation + (_velocity * dt);
+	//_oldTranslation = *transform->getTranslation();
+	//_velocity += _acceleration * dt;
+	//temptranslation = *transform->getTranslation() + (_velocity * dt);
 
-	float rotation = transform->getRotation();
-	rotation += _rotationalVelocity * dt;
+	//float rotation = transform->getRotation();
+	//rotation += _rotationalVelocity * dt;
 
-	transform->setRotation(rotation);
-	transform->setTranslation(temptranslation);
+	//transform->setRotation(rotation);
+	//transform->setTranslation(temptranslation);
 
 }
 
@@ -62,11 +61,6 @@ vec3* RidgedBody::getOldTranslation()
 	return (vec3*)&_oldTranslation;
 }
 
-vec3* RidgedBody::getTranslation()
-{
-	return (vec3*)&_translation;
-}
-
 float RidgedBody::getRotationalVelocity()
 {
 	return _rotationalVelocity;
@@ -87,10 +81,6 @@ void RidgedBody::setOldTranslation(const vec3* OldTranslation)
 	OldTranslation = &_oldTranslation;
 }
 
-void RidgedBody::setTranslation(const vec3* Translation)
-{
-	Translation = &_translation;
-}
 
 void RidgedBody::SetRotationalVelocity(float rotational_velocity)
 {

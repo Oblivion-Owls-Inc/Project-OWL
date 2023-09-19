@@ -105,8 +105,8 @@
     <Filter Include="Data">
       <UniqueIdentifier>{93c4d7b5-a3df-4eb6-ae45-9a5eac6d1d02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Animation">
-      <UniqueIdentifier>{a02009f5-d770-45e6-b0c2-4b9466f6fd2f}</UniqueIdentifier>
+    <Filter Include="Engine\Entity\Component\Behavior\Movement Behavior">
+      <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -215,11 +215,11 @@
     <ClCompile Include="Source\BehaviorSystem.cpp">
       <Filter>Engine\Systems\Behavior</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Animation.cpp">
-      <Filter>Engine\Entity\Component\Animation</Filter>
+    <ClCompile Include="Source\MovementAI.cpp">
+      <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\EntitySystem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine\Systems\EntitySystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -346,11 +346,11 @@
     <ClInclude Include="Source\BehaviorSystem.h">
       <Filter>Engine\Systems\Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Animation.h">
-      <Filter>Engine\Entity\Component\Animation</Filter>
+    <ClInclude Include="Source\MovementAI.h">
+      <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\EntitySystem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Engine\Systems\EntitySystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
