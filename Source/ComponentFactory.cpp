@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "Sprite.h"
 #include "RidgedBody.h"
+#include "Collider.h"
 
 template < typename ComponentType >
 Component* ComponentFactory::Creator() {
@@ -13,14 +14,16 @@ Component* ComponentFactory::Creator() {
 std::map<std::string, Component* (*)()> ComponentFactory::componentCreators = {
     {"Transform", Creator<Transform>},
     {"Sprite", Creator<Sprite>},
-    {"RigidBody", Creator<RidgedBody>}
+    {"RigidBody", Creator<RidgedBody>},
+    {"Collider", Creator<Collider>}
 };
 
 
 std::map<std::string, std::type_index> ComponentFactory::componentTypes = {
     {"Transform", typeid(Transform)},
     {"Sprite", typeid(Sprite)},
-    {"RigidBody", typeid(RidgedBody)}
+    {"RigidBody", typeid(RidgedBody)},
+    {"Collider", typeid(Collider)}
 };
 
 /// @brief Creates a component of a specified type.

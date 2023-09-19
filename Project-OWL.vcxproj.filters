@@ -215,9 +215,7 @@
     <ClCompile Include="Source\PhysicsSystem.cpp">
       <Filter>Engine\Systems\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Collider.h">
-      <Filter>Engine\Entity\Component\Collider</Filter>
-    </ClCompile>
+    
     <ClCompile Include="Source\SandboxSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
