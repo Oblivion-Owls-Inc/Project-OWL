@@ -72,6 +72,14 @@ void MovementAI::MovementAISpiral(float dt)
 {
 }
 
+/// @brief the map of read methods for this Component
+ReadMethodMap< MovementAI > const MovementAI::readMethods = {};
+
+ReadMethodMap<Component> const& MovementAI::getReadMethods()
+{
+    return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
+}
+
 void MovementAI::MovementAISpawnBullet()
 {
 }
