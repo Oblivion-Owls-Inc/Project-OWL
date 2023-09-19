@@ -5,14 +5,15 @@
 #include "Entity.h"
 #include "Behavior.h"
 
-class RidgedBody : public Behavior
+class RigidBody : public Behavior
 {
     public:
-        RidgedBody();
-        RidgedBody(const RidgedBody& other);
-        ~RidgedBody();
+        RigidBody();
+        RigidBody(const RigidBody& other);
+        ~RigidBody();
         Component* Clone() const override;
-        void OnUpdate(float dt) override;
+        virtual void OnUpdate(float dt) override;
+        virtual void OnFixedUpdate() override {};
 
     public:
         vec3* getAcceleration();

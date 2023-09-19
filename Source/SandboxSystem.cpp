@@ -10,7 +10,7 @@
 
 #include "Entity.h"
 #include "AudioPlayer.h"
-#include "PhysicsSystem.h"
+#include "BehaviorSystem.h"
 #include "RenderSystem.h"
 #include "Sprite.h"
 #include "MovementAI.h"
@@ -48,12 +48,12 @@
 
         entity2= new Entity();
         entity2->Add( new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22,17));
-        entity2->Add( new RidgedBody()); 
+        entity2->Add( new RigidBody()); 
         entity2->Add( new Transform());
         entity2->Add( new MovementAI());
         float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
         entity2->GetComponent<Transform>()->setTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
-        entity2->GetComponent<Transform>()->setScale(glm::vec3(500.0f, (-500.0f * spriteSize), 0.0f));
+        entity2->GetComponent<Transform>()->setScale(glm::vec3(600.0f, (-600.0f * spriteSize), 0.0f));
     }
 
     /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
