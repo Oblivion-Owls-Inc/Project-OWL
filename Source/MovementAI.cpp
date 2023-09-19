@@ -39,7 +39,7 @@ void MovementAI::OnUpdate(float dt)
     elapsedTime += dt;
 
     // Check if it's time to change direction
-    if (elapsedTime >= 5.0f) // Change direction every 2 seconds (adjust as needed)
+    if (elapsedTime >= 2.0f) // Change direction every 2 seconds (adjust as needed)
     {
         moveRight = !moveRight;
         elapsedTime = 0.0f;

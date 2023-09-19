@@ -37,7 +37,8 @@ void DebugSystem::OnInit()
     io = &ImGui::GetIO();
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
     ImGui_ImplOpenGL3_Init("#version 430");
-    ImGui::StyleColorsDark();
+    ImGui::StyleColorsClassic();
+    io->ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -75,6 +76,7 @@ void DebugSystem::OnUpdate(float dt)
 
         ImGui::PlotLines("FPS", samples, numSamples);
         ImGui::End();
+
 
     }
 
