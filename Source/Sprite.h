@@ -5,6 +5,7 @@
 #pragma once
 #include "Component.h"
 #include "glm/glm.hpp"  // vec4
+#include "Stream.h"
 
 // fwd refs
 class Mesh;
@@ -68,6 +69,14 @@ public:
     virtual Component* Clone() const override;
 
 private: // reading
+
+    /// @brief Read in the number of rows for a sprite.
+    /// @param stream the json to read from.
+    void ReadRows( Stream stream );
+
+    /// @brief Read in the number of columns for a sprite.
+    /// @param stream the json to read from.
+    void ReadColumns( Stream stream );
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Sprite > const readMethods;

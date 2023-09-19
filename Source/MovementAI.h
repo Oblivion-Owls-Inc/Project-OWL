@@ -50,7 +50,7 @@ class MovementAI :
 private: // reading
 
     /// @brief the map of read methods for this Component
-    static ReadMethodMap< Sprite > const readMethods;
+    static ReadMethodMap< MovementAI > const readMethods;
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component

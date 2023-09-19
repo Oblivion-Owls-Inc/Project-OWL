@@ -147,8 +147,26 @@ void Sprite::draw()
 // private: reading
 //-----------------------------------------------------------------------------
 
+
+ /// @brief Read in the number of rows for a sprite.
+ /// @param stream the json to read from.
+void Sprite::ReadRows( Stream stream )
+{
+    _rows = stream.Read<int>();
+}
+
+/// @brief Read in the number of columns for a sprite.
+/// @param stream the json to read from.
+void Sprite::ReadColumns( Stream stream )
+{
+    _columns = stream.Read<int>();
+}
+
 /// @brief the map of read methods for this Component
-ReadMethodMap< Sprite > const Sprite::readMethods = {};
+ReadMethodMap< Sprite > const Sprite::readMethods = {
+    {"rows", &ReadRows},
+    {"columns", &ReadColumns}
+};
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component
