@@ -25,7 +25,9 @@
 #include "SandboxSystem.h"
 #include "InputSystem.h"
 #include "EntitySystem.h"
-#include "PhysicsSystem.h"
+#include "BehaviorSystem.h"
+#include "RigidBody.h"
+#include "MovementAI.h"
 
 // TODO: move this out of the engine into its own System
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -102,7 +104,9 @@ std::map< std::string, System* (Engine::*)()> Engine::addSystemMethods = {
     { "AudioSystem",    &AddSystem< AudioSystem >       },
     { "EntitySystem",   &AddSystem< EntitySystem >      },
     { "SandboxSystem",  &AddSystem< SandboxSystem >     },
-    { "PhysicsSystem",  &AddSystem< PhysicsSystem >     },
+    { "BehaviorSystem< RigidBody >", &AddSystem< BehaviorSystem < RigidBody > >    },
+    { "BehaviorSystem< MovementAI >", &AddSystem< BehaviorSystem < MovementAI > >    },
+
 };
 
 /// @brief Loads the engine config from "Data/EngineConfig.json"

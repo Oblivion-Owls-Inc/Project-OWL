@@ -10,7 +10,7 @@
 
 #include "Entity.h"
 #include "AudioPlayer.h"
-#include "PhysicsSystem.h"
+#include "BehaviorSystem.h"
 #include "RenderSystem.h"
 #include "Sprite.h"
 #include "MovementAI.h"
@@ -53,7 +53,7 @@
         entity2->Add( new MovementAI());
         float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
         entity2->GetComponent<Transform>()->setTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
-        entity2->GetComponent<Transform>()->setScale(glm::vec3(500.0f, (-500.0f * spriteSize), 0.0f));
+        entity2->GetComponent<Transform>()->setScale(glm::vec3(600.0f, (-600.0f * spriteSize), 0.0f));
     }
 
     /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.

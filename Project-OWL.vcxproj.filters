@@ -364,9 +364,6 @@
     <ClInclude Include="Source\EntitySystem.h">
       <Filter>Engine\Systems\EntitySystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\EntitySystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\RigidBody.h">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClInclude>

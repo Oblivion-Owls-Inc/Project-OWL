@@ -13,31 +13,26 @@ class RigidBody : public Behavior
         ~RigidBody();
 
     public:
-        glm::vec3* getAcceleration();
-        glm::vec3* getVelocity();
-        glm::vec3* getOldTranslation();
-        glm::vec3* getTranslation();
+        vec3* getAcceleration();
+        vec3* getVelocity();
+        vec3* getOldTranslation();
         float getRotationalVelocity();
-        void setAcceleration(const glm::vec3* Acceleration);
-        void setVelocity(const glm::vec3* Velocity);
-        void setOldTranslation(const glm::vec3* OldTranslation);
-        void setTranslation(const glm::vec3* Translation);
+        void setAcceleration(const vec3* Acceleration);
+        void setVelocity(const vec3* Velocity);
+        void setOldTranslation(const vec3* OldTranslation);
         void SetRotationalVelocity(float rotational_velocity);
-
     private:
-        glm::vec3 _velocity;
-        glm::vec3 _acceleration;
-        glm::vec3 _translation;
-        glm::vec3 _oldTranslation;
+        vec3 _velocity;
+        vec3 _acceleration;
+        vec3 _oldTranslation;
         float _rotationalVelocity;
-
+    
         RigidBody(const RigidBody& other);
         virtual Component* Clone() const override;
 
-        virtual void OnFixedUpdate() override;
-
-        virtual void OnUpdate( float dt ) override {}
-        virtual void CollisionEvent( Entity* other );
+        virtual void OnFixedUpdate() override {}
+        virtual void OnUpdate( float dt ) override;
+        virtual void OnCollision( Entity* other ) override;
 
     private: // reading
 

@@ -2,7 +2,13 @@
 /// @author   Name (first.last@digipen.edu)
 /// 
 /// @brief    Example System meant to be copy-pasted when creating new Systems
+
+#define BEHAVIORSYSTEM_C
+
+#ifndef BEHAVIORSYSTEM_H
 #include "BehaviorSystem.h"
+#endif
+
 
 // Define the static instance variable for the templated BehaviorSystem
 template < typename BehaviorType >
@@ -18,7 +24,7 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 {
 	for(auto behavior : behaviorsList)
 	{
-		behavior->FixedUpdate();
+		behavior->OnFixedUpdate();
 	}
 }
 
@@ -27,7 +33,7 @@ void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
     for(auto behavior : behaviorsList)
 	{
-		behavior->Update(dt);
+		behavior->OnUpdate(dt);
 	}
 }
 
@@ -41,11 +47,17 @@ void BehaviorSystem<BehaviorType>::OnSceneExit()
 {
 }
 
-// Define the constructor for the templated BehaviorSystem
-template < typename BehaviorType >
-BehaviorSystem< BehaviorType >::BehaviorSystem()
-{
 
+template<typename BehaviorType>
+void BehaviorSystem<BehaviorType>::AddBehavior(BehaviorType* behavior)
+{
+	behaviorsList.push_back(behavior);
+}
+
+template<typename BehaviorType>
+void BehaviorSystem<BehaviorType>::RemoveBehavior(BehaviorType* behavior)
+{
+	behaviorsList.erase(std::remove(behaviorsList.begin(), behaviorsList.end(), behavior), behaviorsList.end());
 }
 
 // Define the getInstance function for the templated BehaviorSystem
@@ -62,6 +74,6 @@ BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::getInstance()
 template<typename BehaviorType>
 std::vector<BehaviorType*>& BehaviorSystem<BehaviorType>::getBehaviors() const
 {
-    return &behaviorsList;
+    return (std::vector<BehaviorType*>&)behaviorsList;
 }
 

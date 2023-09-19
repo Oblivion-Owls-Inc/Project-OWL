@@ -7,7 +7,8 @@
  *********************************************************************/
 #pragma once
 #include "Behavior.h"
-
+#include "RigidBody.h"
+#include "Transform.h"
 //------------------------------------------------------------------------------
 // Include Files:
 //------------------------------------------------------------------------------
@@ -18,18 +19,18 @@
 //------------------------------------------------------------------------------
 // Class:
 //------------------------------------------------------------------------------
-class MovementAI :
-    public Behavior
+class MovementAI : public Behavior
 {
     public:
         MovementAI();
         ~MovementAI();
 
-    public:
+    private:
         Component* Clone() const override;
-        void CollisionEvent(Entity* other) override;
         void OnUpdate(float dt) override;
         void OnFixedUpdate() override;
+        void OnCollision(Entity* other) override {};
+
     private:
 
         void MovementAIUpdateRotation(float dt);

@@ -1,16 +1,16 @@
 #include "MovementAI.h"
-#include "PhysicsSystem.h"
+#include "BehaviorSystem.h"
 #include "Entity.h"
 #include "DebugSystem.h"
 
 MovementAI::MovementAI(): Behavior(typeid(MovementAI))
 {
-    	PhysicsSystem::getInstance()->AddBehavior(this);
+    BehaviorSystem< MovementAI >::getInstance()->AddBehavior(this);
 }
 
 MovementAI::~MovementAI()
 {
-    	PhysicsSystem::getInstance()->RemoveBehavior(this);
+    BehaviorSystem< MovementAI >::getInstance()->RemoveBehavior(this);
 }
 
 Component* MovementAI::Clone() const
@@ -18,9 +18,6 @@ Component* MovementAI::Clone() const
 	return nullptr;
 }
 
-void MovementAI::CollisionEvent(Entity* other)
-{
-}
 
 void MovementAI::OnUpdate(float dt)
 {

@@ -1,40 +1,37 @@
 #include "RigidBody.h"
-#include "Engine.h"
-
+#include "BehaviorSystem.h"
 
 RigidBody::RigidBody() : 
-	_velocity(glm::vec3(0, 0, 0)),
-	_acceleration(glm::vec3(0, 0, 0)),
-	_translation(glm::vec3(0, 0, 0)),
-	_oldTranslation(glm::vec3(0, 0, 0)),
+	_velocity(vec3(0, 0, 0)),
+	_acceleration(vec3(1, 1, 0)),
+	_oldTranslation(vec3(0, 0, 0)),
 	_rotationalVelocity(0), 
 	Behavior(typeid(RigidBody))
-{}
+{
+	BehaviorSystem<RigidBody>::getInstance()->AddBehavior(this);
+}
 
 RigidBody::RigidBody(const RigidBody& other) : Behavior(typeid(RigidBody))
 {
 	_rotationalVelocity = other._rotationalVelocity;
 	_acceleration = other._acceleration;
-	_translation = other._translation;
 	_oldTranslation = other._oldTranslation;
 	_velocity = other._velocity;
 }
 
 RigidBody::~RigidBody()
 {
-
+	BehaviorSystem<RigidBody>::getInstance()->RemoveBehavior(this);
 }
 
-void RigidBody::OnFixedUpdate()
+void RigidBody::OnUpdate(float dt)
 {
-    float dt = Engine::getInstance()->getFixedFrameDuration();
-
-	glm::vec3 temptranslation(0);
+	vec3 temptranslation(0);
 	Transform* transform = (Transform *)Parent()->HasComponent(typeid(Transform));
 
 	_oldTranslation = *transform->getTranslation();
 	_velocity += _acceleration * dt;
-	temptranslation = _translation + (_velocity * dt);
+	temptranslation = *transform->getTranslation() + (_velocity * dt);
 
 	float rotation = transform->getRotation();
 	rotation += _rotationalVelocity * dt;
@@ -46,27 +43,22 @@ void RigidBody::OnFixedUpdate()
 
 Component* RigidBody::Clone() const
 {
-	return (Component *)new RigidBody(*this);
+	return (Component*)new RigidBody(*this);
 }
 
-glm::vec3* RigidBody::getAcceleration()
+vec3* RigidBody::getAcceleration()
 {
-	return (glm::vec3*) &_acceleration;
+	return (vec3*) &_acceleration;
 }
 
-glm::vec3* RigidBody::getVelocity()
+vec3* RigidBody::getVelocity()
 {
-	return (glm::vec3*)&_velocity;
+	return (vec3*)&_velocity;
 }
 
-glm::vec3* RigidBody::getOldTranslation()
+vec3* RigidBody::getOldTranslation()
 {
-	return (glm::vec3*)&_oldTranslation;
-}
-
-glm::vec3* RigidBody::getTranslation()
-{
-	return (glm::vec3*)&_translation;
+	return (vec3*)&_oldTranslation;
 }
 
 float RigidBody::getRotationalVelocity()
@@ -74,32 +66,28 @@ float RigidBody::getRotationalVelocity()
 	return _rotationalVelocity;
 }
 
-void RigidBody::setAcceleration(const glm::vec3* Acceleration)
+void RigidBody::setAcceleration(const vec3* Acceleration)
 {
 	Acceleration = &_acceleration;
 }
 
-void RigidBody::setVelocity(const glm::vec3* Velocity)
+void RigidBody::setVelocity(const vec3* Velocity)
 {
 	Velocity = &_velocity;
 }
 
-void RigidBody::setOldTranslation(const glm::vec3* OldTranslation)
+void RigidBody::setOldTranslation(const vec3* OldTranslation)
 {
 	OldTranslation = &_oldTranslation;
 }
 
-void RigidBody::setTranslation(const glm::vec3* Translation)
-{
-	Translation = &_translation;
-}
 
 void RigidBody::SetRotationalVelocity(float rotational_velocity)
 {
 	_rotationalVelocity = rotational_velocity;
 }
 
-void RigidBody::CollisionEvent( Entity* other )
+void RigidBody::OnCollision(Entity* other)
 {
 	(void)other;
 }
