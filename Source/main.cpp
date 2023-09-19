@@ -5,7 +5,8 @@
 #include "DebugSystem.h"
 #include "SceneSystem.h"
 #include "RenderSystem.h"
-#pragma warning(disable : 4099) //Disabling warning for missing PDB files
+#pragma warning(disable : 4099) //Disabling warning for missing PDB 
+#pragma warning(disable : 33019) //Disabling warning for missing PDB files
 
 
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ PWSTR pCmdLine, _In_ int nCmdShow)
