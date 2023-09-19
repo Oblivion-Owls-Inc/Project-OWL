@@ -46,5 +46,14 @@ class MovementAI :
         const float MovementWeaponBulletSpeed = 750.0f;
         const float MovementDeathDuration = 3.0f;
         const float FrameTime = 1.0f / 60.0f;
+
+private: // reading
+
+    /// @brief the map of read methods for this Component
+    static ReadMethodMap< Sprite > const readMethods;
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    virtual ReadMethodMap< Component > const& getReadMethods() override;
 };
 
