@@ -102,7 +102,7 @@ std::map< std::string, System* (Engine::*)()> Engine::addSystemMethods = {
     { "AudioSystem",    &AddSystem< AudioSystem >       },
     { "EntitySystem",   &AddSystem< EntitySystem >      },
     { "SandboxSystem",  &AddSystem< SandboxSystem >     },
-    { "PhysicsSystem",   &AddSystem<PhysicsSystem>      },
+    { "PhysicsSystem",  &AddSystem< PhysicsSystem >     },
 };
 
 /// @brief Loads the engine config from "Data/EngineConfig.json"
