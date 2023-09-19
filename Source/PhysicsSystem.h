@@ -1,7 +1,7 @@
 #pragma once
 
 #include "System.h"
-#include "RidgedBody.h"
+#include "RigidBody.h"
 #include "Transform.h"
 #include <vector>
 
@@ -12,20 +12,12 @@ class PhysicsSystem : public System
 {
     private:
 
-        PhysicsSystem();
+        PhysicsSystem() = default;
 
     public:
         /// @brief      The singleton instance of BehaviorSystem  
         static PhysicsSystem* instance;
 
-        /// @brief      Gets called once when this System is added to the Engine
-        virtual void OnInit() override;
-
-        /// @brief      Gets called once every simulation frame. Use this function for anything that affects the simulation.
-        virtual void OnFixedUpdate() override;
-
-        /// @brief      Gets called whenever a scene is exited
-        virtual void OnSceneExit() override;
 
         /// @brief      Gets called once every graphics frame. Do not use this function for anything 
         ///             that affects the simulation.
@@ -66,4 +58,12 @@ class PhysicsSystem : public System
 
     /// @brief      Gets called whenever a scene is initialized
     virtual void OnSceneInit() override {}
+    /// @brief      Gets called once when this System is added to the Engine
+    virtual void OnInit() override {}
+
+    /// @brief      Gets called once every simulation frame. Use this function for anything that affects the simulation.
+    virtual void OnFixedUpdate() override {}
+
+    /// @brief      Gets called whenever a scene is exited
+    virtual void OnSceneExit() override {}
 };
