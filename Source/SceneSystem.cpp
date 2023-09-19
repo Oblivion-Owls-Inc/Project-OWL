@@ -10,6 +10,9 @@
 
 #include "basics.h"
 
+//-----------------------------------------------------------------------------
+// public methods
+//-----------------------------------------------------------------------------
 
 /// @brief sets the next Scene to change to
 /// @param nextSceneName the name of the next scene
@@ -18,6 +21,10 @@ void SceneSystem::SetNextScene( std::string nextSceneName_ )
     nextSceneName = nextSceneName_;
 }
 
+//-----------------------------------------------------------------------------
+// public accessors
+//-----------------------------------------------------------------------------
+
 /// @brief gets the name of the current scene
 /// @return the name of the current scene
 std::string const& SceneSystem::getSceneName() const
@@ -25,50 +32,16 @@ std::string const& SceneSystem::getSceneName() const
     return currentSceneName;
 }
 
-
+//-----------------------------------------------------------------------------
+// private constants
+//-----------------------------------------------------------------------------
 
 /// @brief The file extension for Scene files
 std::string const SceneSystem::sceneFileExtension = ".scene.json";
 
-
-/// @brief assembles the filepath of a scene with the given name
-/// @param sceneName the name of the scene to assemble the filepath of
-/// @return the filepath of the scene
-std::string SceneSystem::ScenePath( std::string const& sceneName )
-{
-    return baseScenePath + sceneName + sceneFileExtension;
-}
-
-
-/// @brief Loads the next Scene
-void SceneSystem::LoadScene()
-{
-
-    // TODO: load from JSON
-
-    for ( System* system : Engine::getInstance()->getSystems() )
-    {
-        system->OnSceneLoad();
-    }
-}
-
-/// @brief Initializes the current Scene
-void SceneSystem::InitScene()
-{
-    for ( System* system : Engine::getInstance()->getSystems() )
-    {
-        system->OnSceneInit();
-    }
-}
-
-/// @brief Exits the current Scene
-void SceneSystem::ExitScene()
-{
-    for ( System* system : Engine::getInstance()->getSystems() )
-    {
-        system->OnSceneExit();
-    }
-}
+//-----------------------------------------------------------------------------
+// virtual override methods
+//-----------------------------------------------------------------------------
 
 /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.    
 void SceneSystem::OnFixedUpdate()
@@ -106,12 +79,57 @@ void SceneSystem::Load( rapidjson::Value const& configData )
     nextSceneName = configData[ "nextSceneName" ].GetString();
 }
 
+//-----------------------------------------------------------------------------
+// private methods
+//-----------------------------------------------------------------------------
+
+/// @brief assembles the filepath of a scene with the given name
+/// @param sceneName the name of the scene to assemble the filepath of
+/// @return the filepath of the scene
+std::string SceneSystem::ScenePath( std::string const& sceneName )
+{
+    return baseScenePath + sceneName + sceneFileExtension;
+}
+
+/// @brief Loads the next Scene
+void SceneSystem::LoadScene()
+{
+
+    // TODO: load from JSON
+
+    for ( System* system : Engine::getInstance()->getSystems() )
+    {
+        system->OnSceneLoad();
+    }
+}
+
+/// @brief Initializes the current Scene
+void SceneSystem::InitScene()
+{
+    for ( System* system : Engine::getInstance()->getSystems() )
+    {
+        system->OnSceneInit();
+    }
+}
+
+/// @brief Exits the current Scene
+void SceneSystem::ExitScene()
+{
+    for ( System* system : Engine::getInstance()->getSystems() )
+    {
+        system->OnSceneExit();
+    }
+}
+
+//-----------------------------------------------------------------------------
+// singleton stuff
+//-----------------------------------------------------------------------------
 
 /// @brief Constructs the SceneSystem
 SceneSystem::SceneSystem() :
-    nextSceneName(""),
-    currentSceneName(""),
-    baseScenePath("Data/Scenes")
+    nextSceneName( "" ),
+    currentSceneName( "" ),
+    baseScenePath( "Data/Scenes/" )
 {}
 
 /// @brief The singleton instance of SceneSystem
@@ -127,3 +145,5 @@ SceneSystem* SceneSystem::getInstance()
     }
     return instance;
 }
+
+//-----------------------------------------------------------------------------
