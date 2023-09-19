@@ -12,7 +12,8 @@ class RigidBody : public Behavior
         RigidBody(const RigidBody& other);
         ~RigidBody();
         Component* Clone() const override;
-        void OnUpdate(float dt) override;
+        virtual void OnUpdate(float dt) override;
+        virtual void OnFixedUpdate() override {};
 
     public:
         vec3* getAcceleration();

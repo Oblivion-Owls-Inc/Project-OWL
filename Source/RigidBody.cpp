@@ -1,5 +1,6 @@
 #include "RigidBody.h"
 #include "PhysicsSystem.h"
+#include "BehaviorSystem.h"
 
 RigidBody::RigidBody() : 
 	_velocity(vec3(0, 0, 0)),
@@ -8,7 +9,7 @@ RigidBody::RigidBody() :
 	_rotationalVelocity(0), 
 	Behavior(typeid(RigidBody))
 {
-	PhysicsSystem::getInstance()->AddBehavior(this);
+	BehaviorSystem<RigidBody>::getInstance()->AddBehavior(this);
 }
 
 RigidBody::RigidBody(const RigidBody& other) : Behavior(typeid(RigidBody))
@@ -21,7 +22,7 @@ RigidBody::RigidBody(const RigidBody& other) : Behavior(typeid(RigidBody))
 
 RigidBody::~RigidBody()
 {
-	PhysicsSystem::getInstance()->RemoveBehavior(this);
+	BehaviorSystem<RigidBody>::getInstance()->RemoveBehavior(this);
 }
 
 void RigidBody::OnUpdate(float dt)
