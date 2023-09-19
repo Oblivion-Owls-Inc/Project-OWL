@@ -104,6 +104,15 @@ void Animation::setDone(bool newDone)
 	isDone = newDone;
 }
 
+void Animation::animationPlay()
+{
+	if (animation != NULL)
+	{
+		isRunning = true;
+		frameDone = false;
+		Parent()->GetComponent<Sprite>()->setFrame(frameIndex);
+	}
+
 void Animation::AdvanceFrame()
 {
 	frameIndex += 1;

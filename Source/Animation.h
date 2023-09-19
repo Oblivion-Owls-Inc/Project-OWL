@@ -37,6 +37,8 @@ public:
 	const bool getDone() const;
 	void setDone(bool newDone);
 
+	void animationPlay();
+
 	
 	virtual void CollisionEvent(Entity* other) {}
 
