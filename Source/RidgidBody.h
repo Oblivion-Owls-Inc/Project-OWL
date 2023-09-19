@@ -5,12 +5,12 @@
 #include "Entity.h"
 #include "Behavior.h"
 
-class RidgedBody : public Behavior
+class RidgidBody : public Behavior
 {
     public:
-        RidgedBody();
-        RidgedBody(const RidgedBody& other);
-        ~RidgedBody();
+        RidgidBody();
+        RidgidBody(const RidgidBody& other);
+        ~RidgidBody();
         Component* Clone() const override;
         void OnUpdate(float dt) override;
 

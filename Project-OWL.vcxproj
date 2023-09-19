@@ -201,7 +201,7 @@
     <ClCompile Include="Source\ExampleSystem.cpp" />
     <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\RidgedBody.cpp" />
+    <ClCompile Include="Source\RidgidBody.cpp" />
     <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\SceneSystem.cpp" />
     <ClCompile Include="Source\Sprite.cpp" />
@@ -242,7 +242,7 @@
     <ClInclude Include="Source\DebugSystem.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\GUI.h" />
-    <ClInclude Include="Source\RidgedBody.h" />
+    <ClInclude Include="Source\RidgidBody.h" />
     <ClInclude Include="Source\PlatformSystem.h" />
     <ClInclude Include="Source\SceneSystem.h" />
     <ClInclude Include="Source\Sprite.h" />

@@ -48,7 +48,7 @@
 
         entity2= new Entity();
         entity2->Add( new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22,17));
-        entity2->Add( new RidgedBody()); 
+        entity2->Add( new RidgidBody()); 
         entity2->Add( new Transform());
         entity2->Add( new MovementAI());
         float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "System.h"
-#include "RidgedBody.h"
+#include "RidgidBody.h"
 #include "Transform.h"
 #include <vector>
 

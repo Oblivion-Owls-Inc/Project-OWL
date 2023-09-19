@@ -1,17 +1,17 @@
-#include "RidgedBody.h"
+#include "RidgidBody.h"
 #include "PhysicsSystem.h"
 
-RidgedBody::RidgedBody() : 
+RidgidBody::RidgidBody() : 
 	_velocity(vec3(0, 0, 0)),
 	_acceleration(vec3(1, 1, 0)),
 	_oldTranslation(vec3(0, 0, 0)),
 	_rotationalVelocity(0), 
-	Behavior(typeid(RidgedBody))
+	Behavior(typeid(RidgidBody))
 {
 	PhysicsSystem::getInstance()->AddBehavior(this);
 }
 
-RidgedBody::RidgedBody(const RidgedBody& other) : Behavior(typeid(RidgedBody))
+RidgidBody::RidgidBody(const RidgidBody& other) : Behavior(typeid(RidgidBody))
 {
 	_rotationalVelocity = other._rotationalVelocity;
 	_acceleration = other._acceleration;
@@ -19,12 +19,12 @@ RidgedBody::RidgedBody(const RidgedBody& other) : Behavior(typeid(RidgedBody))
 	_velocity = other._velocity;
 }
 
-RidgedBody::~RidgedBody()
+RidgidBody::~RidgidBody()
 {
 	PhysicsSystem::getInstance()->RemoveBehavior(this);
 }
 
-void RidgedBody::OnUpdate(float dt)
+void RidgidBody::OnUpdate(float dt)
 {
 	//vec3 temptranslation(0);
 	//Transform* transform = (Transform *)Parent()->HasComponent(typeid(Transform));
@@ -41,53 +41,53 @@ void RidgedBody::OnUpdate(float dt)
 
 }
 
-Component* RidgedBody::Clone() const
+Component* RidgidBody::Clone() const
 {
-	return (Component*)new RidgedBody(*this);
+	return (Component*)new RidgidBody(*this);
 }
 
-vec3* RidgedBody::getAcceleration()
+vec3* RidgidBody::getAcceleration()
 {
 	return (vec3*) &_acceleration;
 }
 
-vec3* RidgedBody::getVelocity()
+vec3* RidgidBody::getVelocity()
 {
 	return (vec3*)&_velocity;
 }
 
-vec3* RidgedBody::getOldTranslation()
+vec3* RidgidBody::getOldTranslation()
 {
 	return (vec3*)&_oldTranslation;
 }
 
-float RidgedBody::getRotationalVelocity()
+float RidgidBody::getRotationalVelocity()
 {
 	return _rotationalVelocity;
 }
 
-void RidgedBody::setAcceleration(const vec3* Acceleration)
+void RidgidBody::setAcceleration(const vec3* Acceleration)
 {
 	Acceleration = &_acceleration;
 }
 
-void RidgedBody::setVelocity(const vec3* Velocity)
+void RidgidBody::setVelocity(const vec3* Velocity)
 {
 	Velocity = &_velocity;
 }
 
-void RidgedBody::setOldTranslation(const vec3* OldTranslation)
+void RidgidBody::setOldTranslation(const vec3* OldTranslation)
 {
 	OldTranslation = &_oldTranslation;
 }
 
 
-void RidgedBody::SetRotationalVelocity(float rotational_velocity)
+void RidgidBody::SetRotationalVelocity(float rotational_velocity)
 {
 	_rotationalVelocity = rotational_velocity;
 }
 
-void RidgedBody::CollisionEvent(Entity* other)
+void RidgidBody::CollisionEvent(Entity* other)
 {
 	(void)other;
 }
