@@ -82,16 +82,7 @@ private:
     virtual void OnSceneLoad() override {}
     virtual void OnSceneInit() override {}
     virtual void OnSceneExit() override {}
-
-   
-
-    /// @brief the Read Methods used in this System
-    static std::map< std::string, ReadMethod< RenderSystem > > const ReadMethods;
-
-    /// @brief Gets the read methods of this System
-    /// @return the map of read methods of this System
-    virtual std::map< std::string, ReadMethod< System > > const& GetReadMethods() override;
-
+    virtual void Load( rapidjson::Value const& configData ) override {}
 };
 
 __inline RenderSystem* Renderer() { return RenderSystem::getInstance(); }

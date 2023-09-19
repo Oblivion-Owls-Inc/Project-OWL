@@ -2,18 +2,12 @@
     "assets": {
         "textures": [],
         "meshes": [],
-        "shaders": [],
-        "archetypes": []
+        "shaders": []
     },
     "entities": [
         {
-            "Archetype": "archetypeName",
             "name": "Test Entity",
-            "components": {
-                "Transform": {
-                    "position": [ 12, 2 ]
-                }
-            }
+            "components": {}
         }
     ]
 }

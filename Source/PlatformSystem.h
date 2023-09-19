@@ -46,24 +46,9 @@ private:
     /// @brief Shuts down window / GLFW.
 	virtual void OnExit() override;
 
-
-
-    /// @brief reads the window width from JSON
-    /// @param jsonValue the JSON value
-    void ReadWindowWidth( rapidjson::Value const& jsonValue );
-
-    /// @brief reads the window height from JSON
-    /// @param jsonValue the JSON value
-    void ReadWindowHeight( rapidjson::Value const& jsonValue );
-
-    /// @brief the Read Methods used in this System
-    static std::map< std::string, ReadMethod< PlatformSystem > > const ReadMethods;
-
-    /// @brief Gets the read methods of this System
-    /// @return the map of read methods of this System
-    virtual std::map< std::string, ReadMethod< System > > const& GetReadMethods() override;
-
-
+    /// @brief Loads the configuration data of the PlatformSystem
+    /// @param configData the configuration data for this System
+    virtual void Load( rapidjson::Value const& configData ) override;
 
 	// Unused virtuals
     virtual void OnUpdate(float dt) override {}
