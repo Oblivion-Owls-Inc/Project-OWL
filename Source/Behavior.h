@@ -24,7 +24,7 @@ class Behavior : public Component
 	public:
 		virtual Component* Clone() const = 0;
 
-		virtual void OnCollision( Entity* other ) = 0;
+		virtual void CollisionEvent( Entity* other ) = 0;
 
 		virtual void OnUpdate( float dt ) {};
 
