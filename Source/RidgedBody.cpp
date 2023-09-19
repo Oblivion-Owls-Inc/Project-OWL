@@ -1,5 +1,5 @@
 #include "RidgedBody.h"
-
+#include "PhysicsSystem.h"
 
 RidgedBody::RidgedBody() : 
 	_velocity(vec3(0, 0, 0)),
@@ -9,6 +9,7 @@ RidgedBody::RidgedBody() :
 	_rotationalVelocity(0), 
 	Behavior(typeid(RidgedBody))
 {
+	PhysicsSystem::getInstance()->AddBehavior(this);
 }
 
 RidgedBody::RidgedBody(const RidgedBody& other) : Behavior(typeid(RidgedBody))
@@ -22,7 +23,7 @@ RidgedBody::RidgedBody(const RidgedBody& other) : Behavior(typeid(RidgedBody))
 
 RidgedBody::~RidgedBody()
 {
-
+	PhysicsSystem::getInstance()->RemoveBehavior(this);
 }
 
 void RidgedBody::OnUpdate(float dt)

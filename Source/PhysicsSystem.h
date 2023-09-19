@@ -3,10 +3,10 @@
 #include "System.h"
 #include "RidgedBody.h"
 #include "Transform.h"
-#include "Behavior.h"
-#include "Collider.h"
 #include <vector>
 
+class Collider;
+class Behavior;
 
 class PhysicsSystem : public System
 {

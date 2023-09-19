@@ -3,12 +3,18 @@
 
 #include "Collider.h"
 
+Collider::Collider(): Component(typeid(Collider)), type()
+{
+    PhysicsSystem::getInstance()->AddCollider(this);
+}
+
 Collider::Collider(const Collider& other) : Component(other), type(other.type)
 {
 }
 
 Collider::~Collider()
 {
+	PhysicsSystem::getInstance()->RemoveCollider(this);
 }
 
 Component* Collider::Clone() const

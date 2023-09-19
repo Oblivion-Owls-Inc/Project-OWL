@@ -6,7 +6,7 @@
 ///
 
 #include "PhysicsSystem.h"
-
+#include "Collider.h"
 PhysicsSystem * PhysicsSystem::instance = nullptr;
 
 PhysicsSystem::PhysicsSystem()
