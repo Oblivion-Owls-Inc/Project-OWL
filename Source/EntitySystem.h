@@ -40,29 +40,30 @@ public: // methods
 
 private: // methods
 
-private: // virtual override methods
-
-    /// @brief Gets called whenever a scene is exited
-    virtual void OnSceneExit() override;
-
 private: // member variables
 
     /// @brief Container for all Entities in the Scene
     std::vector< Entity* > entities;
 
-private: // class-specific Read Methods
+private: // virtual override methods
+
+    /// @brief Gets called whenever a scene is exited
+    virtual void OnSceneExit() override;
 
 private: // unused virtual overrides
 
     /// @brief Gets called once when this System is added to the Engine
     virtual void OnInit() override {}
 
+
     /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
     virtual void OnFixedUpdate() override {}
+
 
     /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
     /// @param dt the elapsed time in seconds since the previous frame
     virtual void OnUpdate( float dt ) override {}
+
 
     /// @brief Gets called once before the Engine closes
     virtual void OnExit() override {}
@@ -71,17 +72,14 @@ private: // unused virtual overrides
     /// @brief Gets called whenever a new Scene is loaded
     virtual void OnSceneLoad() override {}
 
+
     /// @brief Gets called whenever a scene is initialized
     virtual void OnSceneInit() override {}
 
-private: // default Read method stuff
 
-    /// @brief the Read Methods used in this System
-    static std::map< std::string, ReadMethod< EntitySystem > > const ReadMethods;
-
-    /// @brief Gets the read methods of this System
-    /// @return the map of read methods of this System
-    virtual std::map< std::string, ReadMethod< System > > const& GetReadMethods() override;
+    /// @brief Loads the config data of this System
+    /// @param configData the JSON object with all of the configData for this System
+    virtual void Load( rapidjson::Value const& configData ) override {}
 
 private: // singleton stuff
 

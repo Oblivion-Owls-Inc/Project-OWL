@@ -93,10 +93,6 @@ glm::mat4* Transform::getMatrix()
 		glm::mat4 transferTemp(1);
 		glm::mat4 result;
 
-		//glm::mat4(glm::mat2(4, 0, 0, 4));
-		
-
-		
 		rotateTemp = glm::rotate(rotateTemp, rotation, {0, 0, 1});
 		scaleTemp = glm::scale(scaleTemp, scale);
 		transferTemp = glm::translate(transferTemp, translation);

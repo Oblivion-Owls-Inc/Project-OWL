@@ -132,16 +132,6 @@ void RenderSystem::AddSprite(Sprite* sprite, int layer) { _sprites[layer].emplac
 void RenderSystem::RemoveSprite(Sprite* sprite, int layer) { _sprites[layer].erase(sprite); }
 
 
-/// @brief the Read Methods used in this System
-std::map< std::string, ReadMethod< RenderSystem > > const RenderSystem::ReadMethods;
-
-/// @brief Gets the read methods of this System
-/// @return the map of read methods of this System
-std::map< std::string, ReadMethod< System > > const& RenderSystem::GetReadMethods()
-{
-    return (std::map< std::string, ReadMethod< System > > const&)ReadMethods;
-}
-
 
 /// @brief    Gets the instance of RenderSystem
 /// @return   RenderSystem pointer: new or existing instance of this system

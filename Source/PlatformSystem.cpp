@@ -92,36 +92,14 @@ void PlatformSystem::OnExit()
     std::cout << "\nShutdown complete." << std::endl;
 }
 
-
-
-/// @brief reads the window width from JSON
-/// @param jsonValue the JSON value
-void PlatformSystem::ReadWindowWidth( rapidjson::Value const& jsonValue )
+/// @brief Loads the configuration data of the PlatformSystem
+/// @param configData the configuration data for this System
+void PlatformSystem::Load( rapidjson::Value const& configData )
 {
-    windowWidth = jsonValue.GetInt();
+    // TODO: JSON error handling
+    windowWidth = configData[ "windowWidth" ].GetInt();
+    windowHeight = configData[ "windowHeight" ].GetInt();
 }
-
-/// @brief reads the window height from JSON
-/// @param jsonValue the JSON value
-void PlatformSystem::ReadWindowHeight( rapidjson::Value const& jsonValue )
-{
-    windowHeight = jsonValue.GetInt();
-}
-
-/// @brief the Read Methods used in this System
-std::map< std::string, ReadMethod< PlatformSystem > > const PlatformSystem::ReadMethods = {
-    { "windowWidth", &ReadWindowWidth },
-    { "windowHeight", &ReadWindowHeight }
-};
-
-/// @brief Gets the read methods of this System
-/// @return the map of read methods of this System
-std::map< std::string, ReadMethod< System > > const& PlatformSystem::GetReadMethods()
-{
-    return (std::map< std::string, ReadMethod< System > > const&)ReadMethods;
-}
-
-
 
 /// @brief    Returns the window handle.
 /// @return   GLFWwindow pointer: Current window handle.

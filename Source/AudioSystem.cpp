@@ -21,7 +21,42 @@
     }
 
 //-----------------------------------------------------------------------------
-// private virtual override methods
+// private static methods
+//-----------------------------------------------------------------------------
+
+    /// @brief FMOD callback function for error handling
+    /// @param system handle to the FMOD system
+    /// @param type the type of callback
+    /// @param commandData1 first callback parameter, dependent on callback type
+    /// @param commandData2 second callback parameter, dependent on callback type
+    /// @param userData user data associated with the FMOD system
+    /// @return FMOD_RESULT
+    FMOD_RESULT AudioSystem::FMODCallback(
+        FMOD_SYSTEM* system,
+        FMOD_SYSTEM_CALLBACK_TYPE type,
+        void* commandData1,
+        void* commandData2,
+        void* userData
+    ) {
+        
+        if ( type == FMOD_SYSTEM_CALLBACK_ERROR )
+        {
+            FMOD_ERRORCALLBACK_INFO* info = (FMOD_ERRORCALLBACK_INFO*)commandData1;
+
+            std::cerr << "There was an FMOD error:\n" <<
+                "\tError Code:              " << info->result << '\n' <<
+                "\tInstance Type:           " << info->instancetype << '\n' <<
+                "\tFunction Name:           " << info->functionname << '\n' <<
+                "\tFunction Parameters :    " << info->functionparams << '\n' << std::endl;
+
+            return info->result;
+        }
+
+        return FMOD_OK;
+    }
+
+//-----------------------------------------------------------------------------
+// private virtual methods
 //-----------------------------------------------------------------------------
 
     /// @brief Gets called once when this System is added to the Engine
@@ -62,66 +97,6 @@
     void AudioSystem::OnExit()
     {
         system->release();
-    }
-
-//-----------------------------------------------------------------------------
-// private static methods
-//-----------------------------------------------------------------------------
-
-    /// @brief FMOD callback function for error handling
-    /// @param system handle to the FMOD system
-    /// @param type the type of callback
-    /// @param commandData1 first callback parameter, dependent on callback type
-    /// @param commandData2 second callback parameter, dependent on callback type
-    /// @param userData user data associated with the FMOD system
-    /// @return FMOD_RESULT
-    FMOD_RESULT F_CALLBACK AudioSystem::FMODCallback(
-        FMOD_SYSTEM* system,
-        FMOD_SYSTEM_CALLBACK_TYPE type,
-        void* commandData1,
-        void* commandData2,
-        void* userData
-    ) {
-
-        if ( type == FMOD_SYSTEM_CALLBACK_ERROR )
-        {
-            FMOD_ERRORCALLBACK_INFO* info = (FMOD_ERRORCALLBACK_INFO*)commandData1;
-
-            std::cerr << "There was an FMOD error:\n" <<
-                "\tError Code:              " << info->result << '\n' <<
-                "\tInstance Type:           " << info->instancetype << '\n' <<
-                "\tFunction Name:           " << info->functionname << '\n' <<
-                "\tFunction Parameters :    " << info->functionparams << '\n' << std::endl;
-
-            return info->result;
-        }
-
-        return FMOD_OK;
-    }
-
-//-----------------------------------------------------------------------------
-// class specific Read methods
-//-----------------------------------------------------------------------------
-
-    void AudioSystem::ReadMaxChannels( rapidjson::Value const& readValue )
-    {
-        maxChannels = readValue.GetInt();
-    }
-
-    /// @brief the Read Methods used in this System
-    std::map< std::string, ReadMethod< AudioSystem > > const AudioSystem::ReadMethods = {
-        { "exampleMember", &ReadMaxChannels }
-    };
-
-//-----------------------------------------------------------------------------
-// default Read method stuff
-//-----------------------------------------------------------------------------
-
-    /// @brief Gets the read methods of this System
-    /// @return the map of read methods of this System
-    std::map< std::string, ReadMethod< System > > const& AudioSystem::GetReadMethods()
-    {
-        return (std::map< std::string, ReadMethod< System > > const&)ReadMethods;
     }
 
 //-----------------------------------------------------------------------------

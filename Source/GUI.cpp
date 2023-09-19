@@ -151,10 +151,7 @@ void DebugMenu::Render()
         // Display contents in a scrolling region
         ImGui::TextColored(ImVec4(1, 1, 0, 1), "Console View");
         ImGui::BeginChild("Scrolling");
-        ImGui::TextUnformatted(
-            DebugSystem::getInstance()->getLogBuffer().begin(),
-            DebugSystem::getInstance()->getLogBuffer().end()
-        ); // Display the text buffer
+        ImGui::TextUnformatted(DebugSystem::getInstance()->logBuffer.begin(), DebugSystem::getInstance()->logBuffer.end()); // Display the text buffer
         ImGui::EndChild();
 
         ImGui::End();
