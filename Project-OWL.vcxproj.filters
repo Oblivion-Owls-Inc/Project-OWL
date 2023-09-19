@@ -105,6 +105,9 @@
     <Filter Include="Data">
       <UniqueIdentifier>{93c4d7b5-a3df-4eb6-ae45-9a5eac6d1d02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\Movement Behavior">
+      <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -221,6 +224,12 @@
     </ClCompile>
     <ClCompile Include="Source\ComponentFactory.cpp">
       <Filter>Engine\Entity\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MovementAI.cpp">
+      <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntitySystem.cpp">
+      <Filter>Engine\Systems\EntitySystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +364,12 @@
     </ClInclude>
     <ClInclude Include="Source\ComponentFactory.h">
       <Filter>Engine\Entity\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MovementAI.h">
+      <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntitySystem.h">
+      <Filter>Engine\Systems\EntitySystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

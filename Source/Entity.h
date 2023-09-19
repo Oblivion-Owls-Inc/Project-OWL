@@ -83,7 +83,7 @@ private:
 	// Flag to indicate the entity is dead and should be destroyed
 	bool mIsDestroyed;
 	// Container for attached components
-	std::map< std::type_index, Component* > components;
+	std::map<std::type_index, Component*> components;
 
 	void ReadName(Stream stream);
 	void ReadComponents(Stream stream);

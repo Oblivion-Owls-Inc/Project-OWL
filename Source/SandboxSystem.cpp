@@ -10,14 +10,20 @@
 
 #include "Entity.h"
 #include "AudioPlayer.h"
+#include "PhysicsSystem.h"
+#include "RenderSystem.h"
+#include "Sprite.h"
+#include "MovementAI.h"
 #include "InputSystem.h"
+#include "DebugSystem.h"
 
 //-----------------------------------------------------------------------------
 // variables
 //-----------------------------------------------------------------------------
 
     static Entity* entity;
-
+    static Entity* entity2;
+    static bool update = false;
     static Sound* sound;
 
 //-----------------------------------------------------------------------------
@@ -28,31 +34,51 @@
     void SandboxSystem::OnSceneLoad()
     {
         std::cout << "test" << std::endl;
-        sound = new Sound( "Data/Sounds/test.wav", false );
+        sound = new Sound( "Data/Sounds/test.mp3", false );
+
     }
 
     /// @brief Gets called whenever a scene is initialized
     void SandboxSystem::OnSceneInit()
     {
+        update = true;
         entity = new Entity();
-        entity->Add( new AudioPlayer( ) );
+        entity->Add(new AudioPlayer());
         entity->GetComponent<AudioPlayer>()->setSound(sound);
+
+        entity2= new Entity();
+        entity2->Add( new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22,17));
+        entity2->Add( new RidgedBody()); 
+        entity2->Add( new Transform());
+        entity2->Add( new MovementAI());
+        float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
+        entity2->GetComponent<Transform>()->setTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
+        entity2->GetComponent<Transform>()->setScale(glm::vec3(500.0f, (-500.0f * spriteSize), 0.0f));
     }
 
     /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
     void SandboxSystem::OnFixedUpdate()
     {
+        if (!update)
+            return;
         if ( Input()->getKeyTriggered( GLFW_KEY_SPACE ) )
         {
             entity->GetComponent<AudioPlayer>()->Play();
         }
+        // Create an instance of DebugConsole
+        DebugConsole output(*DebugSystem::getInstance());
+
+        // Append the message and the formatted value
+        glm::vec3 translation = *entity2->GetComponent<Transform>()->getTranslation();
+        output << "Position: (" << translation.x << ", " << translation.y << ", " << translation.z << ")" << "\n";
     }
 
     /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
     /// @param dt the elapsed time in seconds since the previous frame
     void SandboxSystem::OnUpdate( float dt )
     {
-
+        if (!update)
+            return;
     }
 
     /// @brief Gets called whenever a scene is exited
@@ -60,6 +86,7 @@
     {
         delete entity;
         delete sound;
+        delete entity2;
     }
 
 //-----------------------------------------------------------------------------
