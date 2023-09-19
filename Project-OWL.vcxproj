@@ -175,15 +175,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\ComponentFactory.cpp" />
-    <ClCompile Include="Source\Collider.h" />
-    <ClCompile Include="Source\PhysicsSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\BehaviorSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="Source\EntitySystem.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -192,13 +184,12 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\AudioPlayer.cpp" />
-    <ClCompile Include="Source\BehaviorSystem.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\AudioSystem.cpp" />
     <ClCompile Include="Source\LinesCollider.cpp" />
-    <ClCompile Include="Source\PhysicsSystem.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
+    <ClCompile Include="Source\RigidBody.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
@@ -209,10 +200,10 @@
     <ClCompile Include="Source\ExampleSystem.cpp" />
     <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\RidgedBody.cpp" />
     <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\SceneSystem.cpp" />
     <ClCompile Include="Source\Sprite.cpp" />
+    <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
@@ -220,15 +211,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ComponentFactory.h" />
-    <ClInclude Include="Source\PhysicsSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\Behavior.h" />
     <ClInclude Include="Source\BehaviorSystem.h" />
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\LinesCollider.h" />
-    <ClInclude Include="Source\PhysicsSystem.h" />
+    <ClInclude Include="Source\RigidBody.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
     <ClInclude Include="Source\InputSystem.h" />
@@ -253,7 +241,6 @@
     <ClInclude Include="Source\DebugSystem.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\GUI.h" />
-    <ClInclude Include="Source\RidgedBody.h" />
     <ClInclude Include="Source\PlatformSystem.h" />
     <ClInclude Include="Source\SceneSystem.h" />
     <ClInclude Include="Source\Sprite.h" />

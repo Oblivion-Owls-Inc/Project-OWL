@@ -38,5 +38,26 @@ class RigidBody : public Behavior
 
         virtual void OnUpdate( float dt ) override {}
         virtual void OnCollision( Entity* other ) override {}
+
+    private: // reading
+
+        /// @brief reads the velocity from json
+        /// @param data the json data
+        void ReadVelocity( Stream data );
+
+        /// @brief reads the acceleration from json
+        /// @param data the json data
+        void ReadAcceleration( Stream data );
+
+        /// @brief reads the rotationalVelocity from json
+        /// @param data the json data
+        void ReadRotationalVelocity( Stream data );
+
+        /// @brief the map of read methods for RigidBodys
+        static ReadMethodMap< RigidBody > readMethods;
+
+        /// @brief gets the map of read methods for this Component
+        /// @return the map of read methods for this Component
+        virtual ReadMethodMap< Component > const& getReadMethods() override;
 };
 

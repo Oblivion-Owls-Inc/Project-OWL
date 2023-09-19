@@ -1,18 +1,3 @@
-/**
- * @file   Stream.h
- * @author Aidan Straker (aidan.straker@digipen.edu)
- * @brief  JSON File reading/writing
- * @version 0.1
- * @date 2023-09-10
- *
- * @copyright Copyright (c) 2023
- *
- */
-#pragma once
-
-//------------------------------------------------------------------------------
-// Include Files:
-//------------------------------------------------------------------------------
 /// @file   Stream.h
 /// @author Aidan Straker (aidan.straker@digipen.edu)
 /// @brief  JSON File reading/writing
@@ -23,6 +8,11 @@
 
 #define STREAM_H
 
+#pragma once
+
+//------------------------------------------------------------------------------
+// Include Files:
+//------------------------------------------------------------------------------
 #include "document.h"  // rapidjson::Document, Parse, HasParseError, GetParseError
 #include <string>      // std::string
 #include <fstream>     // std::ifstream
@@ -62,6 +52,26 @@ public: // acessors
 	template < typename T >
 	T Read() const;
 
+    /// @brief reads an int from a json value
+    /// @return the value from the json
+    template <>
+    int Read<int>() const;
+
+    /// @brief reads a float from a json value
+    /// @return the value from the json
+    template <>
+    float Read<float>() const;
+
+    /// @brief reads a string from a json value
+    /// @return the value from the json
+    template <>
+    std::string Read<std::string>() const;
+
+    /// @brief reads a vec3 from a json value
+    /// @return the value from the json
+    template <>
+    glm::vec3 Read<glm::vec3>() const;
+
 public: // methods
 
 	/// @brief reads data into an existing complex type
@@ -83,6 +93,6 @@ using ReadMethod = void (T::*)(Stream value);
 template < typename T >
 using ReadMethodMap = std::map< std::string, ReadMethod< T > >;
 
-#ifndef STREAM_C
-#include "stream.cpp"
+#ifndef STREAM_TC
+#include "stream.t.cpp"
 #endif

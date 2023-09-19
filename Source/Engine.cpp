@@ -24,6 +24,7 @@
 #include "AudioSystem.h"
 #include "SandboxSystem.h"
 #include "InputSystem.h"
+#include "EntitySystem.h"
 
 // TODO: move this out of the engine into its own System
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -98,7 +99,8 @@ std::map< std::string, System* (Engine::*)()> Engine::addSystemMethods = {
     { "RenderSystem",   &AddSystem< RenderSystem >      },
     { "DebugSystem",    &AddSystem< DebugSystem >       },
     { "AudioSystem",    &AddSystem< AudioSystem >       },
-    // { "SandboxSystem",  &AddSystem< SandboxSystem >     }
+    { "EntitySystem",   &AddSystem< EntitySystem >      },  
+    { "SandboxSystem",  &AddSystem< SandboxSystem >     }
 };
 
 /// @brief Loads the engine config from "Data/EngineConfig.json"

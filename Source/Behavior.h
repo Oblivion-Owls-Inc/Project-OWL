@@ -17,16 +17,16 @@ class Behavior : public Component
 
 	protected:
 
-		Behavior(std::type_index type) :
-			Component(type)
+		Behavior( std::type_index type ) :
+			Component( type )
 		{}
 
 	public:
 		virtual Component* Clone() const = 0;
 
-		virtual void CollisionEvent(Entity* other) = 0;
+		virtual void OnCollision( Entity* other ) = 0;
 
-		virtual void OnUpdate(float dt) {};
+		virtual void OnUpdate( float dt ) {};
 
 		virtual void OnFixedUpdate() {};
 };

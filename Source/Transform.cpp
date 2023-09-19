@@ -143,9 +143,9 @@ void Transform::ReadScale( Stream jsonValue )
 }
 
 std::map< std::string, ReadMethod< Transform > > Transform::readMethods = {
-	{ "translation", ReadTranslation },
-	{ "rotation", ReadRotation },
-	{ "scale", ReadScale }
+	{ "translation", &ReadTranslation },
+	{ "rotation", &ReadRotation },
+	{ "scale", &ReadScale }
 };
 
 std::map< std::string, ReadMethod< Component > > const& Transform::getReadMethods()

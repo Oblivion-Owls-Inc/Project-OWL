@@ -6,11 +6,7 @@
 ///
 /// @copyright  © 2023 DigiPen (USA) Corporation.
 
-#define STREAM_C
-
-#ifndef STREAM_H
 #include "Stream.h"
-#endif
 
 #include <iostream>
 #include <map>
@@ -25,38 +21,38 @@
 /// @return rapid::json document parsed from the specified file.
 rapidjson::Document Stream::ReadFromJSON( const std::string& name )
 {
-	// Check if the string is empty.
-	if ( name.empty() )
-	{
-		throw "File was not found";
-	}
-	// Parse the filepath from the name.
-	std::string filePath( "Data/" + name + ".json" );
-	// Open the json file for reading.
-	std::ifstream file( filePath );
-	// Check if the file was opened.
-	if ( !file.is_open() )
-	{
-//TODO: Talk with team about failed file openings.
-		throw "File could not be opened!";
-	}
+    // Check if the string is empty.
+    if ( name.empty() )
+    {
+        throw "File was not found";
+    }
+    // Parse the filepath from the name.
+    std::string filePath( "Data/" + name + ".json" );
+    // Open the json file for reading.
+    std::ifstream file( filePath );
+    // Check if the file was opened.
+    if ( !file.is_open() )
+    {
+        //TODO: Talk with team about failed file openings.
+        throw "File could not be opened!";
+    }
 
-	rapidjson::IStreamWrapper isw( file );
-	// Create a document object.
-	rapidjson::Document doc;
-	// Parse the document from the stream.
-	doc.ParseStream( isw );
+    rapidjson::IStreamWrapper isw( file );
+    // Create a document object.
+    rapidjson::Document doc;
+    // Parse the document from the stream.
+    doc.ParseStream( isw );
 
-	// Check if the json was parsed correctly.
-	if ( doc.HasParseError() )
-	{
-		std::cerr << "ERROR parsing JSON: " << doc.GetParseError() << std::endl;
-		file.close();
-		throw;
-	}
-	file.close();
-	// If no parse errors, then the file was successfully opened.
-	return doc;
+    // Check if the json was parsed correctly.
+    if ( doc.HasParseError() )
+    {
+        std::cerr << "ERROR parsing JSON: " << doc.GetParseError() << std::endl;
+        file.close();
+        throw;
+    }
+    file.close();
+    // If no parse errors, then the file was successfully opened.
+    return doc;
 }
 
 //-----------------------------------------------------------------------------
@@ -66,26 +62,25 @@ rapidjson::Document Stream::ReadFromJSON( const std::string& name )
 /// @brief creates a Stream wrapper of the root object in a json document
 /// @param document the json document.
 Stream::Stream( rapidjson::Document const& document ) :
-	value( document.GetObject() )
+    value( document.GetObject() )
 {}
 
 /// @brief creates a stream wrapper from a json value.
 /// @param value the json value
 Stream::Stream( rapidjson::Value const& value_ ) :
-	value( value_ )
+    value( value_ )
 {}
 
 //-----------------------------------------------------------------------------
 // public accessors
 //-----------------------------------------------------------------------------
 
-
 /// @brief gets the rapidjson value as an object
 /// @return the rapidjson value
 rapidjson::GenericObject< true, rapidjson::Value > const& Stream::getObject() const
 {
-	assert( value.IsObject() );
-	return value.GetObject();
+    assert( value.IsObject() );
+    return value.GetObject();
 }
 
 /// @brief reads a basic type from a json value
@@ -94,8 +89,8 @@ rapidjson::GenericObject< true, rapidjson::Value > const& Stream::getObject() co
 template <>
 int Stream::Read<int>() const
 {
-	assert( value.IsInt() );
-	return value.GetInt();
+    assert( value.IsInt() );
+    return value.GetInt();
 }
 
 /// @brief reads a basic type from a json value
@@ -104,8 +99,8 @@ int Stream::Read<int>() const
 template <>
 float Stream::Read<float>() const
 {
-	assert( value.IsFloat() );
-	return value.GetFloat();
+    assert( value.IsFloat() );
+    return value.GetFloat();
 }
 
 /// @brief reads a basic type from a json value
@@ -114,8 +109,8 @@ float Stream::Read<float>() const
 template <>
 std::string Stream::Read<std::string>() const
 {
-	assert( value.IsString() );
-	return value.GetString();
+    assert( value.IsString() );
+    return value.GetString();
 }
 
 /// @brief reads a basic type from a json value
@@ -124,39 +119,14 @@ std::string Stream::Read<std::string>() const
 template <>
 glm::vec3 Stream::Read<glm::vec3>() const
 {
-	assert( value.IsArray() );
-	glm::vec3 vector;
-	for ( int i = 0; i < 3; i++ )
-	{
-		assert( value[i].IsFloat() );
-		vector[i] = value[i].GetFloat();
-	}
-	return vector;
+    assert( value.IsArray() );
+    glm::vec3 vector;
+    for ( int i = 0; i < 3; i++ )
+    {
+        assert( value[i].IsFloat() );
+        vector[i] = value[i].GetFloat();
+    }
+    return vector;
 }
 
 //-----------------------------------------------------------------------------
-// public methods
-//-----------------------------------------------------------------------------
-
-/// @brief reads data into an existing complex type
-/// @tparam T the type to read
-/// @param object the oject to read data into
-template < typename T >
-void Stream::Read( T* object )
-{
-	// A map containing the different read methods for the object.
-	std::map < std::string, ReadMethod< T > > const& readMethods;
-	readMethods = object->getReadMethods();
-	// Error checking.
-	assert( value.IsObject() );
-	// Iterates through the json value searching for a value.
-	for ( auto& item : value.GetObject() )
-	{
-		// Error checking.
-		assert( readMethods.find( item.name.GeString() ) != readMethods.end() );
-		// Get the read method for the object from the map.
-		ReadMethod< T > readMethod = readMethods.at( item.name.GetString() );
-		// Read the data from the json value into the object. 
-		object->readMethod( item.value );
-	}
-}
