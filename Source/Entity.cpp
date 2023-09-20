@@ -127,6 +127,13 @@ bool Entity::IsNamed(const std::string& name)
 	return false;
 }
 
+/// @brief Clone this entity from an archetype.
+/// @param stream the json value to read from.
+void Entity::ReadArchetype(Stream stream)
+{
+	/// TODO: Write this function.
+}
+
 /// @brief Read in the name of entity.
 /// @param stream the json value to read from.
 void Entity::ReadName(Stream stream)
@@ -140,6 +147,7 @@ void Entity::ReadComponents( Stream stream )
 {
 	for ( auto& componentData : stream.getObject() )
 	{
-
+		Component* component = ComponentFactory::Create( componentData.name.GetString() );
+		Add( component );
 	}
 }
