@@ -3,6 +3,9 @@
 #include "BehaviorSystem.h"
 #include "DebugSystem.h"
 
+
+static float timer = 0.0f;
+
 MovementAI::MovementAI(): Behavior(typeid(MovementAI))
 {
     BehaviorSystem<MovementAI>::getInstance()->AddBehavior(this);
@@ -18,13 +21,23 @@ Component* MovementAI::Clone() const
 	return nullptr;
 }
 
-void MovementAI::CollisionEvent(Entity* other)
+void MovementAI::OnCollisionEvent()
 {
 }
 
 void MovementAI::OnUpdate(float dt)
 {
-
+    timer += dt;
+	DebugConsole output(*DebugSystem::getInstance());
+	if (timer > 1.0f)
+	{
+		timer = 0.0f;
+		Parent()->isColliding(true);
+	}
+	else
+	{
+		Parent()->isColliding(false);
+	}
 }
 
 

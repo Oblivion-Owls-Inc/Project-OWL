@@ -75,6 +75,9 @@ public:
 	const std::string& GetName();
 	// Compare the entity's name with the specified name.
 	bool IsNamed(const std::string& name);
+	
+	bool isColliding();
+	void isColliding(bool colliding);
 
 private:
 	// The name of the entity.
@@ -84,6 +87,7 @@ private:
 	// Container for attached components
 	std::map<std::type_index, Component*> components;
 
+	bool mIsColliding;
 	// Private Member Function
 
 	// Searches the components vector for a specific component

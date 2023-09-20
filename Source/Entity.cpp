@@ -25,6 +25,7 @@ Entity::Entity()
 	: mName("")
 	, mIsDestroyed(false)
 	, components()
+	, mIsColliding(false)
 {
 }
 
@@ -125,4 +126,14 @@ bool Entity::IsNamed(const std::string& name)
 		return (mName == name);
 	}
 	return false;
+}
+
+bool Entity::isColliding()
+{
+	return mIsColliding;
+}
+
+void Entity::isColliding(bool colliding)
+{
+	mIsColliding = colliding;
 }

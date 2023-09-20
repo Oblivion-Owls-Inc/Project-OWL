@@ -9,7 +9,7 @@
 #include "BehaviorSystem.h"
 #endif
 
-
+#include "Entity.h"
 // Define the static instance variable for the templated BehaviorSystem
 template < typename BehaviorType >
 BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::instance = nullptr;
@@ -25,6 +25,10 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 	for(auto behavior : behaviorsList)
 	{
 		behavior->OnFixedUpdate();
+		if (behavior->Parent()->isColliding())
+		{
+			behavior->OnCollisionEvent();
+		}
 	}
 }
 
@@ -34,6 +38,10 @@ void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
     for(auto behavior : behaviorsList)
 	{
 		behavior->OnUpdate(dt);
+		if (behavior->Parent()->isColliding())
+		{
+			behavior->OnCollisionEvent();
+		}
 	}
 }
 

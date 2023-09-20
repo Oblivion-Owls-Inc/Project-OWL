@@ -1,5 +1,6 @@
 #include "RigidBody.h"
 #include "BehaviorSystem.h"
+#include "DebugSystem.h"
 
 RigidBody::RigidBody() : 
 	_velocity(vec3(0, 0, 0)),
@@ -86,8 +87,9 @@ void RigidBody::SetRotationalVelocity(float rotational_velocity)
 	_rotationalVelocity = rotational_velocity;
 }
 
-void RigidBody::CollisionEvent(Entity* other)
+void RigidBody::OnCollisionEvent()
 {
-	(void)other;
+	DebugConsole output(*DebugSystem::getInstance());
+	output << "Collision Detected" << "\n";
 }
 

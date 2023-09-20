@@ -55,15 +55,17 @@
         entity2->Add( new Sprite("Temp_Assets/Balls/Ball5.png", 1,1));
         entity2->Add( new RigidBody()); 
         entity2->Add( new Transform());
+        entity2->Add( new MovementAI());
         float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
         entity2->GetComponent<Transform>()->setTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
         entity2->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
         /// Ball 2
         entity3 = new Entity();
-        entity3->Add(new Sprite("Temp_Assets/Balls/Ball5.png", 1, 1));
+        entity3->Add(new Sprite("Temp_Assets/Balls/Ball2.png", 1, 1));
         entity3->Add(new RigidBody());
         entity3->Add(new Transform());
-        float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
+        entity3->Add(new MovementAI());
+        spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
         entity3->GetComponent<Transform>()->setTranslation(glm::vec3(500.0f, 300.0f, 0.0f));
         entity3->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
         ///Ball3
@@ -71,7 +73,10 @@
         entity4->Add(new Sprite("Temp_Assets/Balls/Ball.png", 1, 1));
         entity4->Add(new RigidBody());
         entity4->Add(new Transform());
-        
+        entity4->Add(new MovementAI());
+        spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
+        entity4->GetComponent<Transform>()->setTranslation(glm::vec3(700.0f, 300.0f, 0.0f));
+        entity4->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
     }
 
     /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
@@ -88,7 +93,7 @@
 
         // Append the message and the formatted value
         glm::vec3 translation = *entity2->GetComponent<Transform>()->getTranslation();
-        output << "Position: (" << translation.x << ", " << translation.y << ", " << translation.z << ")" << "\n";
+        //output << "Position: (" << translation.x << ", " << translation.y << ", " << translation.z << ")" << "\n";
     }
 
     /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
@@ -107,8 +112,8 @@
         delete entity2;
         delete entity3;
         delete entity4;
-        delete entity5;
-        delete entity6;
+        //delete entity5;
+        //delete entity6;
     }
 
 //-----------------------------------------------------------------------------

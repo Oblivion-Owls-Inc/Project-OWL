@@ -80,7 +80,7 @@ public:
 
     /// @brief Handle collision events with other entities.
     /// @param other The other Entity involved in the collision.
-    virtual void CollisionEvent(Entity* other);
+    virtual void OnCollisionEvent();
 
 private:
     /// @brief The velocity vector of the rigid body.

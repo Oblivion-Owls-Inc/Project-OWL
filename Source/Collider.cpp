@@ -11,10 +11,6 @@ Collider::Collider(const Collider& other) : Component(other), type(other.type)
 {
 }
 
-Collider::~Collider()
-{
-}
-
 Component* Collider::Clone() const
 {
 	return nullptr;

@@ -29,7 +29,7 @@ class MovementAI :
 
     public:
         Component* Clone() const override;
-        void CollisionEvent(Entity* other) override;
+        void OnCollisionEvent() override;
         void OnUpdate(float dt) override;
         void OnFixedUpdate() override;
     private:

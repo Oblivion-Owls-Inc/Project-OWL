@@ -9,8 +9,6 @@
 /// Includes
 ///*************************************************************************/
 #include "Component.h"
-#include "rapidjson.h"
-using namespace rapidjson;
 
 ///*************************************************************************/
 /// @Class Collider
@@ -25,13 +23,14 @@ class Collider : public Component
 
 	public:
 		Collider(const Collider& other);
-		~Collider();
+		~Collider() = default;
 		virtual Component* Clone() const override;
 		virtual void OnUpdate(float dt);
 		void Check(const Collider* other);
 		virtual bool IsColliding(const Collider* other);
 		void SetCollider(Collider* collider);
 		Collider* GetCollider();
+
 	private:
 		typedef enum ColliderType
 		{
