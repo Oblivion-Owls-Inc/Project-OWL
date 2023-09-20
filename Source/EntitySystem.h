@@ -12,6 +12,7 @@
 
 #include <vector>
 #include "Entity.h"
+#include "Stream.h"
 
 
 /// @brief Example System meant to be copy-pasted when creating new Systems
@@ -40,7 +41,7 @@ public: // methods
 
     /// @brief loads all of the entities in a scene
     /// @param entityData the json object containing the entity data
-    void LoadEntities( Stream entityData );
+    void LoadEntities( Stream entityArray );
 
 private: // methods
 

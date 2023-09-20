@@ -102,7 +102,9 @@
 //-----------------------------------------------------------------------------
 
 /// @brief Constructs the EntitySystem
-EntitySystem::EntitySystem() {}
+EntitySystem::EntitySystem() :
+    entities()
+{}
 
 /// @brief The singleton instance of EntitySystem
 EntitySystem * EntitySystem::instance = nullptr;

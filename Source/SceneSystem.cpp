@@ -52,7 +52,7 @@ void SceneSystem::LoadScene()
 
     // TODO: have some assetSystem or something like that handle loading assets
     assert( root.getObject().HasMember("entities") );
-    EntitySystem::getInstance()->LoadEntities( root.getObject()[ "entities" ] );
+    EntitySystem::getInstance()->LoadEntities( Stream( root.getObject()[ "entities" ] ) );
 
     for ( System* system : Engine::getInstance()->getSystems() )
     {

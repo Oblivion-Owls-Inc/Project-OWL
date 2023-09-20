@@ -206,9 +206,6 @@
     <ClCompile Include="Source\LinesCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PhysicsSystem.cpp">
-      <Filter>Engine\Systems\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\SandboxSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -219,16 +216,16 @@
       <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\EntitySystem.cpp">
-      <Filter>Engine\Systems\EntitySystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EntitySystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Stream.t.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BehaviorSystem.cpp">
+      <Filter>Engine\Systems\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stream.t.cpp">
+      <Filter>Engine\Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -349,9 +346,6 @@
     <ClInclude Include="Source\BehaviorSystem.h">
       <Filter>Engine\Systems\Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PhysicsSystem.h">
-      <Filter>Engine\Systems\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Source\SandboxSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -361,15 +355,15 @@
     <ClInclude Include="Source\MovementAI.h">
       <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="Source\EntitySystem.h">
-      <Filter>Engine\Systems\EntitySystem</Filter>
-    </ClInclude>
     <ClInclude Include="Source\RigidBody.h">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\Scenes\Sandbox.scene.json">
       <Filter>Data</Filter>
     </None>
   </ItemGroup>

@@ -35,7 +35,7 @@ Entity::Entity(const Entity& other)
 	: mName(other.mName)
 	, mIsDestroyed(other.mIsDestroyed)
 {
-	for (auto component : other.components)
+	for (auto& component : other.components)
 	{
 		Component* clone = component.second->Clone();
 		Add(clone);
@@ -53,7 +53,7 @@ Entity* Entity::Clone() const { return new Entity(*this); }
 void Entity::Free()
 {
 	// Traverse the component list
-	for (auto component : components)
+	for (auto& component : components)
 	{
 		// Make sure the component is valid.
 		assert(component.second);
@@ -151,3 +151,9 @@ void Entity::ReadComponents( Stream stream )
 		Add( component );
 	}
 }
+
+ReadMethodMap< Entity > Entity::readMethods = {
+	{"Archetype", &ReadArchetype},
+	{"components", &ReadComponents},
+	{"name", &ReadName}
+};
