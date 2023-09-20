@@ -105,7 +105,7 @@ int Stream::Read<int>() const
 template <>
 float Stream::Read<float>() const
 {
-    assert( value.IsFloat() );
+    assert( value.IsNumber() );
     return value.GetFloat();
 }
 
@@ -126,10 +126,10 @@ template <>
 glm::vec3 Stream::Read<glm::vec3>() const
 {
     assert( value.IsArray() );
-    glm::vec3 vector;
+    glm::vec3 vector = {};
     for ( int i = 0; i < 3; i++ )
     {
-        assert( value[i].IsFloat() );
+        assert( value[i].IsNumber() );
         vector[i] = value[i].GetFloat();
     }
     return vector;

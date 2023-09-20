@@ -139,7 +139,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)rapidjson;$(SolutionDir)imgui;$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)rapidjson;$(SolutionDir)libraries</AdditionalLibraryDirectories>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT.lib /NODEFAULTLIB:LIBCMT.lib %(AdditionalOptions)</AdditionalOptions>

@@ -16,6 +16,7 @@ Brief Description:
 #include "Component.h" // Type
 #include <cassert>	   // assert
 #include "ComponentFactory.h" // Create.
+#include "basics.h"
 
 //------------------------------------------------------------------------------
 // Public Functions:
@@ -148,7 +149,15 @@ void Entity::ReadComponents( Stream stream )
 	for ( auto& componentData : stream.getObject() )
 	{
 		Component* component = ComponentFactory::Create( componentData.name.GetString() );
-		//stream.Read( component );
+		try
+		{
+			Stream( componentData.value ).Read( component );
+		}
+		catch ( std::runtime_error error )
+		{
+			std::cerr << error.what() << std::endl;
+			assert( false );
+		}
 		Add( component );
 	}
 }

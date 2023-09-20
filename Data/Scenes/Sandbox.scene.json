@@ -16,7 +16,7 @@
               "RigidBody": {
                 "velocity": [ 1, 1, 1 ],
                 "acceleration": [ 1, 1, 1 ],
-                "rotationalvelocity": 2
+                "rotationalVelocity": 2
               }
             }
         }

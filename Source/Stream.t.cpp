@@ -13,6 +13,7 @@
 #endif
 
 #include <iostream>
+#include <sstream>
 #include <map>
 
 //-----------------------------------------------------------------------------
@@ -33,7 +34,10 @@ void Stream::Read( T* object )
     for ( auto& item : value.GetObject() )
     {
         // Error checking.
-        assert( readMethods.find( item.name.GetString() ) != readMethods.end() );
+        if ( readMethods.find( item.name.GetString() ) == readMethods.end() )
+        {
+            throw std::runtime_error( (std::stringstream() << "unreconized token \"" << item.name.GetString() << "\"").str() );
+        }
         // Get the read method for the object from the map.
         ReadMethod< T > readMethod = readMethods.at( item.name.GetString() );
         // Read the data from the json value into the object. 
