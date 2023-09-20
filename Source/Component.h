@@ -13,29 +13,44 @@
 
 #include <typeindex>
 #include "document.h"
-class Entity;
+class Entity; // forward reference
 
 
+/// @brief virtual component class
 class Component
 {
 public:
 
+	/// @brief gets the components type
+	/// @return component type
 	__inline std::type_index Type() const { return type; }
 
+	/// @brief virtual destructor
 	virtual ~Component() {};
 
+	/// @brief sets the parent entity of the component
+	/// @param parent, the parent entity of the component
 	__inline void Parent( Entity* parent_ ) { parent = parent_; }
 
+	/// @brief returns the components parent entity
+	/// @return the parent entity of the component
 	__inline Entity* Parent() const { return parent; }
 	
+	/// @brief virtual component clone function
+	/// @return new clone of component
 	virtual Component* Clone() const = 0;
 
+	// TODO add commment for what this does
 	virtual void Read( const rapidjson::Value& data ) { (void)data; }
 
 protected:
 
+	/// @brief default component constructor
+	/// @param type what type of component this is
 	Component( std::type_index type );
 
+    /// @brief copy constructor
+    /// @param the component to clone
     Component( Component const& other );
 
 private:

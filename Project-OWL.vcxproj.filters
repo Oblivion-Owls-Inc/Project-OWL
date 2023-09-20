@@ -108,6 +108,9 @@
     <Filter Include="Engine\Entity\Component\Behavior\Movement Behavior">
       <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Animation">
+      <UniqueIdentifier>{b5aafdd0-b10c-4a49-9701-4e40588c9cdf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -220,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>Engine\Entity\Component\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -351,6 +357,9 @@
     </ClInclude>
     <ClInclude Include="Source\RigidBody.h">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation.h">
+      <Filter>Engine\Entity\Component\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

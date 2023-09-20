@@ -19,32 +19,32 @@ class InputSystem : public System
 {
 private:
 
-    /// @brief Gets called once when this System is added to the Engine
+    /// @brief unused input init
     virtual void OnInit() override {}
 
 
-    /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
+    /// @brief fixed update for input, must be called for input to function
     virtual void OnFixedUpdate() override;
 
 
-    /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+    /// @brief unused update for input
     /// @param dt the elapsed time in seconds since the previous frame
     virtual void OnUpdate( float dt ) override {}
 
 
-    /// @brief Gets called once before the Engine closes
+    /// @brief unused exit for input
     virtual void OnExit() override {}
 
 
-    /// @brief Gets called whenever a new Scene is loaded
+    /// @brief unused for input
     virtual void OnSceneLoad() override {}
 
 
-    /// @brief Gets called whenever a scene is initialized
+    /// @brief unused for input
     virtual void OnSceneInit() override {}
 
 
-    /// @brief Gets called whenever a scene is exited
+    /// @brief unused for input
     virtual void OnSceneExit() override {}
 
 
@@ -53,34 +53,65 @@ private:
     virtual void Load( rapidjson::Value const& configData ) override {}
 
 
-     /// @brief Constructs the InputSystem
+    /// @brief Constructs the InputSystem
     InputSystem();
 
 
      /// @brief The singleton instance of InputSystem
     static InputSystem * instance;
 protected:
+    
     map<int, bool[3]> keyStates;
     map<int, bool[3]> mouseStates;
 
 public:
 
-     /// @brief gets the instance of InputSystem
-     /// @return the instance of the InputSystem
+    /// @brief gets the instance of InputSystem
+    /// @return the instance of the InputSystem
     static InputSystem * getInstance();
 
-    // MAY INCLUDE A DUPLICATE OF THE ABOVE FUNCTION WITH CONSTRUCTOR ARGUMENTS HERE
-    
+    /// @brief checks if a given key is down
+    /// @param glfw key to check
+    /// @return returns if key is down
     bool getKeyDown(int glfw_key);
+
+    /// @brief checks if a given key is up
+    /// @param glfw key to check
+    /// @return returns if key is up
     bool getKeyUp(int glfw_key);
+
+    /// @brief checks if a given key is triggered
+    /// @param glfw key to check
+    /// @return returns if key is triggered
     bool getKeyTriggered(int glfw_key);
+
+    /// @brief checks if a given key is released
+    /// @param glfw key to check
+    /// @return returns if key is released
     bool getKeyReleased(int glfw_key);
     
+    /// @brief checks if a given mouse button is down
+    /// @param glfw mouse button to check
+    /// @return returns if mouse button is down
     bool getMouseDown(int glfw_mouse_button);
+
+    /// @brief checks if a given mouse button is up
+    /// @param glfw mouse button to check
+    /// @return returns if mouse button is up
     bool getMouseUp(int glfw_mouse_button);
+
+    /// @brief checks if a given mouse button is triggered
+    /// @param glfw mouse button to check
+    /// @return returns if mouse button is triggered
     bool getMouseTriggered(int glfw_mouse_button);
+
+    /// @brief checks if a given mouse button is released
+    /// @param glfw mouse button to check
+    /// @return returns if mouse button is released
     bool getMouseReleased(int glfw_mouse_button);
     
+    /// @brief gets mouse pos
+    /// @return returns the current mouse pos as a vec2
     glm::vec2 getMousePos();
 
     // Prevent copying
@@ -88,4 +119,6 @@ public:
     void operator=(const InputSystem&) = delete;
 };
 
+/// @brief shortens input get instance to simply input
+/// @return returns the input system instance
 __inline InputSystem* Input() { return InputSystem::getInstance(); }
