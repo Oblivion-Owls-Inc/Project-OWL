@@ -38,6 +38,10 @@ public: // methods
     /// @return whether or not the EntitySystem has the specified Entity
     bool HasEntity( Entity* entity );
 
+    /// @brief loads all of the entities in a scene
+    /// @param entityData the json object containing the entity data
+    void LoadEntities( Stream entityData );
+
 private: // methods
 
 private: // member variables

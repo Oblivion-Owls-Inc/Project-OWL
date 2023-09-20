@@ -19,17 +19,15 @@
 /// @brief Open and parse a json file.
 /// @param name - name of the json file. 
 /// @return rapid::json document parsed from the specified file.
-rapidjson::Document Stream::ReadFromJSON( const std::string& name )
+rapidjson::Document Stream::ReadFromJSON( const std::string& filepath )
 {
     // Check if the string is empty.
-    if ( name.empty() )
+    if ( filepath.empty() )
     {
         throw "File was not found";
     }
-    // Parse the filepath from the name.
-    std::string filePath( "Data/" + name + ".json" );
     // Open the json file for reading.
-    std::ifstream file( filePath );
+    std::ifstream file( filepath );
     // Check if the file was opened.
     if ( !file.is_open() )
     {
@@ -81,6 +79,14 @@ rapidjson::GenericObject< true, rapidjson::Value > const& Stream::getObject() co
 {
     assert( value.IsObject() );
     return value.GetObject();
+}
+
+/// @brief gets the rapidjson value as an object
+/// @return the rapidjson value
+rapidjson::GenericArray< true, rapidjson::Value > const& Stream::getArray() const
+{
+    assert( value.IsArray() );
+    return value.GetArray();
 }
 
 /// @brief reads a basic type from a json value

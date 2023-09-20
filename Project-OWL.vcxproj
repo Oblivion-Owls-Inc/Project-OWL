@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
+    <None Include="Data\Scenes\Sandbox.scene.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -65,6 +65,18 @@
         return iterator != entities.end();
     }
 
+    /// @brief loads all of the entities in a scene
+    /// @param entityData the json object containing the entity data
+    void EntitySystem::LoadEntities( Stream entityArray )
+    {
+        for ( auto& entityData : entityArray.getArray() )
+        {
+            Entity * entity = new Entity();
+            Stream( entityData ).Read( entity );
+            AddEntity( entity );
+        }
+    }
+
 //-----------------------------------------------------------------------------
 // private methods
 //-----------------------------------------------------------------------------
