@@ -181,6 +181,7 @@
     <ClCompile Include="imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\BouncingBehavior.cpp" />
     <ClCompile Include="Source\MovementAI.cpp" />
     <ClCompile Include="Source\AudioPlayer.cpp" />
     <ClCompile Include="Source\BehaviorSystem.cpp" />
@@ -189,7 +190,6 @@
     <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\AudioSystem.cpp" />
     <ClCompile Include="Source\LinesCollider.cpp" />
-    <ClCompile Include="Source\PhysicsSystem.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
@@ -211,13 +211,13 @@
     <ClCompile Include="Source\Stream.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\BouncingBehavior.h" />
     <ClInclude Include="Source\MovementAI.h" />
     <ClInclude Include="Source\Behavior.h" />
     <ClInclude Include="Source\BehaviorSystem.h" />
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\LinesCollider.h" />
-    <ClInclude Include="Source\PhysicsSystem.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
     <ClInclude Include="Source\InputSystem.h" />

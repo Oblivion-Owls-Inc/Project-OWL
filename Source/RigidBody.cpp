@@ -1,5 +1,4 @@
 #include "RigidBody.h"
-#include "PhysicsSystem.h"
 #include "BehaviorSystem.h"
 
 RigidBody::RigidBody() : 
@@ -31,11 +30,10 @@ void RigidBody::OnUpdate(float dt)
 	Transform* transform = (Transform *)Parent()->HasComponent(typeid(Transform));
 
 	_oldTranslation = *transform->getTranslation();
-	_velocity += _acceleration * dt;
-	temptranslation = *transform->getTranslation() + (_velocity * dt);
+	temptranslation = *transform->getTranslation() + (_velocity);
 
 	float rotation = transform->getRotation();
-	rotation += _rotationalVelocity * dt;
+	rotation += _rotationalVelocity;
 
 	transform->setRotation(rotation);
 	transform->setTranslation(temptranslation);

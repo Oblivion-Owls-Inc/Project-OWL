@@ -23,6 +23,10 @@
 
     static Entity* entity;
     static Entity* entity2;
+    static Entity* entity3;
+    static Entity* entity4;
+    static Entity* entity5;
+    static Entity* entity6;
     static bool update = false;
     static Sound* sound;
 
@@ -45,15 +49,29 @@
         entity = new Entity();
         entity->Add(new AudioPlayer());
         entity->GetComponent<AudioPlayer>()->setSound(sound);
-
+        
+        /// Ball 1
         entity2= new Entity();
-        entity2->Add( new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22,17));
+        entity2->Add( new Sprite("Temp_Assets/Balls/Ball5.png", 1,1));
         entity2->Add( new RigidBody()); 
         entity2->Add( new Transform());
-        entity2->Add( new MovementAI());
         float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
         entity2->GetComponent<Transform>()->setTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
-        entity2->GetComponent<Transform>()->setScale(glm::vec3(600.0f, (-600.0f * spriteSize), 0.0f));
+        entity2->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
+        /// Ball 2
+        entity3 = new Entity();
+        entity3->Add(new Sprite("Temp_Assets/Balls/Ball5.png", 1, 1));
+        entity3->Add(new RigidBody());
+        entity3->Add(new Transform());
+        float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
+        entity3->GetComponent<Transform>()->setTranslation(glm::vec3(500.0f, 300.0f, 0.0f));
+        entity3->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
+        ///Ball3
+        entity4 = new Entity();
+        entity4->Add(new Sprite("Temp_Assets/Balls/Ball.png", 1, 1));
+        entity4->Add(new RigidBody());
+        entity4->Add(new Transform());
+        
     }
 
     /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
@@ -87,6 +105,10 @@
         delete entity;
         delete sound;
         delete entity2;
+        delete entity3;
+        delete entity4;
+        delete entity5;
+        delete entity6;
     }
 
 //-----------------------------------------------------------------------------

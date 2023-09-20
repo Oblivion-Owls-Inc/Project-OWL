@@ -108,6 +108,9 @@
     <Filter Include="Engine\Entity\Component\Behavior\Movement Behavior">
       <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\BouncingBehavior">
+      <UniqueIdentifier>{8a844290-c72f-4419-928b-4221e6965e19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -188,9 +191,6 @@
     <ClCompile Include="Source\Sprite.cpp">
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PhysicsSystem.cpp">
-      <Filter>Engine\Systems\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\SandboxSystem.cpp">
       <Filter>Game\SandboxSystem</Filter>
     </ClCompile>
@@ -220,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BouncingBehavior.cpp">
+      <Filter>Engine\Entity\Component\Behavior\BouncingBehavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -310,9 +313,6 @@
     <ClInclude Include="Source\Sprite.h">
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PhysicsSystem.h">
-      <Filter>Engine\Systems\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Source\SandboxSystem.h">
       <Filter>Game\SandboxSystem</Filter>
     </ClInclude>
@@ -351,6 +351,9 @@
     </ClInclude>
     <ClInclude Include="Source\RigidBody.h">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BouncingBehavior.h">
+      <Filter>Engine\Entity\Component\Behavior\BouncingBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,22 @@
-/// @file Collider.h
-/// @author Jax Clayton (jax.clayton)
-/// 
-/// 
-///
-///
+///*************************************************************************/
+///@file  Collider.cpp
+/// @Author Jax Clayton (jax.clayton@digipen.edu)
+/// @date   9/5/2021
+/// @brief  This is the Collider class implementation file
+///*************************************************************************/
+
+///*************************************************************************/
+/// Includes
+///*************************************************************************/
 #include "Component.h"
 #include "rapidjson.h"
-#include "PhysicsSystem.h"
 using namespace rapidjson;
+
+///*************************************************************************/
+/// @Class Collider
+/// @brief This class contains the Collider component which is used for handling
+///			collisions
+///************************************************************************/
 
 class Collider : public Component
 {
