@@ -215,9 +215,6 @@
     <ClCompile Include="Source\MovementAI.cpp">
       <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EntitySystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClCompile>
@@ -226,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="Source\Stream.t.cpp">
       <Filter>Engine\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntitySystem.cpp">
+      <Filter>Engine\Systems\EntitySystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -357,6 +357,9 @@
     </ClInclude>
     <ClInclude Include="Source\RigidBody.h">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntitySystem.h">
+      <Filter>Engine\Systems\EntitySystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

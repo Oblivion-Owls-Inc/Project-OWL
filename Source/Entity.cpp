@@ -148,6 +148,7 @@ void Entity::ReadComponents( Stream stream )
 	for ( auto& componentData : stream.getObject() )
 	{
 		Component* component = ComponentFactory::Create( componentData.name.GetString() );
+		//stream.Read( component );
 		Add( component );
 	}
 }
