@@ -15,7 +15,8 @@
 //------------------------------------------------------------------------------
 
 #include "Component.h"
-#include <map>  // std::map
+#include <map>     // std::map
+#include <vector>  // std::vector
 #include <string>  // std::string
 #include <fstream> // std::ifstream
 
@@ -65,6 +66,10 @@ public:
         return static_cast<ComponentType*>( componentIterator->second );
     }
     
+	std::map<std::type_index, Component*>& getComponents();
+	template < typename ComponentType >
+	std::vector<ComponentType*> GetAll(ComponentType type);
+	
 	// Flag an entity for destruction
 	void Destroy();
 	// Checks whether an entity has been flagged for destruction.
@@ -76,9 +81,6 @@ public:
 	// Compare the entity's name with the specified name.
 	bool IsNamed(const std::string& name);
 	
-	bool isColliding();
-	void isColliding(bool colliding);
-
 private:
 	// The name of the entity.
 	std::string mName;
@@ -87,7 +89,6 @@ private:
 	// Container for attached components
 	std::map<std::type_index, Component*> components;
 
-	bool mIsColliding;
 	// Private Member Function
 
 	// Searches the components vector for a specific component
@@ -97,3 +98,17 @@ private:
 };
 //------------------------------------------------------------------------------
 
+template<typename ComponentType>
+inline std::vector<ComponentType*> Entity::GetAll(ComponentType type)
+{
+	std::vector<ComponentType*> componentsOfType;
+
+	for each (auto component in components) 
+	{
+		if (component->Type() == type)
+		{
+			componentsOfType.push_back(component);
+		}
+	}
+
+}

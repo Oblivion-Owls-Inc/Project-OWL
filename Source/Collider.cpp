@@ -3,11 +3,11 @@
 
 #include "Collider.h"
 
-Collider::Collider(): Component(typeid(Collider)), type()
+Collider::Collider(): Component(typeid(Collider)), mtype(), mIsColliding(false)
 {
 }
 
-Collider::Collider(const Collider& other) : Component(other), type(other.type)
+Collider::Collider(const Collider& other) : Component(other), mtype(other.mtype)
 {
 }
 
@@ -15,61 +15,27 @@ Component* Collider::Clone() const
 {
 	return nullptr;
 }
-void Collider::OnUpdate(float dt)
+void Collider::OnFixedUpdate()
 {
 }
 
-void Collider::Check(const Collider* other)
+bool Collider::CheckCollision(const Collider* other)
 {
-  
+  	return false;
 }
 
-
-///This is not complete and will need to be finished
-bool Collider::IsColliding(const Collider* other)
+bool Collider::isColliding()
 {
-    switch (type)
-    {
-        case ColliderTypeCircle:
-
-            switch (other->type)
-            {
-                case ColliderTypeCircle:
-
-                case ColliderTypeLine:
-
-                default:
-                    return false;
-            }
-
-            break;
-
-        case ColliderTypeLine:
-
-            switch (other->type)
-            {
-                case ColliderTypeCircle:
-
-                case ColliderTypeLine:
-
-                default:
-                    return false;
-            }
-
-            break;
-
-        default:
-
-            return false;
-    }
-
+	return mIsColliding;
 }
 
-void Collider::SetCollider(Collider* collider)
+void Collider::isColliding(bool colliding)
 {
+	mIsColliding = colliding;
 }
 
-Collider* Collider::GetCollider()
+void Collider::setColliderType(ColliderType cType)
 {
-	return nullptr;
+	mtype = cType;
 }
+

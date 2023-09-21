@@ -1,7 +1,9 @@
 #include "CircleCollider.h"
+#include "Collider.h"
 
-CircleCollider::CircleCollider()
+CircleCollider::CircleCollider(): Collider(), radius(0.0f)
 {
+	setColliderType(ColliderType::ColliderTypeCircle);
 }
 
 CircleCollider::CircleCollider(const CircleCollider& other)
@@ -29,4 +31,8 @@ void CircleCollider::SetRadius(float radius)
 float CircleCollider::GetRadius() const
 {
 	return 0.0f;
+}
+
+void CircleCollider::OnFixedUpdate()
+{
 }

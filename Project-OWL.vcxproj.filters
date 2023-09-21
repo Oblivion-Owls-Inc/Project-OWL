@@ -209,12 +209,6 @@
     <ClCompile Include="Source\Stream.cpp">
       <Filter>Engine\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LinesCollider.cpp">
-      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BehaviorSystem.cpp">
-      <Filter>Engine\Systems\BehaviorSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MovementAI.cpp">
       <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
     </ClCompile>
@@ -224,14 +218,17 @@
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BouncingBehavior.cpp">
-      <Filter>Engine\Entity\Component\Behavior\BouncingBehavior</Filter>
-    </ClCompile>
     <ClCompile Include="Source\CircleCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\CircleCollider</Filter>
     </ClCompile>
     <ClCompile Include="Source\CollisionSystem.cpp">
       <Filter>Engine\Systems\CollisonSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LineCollider.cpp">
+      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BehaviorSystem.cpp">
+      <Filter>Engine\Systems\BehaviorSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -343,9 +340,6 @@
     <ClInclude Include="Source\Stream.h">
       <Filter>Engine\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LinesCollider.h">
-      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Collider.h">
       <Filter>Engine\Entity\Component\Collider</Filter>
     </ClInclude>
@@ -361,14 +355,14 @@
     <ClInclude Include="Source\RigidBody.h">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BouncingBehavior.h">
-      <Filter>Engine\Entity\Component\Behavior\BouncingBehavior</Filter>
-    </ClInclude>
     <ClInclude Include="Source\CircleCollider.h">
       <Filter>Engine\Entity\Component\Collider\CircleCollider</Filter>
     </ClInclude>
     <ClInclude Include="Source\CollisionSystem.h">
       <Filter>Engine\Systems\CollisonSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LineCollider.h">
+      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

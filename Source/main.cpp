@@ -8,46 +8,27 @@
 #pragma warning(disable : 33019) //Disabling warning for missing PDB files
 
 
-int main ()
+int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ PWSTR pCmdLine, _In_ int nCmdShow)
 {
-	// *** Initialize the window using glfw *******************************************************
+    UNREFERENCED_PARAMETER(hInstance);
+    UNREFERENCED_PARAMETER(hPrevInstance);
+    UNREFERENCED_PARAMETER(pCmdLine);
+    UNREFERENCED_PARAMETER(nCmdShow);
 
-	Engine* engine = Engine::getInstance();
+    // *** Initialize the window using glfw *******************************************************
 
-	// engine->AddSystem( PlatformSystem::getInstance() );
-	// engine->AddSystem( SceneSystem::getInstance( "SceneName" ) );
-	// engine->AddSystem( RenderSystem::getInstance() );
-	// engine->AddSystem( DebugSystem::getInstance() );
+    Engine* engine = Engine::getInstance();
 
-	engine->Run();
+    // engine->AddSystem( PlatformSystem::getInstance() );
+    // engine->AddSystem( SceneSystem::getInstance( "SceneName" ) );
+    // engine->AddSystem( RenderSystem::getInstance() );
+    // engine->AddSystem( DebugSystem::getInstance() );
 
-	return 0;
+    engine->Run();
+
+    return 0;
 
 }
-
-//
-//
-//int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ PWSTR pCmdLine, _In_ int nCmdShow)
-//{
-//    UNREFERENCED_PARAMETER(hInstance);
-//    UNREFERENCED_PARAMETER(hPrevInstance);
-//    UNREFERENCED_PARAMETER(pCmdLine);
-//    UNREFERENCED_PARAMETER(nCmdShow);
-//
-//    // *** Initialize the window using glfw *******************************************************
-//
-//    Engine* engine = Engine::getInstance();
-//
-//    // engine->AddSystem( PlatformSystem::getInstance() );
-//    // engine->AddSystem( SceneSystem::getInstance( "SceneName" ) );
-//    // engine->AddSystem( RenderSystem::getInstance() );
-//    // engine->AddSystem( DebugSystem::getInstance() );
-//
-//    engine->Run();
-//
-//    return 0;
-//
-//}
 
 
 

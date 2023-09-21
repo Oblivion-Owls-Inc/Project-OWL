@@ -2,6 +2,7 @@
 /// @file CircleCollider.h
 ///*************************************************************************
 #pragma once
+
 #include "Collider.h"
 
  /**
@@ -43,6 +44,8 @@ class CircleCollider : public Collider
         void SetRadius(float radius);
 
         float GetRadius() const;
+
+        virtual void OnFixedUpdate() override;
 
     private:
         float radius;  // Radius of the circle collider

@@ -6,7 +6,7 @@
 
 using namespace glm;
 
-class LinesCollider : public Collider
+class LineCollider : public Collider
 {
 	private:
 
@@ -19,11 +19,12 @@ class LinesCollider : public Collider
 
 	public:
 
-		LinesCollider();
+		LineCollider();
 		Component* Clone() const;
 		void AddLineSegment(const vec2* p0, const vec2* p1);
 		bool IsColliding(const Collider* other) override;
-
+		void addLineSegment(const vec2* p0, const vec2* p1);
+		virtual void OnFixedUpdate() override;
 	private:
 		std::vector<ColliderLineSegment> m_lineSegments;
 

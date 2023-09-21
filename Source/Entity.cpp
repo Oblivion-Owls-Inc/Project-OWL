@@ -25,7 +25,6 @@ Entity::Entity()
 	: mName("")
 	, mIsDestroyed(false)
 	, components()
-	, mIsColliding(false)
 {
 }
 
@@ -94,6 +93,11 @@ Component* Entity::HasComponent(std::type_index type)
 	return nullptr;
 }
 
+std::map<std::type_index, Component*>& Entity::getComponents()
+{
+	return components;
+}
+
 /// @brief Flag an entity for destruction.
 void Entity::Destroy() { mIsDestroyed = true; }
 
@@ -126,14 +130,4 @@ bool Entity::IsNamed(const std::string& name)
 		return (mName == name);
 	}
 	return false;
-}
-
-bool Entity::isColliding()
-{
-	return mIsColliding;
-}
-
-void Entity::isColliding(bool colliding)
-{
-	mIsColliding = colliding;
 }

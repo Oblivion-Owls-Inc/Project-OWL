@@ -10,6 +10,7 @@
 #endif
 
 #include "Entity.h"
+#include "Collider.h"
 // Define the static instance variable for the templated BehaviorSystem
 template < typename BehaviorType >
 BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::instance = nullptr;
@@ -22,26 +23,18 @@ void BehaviorSystem<BehaviorType>::OnInit()
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 {
-	for(auto behavior : behaviorsList)
+	for (auto behavior : behaviorsList)
 	{
 		behavior->OnFixedUpdate();
-		if (behavior->Parent()->isColliding())
-		{
-			behavior->OnCollisionEvent();
-		}
 	}
 }
 
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
-    for(auto behavior : behaviorsList)
+	for (auto behavior : behaviorsList)
 	{
 		behavior->OnUpdate(dt);
-		if (behavior->Parent()->isColliding())
-		{
-			behavior->OnCollisionEvent();
-		}
 	}
 }
 
@@ -72,16 +65,16 @@ void BehaviorSystem<BehaviorType>::RemoveBehavior(BehaviorType* behavior)
 template < typename BehaviorType >
 BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::getInstance()
 {
-    if ( instance == nullptr )
-    {
-        instance = new BehaviorSystem< BehaviorType >();
-    }
-    return instance;
+	if (instance == nullptr)
+	{
+		instance = new BehaviorSystem< BehaviorType >();
+	}
+	return instance;
 }
 
 template<typename BehaviorType>
 std::vector<BehaviorType*>& BehaviorSystem<BehaviorType>::getBehaviors() const
 {
-    return &behaviorsList;
+	return &behaviorsList;
 }
 

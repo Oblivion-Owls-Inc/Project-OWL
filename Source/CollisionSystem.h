@@ -10,6 +10,7 @@
 
 #include "System.h"
 #include <vector>
+
 class Collider;
 /// @brief Example System meant to be copy-pasted when creating new Systems
 class CollisionSystem : public System
@@ -28,15 +29,18 @@ class CollisionSystem : public System
 
 		void removeCollider(Collider* collider);
 
+        /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
+        virtual void OnFixedUpdate() override;
+
+        void checkCollisions();
+
+
 
     private: // unused virtual overrides
 
         /// @brief Gets called once when this System is added to the Engine
         virtual void OnInit() override {}
 
-
-        /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
-        virtual void OnFixedUpdate() override {}
 
 
         /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.

@@ -7,7 +7,7 @@
 /// @copyright Copyright (c) 2023
 
 #include "CollisionSystem.h"
-
+#include "Collider.h"
 //-----------------------------------------------------------------------------
 // virtual override methods
 //-----------------------------------------------------------------------------
@@ -42,7 +42,32 @@ void CollisionSystem::addCollider(Collider* collider)
 
 void CollisionSystem::removeCollider(Collider* collider)
 {
-	
+    colliderList.erase(std::remove(colliderList.begin(), colliderList.end(), collider), colliderList.end());
+}
+
+void CollisionSystem::OnFixedUpdate()
+{
+    for (auto collider : colliderList)
+    {
+		collider->OnFixedUpdate();
+	}
+}
+
+void CollisionSystem::checkCollisions()
+{
+    for (auto collider : colliderList)
+    {
+        for (auto otherCollider : colliderList)
+        {
+            if (collider != otherCollider)
+            {
+                if (collider->CheckCollision(otherCollider))
+                {
+
+                }
+			}
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------

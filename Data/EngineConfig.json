@@ -15,6 +15,7 @@
     "AudioSystem": {},
     "BehaviorSystem< RigidBody >": {},
     "BehaviorSystem< MovementAI >": {},
+    "CollisionSystem": {},
     "DebugSystem": {
       "showFpsWindow": true
     }

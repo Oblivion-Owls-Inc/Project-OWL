@@ -8,6 +8,7 @@
 ///*************************************************************************/
 /// Includes
 ///*************************************************************************/
+#pragma once
 #include "Component.h"
 
 ///*************************************************************************/
@@ -21,17 +22,6 @@ class Collider : public Component
 	protected:
 		Collider();
 
-	public:
-		Collider(const Collider& other);
-		~Collider() = default;
-		virtual Component* Clone() const override;
-		virtual void OnUpdate(float dt);
-		void Check(const Collider* other);
-		virtual bool IsColliding(const Collider* other);
-		void SetCollider(Collider* collider);
-		Collider* GetCollider();
-
-	private:
 		typedef enum ColliderType
 		{
 			ColliderTypeNone,
@@ -40,5 +30,19 @@ class Collider : public Component
 
 		} ColliderType;
 
-		ColliderType type;
+	public:
+		Collider(const Collider& other);
+		~Collider() = default;
+		virtual Component* Clone() const override;
+		virtual void OnFixedUpdate();
+		bool CheckCollision(const Collider* other);
+		// change name 
+		virtual bool IsColliding(const Collider* other) = 0;
+		bool isColliding();
+		void isColliding(bool colliding);
+		void setColliderType(ColliderType cType);
+	private:
+		ColliderType mtype;
+		bool mIsColliding;
+
 };

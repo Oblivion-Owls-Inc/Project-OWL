@@ -32,11 +32,9 @@ void MovementAI::OnUpdate(float dt)
 	if (timer > 1.0f)
 	{
 		timer = 0.0f;
-		Parent()->isColliding(true);
 	}
 	else
 	{
-		Parent()->isColliding(false);
 	}
 }
 

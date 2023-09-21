@@ -2,6 +2,8 @@
 #include "BehaviorSystem.h"
 #include "DebugSystem.h"
 
+static int GravityForce = 1;
+
 RigidBody::RigidBody() : 
 	_velocity(vec3(0, 0, 0)),
 	_acceleration(vec3(1, 1, 0)),
@@ -32,6 +34,12 @@ void RigidBody::OnUpdate(float dt)
 
 	_oldTranslation = *transform->getTranslation();
 	temptranslation = *transform->getTranslation() + (_velocity);
+
+	ImGui::Begin("RigidBody Editor");
+	ImGui::DragInt("Gravity Force", &GravityForce, 1, 0, 100);
+	ImGui::End();
+
+	temptranslation.y = temptranslation.y + (_acceleration.y * dt * GravityForce);
 
 	float rotation = transform->getRotation();
 	rotation += _rotationalVelocity;
@@ -90,6 +98,6 @@ void RigidBody::SetRotationalVelocity(float rotational_velocity)
 void RigidBody::OnCollisionEvent()
 {
 	DebugConsole output(*DebugSystem::getInstance());
-	output << "Collision Detected" << "\n";
+	output <<"RigidBody:" << "Collision Detected in " << "(" << Parent()->GetName().c_str() << " )" << "\n";
 }
 
