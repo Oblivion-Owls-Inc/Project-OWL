@@ -81,9 +81,6 @@
     <Filter Include="Engine\Entity\Component\Behavior\Movement Behavior">
       <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Behavior\BouncingBehavior">
-      <UniqueIdentifier>{8a844290-c72f-4419-928b-4221e6965e19}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Collider\CircleCollider">
       <UniqueIdentifier>{f3d76695-1d01-436d-a2f0-5d97be858aa8}</UniqueIdentifier>
     </Filter>

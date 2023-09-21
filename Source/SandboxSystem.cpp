@@ -6,6 +6,7 @@
 /// 
 /// @copyright Copyright (c) 2023
 
+#include "glm/glm.hpp"
 #include "SandboxSystem.h"
 
 #include "Entity.h"
@@ -59,6 +60,9 @@
         Wall->SetName("Wall");
         Wall->Add(new Sprite("Temp_Assets/Wall.png", 1, 1, 0));
         Wall->Add(new Transform());
+        Wall->Add(new LineCollider());
+        LineCollider* collider = (LineCollider*)Wall->GetComponent<Collider>();
+        collider ->AddLineSegment(glm::vec2(0.0f, 0.0f), glm::vec2(800.0f, 0.0f));
         Wall->GetComponent<Transform>()->setTranslation(glm::vec3(400.0f, 600.0f, 0.0f));
         Wall->GetComponent<Transform>()->setScale(glm::vec3(800.0f, 50.0f, 0.0f));
         
@@ -73,21 +77,25 @@
         float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
         entity2->GetComponent<Transform>()->setTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
         entity2->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
+
         /// Ball 2
         entity3 = new Entity();
         entity3->SetName("Ball2");
         entity3->Add(new Sprite("Temp_Assets/Balls/Ball2.png", 1, 1, 1));
         entity3->Add(new RigidBody());
+        entity3->Add(new CircleCollider());
         entity3->Add(new Transform());
         entity3->Add(new MovementAI());
         spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
         entity3->GetComponent<Transform>()->setTranslation(glm::vec3(500.0f, 300.0f, 0.0f));
         entity3->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
+
         ///Ball3
         entity4 = new Entity();
         entity4->SetName("Ball3");
         entity4->Add(new Sprite("Temp_Assets/Balls/Ball.png", 1, 1, 1));
         entity4->Add(new RigidBody());
+        entity4->Add(new CircleCollider());
         entity4->Add(new Transform());
         entity4->Add(new MovementAI());
         spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();

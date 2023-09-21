@@ -35,14 +35,19 @@ class Collider : public Component
 		~Collider() = default;
 		virtual Component* Clone() const override;
 		virtual void OnFixedUpdate();
-		bool CheckCollision(const Collider* other);
+		bool checkCollisionType(const Collider* other);
 		// change name 
-		virtual bool IsColliding(const Collider* other) = 0;
+		virtual bool CheckIfColliding(const Collider* other) = 0;
+
+	public:
+		void setOtherCollider(Collider* other);
+		Collider* getOtherCollider();
 		bool isColliding();
 		void isColliding(bool colliding);
 		void setColliderType(ColliderType cType);
+
 	private:
 		ColliderType mtype;
 		bool mIsColliding;
-
+		Collider* mOther; // Instagator is the other collider that is colliding with this collider
 };

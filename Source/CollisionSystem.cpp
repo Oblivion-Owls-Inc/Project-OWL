@@ -47,10 +47,7 @@ void CollisionSystem::removeCollider(Collider* collider)
 
 void CollisionSystem::OnFixedUpdate()
 {
-    for (auto collider : colliderList)
-    {
-		collider->OnFixedUpdate();
-	}
+    checkCollisions();
 }
 
 void CollisionSystem::checkCollisions()
@@ -61,7 +58,7 @@ void CollisionSystem::checkCollisions()
         {
             if (collider != otherCollider)
             {
-                if (collider->CheckCollision(otherCollider))
+                if (collider->CheckIfColliding(otherCollider))
                 {
 
                 }

@@ -98,6 +98,5 @@ void RigidBody::SetRotationalVelocity(float rotational_velocity)
 void RigidBody::OnCollisionEvent()
 {
 	DebugConsole output(*DebugSystem::getInstance());
-	output <<"RigidBody:" << "Collision Detected in " << "(" << Parent()->GetName().c_str() << " )" << "\n";
+	output << Parent()->GetName().c_str() << ":Collision Detected in RigidBody";
 }
-

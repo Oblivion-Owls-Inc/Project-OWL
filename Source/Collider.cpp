@@ -19,9 +19,19 @@ void Collider::OnFixedUpdate()
 {
 }
 
-bool Collider::CheckCollision(const Collider* other)
+bool Collider::checkCollisionType(const Collider* other)
 {
-  	return false;
+	return false;
+}
+
+void Collider::setOtherCollider(Collider* other)
+{
+	mOther = other;
+}
+
+Collider* Collider::getOtherCollider()
+{
+	return mOther;
 }
 
 bool Collider::isColliding()

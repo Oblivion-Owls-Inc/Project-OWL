@@ -23,21 +23,14 @@ Component* MovementAI::Clone() const
 
 void MovementAI::OnCollisionEvent()
 {
+    DebugConsole output(*DebugSystem::getInstance());
+    output << Parent()->GetName().c_str() <<":Collision Detected in Movement AI";
+
 }
 
 void MovementAI::OnUpdate(float dt)
 {
-    timer += dt;
-	DebugConsole output(*DebugSystem::getInstance());
-	if (timer > 1.0f)
-	{
-		timer = 0.0f;
-	}
-	else
-	{
-	}
 }
-
 
 void MovementAI::MovementAIUpdateRotation(float dt)
 {

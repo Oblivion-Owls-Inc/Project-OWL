@@ -19,7 +19,7 @@ Component* CircleCollider::Clone() const
 	return nullptr;
 }
 
-bool CircleCollider::IsColliding(const Collider* other)
+bool CircleCollider::CheckIfColliding(const Collider* other)
 {
 	return false;
 }

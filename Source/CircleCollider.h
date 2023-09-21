@@ -39,7 +39,7 @@ class CircleCollider : public Collider
          * @param other The collider to check for collision with.
          * @return True if a collision is detected, false otherwise.
          */
-        virtual bool IsColliding(const Collider* other) override;
+        virtual bool CheckIfColliding(const Collider* other) override;
 
         void SetRadius(float radius);
 

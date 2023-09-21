@@ -22,8 +22,8 @@ class LineCollider : public Collider
 		LineCollider();
 		Component* Clone() const;
 		void AddLineSegment(const vec2* p0, const vec2* p1);
-		bool IsColliding(const Collider* other) override;
-		void addLineSegment(const vec2* p0, const vec2* p1);
+		void AddLineSegment(vec2 p0, vec2 p1);
+		bool CheckIfColliding(const Collider* other) override;
 		virtual void OnFixedUpdate() override;
 	private:
 		std::vector<ColliderLineSegment> m_lineSegments;
