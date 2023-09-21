@@ -24,11 +24,6 @@ class CircleCollider : public Collider
         CircleCollider(const CircleCollider& other);
 
         /**
-         * @brief Destructor for CircleCollider.
-         */
-        virtual ~CircleCollider();
-
-        /**
          * @brief Clone method for CircleCollider.
          * @return A cloned CircleCollider object.
          */
@@ -41,7 +36,7 @@ class CircleCollider : public Collider
          */
         virtual bool CheckIfColliding(const Collider* other) override;
 
-        void SetRadius(float radius);
+        void SetRadius(float _radius);
 
         float GetRadius() const;
 
@@ -49,4 +44,5 @@ class CircleCollider : public Collider
 
     private:
         float radius;  // Radius of the circle collider
+        bool doesDamage = false;
 };

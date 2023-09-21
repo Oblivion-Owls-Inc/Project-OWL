@@ -150,9 +150,6 @@
       <Filter>Engine\Entity</Filter>
     </ClCompile>
     <ClCompile Include="Source\Component.cpp">
-      <Filter>Engine\Entity\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\GUI.cpp">
@@ -226,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="Source\BehaviorSystem.cpp">
       <Filter>Engine\Systems\BehaviorSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component.cpp">
+      <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -322,9 +322,6 @@
     <ClInclude Include="Source\AudioPlayer.h">
       <Filter>Engine\Entity\Component\AudioPlayer</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Behavior.h">
-      <Filter>Engine\Entity\Component\Behavior</Filter>
-    </ClInclude>
     <ClInclude Include="Source\InputSystem.h">
       <Filter>Engine\Systems\InputSystem</Filter>
     </ClInclude>
@@ -360,6 +357,9 @@
     </ClInclude>
     <ClInclude Include="Source\LineCollider.h">
       <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Behavior.h">
+      <Filter>Engine\Entity\Component\Behavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

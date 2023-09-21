@@ -6,31 +6,43 @@ CircleCollider::CircleCollider(): Collider(), radius(0.0f)
 	setColliderType(ColliderType::ColliderTypeCircle);
 }
 
-CircleCollider::CircleCollider(const CircleCollider& other)
+CircleCollider::CircleCollider(const CircleCollider& other) : Collider(other), radius(other.radius)
 {
-}
-
-CircleCollider::~CircleCollider()
-{
+	setColliderType(ColliderType::ColliderTypeCircle);
 }
 
 Component* CircleCollider::Clone() const
 {
-	return nullptr;
+	return (Component *) new CircleCollider(*this);
 }
 
 bool CircleCollider::CheckIfColliding(const Collider* other)
 {
-	return false;
+	switch (other->getColliderType())
+	{
+		case ColliderType::ColliderTypeCircle:
+		{
+			return false;
+		}
+		case ColliderType::ColliderTypeLine:
+		{
+			return false;
+		}
+		default:
+		{
+			return false; // No collision detected
+		}
+	}
 }
 
-void CircleCollider::SetRadius(float radius)
+void CircleCollider::SetRadius(float _radius)
 {
+	radius = _radius;
 }
 
 float CircleCollider::GetRadius() const
 {
-	return 0.0f;
+	return radius;
 }
 
 void CircleCollider::OnFixedUpdate()

@@ -23,9 +23,8 @@ Component* MovementAI::Clone() const
 
 void MovementAI::OnCollisionEvent()
 {
-    DebugConsole output(*DebugSystem::getInstance());
-    output << Parent()->GetName().c_str() <<":Collision Detected in Movement AI";
-
+    DebugConsole output2(*DebugSystem::getInstance());
+    output2 << Parent()->GetName().c_str() <<":Collision Detected in Movement AI" << "\n";
 }
 
 void MovementAI::OnUpdate(float dt)
@@ -52,9 +51,7 @@ void MovementAI::MovementAISpiral(float dt)
 void MovementAI::MovementAISpawnBullet()
 {
 }
-/// <summary>
-/// UNUSED
-/// </summary>
+
 void MovementAI::OnFixedUpdate()
 {
 }

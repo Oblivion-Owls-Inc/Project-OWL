@@ -7,6 +7,8 @@
 /// @copyright Copyright (c) 2023
 
 #include "CollisionSystem.h"
+#include "DebugSystem.h"
+#include "Entity.h"
 #include "Collider.h"
 //-----------------------------------------------------------------------------
 // virtual override methods
@@ -48,6 +50,20 @@ void CollisionSystem::removeCollider(Collider* collider)
 void CollisionSystem::OnFixedUpdate()
 {
     checkCollisions();
+    for (auto collider : colliderList)
+    {
+        if (collider->isColliding())
+        {
+            Collider* other = collider->getOtherCollider();
+
+            DebugConsole output(*DebugSystem::getInstance());
+            output << "Collider: " << collider->Parent()->GetName().c_str()
+                << " is colliding with: "
+                << other->Parent()->GetName() << "\n";
+            collider->isColliding(false);
+        }
+	}
+
 }
 
 void CollisionSystem::checkCollisions()
@@ -60,7 +76,8 @@ void CollisionSystem::checkCollisions()
             {
                 if (collider->CheckIfColliding(otherCollider))
                 {
-
+					collider->isColliding(true);
+					collider->setOtherCollider(otherCollider);
                 }
 			}
 		}

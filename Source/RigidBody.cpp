@@ -51,7 +51,7 @@ void RigidBody::OnUpdate(float dt)
 
 Component* RigidBody::Clone() const
 {
-	return (Component*)new RigidBody(*this);
+	return (Component*) new RigidBody(*this);
 }
 
 vec3* RigidBody::getAcceleration()
@@ -98,5 +98,5 @@ void RigidBody::SetRotationalVelocity(float rotational_velocity)
 void RigidBody::OnCollisionEvent()
 {
 	DebugConsole output(*DebugSystem::getInstance());
-	output << Parent()->GetName().c_str() << ":Collision Detected in RigidBody";
+	output << Parent()->GetName().c_str() << ":Collision Detected in RigidBody" << "\n";
 }

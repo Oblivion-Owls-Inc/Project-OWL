@@ -35,9 +35,9 @@ class Collider : public Component
 		~Collider() = default;
 		virtual Component* Clone() const override;
 		virtual void OnFixedUpdate();
-		bool checkCollisionType(const Collider* other);
 		// change name 
 		virtual bool CheckIfColliding(const Collider* other) = 0;
+		virtual ColliderType getColliderType() const { return mtype; }
 
 	public:
 		void setOtherCollider(Collider* other);

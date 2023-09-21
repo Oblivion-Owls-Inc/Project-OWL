@@ -2,13 +2,17 @@
 ///@Author Jax Clayton (jax.clayton@digipen.edu)
 
 #include "Collider.h"
+#include "CollisionSystem.h"
 
 Collider::Collider(): Component(typeid(Collider)), mtype(), mIsColliding(false)
 {
+	CollisionSystem::getInstance()->addCollider(this);
+
 }
 
 Collider::Collider(const Collider& other) : Component(other), mtype(other.mtype)
 {
+	CollisionSystem::getInstance()->removeCollider(this);
 }
 
 Component* Collider::Clone() const
@@ -17,11 +21,6 @@ Component* Collider::Clone() const
 }
 void Collider::OnFixedUpdate()
 {
-}
-
-bool Collider::checkCollisionType(const Collider* other)
-{
-	return false;
 }
 
 void Collider::setOtherCollider(Collider* other)
