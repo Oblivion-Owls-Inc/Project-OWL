@@ -61,7 +61,7 @@ public:
     std::vector< BehaviorType* >& getBehaviors() const;
 
 private:
-    std::vector< BehaviorType* > behaviorsList;
+    std::vector< Behavior* > behaviorsList;
 
     // Prevent copying
     BehaviorSystem( BehaviorSystem& other ) = delete;

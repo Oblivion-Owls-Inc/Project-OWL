@@ -15,6 +15,8 @@ Brief Description:
 #include <algorithm>   // std::sort
 #include "Component.h" // Type
 #include <cassert>	   // assert
+#include "ComponentFactory.h" // Create.
+#include "basics.h"
 
 //------------------------------------------------------------------------------
 // Public Functions:
@@ -34,7 +36,7 @@ Entity::Entity(const Entity& other)
 	: mName(other.mName)
 	, mIsDestroyed(other.mIsDestroyed)
 {
-	for (auto component : other.components)
+	for (auto& component : other.components)
 	{
 		Component* clone = component.second->Clone();
 		Add(clone);
@@ -52,14 +54,13 @@ Entity* Entity::Clone() const { return new Entity(*this); }
 void Entity::Free()
 {
 	// Traverse the component list
-	for (auto component : components)
+	for (auto& component : components)
 	{
 		// Make sure the component is valid.
 		assert(component.second);
 		
 		// Delete the component.
 		delete component.second;
-		
 	}
 	// Clear the component list.
 	components.clear();
@@ -131,3 +132,43 @@ bool Entity::IsNamed(const std::string& name)
 	}
 	return false;
 }
+
+/// @brief Clone this entity from an archetype.
+/// @param stream the json value to read from.
+void Entity::ReadArchetype(Stream stream)
+{
+	/// TODO: Write this function.
+}
+
+/// @brief Read in the name of entity.
+/// @param stream the json value to read from.
+void Entity::ReadName(Stream stream)
+{
+	mName = stream.Read<std::string>();
+}
+
+/// @brief Read in the data for all the components of entity.
+/// @param stream the json object to read from.
+void Entity::ReadComponents( Stream stream )
+{
+	for ( auto& componentData : stream.getObject() )
+	{
+		Component* component = ComponentFactory::Create( componentData.name.GetString() );
+		try
+		{
+			Stream( componentData.value ).Read( component );
+		}
+		catch ( std::runtime_error error )
+		{
+			std::cerr << error.what() << std::endl;
+			assert( false );
+		}
+		Add( component );
+	}
+}
+
+ReadMethodMap< Entity > Entity::readMethods = {
+	{"Archetype", &ReadArchetype},
+	{"components", &ReadComponents},
+	{"name", &ReadName}
+};
