@@ -1,5 +1,8 @@
 #include "RigidBody.h"
 #include "BehaviorSystem.h"
+#include "DebugSystem.h"
+
+static int GravityForce = 1;
 
 RigidBody::RigidBody() : 
 	_velocity(vec3(0, 0, 0)),
@@ -30,11 +33,16 @@ void RigidBody::OnUpdate(float dt)
 	Transform* transform = (Transform *)Parent()->HasComponent(typeid(Transform));
 
 	_oldTranslation = *transform->getTranslation();
-	_velocity += _acceleration * dt;
-	temptranslation = *transform->getTranslation() + (_velocity * dt);
+	temptranslation = *transform->getTranslation() + (_velocity);
+
+	ImGui::Begin("RigidBody Editor");
+	ImGui::DragInt("Gravity Force", &GravityForce, 1, 0, 100);
+	ImGui::End();
+
+	temptranslation.y = temptranslation.y + (_acceleration.y * dt * GravityForce);
 
 	float rotation = transform->getRotation();
-	rotation += _rotationalVelocity * dt;
+	rotation += _rotationalVelocity;
 
 	transform->setRotation(rotation);
 	transform->setTranslation(temptranslation);
@@ -43,7 +51,7 @@ void RigidBody::OnUpdate(float dt)
 
 Component* RigidBody::Clone() const
 {
-	return (Component*)new RigidBody(*this);
+	return (Component*) new RigidBody(*this);
 }
 
 vec3* RigidBody::getAcceleration()
@@ -87,9 +95,10 @@ void RigidBody::SetRotationalVelocity(float rotational_velocity)
 	_rotationalVelocity = rotational_velocity;
 }
 
-void RigidBody::OnCollision(Entity* other)
+void RigidBody::OnCollisionEvent()
 {
-	(void)other;
+	DebugConsole output(*DebugSystem::getInstance());
+	output << Parent()->GetName().c_str() << ":Collision Detected in RigidBody" << "\n";
 }
 
 //-----------------------------------------------------------------------------
@@ -98,37 +107,35 @@ void RigidBody::OnCollision(Entity* other)
 
 /// @brief reads the velocity from json
 /// @param data the json data
-void RigidBody::ReadVelocity( Stream data )
+void RigidBody::ReadVelocity(Stream data)
 {
-    _velocity = data.Read< glm::vec3 >();
+	_velocity = data.Read< glm::vec3 >();
 }
 
 /// @brief reads the acceleration from json
 /// @param data the json data
-void RigidBody::ReadAcceleration( Stream data )
+void RigidBody::ReadAcceleration(Stream data)
 {
-    _acceleration = data.Read< glm::vec3 >();
+	_acceleration = data.Read< glm::vec3 >();
 }
 
 /// @brief reads the rotationalVelocity from json
 /// @param data the json data
-void RigidBody::ReadRotationalVelocity( Stream data )
+void RigidBody::ReadRotationalVelocity(Stream data)
 {
-    _rotationalVelocity = data.Read< float >();
+	_rotationalVelocity = data.Read< float >();
 }
 
 /// @brief the map of read methods for RigidBodys
 ReadMethodMap< RigidBody > RigidBody::readMethods = {
-    { "velocity",           &ReadVelocity           },
-    { "acceleration",       &ReadAcceleration       },
-    { "rotationalVelocity", &ReadRotationalVelocity }
+	{ "velocity",           &ReadVelocity           },
+	{ "acceleration",       &ReadAcceleration       },
+	{ "rotationalVelocity", &ReadRotationalVelocity }
 };
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component
 ReadMethodMap< Component > const& RigidBody::getReadMethods()
 {
-    return (ReadMethodMap< Component > const&)readMethods;
+	return (ReadMethodMap< Component > const&)readMethods;
 }
-
-//-----------------------------------------------------------------------------

@@ -10,6 +10,7 @@
 // Include files
 //-----------------------------------------------------------------------------
 #include "Stream.h"
+
 #include <iostream>
 #include <map>
 #include "istreamwrapper.h"

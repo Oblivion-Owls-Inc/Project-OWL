@@ -1,11 +1,14 @@
 #include "MovementAI.h"
-#include "BehaviorSystem.h"
 #include "Entity.h"
+#include "BehaviorSystem.h"
 #include "DebugSystem.h"
+
+
+static float timer = 0.0f;
 
 MovementAI::MovementAI(): Behavior(typeid(MovementAI))
 {
-    BehaviorSystem< MovementAI >::getInstance()->AddBehavior(this);
+    BehaviorSystem<MovementAI>::getInstance()->AddBehavior(this);
 }
 
 MovementAI::~MovementAI()
@@ -18,39 +21,15 @@ Component* MovementAI::Clone() const
 	return nullptr;
 }
 
+void MovementAI::OnCollisionEvent()
+{
+    DebugConsole output2(*DebugSystem::getInstance());
+    output2 << Parent()->GetName().c_str() <<":Collision Detected in Movement AI" << "\n";
+}
 
 void MovementAI::OnUpdate(float dt)
 {
-    Transform* transform = (Transform*)Parent()->HasComponent(typeid(Transform));
-	static float elapsedTime = 0.0f;
-	static bool moveRight = true;
-
-	static float moveSpeed = 100.0f; // Adjust the speed as needed
-    // Create a window for the menu
-    ImGui::Begin("Settings");
-    ImGui::SliderFloat("Movement Speed", &moveSpeed, 0.0f, 500.0f); // Adjust the range as needed
-    // End the menu window
-    ImGui::End();
-
-    // Update the elapsed time
-    elapsedTime += dt;
-
-    // Check if it's time to change direction
-    if (elapsedTime >= 2.0f) // Change direction every 2 seconds (adjust as needed)
-    {
-        moveRight = !moveRight;
-        elapsedTime = 0.0f;
-    }
-
-    // Calculate movement direction based on the current direction
-    float movementDirection = moveRight ? 1.0f : -1.0f;
-
-    glm::vec3 currentTranslation = *transform->getTranslation();
-    glm::vec3 newTranslation = currentTranslation + glm::vec3(movementDirection * moveSpeed * dt, 0.0f, 0.0f);
-
-    transform->setTranslation(newTranslation);
 }
-
 
 void MovementAI::MovementAIUpdateRotation(float dt)
 {
@@ -80,9 +59,7 @@ ReadMethodMap<Component> const& MovementAI::getReadMethods()
 void MovementAI::MovementAISpawnBullet()
 {
 }
-/// <summary>
-/// UNUSED
-/// </summary>
+
 void MovementAI::OnFixedUpdate()
 {
 }

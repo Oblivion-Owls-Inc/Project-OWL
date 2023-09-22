@@ -23,6 +23,8 @@
 #include "RenderSystem.h"
 #include "AudioSystem.h"
 #include "SandboxSystem.h"
+#include "XinoScene.h"
+#include "CollisionSystem.h"
 #include "InputSystem.h"
 #include "EntitySystem.h"
 #include "BehaviorSystem.h"
@@ -104,6 +106,8 @@ std::map< std::string, System* (Engine::*)()> Engine::addSystemMethods = {
     { "AudioSystem",    &AddSystem< AudioSystem >       },
     { "EntitySystem",   &AddSystem< EntitySystem >      },
     { "SandboxSystem",  &AddSystem< SandboxSystem >     },
+    { "XinoScene",      &AddSystem< XinoScene >         },
+	{ "CollisionSystem",&AddSystem< CollisionSystem >   },
     { "BehaviorSystem< RigidBody >", &AddSystem< BehaviorSystem < RigidBody > >    },
     { "BehaviorSystem< MovementAI >", &AddSystem< BehaviorSystem < MovementAI > >    },
 

@@ -11,15 +11,27 @@ using namespace glm;
 
 class LineCollider : public Collider
 {
+<<<<<<<< HEAD:Source/LinesCollider.h
+private:
+========
 	private:
 
 		typedef struct ColliderLineSegment
 		{
 			// A single line segment (P0 and P1).
 			vec2 point[2];
+>>>>>>>> origin/main:Source/LineCollider.h
 
-		} ColliderLineSegment;
+	typedef struct ColliderLineSegment
+	{
+		// A single line segment (P0 and P1).
+		vec2 point[2];
 
+<<<<<<<< HEAD:Source/LinesCollider.h
+	} ColliderLineSegment;
+
+public:
+========
 	public:
 
 		LineCollider();
@@ -33,12 +45,26 @@ class LineCollider : public Collider
 	private:
 
 		std::vector<ColliderLineSegment> m_lineSegments;
-		
-		unsigned int lineCount;
+>>>>>>>> origin/main:Source/LineCollider.h
 
-		unsigned int counter;
+	LineCollider();
+	Component* Clone() const;
+	void AddLineSegment( const vec2* p0, const vec2* p1 );
+	void AddLineSegment( vec2 p0, vec2 p1 );
+	bool CheckIfColliding( const Collider* other ) override;
+	virtual void OnFixedUpdate() override {};
 
-		bool doesDamage = false;
+<<<<<<<< HEAD:Source/LinesCollider.h
+
+private:
+
+	std::vector<ColliderLineSegment> m_lineSegments;
+
+	unsigned int lineCount;
+
+	unsigned int counter;
+
+	bool doesDamage = false;
 
 private: // reading
 
