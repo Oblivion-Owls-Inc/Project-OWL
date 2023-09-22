@@ -47,24 +47,6 @@ bool LineCollider::CheckIfColliding(const Collider* other)
             {
                 Transform* lineTransform = Parent()->GetComponent<Transform>();
                 Transform* circleTransform = other->Parent()->GetComponent<Transform>();
-
-                for (unsigned int i = 0; i < lineCount; i++)
-                {
-                    ColliderLineSegment* segment = &m_lineSegments[i];
-
-                    // Define the line segment's endpoints
-                    glm::vec2 lineStart = segment->point[0];
-                    glm::vec2 lineEnd = segment->point[1];
-                    
-
-
-                    // Check if the distance is less than the circle's radius
-                    if (distance <= circleCollider->GetRadius())
-                    {
-                        return true; // Collision detected
-                    }
-                }
-                
             }
 
             return false;

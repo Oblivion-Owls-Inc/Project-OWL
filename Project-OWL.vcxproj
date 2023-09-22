@@ -192,6 +192,7 @@
     <ClCompile Include="Source\LineCollider.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
+    <ClCompile Include="Source\XinoScene.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\Component.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\LineCollider.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
+    <ClInclude Include="Source\XinoScene.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
     <ClInclude Include="Source\InputSystem.h" />
     <ClInclude Include="Source\Sound.h" />
