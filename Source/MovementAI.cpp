@@ -1,16 +1,16 @@
 #include "MovementAI.h"
-#include "BehaviorSystem.h"
+#include "PhysicsSystem.h"
 #include "Entity.h"
 #include "DebugSystem.h"
 
 MovementAI::MovementAI(): Behavior(typeid(MovementAI))
 {
-    BehaviorSystem< MovementAI >::getInstance()->AddBehavior(this);
+    	PhysicsSystem::getInstance()->AddBehavior(this);
 }
 
 MovementAI::~MovementAI()
 {
-    BehaviorSystem< MovementAI >::getInstance()->RemoveBehavior(this);
+    	PhysicsSystem::getInstance()->RemoveBehavior(this);
 }
 
 Component* MovementAI::Clone() const
@@ -18,6 +18,9 @@ Component* MovementAI::Clone() const
 	return nullptr;
 }
 
+void MovementAI::CollisionEvent(Entity* other)
+{
+}
 
 void MovementAI::OnUpdate(float dt)
 {
@@ -67,14 +70,6 @@ void MovementAI::MovementAIUpdateWeapon(float dt)
 
 void MovementAI::MovementAISpiral(float dt)
 {
-}
-
-/// @brief the map of read methods for this Component
-ReadMethodMap< MovementAI > const MovementAI::readMethods = {};
-
-ReadMethodMap<Component> const& MovementAI::getReadMethods()
-{
-    return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
 }
 
 void MovementAI::MovementAISpawnBullet()

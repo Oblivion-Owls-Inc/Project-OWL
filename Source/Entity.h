@@ -15,10 +15,9 @@
 //------------------------------------------------------------------------------
 
 #include "Component.h"
-#include <map>        // std::map
-#include <string>	  // std::string
-
-#include "Stream.h"
+#include <map>  // std::map
+#include <string>  // std::string
+#include <fstream> // std::ifstream
 
 //------------------------------------------------------------------------------
 
@@ -47,6 +46,8 @@ public:
 	Entity* Clone() const;
 	// Deallocate the memory associated with an Entity.
 	void Free();
+	// Read (and construct) the components associated with a entity.
+	void Read(std::ifstream& stream);
 	// Attach a component to an Entity.
 	void Add(Component* component);
 
@@ -75,8 +76,6 @@ public:
 	// Compare the entity's name with the specified name.
 	bool IsNamed(const std::string& name);
 
-	static __inline ReadMethodMap< Entity > const& getReadMethods() { return readMethods; }
-
 private:
 	// The name of the entity.
 	std::string mName;
@@ -85,13 +84,12 @@ private:
 	// Container for attached components
 	std::map<std::type_index, Component*> components;
 
-	void ReadName(Stream stream);
-	void ReadComponents(Stream stream);
-	void ReadArchetype( Stream stream );
+	// Private Member Function
 
-
-	static ReadMethodMap< Entity > readMethods;
-
+	// Searches the components vector for a specific component
+	// Component* BinarySearch(Component::TypeEnum type);
+	// Get the a specific componetfrom an entity
+	// Component* Get(Component::TypeEnum type);
 };
 //------------------------------------------------------------------------------
 

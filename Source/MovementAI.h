@@ -19,18 +19,18 @@
 //------------------------------------------------------------------------------
 // Class:
 //------------------------------------------------------------------------------
-class MovementAI : public Behavior
+class MovementAI :
+    public Behavior
 {
     public:
         MovementAI();
         ~MovementAI();
 
-    private:
+    public:
         Component* Clone() const override;
+        void CollisionEvent(Entity* other) override;
         void OnUpdate(float dt) override;
         void OnFixedUpdate() override;
-        void OnCollision(Entity* other) override {};
-
     private:
 
         void MovementAIUpdateRotation(float dt);
@@ -47,14 +47,5 @@ class MovementAI : public Behavior
         const float MovementWeaponBulletSpeed = 750.0f;
         const float MovementDeathDuration = 3.0f;
         const float FrameTime = 1.0f / 60.0f;
-
-private: // reading
-
-    /// @brief the map of read methods for this Component
-    static ReadMethodMap< MovementAI > const readMethods;
-
-    /// @brief gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
-    virtual ReadMethodMap< Component > const& getReadMethods() override;
 };
 

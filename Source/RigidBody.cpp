@@ -1,4 +1,5 @@
 #include "RigidBody.h"
+#include "PhysicsSystem.h"
 #include "BehaviorSystem.h"
 
 RigidBody::RigidBody() : 
@@ -87,48 +88,8 @@ void RigidBody::SetRotationalVelocity(float rotational_velocity)
 	_rotationalVelocity = rotational_velocity;
 }
 
-void RigidBody::OnCollision(Entity* other)
+void RigidBody::CollisionEvent(Entity* other)
 {
 	(void)other;
 }
 
-//-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
-
-/// @brief reads the velocity from json
-/// @param data the json data
-void RigidBody::ReadVelocity( Stream data )
-{
-    _velocity = data.Read< glm::vec3 >();
-}
-
-/// @brief reads the acceleration from json
-/// @param data the json data
-void RigidBody::ReadAcceleration( Stream data )
-{
-    _acceleration = data.Read< glm::vec3 >();
-}
-
-/// @brief reads the rotationalVelocity from json
-/// @param data the json data
-void RigidBody::ReadRotationalVelocity( Stream data )
-{
-    _rotationalVelocity = data.Read< float >();
-}
-
-/// @brief the map of read methods for RigidBodys
-ReadMethodMap< RigidBody > RigidBody::readMethods = {
-    { "velocity",           &ReadVelocity           },
-    { "acceleration",       &ReadAcceleration       },
-    { "rotationalVelocity", &ReadRotationalVelocity }
-};
-
-/// @brief gets the map of read methods for this Component
-/// @return the map of read methods for this Component
-ReadMethodMap< Component > const& RigidBody::getReadMethods()
-{
-    return (ReadMethodMap< Component > const&)readMethods;
-}
-
-//-----------------------------------------------------------------------------

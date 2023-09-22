@@ -1,23 +1,22 @@
 {
     "fixedFrameDuration": 0.05,
-    "systems": {
-        "PlatformSystem": {
-            "windowWidth": 800,
-            "windowHeight": 600
-        },
-        "InputSystem": {},
-        "BehaviorSystem< RigidBody >": {},
-        "BehaviorSystem< MovementAI >": {},
-        "EntitySystem": {},
-        "SceneSystem": {
-            "baseScenePath": "Data/Scenes/",
-            "nextSceneName": "Sandbox"
-        },
-        "SandboxSystem": {},
-        "RenderSystem": {},
-        "AudioSystem": {},
-        "DebugSystem": {
-            "showFpsWindow": true
-        }
+  "systems": {
+    "PlatformSystem": {
+      "windowWidth": 800,
+      "windowHeight": 600
+    },
+    "InputSystem": {},
+    "SceneSystem": {
+      "baseScenePath": "Data/Scenes/",
+      "nextSceneName": "Sandbox"
+    },
+    "SandboxSystem": {},
+    "RenderSystem": {},
+    "AudioSystem": {},
+    "BehaviorSystem< RigidBody >": {},
+    "BehaviorSystem< MovementAI >": {},
+    "DebugSystem": {
+      "showFpsWindow": true
+    }
   }
 }

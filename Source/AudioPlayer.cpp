@@ -32,20 +32,6 @@
 // public: methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Starts playing this AudioPlayer's sound
-    void AudioPlayer::Play()
-    {
-        channel = sound->Play(
-            channelGroup,
-            random( volume - volumeVariance, volume + volumeVariance ),
-            random( pitch - pitchVariance, pitch + pitchVariance )
-        );
-    }
-
-//-----------------------------------------------------------------------------
-// public: accessors
-//-----------------------------------------------------------------------------
-
     /// @brief gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
     Sound* AudioPlayer::getSound()
@@ -66,6 +52,16 @@
         bool isPlaying;
         channel->isPlaying( &isPlaying );
         return isPlaying;
+    }
+
+    /// @brief Starts playing this AudioPlayer's sound
+    void AudioPlayer::Play()
+    {
+        channel = sound->Play(
+            channelGroup,
+            random( volume - volumeVariance, volume + volumeVariance ),
+            random( pitch - pitchVariance, pitch + pitchVariance )
+        );
     }
 
     /// @brief gets whether this AudioPlayer is paused
@@ -120,53 +116,6 @@
     void AudioPlayer::setVolumeVariance( float _volumeVariance )
     {
         volumeVariance = _volumeVariance;
-    }
-
-//-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
-
-    /// @brief read the volume of this component from json
-    /// @param data the json data
-    void AudioPlayer::ReadVolume( Stream data )
-    {
-        volume = data.Read<float>();
-    }
-
-    /// @brief read the pitch of this component from json
-    /// @param data the json data
-    void AudioPlayer::ReadPitch( Stream data )
-    {
-        pitch = data.Read<float>();
-    }
-
-    /// @brief read the volumeVariance of this component from json
-    /// @param data the json data
-    void AudioPlayer::ReadVolumeVariance( Stream data )
-    {
-        volumeVariance = data.Read<float>();
-    }
-
-    /// @brief read the pitchVariance of this component from json
-    /// @param data the json data
-    void AudioPlayer::ReadPitchVariance( Stream data )
-    {
-        pitchVariance = data.Read<float>();
-    }
-
-    /// @brief map of the read methods for this Component
-    ReadMethodMap< AudioPlayer > AudioPlayer::readMethods = {
-        { "volume", &ReadVolume },
-        { "pitch", &ReadPitch },
-        { "volumeVariance", &ReadVolumeVariance },
-        { "pitchVariance", &ReadPitchVariance }
-    };
-
-    /// @brief gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
-    ReadMethodMap< Component > const& AudioPlayer::getReadMethods()
-    {
-        return (ReadMethodMap< Component > const&)readMethods;
     }
 
 //-----------------------------------------------------------------------------

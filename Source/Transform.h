@@ -11,7 +11,6 @@
 #include "basics.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
-#include "document.h" // rapidjson::Value
 
 using namespace glm;
 class Transform :
@@ -25,7 +24,6 @@ public:
 
 public:
     Component* Clone() const override;
-	void Read( const rapidjson::Value& data );
 
 	vec3* getTranslation();
 	const vec3* getTranslation() const;
@@ -45,15 +43,6 @@ public:
 	bool getIsDirty() const;
 	void setIsDirty(bool newIsDirty);
 
-private:
-
-	void ReadTranslation( Stream jsonValue );
-	void ReadRotation( Stream jsonValue );
-	void ReadScale( Stream jsonValue );
-
-	static std::map< std::string, ReadMethod< Transform > > readMethods;
-
-	virtual std::map< std::string, ReadMethod< Component > > const& getReadMethods();
 	
 
 protected:

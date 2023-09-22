@@ -139,7 +139,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)rapidjson;$(SolutionDir)imgui;$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)rapidjson;$(SolutionDir)libraries</AdditionalLibraryDirectories>
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT.lib /NODEFAULTLIB:LIBCMT.lib %(AdditionalOptions)</AdditionalOptions>
@@ -161,7 +161,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -174,8 +174,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\BehaviorSystem.cpp" />
-    <ClCompile Include="Source\ComponentFactory.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -183,18 +181,17 @@
     <ClCompile Include="imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Source\Animation.cpp" />
     <ClCompile Include="Source\AnimationAsset.cpp" />
-=======
-    <ClCompile Include="Source\EntitySystem.cpp" />
->>>>>>> main
     <ClCompile Include="Source\MovementAI.cpp" />
     <ClCompile Include="Source\AudioPlayer.cpp" />
+    <ClCompile Include="Source\BehaviorSystem.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
+    <ClCompile Include="Source\EntitySystem.cpp" />
     <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\AudioSystem.cpp" />
     <ClCompile Include="Source\LinesCollider.cpp" />
+    <ClCompile Include="Source\PhysicsSystem.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
@@ -210,26 +207,21 @@
     <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\SceneSystem.cpp" />
     <ClCompile Include="Source\Sprite.cpp" />
-    <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\Stream.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\AnimationAsset.h" />
-=======
-    <ClInclude Include="Source\ComponentFactory.h" />
-    <ClInclude Include="Source\EntitySystem.h" />
->>>>>>> main
     <ClInclude Include="Source\MovementAI.h" />
     <ClInclude Include="Source\Behavior.h" />
     <ClInclude Include="Source\BehaviorSystem.h" />
     <ClInclude Include="Source\Collider.h" />
+    <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\LinesCollider.h" />
-    <ClInclude Include="Source\RigidBody.h" />
+    <ClInclude Include="Source\PhysicsSystem.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
     <ClInclude Include="Source\InputSystem.h" />
@@ -254,6 +246,7 @@
     <ClInclude Include="Source\DebugSystem.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\GUI.h" />
+    <ClInclude Include="Source\RigidBody.h" />
     <ClInclude Include="Source\PlatformSystem.h" />
     <ClInclude Include="Source\SceneSystem.h" />
     <ClInclude Include="Source\Sprite.h" />
@@ -264,7 +257,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
-    <None Include="Data\Scenes\Sandbox.scene.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

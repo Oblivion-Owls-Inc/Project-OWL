@@ -4,21 +4,5 @@
         "meshes": [],
         "shaders": []
     },
-    "entities": [
-        {
-            "name": "TestName",
-            "components": {
-              "Transform": {
-                "translation": [ 0, 0, 0 ],
-                "rotation": 0,
-                "scale": [ 1, 1, 1 ]
-              },
-              "RigidBody": {
-                "velocity": [ 1, 1, 1 ],
-                "acceleration": [ 1, 1, 1 ],
-                "rotationalVelocity": 2
-              }
-            }
-        }
-    ]
+    "entities": []
 }

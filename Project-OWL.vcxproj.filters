@@ -191,6 +191,9 @@
     <ClCompile Include="Source\Sprite.cpp">
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PhysicsSystem.cpp">
+      <Filter>Engine\Systems\Physics</Filter>
+    </ClCompile>
     <ClCompile Include="Source\SandboxSystem.cpp">
       <Filter>Game\SandboxSystem</Filter>
     </ClCompile>
@@ -209,34 +212,23 @@
     <ClCompile Include="Source\LinesCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SandboxSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ComponentFactory.cpp">
-      <Filter>Engine\Entity\Component</Filter>
+    <ClCompile Include="Source\BehaviorSystem.cpp">
+      <Filter>Engine\Systems\Behavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\MovementAI.cpp">
       <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EntitySystem.cpp">
+      <Filter>Engine\Systems\EntitySystem</Filter>
+    </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Source\Animation.cpp">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClCompile>
     <ClCompile Include="Source\AnimationAsset.cpp">
       <Filter>Engine\Entity\Component\Animation</Filter>
-=======
-    <ClCompile Include="Source\BehaviorSystem.cpp">
-      <Filter>Engine\Systems\Behavior</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Stream.t.cpp">
-      <Filter>Engine\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EntitySystem.cpp">
-      <Filter>Engine\Systems\EntitySystem</Filter>
->>>>>>> main
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -327,6 +319,9 @@
     <ClInclude Include="Source\Sprite.h">
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PhysicsSystem.h">
+      <Filter>Engine\Systems\Physics</Filter>
+    </ClInclude>
     <ClInclude Include="Source\SandboxSystem.h">
       <Filter>Game\SandboxSystem</Filter>
     </ClInclude>
@@ -357,35 +352,24 @@
     <ClInclude Include="Source\BehaviorSystem.h">
       <Filter>Engine\Systems\Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SandboxSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ComponentFactory.h">
-      <Filter>Engine\Entity\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Source\MovementAI.h">
       <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntitySystem.h">
+      <Filter>Engine\Systems\EntitySystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\RigidBody.h">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Source\Animation.h">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Source\AnimationAsset.h">
       <Filter>Engine\Entity\Component\Animation</Filter>
-=======
-    <ClInclude Include="Source\EntitySystem.h">
-      <Filter>Engine\Systems\EntitySystem</Filter>
->>>>>>> main
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
-      <Filter>Data</Filter>
-    </None>
-    <None Include="Data\Scenes\Sandbox.scene.json">
       <Filter>Data</Filter>
     </None>
   </ItemGroup>

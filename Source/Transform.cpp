@@ -41,7 +41,6 @@ Component* Transform::Clone() const
 	return (Component*) new Transform(*this);
 }
 
-
 glm::vec3* Transform::getTranslation()
 {
 	return &translation;
@@ -122,29 +121,4 @@ void Transform::setIsDirty(bool newIsDirty)
 }
 
 
-void Transform::ReadTranslation( Stream jsonValue )
-{
-	translation = jsonValue.Read<glm::vec3>();
-	isDirty = true;
-}
-void Transform::ReadRotation( Stream jsonValue )
-{
-	rotation = jsonValue.Read<float>();
-	isDirty = true;
-}
-void Transform::ReadScale( Stream jsonValue )
-{
-	scale = jsonValue.Read<glm::vec3>();
-	isDirty = true;
-}
 
-std::map< std::string, ReadMethod< Transform > > Transform::readMethods = {
-	{ "translation", &ReadTranslation },
-	{ "rotation", &ReadRotation },
-	{ "scale", &ReadScale }
-};
-
-std::map< std::string, ReadMethod< Component > > const& Transform::getReadMethods()
-{
-	return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
-}
