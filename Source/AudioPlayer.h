@@ -26,6 +26,11 @@ public: // constructor / Destructor
 
 public: // methods
 
+    /// @brief Starts playing this AudioPlayer's sound
+    void Play();
+
+public: // accessors
+
     /// @brief gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
     Sound* getSound();
@@ -36,9 +41,6 @@ public: // methods
     /// @brief gets whether this AudioPlayer is currently playing anything
     /// @return whether this AudioPlayer is currently playing anything
     bool isPlaying() const;
-
-    /// @brief Starts playing this AudioPlayer's sound
-    void Play();
 
     /// @brief gets whether this AudioPlayer is paused
     /// @return whether this AudioPlayer is paused
@@ -87,6 +89,31 @@ private: // members
 
     /// @brief The channelGroup to play sounds in
     FMOD::ChannelGroup* channelGroup;
+
+private: // reading
+
+    /// @brief read the volume of this component from json
+    /// @param data the json data
+    void ReadVolume( Stream data );
+
+    /// @brief read the pitch of this component from json
+    /// @param data the json data
+    void ReadPitch( Stream data );
+
+    /// @brief read the volumeVariance of this component from json
+    /// @param data the json data
+    void ReadVolumeVariance( Stream data );
+
+    /// @brief read the pitchVariance of this component from json
+    /// @param data the json data
+    void ReadPitchVariance( Stream data );
+
+    /// @brief map of the read methods for this Component
+    static std::map< std::string, ReadMethod< AudioPlayer > > readMethods;
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    virtual std::map< std::string, ReadMethod< Component > > const& getReadMethods() override;
 
 private: // copying
 
