@@ -64,7 +64,7 @@ public:
 
     /// @brief       gets the PlatformSystem instance, creating one if it doesn't exist
     /// @return      a pointer to the PlatformSystem instance
-    static PlatformSystem * getInstance();
+    static PlatformSystem * GetInstance();
     
     // Prevent copying
     PlatformSystem(PlatformSystem& other) = delete;

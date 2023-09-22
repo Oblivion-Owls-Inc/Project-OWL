@@ -55,7 +55,7 @@ bool GUI::IsVisible() const
  * 
  */
 
-void GUI::setInactive()
+void GUI::SetInactive()
 {
     active = false;
 }
@@ -64,7 +64,7 @@ void GUI::setInactive()
  * @brief Set the GUI element as active.
  * 
  */
-void GUI::setActive()
+void GUI::SetActive()
 {
     active = true;
 }
@@ -95,7 +95,7 @@ DebugMenu::~DebugMenu()
  * @brief Set the GUI element as inactive.
  * 
  */
-void DebugMenu::setActive()
+void DebugMenu::SetActive()
 {
     active = true;
 }
@@ -123,7 +123,7 @@ void DebugMenu::Render()
             {
                 if (ImGui::MenuItem("FPS", "Shift+O")) 
                 {
-					DebugSystem::getInstance()->ToggleFPS(); 
+					DebugSystem::GetInstance()->ToggleFPS(); 
                 }
                 if (ImGui::MenuItem("Dev Console", "Ctrl+Shift+S")) {}
                 if (ImGui::MenuItem("TBD", "Ctrl+Shift+W")) {}
@@ -151,7 +151,7 @@ void DebugMenu::Render()
         // Display contents in a scrolling region
         ImGui::TextColored(ImVec4(1, 1, 0, 1), "Console View");
         ImGui::BeginChild("Scrolling");
-        ImGui::TextUnformatted(DebugSystem::getInstance()->logBuffer.begin(), DebugSystem::getInstance()->logBuffer.end()); // Display the text buffer
+        ImGui::TextUnformatted(DebugSystem::GetInstance()->logBuffer.begin(), DebugSystem::GetInstance()->logBuffer.end()); // Display the text buffer
         ImGui::EndChild();
 
         ImGui::End();

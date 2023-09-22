@@ -28,15 +28,15 @@ class Engine
 
         /// @brief gets the duration of each fixed frame
         /// @return the amount of time in seconds that each fixed frame lasts
-        float getFixedFrameDuration() const;
+        float GetFixedFrameDuration() const;
 
         /// @brief sets the duration of each fixed frame
         /// @param fixedFrameDuration the amount of time in seconds that each fixed frame lasts
-        void setFixedFrameDuration( float fixedFrameDuration );
+        void SetFixedFrameDuration( float fixedFrameDuration );
 
         /// @brief Gets the array of all Systems in the engine.
         /// @return the array of all Systems in the engine
-        std::vector< System * > const& getSystems() const;
+        std::vector< System * > const& GetSystems() const;
 
     private:
 
@@ -93,7 +93,7 @@ class Engine
 
         /// @brief gets the singleton instance of the Engine
         /// @return the singleton instance of the Engine
-        static Engine * getInstance();
+        static Engine * GetInstance();
 
         // Prevent Engine from being copied
         Engine( Engine& other ) = delete;

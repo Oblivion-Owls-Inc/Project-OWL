@@ -31,7 +31,7 @@ Component* ComponentFactory::Create( std::string key )
     return componentCreators.at(key)();
 }
 
-std::type_index ComponentFactory::getTypeId( std::string typeName )
+std::type_index ComponentFactory::GetTypeId( std::string typeName )
 {
     return componentTypes.at( typeName );
 }

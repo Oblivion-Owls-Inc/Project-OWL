@@ -57,8 +57,8 @@ public:
 
     /// @brief      Gets the instance of BehaviorSystem
     /// @return     BehaviorSystem pointer: new or existing instance of this system
-    static BehaviorSystem< BehaviorType >* getInstance();
-    std::vector< BehaviorType* >& getBehaviors() const;
+    static BehaviorSystem< BehaviorType >* GetInstance();
+    std::vector< BehaviorType* >& GetBehaviors() const;
 
 private:
     std::vector< Behavior* > behaviorsList;

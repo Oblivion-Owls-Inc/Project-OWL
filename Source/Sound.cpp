@@ -18,7 +18,7 @@
     /// @param looping whether or not the sound should loop
     Sound::Sound( char const* filepath, bool looping )
     {
-        AudioSystem::getInstance()->getFMOD()->createSound(
+        AudioSystem::GetInstance()->GetFMOD()->createSound(
             filepath,
             looping ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
             nullptr,
@@ -47,7 +47,7 @@
     ) const
     {
         FMOD::Channel* channel;
-        AudioSystem::getInstance()->getFMOD()->playSound(
+        AudioSystem::GetInstance()->GetFMOD()->playSound(
             sound,
             group,
             true,
@@ -65,7 +65,7 @@
 
     /// @brief gets the length of this sound
     /// @return the length of this sound in seconds
-    float Sound::getLength() const
+    float Sound::GetLength() const
     {
         unsigned int length;
         sound->getLength( &length, FMOD_TIMEUNIT_MS );

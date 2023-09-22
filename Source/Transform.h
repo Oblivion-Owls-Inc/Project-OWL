@@ -11,7 +11,7 @@
 #include "basics.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
-#include "document.h" // rapidjson::Value
+#include <rapidjson/document.h> // rapidjson::Value
 
 using namespace glm;
 class Transform :
@@ -27,23 +27,23 @@ public:
     Component* Clone() const override;
 	void Read( const rapidjson::Value& data );
 
-	vec3* getTranslation();
-	const vec3* getTranslation() const;
-	void setTranslation(vec3 newTranslation);
+	vec3* GetTranslation();
+	const vec3* GetTranslation() const;
+	void SetTranslation(vec3 newTranslation);
 
-	float getRotation() const;
-	void setRotation(float newRotation);
+	float GetRotation() const;
+	void SetRotation(float newRotation);
 
-	vec3* getScale();
-	const vec3* getScale() const;
-	void setScale(vec3 newScale);
+	vec3* GetScale();
+	const vec3* GetScale() const;
+	void SetScale(vec3 newScale);
 
-	glm::mat4* getMatrix();
+	glm::mat4* GetMatrix();
 
-	void setMatrix(glm::mat4 newMatrix);
+	void SetMatrix(glm::mat4 newMatrix);
 
-	bool getIsDirty() const;
-	void setIsDirty(bool newIsDirty);
+	bool GetIsDirty() const;
+	void SetIsDirty(bool newIsDirty);
 
 private:
 
@@ -53,7 +53,7 @@ private:
 
 	static std::map< std::string, ReadMethod< Transform > > readMethods;
 
-	virtual std::map< std::string, ReadMethod< Component > > const& getReadMethods();
+	virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods();
 	
 
 protected:

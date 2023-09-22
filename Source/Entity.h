@@ -75,7 +75,7 @@ public:
 	// Compare the entity's name with the specified name.
 	bool IsNamed(const std::string& name);
 
-	static __inline ReadMethodMap< Entity > const& getReadMethods() { return readMethods; }
+	static __inline ReadMethodMap< Entity > const& GetReadMethods() { return readMethods; }
 
 private:
 	// The name of the entity.

@@ -59,7 +59,7 @@ public:
 
     /// @brief      Gets the instance of RenderSystem
     /// @return     RenderSystem pointer: new or existing instance of this system
-    static RenderSystem* getInstance();
+    static RenderSystem* GetInstance();
 
     // Prevent copying
     RenderSystem(RenderSystem& other) = delete;
@@ -69,7 +69,7 @@ public:
 private:
     static RenderSystem* instance;   /// @brief      The singleton instance of RenderSystem
 
-    /// @brief      Private constructor - only used by getInstance()
+    /// @brief      Private constructor - only used by GetInstance()
     RenderSystem();
 
     // Inherited virtuals
@@ -85,4 +85,4 @@ private:
     virtual void Load( rapidjson::Value const& configData ) override {}
 };
 
-__inline RenderSystem* Renderer() { return RenderSystem::getInstance(); }
+__inline RenderSystem* Renderer() { return RenderSystem::GetInstance(); }

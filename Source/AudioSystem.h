@@ -18,7 +18,7 @@ public: // methods
 
     /// @brief gets the internal FMOD::System
     /// @return the FMOD::System
-    FMOD::System* getFMOD();
+    FMOD::System* GetFMOD();
 
 private: // member variables
 
@@ -89,7 +89,7 @@ public: // singleton stuff
 
     /// @brief gets the instance of AudioSystem
     /// @return the instance of the AudioSystem
-    static AudioSystem * getInstance();
+    static AudioSystem * GetInstance();
 
     // Prevent copying
     AudioSystem(AudioSystem& other) = delete;

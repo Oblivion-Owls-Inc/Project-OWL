@@ -27,7 +27,7 @@ void RenderSystem::OnInit()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // TODO: screen2clip should be built elsewhere
-    glm::vec2 s = PlatformSystem::getInstance()->GetWindowDimensions();
+    glm::vec2 s = PlatformSystem::GetInstance()->GetWindowDimensions();
     screen2clip = glm::translate(glm::mat4(1), glm::vec3(-1, 1, 0)) *
         glm::scale(glm::mat4(1), glm::vec3(2.0f / s.x, -2.0f / s.y, 0.0));
 
@@ -135,7 +135,7 @@ void RenderSystem::RemoveSprite(Sprite* sprite, int layer) { _sprites[layer].era
 
 /// @brief    Gets the instance of RenderSystem
 /// @return   RenderSystem pointer: new or existing instance of this system
-RenderSystem* RenderSystem::getInstance()
+RenderSystem* RenderSystem::GetInstance()
 {
     if (instance == nullptr)
         instance = new RenderSystem();

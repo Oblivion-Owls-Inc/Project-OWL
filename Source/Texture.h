@@ -27,5 +27,5 @@ public:
 
     /// @brief      Returns the size of the original image as a vec2.
     /// @return     vec2: x = width ,  y = height
-    glm::vec2 getImageDimensions();
+    glm::vec2 GetImageDimensions();
 };

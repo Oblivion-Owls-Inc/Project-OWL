@@ -13,13 +13,13 @@ class RigidBody : public Behavior
         ~RigidBody();
 
     public:
-        vec3* getAcceleration();
-        vec3* getVelocity();
-        vec3* getOldTranslation();
-        float getRotationalVelocity();
-        void setAcceleration(const vec3* Acceleration);
-        void setVelocity(const vec3* Velocity);
-        void setOldTranslation(const vec3* OldTranslation);
+        vec3* GetAcceleration();
+        vec3* GetVelocity();
+        vec3* GetOldTranslation();
+        float GetRotationalVelocity();
+        void SetAcceleration(const vec3* Acceleration);
+        void SetVelocity(const vec3* Velocity);
+        void SetOldTranslation(const vec3* OldTranslation);
         void SetRotationalVelocity(float rotational_velocity);
     private:
         vec3 _velocity;
@@ -53,6 +53,6 @@ class RigidBody : public Behavior
 
         /// @brief gets the map of read methods for this Component
         /// @return the map of read methods for this Component
-        virtual ReadMethodMap< Component > const& getReadMethods() override;
+        virtual ReadMethodMap< Component > const& GetReadMethods() override;
 };
 

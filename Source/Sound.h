@@ -42,6 +42,6 @@ public: // methods
 
     /// @brief gets the length of this sound
     /// @return the length of this sound in seconds
-    float getLength() const;
+    float GetLength() const;
 
 };

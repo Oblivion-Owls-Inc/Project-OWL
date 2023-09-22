@@ -51,19 +51,19 @@ public:
 
     /// @brief          Sets current frame of the spritesheet.
     /// @param frame    New frame index
-    void setFrame(int frame);
+    void SetFrame(int frame);
 
     /// @brief          Sets the rendering layer : 0 - 4.  0 is back, 4 is front.
     /// @param layer    Rendering layer to move this sprite to.
-    void setLayer(int layer);
+    void SetLayer(int layer);
 
     /// @brief          Sets the opacity.
     /// param opacity   I'm not explaining this.
-    void setOpacity(float opacity);
+    void SetOpacity(float opacity);
 
     /// @brief       Number to multiply width by, to get proportional height based on original image
     /// @return      float: original image's (height/width)
-    float getHeightMultiplier() const;
+    float GetHeightMultiplier() const;
 
     // Inherited via Component
     virtual Component* Clone() const override;
@@ -83,5 +83,5 @@ private: // reading
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap< Component > const& getReadMethods() override;
+    virtual ReadMethodMap< Component > const& GetReadMethods() override;
 };

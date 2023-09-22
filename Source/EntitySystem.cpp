@@ -69,7 +69,7 @@
     /// @param entityData the json object containing the entity data
     void EntitySystem::LoadEntities( Stream entityArray )
     {
-        for ( auto& entityData : entityArray.getArray() )
+        for ( auto& entityData : entityArray.GetArray() )
         {
             Entity * entity = new Entity();
             Stream( entityData ).Read( entity );
@@ -111,7 +111,7 @@ EntitySystem * EntitySystem::instance = nullptr;
 
 /// @brief gets the instance of EntitySystem
 /// @return the instance of the EntitySystem
-EntitySystem * EntitySystem::getInstance()
+EntitySystem * EntitySystem::GetInstance()
 {
     if ( instance == nullptr )
     {

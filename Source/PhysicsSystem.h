@@ -42,7 +42,7 @@ class PhysicsSystem : public System
 
         /// @brief      Gets the instance of PhysicsSystem
         /// @return     PhysicsSystem pointer: new or existing instance of this system
-        static PhysicsSystem* getInstance();
+        static PhysicsSystem* GetInstance();
 
         /// @brief      Adds a new Behavior to the system
         void AddBehavior(Behavior *behavior);

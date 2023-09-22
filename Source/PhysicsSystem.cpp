@@ -52,7 +52,7 @@ void PhysicsSystem::Load(rapidjson::Value const& configData)
 {
 }
 
-PhysicsSystem* PhysicsSystem::getInstance()
+PhysicsSystem* PhysicsSystem::GetInstance()
 {
     if (instance == nullptr)
     {

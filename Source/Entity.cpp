@@ -146,7 +146,7 @@ void Entity::ReadName(Stream stream)
 /// @param stream the json object to read from.
 void Entity::ReadComponents( Stream stream )
 {
-	for ( auto& componentData : stream.getObject() )
+	for ( auto& componentData : stream.GetObject() )
 	{
 		Component* component = ComponentFactory::Create( componentData.name.GetString() );
 		try

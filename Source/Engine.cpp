@@ -11,7 +11,7 @@
 #include "Engine.h"
 
 #include "basics.h"
-#include "../rapidjson/document.h"
+#include <rapidjson/document.h>
 #include <fstream>
 // #include "imgui.h"
 // #include "imgui_impl_glfw.h"
@@ -48,7 +48,7 @@ void Engine::Run()
 
     while (
         shouldExit == false &&
-        PlatformSystem::getInstance()->WindowClosing() == false
+        PlatformSystem::GetInstance()->WindowClosing() == false
     ) {
         Update();
     }
@@ -64,21 +64,21 @@ void Engine::Close()
 
 /// @brief gets the duration of each fixed frame
 /// @return the amount of time in seconds that each fixed frame lasts
-float Engine::getFixedFrameDuration() const
+float Engine::GetFixedFrameDuration() const
 {
     return fixedFrameDuration;
 }
 
 /// @brief sets the duration of each fixed frame
 /// @param _fixedFrameDuration the amount of time in seconds that each fixed frame lasts
-void Engine::setFixedFrameDuration( float _fixedFrameDuration )
+void Engine::SetFixedFrameDuration( float _fixedFrameDuration )
 {
     fixedFrameDuration = _fixedFrameDuration;
 }
 
 /// @brief Gets the array of all Systems in the engine.
 /// @return the array of all Systems in the engine
-std::vector< System* > const& Engine::getSystems() const
+std::vector< System* > const& Engine::GetSystems() const
 {
     return systems;
 }
@@ -89,7 +89,7 @@ std::vector< System* > const& Engine::getSystems() const
 template < class SystemType >
 System* Engine::AddSystem()
 {
-    System* system = SystemType::getInstance();
+    System* system = SystemType::GetInstance();
     systems.push_back( system );
     return system;
 }
@@ -158,7 +158,7 @@ void Engine::Init()
 
     // this will stay here until we figure out a better way of replacing it
         // Set up a callback for the Escape key
-        GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
+        GLFWwindow* window = PlatformSystem::GetInstance()->GetWindowHandle();
         glfwSetKeyCallback( window, keyCallback );
     // TODO: move the above code out of the engine and into its own systems
 }
@@ -184,7 +184,7 @@ void Engine::Update()
         
 // this goes to GraphicsSystem
             
-    GLFWwindow* window = PlatformSystem::getInstance()->GetWindowHandle();
+    GLFWwindow* window = PlatformSystem::GetInstance()->GetWindowHandle();
 
     // ensure viewport size matches window size
     int display_w, display_h;
@@ -245,7 +245,7 @@ Engine::Engine() :
 
 /// @brief gets the singleton instance of the Engine
 /// @return the singleton instance of the Engine
-Engine* Engine::getInstance()
+Engine* Engine::GetInstance()
 {
     if ( instance == nullptr )
     {

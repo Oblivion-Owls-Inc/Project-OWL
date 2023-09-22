@@ -33,10 +33,10 @@ public: // accessors
 
     /// @brief gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
-    Sound* getSound();
+    Sound* GetSound();
     /// @brief sets the SOund that this AudioPlayer plays
     /// @param sound the sound that this AudioPlayer will play
-    void setSound( Sound* sound );
+    void SetSound( Sound* sound );
 
     /// @brief gets whether this AudioPlayer is currently playing anything
     /// @return whether this AudioPlayer is currently playing anything
@@ -47,28 +47,28 @@ public: // accessors
     bool isPaused() const;
     /// @brief Sets whether or not this AudioPlayer is paused
     /// @param paused 
-    void setPaused( bool paused );
+    void SetPaused( bool paused );
 
     /// @brief gets the volume of this AudioPlayer
     /// @return the volume of this AudioPlayer
-    float getVolume() const;
+    float GetVolume() const;
     /// @brief sets the volume of this AudioPlayer
     /// @param volume the volume for this AudioPlayer
-    void setVolume( float volume );
+    void SetVolume( float volume );
 
     /// @brief sets the pitch variance of this AudioPlayer
     /// @return the pitch variance of this AudioPlayer
-    float getPitchVariance() const;
+    float GetPitchVariance() const;
     /// @brief gets the pitch varaince of this AudioPlayer
     /// @param pitchVariance the pitch varaince for this AudioPlayer
-    void setPitchVariance( float pitchVariance );
+    void SetPitchVariance( float pitchVariance );
 
     /// @brief sets the volume variance of this AudioPlayer
     /// @return the volume variance of this AudioPlayer
-    float getVolumeVariance() const;
+    float GetVolumeVariance() const;
     /// @brief gets the volume varaince of this AudioPlayer
     /// @param volumeVariance the volume varaince for this AudioPlayer
-    void setVolumeVariance( float volumeVariance );
+    void SetVolumeVariance( float volumeVariance );
 
 private: // members
 
@@ -113,7 +113,7 @@ private: // reading
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual std::map< std::string, ReadMethod< Component > > const& getReadMethods() override;
+    virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() override;
 
 private: // copying
 

@@ -99,11 +99,11 @@ public: // singleton stuff
 
     /// @brief gets the instance of EntitySystem
     /// @return the instance of the EntitySystem
-    static EntitySystem * getInstance();
+    static EntitySystem * GetInstance();
 
     // Prevent copying
     EntitySystem(EntitySystem& other) = delete;
     void operator=(const EntitySystem&) = delete;
 };
 
-__inline EntitySystem* Entities() { return EntitySystem::getInstance(); }
+__inline EntitySystem* Entities() { return EntitySystem::GetInstance(); }

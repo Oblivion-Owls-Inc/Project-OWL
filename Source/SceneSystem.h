@@ -31,7 +31,7 @@ public: // accessors
 
     /// @brief gets the name of the current scene
     /// @return the name of the current scene
-    std::string const& getSceneName() const;
+    std::string const& GetSceneName() const;
 
 //-----------------------------------------------------------------------------
 private: // member variables
@@ -111,7 +111,7 @@ public: // singleton stuff
 
     /// @brief gets the instance of SceneSystem
     /// @return the instance of the SceneSystem
-    static SceneSystem * getInstance();
+    static SceneSystem * GetInstance();
 
     // Prevent copying
     SceneSystem( SceneSystem& other ) = delete;

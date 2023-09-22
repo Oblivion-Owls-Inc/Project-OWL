@@ -5,7 +5,7 @@
 ///
 ///
 #include "Component.h"
-#include "rapidjson.h"
+#include <rapidjson/rapidjson.h>
 
 using namespace rapidjson;
 

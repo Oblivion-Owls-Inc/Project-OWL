@@ -26,7 +26,7 @@
 
     /// @brief gets the instance of ExampleSystem
     /// @return the instance of the ExampleSystem
-    ExampleSystem * ExampleSystem::getInstance()
+    ExampleSystem * ExampleSystem::GetInstance()
     {
         if ( instance == nullptr )
         {

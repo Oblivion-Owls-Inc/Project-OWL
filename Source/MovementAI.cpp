@@ -5,12 +5,12 @@
 
 MovementAI::MovementAI(): Behavior(typeid(MovementAI))
 {
-    BehaviorSystem< MovementAI >::getInstance()->AddBehavior(this);
+    BehaviorSystem< MovementAI >::GetInstance()->AddBehavior(this);
 }
 
 MovementAI::~MovementAI()
 {
-    BehaviorSystem< MovementAI >::getInstance()->RemoveBehavior(this);
+    BehaviorSystem< MovementAI >::GetInstance()->RemoveBehavior(this);
 }
 
 Component* MovementAI::Clone() const
@@ -45,10 +45,10 @@ void MovementAI::OnUpdate(float dt)
     // Calculate movement direction based on the current direction
     float movementDirection = moveRight ? 1.0f : -1.0f;
 
-    glm::vec3 currentTranslation = *transform->getTranslation();
+    glm::vec3 currentTranslation = *transform->GetTranslation();
     glm::vec3 newTranslation = currentTranslation + glm::vec3(movementDirection * moveSpeed * dt, 0.0f, 0.0f);
 
-    transform->setTranslation(newTranslation);
+    transform->SetTranslation(newTranslation);
 }
 
 
@@ -72,7 +72,7 @@ void MovementAI::MovementAISpiral(float dt)
 /// @brief the map of read methods for this Component
 ReadMethodMap< MovementAI > const MovementAI::readMethods = {};
 
-ReadMethodMap<Component> const& MovementAI::getReadMethods()
+ReadMethodMap<Component> const& MovementAI::GetReadMethods()
 {
     return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
 }

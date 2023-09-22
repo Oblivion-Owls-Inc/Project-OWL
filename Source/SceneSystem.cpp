@@ -30,7 +30,7 @@ void SceneSystem::SetNextScene( std::string nextSceneName_ )
 
 /// @brief gets the name of the current scene
 /// @return the name of the current scene
-std::string const& SceneSystem::getSceneName() const
+std::string const& SceneSystem::GetSceneName() const
 {
     return currentSceneName;
 }
@@ -101,11 +101,11 @@ void SceneSystem::LoadScene()
     rapidjson::Document document = Stream::ReadFromJSON( ScenePath( currentSceneName ) );
     Stream root(document);
 
-    // TODO: have some assetSystem or something like that handle loading assets
-    assert( root.getObject().HasMember("entities") );
-    EntitySystem::getInstance()->LoadEntities( Stream( root.getObject()[ "entities" ] ) );
+    // TODO: have some asSetSystem or something like that handle loading assets
+    assert( root.GetObject().HasMember("entities") );
+    EntitySystem::GetInstance()->LoadEntities( Stream( root.GetObject()[ "entities" ] ) );
 
-    for ( System* system : Engine::getInstance()->getSystems() )
+    for ( System* system : Engine::GetInstance()->GetSystems() )
     {
         system->OnSceneLoad();
     }
@@ -114,7 +114,7 @@ void SceneSystem::LoadScene()
 /// @brief Initializes the current Scene
 void SceneSystem::InitScene()
 {
-    for ( System* system : Engine::getInstance()->getSystems() )
+    for ( System* system : Engine::GetInstance()->GetSystems() )
     {
         system->OnSceneInit();
     }
@@ -123,7 +123,7 @@ void SceneSystem::InitScene()
 /// @brief Exits the current Scene
 void SceneSystem::ExitScene()
 {
-    for ( System* system : Engine::getInstance()->getSystems() )
+    for ( System* system : Engine::GetInstance()->GetSystems() )
     {
         system->OnSceneExit();
     }
@@ -145,7 +145,7 @@ SceneSystem* SceneSystem::instance = nullptr;
 
 /// @brief gets the instance of SceneSystem
 /// @return the instance of the SceneSystem
-SceneSystem* SceneSystem::getInstance()
+SceneSystem* SceneSystem::GetInstance()
 {
     if ( instance == nullptr )
     {

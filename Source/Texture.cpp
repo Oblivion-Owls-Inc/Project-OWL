@@ -68,4 +68,4 @@ void Texture::bind(unsigned int slot)
 
 /// @brief      Returns the size of the original image as a vec2.
 /// @return     vec2: x = width ,  y = height
-glm::vec2 Texture::getImageDimensions() { return {_w, _h}; }
+glm::vec2 Texture::GetImageDimensions() { return {_w, _h}; }

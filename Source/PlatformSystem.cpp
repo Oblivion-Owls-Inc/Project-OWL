@@ -129,7 +129,7 @@ PlatformSystem * PlatformSystem::instance = nullptr;
 
 /// @brief    (Singleton) Gets the instance of this system.
 /// @return   PlatformSystem pointer: new or existing instance of this system.
-PlatformSystem * PlatformSystem::getInstance()
+PlatformSystem * PlatformSystem::GetInstance()
 {
     if ( instance == nullptr )
     {

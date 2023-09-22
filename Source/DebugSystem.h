@@ -16,7 +16,7 @@ class DebugSystem : public System
 {
     public:
         static DebugSystem* instance;
-        static DebugSystem* getInstance();
+        static DebugSystem* GetInstance();
 
         ImGuiTextBuffer logBuffer;
 

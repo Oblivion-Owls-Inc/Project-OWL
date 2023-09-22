@@ -15,7 +15,7 @@
 
     /// @brief gets the internal FMOD::System
     /// @return the FMOD::System
-    FMOD::System* AudioSystem::getFMOD()
+    FMOD::System* AudioSystem::GetFMOD()
     {
         return system;
     }
@@ -114,7 +114,7 @@
 
     /// @brief gets the instance of AudioSystem
     /// @return the instance of the AudioSystem
-    AudioSystem * AudioSystem::getInstance()
+    AudioSystem * AudioSystem::GetInstance()
     {
         if ( instance == nullptr )
         {

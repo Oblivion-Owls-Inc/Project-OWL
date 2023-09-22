@@ -6,7 +6,7 @@
 
 DebugSystem* DebugSystem::instance = nullptr;
 
-DebugSystem* DebugSystem::getInstance()
+DebugSystem* DebugSystem::GetInstance()
 {
 
     if (instance == nullptr) 
@@ -30,7 +30,7 @@ DebugSystem::DebugSystem() :
 /// @brief Perform initialization.
 void DebugSystem::OnInit()
 {
-    _window = PlatformSystem::getInstance()->GetWindowHandle();
+    _window = PlatformSystem::GetInstance()->GetWindowHandle();
     // Setup ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -156,7 +156,7 @@ void DebugSystem::ShowDebugMenu()
     {
         if (strcmp(Menu->GetWindowTitle(), "Debug Menu") == 0)
         {
-            Menu->setActive();
+            Menu->SetActive();
             return;
         }
         else

@@ -65,7 +65,7 @@ public: // singleton stuff
 
     /// @brief gets the instance of ExampleSystem
     /// @return the instance of the ExampleSystem
-    static ExampleSystem * getInstance();
+    static ExampleSystem * GetInstance();
 
     // Prevent copying
     ExampleSystem(ExampleSystem& other) = delete;

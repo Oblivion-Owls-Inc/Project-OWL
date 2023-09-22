@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <map>
-#include "istreamwrapper.h"
+#include <rapidjson/istreamwrapper.h>
 
 //-----------------------------------------------------------------------------
 // public static methods
@@ -73,21 +73,27 @@ Stream::Stream( rapidjson::Value const& value_ ) :
 // public accessors
 //-----------------------------------------------------------------------------
 
+#pragma warning ( push )
+#pragma warning ( disable: 4172 )
 /// @brief gets the rapidjson value as an object
 /// @return the rapidjson value
-rapidjson::GenericObject< true, rapidjson::Value > const& Stream::getObject() const
+rapidjson::GenericObject< true, rapidjson::Value > const& Stream::GetObject() const
 {
     assert( value.IsObject() );
     return value.GetObject();
 }
+#pragma warning ( pop )
 
+#pragma warning ( push )
+#pragma warning ( disable: 4172 )
 /// @brief gets the rapidjson value as an object
 /// @return the rapidjson value
-rapidjson::GenericArray< true, rapidjson::Value > const& Stream::getArray() const
+rapidjson::GenericArray< true, rapidjson::Value > const& Stream::GetArray() const
 {
     assert( value.IsArray() );
     return value.GetArray();
 }
+#pragma warning ( pop )
 
 /// @brief reads a basic type from a json value
 /// @tparam T the type to read

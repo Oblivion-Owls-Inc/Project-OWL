@@ -27,7 +27,7 @@ template < typename T >
 void Stream::Read( T* object )
 {
     // A map containing the different read methods for the object.
-    std::map < std::string, ReadMethod< T > > const& readMethods( object->getReadMethods() );
+    std::map < std::string, ReadMethod< T > > const& readMethods( object->GetReadMethods() );
     // Error checking.
     assert( value.IsObject() );
     // Iterates through the json value searching for a value.

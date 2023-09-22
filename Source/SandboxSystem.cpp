@@ -44,16 +44,16 @@
         update = true;
         entity = new Entity();
         entity->Add(new AudioPlayer());
-        entity->GetComponent<AudioPlayer>()->setSound(sound);
+        entity->GetComponent<AudioPlayer>()->SetSound(sound);
 
         entity2= new Entity();
         entity2->Add( new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22,17));
         entity2->Add( new RigidBody());
         entity2->Add( new Transform());
         entity2->Add( new MovementAI());
-        float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
-        entity2->GetComponent<Transform>()->setTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
-        entity2->GetComponent<Transform>()->setScale(glm::vec3(600.0f, (-600.0f * spriteSize), 0.0f));
+        float spriteSize = entity2->GetComponent<Sprite>()->GetHeightMultiplier();
+        entity2->GetComponent<Transform>()->SetTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
+        entity2->GetComponent<Transform>()->SetScale(glm::vec3(600.0f, (-600.0f * spriteSize), 0.0f));
     }
 
     /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
@@ -61,15 +61,15 @@
     {
         if (!update)
             return;
-        if ( Input()->getKeyTriggered( GLFW_KEY_SPACE ) )
+        if ( Input()->GetKeyTriggered( GLFW_KEY_SPACE ) )
         {
             entity->GetComponent<AudioPlayer>()->Play();
         }
         // Create an instance of DebugConsole
-        DebugConsole output(*DebugSystem::getInstance());
+        DebugConsole output(*DebugSystem::GetInstance());
 
         // Append the message and the formatted value
-        glm::vec3 translation = *entity2->GetComponent<Transform>()->getTranslation();
+        glm::vec3 translation = *entity2->GetComponent<Transform>()->GetTranslation();
         output << "Position: (" << translation.x << ", " << translation.y << ", " << translation.z << ")" << "\n";
     }
 
@@ -101,7 +101,7 @@ SandboxSystem * SandboxSystem::instance = nullptr;
 
 /// @brief gets the instance of SandboxSystem
 /// @return the instance of the SandboxSystem
-SandboxSystem * SandboxSystem::getInstance()
+SandboxSystem * SandboxSystem::GetInstance()
 {
     if ( instance == nullptr )
     {

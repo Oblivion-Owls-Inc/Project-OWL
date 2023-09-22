@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "../rapidjson/document.h"
+#include <rapidjson/document.h>
 
 /// @brief Base class for all Systems
 class System

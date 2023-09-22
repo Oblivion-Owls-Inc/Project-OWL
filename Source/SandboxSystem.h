@@ -59,7 +59,7 @@ public: // singleton stuff
 
     /// @brief gets the instance of SandboxSystem
     /// @return the instance of the SandboxSystem
-    static SandboxSystem * getInstance();
+    static SandboxSystem * GetInstance();
 
     // Prevent copying
     SandboxSystem(SandboxSystem& other) = delete;

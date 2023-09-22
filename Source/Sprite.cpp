@@ -43,7 +43,7 @@ Sprite::Sprite(const char* image_file, int columns, int rows, int layer) :
         _texture = new Texture(image_file);
 
         // calculate height multiplier
-        glm::vec2 size = _texture->getImageDimensions();
+        glm::vec2 size = _texture->GetImageDimensions();
         glm::vec2 uvsize = _mesh->get_uvSize();
         _heightMult = (size.y / size.x) * (uvsize.y / uvsize.x);
     }
@@ -80,7 +80,7 @@ Sprite::~Sprite()
 
 /// @brief          Sets current frame of the spritesheet.
 /// @param frame    New frame index
-void Sprite::setFrame(int frame)
+void Sprite::SetFrame(int frame)
 {
     if (frame < _rows * _columns)
         _frame = frame;
@@ -91,7 +91,7 @@ void Sprite::setFrame(int frame)
 
 /// @brief          Sets the rendering layer : 0 - 4. 0 is back, 4 is front.
 /// @param layer    Rendering layer to move this sprite to.
-void Sprite::setLayer(int layer) 
+void Sprite::SetLayer(int layer) 
 {   
     Renderer()->RemoveSprite(this, _layer);
     _layer = std::max(0, std::min(layer, 4));
@@ -100,12 +100,12 @@ void Sprite::setLayer(int layer)
 
 /// @brief          Sets the opacity.
 /// param opacity   I'm not explaining this.
-void Sprite::setOpacity(float opacity) { _opacity = opacity; }
+void Sprite::SetOpacity(float opacity) { _opacity = opacity; }
 
 /// @brief          Returns the number (for transform) to multiply width by, in order to maintain scale
 ///                 proportions of the original image. (accounts for uv size of frames as well)
 /// @return         float: multiplier for obtaining height:  width * mult = height
-float Sprite::getHeightMultiplier() const
+float Sprite::GetHeightMultiplier() const
 {
     if (_texture)
         return _heightMult;
@@ -136,7 +136,7 @@ void Sprite::draw()
     }
 
     if (Parent() && Parent()->HasComponent(typeid(Transform)))      // what a mess
-        Renderer()->SetTransformMat( *((Transform*)Parent()->HasComponent(typeid(Transform)))->getMatrix() );
+        Renderer()->SetTransformMat( *((Transform*)Parent()->HasComponent(typeid(Transform)))->GetMatrix() );
 
     Renderer()->SetOpacity(_opacity);
 
@@ -170,7 +170,7 @@ ReadMethodMap< Sprite > const Sprite::readMethods = {
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component
-ReadMethodMap< Component > const& Sprite::getReadMethods()
+ReadMethodMap< Component > const& Sprite::GetReadMethods()
 {
     return (ReadMethodMap< Component> const&)readMethods;
 }
