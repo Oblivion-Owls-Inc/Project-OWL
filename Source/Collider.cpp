@@ -23,6 +23,7 @@ void Collider::OnFixedUpdate()
 {
 }
 
+
 void Collider::setOtherCollider(Collider* other)
 {
 	mOther = other;
@@ -48,3 +49,20 @@ void Collider::setColliderType(ColliderType cType)
 	mtype = cType;
 }
 
+
+/// @brief the map of read methods for Collider
+ReadMethodMap< Collider > Collider::readMethods = 
+{
+	{ "ColliderType",		&ReadColliderType },
+
+};
+
+std::map<std::string, ReadMethod<Component>> const& Collider::getReadMethods()
+{
+	return (ReadMethodMap< Component > const&)readMethods;
+}
+
+void Collider::ReadColliderType(Stream data)
+{
+	mtype = (ColliderType)data.Read<int>();
+}

@@ -32,7 +32,6 @@ class MovementAI :
         void OnCollisionEvent() override;
         void OnUpdate(float dt) override;
         void OnFixedUpdate() override;
-        void OnCollision(Entity* other) override {};
 
     private:
 

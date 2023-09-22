@@ -42,6 +42,7 @@ class CircleCollider : public Collider
 
         virtual void OnFixedUpdate() override;
 
+
     private:
         float radius;  // Radius of the circle collider
         bool doesDamage = false;

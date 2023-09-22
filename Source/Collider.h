@@ -24,7 +24,7 @@ class Collider : public Component
 
 		typedef enum ColliderType
 		{
-			ColliderTypeNone,
+			ColliderTypeNone = 0,
 			ColliderTypeCircle,
 			ColliderTypeLine,
 
@@ -46,6 +46,10 @@ class Collider : public Component
 		void isColliding(bool colliding);
 		void setColliderType(ColliderType cType);
 
+	private: // Read Methods
+		virtual std::map< std::string, ReadMethod< Component > > const& getReadMethods();
+		void ReadColliderType(Stream data);
+		static ReadMethodMap< Collider > readMethods;
 	private:
 		ColliderType mtype;
 		bool mIsColliding;

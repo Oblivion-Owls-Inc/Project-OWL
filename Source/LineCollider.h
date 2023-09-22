@@ -25,7 +25,10 @@ class LineCollider : public Collider
 		void AddLineSegment(vec2 p0, vec2 p1);
 		bool CheckIfColliding(const Collider* other) override;
 		virtual void OnFixedUpdate() override {};
+
+
 	private:
+
 		std::vector<ColliderLineSegment> m_lineSegments;
 
 		unsigned int lineCount;
