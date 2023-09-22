@@ -3,11 +3,14 @@
 ///
 /// @brief    Example System meant to be copy-pasted when creating new Systems
 #pragma once
+
+#define BEHAVIORSYSTEM_H
+
 #include "System.h"
 #include <vector>
 
-
-template <typename BehaviorType>
+class Behavior;
+template < typename BehaviorType >
 class BehaviorSystem : public System
 {
 private:
@@ -35,24 +38,36 @@ private:
     /// @brief      Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
+    /// @brief Loads the config data of this System
+    /// @param configData the JSON object with all of the configData for this System
+    virtual void Load(rapidjson::Value const& configData) override {}
+
     /// @brief      Constructs the BehaviorSystem 
-    BehaviorSystem();
+    BehaviorSystem() = default;
 
     /// @brief      The singleton instance of BehaviorSystem  
-    static BehaviorSystem* instance;
+    static BehaviorSystem< BehaviorType >* instance;
+
 
 public:
+    /// @brief      Adds a new Behavior to the system
+    void AddBehavior(BehaviorType* behavior);
+    ///@brief       Removes a Behavior from the system
+    void RemoveBehavior(BehaviorType* behavior);
 
     /// @brief      Gets the instance of BehaviorSystem
     /// @return     BehaviorSystem pointer: new or existing instance of this system
-    static BehaviorSystem* getInstance();
-    std::vector<BehaviorType*>& getBehaviors() const;
+    static BehaviorSystem< BehaviorType >* getInstance();
+    std::vector< BehaviorType* >& getBehaviors() const;
 
 private:
-    std::vector<BehaviorType*> behaviorsList;
+    std::vector< BehaviorType* > behaviorsList;
 
     // Prevent copying
-    BehaviorSystem(BehaviorSystem& other) = delete;
-    void operator=(const BehaviorSystem&) = delete;
+    BehaviorSystem( BehaviorSystem& other ) = delete;
+    void operator=( const BehaviorSystem& ) = delete;
 };
 
+#ifndef BEHAVIORSYSTEM_C
+#include "BehaviorSystem.cpp"
+#endif
