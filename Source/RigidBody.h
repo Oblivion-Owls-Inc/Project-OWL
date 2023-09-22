@@ -36,23 +36,23 @@ class RigidBody : public Behavior
 
     private: // reading
 
-        /// @brief reads the velocity from json
-        /// @param data the json data
+        /// @brief      Reads the velocity from json
+        /// @param data The json data
         void ReadVelocity( Stream data );
 
-        /// @brief reads the acceleration from json
-        /// @param data the json data
+        /// @brief      Reads the acceleration from json.
+        /// @param data The json data.
         void ReadAcceleration( Stream data );
 
-        /// @brief reads the rotationalVelocity from json
-        /// @param data the json data
+        /// @brief      Reads the rotationalVelocity from json
+        /// @param data The json data
         void ReadRotationalVelocity( Stream data );
 
-        /// @brief the map of read methods for RigidBodys
+        /// @brief The map of read methods for RigidBodys
         static ReadMethodMap< RigidBody > readMethods;
 
-        /// @brief gets the map of read methods for this Component
-        /// @return the map of read methods for this Component
+        /// @brief  Gets the map of read methods for this Component
+        /// @return The map of read methods for this Component
         virtual ReadMethodMap< Component > const& getReadMethods() override;
 };
 

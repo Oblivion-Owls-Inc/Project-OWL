@@ -5,13 +5,16 @@
 /// @date 2023-09-10
 ///
 /// @copyright  © 2023 DigiPen (USA) Corporation.
+/// -----------------------------------------------------------
 
 #define STREAM_TC
 
 #ifndef STREAM_H
 #include "Stream.h"
 #endif
-
+//-----------------------------------------------------------------------------
+// Include files
+//-----------------------------------------------------------------------------
 #include <iostream>
 #include <sstream>
 #include <map>
@@ -20,9 +23,9 @@
 // public methods
 //-----------------------------------------------------------------------------
 
-/// @brief reads data into an existing complex type
-/// @tparam T the type to read
-/// @param object the oject to read data into
+/// @brief    Reads data into an existing complex type
+/// @tparam T The type to read
+/// @param    Object the oject to read data into
 template < typename T >
 void Stream::Read( T* object )
 {

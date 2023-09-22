@@ -6,8 +6,10 @@
 ///
 /// @copyright  © 2023 DigiPen (USA) Corporation.
 
+//-----------------------------------------------------------------------------
+// Include files
+//-----------------------------------------------------------------------------
 #include "Stream.h"
-
 #include <iostream>
 #include <map>
 #include "istreamwrapper.h"
@@ -16,10 +18,10 @@
 // public static methods
 //-----------------------------------------------------------------------------
 
-/// @brief Open and parse a json file.
-/// @param name - name of the json file. 
-/// @return rapid::json document parsed from the specified file.
-rapidjson::Document Stream::ReadFromJSON( const std::string& filepath )
+/// @brief              Open and parse a json file.
+/// @param filepath     name of the json file. 
+/// @return             rapid::json document parsed from the specified file.
+rapidjson::Document Stream::ReadFromJSON(const std::string& filepath)
 {
     // Check if the string is empty.
     if ( filepath.empty() )
@@ -73,25 +75,25 @@ Stream::Stream( rapidjson::Value const& value_ ) :
 // public accessors
 //-----------------------------------------------------------------------------
 
-/// @brief gets the rapidjson value as an object
-/// @return the rapidjson value
+/// @brief  Gets the rapidjson value as an object
+/// @return The rapidjson value
 rapidjson::GenericObject< true, rapidjson::Value > const& Stream::getObject() const
 {
     assert( value.IsObject() );
     return value.GetObject();
 }
 
-/// @brief gets the rapidjson value as an object
-/// @return the rapidjson value
+/// @brief  Gets the rapidjson value as an object
+/// @return The rapidjson value
 rapidjson::GenericArray< true, rapidjson::Value > const& Stream::getArray() const
 {
     assert( value.IsArray() );
     return value.GetArray();
 }
 
-/// @brief reads a basic type from a json value
+/// @brief  Reads a basic type from a json value
 /// @tparam T the type to read
-/// @return the value from the json
+/// @return The value from the json
 template <>
 int Stream::Read<int>() const
 {
@@ -99,9 +101,9 @@ int Stream::Read<int>() const
     return value.GetInt();
 }
 
-/// @brief reads a basic type from a json value
+/// @brief  Reads a basic type from a json value
 /// @tparam T the type to read
-/// @return the value from the json
+/// @return The value from the json
 template <>
 float Stream::Read<float>() const
 {
@@ -109,9 +111,9 @@ float Stream::Read<float>() const
     return value.GetFloat();
 }
 
-/// @brief reads a basic type from a json value
+/// @brief  Reads a basic type from a json value
 /// @tparam T the type to read
-/// @return the value from the json
+/// @return The value from the json
 template <>
 std::string Stream::Read<std::string>() const
 {
@@ -119,9 +121,9 @@ std::string Stream::Read<std::string>() const
     return value.GetString();
 }
 
-/// @brief reads a basic type from a json value
+/// @brief  Reads a basic type from a json value
 /// @tparam T the type to read
-/// @return the value from the json
+/// @return The value from the json
 template <>
 glm::vec3 Stream::Read<glm::vec3>() const
 {
@@ -134,5 +136,3 @@ glm::vec3 Stream::Read<glm::vec3>() const
     }
     return vector;
 }
-
-//-----------------------------------------------------------------------------

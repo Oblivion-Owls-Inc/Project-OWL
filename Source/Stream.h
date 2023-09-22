@@ -5,6 +5,7 @@
 /// @date 2023-09-10
 ///
 /// @copyright  © 2023 DigiPen (USA) Corporation.
+/// ------------------------------------------------------------------------------
 
 #define STREAM_H
 
@@ -17,42 +18,44 @@
 #include <string>      // std::string
 #include <fstream>     // std::ifstream
 #include "glm/glm.hpp" // glm::vec3
-#include <map>
+#include <map>		   // std::map
 
 //------------------------------------------------------------------------------
-
+// Class: Stream
+//------------------------------------------------------------------------------
 class Stream
 {
 public: // static methods
 
-	/// @brief Opens and parses a json document.
-	/// @param name - name of the file to read from.
-	/// @return - rapidjson document.
-	static rapidjson::Document ReadFromJSON( const std::string& name );
+	/// @brief		  Opens and parses a json document.
+	/// @param name   Name of the file to read from.
+	/// @return		  rapidjson document.
+	static rapidjson::Document ReadFromJSON( const std::string& name );               
 
 public: // constructor
 
-	/// @brief creates a Stream wrapper of the root object in a json document
-	/// @param document the json document.
+	/// @brief			Creates a Stream wrapper of the root object in a 
+	///					json document.
+	/// @param document The json document.
 	Stream( rapidjson::Document const& document );
 
-	/// @brief creates a stream wrapper from a json value.
-	/// @param value the json value
+	/// @brief		 Creates a stream wrapper from a json value.
+	/// @param value The json value
 	Stream( rapidjson::Value const& value );
 
 public: // acessors
 
-	/// @brief gets the rapidjson value as an object
-	/// @return the rapidjson value
+	/// @brief  Gets the rapidjson value as an object
+	/// @return The rapidjson value
 	rapidjson::GenericObject< true, rapidjson::Value > const& getObject() const;
 
-    /// @brief gets the rapidjson value as an object
-    /// @return the rapidjson value
+    /// @brief  Gets the rapidjson value as an object
+    /// @return The rapidjson value
     rapidjson::GenericArray< true, rapidjson::Value > const& getArray() const;
 
-	/// @brief reads a basic type from a json value
-	/// @tparam T the type to read
-	/// @return the value from the json
+	/// @brief	  Reads a basic type from a json value
+	/// @tparam T The type to read
+	/// @return	  The value from the json
 	template < typename T >
 	T Read() const;
 
