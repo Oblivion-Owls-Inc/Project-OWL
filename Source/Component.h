@@ -12,8 +12,14 @@
 #pragma once
 
 #include <typeindex>
-#include "document.h"
-class Entity; // forward reference
+#include <map>
+#include <string>
+#include "Stream.h"
+
+class Entity;
+
+template < typename ComponentType >
+using ReadMethod = void (ComponentType::*)( Stream jsonValue );
 
 
 /// @brief virtual component class
@@ -40,8 +46,7 @@ public:
 	/// @return new clone of component
 	virtual Component* Clone() const = 0;
 
-	// TODO add commment for what this does
-	virtual void Read( const rapidjson::Value& data ) { (void)data; }
+	virtual std::map< std::string, ReadMethod< Component > > const& getReadMethods() = 0;
 
 protected:
 

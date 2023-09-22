@@ -8,7 +8,10 @@
 
 #include "SceneSystem.h"
 
+#include "EntitySystem.h"
+
 #include "basics.h"
+#include "Stream.h"
 
 
 /// @brief sets the next Scene to change to
@@ -44,7 +47,12 @@ std::string SceneSystem::ScenePath( std::string const& sceneName )
 void SceneSystem::LoadScene()
 {
 
-    // TODO: load from JSON
+    rapidjson::Document document = Stream::ReadFromJSON( ScenePath( currentSceneName ) );
+    Stream root(document);
+
+    // TODO: have some assetSystem or something like that handle loading assets
+    assert( root.getObject().HasMember("entities") );
+    EntitySystem::getInstance()->LoadEntities( Stream( root.getObject()[ "entities" ] ) );
 
     for ( System* system : Engine::getInstance()->getSystems() )
     {
