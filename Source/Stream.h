@@ -59,37 +59,37 @@ public: // acessors
 	template < typename T >
 	T Read() const;
 
-    /// @brief reads an int from a json value
-    /// @return the value from the json
+    /// @brief  Reads an int from a json value
+    /// @return The value from the json
     template <>
     int Read<int>() const;
 
-    /// @brief reads a float from a json value
-    /// @return the value from the json
+    /// @brief  Reads a float from a json value
+    /// @return The value from the json
     template <>
     float Read<float>() const;
 
-    /// @brief reads a string from a json value
-    /// @return the value from the json
+    /// @brief  Reads a string from a json value
+    /// @return The value from the json
     template <>
     std::string Read<std::string>() const;
 
-    /// @brief reads a vec3 from a json value
-    /// @return the value from the json
+    /// @brief  Reads a vec3 from a json value
+    /// @return The value from the json
     template <>
     glm::vec3 Read<glm::vec3>() const;
 
 public: // methods
 
-	/// @brief reads data into an existing complex type
-	/// @tparam T the type to read
-	/// @param object the oject to read data into
+	/// @brief	  Reads data into an existing complex type
+	/// @tparam T The type to read
+	/// @param	  Object the oject to read data into
 	template < typename T >
 	void Read( T* object );
 
 private: // member variables
 
-	/// @brief the json value containing the data to read
+	/// @brief The json value containing the data to read
 	rapidjson::Value const& value;
 
 };
