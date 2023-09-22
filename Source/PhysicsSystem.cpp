@@ -9,6 +9,21 @@
 #include "Collider.h"
 PhysicsSystem * PhysicsSystem::instance = nullptr;
 
+PhysicsSystem::PhysicsSystem()
+{
+}
+
+void PhysicsSystem::OnInit()
+{
+}
+
+void PhysicsSystem::OnFixedUpdate()
+{
+}
+
+void PhysicsSystem::OnSceneExit()
+{
+}
 
 void PhysicsSystem::OnUpdate(float dt)
 {
