@@ -182,6 +182,7 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Animation.cpp" />
+    <ClCompile Include="Source\AnimationAsset.cpp" />
     <ClCompile Include="Source\MovementAI.cpp" />
     <ClCompile Include="Source\AudioPlayer.cpp" />
     <ClCompile Include="Source\BehaviorSystem.cpp" />
@@ -213,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\AnimationAsset.h" />
     <ClInclude Include="Source\MovementAI.h" />
     <ClInclude Include="Source\Behavior.h" />
     <ClInclude Include="Source\BehaviorSystem.h" />

@@ -227,6 +227,9 @@
     <ClCompile Include="Source\Animation.cpp">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClCompile>
+    <ClCompile Include="Source\AnimationAsset.cpp">
+      <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -359,6 +362,9 @@
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClInclude>
     <ClInclude Include="Source\Animation.h">
+      <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AnimationAsset.h">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClInclude>
   </ItemGroup>

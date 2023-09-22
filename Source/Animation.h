@@ -10,6 +10,7 @@
 
 #include "Sprite.h"
 #include "Behavior.h"
+#include "AnimationAsset.h"
 
 class Animation : public Behavior
 {
@@ -37,6 +38,9 @@ public:
 	const bool getDone() const;
 	void setDone(bool newDone);
 
+	const AnimationAsset* getAsset() const;
+	void setAsset(AnimationAsset* newAsset);
+
 	void animationPlay();
 
 	
@@ -49,7 +53,9 @@ private:
 	virtual void OnFixedUpdate() override {}
 	void AdvanceFrame();
 	Animation(Animation const&);
+	AnimationAsset* asset;
 	unsigned frameIndex;
+	unsigned frameStart;
 	unsigned frameCount;
 	float frameDelay;
 	float frameDuration;

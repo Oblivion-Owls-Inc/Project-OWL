@@ -104,10 +104,27 @@ void Animation::setDone(bool newDone)
 	isDone = newDone;
 }
 
+const AnimationAsset* Animation::getAsset() const
+{
+	return asset;
+}
+
+void Animation::setAsset(AnimationAsset* newAsset)
+{
+	asset = newAsset;
+}
+
 void Animation::animationPlay()
 {
-
-
+	frameStart = asset->getStart();
+	frameIndex = asset->getStart();
+	frameCount = asset->getEnd();
+	frameDuration = asset->getDuration();
+	frameDelay = asset->getDuration();
+	isLooping = asset->getLooping();
+	isRunning = true;
+	isDone = false;
+	Parent()->GetComponent<Sprite>()->setFrame(frameIndex);
 }
 
 void Animation::AdvanceFrame()
@@ -117,7 +134,7 @@ void Animation::AdvanceFrame()
 	{
 		if (isLooping)
 		{
-			frameIndex = 0;
+			frameIndex = frameStart;
 		}
 		else
 		{
