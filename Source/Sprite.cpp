@@ -164,8 +164,8 @@ void Sprite::ReadColumns( Stream stream )
 
 /// @brief the map of read methods for this Component
 ReadMethodMap< Sprite > const Sprite::readMethods = {
-    {"rows", &ReadRows},
-    {"columns", &ReadColumns}
+    { "rows"    , &ReadRows    },
+    { "columns" , &ReadColumns }
 };
 
 /// @brief gets the map of read methods for this Component
@@ -174,5 +174,3 @@ ReadMethodMap< Component > const& Sprite::getReadMethods()
 {
     return (ReadMethodMap< Component> const&)readMethods;
 }
-
-//-----------------------------------------------------------------------------

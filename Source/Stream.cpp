@@ -11,8 +11,8 @@
 //-----------------------------------------------------------------------------
 #include "Stream.h"
 
-#include <iostream>
-#include <map>
+#include <iostream> // std::ifstream, is_open
+#include <map>      // std::map
 #include "istreamwrapper.h"
 
 //-----------------------------------------------------------------------------
@@ -20,32 +20,32 @@
 //-----------------------------------------------------------------------------
 
 /// @brief              Open and parse a json file.
-/// @param filepath     name of the json file. 
+/// @param filepath     Name of the json file. 
 /// @return             rapid::json document parsed from the specified file.
 rapidjson::Document Stream::ReadFromJSON(const std::string& filepath)
 {
     // Check if the string is empty.
-    if ( filepath.empty() )
+    if (filepath.empty())
     {
         throw "File was not found";
     }
     // Open the json file for reading.
-    std::ifstream file( filepath );
+    std::ifstream file(filepath);
     // Check if the file was opened.
-    if ( !file.is_open() )
+    if (!file.is_open())
     {
         //TODO: Talk with team about failed file openings.
         throw "File could not be opened!";
     }
 
-    rapidjson::IStreamWrapper isw( file );
+    rapidjson::IStreamWrapper isw(file);
     // Create a document object.
     rapidjson::Document doc;
     // Parse the document from the stream.
-    doc.ParseStream( isw );
+    doc.ParseStream(isw);
 
     // Check if the json was parsed correctly.
-    if ( doc.HasParseError() )
+    if (doc.HasParseError())
     {
         std::cerr << "ERROR parsing JSON: " << doc.GetParseError() << std::endl;
         file.close();
@@ -62,14 +62,14 @@ rapidjson::Document Stream::ReadFromJSON(const std::string& filepath)
 
 /// @brief creates a Stream wrapper of the root object in a json document
 /// @param document the json document.
-Stream::Stream( rapidjson::Document const& document ) :
-    value( document.GetObject() )
+Stream::Stream(rapidjson::Document const& document) :
+    value(document.GetObject())
 {}
 
 /// @brief creates a stream wrapper from a json value.
 /// @param value the json value
 Stream::Stream( rapidjson::Value const& value_ ) :
-    value( value_ )
+    value(value_)
 {}
 
 //-----------------------------------------------------------------------------
@@ -78,19 +78,23 @@ Stream::Stream( rapidjson::Value const& value_ ) :
 
 /// @brief  Gets the rapidjson value as an object
 /// @return The rapidjson value
-rapidjson::GenericObject< true, rapidjson::Value > const& Stream::getObject() const
+rapidjson::GenericObject<true, rapidjson::Value> const& Stream::getObject() const
 {
-    assert( value.IsObject() );
+    assert(value.IsObject());
     return value.GetObject();
 }
 
 /// @brief  Gets the rapidjson value as an object
 /// @return The rapidjson value
-rapidjson::GenericArray< true, rapidjson::Value > const& Stream::getArray() const
+rapidjson::GenericArray<true, rapidjson::Value> const& Stream::getArray() const
 {
-    assert( value.IsArray() );
+    assert(value.IsArray());
     return value.GetArray();
 }
+
+//-----------------------------------------------------------------------------
+// Public Templated Reads
+//-----------------------------------------------------------------------------
 
 /// @brief  Reads a basic type from a json value
 /// @tparam T the type to read
@@ -98,7 +102,7 @@ rapidjson::GenericArray< true, rapidjson::Value > const& Stream::getArray() cons
 template <>
 int Stream::Read<int>() const
 {
-    assert( value.IsInt() );
+    assert(value.IsInt());
     return value.GetInt();
 }
 
@@ -108,7 +112,7 @@ int Stream::Read<int>() const
 template <>
 unsigned int Stream::Read<unsigned int>() const
 {
-    assert( value.IsUint() );
+    assert(value.IsUint());
     return value.GetUint();
 }
 
@@ -118,7 +122,7 @@ unsigned int Stream::Read<unsigned int>() const
 template <>
 float Stream::Read<float>() const
 {
-    assert( value.IsNumber() );
+    assert(value.IsNumber());
     return value.GetFloat();
 }
 
@@ -128,7 +132,7 @@ float Stream::Read<float>() const
 template <>
 std::string Stream::Read<std::string>() const
 {
-    assert( value.IsString() );
+    assert(value.IsString());
     return value.GetString();
 }
 
@@ -138,11 +142,11 @@ std::string Stream::Read<std::string>() const
 template <>
 glm::vec3 Stream::Read<glm::vec3>() const
 {
-    assert( value.IsArray() );
+    assert(value.IsArray());
     glm::vec3 vector = {};
-    for ( int i = 0; i < 3; i++ )
+    for (int i = 0; i < 3; i++)
     {
-        assert( value[i].IsNumber() );
+        assert(value[i].IsNumber());
         vector[i] = value[i].GetFloat();
     }
     return vector;
@@ -154,11 +158,11 @@ glm::vec3 Stream::Read<glm::vec3>() const
 template <>
 glm::vec2 Stream::Read<glm::vec2>() const
 {
-    assert( value.IsArray() );
+    assert(value.IsArray());
     glm::vec2 vector = {};
-    for ( int i = 0; i < 2; i++ )
+    for (int i = 0; i < 2; i++)
     {
-        assert( value[i].IsNumber() );
+        assert(value[i].IsNumber());
         vector[i] = value[i].GetFloat();
     }
     return vector;

@@ -30,7 +30,7 @@ public: // static methods
 	/// @brief		  Opens and parses a json document.
 	/// @param name   Name of the file to read from.
 	/// @return		  rapidjson document.
-	static rapidjson::Document ReadFromJSON( const std::string& name );               
+	static rapidjson::Document ReadFromJSON(const std::string& name);               
 
 public: // constructor
 

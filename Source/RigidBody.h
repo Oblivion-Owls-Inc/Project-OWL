@@ -82,26 +82,27 @@ public:
     /// @param other The other Entity involved in the collision.
     virtual void OnCollisionEvent();
 
-    private: // reading
+private: // reading
 
-        /// @brief reads the velocity from json
-        /// @param data the json data
-        void ReadVelocity(Stream data);
+    /// @brief reads the velocity from json
+    /// @param data the json data
+    void ReadVelocity(Stream data);
 
-        /// @brief reads the acceleration from json
-        /// @param data the json data
-        void ReadAcceleration(Stream data);
+    /// @brief reads the acceleration from json
+    /// @param data the json data
+    void ReadAcceleration(Stream data);
 
-        /// @brief reads the rotationalVelocity from json
-        /// @param data the json data
-        void ReadRotationalVelocity(Stream data);
+    /// @brief reads the rotationalVelocity from json
+    /// @param data the json data
+    void ReadRotationalVelocity(Stream data);
 
-        /// @brief the map of read methods for RigidBodys
-        static ReadMethodMap< RigidBody > readMethods;
+    /// @brief the map of read methods for RigidBodys
+    static ReadMethodMap< RigidBody > readMethods;
 
-        /// @brief gets the map of read methods for this Component
-        /// @return the map of read methods for this Component
-        virtual ReadMethodMap< Component > const& getReadMethods() override;
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    virtual ReadMethodMap< Component > const& getReadMethods() override;
+
 private:
     /// @brief The velocity vector of the rigid body.
     vec3 _velocity;
@@ -115,5 +116,3 @@ private:
     /// @brief The rotational velocity of the rigid body.
     float _rotationalVelocity;
 };
-
-

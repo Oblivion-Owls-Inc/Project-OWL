@@ -27,10 +27,10 @@
 /// @tparam T The type to read
 /// @param    Object the oject to read data into
 template < typename T >
-void Stream::Read( T* object )
+void Stream::Read(T* object)
 {
     // A map containing the different read methods for the object.
-    std::map < std::string, ReadMethod< T > > const& readMethods( object->getReadMethods() );
+    std::map <std::string, ReadMethod<T>> const& readMethods(object->getReadMethods());
     // Error checking.
     assert( value.IsObject() );
     // Iterates through the json value searching for a value.
@@ -39,11 +39,11 @@ void Stream::Read( T* object )
         // Error checking.
         if ( readMethods.find( item.name.GetString() ) == readMethods.end() )
         {
-            throw std::runtime_error( (std::stringstream() << "unreconized token \"" << item.name.GetString() << "\"").str() );
+            throw std::runtime_error((std::stringstream() << "unreconized token \"" << item.name.GetString() << "\"").str());
         }
         // Get the read method for the object from the map.
-        ReadMethod< T > readMethod = readMethods.at( item.name.GetString() );
+        ReadMethod< T > readMethod = readMethods.at(item.name.GetString());
         // Read the data from the json value into the object. 
-        (object->*readMethod)( Stream( item.value ) );
+        (object->*readMethod)(Stream(item.value));
     }
 }

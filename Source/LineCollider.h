@@ -50,7 +50,7 @@ private:
 
 	std::vector<ColliderLineSegment> m_lineSegments;
 
-	unsigned int lineCount;
+	unsigned int m_LineCount;
 
 	unsigned int counter;
 

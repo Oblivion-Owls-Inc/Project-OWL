@@ -121,30 +121,44 @@ void Transform::setIsDirty(bool newIsDirty)
 	isDirty = newIsDirty;
 }
 
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
 
+/// @brief			 Reads in a translation vector from a JSON value.
+/// @param jsonValue The value to read from.
 void Transform::ReadTranslation( Stream jsonValue )
 {
 	translation = jsonValue.Read<glm::vec3>();
 	isDirty = true;
 }
+
+/// @brief			 Reads in a rotation from a JSON value.
+/// @param jsonValue The value to read from.
 void Transform::ReadRotation( Stream jsonValue )
 {
 	rotation = jsonValue.Read<float>();
 	isDirty = true;
 }
+
+/// @brief			 Reads in a scale vector from a JSON value.
+/// @param jsonValue The value to read from.
 void Transform::ReadScale( Stream jsonValue )
 {
 	scale = jsonValue.Read<glm::vec3>();
 	isDirty = true;
 }
 
+// Map of all the read methods for the transform component.
 std::map< std::string, ReadMethod< Transform > > Transform::readMethods = {
-	{ "translation", &ReadTranslation },
-	{ "rotation", &ReadRotation },
-	{ "scale", &ReadScale }
+	{"translation", &ReadTranslation},
+	{"rotation",	&ReadRotation   },
+	{"scale",		&ReadScale      }
 };
 
-std::map< std::string, ReadMethod< Component > > const& Transform::getReadMethods()
+/// @brief  Gets a map of the read methods for transform component.
+/// @return A map of all the transform component read methods.
+std::map<std::string, ReadMethod<Component>> const& Transform::getReadMethods()
 {
-	return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
+	return (std::map< std::string, ReadMethod<Component>> const&)readMethods;
 }
