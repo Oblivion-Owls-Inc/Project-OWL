@@ -1,5 +1,15 @@
-#pragma once
+///*****************************************************************/
+/// @file	 LineCollider.h
+/// @Author  Jax Clayton (jax.clayton@digipen.edu)
+/// @date	 9/5/2023
+/// @brief   LineCollider class header
+/// @details This class contains the LineCollider component
+///*****************************************************************/
 
+#pragma once
+///*****************************************************************/
+/// Includes
+///*****************************************************************/
 #include "basics.h"
 #include "Collider.h"
 #include <vector>
@@ -9,29 +19,24 @@
 
 using namespace glm;
 
+///*****************************************************************/
+/// LineCollider class
+/// @brief This class contains the LineCollider component which is used
+///  for collisions on a game object.
+///*****************************************************************/
 class LineCollider : public Collider
 {
-<<<<<<<< HEAD:Source/LinesCollider.h
 private:
-========
 	private:
 
 		typedef struct ColliderLineSegment
 		{
 			// A single line segment (P0 and P1).
 			vec2 point[2];
->>>>>>>> origin/main:Source/LineCollider.h
 
-	typedef struct ColliderLineSegment
-	{
-		// A single line segment (P0 and P1).
-		vec2 point[2];
-
-<<<<<<<< HEAD:Source/LinesCollider.h
-	} ColliderLineSegment;
+		} ColliderLineSegment;
 
 public:
-========
 	public:
 
 		LineCollider();
@@ -40,21 +45,6 @@ public:
 		void AddLineSegment(vec2 p0, vec2 p1);
 		bool CheckIfColliding(const Collider* other) override;
 		virtual void OnFixedUpdate() override {};
-
-
-	private:
-
-		std::vector<ColliderLineSegment> m_lineSegments;
->>>>>>>> origin/main:Source/LineCollider.h
-
-	LineCollider();
-	Component* Clone() const;
-	void AddLineSegment( const vec2* p0, const vec2* p1 );
-	void AddLineSegment( vec2 p0, vec2 p1 );
-	bool CheckIfColliding( const Collider* other ) override;
-	virtual void OnFixedUpdate() override {};
-
-<<<<<<<< HEAD:Source/LinesCollider.h
 
 private:
 

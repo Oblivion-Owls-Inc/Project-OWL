@@ -64,6 +64,11 @@ public: // acessors
     template <>
     int Read<int>() const;
 
+	/// @brief  Reads a basic type from a json value
+	/// @return The value from the json
+	template <>
+	unsigned int Read<unsigned int>() const;
+
     /// @brief  Reads a float from a json value
     /// @return The value from the json
     template <>
@@ -78,6 +83,11 @@ public: // acessors
     /// @return The value from the json
     template <>
     glm::vec3 Read<glm::vec3>() const;
+
+   /// @brief  Reads a vec2 from a json value
+   /// @return The value from the json
+	template <>
+	glm::vec2 Read<glm::vec2>() const;
 
 public: // methods
 

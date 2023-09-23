@@ -11,8 +11,6 @@
 #pragma once
 #include "Component.h"
 #include "rapidjson.h"
-#include "PhysicsSystem.h"
-using namespace rapidjson;
 
 ///*************************************************************************/
 /// @Class Collider

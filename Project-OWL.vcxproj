@@ -175,6 +175,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\BehaviorSystem.cpp" />
+    <ClCompile Include="Source\CollisionSystem.cpp" />
     <ClCompile Include="Source\ComponentFactory.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\LineCollider.h" />
+    <ClInclude Include="Source\RigidBody.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\XinoScene.h" />
     <ClInclude Include="Source\AudioPlayer.h" />

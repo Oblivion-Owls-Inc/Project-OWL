@@ -106,6 +106,16 @@ int Stream::Read<int>() const
 /// @tparam T the type to read
 /// @return The value from the json
 template <>
+unsigned int Stream::Read<unsigned int>() const
+{
+    assert( value.IsUint() );
+    return value.GetUint();
+}
+
+/// @brief  Reads a basic type from a json value
+/// @tparam T the type to read
+/// @return The value from the json
+template <>
 float Stream::Read<float>() const
 {
     assert( value.IsNumber() );
@@ -131,6 +141,22 @@ glm::vec3 Stream::Read<glm::vec3>() const
     assert( value.IsArray() );
     glm::vec3 vector = {};
     for ( int i = 0; i < 3; i++ )
+    {
+        assert( value[i].IsNumber() );
+        vector[i] = value[i].GetFloat();
+    }
+    return vector;
+}
+
+/// @brief  Reads a basic type from a json value
+/// @tparam T the type to read
+/// @return The value from the json
+template <>
+glm::vec2 Stream::Read<glm::vec2>() const
+{
+    assert( value.IsArray() );
+    glm::vec2 vector = {};
+    for ( int i = 0; i < 2; i++ )
     {
         assert( value[i].IsNumber() );
         vector[i] = value[i].GetFloat();
