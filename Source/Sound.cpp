@@ -1,10 +1,10 @@
-/// @file Sound.cpp
-/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief Wrapper class for FMOD sounds
-/// @version 0.1
-/// @date 2023-09-13
+/// @file       Sound.cpp
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      Wrapper class for FMOD sounds
+/// @version    0.1
+/// @date       2023-09-13
 /// 
-/// @copyright Copyright (c) 2023
+/// @copyright  Copyright (c) 2023
 
 #include "Sound.h"
 #include "AudioSystem.h"
@@ -13,9 +13,9 @@
 // constructor / destructor
 //-----------------------------------------------------------------------------
 
-    /// @brief Constructs a new Sound
+    /// @brief          Constructs a new Sound
     /// @param filepath the filepath of the sound to load
-    /// @param looping whether or not the sound should loop
+    /// @param looping  whether or not the sound should loop
     Sound::Sound( char const* filepath, bool looping )
     {
         AudioSystem::GetInstance()->GetFMOD()->createSound(

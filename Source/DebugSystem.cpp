@@ -106,14 +106,6 @@ void DebugSystem::OnExit()
     ImGui::DestroyContext();
 }
 
-/// @brief Loads the DebugSystem config data from JSON
-/// @param configData the JSON to load the config data from
-void DebugSystem::Load( rapidjson::Value const& configData )
-{
-    // TODO: JSON error handling
-    showFpsWindow = configData[ "showFpsWindow" ].GetBool();
-}
-
 /// @brief Show the Frames Per Second (FPS) display.
 void DebugSystem::ToggleFPS()
 {
@@ -170,3 +162,26 @@ void DebugSystem::ShowDebugMenu()
     DebugMenu* newWindow = new DebugMenu();
     windows.push_back(newWindow);
 }
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief          reads whether to show the FPS window
+    /// @param stream   the data to read from
+    void DebugSystem::readShowFpsWindow( Stream stream )
+    {
+        showFpsWindow = stream.Read<bool>();
+    }
+
+    /// @brief map containing read methods
+    ReadMethodMap< DebugSystem > const DebugSystem::s_ReadMethods = {
+        { "ShowFpsWindow", &readShowFpsWindow }
+    };
+
+    /// @brief  gets the map of read methods
+    /// @return the map of read methods
+    ReadMethodMap< System > const& DebugSystem::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
+    }

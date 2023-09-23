@@ -18,7 +18,7 @@
     /// @param entity the entity to add the the EntitySystem
     void EntitySystem::AddEntity( Entity* entity )
     {
-        entities.push_back( entity );
+        m_Entities.push_back( entity );
     }
 
     /// @brief gets an Entity by name
@@ -27,15 +27,15 @@
     Entity* EntitySystem::GetEntity( std::string const& entityName )
     {
         auto iterator = std::find_if(
-            entities.begin(),
-            entities.end(),
+            m_Entities.begin(),
+            m_Entities.end(),
             [ entityName ]( Entity* entity ) -> bool
             {
                 return entity->GetName() == entityName;
             }
         );
 
-        if ( iterator == entities.end() )
+        if ( iterator == m_Entities.end() )
         {
             return nullptr;
         }
@@ -47,11 +47,11 @@
     /// @param entity the Entity to remove
     void EntitySystem::RemoveEntity( Entity* entity )
     {
-        auto iterator = std::find( entities.begin(), entities.end(), entity );
+        auto iterator = std::find( m_Entities.begin(), m_Entities.end(), entity );
         
-        if ( iterator != entities.end() )
+        if ( iterator != m_Entities.end() )
         {
-            entities.erase( iterator );
+            m_Entities.erase( iterator );
         }
     }
 
@@ -60,12 +60,12 @@
     /// @return whether or not the EntitySystem has the specified Entity
     bool EntitySystem::HasEntity( Entity* entity )
     {
-        auto iterator = std::find( entities.begin(), entities.end(), entity );
+        auto iterator = std::find( m_Entities.begin(), m_Entities.end(), entity );
 
-        return iterator != entities.end();
+        return iterator != m_Entities.end();
     }
 
-    /// @brief loads all of the entities in a scene
+    /// @brief loads all of the m_Entities in a scene
     /// @param entityData the json object containing the entity data
     void EntitySystem::LoadEntities( Stream entityArray )
     {
@@ -78,46 +78,55 @@
     }
 
 //-----------------------------------------------------------------------------
-// private methods
-//-----------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------------
 // virtual override methods
 //-----------------------------------------------------------------------------
 
     /// @brief Gets called whenever a scene is exited
     void EntitySystem::OnSceneExit()
     {
-        for ( Entity* entity : entities )
+        for ( Entity* entity : m_Entities )
         {
             delete entity;
         }
 
-        entities.clear();
+        m_Entities.clear();
+    }
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the EntitySystem read methods
+    ReadMethodMap< EntitySystem > const EntitySystem::s_ReadMethods = {};
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< System > const& EntitySystem::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
     }
 
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-/// @brief Constructs the EntitySystem
-EntitySystem::EntitySystem() :
-    entities()
-{}
+    /// @brief Constructs the EntitySystem
+    EntitySystem::EntitySystem() :
+        m_Entities()
+    {}
 
-/// @brief The singleton instance of EntitySystem
-EntitySystem * EntitySystem::instance = nullptr;
+    /// @brief The singleton instance of EntitySystem
+    EntitySystem * EntitySystem::s_Instance = nullptr;
 
-/// @brief gets the instance of EntitySystem
-/// @return the instance of the EntitySystem
-EntitySystem * EntitySystem::GetInstance()
-{
-    if ( instance == nullptr )
+    /// @brief gets the instance of EntitySystem
+    /// @return the instance of the EntitySystem
+    EntitySystem * EntitySystem::GetInstance()
     {
-        instance = new EntitySystem();
+        if ( s_Instance == nullptr )
+        {
+            s_Instance = new EntitySystem();
+        }
+        return s_Instance;
     }
-    return instance;
-}
 
 //-----------------------------------------------------------------------------

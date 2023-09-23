@@ -1,101 +1,143 @@
-/// @file Engine.h
-/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief Engine class
-/// @version 0.1
-/// @date 2023-09-05
+/// @file       Engine.h
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      Engine class
+/// @version    0.1
+/// @date       2023-09-05
 /// 
-/// @copyright Copyright (c) 2023
+/// @copyright  Copyright (c) 2023
 
 #pragma once
 
 #include <vector>
-#include <map>
-#include <string>
 
 #include "basics.h"
+#include "Stream.h"
 
 #include "System.h"
 
+
 class Engine
 {
-    public:
 
-        /// @brief Starts running the engine. Code will not advance past this point until the engine stops running.
-        void Run();
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
 
-        /// @brief Flags the engine to close once it finishes this loop
-        void Close();
+    /// @brief Starts running the engine. Code will not advance past this point until the engine stops running.
+    void Run();
 
-        /// @brief gets the duration of each fixed frame
-        /// @return the amount of time in seconds that each fixed frame lasts
-        float GetFixedFrameDuration() const;
+    /// @brief Flags the engine to close once it finishes this loop
+    void Close();
 
-        /// @brief sets the duration of each fixed frame
-        /// @param fixedFrameDuration the amount of time in seconds that each fixed frame lasts
-        void SetFixedFrameDuration( float fixedFrameDuration );
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
 
-        /// @brief Gets the array of all Systems in the engine.
-        /// @return the array of all Systems in the engine
-        std::vector< System * > const& GetSystems() const;
+    /// @brief  gets the duration of each fixed frame
+    /// @return the amount of time in seconds that each fixed frame lasts
+    float GetFixedFrameDuration() const;
 
-    private:
+    /// @brief                      sets the duration of each fixed frame
+    /// @param fixedFrameDuration   the amount of time in seconds that each fixed frame lasts
+    void SetFixedFrameDuration( float fixedFrameDuration );
 
-        /// @brief Container of all the Systems in the engine
-        std::vector< System * > systems;
+    /// @brief  gets the array of all Systems in the engine.
+    /// @return the array of all Systems in the engine
+    std::vector< System * > const& GetSystems() const;
 
-        /// @brief flag set to true when the engine needs to exit
-        bool shouldExit;
+//-----------------------------------------------------------------------------
+public: // reading
+//-----------------------------------------------------------------------------
 
-        /// @brief The timestamp of the previous frame
-        double previousTime;
+    /// @brief  gets the map of Engine read methods
+    /// @return the map of Engine read methods
+    ReadMethodMap< Engine > const& GetReadMethods() const;
 
-        /// @brief The timestamp of the previous fixed frame
-        double previousFixedTime;
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
 
-        /// @brief The duration of each fixed frame
-        float fixedFrameDuration;
+    /// @brief          reads the fixedFrameDuration
+    /// @param stream   the stream to read the data from
+    void readFixedFrameDuration( Stream stream );
 
-        /// @brief Adds a System to the Engine.
-        /// @tparam SystemType The type of system to add the Engine
-        template < class SystemType >
-        System* AddSystem();
+    /// @brief          reads the systems
+    /// @param stream   the stream to read the data from
+    void readSystems( Stream stream );
 
-        /// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
-        static std::map< std::string, System* (Engine::*)()> addSystemMethods;
+    /// @brief map containing Engine read methods
+    static ReadMethodMap< Engine > const s_ReadMethods;
 
-        /// @brief Loads the engine config from "Data/EngineConfig.json"
-        void Load();
+    /// @brief              Adds a System to the Engine.
+    /// @tparam SystemType  The type of system to add the Engine
+    template < class SystemType >
+    System* addSystem();
 
-        /// @brief Initializes the engine and all Systems in the Engine.
-        void Init();
+    /// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
+    static std::map< std::string, System* (Engine::*)() > const s_AddSystemMethods;
 
-        /// @brief Updates the engine each frame
-        void Update();
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
 
-        /// @brief Calls all Systems in the Engine's Update function
-        void UpdateSystems( float dt );
+    /// @brief Container of all the Systems in the engine
+    std::vector< System * > m_Systems;
 
-        /// @brief Calls all Systems in the Engine's FixedUpdate function
-        void FixedUpdateSystems();
+    /// @brief flag set to true when the engine needs to exit
+    bool m_ShouldExit;
 
-        /// @brief exits and closes the Engine
-        void Exit();
+    /// @brief The timestamp of the previous frame
+    double m_PreviousTime;
 
+    /// @brief The timestamp of the previous fixed frame
+    double m_PreviousFixedTime;
 
-        /// @brief The singleton instance of the Engine
-        static Engine * instance;
+    /// @brief The duration of each fixed frame
+    float m_FixedFrameDuration;
 
-        /// @brief Constructs a new Engine
-        Engine();
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
 
+    /// @brief Loads the engine config from "Data/EngineConfig.json"
+    void load();
 
-    public:
+    /// @brief Initializes the engine and all Systems in the Engine.
+    void init();
 
-        /// @brief gets the singleton instance of the Engine
-        /// @return the singleton instance of the Engine
-        static Engine * GetInstance();
+    /// @brief Updates the engine each frame
+    void update();
 
-        // Prevent Engine from being copied
-        Engine( Engine& other ) = delete;
-        void operator=( const Engine& ) = delete;
+    /// @brief Calls all Systems in the Engine's Update function
+    void updateSystems( float dt );
+
+    /// @brief Calls all Systems in the Engine's FixedUpdate function
+    void fixedUpdateSystems();
+
+    /// @brief exits and closes the Engine
+    void exit();
+
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
+
+    /// @brief The singleton instance of the Engine
+    static Engine * s_Instance;
+
+    /// @brief Constructs a new Engine
+    Engine();
+
+//-----------------------------------------------------------------------------
+public: // singleton stuff
+//-----------------------------------------------------------------------------
+
+    /// @brief  gets the singleton instance of the Engine
+    /// @return the singleton instance of the Engine
+    static Engine * GetInstance();
+
+    // Prevent Engine from being copied
+    Engine( Engine& other ) = delete;
+    void operator=( const Engine& ) = delete;
+
+//-----------------------------------------------------------------------------
 };

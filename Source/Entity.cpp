@@ -156,14 +156,13 @@ void Entity::ReadComponents( Stream stream )
 		catch ( std::runtime_error error )
 		{
 			std::cerr << error.what() << std::endl;
-			assert( false );
 		}
 		Add( component );
 	}
 }
 
 ReadMethodMap< Entity > Entity::readMethods = {
-	{"Archetype", &ReadArchetype},
-	{"components", &ReadComponents},
-	{"name", &ReadName}
+	{ "Archetype",   &ReadArchetype     },
+	{ "Components",  &ReadComponents    },
+	{ "Name",        &ReadName          }
 };

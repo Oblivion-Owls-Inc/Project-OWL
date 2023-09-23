@@ -48,10 +48,16 @@ private:
     virtual void OnSceneExit() override {}
 
 
-    /// @brief Loads the config data of this System
-    /// @param configData the JSON object with all of the configData for this System
-    virtual void Load( rapidjson::Value const& configData ) override {}
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
 
+    /// @brief map of the InputSystem read methods
+    static ReadMethodMap< InputSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
      /// @brief Constructs the InputSystem
     InputSystem();

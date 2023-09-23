@@ -66,6 +66,17 @@ public:
     void operator=(const RenderSystem&) = delete;
 
 
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the RenderSystem read methods
+    static ReadMethodMap< RenderSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
+
 private:
     static RenderSystem* instance;   /// @brief      The singleton instance of RenderSystem
 
@@ -82,7 +93,6 @@ private:
     virtual void OnSceneLoad() override {}
     virtual void OnSceneInit() override {}
     virtual void OnSceneExit() override {}
-    virtual void Load( rapidjson::Value const& configData ) override {}
 };
 
 __inline RenderSystem* Renderer() { return RenderSystem::GetInstance(); }

@@ -73,85 +73,137 @@ void SceneSystem::OnExit()
     currentSceneName = "";
 }
 
-/// @brief Loads the configData of the SceneSystem from JSON
-/// @param configData the JSON config data to load
-void SceneSystem::Load( rapidjson::Value const& configData )
-{
-    // TODO: JSON error handling
-    baseScenePath = configData[ "baseScenePath" ].GetString();
-    nextSceneName = configData[ "nextSceneName" ].GetString();
-}
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief reads the base scene path
+    /// @param stream the data to read from
+    void SceneSystem::readBaseScenePath( Stream stream )
+    {
+        baseScenePath = stream.Read<std::string>();
+    }
+
+    /// @brief reads the next scene name
+    /// @param stream the data to read from
+    void SceneSystem::readNextSceneName( Stream stream )
+    {
+        nextSceneName = stream.Read<std::string>();
+    }
+
+    /// @brief map of the SceneSystem read methods
+    ReadMethodMap< SceneSystem > const SceneSystem::s_ReadMethods = {
+        { "BaseScenePath", &readBaseScenePath },
+        { "NextSceneName", &readNextSceneName }
+    };
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< System > const& SceneSystem::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
+    }
+
+//-----------------------------------------------------------------------------
+// private: scene loading
+//-----------------------------------------------------------------------------
+
+    /// @brief  gets the Scene read methods
+    /// @return a map of the Scene read methods
+    ReadMethodMap< SceneSystem::Scene > const& SceneSystem::Scene::GetReadMethods() const
+    {
+        return s_ReadMethods;
+    }
+
+    /// @brief          reads the assets in a Scene
+    /// @param stream   the data to read from
+    void SceneSystem::Scene::readAssets( Stream stream )
+    {
+        // TODO: implement asset reading
+    }
+
+    /// @brief          reads the entities in a Scene
+    /// @param stream   the data to read from
+    void SceneSystem::Scene::readEntities( Stream stream )
+    {
+        EntitySystem::GetInstance()->LoadEntities( stream );
+    }
+
+    /// @brief the read methods for a Scene
+    ReadMethodMap< SceneSystem::Scene > const SceneSystem::Scene::s_ReadMethods = {
+        { "Assets",   &readAssets   },
+        { "Entities", &readEntities }
+    };
 
 //-----------------------------------------------------------------------------
 // private methods
 //-----------------------------------------------------------------------------
 
-/// @brief assembles the filepath of a scene with the given name
-/// @param sceneName the name of the scene to assemble the filepath of
-/// @return the filepath of the scene
-std::string SceneSystem::ScenePath( std::string const& sceneName )
-{
-    return baseScenePath + sceneName + sceneFileExtension;
-}
-
-/// @brief Loads the next Scene
-void SceneSystem::LoadScene()
-{
-
-    rapidjson::Document document = Stream::ReadFromJSON( ScenePath( currentSceneName ) );
-    Stream root(document);
-
-    // TODO: have some asSetSystem or something like that handle loading assets
-    assert( root.GetObject().HasMember("entities") );
-    EntitySystem::GetInstance()->LoadEntities( Stream( root.GetObject()[ "entities" ] ) );
-
-    for ( System* system : Engine::GetInstance()->GetSystems() )
+    /// @brief assembles the filepath of a scene with the given name
+    /// @param sceneName the name of the scene to assemble the filepath of
+    /// @return the filepath of the scene
+    std::string SceneSystem::ScenePath( std::string const& sceneName )
     {
-        system->OnSceneLoad();
+        return baseScenePath + sceneName + sceneFileExtension;
     }
-}
 
-/// @brief Initializes the current Scene
-void SceneSystem::InitScene()
-{
-    for ( System* system : Engine::GetInstance()->GetSystems() )
+    /// @brief Loads the next Scene
+    void SceneSystem::LoadScene()
     {
-        system->OnSceneInit();
-    }
-}
 
-/// @brief Exits the current Scene
-void SceneSystem::ExitScene()
-{
-    for ( System* system : Engine::GetInstance()->GetSystems() )
-    {
-        system->OnSceneExit();
+        rapidjson::Document document = Stream::ReadFromJSON( ScenePath( currentSceneName ) );
+
+        Scene scene = Scene();
+        // TODO: have some asSetSystem or something like that handle loading assets
+        Stream( document ).Read( &scene );
+
+        for ( System* system : Engine::GetInstance()->GetSystems() )
+        {
+            system->OnSceneLoad();
+        }
     }
-}
+
+    /// @brief Initializes the current Scene
+    void SceneSystem::InitScene()
+    {
+        for ( System* system : Engine::GetInstance()->GetSystems() )
+        {
+            system->OnSceneInit();
+        }
+    }
+
+    /// @brief Exits the current Scene
+    void SceneSystem::ExitScene()
+    {
+        for ( System* system : Engine::GetInstance()->GetSystems() )
+        {
+            system->OnSceneExit();
+        }
+    }
 
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-/// @brief Constructs the SceneSystem
-SceneSystem::SceneSystem() :
-    nextSceneName( "" ),
-    currentSceneName( "" ),
-    baseScenePath( "Data/Scenes/" )
-{}
+    /// @brief Constructs the SceneSystem
+    SceneSystem::SceneSystem() :
+        nextSceneName( "" ),
+        currentSceneName( "" ),
+        baseScenePath( "Data/Scenes/" )
+    {}
 
-/// @brief The singleton instance of SceneSystem
-SceneSystem* SceneSystem::instance = nullptr;
+    /// @brief The singleton instance of SceneSystem
+    SceneSystem* SceneSystem::instance = nullptr;
 
-/// @brief gets the instance of SceneSystem
-/// @return the instance of the SceneSystem
-SceneSystem* SceneSystem::GetInstance()
-{
-    if ( instance == nullptr )
+    /// @brief gets the instance of SceneSystem
+    /// @return the instance of the SceneSystem
+    SceneSystem* SceneSystem::GetInstance()
     {
-        instance = new SceneSystem();
+        if ( instance == nullptr )
+        {
+            instance = new SceneSystem();
+        }
+        return instance;
     }
-    return instance;
-}
 
 //-----------------------------------------------------------------------------

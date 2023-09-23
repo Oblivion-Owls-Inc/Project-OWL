@@ -46,9 +46,24 @@ private:
     /// @brief Shuts down window / GLFW.
 	virtual void OnExit() override;
 
-    /// @brief Loads the configuration data of the PlatformSystem
-    /// @param configData the configuration data for this System
-    virtual void Load( rapidjson::Value const& configData ) override;
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief reads the window width
+    /// @param stream the data to read from
+    void readWindowWidth( Stream stream );
+
+    /// @brief reads the window width
+    /// @param stream the data to read from
+    void readWindowHeight( Stream stream );
+
+    /// @brief map of the PlatformSystem read methods
+    static ReadMethodMap< PlatformSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
 	// Unused virtuals
     virtual void OnUpdate(float dt) override {}

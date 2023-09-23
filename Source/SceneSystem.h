@@ -63,9 +63,24 @@ private: // virtual override methods
     /// @brief Gets called once before the Engine closes
     virtual void OnExit() override;
 
-    /// @brief Loads the configData of the SceneSystem from JSON
-    /// @param configData the JSON config data to load
-    virtual void Load( rapidjson::Value const& configData ) override;
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief reads the base scene path
+    /// @param stream the data to read from
+    void readBaseScenePath( Stream stream );
+
+    /// @brief reads the next scene name
+    /// @param stream the data to read from
+    void readNextSceneName( Stream stream );
+
+    /// @brief map of the SceneSystem read methods
+    static ReadMethodMap< SceneSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -84,6 +99,33 @@ private: // methods
 
     /// @brief Exits the current Scene
     void ExitScene();
+
+//-----------------------------------------------------------------------------
+private: // scene loading
+//-----------------------------------------------------------------------------
+
+    class Scene
+    {
+    public:
+
+        /// @brief  gets the Scene read methods
+        /// @return a map of the Scene read methods
+        ReadMethodMap< Scene > const& GetReadMethods() const;
+
+    private:
+        
+        /// @brief          reads the assets in a Scene
+        /// @param stream   the data to read from
+        void readAssets( Stream stream );
+
+        /// @brief          reads the entities in a Scene
+        /// @param stream   the data to read from
+        void readEntities( Stream stream );
+        
+        /// @brief the read methods for a Scene
+        static ReadMethodMap< Scene > const s_ReadMethods;
+
+    };
 
 //-----------------------------------------------------------------------------
 private: // unused virtual override methods
@@ -116,6 +158,6 @@ public: // singleton stuff
     // Prevent copying
     SceneSystem( SceneSystem& other ) = delete;
     void operator=( const SceneSystem& ) = delete;
-};
 
 //-----------------------------------------------------------------------------
+};

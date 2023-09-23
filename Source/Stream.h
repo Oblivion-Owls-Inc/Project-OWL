@@ -16,7 +16,7 @@
 #include <rapidjson/document.h>  // rapidjson::Document, Parse, HasParseError, GetParseError
 #include <string>      // std::string
 #include <fstream>     // std::ifstream
-#include "glm/glm.hpp" // glm::vec3
+#include <glm/glm.hpp> // glm::vec3
 #include <map>
 
 //------------------------------------------------------------------------------
@@ -65,6 +65,11 @@ public: // acessors
     /// @return the value from the json
     template <>
     float Read<float>() const;
+
+    /// @brief reads a bool from a json value
+    /// @return the value from the json
+    template <>
+    bool Read<bool>() const;
 
     /// @brief reads a string from a json value
     /// @return the value from the json

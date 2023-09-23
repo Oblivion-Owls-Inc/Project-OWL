@@ -1,23 +1,24 @@
 {
-    "assets": {
-        "textures": [],
-        "meshes": [],
-        "shaders": []
+    "Assets": {
+        "Textures": [],
+        "Meshs": [],
+        "Shaders": [],
+        "Archetypes": {}
     },
-    "entities": [
+    "Entities": [
         {
-            "name": "TestName",
-            "components": {
-              "Transform": {
-                "translation": [ 0, 0, 0 ],
-                "rotation": 0,
-                "scale": [ 1, 1, 1 ]
-              },
-              "RigidBody": {
-                "velocity": [ 1, 1, 1 ],
-                "acceleration": [ 1, 1, 1 ],
-                "rotationalVelocity": 2
-              }
+            "Name": "TestName",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 0, 0, 0 ],
+                    "Rotation": 0,
+                    "Scale": [ 1, 1, 1 ]
+                },
+                "RigidBody": {
+                    "Velocity": [ 1, 1, 1 ],
+                    "Acceleration": [ 1, 1, 1 ],
+                    "RotationalVelocity": 2
+                }
             }
         }
     ]

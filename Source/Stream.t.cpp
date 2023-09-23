@@ -36,7 +36,15 @@ void Stream::Read( T* object )
         // Error checking.
         if ( readMethods.find( item.name.GetString() ) == readMethods.end() )
         {
-            throw std::runtime_error( (std::stringstream() << "unreconized token \"" << item.name.GetString() << "\"").str() );
+            throw std::runtime_error(
+                (
+                    std::stringstream() <<
+                    "unreconized token \"" <<
+                    item.name.GetString() <<
+                    "\" encountered while reading " <<
+                    typeid( T ).name()
+                ).str()
+            );
         }
         // Get the read method for the object from the map.
         ReadMethod< T > readMethod = readMethods.at( item.name.GetString() );

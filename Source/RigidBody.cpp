@@ -119,9 +119,9 @@ void RigidBody::ReadRotationalVelocity( Stream data )
 
 /// @brief the map of read methods for RigidBodys
 ReadMethodMap< RigidBody > RigidBody::readMethods = {
-    { "velocity",           &ReadVelocity           },
-    { "acceleration",       &ReadAcceleration       },
-    { "rotationalVelocity", &ReadRotationalVelocity }
+    { "Velocity",           &ReadVelocity           },
+    { "Acceleration",       &ReadAcceleration       },
+    { "RotationalVelocity", &ReadRotationalVelocity }
 };
 
 /// @brief gets the map of read methods for this Component
