@@ -62,4 +62,3 @@ std::map<std::string, std::type_index> ComponentFactory::componentTypes = {
     { "CircleCollider" , typeid(CircleCollider) },
     { "AudioPlayer"    , typeid(AudioPlayer)    }
 };
-
