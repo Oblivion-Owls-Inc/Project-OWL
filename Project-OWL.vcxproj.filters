@@ -242,9 +242,6 @@
     <ClCompile Include="Source\AnimationAsset.cpp">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AssetLibrarySystem.cpp">
-      <Filter>Engine\Systems\AssetLibrarySystem</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -387,9 +384,6 @@
     </ClInclude>
     <ClInclude Include="Source\AnimationAsset.h">
       <Filter>Engine\Entity\Component\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AssetLibrarySystem.h">
-      <Filter>Engine\Systems\AssetLibrarySystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
