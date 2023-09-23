@@ -111,6 +111,9 @@
     <Filter Include="Engine\Entity\Component\Animation">
       <UniqueIdentifier>{b5aafdd0-b10c-4a49-9701-4e40588c9cdf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\AssetLibrarySystem">
+      <UniqueIdentifier>{e11fbac1-b6ee-40d9-a175-8718ea4a895d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -238,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="Source\AnimationAsset.cpp">
       <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AssetLibrarySystem.cpp">
+      <Filter>Engine\Systems\AssetLibrarySystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +387,9 @@
     </ClInclude>
     <ClInclude Include="Source\AnimationAsset.h">
       <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AssetLibrarySystem.h">
+      <Filter>Engine\Systems\AssetLibrarySystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

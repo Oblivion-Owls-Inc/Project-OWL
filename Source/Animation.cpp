@@ -173,64 +173,15 @@ Component* Animation::Clone() const
 	return new Animation(*this);
 }
 
-/* if (animation != NULL)
-	{
-		animation->setDone(FALSE);
-		if (animation->getRunning())
-		{
-			animation->setDelay(animation->getDelay() - dt);
-			if (animation->getDelay() <= 0)
-			{
-				advanceFrame(animation);
-				//animation->frameDelay += animation->frameDuration;
-			}
-		}
-	}*/
+/// @brief the map of read methods for RigidBodys
+ReadMethodMap< Animation > const Animation::readMethods = {
+	
+};
 
-/* static void advanceFrame(Animation* animation)
+/// @brief gets the map of read methods for this Component
+/// @return the map of read methods for this Component
+ReadMethodMap< Component > const& Animation::getReadMethods()
 {
-	if (animation != NULL)
-	{
-		animation->setIndex(animation->getIndex() + 1);
-		if (animation->getIndex() >= animation->getCount())
-		{
-			if (animation->getLooping())
-			{
-				animation->setIndex(0);
-			}
-			else
-			{
-				animation->setIndex(animation->getCount() - 1);
-				animation->setRunning(FALSE);
-			}
-			animation->setDone(TRUE);
-		}
-		//else
-		//{
-			if (animation->getRunning())
-			{
-				SpriteSetFrame(EntityGetSprite(animation->Parent()), animation->getIndex());
-				animation->setDelay(animation->getDelay() + animation->getDuration());
-			}
-			else
-			{
-				animation->setDelay(0);
-			}
-		//}
-	}
-}*/
+	return (ReadMethodMap< Component > const&)readMethods;
+}
 
-/* void AnimationPlay(Animation* animation, int frameCount, float frameDuration, bool isLooping)
-{
-	if (animation != NULL)
-	{
-		animation->setIndex(0);
-		animation->setCount(frameCount);
-		animation->setDuration(frameDuration);
-		animation->setDelay(frameDuration);
-		animation->setLooping(isLooping);
-		animation->setRunning(TRUE);
-		animation->setDone(FALSE);
-		SpriteSetFrame(EntityGetSprite(animation->Parent()), animation->getIndex());
-	}
-}*/

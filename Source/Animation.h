@@ -44,13 +44,19 @@ public:
 	void animationPlay();
 
 	
-	virtual void CollisionEvent(Entity* other) {}
+
 
 private:
+
+	virtual void OnCollision(Entity* other) override {}
 
 	virtual Component* Behavior::Clone() const override;
 	virtual void OnUpdate(float dt) override;
 	virtual void OnFixedUpdate() override {}
+
+	static ReadMethodMap< Animation > const readMethods;
+	virtual ReadMethodMap< Component > const& getReadMethods() override;
+
 	void AdvanceFrame();
 	Animation(Animation const&);
 	AnimationAsset* asset;
