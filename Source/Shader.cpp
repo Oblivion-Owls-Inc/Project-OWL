@@ -2,7 +2,7 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    Shader class implementation.
-#include <iostream>     // error output (temporary?)
+#include <iostream>     // error output
 #include <fstream>      // reading shader source code from files
 #include "glew.h"
 #include "Shader.h"
@@ -48,10 +48,12 @@ static unsigned int CompileShader(const char* filepath, unsigned int GL_type_SHA
 }
 
 
-/// @brief                      Constructor: compiles new shader program from given source code files.
-/// @param vertex_filepath      Vertex shader file
-/// @param fragment_filepath    Fragment shader file
-Shader::Shader(const char* vertex_filepath, const char* fragment_filepath) : shaderID(0)
+/// @brief                      Constructor: compiles new shader from given vertex+fragment 
+///                             shaders' source code.
+/// 
+/// @param vertex_filepath      Vertex Shader file
+/// @param fragment_filepath    Fragment Shader file
+Shader::Shader(const char* vertex_filepath, const char* fragment_filepath)
 {
     // Compile vertex and fragment parts
     unsigned int vertID = CompileShader(vertex_filepath, GL_VERTEX_SHADER);
@@ -60,11 +62,11 @@ Shader::Shader(const char* vertex_filepath, const char* fragment_filepath) : sha
     // Link them together into one shader program.
     if (vertID && fragID)
     {
-        shaderID = glCreateProgram();
-        glAttachShader(shaderID, vertID);
-        glAttachShader(shaderID, fragID);
-        glLinkProgram(shaderID);
-        glValidateProgram(shaderID);
+        m_ShaderID = glCreateProgram();
+        glAttachShader(m_ShaderID, vertID);
+        glAttachShader(m_ShaderID, fragID);
+        glLinkProgram(m_ShaderID);
+        glValidateProgram(m_ShaderID);
     }
 
     // Separate shader objects are no longer needed, get rid of them.
@@ -77,30 +79,30 @@ Shader::~Shader()
 {
     glUseProgram(0);
 
-    if (shaderID)
-        glDeleteProgram(shaderID);
+    if (m_ShaderID)
+        glDeleteProgram(m_ShaderID);
 }
 
 /// @brief      Sets this shader as active.
-void Shader::use() { glUseProgram(shaderID); }
+void Shader::use() { glUseProgram(m_ShaderID); }
 
 /// @brief      Gets this shader's ID  
-unsigned int Shader::GetID() { return shaderID; }
+unsigned int Shader::GetID() { return m_ShaderID; }
 
 /// @brief      Gets the location of a uniform declared in the shader. Obtains it from the shader
-///             on first request, then stores it for faster subsequent retrieval.
+///             on first request, then stores it locally for faster subsequent retrieval.
 unsigned int Shader::GetUniformID(const char* uniform_name) 
 {
     // Check if key exists. If it does, return what's there.
-    std::map<const  char*, unsigned int>::iterator itr = uniformIDs.find(uniform_name);
-    if (itr != uniformIDs.end())
+    std::map<const  char*, unsigned int>::iterator itr = m_UniformIDs.find(uniform_name);
+    if (itr != m_UniformIDs.end())
         return itr->second;
     else
     {
-        unsigned int u = glGetUniformLocation(shaderID, uniform_name);
+        unsigned int u = glGetUniformLocation(m_ShaderID, uniform_name);
         // (returns -1 for undeclared uniforms)
         
-        if (u != -1)    uniformIDs[uniform_name] = u;
+        if (u != -1)    m_UniformIDs[uniform_name] = u;
         else            std::cout << "SHADER ERROR: this uniform does not exist." << std::endl;
         
         return u;

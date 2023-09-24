@@ -5,33 +5,25 @@
 #include "glew.h"
 #include "RenderSystem.h"
 #include "Sprite.h"
-#include "PlatformSystem.h"     // for building screen2clip matrix
-#include "glm/gtc/matrix_transform.hpp"
+#include <iostream>             // error msg
+#include "Entity.h"
+#include "Transform.h"
+#include <vector>
+static std::vector<Entity*> shapes; // this is inefficient.
+// efficiency will improve once we have resource library.
 
-// TODO: remove this once we have resource library
-#include "Mesh.h"
-static Mesh mesh;
+// TODO: shapes: need a nice transform constructor.
 
-// Singleton stuff
-RenderSystem* RenderSystem::instance = nullptr; // Init the instance pointer
-RenderSystem::RenderSystem() {}
-
-
-/// @brief      Initializes color and texture shaders for sprites, as well as screen2clip matrix
+/// @brief      Initializes color and texture shaders for sprites
 void RenderSystem::OnInit()
 {
-    _colorShader = new Shader("Data/shaders/vshader.vert", "Data/shaders/color.frag");
-    _textureShader = new Shader("Data/shaders/vshader.vert", "Data/shaders/texture.frag");
+    // These 2 will be used to render basic colored and textured sprites.
+    _shaders["color"] = new Shader("Data/shaders/vshader.vert", "Data/shaders/color.frag");
+    _shaders["texture"] = new Shader("Data/shaders/vshader.vert", "Data/shaders/texture.frag");
 
+    // Enable transparency
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    // TODO: screen2clip should be built elsewhere
-    glm::vec2 s = PlatformSystem::getInstance()->GetWindowDimensions();
-    screen2clip = glm::translate(glm::mat4(1), glm::vec3(-1, 1, 0)) *
-        glm::scale(glm::mat4(1), glm::vec3(2.0f / s.x, -2.0f / s.y, 0.0));
-
-    mesh.load_square(); // for shapes (TODO: figure out a better system for this)
 }
 
 
@@ -41,7 +33,13 @@ void RenderSystem::OnUpdate(float dt)
 {
     for (std::set<Sprite*>& layer : _sprites)
         for (Sprite* sprite : layer)
-            sprite->draw();
+            sprite->Draw();
+
+    // Once we have resource library, this will just be clear()
+    for (Entity* e : shapes)
+        delete e;
+
+    shapes.clear();
 
     (void)dt;
 }
@@ -50,12 +48,13 @@ void RenderSystem::OnUpdate(float dt)
 /// @brief      Cleans up memory
 void RenderSystem::OnExit()
 {
-    delete _colorShader;
-    delete _textureShader;
+    for (auto &shader : _shaders)
+        delete shader.second;
 }
 
 
 /// @brief              Draws a rectangle.
+/// 
 /// @param position     Position
 /// @param scale        (optional) Scale
 /// @param angle        (optional) Angle
@@ -63,19 +62,9 @@ void RenderSystem::OnExit()
 void RenderSystem::DrawRect(const glm::vec2& position, const glm::vec2& scale,
                             float angle, const glm::vec4& color)
 {
-    // Build a matrix
-    glm::mat4 I(1);
-    glm::mat4 s = glm::scale(I, {scale.x, scale.y, 0});
-    glm::mat4 r = glm::rotate(I, angle, {0,0,1});
-    glm::mat4 t = glm::translate(I, {position.x, position.y, 0});
-    glm::mat4 transform = t * r * s;
-    
-    // Set the matrix and color, draw the mesh
-    ColorMode();
-    SetTransformMat(transform);
-
-    SetColor(color);
-    mesh.draw();
+    shapes.push_back(new Entity);
+    //shapes.back()->Add(new Transform(position, scale, angle));
+    shapes.back()->Add(new Sprite(true, color));
 }
 
 
@@ -95,51 +84,69 @@ void RenderSystem::DrawLine(const glm::vec2& P1, const glm::vec2& P2, float thic
     DrawRect(midpoint, { length, thickness }, angle, color);
 }
 
-/// @brief      Switch to color shader.
-void RenderSystem::ColorMode() { _colorShader->use(); _activeShader = _colorShader; }
-/// @brief      Switch to texture shader.
-void RenderSystem::TextureMode() { _textureShader->use(); _activeShader = _textureShader; }
-/// @brief      Set color for the color shader
-void RenderSystem::SetColor(glm::vec4 const& color)
-{
-    glUniform4fv(_colorShader->GetUniformID("color"), 1, &color[0]);
-}
-/// @brief      Set UV offset for the texture shader
-void RenderSystem::SetUV(float u, float v)
-{
-    glUniform2f(_textureShader->GetUniformID("UV_offset"), u, v);
-}
-/// @brief      Set transformation matrix for either color or texture shader
-void RenderSystem::SetTransformMat(glm::mat4 const& mat) const
-{
-    // Assume mat is screen transform     TODO: Transform should prolly have a flag that says which space it's in.
-    glm::mat4 mvp = screen2clip * mat;
-
-    glUniformMatrix4fv(_activeShader->GetUniformID("mvp"), 1, 0, &mvp[0][0]);
-}
-
-void RenderSystem::SetOpacity(float opacity) const
-{
-    glUniform1f(_activeShader->GetUniformID("opacity"), opacity);
-}
 
 /// @brief          Add sprite so it can be rendered during update. To be used by Sprite constructor.
 /// @param sprite   Sprite pointer to add and keep track of
 void RenderSystem::AddSprite(Sprite* sprite, int layer) { _sprites[layer].emplace(sprite); }
+
 
 /// @brief          Remove sprite from the list to stop rendering it on update. To be used by Sprite destructor.
 /// @param sprite   Sprite pointer to remove
 void RenderSystem::RemoveSprite(Sprite* sprite, int layer) { _sprites[layer].erase(sprite); }
 
 
+/// @brief          Adds a shader to keep track of, so it can be freed automatically upon shutdown.
+/// param name      Name to reference shader with
+/// param shader    Pointer to the new shader
+void RenderSystem::AddShader(const char* name, Shader* shader) { _shaders[name] = shader; }
 
-/// @brief    Gets the instance of RenderSystem
-/// @return   RenderSystem pointer: new or existing instance of this system
+
+/// @brief          Helper method for finding shaders by name. If shader isn't found, prints error and returns null.
+/// @param name     Name of the shader as a basic c-style string
+/// @return         Pointer to the shader, or nullptr if shader isn't found
+Shader* RenderSystem::FindShader(const char* name)
+{
+    std::map<const  char*, Shader*>::iterator itr = _shaders.find(name);
+    if (itr != _shaders.end())
+        return itr->second;
+
+    return nullptr;
+}
+
+
+/// @brief          Sets shader with given name as active, and returns pointer to it.
+/// 
+/// @param name     Name of the shader
+/// @return         Shader pointer if the shader is found, nullptr if it isn't.
+Shader* RenderSystem::SetActiveShader(const char* name) 
+{
+    Shader* s = FindShader(name);
+    if (s)
+    {
+        s->use();
+        _activeShader = s;
+    }
+
+    return s;
+}
+
+
+/// @brief          Returns pointer to a stored shader
+/// @param name     Name of the shader to return
+/// @return         Pointer to shader
+Shader* RenderSystem::GetShader(const char* name) { return FindShader(name); }
+
+
+
+//----------------------------------------------------------------------------
+//          singleton stuff
+//----------------------------------------------------------------------------
+RenderSystem::RenderSystem() {}
+RenderSystem* RenderSystem::instance = nullptr;
 RenderSystem* RenderSystem::getInstance()
 {
     if (instance == nullptr)
         instance = new RenderSystem();
-    
+
     return instance;
 }
-

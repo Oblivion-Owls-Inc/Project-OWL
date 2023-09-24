@@ -175,6 +175,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\BehaviorSystem.cpp" />
+    <ClCompile Include="Source\CameraSystem.cpp" />
     <ClCompile Include="Source\CollisionSystem.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="Source\LineCollider.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
+    <ClCompile Include="Source\TextSprite.cpp" />
     <ClCompile Include="Source\XinoScene.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
@@ -214,6 +216,7 @@
     <ClCompile Include="Source\CircleCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\CameraSystem.h" />
     <ClInclude Include="Source\CollisionSystem.h" />
     <ClInclude Include="Source\ComponentFactory.h" />
     <ClInclude Include="Source\MovementAI.h" />
@@ -223,6 +226,7 @@
     <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\LineCollider.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
+    <ClInclude Include="Source\TextSprite.h" />
     <ClInclude Include="Source\XinoScene.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
     <ClInclude Include="Source\InputSystem.h" />
