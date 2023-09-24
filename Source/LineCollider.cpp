@@ -94,14 +94,14 @@ void LineCollider::ReadLineVectors(Stream stream)
 }
 
 /// @brief Map of all the component's read methods.
-std::map< std::string, ReadMethod< LineCollider > > LineCollider::readMethods = {
-    {"numSegments", &ReadNumLineSegments},
-    {"lineVectors", &ReadLineVectors}
+std::map< std::string, ReadMethod<LineCollider>> LineCollider::readMethods = {
+    { "numSegments" , &ReadNumLineSegments},
+    { "lineVectors" , &ReadLineVectors    }
 };
 
 /// @brief  Gets a map of the read methods for this component.
 /// @return A map of the read methods for this function.
 std::map<std::string, ReadMethod<Component>> const& LineCollider::getReadMethods()
 {
-    return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
+    return (std::map< std::string, ReadMethod<Component> > const&)readMethods;
 }

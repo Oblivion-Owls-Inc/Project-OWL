@@ -160,11 +160,19 @@ void Transform::ReadScale( Stream jsonValue )
 	isDirty = true;
 }
 
+/// @brief			 Reads in a flag from a JSON value.
+/// @param jsonValue The value to read from.
+void Transform::ReadDiegetic( Stream jsonValue )
+{
+	isDiegetic = jsonValue.Read<bool>();
+}
+
 // Map of all the read methods for the transform component.
 std::map< std::string, ReadMethod< Transform > > Transform::readMethods = {
-	{"translation", &ReadTranslation},
-	{"rotation",	&ReadRotation   },
-	{"scale",		&ReadScale      }
+	{ "translation" , &ReadTranslation },
+	{ "rotation"	, &ReadRotation    },
+	{ "scale"		, &ReadScale       },
+	{ "diegetic"	, &ReadDiegetic	   }
 };
 
 /// @brief  Gets a map of the read methods for transform component.

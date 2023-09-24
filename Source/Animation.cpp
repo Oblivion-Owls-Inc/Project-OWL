@@ -173,8 +173,67 @@ Component* Animation::Clone() const
 	return new Animation(*this);
 }
 
-/// @brief the map of read methods for RigidBodys
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+/// @brief		  Read from a JSON the frame index.
+/// @param stream The JSON to read from.
+void Animation::ReadFrameIndex(Stream stream)
+{
+	frameIndex = stream.Read<unsigned int>();
+}
+
+/// @brief		  Read from JSON the frame start.
+/// @param stream The JSON to read from.
+void Animation::ReadFrameStart(Stream stream)
+{
+	frameStart = stream.Read<unsigned int>();
+}
+
+/// @brief		  Read from JSON the frame count.
+/// @param stream The JSON to read from.
+void Animation::ReadFrameCount(Stream stream)
+{
+	frameCount = stream.Read<unsigned int>();
+}
+
+/// @brief		  Read from JSON the frame count.
+/// @param stream The JSON to read from.
+void Animation::ReadFrameDelay(Stream stream)
+{
+	frameDelay = stream.Read<float>();
+}
+
+/// @brief		  Read from JSON the frame duration.
+/// @param stream The JSON to read from.
+void Animation::ReadFrameDuration(Stream stream)
+{
+	frameDuration = stream.Read<float>();
+}
+
+/// @brief		  Read from JSON is the animation running.
+/// @param stream The JSON to read from.
+void Animation::ReadIsRunning(Stream stream)
+{
+	isRunning = stream.Read<bool>();
+}
+
+/// @brief		  Read from JSON is the animation looping.
+/// @param stream The JSON to read from.
+void Animation::ReadIsLooping( Stream stream )
+{
+	isLooping = stream.Read<bool>();
+}
+
+// Map of all the read methods for the animation component.
 ReadMethodMap< Animation > const Animation::readMethods = {
+	{"frameIndex"	 , &ReadFrameIndex	  },
+	{"frameStart"	 , &ReadFrameStart	  },
+	{"frameCount"	 , &ReadFrameCount	  },
+	{"frameDuration" , &ReadFrameDuration },
+	{"isRunning"	 , &ReadIsRunning	  },
+	{"isLooping"	 , &ReadIsLooping	  }
 	
 };
 
@@ -184,4 +243,3 @@ ReadMethodMap< Component > const& Animation::getReadMethods()
 {
 	return (ReadMethodMap< Component > const&)readMethods;
 }
-

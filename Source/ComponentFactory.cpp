@@ -19,6 +19,7 @@
 #include "LineCollider.h"
 #include "CircleCollider.h"
 #include "AudioPlayer.h"
+#include "Animation.h"
 
 template < typename ComponentType >
 Component* ComponentFactory::Creator() {
@@ -49,7 +50,8 @@ std::map<std::string, Component* (*)()> ComponentFactory::componentCreators = {
     { "MovementAI"     , Creator<MovementAI>     },
     { "LineCollider"   , Creator<LineCollider>   },
     { "CircleCollider" , Creator<CircleCollider> },
-    { "AudioPlayer"    , Creator<AudioPlayer>    }
+    { "AudioPlayer"    , Creator<AudioPlayer>    },
+    { "Animation"      , Creator<Animation>      }
 };
 
 // A map of the component type IDs.
@@ -60,5 +62,6 @@ std::map<std::string, std::type_index> ComponentFactory::componentTypes = {
     { "MovementAI"     , typeid(MovementAI)     },
     { "LineCollider"   , typeid(LineCollider)   },
     { "CircleCollider" , typeid(CircleCollider) },
-    { "AudioPlayer"    , typeid(AudioPlayer)    }
+    { "AudioPlayer"    , typeid(AudioPlayer)    },
+    { "Animation"      , typeid(Animation)      } 
 };

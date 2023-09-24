@@ -53,6 +53,7 @@ private:
 	void ReadTranslation( Stream jsonValue );
 	void ReadRotation( Stream jsonValue );
 	void ReadScale( Stream jsonValue );
+	void ReadDiegetic( Stream jsonValue );
 
 	static std::map< std::string, ReadMethod< Transform > > readMethods;
 

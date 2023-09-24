@@ -155,9 +155,6 @@
     <ClCompile Include="Source\Entity.cpp">
       <Filter>Engine\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Component.cpp">
-      <Filter>Engine\Systems</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GUI.cpp">
       <Filter>Engine\Systems\DebugSystem</Filter>
     </ClCompile>
@@ -259,6 +256,9 @@
     </ClCompile>
     <ClCompile Include="Source\AnimationAsset.cpp">
       <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component.cpp">
+      <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

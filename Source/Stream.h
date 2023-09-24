@@ -64,6 +64,11 @@ public: // acessors
     template <>
     int Read<int>() const;
 
+	/// @brief  Reads an int from a json value
+	/// @return The value from the json
+	template <>
+	bool Read<bool>() const;
+
 	/// @brief  Reads a basic type from a json value
 	/// @return The value from the json
 	template <>

@@ -110,6 +110,16 @@ int Stream::Read<int>() const
 /// @tparam T the type to read
 /// @return The value from the json
 template <>
+bool Stream::Read<bool>() const
+{
+    assert(value.IsBool());
+    return value.GetBool();
+}
+
+/// @brief  Reads a basic type from a json value
+/// @tparam T the type to read
+/// @return The value from the json
+template <>
 unsigned int Stream::Read<unsigned int>() const
 {
     assert(value.IsUint());
