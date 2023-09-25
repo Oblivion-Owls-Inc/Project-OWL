@@ -73,9 +73,9 @@
         entity2->Add( new Transform());
         entity2->Add( new MovementAI());
         CircleCollider * collider2 = (CircleCollider*)entity2->GetComponent<Collider>();
-        float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
-        entity2->GetComponent<Transform>()->setTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
-        entity2->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
+        float spriteSize = entity2->GetComponent<Sprite>()->GetHeightMultiplier();
+        entity2->GetComponent<Transform>()->setTranslation(glm::vec3(0.0f, -3.0f, 0.0f));
+        entity2->GetComponent<Transform>()->setScale(glm::vec3(1.0f, spriteSize, 0.0f));
         collider2->SetRadius(48.00 / 2); /// 48 is the width of the sprite
 
         /// Ball 2
@@ -87,7 +87,7 @@
         entity3->Add(new Transform());
         entity3->Add(new MovementAI());
         CircleCollider* collider3 = (CircleCollider*)entity3->GetComponent<Collider>();
-        spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
+        spriteSize = entity2->GetComponent<Sprite>()->GetHeightMultiplier();
         entity3->GetComponent<Transform>()->setTranslation(glm::vec3(500.0f, 300.0f, 0.0f));
         entity3->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
         collider3->SetRadius(48.00 / 2); /// 48 is the width of the sprite
@@ -101,7 +101,7 @@
         entity4->Add(new Transform());
         entity4->Add(new MovementAI());
         CircleCollider* collider4 = (CircleCollider*)entity4->GetComponent<Collider>();
-        spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
+        spriteSize = entity2->GetComponent<Sprite>()->GetHeightMultiplier();
         entity4->GetComponent<Transform>()->setTranslation(glm::vec3(700.0f, 300.0f, 0.0f));
         entity4->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
         collider4->SetRadius(48.00 / 2); /// 48 is the width of the sprite

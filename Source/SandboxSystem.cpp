@@ -51,7 +51,7 @@
         entity2->Add( new RigidBody());
         entity2->Add( new Transform());
         entity2->Add( new MovementAI());
-        float spriteSize = entity2->GetComponent<Sprite>()->getHeightMultiplier();
+        float spriteSize = entity2->GetComponent<Sprite>()->GetHeightMultiplier();
         entity2->GetComponent<Transform>()->setTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
         entity2->GetComponent<Transform>()->setScale(glm::vec3(600.0f, (-600.0f * spriteSize), 0.0f));
     }
