@@ -1,27 +1,94 @@
-/// @file AudioSystem.cpp
-/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief System that implements FMOD and allows the loading and playing of audio
-/// @version 0.1
-/// @date 2023-09-12
+/// @file       AudioSystem.cpp
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      System that implements FMOD and allows the loading and playing of audio
+/// @version    0.1
+/// @date       2023-09-12
 /// 
-/// @copyright Copyright (c) 2023
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #include "AudioSystem.h"
 #include "basics.h"
 
 //-----------------------------------------------------------------------------
-// pubilc methods
+// public: accessors
 //-----------------------------------------------------------------------------
 
-    /// @brief gets the internal FMOD::System
+    /// @brief  gets the internal FMOD::System
     /// @return the FMOD::System
-    FMOD::System* AudioSystem::getFMOD()
+    FMOD::System* AudioSystem::GetFMOD()
     {
-        return system;
+        return m_System;
     }
 
 //-----------------------------------------------------------------------------
-// private static methods
+// private: virtual overrides
+//-----------------------------------------------------------------------------
+
+    /// @brief Gets called once when this System is added to the Engine
+    void AudioSystem::OnInit()
+    {
+        FMOD_RESULT result;
+
+        result = FMOD::System_Create( &m_System );
+        if ( result != FMOD_OK )
+        {
+            std::cerr << "Failed to initialize FMOD" << std::endl;
+            return;
+        }
+
+        result = m_System->init( m_MaxChannels, FMOD_INIT_NORMAL, 0 );
+        if ( result != FMOD_OK )
+        {
+            std::cerr << "Failed to initialize FMOD" << std::endl;
+            return;
+        }
+
+        result = m_System->setCallback( fmodCallback, FMOD_SYSTEM_CALLBACK_ERROR );
+        if ( result != FMOD_OK )
+        {
+            std::cerr << "Failed to set FMOD callback" << std::endl;
+            return;
+        }
+    }
+
+    /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+    /// @param dt the elapsed time in seconds since the previous frame
+    void AudioSystem::OnUpdate( float dt )
+    {
+        m_System->update();
+    }
+
+    /// @brief Gets called once before the Engine closes
+    void AudioSystem::OnExit()
+    {
+        m_System->release();
+    }
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief          reads the max channels
+    /// @param stream   the data to read from
+    void AudioSystem::readMaxChannels( Stream stream )
+    {
+        m_MaxChannels = stream.Read<int>();
+    }
+
+    /// @brief map of the AudioSystem read methods
+    ReadMethodMap< AudioSystem > const AudioSystem::s_ReadMethods = {
+        { "MaxChannels", &readMaxChannels }
+    };
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< System > const& AudioSystem::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
+    }
+
+//-----------------------------------------------------------------------------
+// private: static methods
 //-----------------------------------------------------------------------------
 
     /// @brief FMOD callback function for error handling
@@ -31,7 +98,7 @@
     /// @param commandData2 second callback parameter, dependent on callback type
     /// @param userData user data associated with the FMOD system
     /// @return FMOD_RESULT
-    FMOD_RESULT AudioSystem::FMODCallback(
+    FMOD_RESULT AudioSystem::fmodCallback(
         FMOD_SYSTEM* system,
         FMOD_SYSTEM_CALLBACK_TYPE type,
         void* commandData1,
@@ -56,71 +123,27 @@
     }
 
 //-----------------------------------------------------------------------------
-// private virtual methods
-//-----------------------------------------------------------------------------
-
-    /// @brief Gets called once when this System is added to the Engine
-    void AudioSystem::OnInit()
-    {
-        FMOD_RESULT result;
-
-        result = FMOD::System_Create( &system );
-        if ( result != FMOD_OK )
-        {
-            std::cerr << "Failed to initialize FMOD" << std::endl;
-            return;
-        }
-
-        result = system->init( maxChannels, FMOD_INIT_NORMAL, 0 );
-        if ( result != FMOD_OK )
-        {
-            std::cerr << "Failed to initialize FMOD" << std::endl;
-            return;
-        }
-
-        result = system->setCallback( FMODCallback, FMOD_SYSTEM_CALLBACK_ERROR );
-        if ( result != FMOD_OK )
-        {
-            std::cerr << "Failed to set FMOD callback" << std::endl;
-            return;
-        }
-    }
-
-    /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-    /// @param dt the elapsed time in seconds since the previous frame
-    void AudioSystem::OnUpdate( float dt )
-    {
-        system->update();
-    }
-
-    /// @brief Gets called once before the Engine closes
-    void AudioSystem::OnExit()
-    {
-        system->release();
-    }
-
-//-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 
     /// @brief Constructs the AudioSystem
     AudioSystem::AudioSystem() :
-        system( nullptr ),
-        maxChannels( 1024 )
+        m_System( nullptr ),
+        m_MaxChannels( 1024 )
     {}
 
     /// @brief The singleton instance of AudioSystem
-    AudioSystem * AudioSystem::instance = nullptr;
+    AudioSystem * AudioSystem::s_Instance = nullptr;
 
     /// @brief gets the instance of AudioSystem
     /// @return the instance of the AudioSystem
-    AudioSystem * AudioSystem::getInstance()
+    AudioSystem * AudioSystem::GetInstance()
     {
-        if ( instance == nullptr )
+        if ( s_Instance == nullptr )
         {
-            instance = new AudioSystem();
+            s_Instance = new AudioSystem();
         }
-        return instance;
+        return s_Instance;
     }
 
 //-----------------------------------------------------------------------------

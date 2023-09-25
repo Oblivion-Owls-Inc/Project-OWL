@@ -194,6 +194,7 @@
     <ClCompile Include="Source\LineCollider.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
+    <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\TextSprite.cpp" />
     <ClCompile Include="Source\XinoScene.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
@@ -263,6 +264,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
+    <None Include="Data\Scenes\Sandbox.scene.json" />
+    <None Include="Data\Scenes\XinoScene.scene.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

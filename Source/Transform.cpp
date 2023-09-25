@@ -42,50 +42,50 @@ Component* Transform::Clone() const
 }
 
 
-glm::vec3* Transform::getTranslation()
+glm::vec3* Transform::GetTranslation()
 {
 	return &translation;
 }
 
-const glm::vec3* Transform::getTranslation() const
+const glm::vec3* Transform::GetTranslation() const
 {
 	return &translation;
 }
 
-void Transform::setTranslation(glm::vec3 newTranslation)
+void Transform::SetTranslation(glm::vec3 newTranslation)
 {
 	translation = newTranslation;
-	setIsDirty(true);
+	SetIsDirty(true);
 }
 
-float Transform::getRotation() const
+float Transform::GetRotation() const
 {
 	return 0.0f;
 }
 
-void Transform::setRotation(float newRotation)
+void Transform::SetRotation(float newRotation)
 {
 	rotation = newRotation;
-	setIsDirty(true);
+	SetIsDirty(true);
 }
 
-glm::vec3* Transform::getScale()
+glm::vec3* Transform::GetScale()
 {
 	return &scale;
 }
 
-const glm::vec3* Transform::getScale() const
+const glm::vec3* Transform::GetScale() const
 {
 	return &scale;
 }
 
-void Transform::setScale(glm::vec3 newScale)
+void Transform::SetScale(glm::vec3 newScale)
 {
 	scale = newScale;
-	setIsDirty(true);
+	SetIsDirty(true);
 }
 
-glm::mat4* Transform::getMatrix()
+glm::mat4* Transform::GetMatrix()
 {
 	if (isDirty)
 	{
@@ -106,17 +106,17 @@ glm::mat4* Transform::getMatrix()
 }
 
 
-void Transform::setMatrix(glm::mat4 newMatrix)
+void Transform::SetMatrix(glm::mat4 newMatrix)
 {
 	matrix = newMatrix;
 }
 
-bool Transform::getIsDirty() const
+bool Transform::GetIsDirty() const
 {
 	return isDirty;
 }
 
-void Transform::setIsDirty(bool newIsDirty)
+void Transform::SetIsDirty(bool newIsDirty)
 {
 	isDirty = newIsDirty;
 }
@@ -139,12 +139,12 @@ void Transform::ReadScale( Stream jsonValue )
 }
 
 std::map< std::string, ReadMethod< Transform > > Transform::readMethods = {
-	{ "translation", &ReadTranslation },
-	{ "rotation", &ReadRotation },
-	{ "scale", &ReadScale }
+	{ "Translation", &ReadTranslation },
+	{ "Rotation", &ReadRotation },
+	{ "Scale", &ReadScale }
 };
 
-std::map< std::string, ReadMethod< Component > > const& Transform::getReadMethods()
+std::map< std::string, ReadMethod< Component > > const& Transform::GetReadMethods()
 {
 	return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
 }

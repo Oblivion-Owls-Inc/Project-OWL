@@ -151,7 +151,7 @@ void Entity::ReadName(Stream stream)
 /// @param stream the json object to read from.
 void Entity::ReadComponents( Stream stream )
 {
-	for ( auto& componentData : stream.getObject() )
+	for ( auto& componentData : stream.GetObject() )
 	{
 		Component* component = ComponentFactory::Create( componentData.name.GetString() );
 		try
@@ -161,14 +161,13 @@ void Entity::ReadComponents( Stream stream )
 		catch ( std::runtime_error error )
 		{
 			std::cerr << error.what() << std::endl;
-			assert( false );
 		}
 		Add( component );
 	}
 }
 
 ReadMethodMap< Entity > Entity::readMethods = {
-	{"Archetype", &ReadArchetype},
-	{"components", &ReadComponents},
-	{"name", &ReadName}
+	{ "Archetype",   &ReadArchetype     },
+	{ "Components",  &ReadComponents    },
+	{ "Name",        &ReadName          }
 };

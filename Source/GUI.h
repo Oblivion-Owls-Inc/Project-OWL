@@ -53,12 +53,12 @@ public:
     /**
      * @brief Set the GUI element as inactive.
      */
-    virtual void setInactive();
+    virtual void SetInactive();
 
     /**
      * @brief Set the GUI element as active.
      */
-    virtual void setActive();
+    virtual void SetActive();
 
     /**
      * @brief Get the window title of the GUI element.
@@ -92,7 +92,7 @@ public:
      * @brief Set the DebugMenu as active.
      * @details Overrides the base class function to set the DebugMenu as active.
      */
-    void setActive() override;
+    void SetActive() override;
 
     /**
      * @brief Render function for DebugMenu.

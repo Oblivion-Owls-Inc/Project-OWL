@@ -90,7 +90,7 @@ glm::mat4 const& CameraSystem::GetMat_WorldToUI() const { return m_World2UI; }
 void CameraSystem::recalcMatrices()
 {
     glm::mat4 I(1);
-    glm::vec2 screen = PlatformSystem::getInstance()->GetWindowDimensions();
+    glm::vec2 screen = PlatformSystem::GetInstance()->GetWindowDimensions();
     float screen_ratio = screen.y / screen.x;
 
     // screen to UI: re-scale based on screen width/height, flip, move to center
@@ -116,13 +116,26 @@ void CameraSystem::recalcMatrices()
     m_Dirty = false;
 }
 
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the CameraSystem read methods
+    ReadMethodMap< CameraSystem > const CameraSystem::s_ReadMethods = {};
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< System > const& CameraSystem::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
+    }
 
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 CameraSystem* CameraSystem::instance = nullptr;
 CameraSystem::CameraSystem() {}
-CameraSystem* CameraSystem::getInstance()
+CameraSystem* CameraSystem::GetInstance()
 {
     if (instance == nullptr)
     {

@@ -6,13 +6,13 @@
 
 Collider::Collider(): Component(typeid(Collider)), mtype(), mIsColliding(false)
 {
-	CollisionSystem::getInstance()->addCollider(this);
+	CollisionSystem::GetInstance()->addCollider(this);
 
 }
 
 Collider::Collider(const Collider& other) : Component(other), mtype(other.mtype)
 {
-	CollisionSystem::getInstance()->removeCollider(this);
+	CollisionSystem::GetInstance()->removeCollider(this);
 }
 
 Component* Collider::Clone() const

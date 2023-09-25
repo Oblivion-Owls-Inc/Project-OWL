@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <map>
-#include "istreamwrapper.h"
+#include <rapidjson/istreamwrapper.h>
 
 //-----------------------------------------------------------------------------
 // public static methods
@@ -73,59 +73,106 @@ Stream::Stream( rapidjson::Value const& value_ ) :
 // public accessors
 //-----------------------------------------------------------------------------
 
+#pragma warning ( push )
+#pragma warning ( disable: 4172 )
 /// @brief gets the rapidjson value as an object
 /// @return the rapidjson value
-rapidjson::GenericObject< true, rapidjson::Value > const& Stream::getObject() const
+rapidjson::GenericObject< true, rapidjson::Value > const& Stream::GetObject() const
 {
-    assert( value.IsObject() );
+    if ( value.IsObject() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Object type"
+        );
+    }
     return value.GetObject();
 }
+#pragma warning ( pop )
 
+#pragma warning ( push )
+#pragma warning ( disable: 4172 )
 /// @brief gets the rapidjson value as an object
 /// @return the rapidjson value
-rapidjson::GenericArray< true, rapidjson::Value > const& Stream::getArray() const
+rapidjson::GenericArray< true, rapidjson::Value > const& Stream::GetArray() const
 {
-    assert( value.IsArray() );
+    if ( value.IsArray() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Array type"
+        );
+    }
     return value.GetArray();
 }
+#pragma warning ( pop )
 
-/// @brief reads a basic type from a json value
-/// @tparam T the type to read
+/// @brief reads an int from a json value
 /// @return the value from the json
 template <>
 int Stream::Read<int>() const
 {
-    assert( value.IsInt() );
+    if ( value.IsNumber() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Int type"
+        );
+    }
     return value.GetInt();
 }
 
-/// @brief reads a basic type from a json value
-/// @tparam T the type to read
+/// @brief reads a float from a json value
 /// @return the value from the json
 template <>
 float Stream::Read<float>() const
 {
-    assert( value.IsNumber() );
+    if ( value.IsNumber() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Float type"
+        );
+    }
     return value.GetFloat();
 }
 
-/// @brief reads a basic type from a json value
-/// @tparam T the type to read
+/// @brief reads a bool from a json value
+/// @return the value from the json
+template <>
+bool Stream::Read<bool>() const
+{
+    if ( value.IsBool() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Bool type"
+        );
+    }
+    return value.GetBool();
+}
+
+/// @brief reads string from a json value
 /// @return the value from the json
 template <>
 std::string Stream::Read<std::string>() const
 {
-    assert( value.IsString() );
+    if ( value.IsString() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read String type"
+        );
+    }
     return value.GetString();
 }
 
-/// @brief reads a basic type from a json value
-/// @tparam T the type to read
+/// @brief reads a vec3 from a json value
 /// @return the value from the json
 template <>
 glm::vec3 Stream::Read<glm::vec3>() const
 {
-    assert( value.IsArray() );
+    if ( value.IsArray() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Vec3 type"
+        );
+    }
+
     glm::vec3 vector = {};
     for ( int i = 0; i < 3; i++ )
     {

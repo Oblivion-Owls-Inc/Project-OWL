@@ -13,10 +13,10 @@
 //------------------------------------------------------------------------------
 // Include Files:
 //------------------------------------------------------------------------------
-#include "document.h"  // rapidjson::Document, Parse, HasParseError, GetParseError
+#include <rapidjson/document.h>  // rapidjson::Document, Parse, HasParseError, GetParseError
 #include <string>      // std::string
 #include <fstream>     // std::ifstream
-#include "glm/glm.hpp" // glm::vec3
+#include <glm/glm.hpp> // glm::vec3
 #include <map>
 
 //------------------------------------------------------------------------------
@@ -44,11 +44,11 @@ public: // acessors
 
 	/// @brief gets the rapidjson value as an object
 	/// @return the rapidjson value
-	rapidjson::GenericObject< true, rapidjson::Value > const& getObject() const;
+	rapidjson::GenericObject< true, rapidjson::Value > const& GetObject() const;
 
     /// @brief gets the rapidjson value as an object
     /// @return the rapidjson value
-    rapidjson::GenericArray< true, rapidjson::Value > const& getArray() const;
+    rapidjson::GenericArray< true, rapidjson::Value > const& GetArray() const;
 
 	/// @brief reads a basic type from a json value
 	/// @tparam T the type to read
@@ -65,6 +65,11 @@ public: // acessors
     /// @return the value from the json
     template <>
     float Read<float>() const;
+
+    /// @brief reads a bool from a json value
+    /// @return the value from the json
+    template <>
+    bool Read<bool>() const;
 
     /// @brief reads a string from a json value
     /// @return the value from the json

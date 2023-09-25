@@ -1,10 +1,10 @@
-/// @file EntitySystem.h
-/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief System that manages the storing and handling of Entities
-/// @version 0.1
-/// @date 2023-09-05
+/// @file       EntitySystem.h
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      System that manages the storing and handling of Entities
+/// @version    0.1
+/// @date       2023-09-05
 /// 
-/// @copyright Copyright (c) 2023
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #pragma once
 
@@ -19,7 +19,9 @@
 class EntitySystem : public System
 {
 
+//-----------------------------------------------------------------------------
 public: // methods
+//-----------------------------------------------------------------------------
 
     /// @brief Adds an Entity to the EntitySystem
     /// @param entity the entity to add the the EntitySystem
@@ -43,67 +45,55 @@ public: // methods
     /// @param entityData the json object containing the entity data
     void LoadEntities( Stream entityArray );
 
-private: // methods
-
-private: // member variables
-
-    /// @brief Container for all Entities in the Scene
-    std::vector< Entity* > entities;
-
+//-----------------------------------------------------------------------------
 private: // virtual override methods
+//-----------------------------------------------------------------------------
 
     /// @brief Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
-private: // unused virtual overrides
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
 
-    /// @brief Gets called once when this System is added to the Engine
-    virtual void OnInit() override {}
+    /// @brief map of the EntitySystem read methods
+    static ReadMethodMap< EntitySystem > const s_ReadMethods;
 
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
-    /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
-    virtual void OnFixedUpdate() override {}
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
 
+    /// @brief Container for all Entities in the Scene
+    std::vector< Entity* > m_Entities;
 
-    /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-    /// @param dt the elapsed time in seconds since the previous frame
-    virtual void OnUpdate( float dt ) override {}
-
-
-    /// @brief Gets called once before the Engine closes
-    virtual void OnExit() override {}
-
-
-    /// @brief Gets called whenever a new Scene is loaded
-    virtual void OnSceneLoad() override {}
-
-
-    /// @brief Gets called whenever a scene is initialized
-    virtual void OnSceneInit() override {}
-
-
-    /// @brief Loads the config data of this System
-    /// @param configData the JSON object with all of the configData for this System
-    virtual void Load( rapidjson::Value const& configData ) override {}
-
+//-----------------------------------------------------------------------------
 private: // singleton stuff
+//-----------------------------------------------------------------------------
 
     /// @brief Constructs the EntitySystem
     EntitySystem();
 
 
     /// @brief The singleton instance of EntitySystem
-    static EntitySystem * instance;
+    static EntitySystem * s_Instance;
 
+//-----------------------------------------------------------------------------
 public: // singleton stuff
+//-----------------------------------------------------------------------------
 
     /// @brief gets the instance of EntitySystem
     /// @return the instance of the EntitySystem
-    static EntitySystem * getInstance();
+    static EntitySystem * GetInstance();
 
     // Prevent copying
-    EntitySystem(EntitySystem& other) = delete;
-    void operator=(const EntitySystem&) = delete;
+    EntitySystem( EntitySystem& other ) = delete;
+    void operator=( const EntitySystem& ) = delete;
+
+//-----------------------------------------------------------------------------
 };
 
-__inline EntitySystem* Entities() { return EntitySystem::getInstance(); }
+__inline EntitySystem* Entities() { return EntitySystem::GetInstance(); }

@@ -69,7 +69,6 @@ private:
     virtual void OnSceneLoad() override {}
     virtual void OnSceneInit() override {}
     virtual void OnSceneExit() override {}
-    virtual void Load( rapidjson::Value const& configData ) override {}
 
 
     //-------------------------------------------------------------------------
@@ -100,6 +99,16 @@ private:
     void recalcMatrices();
 
 
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the CameraSystem read methods
+    static ReadMethodMap< CameraSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
     //-------------------------------------------------------------------------
     //          singleton stuff
@@ -113,7 +122,7 @@ private:
 public:
     /// @brief    Gets the instance of CameraSystem
     /// @return   CameraSystem pointer: new or existing instance of this system
-    static CameraSystem* getInstance();
+    static CameraSystem* GetInstance();
 
     // Prevent copying
     CameraSystem(CameraSystem& other) = delete;
@@ -121,4 +130,4 @@ public:
 };
 
 /// @brief      Convenient function for getting CameraSystem instance. 
-__inline CameraSystem* Camera() { return CameraSystem::getInstance(); }
+__inline CameraSystem* Camera() { return CameraSystem::GetInstance(); }

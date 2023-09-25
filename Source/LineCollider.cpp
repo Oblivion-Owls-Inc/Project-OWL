@@ -64,3 +64,19 @@ bool LineCollider::CheckIfColliding(const Collider* other)
     }
     
 }
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the read methods for this Component
+    ReadMethodMap< LineCollider > LineCollider::s_ReadMethods = {};
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    ReadMethodMap< Component > const& LineCollider::GetReadMethods()
+    {
+        return (ReadMethodMap< Component > const&)s_ReadMethods;
+    }
+
+//-----------------------------------------------------------------------------

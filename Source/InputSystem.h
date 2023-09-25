@@ -48,10 +48,16 @@ private:
     virtual void OnSceneExit() override {}
 
 
-    /// @brief Loads the config data of this System
-    /// @param configData the JSON object with all of the configData for this System
-    virtual void Load( rapidjson::Value const& configData ) override {}
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
 
+    /// @brief map of the InputSystem read methods
+    static ReadMethodMap< InputSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
      /// @brief Constructs the InputSystem
     InputSystem();
@@ -67,25 +73,25 @@ public:
 
      /// @brief gets the instance of InputSystem
      /// @return the instance of the InputSystem
-    static InputSystem * getInstance();
+    static InputSystem * GetInstance();
 
     // MAY INCLUDE A DUPLICATE OF THE ABOVE FUNCTION WITH CONSTRUCTOR ARGUMENTS HERE
     
-    bool getKeyDown(int glfw_key);
-    bool getKeyUp(int glfw_key);
-    bool getKeyTriggered(int glfw_key);
-    bool getKeyReleased(int glfw_key);
+    bool GetKeyDown(int glfw_key);
+    bool GetKeyUp(int glfw_key);
+    bool GetKeyTriggered(int glfw_key);
+    bool GetKeyReleased(int glfw_key);
     
-    bool getMouseDown(int glfw_mouse_button);
-    bool getMouseUp(int glfw_mouse_button);
-    bool getMouseTriggered(int glfw_mouse_button);
-    bool getMouseReleased(int glfw_mouse_button);
+    bool GetMouseDown(int glfw_mouse_button);
+    bool GetMouseUp(int glfw_mouse_button);
+    bool GetMouseTriggered(int glfw_mouse_button);
+    bool GetMouseReleased(int glfw_mouse_button);
     
-    glm::vec2 getMousePos();
+    glm::vec2 GetMousePos();
 
     // Prevent copying
     InputSystem(InputSystem& other) = delete;
     void operator=(const InputSystem&) = delete;
 };
 
-__inline InputSystem* Input() { return InputSystem::getInstance(); }
+__inline InputSystem* Input() { return InputSystem::GetInstance(); }

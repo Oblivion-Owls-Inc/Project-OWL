@@ -28,7 +28,7 @@ CollisionSystem* CollisionSystem::instance = nullptr;
 
 /// @brief gets the instance of CollisionSystem
 /// @return the instance of the CollisionSystem
-CollisionSystem* CollisionSystem::getInstance()
+CollisionSystem* CollisionSystem::GetInstance()
 {
     if (instance == nullptr)
     {
@@ -56,7 +56,7 @@ void CollisionSystem::OnFixedUpdate()
         {
             Collider* other = collider->getOtherCollider();
 
-            DebugConsole output(*DebugSystem::getInstance());
+            DebugConsole output( *DebugSystem::GetInstance() );
             output << "Collider: " << collider->Parent()->GetName().c_str()
                 << " is colliding with: "
                 << other->Parent()->GetName() << "\n";
@@ -83,5 +83,19 @@ void CollisionSystem::checkCollisions()
 		}
 	}
 }
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the CollisionSystem read methods
+    ReadMethodMap< CollisionSystem > const CollisionSystem::s_ReadMethods = {};
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< System > const& CollisionSystem::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
+    }
 
 //-----------------------------------------------------------------------------

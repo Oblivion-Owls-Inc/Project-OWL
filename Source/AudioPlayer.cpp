@@ -48,13 +48,13 @@
 
     /// @brief gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
-    Sound* AudioPlayer::getSound()
+    Sound* AudioPlayer::GetSound()
     {
         return sound;
     }
     /// @brief sets the SOund that this AudioPlayer plays
     /// @param sound the sound that this AudioPlayer will play
-    void AudioPlayer::setSound( Sound* _sound )
+    void AudioPlayer::SetSound( Sound* _sound )
     {
         sound = _sound;
     }
@@ -78,46 +78,46 @@
     }
     /// @brief Sets whether or not this AudioPlayer is paused
     /// @param paused 
-    void AudioPlayer::setPaused( bool paused )
+    void AudioPlayer::SetPaused( bool paused )
     {
         channel->setPaused( paused );
     }
 
     /// @brief gets the volume of this AudioPlayer
     /// @return the volume of this AudioPlayer
-    float AudioPlayer::getVolume() const
+    float AudioPlayer::GetVolume() const
     {
         return volume;
     }
     /// @brief sets the volume of this AudioPlayer
     /// @param volume the volume for this AudioPlayer
-    void AudioPlayer::setVolume( float _volume )
+    void AudioPlayer::SetVolume( float _volume )
     {
         volume = _volume;
     }
 
     /// @brief sets the pitch variance of this AudioPlayer
     /// @return the pitch variance of this AudioPlayer
-    float AudioPlayer::getPitchVariance() const
+    float AudioPlayer::GetPitchVariance() const
     {
         return pitchVariance;
     }
     /// @brief gets the pitch varaince of this AudioPlayer
     /// @param pitchVariance the pitch varaince for this AudioPlayer
-    void AudioPlayer::setPitchVariance( float _pitchVariance )
+    void AudioPlayer::SetPitchVariance( float _pitchVariance )
     {
         pitchVariance = _pitchVariance;
     }
 
     /// @brief sets the volume variance of this AudioPlayer
     /// @return the volume variance of this AudioPlayer
-    float AudioPlayer::getVolumeVariance() const
+    float AudioPlayer::GetVolumeVariance() const
     {
         return volumeVariance;
     }
     /// @brief gets the volume varaince of this AudioPlayer
     /// @param volumeVariance the volume varaince for this AudioPlayer
-    void AudioPlayer::setVolumeVariance( float _volumeVariance )
+    void AudioPlayer::SetVolumeVariance( float _volumeVariance )
     {
         volumeVariance = _volumeVariance;
     }
@@ -164,7 +164,7 @@
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    ReadMethodMap< Component > const& AudioPlayer::getReadMethods()
+    ReadMethodMap< Component > const& AudioPlayer::GetReadMethods()
     {
         return (ReadMethodMap< Component > const&)readMethods;
     }

@@ -1,8 +1,8 @@
 {
-    "assets": {
+    "Assets": {
         "textures": [],
         "meshes": [],
         "shaders": []
     },
-    "entities": []
+    "Entities": []
 }

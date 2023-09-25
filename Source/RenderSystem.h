@@ -58,23 +58,28 @@ public:
     Shader* SetActiveShader(const char* name);
 
 
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the RenderSystem read methods
+    static ReadMethodMap< RenderSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
+
 
     //-------------------------------------------------------------------------
     //          inherited virtuals
     //-------------------------------------------------------------------------
 private:
+
+    // Inherited virtuals
     // overrides
     virtual void OnInit() override;
     virtual void OnExit() override;
     virtual void OnUpdate(float dt) override;
-
-    // unused virtuals
-    virtual void OnFixedUpdate() override {}
-    virtual void OnSceneLoad() override {}
-    virtual void OnSceneInit() override {}
-    virtual void OnSceneExit() override {}
-    virtual void Load( rapidjson::Value const& configData ) override {}
-
 
 
     //-------------------------------------------------------------------------
@@ -106,7 +111,7 @@ private:
     static RenderSystem* instance;
 
 public:
-    static RenderSystem* getInstance();
+    static RenderSystem* GetInstance();
 
     // Prevent copying
     RenderSystem(RenderSystem& other) = delete;
@@ -114,4 +119,4 @@ public:
 };
 
 /// @brief      Convenient function for getting RenderSystem instance.
-__inline RenderSystem* Renderer() { return RenderSystem::getInstance(); }
+__inline RenderSystem* Renderer() { return RenderSystem::GetInstance(); }

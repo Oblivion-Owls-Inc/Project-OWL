@@ -51,7 +51,7 @@
         update = true;
         entity = new Entity();
         entity->Add(new AudioPlayer());
-        entity->GetComponent<AudioPlayer>()->setSound(sound);
+        entity->GetComponent<AudioPlayer>()->SetSound(sound);
 
         /// Bottom Wall
         Wall = new Entity();
@@ -61,8 +61,8 @@
         Wall->Add(new LineCollider());
         LineCollider* collider = (LineCollider*)Wall->GetComponent<Collider>();
         collider ->AddLineSegment(glm::vec2(0.0f, 0.0f), glm::vec2(800.0f, 0.0f));
-        Wall->GetComponent<Transform>()->setTranslation(glm::vec3(400.0f, 500.0f, 0.0f));
-        Wall->GetComponent<Transform>()->setScale(glm::vec3(800.0f, 50.0f, 0.0f));
+        Wall->GetComponent<Transform>()->SetTranslation(glm::vec3(400.0f, 500.0f, 0.0f));
+        Wall->GetComponent<Transform>()->SetScale(glm::vec3(800.0f, 50.0f, 0.0f));
         
         /// Ball 1
         entity2= new Entity();
@@ -74,8 +74,8 @@
         entity2->Add( new MovementAI());
         CircleCollider * collider2 = (CircleCollider*)entity2->GetComponent<Collider>();
         float spriteSize = entity2->GetComponent<Sprite>()->GetHeightMultiplier();
-        entity2->GetComponent<Transform>()->setTranslation(glm::vec3(0.0f, -3.0f, 0.0f));
-        entity2->GetComponent<Transform>()->setScale(glm::vec3(1.0f, spriteSize, 0.0f));
+        entity2->GetComponent<Transform>()->SetTranslation(glm::vec3(0.0f, -3.0f, 0.0f));
+        entity2->GetComponent<Transform>()->SetScale(glm::vec3(1.0f, spriteSize, 0.0f));
         collider2->SetRadius(48.00 / 2); /// 48 is the width of the sprite
 
         /// Ball 2
@@ -88,8 +88,8 @@
         entity3->Add(new MovementAI());
         CircleCollider* collider3 = (CircleCollider*)entity3->GetComponent<Collider>();
         spriteSize = entity2->GetComponent<Sprite>()->GetHeightMultiplier();
-        entity3->GetComponent<Transform>()->setTranslation(glm::vec3(500.0f, 300.0f, 0.0f));
-        entity3->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
+        entity3->GetComponent<Transform>()->SetTranslation(glm::vec3(500.0f, 300.0f, 0.0f));
+        entity3->GetComponent<Transform>()->SetScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
         collider3->SetRadius(48.00 / 2); /// 48 is the width of the sprite
 
         ///Ball3
@@ -102,8 +102,8 @@
         entity4->Add(new MovementAI());
         CircleCollider* collider4 = (CircleCollider*)entity4->GetComponent<Collider>();
         spriteSize = entity2->GetComponent<Sprite>()->GetHeightMultiplier();
-        entity4->GetComponent<Transform>()->setTranslation(glm::vec3(700.0f, 300.0f, 0.0f));
-        entity4->GetComponent<Transform>()->setScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
+        entity4->GetComponent<Transform>()->SetTranslation(glm::vec3(700.0f, 300.0f, 0.0f));
+        entity4->GetComponent<Transform>()->SetScale(glm::vec3(100.0f, (-100.0f * spriteSize), 0.0f));
         collider4->SetRadius(48.00 / 2); /// 48 is the width of the sprite
     }
 
@@ -112,15 +112,15 @@
     {
         if (!update)
             return;
-        if ( Input()->getKeyTriggered( GLFW_KEY_SPACE ) )
+        if ( Input()->GetKeyTriggered( GLFW_KEY_SPACE ) )
         {
             entity->GetComponent<AudioPlayer>()->Play();
         }
         // Create an instance of DebugConsole
-        DebugConsole output(*DebugSystem::getInstance());
+        DebugConsole output( *DebugSystem::GetInstance() );
 
         // Append the message and the formatted value
-        glm::vec3 translation = *entity2->GetComponent<Transform>()->getTranslation();
+        glm::vec3 translation = *entity2->GetComponent<Transform>()->GetTranslation();
         //output << "Position: (" << translation.x << ", " << translation.y << ", " << translation.z << ")" << "\n";
     }
 
@@ -146,6 +146,20 @@
     }
 
 //-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the XinoScene read methods
+    ReadMethodMap< XinoScene > const XinoScene::s_ReadMethods = {};
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< System > const& XinoScene::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
+    }
+
+//-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 
@@ -157,7 +171,7 @@ XinoScene * XinoScene::instance = nullptr;
 
 /// @brief gets the instance of XinoScene
 /// @return the instance of the XinoScene
-XinoScene * XinoScene::getInstance()
+XinoScene * XinoScene::GetInstance()
 {
     if ( instance == nullptr )
     {

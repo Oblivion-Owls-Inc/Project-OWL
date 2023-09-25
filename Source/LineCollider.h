@@ -36,5 +36,17 @@ class LineCollider : public Collider
 		unsigned int counter;
 
 		bool doesDamage = false;
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the read methods for this Component
+    static std::map< std::string, ReadMethod< LineCollider > > s_ReadMethods;
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() override;
+
 };
 

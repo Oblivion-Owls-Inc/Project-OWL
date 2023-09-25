@@ -136,7 +136,7 @@ void Sprite::Draw()
         Transform* t = Parent()->GetComponent<Transform>();
         if (t)
         {
-            mat = *t->getMatrix();
+            mat = *t->GetMatrix();
 
             // world or UI space
 #if 0
@@ -214,7 +214,7 @@ ReadMethodMap< Sprite > const Sprite::readMethods = {
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component
-ReadMethodMap< Component > const& Sprite::getReadMethods()
+ReadMethodMap< Component > const& Sprite::GetReadMethods()
 {
     return (ReadMethodMap< Component> const&)readMethods;
 }

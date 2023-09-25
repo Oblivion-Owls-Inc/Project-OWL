@@ -8,12 +8,12 @@ static float timer = 0.0f;
 
 MovementAI::MovementAI(): Behavior(typeid(MovementAI))
 {
-    BehaviorSystem<MovementAI>::getInstance()->AddBehavior(this);
+    BehaviorSystem<MovementAI>::GetInstance()->AddBehavior(this);
 }
 
 MovementAI::~MovementAI()
 {
-    BehaviorSystem< MovementAI >::getInstance()->RemoveBehavior(this);
+    BehaviorSystem< MovementAI >::GetInstance()->RemoveBehavior(this);
 }
 
 Component* MovementAI::Clone() const
@@ -23,7 +23,7 @@ Component* MovementAI::Clone() const
 
 void MovementAI::OnCollisionEvent()
 {
-    DebugConsole output2(*DebugSystem::getInstance());
+    DebugConsole output2( *DebugSystem::GetInstance() );
     output2 << Parent()->GetName().c_str() <<":Collision Detected in Movement AI" << "\n";
 }
 
@@ -51,7 +51,7 @@ void MovementAI::MovementAISpiral(float dt)
 /// @brief the map of read methods for this Component
 ReadMethodMap< MovementAI > const MovementAI::readMethods = {};
 
-ReadMethodMap<Component> const& MovementAI::getReadMethods()
+ReadMethodMap<Component> const& MovementAI::GetReadMethods()
 {
     return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
 }

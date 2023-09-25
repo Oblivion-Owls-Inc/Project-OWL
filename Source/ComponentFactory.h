@@ -17,7 +17,7 @@ public:
 
     static Component* Create( std::string key );
 
-    static std::type_index getTypeId( std::string typeName );
+    static std::type_index GetTypeId( std::string typeName );
 
 private:
 

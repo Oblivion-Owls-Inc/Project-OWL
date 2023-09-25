@@ -111,6 +111,9 @@
     <Filter Include="Engine\Systems\SceneSystem">
       <UniqueIdentifier>{358aaf0f-9beb-4093-b60f-dc94719c6f46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data\Scenes">
+      <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -226,6 +229,21 @@
     </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CameraSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ComponentFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TextSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\XinoScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stream.t.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -361,10 +379,28 @@
     <ClInclude Include="Source\Behavior.h">
       <Filter>Engine\Entity\Component\Behavior</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CameraSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ComponentFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TextSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\XinoScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
       <Filter>Data</Filter>
+    </None>
+    <None Include="Data\Scenes\XinoScene.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\Sandbox.scene.json">
+      <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>
 </Project>
