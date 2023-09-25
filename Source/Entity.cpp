@@ -94,6 +94,11 @@ Component* Entity::HasComponent(std::type_index type)
 	return nullptr;
 }
 
+std::map<std::type_index, Component*>& Entity::getComponents()
+{
+	return components;
+}
+
 /// @brief Flag an entity for destruction.
 void Entity::Destroy() { mIsDestroyed = true; }
 

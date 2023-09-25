@@ -8,8 +8,8 @@
 
 #include "System.h"
 #include <vector>
+#include "Behavior.h"
 
-class Behavior;
 template < typename BehaviorType >
 class BehaviorSystem : public System
 {

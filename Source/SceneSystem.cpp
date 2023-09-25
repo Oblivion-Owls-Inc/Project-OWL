@@ -155,7 +155,14 @@ void SceneSystem::OnExit()
 
         Scene scene = Scene();
         // TODO: have some asSetSystem or something like that handle loading assets
-        Stream( document ).Read( &scene );
+        try
+        {
+            Stream( document ).Read( &scene );
+        }
+        catch ( std::runtime_error error )
+        {
+            std::cerr << error.what();
+        }
 
         for ( System* system : Engine::GetInstance()->GetSystems() )
         {

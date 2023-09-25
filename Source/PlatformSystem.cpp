@@ -10,6 +10,7 @@
 #include "glfw3.h"      // initialize / shutdown
 #include "glm/vec2.hpp" // for returning window dimensions
 #include <iostream>     // cout
+#include <Windows.h>
 #include <cassert>
 
 /// @brief            (callback) Gets called when there's some OpenGL error. Prints error message
@@ -52,6 +53,15 @@ void PlatformSystem::OnInit()
         std::cerr << "Failed to initialize GLFW" << std::endl;
         return;
     }
+#ifdef _DEBUG
+    // Create a console window
+    AllocConsole();
+
+    // Attach the console to this process
+    AttachConsole(GetCurrentProcessId());
+
+#endif // _DEBUG
+
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);      // OpenGL 4.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -87,6 +97,11 @@ void PlatformSystem::OnInit()
 /// @brief    Shuts down the the platform.
 void PlatformSystem::OnExit()
 {
+
+    #ifdef _DEBUG
+        FreeConsole();
+    #endif // _DEBUG
+
     glfwDestroyWindow( window );
     glfwTerminate();
     std::cout << "\nShutdown complete." << std::endl;

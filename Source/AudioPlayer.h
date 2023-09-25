@@ -16,7 +16,9 @@
 /// @brief Component that can play audio
 class AudioPlayer : public Component
 {
+//-----------------------------------------------------------------------------
 public: // constructor / Destructor
+//-----------------------------------------------------------------------------
 
     /// @brief constructs a new AudioPlayer
     AudioPlayer();
@@ -24,12 +26,16 @@ public: // constructor / Destructor
     /// @brief destroys this AudioPlayer
     ~AudioPlayer() = default;
 
+//-----------------------------------------------------------------------------
 public: // methods
+//-----------------------------------------------------------------------------
 
     /// @brief Starts playing this AudioPlayer's sound
     void Play();
 
+//-----------------------------------------------------------------------------
 public: // accessors
+//-----------------------------------------------------------------------------
 
     /// @brief gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
@@ -70,7 +76,9 @@ public: // accessors
     /// @param volumeVariance the volume varaince for this AudioPlayer
     void SetVolumeVariance( float volumeVariance );
 
+//-----------------------------------------------------------------------------
 private: // members
+//-----------------------------------------------------------------------------
 
     /// @brief the relative volume this AudioPlayer will play at
     float volume;
@@ -90,7 +98,9 @@ private: // members
     /// @brief The channelGroup to play sounds in
     FMOD::ChannelGroup* channelGroup;
 
+//-----------------------------------------------------------------------------
 private: // reading
+//-----------------------------------------------------------------------------
 
     /// @brief read the volume of this component from json
     /// @param data the json data
@@ -115,7 +125,9 @@ private: // reading
     /// @return the map of read methods for this Component
     virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() override;
 
+//-----------------------------------------------------------------------------
 private: // copying
+//-----------------------------------------------------------------------------
 
     /// @brief copy-constructor for the AudioPlayer
     /// @param other the other AudioPlayer to copy
@@ -125,9 +137,13 @@ private: // copying
     /// @return the newly created clone of this AudioPlayer
     virtual Component* Clone() const override;
 
-public:
+//-----------------------------------------------------------------------------
+public: // copying
+//-----------------------------------------------------------------------------
 
     // diable = operator
     void operator=( const AudioPlayer& ) = delete;
+
+//-----------------------------------------------------------------------------
 
 };

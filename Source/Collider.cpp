@@ -2,80 +2,67 @@
 ///@Author Jax Clayton (jax.clayton@digipen.edu)
 
 #include "Collider.h"
+#include "CollisionSystem.h"
 
-Collider::Collider(): Component(typeid(Collider)), type()
+Collider::Collider(): Component(typeid(Collider)), mtype(), mIsColliding(false)
 {
-    // PhysicsSystem::GetInstance()->AddCollider(this);
+	CollisionSystem::GetInstance()->addCollider(this);
+
 }
 
-Collider::Collider(const Collider& other) : Component(other), type(other.type)
+Collider::Collider(const Collider& other) : Component(other), mtype(other.mtype)
 {
-}
-
-Collider::~Collider()
-{
-	// PhysicsSystem::GetInstance()->RemoveCollider(this);
+	CollisionSystem::GetInstance()->removeCollider(this);
 }
 
 Component* Collider::Clone() const
 {
 	return nullptr;
 }
-void Collider::OnUpdate(float dt)
+void Collider::OnFixedUpdate()
 {
 }
 
-void Collider::Check(const Collider* other)
+
+void Collider::setOtherCollider(Collider* other)
 {
-  
+	mOther = other;
+}
+
+Collider* Collider::getOtherCollider()
+{
+	return mOther;
+}
+
+bool Collider::isColliding()
+{
+	return mIsColliding;
+}
+
+void Collider::isColliding(bool colliding)
+{
+	mIsColliding = colliding;
+}
+
+void Collider::setColliderType(ColliderType cType)
+{
+	mtype = cType;
 }
 
 
-///This is not complete and will need to be finished
-bool Collider::IsColliding(const Collider* other)
+/// @brief the map of read methods for Collider
+ReadMethodMap< Collider > Collider::readMethods = 
 {
-    switch (type)
-    {
-        case ColliderTypeCircle:
+	{ "ColliderType",		&ReadColliderType },
 
-            switch (other->type)
-            {
-                case ColliderTypeCircle:
+};
 
-                case ColliderTypeLine:
-
-                default:
-                    return false;
-            }
-
-            break;
-
-        case ColliderTypeLine:
-
-            switch (other->type)
-            {
-                case ColliderTypeCircle:
-
-                case ColliderTypeLine:
-
-                default:
-                    return false;
-            }
-
-            break;
-
-        default:
-
-            return false;
-    }
-
+std::map<std::string, ReadMethod<Component>> const& Collider::getReadMethods()
+{
+	return (ReadMethodMap< Component > const&)readMethods;
 }
 
-void Collider::SetCollider(Collider* collider)
+void Collider::ReadColliderType(Stream data)
 {
-}
-
-Collider* Collider::GetCollider()
-{
-	return nullptr;
+	mtype = (ColliderType)data.Read<int>();
 }

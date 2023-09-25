@@ -5,19 +5,20 @@
             "WindowWidth": 800,
             "WindowHeight": 600
         },
+        "CameraSystem": {},
         "InputSystem": {},
-        "BehaviorSystem<RigidBody>": {},
-        "BehaviorSystem<MovementAI>": {},
-        "EntitySystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Sandbox"
+            "NextSceneName": "XinoScene"
         },
-        "SandboxSystem": {},
+        "XinoScene": {},
         "RenderSystem": {},
         "AudioSystem": {},
+        "BehaviorSystem<RigidBody>": {},
+        "BehaviorSystem<MovementAI>": {},
+        "CollisionSystem": {},
         "DebugSystem": {
             "ShowFpsWindow": true
         }
-  }
+    }
 }

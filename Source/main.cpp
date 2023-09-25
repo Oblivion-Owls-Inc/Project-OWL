@@ -1,13 +1,8 @@
 #include "Engine.h"
-#include "PlatformSystem.h"
-#include "DebugSystem.h"
-#include "SceneSystem.h"
-#include "RenderSystem.h"
 #pragma warning(disable : 4099) //Disabling warning for missing PDB 
 #pragma warning(disable : 33019) //Disabling warning for missing PDB files
 
-
-int main()
+int main ()
 {
 
     // *** Initialize the window using glfw *******************************************************
@@ -24,3 +19,6 @@ int main()
     return 0;
 
 }
+
+
+
