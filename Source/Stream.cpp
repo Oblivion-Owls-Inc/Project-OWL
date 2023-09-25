@@ -166,6 +166,22 @@ glm::vec3 Stream::Read<glm::vec3>() const
 /// @tparam T the type to read
 /// @return The value from the json
 template <>
+glm::vec4 Stream::Read<glm::vec4>() const
+{
+    assert(value.IsArray());
+    glm::vec4 vector = {};
+    for (int i = 0; i < 4; i++)
+    {
+        assert(value[i].IsNumber());
+        vector[i] = value[i].GetFloat();
+    }
+    return vector;
+}
+
+/// @brief  Reads a basic type from a json value
+/// @tparam T the type to read
+/// @return The value from the json
+template <>
 glm::vec2 Stream::Read<glm::vec2>() const
 {
     assert(value.IsArray());

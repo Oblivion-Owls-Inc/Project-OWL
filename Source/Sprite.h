@@ -5,7 +5,8 @@
 #pragma once
 #include "Component.h"
 #include "glm/glm.hpp"  // vec4
-#include "Stream.h"
+#include "Stream.h"     // Stream, Read
+#include <string>       // std::string
 
 // fwd refs
 class Mesh;
@@ -18,6 +19,8 @@ class Sprite : public Component
     int _frame = 0;
     float _heightMult = 1.0f;
     float _opacity = 1.0f;
+    std::string m_filename;
+    bool m_IsTextured;
 
     Mesh* _mesh = nullptr;
     Texture* _texture = nullptr;
@@ -30,7 +33,10 @@ public:
     /// @param columns      (optional) Columns of the spritesheet
     /// @param rows         (optional) Rows of the spritesheet
     /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
-    Sprite(const char* image_file, int columns = 1, int rows = 1, int layer = 2);
+    //Sprite(const char* image_file, int columns = 1, int rows = 1, int layer = 2);
+
+    /// @brief Default Sprite Constructor.
+    Sprite();
 
     /// @brief              Plain square sprite constructor. Accepts boolean, which needs to be true for
     ///                     the square to be generated, or false to create uninitialized sprite. Also adds 
@@ -38,7 +44,7 @@ public:
     /// @param init_square  true/false - initialize the square or nah?
     /// @param color        (optional) Color to initialize the square to
     /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
-    Sprite(bool init_square = false, glm::vec4 color = { 0,0,0,1 }, int layer = 2); // just mesh
+    //Sprite(bool init_square = false, glm::vec4 color = { 0,0,0,1 }, int layer = 2); // just mesh
 
     /// @brief              Copy constructor: shallow copy. Flyweight mesh and texture (eventually). Do not use rn.
     Sprite(Sprite const& other);
@@ -70,13 +76,32 @@ public:
 
 private: // reading
 
-    /// @brief Read in the number of rows for a sprite.
-    /// @param stream the json to read from.
-    void ReadRows( Stream stream );
+    /// @brief        Read in the number of rows for a sprite.
+    /// @param stream The json to read from.
+    void ReadRows(Stream stream);
+
+    /// @brief        Does the sprite have a texture?
+    /// @param stream The json to read from.
+    void ReadIsTextured(Stream stream);
+
+    /// @brief        Read in the colour for a sprite.
+    /// @param stream The json to read from.
+    void ReadColor(Stream stream);
+
+    /// @brief        Read in the layer for a sprite.
+    /// @param stream The json to read from.
+    void ReadLayer(Stream stream);
+
+    /// @brief        Read in the file name for a sprite.
+    /// @param stream The json to read from.
+    void ReadName(Stream stream);
 
     /// @brief Read in the number of columns for a sprite.
     /// @param stream the json to read from.
-    void ReadColumns( Stream stream );
+    void ReadColumns(Stream stream);
+
+    /// @brief Takes all the read in data and makes a sprite.
+    void ReadSprite();
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Sprite > const readMethods;

@@ -1,0 +1,29 @@
+{
+    "assets": {
+        "textures": [],
+        "meshes": [],
+        "shaders": []
+    },
+    "entities": [
+        {
+            "name": "Wall",
+            "components": {
+                "Sprite": {
+                    "columns": 1,
+                    "rows": 1,
+                    "color": [ 0, 0, 0, 1 ],
+                    "layer": 0,
+                    "name": "Temp_Assets/Wall.png",
+                    "isTextured":  true
+                },
+                "Transform": {
+                    "translation": [ 400, 500, 0 ],
+                    "rotation": 0,
+                    "scale": [ 800, 50, 0 ],
+                    "diegetic": false
+                }
+
+            }
+        }
+    ]
+}

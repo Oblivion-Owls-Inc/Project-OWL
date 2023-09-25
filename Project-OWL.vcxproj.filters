@@ -260,6 +260,9 @@
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Source\StubScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -415,12 +418,18 @@
     <ClInclude Include="Source\AnimationAsset.h">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="Source\StubScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
       <Filter>Data</Filter>
     </None>
     <None Include="Data\Scenes\Sandbox.scene.json">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\Scenes\AidanScene.scene.json">
       <Filter>Data</Filter>
     </None>
   </ItemGroup>
