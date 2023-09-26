@@ -10,6 +10,7 @@
 #include "glfw3.h"      // initialize / shutdown
 #include "glm/vec2.hpp" // for returning window dimensions
 #include <iostream>     // cout
+#include <Windows.h>
 #include <cassert>
 
 /// @brief            (callback) Gets called when there's some OpenGL error. Prints error message
@@ -52,6 +53,15 @@ void PlatformSystem::OnInit()
         std::cerr << "Failed to initialize GLFW" << std::endl;
         return;
     }
+#ifdef _DEBUG
+    // Create a console window
+    AllocConsole();
+
+    // Attach the console to this process
+    AttachConsole(GetCurrentProcessId());
+
+#endif // _DEBUG
+
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);      // OpenGL 4.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -87,19 +97,47 @@ void PlatformSystem::OnInit()
 /// @brief    Shuts down the the platform.
 void PlatformSystem::OnExit()
 {
+
+    #ifdef _DEBUG
+        FreeConsole();
+    #endif // _DEBUG
+
     glfwDestroyWindow( window );
     glfwTerminate();
     std::cout << "\nShutdown complete." << std::endl;
 }
 
-/// @brief Loads the configuration data of the PlatformSystem
-/// @param configData the configuration data for this System
-void PlatformSystem::Load( rapidjson::Value const& configData )
-{
-    // TODO: JSON error handling
-    windowWidth = configData[ "windowWidth" ].GetInt();
-    windowHeight = configData[ "windowHeight" ].GetInt();
-}
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief reads the window width
+    /// @param stream the data to read from
+    void PlatformSystem::readWindowWidth( Stream stream )
+    {
+        windowWidth = stream.Read<int>();
+    }
+
+    /// @brief reads the window width
+    /// @param stream the data to read from
+    void PlatformSystem::readWindowHeight( Stream stream )
+    {
+        windowHeight = stream.Read<int>();
+    }
+
+    /// @brief map of the PlatformSystem read methods
+    ReadMethodMap< PlatformSystem > const PlatformSystem::s_ReadMethods = {
+        { "WindowWidth",  &readWindowWidth  },
+        { "WindowHeight", &readWindowHeight }
+    };
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< System > const& PlatformSystem::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
+    }
 
 /// @brief    Returns the window handle.
 /// @return   GLFWwindow pointer: Current window handle.
@@ -129,7 +167,7 @@ PlatformSystem * PlatformSystem::instance = nullptr;
 
 /// @brief    (Singleton) Gets the instance of this system.
 /// @return   PlatformSystem pointer: new or existing instance of this system.
-PlatformSystem * PlatformSystem::getInstance()
+PlatformSystem * PlatformSystem::GetInstance()
 {
     if ( instance == nullptr )
     {

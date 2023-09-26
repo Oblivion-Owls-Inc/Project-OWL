@@ -1,25 +1,27 @@
-/*******************************************************************
- * \file   MovementAI.h
- * \brief  This is a temporary file for the movement AI
- * 
- * \author Jax Clayton
- * \date   September 2023
- *********************************************************************/
+///*******************************************************************
+/// @file   MovementAI.h
+/// @brief  This is a temporary file for the movement AI
+/// 
+/// @author Jax Clayton
+/// @date   September 2023
+///*********************************************************************/
+
+///------------------------------------------------------------------------------
+/// Include Files:
+///------------------------------------------------------------------------------
 #pragma once
 #include "Behavior.h"
 #include "RigidBody.h"
 #include "Transform.h"
-//------------------------------------------------------------------------------
-// Include Files:
-//------------------------------------------------------------------------------
 
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-//------------------------------------------------------------------------------
-// Class:
-//------------------------------------------------------------------------------
-class MovementAI : public Behavior
+///------------------------------------------------------------------------------
+/// @brief This is the MovementAI class this is a temporary class for the movement
+///------------------------------------------------------------------------------
+class MovementAI :
+    public Behavior
 {
     public:
         MovementAI();
@@ -27,9 +29,9 @@ class MovementAI : public Behavior
 
     private:
         Component* Clone() const override;
+        void OnCollisionEvent() override;
         void OnUpdate(float dt) override;
         void OnFixedUpdate() override;
-        void OnCollision(Entity* other) override {};
 
     private:
 
@@ -55,6 +57,6 @@ private: // reading
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap< Component > const& getReadMethods() override;
+    virtual ReadMethodMap< Component > const& GetReadMethods() override;
 };
 

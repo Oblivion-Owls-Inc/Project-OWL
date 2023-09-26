@@ -9,7 +9,9 @@
 #include "BehaviorSystem.h"
 #endif
 
-
+#include "Entity.h"
+#include "Collider.h"
+#include "Behavior.h"
 // Define the static instance variable for the templated BehaviorSystem
 template < typename BehaviorType >
 BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::instance = nullptr;
@@ -22,7 +24,7 @@ void BehaviorSystem<BehaviorType>::OnInit()
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 {
-	for(auto behavior : behaviorsList)
+	for (auto behavior : behaviorsList)
 	{
 		behavior->OnFixedUpdate();
 	}
@@ -31,9 +33,14 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
-    for(auto behavior : behaviorsList)
+	for (auto behavior : behaviorsList)
 	{
 		behavior->OnUpdate(dt);
+		Collider* test = behavior->Parent()->GetComponent<Collider>();
+		if(test != nullptr && test->isColliding())
+		{
+			behavior->OnCollisionEvent();
+		}
 	}
 }
 
@@ -60,20 +67,37 @@ void BehaviorSystem<BehaviorType>::RemoveBehavior(BehaviorType* behavior)
 	behaviorsList.erase(std::remove(behaviorsList.begin(), behaviorsList.end(), behavior), behaviorsList.end());
 }
 
-// Define the getInstance function for the templated BehaviorSystem
+// Define the GetInstance function for the templated BehaviorSystem
 template < typename BehaviorType >
-BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::getInstance()
+BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::GetInstance()
 {
-    if ( instance == nullptr )
-    {
-        instance = new BehaviorSystem< BehaviorType >();
-    }
-    return instance;
+	if (instance == nullptr)
+	{
+		instance = new BehaviorSystem< BehaviorType >();
+	}
+	return instance;
 }
 
 template<typename BehaviorType>
-std::vector<BehaviorType*>& BehaviorSystem<BehaviorType>::getBehaviors() const
+std::vector<BehaviorType*>& BehaviorSystem<BehaviorType>::GetBehaviors() const
 {
-    return (std::vector<BehaviorType*>&)behaviorsList;
+    return &behaviorsList;
 }
 
+//-----------------------------------------------------------------------------
+// private: reading
+//----------------------------------------------------------------------------- 
+
+    /// @brief                  the read methods of a BehaviorSystem
+    /// @tparam BehaviorType    the type of behavior this BehaviorSystem manages
+    template<typename BehaviorType>
+    ReadMethodMap< BehaviorSystem< BehaviorType > > const BehaviorSystem< BehaviorType >::s_ReadMethods = {};
+
+    /// @brief                  gets the read methods for this System
+    /// @tparam BehaviorType    the type of behavior this BehaviorSystem manages
+    /// @return                 the read methods for this System
+    template<typename BehaviorType>
+    ReadMethodMap< System > const& BehaviorSystem< BehaviorType >::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
+    }

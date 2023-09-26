@@ -17,7 +17,7 @@
 #include "Component.h"
 #include <map>        // std::map
 #include <string>	  // std::string
-
+#include <vector>	  // std::vector
 #include "Stream.h"
 
 //------------------------------------------------------------------------------
@@ -64,6 +64,10 @@ public:
         return static_cast<ComponentType*>( componentIterator->second );
     }
     
+	std::map<std::type_index, Component*>& getComponents();
+	template < typename ComponentType >
+	std::vector<ComponentType*> GetAll(ComponentType type);
+	
 	// Flag an entity for destruction
 	void Destroy();
 	// Checks whether an entity has been flagged for destruction.
@@ -75,7 +79,7 @@ public:
 	// Compare the entity's name with the specified name.
 	bool IsNamed(const std::string& name);
 
-	static __inline ReadMethodMap< Entity > const& getReadMethods() { return readMethods; }
+	static __inline ReadMethodMap< Entity > const& GetReadMethods() { return readMethods; }
 
 private:
 	// The name of the entity.
@@ -95,3 +99,17 @@ private:
 };
 //------------------------------------------------------------------------------
 
+template<typename ComponentType>
+inline std::vector<ComponentType*> Entity::GetAll(ComponentType type)
+{
+	std::vector<ComponentType*> componentsOfType;
+
+	for each (auto component in components) 
+	{
+		if (component->Type() == type)
+		{
+			componentsOfType.push_back(component);
+		}
+	}
+
+}

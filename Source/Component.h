@@ -46,7 +46,7 @@ public:
 	/// @return new clone of component
 	virtual Component* Clone() const = 0;
 
-	virtual std::map< std::string, ReadMethod< Component > > const& getReadMethods() = 0;
+	virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() = 0;
 
 protected:
 

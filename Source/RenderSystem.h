@@ -5,19 +5,16 @@
 #pragma once
 #include "System.h"
 #include "Shader.h"
-#include "glm/glm.hpp"  // vec4 for color, mat4 for transform and scree2clip
+#include "glm/glm.hpp"
 #include <set>          // for sprite references
+#include <map>          // for shader storage
 
 class Sprite;   // fwd reference
 
+
+/// @brief      Renders all of the Sprite components, keeps track of shaders.
 class RenderSystem : public System
 {
-    Shader* _colorShader = nullptr;  /// @brief      Simple color shader
-    Shader* _textureShader = nullptr;/// @brief      Simple texture shader
-    Shader* _activeShader = nullptr; /// @brief      Keep track of currently bound shader
-    std::set<Sprite*> _sprites[5];   /// @brief      Sprite references - with layers
-    glm::mat4 screen2clip = {};      /// @brief      Screen space to clip space projection matrix
-
 public:
     /// @brief              Draws a rectangle.
     /// @param position     Position
@@ -33,56 +30,93 @@ public:
     /// @param thickness    (optional) How thicc the line is
     /// @param color        (optional) Color of the line
     void DrawLine(const glm::vec2& P1, const glm::vec2& P2, float thickness = 8,
-                  const glm::vec4& color = { 0,0,0.2,1 });
+                  const glm::vec4& color = { 0,0.2,0.5,1 });
 
-    /// @brief      Switch to color shader.
-    void ColorMode();
-    /// @brief      Switch to texture shader.
-    void TextureMode();
-    /// @brief      Set color for the color shader
-    void SetColor(glm::vec4 const& color);
-    /// @brief      Set UV offset for the texture shader
-    void SetUV(float u, float v);
-    /// @brief      Set transformation matrix for currently active shader
-    void SetTransformMat(glm::mat4 const& mat) const;
-    /// @brief      Set opacity for currently active shader
-    void SetOpacity(float opacity) const;
 
-    /// @brief          Add sprite so it can be rendered during update. To be used by Sprite constructor.
+    /// @brief          Add a sprite so it can be rendered during update.
     /// @param sprite   Sprite pointer to add and keep track of
     void AddSprite(Sprite* sprite, int layer);
-    
-    /// @brief          Remove sprite from the list to stop rendering it on update. To be used by Sprite destructor.
+
+    /// @brief          Remove sprite from the list to stop rendering it on update.
     /// @param sprite   Sprite pointer to remove
     void RemoveSprite(Sprite* sprite, int layer);
 
+    /// @brief          Adds a shader to keep track of, so it can be freed 
+    ///                 automatically upon shutdown.
+    /// param name      Name to reference shader with
+    /// param shader    Pointer to the new shader
+    void AddShader(const char* name, Shader* shader);
 
-    /// @brief      Gets the instance of RenderSystem
-    /// @return     RenderSystem pointer: new or existing instance of this system
-    static RenderSystem* getInstance();
+    /// @brief          Returns pointer to a stored shader
+    /// @param name     Name of the shader to return
+    /// @return         Pointer to shader
+    Shader* GetShader(const char* name);
 
-    // Prevent copying
-    RenderSystem(RenderSystem& other) = delete;
-    void operator=(const RenderSystem&) = delete;
+    /// @brief          Sets shader with given name as active, and returns pointer to it.
+    /// @param name     Name of the shader
+    /// @return         Shader pointer if the shader is found, nullptr if it isn't.
+    Shader* SetActiveShader(const char* name);
 
 
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the RenderSystem read methods
+    static ReadMethodMap< RenderSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
+
+
+    //-------------------------------------------------------------------------
+    //          inherited virtuals
+    //-------------------------------------------------------------------------
 private:
-    static RenderSystem* instance;   /// @brief      The singleton instance of RenderSystem
-
-    /// @brief      Private constructor - only used by getInstance()
-    RenderSystem();
 
     // Inherited virtuals
+    // overrides
     virtual void OnInit() override;
     virtual void OnExit() override;
     virtual void OnUpdate(float dt) override;
 
-    // Unused virtuals
-    virtual void OnFixedUpdate() override {}
-    virtual void OnSceneLoad() override {}
-    virtual void OnSceneInit() override {}
-    virtual void OnSceneExit() override {}
-    virtual void Load( rapidjson::Value const& configData ) override {}
+
+    //-------------------------------------------------------------------------
+    //          data
+    //-------------------------------------------------------------------------
+private:
+    std::map<const char*, Shader*> _shaders;/// @brief   Shader storage
+    Shader* _activeShader = nullptr;        /// @brief   Currently bound shader
+    std::set<Sprite*> _sprites[5];          /// @brief   Layered sprite references
+
+
+
+    //-------------------------------------------------------------------------
+    //          helpers
+    //-------------------------------------------------------------------------
+private:
+    /// @brief          Helper method for finding shaders by name
+    /// @param name     Name of the shader as a basic c-style string
+    /// @return         Pointer to the shader, or nullptr if shader isn't found
+    Shader* FindShader(const char* name);
+
+
+
+    //-------------------------------------------------------------------------
+    //          singleton stuff
+    //-------------------------------------------------------------------------
+private:
+    RenderSystem();
+    static RenderSystem* instance;
+
+public:
+    static RenderSystem* GetInstance();
+
+    // Prevent copying
+    RenderSystem(RenderSystem& other) = delete;
+    void operator=(const RenderSystem&) = delete;
 };
 
-__inline RenderSystem* Renderer() { return RenderSystem::getInstance(); }
+/// @brief      Convenient function for getting RenderSystem instance.
+__inline RenderSystem* Renderer() { return RenderSystem::GetInstance(); }

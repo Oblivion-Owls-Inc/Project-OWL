@@ -3,16 +3,16 @@
 /// 
 /// @brief    Shader class declaration/interface.
 #pragma once
-#include <map>
+#include <map>  // to store uniform ID's
 
+
+/// @brief          Compiles a shader program, and stores information for managing it.
 class Shader
 {
-private:
-    unsigned int shaderID;
-    std::map<const char*, unsigned int> uniformIDs;
-
 public:
-    /// @brief                      Constructor: compiles new shader from given vertex+fragment shaders' source code.
+    /// @brief                      Constructor: compiles new shader from given 
+    ///                             vertex+fragment shaders' source code.
+    /// 
     /// @param vertex_filepath      Vertex Shader file
     /// @param fragment_filepath    Fragment Shader file
     Shader(const char* vertex_filepath, const char* fragment_filepath);
@@ -20,13 +20,28 @@ public:
     /// @brief      Cleans up memory (deletes shader program)
     ~Shader();
 
-    /// @brief      Gets the ID of this shader program (its reference on GPU).
+    /// @return     ID of this shader program
     unsigned int GetID();
 
-    /// @brief                 Gets the ID/location of a uniform variable declared inside the shader.
+    /// @brief                 Gets the ID (location) of a uniform variable 
+    ///                        declared inside the shader.
+    /// 
     /// @param uniform_name    Exact name of the declared uniform
+    /// @return                uniform ID
     unsigned int GetUniformID(const char* uniform_name);
 
     /// @brief      Sets this shader program as active.
     void use();
+
+
+
+    //-------------------------------------------------------------------------
+    //          data
+    //-------------------------------------------------------------------------
+private:
+    /// @brief      ID of the shader program
+    unsigned int m_ShaderID = 0;
+
+    /// @brief      local storage of uniform IDs for faster retreival
+    std::map<const char*, unsigned int> m_UniformIDs;
 };
