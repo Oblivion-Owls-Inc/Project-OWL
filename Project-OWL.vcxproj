@@ -174,7 +174,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\BehaviorSystem.cpp" />
     <ClCompile Include="Source\ComponentFactory.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -217,7 +216,6 @@
   <ItemGroup>
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\AnimationAsset.h" />
-    <ClInclude Include="Source\AssetLibrarySystem.h" />
     <ClInclude Include="Source\ComponentFactory.h" />
     <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\MovementAI.h" />

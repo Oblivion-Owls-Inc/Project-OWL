@@ -45,6 +45,9 @@ public:
 	bool getIsDirty() const;
 	void setIsDirty(bool newIsDirty);
 
+	bool getIsDiegetic() const;
+	void setIsDiegetic(bool newIsDiegetic);
+
 private:
 
 	void ReadTranslation( Stream jsonValue );
@@ -64,5 +67,6 @@ private:
     float rotation;
     glm::mat4 matrix;
     bool isDirty;
+	bool isDiegetic;
 };
 
