@@ -25,7 +25,6 @@ public:
 
 public:
     Component* Clone() const override;
-	void Read( const rapidjson::Value& data );
 
 	vec3* GetTranslation();
 	const vec3* GetTranslation() const;
