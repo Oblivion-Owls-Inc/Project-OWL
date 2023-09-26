@@ -5,6 +5,7 @@
       "windowWidth": 800,
       "windowHeight": 600
     },
+    "CameraSystem": {},
     "InputSystem": {},
     "EntitySystem": {},
     "SceneSystem": {

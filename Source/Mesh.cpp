@@ -6,85 +6,94 @@
 #include "glew.h"
 #include "RenderSystem.h"
 
-/// @brief              Constructor: inits data to 0, loads unit square vertices if needed.
+/// @brief              Constructor: loads unit square vertices if needed.
 /// @param init_square  true/false: should unit square be initialized
-Mesh::Mesh(bool init_square, int rows, int columns) : _vaoID(0), _bufferID(0), _vertexCount(0), _uvSize{}
+Mesh::Mesh(bool init_square, int rows, int columns)
 {
     if (!init_square)
         return;
 
-    load_square(rows, columns);
+    LoadSquare(rows, columns);
 }
 
 /// @brief              Constructor: inits data to 0, loads provided vertices to make a mesh.
 /// @param vertices     Vector of vertices to initialize this mesh with
-Mesh::Mesh(std::vector<Vertex> vertices) : _vaoID(0), _bufferID(0), _vertexCount(0), _uvSize{}
-{  
-    load_vertices(vertices);
-}
+Mesh::Mesh(std::vector<Vertex> vertices) {  LoadVertices(vertices); }
 
 
 /// @brief              Cleans up memory
 Mesh::~Mesh()
 {
-    glDeleteBuffers(1, &_bufferID);
-    glDeleteVertexArrays(1, &_vaoID);
+    glDeleteBuffers(1, &m_Buffer);
+    glDeleteVertexArrays(1, &m_VAO);
 }
 
 
 /// @brief              Loads vertices into the buffer.
 /// @param vertices     Vector of vertices to load.
-void Mesh::load_vertices(std::vector<Vertex> vertices)
+void Mesh::LoadVertices(std::vector<Vertex> vertices)
 {
-    if (!_vaoID)
+    if (!m_VAO)
         initVAO();
 
     // Load the vertices into buffer, store their amount
-    glBindBuffer(GL_ARRAY_BUFFER, _bufferID);
+    glBindBuffer(GL_ARRAY_BUFFER, m_Buffer);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0], GL_STATIC_DRAW);
-    _vertexCount = (unsigned int)vertices.size();
+    m_VertexCount = (unsigned int)vertices.size();
 }
 
+
 /// @brief      Loads a list of vertices that make a centered unit square. (rows/columns for spritesheet)
-void Mesh::load_square(int rows, int columns)
+void Mesh::LoadSquare(int rows, int columns)
 {
     float usize = 1.0f / columns;
     float vsize = 1.0f / rows;
-    load_vertices({ {{-0.5,  0.5}, {0.0,   0.0}},
+    LoadVertices({ {{-0.5,  0.5}, {0.0,   0.0}},
                     {{ 0.5,  0.5}, {usize, 0.0}},
                     {{-0.5, -0.5}, {0.0,   vsize}},
                     {{ 0.5, -0.5}, {usize, vsize}} });   // unit square
 
-    _uvSize = { usize, vsize };
+    m_UVsize = { usize, vsize };
 }
 
 
+/// @brief                 Returns the VAO index of this mesh. It can be used for 
+///                        rendering the mesh, or defining additional attributes.
+/// @return                UV size (x = width, y = height)
+unsigned int Mesh::GetVAO() { return m_VAO; }
+
+/// @brief                 Returns the UV size.
+/// @return                UV size (x = width, y = height)
+glm::vec2 Mesh::GetUVsize() { return m_UVsize; }
+
+/// @brief                 Returns the amount of vertices in this mesh.
+/// @return                vertex count
+unsigned int Mesh::GetVertCount() { return m_VertexCount; }
+
+
+
+
+// helper
 /// @brief      Initializes the Vertex Array Object and the buffer tied to this mesh.
 void Mesh::initVAO()
 {
-    // Vertex array object (contains the rest)
-    glGenVertexArrays(1, &_vaoID);
-    glBindVertexArray(_vaoID);
+    // Vertex array object (keeps track of attributes)
+    glGenVertexArrays(1, &m_VAO);
+    glBindVertexArray(m_VAO);
 
-    // Main buffer
-    glGenBuffers(1, &_bufferID);
-    glBindBuffer(GL_ARRAY_BUFFER, _bufferID);
+    // Vertex buffer
+    glGenBuffers(1, &m_Buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, m_Buffer);
 
-    // Define the layout (attributes): vertex position + UV.   (do we need individual colors? nah...)
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);                              // index 0: position (2 floats)
+    // Define the layout. Just 2 attributes.
+    // index 0: position (2 floats)
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+    // index 1: UV (2 floats)
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, UV));
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, UV));    // index 2: UV (2 floats)
     glEnableVertexAttribArray(1);
 
-    // No index buffer, I'll just use trianglestrip. Some other type of mesh class could be different.
+    // No index buffer, I'll just use trianglestrip.
+
+    glBindVertexArray(0);
 }
-
-
-/// @brief      Draws the mesh. Make sure proper shader is selected prior to calling this.
-void Mesh::draw()
-{
-    glBindVertexArray(_vaoID);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, _vertexCount);
-}
-
-glm::vec2 Mesh::get_uvSize() { return _uvSize; }

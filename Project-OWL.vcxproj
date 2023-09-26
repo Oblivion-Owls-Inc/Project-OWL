@@ -176,6 +176,7 @@
   <ItemGroup>
     <ClCompile Include="Source\AidanScene.cpp" />
     <ClCompile Include="Source\BehaviorSystem.cpp" />
+    <ClCompile Include="Source\CameraSystem.cpp" />
     <ClCompile Include="Source\CollisionSystem.cpp" />
     <ClCompile Include="Source\ComponentFactory.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -196,6 +197,7 @@
     <ClCompile Include="Source\LineCollider.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
+    <ClCompile Include="Source\TextSprite.cpp" />
     <ClCompile Include="Source\StubScene.cpp" />
     <ClCompile Include="Source\XinoScene.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
@@ -219,6 +221,7 @@
     <ClCompile Include="Source\CircleCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\CameraSystem.h" />
     <ClInclude Include="Source\AidanScene.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\AnimationAsset.h" />
@@ -232,6 +235,7 @@
     <ClInclude Include="Source\LineCollider.h" />
     <ClInclude Include="Source\RigidBody.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
+    <ClInclude Include="Source\TextSprite.h" />
     <ClInclude Include="Source\StubScene.h" />
     <ClInclude Include="Source\XinoScene.h" />
     <ClInclude Include="Source\AudioPlayer.h" />

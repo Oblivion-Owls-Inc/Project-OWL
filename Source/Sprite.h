@@ -12,6 +12,7 @@
 class Mesh;
 class Texture;
 
+/// @brief      Stores mesh + texture, along with other data needed to draw a basic 2D sprite.
 class Sprite : public Component
 {
     int _rows, _columns;
@@ -34,29 +35,58 @@ public:
     Sprite(Sprite const& other);
 
     /// @brief Destructor: frees texture and mesh... for now. Resource library should take care of it.
+    /// @return             Copy of this component.
+    virtual Component* Clone() const override;
+
+    /// @brief              Destructor: frees texture and mesh... for now. Resource library should take care of it.
     ~Sprite();
 
-    /// @brief Draws the mesh with texture (if one is present), or color.
-    void draw();
+    /// @brief          Draws the mesh with texture (if one is present), or color.
+    virtual void Draw();
 
     /// @brief          Sets current frame of the spritesheet.
     /// @param frame    New frame index
-    void setFrame(int frame);
+    void SetFrame(int frame);
 
     /// @brief          Sets the rendering layer : 0 - 4.  0 is back, 4 is front.
     /// @param layer    Rendering layer to move this sprite to.
-    void setLayer(int layer);
+    void SetLayer(int layer);
 
     /// @brief          Sets the opacity.
     /// param opacity   I'm not explaining this.
-    void setOpacity(float opacity);
+    void SetOpacity(float opacity);
 
-    /// @brief       Number to multiply width by, to get proportional height based on original image
-    /// @return      float: original image's (height/width)
-    float getHeightMultiplier() const;
+    /// @brief          Number to multiply width by, to get proportional height
+    ///                 based on original image
+    /// @return         float: original image's height divided by width
+    float GetHeightMultiplier() const;
 
-    // Inherited via Component
-    virtual Component* Clone() const override;
+
+    //-------------------------------------------------------------------------
+    //          data
+    //-------------------------------------------------------------------------
+protected:
+    int m_Rows, m_Columns;
+    int m_Layer;
+    int m_Frame = 0;
+    float m_HeightMult = 1.0f;
+    float m_Opacity = 1.0f;
+
+    Mesh* m_Mesh = nullptr;
+    Texture* m_Texture = nullptr;
+    glm::vec4 m_Color;
+
+
+    //-------------------------------------------------------------------------
+    //          helpers
+    //-------------------------------------------------------------------------
+
+    /// @brief      Calculates UV offset based on current frame  
+    glm::vec2 calcUVoffset();
+
+    /// @brief      Pre-calculates height multiplier based on texture dimensions
+    void calcHeightMult();
+
 
 private: // reading
 

@@ -30,6 +30,7 @@
 #include "BehaviorSystem.h"
 #include "RigidBody.h"
 #include "MovementAI.h"
+#include "CameraSystem.h"
 
 // TODO: move this out of the engine into its own System
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -99,6 +100,7 @@ System* Engine::AddSystem()
 /// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
 std::map< std::string, System* (Engine::*)()> Engine::addSystemMethods = {
     { "PlatformSystem", &AddSystem< PlatformSystem >    },
+    { "CameraSystem",   &AddSystem< CameraSystem >      },  
     { "InputSystem",    &AddSystem< InputSystem >       },
     { "SceneSystem",    &AddSystem< SceneSystem >       },
     { "RenderSystem",   &AddSystem< RenderSystem >      },
