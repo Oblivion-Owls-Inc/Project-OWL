@@ -42,9 +42,6 @@ public:
 
 	void SetMatrix(glm::mat4 newMatrix);
 
-	bool GetIsDirty() const;
-	void SetIsDirty(bool newIsDirty);
-
 private:
 
 	void ReadTranslation( Stream jsonValue );

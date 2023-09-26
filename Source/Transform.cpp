@@ -55,7 +55,7 @@ const glm::vec3* Transform::GetTranslation() const
 void Transform::SetTranslation(glm::vec3 newTranslation)
 {
 	translation = newTranslation;
-	SetIsDirty(true);
+	isDirty = true;
 }
 
 float Transform::GetRotation() const
@@ -66,7 +66,7 @@ float Transform::GetRotation() const
 void Transform::SetRotation(float newRotation)
 {
 	rotation = newRotation;
-	SetIsDirty(true);
+	isDirty = true;
 }
 
 glm::vec3* Transform::GetScale()
@@ -82,7 +82,7 @@ const glm::vec3* Transform::GetScale() const
 void Transform::SetScale(glm::vec3 newScale)
 {
 	scale = newScale;
-	SetIsDirty(true);
+	isDirty = true;
 }
 
 glm::mat4* Transform::GetMatrix()
@@ -109,16 +109,6 @@ glm::mat4* Transform::GetMatrix()
 void Transform::SetMatrix(glm::mat4 newMatrix)
 {
 	matrix = newMatrix;
-}
-
-bool Transform::GetIsDirty() const
-{
-	return isDirty;
-}
-
-void Transform::SetIsDirty(bool newIsDirty)
-{
-	isDirty = newIsDirty;
 }
 
 
