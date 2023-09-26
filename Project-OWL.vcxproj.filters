@@ -245,9 +245,6 @@
     <ClCompile Include="Source\BehaviorSystem.cpp">
       <Filter>Engine\Systems\BehaviorSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CollisionSystem.cpp">
-      <Filter>Engine\Systems\CollisonSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClCompile>
@@ -262,6 +259,12 @@
     </ClCompile>
     <ClCompile Include="Source\StubScene.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AidanScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollisionSystem.cpp">
+      <Filter>Engine\Systems\DebugSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -419,6 +422,9 @@
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Source\StubScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AidanScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

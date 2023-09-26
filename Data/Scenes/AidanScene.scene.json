@@ -13,8 +13,18 @@
                     "rows": 1,
                     "color": [ 0, 0, 0, 1 ],
                     "layer": 0,
-                    "name": "Temp_Assets/Wall.png",
-                    "isTextured":  true
+                    "name": "Temp_Assets/Balls/Ball.png",
+                    "isTextured": true
+                },
+                "LineCollider": {
+                    "numSegments": 2,
+                    "lineVectors": [
+                        [
+                            [ 0, 0 ],
+                            [ 800, 0 ]
+                        ]
+
+                    ]
                 },
                 "Transform": {
                     "translation": [ 400, 500, 0 ],

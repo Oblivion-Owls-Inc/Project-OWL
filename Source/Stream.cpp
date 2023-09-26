@@ -49,7 +49,7 @@ rapidjson::Document Stream::ReadFromJSON(const std::string& filepath)
     {
         std::cerr << "ERROR parsing JSON: " << doc.GetParseError() << std::endl;
         file.close();
-        throw;
+        throw (std::runtime_error("Parse Error"));
     }
     file.close();
     // If no parse errors, then the file was successfully opened.

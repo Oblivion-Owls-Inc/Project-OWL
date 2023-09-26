@@ -106,7 +106,7 @@ std::map< std::string, System* (Engine::*)()> Engine::addSystemMethods = {
     { "AudioSystem",    &AddSystem< AudioSystem >       },
     { "EntitySystem",   &AddSystem< EntitySystem >      },
     { "SandboxSystem",  &AddSystem< SandboxSystem >     },
-    { "XinoScene",      &AddSystem< XinoScene >         },
+    { "XinoScene",      &AddSystem< XinoScene >         },  
 	{ "CollisionSystem",&AddSystem< CollisionSystem >   },
     { "BehaviorSystem< RigidBody >", &AddSystem< BehaviorSystem < RigidBody > >    },
     { "BehaviorSystem< MovementAI >", &AddSystem< BehaviorSystem < MovementAI > >    },

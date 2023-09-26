@@ -6,11 +6,11 @@
       "windowHeight": 600
     },
     "InputSystem": {},
+    "EntitySystem": {},
     "SceneSystem": {
       "baseScenePath": "Data/Scenes/",
-      "nextSceneName": "XinoScene"
+      "nextSceneName": "AidanScene"
     },
-    "XinoScene": {},
     "RenderSystem": {},
     "AudioSystem": {},
     "BehaviorSystem< RigidBody >": {},

@@ -46,4 +46,10 @@ void Stream::Read(T* object)
         // Read the data from the json value into the object. 
         (object->*readMethod)(Stream(item.value));
     }
+
+    auto afterLoad = readMethods.find("AFTERLOAD");
+    if (afterLoad != readMethods.end())
+    {
+        (object->*(afterLoad->second))( Stream( rapidjson::Value() ) );
+    }
 }

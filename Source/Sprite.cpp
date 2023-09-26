@@ -23,51 +23,6 @@ Sprite::Sprite(Sprite const& other) : Component(typeid(Sprite))
                     // (to avoid double deletion of resources.)
 }
 
-
-/// @brief              Textured sprite constructor. Accepts image file, and (optional) rows and 
-///                     columns if it's a spritesheet. Also adds this sprite's pointer to RenderSystem.
-/// @param image_file   Path to the image file to load (single image or spritesheet)
-/// @param columns      (optional) Columns of the spritesheet
-/// @param rows         (optional) Rows of the spritesheet
-/// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
-/*Sprite::Sprite(const char* image_file, int columns, int rows, int layer) :
-        Component(typeid(Sprite)), 
-        _rows(rows), _columns(columns),
-        _color(0,0,0,1), _layer(std::max(0, std::min(layer, 4)))
-{
-    Renderer()->AddSprite(this, layer);
-
-    if (image_file)
-    {
-        _mesh = new Mesh(true, rows, columns);    // TODO: obtain it from mesh library
-        _texture = new Texture(image_file);
-
-        // calculate height multiplier
-        glm::vec2 size = _texture->getImageDimensions();
-        glm::vec2 uvsize = _mesh->get_uvSize();
-        _heightMult = (size.y / size.x) * (uvsize.y / uvsize.x);
-    }
-
-}*/
-
-
-/// @brief              Plain square sprite constructor. Accepts boolean, which needs to be true for
-///                     the square to be generated, or false to create uninitialized sprite. Also adds 
-///                     this sprite's pointer to RenderSystem.
-/// @param init_square  true/false - initialize the square or nah?
-/// @param color        (optional) Color to initialize the square to
-/// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
-/*Sprite::Sprite(bool init_square, glm::vec4 color, int layer) :
-        Component(typeid(Sprite)),
-        _rows(1), _columns(1),
-        _color(color), _layer(std::max(0, std::min(layer, 4)))
-{
-    Renderer()->AddSprite(this, _layer);
-
-    if (init_square)
-        _mesh = new Mesh(true, 1, 1);
-}*/
-
 /// @brief Default sprite component constructor.
 Sprite::Sprite()
     : Component(typeid(Sprite))
@@ -159,7 +114,7 @@ void Sprite::draw()
 //-----------------------------------------------------------------------------
 
 /// @brief Takes all the read in data and makes a sprite.
-void Sprite::ReadSprite()
+void Sprite::ReadSprite( Stream )
 {
     Renderer()->AddSprite(this, _layer);
 
@@ -221,7 +176,6 @@ void Sprite::ReadColumns( Stream stream )
 void Sprite::ReadIsTextured(Stream stream)
 {
     m_IsTextured = stream.Read<bool>();
-    ReadSprite();
 }
 
 /// @brief the map of read methods for this Component
@@ -232,6 +186,7 @@ ReadMethodMap< Sprite > const Sprite::readMethods = {
     { "color"      , &ReadColor      },
     { "name"       , &ReadName       },
     { "isTextured" , &ReadIsTextured },
+    { "AFTERLOAD"  , &ReadSprite     }
 };
 
 /// @brief gets the map of read methods for this Component
