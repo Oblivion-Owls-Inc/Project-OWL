@@ -2,7 +2,7 @@
  * \file   Transform.h
  * \brief  Transform
  * 
- * \author thatg
+ * \author Tyler Birdsall (tyler.birdsall@digipen.edu)
  * \date   September 2023
  *********************************************************************/
 
