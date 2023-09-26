@@ -164,7 +164,7 @@
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    ReadMethodMap< Component > const& AudioPlayer::GetReadMethods()
+    ReadMethodMap< Component > const& AudioPlayer::GetReadMethods() const
     {
         return (ReadMethodMap< Component > const&)readMethods;
     }

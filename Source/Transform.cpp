@@ -138,13 +138,13 @@ void Transform::ReadScale( Stream jsonValue )
 	isDirty = true;
 }
 
-std::map< std::string, ReadMethod< Transform > > Transform::readMethods = {
+ReadMethodMap< Transform > Transform::readMethods = {
 	{ "Translation", &ReadTranslation },
 	{ "Rotation", &ReadRotation },
 	{ "Scale", &ReadScale }
 };
 
-std::map< std::string, ReadMethod< Component > > const& Transform::GetReadMethods()
+ReadMethodMap< Component > const& Transform::GetReadMethods() const
 {
 	return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
 }

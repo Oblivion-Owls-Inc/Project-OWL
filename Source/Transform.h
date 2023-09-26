@@ -51,10 +51,9 @@ private:
 	void ReadRotation( Stream jsonValue );
 	void ReadScale( Stream jsonValue );
 
-	static std::map< std::string, ReadMethod< Transform > > readMethods;
+	static ReadMethodMap< Transform > readMethods;
 
-	virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods();
-	
+	virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 
 protected:
 
