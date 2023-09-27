@@ -117,6 +117,9 @@
     <Filter Include="Engine\Systems\AssetLibrarySystem">
       <UniqueIdentifier>{e11fbac1-b6ee-40d9-a175-8718ea4a895d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data\Scenes">
+      <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -266,6 +269,21 @@
     <ClCompile Include="Source\CollisionSystem.cpp">
       <Filter>Engine\Systems\DebugSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CameraSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ComponentFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TextSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\XinoScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stream.t.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -406,6 +424,18 @@
     <ClInclude Include="Source\Behavior.h">
       <Filter>Engine\Entity\Component\Behavior</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CameraSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ComponentFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TextSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\XinoScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Source\XinoScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -437,6 +467,12 @@
     </None>
     <None Include="Data\Scenes\AidanScene.scene.json">
       <Filter>Data</Filter>
+    </None>
+    <None Include="Data\Scenes\XinoScene.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\Sandbox.scene.json">
+      <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>
 </Project>

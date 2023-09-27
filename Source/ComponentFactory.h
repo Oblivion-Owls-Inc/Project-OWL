@@ -33,10 +33,10 @@ public:
     ~ComponentFactory() = delete;
 
 public:
-    // Creates a specified component.
-    static Component* Create(std::string key);
-    // Gets the matching ID of a specified component.
-    static std::type_index getTypeId( std::string typeName );
+
+    static Component* Create( std::string key );
+
+    static std::type_index GetTypeId( std::string typeName );
 
 private:
 

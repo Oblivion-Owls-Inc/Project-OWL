@@ -13,6 +13,19 @@
 //-----------------------------------------------------------------------------
 
     
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief map of the ExampleSystem read methods
+    ReadMethodMap< ExampleSystem > const ExampleSystem::s_ReadMethods = {};
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< System > const& ExampleSystem::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
+    }
 
 //-----------------------------------------------------------------------------
 // singleton stuff
@@ -22,17 +35,17 @@
     ExampleSystem::ExampleSystem() {}
 
     /// @brief The singleton instance of ExampleSystem
-    ExampleSystem * ExampleSystem::instance = nullptr;
+    ExampleSystem * ExampleSystem::s_Instance = nullptr;
 
     /// @brief gets the instance of ExampleSystem
     /// @return the instance of the ExampleSystem
-    ExampleSystem * ExampleSystem::getInstance()
+    ExampleSystem * ExampleSystem::GetInstance()
     {
-        if ( instance == nullptr )
+        if ( s_Instance == nullptr )
         {
-            instance = new ExampleSystem();
+            s_Instance = new ExampleSystem();
         }
-        return instance;
+        return s_Instance;
     }
 
 //-----------------------------------------------------------------------------

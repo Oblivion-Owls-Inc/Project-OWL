@@ -48,31 +48,31 @@ public:
 
     /// @brief Get the acceleration vector of the rigid body.
     /// @return A pointer to the acceleration vector.
-    vec3* getAcceleration();
+    vec3* GetAcceleration();
 
     /// @brief Get the velocity vector of the rigid body.
     /// @return A pointer to the velocity vector.
-    vec3* getVelocity();
+    vec3* GetVelocity();
 
     /// @brief Get the old translation vector of the rigid body.
     /// @return A pointer to the old translation vector.
-    vec3* getOldTranslation();
+    vec3* GetOldTranslation();
 
     /// @brief Get the rotational velocity of the rigid body.
     /// @return The rotational velocity.
-    float getRotationalVelocity();
+    float GetRotationalVelocity();
 
     /// @brief Set the acceleration vector of the rigid body.
     /// @param Acceleration A pointer to the new acceleration vector.
-    void setAcceleration(const vec3* Acceleration);
+    void SetAcceleration(const vec3* Acceleration);
 
     /// @brief Set the velocity vector of the rigid body.
     /// @param Velocity A pointer to the new velocity vector.
-    void setVelocity(const vec3* Velocity);
+    void SetVelocity(const vec3* Velocity);
 
     /// @brief Set the old translation vector of the rigid body.
     /// @param OldTranslation A pointer to the old translation vector.
-    void setOldTranslation(const vec3* OldTranslation);
+    void SetOldTranslation(const vec3* OldTranslation);
 
     /// @brief Set the rotational velocity of the rigid body.
     /// @param rotational_velocity The new rotational velocity.
@@ -99,10 +99,9 @@ private: // reading
     /// @brief the map of read methods for RigidBodys
     static ReadMethodMap< RigidBody > readMethods;
 
-    /// @brief gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
-    virtual ReadMethodMap< Component > const& getReadMethods() override;
-
+        /// @brief gets the map of read methods for this Component
+        /// @return the map of read methods for this Component
+        virtual ReadMethodMap< Component > const& GetReadMethods() override;
 private:
     /// @brief The velocity vector of the rigid body.
     vec3 _velocity;

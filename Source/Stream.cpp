@@ -11,9 +11,9 @@
 //-----------------------------------------------------------------------------
 #include "Stream.h"
 
-#include <iostream> // std::ifstream, is_open
-#include <map>      // std::map
-#include "istreamwrapper.h"
+#include <iostream>
+#include <map>
+#include <rapidjson/istreamwrapper.h>
 
 //-----------------------------------------------------------------------------
 // public static methods
@@ -76,21 +76,37 @@ Stream::Stream( rapidjson::Value const& value_ ) :
 // public accessors
 //-----------------------------------------------------------------------------
 
-/// @brief  Gets the rapidjson value as an object
-/// @return The rapidjson value
-rapidjson::GenericObject<true, rapidjson::Value> const& Stream::getObject() const
+#pragma warning ( push )
+#pragma warning ( disable: 4172 )
+/// @brief gets the rapidjson value as an object
+/// @return the rapidjson value
+rapidjson::GenericObject< true, rapidjson::Value > const& Stream::GetObject() const
 {
-    assert(value.IsObject());
+    if ( value.IsObject() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Object type"
+        );
+    }
     return value.GetObject();
 }
+#pragma warning ( pop )
 
-/// @brief  Gets the rapidjson value as an object
-/// @return The rapidjson value
-rapidjson::GenericArray<true, rapidjson::Value> const& Stream::getArray() const
+#pragma warning ( push )
+#pragma warning ( disable: 4172 )
+/// @brief gets the rapidjson value as an object
+/// @return the rapidjson value
+rapidjson::GenericArray< true, rapidjson::Value > const& Stream::GetArray() const
 {
-    assert(value.IsArray());
+    if ( value.IsArray() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Array type"
+        );
+    }
     return value.GetArray();
 }
+#pragma warning ( pop )
 
 //-----------------------------------------------------------------------------
 // Public Templated Reads
@@ -102,7 +118,12 @@ rapidjson::GenericArray<true, rapidjson::Value> const& Stream::getArray() const
 template <>
 int Stream::Read<int>() const
 {
-    assert(value.IsInt());
+    if ( value.IsNumber() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Int type"
+        );
+    }
     return value.GetInt();
 }
 
@@ -132,7 +153,12 @@ unsigned int Stream::Read<unsigned int>() const
 template <>
 float Stream::Read<float>() const
 {
-    assert(value.IsNumber());
+    if ( value.IsNumber() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Float type"
+        );
+    }
     return value.GetFloat();
 }
 
@@ -142,7 +168,12 @@ float Stream::Read<float>() const
 template <>
 std::string Stream::Read<std::string>() const
 {
-    assert(value.IsString());
+    if ( value.IsString() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read String type"
+        );
+    }
     return value.GetString();
 }
 
@@ -152,7 +183,13 @@ std::string Stream::Read<std::string>() const
 template <>
 glm::vec3 Stream::Read<glm::vec3>() const
 {
-    assert(value.IsArray());
+    if ( value.IsArray() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Vec3 type"
+        );
+    }
+
     glm::vec3 vector = {};
     for (int i = 0; i < 3; i++)
     {

@@ -38,10 +38,6 @@ private:
     /// @brief      Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
-    /// @brief Loads the config data of this System
-    /// @param configData the JSON object with all of the configData for this System
-    virtual void Load(rapidjson::Value const& configData) override {}
-
     /// @brief      Constructs the BehaviorSystem 
     BehaviorSystem() = default;
 
@@ -57,8 +53,19 @@ public:
 
     /// @brief      Gets the instance of BehaviorSystem
     /// @return     BehaviorSystem pointer: new or existing instance of this system
-    static BehaviorSystem< BehaviorType >* getInstance();
-    std::vector< BehaviorType* >& getBehaviors() const;
+    static BehaviorSystem< BehaviorType >* GetInstance();
+    std::vector< BehaviorType* >& GetBehaviors() const;
+
+//-----------------------------------------------------------------------------
+private: // reading
+//----------------------------------------------------------------------------- 
+
+    /// @brief the read methods of a BehaviorSystem
+    static ReadMethodMap< BehaviorSystem< BehaviorType > > const s_ReadMethods;
+
+    /// @brief gets the read methods for this System
+    /// @return the read methods for this System
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
 private:
     std::vector< Behavior* > behaviorsList;

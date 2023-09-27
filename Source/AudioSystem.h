@@ -1,10 +1,10 @@
-/// @file AudioSystem.h
-/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief System that implements FMOD and allows the loading and playing of audio
-/// @version 0.1
-/// @date 2023-09-12
+/// @file       AudioSystem.h
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      System that implements FMOD and allows the loading and playing of audio
+/// @version    0.1
+/// @date       2023-09-12
 /// 
-/// @copyright Copyright (c) 2023
+/// @copyright  Copyright (c) 2023
 
 #pragma once
 
@@ -14,29 +14,65 @@
 /// @brief Example System meant to be copy-pasted when creating new Systems
 class AudioSystem : public System
 {
-public: // methods
 
-    /// @brief gets the internal FMOD::System
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
+    /// @brief  gets the internal FMOD::System
     /// @return the FMOD::System
-    FMOD::System* getFMOD();
+    FMOD::System* GetFMOD();
 
+//-----------------------------------------------------------------------------
+private: // virtual override methods
+//-----------------------------------------------------------------------------
+
+    /// @brief Gets called once when this System is added to the Engine
+    virtual void OnInit() override;
+
+    /// @brief      Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+    /// @param dt   the elapsed time in seconds since the previous frame
+    virtual void OnUpdate( float dt ) override;
+
+    /// @brief Gets called once before the Engine closes
+    virtual void OnExit() override;
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief          reads the max channels
+    /// @param stream   the data to read from
+    void readMaxChannels( Stream stream );
+
+    /// @brief map of the AudioSystem read methods
+    static ReadMethodMap< AudioSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
+    
+//-----------------------------------------------------------------------------
 private: // member variables
+//-----------------------------------------------------------------------------
 
     /// @brief The FMOD system
-    FMOD::System* system;
+    FMOD::System* m_System;
 
     /// @brief The maximum number of FMOD audio channels
-    int maxChannels;
+    int m_MaxChannels;
 
+//-----------------------------------------------------------------------------
 private: // static methods
+//-----------------------------------------------------------------------------
 
-    /// @brief FMOD callback function for error handling
-    /// @param system handle to the FMOD system
-    /// @param type the type of callback
+    /// @brief              FMOD callback function for error handling
+    /// @param system       handle to the FMOD system
+    /// @param type         the type of callback
     /// @param commandData1 first callback parameter, dependent on callback type
     /// @param commandData2 second callback parameter, dependent on callback type
-    /// @param userData user data associated with the FMOD system
-    static FMOD_RESULT FMODCallback(
+    /// @param userData     user data associated with the FMOD system
+    static FMOD_RESULT fmodCallback(
         FMOD_SYSTEM* system,
         FMOD_SYSTEM_CALLBACK_TYPE type,
         void* commandData1,
@@ -44,55 +80,26 @@ private: // static methods
         void* userData
     );
 
-private: // virtual methods
-
-    /// @brief Gets called once when this System is added to the Engine
-    virtual void OnInit() override;
-
-    /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-    /// @param dt the elapsed time in seconds since the previous frame
-    virtual void OnUpdate( float dt ) override;
-
-    /// @brief Gets called once before the Engine closes
-    virtual void OnExit() override;
-
-private: // unused virtual methods
-
-    /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
-    virtual void OnFixedUpdate() override {}
-
-    /// @brief Gets called whenever a new Scene is loaded
-    virtual void OnSceneLoad() override {}
-
-
-    /// @brief Gets called whenever a scene is initialized
-    virtual void OnSceneInit() override {}
-
-
-    /// @brief Gets called whenever a scene is exited
-    virtual void OnSceneExit() override {}
-
-
-    /// @brief Loads the config data of this System
-    /// @param configData the JSON object with all of the configData for this System
-    virtual void Load( rapidjson::Value const& configData ) override {}
-
-private: // constructor/singleton stuff
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
 
     /// @brief Constructs the AudioSystem
     AudioSystem();
 
     /// @brief The singleton instance of AudioSystem
-    static AudioSystem * instance;
+    static AudioSystem * s_Instance;
 
+//-----------------------------------------------------------------------------
 public: // singleton stuff
+//-----------------------------------------------------------------------------
 
-    /// @brief gets the instance of AudioSystem
+    /// @brief  gets the instance of AudioSystem
     /// @return the instance of the AudioSystem
-    static AudioSystem * getInstance();
+    static AudioSystem * GetInstance();
 
     // Prevent copying
-    AudioSystem(AudioSystem& other) = delete;
-    void operator=(const AudioSystem&) = delete;
+    AudioSystem( AudioSystem& other ) = delete;
+    void operator=( const AudioSystem& ) = delete;
 };
 

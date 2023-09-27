@@ -19,7 +19,7 @@ class CollisionSystem : public System
 
         /// @brief gets the instance of CollisionSystem
         /// @return the instance of the CollisionSystem
-        static CollisionSystem* getInstance();
+        static CollisionSystem* GetInstance();
 
         // Prevent copying
         CollisionSystem(CollisionSystem& other) = delete;
@@ -63,10 +63,16 @@ class CollisionSystem : public System
         /// @brief Gets called whenever a scene is exited
         virtual void OnSceneExit() override {}
 
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
 
-        /// @brief Loads the config data of this System
-        /// @param configData the JSON object with all of the configData for this System
-        virtual void Load(rapidjson::Value const& configData) override {}
+    /// @brief map of the CollisionSystem read methods
+    static ReadMethodMap< CollisionSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
     private: // singleton stuff
 

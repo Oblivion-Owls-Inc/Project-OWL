@@ -11,7 +11,7 @@ RigidBody::RigidBody() :
 	_rotationalVelocity(0), 
 	Behavior(typeid(RigidBody))
 {
-	BehaviorSystem<RigidBody>::getInstance()->AddBehavior(this);
+	BehaviorSystem<RigidBody>::GetInstance()->AddBehavior(this);
 }
 
 RigidBody::RigidBody(const RigidBody& other) : Behavior(typeid(RigidBody))
@@ -24,7 +24,7 @@ RigidBody::RigidBody(const RigidBody& other) : Behavior(typeid(RigidBody))
 
 RigidBody::~RigidBody()
 {
-	BehaviorSystem<RigidBody>::getInstance()->RemoveBehavior(this);
+	BehaviorSystem<RigidBody>::GetInstance()->RemoveBehavior(this);
 }
 
 void RigidBody::OnUpdate(float dt)
@@ -32,8 +32,8 @@ void RigidBody::OnUpdate(float dt)
 	vec3 temptranslation(0);
 	Transform* transform = (Transform *)Parent()->HasComponent(typeid(Transform));
 
-	_oldTranslation = *transform->getTranslation();
-	temptranslation = *transform->getTranslation() + (_velocity);
+	_oldTranslation = *transform->GetTranslation();
+	temptranslation = *transform->GetTranslation() + (_velocity);
 
 	ImGui::Begin("RigidBody Editor");
 	ImGui::DragInt("Gravity Force", &GravityForce, 1, 0, 100);
@@ -41,11 +41,11 @@ void RigidBody::OnUpdate(float dt)
 
 	temptranslation.y = temptranslation.y + (_acceleration.y * dt * GravityForce);
 
-	float rotation = transform->getRotation();
+	float rotation = transform->GetRotation();
 	rotation += _rotationalVelocity;
 
-	transform->setRotation(rotation);
-	transform->setTranslation(temptranslation);
+	transform->SetRotation(rotation);
+	transform->SetTranslation(temptranslation);
 
 }
 
@@ -54,37 +54,37 @@ Component* RigidBody::Clone() const
 	return (Component*) new RigidBody(*this);
 }
 
-vec3* RigidBody::getAcceleration()
+vec3* RigidBody::GetAcceleration()
 {
 	return (vec3*) &_acceleration;
 }
 
-vec3* RigidBody::getVelocity()
+vec3* RigidBody::GetVelocity()
 {
 	return (vec3*)&_velocity;
 }
 
-vec3* RigidBody::getOldTranslation()
+vec3* RigidBody::GetOldTranslation()
 {
 	return (vec3*)&_oldTranslation;
 }
 
-float RigidBody::getRotationalVelocity()
+float RigidBody::GetRotationalVelocity()
 {
 	return _rotationalVelocity;
 }
 
-void RigidBody::setAcceleration(const vec3* Acceleration)
+void RigidBody::SetAcceleration(const vec3* Acceleration)
 {
 	Acceleration = &_acceleration;
 }
 
-void RigidBody::setVelocity(const vec3* Velocity)
+void RigidBody::SetVelocity(const vec3* Velocity)
 {
 	Velocity = &_velocity;
 }
 
-void RigidBody::setOldTranslation(const vec3* OldTranslation)
+void RigidBody::SetOldTranslation(const vec3* OldTranslation)
 {
 	OldTranslation = &_oldTranslation;
 }
@@ -97,7 +97,7 @@ void RigidBody::SetRotationalVelocity(float rotational_velocity)
 
 void RigidBody::OnCollisionEvent()
 {
-	DebugConsole output(*DebugSystem::getInstance());
+	DebugConsole output(*DebugSystem::GetInstance());
 	output << Parent()->GetName().c_str() << ":Collision Detected in RigidBody" << "\n";
 }
 
@@ -135,7 +135,7 @@ ReadMethodMap< RigidBody > RigidBody::readMethods = {
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component
-ReadMethodMap< Component > const& RigidBody::getReadMethods()
+ReadMethodMap< Component > const& RigidBody::GetReadMethods()
 {
 	return (ReadMethodMap< Component > const&)readMethods;
 }

@@ -30,19 +30,16 @@ private: // virtual override methods
     /// @brief Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
-private: // unused virtual overrides
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
 
-    /// @brief Gets called once when this System is added to the Engine
-    virtual void OnInit() override {}
+    /// @brief map of the XinoScene read methods
+    static ReadMethodMap< XinoScene > const s_ReadMethods;
 
-
-    /// @brief Gets called once before the Engine closes
-    virtual void OnExit() override {}
-
-
-    /// @brief Loads the config data of this System
-    /// @param configData the JSON object with all of the configData for this System
-    virtual void Load( rapidjson::Value const& configData ) override {}
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
 private: // singleton stuff
 
@@ -57,7 +54,7 @@ public: // singleton stuff
 
     /// @brief gets the instance of XinoScene
     /// @return the instance of the XinoScene
-    static XinoScene * getInstance();
+    static XinoScene * GetInstance();
 
     // Prevent copying
     XinoScene(XinoScene& other) = delete;

@@ -1,24 +1,24 @@
 {
-    "fixedFrameDuration": 0.05,
-  "systems": {
-    "PlatformSystem": {
-      "windowWidth": 800,
-      "windowHeight": 600
-    },
-    "CameraSystem": {},
-    "InputSystem": {},
-    "EntitySystem": {},
-    "SceneSystem": {
-      "baseScenePath": "Data/Scenes/",
-      "nextSceneName": "AidanScene"
-    },
-    "RenderSystem": {},
-    "AudioSystem": {},
-    "BehaviorSystem< RigidBody >": {},
-    "BehaviorSystem< MovementAI >": {},
-    "CollisionSystem": {},
-    "DebugSystem": {
-      "showFpsWindow": true
+    "FixedFrameDuration": 0.05,
+    "Systems": {
+        "PlatformSystem": {
+            "WindowWidth": 800,
+            "WindowHeight": 600
+        },
+        "CameraSystem": {},
+        "InputSystem": {},
+        "SceneSystem": {
+            "BaseScenePath": "Data/Scenes/",
+            "NextSceneName": "XinoScene"
+        },
+        "XinoScene": {},
+        "RenderSystem": {},
+        "AudioSystem": {},
+        "BehaviorSystem<RigidBody>": {},
+        "BehaviorSystem<MovementAI>": {},
+        "CollisionSystem": {},
+        "DebugSystem": {
+            "ShowFpsWindow": true
+        }
     }
-  }
 }

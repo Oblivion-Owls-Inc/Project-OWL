@@ -1,10 +1,10 @@
-/// @file Sound.cpp
-/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief Wrapper class for FMOD sounds
-/// @version 0.1
-/// @date 2023-09-13
+/// @file       Sound.cpp
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      Wrapper class for FMOD sounds
+/// @version    0.1
+/// @date       2023-09-13
 /// 
-/// @copyright Copyright (c) 2023
+/// @copyright  Copyright (c) 2023
 
 #include "Sound.h"
 #include "AudioSystem.h"
@@ -13,12 +13,12 @@
 // constructor / destructor
 //-----------------------------------------------------------------------------
 
-    /// @brief Constructs a new Sound
+    /// @brief          Constructs a new Sound
     /// @param filepath the filepath of the sound to load
-    /// @param looping whether or not the sound should loop
+    /// @param looping  whether or not the sound should loop
     Sound::Sound( char const* filepath, bool looping )
     {
-        AudioSystem::getInstance()->getFMOD()->createSound(
+        AudioSystem::GetInstance()->GetFMOD()->createSound(
             filepath,
             looping ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
             nullptr,
@@ -47,7 +47,7 @@
     ) const
     {
         FMOD::Channel* channel;
-        AudioSystem::getInstance()->getFMOD()->playSound(
+        AudioSystem::GetInstance()->GetFMOD()->playSound(
             sound,
             group,
             true,
@@ -65,7 +65,7 @@
 
     /// @brief gets the length of this sound
     /// @return the length of this sound in seconds
-    float Sound::getLength() const
+    float Sound::GetLength() const
     {
         unsigned int length;
         sound->getLength( &length, FMOD_TIMEUNIT_MS );

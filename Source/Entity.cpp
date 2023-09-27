@@ -150,8 +150,7 @@ void Entity::ReadName(Stream stream)
 /// @param stream The json object to read from.
 void Entity::ReadComponents(Stream stream)
 {
-	// Traverse the json document.
-	for (auto& componentData : stream.getObject())
+	for ( auto& componentData : stream.GetObject() )
 	{
 		// Create the component found in the document.
 		Component* component = ComponentFactory::Create(componentData.name.GetString());

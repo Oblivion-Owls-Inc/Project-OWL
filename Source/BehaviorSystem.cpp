@@ -67,9 +67,9 @@ void BehaviorSystem<BehaviorType>::RemoveBehavior(BehaviorType* behavior)
 	behaviorsList.erase(std::remove(behaviorsList.begin(), behaviorsList.end(), behavior), behaviorsList.end());
 }
 
-// Define the getInstance function for the templated BehaviorSystem
+// Define the GetInstance function for the templated BehaviorSystem
 template < typename BehaviorType >
-BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::getInstance()
+BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::GetInstance()
 {
 	if (instance == nullptr)
 	{
@@ -79,8 +79,25 @@ BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::getInstance()
 }
 
 template<typename BehaviorType>
-std::vector<BehaviorType*>& BehaviorSystem<BehaviorType>::getBehaviors() const
+std::vector<BehaviorType*>& BehaviorSystem<BehaviorType>::GetBehaviors() const
 {
     return (std::vector<BehaviorType*>&)behaviorsList;
 }
 
+//-----------------------------------------------------------------------------
+// private: reading
+//----------------------------------------------------------------------------- 
+
+    /// @brief                  the read methods of a BehaviorSystem
+    /// @tparam BehaviorType    the type of behavior this BehaviorSystem manages
+    template<typename BehaviorType>
+    ReadMethodMap< BehaviorSystem< BehaviorType > > const BehaviorSystem< BehaviorType >::s_ReadMethods = {};
+
+    /// @brief                  gets the read methods for this System
+    /// @tparam BehaviorType    the type of behavior this BehaviorSystem manages
+    /// @return                 the read methods for this System
+    template<typename BehaviorType>
+    ReadMethodMap< System > const& BehaviorSystem< BehaviorType >::GetReadMethods() const
+    {
+        return (ReadMethodMap< System > const&)s_ReadMethods;
+    }

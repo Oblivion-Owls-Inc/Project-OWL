@@ -14,11 +14,11 @@
 //------------------------------------------------------------------------------
 // Include Files:
 //------------------------------------------------------------------------------
-#include "document.h"  // rapidjson::Document, Parse, HasParseError, GetParseError
+#include <rapidjson/document.h>  // rapidjson::Document, Parse, HasParseError, GetParseError
 #include <string>      // std::string
 #include <fstream>     // std::ifstream
-#include "glm/glm.hpp" // glm::vec3
-#include <map>		   // std::map
+#include <glm/glm.hpp> // glm::vec3
+#include <map>
 
 //------------------------------------------------------------------------------
 // Class: Stream

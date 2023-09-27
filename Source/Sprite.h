@@ -122,5 +122,5 @@ private: // reading
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap< Component > const& getReadMethods() override;
+    virtual ReadMethodMap< Component > const& GetReadMethods() override;
 };

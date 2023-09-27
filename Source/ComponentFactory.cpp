@@ -34,10 +34,7 @@ Component* ComponentFactory::Create( std::string key )
     return componentCreators.at( key )();
 }
 
-/// @brief          Get the type ID of the component.
-/// @param typeName A key to search the map for.
-/// @return         The type ID of the component.
-std::type_index ComponentFactory::getTypeId( std::string typeName )
+std::type_index ComponentFactory::GetTypeId( std::string typeName )
 {
     return componentTypes.at( typeName );
 }
