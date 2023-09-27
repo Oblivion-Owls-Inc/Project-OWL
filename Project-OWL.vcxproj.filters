@@ -120,6 +120,15 @@
     <Filter Include="Data\Scenes">
       <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\AssetLibrarySystem">
+      <UniqueIdentifier>{4d891ce7-a202-4957-aaa5-fbc0908075eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Animation">
+      <UniqueIdentifier>{f80d0ed4-3969-4370-994f-09374cc3b4a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Animation\Asset">
+      <UniqueIdentifier>{4ef39645-2d4e-4936-8ebf-80abd5fb3eb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -284,6 +293,21 @@
     <ClCompile Include="Source\Stream.t.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\AssetLibrarySystem.cpp">
+      <Filter>Engine\Systems\AssetLibrarySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimationAsset.cpp">
+      <Filter>Engine\Entity\Component\Animation\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntitySystem.cpp">
+      <Filter>Engine\Systems\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntitySystem.cpp">
+      <Filter>Engine\Systems\EntitySystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -442,20 +466,14 @@
     <ClInclude Include="Source\RigidBody.h">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClInclude>
-    <ClInclude Include="Source\RigidBody.h">
-      <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
+    <ClInclude Include="Source\AssetLibrarySystem.h">
+      <Filter>Engine\Systems\AssetLibrarySystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\Animation.h">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Source\AnimationAsset.h">
-      <Filter>Engine\Entity\Component\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StubScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AidanScene.h">
-      <Filter>Header Files</Filter>
+      <Filter>Engine\Entity\Component\Animation\Asset</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

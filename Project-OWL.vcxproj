@@ -175,6 +175,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\AidanScene.cpp" />
+    <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\BehaviorSystem.cpp" />
     <ClCompile Include="Source\CameraSystem.cpp" />
     <ClCompile Include="Source\CollisionSystem.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Animation.cpp" />
     <ClCompile Include="Source\AnimationAsset.cpp" />
+    <ClCompile Include="Source\ComponentFactory.cpp" />
     <ClCompile Include="Source\EntitySystem.cpp" />
     <ClCompile Include="Source\MovementAI.cpp" />
     <ClCompile Include="Source\AudioPlayer.cpp" />
@@ -220,6 +222,9 @@
     <ClCompile Include="Source\CircleCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\AnimationAsset.h" />
+    <ClInclude Include="Source\AssetLibrarySystem.h" />
     <ClInclude Include="Source\CameraSystem.h" />
     <ClInclude Include="Source\AidanScene.h" />
     <ClInclude Include="Source\Animation.h" />

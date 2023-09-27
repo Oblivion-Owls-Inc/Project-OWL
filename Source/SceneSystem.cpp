@@ -1,10 +1,10 @@
-/// @file SceneSystem.cpp
-/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief handles the process of resetting and changing scenes
-/// @version 0.1
-/// @date 2023-09-08
+/// @file       SceneSystem.cpp
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      handles the process of resetting and changing scenes
+/// @version    0.1
+/// @date       2023-09-08
 /// 
-/// @copyright Copyright (c) 2023
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #include "SceneSystem.h"
 
@@ -17,81 +17,80 @@
 // public methods
 //-----------------------------------------------------------------------------
 
-/// @brief sets the next Scene to change to
-/// @param nextSceneName the name of the next scene
-void SceneSystem::SetNextScene( std::string nextSceneName_ )
-{
-    nextSceneName = nextSceneName_;
-}
+    /// @brief  sets the next Scene to change to
+    /// @param  nextSceneName   the name of the next scene
+    void SceneSystem::SetNextScene( std::string nextSceneName_ )
+    {
+        m_NextSceneName = nextSceneName_;
+    }
 
 //-----------------------------------------------------------------------------
 // public accessors
 //-----------------------------------------------------------------------------
 
-/// @brief gets the name of the current scene
-/// @return the name of the current scene
-std::string const& SceneSystem::GetSceneName() const
-{
-    return currentSceneName;
-}
+    /// @brief  gets the name of the current scene
+    /// @return the name of the current scene
+    std::string const& SceneSystem::GetSceneName() const
+    {
+        return m_CurrentSceneName;
+    }
 
 //-----------------------------------------------------------------------------
 // private constants
 //-----------------------------------------------------------------------------
 
-/// @brief The file extension for Scene files
-std::string const SceneSystem::sceneFileExtension = ".scene.json";
+    /// @brief  The file extension for Scene files
+    std::string const SceneSystem::s_SceneFileExtension = ".scene.json";
 
 //-----------------------------------------------------------------------------
 // virtual override methods
 //-----------------------------------------------------------------------------
 
-/// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.    
-void SceneSystem::OnFixedUpdate()
-{
-    if ( nextSceneName == "" ) {
-        return;
+    /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.    
+    void SceneSystem::OnFixedUpdate()
+    {
+        if ( m_NextSceneName == "" ) {
+            return;
+        }
+
+        exitScene();
+
+        m_CurrentSceneName = m_NextSceneName;
+        m_NextSceneName = "";
+
+        loadScene();
+        initScene();
     }
 
-    ExitScene();
+    /// @brief  Gets called once before the Engine closes
+    void SceneSystem::OnExit()
+    {
+        assert ( m_CurrentSceneName != "" );
 
-    currentSceneName = nextSceneName;
-    nextSceneName = "";
+        exitScene();
 
-    LoadScene();
-    InitScene();
-}
-
-/// @brief Gets called once before the Engine closes
-void SceneSystem::OnExit()
-{
-    // TODO: add the following line once JSON deserialization is implemented
-    // assert ( currentSceneName != "" );
-
-    ExitScene();
-
-    currentSceneName = "";
-}
+        m_CurrentSceneName = "";
+    }
 
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
 
-    /// @brief reads the base scene path
-    /// @param stream the data to read from
+    /// @brief  reads the base scene path
+    /// @param  stream  the data to read from
     void SceneSystem::readBaseScenePath( Stream stream )
     {
-        baseScenePath = stream.Read<std::string>();
+        m_BaseScenePath = stream.Read<std::string>();
     }
 
-    /// @brief reads the next scene name
-    /// @param stream the data to read from
+    /// @brief  reads the next scene name
+    /// @param  stream  the data to read from
     void SceneSystem::readNextSceneName( Stream stream )
     {
-        nextSceneName = stream.Read<std::string>();
+        m_NextSceneName = stream.Read<std::string>();
     }
 
-    /// @brief map of the SceneSystem read methods
+    /// @brief  map of the SceneSystem read methods
     ReadMethodMap< SceneSystem > const SceneSystem::s_ReadMethods = {
         { "BaseScenePath", &readBaseScenePath },
         { "NextSceneName", &readNextSceneName }
@@ -115,21 +114,21 @@ void SceneSystem::OnExit()
         return s_ReadMethods;
     }
 
-    /// @brief          reads the assets in a Scene
-    /// @param stream   the data to read from
+    /// @brief  reads the assets in a Scene
+    /// @param  stream  the data to read from
     void SceneSystem::Scene::readAssets( Stream stream )
     {
         // TODO: implement asset reading
     }
 
-    /// @brief          reads the entities in a Scene
-    /// @param stream   the data to read from
+    /// @brief  reads the entities in a Scene
+    /// @param  stream  the data to read from
     void SceneSystem::Scene::readEntities( Stream stream )
     {
         EntitySystem::GetInstance()->LoadEntities( stream );
     }
 
-    /// @brief the read methods for a Scene
+    /// @brief  the read methods for a Scene
     ReadMethodMap< SceneSystem::Scene > const SceneSystem::Scene::s_ReadMethods = {
         { "Assets",   &readAssets   },
         { "Entities", &readEntities }
@@ -139,22 +138,22 @@ void SceneSystem::OnExit()
 // private methods
 //-----------------------------------------------------------------------------
 
-    /// @brief assembles the filepath of a scene with the given name
-    /// @param sceneName the name of the scene to assemble the filepath of
+    /// @brief  assembles the filepath of a scene with the given name
+    /// @param  sceneName   the name of the scene to assemble the filepath of
     /// @return the filepath of the scene
-    std::string SceneSystem::ScenePath( std::string const& sceneName )
+    std::string SceneSystem::scenePath( std::string const& sceneName )
     {
-        return baseScenePath + sceneName + sceneFileExtension;
+        return m_BaseScenePath + sceneName + s_SceneFileExtension;
     }
 
-    /// @brief Loads the next Scene
-    void SceneSystem::LoadScene()
+    /// @brief  Loads the next Scene
+    void SceneSystem::loadScene()
     {
 
-        rapidjson::Document document = Stream::ReadFromJSON( ScenePath( currentSceneName ) );
+        rapidjson::Document document = Stream::ReadFromJSON( scenePath( m_CurrentSceneName ) );
 
         Scene scene = Scene();
-        // TODO: have some asSetSystem or something like that handle loading assets
+        // TODO: have some AssetSystem or something like that handle loading assets
         try
         {
             Stream( document ).Read( &scene );
@@ -170,8 +169,8 @@ void SceneSystem::OnExit()
         }
     }
 
-    /// @brief Initializes the current Scene
-    void SceneSystem::InitScene()
+    /// @brief  Initializes the current Scene
+    void SceneSystem::initScene()
     {
         for ( System* system : Engine::GetInstance()->GetSystems() )
         {
@@ -179,8 +178,8 @@ void SceneSystem::OnExit()
         }
     }
 
-    /// @brief Exits the current Scene
-    void SceneSystem::ExitScene()
+    /// @brief  Exits the current Scene
+    void SceneSystem::exitScene()
     {
         for ( System* system : Engine::GetInstance()->GetSystems() )
         {
@@ -192,25 +191,25 @@ void SceneSystem::OnExit()
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-    /// @brief Constructs the SceneSystem
+    /// @brief  Constructs the SceneSystem
     SceneSystem::SceneSystem() :
-        nextSceneName( "" ),
-        currentSceneName( "" ),
-        baseScenePath( "Data/Scenes/" )
+        m_NextSceneName( "" ),
+        m_CurrentSceneName( "" ),
+        m_BaseScenePath( "Data/Scenes/" )
     {}
 
-    /// @brief The singleton instance of SceneSystem
-    SceneSystem* SceneSystem::instance = nullptr;
+    /// @brief  The singleton instance of SceneSystem
+    SceneSystem* SceneSystem::s_Instance = nullptr;
 
-    /// @brief gets the instance of SceneSystem
+    /// @brief  gets the instance of SceneSystem
     /// @return the instance of the SceneSystem
     SceneSystem* SceneSystem::GetInstance()
     {
-        if ( instance == nullptr )
+        if ( s_Instance == nullptr )
         {
-            instance = new SceneSystem();
+            s_Instance = new SceneSystem();
         }
-        return instance;
+        return s_Instance;
     }
 
 //-----------------------------------------------------------------------------

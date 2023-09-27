@@ -2,7 +2,7 @@
  * \file   Transform.h
  * \brief  Transform
  * 
- * \author thatg
+ * \author Tyler Birdsall (tyler.birdsall@digipen.edu)
  * \date   September 2023
  *********************************************************************/
 
@@ -25,7 +25,6 @@ public:
 
 public:
     Component* Clone() const override;
-	void Read( const rapidjson::Value& data );
 
 	vec3* GetTranslation();
 	const vec3* GetTranslation() const;
@@ -57,8 +56,7 @@ private:
 
 	static std::map< std::string, ReadMethod< Transform > > s_ReadMethods;
 
-	virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods();
-	
+	virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 
 protected:
 

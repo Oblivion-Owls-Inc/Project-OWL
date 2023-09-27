@@ -51,7 +51,7 @@ void MovementAI::MovementAISpiral(float dt)
 /// @brief the map of read methods for this Component
 ReadMethodMap< MovementAI > const MovementAI::readMethods = {};
 
-ReadMethodMap<Component> const& MovementAI::GetReadMethods()
+ReadMethodMap<Component> const& MovementAI::GetReadMethods() const
 {
     return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
 }

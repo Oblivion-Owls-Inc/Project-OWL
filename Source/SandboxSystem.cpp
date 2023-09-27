@@ -1,10 +1,10 @@
-/// @file SandboxSystem.cpp
-/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief Sandbox system meant to mimic CS-230 scenes
-/// @version 0.1
-/// @date 2023-09-05
+/// @file       SandboxSystem.cpp
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      Sandbox system meant to mimic CS-230 scenes
+/// @version    0.1
+/// @date       2023-09-05
 /// 
-/// @copyright Copyright (c) 2023
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #include "SandboxSystem.h"
 
@@ -30,7 +30,7 @@
 // virtual override methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Gets called whenever a new Scene is loaded
+    /// @brief  Gets called whenever a new Scene is loaded
     void SandboxSystem::OnSceneLoad()
     {
         std::cout << "test" << std::endl;
@@ -38,7 +38,7 @@
 
     }
 
-    /// @brief Gets called whenever a scene is initialized
+    /// @brief  Gets called whenever a scene is initialized
     void SandboxSystem::OnSceneInit()
     {
         update = true;
@@ -56,7 +56,7 @@
         entity2->GetComponent<Transform>()->SetScale(glm::vec3(600.0f, (-600.0f * spriteSize), 0.0f));
     }
 
-    /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
+    /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
     void SandboxSystem::OnFixedUpdate()
     {
         if (!update)
@@ -73,15 +73,15 @@
         output << "Position: (" << translation.x << ", " << translation.y << ", " << translation.z << ")" << "\n";
     }
 
-    /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-    /// @param dt the elapsed time in seconds since the previous frame
+    /// @brief  Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+    /// @param  dt  the elapsed time in seconds since the previous frame
     void SandboxSystem::OnUpdate( float dt )
     {
         if (!update)
             return;
     }
 
-    /// @brief Gets called whenever a scene is exited
+    /// @brief  Gets called whenever a scene is exited
     void SandboxSystem::OnSceneExit()
     {
         delete entity;
@@ -93,7 +93,7 @@
 // private: reading
 //-----------------------------------------------------------------------------
 
-    /// @brief map of the SandboxSystem read methods
+    /// @brief  map of the SandboxSystem read methods
     ReadMethodMap< SandboxSystem > const SandboxSystem::s_ReadMethods = {};
 
     /// @brief  gets this System's read methods
@@ -107,21 +107,21 @@
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-/// @brief Constructs the SandboxSystem
-SandboxSystem::SandboxSystem() {}
+    /// @brief  Constructs the SandboxSystem
+    SandboxSystem::SandboxSystem() {}
 
-/// @brief The singleton instance of SandboxSystem
-SandboxSystem * SandboxSystem::instance = nullptr;
+    /// @brief  The singleton instance of SandboxSystem
+    SandboxSystem * SandboxSystem::s_Instance = nullptr;
 
-/// @brief gets the instance of SandboxSystem
-/// @return the instance of the SandboxSystem
-SandboxSystem * SandboxSystem::GetInstance()
-{
-    if ( instance == nullptr )
+    /// @brief  gets the instance of SandboxSystem
+    /// @return the instance of the SandboxSystem
+    SandboxSystem * SandboxSystem::GetInstance()
     {
-        instance = new SandboxSystem();
+        if ( s_Instance == nullptr )
+        {
+            s_Instance = new SandboxSystem();
+        }
+        return s_Instance;
     }
-    return instance;
-}
 
 //-----------------------------------------------------------------------------

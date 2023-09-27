@@ -18,31 +18,31 @@ class Animation : public Behavior
 public:
 	Animation();
 	
-	const unsigned getIndex() const;
-	void setIndex(unsigned newIndex);
+	const unsigned GetIndex() const;
+	void SetIndex(unsigned newIndex);
 
-	const unsigned getCount() const;
-	void setCount(unsigned newCount);
+	const unsigned GetCount() const;
+	void SetCount(unsigned newCount);
 
-	const float getDelay() const;
-	void setDelay(float newDelay);
+	const float GetDelay() const;
+	void SetDelay(float newDelay);
 
-	const float getDuration() const;
-	void setDuration(float newDuration);
+	const float GetDuration() const;
+	void SetDuration(float newDuration);
 
-	const bool getRunning() const;
-	void setRunning(bool newRunning);
+	const bool GetRunning() const;
+	void SetRunning(bool newRunning);
 
-	const bool getLooping() const;
-	void setLooping(bool newLooping);
+	const bool GetLooping() const;
+	void SetLooping(bool newLooping);
 
-	const bool getDone() const;
-	void setDone(bool newDone);
+	const bool GetDone() const;
+	void SetDone(bool newDone);
 
-	const AnimationAsset* getAsset() const;
-	void setAsset(AnimationAsset* newAsset);
+	const AnimationAsset* GetAsset() const;
+	void SetAsset(AnimationAsset* newAsset);
 
-	void animationPlay();
+	void AnimationPlay();
 
 	
 
@@ -72,14 +72,13 @@ private: // for reading
 
 	void AdvanceFrame();
 	Animation(Animation const&);
-	AnimationAsset* asset;
-	unsigned frameIndex;
-	unsigned frameStart;
-	unsigned frameCount;
-	float frameDelay;
-	float frameDuration;
-	bool isRunning;
-	bool isLooping;
-	bool isDone;
-
+	AnimationAsset* m_asset;
+	unsigned m_FrameIndex;
+	unsigned m_FrameStart;
+	unsigned m_FrameCount;
+	float m_FrameDelay;
+	float m_FrameDuration;
+	bool m_IsRunning;
+	bool m_IsLooping;
+	bool m_IsDone;
 };

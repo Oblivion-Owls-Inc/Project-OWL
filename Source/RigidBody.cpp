@@ -135,7 +135,7 @@ ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component
-ReadMethodMap< Component > const& RigidBody::GetReadMethods()
+ReadMethodMap< Component > const& RigidBody::GetReadMethods() const
 {
 	return (ReadMethodMap< Component > const&)s_ReadMethods;
 }
