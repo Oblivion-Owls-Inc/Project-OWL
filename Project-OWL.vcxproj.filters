@@ -251,9 +251,6 @@
     <ClCompile Include="Source\Stream.t.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EntitySystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\AssetLibrarySystem.cpp">
       <Filter>Engine\Systems\AssetLibrarySystem</Filter>
     </ClCompile>
@@ -262,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="Source\AnimationAsset.cpp">
       <Filter>Engine\Entity\Component\Animation\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntitySystem.cpp">
+      <Filter>Engine\Systems\EntitySystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\EntitySystem.cpp">
       <Filter>Engine\Systems\EntitySystem</Filter>
