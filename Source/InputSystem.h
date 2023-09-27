@@ -116,9 +116,13 @@ public:
     /// @return returns if mouse button is released
     bool GetMouseReleased(int glfw_mouse_button);
     
-    /// @brief gets mouse pos
+    /// @brief gets mouse pos in UI space
     /// @return returns the current mouse pos as a vec2
-    glm::vec2 GetMousePos();
+    glm::vec2 GetMousePosUI();
+
+    /// @brief gets mouse pos in world space
+    /// @return returns the current mouse pos as a vec2
+    glm::vec2 GetMousePosWorld();
 
     // Prevent copying
     InputSystem(InputSystem& other) = delete;

@@ -10,6 +10,7 @@
 #include "glfw3.h"
 #include "PlatformSystem.h"
 #include <map>
+#include "CameraSystem.h"
 
 
 /// @brief Constructs the InputSystem
@@ -130,18 +131,36 @@ bool InputSystem::GetMouseReleased(int glfw_mouse_button)
     return m_MouseStates[glfw_mouse_button][2];
 }
 
-
-/// @brief gets mouse pos
-/// @return returns the current mouse pos as a vec2
-glm::vec2 InputSystem::GetMousePos()
+static glm::vec2 convert(glm::mat4 matrix)
 {
-    glm::vec2 vector = { 0 , 0 };
+    glm::vec2 vec = { 0 , 0 };
+    glm::vec4 vector = { 0 , 0 , 0, 1 };
     double x = 0;
     double y = 0;
     glfwGetCursorPos(PlatformSystem::GetInstance()->GetWindowHandle(), &x, &y);
     vector[0] = (float)x;
     vector[1] = (float)y;
-    return vector;
+    vector = matrix * vector;
+    vec[0] = vector[0];
+    vec[1] = vector[1];
+    return vec;
+}
+/// @brief gets mouse pos in UI space
+/// @return returns the current mouse pos as a vec2
+glm::vec2 InputSystem::GetMousePosUI()
+{
+    glm::mat4 matrix = Camera()->GetMat_ScreenToUI();
+    
+    return convert(matrix);
+}
+
+/// @brief gets mouse pos in World space
+/// @return returns the current mouse pos as a vec2
+glm::vec2 InputSystem::GetMousePosWorld()
+{
+    glm::mat4 matrix = Camera()->GetMat_ScreenToWorld();
+    
+    return convert(matrix);
 }
 
 
