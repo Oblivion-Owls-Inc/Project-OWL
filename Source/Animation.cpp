@@ -180,7 +180,7 @@ ReadMethodMap< Animation > const Animation::readMethods = {
 
 /// @brief Gets the map of read methods for this Component
 /// @return the map of read methods for this Component
-ReadMethodMap< Component > const& Animation::GetReadMethods()
+ReadMethodMap< Component > const& Animation::GetReadMethods() const
 {
 	return (ReadMethodMap< Component > const&)readMethods;
 }

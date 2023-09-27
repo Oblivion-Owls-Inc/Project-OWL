@@ -55,7 +55,7 @@ private:
 	virtual void OnFixedUpdate() override {}
 
 	static ReadMethodMap< Animation > const readMethods;
-	virtual ReadMethodMap< Component > const& GetReadMethods() override;
+	virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 
 	void AdvanceFrame();
 	Animation(Animation const&);
