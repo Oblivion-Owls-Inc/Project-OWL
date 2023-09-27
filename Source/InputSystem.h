@@ -74,51 +74,51 @@ public:
 
     /// @brief gets the instance of InputSystem
     /// @return the instance of the InputSystem
-    static InputSystem * getInstance();
+    static InputSystem * GetInstance();
 
     /// @brief checks if a given key is down
     /// @param glfw key to check
     /// @return returns if key is down
-    bool getKeyDown(int glfw_key);
+    bool GetKeyDown(int glfw_key);
 
     /// @brief checks if a given key is up
     /// @param glfw key to check
     /// @return returns if key is up
-    bool getKeyUp(int glfw_key);
+    bool GetKeyUp(int glfw_key);
 
     /// @brief checks if a given key is triggered
     /// @param glfw key to check
     /// @return returns if key is triggered
-    bool getKeyTriggered(int glfw_key);
+    bool GetKeyTriggered(int glfw_key);
 
     /// @brief checks if a given key is released
     /// @param glfw key to check
     /// @return returns if key is released
-    bool getKeyReleased(int glfw_key);
+    bool GetKeyReleased(int glfw_key);
     
     /// @brief checks if a given mouse button is down
     /// @param glfw mouse button to check
     /// @return returns if mouse button is down
-    bool getMouseDown(int glfw_mouse_button);
+    bool GetMouseDown(int glfw_mouse_button);
 
     /// @brief checks if a given mouse button is up
     /// @param glfw mouse button to check
     /// @return returns if mouse button is up
-    bool getMouseUp(int glfw_mouse_button);
+    bool GetMouseUp(int glfw_mouse_button);
 
     /// @brief checks if a given mouse button is triggered
     /// @param glfw mouse button to check
     /// @return returns if mouse button is triggered
-    bool getMouseTriggered(int glfw_mouse_button);
+    bool GetMouseTriggered(int glfw_mouse_button);
 
     /// @brief checks if a given mouse button is released
     /// @param glfw mouse button to check
     /// @return returns if mouse button is released
-    bool getMouseReleased(int glfw_mouse_button);
+    bool GetMouseReleased(int glfw_mouse_button);
     
     /// @brief gets mouse pos
     /// @return returns the current mouse pos as a vec2
-    glm::vec2 getMousePos();
+    glm::vec2 GetMousePos();
 
     // Prevent copying
     InputSystem(InputSystem& other) = delete;
@@ -127,4 +127,4 @@ public:
 
 /// @brief shortens input get instance to simply input
 /// @return returns the input system instance
-__inline InputSystem* Input() { return InputSystem::getInstance(); }
+__inline InputSystem* Input() { return InputSystem::GetInstance(); }

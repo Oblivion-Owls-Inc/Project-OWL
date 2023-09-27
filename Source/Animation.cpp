@@ -13,155 +13,155 @@
 
 Animation::Animation() : 
 	Behavior( typeid( Animation ) ),
-	frameIndex(0),
-	frameCount(0),
-	frameDelay(0.0),
-	frameDuration(0.0),
-	isRunning(false),
-	isLooping(false),
-	isDone(false)
+	m_FrameIndex(0),
+	m_FrameCount(0),
+	m_FrameDelay(0.0),
+	m_FrameDuration(0.0),
+	m_IsRunning(false),
+	m_IsLooping(false),
+	m_IsDone(false)
 {}
 
 Animation::Animation(const Animation& other) : 
 	Behavior( typeid( Animation ) )
 {
-	frameIndex = other.frameIndex;
-	frameCount = other.frameCount;
-	frameDelay = other.frameDelay;
-	frameDuration = other.frameDuration;
-	isRunning = other.isRunning;
-	isLooping = other.isLooping;
-	isDone = other.isDone;
+	m_FrameIndex = other.m_FrameIndex;
+	m_FrameCount = other.m_FrameCount;
+	m_FrameDelay = other.m_FrameDelay;
+	m_FrameDuration = other.m_FrameDuration;
+	m_IsRunning = other.m_IsRunning;
+	m_IsLooping = other.m_IsLooping;
+	m_IsDone = other.m_IsDone;
 }
 
-const unsigned Animation::getIndex() const
+const unsigned Animation::GetIndex() const
 {
-	return frameIndex;
+	return m_FrameIndex;
 }
 
-void Animation::setIndex(unsigned newIndex)
+void Animation::SetIndex(unsigned newIndex)
 {
-	frameIndex = newIndex;
+	m_FrameIndex = newIndex;
 }
 
-const unsigned Animation::getCount() const
+const unsigned Animation::GetCount() const
 {
-	return frameCount;
+	return m_FrameCount;
 }
 
-void Animation::setCount(unsigned newCount)
+void Animation::SetCount(unsigned newCount)
 {
-	frameCount = newCount;
+	m_FrameCount = newCount;
 }
 
-const float Animation::getDelay() const
+const float Animation::GetDelay() const
 {
-	return frameDelay;
+	return m_FrameDelay;
 }
 
-void Animation::setDelay(float newDelay)
+void Animation::SetDelay(float newDelay)
 {
-	frameDelay = newDelay;
+	m_FrameDelay = newDelay;
 }
 
-const float Animation::getDuration() const
+const float Animation::GetDuration() const
 {
-	return frameDuration;
+	return m_FrameDuration;
 }
 
-void Animation::setDuration(float newDuration)
+void Animation::SetDuration(float newDuration)
 {
-	frameDuration = newDuration;
+	m_FrameDuration = newDuration;
 }
 
-const bool Animation::getRunning() const
+const bool Animation::GetRunning() const
 {
-	return isRunning;
+	return m_IsRunning;
 }
 
-void Animation::setRunning(bool newRunning)
+void Animation::SetRunning(bool newRunning)
 {
-	isRunning = newRunning;
+	m_IsRunning = newRunning;
 }
 
-const bool Animation::getLooping() const
+const bool Animation::GetLooping() const
 {
-	return isLooping;
+	return m_IsLooping;
 }
 
-void Animation::setLooping(bool newLooping)
+void Animation::SetLooping(bool newLooping)
 {
-	isLooping = newLooping;
+	m_IsLooping = newLooping;
 }
 
-const bool Animation::getDone() const
+const bool Animation::GetDone() const
 {
-	return isDone;
+	return m_IsDone;
 }
 
-void Animation::setDone(bool newDone)
+void Animation::SetDone(bool newDone)
 {
-	isDone = newDone;
+	m_IsDone = newDone;
 }
 
-const AnimationAsset* Animation::getAsset() const
+const AnimationAsset* Animation::GetAsset() const
 {
-	return asset;
+	return m_asset;
 }
 
-void Animation::setAsset(AnimationAsset* newAsset)
+void Animation::SetAsset(AnimationAsset* newAsset)
 {
-	asset = newAsset;
+	m_asset = newAsset;
 }
 
 void Animation::animationPlay()
 {
-	frameStart = asset->getStart();
-	frameIndex = asset->getStart();
-	frameCount = asset->getEnd();
-	frameDuration = asset->getDuration();
-	frameDelay = asset->getDuration();
-	isLooping = asset->getLooping();
-	isRunning = true;
-	isDone = false;
-	Parent()->GetComponent<Sprite>()->setFrame(frameIndex);
+	m_FrameStart = m_asset->GetStart();
+	m_FrameIndex = m_asset->GetStart();
+	m_FrameCount = m_asset->GetEnd();
+	m_FrameDuration = m_asset->GetDuration();
+	m_FrameDelay = m_asset->GetDuration();
+	m_IsLooping = m_asset->GetLooping();
+	m_IsRunning = true;
+	m_IsDone = false;
+	Parent()->GetComponent<Sprite>()->SetFrame(m_FrameIndex);
 }
 
 void Animation::AdvanceFrame()
 {
-	frameIndex += 1;
-	if (frameIndex >= frameCount)
+	m_FrameIndex += 1;
+	if (m_FrameIndex >= m_FrameCount)
 	{
-		if (isLooping)
+		if (m_IsLooping)
 		{
-			frameIndex = frameStart;
+			m_FrameIndex = m_FrameStart;
 		}
 		else
 		{
-			frameIndex = (frameCount - 1);
-			isRunning = false;
+			m_FrameIndex = (m_FrameCount - 1);
+			m_IsRunning = false;
 		}
-		isDone = true;
+		m_IsDone = true;
 	}
 	
-	if (isRunning)
+	if (m_IsRunning)
 	{
-		Parent()->GetComponent<Sprite>()->setFrame(frameIndex);
-		frameDelay = (frameDelay + frameDuration);
+		Parent()->GetComponent<Sprite>()->SetFrame(m_FrameIndex);
+		m_FrameDelay = (m_FrameDelay + m_FrameDuration);
 	}
 	else
 	{
-		frameDelay = 0;
+		m_FrameDelay = 0;
 	}
 }
 
 void Animation::OnUpdate(float dt)
 {
-	isDone = false;
-	if (isRunning)
+	m_IsDone = false;
+	if (m_IsRunning)
 	{
-		setDelay(frameDelay - dt);
-		if (frameDelay <= 0)
+		SetDelay(m_FrameDelay - dt);
+		if (m_FrameDelay <= 0)
 		{
 			AdvanceFrame();
 		}
@@ -178,9 +178,9 @@ ReadMethodMap< Animation > const Animation::readMethods = {
 	
 };
 
-/// @brief gets the map of read methods for this Component
+/// @brief Gets the map of read methods for this Component
 /// @return the map of read methods for this Component
-ReadMethodMap< Component > const& Animation::getReadMethods()
+ReadMethodMap< Component > const& Animation::GetReadMethods()
 {
 	return (ReadMethodMap< Component > const&)readMethods;
 }

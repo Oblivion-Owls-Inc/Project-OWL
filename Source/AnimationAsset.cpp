@@ -14,49 +14,49 @@
 
 AnimationAsset::AnimationAsset()
 {
-	frameStart = 0;
-	frameEnd = 0;
-	duration = 0.0f;
-	looping = false;
+	m_FrameStart = 0;
+	m_FrameEnd = 0;
+	m_Duration = 0.0f;
+	m_Looping = false;
 }
 
-const unsigned AnimationAsset::getStart() const
+const unsigned AnimationAsset::GetStart() const
 {
-	return frameStart;
+	return m_FrameStart;
 }
 
-void AnimationAsset::setStart(unsigned newStart)
+void AnimationAsset::SetStart(unsigned newStart)
 {
-	frameStart = newStart;
+	m_FrameStart = newStart;
 }
 
-const unsigned AnimationAsset::getEnd() const
+const unsigned AnimationAsset::GetEnd() const
 {
-	return frameEnd;
+	return m_FrameEnd;
 }
 
-void AnimationAsset::setEnd(unsigned newEnd)
+void AnimationAsset::SetEnd(unsigned newEnd)
 {
-	frameEnd = newEnd;
+	m_FrameEnd = newEnd;
 }
 
-const float AnimationAsset::getDuration() const
+const float AnimationAsset::GetDuration() const
 {
-	return duration;
+	return m_Duration;
 }
 
-void AnimationAsset::setDuration(float newDuration)
+void AnimationAsset::SetDuration(float newDuration)
 {
-	duration = newDuration;
+	m_Duration = newDuration;
 }
 
-const bool AnimationAsset::getLooping() const
+const bool AnimationAsset::GetLooping() const
 {
-	return	looping;
+	return	m_Looping;
 }
 
-void AnimationAsset::setLooping(bool newLooping)
+void AnimationAsset::SetLooping(bool newLooping)
 {
-	looping = newLooping;
+	m_Looping = newLooping;
 }
 

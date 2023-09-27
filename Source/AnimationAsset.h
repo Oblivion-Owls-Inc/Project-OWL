@@ -18,22 +18,22 @@ public:
 
 	AnimationAsset();
 
-	const unsigned getStart() const;
-	void setStart(unsigned newStart);
+	const unsigned GetStart() const;
+	void SetStart(unsigned newStart);
 
-	const unsigned getEnd() const;
-	void setEnd(unsigned newEnd);
+	const unsigned GetEnd() const;
+	void SetEnd(unsigned newEnd);
 
-	const float getDuration() const;
-	void setDuration(float newDuration);
+	const float GetDuration() const;
+	void SetDuration(float newDuration);
 
-	const bool getLooping() const;
-	void setLooping(bool newLopping);
+	const bool GetLooping() const;
+	void SetLooping(bool newLopping);
 
 private:
 	
-	unsigned frameStart;
-	unsigned frameEnd;
-	float duration;
-	bool looping;
+	unsigned m_FrameStart;
+	unsigned m_FrameEnd;
+	float m_Duration;
+	bool m_Looping;
 };
