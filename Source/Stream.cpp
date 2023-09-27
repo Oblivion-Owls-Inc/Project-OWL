@@ -133,7 +133,7 @@ int Stream::Read<int>() const
 template <>
 bool Stream::Read<bool>() const
 {
-    if (value.IsNumber() == false)
+    if (value.IsBool() == false)
     {
         throw std::runtime_error(
             "JSON error: unexpected value type while trying to read Boolean type"

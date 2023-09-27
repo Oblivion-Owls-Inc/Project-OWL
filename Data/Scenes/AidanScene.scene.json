@@ -13,7 +13,7 @@
                     "rows": 1,
                     "color": [ 0, 0, 0, 1 ],
                     "layer": 0,
-                    "name": "Temp_Assets/Balls/Ball.png",
+                    "name": "temp_Assets/Balls/Ball.png",
                     "isTextured": true
                 },
                 "LineCollider": {

@@ -39,6 +39,21 @@ void AidanScene::OnSceneExit()
 {
 }
 
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+	/// @brief map of the XinoScene read methods
+ReadMethodMap< AidanScene > const AidanScene::s_ReadMethods = {};
+
+/// @brief  gets this System's read methods
+/// @return this System's read methods
+ReadMethodMap< System > const& AidanScene::GetReadMethods() const
+{
+	return (ReadMethodMap< System > const&)s_ReadMethods;
+}
+
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
@@ -51,7 +66,7 @@ AidanScene* AidanScene::instance = nullptr;
 
 /// @brief  Gets the instance of AidanScene.
 /// @return The instance of the AidanScene.
-AidanScene* AidanScene::getInstance()
+AidanScene* AidanScene::GetInstance()
 {
 	if (instance == nullptr)
 	{

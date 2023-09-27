@@ -15,6 +15,9 @@ class Shader;   // fwd ref
 class TextSprite : public Sprite
 {
 public:
+    /// @brief              Default constructor: does nothing
+    TextSprite();
+
     /// @brief              Constructor: unlike base Sprite constructor, this one 
     ///                     requires texture and columns/rows, since it's specifically
     ///                     for text.
@@ -30,7 +33,7 @@ public:
 
     /// @brief      Feed text into this function just like with std::cout.
     /// @return     Reference to string stream to feed text into.
-    std::ostringstream & Text();
+    std::ostringstream& Text();
 
     /// @brief      Draws currently stored text using parent's transform.
     virtual void Draw() override;

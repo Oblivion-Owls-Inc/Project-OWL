@@ -5,8 +5,7 @@
 #pragma once
 #include "Component.h"
 #include "glm/glm.hpp"  // vec4
-#include "Stream.h"     // Stream, Read
-#include <string>       // std::string
+#include "Stream.h"
 
 // fwd refs
 class Mesh;
@@ -15,26 +14,35 @@ class Texture;
 /// @brief      Stores mesh + texture, along with other data needed to draw a basic 2D sprite.
 class Sprite : public Component
 {
-    int _rows, _columns;
-    int _layer;
-    int _frame = 0;
-    float _heightMult = 1.0f;
-    float _opacity = 1.0f;
-    std::string m_filename;
-    bool m_IsTextured;
-
-    Mesh* _mesh = nullptr;
-    Texture* _texture = nullptr;
-    glm::vec4 _color;
-
 public:
-    /// @brief Default Sprite Constructor.
+    /// @brief              Textured sprite constructor. Accepts image file, and 
+    ///                     (optional) rows and columns if it's a spritesheet. 
+    ///                     Also adds this sprite's pointer to RenderSystem.
+    /// 
+    /// @param image_file   Path to the image file to load (single image or spritesheet)
+    /// @param columns      (optional) Columns of the spritesheet
+    /// @param rows         (optional) Rows of the spritesheet
+    /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
+    Sprite(const char* image_file, int columns = 1, int rows = 1, int layer = 2);
+
+
+    /// @brief              Plain square sprite constructor. Accepts boolean, which 
+    ///                     needs to be true for the square to be generated, or 
+    ///                     false to create uninitialized sprite. Also adds 
+    ///                     this sprite's pointer to RenderSystem.
+    /// 
+    /// @param init_square  true/false - initialize the square or nah?
+    /// @param color        (optional) Color to initialize the square to
+    /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
+    Sprite(bool init_square, glm::vec4 color = { 0,0,0,1 }, int layer = 2);
+
+    /// @brief              Default constructor - does not init anything
     Sprite();
 
-    /// @brief Copy constructor: shallow copy. Flyweight mesh and texture (eventually). Do not use rn.
+    /// @brief              Copy constructor: shallow copy. Flyweight mesh and texture 
+    ///                     (eventually, once we have data library). Do not use rn.
     Sprite(Sprite const& other);
 
-    /// @brief Destructor: frees texture and mesh... for now. Resource library should take care of it.
     /// @return             Copy of this component.
     virtual Component* Clone() const override;
 
@@ -56,6 +64,8 @@ public:
     /// param opacity   I'm not explaining this.
     void SetOpacity(float opacity);
 
+    void SetColor(glm::vec4 const& color);
+
     /// @brief          Number to multiply width by, to get proportional height
     ///                 based on original image
     /// @return         float: original image's height divided by width
@@ -66,15 +76,17 @@ public:
     //          data
     //-------------------------------------------------------------------------
 protected:
-    int m_Rows, m_Columns;
-    int m_Layer;
+    int m_Rows = 1, m_Columns = 1;
+    int m_Layer = 2;
     int m_Frame = 0;
     float m_HeightMult = 1.0f;
     float m_Opacity = 1.0f;
+    std::string m_Filename;
+    bool m_IsTextured;
 
     Mesh* m_Mesh = nullptr;
     Texture* m_Texture = nullptr;
-    glm::vec4 m_Color;
+    glm::vec4 m_Color = { 0,0,0,1 };
 
 
     //-------------------------------------------------------------------------
@@ -115,7 +127,7 @@ private: // reading
     void ReadColumns(Stream stream);
 
     /// @brief Takes all the read in data and makes a sprite.
-    void ReadSprite( Stream );
+    void ReadSprite(Stream);
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Sprite > const s_ReadMethods;

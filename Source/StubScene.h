@@ -38,10 +38,17 @@ private: // unused virtual overrides
     /// @brief Gets called once before the Engine closes
     virtual void OnExit() override {}
 
+ //-----------------------------------------------------------------------------
+private: // reading
+ //-----------------------------------------------------------------------------
 
-    /// @brief Loads the config data of this System
-    /// @param configData the JSON object with all of the configData for this System
-    virtual void Load(rapidjson::Value const& configData) override {}
+        /// @brief map of the StubScene read methods
+    static ReadMethodMap< StubScene > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< System > const& GetReadMethods() const override;
+
 
 private: // singleton stuff
 
@@ -56,7 +63,7 @@ public: // singleton stuff
 
     /// @brief gets the instance of StubScene
     /// @return the instance of the StubScene
-    static StubScene* getInstance();
+    static StubScene* GetInstance();
 
     // Prevent copying
     StubScene(StubScene& other) = delete;

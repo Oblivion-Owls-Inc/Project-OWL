@@ -20,6 +20,7 @@
 #include "CircleCollider.h"
 #include "AudioPlayer.h"
 #include "Animation.h"
+#include "TextSprite.h"
 
 template < typename ComponentType >
 Component* ComponentFactory::Creator() {
@@ -48,7 +49,8 @@ std::map<std::string, Component* (*)()> ComponentFactory::componentCreators = {
     { "LineCollider"   , Creator<LineCollider>   },
     { "CircleCollider" , Creator<CircleCollider> },
     { "AudioPlayer"    , Creator<AudioPlayer>    },
-    { "Animation"      , Creator<Animation>      }
+    { "Animation"      , Creator<Animation>      },
+    { "TextSprite"     , Creator<TextSprite>     }
 };
 
 // A map of the component type IDs.

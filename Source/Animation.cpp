@@ -124,7 +124,7 @@ void Animation::animationPlay()
 	isLooping = asset->getLooping();
 	isRunning = true;
 	isDone = false;
-	Parent()->GetComponent<Sprite>()->setFrame(frameIndex);
+	Parent()->GetComponent<Sprite>()->SetFrame(frameIndex);
 }
 
 void Animation::AdvanceFrame()
@@ -146,7 +146,7 @@ void Animation::AdvanceFrame()
 	
 	if (isRunning)
 	{
-		Parent()->GetComponent<Sprite>()->setFrame(frameIndex);
+		Parent()->GetComponent<Sprite>()->SetFrame(frameIndex);
 		frameDelay = (frameDelay + frameDuration);
 	}
 	else
@@ -239,7 +239,7 @@ ReadMethodMap< Animation > const Animation::s_ReadMethods = {
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component
-ReadMethodMap< Component > const& Animation::getReadMethods()
+ReadMethodMap< Component > const& Animation::GetReadMethods()
 {
 	return (ReadMethodMap< Component > const&)s_ReadMethods;
 }

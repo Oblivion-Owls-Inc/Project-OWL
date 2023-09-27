@@ -56,7 +56,7 @@
         /// Bottom Wall
         Wall = new Entity();
         Wall->SetName("Wall");
-        Wall->Add(new Sprite("Temp_Assets/Wall.png", 1, 1, 0));
+        Wall->Add(new Sprite("temp_Assets/Wall.png", 1, 1, 0));
         Wall->Add(new Transform());
         Wall->Add(new LineCollider());
         LineCollider* collider = (LineCollider*)Wall->GetComponent<Collider>();
@@ -67,7 +67,7 @@
         /// Ball 1
         entity2= new Entity();
         entity2->SetName("Ball1");
-        //entity2->Add( new Sprite("Temp_Assets/Balls/Ball5.png", 1,1, 1));
+        entity2->Add( new Sprite("temp_Assets/Balls/Ball5.png", 1,1, 1));
         entity2->Add( new RigidBody()); 
         entity2->Add(new CircleCollider());
         entity2->Add( new Transform());
@@ -81,7 +81,7 @@
         /// Ball 2
         entity3 = new Entity();
         entity3->SetName("Ball2");
-        //entity3->Add(new Sprite("Temp_Assets/Balls/Ball2.png", 1, 1, 1));
+        entity3->Add(new Sprite("temp_Assets/Balls/Ball2.png", 1, 1, 1));
         entity3->Add(new RigidBody());
         entity3->Add(new CircleCollider());
         entity3->Add(new Transform());
