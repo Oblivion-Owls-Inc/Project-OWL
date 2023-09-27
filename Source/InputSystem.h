@@ -67,8 +67,8 @@ private: // reading
     static InputSystem * instance;
 protected:
     
-    map<int, bool[3]> keyStates;
-    map<int, bool[3]> mouseStates;
+    map<int, bool[3]> m_KeyStates;
+    map<int, bool[3]> m_MouseStates;
 
 public:
 
