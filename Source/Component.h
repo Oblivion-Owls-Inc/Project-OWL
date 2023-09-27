@@ -18,10 +18,6 @@
 
 class Entity;
 
-template < typename ComponentType >
-using ReadMethod = void (ComponentType::*)( Stream jsonValue );
-
-
 class Component
 {
 public:
@@ -36,7 +32,7 @@ public:
 	
 	virtual Component* Clone() const = 0;
 
-	virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() = 0;
+	virtual ReadMethodMap< Component > const& GetReadMethods() const = 0;
 
 protected:
 

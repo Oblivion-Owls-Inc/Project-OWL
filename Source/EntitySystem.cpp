@@ -1,10 +1,10 @@
-/// @file EntitySystem.cpp
-/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief System that manages the storing and handling of Entities
-/// @version 0.1
-/// @date 2023-09-05
+/// @file       EntitySystem.cpp
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      System that manages the storing and handling of Entities
+/// @version    0.1
+/// @date       2023-09-05
 /// 
-/// @copyright Copyright (c) 2023
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #include "EntitySystem.h"
 
@@ -14,15 +14,15 @@
 // public methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Adds an Entity to the EntitySystem
-    /// @param entity the entity to add the the EntitySystem
+    /// @brief  Adds an Entity to the EntitySystem
+    /// @param  entity  the entity to add the the EntitySystem
     void EntitySystem::AddEntity( Entity* entity )
     {
         m_Entities.push_back( entity );
     }
 
-    /// @brief gets an Entity by name
-    /// @param entityName the name of the Entity to get
+    /// @brief  gets an Entity by name
+    /// @param  entityName  the name of the Entity to get
     /// @return the found Entity (nullptr if not found)
     Entity* EntitySystem::GetEntity( std::string const& entityName )
     {
@@ -43,8 +43,8 @@
         return *iterator;
     }
 
-    /// @brief removes an Entity from the EntitySystem
-    /// @param entity the Entity to remove
+    /// @brief  removes an Entity from the EntitySystem
+    /// @param  entity  the Entity to remove
     void EntitySystem::RemoveEntity( Entity* entity )
     {
         auto iterator = std::find( m_Entities.begin(), m_Entities.end(), entity );
@@ -55,8 +55,8 @@
         }
     }
 
-    /// @brief checks if the EntitySystem contains the given Entity (for debugging)
-    /// @param entity the Entity to search for
+    /// @brief  checks if the EntitySystem contains the given Entity (for debugging)
+    /// @param  entity  the Entity to search for
     /// @return whether or not the EntitySystem has the specified Entity
     bool EntitySystem::HasEntity( Entity* entity )
     {
@@ -65,8 +65,8 @@
         return iterator != m_Entities.end();
     }
 
-    /// @brief loads all of the m_Entities in a scene
-    /// @param entityData the json object containing the entity data
+    /// @brief  loads all of the m_Entities in a scene
+    /// @param  entityData  the json object containing the entity data
     void EntitySystem::LoadEntities( Stream entityArray )
     {
         for ( auto& entityData : entityArray.GetArray() )
@@ -81,7 +81,7 @@
 // virtual override methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Gets called whenever a scene is exited
+    /// @brief  Gets called whenever a scene is exited
     void EntitySystem::OnSceneExit()
     {
         for ( Entity* entity : m_Entities )
@@ -96,7 +96,7 @@
 // private: reading
 //-----------------------------------------------------------------------------
 
-    /// @brief map of the EntitySystem read methods
+    /// @brief  map of the EntitySystem read methods
     ReadMethodMap< EntitySystem > const EntitySystem::s_ReadMethods = {};
 
     /// @brief  gets this System's read methods
@@ -110,15 +110,15 @@
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-    /// @brief Constructs the EntitySystem
+    /// @brief  Constructs the EntitySystem
     EntitySystem::EntitySystem() :
         m_Entities()
     {}
 
-    /// @brief The singleton instance of EntitySystem
+    /// @brief  The singleton instance of EntitySystem
     EntitySystem * EntitySystem::s_Instance = nullptr;
 
-    /// @brief gets the instance of EntitySystem
+    /// @brief  gets the instance of EntitySystem
     /// @return the instance of the EntitySystem
     EntitySystem * EntitySystem::GetInstance()
     {

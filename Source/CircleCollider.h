@@ -56,7 +56,7 @@ private: // reading
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() override;
+    virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() const override;
 
 //-----------------------------------------------------------------------------
 

@@ -74,7 +74,7 @@ bool LineCollider::CheckIfColliding(const Collider* other)
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    ReadMethodMap< Component > const& LineCollider::GetReadMethods()
+    ReadMethodMap< Component > const& LineCollider::GetReadMethods() const
     {
         return (ReadMethodMap< Component > const&)s_ReadMethods;
     }

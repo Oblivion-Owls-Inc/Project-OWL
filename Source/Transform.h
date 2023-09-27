@@ -25,7 +25,6 @@ public:
 
 public:
     Component* Clone() const override;
-	void Read( const rapidjson::Value& data );
 
 	vec3* GetTranslation();
 	const vec3* GetTranslation() const;
@@ -42,19 +41,15 @@ public:
 
 	void SetMatrix(glm::mat4 newMatrix);
 
-	bool GetIsDirty() const;
-	void SetIsDirty(bool newIsDirty);
-
 private:
 
 	void ReadTranslation( Stream jsonValue );
 	void ReadRotation( Stream jsonValue );
 	void ReadScale( Stream jsonValue );
 
-	static std::map< std::string, ReadMethod< Transform > > readMethods;
+	static ReadMethodMap< Transform > readMethods;
 
-	virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods();
-	
+	virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 
 protected:
 
