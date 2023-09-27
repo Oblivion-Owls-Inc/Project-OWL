@@ -103,7 +103,7 @@ bool InputSystem::GetKeyReleased(int glfw_key)
 /// @return returns if mouse button is down
 bool InputSystem::GetMouseDown(int glfw_mouse_button)
 {
-    return keyStates[glfw_mouse_button][0];
+    return mouseStates[glfw_mouse_button][0];
 }
 
 /// @brief checks if a given mouse button is up
@@ -119,7 +119,7 @@ bool InputSystem::GetMouseUp(int glfw_mouse_button)
 /// @return returns if mouse button is triggered
 bool InputSystem::GetMouseTriggered(int glfw_mouse_button)
 {
-    return keyStates[glfw_mouse_button][1];
+    return mouseStates[glfw_mouse_button][1];
 }
 
 /// @brief checks if a given mouse button is released
@@ -127,7 +127,7 @@ bool InputSystem::GetMouseTriggered(int glfw_mouse_button)
 /// @return returns if mouse button is released
 bool InputSystem::GetMouseReleased(int glfw_mouse_button)
 {
-    return keyStates[glfw_mouse_button][2];
+    return mouseStates[glfw_mouse_button][2];
 }
 
 
