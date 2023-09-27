@@ -15,6 +15,7 @@ Transform::Transform() : Component(typeid(Transform))
 	scale = { 1, 1, 0 };
 	isDirty = true;
 	matrix = glm::mat4(0.0f);
+	isDiegetic = false;
 }
 
 Transform::Transform(const Transform& other) : Component(other)
@@ -109,6 +110,26 @@ glm::mat4* Transform::GetMatrix()
 void Transform::SetMatrix(glm::mat4 newMatrix)
 {
 	matrix = newMatrix;
+}
+
+bool Transform::GetIsDirty() const
+{
+	return isDirty;
+}
+
+void Transform::SetIsDirty(bool newIsDirty)
+{
+	isDirty = newIsDirty;
+}
+
+bool Transform::getIsDiegetic() const
+{
+	return isDiegetic;
+}
+
+void Transform::setIsDiegetic(bool newIsDiegetic)
+{
+	isDiegetic = newIsDiegetic;
 }
 
 

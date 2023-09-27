@@ -2,7 +2,7 @@
  * \file   Transform.h
  * \brief  Transform
  * 
- * \author thatg
+ * \author Tyler Birdsall (tyler.birdsall@digipen.edu)
  * \date   September 2023
  *********************************************************************/
 
@@ -41,6 +41,12 @@ public:
 
 	void SetMatrix(glm::mat4 newMatrix);
 
+	bool GetIsDirty() const;
+	void SetIsDirty(bool newIsDirty);
+
+	bool getIsDiegetic() const;
+	void setIsDiegetic(bool newIsDiegetic);
+
 private:
 
 	void ReadTranslation( Stream jsonValue );
@@ -59,5 +65,6 @@ private:
     float rotation;
     glm::mat4 matrix;
     bool isDirty;
+	bool isDiegetic;
 };
 
