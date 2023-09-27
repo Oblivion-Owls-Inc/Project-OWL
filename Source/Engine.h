@@ -23,10 +23,10 @@ class Engine
 public: // methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Starts running the engine. Code will not advance past this point until the engine stops running.
+    /// @brief  Starts running the engine. Code will not advance past this point until the engine stops running.
     void Run();
 
-    /// @brief Flags the engine to close once it finishes this loop
+    /// @brief  Flags the engine to close once it finishes this loop
     void Close();
 
 //-----------------------------------------------------------------------------
@@ -37,8 +37,8 @@ public: // accessors
     /// @return the amount of time in seconds that each fixed frame lasts
     float GetFixedFrameDuration() const;
 
-    /// @brief                      sets the duration of each fixed frame
-    /// @param fixedFrameDuration   the amount of time in seconds that each fixed frame lasts
+    /// @brief  sets the duration of each fixed frame
+    /// @param  fixedFrameDuration  the amount of time in seconds that each fixed frame lasts
     void SetFixedFrameDuration( float fixedFrameDuration );
 
     /// @brief  gets the array of all Systems in the engine.
@@ -57,74 +57,74 @@ public: // reading
 private: // reading
 //-----------------------------------------------------------------------------
 
-    /// @brief          reads the fixedFrameDuration
-    /// @param stream   the stream to read the data from
+    /// @brief  reads the fixedFrameDuration
+    /// @param  stream  the stream to read the data from
     void readFixedFrameDuration( Stream stream );
 
-    /// @brief          reads the systems
-    /// @param stream   the stream to read the data from
+    /// @brief  reads the systems
+    /// @param  stream  the stream to read the data from
     void readSystems( Stream stream );
 
     /// @brief map containing Engine read methods
     static ReadMethodMap< Engine > const s_ReadMethods;
 
-    /// @brief              Adds a System to the Engine.
+    /// @brief  Adds a System to the Engine.
     /// @tparam SystemType  The type of system to add the Engine
     template < class SystemType >
     System* addSystem();
 
-    /// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
+    /// @brief  contains the function for adding each System type to the Engine. Used for Loading systems from config.
     static std::map< std::string, System* (Engine::*)() > const s_AddSystemMethods;
 
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
-    /// @brief Container of all the Systems in the engine
+    /// @brief  Container of all the Systems in the engine
     std::vector< System * > m_Systems;
 
-    /// @brief flag set to true when the engine needs to exit
+    /// @brief  flag set to true when the engine needs to exit
     bool m_ShouldExit;
 
-    /// @brief The timestamp of the previous frame
+    /// @brief  The timestamp of the previous frame
     double m_PreviousTime;
 
-    /// @brief The timestamp of the previous fixed frame
+    /// @brief  The timestamp of the previous fixed frame
     double m_PreviousFixedTime;
 
-    /// @brief The duration of each fixed frame
+    /// @brief  The duration of each fixed frame
     float m_FixedFrameDuration;
 
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Loads the engine config from "Data/EngineConfig.json"
+    /// @brief  Loads the engine config from "Data/EngineConfig.json"
     void load();
 
-    /// @brief Initializes the engine and all Systems in the Engine.
+    /// @brief  Initializes the engine and all Systems in the Engine.
     void init();
 
-    /// @brief Updates the engine each frame
+    /// @brief  Updates the engine each frame
     void update();
 
-    /// @brief Calls all Systems in the Engine's Update function
+    /// @brief  Calls all Systems in the Engine's Update function
     void updateSystems( float dt );
 
-    /// @brief Calls all Systems in the Engine's FixedUpdate function
+    /// @brief  Calls all Systems in the Engine's FixedUpdate function
     void fixedUpdateSystems();
 
-    /// @brief exits and closes the Engine
+    /// @brief  exits and closes the Engine
     void exit();
 
 //-----------------------------------------------------------------------------
 private: // singleton stuff
 //-----------------------------------------------------------------------------
 
-    /// @brief The singleton instance of the Engine
+    /// @brief  The singleton instance of the Engine
     static Engine * s_Instance;
 
-    /// @brief Constructs a new Engine
+    /// @brief  Constructs a new Engine
     Engine();
 
 //-----------------------------------------------------------------------------

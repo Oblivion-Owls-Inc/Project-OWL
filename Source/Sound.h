@@ -18,9 +18,9 @@ class Sound
 public: // constructor / destructor
 //-----------------------------------------------------------------------------
 
-    /// @brief          Constructs a new Sound
-    /// @param filepath the filepath of the sound to load
-    /// @param looping  whether or not the sound should loop
+    /// @brief  Constructs a new Sound
+    /// @param  filepath    the filepath of the sound to load
+    /// @param  looping     whether or not the sound should loop
     Sound( char const* filepath, bool looping );
 
     /// @brief Destroys this Sound
@@ -30,10 +30,10 @@ public: // constructor / destructor
 public: // methods
 //-----------------------------------------------------------------------------
 
-    /// @brief          Plays this sound
-    /// @param volume   the relative volume to play this sound at
-    /// @param pitch    the relative pitch to play this sound at
-    /// @return         The channel that this sound is being played on
+    /// @brief  Plays this sound
+    /// @param  volume  the relative volume to play this sound at
+    /// @param  pitch   the relative pitch to play this sound at
+    /// @return The channel that this sound is being played on
     FMOD::Channel* Play(
         FMOD::ChannelGroup* group = nullptr,
         float volume = 1.0f,
@@ -48,7 +48,7 @@ public: // methods
 private: // member variables
 //-----------------------------------------------------------------------------
 
-    /// @brief The actual FMOD::Sound
+    /// @brief  The actual FMOD::Sound
     FMOD::Sound* sound;
 
 //-----------------------------------------------------------------------------

@@ -24,7 +24,7 @@
 // private: virtual overrides
 //-----------------------------------------------------------------------------
 
-    /// @brief Gets called once when this System is added to the Engine
+    /// @brief  Gets called once when this System is added to the Engine
     void AudioSystem::OnInit()
     {
         FMOD_RESULT result;
@@ -51,14 +51,14 @@
         }
     }
 
-    /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-    /// @param dt the elapsed time in seconds since the previous frame
+    /// @brief  Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+    /// @param  dt  the elapsed time in seconds since the previous frame
     void AudioSystem::OnUpdate( float dt )
     {
         m_System->update();
     }
 
-    /// @brief Gets called once before the Engine closes
+    /// @brief  Gets called once before the Engine closes
     void AudioSystem::OnExit()
     {
         m_System->release();
@@ -68,14 +68,14 @@
 // private: reading
 //-----------------------------------------------------------------------------
 
-    /// @brief          reads the max channels
-    /// @param stream   the data to read from
+    /// @brief  reads the max channels
+    /// @param  stream  the data to read from
     void AudioSystem::readMaxChannels( Stream stream )
     {
         m_MaxChannels = stream.Read<int>();
     }
 
-    /// @brief map of the AudioSystem read methods
+    /// @brief  map of the AudioSystem read methods
     ReadMethodMap< AudioSystem > const AudioSystem::s_ReadMethods = {
         { "MaxChannels", &readMaxChannels }
     };
@@ -91,12 +91,12 @@
 // private: static methods
 //-----------------------------------------------------------------------------
 
-    /// @brief FMOD callback function for error handling
-    /// @param system handle to the FMOD system
-    /// @param type the type of callback
-    /// @param commandData1 first callback parameter, dependent on callback type
-    /// @param commandData2 second callback parameter, dependent on callback type
-    /// @param userData user data associated with the FMOD system
+    /// @brief  FMOD callback function for error handling
+    /// @param  system          handle to the FMOD system
+    /// @param  type            the type of callback
+    /// @param  commandData1    first callback parameter, dependent on callback type
+    /// @param  commandData2    second callback parameter, dependent on callback type
+    /// @param  userData        user data associated with the FMOD system
     /// @return FMOD_RESULT
     FMOD_RESULT AudioSystem::fmodCallback(
         FMOD_SYSTEM* system,
@@ -104,8 +104,8 @@
         void* commandData1,
         void* commandData2,
         void* userData
-    ) {
-        
+    )
+    {    
         if ( type == FMOD_SYSTEM_CALLBACK_ERROR )
         {
             FMOD_ERRORCALLBACK_INFO* info = (FMOD_ERRORCALLBACK_INFO*)commandData1;
@@ -126,16 +126,16 @@
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-    /// @brief Constructs the AudioSystem
+    /// @brief  Constructs the AudioSystem
     AudioSystem::AudioSystem() :
         m_System( nullptr ),
         m_MaxChannels( 1024 )
     {}
 
-    /// @brief The singleton instance of AudioSystem
+    /// @brief  The singleton instance of AudioSystem
     AudioSystem * AudioSystem::s_Instance = nullptr;
 
-    /// @brief gets the instance of AudioSystem
+    /// @brief  gets the instance of AudioSystem
     /// @return the instance of the AudioSystem
     AudioSystem * AudioSystem::GetInstance()
     {

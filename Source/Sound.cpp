@@ -4,7 +4,7 @@
 /// @version    0.1
 /// @date       2023-09-13
 /// 
-/// @copyright  Copyright (c) 2023
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #include "Sound.h"
 #include "AudioSystem.h"
@@ -13,9 +13,9 @@
 // constructor / destructor
 //-----------------------------------------------------------------------------
 
-    /// @brief          Constructs a new Sound
-    /// @param filepath the filepath of the sound to load
-    /// @param looping  whether or not the sound should loop
+    /// @brief  constructs a new Sound
+    /// @param  filepath    the filepath of the sound to load
+    /// @param  looping     whether or not the sound should loop
     Sound::Sound( char const* filepath, bool looping )
     {
         AudioSystem::GetInstance()->GetFMOD()->createSound(
@@ -26,7 +26,7 @@
         );
     }
 
-    /// @brief Destroys this Sound
+    /// @brief  Destroys this Sound
     Sound::~Sound()
     {
         sound->release();
@@ -36,9 +36,9 @@
 // public methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Plays this sound
-    /// @param volume the relative volume to play this sound at
-    /// @param pitch the relative pitch to play this sound at
+    /// @brief  Plays this sound
+    /// @param  volume  the relative volume to play this sound at
+    /// @param  pitch   the relative pitch to play this sound at
     /// @return The channel that this sound is being played on
     FMOD::Channel* Sound::Play(
         FMOD::ChannelGroup* group,
@@ -63,7 +63,7 @@
     }
 
 
-    /// @brief gets the length of this sound
+    /// @brief  gets the length of this sound
     /// @return the length of this sound in seconds
     float Sound::GetLength() const
     {

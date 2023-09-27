@@ -56,7 +56,7 @@ const glm::vec3* Transform::GetTranslation() const
 void Transform::SetTranslation(glm::vec3 newTranslation)
 {
 	translation = newTranslation;
-	SetIsDirty(true);
+	isDirty = true;
 }
 
 float Transform::GetRotation() const
@@ -67,7 +67,7 @@ float Transform::GetRotation() const
 void Transform::SetRotation(float newRotation)
 {
 	rotation = newRotation;
-	SetIsDirty(true);
+	isDirty = true;
 }
 
 glm::vec3* Transform::GetScale()
@@ -83,7 +83,7 @@ const glm::vec3* Transform::GetScale() const
 void Transform::SetScale(glm::vec3 newScale)
 {
 	scale = newScale;
-	SetIsDirty(true);
+	isDirty = true;
 }
 
 glm::mat4* Transform::GetMatrix()
@@ -149,13 +149,13 @@ void Transform::ReadScale( Stream jsonValue )
 	isDirty = true;
 }
 
-std::map< std::string, ReadMethod< Transform > > Transform::readMethods = {
+ReadMethodMap< Transform > Transform::readMethods = {
 	{ "Translation", &ReadTranslation },
 	{ "Rotation", &ReadRotation },
 	{ "Scale", &ReadScale }
 };
 
-std::map< std::string, ReadMethod< Component > > const& Transform::GetReadMethods()
+ReadMethodMap< Component > const& Transform::GetReadMethods() const
 {
 	return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
 }

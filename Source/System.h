@@ -10,7 +10,7 @@
 
 #include "Stream.h"
 
-/// @brief Base class for all Systems
+/// @brief  Base class for all Systems
 class System
 {
 
@@ -18,26 +18,26 @@ class System
 public: // virtual methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Gets called once when this System is added to the Engine
+    /// @brief  Gets called once when this System is added to the Engine
     virtual void OnInit() {};
 
-    /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
+    /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
     virtual void OnFixedUpdate() {};
 
-    /// @brief      Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-    /// @param dt   the elapsed time in seconds since the previous frame
+    /// @brief  Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+    /// @param  dt  the elapsed time in seconds since the previous frame
     virtual void OnUpdate(float dt) {};
 
-    /// @brief Gets called once before the Engine closes
+    /// @brief  Gets called once before the Engine closes
     virtual void OnExit() {};
 
-    /// @brief Gets called whenever a new Scene is loaded
+    /// @brief  Gets called whenever a new Scene is loaded
     virtual void OnSceneLoad() {};
 
-    /// @brief Gets called whenever a scene is initialized
+    /// @brief  Gets called whenever a scene is initialized
     virtual void OnSceneInit() {};
 
-    /// @brief Gets called whenever a scene is exited
+    /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() {};
 
 
@@ -53,7 +53,7 @@ public: // reading
 protected: // constructor
 //-----------------------------------------------------------------------------
     
-    /// @brief Constructs a System
+    /// @brief  Constructs a System
     System() = default;
 
 //-----------------------------------------------------------------------------

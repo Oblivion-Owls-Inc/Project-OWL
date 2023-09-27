@@ -4,7 +4,7 @@
 /// @version    0.1
 /// @date       2023-09-05
 ///
-/// @copyright  Copyright (c) 2023
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #pragma once
 
@@ -31,7 +31,7 @@
 #include "CameraSystem.h"
 
 // TODO: move this out of the engine into its own System
-/// @brief callback that gets called for every user keypress
+/// @brief  callback that gets called for every user keypress
 void keyCallback(
     GLFWwindow* window,
     int key,
@@ -53,7 +53,7 @@ void keyCallback(
 // public: methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Starts running the engine.
+    /// @brief  Starts running the engine.
     void Engine::Run()
     {
 
@@ -72,7 +72,7 @@ void keyCallback(
         exit();
     }
 
-    /// @brief Flags the engine to close once it finishes this loop
+    /// @brief  Flags the engine to close once it finishes this loop
     void Engine::Close()
     {
         m_ShouldExit = true;
@@ -90,8 +90,8 @@ void keyCallback(
         return m_FixedFrameDuration;
     }
 
-    /// @brief                      sets the duration of each fixed frame
-    /// @param _fixedFrameDuration  the amount of time in seconds that each fixed frame lasts
+    /// @brief  sets the duration of each fixed frame
+    /// @param  fixedFrameDuration  the amount of time in seconds that each fixed frame lasts
     void Engine::SetFixedFrameDuration( float fixedFrameDuration )
     {
         m_FixedFrameDuration = fixedFrameDuration;
@@ -119,15 +119,15 @@ void keyCallback(
 // private: reading
 //-----------------------------------------------------------------------------
 
-    /// @brief          reads the fixedFrameDuration
-    /// @param stream   the stream to read the data from
+    /// @brief  reads the fixedFrameDuration
+    /// @param  stream  the stream to read the data from
     void Engine::readFixedFrameDuration( Stream stream )
     {
         m_FixedFrameDuration = stream.Read<float>();
     }
 
-    /// @brief          reads the systems
-    /// @param stream   the stream to read the data from
+    /// @brief  reads the systems
+    /// @param  stream  the stream to read the data from
     void Engine::readSystems( Stream stream )
     {
         for ( auto& systemData : stream.GetObject() )
@@ -155,13 +155,13 @@ void keyCallback(
         }
     }
 
-    /// @brief map containing Engine read methods
+    /// @brief  map containing Engine read methods
     ReadMethodMap< Engine > const Engine::s_ReadMethods = {
         { "FixedFrameDuration", &readFixedFrameDuration },
         { "Systems",            &readSystems            }
     };
 
-    /// @brief              Adds a System to the Engine.
+    /// @brief  Adds a System to the Engine.
     /// @tparam SystemType  The type of system to add the Engine
     template < class SystemType >
     System* Engine::addSystem()
@@ -171,28 +171,28 @@ void keyCallback(
         return system;
     }
 
-/// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
-std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
-    { "PlatformSystem",             &addSystem< PlatformSystem >                },
-    { "CameraSystem",               &addSystem< CameraSystem >                  },  
-    { "InputSystem",                &addSystem< InputSystem >                   },
-    { "SceneSystem",                &addSystem< SceneSystem >                   },
-    { "RenderSystem",               &addSystem< RenderSystem >                  },
-    { "DebugSystem",                &addSystem< DebugSystem >                   },
-    { "AudioSystem",                &addSystem< AudioSystem >                   },
-    { "EntitySystem",               &addSystem< EntitySystem >                  },
-    { "SandboxSystem",              &addSystem< SandboxSystem >                 },
-    { "XinoScene",                  &addSystem< XinoScene >                     },
-	{ "CollisionSystem",            &addSystem< CollisionSystem >               },
-    { "BehaviorSystem<RigidBody>",  &addSystem< BehaviorSystem< RigidBody > >   },
-    { "BehaviorSystem<MovementAI>", &addSystem< BehaviorSystem< MovementAI > >  },
-};
+    /// @brief  contains the function for adding each System type to the Engine. Used for Loading systems from config.
+    std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
+        { "PlatformSystem",             &addSystem< PlatformSystem >                },
+        { "CameraSystem",               &addSystem< CameraSystem >                  },  
+        { "InputSystem",                &addSystem< InputSystem >                   },
+        { "SceneSystem",                &addSystem< SceneSystem >                   },
+        { "RenderSystem",               &addSystem< RenderSystem >                  },
+        { "DebugSystem",                &addSystem< DebugSystem >                   },
+        { "AudioSystem",                &addSystem< AudioSystem >                   },
+        { "EntitySystem",               &addSystem< EntitySystem >                  },
+        { "SandboxSystem",              &addSystem< SandboxSystem >                 },
+        { "XinoScene",                  &addSystem< XinoScene >                     },
+	    { "CollisionSystem",            &addSystem< CollisionSystem >               },
+        { "BehaviorSystem<RigidBody>",  &addSystem< BehaviorSystem< RigidBody > >   },
+        { "BehaviorSystem<MovementAI>", &addSystem< BehaviorSystem< MovementAI > >  },
+    };
 
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Loads the engine config from "Data/EngineConfig.json"
+    /// @brief  Loads the engine config from "Data/EngineConfig.json"
     void Engine::load()
     {
         rapidjson::Document document = Stream::ReadFromJSON( "Data/EngineConfig.json" );
@@ -207,7 +207,7 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
         }
     }
 
-    /// @brief Initializes the engine and all Systems in the Engine
+    /// @brief  Initializes the engine and all Systems in the Engine
     void Engine::init()
     {
         // initialize the time values
@@ -233,7 +233,7 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
         // TODO: move the above code out of the engine and into its own systems
     }
 
-    /// @brief Updates the engine each frame
+    /// @brief  Updates the engine each frame
     void Engine::update()
     {
 
@@ -273,8 +273,8 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
         // TODO: move the above code out of Engine and into its own System
     }
 
-    /// @brief      Calls all Systems' OnUpdate function
-    /// @param dt   the amount of time the frame lasted
+    /// @brief  Calls all Systems' OnUpdate function
+    /// @param  dt  the amount of time the frame lasted
     void Engine::updateSystems( float dt )
     {
         for ( System * system : m_Systems )
@@ -283,7 +283,7 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
         }
     }
 
-    /// @brief Calls all Systems' OnFixedUpdate function
+    /// @brief  Calls all Systems' OnFixedUpdate function
     void Engine::fixedUpdateSystems()
     {
         for ( System * system : m_Systems )
@@ -292,7 +292,7 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
         }
     }
 
-    /// @brief Calls all Systems' OnExit function
+    /// @brief  Calls all Systems' OnExit function
     void Engine::exit()
     {
         for ( System * system : m_Systems )
@@ -306,10 +306,10 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-    /// @brief The singleton instance of the Engine
+    /// @brief  The singleton instance of the Engine
     Engine * Engine::s_Instance;
 
-    /// @brief Constructs a new Engine
+    /// @brief  Constructs a new Engine
     Engine::Engine() :
         m_ShouldExit( false ),
         m_FixedFrameDuration( 1.0f / 20.0f ),
@@ -317,7 +317,7 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
         m_PreviousTime( 0.0 )
     {}
 
-    /// @brief gets the singleton instance of the Engine
+    /// @brief  gets the singleton instance of the Engine
     /// @return the singleton instance of the Engine
     Engine* Engine::GetInstance()
     {

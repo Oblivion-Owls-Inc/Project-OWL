@@ -214,7 +214,7 @@ ReadMethodMap< Sprite > const Sprite::readMethods = {
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component
-ReadMethodMap< Component > const& Sprite::GetReadMethods()
+ReadMethodMap< Component > const& Sprite::GetReadMethods() const
 {
     return (ReadMethodMap< Component> const&)readMethods;
 }
