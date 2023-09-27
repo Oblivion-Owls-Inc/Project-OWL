@@ -197,7 +197,6 @@
     <ClCompile Include="Source\LineCollider.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
-    <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\TextSprite.cpp" />
     <ClCompile Include="Source\StubScene.cpp" />
     <ClCompile Include="Source\XinoScene.cpp" />
@@ -214,7 +213,6 @@
     <ClCompile Include="Source\PlatformSystem.cpp" />
     <ClCompile Include="Source\SceneSystem.cpp" />
     <ClCompile Include="Source\Sprite.cpp" />
-    <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
@@ -273,7 +271,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
+    <None Include="Data\Scenes\AidanScene.scene.json" />
     <None Include="Data\Scenes\Sandbox.scene.json" />
+    <None Include="Data\Scenes\TestScene.scene.json" />
     <None Include="Data\Scenes\XinoScene.scene.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -10,7 +10,7 @@
 ///*************************************************************************/
 #pragma once
 #include "Component.h"
-#include "rapidjson.h"
+#include "rapidjson/rapidjson.h"
 
 ///*************************************************************************/
 /// @Class Collider
@@ -50,7 +50,7 @@ class Collider : public Component
 	private: // Read Methods
 		virtual std::map< std::string, ReadMethod< Component > > const& getReadMethods();
 		void ReadColliderType(Stream data);
-		static ReadMethodMap< Collider > readMethods;
+		static ReadMethodMap< Collider > s_ReadMethods;
 	private:
 		ColliderType mtype;
 		bool mIsColliding;

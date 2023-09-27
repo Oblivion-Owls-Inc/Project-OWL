@@ -119,7 +119,7 @@ private: // reading
     void ReadPitchVariance( Stream data );
 
     /// @brief map of the read methods for this Component
-    static std::map< std::string, ReadMethod< AudioPlayer > > readMethods;
+    static std::map< std::string, ReadMethod< AudioPlayer > > s_ReadMethods;
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component

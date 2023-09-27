@@ -82,7 +82,7 @@ void LineCollider::ReadLineVectors(Stream stream)
     // Create and add as many line segments as possible.
     for(size_t i = 0; i < m_NumSegments; i++)
     {
-        for (auto& lineData : stream.getArray())
+        for (auto& lineData : stream.GetArray())
         {
             assert( lineData.IsArray() );
 
@@ -94,16 +94,16 @@ void LineCollider::ReadLineVectors(Stream stream)
 }
 
 /// @brief Map of all the component's read methods.
-std::map< std::string, ReadMethod<LineCollider>> LineCollider::readMethods = {
+std::map< std::string, ReadMethod<LineCollider>> LineCollider::s_ReadMethods = {
     { "numSegments" , &ReadNumLineSegments},
     { "lineVectors" , &ReadLineVectors    }
 };
 
 /// @brief  Gets a map of the read methods for this component.
 /// @return A map of the read methods for this function.
-std::map<std::string, ReadMethod<Component>> const& LineCollider::getReadMethods()
+std::map<std::string, ReadMethod<Component>> const& LineCollider::GetReadMethods()
 {
-    return (std::map< std::string, ReadMethod<Component> > const&)readMethods;
+    return (std::map< std::string, ReadMethod<Component> > const&)s_ReadMethods;
 }
 
 //-----------------------------------------------------------------------------

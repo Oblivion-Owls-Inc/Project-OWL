@@ -69,7 +69,7 @@ public:
 	// Compare the entity's name with the specified name.
 	bool IsNamed(const std::string& name);
 
-	static __inline ReadMethodMap< Entity > const& GetReadMethods() { return readMethods; }
+	static __inline ReadMethodMap< Entity > const& GetReadMethods() { return s_ReadMethods; }
 
 private:
 	// The name of the entity.
@@ -84,7 +84,7 @@ private:
 	void ReadArchetype(Stream stream);
 
 
-	static ReadMethodMap<Entity> readMethods;
+	static ReadMethodMap<Entity> s_ReadMethods;
 
 };
 //------------------------------------------------------------------------------

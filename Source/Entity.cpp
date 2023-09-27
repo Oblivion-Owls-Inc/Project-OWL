@@ -171,7 +171,7 @@ void Entity::ReadComponents(Stream stream)
 }
 
 /// @brief A map of the all read methods used by the Entity class.
-ReadMethodMap< Entity > Entity::readMethods = {
+ReadMethodMap< Entity > Entity::s_ReadMethods = {
 	{ "Archetype"  , &ReadArchetype  },
 	{ "components" , &ReadComponents },
 	{ "name"       , &ReadName	     }

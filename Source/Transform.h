@@ -55,7 +55,7 @@ private:
 	void ReadScale( Stream jsonValue );
 	void ReadDiegetic( Stream jsonValue );
 
-	static std::map< std::string, ReadMethod< Transform > > readMethods;
+	static std::map< std::string, ReadMethod< Transform > > s_ReadMethods;
 
 	virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods();
 	

@@ -168,7 +168,7 @@ void Transform::ReadDiegetic( Stream jsonValue )
 }
 
 // Map of all the read methods for the transform component.
-std::map< std::string, ReadMethod< Transform > > Transform::readMethods = {
+std::map< std::string, ReadMethod< Transform > > Transform::s_ReadMethods = {
 	{ "translation" , &ReadTranslation },
 	{ "rotation"	, &ReadRotation    },
 	{ "scale"		, &ReadScale       },
@@ -177,7 +177,7 @@ std::map< std::string, ReadMethod< Transform > > Transform::readMethods = {
 
 /// @brief  Gets a map of the read methods for transform component.
 /// @return A map of all the transform component read methods.
-std::map<std::string, ReadMethod<Component>> const& Transform::getReadMethods()
+std::map<std::string, ReadMethod<Component>> const& Transform::GetReadMethods()
 {
-	return (std::map< std::string, ReadMethod<Component>> const&)readMethods;
+	return (std::map< std::string, ReadMethod<Component>> const&)s_ReadMethods;
 }

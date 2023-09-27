@@ -170,8 +170,8 @@ void Sprite::ReadSprite( Stream )
         _texture = new Texture(m_filename.c_str());
 
         // calculate height multiplier
-        glm::vec2 size = _texture->getImageDimensions();
-        glm::vec2 uvsize = _mesh->get_uvSize();
+        glm::vec2 size = _texture->GetImageDimensions();
+        glm::vec2 uvsize = _mesh->GetUVsize();
         _heightMult = (size.y / size.x) * (uvsize.y / uvsize.x);
     }
     else
@@ -224,7 +224,7 @@ void Sprite::ReadIsTextured(Stream stream)
 }
 
 /// @brief the map of read methods for this Component
-ReadMethodMap< Sprite > const Sprite::readMethods = {
+ReadMethodMap< Sprite > const Sprite::s_ReadMethods = {
     { "columns"    , &ReadColumns    },
     { "rows"       , &ReadRows       },
     { "layer"      , &ReadLayer      },
@@ -238,5 +238,5 @@ ReadMethodMap< Sprite > const Sprite::readMethods = {
 /// @return the map of read methods for this Component
 ReadMethodMap< Component > const& Sprite::GetReadMethods()
 {
-    return (ReadMethodMap< Component> const&)readMethods;
+    return (ReadMethodMap< Component> const&)s_ReadMethods;
 }

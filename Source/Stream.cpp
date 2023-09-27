@@ -127,27 +127,38 @@ int Stream::Read<int>() const
     return value.GetInt();
 }
 
-/// @brief  Reads a basic type from a json value
+/// @brief  Reads a boolean value from a json value
 /// @tparam T the type to read
 /// @return The value from the json
 template <>
 bool Stream::Read<bool>() const
 {
-    assert(value.IsBool());
+    if (value.IsNumber() == false)
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Boolean type"
+        );
+    }
     return value.GetBool();
 }
 
-/// @brief  Reads a basic type from a json value
+/// @brief  Reads an unsigned int value from a json value
 /// @tparam T the type to read
 /// @return The value from the json
 template <>
 unsigned int Stream::Read<unsigned int>() const
 {
-    assert(value.IsUint());
+    if (value.IsNumber() == false)
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Unsigned Int"
+            "type"
+        );
+    }
     return value.GetUint();
 }
 
-/// @brief  Reads a basic type from a json value
+/// @brief  Reads a float value from a json value
 /// @tparam T the type to read
 /// @return The value from the json
 template <>
@@ -162,7 +173,7 @@ float Stream::Read<float>() const
     return value.GetFloat();
 }
 
-/// @brief  Reads a basic type from a json value
+/// @brief  Reads a string from a json value
 /// @tparam T the type to read
 /// @return The value from the json
 template <>
@@ -177,7 +188,7 @@ std::string Stream::Read<std::string>() const
     return value.GetString();
 }
 
-/// @brief  Reads a basic type from a json value
+/// @brief  Reads a glm::vec3 from a json value
 /// @tparam T the type to read
 /// @return The value from the json
 template <>
@@ -199,13 +210,19 @@ glm::vec3 Stream::Read<glm::vec3>() const
     return vector;
 }
 
-/// @brief  Reads a basic type from a json value
+/// @brief  Reads a glm::vec4 from a json value
 /// @tparam T the type to read
 /// @return The value from the json
 template <>
 glm::vec4 Stream::Read<glm::vec4>() const
 {
-    assert(value.IsArray());
+    if (value.IsArray() == false)
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Vec4 type"
+        );
+    }
+
     glm::vec4 vector = {};
     for (int i = 0; i < 4; i++)
     {
@@ -215,13 +232,18 @@ glm::vec4 Stream::Read<glm::vec4>() const
     return vector;
 }
 
-/// @brief  Reads a basic type from a json value
+/// @brief  Reads a glm::vec2 from a json value
 /// @tparam T the type to read
 /// @return The value from the json
 template <>
 glm::vec2 Stream::Read<glm::vec2>() const
 {
-    assert(value.IsArray());
+    if (value.IsArray() == false)
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected value type while trying to read Vec2 type"
+        );
+    }
     glm::vec2 vector = {};
     for (int i = 0; i < 2; i++)
     {

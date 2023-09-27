@@ -97,7 +97,7 @@ private: // reading
     void ReadRotationalVelocity(Stream data);
 
     /// @brief the map of read methods for RigidBodys
-    static ReadMethodMap< RigidBody > readMethods;
+    static ReadMethodMap< RigidBody > s_ReadMethods;
 
         /// @brief gets the map of read methods for this Component
         /// @return the map of read methods for this Component

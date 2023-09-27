@@ -47,11 +47,11 @@ public: // acessors
 
 	/// @brief  Gets the rapidjson value as an object
 	/// @return The rapidjson value
-	rapidjson::GenericObject< true, rapidjson::Value > const& getObject() const;
+	rapidjson::GenericObject< true, rapidjson::Value > const& GetObject() const;
 
     /// @brief  Gets the rapidjson value as an object
     /// @return The rapidjson value
-    rapidjson::GenericArray< true, rapidjson::Value > const& getArray() const;
+    rapidjson::GenericArray< true, rapidjson::Value > const& GetArray() const;
 
 	/// @brief	  Reads a basic type from a json value
 	/// @tparam T The type to read

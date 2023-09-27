@@ -155,7 +155,7 @@
     }
 
     /// @brief map of the read methods for this Component
-    ReadMethodMap< AudioPlayer > AudioPlayer::readMethods = {
+    ReadMethodMap< AudioPlayer > AudioPlayer::s_ReadMethods = {
         { "volume", &ReadVolume },
         { "pitch", &ReadPitch },
         { "volumeVariance", &ReadVolumeVariance },
@@ -166,7 +166,7 @@
     /// @return the map of read methods for this Component
     ReadMethodMap< Component > const& AudioPlayer::GetReadMethods()
     {
-        return (ReadMethodMap< Component > const&)readMethods;
+        return (ReadMethodMap< Component > const&)s_ReadMethods;
     }
 
 //-----------------------------------------------------------------------------

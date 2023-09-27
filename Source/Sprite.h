@@ -118,7 +118,7 @@ private: // reading
     void ReadSprite( Stream );
 
     /// @brief the map of read methods for this Component
-    static ReadMethodMap< Sprite > const readMethods;
+    static ReadMethodMap< Sprite > const s_ReadMethods;
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component

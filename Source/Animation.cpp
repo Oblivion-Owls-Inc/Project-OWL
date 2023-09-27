@@ -227,7 +227,7 @@ void Animation::ReadIsLooping( Stream stream )
 }
 
 // Map of all the read methods for the animation component.
-ReadMethodMap< Animation > const Animation::readMethods = {
+ReadMethodMap< Animation > const Animation::s_ReadMethods = {
 	{"frameIndex"	 , &ReadFrameIndex	  },
 	{"frameStart"	 , &ReadFrameStart	  },
 	{"frameCount"	 , &ReadFrameCount	  },
@@ -241,5 +241,5 @@ ReadMethodMap< Animation > const Animation::readMethods = {
 /// @return the map of read methods for this Component
 ReadMethodMap< Component > const& Animation::getReadMethods()
 {
-	return (ReadMethodMap< Component > const&)readMethods;
+	return (ReadMethodMap< Component > const&)s_ReadMethods;
 }
