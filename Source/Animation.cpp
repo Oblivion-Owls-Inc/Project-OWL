@@ -114,7 +114,7 @@ void Animation::SetAsset(AnimationAsset* newAsset)
 	m_asset = newAsset;
 }
 
-void Animation::animationPlay()
+void Animation::AnimationPlay()
 {
 	m_FrameStart = m_asset->GetStart();
 	m_FrameIndex = m_asset->GetStart();

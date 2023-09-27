@@ -41,7 +41,7 @@ public:
 	const AnimationAsset* GetAsset() const;
 	void SetAsset(AnimationAsset* newAsset);
 
-	void animationPlay();
+	void AnimationPlay();
 
 	
 
