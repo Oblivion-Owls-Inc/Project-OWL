@@ -22,7 +22,7 @@
 // private: reading
 //-----------------------------------------------------------------------------
 
-/// @brief map of the AssetLibrarySystem read methods
+    /// @brief map of the AssetLibrarySystem read methods
 ReadMethodMap< AssetLibrarySystem > const AssetLibrarySystem::s_ReadMethods = {};
 
 /// @brief  gets this System's read methods
@@ -36,7 +36,7 @@ ReadMethodMap< System > const& AssetLibrarySystem::GetReadMethods() const
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-/// @brief Constructs the AssetLibrarySystem
+    /// @brief Constructs the AssetLibrarySystem
 AssetLibrarySystem::AssetLibrarySystem() {}
 
 /// @brief The singleton instance of AssetLibrarySystem

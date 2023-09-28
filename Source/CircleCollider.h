@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Collider.h"
+#include "Stream.h"
 
  /**
   * @class CircleCollider
@@ -50,6 +51,10 @@ class CircleCollider : public Collider
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
+
+    /// @brief        Read in the radius for the circle collider component.
+    /// @param stream The JSON to read from.
+    void ReadRadius(Stream stream);
 
     /// @brief map of the read methods for this Component
     static std::map< std::string, ReadMethod< CircleCollider > > s_ReadMethods;

@@ -1,0 +1,39 @@
+{
+    "Assets": {
+        "textures": [],
+        "meshes": [],
+        "shaders": []
+    },
+    "Entities": [
+        {
+            "name": "Wall",
+            "Components": {
+                "Sprite": {
+                    "columns": 1,
+                    "rows": 1,
+                    "color": [ 0, 0, 0, 1 ],
+                    "layer": 0,
+                    "name": "temp_Assets/Balls/Ball.png",
+                    "isTextured": true
+                },
+                "LineCollider": {
+                    "numSegments": 2,
+                    "lineVectors": [
+                        [
+                            [ 0, 0 ],
+                            [ 800, 0 ]
+                        ]
+
+                    ]
+                },
+                "Transform": {
+                    "translation": [ 400, 500, 0 ],
+                    "rotation": 0,
+                    "scale": [ 800, 50, 0 ],
+                    "diegetic": false
+                }
+
+            }
+        }
+    ]
+}

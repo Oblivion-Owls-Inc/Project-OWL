@@ -1,13 +1,32 @@
-#pragma once
+///*****************************************************************/
+/// @file	 LineCollider.h
+/// @Author  Jax Clayton (jax.clayton@digipen.edu)
+/// @date	 9/5/2023
+/// @brief   LineCollider class header
+/// @details This class contains the LineCollider component
+///*****************************************************************/
 
+#pragma once
+///*****************************************************************/
+/// Includes
+///*****************************************************************/
 #include "basics.h"
 #include "Collider.h"
 #include <vector>
+#include <map>
+#include <string>
+#include "Stream.h"
 
 using namespace glm;
 
+///*****************************************************************/
+/// LineCollider class
+/// @brief This class contains the LineCollider component which is used
+///  for collisions on a game object.
+///*****************************************************************/
 class LineCollider : public Collider
 {
+private:
 	private:
 
 		typedef struct ColliderLineSegment
@@ -17,6 +36,7 @@ class LineCollider : public Collider
 
 		} ColliderLineSegment;
 
+public:
 	public:
 
 		LineCollider();
@@ -26,27 +46,33 @@ class LineCollider : public Collider
 		bool CheckIfColliding(const Collider* other) override;
 		virtual void OnFixedUpdate() override {};
 
+private:
 
-	private:
+	std::vector<ColliderLineSegment> m_lineSegments;
 
-		std::vector<ColliderLineSegment> m_lineSegments;
+	unsigned int m_LineCount;
 
-		unsigned int lineCount;
+	unsigned int counter;
 
-		unsigned int counter;
+	bool doesDamage = false;
 
-		bool doesDamage = false;
-
-//-----------------------------------------------------------------------------
 private: // reading
-//-----------------------------------------------------------------------------
 
-    /// @brief map of the read methods for this Component
-    static std::map< std::string, ReadMethod< LineCollider > > s_ReadMethods;
+	// Number of line segments to make, read from file.
+	unsigned int m_NumSegments;
+	/// @brief The map of read methods for the LineCollider.
+	static std::map< std::string, ReadMethod< LineCollider > > s_ReadMethods;
 
-    /// @brief gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
-    virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() const override;
+	/// @brief		  Read in the number of line segements to create.
+	/// @param stream The json data to read from.
+	void ReadNumLineSegments(Stream stream);
 
+	/// @brief		  Read in the data for the line vectors.
+	/// @param stream The json data to read from.
+	void ReadLineVectors( Stream stream );
+
+	/// @brief  Gets the map of read methods for this component.
+	/// @return The map of read methods for this component.
+	virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() const override;
 };
 

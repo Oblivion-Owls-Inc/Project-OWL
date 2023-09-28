@@ -44,27 +44,28 @@ public:
 	bool GetIsDirty() const;
 	void SetIsDirty(bool newIsDirty);
 
-	bool getIsDiegetic() const;
-	void setIsDiegetic(bool newIsDiegetic);
+	bool GetIsDiegetic() const;
+	void SetIsDiegetic(bool newIsDiegetic);
 
 private:
 
 	void ReadTranslation( Stream jsonValue );
 	void ReadRotation( Stream jsonValue );
 	void ReadScale( Stream jsonValue );
+	void ReadDiegetic( Stream jsonValue );
 
-	static ReadMethodMap< Transform > readMethods;
+	static std::map< std::string, ReadMethod< Transform > > s_ReadMethods;
 
 	virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 
 protected:
 
 private:
-    vec3 translation;
-    vec3 scale;
-    float rotation;
-    glm::mat4 matrix;
-    bool isDirty;
-	bool isDiegetic;
+    vec3 m_Translation;
+    vec3 m_Scale;
+    float m_Rotation;
+    glm::mat4 m_Matrix;
+    bool m_IsDirty;
+	bool m_IsDiegetic;
 };
 

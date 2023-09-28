@@ -127,15 +127,15 @@ void RigidBody::ReadRotationalVelocity(Stream data)
 }
 
 /// @brief the map of read methods for RigidBodys
-ReadMethodMap< RigidBody > RigidBody::readMethods = {
-	{ "velocity",           &ReadVelocity           },
-	{ "acceleration",       &ReadAcceleration       },
-	{ "rotationalVelocity", &ReadRotationalVelocity }
+ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
+	{ "velocity"           , &ReadVelocity           },
+	{ "acceleration"       , &ReadAcceleration       },
+	{ "rotationalVelocity" , &ReadRotationalVelocity }
 };
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component
 ReadMethodMap< Component > const& RigidBody::GetReadMethods() const
 {
-	return (ReadMethodMap< Component > const&)readMethods;
+	return (ReadMethodMap< Component > const&)s_ReadMethods;
 }

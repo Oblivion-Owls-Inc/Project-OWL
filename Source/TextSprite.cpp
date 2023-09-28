@@ -11,7 +11,9 @@
 #include "RenderSystem.h"   // shader
 #include "CameraSystem.h"   // projection matrices
 
-// TODO: allow delayed initialization. It needs to read in the data after creation.
+
+/// @brief              Default constructor: does nothing
+TextSprite::TextSprite() : Sprite() {}
 
 
 /// @brief              Constructor: unlike base Sprite constructor, this one 
@@ -26,8 +28,8 @@
 /// @param stride_mult  (optional) Multiplier to adjust stride (spacing)
 /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
 TextSprite::TextSprite(const char* image_file, int columns, int rows, float stride_mult, int layer) :
-                Sprite(nullptr, columns, rows, layer), 
-                m_StrideMult(stride_mult)
+    Sprite(nullptr, columns, rows, layer),
+    m_StrideMult(stride_mult)
 {
     // Init text shader if it ain't.
     if (!Renderer()->GetShader("text"))
@@ -58,10 +60,10 @@ TextSprite::TextSprite(const char* image_file, int columns, int rows, float stri
 
 /// @brief      Feed text into this function just like with std::cout. 
 /// @return     Reference to string stream to feed text into.
-std::ostringstream & TextSprite::Text() 
+std::ostringstream& TextSprite::Text()
 {
     m_Stream.str(std::string()); // clear current string
-    
+
     return m_Stream;
 }
 
@@ -79,7 +81,7 @@ void TextSprite::Draw()
         Transform* tr = Parent()->GetComponent<Transform>();
         glm::mat4 proj;
 #if 0
-        if (tr->getIsDiegetic())
+        if (tr->GetIsDiegetic())
             proj = Camera()->GetMat_WorldToClip();
         else
 #endif
@@ -103,6 +105,7 @@ void TextSprite::Draw()
     glUniform2f(sh_txt->GetUniformID("stride"), stride.x, stride.y);
     glUniform2f(sh_txt->GetUniformID("UVsize"), uvsize.x, uvsize.y);
     glUniform1i(sh_txt->GetUniformID("columns"), m_Columns);
+    glUniform4fv(sh_txt->GetUniformID("tint"), 1, &m_Color[0]);
 
     // Load the string into buffer. sigh... chars have to be converted to floats. 
     // (should be ints, but I can't get it to read ints from buffer correctly, 
