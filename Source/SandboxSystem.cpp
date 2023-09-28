@@ -47,7 +47,7 @@
         entity->GetComponent<AudioPlayer>()->SetSound(sound);
 
         entity2= new Entity();
-        //entity2->Add( new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22,17));
+        entity2->Add( new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22,17));
         entity2->Add( new RigidBody());
         entity2->Add( new Transform());
         entity2->Add( new MovementAI());

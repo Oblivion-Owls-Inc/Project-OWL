@@ -1,13 +1,13 @@
 {
-    "assets": {
+    "Assets": {
         "textures": [],
         "meshes": [],
         "shaders": []
     },
-    "entities": [
+    "Entities": [
         {
             "name": "Wall",
-            "components": {
+            "Components": {
                 "Sprite": {
                     "columns": 1,
                     "rows": 1,

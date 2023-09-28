@@ -188,6 +188,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Animation.cpp" />
     <ClCompile Include="Source\AnimationAsset.cpp" />
+    <ClCompile Include="Source\ComponentFactory.cpp" />
     <ClCompile Include="Source\EntitySystem.cpp" />
     <ClCompile Include="Source\MovementAI.cpp" />
     <ClCompile Include="Source\AudioPlayer.cpp" />

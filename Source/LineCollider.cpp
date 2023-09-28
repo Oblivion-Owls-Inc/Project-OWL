@@ -105,7 +105,7 @@ std::map< std::string, ReadMethod<LineCollider>> LineCollider::s_ReadMethods = {
 
 /// @brief  Gets a map of the read methods for this component.
 /// @return A map of the read methods for this function.
-std::map<std::string, ReadMethod<Component>> const& LineCollider::GetReadMethods()
+std::map<std::string, ReadMethod<Component>> const& LineCollider::GetReadMethods() const
 {
     return (std::map< std::string, ReadMethod<Component> > const&)s_ReadMethods;
 }
