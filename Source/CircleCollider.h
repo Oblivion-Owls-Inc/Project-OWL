@@ -37,7 +37,7 @@ class CircleCollider : public Collider
          */
         virtual bool CheckIfColliding(const Collider* other) override;
 
-        void SetRadius(float _radius);
+        void SetRadius(float m_Radius);
 
         float GetRadius() const;
 
@@ -45,7 +45,7 @@ class CircleCollider : public Collider
 
 
     private:
-        float radius;  // Radius of the circle collider
+        float m_Radius;  // Radius of the circle collider
         bool doesDamage = false;
 
 //-----------------------------------------------------------------------------

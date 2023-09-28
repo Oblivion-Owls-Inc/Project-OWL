@@ -36,9 +36,8 @@ class Collider : public Component
 		~Collider() = default;
 		virtual Component* Clone() const override;
 		virtual void OnFixedUpdate();
-		// change name 
 		virtual bool CheckIfColliding(const Collider* other) = 0;
-		virtual ColliderType getColliderType() const { return mtype; }
+		virtual ColliderType getColliderType() const { return m_Type; }
 
 	public:
 		void setOtherCollider(Collider* other);
@@ -52,7 +51,7 @@ class Collider : public Component
 		void ReadColliderType(Stream data);
 		static ReadMethodMap< Collider > s_ReadMethods;
 	private:
-		ColliderType mtype;
-		bool mIsColliding;
-		Collider* mOther; // Instagator is the other collider that is colliding with this collider
+		ColliderType m_Type;
+		bool m_IsColliding;
+		Collider* m_Other; // 
 };

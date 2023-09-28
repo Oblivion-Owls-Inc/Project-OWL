@@ -171,22 +171,24 @@ void keyCallback(
         return system;
     }
 
-    /// @brief  contains the function for adding each System type to the Engine. Used for Loading systems from config.
-    std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
-        { "PlatformSystem",             &addSystem< PlatformSystem >                },
-        { "CameraSystem",               &addSystem< CameraSystem >                  },  
-        { "InputSystem",                &addSystem< InputSystem >                   },
-        { "SceneSystem",                &addSystem< SceneSystem >                   },
-        { "RenderSystem",               &addSystem< RenderSystem >                  },
-        { "DebugSystem",                &addSystem< DebugSystem >                   },
-        { "AudioSystem",                &addSystem< AudioSystem >                   },
-        { "EntitySystem",               &addSystem< EntitySystem >                  },
-        { "SandboxSystem",              &addSystem< SandboxSystem >                 },
-        { "XinoScene",                  &addSystem< XinoScene >                     },
-	    { "CollisionSystem",            &addSystem< CollisionSystem >               },
-        { "BehaviorSystem<RigidBody>",  &addSystem< BehaviorSystem< RigidBody > >   },
-        { "BehaviorSystem<MovementAI>", &addSystem< BehaviorSystem< MovementAI > >  },
-    };
+/// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
+std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
+    { "PlatformSystem",             &addSystem< PlatformSystem >                },
+	{ "CollisionSystem",            &addSystem< CollisionSystem >               },
+    { "CameraSystem",               &addSystem< CameraSystem >                  },  
+    { "InputSystem",                &addSystem< InputSystem >                   },
+    { "SceneSystem",                &addSystem< SceneSystem >                   },
+    { "RenderSystem",               &addSystem< RenderSystem >                  },
+#ifndef NDEBUG
+    { "DebugSystem",                &addSystem< DebugSystem >                   },
+#endif // !Debug
+    { "AudioSystem",                &addSystem< AudioSystem >                   },
+    { "EntitySystem",               &addSystem< EntitySystem >                  },
+    { "SandboxSystem",              &addSystem< SandboxSystem >                 },
+    { "XinoScene",                  &addSystem< XinoScene >                     },
+    { "BehaviorSystem<MovementAI>", &addSystem< BehaviorSystem< MovementAI > >  },
+    { "BehaviorSystem<RigidBody>",  &addSystem< BehaviorSystem< RigidBody > >   },
+};
 
 //-----------------------------------------------------------------------------
 // private: methods

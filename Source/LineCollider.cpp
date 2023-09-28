@@ -25,16 +25,16 @@ void LineCollider::AddLineSegment(const vec2* p0, const vec2* p1)
 	ColliderLineSegment temp{};
 	temp.point[0] = *p0;
 	temp.point[1] = *p1;
-	m_lineSegments.push_back(temp);
+	m_LineSegments.push_back(temp);
 	m_LineCount++;
 }
 
 void LineCollider::AddLineSegment( vec2 p0, vec2 p1 )
 {
-    ColliderLineSegment temp{};
-    temp.point[0] = p0;
-    temp.point[1] = p1;
-    m_lineSegments.push_back(temp);
+	ColliderLineSegment temp{};
+	temp.point[0] = p0;
+	temp.point[1] = p1;
+	m_LineSegments.push_back(temp);
     m_LineCount++;
 }
 
