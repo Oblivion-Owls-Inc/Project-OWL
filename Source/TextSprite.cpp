@@ -81,7 +81,7 @@ void TextSprite::Draw()
         Transform* tr = Parent()->GetComponent<Transform>();
         glm::mat4 proj;
 #if 0
-        if (tr->getIsDiegetic())
+        if (tr->GetIsDiegetic())
             proj = Camera()->GetMat_WorldToClip();
         else
 #endif

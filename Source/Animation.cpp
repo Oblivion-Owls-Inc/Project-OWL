@@ -181,49 +181,49 @@ Component* Animation::Clone() const
 /// @param stream The JSON to read from.
 void Animation::ReadFrameIndex(Stream stream)
 {
-	frameIndex = stream.Read<unsigned int>();
+	m_FrameIndex = stream.Read<unsigned int>();
 }
 
 /// @brief		  Read from JSON the frame start.
 /// @param stream The JSON to read from.
 void Animation::ReadFrameStart(Stream stream)
 {
-	frameStart = stream.Read<unsigned int>();
+	m_FrameStart = stream.Read<unsigned int>();
 }
 
 /// @brief		  Read from JSON the frame count.
 /// @param stream The JSON to read from.
 void Animation::ReadFrameCount(Stream stream)
 {
-	frameCount = stream.Read<unsigned int>();
+	m_FrameCount = stream.Read<unsigned int>();
 }
 
 /// @brief		  Read from JSON the frame count.
 /// @param stream The JSON to read from.
 void Animation::ReadFrameDelay(Stream stream)
 {
-	frameDelay = stream.Read<float>();
+	m_FrameDelay = stream.Read<float>();
 }
 
 /// @brief		  Read from JSON the frame duration.
 /// @param stream The JSON to read from.
 void Animation::ReadFrameDuration(Stream stream)
 {
-	frameDuration = stream.Read<float>();
+	m_FrameDuration = stream.Read<float>();
 }
 
 /// @brief		  Read from JSON is the animation running.
 /// @param stream The JSON to read from.
 void Animation::ReadIsRunning(Stream stream)
 {
-	isRunning = stream.Read<bool>();
+	m_IsRunning = stream.Read<bool>();
 }
 
 /// @brief		  Read from JSON is the animation looping.
 /// @param stream The JSON to read from.
 void Animation::ReadIsLooping( Stream stream )
 {
-	isLooping = stream.Read<bool>();
+	m_IsLooping = stream.Read<bool>();
 }
 
 // Map of all the read methods for the animation component.
