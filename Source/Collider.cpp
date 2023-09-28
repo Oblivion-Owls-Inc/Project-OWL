@@ -51,7 +51,7 @@ void Collider::setColliderType(ColliderType cType)
 
 
 /// @brief the map of read methods for Collider
-ReadMethodMap< Collider > Collider::readMethods = 
+ReadMethodMap< Collider > Collider::s_ReadMethods = 
 {
 	{ "ColliderType",		&ReadColliderType },
 
@@ -59,7 +59,7 @@ ReadMethodMap< Collider > Collider::readMethods =
 
 std::map<std::string, ReadMethod<Component>> const& Collider::getReadMethods()
 {
-	return (ReadMethodMap< Component > const&)readMethods;
+	return (ReadMethodMap< Component > const&)s_ReadMethods;
 }
 
 void Collider::ReadColliderType(Stream data)

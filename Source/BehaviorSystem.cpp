@@ -81,7 +81,7 @@ BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::GetInstance()
 template<typename BehaviorType>
 std::vector<BehaviorType*>& BehaviorSystem<BehaviorType>::GetBehaviors() const
 {
-    return &behaviorsList;
+    return (std::vector<BehaviorType*>&)behaviorsList;
 }
 
 //-----------------------------------------------------------------------------

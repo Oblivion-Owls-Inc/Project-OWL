@@ -11,6 +11,7 @@
 #include "Sprite.h"
 #include "Behavior.h"
 #include "AnimationAsset.h"
+#include "stream.h"
 
 class Animation : public Behavior
 {
@@ -54,8 +55,20 @@ private:
 	virtual void OnUpdate(float dt) override;
 	virtual void OnFixedUpdate() override {}
 
-	static ReadMethodMap< Animation > const readMethods;
-	virtual ReadMethodMap< Component > const& GetReadMethods() const override;
+private: // for reading
+
+	void ReadFrameIndex(Stream stream);
+	void ReadFrameStart(Stream stream);
+	void ReadFrameCount(Stream stream);
+	void ReadFrameDelay(Stream stream);
+	void ReadFrameDuration(Stream stream);
+	void ReadIsRunning(Stream stream);
+	void ReadIsLooping(Stream stream);
+	// A map of all the read methods for animation component.
+	static ReadMethodMap<Animation> const s_ReadMethods;
+	// A function that gets all the read methods for the animation component.
+	virtual ReadMethodMap<Component> const& GetReadMethods() const override;
+
 
 	void AdvanceFrame();
 	Animation(Animation const&);

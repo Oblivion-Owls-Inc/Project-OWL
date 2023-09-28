@@ -53,10 +53,20 @@ void CircleCollider::OnFixedUpdate()
 // private: reading
 //-----------------------------------------------------------------------------
 
-    /// @brief map of the read methods for this Component
-    ReadMethodMap< CircleCollider > CircleCollider::s_ReadMethods = {};
 
-    /// @brief gets the map of read methods for this Component
+    /// @brief map of the read methods for this Component
+    ReadMethodMap< CircleCollider > CircleCollider::s_ReadMethods = {
+		{ "radius" , &ReadRadius }
+	};
+
+	/// @brief		  Read in the radius of the circle collider component.
+	/// @param stream The JSON value to read from.
+	void CircleCollider::ReadRadius(Stream stream)
+	{
+		radius = stream.Read<float>();
+	}
+
+	/// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
     ReadMethodMap< Component > const& CircleCollider::GetReadMethods() const
     {

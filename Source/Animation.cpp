@@ -173,8 +173,67 @@ Component* Animation::Clone() const
 	return new Animation(*this);
 }
 
-/// @brief the map of read methods for RigidBodys
-ReadMethodMap< Animation > const Animation::readMethods = {
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+/// @brief		  Read from a JSON the frame index.
+/// @param stream The JSON to read from.
+void Animation::ReadFrameIndex(Stream stream)
+{
+	m_FrameIndex = stream.Read<unsigned int>();
+}
+
+/// @brief		  Read from JSON the frame start.
+/// @param stream The JSON to read from.
+void Animation::ReadFrameStart(Stream stream)
+{
+	m_FrameStart = stream.Read<unsigned int>();
+}
+
+/// @brief		  Read from JSON the frame count.
+/// @param stream The JSON to read from.
+void Animation::ReadFrameCount(Stream stream)
+{
+	m_FrameCount = stream.Read<unsigned int>();
+}
+
+/// @brief		  Read from JSON the frame count.
+/// @param stream The JSON to read from.
+void Animation::ReadFrameDelay(Stream stream)
+{
+	m_FrameDelay = stream.Read<float>();
+}
+
+/// @brief		  Read from JSON the frame duration.
+/// @param stream The JSON to read from.
+void Animation::ReadFrameDuration(Stream stream)
+{
+	m_FrameDuration = stream.Read<float>();
+}
+
+/// @brief		  Read from JSON is the animation running.
+/// @param stream The JSON to read from.
+void Animation::ReadIsRunning(Stream stream)
+{
+	m_IsRunning = stream.Read<bool>();
+}
+
+/// @brief		  Read from JSON is the animation looping.
+/// @param stream The JSON to read from.
+void Animation::ReadIsLooping( Stream stream )
+{
+	m_IsLooping = stream.Read<bool>();
+}
+
+// Map of all the read methods for the animation component.
+ReadMethodMap< Animation > const Animation::s_ReadMethods = {
+	{"frameIndex"	 , &ReadFrameIndex	  },
+	{"frameStart"	 , &ReadFrameStart	  },
+	{"frameCount"	 , &ReadFrameCount	  },
+	{"frameDuration" , &ReadFrameDuration },
+	{"isRunning"	 , &ReadIsRunning	  },
+	{"isLooping"	 , &ReadIsLooping	  }
 	
 };
 
@@ -182,6 +241,6 @@ ReadMethodMap< Animation > const Animation::readMethods = {
 /// @return the map of read methods for this Component
 ReadMethodMap< Component > const& Animation::GetReadMethods() const
 {
-	return (ReadMethodMap< Component > const&)readMethods;
+	return (ReadMethodMap< Component > const&)s_ReadMethods;
 }
 

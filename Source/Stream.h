@@ -5,6 +5,7 @@
 /// @date 2023-09-10
 ///
 /// @copyright  © 2023 DigiPen (USA) Corporation.
+/// ------------------------------------------------------------------------------
 
 #define STREAM_H
 
@@ -20,78 +21,95 @@
 #include <map>
 
 //------------------------------------------------------------------------------
-
+// Class: Stream
+//------------------------------------------------------------------------------
 class Stream
 {
 public: // static methods
 
-	/// @brief Opens and parses a json document.
-	/// @param name - name of the file to read from.
-	/// @return - rapidjson document.
-	static rapidjson::Document ReadFromJSON( const std::string& name );
+	/// @brief		  Opens and parses a json document.
+	/// @param name   Name of the file to read from.
+	/// @return		  rapidjson document.
+	static rapidjson::Document ReadFromJSON(const std::string& name);               
 
 public: // constructor
 
-	/// @brief creates a Stream wrapper of the root object in a json document
-	/// @param document the json document.
+	/// @brief			Creates a Stream wrapper of the root object in a 
+	///					json document.
+	/// @param document The json document.
 	Stream( rapidjson::Document const& document );
 
-	/// @brief creates a stream wrapper from a json value.
-	/// @param value the json value
+	/// @brief		 Creates a stream wrapper from a json value.
+	/// @param value The json value
 	Stream( rapidjson::Value const& value );
 
 public: // acessors
 
-	/// @brief gets the rapidjson value as an object
-	/// @return the rapidjson value
+	/// @brief  Gets the rapidjson value as an object
+	/// @return The rapidjson value
 	rapidjson::GenericObject< true, rapidjson::Value > const& GetObject() const;
 
-    /// @brief gets the rapidjson value as an object
-    /// @return the rapidjson value
+    /// @brief  Gets the rapidjson value as an object
+    /// @return The rapidjson value
     rapidjson::GenericArray< true, rapidjson::Value > const& GetArray() const;
 
-	/// @brief reads a basic type from a json value
-	/// @tparam T the type to read
-	/// @return the value from the json
+	/// @brief	  Reads a basic type from a json value
+	/// @tparam T The type to read
+	/// @return	  The value from the json
 	template < typename T >
 	T Read() const;
 
-    /// @brief reads an int from a json value
-    /// @return the value from the json
+    /// @brief  Reads an int from a json value
+    /// @return The value from the json
     template <>
     int Read<int>() const;
 
-    /// @brief reads a float from a json value
-    /// @return the value from the json
+	/// @brief  Reads an int from a json value
+	/// @return The value from the json
+	template <>
+	bool Read<bool>() const;
+
+	/// @brief  Reads a basic type from a json value
+	/// @return The value from the json
+	template <>
+	unsigned int Read<unsigned int>() const;
+
+    /// @brief  Reads a float from a json value
+    /// @return The value from the json
     template <>
     float Read<float>() const;
 
-    /// @brief reads a bool from a json value
-    /// @return the value from the json
-    template <>
-    bool Read<bool>() const;
-
-    /// @brief reads a string from a json value
-    /// @return the value from the json
+    /// @brief  Reads a string from a json value
+    /// @return The value from the json
     template <>
     std::string Read<std::string>() const;
 
-    /// @brief reads a vec3 from a json value
-    /// @return the value from the json
+    /// @brief  Reads a vec3 from a json value
+    /// @return The value from the json
     template <>
     glm::vec3 Read<glm::vec3>() const;
 
+	/// @brief  Reads a vec4 from a json value
+	/// @return The value from the json
+	template <>
+	glm::vec4 Read<glm::vec4>() const;
+
+   /// @brief  Reads a vec2 from a json value
+   /// @return The value from the json
+	template <>
+	glm::vec2 Read<glm::vec2>() const;
+
 public: // methods
 
-	/// @brief reads data into an existing complex type
-	/// @tparam T the type to read
-	/// @param object the oject to read data into
+	/// @brief	  Reads data into an existing complex type
+	/// @tparam T The type to read
+	/// @param	  Object the oject to read data into
 	template < typename T >
 	void Read( T* object );
 
 private: // member variables
 
-	/// @brief the json value containing the data to read
+	/// @brief The json value containing the data to read
 	rapidjson::Value const& value;
 
 };
