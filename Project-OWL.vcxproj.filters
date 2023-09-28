@@ -263,9 +263,6 @@
     <ClCompile Include="Source\Animation.cpp">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AnimationAsset.cpp">
-      <Filter>Engine\Entity\Component\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
@@ -307,6 +304,9 @@
     </ClCompile>
     <ClCompile Include="Source\EntitySystem.cpp">
       <Filter>Engine\Systems\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimationAsset.cpp">
+      <Filter>Engine\Entity\Component\Animation\Asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -475,6 +475,12 @@
     <ClInclude Include="Source\AnimationAsset.h">
       <Filter>Engine\Entity\Component\Animation\Asset</Filter>
     </ClInclude>
+    <ClInclude Include="Source\AidanScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StubScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -492,5 +498,6 @@
     <None Include="Data\Scenes\Sandbox.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
+    <None Include="Data\Scenes\TestScene.scene.json" />
   </ItemGroup>
 </Project>
