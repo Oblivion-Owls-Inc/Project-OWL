@@ -1,6 +1,6 @@
 /// @file AssetLibrarySystem.h
 /// @author Tyler Birdsall (tyler.birdsall@digipen.edu)
-/// @brief Asset System meant to be copy-pasted when creating new Systems
+/// @brief Asset System
 /// @version 0.1
 /// @date 2023-09-05
 /// 
@@ -18,6 +18,9 @@ class AssetLibrarySystem : public System
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
+//-----------------------------------------------------------------------------
+public: // public functions
+//-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 private: // reading
