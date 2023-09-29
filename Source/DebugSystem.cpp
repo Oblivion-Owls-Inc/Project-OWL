@@ -58,7 +58,7 @@ void DebugSystem::OnInit()
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     io = &ImGui::GetIO();
-    //io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
     ImPlot::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
     ImGui_ImplOpenGL3_Init("#version 430");
@@ -180,8 +180,8 @@ void DebugSystem::OnUpdate(float dt)
 void DebugSystem::OnExit()
 {
     ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-    ImGui_ImplOpenGL3_Shutdown();
+    //ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    //ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
