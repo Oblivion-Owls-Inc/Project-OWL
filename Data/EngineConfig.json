@@ -9,7 +9,7 @@
     "InputSystem": {},
     "SceneSystem": {
       "BaseScenePath": "Data/Scenes/",
-      "NextSceneName": "Sandbox"
+      "NextSceneName": "XinoScene"
     },
     "XinoScene": {},
     "RenderSystem": {},
