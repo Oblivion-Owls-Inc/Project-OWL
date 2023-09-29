@@ -272,9 +272,6 @@
     <ClCompile Include="Source\Animation.cpp">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AnimationAsset.cpp">
-      <Filter>Engine\Entity\Component\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
