@@ -36,13 +36,19 @@ public:
     /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
     Sprite(bool init_square, glm::vec4 color = { 0,0,0,1 }, int layer = 2);
 
-    /// @brief              Default constructor - does not init anything
+
     Sprite();
 
+protected:
+    /// @brief              Default constructor - does not init anything
+    Sprite(std::type_index type );
+
+private:
     /// @brief              Copy constructor: shallow copy. Flyweight mesh and texture 
     ///                     (eventually, once we have data library). Do not use rn.
     Sprite(Sprite const& other);
 
+public:
     /// @return             Copy of this component.
     virtual Component* Clone() const override;
 
@@ -100,15 +106,11 @@ protected:
     void calcHeightMult();
 
 
-private: // reading
+protected: // reading
 
     /// @brief        Read in the number of rows for a sprite.
     /// @param stream The json to read from.
     void ReadRows(Stream stream);
-
-    /// @brief        Does the sprite have a texture?
-    /// @param stream The json to read from.
-    void ReadIsTextured(Stream stream);
 
     /// @brief        Read in the colour for a sprite.
     /// @param stream The json to read from.
@@ -129,6 +131,7 @@ private: // reading
     /// @brief Takes all the read in data and makes a sprite.
     void ReadSprite( Stream );
 
+private:
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Sprite > const s_ReadMethods;
 

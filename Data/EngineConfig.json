@@ -18,6 +18,7 @@
     "BehaviorSystem<MovementAI>": {},
     "BehaviorSystem<RigidBody>": {},
     "BehaviorSystem<Animation>": {},
+    "BehaviorSystem<PlayerController>": {},
     "DebugSystem": {
       "ShowFpsWindow": true
     }

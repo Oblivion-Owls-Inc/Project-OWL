@@ -163,7 +163,6 @@ void Entity::ReadComponents(Stream stream)
 		catch (std::runtime_error error)
 		{
 			std::cerr << error.what() << std::endl;
-			assert(false);
 		}
 		// Add the component to the entity.
 		Add(component);

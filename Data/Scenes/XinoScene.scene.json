@@ -4,28 +4,142 @@
         "meshes": [],
         "shaders": []
     },
-  "Entities": [
-    {
-      "name": "Ranger",
-      "Components": {
-        "Transform": {
-          "translation": [ -4, -1, 0 ],
-          "scale": [ 8, 4, 1 ]
+    "Entities": [
+        {
+            "name": "Sound",
+            "Components": {
+                "AudioPlayer": {}
+
+            }
         },
-        "Sprite": {
-          "isTextured": true,
-          "columns": 22,
-          "rows": 17,
-          "name": "temp_Assets/Elementals_leaf_ranger_288x128_SpriteSheet.png"
+        {
+            "name": "Wall",
+            "Components": {
+                "Sprite": {
+                    "name": "temp_Assets/Balls/Wall.png",
+                    "layer": 0
+                },
+                "Transform": {
+                    "translation": [ 0, -3, 0 ],
+                    "scale": [ 10, 10, 10 ]
+                }
+            }
         },
-        "Animation": {
-          "frameStart": 0,
-          "frameCount": 12,
-          "frameDuration": 0.12,
-          "isLooping": true,
-          "isRunning": true
+        {
+            "name": "Ball1",
+            "Components": {
+                "Sprite": {
+                    "name": "temp_Assets/Balls/Ball5.png",
+                    "columns": 1,
+                    "rows": 1,
+                    "layer": 1
+                },
+                "RigidBody": {},
+                "CircleCollider": {
+                    "radius": 0.5
+                },
+                "Transform": {
+                    "translation": [ 0, 0, 0 ],
+                    "scale": [ 1, 1, 1 ]
+                },
+                "MovementAI": {}
+
+            }
+        },
+        {
+            "name": "Ball2",
+            "Components": {
+                "Sprite": {
+                    "name": "temp_Assets/Balls/Ball2.png",
+                    "columns": 1,
+                    "rows": 1,
+                    "layer": 1
+                },
+                "RigidBody": {},
+                "CircleCollider": {
+                    "radius": 0.5
+                },
+                "Transform": {
+                    "translation": [ 2, 0, 0 ],
+                    "scale": [ 1, 1, 1 ]
+                },
+                "MovementAI": {}
+            }
+        },
+        {
+            "name": "Ball3",
+            "Components": {
+                "Sprite": {
+                    "name": "temp_Assets/Balls/Ball.png",
+                    "columns": 1,
+                    "rows": 1,
+                    "layer": 1
+                },
+                "RigidBody": {},
+                "CircleCollider": {
+                    "radius": 0.5
+                },
+                "Transform": {
+                    "translation": [ 4, 0, 0 ],
+                    "scale": [ 1, 1, 1 ]
+                },
+                "MovementAI": {}
+            }
+        },
+        {
+            "name": "TextEnt",
+            "Components": {
+                "TextSprite": {
+                    "name": "temp_Assets/Roboto_Mono_white_16x8.png",
+                    "columns": 16,
+                    "rows": 8,
+                    "strideMultiplier": [0.6, 1],
+                    "layer": 1,
+                    "text": "The Quick Brown Fox Jumps Over The Lazy Dog"
+                },
+                "Transform": {
+                    "translation": [ -4.9, 2, 0 ],
+                    "scale": [ 0.35, 0.35, 0 ]
+                }
+            }
+        },
+        {
+            "name": "TileEnt",
+            "Components": {
+                "TextSprite": {
+                    "name": "temp_Assets/Roboto_Mono_white_16x8.png",
+                    "columns": 16,
+                    "rows": 8,
+                    "layer": 1,
+                    "rowWidth": 5
+                },
+                "Transform": {
+                    "translation": [ -4, 1, 0 ],
+                    "scale": [ 0.6, 0.6, 0 ]
+                }
+            }
+        },
+        {
+            "name": "Ranger",
+            "Components": {
+                "Transform": {
+                    "translation": [ -4, -1, 0 ],
+                    "scale": [ 8, 4, 1 ]
+                },
+                "Sprite": {
+                    "columns": 22,
+                    "rows": 17,
+                    "name": "temp_Assets/Elementals_leaf_ranger_288x128_SpriteSheet.png"
+                },
+                "Animation": {
+                    "frameStart": 0,
+                    "frameCount": 12,
+                    "frameDuration": 0.12,
+                    "isLooping": true,
+                    "isRunning": true
+                },
+                "PlayerController": {}
+            }
         }
-      }
-    }
-  ]
+    ]
 }
