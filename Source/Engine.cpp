@@ -24,6 +24,7 @@
 #include "CollisionSystem.h"
 #include "InputSystem.h"
 #include "EntitySystem.h"
+#include "Animation.h"
 
 #include "BehaviorSystem.h"
 #include "RigidBody.h"
@@ -170,6 +171,7 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
     { "XinoScene",                  &addSystem< XinoScene >                     },
     { "BehaviorSystem<MovementAI>", &addSystem< BehaviorSystem< MovementAI > >  },
     { "BehaviorSystem<RigidBody>",  &addSystem< BehaviorSystem< RigidBody > >   },
+    { "BehaviorSystem<Animation>",  &addSystem< BehaviorSystem< Animation > >   },
 };
 
 //-----------------------------------------------------------------------------

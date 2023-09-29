@@ -21,6 +21,9 @@ public: // public functions
 	
 	/// @brief	Defualt constructor
 	Animation();
+
+	/// @brief	Default Destructor
+	~Animation();
 	
 	/// @brief	Gets the frame index of the animation
 	/// @return	Frame index of the animation

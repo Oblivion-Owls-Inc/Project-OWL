@@ -8,7 +8,7 @@
 
 #include "Animation.h"
 #include "Sprite.h"
-#include "Behavior.h"
+#include "BehaviorSystem.h"
 #include "Entity.h"
 
 /// @brief	Defualt constructor
@@ -21,7 +21,15 @@ Animation::Animation() :
 	m_IsRunning(false),
 	m_IsLooping(false),
 	m_IsDone(false)
-{}
+	
+{
+	BehaviorSystem<Animation>::GetInstance()->AddBehavior(this);
+}
+
+Animation::~Animation()
+{
+	BehaviorSystem<Animation>::GetInstance()->RemoveBehavior(this);
+}
 
 /// @brief	Copy constructor
 /// @param	Other animation to copy
