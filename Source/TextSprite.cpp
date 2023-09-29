@@ -11,6 +11,18 @@
 #include "RenderSystem.h"   // shader
 #include "CameraSystem.h"   // projection matrices
 
+/// @brief      Temporary. Allow switching to a different texture, while
+///             keeping track of original one. If called without argument,
+///             resets texture to original.
+/// @param t    texture pointer - remember to free this one manually.
+void TextSprite::SetTexture(Texture* t)
+{
+    if (!t)
+        m_Texture = m_Original;
+    else
+        m_Texture = t;
+}
+
 
 /// @brief              Default constructor: does nothing
 TextSprite::TextSprite() : Sprite() {}
@@ -28,8 +40,8 @@ TextSprite::TextSprite() : Sprite() {}
 /// @param stride_mult  (optional) Multiplier to adjust stride (spacing)
 /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
 TextSprite::TextSprite(const char* image_file, int columns, int rows, float stride_mult, int layer) :
-    Sprite(nullptr, columns, rows, layer),
-    m_StrideMult(stride_mult)
+                Sprite(nullptr, columns, rows, layer), 
+                m_StrideMult(stride_mult,1.0f)
 {
     // Init text shader if it ain't.
     if (!Renderer()->GetShader("text"))
@@ -37,6 +49,7 @@ TextSprite::TextSprite(const char* image_file, int columns, int rows, float stri
 
     m_Mesh = new Mesh(true, rows, columns);    // TODO: obtain it from mesh library
     m_Texture = new Texture(image_file);
+    m_Original= m_Texture;
     calcHeightMult();
 
 
@@ -57,22 +70,34 @@ TextSprite::TextSprite(const char* image_file, int columns, int rows, float stri
 }
 
 
+/// @brief      Destructor: frees the instance buffer
+TextSprite::~TextSprite()
+{
+    glDeleteBuffers(1, &m_InstBufferID);
+    SetTexture();   // reset to original texture so base destructor can free it
+}
+
+
 
 /// @brief      Feed text into this function just like with std::cout. 
 /// @return     Reference to string stream to feed text into.
-std::ostringstream& TextSprite::Text()
+std::ostringstream & TextSprite::Text() 
 {
     m_Stream.str(std::string()); // clear current string
-
+    
     return m_Stream;
 }
+
+/// @brief      Sets the width of a single row of tilemap (amount of columns)
+void TextSprite::SetRowWidth(int columns) { m_RowWidth = columns; }
 
 
 /// @brief      Draws currently stored text using parent's transform.
 void TextSprite::Draw()
 {
     glm::mat4 trm(1);                       // transform matrix - identity by default
-    glm::vec2 stride(m_StrideMult, 0);      // stride vector - pointing right by default
+    glm::vec2 stridex(m_StrideMult.x, 0);   // x stride vector - pointing right by default
+    glm::vec2 stridey(0, -m_StrideMult.y);  // y stride vector - down
     glm::vec2 uvsize = m_Mesh->GetUVsize(); // UV size (for the frames of spritesheet)
 
     // Calculate matrix and stride based on parent't transform
@@ -81,7 +106,7 @@ void TextSprite::Draw()
         Transform* tr = Parent()->GetComponent<Transform>();
         glm::mat4 proj;
 #if 0
-        if (tr->GetIsDiegetic())
+        if (tr->getIsDiegetic())
             proj = Camera()->GetMat_WorldToClip();
         else
 #endif
@@ -89,12 +114,13 @@ void TextSprite::Draw()
 
         // get transform matrix, and its linear part (for stride)
         trm = *tr->GetMatrix();
-        glm::mat2 trm_linear = glm::mat2(trm);
 
-        // calculate stride: basis vector i transformed by linear parts of transform and proj
-        stride = (glm::mat2(proj) * trm_linear) * stride;
+        // calculate stride vectors using linear transform (projected)
+        glm::mat2 trm_linear = glm::mat2(proj) * glm::mat2(trm);
+        stridex = trm_linear * stridex;
+        stridey = trm_linear * stridey;
 
-        // apply projection to transform
+        // apply full projection to full transform, for the actual mesh position
         trm = proj * trm;
     }
 
@@ -102,9 +128,11 @@ void TextSprite::Draw()
     Shader* sh_txt = Renderer()->SetActiveShader("text");
     glUniformMatrix4fv(sh_txt->GetUniformID("mvp"), 1, 0, &trm[0][0]);
     glUniform1f(sh_txt->GetUniformID("opacity"), m_Opacity);
-    glUniform2f(sh_txt->GetUniformID("stride"), stride.x, stride.y);
+    glUniform2f(sh_txt->GetUniformID("stridex"), stridex.x, stridex.y);
+    glUniform2f(sh_txt->GetUniformID("stridey"), stridey.x, stridey.y);
     glUniform2f(sh_txt->GetUniformID("UVsize"), uvsize.x, uvsize.y);
     glUniform1i(sh_txt->GetUniformID("columns"), m_Columns);
+    glUniform1i(sh_txt->GetUniformID("rowwidth"), m_RowWidth);
     glUniform4fv(sh_txt->GetUniformID("tint"), 1, &m_Color[0]);
 
     // Load the string into buffer. sigh... chars have to be converted to floats. 

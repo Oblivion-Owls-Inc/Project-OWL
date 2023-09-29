@@ -11,12 +11,15 @@
 #include "AudioPlayer.h"
 #include "BehaviorSystem.h"
 #include "RenderSystem.h"
-#include "Sprite.h"
+#include "TextSprite.h"
 #include "CircleCollider.h"
 #include "LineCollider.h"
 #include "MovementAI.h"
 #include "InputSystem.h"
 #include "DebugSystem.h"
+#include "Texture.h"
+
+static void drawText(float dt);
 
 //-----------------------------------------------------------------------------
 // variables
@@ -130,6 +133,8 @@ void XinoScene::OnUpdate( float dt )
 {
     if (!update)
         return;
+
+    drawText(dt);
 }
 
 /// @brief Gets called whenever a scene is exited
@@ -144,6 +149,48 @@ void XinoScene::OnSceneExit()
     //delete entity5;
     //delete entity6;
 }
+
+
+static void drawText(float dt)
+{
+    static Entity textEnt, tileEnt;
+    static char text_buffer[64] = {};
+    static char tile_buffer[21] = {};
+    static float time = 0.0f;  // for color change
+    static bool textMode = true;
+    static Texture tiles("temp_Assets/Tileset_16x8.png");
+    time += dt;
+
+    // init
+    if (!textEnt.GetComponent<Sprite>())
+    {
+        textEnt.Add(new TextSprite("temp_Assets/Roboto_Mono_white_16x8.png", 16, 8, 0.6f));
+        textEnt.Add(new Transform);
+        textEnt.GetComponent<Transform>()->SetTranslation({-4.9, 2, 0});
+        textEnt.GetComponent<Transform>()->SetScale({0.35, 0.35, 0});
+        strcpy_s(text_buffer, 63, "The Quick Brown Fox Jumps Over The Lazy Dog");
+
+        tileEnt.Add(new TextSprite("temp_Assets/Roboto_Mono_white_16x8.png", 16, 8));
+        tileEnt.Add(new Transform);
+        tileEnt.GetComponent<Transform>()->SetTranslation({-4, 1, 0});
+        tileEnt.GetComponent<Transform>()->SetScale({0.6, 0.6, 0});
+        ((TextSprite*) tileEnt.GetComponent<Sprite>())->SetRowWidth(5);
+    }
+
+    ImGui::Begin("Text Input");
+    ImGui::InputText("Tiles", tile_buffer, 21);
+    ImGui::InputText("Actuial text", text_buffer, 63);
+    if (ImGui::Button(textMode ? "Text Mode" : "Tile Mode"))
+    {
+        textMode = !textMode;
+        ((TextSprite*) tileEnt.GetComponent<Sprite>())->SetTexture(textMode ? nullptr : &tiles);
+    }
+    ImGui::End();
+    ((TextSprite*) textEnt.GetComponent<Sprite>())->Text() << text_buffer;
+    ((TextSprite*) textEnt.GetComponent<Sprite>())->SetColor({glm::abs(glm::sin(time*2)),glm::abs(glm::cos(time)),0,1});
+    ((TextSprite*) tileEnt.GetComponent<Sprite>())->Text() << tile_buffer;
+}
+
 
 //-----------------------------------------------------------------------------
 // private: reading
