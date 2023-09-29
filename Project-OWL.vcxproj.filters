@@ -141,6 +141,9 @@
     <Filter Include="Header Files\imgui">
       <UniqueIdentifier>{7f9af033-81e2-44c9-af1e-a9a713ab2083}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\PlayerController">
+      <UniqueIdentifier>{b63ef8e3-7039-4e9e-b113-413ff8380423}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -275,13 +278,7 @@
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CollisionSystem.cpp">
-      <Filter>Engine\Systems\DebugSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ComponentFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\XinoScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Stream.t.cpp">
@@ -328,6 +325,15 @@
     </ClCompile>
     <ClCompile Include="imgui\implot_items.cpp">
       <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerController.cpp">
+      <Filter>Engine\Entity\Component\Behavior\PlayerController</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollisionSystem.cpp">
+      <Filter>Engine\Systems\CollisonSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\XinoScene.cpp">
+      <Filter>Game\XinoScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -466,9 +472,6 @@
     <ClInclude Include="Source\ComponentFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\XinoScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\RigidBody.h">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClInclude>
@@ -507,6 +510,12 @@
     </ClInclude>
     <ClInclude Include="Source\StubScene.h">
       <Filter>Game\StubScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerController.h">
+      <Filter>Engine\Entity\Component\Behavior\PlayerController</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\XinoScene.h">
+      <Filter>Game\XinoScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

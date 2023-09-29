@@ -37,11 +37,12 @@ RigidBody::~RigidBody()
 
 void RigidBody::OnUpdate(float dt)
 {
-	#ifndef NDEBUG
+	//#ifndef NDEBUG
 		ImGui::Begin("Gravity");
 		ImGui::InputFloat("Gravity", &gravity);
 		ImGui::End();
-	#endif // !NDEBUG
+	//#endif // !NDEBUG
+
 }
 
 void RigidBody::OnFixedUpdate()
@@ -63,6 +64,7 @@ void RigidBody::OnFixedUpdate()
 		m_Velocity.x = 45;
 		m_Velocity.y = 45;
 	}
+
 	temptranslation += m_Velocity * dt;
 	temptranslation.z = 0;
 
