@@ -36,10 +36,10 @@ Sprite::Sprite(Sprite const& other) : Component(typeid(Sprite))
 /// @param columns      (optional) Columns of the spritesheet
 /// @param rows         (optional) Rows of the spritesheet
 /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
-Sprite::Sprite(const char* image_file, int columns, int rows, int layer) :
-    Component(typeid(Sprite)),
+Sprite::Sprite(const char* image_file, int columns, int rows, int layer) : 
+    Component(typeid(Sprite)), 
     m_Rows(rows), m_Columns(columns),
-    m_Color(0, 0, 0, 1), m_Layer(std::max(0, std::min(layer, 4)))
+    m_Layer(std::max(0, std::min(layer, 4)))
 {
     Renderer()->AddSprite(this, layer);
 
@@ -89,14 +89,14 @@ void Sprite::SetFrame(int frame)
     if (frame < m_Rows * m_Columns)
         m_Frame = frame;
     else
-        std::cout << "SPRITE ERROR: frame index out of range. Max frame of this sprite is "
+        std::cout << "SPRITE ERROR: frame index out of range. Max frame of this sprite is " 
         << (m_Rows * m_Columns - 1) << std::endl;
 }
 
 /// @brief          Sets the rendering layer : 0 - 4. 0 is back, 4 is front.
 /// @param layer    Rendering layer to move this sprite to.
-void Sprite::SetLayer(int layer)
-{
+void Sprite::SetLayer(int layer) 
+{   
     Renderer()->RemoveSprite(this, m_Layer);
     m_Layer = std::max(0, std::min(layer, 4));
     Renderer()->AddSprite(this, m_Layer);
@@ -148,7 +148,7 @@ void Sprite::Draw()
 
             // world or UI space
 #if 0
-            if (t->GetIsDiegetic())
+            if (t->getIsDiegetic())
                 mat = Camera()->GetMat_WorldToClip() * mat;
             else
 #endif
@@ -200,7 +200,7 @@ void Sprite::calcHeightMult()
 //-----------------------------------------------------------------------------
 
 /// @brief Takes all the read in data and makes a sprite.
-void Sprite::ReadSprite(Stream)
+void Sprite::ReadSprite( Stream )
 {
     Renderer()->AddSprite(this, m_Layer);
 
@@ -223,36 +223,36 @@ void Sprite::ReadSprite(Stream)
 
 /// @brief Read in the number of rows for a sprite.
 /// @param stream the json to read from.
-void Sprite::ReadRows(Stream stream)
+void Sprite::ReadRows( Stream stream )
 {
     m_Rows = stream.Read<int>();
 }
 
 /// @brief        Read in the colour for a sprite.
 /// @param stream The json to read from.
-void Sprite::ReadColor(Stream stream)
+void Sprite::ReadColor( Stream stream )
 {
     m_Color = stream.Read<glm::vec4>();
 }
 
 /// @brief        Read in the layer for a sprite.
 /// @param stream The json to read from.
-void Sprite::ReadLayer(Stream stream)
+void Sprite::ReadLayer( Stream stream )
 {
     int layer = stream.Read<int>();
-    m_Layer = std::max(0, std::min(layer, 4));
+    m_Layer = std::max( 0, std::min( layer, 4 ) );
 }
 
 /// @brief        Read in the file name for a sprite.
 /// @param stream The json to read from.
-void Sprite::ReadName(Stream stream)
+void Sprite::ReadName( Stream stream )
 {
     m_Filename = stream.Read<std::string>();
 }
 
 /// @brief Read in the number of columns for a sprite.
 /// @param stream the json to read from.
-void Sprite::ReadColumns(Stream stream)
+void Sprite::ReadColumns( Stream stream )
 {
     m_Columns = stream.Read<int>();
 }

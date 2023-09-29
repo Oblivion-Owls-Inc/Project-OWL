@@ -30,24 +30,6 @@
 #include "MovementAI.h"
 #include "CameraSystem.h"
 
-// TODO: move this out of the engine into its own System
-/// @brief  callback that gets called for every user keypress
-void keyCallback(
-    GLFWwindow* window,
-    int key,
-    int scancode,
-    int action,
-    int mods
-)
-{
-    if (
-        key == GLFW_KEY_ESCAPE &&
-        action == GLFW_PRESS
-    )
-    {
-        glfwSetWindowShouldClose( window, GLFW_TRUE );
-    }
-}
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -62,7 +44,7 @@ void keyCallback(
         init();
 
         while (
-            m_ShouldExit == false &&
+            Input()->GetKeyTriggered(GLFW_KEY_ESCAPE) == false &&
             PlatformSystem::GetInstance()->WindowClosing() == false
         )
         {
@@ -227,12 +209,6 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
         // this will go in GraphicsSystem
             // Set the clear color (background color)
             glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-
-        // this will stay here until we figure out a better way of replacing it
-            // Set up a callback for the Escape key
-            GLFWwindow* window = PlatformSystem::GetInstance()->GetWindowHandle();
-            glfwSetKeyCallback( window, keyCallback );
-        // TODO: move the above code out of the engine and into its own systems
     }
 
     /// @brief  Updates the engine each frame
