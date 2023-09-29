@@ -24,30 +24,13 @@
 #include "CollisionSystem.h"
 #include "InputSystem.h"
 #include "EntitySystem.h"
+#include "PlayerController.h"
 
 #include "BehaviorSystem.h"
 #include "RigidBody.h"
 #include "MovementAI.h"
 #include "CameraSystem.h"
 
-// TODO: move this out of the engine into its own System
-/// @brief  callback that gets called for every user keypress
-void keyCallback(
-    GLFWwindow* window,
-    int key,
-    int scancode,
-    int action,
-    int mods
-)
-{
-    if (
-        key == GLFW_KEY_ESCAPE &&
-        action == GLFW_PRESS
-    )
-    {
-        glfwSetWindowShouldClose( window, GLFW_TRUE );
-    }
-}
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -62,7 +45,7 @@ void keyCallback(
         init();
 
         while (
-            m_ShouldExit == false &&
+            Input()->GetKeyTriggered(GLFW_KEY_ESCAPE) == false &&
             PlatformSystem::GetInstance()->WindowClosing() == false
         )
         {
@@ -171,22 +154,25 @@ void keyCallback(
         return system;
     }
 
-    /// @brief  contains the function for adding each System type to the Engine. Used for Loading systems from config.
-    std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
-        { "PlatformSystem",             &addSystem< PlatformSystem >                },
-        { "CameraSystem",               &addSystem< CameraSystem >                  },  
-        { "InputSystem",                &addSystem< InputSystem >                   },
-        { "SceneSystem",                &addSystem< SceneSystem >                   },
-        { "RenderSystem",               &addSystem< RenderSystem >                  },
-        { "DebugSystem",                &addSystem< DebugSystem >                   },
-        { "AudioSystem",                &addSystem< AudioSystem >                   },
-        { "EntitySystem",               &addSystem< EntitySystem >                  },
-        { "SandboxSystem",              &addSystem< SandboxSystem >                 },
-        { "XinoScene",                  &addSystem< XinoScene >                     },
-	    { "CollisionSystem",            &addSystem< CollisionSystem >               },
-        { "BehaviorSystem<RigidBody>",  &addSystem< BehaviorSystem< RigidBody > >   },
-        { "BehaviorSystem<MovementAI>", &addSystem< BehaviorSystem< MovementAI > >  },
-    };
+/// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
+std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
+    { "PlatformSystem",             &addSystem< PlatformSystem >                },
+	{ "CollisionSystem",            &addSystem< CollisionSystem >               },
+    { "CameraSystem",               &addSystem< CameraSystem >                  },  
+    { "InputSystem",                &addSystem< InputSystem >                   },
+    { "SceneSystem",                &addSystem< SceneSystem >                   },
+    { "RenderSystem",               &addSystem< RenderSystem >                  },
+//#ifndef NDEBUG
+    { "DebugSystem",                &addSystem< DebugSystem >                   },
+//#endif // !Debug
+    { "AudioSystem",                &addSystem< AudioSystem >                   },
+    { "EntitySystem",               &addSystem< EntitySystem >                  },
+    { "SandboxSystem",              &addSystem< SandboxSystem >                 },
+    { "XinoScene",                  &addSystem< XinoScene >                     },
+    { "BehaviorSystem<PlayerController>", &addSystem< BehaviorSystem< PlayerController > >  },
+    { "BehaviorSystem<MovementAI>", &addSystem< BehaviorSystem< MovementAI > >  },
+    { "BehaviorSystem<RigidBody>",  &addSystem< BehaviorSystem< RigidBody > >   },
+};
 
 //-----------------------------------------------------------------------------
 // private: methods
@@ -225,12 +211,6 @@ void keyCallback(
         // this will go in GraphicsSystem
             // Set the clear color (background color)
             glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-
-        // this will stay here until we figure out a better way of replacing it
-            // Set up a callback for the Escape key
-            GLFWwindow* window = PlatformSystem::GetInstance()->GetWindowHandle();
-            glfwSetKeyCallback( window, keyCallback );
-        // TODO: move the above code out of the engine and into its own systems
     }
 
     /// @brief  Updates the engine each frame
@@ -312,7 +292,7 @@ void keyCallback(
     /// @brief  Constructs a new Engine
     Engine::Engine() :
         m_ShouldExit( false ),
-        m_FixedFrameDuration( 1.0f / 20.0f ),
+        m_FixedFrameDuration( 1.0f / 60.0f ),
         m_PreviousFixedTime( 0.0 ),
         m_PreviousTime( 0.0 )
     {}

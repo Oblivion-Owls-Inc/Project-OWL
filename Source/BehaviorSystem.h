@@ -1,15 +1,26 @@
-/// @file     BehaviorSystem.h
-/// @author   Name (first.last@digipen.edu)
-///
-/// @brief    Example System meant to be copy-pasted when creating new Systems
+///*****************************************************************/
+/// @file	 BehaviorSystem.h
+/// @Author  Jax Clayton (jax.clayton@digipen.edu)
+/// @date	 9/15/2021
+/// @brief   RigidBody class header
+/// @details This class contains the RigidBody component
+///*****************************************************************/
 #pragma once
-
 #define BEHAVIORSYSTEM_H
 
+
+///*****************************************************************/
+/// Includes:
+///*****************************************************************/
 #include "System.h"
 #include <vector>
 #include "Behavior.h"
 
+///*****************************************************************/
+/// BehaviorSystem class
+/// @brief This is a Templated BehaviorSystem Class that inherits 
+///        from System
+///*****************************************************************/
 template < typename BehaviorType >
 class BehaviorSystem : public System
 {
@@ -56,11 +67,11 @@ public:
     static BehaviorSystem< BehaviorType >* GetInstance();
     std::vector< BehaviorType* >& GetBehaviors() const;
 
-//-----------------------------------------------------------------------------
-private: // reading
-//----------------------------------------------------------------------------- 
+    //-----------------------------------------------------------------------------
+    private: // reading
+    //----------------------------------------------------------------------------- 
 
-    /// @brief the read methods of a BehaviorSystem
+        /// @brief the read methods of a BehaviorSystem
     static ReadMethodMap< BehaviorSystem< BehaviorType > > const s_ReadMethods;
 
     /// @brief gets the read methods for this System
@@ -71,8 +82,8 @@ private:
     std::vector< Behavior* > behaviorsList;
 
     // Prevent copying
-    BehaviorSystem( BehaviorSystem& other ) = delete;
-    void operator=( const BehaviorSystem& ) = delete;
+    BehaviorSystem(BehaviorSystem& other) = delete;
+    void operator=(const BehaviorSystem&) = delete;
 };
 
 #ifndef BEHAVIORSYSTEM_C

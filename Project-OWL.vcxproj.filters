@@ -12,12 +12,6 @@
     <Filter Include="Source Files\imgui">
       <UniqueIdentifier>{e98f05e0-70c3-4db0-9a77-990cf7228926}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\imgui">
-      <UniqueIdentifier>{7f9af033-81e2-44c9-af1e-a9a713ab2083}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\rapidjson">
-      <UniqueIdentifier>{5194cf1f-3e00-488a-ac36-0881b752bbd2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine">
       <UniqueIdentifier>{1f13bab0-cc86-495a-bd61-9103db20cdeb}</UniqueIdentifier>
     </Filter>
@@ -72,9 +66,6 @@
     <Filter Include="Engine\Framework">
       <UniqueIdentifier>{2a6e3717-c621-401c-a6a4-e90a03d3026e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Collider\LineCollider">
-      <UniqueIdentifier>{64072ae1-b05f-4915-bd9e-84b36d8ae679}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Data">
       <UniqueIdentifier>{93c4d7b5-a3df-4eb6-ae45-9a5eac6d1d02}</UniqueIdentifier>
     </Filter>
@@ -111,8 +102,47 @@
     <Filter Include="Engine\Systems\SceneSystem">
       <UniqueIdentifier>{358aaf0f-9beb-4093-b60f-dc94719c6f46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Animation">
+      <UniqueIdentifier>{b5aafdd0-b10c-4a49-9701-4e40588c9cdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\AssetLibrarySystem">
+      <UniqueIdentifier>{e11fbac1-b6ee-40d9-a175-8718ea4a895d}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Data\Scenes">
       <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\AssetLibrarySystem">
+      <UniqueIdentifier>{4d891ce7-a202-4957-aaa5-fbc0908075eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Animation">
+      <UniqueIdentifier>{f80d0ed4-3969-4370-994f-09374cc3b4a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Animation\Asset">
+      <UniqueIdentifier>{4ef39645-2d4e-4936-8ebf-80abd5fb3eb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\XinoScene">
+      <UniqueIdentifier>{7a87f94a-df48-4d68-9654-80ec9d20189d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\AidenScene">
+      <UniqueIdentifier>{9d974220-1870-40ad-b53a-ee5bc1eba5d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Collider\LineCollider">
+      <UniqueIdentifier>{65fb5e3e-f000-41f3-b5de-e4e439e2ad94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\CameraSystem">
+      <UniqueIdentifier>{c3898b05-9c97-4cac-a92e-a1120297dd69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\StubScene">
+      <UniqueIdentifier>{c6b90247-bab8-4c73-b194-7d0ab3d3993a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Sprite\TextSprite">
+      <UniqueIdentifier>{ae8a08f1-0df5-440b-b693-5c5df9061ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\imgui">
+      <UniqueIdentifier>{7f9af033-81e2-44c9-af1e-a9a713ab2083}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\PlayerController">
+      <UniqueIdentifier>{b63ef8e3-7039-4e9e-b113-413ff8380423}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -151,9 +181,6 @@
     </ClCompile>
     <ClCompile Include="Source\Entity.cpp">
       <Filter>Engine\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Component.cpp">
-      <Filter>Engine\Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\GUI.cpp">
       <Filter>Engine\Systems\DebugSystem</Filter>
@@ -206,8 +233,20 @@
     <ClCompile Include="Source\Stream.cpp">
       <Filter>Engine\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SandboxSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ComponentFactory.cpp">
+      <Filter>Engine\Entity\Component</Filter>
+    </ClCompile>
     <ClCompile Include="Source\MovementAI.cpp">
       <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RigidBody.cpp">
+      <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stream.t.cpp">
+      <Filter>Engine\Framework</Filter>
     </ClCompile>
     <ClCompile Include="Source\EntitySystem.cpp">
       <Filter>Engine\Systems\EntitySystem</Filter>
@@ -218,32 +257,83 @@
     <ClCompile Include="Source\CircleCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\CircleCollider</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CollisionSystem.cpp">
-      <Filter>Engine\Systems\CollisonSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LineCollider.cpp">
-      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
-    </ClCompile>
     <ClCompile Include="Source\BehaviorSystem.cpp">
       <Filter>Engine\Systems\BehaviorSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CameraSystem.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\BehaviorSystem.cpp">
+      <Filter>Engine\Systems\BehaviorSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RigidBody.cpp">
+      <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimationAsset.cpp">
+      <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component.cpp">
+      <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\ComponentFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TextSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\XinoScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Stream.t.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AssetLibrarySystem.cpp">
+      <Filter>Engine\Systems\AssetLibrarySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimationAsset.cpp">
+      <Filter>Engine\Entity\Component\Animation\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntitySystem.cpp">
+      <Filter>Engine\Systems\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntitySystem.cpp">
+      <Filter>Engine\Systems\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\XinoScene.cpp">
+      <Filter>Game\XinoScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AidanScene.cpp">
+      <Filter>Game\AidenScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LineCollider.cpp">
+      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CameraSystem.cpp">
+      <Filter>Engine\Systems\CameraSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StubScene.cpp">
+      <Filter>Game\StubScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TextSprite.cpp">
+      <Filter>Engine\Entity\Component\Sprite\TextSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\implot.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\implot_demo.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\implot_items.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerController.cpp">
+      <Filter>Engine\Entity\Component\Behavior\PlayerController</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollisionSystem.cpp">
+      <Filter>Engine\Systems\CollisonSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\XinoScene.cpp">
+      <Filter>Game\XinoScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,9 +363,6 @@
     </ClInclude>
     <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
       <Filter>Header Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\basics.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\DebugSystem.h">
       <Filter>Engine\Systems\DebugSystem</Filter>
@@ -358,6 +445,12 @@
     <ClInclude Include="Source\BehaviorSystem.h">
       <Filter>Engine\Systems\BehaviorSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Source\SandboxSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ComponentFactory.h">
+      <Filter>Engine\Entity\Component</Filter>
+    </ClInclude>
     <ClInclude Include="Source\MovementAI.h">
       <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
     </ClInclude>
@@ -373,23 +466,56 @@
     <ClInclude Include="Source\CollisionSystem.h">
       <Filter>Engine\Systems\CollisonSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LineCollider.h">
-      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Behavior.h">
       <Filter>Engine\Entity\Component\Behavior</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CameraSystem.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\ComponentFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\TextSprite.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\RigidBody.h">
+      <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AssetLibrarySystem.h">
+      <Filter>Engine\Systems\AssetLibrarySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation.h">
+      <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AnimationAsset.h">
+      <Filter>Engine\Entity\Component\Animation\Asset</Filter>
     </ClInclude>
     <ClInclude Include="Source\XinoScene.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\XinoScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AidanScene.h">
+      <Filter>Game\AidenScene</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\implot.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\implot_internal.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\basics.h">
+      <Filter>Engine\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LineCollider.h">
+      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CameraSystem.h">
+      <Filter>Engine\Systems\CameraSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TextSprite.h">
+      <Filter>Engine\Entity\Component\Sprite\TextSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StubScene.h">
+      <Filter>Game\StubScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerController.h">
+      <Filter>Engine\Entity\Component\Behavior\PlayerController</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\XinoScene.h">
+      <Filter>Game\XinoScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -400,6 +526,15 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Sandbox.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\TestScene.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\Sandbox.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\AidanScene.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>

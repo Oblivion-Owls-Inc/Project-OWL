@@ -1,20 +1,16 @@
-/******************************************************************************
-filename    Entity.cpp
-author      Aidan Straker
-DP email    aidan.straker@digipen.edu
-course      GAM200
-section     A
-Project		Dig Deeper
-
-Brief Description:
-  Function declerations for the entity class.
-
-******************************************************************************/
-
+///--------------------------------------------------------------------------//
+/// @file   Entity.cpp
+/// @brief  Function definitions for the Entity class
+/// 
+/// @author Aidan Straker (aidan.straker)
+/// @date   September 2023
+///
+/// @copyright © 2023 DigiPen (USA) Corporation.
+///--------------------------------------------------------------------------//
 #include "Entity.h"
-#include <algorithm>   // std::sort
-#include "Component.h" // Type
-#include <cassert>	   // assert
+#include <algorithm>		  // std::sort
+#include "Component.h"		  // Type
+#include <cassert>			  // assert
 #include "ComponentFactory.h" // Create.
 #include "basics.h"
 
@@ -24,19 +20,19 @@ Brief Description:
 
 /// @brief Default constrcutor for the entity class.
 Entity::Entity()
-	: mName("")
-	, mIsDestroyed(false)
-	, components()
+	: m_Name("")
+	, m_IsDestroyed(false)
+	, m_Components()
 {
 }
 
-/// @brief  Copy constructor for the entity class
-/// @param  other - the entity to be copied.
+/// @brief		  Copy constructor for the entity class
+/// @param other  The entity to be copied.
 Entity::Entity(const Entity& other)
-	: mName(other.mName)
-	, mIsDestroyed(other.mIsDestroyed)
+	: m_Name(other.m_Name)
+	, m_IsDestroyed(other.m_IsDestroyed)
 {
-	for (auto& component : other.components)
+	for (auto& component : other.m_Components)
 	{
 		Component* clone = component.second->Clone();
 		Add(clone);
@@ -47,27 +43,27 @@ Entity::Entity(const Entity& other)
 Entity::~Entity() { Free(); }
 
 /// @brief  Clones an entity.
-/// @return A clone of an entity.
+/// @return A clone of an entity (Entity*).
 Entity* Entity::Clone() const { return new Entity(*this); }
 
 /// @brief Deallocates all memory associated with an entity.
 void Entity::Free()
 {
 	// Traverse the component list
-	for (auto& component : components)
+	for (auto& component : m_Components)
 	{
-		// Make sure the component is valid.
+	// Make sure the component is valid.
 		assert(component.second);
 		
-		// Delete the component.
+	// Delete the component.
 		delete component.second;
 	}
 	// Clear the component list.
-	components.clear();
+	m_Components.clear();
 }
 
-/// @brief Adds a component to an entity.
-/// @param component - the component to be added.
+/// @brief			 Adds a component to an entity.
+/// @param component The component to be added.
 void Entity::Add(Component* component)
 {
 	// Make sure the parameter is valid
@@ -76,19 +72,22 @@ void Entity::Add(Component* component)
 	// Set the component's parent as this entity
 		component->Parent(this);
 	// Check if the component already exists.
-		assert( components.find( component->Type() ) == components.end() );
+		assert(m_Components.find(component->Type()) == m_Components.end());
 	// If it does not, add it to the entity.
-		components[component->Type()] = component;
+		m_Components[component->Type()] = component;
 	}
 }
 
+/// @brief		Checks if an entity has a specific component.
+/// @param type The type ID of the component.
+/// @return		The component if found (Component*).
 Component* Entity::HasComponent(std::type_index type)
 {
 	// Check if the component exists.
-	if (components.find(type) != components.end())
+	if (m_Components.find(type) != m_Components.end())
 	{
-		// If it does, return it.
-			return components[type];
+	// If it does, return it.
+		return m_Components[type];
 	}
 	// Otherwise, return null.
 	return nullptr;
@@ -96,78 +95,84 @@ Component* Entity::HasComponent(std::type_index type)
 
 std::map<std::type_index, Component*>& Entity::getComponents()
 {
-	return components;
+	return m_Components;
 }
 
 /// @brief Flag an entity for destruction.
-void Entity::Destroy() { mIsDestroyed = true; }
+void Entity::Destroy() { m_IsDestroyed = true; }
 
 /// @brief  Checks if an entity has been destroyed or not.
 /// @return If the entity has been destroyed (bool).
-bool Entity::Destroyed() { return mIsDestroyed; }
+bool Entity::Destroyed() { return m_IsDestroyed; }
 
-/// @brief Set the entity's name.
-/// @param name - name of the entity.
+/// @brief		Set the entity's name.
+/// @param name Name of the entity.
 void Entity::SetName(const std::string& name)
 {
 	// Make sure the name is valid.
 	if (!name.empty())
 	{
-		mName = name;
+		m_Name = name;
 	}
 }
 
-/// @brief Get the name of the entity.
+/// @brief  Get the name of the entity.
 /// @return The name of the entity (string).
-const std::string& Entity::GetName() { return mName; }
+const std::string& Entity::GetName() { return m_Name; }
 
-/// @brief Compares an entity's name.
-/// @param name - the name to compare against.
-/// @return does the name match (bool).
+/// @brief		  Compares an entity's name.
+/// @param name   The name to compare against.
+/// @return		  Does the name match (bool)?
 bool Entity::IsNamed(const std::string& name)
 {
 	if (!name.empty())
 	{
-		return (mName == name);
+		return (m_Name == name);
 	}
 	return false;
 }
 
-/// @brief Clone this entity from an archetype.
-/// @param stream the json value to read from.
+/// @brief		  Clone this entity from an archetype.
+/// @param stream The json value to read from.
 void Entity::ReadArchetype(Stream stream)
 {
 	/// TODO: Write this function.
 }
 
-/// @brief Read in the name of entity.
-/// @param stream the json value to read from.
+/// @brief		  Read in the name of entity.
+/// @param stream The json value to read from.
 void Entity::ReadName(Stream stream)
 {
-	mName = stream.Read<std::string>();
+	m_Name = stream.Read<std::string>();
 }
 
-/// @brief Read in the data for all the components of entity.
-/// @param stream the json object to read from.
-void Entity::ReadComponents( Stream stream )
+/// @brief		  Read in the data for all the components of entity.
+/// @param stream The json object to read from.
+void Entity::ReadComponents(Stream stream)
 {
 	for ( auto& componentData : stream.GetObject() )
 	{
-		Component* component = ComponentFactory::Create( componentData.name.GetString() );
+		// Create the component found in the document.
+		Component* component = ComponentFactory::Create(componentData.name.GetString());
 		try
 		{
-			Stream( componentData.value ).Read( component );
+			// Read in all the data for the component from the json.
+			Stream(componentData.value).Read(component);
 		}
-		catch ( std::runtime_error error )
+		// Error handling 
+		catch (std::runtime_error error)
 		{
 			std::cerr << error.what() << std::endl;
+			assert(false);
 		}
-		Add( component );
+		// Add the component to the entity.
+		Add(component);
 	}
 }
 
-ReadMethodMap< Entity > Entity::readMethods = {
-	{ "Archetype",   &ReadArchetype     },
-	{ "Components",  &ReadComponents    },
-	{ "Name",        &ReadName          }
+/// @brief A map of the all read methods used by the Entity class.
+ReadMethodMap< Entity > Entity::s_ReadMethods = {
+	{ "Archetype"  , &ReadArchetype  },
+	{ "Components" , &ReadComponents },
+	{ "name"       , &ReadName	     }
 };

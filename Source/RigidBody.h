@@ -1,7 +1,7 @@
 ///*****************************************************************/
-/// @file	 RigidBody.cpp
+/// @file	 RigidBody.h
 /// @Author  Jax Clayton (jax.clayton@digipen.edu)
-/// @date	 9/5/2021
+/// @date	 9/15/2021
 /// @brief   RigidBody class header
 /// @details This class contains the RigidBody component
 ///*****************************************************************/
@@ -36,7 +36,7 @@ public:
     ~RigidBody();
 
     /// @brief Create a copy of this RigidBody component.
-    /// @return A new RigidBody component that is a copy of this instance.
+    /// @return A new RigidBody component that is a copy of this s_Instance.
     Component* Clone() const override;
 
     /// @brief Update method called per frame.
@@ -44,7 +44,7 @@ public:
     virtual void OnUpdate(float dt) override;
 
     /// @brief Fixed update method called at a fixed time step.
-    virtual void OnFixedUpdate() override {};
+    virtual void OnFixedUpdate() override;
 
     /// @brief Get the acceleration vector of the rigid body.
     /// @return A pointer to the acceleration vector.
@@ -82,38 +82,38 @@ public:
     /// @param other The other Entity involved in the collision.
     virtual void OnCollisionEvent();
 
-    private: // reading
+private: // reading
 
-        /// @brief reads the velocity from json
-        /// @param data the json data
-        void ReadVelocity(Stream data);
+    /// @brief reads the velocity from json
+    /// @param data the json data
+    void ReadVelocity(Stream data);
 
-        /// @brief reads the acceleration from json
-        /// @param data the json data
-        void ReadAcceleration(Stream data);
+    /// @brief reads the acceleration from json
+    /// @param data the json data
+    void ReadAcceleration(Stream data);
 
-        /// @brief reads the rotationalVelocity from json
-        /// @param data the json data
-        void ReadRotationalVelocity(Stream data);
+    /// @brief reads the rotationalVelocity from json
+    /// @param data the json data
+    void ReadRotationalVelocity(Stream data);
 
-        /// @brief the map of read methods for RigidBodys
-        static ReadMethodMap< RigidBody > readMethods;
+    /// @brief the map of read methods for RigidBodys
+    static ReadMethodMap< RigidBody > s_ReadMethods;
 
         /// @brief gets the map of read methods for this Component
         /// @return the map of read methods for this Component
         virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 private:
     /// @brief The velocity vector of the rigid body.
-    vec3 _velocity;
+    vec3 m_Velocity;
 
     /// @brief The acceleration vector of the rigid body.
-    vec3 _acceleration;
+    vec3 m_Acceleration;
 
     /// @brief The old translation vector of the rigid body.
-    vec3 _oldTranslation;
+    vec3 m_OldTranslation;
 
     /// @brief The rotational velocity of the rigid body.
-    float _rotationalVelocity;
+    float m_RotationalVelocity;
 };
 
 

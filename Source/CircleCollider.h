@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Collider.h"
+#include "Stream.h"
 
  /**
   * @class CircleCollider
@@ -36,7 +37,7 @@ class CircleCollider : public Collider
          */
         virtual bool CheckIfColliding(const Collider* other) override;
 
-        void SetRadius(float _radius);
+        void SetRadius(float m_Radius);
 
         float GetRadius() const;
 
@@ -44,19 +45,23 @@ class CircleCollider : public Collider
 
 
     private:
-        float radius;  // Radius of the circle collider
+        float m_Radius;  // Radius of the circle collider
         bool doesDamage = false;
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
+    /// @brief        Read in the radius for the circle collider component.
+    /// @param stream The JSON to read from.
+    void ReadRadius(Stream stream);
+
     /// @brief map of the read methods for this Component
-    static std::map< std::string, ReadMethod< CircleCollider > > s_ReadMethods;
+    static ReadMethodMap< CircleCollider > s_ReadMethods;
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() const override;
+    virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 
 //-----------------------------------------------------------------------------
 

@@ -1,8 +1,10 @@
-/// @file     BehaviorSystem.cpp
-/// @author   Name (first.last@digipen.edu)
-/// 
-/// @brief    Example System meant to be copy-pasted when creating new Systems
-
+///*****************************************************************/
+/// @file	 BehaviorSystem.cpp
+/// @Author  Jax Clayton (jax.clayton@digipen.edu)
+/// @date	 9/15/2021
+/// @brief   BehaviorSystem  
+/// @details This class handles all behaviors for entities
+///*****************************************************************/
 #define BEHAVIORSYSTEM_C
 
 #ifndef BEHAVIORSYSTEM_H
@@ -27,7 +29,13 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 	for (auto behavior : behaviorsList)
 	{
 		behavior->OnFixedUpdate();
+		Collider* collider = behavior->Parent()->GetComponent<Collider>();
+		if (collider != nullptr && collider->isColliding())
+		{
+			behavior->OnCollisionEvent();
+		}
 	}
+
 }
 
 template<typename BehaviorType>
@@ -36,8 +44,8 @@ void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 	for (auto behavior : behaviorsList)
 	{
 		behavior->OnUpdate(dt);
-		Collider* test = behavior->Parent()->GetComponent<Collider>();
-		if(test != nullptr && test->isColliding())
+		Collider* collider = behavior->Parent()->GetComponent<Collider>();
+		if (collider != nullptr && collider->isColliding())
 		{
 			behavior->OnCollisionEvent();
 		}
@@ -81,23 +89,23 @@ BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::GetInstance()
 template<typename BehaviorType>
 std::vector<BehaviorType*>& BehaviorSystem<BehaviorType>::GetBehaviors() const
 {
-    return &behaviorsList;
+	return &behaviorsList;
 }
 
 //-----------------------------------------------------------------------------
 // private: reading
 //----------------------------------------------------------------------------- 
 
-    /// @brief                  the read methods of a BehaviorSystem
-    /// @tparam BehaviorType    the type of behavior this BehaviorSystem manages
-    template<typename BehaviorType>
-    ReadMethodMap< BehaviorSystem< BehaviorType > > const BehaviorSystem< BehaviorType >::s_ReadMethods = {};
+	/// @brief                  the read methods of a BehaviorSystem
+	/// @tparam BehaviorType    the type of behavior this BehaviorSystem manages
+template<typename BehaviorType>
+ReadMethodMap< BehaviorSystem< BehaviorType > > const BehaviorSystem< BehaviorType >::s_ReadMethods = {};
 
-    /// @brief                  gets the read methods for this System
-    /// @tparam BehaviorType    the type of behavior this BehaviorSystem manages
-    /// @return                 the read methods for this System
-    template<typename BehaviorType>
-    ReadMethodMap< System > const& BehaviorSystem< BehaviorType >::GetReadMethods() const
-    {
-        return (ReadMethodMap< System > const&)s_ReadMethods;
-    }
+/// @brief                  gets the read methods for this System
+/// @tparam BehaviorType    the type of behavior this BehaviorSystem manages
+/// @return                 the read methods for this System
+template<typename BehaviorType>
+ReadMethodMap< System > const& BehaviorSystem< BehaviorType >::GetReadMethods() const
+{
+	return (ReadMethodMap< System > const&)s_ReadMethods;
+}

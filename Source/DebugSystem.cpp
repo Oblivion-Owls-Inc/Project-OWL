@@ -1,8 +1,30 @@
 #include "DebugSystem.h"
 
 #include "PlatformSystem.h"
+#include "implot.h"
 #include "GUI.h"
+//Chrono
+#include <chrono>
 
+template<typename T, size_t size>
+struct ScrollingBuffer
+{
+    ScrollingBuffer()
+    {
+    }
+
+    T Values[size] = {};
+
+    void push(T element) {
+        //for (int i = size - 2; i >= 0; i--)
+        //	Values[i] = Values[i + 1];
+        for (int i = 0; i < size; i++)
+            Values[i] = Values[i + 1];
+
+        Values[size - 1] = element;
+    }
+    T* Data() { return &Values[0]; }
+};
 
 DebugSystem* DebugSystem::instance = nullptr;
 
@@ -18,6 +40,7 @@ DebugSystem* DebugSystem::GetInstance()
 
 }
 
+
 /// @brief Initialize the DebugSystem.
 /// @param window The GLFW window handle (default is the current context).
 DebugSystem::DebugSystem() :
@@ -25,7 +48,8 @@ DebugSystem::DebugSystem() :
     io(nullptr),
     showFpsWindow(false),
     showDevWindow(false)
-{}
+{
+}
 
 /// @brief Perform initialization.
 void DebugSystem::OnInit()
@@ -35,6 +59,8 @@ void DebugSystem::OnInit()
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     io = &ImGui::GetIO();
+    io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    ImPlot::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
     ImGui_ImplOpenGL3_Init("#version 430");
     ImGui::StyleColorsClassic();
@@ -58,26 +84,73 @@ void DebugSystem::OnFixedUpdate()
 /// @param dt The time elapsed since the last update.
 void DebugSystem::OnUpdate(float dt)
 {
-
+    static const int count = 128;
+    static float fpses[count] = {};
+    static float elapsed = 0.0f;
+    static float min = 0, max = 0;
+    static float fps = 0.0f;
+    elapsed += dt;
+    if (elapsed > 0.05f)
+    {
+        min = 1000.0f; max = 0.0f;
+        elapsed -= 0.05f;
+        for (int i = count - 1; i > 0; i--)
+        {
+            fpses[i] = fpses[i - 1];
+            if (fpses[i] < min)     min = fpses[i];
+            if (fpses[i] > max)     max = fpses[i];
+        }
+        fps = 1.0f / dt;
+        fpses[0] = fps;
+    }
     if (showFpsWindow)
     {
-        ImGui::Begin("FPS");
-        ImGui::Text("FPS: %d", static_cast<int>(1.0f / dt));
-        float deltaTime = ImGui::GetIO().DeltaTime;
+        static auto endTime = std::chrono::system_clock::now();
 
-        // Define the number of samples
-        const int numSamples = 100;
+        static int CurrentSample = 0;
+        static const int SampleSize = 3;
+        static double Samples[SampleSize] = { 0.0f }; //Value accumulation for sample calculation
+        static const int ScrollingBufferSize = 100; // total number of samples
 
-        // Generate and plot the samples
-        float samples[numSamples];
-        for (int n = 0; n < numSamples; n++) {
-            samples[n] = 1.0f / deltaTime;
+        static ScrollingBuffer<double, ScrollingBufferSize> FPS_Values; //scrolling buffer
+        auto startTime = std::chrono::system_clock::now();
+
+        std::chrono::duration<double> timeElapsed = startTime - endTime;
+
+        double fps = 1.0 / timeElapsed.count();
+        Samples[CurrentSample] = fps;
+        CurrentSample++;
+
+        if (CurrentSample == SampleSize)
+        {
+            double Adder = 0;
+            for (int i = 0; i < SampleSize; i++)
+            {
+                Adder += Samples[i];
+            }
+            auto newSample = Adder / SampleSize;
+            //std::cerr << newSample << std::endl;
+            FPS_Values.push(newSample);
+            CurrentSample = 0;
         }
-
-        ImGui::PlotLines("FPS", samples, numSamples);
-        ImGui::End();
+        endTime = startTime;
 
 
+        static ImPlotAxisFlags axis_flags = ImPlotAxisFlags_NoDecorations 
+                                            | ImPlotAxisFlags_Lock;
+
+        static ImPlotFlags PlotFlags = ImPlotFlags_NoLegend;
+        if (ImPlot::BeginPlot("FPS", ImVec2(-1, 150), PlotFlags)) {
+            ImPlot::SetupAxes(nullptr, nullptr, axis_flags);
+            ImPlot::SetupAxisLimits(ImAxis_X1, 0, 100, ImGuiCond_None);
+            ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 200.0f, ImGuiCond_None);
+            ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
+
+            ImPlot::PlotLine("FPS", FPS_Values.Data(), ScrollingBufferSize, 1);
+            //ImPlot::PlotShaded("FPS", FPS_Values.Data(), nullptr, ScrollingBufferSize, 0, 0, sizeof(float));
+            //ImPlot::PlotLine("Mouse Y", &sdata2.Data[0].x, &sdata2.Data[0].y, sdata2.Data.size(), 0, sdata2.Offset, 2 * sizeof(float));
+            ImPlot::EndPlot();
+        }
     }
 
     for (GUI* Menu : windows)
@@ -90,6 +163,15 @@ void DebugSystem::OnUpdate(float dt)
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+    auto& io = ImGui::GetIO();
+    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+    {
+        GLFWwindow* backup_current_context = glfwGetCurrentContext();
+        ImGui::UpdatePlatformWindows();
+        ImGui::RenderPlatformWindowsDefault();
+        glfwMakeContextCurrent(backup_current_context);
+    }
+
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -100,9 +182,10 @@ void DebugSystem::OnUpdate(float dt)
 void DebugSystem::OnExit()
 {
     ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-    ImGui_ImplOpenGL3_Shutdown();
+    //ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    //ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
+    ImPlot::DestroyContext();
     ImGui::DestroyContext();
 }
 
