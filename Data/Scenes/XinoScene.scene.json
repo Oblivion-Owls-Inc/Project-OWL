@@ -26,27 +26,6 @@
             }
         },
         {
-            "name": "Ball1",
-            "Components": {
-                "Sprite": {
-                    "name": "temp_Assets/Balls/Ball5.png",
-                    "columns": 1,
-                    "rows": 1,
-                    "layer": 1
-                },
-                "RigidBody": {},
-                "CircleCollider": {
-                    "radius": 0.5
-                },
-                "Transform": {
-                    "translation": [ 0, 0, 0 ],
-                    "scale": [ 1, 1, 1 ]
-                },
-                "MovementAI": {}
-
-            }
-        },
-        {
             "name": "Ball2",
             "Components": {
                 "Sprite": {
@@ -140,6 +119,34 @@
                 },
                 "PlayerController": {}
             }
-        }
+        },
+        {
+            "name": "Planet1",
+            "Components": {
+              "Transform": {
+                "translation": [ 2, 1, 0 ],
+                "scale": [ 2.5, 2.5, 1 ]
+              },
+              "Sprite": {
+                "name": "temp_Assets/Balls/Ball4.png",
+                "layer":  2
+              }
+            }
+      
+          },
+          {
+            "name": "Planet2",
+            "Components": {
+              "Transform": {
+                "translation": [ 2, 1, 0 ],
+                "scale": [ 1, 1, 1 ]
+              },
+              "Sprite": {
+                "name": "temp_Assets/Balls/Ball5.png",
+                "layer":  3
+              }
+            }
+      
+          }
     ]
 }
