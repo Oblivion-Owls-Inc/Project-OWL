@@ -14,7 +14,9 @@
 
 class AnimationAsset
 {
-public:
+//-----------------------------------------------------------------------------
+public: // public functions
+//-----------------------------------------------------------------------------
 
 	/// @brief	Default constructor
 	AnimationAsset();
@@ -50,8 +52,9 @@ public:
 	/// @param	New looping status to set
 	void SetLooping(bool newLopping);
 
-private:
-	
+//-----------------------------------------------------------------------------
+private: // private variables
+//-----------------------------------------------------------------------------	
 	unsigned m_FrameStart;
 	unsigned m_FrameEnd;
 	float m_Duration;
