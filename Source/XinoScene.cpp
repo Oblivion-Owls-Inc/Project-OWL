@@ -31,8 +31,6 @@ static void moveCamera();
 //-----------------------------------------------------------------------------
 
 static Entity* entity;
-static Entity* entity5;
-static Entity* entity6;
 static bool update = false;
 static Sound* sound;
 static vec3 velocity = { 1.0f, 1.0f, 0.0f };
@@ -52,10 +50,8 @@ void XinoScene::OnSceneInit()
 {
     /// Audio Player
     update = true;
-    entity = new Entity();
-    entity->Add(new AudioPlayer());
+    entity = Entities()->GetEntity("Sound");
     entity->GetComponent<AudioPlayer>()->SetSound(sound);
-        
 }
 
 /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
@@ -70,6 +66,8 @@ void XinoScene::OnFixedUpdate()
     // Create an instance of DebugConsole
     DebugConsole output( *DebugSystem::GetInstance() );
 
+    // Append the message and the formatted value
+    //output << "Position: (" << translation.x << ", " << translation.y << ", " << translation.z << ")" << "\n";
 }
 
 /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
@@ -87,10 +85,7 @@ void XinoScene::OnUpdate( float dt )
 /// @brief Gets called whenever a scene is exited
 void XinoScene::OnSceneExit()
 {
-    delete entity;
     delete sound;
-    //delete entity5;
-    //delete entity6;
 }
 
 
@@ -143,7 +138,7 @@ static void planets(float dt)
 
 static void drawText(float dt)
 {
-    static Entity textEnt, tileEnt;
+    static Entity* textEnt, *tileEnt;
     static char text_buffer[64] = {};
     static char tile_buffer[21] = {};
     static float time = 0.0f;  // for color change
@@ -151,19 +146,14 @@ static void drawText(float dt)
     static Texture tiles("temp_Assets/Tileset_16x8.png");
     time += dt;
 
+    textEnt = Entities()->GetEntity("TextEnt");
+    tileEnt = Entities()->GetEntity("TileEnt");
     // init
-    if (!textEnt.GetComponent<Sprite>())
-    {
-        textEnt.Add(new TextSprite("temp_Assets/Roboto_Mono_white_16x8.png", 16, 8, 0.6f));
-        textEnt.Add(new Transform);
-        textEnt.GetComponent<Transform>()->SetTranslation({-4.9, 2, 0});
-        textEnt.GetComponent<Transform>()->SetScale({0.35, 0.35, 0});
-
-        tileEnt.Add(new TextSprite("temp_Assets/Roboto_Mono_white_16x8.png", 16, 8));
-        tileEnt.Add(new Transform);
-        tileEnt.GetComponent<Transform>()->SetTranslation({-4, 1, 0});
-        tileEnt.GetComponent<Transform>()->SetScale({0.6, 0.6, 0});
-        ((TextSprite*) tileEnt.GetComponent<Sprite>())->SetRowWidth(5);
+    static bool initialized = false;
+    if ( !initialized )
+    {  
+        strcpy_s( text_buffer, 63, Entities()->GetEntity("TextEnt")->GetComponent<TextSprite>()->GetText().c_str() );
+        initialized = true;
     }
 
     ImGui::Begin("Text Input");
@@ -172,12 +162,12 @@ static void drawText(float dt)
     if (ImGui::Button(textMode ? "Text Mode" : "Tile Mode"))
     {
         textMode = !textMode;
-        ((TextSprite*) tileEnt.GetComponent<Sprite>())->SetTexture(textMode ? nullptr : &tiles);
+        tileEnt->GetComponent<TextSprite>()->SetTexture(textMode ? nullptr : &tiles);
     }
     ImGui::End();
-    ((TextSprite*) textEnt.GetComponent<Sprite>())->Text() << text_buffer;
-    ((TextSprite*) textEnt.GetComponent<Sprite>())->SetColor({glm::abs(glm::sin(time*2)),glm::abs(glm::cos(time)),0,1});
-    ((TextSprite*) tileEnt.GetComponent<Sprite>())->Text() << tile_buffer;
+    textEnt->GetComponent<TextSprite>()->SetText( text_buffer );
+    textEnt->GetComponent<TextSprite>()->SetColor({glm::abs(glm::sin(time*2)),glm::abs(glm::cos(time)),0,1});
+    tileEnt->GetComponent<TextSprite>()->SetText( tile_buffer );
 }
 
 

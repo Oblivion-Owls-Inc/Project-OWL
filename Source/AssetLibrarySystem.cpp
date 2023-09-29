@@ -48,7 +48,7 @@ void AssetLibrarySystem<T>::OnSceneExit()
 /// @brief  Finds and returns an asset, builds if doesnt yet exist
 /// @return the constructed or found asset
 template<class T>
-T* AssetLibrarySystem<T>::LibraryGet(const char* name)
+T* AssetLibrarySystem<T>::GetAsset(std::string const& name)
 {
 	T* check = LibraryFind(name);
 	if (check != NULL)
@@ -100,13 +100,13 @@ void AssetLibrarySystem<T>::LibraryAdd(T* asset)
 /// @brief  Finds and returns an asset if it exists
 /// @return the found asset or nullptr is none is found
 template<class T>
-T* AssetLibrarySystem<T>::LibraryFind(const char* name)
+T* AssetLibrarySystem<T>::LibraryFind( std::string const& name)
 {
 	for (int i = 0; i < 100; i++)
 	{
 		if (m_AssetList[i] != NULL)
 		{
-			if (strcmp(name, m_AssetList[i]->m_Name))
+			if ( name ==  m_AssetList[i]->GetName() )
 			{
 				return m_AssetList[i];
 			}
@@ -119,16 +119,16 @@ T* AssetLibrarySystem<T>::LibraryFind(const char* name)
 // private: reading
 //-----------------------------------------------------------------------------
 
-/* commented out for now because it broke when I was templatizing lol, have fun
-
 /// @brief map of the AssetLibrarySystem read methods
-ReadMethodMap< AssetLibrarySystem const AssetLibrarySystem::s_ReadMethods = {};
+template < class T >
+ReadMethodMap< AssetLibrarySystem< T > > const AssetLibrarySystem<T>::s_ReadMethods = {};
 
 
 
 /// @brief  gets this System's read methods
 /// @return this System's read methods
-ReadMethodMap< System > const& AssetLibrarySystem::GetReadMethods() const
+template < class T >
+ReadMethodMap< System > const& AssetLibrarySystem< T >::GetReadMethods() const
 {
     return (ReadMethodMap< System > const&)s_ReadMethods;
 }
@@ -138,20 +138,23 @@ ReadMethodMap< System > const& AssetLibrarySystem::GetReadMethods() const
 //-----------------------------------------------------------------------------
 
 /// @brief Constructs the AssetLibrarySystem
-AssetLibrarySystem::AssetLibrarySystem() {}
+template<class T>
+AssetLibrarySystem< T >::AssetLibrarySystem() {}
 
 /// @brief The singleton instance of AssetLibrarySystem
-AssetLibrarySystem* AssetLibrarySystem::s_Instance = nullptr;
+template<class T>
+AssetLibrarySystem< T >* AssetLibrarySystem< T >::s_Instance = nullptr;
 
 /// @brief gets the instance of AssetLibrarySystem
 /// @return the instance of the AssetLibrarySystem
-AssetLibrarySystem* AssetLibrarySystem::GetInstance()
+template<class T>
+AssetLibrarySystem< T >* AssetLibrarySystem< T>::GetInstance()
 {
     if (s_Instance == nullptr)
     {
         s_Instance = new AssetLibrarySystem();
     }
     return s_Instance;
-}*/
+}
 
 //-----------------------------------------------------------------------------

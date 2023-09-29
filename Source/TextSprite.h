@@ -41,9 +41,13 @@ public:
     /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
     TextSprite(const char* image_file, int columns, int rows, float stride_mult = 1.0f, int layer = 2);
 
-    /// @brief      Feed text into this function just like with std::cout.
-    /// @return     Reference to string stream to feed text into.
-    std::ostringstream & Text();
+    /// @brief  gets the text of this TextSprite
+    /// @return the text of this TextSprite
+    std::string const& GetText() const;
+
+    /// @brief          sets the text of this TextSprite
+    /// @param  text    the text of this TextSprite
+    void SetText(std::string const& text);
 
     /// @brief      Sets the width of a single row (amount of columns)
     void SetRowWidth(int columns);
@@ -57,9 +61,40 @@ public:
     //          data
     //-------------------------------------------------------------------------
 private:
-    std::ostringstream m_Stream;     /// @brief     Stream that accepts new text
+    std::string m_Text;     /// @brief     text displayed by the textSprite
     unsigned int m_InstBufferID = 0; /// @brief     ID of buffer that stores instance data
     glm::vec2 m_StrideMult = {1,1};  /// @brief     Horizontal/vertical stride. 1.0 is full tile width
     int m_RowWidth = 43;             /// @brief     Amount of tiles per row
     Texture* m_Original;             /// @brief     (temp) to keep track of original texture
+
+private:
+
+    void tempInit();
+
+ //-------------------------------------------------------------------------
+ //  Reading
+ //-------------------------------------------------------------------------
+private:
+
+    /// @brief          Read in the text this TextSprite displays
+    /// @param  stream  The json to read from.
+    void readText(Stream stream);
+
+    /// @brief          Read in the stride multiplier
+    /// @param  stream  The json to read from.
+    void readStrideMultiplier(Stream stream);
+
+    /// @brief          Read in the amount of tile per row
+    /// @param  stream  The json to read from.
+    void readRowWidth( Stream stream );
+
+    /// @brief          called after loading
+    void postRead(Stream);
+
+    /// @brief the map of read methods for this Component
+    static ReadMethodMap< TextSprite > const s_ReadMethods;
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 };
