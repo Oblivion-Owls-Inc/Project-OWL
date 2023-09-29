@@ -143,7 +143,7 @@ static void drawText(float dt)
     static char tile_buffer[21] = {};
     static float time = 0.0f;  // for color change
     static bool textMode = true;
-    static Texture tiles("temp_Assets/Tileset_16x8.png");
+    static Texture tiles("Data/Textures/Tileset_16x8.png");
     time += dt;
 
     textEnt = Entities()->GetEntity("TextEnt");
