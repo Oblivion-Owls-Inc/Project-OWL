@@ -14,9 +14,9 @@
         "XinoScene": {},
         "RenderSystem": {},
         "AudioSystem": {},
-        "BehaviorSystem<RigidBody>": {},
-        "BehaviorSystem<MovementAI>": {},
         "CollisionSystem": {},
+        "BehaviorSystem<MovementAI>": {},
+        "BehaviorSystem<RigidBody>": {},
         "DebugSystem": {
             "ShowFpsWindow": true
         }

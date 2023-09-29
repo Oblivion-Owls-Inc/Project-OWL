@@ -47,7 +47,7 @@ public:
     virtual Component* Clone() const override;
 
     /// @brief              Destructor: frees texture and mesh... for now. Resource library should take care of it.
-    ~Sprite();
+    virtual ~Sprite();
 
     /// @brief          Draws the mesh with texture (if one is present), or color.
     virtual void Draw();
@@ -86,7 +86,7 @@ protected:
 
     Mesh* m_Mesh = nullptr;
     Texture* m_Texture = nullptr;
-    glm::vec4 m_Color = { 0,0,0,1 };
+    glm::vec4 m_Color = {1,1,1,1};
 
 
     //-------------------------------------------------------------------------
@@ -127,7 +127,7 @@ private: // reading
     void ReadColumns(Stream stream);
 
     /// @brief Takes all the read in data and makes a sprite.
-    void ReadSprite(Stream);
+    void ReadSprite( Stream );
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Sprite > const s_ReadMethods;

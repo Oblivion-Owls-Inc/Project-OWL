@@ -1,13 +1,11 @@
-/**
- * @file GUI.h
- * @author Jax Clayton (jax.clayton@digipen.edu)
- * @brief Base class for user interface elements.
- * @version 0.1
- * @date 2023-09-07
- * 
- * @copyright Copyright (c) 2023
- * 
- */
+///*****************************************************************/
+/// @file	 GUI.h
+/// @Author  Jax Clayton (jax.clayton@digipen.edu)
+/// @date	 9/15/2021
+/// @brief   GUI class header
+/// @details This class is to be used for creating GUI elements with the 
+///           DebugSystem
+///*****************************************************************/
 #pragma once
 #include "imgui.h"
 #include "imgui_impl_glfw.h"

@@ -48,11 +48,11 @@ public:
 
 private:
 
-	std::vector<ColliderLineSegment> m_lineSegments;
+		std::vector<ColliderLineSegment> m_LineSegments;
 
-	unsigned int m_LineCount;
+		unsigned int m_LineCount;
 
-	unsigned int counter;
+		unsigned int m_Counter;
 
 	bool doesDamage = false;
 

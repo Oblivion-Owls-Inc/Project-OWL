@@ -174,6 +174,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="imgui\implot.cpp" />
+    <ClCompile Include="imgui\implot_demo.cpp" />
+    <ClCompile Include="imgui\implot_items.cpp" />
     <ClCompile Include="Source\AidanScene.cpp" />
     <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\BehaviorSystem.cpp" />
@@ -222,16 +225,18 @@
     <ClCompile Include="Source\CircleCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="imgui\implot.h" />
+    <ClInclude Include="imgui\implot_internal.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\AnimationAsset.h" />
     <ClInclude Include="Source\AssetLibrarySystem.h" />
+    <ClInclude Include="Source\BehaviorSystem.h" />
     <ClInclude Include="Source\CameraSystem.h" />
     <ClInclude Include="Source\AidanScene.h" />
     <ClInclude Include="Source\CollisionSystem.h" />
     <ClInclude Include="Source\ComponentFactory.h" />
     <ClInclude Include="Source\MovementAI.h" />
     <ClInclude Include="Source\Behavior.h" />
-    <ClInclude Include="Source\BehaviorSystem.h" />
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\LineCollider.h" />

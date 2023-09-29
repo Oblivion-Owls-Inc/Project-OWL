@@ -1,6 +1,13 @@
+///*****************************************************************/
 /// @file DebugSystem.h
+/// @author Jax Clayton (jax.clayton@digipen.edu)
+/// 
 /// @brief Debug System Class For Debugging
-
+/// @brief The Debug Console for verbose debugging
+/// 
+/// @details This class provides functionality for debugging 
+///          and using ImGui with other Systems.
+///*****************************************************************/
 #pragma once
 #include "basics.h"
 #include "GUI.h"

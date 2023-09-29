@@ -1,13 +1,12 @@
-/**
- * @file GUI.cpp
- * @author Jax Clayton (jax.clayton@digipen.edu)
- * @brief Defines the DebugSystem class for debugging functionality.
- * @version 0.1
- * @date 2023-09-07
- * 
- * @copyright Copyright (c) 2023
- * 
- */
+///*****************************************************************
+/// @file GUI.cpp
+/// @author Jax Clayton (jax.clayton@digipen.edu)
+/// @brief Defines the DebugSystem class for debugging functionality.
+/// @version 0.1
+/// @date 2023-09-07
+/// 
+/// @copyright Copyright (c) 2023
+///*****************************************************************/
 #include "DebugSystem.h"
 #include "GUI.h"
 #include <cmath>

@@ -1,18 +1,28 @@
 /// @file CollisionSystem.h
-/// @author Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief Example System meant to be copy-pasted when creating new Systems
+/// @author Jax Clayton  (jax.clayton@digipen.edu)
+/// @brief The CollisionSystem is responsible for checking for collisions between Different Colliders
 /// @version 0.1
-/// @date 2023-09-05
+/// @date 2023-09-15
 /// 
-/// @copyright Copyright (c) 2023
+/// @copyright  Digipen LLC (c) 2023
 
+///*****************************************************************
+/// Includes:
+///*****************************************************************
 #pragma once
-
 #include "System.h"
 #include <vector>
 
+///*****************************************************************
+/// @brief forward declaration of Collider
+///*****************************************************************
 class Collider;
-/// @brief Example System meant to be copy-pasted when creating new Systems
+
+///*****************************************************************
+/// @brief CollisionSystem is responsible for checking for collisions
+///        between Different Colliders
+///*****************************************************************
+
 class CollisionSystem : public System
 {
     public: // singleton stuff
@@ -79,10 +89,10 @@ private: // reading
         /// @brief Constructs the CollisionSystem
         CollisionSystem();
 
-        /// @brief The singleton instance of CollisionSystem
-        static CollisionSystem* instance;
+        /// @brief The singleton s_Instance of CollisionSystem
+        static CollisionSystem* s_Instance;
 
-        std::vector<Collider*> colliderList;
+        std::vector<Collider*> m_ColliderList;
 
 
 };
