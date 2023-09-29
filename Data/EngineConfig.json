@@ -1,5 +1,5 @@
 {
-    "FixedFrameDuration": 0.05,
+    "FixedFrameDuration": 0.0167,
   "Systems": {
     "PlatformSystem": {
       "WindowWidth": 800,
@@ -9,7 +9,7 @@
     "InputSystem": {},
     "SceneSystem": {
       "BaseScenePath": "Data/Scenes/",
-      "NextSceneName": "XinoScene"
+      "NextSceneName": "Sandbox"
     },
     "XinoScene": {},
     "RenderSystem": {},

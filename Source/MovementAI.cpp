@@ -35,10 +35,10 @@ Component* MovementAI::Clone() const
 void MovementAI::OnCollisionEvent()
 {
     DebugConsole output2( *DebugSystem::GetInstance() );
-    output2 << Parent()->GetName().c_str() <<":Collision Detected in Movement AI" << "\n";
-    RigidBody* ballRigidBody = Parent()->GetComponent<RigidBody>();
-    Transform* ballTransform = Parent()->GetComponent<Transform>();
-    CircleCollider* ballCollider = (CircleCollider*)Parent()->GetComponent<Collider>();
+    output2 << GetParent()->GetName().c_str() <<":Collision Detected in Movement AI" << "\n";
+    RigidBody* ballRigidBody = GetParent()->GetComponent<RigidBody>();
+    Transform* ballTransform = GetParent()->GetComponent<Transform>();
+    CircleCollider* ballCollider = (CircleCollider*)GetParent()->GetComponent<Collider>();
     vec3 velocity = *ballRigidBody->GetVelocity();
 
     velocity.x = -velocity.x;
@@ -61,9 +61,9 @@ void MovementAI::OnFixedUpdate()
 {
 
     glm::vec2 WindowSize = glm::vec2(10.0f, 8.0f);
-    Transform* ballTransform = Parent()->GetComponent<Transform>();
-    RigidBody* ballRigidBody = Parent()->GetComponent<RigidBody>();
-    CircleCollider* ballCollider = (CircleCollider*)Parent()->GetComponent<Collider>();
+    Transform* ballTransform = GetParent()->GetComponent<Transform>();
+    RigidBody* ballRigidBody = GetParent()->GetComponent<RigidBody>();
+    CircleCollider* ballCollider = (CircleCollider*)GetParent()->GetComponent<Collider>();
     float radius = ballCollider->GetRadius();
 
     vec3 pos = *ballTransform->GetTranslation();

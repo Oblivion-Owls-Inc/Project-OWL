@@ -29,7 +29,7 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 	for (auto behavior : behaviorsList)
 	{
 		behavior->OnFixedUpdate();
-		Collider* collider = behavior->Parent()->GetComponent<Collider>();
+		Collider* collider = behavior->GetParent()->GetComponent<Collider>();
 		if (collider != nullptr && collider->isColliding())
 		{
 			behavior->OnCollisionEvent();
@@ -44,7 +44,7 @@ void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 	for (auto behavior : behaviorsList)
 	{
 		behavior->OnUpdate(dt);
-		Collider* collider = behavior->Parent()->GetComponent<Collider>();
+		Collider* collider = behavior->GetParent()->GetComponent<Collider>();
 		if (collider != nullptr && collider->isColliding())
 		{
 			behavior->OnCollisionEvent();

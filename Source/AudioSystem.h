@@ -75,7 +75,7 @@ private: // static methods
     /// @return FMOD_RESULT
     static FMOD_RESULT fmodCallback(
         FMOD_SYSTEM* system,
-        FMOD_SYSTEM_CALLBACK_TYPE type,
+        FMOD_SYSTEM_CALLBACK_TYPE m_Type,
         void* commandData1,
         void* commandData2,
         void* userData

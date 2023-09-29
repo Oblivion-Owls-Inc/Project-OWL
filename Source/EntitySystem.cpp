@@ -19,6 +19,7 @@
     void EntitySystem::AddEntity( Entity* entity )
     {
         m_Entities.push_back( entity );
+        entity->InitComponents();
     }
 
     /// @brief  gets an Entity by name
@@ -73,7 +74,12 @@
         {
             Entity * entity = new Entity();
             Stream( entityData ).Read( entity );
-            AddEntity( entity );
+            m_Entities.push_back( entity );
+        }
+
+        for ( Entity* entity : m_Entities )
+        {
+            entity->InitComponents();
         }
     }
 

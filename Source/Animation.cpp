@@ -124,7 +124,7 @@ void Animation::AnimationPlay()
 	m_IsLooping = m_asset->GetLooping();
 	m_IsRunning = true;
 	m_IsDone = false;
-	Parent()->GetComponent<Sprite>()->SetFrame(m_FrameIndex);
+	GetParent()->GetComponent<Sprite>()->SetFrame(m_FrameIndex);
 }
 
 void Animation::AdvanceFrame()
@@ -146,7 +146,7 @@ void Animation::AdvanceFrame()
 	
 	if (m_IsRunning)
 	{
-		Parent()->GetComponent<Sprite>()->SetFrame(m_FrameIndex);
+		GetParent()->GetComponent<Sprite>()->SetFrame(m_FrameIndex);
 		m_FrameDelay = (m_FrameDelay + m_FrameDuration);
 	}
 	else

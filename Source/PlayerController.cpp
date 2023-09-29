@@ -30,7 +30,7 @@ void PlayerController::OnUpdate(float dt)
 {
     if (MoveRight())
     {
-        Transform* transform = Parent()->GetComponent<Transform>();
+        Transform* transform = GetParent()->GetComponent<Transform>();
         vec3 POS = *transform->GetTranslation();
 
         // Calculate the desired velocity increment.
@@ -47,7 +47,7 @@ void PlayerController::OnUpdate(float dt)
     }
     else if (MoveLeft())
     {
-        Transform* transform = Parent()->GetComponent<Transform>();
+        Transform* transform = GetParent()->GetComponent<Transform>();
         vec3 POS = *transform->GetTranslation();
 
         // Calculate the desired velocity increment.
@@ -64,7 +64,7 @@ void PlayerController::OnUpdate(float dt)
     }
     if (Jump())
     {
-   		Transform* transform = Parent()->GetComponent<Transform>();
+   		Transform* transform = GetParent()->GetComponent<Transform>();
 		vec3 POS = *transform->GetTranslation();
 
 		// Calculate the desired velocity increment.

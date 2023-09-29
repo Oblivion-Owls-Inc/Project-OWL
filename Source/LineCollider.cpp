@@ -48,8 +48,8 @@ bool LineCollider::CheckIfColliding(const Collider* other)
 
             if (circleCollider)
             {
-                Transform* lineTransform = Parent()->GetComponent<Transform>();
-                Transform* circleTransform = other->Parent()->GetComponent<Transform>();
+                Transform* lineTransform = GetParent()->GetComponent<Transform>();
+                Transform* circleTransform = other->GetParent()->GetComponent<Transform>();
             }
 
             return false;
