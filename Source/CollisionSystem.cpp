@@ -44,7 +44,8 @@ void CollisionSystem::addCollider(Collider* collider)
 
 void CollisionSystem::removeCollider(Collider* collider)
 {
-    m_ColliderList.erase(std::remove(m_ColliderList.begin(), m_ColliderList.end(), collider), m_ColliderList.end());
+    m_ColliderList.erase(std::remove(m_ColliderList.begin(),
+        m_ColliderList.end(), collider), m_ColliderList.end());
 }
 
 void CollisionSystem::OnFixedUpdate()

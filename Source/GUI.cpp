@@ -25,7 +25,8 @@ GUI::GUI() : active(true), windowTitle("GUI")
  * @param windowTitle 
  * @param initialVisibility 
  */
-GUI::GUI(const char* windowTitle, bool initialVisibility) : active(initialVisibility), windowTitle(windowTitle) 
+GUI::GUI(const char* windowTitle, bool initialVisibility) : 
+      active(initialVisibility), windowTitle(windowTitle) 
 {
 }
 
@@ -82,7 +83,8 @@ const char* GUI::GetWindowTitle() const
  * @class DebugMenu
  * @brief Debugging menu class derived from GUI.
  */
-DebugMenu::DebugMenu() : active(true), color{ 0.0f, 0.0f, 0.0f, 1.0f }, GUI("Debug Menu", true)   
+DebugMenu::DebugMenu() : active(true), color{ 0.0f, 0.0f, 0.0f, 1.0f }, 
+                         GUI("Debug Menu", true)   
 {
 }
 
@@ -150,7 +152,8 @@ void DebugMenu::Render()
         // Display contents in a scrolling region
         ImGui::TextColored(ImVec4(1, 1, 0, 1), "Console View");
         ImGui::BeginChild("Scrolling");
-        ImGui::TextUnformatted(DebugSystem::GetInstance()->logBuffer.begin(), DebugSystem::GetInstance()->logBuffer.end()); // Display the text buffer
+        ImGui::TextUnformatted(DebugSystem::GetInstance()->logBuffer.begin(), 
+                               DebugSystem::GetInstance()->logBuffer.end()); // Display the text buffer
         ImGui::EndChild();
 
         ImGui::End();

@@ -17,6 +17,7 @@
 #include "MovementAI.h"
 #include "InputSystem.h"
 #include "DebugSystem.h"
+#include "PlayerController.h"
 #include "Texture.h"
 
 static void drawText(float dt);
