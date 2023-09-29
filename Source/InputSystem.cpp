@@ -7,11 +7,10 @@
 /// @copyright Copyright (c) 2023
 
 #include "InputSystem.h"
-#include "glfw3.h"
 #include "PlatformSystem.h"
 #include <map>
 #include "CameraSystem.h"
-
+#include "glfw3.h"
 
 /// @brief Constructs the InputSystem
 InputSystem::InputSystem() {}

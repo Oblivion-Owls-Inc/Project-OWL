@@ -23,13 +23,15 @@ static void GLAPIENTRY ErrorHandler(GLenum source, GLenum type, GLuint id, GLenu
 {
 
     bool x = false;
+    
+    #ifndef NDEBUG
     if (severity == GL_DEBUG_SEVERITY_HIGH)
     {
         std::cout << message << '\n';
         assert(x);  // Keep a breakpoint here: when it's triggered, change the x to true to skip assert,
         // and step outside this function to see where the error ocurred.
     }
-
+    #endif // !NDEBUG
     // unused
     (void) source;
     (void) type;
