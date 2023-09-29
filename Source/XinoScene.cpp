@@ -17,6 +17,7 @@
 #include "MovementAI.h"
 #include "InputSystem.h"
 #include "DebugSystem.h"
+#include "PlayerController.h"
 #include "Texture.h"
 #include "Animation.h"
 

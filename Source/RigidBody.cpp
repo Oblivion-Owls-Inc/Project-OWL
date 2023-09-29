@@ -8,8 +8,9 @@
 #include "RigidBody.h"
 #include "BehaviorSystem.h"
 #include "DebugSystem.h"
+#include "Engine.h"
 
-static int GravityForce = 1;
+static float gravity = 9.81f; // Adjust this value as needed
 
 RigidBody::RigidBody() : 
 	m_Velocity(vec3(1, 1, 1)),
@@ -36,22 +37,26 @@ RigidBody::~RigidBody()
 
 void RigidBody::OnUpdate(float dt)
 {
+	//#ifndef NDEBUG
+		ImGui::Begin("Gravity");
+		ImGui::InputFloat("Gravity", &gravity);
+		ImGui::End();
+	//#endif // !NDEBUG
+
+}
+
+void RigidBody::OnFixedUpdate()
+{
+	float dt = Engine::GetInstance()->GetFixedFrameDuration();
 	Collider* collider = Parent()->GetComponent<Collider>();
 	vec3 temptranslation(0);
-	Transform* transform = (Transform *)Parent()->GetComponent<Transform>();
+	Transform* transform = (Transform*)Parent()->GetComponent<Transform>();
 
 	m_OldTranslation = *transform->GetTranslation();
 	temptranslation = *transform->GetTranslation();
 
 	// Gravity
-	static float gravity = 9.81f; // Adjust this value as needed
 	m_Velocity.y -= gravity * dt;
-
-#ifndef NDEBUG
-	ImGui::Begin("Gravity");
-	ImGui::InputFloat("Gravity", &gravity);
-	ImGui::End();
-#endif // !NDEBUG
 
 
 	if (m_Velocity.x > 45 || m_Velocity.y > 45)
@@ -59,6 +64,7 @@ void RigidBody::OnUpdate(float dt)
 		m_Velocity.x = 45;
 		m_Velocity.y = 45;
 	}
+
 	temptranslation += m_Velocity * dt;
 	temptranslation.z = 0;
 

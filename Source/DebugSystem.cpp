@@ -11,7 +11,6 @@ struct ScrollingBuffer
 {
     ScrollingBuffer()
     {
-
     }
 
     T Values[size] = {};
@@ -41,6 +40,7 @@ DebugSystem* DebugSystem::GetInstance()
 
 }
 
+
 /// @brief Initialize the DebugSystem.
 /// @param window The GLFW window handle (default is the current context).
 DebugSystem::DebugSystem() :
@@ -48,7 +48,8 @@ DebugSystem::DebugSystem() :
     io(nullptr),
     showFpsWindow(false),
     showDevWindow(false)
-{}
+{
+}
 
 /// @brief Perform initialization.
 void DebugSystem::OnInit()
@@ -58,7 +59,7 @@ void DebugSystem::OnInit()
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     io = &ImGui::GetIO();
-    //io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
     ImPlot::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
     ImGui_ImplOpenGL3_Init("#version 430");
@@ -135,7 +136,8 @@ void DebugSystem::OnUpdate(float dt)
         endTime = startTime;
 
 
-        static ImPlotAxisFlags axis_flags = ImPlotAxisFlags_NoDecorations | ImPlotAxisFlags_Lock;
+        static ImPlotAxisFlags axis_flags = ImPlotAxisFlags_NoDecorations 
+                                            | ImPlotAxisFlags_Lock;
 
         static ImPlotFlags PlotFlags = ImPlotFlags_NoLegend;
         if (ImPlot::BeginPlot("FPS", ImVec2(-1, 150), PlotFlags)) {
@@ -161,7 +163,7 @@ void DebugSystem::OnUpdate(float dt)
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-    auto io = ImGui::GetIO();
+    auto& io = ImGui::GetIO();
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
     {
         GLFWwindow* backup_current_context = glfwGetCurrentContext();
@@ -180,8 +182,8 @@ void DebugSystem::OnUpdate(float dt)
 void DebugSystem::OnExit()
 {
     ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-    ImGui_ImplOpenGL3_Shutdown();
+    //ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    //ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
