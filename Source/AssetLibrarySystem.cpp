@@ -12,6 +12,8 @@
 // virtual override methods
 //-----------------------------------------------------------------------------
 
+/// @brief  Gets called whenever a new Scene is loaded
+/// @brief	Resets all to null, empty library on each load
 template<class T>
 void AssetLibrarySystem<T>::OnSceneLoad()
 {
@@ -21,6 +23,8 @@ void AssetLibrarySystem<T>::OnSceneLoad()
 	}
 }
 
+/// @brief  Gets called whenever a scene is initialized
+/// @brief	Should read in all library assets and prep them
 template<class T>
 void AssetLibrarySystem<T>::OnSceneInit()
 {
@@ -29,6 +33,8 @@ void AssetLibrarySystem<T>::OnSceneInit()
 	/// 
 }
 
+/// @brief  Gets called whenever a scene is exited
+/// @brief	Flushes and resets library
 template<class T>
 void AssetLibrarySystem<T>::OnSceneExit()
 {
@@ -42,8 +48,17 @@ void AssetLibrarySystem<T>::OnSceneExit()
 /// @brief  Finds and returns an asset, builds if doesnt yet exist
 /// @return the constructed or found asset
 template<class T>
-T* AssetLibrarySystem<T>::LibraryGet()
+T* AssetLibrarySystem<T>::LibraryGet(const char* name)
 {
+	T* check = LibraryFind(name);
+	if (check != NULL)
+	{
+		return check;
+	}
+	//
+	// read in a asset here, getting here means the asset didnt yet exist
+	// or was possibly manually flushed and has to be rebuilt
+	//
 	return nullptr;
 }
 
@@ -52,6 +67,15 @@ T* AssetLibrarySystem<T>::LibraryGet()
 template<class T>
 void AssetLibrarySystem<T>::LibraryFlush()
 {
+	for (int i = 0; i < 100; i++)
+	{
+		if (m_AssetList[i] != NULL)
+		{
+			//delete m_AssetList[i];
+			// add if we need to deallocate I dont think we do
+			m_AssetList[i] = NULL;
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -63,7 +87,14 @@ void AssetLibrarySystem<T>::LibraryFlush()
 template<class T>
 void AssetLibrarySystem<T>::LibraryAdd(T* asset)
 {
-
+	for (int i = 0; i < 100; i++)
+	{
+		if (m_AssetList[i] == NULL)
+		{
+			m_AssetList[i] = asset;
+			break;
+		}
+	}
 }
 
 /// @brief  Finds and returns an asset if it exists
@@ -75,7 +106,7 @@ T* AssetLibrarySystem<T>::LibraryFind(const char* name)
 	{
 		if (m_AssetList[i] != NULL)
 		{
-			if (strcmp(name, m_AssetList[i]->name))
+			if (strcmp(name, m_AssetList[i]->m_Name))
 			{
 				return m_AssetList[i];
 			}

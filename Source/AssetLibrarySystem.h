@@ -47,7 +47,7 @@ public: // public functions
 
     /// @brief  Finds and returns an asset, builds if doesnt yet exist
     /// @return the constructed or found asset
-    T* LibraryGet();
+    T* LibraryGet(const char* name);
 
     /// @brief  Flushes everything in the library
     /// @brief  Automatically called on scene exit
