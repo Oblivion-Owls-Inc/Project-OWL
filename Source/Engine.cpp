@@ -25,11 +25,11 @@
 #include "InputSystem.h"
 #include "EntitySystem.h"
 #include "PlayerController.h"
+#include "Animation.h"
 
 #include "BehaviorSystem.h"
 #include "RigidBody.h"
 #include "MovementAI.h"
-#include "Animation.h"
 #include "CameraSystem.h"
 
 
@@ -173,7 +173,7 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
     { "BehaviorSystem<PlayerController>", &addSystem< BehaviorSystem< PlayerController > >  },
     { "BehaviorSystem<MovementAI>", &addSystem< BehaviorSystem< MovementAI > >  },
     { "BehaviorSystem<RigidBody>",  &addSystem< BehaviorSystem< RigidBody > >   },
-    { "BehaviorSystem<Animation>",  &addSystem< BehaviorSystem< Animation > >   }
+    { "BehaviorSystem<Animation>",  &addSystem< BehaviorSystem< Animation > >   },
 };
 
 //-----------------------------------------------------------------------------

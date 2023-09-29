@@ -29,7 +29,7 @@ class PlayerController :
         bool MoveRight();
         bool MoveLeft();
         bool Jump();
-
+        bool MoveDown();
     private:
         // Define acceleration and deceleration factors.
         float acceleration = 1.0f;

@@ -2,8 +2,8 @@
     "FixedFrameDuration": 0.017,
   "Systems": {
     "PlatformSystem": {
-      "WindowWidth": 800,
-      "WindowHeight": 600
+      "WindowWidth": 1200,
+      "WindowHeight": 800
     },
     "CameraSystem": {},
     "InputSystem": {},
@@ -15,9 +15,9 @@
     "RenderSystem": {},
     "AudioSystem": {},
     "CollisionSystem": {},
-    "BehaviorSystem<PlayerController>": {},
     "BehaviorSystem<MovementAI>": {},
     "BehaviorSystem<RigidBody>": {},
+    "BehaviorSystem<Animation>": {},
     "DebugSystem": {
       "ShowFpsWindow": true
     }
