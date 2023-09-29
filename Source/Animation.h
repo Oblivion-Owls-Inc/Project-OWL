@@ -17,6 +17,7 @@ class Animation : public Behavior
 {
 public:
 	Animation();
+	~Animation();
 	
 	const unsigned GetIndex() const;
 	void SetIndex(unsigned newIndex);

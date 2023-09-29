@@ -7,7 +7,7 @@
 #include "glm/glm.hpp"
 #include "XinoScene.h"
 
-#include "Entity.h"
+#include "EntitySystem.h"
 #include "AudioPlayer.h"
 #include "BehaviorSystem.h"
 #include "RenderSystem.h"
@@ -18,6 +18,7 @@
 #include "InputSystem.h"
 #include "DebugSystem.h"
 #include "Texture.h"
+#include "Animation.h"
 
 static void drawText(float dt);
 

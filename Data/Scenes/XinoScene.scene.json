@@ -4,5 +4,28 @@
         "meshes": [],
         "shaders": []
     },
-    "Entities": []
+    "Entities": [
+        {
+            "name": "Ranger",
+            "Components": {
+                "Transform": {
+                    "translation": [-4,-1,0],
+                    "scale": [8,4,1]
+                },
+                "Sprite": {
+                    "isTextured": true,
+                    "columns": 22,
+                    "rows": 17,
+                    "name": "temp_Assets/Elementals_leaf_ranger_288x128_SpriteSheet.png"
+                },
+                "Animation": {
+                    "frameStart": 0,
+                    "frameCount": 12,
+                    "frameDuration": 0.12,
+                    "isLooping": true,
+                    "isRunning": true
+                }
+            }
+        }
+    ]
 }

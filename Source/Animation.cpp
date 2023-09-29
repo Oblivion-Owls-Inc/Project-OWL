@@ -8,7 +8,7 @@
 
 #include "Animation.h"
 #include "Sprite.h"
-#include "Behavior.h"
+#include "BehaviorSystem.h"
 #include "Entity.h"
 
 Animation::Animation() : 
@@ -20,7 +20,9 @@ Animation::Animation() :
 	m_IsRunning(false),
 	m_IsLooping(false),
 	m_IsDone(false)
-{}
+{
+	BehaviorSystem<Animation>::GetInstance()->AddBehavior(this);
+}
 
 Animation::Animation(const Animation& other) : 
 	Behavior( typeid( Animation ) )
@@ -32,7 +34,12 @@ Animation::Animation(const Animation& other) :
 	m_IsRunning = other.m_IsRunning;
 	m_IsLooping = other.m_IsLooping;
 	m_IsDone = other.m_IsDone;
+
+	BehaviorSystem<Animation>::GetInstance()->AddBehavior(this);
 }
+
+Animation::~Animation() { BehaviorSystem<Animation>::GetInstance()->RemoveBehavior(this); }
+
 
 const unsigned Animation::GetIndex() const
 {
