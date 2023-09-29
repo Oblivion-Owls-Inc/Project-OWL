@@ -51,6 +51,15 @@ void MovementAI::OnCollisionEvent()
 
 void MovementAI::OnUpdate(float dt)
 {
+}
+
+void MovementAI::MovementAIUpdateRotation(float dt)
+{
+}
+
+void MovementAI::OnFixedUpdate()
+{
+
     glm::vec2 WindowSize = glm::vec2(10.0f, 8.0f);
     Transform* ballTransform = Parent()->GetComponent<Transform>();
     RigidBody* ballRigidBody = Parent()->GetComponent<RigidBody>();
@@ -87,11 +96,6 @@ void MovementAI::OnUpdate(float dt)
     ballTransform->SetTranslation(pos);
     ballRigidBody->SetVelocity(&velocity);
 }
-
-void MovementAI::MovementAIUpdateRotation(float dt)
-{
-}
-
 void MovementAI::MovementAIUpdateVelocity(float dt)
 {
 }
@@ -114,9 +118,5 @@ ReadMethodMap<Component> const& MovementAI::GetReadMethods() const
 }
 
 void MovementAI::MovementAISpawnBullet()
-{
-}
-
-void MovementAI::OnFixedUpdate()
 {
 }

@@ -44,7 +44,7 @@ public:
     virtual void OnUpdate(float dt) override;
 
     /// @brief Fixed update method called at a fixed time step.
-    virtual void OnFixedUpdate() override {};
+    virtual void OnFixedUpdate() override;
 
     /// @brief Get the acceleration vector of the rigid body.
     /// @return A pointer to the acceleration vector.

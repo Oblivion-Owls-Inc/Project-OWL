@@ -290,7 +290,7 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
     /// @brief  Constructs a new Engine
     Engine::Engine() :
         m_ShouldExit( false ),
-        m_FixedFrameDuration( 1.0f / 20.0f ),
+        m_FixedFrameDuration( 1.0f / 60.0f ),
         m_PreviousFixedTime( 0.0 ),
         m_PreviousTime( 0.0 )
     {}
