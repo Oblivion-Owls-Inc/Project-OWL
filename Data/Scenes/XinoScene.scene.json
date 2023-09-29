@@ -4,5 +4,142 @@
         "meshes": [],
         "shaders": []
     },
-    "Entities": []
+    "Entities": [
+        {
+            "Name": "Sound",
+            "Components": {
+                "AudioPlayer": {}
+
+            }
+        },
+        {
+            "Name": "Wall",
+            "Components": {
+                "Sprite": {
+                    "name": "Data/Textures/Balls/Wall.png",
+                    "layer": 0
+                },
+                "Transform": {
+                    "translation": [ 0, -3, 0 ],
+                    "scale": [ 10, 10, 10 ]
+                }
+            }
+        },
+        {
+            "Name": "Ball1",
+            "Components": {
+                "Sprite": {
+                    "name": "Data/Textures/Balls/Ball5.png",
+                    "columns": 1,
+                    "rows": 1,
+                    "layer": 1
+                },
+                "RigidBody": {},
+                "CircleCollider": {
+                    "radius": 0.5
+                },
+                "Transform": {
+                    "translation": [ 0, 0, 0 ],
+                    "scale": [ 1, 1, 1 ]
+                },
+                "MovementAI": {}
+
+            }
+        },
+        {
+            "Name": "Ball2",
+            "Components": {
+                "Sprite": {
+                    "name": "Data/Textures/Balls/Ball2.png",
+                    "columns": 1,
+                    "rows": 1,
+                    "layer": 1
+                },
+                "RigidBody": {},
+                "CircleCollider": {
+                    "radius": 0.5
+                },
+                "Transform": {
+                    "translation": [ 2, 0, 0 ],
+                    "scale": [ 1, 1, 1 ]
+                },
+                "MovementAI": {}
+            }
+        },
+        {
+            "Name": "Ball3",
+            "Components": {
+                "Sprite": {
+                    "name": "Data/Textures/Balls/Ball.png",
+                    "columns": 1,
+                    "rows": 1,
+                    "layer": 1
+                },
+                "RigidBody": {},
+                "CircleCollider": {
+                    "radius": 0.5
+                },
+                "Transform": {
+                    "translation": [ 4, 0, 0 ],
+                    "scale": [ 1, 1, 1 ]
+                },
+                "MovementAI": {}
+            }
+        },
+        {
+            "Name": "TextEnt",
+            "Components": {
+                "TextSprite": {
+                    "name": "Data/Textures/Roboto_Mono_white_16x8.png",
+                    "columns": 16,
+                    "rows": 8,
+                    "strideMultiplier": [0.6, 1],
+                    "layer": 1,
+                    "text": "The Quick Brown Fox Jumps Over The Lazy Dog"
+                },
+                "Transform": {
+                    "translation": [ -4.9, 2, 0 ],
+                    "scale": [ 0.35, 0.35, 0 ]
+                }
+            }
+        },
+        {
+            "Name": "TileEnt",
+            "Components": {
+                "TextSprite": {
+                    "name": "Data/Textures/Roboto_Mono_white_16x8.png",
+                    "columns": 16,
+                    "rows": 8,
+                    "layer": 1,
+                    "rowWidth": 5
+                },
+                "Transform": {
+                    "translation": [ -4, 1, 0 ],
+                    "scale": [ 0.6, 0.6, 0 ]
+                }
+            }
+        },
+        {
+            "Name": "Ranger",
+            "Components": {
+                "Transform": {
+                    "translation": [ -4, -1, 0 ],
+                    "scale": [ 8, 4, 1 ]
+                },
+                "Sprite": {
+                    "columns": 22,
+                    "rows": 17,
+                    "name": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png"
+                },
+                "Animation": {
+                    "frameStart": 0,
+                    "frameCount": 12,
+                    "frameDuration": 0.12,
+                    "isLooping": true,
+                    "isRunning": true
+                },
+                "PlayerController": {}
+            }
+        }
+    ]
 }

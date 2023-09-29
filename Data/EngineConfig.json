@@ -1,25 +1,26 @@
 {
     "FixedFrameDuration": 0.0167,
-  "Systems": {
-    "PlatformSystem": {
-      "WindowWidth": 800,
-      "WindowHeight": 600
-    },
-    "CameraSystem": {},
-    "InputSystem": {},
-    "SceneSystem": {
-      "BaseScenePath": "Data/Scenes/",
-      "NextSceneName": "XinoScene"
-    },
-    "XinoScene": {},
-    "RenderSystem": {},
-    "AudioSystem": {},
-    "CollisionSystem": {},
-    "BehaviorSystem<PlayerController>": {},
-    "BehaviorSystem<MovementAI>": {},
-    "BehaviorSystem<RigidBody>": {},
-    "DebugSystem": {
-      "ShowFpsWindow": true
+    "Systems": {
+        "PlatformSystem": {
+            "WindowWidth": 800,
+            "WindowHeight": 600
+        },
+        "CameraSystem": {},
+        "InputSystem": {},
+        "SceneSystem": {
+            "BaseScenePath": "Data/Scenes/",
+            "NextSceneName": "XinoScene"
+        },
+        "XinoScene": {},
+        "RenderSystem": {},
+        "AudioSystem": {},
+        "CollisionSystem": {},
+        "BehaviorSystem<MovementAI>": {},
+        "BehaviorSystem<RigidBody>": {},
+        "BehaviorSystem<Animation>": {},
+        "BehaviorSystem<PlayerController>": {},
+        "DebugSystem": {
+            "ShowFpsWindow": true
+        }
     }
-  }
 }

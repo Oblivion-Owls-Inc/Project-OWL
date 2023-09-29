@@ -272,9 +272,6 @@
     <ClCompile Include="Source\Animation.cpp">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AnimationAsset.cpp">
-      <Filter>Engine\Entity\Component\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
@@ -478,8 +475,8 @@
     <ClInclude Include="Source\AssetLibrarySystem.h">
       <Filter>Engine\Systems\AssetLibrarySystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Animation.h">
-      <Filter>Engine\Entity\Component\Animation</Filter>
+    <ClInclude Include="Source\CameraSystem.h">
+      <Filter>Engine\Systems\CameraSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\AnimationAsset.h">
       <Filter>Engine\Entity\Component\Animation\Asset</Filter>
@@ -517,6 +514,21 @@
     <ClInclude Include="Source\XinoScene.h">
       <Filter>Game\XinoScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Animation.h">
+      <Filter>Engine\Entity\Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AidanScene.h">
+      <Filter>Game\AidenScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\XinoScene.h">
+      <Filter>Game\XinoScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StubScene.h">
+      <Filter>Game\StubScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TextSprite.h">
+      <Filter>Engine\Entity\Component\Sprite\TextSprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -528,10 +540,13 @@
     <None Include="Data\Scenes\Sandbox.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\TestScene.scene.json">
+    <None Include="Data\Scenes\AidanScene.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Sandbox.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\TestScene.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\AidanScene.scene.json">

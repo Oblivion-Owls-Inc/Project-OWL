@@ -234,7 +234,6 @@
     <ClInclude Include="Source\AssetLibrarySystem.h" />
     <ClInclude Include="Source\BehaviorSystem.h" />
     <ClInclude Include="Source\CameraSystem.h" />
-    <ClInclude Include="Source\AidanScene.h" />
     <ClInclude Include="Source\CollisionSystem.h" />
     <ClInclude Include="Source\ComponentFactory.h" />
     <ClInclude Include="Source\MovementAI.h" />
@@ -289,4 +288,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

@@ -79,6 +79,23 @@ void PlayerController::OnUpdate(float dt)
 		// Update the position gradually.
 		transform->SetTranslation(POS + velocityIncrement);
     }
+	if (MoveDown())
+	{
+		Transform* transform = GetParent()->GetComponent<Transform>();
+		vec3 POS = *transform->GetTranslation();
+
+		// Calculate the desired velocity increment.
+		vec3 velocityIncrement = vec3(0.0f, -5.0f * acceleration * dt, 0.0f);
+
+		// Apply acceleration, but limit the speed.
+		if (glm::length(velocityIncrement) > maxSpeed)
+		{
+			velocityIncrement = glm::normalize(velocityIncrement) * maxSpeed;
+		}
+
+		// Update the position gradually.
+		transform->SetTranslation(POS + velocityIncrement);
+	}
 }
 
 bool PlayerController::MoveRight()
@@ -106,6 +123,17 @@ bool PlayerController::MoveLeft()
 bool PlayerController::Jump()
 {
 	if (input->GetKeyDown(GLFW_KEY_W))
+	{
+		return true;
+	}
+	{
+		return false;
+	}
+}
+
+bool PlayerController::MoveDown()
+{
+	if (input->GetKeyDown(GLFW_KEY_S))
 	{
 		return true;
 	}

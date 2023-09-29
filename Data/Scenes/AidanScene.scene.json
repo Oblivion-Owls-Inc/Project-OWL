@@ -13,7 +13,7 @@
                     "rows": 1,
                     "color": [ 0, 0, 0, 1 ],
                     "layer": 0,
-                    "name": "temp_Assets/Balls/Ball.png",
+                    "name": "Data/Textures/Balls/Ball.png",
                     "isTextured": true
                 },
                 "LineCollider": {
@@ -27,9 +27,9 @@
                     ]
                 },
                 "Transform": {
-                    "translation": [ 400, 500, 0 ],
+                    "translation": [ -4, -1, 0 ],
                     "rotation": 0,
-                    "scale": [ 800, 50, 0 ],
+                    "scale": [ 8, 4, 1 ],
                     "diegetic": false
                 }
 

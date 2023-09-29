@@ -7,19 +7,33 @@
     },
     "Entities": [
         {
-            "Name": "TestName",
+            "name": "Ranger",
             "Components": {
                 "Transform": {
-                    "Translation": [ 0, 0, 0 ],
-                    "Rotation": 0,
-                    "Scale": [ 1, 1, 1 ]
+                    "translation": [ -4, -1, 0 ],
+                    "scale": [ 8, 4, 1 ]
                 },
-                "RigidBody": {
-                    "Velocity": [ 1, 1, 1 ],
-                    "Acceleration": [ 1, 1, 1 ],
-                    "RotationalVelocity": 2
+                "Sprite": {
+                    "isTextured": true,
+                    "columns": 22,
+                    "rows": 17,
+                    "name": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png"
+                },
+                "Animation": {
+                    "frameStart": 0,
+                    "frameCount": 12,
+                    "frameDuration": 0.12,
+                    "isLooping": true,
+                    "isRunning": true
                 }
             }
+        },
+        {
+            "name": "Sound",
+            "Components": {
+                "AudioPlayer": {}
+            }
+
         }
     ]
 }

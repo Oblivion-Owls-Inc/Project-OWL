@@ -16,13 +16,15 @@
 #include "MovementAI.h"
 #include "InputSystem.h"
 #include "DebugSystem.h"
+#include "EntitySystem.h"
+#include "SceneSystem.h"
 
 //-----------------------------------------------------------------------------
 // variables
 //-----------------------------------------------------------------------------
 
-    static Entity* entity;
-    static Entity* entity2;
+Entity* soundEntity;
+Entity* Ranger;
     static bool update = false;
     static Sound* sound;
 
@@ -40,19 +42,13 @@
     /// @brief  Gets called whenever a scene is initialized
     void SandboxSystem::OnSceneInit()
     {
+        EntitySystem* instance = EntitySystem::GetInstance();
         update = true;
-        entity = new Entity();
-        entity->Add(new AudioPlayer());
-        entity->GetComponent<AudioPlayer>()->SetSound(sound);
+        soundEntity = instance->GetEntity("Sound");
+        soundEntity->GetComponent<AudioPlayer>()->SetSound(sound);
 
-        entity2= new Entity();
-        entity2->Add( new Sprite("Elementals_leaf_ranger_288x128_SpriteSheet.png", 22,17));
-        entity2->Add( new RigidBody());
-        entity2->Add( new Transform());
-        entity2->Add( new MovementAI());
-        float spriteSize = entity2->GetComponent<Sprite>()->GetHeightMultiplier();
-        entity2->GetComponent<Transform>()->SetTranslation(glm::vec3(300.0f, 300.0f, 0.0f));
-        entity2->GetComponent<Transform>()->SetScale(glm::vec3(600.0f, (-600.0f * spriteSize), 0.0f));
+        Ranger = instance->GetEntity("Ranger");
+        float spriteSize = Ranger->GetComponent<Sprite>()->GetHeightMultiplier();
     }
 
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
@@ -62,13 +58,13 @@
             return;
         if ( Input()->GetKeyTriggered( GLFW_KEY_SPACE ) )
         {
-            entity->GetComponent<AudioPlayer>()->Play();
+            soundEntity->GetComponent<AudioPlayer>()->Play();
         }
         // Create an instance of DebugConsole
         DebugConsole output(*DebugSystem::GetInstance());
 
         // Append the message and the formatted value
-        glm::vec3 translation = *entity2->GetComponent<Transform>()->GetTranslation();
+        glm::vec3 translation = *Ranger->GetComponent<Transform>()->GetTranslation();
         output << "Position: (" << translation.x << ", " << translation.y << ", " << translation.z << ")" << "\n";
     }
 
@@ -78,14 +74,17 @@
     {
         if (!update)
             return;
+
+        if (Input()->GetKeyTriggered(GLFW_KEY_W))
+        {
+            SceneSystem::GetInstance()->SetNextScene("XinoScene");
+        }
     }
 
     /// @brief  Gets called whenever a scene is exited
     void SandboxSystem::OnSceneExit()
     {
-        delete entity;
         delete sound;
-        delete entity2;
     }
 
 //-----------------------------------------------------------------------------
