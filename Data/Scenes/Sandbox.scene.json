@@ -17,7 +17,7 @@
                     "isTextured": true,
                     "columns": 22,
                     "rows": 17,
-                    "name": "temp_Assets/Elementals_leaf_ranger_288x128_SpriteSheet.png"
+                    "name": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png"
                 },
                 "Animation": {
                     "frameStart": 0,

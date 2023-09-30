@@ -16,7 +16,7 @@
             "name": "Wall",
             "Components": {
                 "Sprite": {
-                    "name": "temp_Assets/Balls/Wall.png",
+                    "name": "Data/Textures/Wall.png",
                     "layer": 0
                 },
                 "Transform": {
@@ -29,7 +29,7 @@
             "name": "Ball2",
             "Components": {
                 "Sprite": {
-                    "name": "temp_Assets/Balls/Ball2.png",
+                    "name": "Data/Textures/Balls/Ball2.png",
                     "columns": 1,
                     "rows": 1,
                     "layer": 1
@@ -49,7 +49,7 @@
             "name": "Ball3",
             "Components": {
                 "Sprite": {
-                    "name": "temp_Assets/Balls/Ball.png",
+                    "name": "Data/Textures/Balls/Ball.png",
                     "columns": 1,
                     "rows": 1,
                     "layer": 1
@@ -69,7 +69,7 @@
             "name": "TextEnt",
             "Components": {
                 "TextSprite": {
-                    "name": "temp_Assets/Roboto_Mono_white_16x8.png",
+                    "name": "Data/Textures/Roboto_Mono_white_16x8.png",
                     "columns": 16,
                     "rows": 8,
                     "strideMultiplier": [0.6, 1],
@@ -86,7 +86,7 @@
             "name": "TileEnt",
             "Components": {
                 "TextSprite": {
-                    "name": "temp_Assets/Roboto_Mono_white_16x8.png",
+                    "name": "Data/Textures/Roboto_Mono_white_16x8.png",
                     "columns": 16,
                     "rows": 8,
                     "layer": 1,
@@ -108,7 +108,7 @@
                 "Sprite": {
                     "columns": 22,
                     "rows": 17,
-                    "name": "temp_Assets/Elementals_leaf_ranger_288x128_SpriteSheet.png"
+                    "name": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png"
                 },
                 "Animation": {
                     "frameStart": 0,
@@ -128,7 +128,7 @@
                 "scale": [ 2.5, 2.5, 1 ]
               },
               "Sprite": {
-                "name": "temp_Assets/Balls/Ball4.png",
+                "name": "Data/Textures/Balls/Ball4.png",
                 "layer":  2
               }
             }
@@ -142,7 +142,7 @@
                 "scale": [ 1, 1, 1 ]
               },
               "Sprite": {
-                "name": "temp_Assets/Balls/Ball5.png",
+                "name": "Data/Textures/Balls/Ball5.png",
                 "layer":  3
               }
             }

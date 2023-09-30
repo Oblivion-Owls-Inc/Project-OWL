@@ -487,9 +487,6 @@
     <ClInclude Include="Source\XinoScene.h">
       <Filter>Game\XinoScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AidanScene.h">
-      <Filter>Game\AidenScene</Filter>
-    </ClInclude>
     <ClInclude Include="imgui\implot.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
