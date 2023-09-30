@@ -25,8 +25,8 @@ bool CircleCollider::CheckIfColliding(const Collider* other)
 		case ColliderType::ColliderTypeCircle:
 		{
 			CircleCollider* otherCircle = (CircleCollider*)other;
-			Transform* otherTransform = other->Parent()->GetComponent<Transform>();
-			Transform* thisTransform = Parent()->GetComponent<Transform>();
+			Transform* otherTransform = other->GetParent()->GetComponent<Transform>();
+			Transform* thisTransform = GetParent()->GetComponent<Transform>();
 
 			vec3 otherPos = *otherTransform->GetTranslation();
 			vec3 thisPos = *thisTransform->GetTranslation();

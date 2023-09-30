@@ -57,11 +57,11 @@ private: // reading
     void ReadRadius(Stream stream);
 
     /// @brief map of the read methods for this Component
-    static std::map< std::string, ReadMethod< CircleCollider > > s_ReadMethods;
+    static ReadMethodMap< CircleCollider > s_ReadMethods;
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() const override;
+    virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 
 //-----------------------------------------------------------------------------
 

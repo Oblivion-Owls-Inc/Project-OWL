@@ -58,9 +58,9 @@ void CollisionSystem::OnFixedUpdate()
             Collider* other = collider->getOtherCollider();
 
             DebugConsole output( *DebugSystem::GetInstance() );
-            output << "Collider: " << collider->Parent()->GetName().c_str()
+            output << "Collider: " << collider->GetParent()->GetName().c_str()
                 << " is colliding with: "
-                << other->Parent()->GetName() << "\n";
+                << other->GetParent()->GetName() << "\n";
         }
 	}
 

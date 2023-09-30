@@ -52,10 +52,10 @@ void Entity::Free()
 	// Traverse the component list
 	for (auto& component : m_Components)
 	{
-	// Make sure the component is valid.
+	    // Make sure the component is valid.
 		assert(component.second);
 		
-	// Delete the component.
+	    // Delete the component.
 		delete component.second;
 	}
 	// Clear the component list.
@@ -70,24 +70,35 @@ void Entity::Add(Component* component)
 	if (component)
 	{
 	// Set the component's parent as this entity
-		component->Parent(this);
+		component->SetParent(this);
 	// Check if the component already exists.
-		assert(m_Components.find(component->Type()) == m_Components.end());
+		assert(m_Components.find(component->GetType()) == m_Components.end());
 	// If it does not, add it to the entity.
-		m_Components[component->Type()] = component;
+		m_Components[component->GetType()] = component;
 	}
+}
+
+
+/// @brief  Initializes all components of this Entity
+/// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
+void Entity::InitComponents()
+{
+    for ( auto& component : m_Components )
+    {
+        component.second->OnInit();
+    }
 }
 
 /// @brief		Checks if an entity has a specific component.
 /// @param type The type ID of the component.
 /// @return		The component if found (Component*).
-Component* Entity::HasComponent(std::type_index type)
+Component* Entity::HasComponent(std::type_index m_Type)
 {
 	// Check if the component exists.
-	if (m_Components.find(type) != m_Components.end())
+	if (m_Components.find(m_Type) != m_Components.end())
 	{
-	// If it does, return it.
-		return m_Components[type];
+	    // If it does, return it.
+		return m_Components[m_Type];
 	}
 	// Otherwise, return null.
 	return nullptr;
@@ -103,7 +114,7 @@ void Entity::Destroy() { m_IsDestroyed = true; }
 
 /// @brief  Checks if an entity has been destroyed or not.
 /// @return If the entity has been destroyed (bool).
-bool Entity::Destroyed() { return m_IsDestroyed; }
+bool Entity::IsDestroyed() { return m_IsDestroyed; }
 
 /// @brief		Set the entity's name.
 /// @param name Name of the entity.
@@ -119,18 +130,6 @@ void Entity::SetName(const std::string& name)
 /// @brief  Get the name of the entity.
 /// @return The name of the entity (string).
 const std::string& Entity::GetName() { return m_Name; }
-
-/// @brief		  Compares an entity's name.
-/// @param name   The name to compare against.
-/// @return		  Does the name match (bool)?
-bool Entity::IsNamed(const std::string& name)
-{
-	if (!name.empty())
-	{
-		return (m_Name == name);
-	}
-	return false;
-}
 
 /// @brief		  Clone this entity from an archetype.
 /// @param stream The json value to read from.
@@ -173,5 +172,5 @@ void Entity::ReadComponents(Stream stream)
 ReadMethodMap< Entity > Entity::s_ReadMethods = {
 	{ "Archetype"  , &ReadArchetype  },
 	{ "Components" , &ReadComponents },
-	{ "name"       , &ReadName	     }
+	{ "Name"       , &ReadName	     }
 };

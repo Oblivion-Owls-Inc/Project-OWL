@@ -143,9 +143,9 @@ void Sprite::Draw()
 
     // Stuff they both have in common: transform and opacity
     glm::mat4 mat(1);   // it can still draw without parent and transform
-    if (Parent())
+    if (GetParent())
     {
-        Transform* t = Parent()->GetComponent<Transform>();
+        Transform* t = GetParent()->GetComponent<Transform>();
         if (t)
         {
             mat = *t->GetMatrix();

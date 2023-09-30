@@ -30,7 +30,7 @@ void PlayerController::OnUpdate(float dt)
 {
     if (MoveRight())
     {
-        Transform* transform = Parent()->GetComponent<Transform>();
+        Transform* transform = GetParent()->GetComponent<Transform>();
         vec3 POS = *transform->GetTranslation();
 
         // Calculate the desired velocity increment.
@@ -47,7 +47,7 @@ void PlayerController::OnUpdate(float dt)
     }
     else if (MoveLeft())
     {
-        Transform* transform = Parent()->GetComponent<Transform>();
+        Transform* transform = GetParent()->GetComponent<Transform>();
         vec3 POS = *transform->GetTranslation();
 
         // Calculate the desired velocity increment.
@@ -64,7 +64,7 @@ void PlayerController::OnUpdate(float dt)
     }
     if (Jump())
     {
-   		Transform* transform = Parent()->GetComponent<Transform>();
+   		Transform* transform = GetParent()->GetComponent<Transform>();
 		vec3 POS = *transform->GetTranslation();
 
 		// Calculate the desired velocity increment.
@@ -81,7 +81,7 @@ void PlayerController::OnUpdate(float dt)
     }
 	if (MoveDown())
 	{
-		Transform* transform = Parent()->GetComponent<Transform>();
+		Transform* transform = GetParent()->GetComponent<Transform>();
 		vec3 POS = *transform->GetTranslation();
 
 		// Calculate the desired velocity increment.
@@ -148,5 +148,5 @@ ReadMethodMap< PlayerController > const PlayerController::readMethods = {};
 
 ReadMethodMap<Component> const& PlayerController::GetReadMethods() const
 {
-	return (std::map< std::string, ReadMethod< Component > > const&)readMethods;
+	return (ReadMethodMap< Component > const&)readMethods;
 }

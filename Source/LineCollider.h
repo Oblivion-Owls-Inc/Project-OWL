@@ -61,7 +61,7 @@ private: // reading
 	// Number of line segments to make, read from file.
 	unsigned int m_NumSegments;
 	/// @brief The map of read methods for the LineCollider.
-	static std::map< std::string, ReadMethod< LineCollider > > s_ReadMethods;
+	static ReadMethodMap< LineCollider > s_ReadMethods;
 
 	/// @brief		  Read in the number of line segements to create.
 	/// @param stream The json data to read from.
@@ -73,6 +73,6 @@ private: // reading
 
 	/// @brief  Gets the map of read methods for this component.
 	/// @return The map of read methods for this component.
-	virtual std::map< std::string, ReadMethod< Component > > const& GetReadMethods() const override;
+	virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 };
 
