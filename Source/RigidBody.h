@@ -46,62 +46,103 @@ public:
     /// @brief Fixed update method called at a fixed time step.
     virtual void OnFixedUpdate() override;
 
-    /// @brief Get the acceleration vector of the rigid body.
-    /// @return A pointer to the acceleration vector.
-    vec3* GetAcceleration();
+    /// @brief  Called whenever a Collider on this Behavior's Entity collides
+    /// @param  other           the entity that was collided with
+    /// @param  collisionData   additional data about the collision
+    virtual void OnCollision( Entity* other, CollisionData const& collisionData ) override;
 
-    /// @brief Get the velocity vector of the rigid body.
-    /// @return A pointer to the velocity vector.
-    vec3* GetVelocity();
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
 
-    /// @brief Get the old translation vector of the rigid body.
-    /// @return A pointer to the old translation vector.
-    vec3* GetOldTranslation();
+    /// @brief  Get the acceleration vector of the rigid body.
+    /// @return the acceleration vector.
+    __inline glm::vec3 const& GetAcceleration() const { return m_Acceleration; }
+    /// @brief  Set the acceleration vector of the rigid body.
+    /// @param  acceleration    the new acceleration vector.
+    __inline void SetAcceleration( vec3 const& acceleration ) { m_Acceleration = acceleration; }
+
+    /// @brief  Get the velocity vector of the rigid body.
+    /// @return the velocity vector.
+    __inline glm::vec3 const& GetVelocity() const { return m_Velocity; }
+    /// @brief  Set the velocity vector of the rigid body.
+    /// @param  velocity    the new velocity vector.
+    __inline void SetVelocity( vec3 const& velocity ) { m_Velocity = velocity; }
+
+    /// @brief  Get the old translation vector of the rigid body.
+    /// @return the old translation vector.
+    __inline glm::vec3 const& GetOldTranslation() const { return m_OldTranslation; }
 
     /// @brief Get the rotational velocity of the rigid body.
     /// @return The rotational velocity.
-    float GetRotationalVelocity();
-
-    /// @brief Set the acceleration vector of the rigid body.
-    /// @param Acceleration A pointer to the new acceleration vector.
-    void SetAcceleration(const vec3* Acceleration);
-
-    /// @brief Set the velocity vector of the rigid body.
-    /// @param Velocity A pointer to the new velocity vector.
-    void SetVelocity(const vec3* Velocity);
-
-    /// @brief Set the old translation vector of the rigid body.
-    /// @param OldTranslation A pointer to the old translation vector.
-    void SetOldTranslation(const vec3* OldTranslation);
-
+    __inline float GetRotationalVelocity() { return m_RotationalVelocity; }
     /// @brief Set the rotational velocity of the rigid body.
-    /// @param rotational_velocity The new rotational velocity.
-    void SetRotationalVelocity(float rotational_velocity);
+    /// @param rotationalVelocity The new rotational velocity.
+    __inline void SetRotationalVelocity( float rotationalVelocity ) { m_RotationalVelocity = rotationalVelocity; }
 
-    /// @brief Handle collision events with other entities.
-    /// @param other The other Entity involved in the collision.
-    virtual void OnCollisionEvent();
+    /// @brief Get the inverse mass of the rigid body.
+    /// @return The inverse mass.
+    __inline float GetInverseMass() { return m_InverseMass; }
+    /// @brief Set the inverse mass of the rigid body.
+    /// @param inverseMass The new inverse mass.
+    __inline void SetInverseMass( float inverseMass ) { m_InverseMass = inverseMass; }
+
+    /// @brief Get the restitution of the rigid body.
+    /// @return The restitution.
+    __inline float GetRestitution() { return m_Restitution; }
+    /// @brief Set the restitution of the rigid body.
+    /// @param restitution The new restitution.
+    __inline void SetRestitution( float restitution ) { m_Restitution = restitution; }
+
+    /// @brief Get the friction of the rigid body.
+    /// @return The friction.
+    __inline float GetFriction() { return m_Friction; }
+    /// @brief Set the friction of the rigid body.
+    /// @param friction The new friction.
+    __inline void SetFriction( float friction ) { m_Friction = friction; }
+
+    /// @brief  gets whether the collision between two RigidBodies has already been resolved;
+    /// @return whether the collision between two RigidBodies has already been resolved;
+    /// @note   SHOULD ONLY BE CALLED BY RigidBody::OnCollision();
+    __inline bool GetCollisionResolved() const { return m_CollisionResolved; }
+    /// @brief  sets whether the collision between two RigidBodies has already been resolved;
+    /// @param  collisionResolved   whether the collision between two RigidBodies has already been resolved;
+    /// @note   SHOULD ONLY BE CALLED BY RigidBody::OnCollision();
+    __inline void SetCollisionResolved( bool collisionResolved ) { m_CollisionResolved = collisionResolved; }
 
 private: // reading
 
     /// @brief reads the velocity from json
     /// @param data the json data
-    void ReadVelocity(Stream data);
+    void readVelocity(Stream data);
 
     /// @brief reads the acceleration from json
     /// @param data the json data
-    void ReadAcceleration(Stream data);
+    void readAcceleration(Stream data);
 
     /// @brief reads the rotationalVelocity from json
     /// @param data the json data
-    void ReadRotationalVelocity(Stream data);
+    void readRotationalVelocity(Stream data);
+
+    /// @brief reads the inverseMass from json
+    /// @param data the json data
+    void readInverseMass(Stream data);
+
+    /// @brief reads the restitution from json
+    /// @param data the json data
+    void readRestitution(Stream data);
+
+    /// @brief reads the friction from json
+    /// @param data the json data
+    void readFriction(Stream data);
 
     /// @brief the map of read methods for RigidBodys
     static ReadMethodMap< RigidBody > s_ReadMethods;
 
-        /// @brief gets the map of read methods for this Component
-        /// @return the map of read methods for this Component
-        virtual ReadMethodMap< Component > const& GetReadMethods() const override;
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    virtual ReadMethodMap< Component > const& GetReadMethods() const override;
+
 private:
     /// @brief The velocity vector of the rigid body.
     vec3 m_Velocity;
@@ -114,6 +155,18 @@ private:
 
     /// @brief The rotational velocity of the rigid body.
     float m_RotationalVelocity;
+
+    /// @brief the inverse of the mass of this RigidBody
+    float m_InverseMass;
+
+    /// @brief how bouncy this RigidBody is
+    float m_Restitution;
+
+    /// @brief how much friction this RigidBody has
+    float m_Friction;
+
+    /// @brief flag of whether a collision between two rigidBodies has already been resolved;
+    bool m_CollisionResolved;
 };
 
 

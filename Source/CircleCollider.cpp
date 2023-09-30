@@ -1,96 +1,64 @@
+/// @file       CircleCollider.cpp
+/// @author     Jax Clayton (jax.clayton@digipen.edu)
+/// @brief      Circle-shaped collider
+/// @version    0.1
+/// @date       2023-09-13
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+
+#pragma once
+
 #include "CircleCollider.h"
-#include "entity.h"
-#include "Transform.h"
-#include "Collider.h"
 
-CircleCollider::CircleCollider(): Collider(), m_Radius(0.0f)
-{
-	setColliderType(ColliderType::ColliderTypeCircle);
-}
+//-----------------------------------------------------------------------------
+// public: constructor
+//-----------------------------------------------------------------------------
 
-CircleCollider::CircleCollider(const CircleCollider& other) : Collider(other), m_Radius(other.m_Radius)
-{
-	setColliderType(ColliderType::ColliderTypeCircle);
-}
-
-Component* CircleCollider::Clone() const
-{
-	return (Component *) new CircleCollider(*this);
-}
-
-bool CircleCollider::CheckIfColliding(const Collider* other)
-{
-	switch (other->getColliderType())
-	{
-		case ColliderType::ColliderTypeCircle:
-		{
-			CircleCollider* otherCircle = (CircleCollider*)other;
-			Transform* otherTransform = other->GetParent()->GetComponent<Transform>();
-			Transform* thisTransform = GetParent()->GetComponent<Transform>();
-
-			vec3 otherPos = *otherTransform->GetTranslation();
-			vec3 thisPos = *thisTransform->GetTranslation();
-
-			float otherRadius = otherCircle->GetRadius();
-			float thisRadius = GetRadius();
-
-			float distance = glm::length(otherPos - thisPos);
-			if (distance <= (otherRadius + thisRadius))
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-		case ColliderType::ColliderTypeLine:
-		{
-			return false;
-		}
-		default:
-		{
-			return false; // No collision detected
-		}
-	}
-}
-
-void CircleCollider::SetRadius(float _m_Radius)
-{
-	m_Radius = _m_Radius;
-}
-
-float CircleCollider::GetRadius() const
-{
-	return m_Radius;
-}
-
-void CircleCollider::OnFixedUpdate()
-{
-}
+    /// @brief  default constructor
+    CircleCollider::CircleCollider() :
+        Collider( typeid( CircleCollider ) ),
+        m_Radius( 1.0f )
+    {}
 
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
 
+    /// @brief  Reads the radius
+    /// @param  stream  The json data to read from
+    void CircleCollider::readRadius( Stream stream )
+    {
+        m_Radius = stream.Read<float>();
+    }
 
     /// @brief map of the read methods for this Component
     ReadMethodMap< CircleCollider > CircleCollider::s_ReadMethods = {
-		{ "radius" , &ReadRadius }
-	};
+        { "Radius", &readRadius }
+    };
 
-	/// @brief		  Read in the radius of the circle collider component.
-	/// @param stream The JSON value to read from.
-	void CircleCollider::ReadRadius(Stream stream)
-	{
-		m_Radius = stream.Read<float>();
-	}
-
-	/// @brief gets the map of read methods for this Component
+    /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
     ReadMethodMap< Component > const& CircleCollider::GetReadMethods() const
     {
         return (ReadMethodMap< Component > const&)s_ReadMethods;
+    }
+
+//-----------------------------------------------------------------------------
+// copying
+//-----------------------------------------------------------------------------
+
+    /// @brief  copy-constructor
+    /// @param  other   the collider to copy
+    CircleCollider::CircleCollider( CircleCollider const& other ) :
+        Collider( other ),
+        m_Radius( other.m_Radius )
+    {}
+
+    /// @brief  virtual component clone function
+    /// @return new clone of component
+    CircleCollider* CircleCollider::Clone() const
+    {
+        return new CircleCollider( *this );
     }
 
 //-----------------------------------------------------------------------------

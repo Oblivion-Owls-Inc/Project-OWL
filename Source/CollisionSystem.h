@@ -6,72 +6,99 @@
 /// 
 /// @copyright  Digipen LLC (c) 2023
 
-///*****************************************************************
-/// Includes:
-///*****************************************************************
 #pragma once
+
+//-----------------------------------------------------------------------------
+// Includes:
+//-----------------------------------------------------------------------------
+
 #include "System.h"
 #include <vector>
+#include <typeindex>
 
-///*****************************************************************
-/// @brief forward declaration of Collider
-///*****************************************************************
+//-----------------------------------------------------------------------------
+// Forward references:
+//-----------------------------------------------------------------------------
+
 class Collider;
+struct CollisionData;
 
-///*****************************************************************
-/// @brief CollisionSystem is responsible for checking for collisions
-///        between Different Colliders
-///*****************************************************************
+//-----------------------------------------------------------------------------
+// typedefs
+//-----------------------------------------------------------------------------
 
+/// @brief  function pointer to function that checks collisions between Collider types
+using CollisionCheckFunction = bool (*)( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
+
+/// @brief  map that stores the CollisionCheckMethods between each Collider type
+using CollisionFunctionMap = std::map< std::pair< std::type_index, std::type_index >, CollisionCheckFunction >;
+
+//-----------------------------------------------------------------------------
+// class
+//-----------------------------------------------------------------------------
+
+/// @class  CollisionSystem
+/// @brief  responsible for checking collsisions between all Colliders
 class CollisionSystem : public System
 {
-    public: // singleton stuff
 
-        /// @brief gets the instance of CollisionSystem
-        /// @return the instance of the CollisionSystem
-        static CollisionSystem* GetInstance();
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+    
+    /// @brief  adds a Collider to the CollisionSystem
+    /// @param  collider    the collider to add
+    void addCollider( Collider* collider );
 
-        // Prevent copying
-        CollisionSystem(CollisionSystem& other) = delete;
-        void operator=(const CollisionSystem&) = delete;
+    /// @brief  removes a Collider from this System
+    /// @param  collider    the collider to remove
+    void removeCollider( Collider* collider );
 
-        void addCollider(Collider* collider);
+//-----------------------------------------------------------------------------
+public: // virtual override methods
+//-----------------------------------------------------------------------------
 
-		void removeCollider(Collider* collider);
+    /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
+    virtual void OnFixedUpdate() override;
 
-        /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.
-        virtual void OnFixedUpdate() override;
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
 
-        void checkCollisions();
+    /// @brief Checks and handles all Collisions
+    void checkCollisions();
 
+//-----------------------------------------------------------------------------
+private: // members
+//-----------------------------------------------------------------------------
 
+    /// @brief all Colliders in the Scene
+    std::vector< Collider* > m_Colliders;
 
-    private: // unused virtual overrides
+//-----------------------------------------------------------------------------
+private: // static methods
+//-----------------------------------------------------------------------------
 
-        /// @brief Gets called once when this System is added to the Engine
-        virtual void OnInit() override {}
+    /// @brief  checks a collision between two colliders of unknown type
+    /// @param  colliderA       the first collider
+    /// @param  colliderB       the second collider
+    /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @return whether or not the two colliders are colliding
+    static void CheckCollision( Collider const* colliderA, Collider const* colliderB );
 
+    /// @brief  checks a collision between two circle colliders
+    /// @param  colliderA       the first collider
+    /// @param  colliderB       the second collider
+    /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @return whether or not the two colliders are colliding
+    static bool CheckCircleCircle( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
 
+//-----------------------------------------------------------------------------
+private: // static members
+//-----------------------------------------------------------------------------
 
-        /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-        /// @param dt the elapsed time in seconds since the previous frame
-        virtual void OnUpdate(float dt) override {}
-
-
-        /// @brief Gets called once before the Engine closes
-        virtual void OnExit() override {}
-
-
-        /// @brief Gets called whenever a new Scene is loaded
-        virtual void OnSceneLoad() override {}
-
-
-        /// @brief Gets called whenever a scene is initialized
-        virtual void OnSceneInit() override {}
-
-
-        /// @brief Gets called whenever a scene is exited
-        virtual void OnSceneExit() override {}
+    /// @brief map that stores the CollisionCheckMethods between each Collider type
+    static CollisionFunctionMap const s_CollisionFunctions;
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -84,16 +111,28 @@ private: // reading
     /// @return this System's read methods
     virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
-    private: // singleton stuff
 
-        /// @brief Constructs the CollisionSystem
-        CollisionSystem();
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
 
-        /// @brief The singleton s_Instance of CollisionSystem
-        static CollisionSystem* s_Instance;
+    /// @brief Constructs the CollisionSystem
+    CollisionSystem();
 
-        std::vector<Collider*> m_ColliderList;
+    /// @brief The singleton s_Instance of CollisionSystem
+    static CollisionSystem* s_Instance;
 
+//-----------------------------------------------------------------------------
+public: // singleton stuff
+//-----------------------------------------------------------------------------
 
+    /// @brief gets the instance of CollisionSystem
+    /// @return the instance of the CollisionSystem
+    static CollisionSystem* GetInstance();
+
+    // Prevent copying
+    CollisionSystem(CollisionSystem& other) = delete;
+    void operator=(const CollisionSystem&) = delete;
+
+//-----------------------------------------------------------------------------
 };
-

@@ -44,23 +44,16 @@ Component* Transform::Clone() const
 	return (Component*) new Transform(*this);
 }
 
-/// @brief  Gets the translation vector of the transform component.
-/// @return The translation vector of the transform component.
-glm::vec3* Transform::GetTranslation()
-{
-	return &m_Translation;
-}
-
 /// @brief  Gets a constant version of the translation vector.
 /// @return Constant version of the translation vector.
-const glm::vec3* Transform::GetTranslation() const
+glm::vec3 const& Transform::GetTranslation() const
 {
-	return &m_Translation;
+	return m_Translation;
 }
 
 /// @brief                Sets the value of the translation vector.
 /// @param newTranslation The new translation vector. 
-void Transform::SetTranslation(glm::vec3 newTranslation)
+void Transform::SetTranslation(glm::vec3 const& newTranslation)
 {
 	m_Translation = newTranslation;
 	m_IsDirty = true;
@@ -81,18 +74,11 @@ void Transform::SetRotation(float newRotation)
 	m_IsDirty = true;
 }
 
-/// @brief  Gets the scale vector of the transform component.
-/// @return The scale vector of the transform component.
-glm::vec3* Transform::GetScale()
-{
-	return &m_Scale;
-}
-
 /// @brief  Gets a constant version of the transform's scale vector.
 /// @return A constant version of the transform's scale vector.
-const glm::vec3* Transform::GetScale() const
+glm::vec3 const& Transform::GetScale() const
 {
-	return &m_Scale;
+	return m_Scale;
 }
 
 /// @brief		    Sets the scale vector of the transform component.
@@ -105,7 +91,7 @@ void Transform::SetScale(glm::vec3 newScale)
 
 /// @brief  Calculates and gets the translation matrix of the transform component.
 /// @return The translation matrix of the transform component.
-glm::mat4* Transform::GetMatrix()
+glm::mat4 const& Transform::GetMatrix() const
 {
 	if (m_IsDirty)
 	{
@@ -118,16 +104,18 @@ glm::mat4* Transform::GetMatrix()
 		scaleTemp = glm::scale(scaleTemp, m_Scale);
 		transferTemp = glm::translate(transferTemp, m_Translation);
 		result = rotateTemp * scaleTemp;
-		m_Matrix = transferTemp * result;
+
+        Transform* self = const_cast< Transform* >(this);
+		self->m_Matrix = transferTemp * result;
 		
-		m_IsDirty = false;
+		self->m_IsDirty = false;
 	}
-	return &m_Matrix;
+	return m_Matrix;
 }
 
 /// @brief			 Sets the transform component's translation matrix.
 /// @param newMatrix The new translation matrix.
-void Transform::SetMatrix(glm::mat4 newMatrix)
+void Transform::SetMatrix(glm::mat4 const& newMatrix)
 {
 	m_Matrix = newMatrix;
 }

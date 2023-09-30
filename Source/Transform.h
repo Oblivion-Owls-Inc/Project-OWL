@@ -26,20 +26,17 @@ public:
 public:
     Component* Clone() const override;
 
-	vec3* GetTranslation();
-	const vec3* GetTranslation() const;
-	void SetTranslation(vec3 newTranslation);
+	vec3 const& GetTranslation() const;
+	void SetTranslation(vec3 const& newTranslation);
 
 	float GetRotation() const;
 	void SetRotation(float newRotation);
 
-	vec3* GetScale();
-	const vec3* GetScale() const;
+	vec3 const& GetScale() const;
 	void SetScale(vec3 newScale);
 
-	glm::mat4* GetMatrix();
-
-	void SetMatrix(glm::mat4 newMatrix);
+	glm::mat4 const& GetMatrix() const;
+	void SetMatrix(glm::mat4 const& newMatrix);
 
 	bool GetIsDirty() const;
 	void SetIsDirty(bool newIsDirty);

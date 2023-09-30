@@ -1,69 +1,52 @@
-///@file Collider.cpp
-///@Author Jax Clayton (jax.clayton@digipen.edu)
+/// @file       Collider.cpp
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      Base component for detecting collisions
+/// @version    0.1
+/// @date       2023-09-29
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+
 
 #include "Collider.h"
+
+#include "Entity.h"
+
 #include "CollisionSystem.h"
 
-Collider::Collider(): Component(typeid(Collider)), m_Type(), m_IsColliding(false)
-{
-	CollisionSystem::GetInstance()->addCollider(this);
+//-----------------------------------------------------------------------------
+// protected: constructor
+//-----------------------------------------------------------------------------
 
-}
+    /// @brief  default constructor
+    /// @param  type    the type of Component
+    Collider::Collider( std::type_index type ) :
+        Component( type ),
+        m_Transform( nullptr )
+    {}
 
-Collider::Collider(const Collider& other) : Component(other), m_Type(other.m_Type)
-{
-	CollisionSystem::GetInstance()->removeCollider(this);
-}
+    /// @brief  copy-constructor
+    /// @param  other   the collider to copy
+    Collider::Collider( Collider const& other ) :
+        Component( other ),
+        m_Transform( nullptr )
+    {}
 
-Component* Collider::Clone() const
-{
-	return nullptr;
-}
+//-----------------------------------------------------------------------------
+// private: virtual override methods
+//-----------------------------------------------------------------------------
 
-void Collider::OnFixedUpdate()
-{
-}
+    /// @brief  called when this Component's Entity enters the Scene
+    void Collider::OnInit()
+    {
+        CollisionSystem::GetInstance()->addCollider(this);
+        m_Transform = GetParent()->GetComponent<Transform>();
+    }
 
+    /// @brief  called when this Component's Entity is removed from the Scene
+    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
+    void Collider::OnExit()
+    {
+        CollisionSystem::GetInstance()->removeCollider(this);
+    }
 
-void Collider::setOtherCollider(Collider* other)
-{
-	m_Other = other;
-}
-
-Collider* Collider::getOtherCollider()
-{
-	return m_Other;
-}
-
-bool Collider::isColliding()
-{
-	return m_IsColliding;
-}
-
-void Collider::isColliding(bool colliding)
-{
-	m_IsColliding = colliding;
-}
-
-void Collider::setColliderType(ColliderType cType)
-{
-	m_Type = cType;
-}
-
-
-/// @brief the map of read methods for Collider
-ReadMethodMap< Collider > Collider::s_ReadMethods = 
-{
-	{ "ColliderType",		&ReadColliderType },
-
-};
-
-ReadMethodMap< Component > const& Collider::getReadMethods()
-{
-	return (ReadMethodMap< Component > const&)s_ReadMethods;
-}
-
-void Collider::ReadColliderType(Stream data)
-{
-	m_Type = (ColliderType)data.Read<int>();
-}
+//-----------------------------------------------------------------------------

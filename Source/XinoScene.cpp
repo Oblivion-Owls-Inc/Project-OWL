@@ -123,8 +123,8 @@ static void planets(float dt)
         Entity* planet = Entities()->GetEntity("Planet2");
         t_planet = planet->GetComponent<Transform>();
         s_planet = planet->GetComponent<Sprite>();
-        pos = *t_planet->GetTranslation();
-        scale = *t_planet->GetScale();
+        pos = t_planet->GetTranslation();
+        scale = t_planet->GetScale();
     }
 
     t_planet->SetTranslation( pos + glm::vec3(2 * glm::sin(time), 0, 0) );

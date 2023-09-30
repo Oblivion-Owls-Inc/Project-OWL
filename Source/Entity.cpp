@@ -89,6 +89,16 @@ void Entity::InitComponents()
     }
 }
 
+/// @brief  exits all components of this Entity
+/// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
+void Entity::ExitComponents()
+{
+    for ( auto& component : m_Components )
+    {
+        component.second->OnExit();
+    }
+}
+
 /// @brief		Checks if an entity has a specific component.
 /// @param type The type ID of the component.
 /// @return		The component if found (Component*).

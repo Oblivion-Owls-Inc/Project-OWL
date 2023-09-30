@@ -517,9 +517,6 @@
     <ClInclude Include="Source\Animation.h">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AidanScene.h">
-      <Filter>Game\AidenScene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\XinoScene.h">
       <Filter>Game\XinoScene</Filter>
     </ClInclude>
@@ -528,6 +525,9 @@
     </ClInclude>
     <ClInclude Include="Source\TextSprite.h">
       <Filter>Engine\Entity\Component\Sprite\TextSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CollisionData.h">
+      <Filter>Engine\Systems\CollisonSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

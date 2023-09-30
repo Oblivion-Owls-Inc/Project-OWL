@@ -30,8 +30,8 @@ void PlayerController::OnUpdate(float dt)
 {
     if (MoveRight())
     {
-        Transform* transform = GetParent()->GetComponent<Transform>();
-        vec3 POS = *transform->GetTranslation();
+        Transform* m_Transform = GetParent()->GetComponent<Transform>();
+        vec3 POS = m_Transform->GetTranslation();
 
         // Calculate the desired velocity increment.
         vec3 velocityIncrement = vec3(5.0f * acceleration * dt, 0.0f, 0.0f);
@@ -43,12 +43,12 @@ void PlayerController::OnUpdate(float dt)
         }
 
         // Update the position gradually.
-        transform->SetTranslation(POS + velocityIncrement);
+        m_Transform->SetTranslation(POS + velocityIncrement);
     }
     else if (MoveLeft())
     {
-        Transform* transform = GetParent()->GetComponent<Transform>();
-        vec3 POS = *transform->GetTranslation();
+        Transform* m_Transform = GetParent()->GetComponent<Transform>();
+        vec3 POS = m_Transform->GetTranslation();
 
         // Calculate the desired velocity increment.
         vec3 velocityIncrement = vec3(-5.0f * acceleration * dt, 0.0f, 0.0f);
@@ -60,12 +60,12 @@ void PlayerController::OnUpdate(float dt)
         }
 
         // Update the position gradually.
-        transform->SetTranslation(POS + velocityIncrement);
+        m_Transform->SetTranslation(POS + velocityIncrement);
     }
     if (Jump())
     {
-   		Transform* transform = GetParent()->GetComponent<Transform>();
-		vec3 POS = *transform->GetTranslation();
+   		Transform* m_Transform = GetParent()->GetComponent<Transform>();
+		vec3 POS = m_Transform->GetTranslation();
 
 		// Calculate the desired velocity increment.
 		vec3 velocityIncrement = vec3(0.0f, 5.0f * acceleration * dt, 0.0f);
@@ -77,12 +77,12 @@ void PlayerController::OnUpdate(float dt)
 		}
 
 		// Update the position gradually.
-		transform->SetTranslation(POS + velocityIncrement);
+		m_Transform->SetTranslation(POS + velocityIncrement);
     }
 	if (MoveDown())
 	{
-		Transform* transform = GetParent()->GetComponent<Transform>();
-		vec3 POS = *transform->GetTranslation();
+		Transform* m_Transform = GetParent()->GetComponent<Transform>();
+		vec3 POS = m_Transform->GetTranslation();
 
 		// Calculate the desired velocity increment.
 		vec3 velocityIncrement = vec3(0.0f, -5.0f * acceleration * dt, 0.0f);
@@ -94,7 +94,7 @@ void PlayerController::OnUpdate(float dt)
 		}
 
 		// Update the position gradually.
-		transform->SetTranslation(POS + velocityIncrement);
+		m_Transform->SetTranslation(POS + velocityIncrement);
 	}
 }
 

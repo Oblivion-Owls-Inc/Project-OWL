@@ -29,11 +29,6 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 	for (auto behavior : behaviorsList)
 	{
 		behavior->OnFixedUpdate();
-		Collider* collider = behavior->GetParent()->GetComponent<Collider>();
-		if (collider != nullptr && collider->isColliding())
-		{
-			behavior->OnCollisionEvent();
-		}
 	}
 
 }
@@ -44,11 +39,6 @@ void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 	for (auto behavior : behaviorsList)
 	{
 		behavior->OnUpdate(dt);
-		Collider* collider = behavior->GetParent()->GetComponent<Collider>();
-		if (collider != nullptr && collider->isColliding())
-		{
-			behavior->OnCollisionEvent();
-		}
 	}
 }
 
@@ -72,7 +62,9 @@ void BehaviorSystem<BehaviorType>::AddBehavior(BehaviorType* behavior)
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::RemoveBehavior(BehaviorType* behavior)
 {
-	behaviorsList.erase(std::remove(behaviorsList.begin(), behaviorsList.end(), behavior), behaviorsList.end());
+	behaviorsList.erase(
+        std::remove(behaviorsList.begin(), behaviorsList.end(), behavior), behaviorsList.end()
+    );
 }
 
 // Define the GetInstance function for the templated BehaviorSystem
