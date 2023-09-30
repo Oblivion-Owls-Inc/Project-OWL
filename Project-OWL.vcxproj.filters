@@ -332,6 +332,9 @@
     <ClCompile Include="Source\XinoScene.cpp">
       <Filter>Game\XinoScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Lua.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
