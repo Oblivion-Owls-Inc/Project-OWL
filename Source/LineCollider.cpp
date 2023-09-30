@@ -48,8 +48,8 @@ bool LineCollider::CheckIfColliding(const Collider* other)
 
             if (circleCollider)
             {
-                Transform* lineTransform = Parent()->GetComponent<Transform>();
-                Transform* circleTransform = other->Parent()->GetComponent<Transform>();
+                Transform* lineTransform = GetParent()->GetComponent<Transform>();
+                Transform* circleTransform = other->GetParent()->GetComponent<Transform>();
             }
 
             return false;
@@ -97,15 +97,17 @@ void LineCollider::ReadLineVectors(Stream stream)
 // private: reading
 //-----------------------------------------------------------------------------
 
-/// @brief Map of all the component's read methods.
-std::map< std::string, ReadMethod<LineCollider>> LineCollider::s_ReadMethods = {
-    { "numSegments" , &ReadNumLineSegments},
-    { "lineVectors" , &ReadLineVectors    }
-};
+    /// @brief Map of all the component's read methods.
+    ReadMethodMap< LineCollider > LineCollider::s_ReadMethods = {
+        { "numSegments" , &ReadNumLineSegments},
+        { "lineVectors" , &ReadLineVectors    }
+    };
 
-/// @brief  Gets a map of the read methods for this component.
-/// @return A map of the read methods for this function.
-std::map<std::string, ReadMethod<Component>> const& LineCollider::GetReadMethods() const
-{
-    return (std::map< std::string, ReadMethod<Component> > const&)s_ReadMethods;
-}
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    ReadMethodMap< Component > const& LineCollider::GetReadMethods() const
+    {
+        return (ReadMethodMap< Component > const&)s_ReadMethods;
+    }
+
+//-----------------------------------------------------------------------------

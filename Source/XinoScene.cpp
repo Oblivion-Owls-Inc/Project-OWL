@@ -58,7 +58,9 @@ void XinoScene::OnSceneInit()
 void XinoScene::OnFixedUpdate()
 {
     if (!update)
+    {
         return;
+    }
     if ( Input()->GetKeyTriggered( GLFW_KEY_SPACE ) )
     {
         entity->GetComponent<AudioPlayer>()->Play();

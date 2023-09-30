@@ -48,9 +48,9 @@ void RigidBody::OnUpdate(float dt)
 void RigidBody::OnFixedUpdate()
 {
 	float dt = Engine::GetInstance()->GetFixedFrameDuration();
-	Collider* collider = Parent()->GetComponent<Collider>();
+	Collider* collider = GetParent()->GetComponent<Collider>();
 	vec3 temptranslation(0);
-	Transform* transform = (Transform*)Parent()->GetComponent<Transform>();
+	Transform* transform = (Transform*)GetParent()->GetComponent<Transform>();
 
 	m_OldTranslation = *transform->GetTranslation();
 	temptranslation = *transform->GetTranslation();
@@ -124,7 +124,7 @@ void RigidBody::SetRotationalVelocity(float rotational_velocity)
 void RigidBody::OnCollisionEvent()
 {
 	DebugConsole output(*DebugSystem::GetInstance());
-	output << Parent()->GetName().c_str() << ":Collision Detected in RigidBody" << "\n";
+	output << GetParent()->GetName().c_str() << ":Collision Detected in RigidBody" << "\n";
 }
 
 //-----------------------------------------------------------------------------

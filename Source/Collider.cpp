@@ -58,7 +58,7 @@ ReadMethodMap< Collider > Collider::s_ReadMethods =
 
 };
 
-std::map<std::string, ReadMethod<Component>> const& Collider::getReadMethods()
+ReadMethodMap< Component > const& Collider::getReadMethods()
 {
 	return (ReadMethodMap< Component > const&)s_ReadMethods;
 }

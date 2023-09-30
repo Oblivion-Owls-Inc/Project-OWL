@@ -6,14 +6,14 @@
     },
     "Entities": [
         {
-            "name": "Sound",
+            "Name": "Sound",
             "Components": {
                 "AudioPlayer": {}
 
             }
         },
         {
-            "name": "Wall",
+            "Name": "Wall",
             "Components": {
                 "Sprite": {
                     "name": "Data/Textures/Wall.png",
@@ -26,7 +26,28 @@
             }
         },
         {
-            "name": "Ball2",
+            "Name": "Ball1",
+            "Components": {
+                "Sprite": {
+                    "name": "Data/Textures/Balls/Ball5.png",
+                    "columns": 1,
+                    "rows": 1,
+                    "layer": 1
+                },
+                "RigidBody": {},
+                "CircleCollider": {
+                    "radius": 0.5
+                },
+                "Transform": {
+                    "translation": [ 0, 0, 0 ],
+                    "scale": [ 1, 1, 1 ]
+                },
+                "MovementAI": {}
+
+            }
+        },
+        {
+            "Name": "Ball2",
             "Components": {
                 "Sprite": {
                     "name": "Data/Textures/Balls/Ball2.png",
@@ -46,7 +67,7 @@
             }
         },
         {
-            "name": "Ball3",
+            "Name": "Ball3",
             "Components": {
                 "Sprite": {
                     "name": "Data/Textures/Balls/Ball.png",
@@ -66,7 +87,7 @@
             }
         },
         {
-            "name": "TextEnt",
+            "Name": "TextEnt",
             "Components": {
                 "TextSprite": {
                     "name": "Data/Textures/Roboto_Mono_white_16x8.png",
@@ -83,7 +104,7 @@
             }
         },
         {
-            "name": "TileEnt",
+            "Name": "TileEnt",
             "Components": {
                 "TextSprite": {
                     "name": "Data/Textures/Roboto_Mono_white_16x8.png",
@@ -99,7 +120,7 @@
             }
         },
         {
-            "name": "Ranger",
+            "Name": "Ranger",
             "Components": {
                 "Transform": {
                     "translation": [ -4, -1, 0 ],
@@ -121,7 +142,7 @@
             }
         },
         {
-            "name": "Planet1",
+            "Name": "Planet1",
             "Components": {
               "Transform": {
                 "translation": [ 2, 1, 0 ],
@@ -135,7 +156,7 @@
       
           },
           {
-            "name": "Planet2",
+            "Name": "Planet2",
             "Components": {
               "Transform": {
                 "translation": [ 2, 1, 0 ],

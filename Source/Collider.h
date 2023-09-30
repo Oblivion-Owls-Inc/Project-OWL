@@ -47,7 +47,7 @@ class Collider : public Component
 		void setColliderType(ColliderType cType);
 
 	private: // Read Methods
-		virtual std::map< std::string, ReadMethod< Component > > const& getReadMethods();
+		virtual ReadMethodMap< Component > const& getReadMethods();
 		void ReadColliderType(Stream data);
 		static ReadMethodMap< Collider > s_ReadMethods;
 	private:

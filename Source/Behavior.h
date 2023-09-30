@@ -17,8 +17,8 @@ class Behavior : public Component
 
 	protected:
 
-		Behavior( std::type_index type ) :
-			Component( type )
+		Behavior( std::type_index m_Type ) :
+			Component( m_Type )
 		{}
 
 	public:

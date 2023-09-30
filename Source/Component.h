@@ -1,13 +1,10 @@
-/**
-* @file Component.h
-* @author Tyler Birdsall (tyler.birdsall@digipen.edu)
-* @brief Virtual component header
-* @version 0.1
-* @date 2023-09-05
-* 
-* @copyright Copyright (c) 2023
-* 
-*/
+/// @file Component.h
+/// @author Tyler Birdsall (tyler.birdsall@digipen.edu)
+/// @brief Virtual component header
+/// @version 0.1
+/// @date 2023-09-05
+/// 
+/// @copyright Copyright (c) 2023 Digipen Institute of Technology
 
 #pragma once
 
@@ -18,50 +15,71 @@
 
 class Entity;
 
-template < typename ComponentType >
-using ReadMethod = void (ComponentType::*)( Stream jsonValue );
-
-
-/// @brief virtual component class
 class Component
 {
-public:
-
-	/// @brief gets the components type
-	/// @return component type
-	__inline std::type_index Type() const { return type; }
+//-----------------------------------------------------------------------------
+public: // destructor
+//-----------------------------------------------------------------------------
 
 	/// @brief virtual destructor
 	virtual ~Component() {};
 
-	/// @brief sets the parent entity of the component
-	/// @param parent, the parent entity of the component
-	__inline void Parent( Entity* parent_ ) { parent = parent_; }
+//-----------------------------------------------------------------------------
+protected: // constructors
+//-----------------------------------------------------------------------------
 
-	/// @brief returns the components parent entity
-	/// @return the parent entity of the component
-	__inline Entity* Parent() const { return parent; }
-	
-	/// @brief virtual component clone function
-	/// @return new clone of component
-	virtual Component* Clone() const = 0;
-
-	virtual ReadMethodMap< Component > const& GetReadMethods() const = 0;
-
-protected:
-
-	/// @brief default component constructor
-	/// @param type what type of component this is
-	Component( std::type_index type );
+    /// @brief default component constructor
+    /// @param type what type of component this is
+    Component( std::type_index m_Type );
 
     /// @brief copy constructor
     /// @param the component to clone
     Component( Component const& other );
 
-private:
+//-----------------------------------------------------------------------------
+public: // virtual methods
+//-----------------------------------------------------------------------------
+	
+	/// @brief virtual component clone function
+	/// @return new clone of component
+	virtual Component* Clone() const = 0;
 
-	std::type_index type;
+    /// @brief called when this Component's Entity is added to the Scene
+    virtual void OnInit() {};
 
-	Entity* parent;
+//-----------------------------------------------------------------------------
+public: // Accessors
+//-----------------------------------------------------------------------------
 
+    /// @brief gets the components type
+    /// @return component type
+    __inline std::type_index GetType() const { return m_Type; }
+
+    /// @brief sets the parent entity of the component
+    /// @param parent, the parent entity of the component
+    __inline void SetParent( Entity* parent ) { m_Parent = parent; }
+
+    /// @brief returns the components parent entity
+    /// @return the parent entity of the component
+    __inline Entity* GetParent() const { return m_Parent; }
+
+//-----------------------------------------------------------------------------
+public: // virtual reading
+//-----------------------------------------------------------------------------
+    
+	/// @brief  gets the map of read methods for this Component
+	/// @return the map of read methods for this Component
+	virtual ReadMethodMap< Component > const& GetReadMethods() const = 0;
+
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
+
+	/// @brief  the type of this Component
+	std::type_index m_Type;
+
+	/// @brief  the parent Entity of this Component
+	Entity* m_Parent;
+
+//-----------------------------------------------------------------------------
 };

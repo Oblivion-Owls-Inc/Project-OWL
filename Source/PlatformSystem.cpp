@@ -18,7 +18,7 @@
 /// @param message    Error message (text)
 /// @param severity   Severity of the error.
 /// @param others     They don't really matter. Can be used for more advanced debugging.
-static void GLAPIENTRY ErrorHandler(GLenum source, GLenum type, GLuint id, GLenum severity, 
+static void GLAPIENTRY ErrorHandler(GLenum source, GLenum m_Type, GLuint id, GLenum severity, 
                                 GLsizei length, const GLchar* message, const void* userparam)
 {
 
@@ -34,7 +34,7 @@ static void GLAPIENTRY ErrorHandler(GLenum source, GLenum type, GLuint id, GLenu
     #endif // !NDEBUG
     // unused
     (void) source;
-    (void) type;
+    (void) m_Type;
     (void) id;
     (void) length;
     (void) userparam;

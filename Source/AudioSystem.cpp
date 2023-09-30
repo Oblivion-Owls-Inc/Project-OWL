@@ -100,13 +100,13 @@
     /// @return FMOD_RESULT
     FMOD_RESULT AudioSystem::fmodCallback(
         FMOD_SYSTEM* system,
-        FMOD_SYSTEM_CALLBACK_TYPE type,
+        FMOD_SYSTEM_CALLBACK_TYPE m_Type,
         void* commandData1,
         void* commandData2,
         void* userData
     )
     {    
-        if ( type == FMOD_SYSTEM_CALLBACK_ERROR )
+        if ( m_Type == FMOD_SYSTEM_CALLBACK_ERROR )
         {
             FMOD_ERRORCALLBACK_INFO* info = (FMOD_ERRORCALLBACK_INFO*)commandData1;
 

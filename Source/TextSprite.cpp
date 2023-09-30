@@ -88,9 +88,9 @@ void TextSprite::Draw()
     glm::vec2 uvsize = m_Mesh->GetUVsize(); // UV size (for the frames of spritesheet)
 
     // Calculate matrix and stride based on parent't transform
-    if (Parent() && Parent()->GetComponent<Transform>())
+    if (GetParent() && GetParent()->GetComponent<Transform>())
     {
-        Transform* tr = Parent()->GetComponent<Transform>();
+        Transform* tr = GetParent()->GetComponent<Transform>();
         glm::mat4 proj;
 
         if (tr->GetIsDiegetic())
