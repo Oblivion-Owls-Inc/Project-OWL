@@ -13,7 +13,13 @@
 #include <iostream>         // error msg
 
 /// @brief          Default constructor - does nothing
-Sprite::Sprite() : Component(typeid(Sprite)) {}
+Sprite::Sprite( std::type_index type ) :
+    Component( type )
+{}
+
+Sprite::Sprite() :
+    Component( typeid( Sprite ) )
+{}
 
 /// @brief          Creates new Sprite using copy constructor.
 /// @return         pointer to copied Sprite component.
@@ -41,7 +47,6 @@ Sprite::Sprite(const char* image_file, int columns, int rows, int layer) :
     m_Rows(rows), m_Columns(columns),
     m_Layer(std::max(0, std::min(layer, 4)))
 {
-    Renderer()->AddSprite(this, layer);
 
     if (image_file)
     {
@@ -65,7 +70,6 @@ Sprite::Sprite(bool init_square, glm::vec4 color, int layer) :
     m_Rows(1), m_Columns(1),
     m_Color(color), m_Layer(std::max(0, std::min(layer, 4)))
 {
-    Renderer()->AddSprite(this, m_Layer);
 
     if (init_square)
         m_Mesh = new Mesh(true, 1, 1);
@@ -147,11 +151,9 @@ void Sprite::Draw()
             mat = *t->GetMatrix();
 
             // world or UI space
-#if 0
-            if (t->getIsDiegetic())
+            if (t->GetIsDiegetic())
                 mat = Camera()->GetMat_WorldToClip() * mat;
             else
-#endif
                 mat = Camera()->GetMat_UItoClip() * mat;
         }
     }
@@ -248,6 +250,7 @@ void Sprite::ReadLayer( Stream stream )
 void Sprite::ReadName( Stream stream )
 {
     m_Filename = stream.Read<std::string>();
+    m_IsTextured = true;
 }
 
 /// @brief Read in the number of columns for a sprite.
@@ -257,13 +260,6 @@ void Sprite::ReadColumns( Stream stream )
     m_Columns = stream.Read<int>();
 }
 
-/// @brief        Does the sprite have a texture?
-/// @param stream The json to read from.
-void Sprite::ReadIsTextured(Stream stream)
-{
-    m_IsTextured = stream.Read<bool>();
-}
-
 /// @brief the map of read methods for this Component
 ReadMethodMap< Sprite > const Sprite::s_ReadMethods = {
     { "columns"    , &ReadColumns    },
@@ -271,7 +267,6 @@ ReadMethodMap< Sprite > const Sprite::s_ReadMethods = {
     { "layer"      , &ReadLayer      },
     { "color"      , &ReadColor      },
     { "name"       , &ReadName       },
-    { "isTextured" , &ReadIsTextured },
     { "AFTERLOAD"  , &ReadSprite     }
 };
 

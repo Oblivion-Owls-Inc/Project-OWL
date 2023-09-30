@@ -10,6 +10,7 @@
 #include "Transform.h"
 #include "RenderSystem.h"   // shader
 #include "CameraSystem.h"   // projection matrices
+#include "Stream.h"
 
 /// @brief      Temporary. Allow switching to a different texture, while
 ///             keeping track of original one. If called without argument,
@@ -25,7 +26,9 @@ void TextSprite::SetTexture(Texture* t)
 
 
 /// @brief              Default constructor: does nothing
-TextSprite::TextSprite() : Sprite() {}
+TextSprite::TextSprite() :
+    Sprite( typeid( TextSprite ) )
+{}
 
 
 /// @brief              Constructor: unlike base Sprite constructor, this one 
@@ -40,33 +43,11 @@ TextSprite::TextSprite() : Sprite() {}
 /// @param stride_mult  (optional) Multiplier to adjust stride (spacing)
 /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
 TextSprite::TextSprite(const char* image_file, int columns, int rows, float stride_mult, int layer) :
-                Sprite(nullptr, columns, rows, layer), 
-                m_StrideMult(stride_mult,1.0f)
+    Sprite(nullptr, columns, rows, layer),
+    m_StrideMult(stride_mult, 1.0f)
 {
-    // Init text shader if it ain't.
-    if (!Renderer()->GetShader("text"))
-        Renderer()->AddShader("text", new Shader("Data/shaders/text_instancing.vert", "Data/shaders/text_instancing.frag"));
-
-    m_Mesh = new Mesh(true, rows, columns);    // TODO: obtain it from mesh library
-    m_Texture = new Texture(image_file);
-    m_Original= m_Texture;
-    calcHeightMult();
-
-
-    // For instancing, I'll need an extra buffer, and an additional attribute for this mesh
-    glGenBuffers(1, &m_InstBufferID);
-    glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
-
-    glBindVertexArray(m_Mesh->GetVAO());
-    glEnableVertexAttribArray(2);
-
-    // First 2 attribute indices are already used for vertex data.
-    // This third index will be used for instance data.
-    // index 2: 1 float, auto stride, offset 0
-    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, 0);
-    glVertexAttribDivisor(2, 1);
-
-    glBindVertexArray(0);
+    m_Filename = image_file;
+    tempInit();
 }
 
 
@@ -79,13 +60,19 @@ TextSprite::~TextSprite()
 
 
 
-/// @brief      Feed text into this function just like with std::cout. 
-/// @return     Reference to string stream to feed text into.
-std::ostringstream & TextSprite::Text() 
+
+/// @brief  gets the text of this TextSprite
+/// @return the text of this TextSprite
+std::string const& TextSprite::GetText() const
 {
-    m_Stream.str(std::string()); // clear current string
-    
-    return m_Stream;
+    return m_Text;
+}
+
+/// @brief          sets the text of this TextSprite
+/// @param  text    the text of this TextSprite
+void TextSprite::SetText(std::string const& text)
+{
+    m_Text = text;
 }
 
 /// @brief      Sets the width of a single row of tilemap (amount of columns)
@@ -105,11 +92,10 @@ void TextSprite::Draw()
     {
         Transform* tr = Parent()->GetComponent<Transform>();
         glm::mat4 proj;
-#if 0
-        if (tr->getIsDiegetic())
+
+        if (tr->GetIsDiegetic())
             proj = Camera()->GetMat_WorldToClip();
         else
-#endif
             proj = Camera()->GetMat_UItoClip();
 
         // get transform matrix, and its linear part (for stride)
@@ -138,13 +124,12 @@ void TextSprite::Draw()
     // Load the string into buffer. sigh... chars have to be converted to floats. 
     // (should be ints, but I can't get it to read ints from buffer correctly, 
     // so I'll just cast them on shader)
-    std::string str = m_Stream.str();
-    int count = (int)str.size();
+    int count = (int)m_Text.size();
     if (count)
     {
         std::vector<float> chars(count);
         for (int i = 0; i < count; i++)
-            chars[i] = (float)str[i];
+            chars[i] = (float)m_Text[i];
 
         glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
         glBufferData(GL_ARRAY_BUFFER, sizeof(float) * count, &chars[0], GL_STREAM_DRAW);
@@ -157,3 +142,85 @@ void TextSprite::Draw()
     glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, m_Mesh->GetVertCount(), count);
     glBindVertexArray(0);
 }
+
+
+void TextSprite::tempInit()
+{
+    // Init text shader if it ain't.
+    if (!Renderer()->GetShader("text"))
+        Renderer()->AddShader("text", new Shader("Data/shaders/text_instancing.vert", "Data/shaders/text_instancing.frag"));
+
+    m_Mesh = new Mesh( true, m_Rows, m_Columns );    // TODO: obtain it from mesh library
+    m_Texture = new Texture( m_Filename.c_str() );
+    m_Original = m_Texture;
+    calcHeightMult();
+
+    // For instancing, I'll need an extra buffer, and an additional attribute for this mesh
+    glGenBuffers(1, &m_InstBufferID);
+    glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
+
+    glBindVertexArray(m_Mesh->GetVAO());
+    glEnableVertexAttribArray(2);
+
+    // First 2 attribute indices are already used for vertex data.
+    // This third index will be used for instance data.
+    // index 2: 1 float, auto stride, offset 0
+    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribDivisor(2, 1);
+
+    glBindVertexArray(0);
+
+
+    Renderer()->AddSprite(this, m_Layer);
+}
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief          Read in the text this TextSprite displays
+    /// @param  stream  The json to read from.
+    void TextSprite::readText(Stream stream)
+    {
+        m_Text = stream.Read<std::string>();
+    }
+
+    /// @brief          Read in the stride multiplier
+    /// @param  stream  The json to read from.
+    void TextSprite::readStrideMultiplier(Stream stream)
+    {
+        m_StrideMult = stream.Read<glm::vec2>();
+    }
+
+    /// @brief          Read in the amount of tile per row
+    /// @param  stream  The json to read from.
+    void TextSprite::readRowWidth(Stream stream)
+    {
+        m_RowWidth = stream.Read<int>();
+    }
+
+    /// @brief          called after loading
+    void TextSprite::postRead(Stream)
+    {
+        tempInit();
+    }
+
+    /// @brief the map of read methods for this Component
+    ReadMethodMap< TextSprite > const TextSprite::s_ReadMethods = {
+        { "columns"             , &ReadColumns          },
+        { "rows"                , &ReadRows             },
+        { "layer"               , &ReadLayer            },
+        { "color"               , &ReadColor            },
+        { "name"                , &ReadName             },
+        { "text"                , &readText             },
+        { "strideMultiplier"    , &readStrideMultiplier },
+        { "rowWidth"            , &readRowWidth         },
+        { "AFTERLOAD"           , &postRead             } //TODO: create this function for text sprite.
+    };
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    ReadMethodMap< Component > const& TextSprite::GetReadMethods() const
+    {
+        return (ReadMethodMap< Component> const&)s_ReadMethods;
+    }

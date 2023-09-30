@@ -47,7 +47,7 @@ public: // public functions
 
     /// @brief  Finds and returns an asset, builds if doesnt yet exist
     /// @return the constructed or found asset
-    T* LibraryGet(const char* name);
+    T* GetAsset(std::string const& name);
 
     /// @brief  Flushes everything in the library
     /// @brief  Automatically called on scene exit
@@ -69,7 +69,7 @@ private: // private functions
 
     /// @brief  Finds and returns an asset if it exists
     /// @return the found asset or nullptr is none is found
-    T* LibraryFind(const char* name);
+    T* LibraryFind( std::string const& name );
 
 //-----------------------------------------------------------------------------
 private: // reading
