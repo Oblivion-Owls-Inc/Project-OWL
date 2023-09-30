@@ -16,7 +16,7 @@
             "Name": "Wall",
             "Components": {
                 "Sprite": {
-                    "name": "Data/Textures/Balls/Wall.png",
+                    "name": "Data/Textures/Wall.png",
                     "layer": 0
                 },
                 "Transform": {
@@ -140,6 +140,34 @@
                 },
                 "PlayerController": {}
             }
-        }
+        },
+        {
+            "Name": "Planet1",
+            "Components": {
+              "Transform": {
+                "translation": [ 2, 1, 0 ],
+                "scale": [ 2.5, 2.5, 1 ]
+              },
+              "Sprite": {
+                "name": "Data/Textures/Balls/Ball4.png",
+                "layer":  2
+              }
+            }
+      
+          },
+          {
+            "Name": "Planet2",
+            "Components": {
+              "Transform": {
+                "translation": [ 2, 1, 0 ],
+                "scale": [ 1, 1, 1 ]
+              },
+              "Sprite": {
+                "name": "Data/Textures/Balls/Ball5.png",
+                "layer":  3
+              }
+            }
+      
+          }
     ]
 }

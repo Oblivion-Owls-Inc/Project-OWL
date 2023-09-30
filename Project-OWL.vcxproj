@@ -127,7 +127,8 @@
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib; User32.lib; Gdi32.lib; Shell32.lib; fmod_vc.lib;</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)FMOD\lib\x86\fmod.dll" "$(OutDir)fmod.dll"</Command>
+      <Command>copy /Y "$(SolutionDir)FMOD\lib\x86\fmod.dll" "$(OutDir)fmod.dll"
+xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -170,7 +171,8 @@
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib; User32.lib; Gdi32.lib; Shell32.lib; fmod_vc.lib;</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)FMOD\lib\x64\fmod.dll" "$(OutDir)fmod.dll"</Command>
+      <Command>copy /Y "$(SolutionDir)FMOD\lib\x64\fmod.dll" "$(OutDir)fmod.dll"
+xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

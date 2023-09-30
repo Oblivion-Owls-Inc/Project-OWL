@@ -17,7 +17,7 @@ Transform::Transform() : Component(typeid(Transform))
 	m_Scale = { 1, 1, 0 };
 	m_IsDirty = true;
 	m_Matrix = glm::mat4(0.0f);
-	m_IsDiegetic = false;
+	m_IsDiegetic = true;
 }
 
 /// @brief		 Copy constructor for the transform component.

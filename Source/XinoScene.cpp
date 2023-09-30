@@ -7,7 +7,7 @@
 #include "glm/glm.hpp"
 #include "XinoScene.h"
 
-#include "Entity.h"
+#include "EntitySystem.h"
 #include "AudioPlayer.h"
 #include "BehaviorSystem.h"
 #include "RenderSystem.h"
@@ -19,9 +19,12 @@
 #include "DebugSystem.h"
 #include "PlayerController.h"
 #include "Texture.h"
-#include "EntitySystem.h"
+#include "Animation.h"
+#include "CameraSystem.h"
 
 static void drawText(float dt);
+static void planets(float dt);
+static void moveCamera();
 
 //-----------------------------------------------------------------------------
 // variables
@@ -77,12 +80,61 @@ void XinoScene::OnUpdate( float dt )
         return;
 
     drawText(dt);
+    planets(dt);
+    moveCamera();
 }
 
 /// @brief Gets called whenever a scene is exited
 void XinoScene::OnSceneExit()
 {
     delete sound;
+}
+
+
+static void moveCamera()
+{
+    static glm::vec2 clickedPos, campos = {0,0}, offset = {0,0};
+
+    if (Input()->GetMouseTriggered(GLFW_MOUSE_BUTTON_2))
+        clickedPos = Input()->GetMousePosUI();
+
+    if (Input()->GetMouseReleased(GLFW_MOUSE_BUTTON_2))
+        campos += offset;
+
+    if (Input()->GetMouseDown(GLFW_MOUSE_BUTTON_2))
+        offset = clickedPos - Input()->GetMousePosUI();
+    else
+        offset = {0,0};
+
+    Camera()->SetPosition(campos + offset);
+}
+
+
+static void planets(float dt)
+{
+    static Transform* t_planet = nullptr;
+    static Sprite* s_planet = nullptr;
+    static glm::vec3 pos, scale;
+    static float time = 0.0f;
+    time += dt;
+
+    if (!t_planet)
+    {
+        Entity* planet = Entities()->GetEntity("Planet2");
+        t_planet = planet->GetComponent<Transform>();
+        s_planet = planet->GetComponent<Sprite>();
+        pos = *t_planet->GetTranslation();
+        scale = *t_planet->GetScale();
+    }
+
+    t_planet->SetTranslation( pos + glm::vec3(2 * glm::sin(time), 0, 0) );
+    float ds = 0.3f * glm::cos(time);
+    t_planet->SetScale( scale + glm::vec3(ds, ds, 1) );
+
+    if (ds > 0.0f)
+        s_planet->SetLayer(3);
+    else
+        s_planet->SetLayer(1);
 }
 
 
