@@ -11,6 +11,7 @@
 
 #pragma once
 #include "Component.h"
+#include "CollisionData.h"
 
 class Behavior : public Component
 {
@@ -26,7 +27,10 @@ class Behavior : public Component
 		
 		virtual Component* Clone() const = 0;
 
-		virtual void OnCollisionEvent() = 0;
+		/// @brief  Called whenever a Collider on this Behavior's Entity collides
+		/// @param  other           the entity that was collided with
+		/// @param  collisionData   additional data about the collision
+		virtual void OnCollision( Entity* other, CollisionData const& collisionData ) {};
 
 		virtual void OnUpdate( float dt ) {};
 

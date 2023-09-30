@@ -54,6 +54,8 @@
         {
             m_Entities.erase( iterator );
         }
+
+        entity->ExitComponents();
     }
 
     /// @brief  checks if the EntitySystem contains the given Entity (for debugging)

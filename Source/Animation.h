@@ -104,8 +104,6 @@ public: // public functions
 //-----------------------------------------------------------------------------
 private: // overrides
 //-----------------------------------------------------------------------------
-	
-	virtual void OnCollisionEvent() override {}
 
 	/// @brief	Clones an animation
 	/// @return New animation copy
@@ -114,8 +112,6 @@ private: // overrides
 	/// @brief	updates animation
 	/// @param	dt
 	virtual void OnUpdate(float dt) override;
-
-	virtual void OnFixedUpdate() override {}
 
 //-----------------------------------------------------------------------------
 private: // reading

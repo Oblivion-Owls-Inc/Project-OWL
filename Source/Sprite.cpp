@@ -148,7 +148,7 @@ void Sprite::Draw()
         Transform* t = GetParent()->GetComponent<Transform>();
         if (t)
         {
-            mat = *t->GetMatrix();
+            mat = t->GetMatrix();
 
             // world or UI space
             if (t->GetIsDiegetic())

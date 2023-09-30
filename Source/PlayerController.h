@@ -23,7 +23,6 @@ class PlayerController :
 
     public:
 	    void OnUpdate(float dt) override;
-        void OnCollisionEvent() override {};
 
     private:    
         bool MoveRight();

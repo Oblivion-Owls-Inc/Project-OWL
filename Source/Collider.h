@@ -1,57 +1,76 @@
-///*************************************************************************/
-///@file  Collider.cpp
-/// @Author Jax Clayton (jax.clayton@digipen.edu)
-/// @date   9/5/2021
-/// @brief  This is the Collider class implementation file
-///*************************************************************************/
+/// @file       Collider.h
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      Base component for detecting collisions
+/// @version    0.1
+/// @date       2023-09-29
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
-///*************************************************************************/
-/// Includes
-///*************************************************************************/
 #pragma once
+
+//-----------------------------------------------------------------------------
+// include files
+//-----------------------------------------------------------------------------
+
 #include "Component.h"
-#include "rapidjson/rapidjson.h"
+#include "Transform.h"
 
-///*************************************************************************/
-/// @Class Collider
-/// @brief This class contains the Collider component which is used for handling
-///			collisions
-///************************************************************************/
+#include <map>
 
+//-----------------------------------------------------------------------------
+// forward references
+//-----------------------------------------------------------------------------
+
+struct CollisionData;
+
+class CircleCollider;
+class TilemapCollider;
+
+//-----------------------------------------------------------------------------
+// class
+//-----------------------------------------------------------------------------
+
+/// @class  Collider
+/// @brief  component which is used for detecting collisions and information about them
 class Collider : public Component
 {
-	protected:
-		Collider();
+//-----------------------------------------------------------------------------
+protected: // constructors
+//-----------------------------------------------------------------------------
+	
+    /// @brief  default constructor
+    /// @param  type    the type of Component
+    Collider( std::type_index type );
 
-		typedef enum ColliderType
-		{
-			ColliderTypeNone = 0,
-			ColliderTypeCircle,
-			ColliderTypeLine,
+    /// @brief  copy-constructor
+    /// @param  other   the collider to copy
+    Collider( Collider const& other );
 
-		} ColliderType;
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
 
-	public:
-		Collider(const Collider& other);
-		~Collider() = default;
-		virtual Component* Clone() const override;
-		virtual void OnFixedUpdate();
-		virtual bool CheckIfColliding(const Collider* other) = 0;
-		virtual ColliderType getColliderType() const { return m_Type; }
+    /// @brief  gets this Collider's Transform
+    /// @return this Collider's Transform
+    __inline Transform* GetTransform() const { return m_Transform; }
 
-	public:
-		void setOtherCollider(Collider* other);
-		Collider* getOtherCollider();
-		bool isColliding();
-		void isColliding(bool colliding);
-		void setColliderType(ColliderType cType);
+//-----------------------------------------------------------------------------
+private: // virtual override methods
+//-----------------------------------------------------------------------------
 
-	private: // Read Methods
-		virtual ReadMethodMap< Component > const& getReadMethods();
-		void ReadColliderType(Stream data);
-		static ReadMethodMap< Collider > s_ReadMethods;
-	private:
-		ColliderType m_Type;
-		bool m_IsColliding;
-		Collider* m_Other; // 
+    /// @brief  called when this Component's Entity enters the Scene
+    virtual void OnInit() override;
+
+    /// @brief  called when this Component's Entity is removed from the Scene
+    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
+    virtual void OnExit() override;
+
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
+    
+    /// @brief The transform of this Collider's Entity
+    Transform* m_Transform;
+
+//-----------------------------------------------------------------------------
 };

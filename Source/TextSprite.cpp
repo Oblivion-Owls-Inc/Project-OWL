@@ -99,7 +99,7 @@ void TextSprite::Draw()
             proj = Camera()->GetMat_UItoClip();
 
         // get transform matrix, and its linear part (for stride)
-        trm = *tr->GetMatrix();
+        trm = tr->GetMatrix();
 
         // calculate stride vectors using linear transform (projected)
         glm::mat2 trm_linear = glm::mat2(proj) * glm::mat2(trm);

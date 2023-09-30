@@ -34,9 +34,11 @@
                     "rows": 1,
                     "layer": 1
                 },
-                "RigidBody": {},
+                "RigidBody": {
+                    "Velocity": [ 3, 1, 0 ]
+                },
                 "CircleCollider": {
-                    "radius": 0.5
+                    "Radius": 0.5
                 },
                 "Transform": {
                     "translation": [ 0, 0, 0 ],
@@ -55,12 +57,14 @@
                     "rows": 1,
                     "layer": 1
                 },
-                "RigidBody": {},
+                "RigidBody": {
+                    "Velocity": [ -2, -1, 0 ]
+                },
                 "CircleCollider": {
-                    "radius": 0.5
+                    "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 2, 0, 0 ],
+                    "translation": [ 2, 1, 0 ],
                     "scale": [ 1, 1, 1 ]
                 },
                 "MovementAI": {}
@@ -75,12 +79,14 @@
                     "rows": 1,
                     "layer": 1
                 },
-                "RigidBody": {},
+                "RigidBody": {
+                    "Velocity": [ 1.5, 4.3, 0 ]
+                },
                 "CircleCollider": {
-                    "radius": 0.5
+                    "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 4, 0, 0 ],
+                    "translation": [ 1, 0, 0 ],
                     "scale": [ 1, 1, 1 ]
                 },
                 "MovementAI": {}

@@ -7,14 +7,13 @@
 #include "LineCollider.h"
 #include "CircleCollider.h"
 
-LineCollider::LineCollider(): Collider()
-{
-	setColliderType(ColliderType::ColliderTypeLine);
-}
+LineCollider::LineCollider() :
+    Collider( typeid( LineCollider ) )
+{}
 
 Component* LineCollider::Clone() const
 {
-	return nullptr;
+	return new LineCollider( *this );
 }
 
 /// @brief    Add a line segment to the line collider's list.
@@ -36,36 +35,6 @@ void LineCollider::AddLineSegment( vec2 p0, vec2 p1 )
 	temp.point[1] = p1;
 	m_LineSegments.push_back(temp);
     m_LineCount++;
-}
-
-bool LineCollider::CheckIfColliding(const Collider* other)
-{
-    switch (other->getColliderType())
-    {
-        case ColliderType::ColliderTypeCircle:
-        {
-            const CircleCollider* circleCollider = dynamic_cast<const CircleCollider*>(other);
-
-            if (circleCollider)
-            {
-                Transform* lineTransform = GetParent()->GetComponent<Transform>();
-                Transform* circleTransform = other->GetParent()->GetComponent<Transform>();
-            }
-
-            return false;
-		}
-
-        case ColliderType::ColliderTypeLine:
-        {
-            return true; // Placeholder
-        }
-
-        default:
-        {
-            return false; // No collision detected
-        }
-    }
-    
 }
 
 /// @brief		  Read in the number of line segements to create.

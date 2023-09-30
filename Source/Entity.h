@@ -42,6 +42,10 @@ public:
     /// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
     void InitComponents();
 
+    /// @brief  exits all components of this Entity
+    /// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
+    void ExitComponents();
+
 	Component* HasComponent(std::type_index m_Type);
 
 	// Type safe method for accessing the components.
@@ -90,12 +94,12 @@ private:
 template < typename ComponentType >
 ComponentType* Entity::GetComponent()
 {
-    auto componentIterator = m_Components.find(typeid(ComponentType));
-    if (componentIterator == m_Components.end())
+    auto componentIterator = m_Components.find( typeid( ComponentType ) );
+    if ( componentIterator == m_Components.end() )
     {
         return nullptr;
     }
-    return static_cast<ComponentType*>(componentIterator->second);
+    return static_cast<ComponentType*>((*componentIterator).second);
 }
 
 template < typename ComponentType >
@@ -103,9 +107,9 @@ std::vector< ComponentType* > Entity::GetComponentsOfType()
 {
 	std::vector<ComponentType*> componentsOfType;
 
-	for each ( Component* component in m_Components ) 
+	for ( auto component : m_Components ) 
 	{
-        ComponentType* casted = dynamic_cast<ComponentType>( component );
+        ComponentType* casted = dynamic_cast<ComponentType*>( component.second );
 		if ( casted != nullptr )
 		{
 			componentsOfType.push_back( casted );

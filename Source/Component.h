@@ -47,6 +47,10 @@ public: // virtual methods
     /// @brief called when this Component's Entity is added to the Scene
     virtual void OnInit() {};
 
+    /// @brief  called when this Component's Entity is removed from the Scene
+    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
+    virtual void OnExit() {};
+
 //-----------------------------------------------------------------------------
 public: // Accessors
 //-----------------------------------------------------------------------------

@@ -1,60 +1,53 @@
-///*************************************************************************
-/// @file CircleCollider.h
-///*************************************************************************
+/// @file       CircleCollider.h
+/// @author     Jax Clayton (jax.clayton@digipen.edu)
+/// @brief      Circle-shaped collider
+/// @version    0.1
+/// @date       2023-09-13
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+
 #pragma once
 
 #include "Collider.h"
 #include "Stream.h"
 
- /**
-  * @class CircleCollider
-  * @brief A class representing a circular collider used in physics simulations.
-  */
+/// @class  CircleCollider
+/// @brief  Circle-shaped Collider
 class CircleCollider : public Collider
 {
-    public:
-        /**
-         * @brief Constructor for CircleCollider.
-         */
-        CircleCollider();
+//-----------------------------------------------------------------------------
+public: // constructor
+//-----------------------------------------------------------------------------
 
-        /**
-         * @brief Copy constructor for CircleCollider.
-         * @param other The CircleCollider object to copy.
-         */
-        CircleCollider(const CircleCollider& other);
+    /// @brief  default constructor
+    CircleCollider();
 
-        /**
-         * @brief Clone method for CircleCollider.
-         * @return A cloned CircleCollider object.
-         */
-        virtual Component* Clone() const override;
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
 
-        /**
-         * @brief Override the IsColliding method to handle circle-circle collisions.
-         * @param other The collider to check for collision with.
-         * @return True if a collision is detected, false otherwise.
-         */
-        virtual bool CheckIfColliding(const Collider* other) override;
+    /// @brief  gets this CircleCollider's radius
+    /// @return this CircleCollider's radius
+    __inline float GetRadius() const { return m_Radius; }
 
-        void SetRadius(float m_Radius);
+    /// @brief  sets this CircleCollider's radius
+    /// @param  radius  the radius
+    __inline void SetRadius( float radius ) { m_Radius = radius; }
 
-        float GetRadius() const;
+//-----------------------------------------------------------------------------
+private: // members
+//-----------------------------------------------------------------------------
 
-        virtual void OnFixedUpdate() override;
-
-
-    private:
-        float m_Radius;  // Radius of the circle collider
-        bool doesDamage = false;
+    /// @brief The radius of this CircleCollider
+    float m_Radius;
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
-    /// @brief        Read in the radius for the circle collider component.
-    /// @param stream The JSON to read from.
-    void ReadRadius(Stream stream);
+    /// @brief  Reads the radius
+    /// @param  stream  The json data to read from
+    void readRadius( Stream stream );
 
     /// @brief map of the read methods for this Component
     static ReadMethodMap< CircleCollider > s_ReadMethods;
@@ -64,5 +57,20 @@ private: // reading
     virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 
 //-----------------------------------------------------------------------------
+public: // copying
+//-----------------------------------------------------------------------------
 
+    /// @brief  virtual component clone function
+    /// @return new clone of component
+    virtual CircleCollider* Clone() const override;
+
+//-----------------------------------------------------------------------------
+private: // copying
+//-----------------------------------------------------------------------------
+
+    /// @brief  copy-constructor
+    /// @param  other   the collider to copy
+    CircleCollider( CircleCollider const& other );
+    
+//-----------------------------------------------------------------------------
 };

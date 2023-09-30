@@ -64,7 +64,7 @@ Entity* Ranger;
         DebugConsole output(*DebugSystem::GetInstance());
 
         // Append the message and the formatted value
-        glm::vec3 translation = *Ranger->GetComponent<Transform>()->GetTranslation();
+        glm::vec3 translation = Ranger->GetComponent<Transform>()->GetTranslation();
         output << "Position: (" << translation.x << ", " << translation.y << ", " << translation.z << ")" << "\n";
     }
 

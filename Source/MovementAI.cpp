@@ -32,21 +32,13 @@ Component* MovementAI::Clone() const
 	return nullptr;
 }
 
-void MovementAI::OnCollisionEvent()
+/// @brief  Called whenever a Collider on this Behavior's Entity collides
+/// @param  other           the entity that was collided with
+/// @param  collisionData   additional data about the collision
+void MovementAI::OnCollision( Entity* other, CollisionData const& collisionData )
 {
     DebugConsole output2( *DebugSystem::GetInstance() );
     output2 << GetParent()->GetName().c_str() <<":Collision Detected in Movement AI" << "\n";
-    RigidBody* ballRigidBody = GetParent()->GetComponent<RigidBody>();
-    Transform* ballTransform = GetParent()->GetComponent<Transform>();
-    CircleCollider* ballCollider = (CircleCollider*)GetParent()->GetComponent<Collider>();
-    vec3 velocity = *ballRigidBody->GetVelocity();
-
-    velocity.x = -velocity.x;
-    velocity.y = -velocity.y;
-
-    ballTransform->SetTranslation(*ballRigidBody->GetOldTranslation());
-    ballRigidBody->SetVelocity(&velocity); 
-    ballCollider->isColliding(false);
 }
 
 void MovementAI::OnUpdate(float dt)
@@ -63,11 +55,11 @@ void MovementAI::OnFixedUpdate()
     glm::vec2 WindowSize = glm::vec2(10.0f, 8.0f);
     Transform* ballTransform = GetParent()->GetComponent<Transform>();
     RigidBody* ballRigidBody = GetParent()->GetComponent<RigidBody>();
-    CircleCollider* ballCollider = (CircleCollider*)GetParent()->GetComponent<Collider>();
+    CircleCollider* ballCollider = (CircleCollider*)GetParent()->GetComponent<CircleCollider>();
     float radius = ballCollider->GetRadius();
 
-    vec3 pos = *ballTransform->GetTranslation();
-    vec3 velocity = *ballRigidBody->GetVelocity();
+    glm::vec3 pos = ballTransform->GetTranslation();
+    glm::vec3 velocity = ballRigidBody->GetVelocity();
 
     // Check if the ball is going to exceed the screen bounds
     if ((pos.x - radius) <= -WindowSize.x / 2)
@@ -94,7 +86,7 @@ void MovementAI::OnFixedUpdate()
 
     // Update the ball's position and velocity
     ballTransform->SetTranslation(pos);
-    ballRigidBody->SetVelocity(&velocity);
+    ballRigidBody->SetVelocity(velocity);
 }
 void MovementAI::MovementAIUpdateVelocity(float dt)
 {

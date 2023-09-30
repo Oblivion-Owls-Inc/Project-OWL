@@ -30,9 +30,13 @@ class MovementAI :
 
     private:
         Component* Clone() const override;
-        void OnCollisionEvent() override;
         void OnUpdate(float dt) override;
         void OnFixedUpdate() override;
+
+        /// @brief  Called whenever a Collider on this Behavior's Entity collides
+        /// @param  other           the entity that was collided with
+        /// @param  collisionData   additional data about the collision
+        virtual void OnCollision( Entity* other, CollisionData const& collisionData ) override;
 
     private:
 
