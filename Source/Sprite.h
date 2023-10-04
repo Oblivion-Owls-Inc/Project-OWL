@@ -122,7 +122,7 @@ protected: // reading
 
     /// @brief        Read in the file name for a sprite.
     /// @param stream The json to read from.
-    void ReadName(Stream stream);
+    void readName(Stream stream);
 
     /// @brief Read in the number of columns for a sprite.
     /// @param stream the json to read from.

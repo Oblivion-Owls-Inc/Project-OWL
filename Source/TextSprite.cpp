@@ -211,7 +211,7 @@ void TextSprite::tempInit()
         { "rows"                , &ReadRows             },
         { "layer"               , &ReadLayer            },
         { "color"               , &ReadColor            },
-        { "name"                , &ReadName             },
+        { "name"                , &readName             },
         { "text"                , &readText             },
         { "strideMultiplier"    , &readStrideMultiplier },
         { "rowWidth"            , &readRowWidth         },

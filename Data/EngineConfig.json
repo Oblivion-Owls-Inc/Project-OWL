@@ -5,20 +5,21 @@
             "WindowWidth": 800,
             "WindowHeight": 600
         },
-        "CameraSystem": {},
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
             "NextSceneName": "XinoScene"
         },
         "XinoScene": {},
+        "BehaviorSystem<Animation>": {},
+        "BehaviorSystem<MovementAI>": {},
+        "BehaviorSystem<PlayerController>": {},
+        "BehaviorSystem<RigidBody>": {},
+        "CollisionSystem": {},
+        "EntitySystem": {},
+        "CameraSystem": {},
         "RenderSystem": {},
         "AudioSystem": {},
-        "CollisionSystem": {},
-        "BehaviorSystem<MovementAI>": {},
-        "BehaviorSystem<RigidBody>": {},
-        "BehaviorSystem<Animation>": {},
-        "BehaviorSystem<PlayerController>": {},
         "DebugSystem": {
             "ShowFpsWindow": true
         }

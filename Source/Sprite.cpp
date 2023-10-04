@@ -247,7 +247,7 @@ void Sprite::ReadLayer( Stream stream )
 
 /// @brief        Read in the file name for a sprite.
 /// @param stream The json to read from.
-void Sprite::ReadName( Stream stream )
+void Sprite::readName( Stream stream )
 {
     m_Filename = stream.Read<std::string>();
     m_IsTextured = true;
@@ -266,7 +266,7 @@ ReadMethodMap< Sprite > const Sprite::s_ReadMethods = {
     { "rows"       , &ReadRows       },
     { "layer"      , &ReadLayer      },
     { "color"      , &ReadColor      },
-    { "name"       , &ReadName       },
+    { "name"       , &readName       },
     { "AFTERLOAD"  , &ReadSprite     }
 };
 

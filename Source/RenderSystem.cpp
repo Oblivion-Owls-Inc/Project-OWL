@@ -64,7 +64,7 @@ void RenderSystem::DrawRect(const glm::vec2& position, const glm::vec2& scale,
 {
     shapes.push_back(new Entity);
     //shapes.back()->Add(new Transform(position, scale, angle));
-    shapes.back()->Add(new Sprite(true, color));
+    shapes.back()->AddComponent(new Sprite(true, color));
 }
 
 

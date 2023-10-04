@@ -19,24 +19,26 @@
 #include <vector>	  // std::vector
 #include "Stream.h"
 
+#pragma once
+
 //-----------------------------------------------------------------------------
 // Class: Entity
 //-----------------------------------------------------------------------------
-#pragma once
 class Entity
 {
-public:
-	// Constructor
+//-----------------------------------------------------------------------------
+public: // constructor / destructor
+//-----------------------------------------------------------------------------
+
+	/// @brief default constructor
 	Entity();
-	// Destructor
+
+	/// @brief destructor
 	~Entity();
 
-	// Dynamically allocate a clone of an existing Entity.
-	Entity* Clone() const;
-	// Deallocate the memory associated with an Entity.
-	void Free();
-	// Attach a component to an Entity.
-	void Add(Component* component);
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
 
     /// @brief  Initializes all components of this Entity
     /// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
@@ -46,76 +48,148 @@ public:
     /// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
     void ExitComponents();
 
-	Component* HasComponent(std::type_index m_Type);
+    /// @brief  flags this Entity for destruction
+    void Destroy();
 
-	// Type safe method for accessing the components.
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
+    /// @brief  attaches a component to this Entity
+    /// @param  component   the component to attach to this Entity
+    void AddComponent( Component* component );
+
+    /// @brief  gets the component of the specified type from this Entity
+    /// @tparam ComponentType   the type of component to get
+    /// @return the component of the specified type (nullptr if component doesn't exist)
     template < typename ComponentType >
     ComponentType* GetComponent();
-    
-	std::map<std::type_index, Component*>& getComponents();
 
-	template < typename ComponentType >
-	std::vector< ComponentType* > GetComponentsOfType();
-	
-	// Flag an entity for destruction
-	void Destroy();
-	// Checks whether an entity has been flagged for destruction.
-	bool IsDestroyed();
-	// Set the entity's name.
-	void SetName(const std::string& name);
-	// Get the name of the entity.
-	const std::string& GetName();
+    /// @brief  gets all components in this Entity
+    /// @return the map of all components in this Entity
+    std::map< std::type_index, Component* >& getComponents();
 
+    /// @brief  gets all of the components derived from the specified type from this Entity
+    /// @tparam ComponentType   the type of component to get
+    /// @return a vector of all components of the specified type
+    template < typename ComponentType >
+    std::vector< ComponentType* > GetComponentsOfType();
 
+    /// @brief  gets whether this Entity is flagged for destruction
+    /// @return whether this Entity is flagged for destruction
+    bool IsDestroyed() const;
+
+    /// @brief  sets this Entity's name
+    /// @param  name    the new name for this Entity
+    void SetName( std::string const& name );
+
+    /// @brief  gets this Entity's name
+    /// @return this Entity's name
+    const std::string& GetName() const;
+
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+	/// @brief  deletes all components used by this Entity
+	void free();
+
+//-----------------------------------------------------------------------------
+public: // reading
+//-----------------------------------------------------------------------------
+
+	/// @brief  gets the map of read methods for Entities
+	/// @return the map of read methods for Entities
 	static __inline ReadMethodMap< Entity > const& GetReadMethods() { return s_ReadMethods; }
 
-private:
-	// The name of the entity.
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief  reads this Entity's Archetype
+    /// @param  stream  the json data to read from
+    void readArchetype( Stream stream );
+
+    /// @brief  reads this Entity's Name
+    /// @param  stream  the json data to read from
+    void readName( Stream stream );
+
+    /// @brief  reads this Entity's Components
+    /// @param  stream  the json data to read from
+    void readComponents( Stream stream );
+
+    /// @brief  map of read methods for Entity
+    static ReadMethodMap< Entity > const s_ReadMethods;
+
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
+	
+	/// @brief  this Entity's name
 	std::string m_Name;
-	// Flag to indicate the entity is dead and should be destroyed
+
+	/// @brief  flag of whether this Entity should be destroyed
 	bool m_IsDestroyed;
-	// Container for attached components
+
+	/// @brief containter of components attached to this Entity
 	std::map<std::type_index, Component*> m_Components;
 
-    // Copy Constructor
-    Entity(const Entity& other);
+//-----------------------------------------------------------------------------
+public: // copying
+//-----------------------------------------------------------------------------
 
-	void ReadName(Stream stream);
-	void ReadComponents(Stream stream);
-	void ReadArchetype(Stream stream);
+    /// @brief  Creates a copy of this Entity and all of its Components
+    /// @return the newly created copy of this Entity
+    Entity* Clone() const;
 
+//-----------------------------------------------------------------------------
+private: // copying
+//-----------------------------------------------------------------------------
+    
+    /// @brief  copy constructor
+    /// @param  other   the Entity to copy
+    Entity( Entity const& other );
 
-	static ReadMethodMap<Entity> s_ReadMethods;
-
+//------------------------------------------------------------------------------
 };
+
+//------------------------------------------------------------------------------
+// template methods
 //------------------------------------------------------------------------------
 
-// Type safe method for accessing the components.
-template < typename ComponentType >
-ComponentType* Entity::GetComponent()
-{
-    auto componentIterator = m_Components.find( typeid( ComponentType ) );
-    if ( componentIterator == m_Components.end() )
+    /// @brief  gets the component of the specified type from this Entity
+    /// @tparam ComponentType   the type of component to get
+    /// @return the component of the specified type (nullptr if component doesn't exist)
+    template < typename ComponentType >
+    ComponentType* Entity::GetComponent()
     {
-        return nullptr;
+        auto componentIterator = m_Components.find( typeid( ComponentType ) );
+        if ( componentIterator == m_Components.end() )
+        {
+            return nullptr;
+        }
+        return static_cast<ComponentType*>((*componentIterator).second);
     }
-    return static_cast<ComponentType*>((*componentIterator).second);
-}
 
-template < typename ComponentType >
-std::vector< ComponentType* > Entity::GetComponentsOfType()
-{
-	std::vector<ComponentType*> componentsOfType;
+    /// @brief  gets all of the components derived from the specified type from this Entity
+    /// @tparam ComponentType   the type of component to get
+    /// @return a vector of all components of the specified type
+    template < typename ComponentType >
+    std::vector< ComponentType* > Entity::GetComponentsOfType()
+    {
+	    std::vector<ComponentType*> componentsOfType;
 
-	for ( auto component : m_Components ) 
-	{
-        ComponentType* casted = dynamic_cast<ComponentType*>( component.second );
-		if ( casted != nullptr )
-		{
-			componentsOfType.push_back( casted );
-		}
-	}
+	    for ( auto component : m_Components ) 
+	    {
+            ComponentType* casted = dynamic_cast<ComponentType*>( component.second );
+		    if ( casted != nullptr )
+		    {
+			    componentsOfType.push_back( casted );
+		    }
+	    }
 
-    return componentsOfType;
+        return componentsOfType;
 
-}
+    }
+
+//------------------------------------------------------------------------------

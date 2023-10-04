@@ -31,39 +31,26 @@ Component* ComponentFactory::Creator() {
 /// @brief     Creates a component of a specified type.
 /// @param key The type of component being created.
 /// @return    A pointer to the new component.
-Component* ComponentFactory::Create( std::string key )
+Component* ComponentFactory::Create( std::string const& key )
 {
     return componentCreators.at( key )();
 }
 
-std::type_index ComponentFactory::GetTypeId( std::string typeName )
+std::type_index ComponentFactory::GetTypeId( std::string const& typeName )
 {
-    return componentTypes.at( typeName );
+    return s_ComponentTypes.at( typeName );
 }
 
 // Fill the map with constructors from the different components.
 std::map<std::string, Component* (*)()> ComponentFactory::componentCreators = {
-    { "Transform"        , Creator<Transform>        },
-    { "Sprite"           , Creator<Sprite>           },
-    { "RigidBody"        , Creator<RigidBody>        },
-    { "MovementAI"       , Creator<MovementAI>       },
-    { "LineCollider"     , Creator<LineCollider>     },
-    { "CircleCollider"   , Creator<CircleCollider>   },
-    { "AudioPlayer"      , Creator<AudioPlayer>      },
-    { "Animation"        , Creator<Animation>        },
-    { "TextSprite"       , Creator<TextSprite>       },
-    { "PlayerController" , Creator<PlayerController> }
-};
-
-// A map of the component type IDs.
-std::map<std::string, std::type_index> ComponentFactory::componentTypes = {
-    { "Transform"        , typeid(Transform)        },
-    { "Sprite"           , typeid(Sprite)           },
-    { "RigidBody"        , typeid(RigidBody)        },
-    { "MovementAI"       , typeid(MovementAI)       },
-    { "LineCollider"     , typeid(LineCollider)     },
-    { "CircleCollider"   , typeid(CircleCollider)   },
-    { "AudioPlayer"      , typeid(AudioPlayer)      },
-    { "Animation"        , typeid(Animation)        },
-    { "PlayerController" , typeid(PlayerController) }
+    { "Transform"        , { Creator<Transform>        },
+    { "Sprite"           , { Creator<Sprite>           },
+    { "RigidBody"        , { Creator<RigidBody>        },
+    { "MovementAI"       , { Creator<MovementAI>       },
+    { "LineCollider"     , { Creator<LineCollider>     },
+    { "CircleCollider"   , { Creator<CircleCollider>   },
+    { "AudioPlayer"      , { Creator<AudioPlayer>      },
+    { "Animation"        , { Creator<Animation>        },
+    { "TextSprite"       , { Creator<TextSprite>       },
+    { "PlayerController" , { Creator<PlayerController> }
 };
