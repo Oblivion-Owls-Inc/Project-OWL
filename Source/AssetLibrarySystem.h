@@ -8,7 +8,11 @@
 
 #pragma once
 
+#define ASSETLIBRARYSYSTEM_H
+
 #include "System.h"
+#include <map>
+#include <string>
 
 /// @brief Asset System meant to be copy-pasted when creating new Systems
 template <class T>
@@ -19,25 +23,6 @@ class AssetLibrarySystem : public System
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  Gets called once when this System is added to the Engine
-    virtual void OnInit() override {};
-
-    /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
-    virtual void OnFixedUpdate() override {};
-
-    /// @brief  Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-    /// @param  dt  the elapsed time in seconds since the previous frame
-    virtual void OnUpdate(float dt) override {};
-
-    /// @brief  Gets called once before the Engine closes
-    virtual void OnExit() override {};
-
-    /// @brief  Gets called whenever a new Scene is loaded
-    virtual void OnSceneLoad() override;
-
-    /// @brief  Gets called whenever a scene is initialized
-    virtual void OnSceneInit() override;
-
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
@@ -47,29 +32,23 @@ public: // public functions
 
     /// @brief  Finds and returns an asset, builds if doesnt yet exist
     /// @return the constructed or found asset
-    T* GetAsset(std::string const& name);
+    T const* GetAsset(std::string const& name) const;
 
-    /// @brief  Flushes everything in the library
-    /// @brief  Automatically called on scene exit
-    void LibraryFlush();
+    void LoadAssets(Stream data);
 
 //-----------------------------------------------------------------------------
 private: // private variables
 //-----------------------------------------------------------------------------
 
-    // 100 is arbitrary, tell me if you need more/it to dynamically grow
-    T* m_AssetList[100];
+    std::map<std::string, T*> m_Assets;
 
 //-----------------------------------------------------------------------------
 private: // private functions
 //-----------------------------------------------------------------------------
 
-    /// @brief  Adds an asset to the library
-    void LibraryAdd(T* asset);
-
-    /// @brief  Finds and returns an asset if it exists
-    /// @return the found asset or nullptr is none is found
-    T* LibraryFind( std::string const& name );
+    /// @brief  Flushes everything in the library
+    /// @brief  Automatically called on scene exit
+    void LibraryFlush();
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -106,3 +85,6 @@ public: // singleton stuff
 
 };
 
+#ifndef ASSETLIBRARYSYSTEM_C
+#include "AssetLibrarySystem.cpp"
+#endif

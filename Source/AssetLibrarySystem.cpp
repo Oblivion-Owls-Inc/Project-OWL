@@ -6,32 +6,17 @@
 /// 
 /// @copyright Copyright (c) 2023
 
+#define ASSETLIBRARYSYSTEM_C
+
+#ifndef ASSETLIBRARYSYSTEM_H
 #include "AssetLibrarySystem.h"
+#endif
+
 
 //-----------------------------------------------------------------------------
 // virtual override methods
 //-----------------------------------------------------------------------------
 
-/// @brief  Gets called whenever a new Scene is loaded
-/// @brief	Resets all to null, empty library on each load
-template<class T>
-void AssetLibrarySystem<T>::OnSceneLoad()
-{
-	for (int i = 0; i < 100; i++)
-	{
-		m_AssetList[i] = NULL;
-	}
-}
-
-/// @brief  Gets called whenever a scene is initialized
-/// @brief	Should read in all library assets and prep them
-template<class T>
-void AssetLibrarySystem<T>::OnSceneInit()
-{
-	/// 
-	/// read in from a json file what should be built
-	/// 
-}
 
 /// @brief  Gets called whenever a scene is exited
 /// @brief	Flushes and resets library
@@ -48,71 +33,48 @@ void AssetLibrarySystem<T>::OnSceneExit()
 /// @brief  Finds and returns an asset, builds if doesnt yet exist
 /// @return the constructed or found asset
 template<class T>
-T* AssetLibrarySystem<T>::GetAsset(std::string const& name)
+T const* AssetLibrarySystem<T>::GetAsset(std::string const& name) const
 {
-	T* check = LibraryFind(name);
-	if (check != NULL)
-	{
-		return check;
-	}
-	//
-	// read in a asset here, getting here means the asset didnt yet exist
-	// or was possibly manually flushed and has to be rebuilt
-	//
-	return nullptr;
+    auto itr = m_Assets.find(name);
+    if (itr != m_Assets.end())
+    {
+        return itr->second;
+    }
+    else
+    {
+        return nullptr;
+    }
 }
+
+template<class T>
+void AssetLibrarySystem<T>::LoadAssets(Stream data)
+{
+    for (auto& assetData : data.GetObject())
+    {
+        T* asset = new T();
+        Stream(assetData.value).Read(asset);
+        m_Assets.insert(assetData.name.GetString(), asset);
+    }
+}
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// private: private functions
+//-----------------------------------------------------------------------------
 
 /// @brief  Flushes everything in the library
 /// @brief  Automatically called on scene exit
 template<class T>
 void AssetLibrarySystem<T>::LibraryFlush()
 {
-	for (int i = 0; i < 100; i++)
-	{
-		if (m_AssetList[i] != NULL)
-		{
-			//delete m_AssetList[i];
-			// add if we need to deallocate I dont think we do
-			m_AssetList[i] = NULL;
-		}
-	}
-}
-
-//-----------------------------------------------------------------------------
-// private: private functions
-//-----------------------------------------------------------------------------
-
-/// @brief  Adds an asset to the library
-/// @param	asset - the asset to add
-template<class T>
-void AssetLibrarySystem<T>::LibraryAdd(T* asset)
-{
-	for (int i = 0; i < 100; i++)
-	{
-		if (m_AssetList[i] == NULL)
-		{
-			m_AssetList[i] = asset;
-			break;
-		}
-	}
-}
-
-/// @brief  Finds and returns an asset if it exists
-/// @return the found asset or nullptr is none is found
-template<class T>
-T* AssetLibrarySystem<T>::LibraryFind( std::string const& name)
-{
-	for (int i = 0; i < 100; i++)
-	{
-		if (m_AssetList[i] != NULL)
-		{
-			if ( name ==  m_AssetList[i]->GetName() )
-			{
-				return m_AssetList[i];
-			}
-		}
-	}
-	return nullptr;
+    for (auto& key : m_Assets)
+    {
+        delete key.second;
+    }
+    m_Assets.clear();
 }
 
 //-----------------------------------------------------------------------------

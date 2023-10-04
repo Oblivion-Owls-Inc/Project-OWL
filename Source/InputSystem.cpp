@@ -18,7 +18,8 @@ InputSystem::InputSystem() {}
 /// @brief fixed update for input, must be called
 void InputSystem::OnFixedUpdate()
 {
-    for (auto& key : m_KeyStates) {
+    for (auto& key : m_KeyStates) 
+    {
         bool old = key.second[0];
         key.second[0] = glfwGetKey(PlatformSystem::GetInstance()->GetWindowHandle(), 
             key.first);
@@ -41,7 +42,8 @@ void InputSystem::OnFixedUpdate()
         }
     }
 
-    for (auto& key : m_MouseStates) {
+    for (auto& key : m_MouseStates) 
+    {
         bool old = key.second[0];
         key.second[0] = glfwGetMouseButton(PlatformSystem::GetInstance()->GetWindowHandle(),
             key.first);
