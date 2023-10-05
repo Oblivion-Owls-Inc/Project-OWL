@@ -40,19 +40,9 @@ static void GLAPIENTRY ErrorHandler(GLenum source, GLenum m_Type, GLuint id, GLe
     (void) userparam;
 }
 
-/// @brief Constructor
-PlatformSystem::PlatformSystem() : 
-	window( nullptr ),
-	windowWidth( 800 ),
-    windowHeight( 600 ),
-    windowName( "engineTest" )
-{
-}
-
 /// @brief Initializes the PlatformSystem
 void PlatformSystem::OnInit()
 {
-    SetName("PlatformSystem");
 
     // GLFW
     if ( !glfwInit() )
@@ -153,18 +143,31 @@ bool PlatformSystem::WindowClosing() const
     return glfwWindowShouldClose(window);
 }
 
+//-----------------------------------------------------------------------------
+// singleton stuff
+//-----------------------------------------------------------------------------
 
+    /// @brief Constructor
+    PlatformSystem::PlatformSystem() :
+        System( "PlatformSystem" ),
+        window( nullptr ),
+        windowWidth( 800 ),
+        windowHeight( 600 ),
+        windowName( "engineTest" )
+    {}
 
-/// @brief The singleton instance of ExampleSystem
-PlatformSystem * PlatformSystem::instance = nullptr;
+    /// @brief The singleton instance of ExampleSystem
+    PlatformSystem * PlatformSystem::instance = nullptr;
 
-/// @brief    (Singleton) Gets the instance of this system.
-/// @return   PlatformSystem pointer: new or existing instance of this system.
-PlatformSystem * PlatformSystem::GetInstance()
-{
-    if ( instance == nullptr )
+    /// @brief    (Singleton) Gets the instance of this system.
+    /// @return   PlatformSystem pointer: new or existing instance of this system.
+    PlatformSystem * PlatformSystem::GetInstance()
     {
-        instance = new PlatformSystem();
+        if ( instance == nullptr )
+        {
+            instance = new PlatformSystem();
+        }
+        return instance;
     }
-    return instance;
-}
+
+//-----------------------------------------------------------------------------

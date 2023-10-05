@@ -51,7 +51,6 @@ void XinoScene::OnSceneInit()
     /// Audio Player
     update = true;
     entity = Entities()->GetEntity("Sound");
-    entity->GetComponent<AudioPlayer>()->SetSound(sound);
 }
 
 /// @brief Gets called once every simulation frame. Use this function for anything that affects the simulation.

@@ -84,6 +84,11 @@ public: // acessors
     template <>
     std::string Read<std::string>() const;
 
+    /// @brief  Reads a vec2 from a json value
+    /// @return The value from the json
+    template <>
+    glm::vec2 Read<glm::vec2>() const;
+
     /// @brief  Reads a vec3 from a json value
     /// @return The value from the json
     template <>
@@ -94,10 +99,10 @@ public: // acessors
 	template <>
 	glm::vec4 Read<glm::vec4>() const;
 
-   /// @brief  Reads a vec2 from a json value
-   /// @return The value from the json
-	template <>
-	glm::vec2 Read<glm::vec2>() const;
+    /// @brief  Reads an ivec2 from a json value
+    /// @return The value from the json
+    template <>
+    glm::ivec2 Read<glm::ivec2>() const;
 
 public: // methods
 

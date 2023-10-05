@@ -14,9 +14,25 @@
 #include <map>
 #include <string>
 
+// base class so that LoadAssets can be called without knowing AssetType
+class BaseAssetLibrarySystem : public System
+{
+public:
+    virtual void LoadAssets( Stream data ) = 0;
+protected:
+    BaseAssetLibrarySystem( std::string const& name ) :
+        System( name )
+    {}
+public:
+    // Prevent copying
+    BaseAssetLibrarySystem( BaseAssetLibrarySystem& other ) = delete;
+    void operator=( BaseAssetLibrarySystem const& ) = delete;
+};
+
+
 /// @brief Asset System meant to be copy-pasted when creating new Systems
-template <class Asset>
-class AssetLibrarySystem : public System
+template < class AssetType >
+class AssetLibrarySystem : public BaseAssetLibrarySystem
 {
 
 //-----------------------------------------------------------------------------
@@ -26,22 +42,28 @@ private: // virtual override methods
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
+    /// @brief  loads all assets of this AssetLibrary's type from JSON
+    /// @param  data    the json data to load from
+    virtual void LoadAssets( Stream data ) override;
+
 //-----------------------------------------------------------------------------
 public: // public functions
 //-----------------------------------------------------------------------------
 
     /// @brief  Finds and returns an asset, builds if doesnt yet exist
     /// @return the constructed or found asset
-    Asset const* GetAsset(std::string const& name) const;
+    AssetType const* GetAsset( std::string const& name ) const;
 
-
-    void LoadAssets(Stream data);
+    /// @brief  Adds an asset to the AssetLibrary
+    /// @param  name    the name of the asset to add
+    /// @param  asset   the asset to add
+    void AddAsset( std::string const& name, AssetType* asset );
 
 //-----------------------------------------------------------------------------
 private: // private variables
 //-----------------------------------------------------------------------------
 
-    std::map<std::string, Asset*> m_Assets;
+    std::map< std::string, AssetType* > m_Assets;
 
 //-----------------------------------------------------------------------------
 private: // private functions
@@ -49,7 +71,7 @@ private: // private functions
 
     /// @brief  Flushes everything in the library
     /// @brief  Automatically called on scene exit
-    void LibraryFlush();
+    void FlushAssets();
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -81,10 +103,19 @@ public: // singleton stuff
     static AssetLibrarySystem* GetInstance();
 
     // Prevent copying
-    AssetLibrarySystem(AssetLibrarySystem& other) = delete;
-    void operator=(const AssetLibrarySystem&) = delete;
+    AssetLibrarySystem( AssetLibrarySystem& other ) = delete;
+    void operator=( AssetLibrarySystem const& ) = delete;
 
 };
+
+/// @brief  shorthand function for getting an AssetLibrary instance
+/// @tparam AssetType   the type of asset to get the AssetLibrary of
+/// @return the AssetLibrary instance of that type of asset
+template< class AssetType >
+__inline AssetLibrarySystem< AssetType >* AssetLibrary()
+{
+    return AssetLibrarySystem< AssetType >::GetInstance();
+}
 
 #ifndef ASSETLIBRARYSYSTEM_C
 #include "AssetLibrarySystem.cpp"

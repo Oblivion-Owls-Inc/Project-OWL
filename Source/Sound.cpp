@@ -13,6 +13,13 @@
 // constructor / destructor
 //-----------------------------------------------------------------------------
 
+    /// @brief default constructor
+    Sound::Sound() :
+        m_Filepath(),
+        m_IsLooping( false ),
+        m_Sound( nullptr )
+    {}
+
     /// @brief  constructs a new Sound
     /// @param  filepath    the filepath of the sound to load
     /// @param  looping     whether or not the sound should loop
@@ -22,18 +29,18 @@
             filepath,
             looping ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
             nullptr,
-            &sound
+            &m_Sound
         );
     }
 
     /// @brief  Destroys this Sound
     Sound::~Sound()
     {
-        sound->release();
+        m_Sound->release();
     }
 
 //-----------------------------------------------------------------------------
-// public methods
+// public: methods
 //-----------------------------------------------------------------------------
 
     /// @brief  Plays this sound
@@ -48,7 +55,7 @@
     {
         FMOD::Channel* channel;
         AudioSystem::GetInstance()->GetFMOD()->playSound(
-            sound,
+            m_Sound,
             group,
             true,
             &channel
@@ -62,14 +69,54 @@
         return channel;
     }
 
+//-----------------------------------------------------------------------------
+// public: accessors
+//-----------------------------------------------------------------------------
 
     /// @brief  gets the length of this sound
     /// @return the length of this sound in seconds
     float Sound::GetLength() const
     {
         unsigned int length;
-        sound->getLength( &length, FMOD_TIMEUNIT_MS );
+        m_Sound->getLength( &length, FMOD_TIMEUNIT_MS );
         return length / 1000.0f;
     }
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief  reads filepath
+    /// @param  stream  the JSON data to read from
+    void Sound::readFilepath( Stream stream )
+    {
+        m_Filepath = stream.Read<std::string>();
+    }
+
+    /// @brief  reads isLooping
+    /// @param  stream  the JSON data to read from
+    void Sound::readIsLooping( Stream stream )
+    {
+        m_IsLooping = stream.Read<bool>();
+    }
+
+    /// @brief  runs after Sound has been loaded 
+    void Sound::afterLoad( Stream )
+    {
+        AudioSystem::GetInstance()->GetFMOD()->createSound(
+            m_Filepath.c_str(),
+            m_IsLooping ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
+            nullptr,
+            &m_Sound
+        );
+    }
+
+    /// @brief  map of the SceneSystem read methods
+    ReadMethodMap< Sound > const Sound::s_ReadMethods = {
+        { "IsLooping", &readIsLooping },
+        { "Filepath" , &readFilepath  },
+        { "AFTERLOAD", &afterLoad     }
+    };
+
 
 //-----------------------------------------------------------------------------

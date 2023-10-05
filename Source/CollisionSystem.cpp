@@ -187,7 +187,9 @@
 //-----------------------------------------------------------------------------
 
     /// @brief Constructs the CollisionSystem
-    CollisionSystem::CollisionSystem() { SetName("CollisionSystem"); }
+    CollisionSystem::CollisionSystem() :
+        System( "CollisionSystem" )
+    {}
 
     /// @brief The singleton s_Instance of CollisionSystem
     CollisionSystem* CollisionSystem::s_Instance = nullptr;

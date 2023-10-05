@@ -34,17 +34,20 @@ public:
 
 public:
 
-    static Component* Create( std::string key );
+    static Component* Create( std::string const& key );
 
-    static std::type_index GetTypeId( std::string typeName );
+    static std::type_index GetTypeId( std::string const& typeName );
 
 private:
 
     template < typename ComponentType >
     static Component* Creator();
-    // A map of the component constructors.
-    static std::map<std::string, Component* (*)()> componentCreators;
-    // A map of the component IDs.
-    static std::map<std::string, std::type_index> componentTypes;
+
+    template < typename ComponentType >
+    static __inline std::pair< std::type_index, Component* (*)() > ComponentInfo() {
+        return { typeid( ComponentType ), Creator< ComponentType > };
+    }
+
+    static std::map< std::string, std::pair< std::type_index, Component* (*)() > > const s_ComponentTypes;
 };
 

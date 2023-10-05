@@ -10,6 +10,10 @@
 
 #include "EntitySystem.h"
 
+#include "AssetLibrarySystem.h"
+#include "Sound.h"
+#include "Texture.h"
+
 #include "basics.h"
 #include "Stream.h"
 
@@ -72,11 +76,6 @@
         m_CurrentSceneName = "";
     }
 
-    void SceneSystem::OnInit()
-    {
-        SetName("SceneSystem");
-    }
-
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
@@ -123,7 +122,19 @@
     /// @param  stream  the data to read from
     void SceneSystem::Scene::readAssets( Stream stream )
     {
-        // TODO: implement asset reading
+        for ( auto& assetTypeData : stream.GetObject() )
+        {
+            auto it = s_AssetLibraries.find( assetTypeData.name.GetString() );
+            if ( it == s_AssetLibraries.end() )
+            {
+                std::stringstream errorMessage;
+                errorMessage <<
+                    "JSON error: unexpected token \"" << assetTypeData.name.GetString() <<
+                    "\" encountered while reading Scene asset types";
+                throw std::runtime_error( errorMessage.str() );
+            }
+            (*it).second()->LoadAssets( Stream( assetTypeData.value ) );
+        }
     }
 
     /// @brief  reads the entities in a Scene
@@ -137,6 +148,22 @@
     ReadMethodMap< SceneSystem::Scene > const SceneSystem::Scene::s_ReadMethods = {
         { "Assets",   &readAssets   },
         { "Entities", &readEntities }
+    };
+
+    /// @brief  gets the asset library of the specified type
+    /// @tparam AssetType   the asset type to get the library of
+    /// @return the AssetLibrarySystem instance of the specified asset type
+    template< class AssetType >
+    static BaseAssetLibrarySystem* SceneSystem::Scene::getAssetLibrary()
+    {
+        return AssetLibrarySystem< AssetType >::GetInstance();
+    }
+
+    /// @brief map of asset libraries used to read assets
+    std::map< std::string, BaseAssetLibrarySystem* (*)() > const SceneSystem::Scene::s_AssetLibraries = {
+        { "Archetypes"  , &getAssetLibrary< Entity >    },
+        { "Sounds"      , &getAssetLibrary< Sound >     },
+        { "Textures"    , &getAssetLibrary< Texture >   }
     };
 
 //-----------------------------------------------------------------------------
@@ -198,11 +225,11 @@
 
     /// @brief  Constructs the SceneSystem
     SceneSystem::SceneSystem() :
+        System( "SceneSystem" ),
         m_NextSceneName( "" ),
         m_CurrentSceneName( "" ),
         m_BaseScenePath( "Data/Scenes/" )
-    {
-    }
+    {}
 
     /// @brief  The singleton instance of SceneSystem
     SceneSystem* SceneSystem::s_Instance = nullptr;

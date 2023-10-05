@@ -5,21 +5,23 @@
             "WindowWidth": 800,
             "WindowHeight": 600
         },
-        "CameraSystem": {},
         "InputSystem": {},
-      "SceneSystem": {
-        "BaseScenePath": "Data/Scenes/",
-        "NextSceneName": "TurretScene"
-      },
+        "SceneSystem": {
+            "BaseScenePath": "Data/Scenes/",
+            "NextSceneName": "TurretScene"
+        },
+        "AssetLibrarySystem<Entity>": {},
+        "AssetLibrarySystem<Sound>": {},
+        "AssetLibrarySystem<Texture>": {},
+        "BehaviorSystem<Animation>": {},
+        "BehaviorSystem<MovementAI>": {},
+        "BehaviorSystem<PlayerController>": {},
+        "BehaviorSystem<RigidBody>": {},
+        "CollisionSystem": {},
         "EntitySystem": {},
+        "CameraSystem": {},
         "RenderSystem": {},
         "AudioSystem": {},
-        "CollisionSystem": {},
-        "BehaviorSystem<MovementAI>": {},
-        "BehaviorSystem<RigidBody>": {},
-        "BehaviorSystem<TurretBehavior>": {},
-        "BehaviorSystem<Animation>": {},
-        "BehaviorSystem<PlayerController>": {},
         "DebugSystem": {
           "ShowFpsWindow": true,
           "ShowDebugWindow": false

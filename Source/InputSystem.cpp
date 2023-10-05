@@ -12,9 +12,6 @@
 #include "CameraSystem.h"
 #include "glfw3.h"
 
-/// @brief Constructs the InputSystem
-InputSystem::InputSystem() { SetName("InputSystem"); }
-
 /// @brief fixed update for input, must be called
 void InputSystem::OnFixedUpdate()
 {
@@ -164,21 +161,6 @@ glm::vec2 InputSystem::GetMousePosWorld()
     return convert(matrix);
 }
 
-
-/// @brief The singleton instance of InputSystem
-InputSystem * InputSystem::instance = nullptr;
-
-/// @brief gets the instance of InputSystem
-/// @return the instance of the InputSystem
-InputSystem * InputSystem::GetInstance()
-{
-    if ( instance == nullptr )
-    {
-        instance = new InputSystem();
-    }
-    return instance;
-}
-
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
@@ -192,3 +174,28 @@ InputSystem * InputSystem::GetInstance()
     {
         return (ReadMethodMap< System > const&)s_ReadMethods;
     }
+
+//-----------------------------------------------------------------------------
+// singleton stuff
+//-----------------------------------------------------------------------------
+
+    /// @brief Constructs the InputSystem
+    InputSystem::InputSystem() :
+        System( "InputSystem" )
+    {}
+
+    /// @brief The singleton instance of InputSystem
+    InputSystem * InputSystem::instance = nullptr;
+
+    /// @brief gets the instance of InputSystem
+    /// @return the instance of the InputSystem
+    InputSystem * InputSystem::GetInstance()
+    {
+        if ( instance == nullptr )
+        {
+            instance = new InputSystem();
+        }
+        return instance;
+    }
+
+//-----------------------------------------------------------------------------

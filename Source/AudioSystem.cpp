@@ -128,11 +128,10 @@
 
     /// @brief  Constructs the AudioSystem
     AudioSystem::AudioSystem() :
+        System( "AudioSystem" ),
         m_System( nullptr ),
         m_MaxChannels( 1024 )
-    {
-        SetName( "AudioSystem" );
-    }
+    {}
 
     /// @brief  The singleton instance of AudioSystem
     AudioSystem * AudioSystem::s_Instance = nullptr;

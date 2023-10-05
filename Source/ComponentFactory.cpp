@@ -12,6 +12,7 @@
 // Include Files:
 //-----------------------------------------------------------------------------
 #include "ComponentFactory.h"
+
 #include "Transform.h"
 #include "Sprite.h"
 #include "RigidBody.h"
@@ -24,49 +25,36 @@
 #include "TurretBehavior.h"
 #include "PlayerController.h"
 
-template < typename ComponentType >
-Component* ComponentFactory::Creator() {
-    return new ComponentType();
-}
-
 /// @brief     Creates a component of a specified type.
 /// @param key The type of component being created.
 /// @return    A pointer to the new component.
-Component* ComponentFactory::Create( std::string key )
+Component* ComponentFactory::Create( std::string const& key )
 {
-    return componentCreators.at( key )();
+    return s_ComponentTypes.at( key ).second();
 }
 
-std::type_index ComponentFactory::GetTypeId( std::string typeName )
+std::type_index ComponentFactory::GetTypeId( std::string const& typeName )
 {
-    return componentTypes.at( typeName );
+    return s_ComponentTypes.at( typeName ).first;
+}
+
+template < typename ComponentType >
+Component* ComponentFactory::Creator()
+{
+    return new ComponentType();
 }
 
 // Fill the map with constructors from the different components.
-std::map<std::string, Component* (*)()> ComponentFactory::componentCreators = {
-    { "Transform"        , Creator<Transform>        },
-    { "Sprite"           , Creator<Sprite>           },
-    { "RigidBody"        , Creator<RigidBody>        },
-    { "MovementAI"       , Creator<MovementAI>       },
-    { "LineCollider"     , Creator<LineCollider>     },
-    { "CircleCollider"   , Creator<CircleCollider>   },
-    { "AudioPlayer"      , Creator<AudioPlayer>      },
-    { "Animation"        , Creator<Animation>        },
-    { "TextSprite"       , Creator<TextSprite>       },
-    { "PlayerController" , Creator<PlayerController> },
-	{ "TurretBehavior"   , Creator<TurretBehavior>   }
-};
-
-// A map of the component type IDs.
-std::map<std::string, std::type_index> ComponentFactory::componentTypes = {
-    { "Transform"        , typeid(Transform)        },
-    { "Sprite"           , typeid(Sprite)           },
-    { "RigidBody"        , typeid(RigidBody)        },
-    { "MovementAI"       , typeid(MovementAI)       },
-    { "LineCollider"     , typeid(LineCollider)     },
-    { "CircleCollider"   , typeid(CircleCollider)   },
-    { "AudioPlayer"      , typeid(AudioPlayer)      },
-    { "Animation"        , typeid(Animation)        },
-    { "PlayerController" , typeid(PlayerController) },
-    { "TurretBehavior"   , typeid(TurretBehavior)   }
+std::map< std::string, std::pair< std::type_index, Component* (*)() > > const ComponentFactory::s_ComponentTypes = {
+    { "Transform"        , ComponentInfo<Transform>()        },
+    { "Sprite"           , ComponentInfo<Sprite>()           },
+    { "RigidBody"        , ComponentInfo<RigidBody>()        },
+    { "MovementAI"       , ComponentInfo<MovementAI>()       },
+    { "LineCollider"     , ComponentInfo<LineCollider>()     },
+    { "CircleCollider"   , ComponentInfo<CircleCollider>()   },
+    { "AudioPlayer"      , ComponentInfo<AudioPlayer>()      },
+    { "Animation"        , ComponentInfo<Animation>()        },
+    { "TextSprite"       , ComponentInfo<TextSprite>()       },
+    { "PlayerController" , ComponentInfo<PlayerController>() },
+    { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   }
 };

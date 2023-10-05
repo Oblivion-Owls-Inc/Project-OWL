@@ -14,124 +14,170 @@ class Texture;
 /// @brief      Stores mesh + texture, along with other data needed to draw a basic 2D sprite.
 class Sprite : public Component
 {
-public:
-    /// @brief              Textured sprite constructor. Accepts image file, and 
-    ///                     (optional) rows and columns if it's a spritesheet. 
-    ///                     Also adds this sprite's pointer to RenderSystem.
-    /// 
-    /// @param image_file   Path to the image file to load (single image or spritesheet)
-    /// @param columns      (optional) Columns of the spritesheet
-    /// @param rows         (optional) Rows of the spritesheet
-    /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
-    Sprite(const char* image_file, int columns = 1, int rows = 1, int layer = 2);
+//-----------------------------------------------------------------------------
+public: // constructor / destructors
+//-----------------------------------------------------------------------------
 
-
-    /// @brief              Plain square sprite constructor. Accepts boolean, which 
-    ///                     needs to be true for the square to be generated, or 
-    ///                     false to create uninitialized sprite. Also adds 
-    ///                     this sprite's pointer to RenderSystem.
-    /// 
-    /// @param init_square  true/false - initialize the square or nah?
-    /// @param color        (optional) Color to initialize the square to
-    /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
-    Sprite(bool init_square, glm::vec4 color = { 0,0,0,1 }, int layer = 2);
-
-
+    /// @brief  default constructor
     Sprite();
 
-protected:
-    /// @brief              Default constructor - does not init anything
-    Sprite(std::type_index type );
+    /// @brief  Textured constructor
+    /// @param  texture the texture for this Sprite to use
+    /// @param  layer   (optional) Rendering layer: 0-4. 0 is back, 4 is front.
+    /// @param  type    for use ONLY when deriving with this Constructor
+    Sprite( Texture const* texture, int layer = 2, std::type_index type = typeid( Sprite ) );
 
-private:
-    /// @brief              Copy constructor: shallow copy. Flyweight mesh and texture 
-    ///                     (eventually, once we have data library). Do not use rn.
-    Sprite(Sprite const& other);
+    /// @brief  Plain square constructor
+    /// @param  init_square true/false - initialize the square or nah?
+    /// @param  color       (optional) Color to initialize the square to
+    /// @param  layer       (optional) Rendering layer: 0-4. 0 is back, 4 is front.
+    Sprite( bool init_square, glm::vec4 const& color = { 0, 0, 0, 1 }, int layer = 2 );
 
-public:
-    /// @return             Copy of this component.
-    virtual Component* Clone() const override;
-
-    /// @brief              Destructor: frees texture and mesh... for now. Resource library should take care of it.
+    /// @brief  Destructor: frees texture and mesh... for now. Resource library should take care of it.
     virtual ~Sprite();
 
-    /// @brief          Draws the mesh with texture (if one is present), or color.
+//-----------------------------------------------------------------------------
+protected: // constructor
+//-----------------------------------------------------------------------------
+
+    /// @brief  inherited constructor
+    Sprite( std::type_index type );
+
+//-----------------------------------------------------------------------------
+public: // copying
+//-----------------------------------------------------------------------------
+    
+    /// @brief  creates a new Sprite component which is a duplicate of this one
+    /// @return Copy of this component.
+    virtual Component* Clone() const override;
+
+//-----------------------------------------------------------------------------
+private: // copying
+//-----------------------------------------------------------------------------
+
+    /// @brief  Copy constructor
+    Sprite(Sprite const& other);
+
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  Draws the mesh with texture (if one is present), or color.
     virtual void Draw();
 
-    /// @brief          Sets current frame of the spritesheet.
-    /// @param frame    New frame index
-    void SetFrame(int frame);
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
 
-    /// @brief          Sets the rendering layer : 0 - 4.  0 is back, 4 is front.
-    /// @param layer    Rendering layer to move this sprite to.
-    void SetLayer(int layer);
+    /// @brief  gets the frame index
+    /// @return the frame index
+    __inline int GetFrameIndex() const { return m_FrameIndex; }
 
-    /// @brief          Sets the opacity.
-    /// param opacity   I'm not explaining this.
-    void SetOpacity(float opacity);
+    /// @brief  Sets current frame index of the spritesheet.
+    /// @param  frameIndex  New frame index
+    __inline void SetFrameIndex( int frameIndex ) { m_FrameIndex = frameIndex; }
 
-    void SetColor(glm::vec4 const& color);
+    /// @brief  gets the layer
+    /// @return the layer
+    __inline int GetLayer() const { return m_Layer; }
 
-    /// @brief          Number to multiply width by, to get proportional height
-    ///                 based on original image
-    /// @return         float: original image's height divided by width
-    float GetHeightMultiplier() const;
+    /// @brief  Sets the rendering layer : 0 - 4.  0 is back, 4 is front.
+    /// @param  layer   Rendering layer to move this sprite to.
+    __inline void SetLayer( int layer ) { m_Layer = layer; }
 
+    /// @brief  gets the opacity
+    /// @return the opacity
+    __inline float GetOpacity() const { return m_Opacity; }
 
-    //-------------------------------------------------------------------------
-    //          data
-    //-------------------------------------------------------------------------
-protected:
-    int m_Rows = 1, m_Columns = 1;
-    int m_Layer = 2;
-    int m_Frame = 0;
-    float m_HeightMult = 1.0f;
-    float m_Opacity = 1.0f;
-    std::string m_Filename;
+    /// @brief  Sets the opacity.
+    /// @param  opacity I'm not explaining this.
+    __inline void SetOpacity( float opacity ) { m_Opacity = opacity; }
+
+    /// @brief  gets the color
+    /// @return the color
+    __inline glm::vec4 const& GetColor() const { return m_Color; }
+
+    /// @brief  sets the color
+    /// @param  color   the color to apply
+    __inline void SetColor( glm::vec4 const& color ) { m_Color = color; }
+
+    /// @brief  gets the Texture this Sprite is using
+    /// @return the Texture this Sprite is using
+    __inline Texture const* GetTexture() const { return m_Texture; }
+
+    /// @brief  sets the Texture this Sprite is using
+    /// @param  texture the Texture to set this Sprite to use
+    __inline void SetTexture( Texture const* texture ) { m_Texture = texture; }
+
+    /// @brief  gets the Mesh this Sprite is using
+    /// @return the Mesh this Sprite is using
+    __inline Mesh const* GetMesh() const { return m_Mesh; }
+
+    /// @brief  sets the Mesh this Sprite is using
+    /// @param  mesh    the Mesh to set this Sprite to use
+    __inline void SetMesh( Mesh const* mesh ) { m_Mesh = mesh; }
+
+//-----------------------------------------------------------------------------
+protected: // virtual override methods
+//-----------------------------------------------------------------------------
+    
+    /// @brief  called when entering the scene
+    virtual void OnInit() override;
+
+    /// @brief  called when exiting the scene
+    virtual void OnExit() override;
+
+//-----------------------------------------------------------------------------
+protected: // member variables
+//-----------------------------------------------------------------------------
+
+    int m_Layer;
+    int m_FrameIndex;
+    float m_Opacity;
+
+    glm::vec4 m_Color;
+
     bool m_IsTextured;
 
-    Mesh* m_Mesh = nullptr;
-    Texture* m_Texture = nullptr;
-    glm::vec4 m_Color = {1,1,1,1};
+    Mesh const* m_Mesh;
+    Texture const* m_Texture;
 
+//-----------------------------------------------------------------------------
+protected: // methods
+//-----------------------------------------------------------------------------
 
-    //-------------------------------------------------------------------------
-    //          helpers
-    //-------------------------------------------------------------------------
+    /// @brief  Calculates UV offset based on current frameIndex
+    /// @return the UV offset
+    glm::vec2 calcUVoffset() const;
 
-    /// @brief      Calculates UV offset based on current frame  
-    glm::vec2 calcUVoffset();
-
-    /// @brief      Pre-calculates height multiplier based on texture dimensions
-    void calcHeightMult();
-
-
+//-----------------------------------------------------------------------------
 protected: // reading
+//-----------------------------------------------------------------------------
 
-    /// @brief        Read in the number of rows for a sprite.
-    /// @param stream The json to read from.
-    void ReadRows(Stream stream);
+    /// @brief  reads the Texture of this Sprite
+    /// @param  stream  the json data to read from
+    void readTexture( Stream stream );
 
-    /// @brief        Read in the colour for a sprite.
-    /// @param stream The json to read from.
-    void ReadColor(Stream stream);
+    /// @brief  reads the frame index of this Sprite
+    /// @param  stream  the json data to read from
+    void readFrameIndex( Stream stream );
 
-    /// @brief        Read in the layer for a sprite.
-    /// @param stream The json to read from.
-    void ReadLayer(Stream stream);
+    /// @brief  Read in the color for a sprite.
+    /// @param  stream  The json to read from.
+    void readColor(Stream stream);
 
-    /// @brief        Read in the file name for a sprite.
-    /// @param stream The json to read from.
-    void ReadName(Stream stream);
+    /// @brief  Read in the opacity for a sprite.
+    /// @param  stream  The json to read from.
+    void readOpacity(Stream stream);
 
-    /// @brief Read in the number of columns for a sprite.
-    /// @param stream the json to read from.
-    void ReadColumns(Stream stream);
+    /// @brief  Read in the layer for a sprite.
+    /// @param  stream  The json to read from.
+    void readLayer(Stream stream);
+    
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
 
-    /// @brief Takes all the read in data and makes a sprite.
-    void ReadSprite( Stream );
-
-private:
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Sprite > const s_ReadMethods;
 

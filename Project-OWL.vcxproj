@@ -188,7 +188,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Pool.cpp" />
     <ClCompile Include="Source\Lua.cpp" />
     <ClCompile Include="Source\PlayerController.cpp" />
-    <ClCompile Include="Source\AidanScene.cpp" />
     <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\BehaviorSystem.cpp" />
     <ClCompile Include="Source\CameraSystem.cpp" />
@@ -211,12 +210,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\AudioSystem.cpp" />
     <ClCompile Include="Source\LineCollider.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
-    <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\TextSprite.cpp" />
-    <ClCompile Include="Source\StubScene.cpp" />
     <ClCompile Include="Source\TurretBehavior.cpp" />
-    <ClCompile Include="Source\XinoScene.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\Component.cpp" />
@@ -240,7 +236,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="imgui\implot.h" />
     <ClInclude Include="imgui\implot_internal.h" />
     <ClInclude Include="Source\Pool.h" />
-    <ClInclude Include="Source\AidanScene.h" />
     <ClInclude Include="Source\CollisionData.h" />
     <ClInclude Include="Source\PlayerController.h" />
     <ClInclude Include="Source\Animation.h" />
@@ -256,11 +251,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\LineCollider.h" />
     <ClInclude Include="Source\RigidBody.h" />
-    <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\TextSprite.h" />
-    <ClInclude Include="Source\StubScene.h" />
     <ClInclude Include="Source\TurretBehavior.h" />
-    <ClInclude Include="Source\XinoScene.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
     <ClInclude Include="Source\InputSystem.h" />
     <ClInclude Include="Source\Sound.h" />

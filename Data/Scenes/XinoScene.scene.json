@@ -1,23 +1,68 @@
 {
     "Assets": {
-        "textures": [],
-        "meshes": [],
-        "shaders": []
+        "Sounds": {
+            "Music": {
+                "Filepath": "Data/Sounds/test.mp3"
+            }
+        },
+        "Textures": {
+            "Ball1": {
+                "Filepath": "Data/Textures/Balls/Ball.png"
+            },
+            "Ball2": {
+                "Filepath": "Data/Textures/Balls/Ball2.png"
+            },
+            "Ball4": {
+                "Filepath": "Data/Textures/Balls/Ball4.png"
+            },
+            "Ball5": {
+                "Filepath": "Data/Textures/Balls/Ball5.png"
+            },
+            "Wall": {
+                "Filepath": "Data/Textures/Wall.png"
+            },
+            "FontSheet": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [ 16, 8 ]
+            },
+            "ElfSheet": {
+                "Filepath": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png",
+                "SheetDimensions": [ 22, 17 ]
+            }
+        },
+        "Archetypes": {
+            "Ball": {
+                "Name": "Ball",
+                "Components": {
+                    "Sprite": {
+                        "Texture": "Ball5",
+                        "Layer": 1
+                    },
+                    "RigidBody": {},
+                    "CircleCollider": {
+                        "Radius": 0.5
+                    },
+                    "Transform": {},
+                    "MovementAI": {}
+                }
+            }
+        }
     },
     "Entities": [
         {
             "Name": "Sound",
             "Components": {
-                "AudioPlayer": {}
-
+                "AudioPlayer": {
+                    "Sound": "Music"
+                }
             }
         },
         {
             "Name": "Wall",
             "Components": {
                 "Sprite": {
-                    "name": "Data/Textures/Wall.png",
-                    "layer": 0
+                    "Texture": "Wall",
+                    "Layer": 0
                 },
                 "Transform": {
                     "translation": [ 0, -3, 0 ],
@@ -29,10 +74,8 @@
             "Name": "Ball1",
             "Components": {
                 "Sprite": {
-                    "name": "Data/Textures/Balls/Ball5.png",
-                    "columns": 1,
-                    "rows": 1,
-                    "layer": 1
+                    "Texture": "Ball5",
+                    "Layer": 1
                 },
                 "RigidBody": {
                     "Velocity": [ 3, 1, 0 ]
@@ -41,21 +84,17 @@
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 0, 0, 0 ],
-                    "scale": [ 1, 1, 1 ]
+                    "translation": [ 0, 0, 1 ]
                 },
                 "MovementAI": {}
-
             }
         },
         {
             "Name": "Ball2",
             "Components": {
                 "Sprite": {
-                    "name": "Data/Textures/Balls/Ball2.png",
-                    "columns": 1,
-                    "rows": 1,
-                    "layer": 1
+                    "Texture": "Ball2",
+                    "Layer": 1
                 },
                 "RigidBody": {
                     "Velocity": [ -2, -1, 0 ]
@@ -64,8 +103,7 @@
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 2, 1, 0 ],
-                    "scale": [ 1, 1, 1 ]
+                    "translation": [ 2, 1, 1 ]
                 },
                 "MovementAI": {}
             }
@@ -74,10 +112,8 @@
             "Name": "Ball3",
             "Components": {
                 "Sprite": {
-                    "name": "Data/Textures/Balls/Ball.png",
-                    "columns": 1,
-                    "rows": 1,
-                    "layer": 1
+                    "Texture": "Ball1",
+                    "Layer": 1
                 },
                 "RigidBody": {
                     "Velocity": [ 1.5, 4.3, 0 ]
@@ -86,8 +122,7 @@
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 1, 0, 0 ],
-                    "scale": [ 1, 1, 1 ]
+                    "translation": [ 1, 0, 1 ]
                 },
                 "MovementAI": {}
             }
@@ -96,12 +131,10 @@
             "Name": "TextEnt",
             "Components": {
                 "TextSprite": {
-                    "name": "Data/Textures/Roboto_Mono_white_16x8.png",
-                    "columns": 16,
-                    "rows": 8,
-                    "strideMultiplier": [0.6, 1],
-                    "layer": 1,
-                    "text": "The Quick Brown Fox Jumps Over The Lazy Dog"
+                    "Texture": "FontSheet",
+                    "StrideMultiplier": [0.6, 1],
+                    "Layer": 1,
+                    "Text": "The Quick Brown Fox Jumps Over The Lazy Dog"
                 },
                 "Transform": {
                     "translation": [ -4.9, 2, 0 ],
@@ -113,11 +146,9 @@
             "Name": "TileEnt",
             "Components": {
                 "TextSprite": {
-                    "name": "Data/Textures/Roboto_Mono_white_16x8.png",
-                    "columns": 16,
-                    "rows": 8,
-                    "layer": 1,
-                    "rowWidth": 5
+                    "Texture": "FontSheet",
+                    "Layer": 1,
+                    "RowWidth": 5
                 },
                 "Transform": {
                     "translation": [ -4, 1, 0 ],
@@ -133,9 +164,7 @@
                     "scale": [ 8, 4, 1 ]
                 },
                 "Sprite": {
-                    "columns": 22,
-                    "rows": 17,
-                    "name": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png"
+                    "Texture": "ElfSheet"
                 },
                 "Animation": {
                     "frameStart": 0,
@@ -155,8 +184,8 @@
                 "scale": [ 2.5, 2.5, 1 ]
               },
               "Sprite": {
-                "name": "Data/Textures/Balls/Ball4.png",
-                "layer":  2
+                "Texture": "Ball4",
+                "Layer":  2
               }
             }
       
@@ -169,8 +198,8 @@
                 "scale": [ 1, 1, 1 ]
               },
               "Sprite": {
-                "name": "Data/Textures/Balls/Ball5.png",
-                "layer":  3
+                "Texture": "Ball5",
+                "Layer":  3
               }
             }
       

@@ -14,15 +14,6 @@
 #include "Entity.h"
 #include "Collider.h"
 #include "Behavior.h"
-// Define the static instance variable for the templated BehaviorSystem
-template < typename BehaviorType >
-BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::instance = nullptr;
-
-template<typename BehaviorType>
-void BehaviorSystem<BehaviorType>::OnInit()
-{
-	SetName(typeid(BehaviorType).name());
-}
 
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnFixedUpdate()
@@ -43,16 +34,6 @@ void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 	}
 }
 
-template<typename BehaviorType>
-void BehaviorSystem<BehaviorType>::OnExit()
-{
-}
-
-template<typename BehaviorType>
-void BehaviorSystem<BehaviorType>::OnSceneExit()
-{
-}
-
 
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::AddBehavior(BehaviorType* behavior)
@@ -66,17 +47,6 @@ void BehaviorSystem<BehaviorType>::RemoveBehavior(BehaviorType* behavior)
 	behaviorsList.erase(
         std::remove(behaviorsList.begin(), behaviorsList.end(), behavior), behaviorsList.end()
     );
-}
-
-// Define the GetInstance function for the templated BehaviorSystem
-template < typename BehaviorType >
-BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::GetInstance()
-{
-	if (instance == nullptr)
-	{
-		instance = new BehaviorSystem< BehaviorType >();
-	}
-	return instance;
 }
 
 template<typename BehaviorType>
@@ -102,3 +72,31 @@ ReadMethodMap< System > const& BehaviorSystem< BehaviorType >::GetReadMethods() 
 {
 	return (ReadMethodMap< System > const&)s_ReadMethods;
 }
+
+//-----------------------------------------------------------------------------
+// singleton stuff
+//-----------------------------------------------------------------------------
+
+    // Define the GetInstance function for the templated BehaviorSystem
+    template < typename BehaviorType >
+    BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::GetInstance()
+    {
+        if (instance == nullptr)
+        {
+            instance = new BehaviorSystem< BehaviorType >();
+        }
+        return instance;
+    }
+
+    // Define the static instance variable for the templated BehaviorSystem
+    template < typename BehaviorType >
+    BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::instance = nullptr;
+
+    /// @brief  Constructs the BehaviorSystem
+    template < typename BehaviorType >
+    BehaviorSystem< BehaviorType >::BehaviorSystem() :
+        System( std::string( "BehaviorSystem<" ) + typeid( BehaviorType ).name() + ">" )
+    {}
+
+
+//-----------------------------------------------------------------------------

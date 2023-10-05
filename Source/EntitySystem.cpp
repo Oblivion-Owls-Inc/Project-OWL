@@ -167,10 +167,9 @@
 
     /// @brief  Constructs the EntitySystem
     EntitySystem::EntitySystem() :
+        System( "EntitySystem" ),
         m_Entities()
-    {
-        SetName("EntitySystem");
-    }
+    {}
 
     /// @brief  The singleton instance of EntitySystem
     EntitySystem * EntitySystem::s_Instance = nullptr;

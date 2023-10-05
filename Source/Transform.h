@@ -14,14 +14,13 @@
 #include <rapidjson/document.h> // rapidjson::Value
 
 using namespace glm;
-class Transform :
-    public Component
+class Transform : public Component
 {
 public:
     Transform();
     Transform(const Transform& other);
 
-    ~Transform(void);
+    ~Transform() = default;
 
 public:
     Component* Clone() const override;

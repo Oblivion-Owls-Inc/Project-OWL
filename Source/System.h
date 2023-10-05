@@ -43,8 +43,13 @@ public: // virtual methods
     /// @brief Gets Called by the Debug system to display debug information
     virtual void DebugWindow() {};
 
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+
     /// @brief Gets the unique name of this System
-    _inline virtual std::string GetName() const { return m_Name; }
+    _inline std::string GetName() const { return m_Name; }
+
 //-----------------------------------------------------------------------------
 public: // reading
 //-----------------------------------------------------------------------------
@@ -58,12 +63,10 @@ protected: // constructor
 //-----------------------------------------------------------------------------
     
     /// @brief  Constructs a System
-    System() = default;
-    
-    /// @brief Sets the Unique Name of this System
-    /// @param name  - The Name of the System
-    /// @note This should only be called once, on the System's OnInit function
-    _inline void SetName( std::string name ) { m_Name = name; }
+    System( std::string const& name ) :
+        m_Name( name )
+    {}
+
 //-----------------------------------------------------------------------------
 public: // singleton stuff
 //-----------------------------------------------------------------------------

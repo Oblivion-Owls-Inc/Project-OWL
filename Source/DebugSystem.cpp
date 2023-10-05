@@ -48,32 +48,6 @@ struct ScrollingBuffer
 };
 
 
-
-DebugSystem* DebugSystem::instance = nullptr;
-
-DebugSystem* DebugSystem::GetInstance()
-{
-
-    if (instance == nullptr) 
-    {
-        instance = new DebugSystem();
-    }
-
-    return instance;
-
-}
-
-
-/// @brief Initialize the DebugSystem.
-/// @param window The GLFW window handle (default is the current context).
-DebugSystem::DebugSystem() :
-    _window(nullptr),
-    io(nullptr),
-    m_ShowFpsWindow(false),
-    m_ShowDebugWindow(false)
-{
-}
-
 /// @brief Perform initialization.
 void DebugSystem::OnInit()
 {
@@ -309,3 +283,33 @@ void DebugSystem::ImguiStartFrame()
     {
         return (ReadMethodMap< System > const&)s_ReadMethods;
     }
+
+//-----------------------------------------------------------------------------
+// singleton stuff
+//-----------------------------------------------------------------------------
+
+    /// @brief Initialize the DebugSystem.
+    /// @param window The GLFW window handle (default is the current context).
+    DebugSystem::DebugSystem() :
+        System( "DebugSystem" ),
+        _window(nullptr),
+        io(nullptr),
+        m_ShowFpsWindow(false),
+        m_ShowDebugWindow(false)
+    {}
+
+    DebugSystem* DebugSystem::instance = nullptr;
+
+    DebugSystem* DebugSystem::GetInstance()
+    {
+
+        if (instance == nullptr) 
+        {
+            instance = new DebugSystem();
+        }
+
+        return instance;
+
+    }
+
+//-----------------------------------------------------------------------------

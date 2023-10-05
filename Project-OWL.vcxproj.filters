@@ -45,9 +45,6 @@
     <Filter Include="Engine\Entity\Component\Collider">
       <UniqueIdentifier>{d9911df2-a594-4ecf-8716-6849d3dae861}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\SandboxSystem">
-      <UniqueIdentifier>{2e6eff95-6e99-4d15-bb46-87a201aa10e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\AudioPlayer">
       <UniqueIdentifier>{b2ec916e-61a2-44ac-811c-cf0238123628}</UniqueIdentifier>
     </Filter>
@@ -68,9 +65,6 @@
     </Filter>
     <Filter Include="Data">
       <UniqueIdentifier>{93c4d7b5-a3df-4eb6-ae45-9a5eac6d1d02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Entity\Component\Behavior\Movement Behavior">
-      <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Entity\Component\Collider\CircleCollider">
       <UniqueIdentifier>{f3d76695-1d01-436d-a2f0-5d97be858aa8}</UniqueIdentifier>
@@ -120,20 +114,11 @@
     <Filter Include="Engine\Entity\Component\Animation\Asset">
       <UniqueIdentifier>{4ef39645-2d4e-4936-8ebf-80abd5fb3eb9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\XinoScene">
-      <UniqueIdentifier>{7a87f94a-df48-4d68-9654-80ec9d20189d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\AidenScene">
-      <UniqueIdentifier>{9d974220-1870-40ad-b53a-ee5bc1eba5d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Collider\LineCollider">
       <UniqueIdentifier>{65fb5e3e-f000-41f3-b5de-e4e439e2ad94}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Systems\CameraSystem">
       <UniqueIdentifier>{c3898b05-9c97-4cac-a92e-a1120297dd69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\StubScene">
-      <UniqueIdentifier>{c6b90247-bab8-4c73-b194-7d0ab3d3993a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Entity\Component\Sprite\TextSprite">
       <UniqueIdentifier>{ae8a08f1-0df5-440b-b693-5c5df9061ed2}</UniqueIdentifier>
@@ -141,7 +126,25 @@
     <Filter Include="Header Files\imgui">
       <UniqueIdentifier>{7f9af033-81e2-44c9-af1e-a9a713ab2083}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Behavior\PlayerController">
+    <Filter Include="Game\Scenes">
+      <UniqueIdentifier>{248a6873-a0bc-44fa-8202-3e54136060d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes\XinoScene">
+      <UniqueIdentifier>{7a87f94a-df48-4d68-9654-80ec9d20189d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes\StubScene">
+      <UniqueIdentifier>{c6b90247-bab8-4c73-b194-7d0ab3d3993a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes\SandboxSystem">
+      <UniqueIdentifier>{2e6eff95-6e99-4d15-bb46-87a201aa10e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes\AidenScene">
+      <UniqueIdentifier>{9d974220-1870-40ad-b53a-ee5bc1eba5d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Behaviors">
+      <UniqueIdentifier>{845055ef-3dd8-4f1c-a1b1-807e4ac7410c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Behaviors\PlayerController">
       <UniqueIdentifier>{b63ef8e3-7039-4e9e-b113-413ff8380423}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Entity\Component\Behavior\Pools">
@@ -149,6 +152,9 @@
     </Filter>
     <Filter Include="Engine\Entity\Component\Behavior\TurretBehavior">
       <UniqueIdentifier>{e523f30f-0b00-4ea5-b75b-339074d48b3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Behaviors\Movement Behavior">
+      <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -222,7 +228,7 @@
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="Source\SandboxSystem.cpp">
-      <Filter>Game\SandboxSystem</Filter>
+      <Filter>Game\Scenes\SandboxSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\AudioPlayer.cpp">
       <Filter>Engine\Entity\Component\AudioPlayer</Filter>
@@ -243,7 +249,7 @@
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\MovementAI.cpp">
-      <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
+      <Filter>Game\Behaviors\Movement Behavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
@@ -300,10 +306,10 @@
       <Filter>Engine\Systems\EntitySystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\XinoScene.cpp">
-      <Filter>Game\XinoScene</Filter>
+      <Filter>Game\Scenes\XinoScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\AidanScene.cpp">
-      <Filter>Game\AidenScene</Filter>
+      <Filter>Game\Scenes\AidenScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\LineCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
@@ -312,7 +318,7 @@
       <Filter>Engine\Systems\CameraSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\StubScene.cpp">
-      <Filter>Game\StubScene</Filter>
+      <Filter>Game\Scenes\StubScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\TextSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\TextSprite</Filter>
@@ -327,7 +333,7 @@
       <Filter>Source Files\imgui</Filter>
     </ClCompile>
     <ClCompile Include="Source\PlayerController.cpp">
-      <Filter>Engine\Entity\Component\Behavior\PlayerController</Filter>
+      <Filter>Game\Behaviors\PlayerController</Filter>
     </ClCompile>
     <ClCompile Include="Source\CollisionSystem.cpp">
       <Filter>Engine\Systems\CollisonSystem</Filter>
@@ -431,7 +437,7 @@
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClInclude>
     <ClInclude Include="Source\SandboxSystem.h">
-      <Filter>Game\SandboxSystem</Filter>
+      <Filter>Game\Scenes\SandboxSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\AudioPlayer.h">
       <Filter>Engine\Entity\Component\AudioPlayer</Filter>
@@ -461,7 +467,7 @@
       <Filter>Engine\Entity\Component</Filter>
     </ClInclude>
     <ClInclude Include="Source\MovementAI.h">
-      <Filter>Engine\Entity\Component\Behavior\Movement Behavior</Filter>
+      <Filter>Game\Behaviors\Movement Behavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\EntitySystem.h">
       <Filter>Engine\Systems\EntitySystem</Filter>
@@ -494,7 +500,7 @@
       <Filter>Engine\Entity\Component\Animation\Asset</Filter>
     </ClInclude>
     <ClInclude Include="Source\XinoScene.h">
-      <Filter>Game\XinoScene</Filter>
+      <Filter>Game\Scenes\XinoScene</Filter>
     </ClInclude>
     <ClInclude Include="imgui\implot.h">
       <Filter>Header Files\imgui</Filter>
@@ -515,10 +521,10 @@
       <Filter>Engine\Entity\Component\Sprite\TextSprite</Filter>
     </ClInclude>
     <ClInclude Include="Source\StubScene.h">
-      <Filter>Game\StubScene</Filter>
+      <Filter>Game\Scenes\StubScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayerController.h">
-      <Filter>Engine\Entity\Component\Behavior\PlayerController</Filter>
+      <Filter>Game\Behaviors\PlayerController</Filter>
     </ClInclude>
     <ClInclude Include="Source\XinoScene.h">
       <Filter>Game\XinoScene</Filter>

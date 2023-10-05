@@ -19,14 +19,16 @@
 #include "DebugSystem.h"
 #include "RenderSystem.h"
 #include "AudioSystem.h"
-#include "SandboxSystem.h"
-#include "XinoScene.h"
 #include "CollisionSystem.h"
 #include "InputSystem.h"
 #include "EntitySystem.h"
 #include "PlayerController.h"
 #include "TurretBehavior.h"
 #include "Animation.h"
+
+#include "AssetLibrarySystem.h"
+#include "Sound.h"
+#include "Texture.h"
 
 #include "BehaviorSystem.h"
 #include "RigidBody.h"
@@ -156,25 +158,29 @@
         return system;
     }
 
-/// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
-std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
-    { "PlatformSystem",             &addSystem< PlatformSystem >                },
-	{ "CollisionSystem",            &addSystem< CollisionSystem >               },
-    { "CameraSystem",               &addSystem< CameraSystem >                  },  
-    { "InputSystem",                &addSystem< InputSystem >                   },
-    { "SceneSystem",                &addSystem< SceneSystem >                   },
-    { "RenderSystem",               &addSystem< RenderSystem >                  },
-    { "DebugSystem",                &addSystem< DebugSystem >                   },
-    { "AudioSystem",                &addSystem< AudioSystem >                   },
-    { "EntitySystem",               &addSystem< EntitySystem >                  },
-    { "SandboxSystem",              &addSystem< SandboxSystem >                 },
-    { "XinoScene",                  &addSystem< XinoScene >                     },
-	{ "BehaviorSystem<TurretBehavior>", &addSystem< BehaviorSystem< TurretBehavior > >  },
-    { "BehaviorSystem<PlayerController>", &addSystem< BehaviorSystem< PlayerController > >  },
-    { "BehaviorSystem<MovementAI>", &addSystem< BehaviorSystem< MovementAI > >  },
-    { "BehaviorSystem<RigidBody>",  &addSystem< BehaviorSystem< RigidBody > >   },
-    { "BehaviorSystem<Animation>",  &addSystem< BehaviorSystem< Animation > >   },
-};
+    /// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
+    std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
+        { "PlatformSystem",                     &addSystem< PlatformSystem >                        },
+	    { "CollisionSystem",                    &addSystem< CollisionSystem >                       },
+        { "CameraSystem",                       &addSystem< CameraSystem >                          },  
+        { "InputSystem",                        &addSystem< InputSystem >                           },
+        { "SceneSystem",                        &addSystem< SceneSystem >                           },
+        { "RenderSystem",                       &addSystem< RenderSystem >                          },
+    //#ifndef NDEBUG
+        { "DebugSystem",                        &addSystem< DebugSystem >                           },
+    //#endif // !Debug
+        { "AudioSystem",                        &addSystem< AudioSystem >                           },
+        { "EntitySystem",                       &addSystem< EntitySystem >                          },
+        { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >    },
+        { "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >          },
+        { "behaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >      },
+        { "BehaviorSystem<RigidBody>",          &addSystem< BehaviorSystem< RigidBody > >           },
+        { "BehaviorSystem<Animation>",          &addSystem< BehaviorSystem< Animation > >           },
+        { "AssetLibrarySystem<Entity>",         &addSystem< AssetLibrarySystem< Entity > >          },
+        { "AssetLibrarySystem<Sound>",          &addSystem< AssetLibrarySystem< Sound > >           },
+        { "AssetLibrarySystem<Texture>",        &addSystem< AssetLibrarySystem< Texture > >         },
+
+    };
 
 //-----------------------------------------------------------------------------
 // private: methods

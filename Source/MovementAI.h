@@ -28,21 +28,15 @@ class MovementAI :
         /// @brief Construct a new MovementAI object
         MovementAI();
 
-        MovementAI(const MovementAI& other);
+    private:
+        virtual Component* Clone() const override;
+        MovementAI( MovementAI const& other );
 
-        /// @brief Clones the Component 
-        /// @return A pointer to a newly allocated Component
-        Component* Clone() const override;
-
-        /// @brief Called on a Fixed Update 
-        void OnFixedUpdate() override;
-
-        /// @brief called when this Component's Entity is added to the Scene
         virtual void OnInit() override;
-
-        /// @brief  called when this Component's Entity is removed from the Scene
-        /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
         virtual void OnExit() override;
+
+        virtual void OnUpdate(float dt) override;
+        virtual void OnFixedUpdate() override;
 
         /// @brief  Called whenever a Collider on this Behavior's Entity collides
         /// @param  other           the entity that was collided with

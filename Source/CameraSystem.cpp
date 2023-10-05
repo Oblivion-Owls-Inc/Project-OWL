@@ -10,7 +10,6 @@
 /// @brief      Performs initial matrix calculations.
 void CameraSystem::OnInit() {
     recalcMatrices();
-    SetName("CameraSystem");
 }
 
 
@@ -137,7 +136,11 @@ void CameraSystem::recalcMatrices()
 // singleton stuff
 //-----------------------------------------------------------------------------
 CameraSystem* CameraSystem::instance = nullptr;
-CameraSystem::CameraSystem() { }
+
+CameraSystem::CameraSystem() :
+    System( "CameraSystem" )
+{}
+
 CameraSystem* CameraSystem::GetInstance()
 {
     if (instance == nullptr)

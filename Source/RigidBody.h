@@ -63,49 +63,49 @@ public:
 public: // accessors
 //-----------------------------------------------------------------------------
 
-    /// @brief  Get the acceleration vector of the rigid body.
+    /// @brief  Get the acceleration vector of the rigidBody.
     /// @return the acceleration vector.
     __inline glm::vec3 const& GetAcceleration() const { return m_Acceleration; }
-    /// @brief  Set the acceleration vector of the rigid body.
+    /// @brief  Set the acceleration vector of the rigidBody.
     /// @param  acceleration    the new acceleration vector.
     __inline void SetAcceleration( vec3 const& acceleration ) { m_Acceleration = acceleration; }
 
-    /// @brief  Get the velocity vector of the rigid body.
+    /// @brief  Get the velocity vector of the rigidBody.
     /// @return the velocity vector.
     __inline glm::vec3 const& GetVelocity() const { return m_Velocity; }
-    /// @brief  Set the velocity vector of the rigid body.
+    /// @brief  Set the velocity vector of the rigidBody.
     /// @param  velocity    the new velocity vector.
     __inline void SetVelocity( vec3 const& velocity ) { m_Velocity = velocity; }
 
-    /// @brief  Get the old translation vector of the rigid body.
+    /// @brief  Get the old translation vector of the rigidBody.
     /// @return the old translation vector.
     __inline glm::vec3 const& GetOldTranslation() const { return m_OldTranslation; }
 
-    /// @brief Get the rotational velocity of the rigid body.
+    /// @brief Get the rotational velocity of the rigidBody.
     /// @return The rotational velocity.
     __inline float GetRotationalVelocity() { return m_RotationalVelocity; }
-    /// @brief Set the rotational velocity of the rigid body.
+    /// @brief Set the rotational velocity of the rigidBody.
     /// @param rotationalVelocity The new rotational velocity.
     __inline void SetRotationalVelocity( float rotationalVelocity ) { m_RotationalVelocity = rotationalVelocity; }
 
-    /// @brief Get the inverse mass of the rigid body.
-    /// @return The inverse mass.
-    __inline float GetInverseMass() { return m_InverseMass; }
-    /// @brief Set the inverse mass of the rigid body.
-    /// @param inverseMass The new inverse mass.
-    __inline void SetInverseMass( float inverseMass ) { m_InverseMass = inverseMass; }
+    /// @brief Get the mass of the rigidBody.
+    /// @return The mass of the rigidBody
+    __inline float GetMass() { return m_Mass; }
+    /// @brief Set the mass of the rigidBody.
+    /// @param mass The new mass.
+    __inline void SetMass( float mass ) { m_Mass = mass; }
 
-    /// @brief Get the restitution of the rigid body.
+    /// @brief Get the restitution of the rigidBody.
     /// @return The restitution.
     __inline float GetRestitution() { return m_Restitution; }
-    /// @brief Set the restitution of the rigid body.
+    /// @brief Set the restitution of the rigidBody.
     /// @param restitution The new restitution.
     __inline void SetRestitution( float restitution ) { m_Restitution = restitution; }
 
-    /// @brief Get the friction of the rigid body.
+    /// @brief Get the friction of the rigidBody.
     /// @return The friction.
     __inline float GetFriction() { return m_Friction; }
-    /// @brief Set the friction of the rigid body.
+    /// @brief Set the friction of the rigidBody.
     /// @param friction The new friction.
     __inline void SetFriction( float friction ) { m_Friction = friction; }
 
@@ -132,9 +132,9 @@ private: // reading
     /// @param data the json data
     void readRotationalVelocity(Stream data);
 
-    /// @brief reads the inverseMass from json
+    /// @brief reads the mass from json
     /// @param data the json data
-    void readInverseMass(Stream data);
+    void readMass(Stream data);
 
     /// @brief reads the restitution from json
     /// @param data the json data
@@ -152,20 +152,20 @@ private: // reading
     virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 
 private:
-    /// @brief The velocity vector of the rigid body.
+    /// @brief The velocity vector of the rigidBody.
     vec3 m_Velocity;
 
-    /// @brief The acceleration vector of the rigid body.
+    /// @brief The acceleration vector of the rigidBody.
     vec3 m_Acceleration;
 
-    /// @brief The old translation vector of the rigid body.
+    /// @brief The old translation vector of the rigidBody.
     vec3 m_OldTranslation;
 
-    /// @brief The rotational velocity of the rigid body.
+    /// @brief The rotational velocity of the rigidBody.
     float m_RotationalVelocity;
 
-    /// @brief the inverse of the mass of this RigidBody
-    float m_InverseMass;
+    /// @brief the mass of this RigidBody
+    float m_Mass;
 
     /// @brief how bouncy this RigidBody is
     float m_Restitution;

@@ -18,7 +18,7 @@ RigidBody::RigidBody() :
 	m_Acceleration(vec3(1, 1, 0)),
 	m_OldTranslation(vec3(0, 0, 0)),
 	m_RotationalVelocity(0),
-    m_InverseMass( 1.0f ),
+    m_Mass( 1.0f ),
     m_Restitution( 1.0f ),
     m_Friction( 0.0f ),
     m_CollisionResolved( false )
@@ -101,20 +101,24 @@ void RigidBody::OnCollision( Entity* other, CollisionData const& collisionData )
 	//DebugConsole output(*DebugSystem::GetInstance());
 	//output << GetParent()->GetName().c_str() << ":Collision Detected in RigidBody" << "\n";
 
+    // only handle collisions with other rigidBodies
     RigidBody* rigidBodyB = other->GetComponent<RigidBody>();
     if ( rigidBodyB == nullptr )
     {
         return;
     }
+    // if the other rigidBody already handled this collision, don't handle it again
     if ( rigidBodyB->GetCollisionResolved() )
     {
         rigidBodyB->SetCollisionResolved( false );
         return;
     }
 
+    
     Transform* transformA = GetParent()->GetComponent<Transform>();
     Transform* transformB = other->GetComponent<Transform>();
 
+    // move the bodies away from each other so they no longer overlap
     glm::vec2 position = transformA->GetTranslation();
     position += collisionData.normal * collisionData.depth * 0.5f;
     transformA->SetTranslation(
@@ -127,11 +131,12 @@ void RigidBody::OnCollision( Entity* other, CollisionData const& collisionData )
         glm::vec3(position.x, position.y, 1.0f)
     );
 
-    float massA = 1.0f / m_InverseMass;
-    float massB = 1.0f / rigidBodyB->GetInverseMass();
-
+    // calculate the s momentum and energy of the collision in the axis of the collision normal
+    float massA = m_Mass;
+    float massB = rigidBodyB->GetMass();
     glm::vec2 velA = m_Velocity;
     glm::vec2 velB = rigidBodyB->GetVelocity();
+
     float speedA = glm::dot( velA, collisionData.normal );
     float speedB = glm::dot( velB, collisionData.normal );
     float momentum = speedA * massA + speedB * massB;
@@ -141,16 +146,18 @@ void RigidBody::OnCollision( Entity* other, CollisionData const& collisionData )
         speedB * speedB * massB
     ) * m_Restitution * rigidBodyB->GetRestitution();
 
+    // solve the quadratic formula to get the new velocities of the objects after the collision
     float a = massA * massA + massA * massB;
     float b = -2.0f * momentum * massA;
     float c = momentum * momentum - massB * energy;
 
-    float quadratic = (-b + std::sqrt( b * b - 4.0f * a * c )) / (a * a);
+    float newSpeedA = (-b + std::sqrt( b * b - 4.0f * a * c )) / (a * a);
 
-    velA += collisionData.normal * (quadratic - speedA);
+    float newSpeedB = (momentum - newSpeedA * massA) / massB;
 
-    float speedB2 = (momentum - quadratic * massA) / massB;
-    velB += collisionData.normal * (speedB2 - speedB);
+    // apply the new velocities in the axis of the collision normal
+    velA += collisionData.normal * (newSpeedA - speedA);
+    velB += collisionData.normal * (newSpeedB - speedB);
 
     m_Velocity = { velA.x, velA.y, 0.0f };
     rigidBodyB->SetVelocity( { velB.x, velB.y, 0.0f } );
@@ -185,9 +192,9 @@ void RigidBody::readRotationalVelocity(Stream data)
 
 /// @brief reads the inverseMass from json
 /// @param data the json data
-void RigidBody::readInverseMass(Stream data)
+void RigidBody::readMass(Stream data)
 {
-    m_InverseMass = data.Read<float>();
+    m_Mass = data.Read<float>();
 }
 
 /// @brief reads the restitution from json
@@ -209,7 +216,7 @@ ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
 	{ "Velocity"            , &readVelocity             },
 	{ "Acceleration"        , &readAcceleration         },
 	{ "RotationalVelocity"  , &readRotationalVelocity   },
-    { "InverseMass"         , &readInverseMass          },
+    { "InverseMass"         , &readMass          },
     { "Restitution"         , &readRestitution          },
     { "Friction"            , &readFriction             }
 };

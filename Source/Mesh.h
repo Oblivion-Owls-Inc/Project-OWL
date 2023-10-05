@@ -42,18 +42,20 @@ public:
     ///                     Provide rows and columns if this is for a spritesheet.
     void LoadSquare(int rows = 1, int columns = 1);
 
+
+
     /// @brief               Returns the UV size.
     /// @return              UV size (x = width, y = height)
-    glm::vec2 GetUVsize();
+    __inline glm::vec2 GetUVsize() const { return m_UVsize; }
 
     /// @brief               Returns the VAO index of this mesh. It can be used for rendering the mesh, or
     ///                      defining additional attributes.
     /// @return              UV size (x = width, y = height)
-    unsigned int GetVAO();
+    __inline unsigned int GetVAO() const { return m_VAO; }
 
     /// @brief               Returns the amount of vertices in this mesh.
     /// @return              vertex count
-    unsigned int GetVertCount();
+    __inline unsigned int GetVertexCount() const { return m_VertexCount; }
 
 
 

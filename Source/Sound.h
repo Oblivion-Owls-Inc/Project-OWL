@@ -10,6 +10,8 @@
 
 #include <fmod.hpp>
 
+#include "Stream.h"
+
 /// @brief Example System meant to be copy-pasted when creating new Systems
 class Sound
 {
@@ -17,6 +19,9 @@ class Sound
 //-----------------------------------------------------------------------------
 public: // constructor / destructor
 //-----------------------------------------------------------------------------
+
+    /// @brief default constructor
+    Sound();
 
     /// @brief  Constructs a new Sound
     /// @param  filepath    the filepath of the sound to load
@@ -40,16 +45,60 @@ public: // methods
         float pitch = 1.0f
     ) const;
 
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
     /// @brief  gets the length of this sound
     /// @return the length of this sound in seconds
     float GetLength() const;
+
+    /// @brief  gets whether this Sound is looping
+    /// @return whether this Sound is looping
+    __inline bool GetLooping() const { return m_IsLooping; }
+
+    /// @brief  gets this Sound's filepath
+    /// @return this Sound's filepath
+    __inline std::string const& GetFilepath() const { return m_Filepath; }
+
+//-----------------------------------------------------------------------------
+public: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief  gets the Sound read method map
+    /// @return the read method map
+    static __inline ReadMethodMap< Sound > const& GetReadMethods() { return s_ReadMethods; }
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief  reads filepath
+    /// @param  stream  the JSON data to read from
+    void readFilepath( Stream stream );
+
+    /// @brief  reads isLooping
+    /// @param  stream  the JSON data to read from
+    void readIsLooping( Stream stream );
+
+    /// @brief  runs after Sound has been loaded 
+    void afterLoad( Stream );
+
+    /// @brief  map of the SceneSystem read methods
+    static ReadMethodMap< Sound > const s_ReadMethods;
 
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
-    /// @brief  The actual FMOD::Sound
-    FMOD::Sound* sound;
+    /// @brief  the actual FMOD::Sound
+    FMOD::Sound* m_Sound;
+
+    /// @brief  whether this Sound is looping
+    bool m_IsLooping;
+
+    /// @brief  The filepath of this Sound
+    std::string m_Filepath;
 
 //-----------------------------------------------------------------------------
 };

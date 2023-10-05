@@ -1,18 +1,28 @@
 {
   "Assets": {
-    "textures": [],
-    "meshes": [],
-    "shaders": []
+    "Textures": {
+        "Turret": {
+            "Filepath": "Data/Textures/Turret.png",
+            "SheetDimensions": [ 19, 1 ]
+        },
+        "Ball5": {
+            "Filepath": "Data/Textures/Balls/Ball5.png"
+        },
+        "Ball2": {
+            "Filepath": "Data/Textures/Balls/Ball2.png"
+        },
+        "Ball1": {
+            "Filepath": "Data/Textures/Balls/Ball.png"
+        }
+    }
   },
   "Entities": [
     {
       "Name": "Turret",
       "Components": {
         "Sprite": {
-          "name": "Data/Textures/Turret.png",
-          "columns": 19,
-          "rows": 1,
-          "layer": 1
+          "Texture": "Turret",
+          "Layer": 1
         },
         "Animation": {
           "frameStart": 0,
@@ -32,10 +42,8 @@
       "Name": "Ball1",
       "Components": {
         "Sprite": {
-          "name": "Data/Textures/Balls/Ball5.png",
-          "columns": 1,
-          "rows": 1,
-          "layer": 1
+          "Texture": "Ball5",
+          "Layer": 1
         },
         "RigidBody": {
           "Velocity": [ 3, 1, 0 ]
@@ -55,10 +63,8 @@
       "Name": "Ball2",
       "Components": {
         "Sprite": {
-          "name": "Data/Textures/Balls/Ball2.png",
-          "columns": 1,
-          "rows": 1,
-          "layer": 1
+          "Texture": "Ball2",
+          "Layer": 1
         },
         "RigidBody": {
           "Velocity": [ -2, -1, 0 ]
@@ -77,10 +83,8 @@
       "Name": "Ball3",
       "Components": {
         "Sprite": {
-          "name": "Data/Textures/Balls/Ball.png",
-          "columns": 1,
-          "rows": 1,
-          "layer": 1
+          "Texture": "Ball1",
+          "Layer": 1
         },
         "RigidBody": {
           "Velocity": [ 1.5, 4.3, 0 ]

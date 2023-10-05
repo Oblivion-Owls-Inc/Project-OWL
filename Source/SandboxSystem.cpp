@@ -25,8 +25,7 @@
 
 Entity* soundEntity;
 Entity* Ranger;
-    static bool update = false;
-    static Sound* sound;
+static bool update = false;
 
 //-----------------------------------------------------------------------------
 // virtual override methods
@@ -35,7 +34,6 @@ Entity* Ranger;
     /// @brief  Gets called whenever a new Scene is loaded
     void SandboxSystem::OnSceneLoad()
     {
-        sound = new Sound( "Data/Sounds/test.mp3", false );
 
     }
 
@@ -45,10 +43,8 @@ Entity* Ranger;
         EntitySystem* instance = EntitySystem::GetInstance();
         update = true;
         soundEntity = instance->GetEntity("Sound");
-        soundEntity->GetComponent<AudioPlayer>()->SetSound(sound);
 
         Ranger = instance->GetEntity("Ranger");
-        float spriteSize = Ranger->GetComponent<Sprite>()->GetHeightMultiplier();
     }
 
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
@@ -84,7 +80,7 @@ Entity* Ranger;
     /// @brief  Gets called whenever a scene is exited
     void SandboxSystem::OnSceneExit()
     {
-        delete sound;
+        
     }
 
 //-----------------------------------------------------------------------------

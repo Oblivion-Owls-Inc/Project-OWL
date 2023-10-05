@@ -39,10 +39,10 @@ public: // accessors
 
     /// @brief  gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
-    Sound* GetSound();
+    Sound const* GetSound();
     /// @brief  sets the SOund that this AudioPlayer plays
     /// @param  sound   the sound that this AudioPlayer will play
-    void SetSound( Sound* sound );
+    void SetSound( Sound const* sound );
 
     /// @brief  gets whether this AudioPlayer is currently playing anything
     /// @return whether this AudioPlayer is currently playing anything
@@ -90,7 +90,7 @@ private: // members
     float m_PitchVariance;
 
     /// @brief  The sound that this AudioPlayer will play
-    Sound* m_Sound;
+    Sound const* m_Sound;
 
     /// @brief  The channel currently being used by this AudioPlayer
     FMOD::Channel* m_Channel;
@@ -101,6 +101,10 @@ private: // members
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
+
+    /// @brief  read the sound of this component from json
+    /// @param  data    the json data
+    void readSound( Stream data );
 
     /// @brief  read the volume of this component from json
     /// @param  data    the json data
