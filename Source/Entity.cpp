@@ -8,6 +8,7 @@
 /// @copyright © 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 #include "Entity.h"
+
 #include <algorithm>		  // std::sort
 #include "Component.h"		  // Type
 #include <cassert>			  // assert
@@ -55,12 +56,6 @@
         }
     }
 
-    /// @brief Flag an entity for destruction.
-    void Entity::Destroy()
-    {
-        m_IsDestroyed = true;
-    }
-
 //------------------------------------------------------------------------------
 // Public: accessors
 //------------------------------------------------------------------------------
@@ -78,35 +73,6 @@
 
         // If it does not, add it to the entity.
         m_Components[ component->GetType() ] = component;
-    }
-
-    /// @brief  gets all components in this Entity
-    /// @return the map of all components in this Entity
-    std::map< std::type_index, Component* >& Entity::getComponents()
-    {
-	    return m_Components;
-    }
-
-
-    /// @brief  Checks if an entity has been destroyed or not.
-    /// @return If the entity has been destroyed (bool).
-    bool Entity::IsDestroyed() const
-    {
-        return m_IsDestroyed;
-    }
-
-    /// @brief		Set the entity's name.
-    /// @param name Name of the entity.
-    void Entity::SetName( std::string const& name)
-    {
-		m_Name = name;
-    }
-
-    /// @brief  Get the name of the entity.
-    /// @return The name of the entity (string).
-    const std::string& Entity::GetName() const
-    {
-        return m_Name;
     }
 
 //------------------------------------------------------------------------------
@@ -154,7 +120,7 @@
 	    for ( auto& componentData : stream.GetObject() )
 	    {
 
-            // find or add the component to the map.
+            // [] operator finds the key in the map, or creates it if it doesn't exist yet.
             Component*& component = m_Components[ ComponentFactory::GetTypeId( componentData.name.GetString() ) ];
 
             // if the component doesn't exist yet, create and add it.

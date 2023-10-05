@@ -49,7 +49,7 @@ public: // methods
     void ExitComponents();
 
     /// @brief  flags this Entity for destruction
-    void Destroy();
+    __inline void Destroy() { m_IsDestroyed = true; }
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -65,27 +65,27 @@ public: // accessors
     template < typename ComponentType >
     ComponentType* GetComponent();
 
-    /// @brief  gets all components in this Entity
-    /// @return the map of all components in this Entity
-    std::map< std::type_index, Component* >& getComponents();
-
     /// @brief  gets all of the components derived from the specified type from this Entity
     /// @tparam ComponentType   the type of component to get
     /// @return a vector of all components of the specified type
     template < typename ComponentType >
     std::vector< ComponentType* > GetComponentsOfType();
 
+    /// @brief  gets all components in this Entity
+    /// @return the map of all components in this Entity
+    __inline std::map< std::type_index, Component* >& getComponents() { return m_Components; }
+
     /// @brief  gets whether this Entity is flagged for destruction
     /// @return whether this Entity is flagged for destruction
-    bool IsDestroyed() const;
+    __inline bool IsDestroyed() const { return m_IsDestroyed; }
 
     /// @brief  sets this Entity's name
     /// @param  name    the new name for this Entity
-    void SetName( std::string const& name );
+    __inline void SetName( std::string const& name ) { m_Name = name; }
 
     /// @brief  gets this Entity's name
     /// @return this Entity's name
-    const std::string& GetName() const;
+    __inline std::string const& GetName() const { return m_Name; }
 
 //-----------------------------------------------------------------------------
 private: // methods

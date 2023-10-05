@@ -44,8 +44,10 @@ private:
     static Component* Creator();
 
     template < typename ComponentType >
-    Component
+    static __inline std::pair< std::type_index, Component* (*)() > ComponentInfo() {
+        return { typeid( ComponentType ), Creator< ComponentType > };
+    }
 
-    static std::map< std::string, std::pair< std::type_index, Component* (*)() > > const s_componentTypes;
+    static std::map< std::string, std::pair< std::type_index, Component* (*)() > > const s_ComponentTypes;
 };
 
