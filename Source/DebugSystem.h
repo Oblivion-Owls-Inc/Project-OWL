@@ -10,11 +10,16 @@
 ///*****************************************************************/
 #pragma once
 #include "basics.h"
-#include "GUI.h"
 #include "System.h"
 #include <vector>
+#include "imgui.h"
+#include "imgui_impl_opengl3.h"
+#include "imgui_impl_glfw.h"
 #include <iostream>
 #include <sstream>
+
+/// @brief Forward declaration of the Entity class
+class Entity;
 
 /// @class DebugSystem
 /// @brief Debug System Class For Debugging
@@ -49,23 +54,24 @@ class DebugSystem : public System
         /// @details This function displays the Frames Per Second (FPS) in a debug window when called.
         void ToggleFPS();
 
-        void ToggleDev();
-
         /// @brief Print a formatted message to the screen
         /// @param format The format string, similar to printf
         /// @details This function allows you to print a formatted message to the screen using ImGui.
         void ScreenPrint(const char* format, ...);
 
-        void ShowDebugMenu();
+        /// @brief Gets Called by the Debug system to display debug information
+        virtual void DebugWindow() override;
+
+private:
+
+        void ShowDebugWindow();
+
+        void ShowFPSWindow();
+    
+        void ImguiStartFrame();
 
         void OnFixedUpdate() override;
-
-
-        // Unused functions (from the base class)
-        virtual void OnSceneLoad() override {}
-        virtual void OnSceneInit() override {}
-        virtual void OnSceneExit() override {}
-
+    
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
@@ -73,6 +79,10 @@ private: // reading
     /// @brief          reads whether to show the FPS window
     /// @param stream   the data to read from
     void readShowFpsWindow( Stream stream );
+
+    /// @brief Reads whether to show the debug window
+    /// @param stream  the data to read from
+    void readShowDebugWindow( Stream stream );
 
     /// @brief map containing read methods
     static ReadMethodMap< DebugSystem > const s_ReadMethods;
@@ -82,10 +92,9 @@ private: // reading
     virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
     private:
-        std::vector<GUI*> windows; /// @brief A collection of GUI windows
         GLFWwindow* _window; /// @brief The GLFW window handle
-        bool showFpsWindow; /// @brief Flag to control FPS display
-        bool showDevWindow; /// @brief Flag to control dev display
+        bool m_ShowFpsWindow; /// @brief Flag to control FPS display
+        bool m_ShowDebugWindow; /// @brief Flag to control dev display
         ImGuiIO* io; /// @brief Pointer to the ImGui Input/Output structure
 };
 

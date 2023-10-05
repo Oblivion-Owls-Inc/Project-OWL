@@ -1,0 +1,102 @@
+\hypertarget{classAssetLibrarySystem}{}\doxysection{Asset\+Library\+System$<$ T $>$ Class Template Reference}
+\label{classAssetLibrarySystem}\index{AssetLibrarySystem$<$ T $>$@{AssetLibrarySystem$<$ T $>$}}
+
+
+Asset \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when creating new Systems.  
+
+
+
+
+{\ttfamily \#include $<$Asset\+Library\+System.\+h$>$}
+
+
+
+Inheritance diagram for Asset\+Library\+System$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classAssetLibrarySystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Asset\+Library\+System$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classAssetLibrarySystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+T $\ast$ \mbox{\hyperlink{classAssetLibrarySystem_a91c3ee04fd7f1845ea78acc08c501fa8}{Get\+Asset}} (std\+::string const \&name)
+\begin{DoxyCompactList}\small\item\em Finds and returns an asset, builds if doesnt yet exist. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAssetLibrarySystem_a6ad4bdec0c244f3689267ce75592523c}{Library\+Flush}} ()
+\begin{DoxyCompactList}\small\item\em Flushes everything in the library. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAssetLibrarySystem_a468a7bc1be73349af972ae14ae596ebe}\label{classAssetLibrarySystem_a468a7bc1be73349af972ae14ae596ebe}} 
+{\bfseries Asset\+Library\+System} (\mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}} \&other)=delete
+\item 
+\mbox{\Hypertarget{classAssetLibrarySystem_a889aefe22ab516a716b4f33d24de88ef}\label{classAssetLibrarySystem_a889aefe22ab516a716b4f33d24de88ef}} 
+void {\bfseries operator=} (const \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}} $\ast$ \mbox{\hyperlink{classAssetLibrarySystem_abd5954051313dc662490b8d15d8aa813}{Get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em gets the instance of \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Asset\+Library\+System$<$ T $>$}
+
+Asset \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when creating new Systems. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAssetLibrarySystem_a91c3ee04fd7f1845ea78acc08c501fa8}\label{classAssetLibrarySystem_a91c3ee04fd7f1845ea78acc08c501fa8}} 
+\index{AssetLibrarySystem$<$ T $>$@{AssetLibrarySystem$<$ T $>$}!GetAsset@{GetAsset}}
+\index{GetAsset@{GetAsset}!AssetLibrarySystem$<$ T $>$@{AssetLibrarySystem$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{GetAsset()}{GetAsset()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T $\ast$ \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}}$<$ T $>$\+::Get\+Asset (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Finds and returns an asset, builds if doesnt yet exist. 
+
+\begin{DoxyReturn}{Returns}
+the constructed or found asset 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAssetLibrarySystem_abd5954051313dc662490b8d15d8aa813}\label{classAssetLibrarySystem_abd5954051313dc662490b8d15d8aa813}} 
+\index{AssetLibrarySystem$<$ T $>$@{AssetLibrarySystem$<$ T $>$}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!AssetLibrarySystem$<$ T $>$@{AssetLibrarySystem$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}}$<$ T $>$ $\ast$ \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}}$<$ T $>$\+::Get\+Instance\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+gets the instance of \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}} 
+
+\begin{DoxyReturn}{Returns}
+the instance of the \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAssetLibrarySystem_a6ad4bdec0c244f3689267ce75592523c}\label{classAssetLibrarySystem_a6ad4bdec0c244f3689267ce75592523c}} 
+\index{AssetLibrarySystem$<$ T $>$@{AssetLibrarySystem$<$ T $>$}!LibraryFlush@{LibraryFlush}}
+\index{LibraryFlush@{LibraryFlush}!AssetLibrarySystem$<$ T $>$@{AssetLibrarySystem$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{LibraryFlush()}{LibraryFlush()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}}$<$ T $>$\+::Library\+Flush}
+
+
+
+Flushes everything in the library. 
+
+Automatically called on scene exit 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{AssetLibrarySystem_8h}{Asset\+Library\+System.\+h}}\item 
+Source/\mbox{\hyperlink{AssetLibrarySystem_8cpp}{Asset\+Library\+System.\+cpp}}\end{DoxyCompactItemize}

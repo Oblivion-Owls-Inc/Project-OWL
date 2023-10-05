@@ -1,11 +1,32 @@
-#include "DebugSystem.h"
+///*****************************************************************/
+/// @file DebugSystem.cpp
+/// @author Jax Clayton (jax.clayton@digipen.edu)
+/// 
+/// @brief Debug System Class For Debugging
+/// @brief The Debug Console for verbose debugging
+/// 
+/// @details This class provides functionality for debugging 
+///          and using ImGui with other Systems.
+///*****************************************************************/
 
+///*****************************************************************/
+/// Includes
+///*****************************************************************/
+#include "DebugSystem.h"
 #include "PlatformSystem.h"
+#include "InputSystem.h"
 #include "implot.h"
-#include "GUI.h"
-//Chrono
+#include "Transform.h"
+#include "Engine.h"
+#include "EntitySystem.h"
 #include <chrono>
 
+
+
+///*****************************************************************/
+/// @struct ScrollingBuffer
+/// @brief A struct for storing a scrolling buffer of values. Used for FPS
+///*****************************************************************/
 template<typename T, size_t size>
 struct ScrollingBuffer
 {
@@ -26,30 +47,6 @@ struct ScrollingBuffer
     T* Data() { return &Values[0]; }
 };
 
-DebugSystem* DebugSystem::instance = nullptr;
-
-DebugSystem* DebugSystem::GetInstance()
-{
-
-    if (instance == nullptr) 
-    {
-        instance = new DebugSystem();
-    }
-
-    return instance;
-
-}
-
-
-/// @brief Initialize the DebugSystem.
-/// @param window The GLFW window handle (default is the current context).
-DebugSystem::DebugSystem() :
-    _window(nullptr),
-    io(nullptr),
-    showFpsWindow(false),
-    showDevWindow(false)
-{
-}
 
 /// @brief Perform initialization.
 void DebugSystem::OnInit()
@@ -59,6 +56,10 @@ void DebugSystem::OnInit()
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     io = &ImGui::GetIO();
+    ImFont* font = io->Fonts->AddFontDefault();
+    if (font) {
+        font->Scale = 1.3f;  // Increase the scale to make the font larger
+    }
     io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
     ImPlot::CreateContext();
     ImGui_ImplGlfw_InitForOpenGL(_window, true);
@@ -71,19 +72,11 @@ void DebugSystem::OnInit()
     // Stays at the Top
 }
 
-/// @brief PerDorm updates at a fixed time step.
-void DebugSystem::OnFixedUpdate()
-{
-    if (glfwGetKey(_window, GLFW_KEY_F1) == GLFW_PRESS)
-    {
-        ShowDebugMenu();
-    }
-}
-
 /// @brief Perform updates.
 /// @param dt The time elapsed since the last update.
 void DebugSystem::OnUpdate(float dt)
 {
+
     static const int count = 128;
     static float fpses[count] = {};
     static float elapsed = 0.0f;
@@ -103,87 +96,68 @@ void DebugSystem::OnUpdate(float dt)
         fps = 1.0f / dt;
         fpses[0] = fps;
     }
-    if (showFpsWindow)
-    {
-        static auto endTime = std::chrono::system_clock::now();
 
-        static int CurrentSample = 0;
-        static const int SampleSize = 3;
-        static double Samples[SampleSize] = { 0.0f }; //Value accumulation for sample calculation
-        static const int ScrollingBufferSize = 100; // total number of samples
-
-        static ScrollingBuffer<double, ScrollingBufferSize> FPS_Values; //scrolling buffer
-        auto startTime = std::chrono::system_clock::now();
-
-        std::chrono::duration<double> timeElapsed = startTime - endTime;
-
-        double fps = 1.0 / timeElapsed.count();
-        Samples[CurrentSample] = fps;
-        CurrentSample++;
-
-        if (CurrentSample == SampleSize)
-        {
-            double Adder = 0;
-            for (int i = 0; i < SampleSize; i++)
-            {
-                Adder += Samples[i];
-            }
-            auto newSample = Adder / SampleSize;
-            //std::cerr << newSample << std::endl;
-            FPS_Values.push(newSample);
-            CurrentSample = 0;
-        }
-        endTime = startTime;
+    if (m_ShowFpsWindow)
+        ShowFPSWindow();
+    
+    if (m_ShowDebugWindow)
+        DebugWindow();
 
 
-        static ImPlotAxisFlags axis_flags = ImPlotAxisFlags_NoDecorations 
-                                            | ImPlotAxisFlags_Lock;
-
-        static ImPlotFlags PlotFlags = ImPlotFlags_NoLegend;
-        if (ImPlot::BeginPlot("FPS", ImVec2(-1, 150), PlotFlags)) {
-            ImPlot::SetupAxes(nullptr, nullptr, axis_flags);
-            ImPlot::SetupAxisLimits(ImAxis_X1, 0, 100, ImGuiCond_None);
-            ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 200.0f, ImGuiCond_None);
-            ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
-
-            ImPlot::PlotLine("FPS", FPS_Values.Data(), ScrollingBufferSize, 1);
-            //ImPlot::PlotShaded("FPS", FPS_Values.Data(), nullptr, ScrollingBufferSize, 0, 0, sizeof(float));
-            //ImPlot::PlotLine("Mouse Y", &sdata2.Data[0].x, &sdata2.Data[0].y, sdata2.Data.size(), 0, sdata2.Offset, 2 * sizeof(float));
-            ImPlot::EndPlot();
-        }
-    }
-
-    for (GUI* Menu : windows)
-    {
-        Menu->Render();
-    }
-
-    // Stays at the Bottom
-    // Render ImGui
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-    auto& io = ImGui::GetIO();
-    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-    {
-        GLFWwindow* backup_current_context = glfwGetCurrentContext();
-        ImGui::UpdatePlatformWindows();
-        ImGui::RenderPlatformWindowsDefault();
-        glfwMakeContextCurrent(backup_current_context);
-    }
+    ImguiStartFrame();
+}
 
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
-    ImGui::NewFrame();
-    // Stays at the Top
+void DebugSystem::DebugWindow()
+{
+    ImGui::ShowDemoWindow();
+
+   ImGui::Begin("Debug Window");
+   for(auto& system : Engine::GetInstance()->GetSystems())
+   {
+       if (system == GetInstance())
+		   continue;
+
+      if (ImGui::TreeNodeEx(system->GetName().c_str()))
+	  {
+		  system->DebugWindow();
+        ImGui::TreePop();
+	  }
+   }
+   ImGui::End();
+}
+
+
+
+void DebugSystem::ShowDebugWindow()
+{
+    if (m_ShowDebugWindow)
+    {
+        m_ShowDebugWindow = false;
+    }
+	else
+	{
+		m_ShowDebugWindow = true;
+	}
+}
+/// @brief PerDorm updates at a fixed time step.
+void DebugSystem::OnFixedUpdate()
+{
+    
+
+    if (InputSystem::GetInstance()->GetKeyTriggered(GLFW_KEY_F1))
+        ShowDebugWindow();
+
+
+
 }
 
 /// @brief Perform cleanup and shutdown.
 void DebugSystem::OnExit()
 {
     ImGui::Render();
-    //ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-    //ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
@@ -192,27 +166,16 @@ void DebugSystem::OnExit()
 /// @brief Show the Frames Per Second (FPS) display.
 void DebugSystem::ToggleFPS()
 {
-    if (showFpsWindow)
+    if (m_ShowFpsWindow)
     {
-        showFpsWindow = false;
+        m_ShowFpsWindow = false;
     }
     else
     {
-        showFpsWindow = true;
+        m_ShowFpsWindow = true;
     }
 }
 
-void DebugSystem::ToggleDev()
-{
-    if (showDevWindow)
-    {
-		showDevWindow = false;
-	}
-    else
-    {
-		showDevWindow = true;
-	}
-}
 
 /// @brief Print a formatted message to the screen.
 /// @param format The format string, similar to printf.
@@ -224,26 +187,72 @@ void DebugSystem::ScreenPrint(const char* format, ...)
     va_end(args);
 }
 
-/// @brief Show or create the DebugMenu GUI window.
-void DebugSystem::ShowDebugMenu()
+
+void DebugSystem::ShowFPSWindow()
 {
-    for (GUI* Menu : windows)
+    static auto endTime = std::chrono::system_clock::now();
+
+    static int CurrentSample = 0;
+    static const int SampleSize = 3;
+    static double Samples[SampleSize] = { 0.0f }; //Value accumulation for sample calculation
+    static const int ScrollingBufferSize = 100; // total number of samples
+
+    static ScrollingBuffer<double, ScrollingBufferSize> FPS_Values; //scrolling buffer
+    auto startTime = std::chrono::system_clock::now();
+
+    std::chrono::duration<double> timeElapsed = startTime - endTime;
+
+    double fps = 1.0 / timeElapsed.count();
+    Samples[CurrentSample] = fps;
+    CurrentSample++;
+
+    if (CurrentSample == SampleSize)
     {
-        if (strcmp(Menu->GetWindowTitle(), "Debug Menu") == 0)
+        double Adder = 0;
+        for (int i = 0; i < SampleSize; i++)
         {
-            Menu->SetActive();
-            return;
+            Adder += Samples[i];
         }
-        else
-        {
-            DebugMenu* newWindow = new DebugMenu();
-            windows.push_back(newWindow);
-            return;
-        }
+        auto newSample = Adder / SampleSize;
+        //std::cerr << newSample << std::endl;
+        FPS_Values.push(newSample);
+        CurrentSample = 0;
+    }
+    endTime = startTime;
+
+
+    static ImPlotAxisFlags axis_flags = ImPlotAxisFlags_NoDecorations
+        | ImPlotAxisFlags_Lock;
+
+    static ImPlotFlags PlotFlags = ImPlotFlags_NoLegend;
+    if (ImPlot::BeginPlot("FPS", ImVec2(-1, 150), PlotFlags)) {
+        ImPlot::SetupAxes(nullptr, nullptr, axis_flags);
+        ImPlot::SetupAxisLimits(ImAxis_X1, 0, 100, ImGuiCond_None);
+        ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 200.0f, ImGuiCond_None);
+        ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
+
+        ImPlot::PlotLine("FPS", FPS_Values.Data(), ScrollingBufferSize, 1);
+        //ImPlot::PlotShaded("FPS", FPS_Values.Data(), nullptr, ScrollingBufferSize, 0, 0, sizeof(float));
+        //ImPlot::PlotLine("Mouse Y", &sdata2.Data[0].x, &sdata2.Data[0].y, sdata2.Data.size(), 0, sdata2.Offset, 2 * sizeof(float));
+        ImPlot::EndPlot();
+    }
+}
+
+void DebugSystem::ImguiStartFrame()
+{
+    auto& io = ImGui::GetIO();
+
+    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+    {
+        GLFWwindow* backup_current_context = glfwGetCurrentContext();
+        ImGui::UpdatePlatformWindows();
+        ImGui::RenderPlatformWindowsDefault();
+        glfwMakeContextCurrent(backup_current_context);
     }
 
-    DebugMenu* newWindow = new DebugMenu();
-    windows.push_back(newWindow);
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
 }
 
 //-----------------------------------------------------------------------------
@@ -254,12 +263,18 @@ void DebugSystem::ShowDebugMenu()
     /// @param stream   the data to read from
     void DebugSystem::readShowFpsWindow( Stream stream )
     {
-        showFpsWindow = stream.Read<bool>();
+        m_ShowFpsWindow = stream.Read<bool>();
+    }
+
+    void DebugSystem::readShowDebugWindow(Stream stream)
+    {
+		m_ShowDebugWindow = stream.Read<bool>();
     }
 
     /// @brief map containing read methods
     ReadMethodMap< DebugSystem > const DebugSystem::s_ReadMethods = {
-        { "ShowFpsWindow", &readShowFpsWindow }
+        { "ShowFpsWindow", &readShowFpsWindow },
+		{ "ShowDebugWindow", &readShowDebugWindow }
     };
 
     /// @brief  gets the map of read methods
@@ -268,3 +283,33 @@ void DebugSystem::ShowDebugMenu()
     {
         return (ReadMethodMap< System > const&)s_ReadMethods;
     }
+
+//-----------------------------------------------------------------------------
+// singleton stuff
+//-----------------------------------------------------------------------------
+
+    /// @brief Initialize the DebugSystem.
+    /// @param window The GLFW window handle (default is the current context).
+    DebugSystem::DebugSystem() :
+        System( "DebugSystem" ),
+        _window(nullptr),
+        io(nullptr),
+        m_ShowFpsWindow(false),
+        m_ShowDebugWindow(false)
+    {}
+
+    DebugSystem* DebugSystem::instance = nullptr;
+
+    DebugSystem* DebugSystem::GetInstance()
+    {
+
+        if (instance == nullptr) 
+        {
+            instance = new DebugSystem();
+        }
+
+        return instance;
+
+    }
+
+//-----------------------------------------------------------------------------

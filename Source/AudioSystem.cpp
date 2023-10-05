@@ -128,6 +128,7 @@
 
     /// @brief  Constructs the AudioSystem
     AudioSystem::AudioSystem() :
+        System( "AudioSystem" ),
         m_System( nullptr ),
         m_MaxChannels( 1024 )
     {}

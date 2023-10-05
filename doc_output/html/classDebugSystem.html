@@ -64,6 +64,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classDebugSystem-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -79,18 +80,26 @@ $(function() {
 Inheritance diagram for DebugSystem:</div>
 <div class="dyncontent">
 <div class="center"><img src="classDebugSystem__inherit__graph.png" border="0" usemap="#aDebugSystem_inherit__map" alt="Inheritance graph"/></div>
+<map name="aDebugSystem_inherit__map" id="aDebugSystem_inherit__map">
+<area shape="rect" title="Debug System Class For Debugging." alt="" coords="5,80,119,107"/>
+<area shape="rect" href="classSystem.html" title="Base class for all Systems." alt="" coords="27,5,97,32"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for DebugSystem:</div>
 <div class="dyncontent">
 <div class="center"><img src="classDebugSystem__coll__graph.png" border="0" usemap="#aDebugSystem_coll__map" alt="Collaboration graph"/></div>
+<map name="aDebugSystem_coll__map" id="aDebugSystem_coll__map">
+<area shape="rect" title="Debug System Class For Debugging." alt="" coords="5,81,119,108"/>
+<area shape="rect" href="classSystem.html" title="Base class for all Systems." alt="" coords="27,5,97,32"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3dd4d19afeda817bae160575ed447390"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a3dd4d19afeda817bae160575ed447390">DebugSystem</a> (GLFWwindow *window=glfwGetCurrentContext())</td></tr>
-<tr class="memdesc:a3dd4d19afeda817bae160575ed447390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>.  <a href="classDebugSystem.html#a3dd4d19afeda817bae160575ed447390">More...</a><br /></td></tr>
-<tr class="separator:a3dd4d19afeda817bae160575ed447390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8749ff034ec15916244bd9d1073f76b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a8749ff034ec15916244bd9d1073f76b6">DebugSystem</a> ()</td></tr>
+<tr class="memdesc:a8749ff034ec15916244bd9d1073f76b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>.  <a href="classDebugSystem.html#a8749ff034ec15916244bd9d1073f76b6">More...</a><br /></td></tr>
+<tr class="separator:a8749ff034ec15916244bd9d1073f76b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f04a27b70187956bf31a268ca12054f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a1f04a27b70187956bf31a268ca12054f">SetWindowHandle</a> (GLFWwindow *window)</td></tr>
 <tr class="memdesc:a1f04a27b70187956bf31a268ca12054f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the GLFW window handle.  <a href="classDebugSystem.html#a1f04a27b70187956bf31a268ca12054f">More...</a><br /></td></tr>
 <tr class="separator:a1f04a27b70187956bf31a268ca12054f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,29 +112,31 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a78f423fc5d74b31b09ce8490355d5eff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a78f423fc5d74b31b09ce8490355d5eff">OnExit</a> () override</td></tr>
 <tr class="memdesc:a78f423fc5d74b31b09ce8490355d5eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit and clean up the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>.  <a href="classDebugSystem.html#a78f423fc5d74b31b09ce8490355d5eff">More...</a><br /></td></tr>
 <tr class="separator:a78f423fc5d74b31b09ce8490355d5eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ef7b923f0690259e70e69a533afa7e4"><td class="memItemLeft" align="right" valign="top"><a id="a9ef7b923f0690259e70e69a533afa7e4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a9ef7b923f0690259e70e69a533afa7e4">OnFixedUpdate</a> () override</td></tr>
-<tr class="memdesc:a9ef7b923f0690259e70e69a533afa7e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform updates at a fixed time step. <br /></td></tr>
-<tr class="separator:a9ef7b923f0690259e70e69a533afa7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab225528599272d6606e46eb908d305a3"><td class="memItemLeft" align="right" valign="top"><a id="ab225528599272d6606e46eb908d305a3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#ab225528599272d6606e46eb908d305a3">OnSceneLoad</a> () override</td></tr>
-<tr class="memdesc:ab225528599272d6606e46eb908d305a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a scene is loaded. <br /></td></tr>
-<tr class="separator:ab225528599272d6606e46eb908d305a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35496f55a61a12df82257d78df887231"><td class="memItemLeft" align="right" valign="top"><a id="a35496f55a61a12df82257d78df887231"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a35496f55a61a12df82257d78df887231">OnSceneInit</a> () override</td></tr>
-<tr class="memdesc:a35496f55a61a12df82257d78df887231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a scene is initialized. <br /></td></tr>
-<tr class="separator:a35496f55a61a12df82257d78df887231"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad8fe04c79614333a219cfc148744fbd"><td class="memItemLeft" align="right" valign="top"><a id="aad8fe04c79614333a219cfc148744fbd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#aad8fe04c79614333a219cfc148744fbd">OnSceneExit</a> () override</td></tr>
-<tr class="memdesc:aad8fe04c79614333a219cfc148744fbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a scene is exited. <br /></td></tr>
-<tr class="separator:aad8fe04c79614333a219cfc148744fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae879cebdfe289045c82cb0fc33c48bbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#ae879cebdfe289045c82cb0fc33c48bbf">ToggleFPS</a> ()</td></tr>
+<tr class="memdesc:ae879cebdfe289045c82cb0fc33c48bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show the Frames Per Second (FPS) in a debug window.  <a href="classDebugSystem.html#ae879cebdfe289045c82cb0fc33c48bbf">More...</a><br /></td></tr>
+<tr class="separator:ae879cebdfe289045c82cb0fc33c48bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c63e065c5546a8e08b5722b7cd03ea5"><td class="memItemLeft" align="right" valign="top"><a id="a2c63e065c5546a8e08b5722b7cd03ea5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ToggleDev</b> ()</td></tr>
+<tr class="separator:a2c63e065c5546a8e08b5722b7cd03ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70154aabaec2704bfb644cb79e9b9033"><td class="memItemLeft" align="right" valign="top"><a id="a70154aabaec2704bfb644cb79e9b9033"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ToggleEntityList</b> ()</td></tr>
+<tr class="separator:a70154aabaec2704bfb644cb79e9b9033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a90310ccd94c0303b5594e9b94bc2a3dd">ScreenPrint</a> (const char *format,...)</td></tr>
+<tr class="memdesc:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a formatted message to the screen.  <a href="classDebugSystem.html#a90310ccd94c0303b5594e9b94bc2a3dd">More...</a><br /></td></tr>
+<tr class="separator:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classSystem"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classSystem')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classSystem.html">System</a></td></tr>
-<tr class="memitem:a730bbd1f35102d76d281e5d52afb33b9 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a730bbd1f35102d76d281e5d52afb33b9">getIndex</a> () const</td></tr>
-<tr class="memdesc:a730bbd1f35102d76d281e5d52afb33b9 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s index in the <a class="el" href="classEngine.html">Engine</a>.  <a href="classSystem.html#a730bbd1f35102d76d281e5d52afb33b9">More...</a><br /></td></tr>
-<tr class="separator:a730bbd1f35102d76d281e5d52afb33b9 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0d3af24f278882ec7f11b1e517650a6 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac0d3af24f278882ec7f11b1e517650a6">setIndex</a> (int index)</td></tr>
-<tr class="memdesc:ac0d3af24f278882ec7f11b1e517650a6 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s internal index value. SHOULD ONLY BE CALLED BY THE ENGINE.  <a href="classSystem.html#ac0d3af24f278882ec7f11b1e517650a6">More...</a><br /></td></tr>
-<tr class="separator:ac0d3af24f278882ec7f11b1e517650a6 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e0ba487646e1f447ef0453552d11868 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a9e0ba487646e1f447ef0453552d11868"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a9e0ba487646e1f447ef0453552d11868">OnSceneLoad</a> ()</td></tr>
+<tr class="memdesc:a9e0ba487646e1f447ef0453552d11868 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a new Scene is loaded. <br /></td></tr>
+<tr class="separator:a9e0ba487646e1f447ef0453552d11868 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a57235c9268a213e2944d83cffa3b4aae"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a> ()</td></tr>
+<tr class="memdesc:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
+<tr class="separator:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="af16d6771ccada096b14a8aa823f9d051"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">OnSceneExit</a> ()</td></tr>
+<tr class="memdesc:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
+<tr class="separator:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a6b75872f421f9ae9a720502d37223d49"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>System</b> (<a class="el" href="classSystem.html">System</a> &amp;other)=delete</td></tr>
 <tr class="separator:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,28 +146,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aa806a0749614d5c15bc73d2f8fb56035"><td class="memItemLeft" align="right" valign="top"><a id="aa806a0749614d5c15bc73d2f8fb56035"></a>
-static <a class="el" href="classDebugSystem.html">DebugSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getInstance</b> ()</td></tr>
-<tr class="separator:aa806a0749614d5c15bc73d2f8fb56035"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae879cebdfe289045c82cb0fc33c48bbf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#ae879cebdfe289045c82cb0fc33c48bbf">ToggleFPS</a> ()</td></tr>
-<tr class="memdesc:ae879cebdfe289045c82cb0fc33c48bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show the Frames Per Second (FPS) in a debug window.  <a href="classDebugSystem.html#ae879cebdfe289045c82cb0fc33c48bbf">More...</a><br /></td></tr>
-<tr class="separator:ae879cebdfe289045c82cb0fc33c48bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c63e065c5546a8e08b5722b7cd03ea5"><td class="memItemLeft" align="right" valign="top"><a id="a2c63e065c5546a8e08b5722b7cd03ea5"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>ToggleDev</b> ()</td></tr>
-<tr class="separator:a2c63e065c5546a8e08b5722b7cd03ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a90310ccd94c0303b5594e9b94bc2a3dd">ScreenPrint</a> (const char *format,...)</td></tr>
-<tr class="memdesc:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a formatted message to the screen.  <a href="classDebugSystem.html#a90310ccd94c0303b5594e9b94bc2a3dd">More...</a><br /></td></tr>
-<tr class="separator:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74681dbee9160aab7f7c279fdb087732"><td class="memItemLeft" align="right" valign="top"><a id="a74681dbee9160aab7f7c279fdb087732"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a74681dbee9160aab7f7c279fdb087732">ShowDebugMenu</a> ()</td></tr>
-<tr class="memdesc:a74681dbee9160aab7f7c279fdb087732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show or create the <a class="el" href="classDebugMenu.html" title="Debugging menu class derived from GUI.">DebugMenu</a> <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> window. <br /></td></tr>
-<tr class="separator:a74681dbee9160aab7f7c279fdb087732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43cb8abec1d0af08dc6fc5c219690a68"><td class="memItemLeft" align="right" valign="top"><a id="a43cb8abec1d0af08dc6fc5c219690a68"></a>
+static <a class="el" href="classDebugSystem.html">DebugSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetInstance</b> ()</td></tr>
+<tr class="separator:a43cb8abec1d0af08dc6fc5c219690a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a0c8288bc7aeca4c89d99cb2014880218"><td class="memItemLeft" align="right" valign="top"><a id="a0c8288bc7aeca4c89d99cb2014880218"></a>
+ImGuiTextBuffer&#160;</td><td class="memItemRight" valign="bottom"><b>logBuffer</b></td></tr>
+<tr class="separator:a0c8288bc7aeca4c89d99cb2014880218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a0c8288bc7aeca4c89d99cb2014880218"><td class="memItemLeft" align="right" valign="top"><a id="a0c8288bc7aeca4c89d99cb2014880218"></a>
-static ImGuiTextBuffer&#160;</td><td class="memItemRight" valign="bottom"><b>logBuffer</b></td></tr>
-<tr class="separator:a0c8288bc7aeca4c89d99cb2014880218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab20cb70f1bdbee543d150ddaa35fc82f"><td class="memItemLeft" align="right" valign="top"><a id="ab20cb70f1bdbee543d150ddaa35fc82f"></a>
 static <a class="el" href="classDebugSystem.html">DebugSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>instance</b> = nullptr</td></tr>
 <tr class="separator:ab20cb70f1bdbee543d150ddaa35fc82f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,17 +165,17 @@ static <a class="el" href="classDebugSystem.html">DebugSystem</a> *&#160;</td><t
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classSystem"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classSystem')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classSystem.html">System</a></td></tr>
-<tr class="memitem:ae317936c9bcf1374d61745572e0f2f8a inherit pro_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="ae317936c9bcf1374d61745572e0f2f8a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ae317936c9bcf1374d61745572e0f2f8a">System</a> ()</td></tr>
-<tr class="memdesc:ae317936c9bcf1374d61745572e0f2f8a inherit pro_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
-<tr class="separator:ae317936c9bcf1374d61745572e0f2f8a inherit pro_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ffb94a5a2db03014de0a8440f0cee3a inherit pro_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a7ffb94a5a2db03014de0a8440f0cee3a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a7ffb94a5a2db03014de0a8440f0cee3a">System</a> ()=default</td></tr>
+<tr class="memdesc:a7ffb94a5a2db03014de0a8440f0cee3a inherit pro_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
+<tr class="separator:a7ffb94a5a2db03014de0a8440f0cee3a inherit pro_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> Class For Debugging. </p>
 <p>This class provides functionality for debugging within your application. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3dd4d19afeda817bae160575ed447390"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3dd4d19afeda817bae160575ed447390">&#9670;&nbsp;</a></span>DebugSystem()</h2>
+<a id="a8749ff034ec15916244bd9d1073f76b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8749ff034ec15916244bd9d1073f76b6">&#9670;&nbsp;</a></span>DebugSystem()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -182,8 +183,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">DebugSystem::DebugSystem </td>
           <td>(</td>
-          <td class="paramtype">GLFWwindow *&#160;</td>
-          <td class="paramname"><em>window</em> = <code>glfwGetCurrentContext()</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -228,7 +228,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Exit and clean up the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>. </p>
 <p>Perform cleanup and shutdown. </p>
 
-<p>Implements <a class="el" href="classSystem.html#af9cbab3440ffa313478862afa8a787f1">System</a>.</p>
+<p>Reimplemented from <a class="el" href="classSystem.html#abaebe51536352d44fea4c0e44f449eb5">System</a>.</p>
 
 </div>
 </div>
@@ -258,7 +258,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Initialize the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>. </p>
 <p>Perform initialization. </p>
 
-<p>Implements <a class="el" href="classSystem.html#aaf0038a8ded8c50370b1c693f11ddc60">System</a>.</p>
+<p>Reimplemented from <a class="el" href="classSystem.html#ab2599efd39c3969bf4da3ded49574f28">System</a>.</p>
 
 </div>
 </div>
@@ -296,7 +296,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classSystem.html#afa0b86e4b56d71de03a702867aa951fb">System</a>.</p>
+<p>Reimplemented from <a class="el" href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">System</a>.</p>
 
 </div>
 </div>
@@ -305,9 +305,6 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void DebugSystem::ScreenPrint </td>
@@ -327,11 +324,6 @@ Additional Inherited Members</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Print a formatted message to the screen. </p>
@@ -390,9 +382,6 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void DebugSystem::ToggleFPS </td>
@@ -401,11 +390,6 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Show the Frames Per Second (FPS) in a debug window. </p>

@@ -59,9 +59,9 @@
     /// @brief Checks and handles all Collisions
     void CollisionSystem::checkCollisions()
     {
-        for ( unsigned i = 0; i < m_Colliders.size() - 1; ++i )
+        for ( int i = 0; i < (int)m_Colliders.size() - 1; ++i )
         {
-            for ( unsigned j = i + 1; j < m_Colliders.size(); ++j )
+            for ( int j = i + 1; j < m_Colliders.size(); ++j )
             {
                 CheckCollision( m_Colliders[i], m_Colliders[j] );
             }
@@ -187,7 +187,9 @@
 //-----------------------------------------------------------------------------
 
     /// @brief Constructs the CollisionSystem
-    CollisionSystem::CollisionSystem() {}
+    CollisionSystem::CollisionSystem() :
+        System( "CollisionSystem" )
+    {}
 
     /// @brief The singleton s_Instance of CollisionSystem
     CollisionSystem* CollisionSystem::s_Instance = nullptr;

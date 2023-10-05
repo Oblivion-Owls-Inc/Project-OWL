@@ -11,15 +11,29 @@ Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when cr
 
 
 
-Inheritance diagram for Scene\+System\+:
-% FIG 0
+Inheritance diagram for Scene\+System\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classSceneSystem__inherit__graph}
+\end{center}
+\end{figure}
 
 
-Collaboration diagram for Scene\+System\+:
-% FIG 1
+Collaboration diagram for Scene\+System\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classSceneSystem__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{classSceneSystem_a8c233be42192b69eb340e175fa1805c1}{Set\+Next\+Scene}} (std\+::string next\+Scene\+Name)
+\begin{DoxyCompactList}\small\item\em sets the next Scene to change to \end{DoxyCompactList}\item 
+std\+::string const  \& \mbox{\hyperlink{classSceneSystem_a56528509c11e234c5522dbcd1b88df10}{Get\+Scene\+Name}} () const
+\begin{DoxyCompactList}\small\item\em gets the name of the current scene \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSceneSystem_aad36109a4208c2a8a419f4c88178eee4}\label{classSceneSystem_aad36109a4208c2a8a419f4c88178eee4}} 
 {\bfseries Scene\+System} (\mbox{\hyperlink{classSceneSystem}{Scene\+System}} \&other)=delete
 \item 
@@ -29,7 +43,7 @@ void {\bfseries operator=} (const \mbox{\hyperlink{classSceneSystem}{Scene\+Syst
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{classSceneSystem}{Scene\+System}} $\ast$ \mbox{\hyperlink{classSceneSystem_a79e7cca5528251c6b857183f905dac1e}{get\+Instance}} (std\+::string const \&initial\+Scene\+Name=\char`\"{}\char`\"{})
+static \mbox{\hyperlink{classSceneSystem}{Scene\+System}} $\ast$ \mbox{\hyperlink{classSceneSystem_a5cf3edda7223b86b7d2d4fe151feecf4}{Get\+Instance}} ()
 \begin{DoxyCompactList}\small\item\em gets the instance of \mbox{\hyperlink{classSceneSystem}{Scene\+System}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -38,11 +52,11 @@ static \mbox{\hyperlink{classSceneSystem}{Scene\+System}} $\ast$ \mbox{\hyperlin
 Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when creating new Systems. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classSceneSystem_a79e7cca5528251c6b857183f905dac1e}\label{classSceneSystem_a79e7cca5528251c6b857183f905dac1e}} 
-\index{SceneSystem@{SceneSystem}!getInstance@{getInstance}}
-\index{getInstance@{getInstance}!SceneSystem@{SceneSystem}}
-\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classSceneSystem}{Scene\+System}} $\ast$ Scene\+System\+::get\+Instance (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{initial\+Scene\+Name = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\mbox{\Hypertarget{classSceneSystem_a5cf3edda7223b86b7d2d4fe151feecf4}\label{classSceneSystem_a5cf3edda7223b86b7d2d4fe151feecf4}} 
+\index{SceneSystem@{SceneSystem}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!SceneSystem@{SceneSystem}}
+\doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSceneSystem}{Scene\+System}} $\ast$ Scene\+System\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -51,6 +65,34 @@ gets the instance of \mbox{\hyperlink{classSceneSystem}{Scene\+System}}
 \begin{DoxyReturn}{Returns}
 the instance of the \mbox{\hyperlink{classSceneSystem}{Scene\+System}} 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classSceneSystem_a56528509c11e234c5522dbcd1b88df10}\label{classSceneSystem_a56528509c11e234c5522dbcd1b88df10}} 
+\index{SceneSystem@{SceneSystem}!GetSceneName@{GetSceneName}}
+\index{GetSceneName@{GetSceneName}!SceneSystem@{SceneSystem}}
+\doxysubsubsection{\texorpdfstring{GetSceneName()}{GetSceneName()}}
+{\footnotesize\ttfamily std\+::string const  \& Scene\+System\+::\+Get\+Scene\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the name of the current scene 
+
+\begin{DoxyReturn}{Returns}
+the name of the current scene 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSceneSystem_a8c233be42192b69eb340e175fa1805c1}\label{classSceneSystem_a8c233be42192b69eb340e175fa1805c1}} 
+\index{SceneSystem@{SceneSystem}!SetNextScene@{SetNextScene}}
+\index{SetNextScene@{SetNextScene}!SceneSystem@{SceneSystem}}
+\doxysubsubsection{\texorpdfstring{SetNextScene()}{SetNextScene()}}
+{\footnotesize\ttfamily void Scene\+System\+::\+Set\+Next\+Scene (\begin{DoxyParamCaption}\item[{std\+::string}]{next\+Scene\+Name\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+sets the next Scene to change to 
+
+
+\begin{DoxyParams}{Parameters}
+{\em next\+Scene\+Name} & the name of the next scene \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

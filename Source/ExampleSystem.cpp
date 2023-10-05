@@ -32,7 +32,9 @@
 //-----------------------------------------------------------------------------
 
     /// @brief  Constructs the ExampleSystem
-    ExampleSystem::ExampleSystem() {}
+    ExampleSystem::ExampleSystem() :
+        System( "ExampleSystem" )
+    {}
 
     /// @brief  The singleton instance of ExampleSystem
     ExampleSystem * ExampleSystem::s_Instance = nullptr;

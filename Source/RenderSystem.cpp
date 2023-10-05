@@ -170,7 +170,8 @@ Shader* RenderSystem::GetShader(const char* name) { return FindShader(name); }
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-RenderSystem::RenderSystem()
+RenderSystem::RenderSystem() :
+    System( "RenderSystem" )
 {}
 
 RenderSystem* RenderSystem::instance = nullptr;

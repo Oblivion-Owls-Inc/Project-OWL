@@ -8,13 +8,11 @@ static InputSystem * input = InputSystem::GetInstance();
 
 PlayerController::PlayerController(): Behavior(typeid(PlayerController))
 {
-	BehaviorSystem<PlayerController>::GetInstance()->AddBehavior(this);
 }
 
 PlayerController::PlayerController(const PlayerController& other)
 	             : Behavior(typeid(PlayerController))
 {
-	BehaviorSystem< PlayerController >::GetInstance()->RemoveBehavior(this);
 }
 
 PlayerController::~PlayerController()
@@ -24,6 +22,16 @@ PlayerController::~PlayerController()
 Component* PlayerController::Clone() const
 {
 	return nullptr;
+}
+
+void PlayerController::OnInit()
+{
+	BehaviorSystem<PlayerController>::GetInstance()->AddBehavior(this);
+}
+
+void PlayerController::OnExit()
+{
+	BehaviorSystem< PlayerController >::GetInstance()->RemoveBehavior(this);
 }
 
 void PlayerController::OnUpdate(float dt)
@@ -97,6 +105,7 @@ void PlayerController::OnUpdate(float dt)
 		m_Transform->SetTranslation(POS + velocityIncrement);
 	}
 }
+
 
 bool PlayerController::MoveRight()
 {

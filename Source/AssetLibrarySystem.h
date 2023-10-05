@@ -20,7 +20,9 @@ class BaseAssetLibrarySystem : public System
 public:
     virtual void LoadAssets( Stream data ) = 0;
 protected:
-    BaseAssetLibrarySystem() = default;
+    BaseAssetLibrarySystem( std::string const& name ) :
+        System( name )
+    {}
 public:
     // Prevent copying
     BaseAssetLibrarySystem( BaseAssetLibrarySystem& other ) = delete;

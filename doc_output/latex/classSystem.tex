@@ -11,35 +11,38 @@ Base class for all Systems.
 
 
 
-Inheritance diagram for System\+:
-% FIG 0
+Inheritance diagram for System\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classSystem__inherit__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSystem_aaf0038a8ded8c50370b1c693f11ddc60}\label{classSystem_aaf0038a8ded8c50370b1c693f11ddc60}} 
-virtual void \mbox{\hyperlink{classSystem_aaf0038a8ded8c50370b1c693f11ddc60}{On\+Init}} ()=0
+\mbox{\Hypertarget{classSystem_ab2599efd39c3969bf4da3ded49574f28}\label{classSystem_ab2599efd39c3969bf4da3ded49574f28}} 
+virtual void \mbox{\hyperlink{classSystem_ab2599efd39c3969bf4da3ded49574f28}{On\+Init}} ()
 \begin{DoxyCompactList}\small\item\em Gets called once when this \mbox{\hyperlink{classSystem}{System}} is added to the \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSystem_a6df85d6baf098f16b9c18a1614af39b5}\label{classSystem_a6df85d6baf098f16b9c18a1614af39b5}} 
-virtual void \mbox{\hyperlink{classSystem_a6df85d6baf098f16b9c18a1614af39b5}{On\+Fixed\+Update}} ()=0
+\mbox{\Hypertarget{classSystem_a024e9a831c897c60edb310224be27da8}\label{classSystem_a024e9a831c897c60edb310224be27da8}} 
+virtual void \mbox{\hyperlink{classSystem_a024e9a831c897c60edb310224be27da8}{On\+Fixed\+Update}} ()
 \begin{DoxyCompactList}\small\item\em Gets called once every simulation frame. Use this function for anything that affects the simulation. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classSystem_afa0b86e4b56d71de03a702867aa951fb}{On\+Update}} (float dt)=0
+virtual void \mbox{\hyperlink{classSystem_ac80e6b0f679fe9befb8d45014ee389cb}{On\+Update}} (float dt)
 \begin{DoxyCompactList}\small\item\em Gets called once every graphics frame. Do not use this function for anything that affects the simulation. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSystem_af9cbab3440ffa313478862afa8a787f1}\label{classSystem_af9cbab3440ffa313478862afa8a787f1}} 
-virtual void \mbox{\hyperlink{classSystem_af9cbab3440ffa313478862afa8a787f1}{On\+Exit}} ()=0
+\mbox{\Hypertarget{classSystem_abaebe51536352d44fea4c0e44f449eb5}\label{classSystem_abaebe51536352d44fea4c0e44f449eb5}} 
+virtual void \mbox{\hyperlink{classSystem_abaebe51536352d44fea4c0e44f449eb5}{On\+Exit}} ()
 \begin{DoxyCompactList}\small\item\em Gets called once before the \mbox{\hyperlink{classEngine}{Engine}} closes. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSystem_a9657db47b661f06fb2b96cdadea054aa}\label{classSystem_a9657db47b661f06fb2b96cdadea054aa}} 
-virtual void \mbox{\hyperlink{classSystem_a9657db47b661f06fb2b96cdadea054aa}{On\+Scene\+Load}} ()=0
+\mbox{\Hypertarget{classSystem_a9e0ba487646e1f447ef0453552d11868}\label{classSystem_a9e0ba487646e1f447ef0453552d11868}} 
+virtual void \mbox{\hyperlink{classSystem_a9e0ba487646e1f447ef0453552d11868}{On\+Scene\+Load}} ()
 \begin{DoxyCompactList}\small\item\em Gets called whenever a new Scene is loaded. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSystem_a3679c65e097e2c0e9b8b4cef86e7619d}\label{classSystem_a3679c65e097e2c0e9b8b4cef86e7619d}} 
-virtual void \mbox{\hyperlink{classSystem_a3679c65e097e2c0e9b8b4cef86e7619d}{On\+Scene\+Init}} ()=0
+\mbox{\Hypertarget{classSystem_a57235c9268a213e2944d83cffa3b4aae}\label{classSystem_a57235c9268a213e2944d83cffa3b4aae}} 
+virtual void \mbox{\hyperlink{classSystem_a57235c9268a213e2944d83cffa3b4aae}{On\+Scene\+Init}} ()
 \begin{DoxyCompactList}\small\item\em Gets called whenever a scene is initialized. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSystem_ae18f56cc6886ab7a6360ebd837326d7d}\label{classSystem_ae18f56cc6886ab7a6360ebd837326d7d}} 
-virtual void \mbox{\hyperlink{classSystem_ae18f56cc6886ab7a6360ebd837326d7d}{On\+Scene\+Exit}} ()=0
+\mbox{\Hypertarget{classSystem_af16d6771ccada096b14a8aa823f9d051}\label{classSystem_af16d6771ccada096b14a8aa823f9d051}} 
+virtual void \mbox{\hyperlink{classSystem_af16d6771ccada096b14a8aa823f9d051}{On\+Scene\+Exit}} ()
 \begin{DoxyCompactList}\small\item\em Gets called whenever a scene is exited. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classSystem_a730bbd1f35102d76d281e5d52afb33b9}{get\+Index}} () const
-\begin{DoxyCompactList}\small\item\em Gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s index in the \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classSystem_ac0d3af24f278882ec7f11b1e517650a6}{set\+Index}} (int index)
-\begin{DoxyCompactList}\small\item\em Sets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s internal index value. SHOULD ONLY BE CALLED BY THE ENGINE. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classSystem}{System}} $>$ const  \& \mbox{\hyperlink{classSystem_aebc272305374d8d3a285516de14d1f5e}{Get\+Read\+Methods}} () const =0
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSystem_a6b75872f421f9ae9a720502d37223d49}\label{classSystem_a6b75872f421f9ae9a720502d37223d49}} 
 {\bfseries System} (\mbox{\hyperlink{classSystem}{System}} \&other)=delete
 \item 
@@ -49,8 +52,8 @@ void {\bfseries operator=} (const \mbox{\hyperlink{classSystem}{System}} \&)=del
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSystem_ae317936c9bcf1374d61745572e0f2f8a}\label{classSystem_ae317936c9bcf1374d61745572e0f2f8a}} 
-\mbox{\hyperlink{classSystem_ae317936c9bcf1374d61745572e0f2f8a}{System}} ()
+\mbox{\Hypertarget{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a}\label{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a}} 
+\mbox{\hyperlink{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a}{System}} ()=default
 \begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classSystem}{System}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -58,24 +61,24 @@ void {\bfseries operator=} (const \mbox{\hyperlink{classSystem}{System}} \&)=del
 Base class for all Systems. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classSystem_a730bbd1f35102d76d281e5d52afb33b9}\label{classSystem_a730bbd1f35102d76d281e5d52afb33b9}} 
-\index{System@{System}!getIndex@{getIndex}}
-\index{getIndex@{getIndex}!System@{System}}
-\doxysubsubsection{\texorpdfstring{getIndex()}{getIndex()}}
-{\footnotesize\ttfamily int System\+::get\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+\mbox{\Hypertarget{classSystem_aebc272305374d8d3a285516de14d1f5e}\label{classSystem_aebc272305374d8d3a285516de14d1f5e}} 
+\index{System@{System}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!System@{System}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classSystem}{System}} $>$ const\& System\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
-Gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s index in the \mbox{\hyperlink{classEngine}{Engine}}. 
+gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
 
 \begin{DoxyReturn}{Returns}
-The index of this \mbox{\hyperlink{classSystem}{System}} in the \mbox{\hyperlink{classEngine}{Engine}} 
+this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSystem_afa0b86e4b56d71de03a702867aa951fb}\label{classSystem_afa0b86e4b56d71de03a702867aa951fb}} 
+\mbox{\Hypertarget{classSystem_ac80e6b0f679fe9befb8d45014ee389cb}\label{classSystem_ac80e6b0f679fe9befb8d45014ee389cb}} 
 \index{System@{System}!OnUpdate@{OnUpdate}}
 \index{OnUpdate@{OnUpdate}!System@{System}}
 \doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
-{\footnotesize\ttfamily virtual void System\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual void System\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -88,26 +91,10 @@ Gets called once every graphics frame. Do not use this function for anything tha
 \end{DoxyParams}
 
 
-Implemented in \mbox{\hyperlink{classDebugSystem_a2e42eb16bc553dcaf7fd3dc8feb764ea}{Debug\+System}}.
-
-\mbox{\Hypertarget{classSystem_ac0d3af24f278882ec7f11b1e517650a6}\label{classSystem_ac0d3af24f278882ec7f11b1e517650a6}} 
-\index{System@{System}!setIndex@{setIndex}}
-\index{setIndex@{setIndex}!System@{System}}
-\doxysubsubsection{\texorpdfstring{setIndex()}{setIndex()}}
-{\footnotesize\ttfamily void System\+::set\+Index (\begin{DoxyParamCaption}\item[{int}]{\+\_\+index }\end{DoxyParamCaption})}
+Reimplemented in \mbox{\hyperlink{classDebugSystem_a2e42eb16bc553dcaf7fd3dc8feb764ea}{Debug\+System}}.
 
 
 
-Sets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s internal index value. SHOULD ONLY BE CALLED BY THE ENGINE. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em index} & the index to be set to \\
-\hline
-\end{DoxyParams}
-
-
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Source/\mbox{\hyperlink{System_8h}{System.\+h}}\item 
-Source/\mbox{\hyperlink{System_8cpp}{System.\+cpp}}\end{DoxyCompactItemize}
+Source/\mbox{\hyperlink{System_8h}{System.\+h}}\end{DoxyCompactItemize}

@@ -21,8 +21,6 @@ MovementAI::MovementAI() :
     Behavior( typeid( MovementAI ) )
 {}
 
-MovementAI::~MovementAI() {}
-
 Component* MovementAI::Clone() const
 {
 	return new MovementAI( *this );
@@ -46,15 +44,9 @@ void MovementAI::OnExit()
 /// @param  collisionData   additional data about the collision
 void MovementAI::OnCollision( Entity* other, CollisionData const& collisionData )
 {
-    DebugConsole output2( *DebugSystem::GetInstance() );
-    output2 << GetParent()->GetName().c_str() <<":Collision Detected in Movement AI" << "\n";
 }
 
 void MovementAI::OnUpdate(float dt)
-{
-}
-
-void MovementAI::MovementAIUpdateRotation(float dt)
 {
 }
 
@@ -97,18 +89,7 @@ void MovementAI::OnFixedUpdate()
     ballTransform->SetTranslation(pos);
     ballRigidBody->SetVelocity(velocity);
 }
-void MovementAI::MovementAIUpdateVelocity(float dt)
-{
-}
 
-void MovementAI::MovementAIUpdateWeapon(float dt)
-{
-}
-
-
-void MovementAI::MovementAISpiral(float dt)
-{
-}
 
 /// @brief the map of read methods for this Component
 ReadMethodMap< MovementAI > const MovementAI::readMethods = {};
@@ -116,8 +97,4 @@ ReadMethodMap< MovementAI > const MovementAI::readMethods = {};
 ReadMethodMap<Component> const& MovementAI::GetReadMethods() const
 {
     return (ReadMethodMap< Component > const&)readMethods;
-}
-
-void MovementAI::MovementAISpawnBullet()
-{
 }

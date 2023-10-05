@@ -69,95 +69,131 @@ $(function() {
 <div class="title">Entity.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="Entity_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// Include Files:</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Component_8h.html">Component.h</a>&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span>  <span class="comment">// std::map</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span>  <span class="comment">// std::string</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span> <span class="comment">// std::ifstream</span></div>
+<a href="Entity_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// Include Files:</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Component_8h.html">Component.h</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span>        <span class="comment">// std::map</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span>     <span class="comment">// std::string</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span>     <span class="comment">// std::vector</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Stream_8h.html">Stream.h</a>&quot;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">// Forward References:</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// Class: Entity</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">// Class: Entity</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classEntity.html">   35</a></span>&#160;<span class="keyword">class </span><a class="code" href="classEntity.html">Entity</a></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">// Constructor</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classEntity.html#a980f368aa07ce358583982821533a54a">Entity</a>();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">// Copy Constructor</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classEntity.html#a980f368aa07ce358583982821533a54a">Entity</a>(<span class="keyword">const</span> <a class="code" href="classEntity.html">Entity</a>&amp; other);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// Destructor</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classEntity.html#adf6d3f7cb1b2ba029b6b048a395cc8ae">~Entity</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// Class: Entity</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classEntity.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="classEntity.html">Entity</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// Constructor</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classEntity.html#a980f368aa07ce358583982821533a54a">Entity</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// Destructor</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classEntity.html#adf6d3f7cb1b2ba029b6b048a395cc8ae">~Entity</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// Dynamically allocate a clone of an existing Entity.</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classEntity.html">Entity</a>* <a class="code" href="classEntity.html#afd6b24f8e760d7c4fd47be13a8cb512c">Clone</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Deallocate the memory associated with an Entity.</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEntity.html#aa03af3d49bbddca7d395597bd47f346f">Free</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">// Attach a component to an Entity.</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEntity.html#ab268e95b3801ab5660a5274f2028debe">Add</a>(<a class="code" href="classComponent.html">Component</a>* component);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEntity.html#ac270d5e306449e1e54fd8d99ff768d23">InitComponents</a>();</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Dynamically allocate a clone of an existing Entity.</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classEntity.html">Entity</a>* <a class="code" href="classEntity.html#afd6b24f8e760d7c4fd47be13a8cb512c">Clone</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// Deallocate the memory associated with an Entity.</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEntity.html#aa03af3d49bbddca7d395597bd47f346f">Free</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Read (and construct) the components associated with a entity.</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> Read(std::ifstream&amp; stream);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Attach a component to an Entity.</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEntity.html#ab268e95b3801ab5660a5274f2028debe">Add</a>(<a class="code" href="classComponent.html">Component</a>* component);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classComponent.html">Component</a>* HasComponent(std::type_index type);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// Type safe method for accessing the components.</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// template &lt;typename type&gt;</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// type* GetComponent(Component::TypeEnum typeID) { return static_cast&lt;type*&gt;(Get(typeID)); }</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// Flag an entity for destruction</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEntity.html#aa75151fc607686b42d27f8c3ba73143d">Destroy</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Checks whether an entity has been flagged for destruction.</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classEntity.html#ae6a2f4f2b4098583862dcfc55f80b57f">Destroyed</a>();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// Set the entity&#39;s name.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEntity.html#a3c907130862ad55702fa982808af62bf">SetName</a>(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// Get the name of the entity.</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">const</span> std::string&amp; <a class="code" href="classEntity.html#af86a55214d18327f5f7a99ed84e0275d">GetName</a>();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// Compare the entity&#39;s name with the specified name.</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classEntity.html#aca6fd909b270480b497d2da24d8a5277">IsNamed</a>(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEntity.html#abbe6b9eea9f1c5bab82b3e1c90cc6c2c">ExitComponents</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classComponent.html">Component</a>* <a class="code" href="classEntity.html#a6b23a568da0b1f8de1a977c64d2ea436">HasComponent</a>(std::type_index m_Type);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Type safe method for accessing the components.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">typename</span> ComponentType &gt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    ComponentType* GetComponent();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::map&lt;std::type_index, Component*&gt;&amp; getComponents();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">typename</span> ComponentType &gt;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    std::vector&lt; ComponentType* &gt; GetComponentsOfType();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Flag an entity for destruction</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEntity.html#aa75151fc607686b42d27f8c3ba73143d">Destroy</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// Checks whether an entity has been flagged for destruction.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classEntity.html#ac19129c3e981bb3765a7c6a5079d5913">IsDestroyed</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// Set the entity&#39;s name.</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEntity.html#a3c907130862ad55702fa982808af62bf">SetName</a>(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// Get the name of the entity.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">const</span> std::string&amp; <a class="code" href="classEntity.html#af86a55214d18327f5f7a99ed84e0275d">GetName</a>();</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// The name of the entity.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::string mName;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// Flag to indicate the entity is dead and should be destroyed</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">bool</span> mIsDestroyed;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// Container for attached components</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::map&lt;std::type_index, Component*&gt; components;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// Private Member Function</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">// Searches the components vector for a specific component</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// Component* BinarySearch(Component::TypeEnum type);</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">// Get the a specific componetfrom an entity</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">// Component* Get(Component::TypeEnum type);</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">static</span> __inline ReadMethodMap&lt; Entity &gt; <span class="keyword">const</span>&amp; GetReadMethods() { <span class="keywordflow">return</span> s_ReadMethods; }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">// The name of the entity.</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::string m_Name;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// Flag to indicate the entity is dead and should be destroyed</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">bool</span> m_IsDestroyed;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// Container for attached components</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::map&lt;std::type_index, Component*&gt; m_Components;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// Copy Constructor</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classEntity.html#a980f368aa07ce358583982821533a54a">Entity</a>(<span class="keyword">const</span> <a class="code" href="classEntity.html">Entity</a>&amp; other);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> ReadName(<a class="code" href="classStream.html">Stream</a> stream);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> ReadComponents(<a class="code" href="classStream.html">Stream</a> stream);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> ReadArchetype(<a class="code" href="classStream.html">Stream</a> stream);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt;Entity&gt; s_ReadMethods;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">// Type safe method for accessing the components.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">typename</span> ComponentType &gt;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;ComponentType* Entity::GetComponent()</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">auto</span> componentIterator = m_Components.find( <span class="keyword">typeid</span>( ComponentType ) );</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">if</span> ( componentIterator == m_Components.end() )</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>ComponentType*<span class="keyword">&gt;</span>((*componentIterator).second);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">typename</span> ComponentType &gt;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;std::vector&lt; ComponentType* &gt; Entity::GetComponentsOfType()</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    std::vector&lt;ComponentType*&gt; componentsOfType;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">for</span> ( <span class="keyword">auto</span> component : m_Components ) </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        ComponentType* casted = <span class="keyword">dynamic_cast&lt;</span>ComponentType*<span class="keyword">&gt;</span>( component.second );</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">if</span> ( casted != <span class="keyword">nullptr</span> )</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            componentsOfType.push_back( casted );</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">return</span> componentsOfType;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
 <div class="ttc" id="aComponent_8h_html"><div class="ttname"><a href="Component_8h.html">Component.h</a></div><div class="ttdoc">Virtual component header.</div></div>
+<div class="ttc" id="aStream_8h_html"><div class="ttname"><a href="Stream_8h.html">Stream.h</a></div><div class="ttdoc">JSON File reading/writing.</div></div>
 <div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:19</div></div>
-<div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:36</div></div>
-<div class="ttc" id="aclassEntity_html_a3c907130862ad55702fa982808af62bf"><div class="ttname"><a href="classEntity.html#a3c907130862ad55702fa982808af62bf">Entity::SetName</a></div><div class="ttdeci">void SetName(const std::string &amp;name)</div><div class="ttdoc">Set the entity's name.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:105</div></div>
-<div class="ttc" id="aclassEntity_html_a980f368aa07ce358583982821533a54a"><div class="ttname"><a href="classEntity.html#a980f368aa07ce358583982821533a54a">Entity::Entity</a></div><div class="ttdeci">Entity()</div><div class="ttdoc">Default constrcutor for the entity class.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:24</div></div>
-<div class="ttc" id="aclassEntity_html_aa03af3d49bbddca7d395597bd47f346f"><div class="ttname"><a href="classEntity.html#aa03af3d49bbddca7d395597bd47f346f">Entity::Free</a></div><div class="ttdeci">void Free()</div><div class="ttdoc">Deallocates all memory associated with an entity.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:52</div></div>
-<div class="ttc" id="aclassEntity_html_aa75151fc607686b42d27f8c3ba73143d"><div class="ttname"><a href="classEntity.html#aa75151fc607686b42d27f8c3ba73143d">Entity::Destroy</a></div><div class="ttdeci">void Destroy()</div><div class="ttdoc">Flag an entity for destruction.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:97</div></div>
-<div class="ttc" id="aclassEntity_html_ab268e95b3801ab5660a5274f2028debe"><div class="ttname"><a href="classEntity.html#ab268e95b3801ab5660a5274f2028debe">Entity::Add</a></div><div class="ttdeci">void Add(Component *component)</div><div class="ttdoc">Adds a component to an entity.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:70</div></div>
-<div class="ttc" id="aclassEntity_html_aca6fd909b270480b497d2da24d8a5277"><div class="ttname"><a href="classEntity.html#aca6fd909b270480b497d2da24d8a5277">Entity::IsNamed</a></div><div class="ttdeci">bool IsNamed(const std::string &amp;name)</div><div class="ttdoc">Compares an entity's name.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:121</div></div>
-<div class="ttc" id="aclassEntity_html_adf6d3f7cb1b2ba029b6b048a395cc8ae"><div class="ttname"><a href="classEntity.html#adf6d3f7cb1b2ba029b6b048a395cc8ae">Entity::~Entity</a></div><div class="ttdeci">~Entity()</div><div class="ttdoc">Destructor for the entity class.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:45</div></div>
-<div class="ttc" id="aclassEntity_html_ae6a2f4f2b4098583862dcfc55f80b57f"><div class="ttname"><a href="classEntity.html#ae6a2f4f2b4098583862dcfc55f80b57f">Entity::Destroyed</a></div><div class="ttdeci">bool Destroyed()</div><div class="ttdoc">Checks if an entity has been destroyed or not.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:101</div></div>
-<div class="ttc" id="aclassEntity_html_af86a55214d18327f5f7a99ed84e0275d"><div class="ttname"><a href="classEntity.html#af86a55214d18327f5f7a99ed84e0275d">Entity::GetName</a></div><div class="ttdeci">const std::string &amp; GetName()</div><div class="ttdoc">Get the name of the entity.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:116</div></div>
-<div class="ttc" id="aclassEntity_html_afd6b24f8e760d7c4fd47be13a8cb512c"><div class="ttname"><a href="classEntity.html#afd6b24f8e760d7c4fd47be13a8cb512c">Entity::Clone</a></div><div class="ttdeci">Entity * Clone() const</div><div class="ttdoc">Clones an entity.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:49</div></div>
+<div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:27</div></div>
+<div class="ttc" id="aclassEntity_html_a3c907130862ad55702fa982808af62bf"><div class="ttname"><a href="classEntity.html#a3c907130862ad55702fa982808af62bf">Entity::SetName</a></div><div class="ttdeci">void SetName(const std::string &amp;name)</div><div class="ttdoc">Set the entity's name.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:131</div></div>
+<div class="ttc" id="aclassEntity_html_a6b23a568da0b1f8de1a977c64d2ea436"><div class="ttname"><a href="classEntity.html#a6b23a568da0b1f8de1a977c64d2ea436">Entity::HasComponent</a></div><div class="ttdeci">Component * HasComponent(std::type_index m_Type)</div><div class="ttdoc">Checks if an entity has a specific component.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:105</div></div>
+<div class="ttc" id="aclassEntity_html_a980f368aa07ce358583982821533a54a"><div class="ttname"><a href="classEntity.html#a980f368aa07ce358583982821533a54a">Entity::Entity</a></div><div class="ttdeci">Entity()</div><div class="ttdoc">Default constrcutor for the entity class.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:22</div></div>
+<div class="ttc" id="aclassEntity_html_aa03af3d49bbddca7d395597bd47f346f"><div class="ttname"><a href="classEntity.html#aa03af3d49bbddca7d395597bd47f346f">Entity::Free</a></div><div class="ttdeci">void Free()</div><div class="ttdoc">Deallocates all memory associated with an entity.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:50</div></div>
+<div class="ttc" id="aclassEntity_html_aa75151fc607686b42d27f8c3ba73143d"><div class="ttname"><a href="classEntity.html#aa75151fc607686b42d27f8c3ba73143d">Entity::Destroy</a></div><div class="ttdeci">void Destroy()</div><div class="ttdoc">Flag an entity for destruction.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:123</div></div>
+<div class="ttc" id="aclassEntity_html_ab268e95b3801ab5660a5274f2028debe"><div class="ttname"><a href="classEntity.html#ab268e95b3801ab5660a5274f2028debe">Entity::Add</a></div><div class="ttdeci">void Add(Component *component)</div><div class="ttdoc">Adds a component to an entity.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:67</div></div>
+<div class="ttc" id="aclassEntity_html_abbe6b9eea9f1c5bab82b3e1c90cc6c2c"><div class="ttname"><a href="classEntity.html#abbe6b9eea9f1c5bab82b3e1c90cc6c2c">Entity::ExitComponents</a></div><div class="ttdeci">void ExitComponents()</div><div class="ttdoc">exits all components of this Entity</div><div class="ttdef"><b>Definition:</b> Entity.cpp:94</div></div>
+<div class="ttc" id="aclassEntity_html_ac19129c3e981bb3765a7c6a5079d5913"><div class="ttname"><a href="classEntity.html#ac19129c3e981bb3765a7c6a5079d5913">Entity::IsDestroyed</a></div><div class="ttdeci">bool IsDestroyed()</div><div class="ttdoc">Checks if an entity has been destroyed or not.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:127</div></div>
+<div class="ttc" id="aclassEntity_html_ac270d5e306449e1e54fd8d99ff768d23"><div class="ttname"><a href="classEntity.html#ac270d5e306449e1e54fd8d99ff768d23">Entity::InitComponents</a></div><div class="ttdeci">void InitComponents()</div><div class="ttdoc">Initializes all components of this Entity.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:84</div></div>
+<div class="ttc" id="aclassEntity_html_adf6d3f7cb1b2ba029b6b048a395cc8ae"><div class="ttname"><a href="classEntity.html#adf6d3f7cb1b2ba029b6b048a395cc8ae">Entity::~Entity</a></div><div class="ttdeci">~Entity()</div><div class="ttdoc">Destructor for the entity class.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:43</div></div>
+<div class="ttc" id="aclassEntity_html_af86a55214d18327f5f7a99ed84e0275d"><div class="ttname"><a href="classEntity.html#af86a55214d18327f5f7a99ed84e0275d">Entity::GetName</a></div><div class="ttdeci">const std::string &amp; GetName()</div><div class="ttdoc">Get the name of the entity.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:142</div></div>
+<div class="ttc" id="aclassEntity_html_afd6b24f8e760d7c4fd47be13a8cb512c"><div class="ttname"><a href="classEntity.html#afd6b24f8e760d7c4fd47be13a8cb512c">Entity::Clone</a></div><div class="ttdeci">Entity * Clone() const</div><div class="ttdoc">Clones an entity.</div><div class="ttdef"><b>Definition:</b> Entity.cpp:47</div></div>
+<div class="ttc" id="aclassStream_html"><div class="ttname"><a href="classStream.html">Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

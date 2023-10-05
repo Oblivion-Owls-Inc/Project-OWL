@@ -1,0 +1,6 @@
+<map id="Source/SceneSystem.h" name="Source/SceneSystem.h">
+<area shape="rect" id="node1" title="handles the process of resetting and changing scenes" alt="" coords="187,5,357,32"/>
+<area shape="rect" id="node2" href="$Engine_8cpp.html" title="Engine class." alt="" coords="5,80,147,107"/>
+<area shape="rect" id="node3" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="171,80,373,107"/>
+<area shape="rect" id="node4" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="398,80,583,107"/>
+</map>

@@ -1,0 +1,103 @@
+{
+  "Assets": {
+    "Textures": {
+        "Turret": {
+            "Filepath": "Data/Textures/Turret.png",
+            "SheetDimensions": [ 19, 1 ]
+        },
+        "Ball5": {
+            "Filepath": "Data/Textures/Balls/Ball5.png"
+        },
+        "Ball2": {
+            "Filepath": "Data/Textures/Balls/Ball2.png"
+        },
+        "Ball1": {
+            "Filepath": "Data/Textures/Balls/Ball.png"
+        }
+    }
+  },
+  "Entities": [
+    {
+      "Name": "Turret",
+      "Components": {
+        "Sprite": {
+          "Texture": "Turret",
+          "Layer": 1
+        },
+        "Animation": {
+          "frameStart": 0,
+          "frameCount": 19,
+          "frameDuration": 0.13,
+          "isLooping": false,
+          "isRunning": true
+        },
+        "Transform": {
+          "translation": [ -4, 1, 0 ],
+          "scale": [ 2, 2, 2 ]
+        },
+        "TurretBehavior": {}
+      }
+    },
+    {
+      "Name": "Ball1",
+      "Components": {
+        "Sprite": {
+          "Texture": "Ball5",
+          "Layer": 1
+        },
+        "RigidBody": {
+          "Velocity": [ 3, 1, 0 ]
+        },
+        "CircleCollider": {
+          "Radius": 0.5
+        },
+        "Transform": {
+          "translation": [ 0, 0, 0 ],
+          "scale": [ 1, 1, 1 ]
+        },
+        "MovementAI": {}
+
+      }
+    },
+    {
+      "Name": "Ball2",
+      "Components": {
+        "Sprite": {
+          "Texture": "Ball2",
+          "Layer": 1
+        },
+        "RigidBody": {
+          "Velocity": [ -2, -1, 0 ]
+        },
+        "CircleCollider": {
+          "Radius": 0.5
+        },
+        "Transform": {
+          "translation": [ 2, 1, 0 ],
+          "scale": [ 1, 1, 1 ]
+        },
+        "MovementAI": {}
+      }
+    },
+    {
+      "Name": "Ball3",
+      "Components": {
+        "Sprite": {
+          "Texture": "Ball1",
+          "Layer": 1
+        },
+        "RigidBody": {
+          "Velocity": [ 1.5, 4.3, 0 ]
+        },
+        "CircleCollider": {
+          "Radius": 0.5
+        },
+        "Transform": {
+          "translation": [ 1, 0, 0 ],
+          "scale": [ 1, 1, 1 ]
+        },
+        "MovementAI": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+\hypertarget{classTurretBehavior}{}\doxysection{Turret\+Behavior Class Reference}
+\label{classTurretBehavior}\index{TurretBehavior@{TurretBehavior}}
+
+
+Inheritance diagram for Turret\+Behavior\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classTurretBehavior__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Turret\+Behavior\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classTurretBehavior__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTurretBehavior_a965ad11a4ff4525a8d26146ecc71e155}\label{classTurretBehavior_a965ad11a4ff4525a8d26146ecc71e155}} 
+{\bfseries Turret\+Behavior} (const \mbox{\hyperlink{classTurretBehavior}{Turret\+Behavior}} \&other)
+\item 
+\mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classTurretBehavior_a44ea8cc9c629e688d46abe776bc11bd0}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em virtual component clone function \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTurretBehavior_a61cb0d08cb83b881c5e525b0928c9b30}{On\+Collision}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$other, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&collision\+Data)
+\begin{DoxyCompactList}\small\item\em Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTurretBehavior_a54e1edadc9ce7f28c98e7fb6f2a66359}{On\+Update}} (float dt) override
+\item 
+void \mbox{\hyperlink{classTurretBehavior_a8878953527baa87319cd1ee21d344881}{On\+Fixed\+Update}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTurretBehavior_a44ea8cc9c629e688d46abe776bc11bd0}\label{classTurretBehavior_a44ea8cc9c629e688d46abe776bc11bd0}} 
+\index{TurretBehavior@{TurretBehavior}!Clone@{Clone}}
+\index{Clone@{Clone}!TurretBehavior@{TurretBehavior}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Turret\+Behavior\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+virtual component clone function 
+
+\begin{DoxyReturn}{Returns}
+new clone of component 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}{Behavior}}.
+
+\mbox{\Hypertarget{classTurretBehavior_a61cb0d08cb83b881c5e525b0928c9b30}\label{classTurretBehavior_a61cb0d08cb83b881c5e525b0928c9b30}} 
+\index{TurretBehavior@{TurretBehavior}!OnCollision@{OnCollision}}
+\index{OnCollision@{OnCollision}!TurretBehavior@{TurretBehavior}}
+\doxysubsubsection{\texorpdfstring{OnCollision()}{OnCollision()}}
+{\footnotesize\ttfamily virtual void Turret\+Behavior\+::\+On\+Collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{other,  }\item[{\mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&}]{collision\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the entity that was collided with \\
+\hline
+{\em collision\+Data} & additional data about the collision \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}{Behavior}}.
+
+\mbox{\Hypertarget{classTurretBehavior_a8878953527baa87319cd1ee21d344881}\label{classTurretBehavior_a8878953527baa87319cd1ee21d344881}} 
+\index{TurretBehavior@{TurretBehavior}!OnFixedUpdate@{OnFixedUpdate}}
+\index{OnFixedUpdate@{OnFixedUpdate}!TurretBehavior@{TurretBehavior}}
+\doxysubsubsection{\texorpdfstring{OnFixedUpdate()}{OnFixedUpdate()}}
+{\footnotesize\ttfamily void Turret\+Behavior\+::\+On\+Fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Check if any entities are in range
+
+Caclulate the area of attack for the turret
+
+Check if the entity is in range
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+\mbox{\Hypertarget{classTurretBehavior_a54e1edadc9ce7f28c98e7fb6f2a66359}\label{classTurretBehavior_a54e1edadc9ce7f28c98e7fb6f2a66359}} 
+\index{TurretBehavior@{TurretBehavior}!OnUpdate@{OnUpdate}}
+\index{OnUpdate@{OnUpdate}!TurretBehavior@{TurretBehavior}}
+\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
+{\footnotesize\ttfamily void Turret\+Behavior\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Do Turret Debug Stuff
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Turret\+Behavior.\+h\item 
+Source/Turret\+Behavior.\+cpp\end{DoxyCompactItemize}

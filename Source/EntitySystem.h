@@ -45,6 +45,10 @@ public: // methods
     /// @param  entityData  the json object containing the entity data
     void LoadEntities( Stream entityArray );
 
+    /// @brief returns the container of all Entities in the Scene
+    /// @return the container of all Entities in the Scene
+    std::vector< Entity* > const& GetEntities() const { return m_Entities; }
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -52,6 +56,10 @@ private: // virtual override methods
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
+    /// @brief Gets Called on a Fixed Time Step
+    virtual void OnFixedUpdate() override;
+
+    virtual void DebugWindow() override;
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------

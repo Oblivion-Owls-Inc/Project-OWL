@@ -8,7 +8,9 @@
 
 
 /// @brief      Performs initial matrix calculations.
-void CameraSystem::OnInit() { recalcMatrices(); }
+void CameraSystem::OnInit() {
+    recalcMatrices();
+}
 
 
 /// @brief      Re-calculates matrices if there's been changes to camera state.
@@ -134,7 +136,11 @@ void CameraSystem::recalcMatrices()
 // singleton stuff
 //-----------------------------------------------------------------------------
 CameraSystem* CameraSystem::instance = nullptr;
-CameraSystem::CameraSystem() {}
+
+CameraSystem::CameraSystem() :
+    System( "CameraSystem" )
+{}
+
 CameraSystem* CameraSystem::GetInstance()
 {
     if (instance == nullptr)

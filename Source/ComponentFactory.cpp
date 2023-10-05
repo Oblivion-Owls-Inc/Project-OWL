@@ -22,6 +22,7 @@
 #include "AudioPlayer.h"
 #include "Animation.h"
 #include "TextSprite.h"
+#include "TurretBehavior.h"
 #include "PlayerController.h"
 
 /// @brief     Creates a component of a specified type.
@@ -55,4 +56,5 @@ std::map< std::string, std::pair< std::type_index, Component* (*)() > > const Co
     { "Animation"        , ComponentInfo<Animation>()        },
     { "TextSprite"       , ComponentInfo<TextSprite>()       },
     { "PlayerController" , ComponentInfo<PlayerController>() },
+    { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   }
 };

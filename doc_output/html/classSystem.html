@@ -78,43 +78,59 @@ $(function() {
 Inheritance diagram for System:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSystem__inherit__graph.png" border="0" usemap="#aSystem_inherit__map" alt="Inheritance graph"/></div>
+<map name="aSystem_inherit__map" id="aSystem_inherit__map">
+<area shape="rect" title="Base class for all Systems." alt="" coords="5,401,76,428"/>
+<area shape="rect" href="classAidanScene.html" title=" " alt="" coords="176,5,275,32"/>
+<area shape="rect" href="classAssetLibrarySystem.html" title="Asset System meant to be copy&#45;pasted when creating new Systems." alt="" coords="130,56,321,83"/>
+<area shape="rect" href="classAudioSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="171,107,279,133"/>
+<area shape="rect" href="classBehaviorSystem.html" title=" " alt="" coords="124,158,327,199"/>
+<area shape="rect" href="classCameraSystem.html" title="Handles camera and coordinate systems / spaces." alt="" coords="164,224,287,251"/>
+<area shape="rect" href="classCollisionSystem.html" title="responsible for checking collsisions between all Colliders" alt="" coords="162,275,289,301"/>
+<area shape="rect" href="classDebugSystem.html" title="Debug System Class For Debugging." alt="" coords="169,325,282,352"/>
+<area shape="rect" href="classEntitySystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="171,376,280,403"/>
+<area shape="rect" href="classExampleSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="161,427,289,453"/>
+<area shape="rect" href="classInputSystem.html" title=" " alt="" coords="173,477,277,504"/>
+<area shape="rect" href="classPlatformSystem.html" title=" " alt="" coords="162,528,289,555"/>
+<area shape="rect" href="classRenderSystem.html" title="Renders all of the Sprite components, keeps track of shaders." alt="" coords="167,579,284,605"/>
+<area shape="rect" href="classSandboxSystem.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="162,629,289,656"/>
+<area shape="rect" href="classSceneSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="170,680,281,707"/>
+<area shape="rect" href="classStubScene.html" title=" " alt="" coords="180,731,271,757"/>
+<area shape="rect" href="classXinoScene.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="180,781,271,808"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaf0038a8ded8c50370b1c693f11ddc60"><td class="memItemLeft" align="right" valign="top"><a id="aaf0038a8ded8c50370b1c693f11ddc60"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#aaf0038a8ded8c50370b1c693f11ddc60">OnInit</a> ()=0</td></tr>
-<tr class="memdesc:aaf0038a8ded8c50370b1c693f11ddc60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once when this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is added to the <a class="el" href="classEngine.html">Engine</a>. <br /></td></tr>
-<tr class="separator:aaf0038a8ded8c50370b1c693f11ddc60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6df85d6baf098f16b9c18a1614af39b5"><td class="memItemLeft" align="right" valign="top"><a id="a6df85d6baf098f16b9c18a1614af39b5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a6df85d6baf098f16b9c18a1614af39b5">OnFixedUpdate</a> ()=0</td></tr>
-<tr class="memdesc:a6df85d6baf098f16b9c18a1614af39b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every simulation frame. Use this function for anything that affects the simulation. <br /></td></tr>
-<tr class="separator:a6df85d6baf098f16b9c18a1614af39b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa0b86e4b56d71de03a702867aa951fb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#afa0b86e4b56d71de03a702867aa951fb">OnUpdate</a> (float dt)=0</td></tr>
-<tr class="memdesc:afa0b86e4b56d71de03a702867aa951fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every graphics frame. Do not use this function for anything that affects the simulation.  <a href="classSystem.html#afa0b86e4b56d71de03a702867aa951fb">More...</a><br /></td></tr>
-<tr class="separator:afa0b86e4b56d71de03a702867aa951fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9cbab3440ffa313478862afa8a787f1"><td class="memItemLeft" align="right" valign="top"><a id="af9cbab3440ffa313478862afa8a787f1"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af9cbab3440ffa313478862afa8a787f1">OnExit</a> ()=0</td></tr>
-<tr class="memdesc:af9cbab3440ffa313478862afa8a787f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once before the <a class="el" href="classEngine.html">Engine</a> closes. <br /></td></tr>
-<tr class="separator:af9cbab3440ffa313478862afa8a787f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9657db47b661f06fb2b96cdadea054aa"><td class="memItemLeft" align="right" valign="top"><a id="a9657db47b661f06fb2b96cdadea054aa"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a9657db47b661f06fb2b96cdadea054aa">OnSceneLoad</a> ()=0</td></tr>
-<tr class="memdesc:a9657db47b661f06fb2b96cdadea054aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a new Scene is loaded. <br /></td></tr>
-<tr class="separator:a9657db47b661f06fb2b96cdadea054aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3679c65e097e2c0e9b8b4cef86e7619d"><td class="memItemLeft" align="right" valign="top"><a id="a3679c65e097e2c0e9b8b4cef86e7619d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a3679c65e097e2c0e9b8b4cef86e7619d">OnSceneInit</a> ()=0</td></tr>
-<tr class="memdesc:a3679c65e097e2c0e9b8b4cef86e7619d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
-<tr class="separator:a3679c65e097e2c0e9b8b4cef86e7619d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae18f56cc6886ab7a6360ebd837326d7d"><td class="memItemLeft" align="right" valign="top"><a id="ae18f56cc6886ab7a6360ebd837326d7d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ae18f56cc6886ab7a6360ebd837326d7d">OnSceneExit</a> ()=0</td></tr>
-<tr class="memdesc:ae18f56cc6886ab7a6360ebd837326d7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
-<tr class="separator:ae18f56cc6886ab7a6360ebd837326d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a730bbd1f35102d76d281e5d52afb33b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a730bbd1f35102d76d281e5d52afb33b9">getIndex</a> () const</td></tr>
-<tr class="memdesc:a730bbd1f35102d76d281e5d52afb33b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s index in the <a class="el" href="classEngine.html">Engine</a>.  <a href="classSystem.html#a730bbd1f35102d76d281e5d52afb33b9">More...</a><br /></td></tr>
-<tr class="separator:a730bbd1f35102d76d281e5d52afb33b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0d3af24f278882ec7f11b1e517650a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac0d3af24f278882ec7f11b1e517650a6">setIndex</a> (int index)</td></tr>
-<tr class="memdesc:ac0d3af24f278882ec7f11b1e517650a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s internal index value. SHOULD ONLY BE CALLED BY THE ENGINE.  <a href="classSystem.html#ac0d3af24f278882ec7f11b1e517650a6">More...</a><br /></td></tr>
-<tr class="separator:ac0d3af24f278882ec7f11b1e517650a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2599efd39c3969bf4da3ded49574f28"><td class="memItemLeft" align="right" valign="top"><a id="ab2599efd39c3969bf4da3ded49574f28"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ab2599efd39c3969bf4da3ded49574f28">OnInit</a> ()</td></tr>
+<tr class="memdesc:ab2599efd39c3969bf4da3ded49574f28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once when this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is added to the <a class="el" href="classEngine.html">Engine</a>. <br /></td></tr>
+<tr class="separator:ab2599efd39c3969bf4da3ded49574f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a024e9a831c897c60edb310224be27da8"><td class="memItemLeft" align="right" valign="top"><a id="a024e9a831c897c60edb310224be27da8"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a024e9a831c897c60edb310224be27da8">OnFixedUpdate</a> ()</td></tr>
+<tr class="memdesc:a024e9a831c897c60edb310224be27da8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every simulation frame. Use this function for anything that affects the simulation. <br /></td></tr>
+<tr class="separator:a024e9a831c897c60edb310224be27da8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80e6b0f679fe9befb8d45014ee389cb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">OnUpdate</a> (float dt)</td></tr>
+<tr class="memdesc:ac80e6b0f679fe9befb8d45014ee389cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every graphics frame. Do not use this function for anything that affects the simulation.  <a href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">More...</a><br /></td></tr>
+<tr class="separator:ac80e6b0f679fe9befb8d45014ee389cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaebe51536352d44fea4c0e44f449eb5"><td class="memItemLeft" align="right" valign="top"><a id="abaebe51536352d44fea4c0e44f449eb5"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#abaebe51536352d44fea4c0e44f449eb5">OnExit</a> ()</td></tr>
+<tr class="memdesc:abaebe51536352d44fea4c0e44f449eb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once before the <a class="el" href="classEngine.html">Engine</a> closes. <br /></td></tr>
+<tr class="separator:abaebe51536352d44fea4c0e44f449eb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e0ba487646e1f447ef0453552d11868"><td class="memItemLeft" align="right" valign="top"><a id="a9e0ba487646e1f447ef0453552d11868"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a9e0ba487646e1f447ef0453552d11868">OnSceneLoad</a> ()</td></tr>
+<tr class="memdesc:a9e0ba487646e1f447ef0453552d11868"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a new Scene is loaded. <br /></td></tr>
+<tr class="separator:a9e0ba487646e1f447ef0453552d11868"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57235c9268a213e2944d83cffa3b4aae"><td class="memItemLeft" align="right" valign="top"><a id="a57235c9268a213e2944d83cffa3b4aae"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a> ()</td></tr>
+<tr class="memdesc:a57235c9268a213e2944d83cffa3b4aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
+<tr class="separator:a57235c9268a213e2944d83cffa3b4aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af16d6771ccada096b14a8aa823f9d051"><td class="memItemLeft" align="right" valign="top"><a id="af16d6771ccada096b14a8aa823f9d051"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">OnSceneExit</a> ()</td></tr>
+<tr class="memdesc:af16d6771ccada096b14a8aa823f9d051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
+<tr class="separator:af16d6771ccada096b14a8aa823f9d051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebc272305374d8d3a285516de14d1f5e"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classSystem.html">System</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#aebc272305374d8d3a285516de14d1f5e">GetReadMethods</a> () const =0</td></tr>
+<tr class="memdesc:aebc272305374d8d3a285516de14d1f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods  <a href="classSystem.html#aebc272305374d8d3a285516de14d1f5e">More...</a><br /></td></tr>
+<tr class="separator:aebc272305374d8d3a285516de14d1f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b75872f421f9ae9a720502d37223d49"><td class="memItemLeft" align="right" valign="top"><a id="a6b75872f421f9ae9a720502d37223d49"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>System</b> (<a class="el" href="classSystem.html">System</a> &amp;other)=delete</td></tr>
 <tr class="separator:a6b75872f421f9ae9a720502d37223d49"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,36 +140,44 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ae317936c9bcf1374d61745572e0f2f8a"><td class="memItemLeft" align="right" valign="top"><a id="ae317936c9bcf1374d61745572e0f2f8a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ae317936c9bcf1374d61745572e0f2f8a">System</a> ()</td></tr>
-<tr class="memdesc:ae317936c9bcf1374d61745572e0f2f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
-<tr class="separator:ae317936c9bcf1374d61745572e0f2f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ffb94a5a2db03014de0a8440f0cee3a"><td class="memItemLeft" align="right" valign="top"><a id="a7ffb94a5a2db03014de0a8440f0cee3a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a7ffb94a5a2db03014de0a8440f0cee3a">System</a> ()=default</td></tr>
+<tr class="memdesc:a7ffb94a5a2db03014de0a8440f0cee3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
+<tr class="separator:a7ffb94a5a2db03014de0a8440f0cee3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for all Systems. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a730bbd1f35102d76d281e5d52afb33b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a730bbd1f35102d76d281e5d52afb33b9">&#9670;&nbsp;</a></span>getIndex()</h2>
+<a id="aebc272305374d8d3a285516de14d1f5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebc272305374d8d3a285516de14d1f5e">&#9670;&nbsp;</a></span>GetReadMethods()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int System::getIndex </td>
+          <td class="memname">virtual ReadMethodMap&lt; <a class="el" href="classSystem.html">System</a> &gt; const&amp; System::GetReadMethods </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s index in the <a class="el" href="classEngine.html">Engine</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>The index of this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> in the <a class="el" href="classEngine.html">Engine</a> </dd></dl>
+<p>gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods </p>
+<dl class="section return"><dt>Returns</dt><dd>this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods </dd></dl>
 
 </div>
 </div>
-<a id="afa0b86e4b56d71de03a702867aa951fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa0b86e4b56d71de03a702867aa951fb">&#9670;&nbsp;</a></span>OnUpdate()</h2>
+<a id="ac80e6b0f679fe9befb8d45014ee389cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac80e6b0f679fe9befb8d45014ee389cb">&#9670;&nbsp;</a></span>OnUpdate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,7 +195,7 @@ Protected Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -184,39 +208,12 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classDebugSystem.html#a2e42eb16bc553dcaf7fd3dc8feb764ea">DebugSystem</a>.</p>
+<p>Reimplemented in <a class="el" href="classDebugSystem.html#a2e42eb16bc553dcaf7fd3dc8feb764ea">DebugSystem</a>.</p>
 
 </div>
 </div>
-<a id="ac0d3af24f278882ec7f11b1e517650a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0d3af24f278882ec7f11b1e517650a6">&#9670;&nbsp;</a></span>setIndex()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void System::setIndex </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>_index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s internal index value. SHOULD ONLY BE CALLED BY THE ENGINE. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>the index to be set to </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Source/<a class="el" href="System_8h_source.html">System.h</a></li>
-<li>Source/<a class="el" href="System_8cpp.html">System.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

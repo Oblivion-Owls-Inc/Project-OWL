@@ -1,0 +1,7 @@
+<map id="Source/PlatformSystem.h" name="Source/PlatformSystem.h">
+<area shape="rect" id="node1" title="Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit." alt="" coords="296,5,483,32"/>
+<area shape="rect" id="node2" href="$CameraSystem_8cpp.html" title="System that handles the camera and coordinate systems / spaces." alt="" coords="5,80,203,107"/>
+<area shape="rect" id="node3" href="$Engine_8cpp.html" title="Engine class." alt="" coords="227,80,368,107"/>
+<area shape="rect" id="node4" href="$InputSystem_8cpp.html" title="Input system, handles key and mouse inputs." alt="" coords="392,80,571,107"/>
+<area shape="rect" id="node5" href="$PlatformSystem_8cpp.html" title="Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit." alt="" coords="595,80,797,107"/>
+</map>

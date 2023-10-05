@@ -1,0 +1,115 @@
+\hypertarget{classMovementAI}{}\doxysection{Movement\+AI Class Reference}
+\label{classMovementAI}\index{MovementAI@{MovementAI}}
+
+
+{\ttfamily \#include $<$Movement\+AI.\+h$>$}
+
+
+
+Inheritance diagram for Movement\+AI\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=159pt]{classMovementAI__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Movement\+AI\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=159pt]{classMovementAI__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMovementAI_a30b27f5aa9e138a6ee3f0d4dd065be97}\label{classMovementAI_a30b27f5aa9e138a6ee3f0d4dd065be97}} 
+\mbox{\hyperlink{classMovementAI_a30b27f5aa9e138a6ee3f0d4dd065be97}{Movement\+AI}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classMovementAI}{Movement\+AI}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMovementAI_abb4719ade584a547d9350498a45cef80}\label{classMovementAI_abb4719ade584a547d9350498a45cef80}} 
+{\bfseries Movement\+AI} (const \mbox{\hyperlink{classMovementAI}{Movement\+AI}} \&other)
+\item 
+\mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classMovementAI_a99a8dd223cd4ff32c5fece1ae40b8074}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em Clones the \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMovementAI_a935e6d497957e3ed7675bf489db4e1f0}\label{classMovementAI_a935e6d497957e3ed7675bf489db4e1f0}} 
+void \mbox{\hyperlink{classMovementAI_a935e6d497957e3ed7675bf489db4e1f0}{On\+Fixed\+Update}} () override
+\begin{DoxyCompactList}\small\item\em Called on a Fixed Update. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMovementAI_a60a4d7690d454e2087ae3887c3795c78}\label{classMovementAI_a60a4d7690d454e2087ae3887c3795c78}} 
+virtual void \mbox{\hyperlink{classMovementAI_a60a4d7690d454e2087ae3887c3795c78}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is added to the Scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classMovementAI_a3a886dc5d99139dcef36f31a66955ecc}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is removed from the Scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classMovementAI_ac91447426e69e41710160c4cd72c7878}{On\+Collision}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$other, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&collision\+Data) override
+\begin{DoxyCompactList}\small\item\em Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\DoxyHorRuler{0}
+ \hypertarget{classMovementAI_autotoc_md1}{}\doxysubsubsection{@brief This is the Movement\+AI class this is a temporary class for the movement}\label{classMovementAI_autotoc_md1}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMovementAI_a99a8dd223cd4ff32c5fece1ae40b8074}\label{classMovementAI_a99a8dd223cd4ff32c5fece1ae40b8074}} 
+\index{MovementAI@{MovementAI}!Clone@{Clone}}
+\index{Clone@{Clone}!MovementAI@{MovementAI}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Movement\+AI\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Clones the \mbox{\hyperlink{classComponent}{Component}}. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to a newly allocated \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}{Behavior}}.
+
+\mbox{\Hypertarget{classMovementAI_ac91447426e69e41710160c4cd72c7878}\label{classMovementAI_ac91447426e69e41710160c4cd72c7878}} 
+\index{MovementAI@{MovementAI}!OnCollision@{OnCollision}}
+\index{OnCollision@{OnCollision}!MovementAI@{MovementAI}}
+\doxysubsubsection{\texorpdfstring{OnCollision()}{OnCollision()}}
+{\footnotesize\ttfamily void Movement\+AI\+::\+On\+Collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{other,  }\item[{\mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&}]{collision\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the entity that was collided with \\
+\hline
+{\em collision\+Data} & additional data about the collision \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}{Behavior}}.
+
+\mbox{\Hypertarget{classMovementAI_a3a886dc5d99139dcef36f31a66955ecc}\label{classMovementAI_a3a886dc5d99139dcef36f31a66955ecc}} 
+\index{MovementAI@{MovementAI}!OnExit@{OnExit}}
+\index{OnExit@{OnExit}!MovementAI@{MovementAI}}
+\doxysubsubsection{\texorpdfstring{OnExit()}{OnExit()}}
+{\footnotesize\ttfamily void Movement\+AI\+::\+On\+Exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is removed from the Scene 
+
+\begin{DoxyNote}{Note}
+NOT CALLED WHEN THE SCENE IS EXITED -\/ that should be handled by this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classSystem}{System}} 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classComponent_a71b5ee92e9f8e65ab040a80e149fc596}{Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Movement\+AI.\+h\item 
+Source/Movement\+AI.\+cpp\end{DoxyCompactItemize}

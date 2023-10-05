@@ -1,0 +1,232 @@
+\hypertarget{classAudioPlayer}{}\doxysection{Audio\+Player Class Reference}
+\label{classAudioPlayer}\index{AudioPlayer@{AudioPlayer}}
+
+
+\mbox{\hyperlink{classComponent}{Component}} that can play audio.  
+
+
+
+
+{\ttfamily \#include $<$Audio\+Player.\+h$>$}
+
+
+
+Inheritance diagram for Audio\+Player\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{classAudioPlayer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Audio\+Player\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{classAudioPlayer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAudioPlayer_aa0545193648596a6e541fe964f16f902}\label{classAudioPlayer_aa0545193648596a6e541fe964f16f902}} 
+\mbox{\hyperlink{classAudioPlayer_aa0545193648596a6e541fe964f16f902}{Audio\+Player}} ()
+\begin{DoxyCompactList}\small\item\em constructs a new \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAudioPlayer_af018bc4ec270bb864af7f3ec6bf4b158}\label{classAudioPlayer_af018bc4ec270bb864af7f3ec6bf4b158}} 
+\mbox{\hyperlink{classAudioPlayer_af018bc4ec270bb864af7f3ec6bf4b158}{$\sim$\+Audio\+Player}} ()=default
+\begin{DoxyCompactList}\small\item\em destroys this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAudioPlayer_afa3f18ddf21af783358873f91cec4783}\label{classAudioPlayer_afa3f18ddf21af783358873f91cec4783}} 
+void \mbox{\hyperlink{classAudioPlayer_afa3f18ddf21af783358873f91cec4783}{Play}} ()
+\begin{DoxyCompactList}\small\item\em Starts playing this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}}\textquotesingle{}s sound. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSound}{Sound}} $\ast$ \mbox{\hyperlink{classAudioPlayer_a3412e262df7176ba5151a3871af08e43}{Get\+Sound}} ()
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classSound}{Sound}} that this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} plays \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAudioPlayer_a574485c4618d3b4c5b1f79306273a8f1}{Set\+Sound}} (\mbox{\hyperlink{classSound}{Sound}} $\ast$sound)
+\begin{DoxyCompactList}\small\item\em sets the SOund that this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} plays \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAudioPlayer_aefd4c666f1e7898a2c93163042517c73}{Is\+Playing}} () const
+\begin{DoxyCompactList}\small\item\em gets whether this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} is currently playing anything \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAudioPlayer_a4267b14dab6625f3b819378d815990c5}{Is\+Paused}} () const
+\begin{DoxyCompactList}\small\item\em gets whether this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} is paused \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAudioPlayer_a6d418cf8a582e7c7df28c92d49b64819}{Set\+Paused}} (bool paused)
+\begin{DoxyCompactList}\small\item\em Sets whether or not this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} is paused. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classAudioPlayer_a03b81a84de841f2e77fc8e9790827724}{Get\+Volume}} () const
+\begin{DoxyCompactList}\small\item\em gets the volume of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAudioPlayer_a582bc147ff98718a59f1a93659a245fd}{Set\+Volume}} (float volume)
+\begin{DoxyCompactList}\small\item\em sets the volume of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classAudioPlayer_afe8f61ca594ed35546e4811921fb07ad}{Get\+Pitch\+Variance}} () const
+\begin{DoxyCompactList}\small\item\em sets the pitch variance of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAudioPlayer_a2679c433cdea4eed04c425d924670207}{Set\+Pitch\+Variance}} (float pitch\+Variance)
+\begin{DoxyCompactList}\small\item\em gets the pitch varaince of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classAudioPlayer_a152eb2c11aca2d3bcf30993ebdcab919}{Get\+Volume\+Variance}} () const
+\begin{DoxyCompactList}\small\item\em sets the volume variance of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAudioPlayer_a85116e08fcc7434f66af4a8394eaaddc}{Set\+Volume\+Variance}} (float volume\+Variance)
+\begin{DoxyCompactList}\small\item\em gets the volume varaince of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAudioPlayer_a0385b6c713c18f26ba73444087bb94cd}\label{classAudioPlayer_a0385b6c713c18f26ba73444087bb94cd}} 
+void {\bfseries operator=} (const \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classComponent}{Component}} that can play audio. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAudioPlayer_afe8f61ca594ed35546e4811921fb07ad}\label{classAudioPlayer_afe8f61ca594ed35546e4811921fb07ad}} 
+\index{AudioPlayer@{AudioPlayer}!GetPitchVariance@{GetPitchVariance}}
+\index{GetPitchVariance@{GetPitchVariance}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{GetPitchVariance()}{GetPitchVariance()}}
+{\footnotesize\ttfamily float Audio\+Player\+::\+Get\+Pitch\+Variance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+sets the pitch variance of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} 
+
+\begin{DoxyReturn}{Returns}
+the pitch variance of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAudioPlayer_a3412e262df7176ba5151a3871af08e43}\label{classAudioPlayer_a3412e262df7176ba5151a3871af08e43}} 
+\index{AudioPlayer@{AudioPlayer}!GetSound@{GetSound}}
+\index{GetSound@{GetSound}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{GetSound()}{GetSound()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSound}{Sound}} $\ast$ Audio\+Player\+::\+Get\+Sound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the \mbox{\hyperlink{classSound}{Sound}} that this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} plays 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classSound}{Sound}} that this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} plays 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAudioPlayer_a03b81a84de841f2e77fc8e9790827724}\label{classAudioPlayer_a03b81a84de841f2e77fc8e9790827724}} 
+\index{AudioPlayer@{AudioPlayer}!GetVolume@{GetVolume}}
+\index{GetVolume@{GetVolume}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{GetVolume()}{GetVolume()}}
+{\footnotesize\ttfamily float Audio\+Player\+::\+Get\+Volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the volume of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} 
+
+\begin{DoxyReturn}{Returns}
+the volume of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAudioPlayer_a152eb2c11aca2d3bcf30993ebdcab919}\label{classAudioPlayer_a152eb2c11aca2d3bcf30993ebdcab919}} 
+\index{AudioPlayer@{AudioPlayer}!GetVolumeVariance@{GetVolumeVariance}}
+\index{GetVolumeVariance@{GetVolumeVariance}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{GetVolumeVariance()}{GetVolumeVariance()}}
+{\footnotesize\ttfamily float Audio\+Player\+::\+Get\+Volume\+Variance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+sets the volume variance of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} 
+
+\begin{DoxyReturn}{Returns}
+the volume variance of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAudioPlayer_a4267b14dab6625f3b819378d815990c5}\label{classAudioPlayer_a4267b14dab6625f3b819378d815990c5}} 
+\index{AudioPlayer@{AudioPlayer}!IsPaused@{IsPaused}}
+\index{IsPaused@{IsPaused}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{IsPaused()}{IsPaused()}}
+{\footnotesize\ttfamily bool Audio\+Player\+::\+Is\+Paused (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets whether this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} is paused 
+
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} is paused 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAudioPlayer_aefd4c666f1e7898a2c93163042517c73}\label{classAudioPlayer_aefd4c666f1e7898a2c93163042517c73}} 
+\index{AudioPlayer@{AudioPlayer}!IsPlaying@{IsPlaying}}
+\index{IsPlaying@{IsPlaying}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{IsPlaying()}{IsPlaying()}}
+{\footnotesize\ttfamily bool Audio\+Player\+::\+Is\+Playing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets whether this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} is currently playing anything 
+
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} is currently playing anything 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAudioPlayer_a6d418cf8a582e7c7df28c92d49b64819}\label{classAudioPlayer_a6d418cf8a582e7c7df28c92d49b64819}} 
+\index{AudioPlayer@{AudioPlayer}!SetPaused@{SetPaused}}
+\index{SetPaused@{SetPaused}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{SetPaused()}{SetPaused()}}
+{\footnotesize\ttfamily void Audio\+Player\+::\+Set\+Paused (\begin{DoxyParamCaption}\item[{bool}]{paused }\end{DoxyParamCaption})}
+
+
+
+Sets whether or not this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} is paused. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em paused} & whether to pause or unpause the \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAudioPlayer_a2679c433cdea4eed04c425d924670207}\label{classAudioPlayer_a2679c433cdea4eed04c425d924670207}} 
+\index{AudioPlayer@{AudioPlayer}!SetPitchVariance@{SetPitchVariance}}
+\index{SetPitchVariance@{SetPitchVariance}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{SetPitchVariance()}{SetPitchVariance()}}
+{\footnotesize\ttfamily void Audio\+Player\+::\+Set\+Pitch\+Variance (\begin{DoxyParamCaption}\item[{float}]{\+\_\+pitch\+Variance }\end{DoxyParamCaption})}
+
+
+
+gets the pitch varaince of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pitch\+Variance} & the pitch varaince for this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAudioPlayer_a574485c4618d3b4c5b1f79306273a8f1}\label{classAudioPlayer_a574485c4618d3b4c5b1f79306273a8f1}} 
+\index{AudioPlayer@{AudioPlayer}!SetSound@{SetSound}}
+\index{SetSound@{SetSound}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{SetSound()}{SetSound()}}
+{\footnotesize\ttfamily void Audio\+Player\+::\+Set\+Sound (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSound}{Sound}} $\ast$}]{\+\_\+sound }\end{DoxyParamCaption})}
+
+
+
+sets the SOund that this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} plays 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sound} & the sound that this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} will play \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAudioPlayer_a582bc147ff98718a59f1a93659a245fd}\label{classAudioPlayer_a582bc147ff98718a59f1a93659a245fd}} 
+\index{AudioPlayer@{AudioPlayer}!SetVolume@{SetVolume}}
+\index{SetVolume@{SetVolume}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{SetVolume()}{SetVolume()}}
+{\footnotesize\ttfamily void Audio\+Player\+::\+Set\+Volume (\begin{DoxyParamCaption}\item[{float}]{\+\_\+volume }\end{DoxyParamCaption})}
+
+
+
+sets the volume of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em volume} & the volume for this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAudioPlayer_a85116e08fcc7434f66af4a8394eaaddc}\label{classAudioPlayer_a85116e08fcc7434f66af4a8394eaaddc}} 
+\index{AudioPlayer@{AudioPlayer}!SetVolumeVariance@{SetVolumeVariance}}
+\index{SetVolumeVariance@{SetVolumeVariance}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{SetVolumeVariance()}{SetVolumeVariance()}}
+{\footnotesize\ttfamily void Audio\+Player\+::\+Set\+Volume\+Variance (\begin{DoxyParamCaption}\item[{float}]{\+\_\+volume\+Variance }\end{DoxyParamCaption})}
+
+
+
+gets the volume varaince of this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em volume\+Variance} & the volume varaince for this \mbox{\hyperlink{classAudioPlayer}{Audio\+Player}} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{AudioPlayer_8h}{Audio\+Player.\+h}}\item 
+Source/\mbox{\hyperlink{AudioPlayer_8cpp}{Audio\+Player.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,18 @@
+<map id="Source/Transform.h" name="Source/Transform.h">
+<area shape="rect" id="node1" title="Transform." alt="" coords="780,5,927,32"/>
+<area shape="rect" id="node2" href="$Collider_8h.html" title="Base component for detecting collisions." alt="" coords="289,80,420,107"/>
+<area shape="rect" id="node5" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="438,229,655,256"/>
+<area shape="rect" id="node9" href="$MovementAI_8h_source.html" title=" " alt="" coords="679,155,844,181"/>
+<area shape="rect" id="node12" href="$RenderSystem_8cpp.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="824,80,1016,107"/>
+<area shape="rect" id="node13" href="$RigidBody_8h_source.html" title=" " alt="" coords="603,80,749,107"/>
+<area shape="rect" id="node14" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="1041,80,1175,107"/>
+<area shape="rect" id="node15" href="$TextSprite_8cpp.html" title="A version of Sprite specifically for rendering text. Uses instancing to draw multiple letters simulta..." alt="" coords="1200,80,1363,107"/>
+<area shape="rect" id="node16" href="$Transform_8cpp.html" title="Function definitions for the Transform class." alt="" coords="1387,80,1549,107"/>
+<area shape="rect" id="node3" href="$CircleCollider_8h.html" title="Circle&#45;shaped collider." alt="" coords="176,155,344,181"/>
+<area shape="rect" id="node7" href="$Collider_8cpp.html" title="Base component for detecting collisions." alt="" coords="5,155,152,181"/>
+<area shape="rect" id="node8" href="$LineCollider_8h_source.html" title=" " alt="" coords="369,155,527,181"/>
+<area shape="rect" id="node4" href="$CircleCollider_8cpp.html" title="Circle&#45;shaped collider." alt="" coords="41,229,223,256"/>
+<area shape="rect" id="node6" href="$XinoScene_8cpp.html" title=" " alt="" coords="248,229,413,256"/>
+<area shape="rect" id="node10" href="$Engine_8cpp.html" title="Engine class." alt="" coords="907,229,1048,256"/>
+<area shape="rect" id="node11" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="680,229,883,256"/>
+</map>

@@ -125,7 +125,9 @@
 
     /// @brief constructs the AssetLibrarySystem
     template< class AssetType >
-    AssetLibrarySystem< AssetType >::AssetLibrarySystem() {}
+    AssetLibrarySystem< AssetType >::AssetLibrarySystem() :
+        BaseAssetLibrarySystem( std::string( "AssetLibrary<" ) + typeid( AssetType ).name() + ">" )
+    {}
 
     /// @brief the singleton instance of AssetLibrarySystem
     template< class AssetType >

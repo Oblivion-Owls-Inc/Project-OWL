@@ -147,6 +147,12 @@
     <Filter Include="Game\Behaviors\PlayerController">
       <UniqueIdentifier>{b63ef8e3-7039-4e9e-b113-413ff8380423}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\Pools">
+      <UniqueIdentifier>{f2e1e11a-6966-48bf-90af-219074be36e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\TurretBehavior">
+      <UniqueIdentifier>{e523f30f-0b00-4ea5-b75b-339074d48b3b}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Game\Behaviors\Movement Behavior">
       <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
     </Filter>
@@ -187,9 +193,6 @@
     </ClCompile>
     <ClCompile Include="Source\Entity.cpp">
       <Filter>Engine\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GUI.cpp">
-      <Filter>Engine\Systems\DebugSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\Entity.cpp">
       <Filter>Engine\Systems\Entity</Filter>
@@ -341,6 +344,15 @@
     <ClCompile Include="Source\Lua.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\TurretBehavior.cpp">
+      <Filter>Engine\Entity\Component\Behavior\TurretBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Pool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FollowingBehavior.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -387,9 +399,6 @@
     </ClInclude>
     <ClInclude Include="Source\Component.h">
       <Filter>Engine\Entity\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GUI.h">
-      <Filter>Engine\Systems\DebugSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\Component.h">
       <Filter>Engine\Entities\Components</Filter>
@@ -535,6 +544,18 @@
     <ClInclude Include="Source\CollisionData.h">
       <Filter>Engine\Systems\CollisonSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Source\AidanScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TurretBehavior.h">
+      <Filter>Engine\Entity\Component\Behavior\TurretBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Pool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FollowingBehavior.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -556,6 +577,9 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\AidanScene.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\TurretScene.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>

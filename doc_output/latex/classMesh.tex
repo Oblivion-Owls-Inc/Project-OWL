@@ -1,0 +1,168 @@
+\hypertarget{classMesh}{}\doxysection{Mesh Class Reference}
+\label{classMesh}\index{Mesh@{Mesh}}
+
+
+Stores data needed to render a basic mesh.  
+
+
+
+
+{\ttfamily \#include $<$Mesh.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMesh_1_1Vertex}{Vertex}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structMesh_1_1Vertex}{Vertex}} struct -\/ defines data that will be loaded into buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMesh_a5f6ef1000561a3b70ba31afec1a02500}{Mesh}} (bool init\+\_\+square=false, int rows=1, int columns=1)
+\begin{DoxyCompactList}\small\item\em Initializes mesh to square, or to nothing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMesh_a7e68ec6c32108ed7d4c4739af46b2561}{Mesh}} (std\+::vector$<$ \mbox{\hyperlink{structMesh_1_1Vertex}{Vertex}} $>$ vertices)
+\begin{DoxyCompactList}\small\item\em Constructor\+: inits mesh with given vertices. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classMesh_a5efe4da1a4c0971cfb037bd70304c303}{$\sim$\+Mesh}} ()
+\begin{DoxyCompactList}\small\item\em Destructor\+: cleans up memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMesh_a72c6c70d0a5146317d0fa11d9dc33da0}{Load\+Vertices}} (std\+::vector$<$ \mbox{\hyperlink{structMesh_1_1Vertex}{Vertex}} $>$ vertices)
+\begin{DoxyCompactList}\small\item\em Loads provided vertices to initialize (or change) the mesh. Provide rows and columns if this is for a spritesheet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMesh_a0d3023d68fcf77eef8220379ff4c21c2}{Load\+Square}} (int rows=1, int columns=1)
+\begin{DoxyCompactList}\small\item\em Loads a list of vertices that make a centered unit square. Provide rows and columns if this is for a spritesheet. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{classMesh_a53d7c42693d29241933f2d06dcd83bba}{Get\+UVsize}} ()
+\begin{DoxyCompactList}\small\item\em Returns the UV size. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classMesh_aafa13fa13ca5fb5e15b544ae1870da45}{Get\+VAO}} ()
+\begin{DoxyCompactList}\small\item\em Returns the VAO index of this mesh. It can be used for rendering the mesh, or defining additional attributes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classMesh_a2ee88be25d23414d77e7807f1bb564de}{Get\+Vert\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Returns the amount of vertices in this mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Stores data needed to render a basic mesh. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMesh_a5f6ef1000561a3b70ba31afec1a02500}\label{classMesh_a5f6ef1000561a3b70ba31afec1a02500}} 
+\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{Mesh()}{Mesh()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Mesh\+::\+Mesh (\begin{DoxyParamCaption}\item[{bool}]{init\+\_\+square = {\ttfamily false},  }\item[{int}]{rows = {\ttfamily 1},  }\item[{int}]{columns = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Initializes mesh to square, or to nothing. 
+
+Constructor\+: loads unit square vertices if needed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em init\+\_\+square} & (optional) init square or no? \\
+\hline
+{\em rows} & (optional) spritesheet rows \\
+\hline
+{\em columns} & (optional) spritesheet columns\\
+\hline
+{\em init\+\_\+square} & true/false\+: should unit square be initialized \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMesh_a7e68ec6c32108ed7d4c4739af46b2561}\label{classMesh_a7e68ec6c32108ed7d4c4739af46b2561}} 
+\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{Mesh()}{Mesh()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Mesh\+::\+Mesh (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structMesh_1_1Vertex}{Vertex}} $>$}]{vertices }\end{DoxyParamCaption})}
+
+
+
+Constructor\+: inits mesh with given vertices. 
+
+Constructor\+: inits data to 0, loads provided vertices to make a mesh.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & Vector of vertices to initialize this mesh with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMesh_a5efe4da1a4c0971cfb037bd70304c303}\label{classMesh_a5efe4da1a4c0971cfb037bd70304c303}} 
+\index{Mesh@{Mesh}!````~Mesh@{$\sim$Mesh}}
+\index{````~Mesh@{$\sim$Mesh}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{$\sim$Mesh()}{~Mesh()}}
+{\footnotesize\ttfamily Mesh\+::$\sim$\+Mesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor\+: cleans up memory. 
+
+Cleans up memory. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMesh_a53d7c42693d29241933f2d06dcd83bba}\label{classMesh_a53d7c42693d29241933f2d06dcd83bba}} 
+\index{Mesh@{Mesh}!GetUVsize@{GetUVsize}}
+\index{GetUVsize@{GetUVsize}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{GetUVsize()}{GetUVsize()}}
+{\footnotesize\ttfamily glm\+::vec2 Mesh\+::\+Get\+UVsize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the UV size. 
+
+\begin{DoxyReturn}{Returns}
+UV size (x = width, y = height) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMesh_aafa13fa13ca5fb5e15b544ae1870da45}\label{classMesh_aafa13fa13ca5fb5e15b544ae1870da45}} 
+\index{Mesh@{Mesh}!GetVAO@{GetVAO}}
+\index{GetVAO@{GetVAO}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{GetVAO()}{GetVAO()}}
+{\footnotesize\ttfamily unsigned int Mesh\+::\+Get\+VAO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the VAO index of this mesh. It can be used for rendering the mesh, or defining additional attributes. 
+
+\begin{DoxyReturn}{Returns}
+UV size (x = width, y = height) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMesh_a2ee88be25d23414d77e7807f1bb564de}\label{classMesh_a2ee88be25d23414d77e7807f1bb564de}} 
+\index{Mesh@{Mesh}!GetVertCount@{GetVertCount}}
+\index{GetVertCount@{GetVertCount}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{GetVertCount()}{GetVertCount()}}
+{\footnotesize\ttfamily unsigned int Mesh\+::\+Get\+Vert\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the amount of vertices in this mesh. 
+
+\begin{DoxyReturn}{Returns}
+vertex count 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMesh_a0d3023d68fcf77eef8220379ff4c21c2}\label{classMesh_a0d3023d68fcf77eef8220379ff4c21c2}} 
+\index{Mesh@{Mesh}!LoadSquare@{LoadSquare}}
+\index{LoadSquare@{LoadSquare}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{LoadSquare()}{LoadSquare()}}
+{\footnotesize\ttfamily void Mesh\+::\+Load\+Square (\begin{DoxyParamCaption}\item[{int}]{rows = {\ttfamily 1},  }\item[{int}]{columns = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Loads a list of vertices that make a centered unit square. Provide rows and columns if this is for a spritesheet. 
+
+Loads a list of vertices that make a centered unit square. (rows/columns for spritesheet) \mbox{\Hypertarget{classMesh_a72c6c70d0a5146317d0fa11d9dc33da0}\label{classMesh_a72c6c70d0a5146317d0fa11d9dc33da0}} 
+\index{Mesh@{Mesh}!LoadVertices@{LoadVertices}}
+\index{LoadVertices@{LoadVertices}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{LoadVertices()}{LoadVertices()}}
+{\footnotesize\ttfamily void Mesh\+::\+Load\+Vertices (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structMesh_1_1Vertex}{Vertex}} $>$}]{vertices }\end{DoxyParamCaption})}
+
+
+
+Loads provided vertices to initialize (or change) the mesh. Provide rows and columns if this is for a spritesheet. 
+
+Loads vertices into the buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & vector of vertices to load\\
+\hline
+{\em vertices} & Vector of vertices to load. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Mesh_8h}{Mesh.\+h}}\item 
+Source/\mbox{\hyperlink{Mesh_8cpp}{Mesh.\+cpp}}\end{DoxyCompactItemize}

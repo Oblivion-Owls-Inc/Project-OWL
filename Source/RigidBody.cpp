@@ -23,7 +23,6 @@ RigidBody::RigidBody() :
     m_Friction( 0.0f ),
     m_CollisionResolved( false )
 {
-	BehaviorSystem<RigidBody>::GetInstance()->AddBehavior(this);
 }
 
 RigidBody::RigidBody(const RigidBody& other) : Behavior(typeid(RigidBody))
@@ -36,17 +35,27 @@ RigidBody::RigidBody(const RigidBody& other) : Behavior(typeid(RigidBody))
 
 RigidBody::~RigidBody()
 {
-	BehaviorSystem<RigidBody>::GetInstance()->RemoveBehavior(this);
 }
 
 void RigidBody::OnUpdate(float dt)
 {
-	//#ifndef NDEBUG
-		ImGui::Begin("Gravity");
-		ImGui::InputFloat("Gravity", &gravity);
-		ImGui::End();
-	//#endif // !NDEBUG
+	////#ifndef NDEBUG
+	//	ImGui::Begin("Gravity");
+	//	ImGui::InputFloat("Gravity", &gravity);
+	//	ImGui::End();
+	////#endif // !NDEBUG
 
+}
+
+void RigidBody::OnInit()
+{
+    BehaviorSystem<RigidBody>::GetInstance()->AddBehavior(this);
+
+}
+
+void RigidBody::OnExit()
+{
+    BehaviorSystem<RigidBody>::GetInstance()->RemoveBehavior(this);
 }
 
 void RigidBody::OnFixedUpdate()
@@ -89,8 +98,8 @@ Component* RigidBody::Clone() const
 /// @param  collisionData   additional data about the collision
 void RigidBody::OnCollision( Entity* other, CollisionData const& collisionData )
 {
-	DebugConsole output(*DebugSystem::GetInstance());
-	output << GetParent()->GetName().c_str() << ":Collision Detected in RigidBody" << "\n";
+	//DebugConsole output(*DebugSystem::GetInstance());
+	//output << GetParent()->GetName().c_str() << ":Collision Detected in RigidBody" << "\n";
 
     // only handle collisions with other rigidBodies
     RigidBody* rigidBodyB = other->GetComponent<RigidBody>();

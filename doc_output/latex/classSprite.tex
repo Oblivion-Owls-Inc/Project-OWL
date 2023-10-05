@@ -1,0 +1,358 @@
+\hypertarget{classSprite}{}\doxysection{Sprite Class Reference}
+\label{classSprite}\index{Sprite@{Sprite}}
+
+
+Stores mesh + texture, along with other data needed to draw a basic 2D sprite.  
+
+
+
+
+{\ttfamily \#include $<$Sprite.\+h$>$}
+
+
+
+Inheritance diagram for Sprite\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=153pt]{classSprite__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Sprite\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{classSprite__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSprite_a5ffd93d766b6d21086be9ec3dbab6ea9}{Sprite}} (const char $\ast$image\+\_\+file, int columns=1, int rows=1, int layer=2)
+\begin{DoxyCompactList}\small\item\em Textured sprite constructor. Accepts image file, and (optional) rows and columns if it\textquotesingle{}s a spritesheet. Also adds this sprite\textquotesingle{}s pointer to \mbox{\hyperlink{classRenderSystem}{Render\+System}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSprite_a0ca330a6e70eeeb97a3f51ca3f8ffba4}{Sprite}} (bool init\+\_\+square, glm\+::vec4 color=\{ 0, 0, 0, 1 \}, int layer=2)
+\begin{DoxyCompactList}\small\item\em Plain square sprite constructor. Accepts boolean, which needs to be true for the square to be generated, or false to create uninitialized sprite. Also adds this sprite\textquotesingle{}s pointer to \mbox{\hyperlink{classRenderSystem}{Render\+System}}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classSprite_ac4f77c982a39659c389f00b9d395b0db}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em Creates new \mbox{\hyperlink{classSprite}{Sprite}} using copy constructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classSprite_a8accab430f9d90ae5117b57d67e32b84}{$\sim$\+Sprite}} ()
+\begin{DoxyCompactList}\small\item\em Destructor\+: frees texture and mesh... for now. Resource library should take care of it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSprite_a054a4c340c14c3d218b99e484bf83d21}\label{classSprite_a054a4c340c14c3d218b99e484bf83d21}} 
+virtual void \mbox{\hyperlink{classSprite_a054a4c340c14c3d218b99e484bf83d21}{Draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws the mesh with texture (if one is present), or color. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSprite_a351dd54dac6cadbbdec48f9e1d8a36c0}{Set\+Frame}} (int frame)
+\begin{DoxyCompactList}\small\item\em Sets current frame of the spritesheet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSprite_a62b9a79a31deef902e15bdd386d12d16}{Set\+Layer}} (int layer)
+\begin{DoxyCompactList}\small\item\em Sets the rendering layer \+: 0 -\/ 4. 0 is back, 4 is front. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSprite_a9fa7134433875254290e1f57df34143e}\label{classSprite_a9fa7134433875254290e1f57df34143e}} 
+void \mbox{\hyperlink{classSprite_a9fa7134433875254290e1f57df34143e}{Set\+Opacity}} (float opacity)
+\begin{DoxyCompactList}\small\item\em Sets the opacity. param opacity I\textquotesingle{}m not explaining this. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSprite_a40f7e29776cccce53e44bf294ade1cb5}{Set\+Color}} (glm\+::vec4 const \&color)
+\begin{DoxyCompactList}\small\item\em Sets the color. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classSprite_a4d76e449da7c422cc2a2fb60aec3f096}{Get\+Height\+Multiplier}} () const
+\begin{DoxyCompactList}\small\item\em Number to multiply width by, to get proportional height based on original image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSprite_a75bc27a726fc333d42693a7756d2196f}{Sprite}} (std\+::type\+\_\+index type)
+\begin{DoxyCompactList}\small\item\em Default constructor -\/ does not init anything. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{classSprite_a52c26de90f551dcc08d4b5926b1a782d}{calc\+UVoffset}} ()
+\begin{DoxyCompactList}\small\item\em Calculates UV offset based on current frame ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSprite_a7c4c8424f90852c03f4675cc70ac0be9}\label{classSprite_a7c4c8424f90852c03f4675cc70ac0be9}} 
+void \mbox{\hyperlink{classSprite_a7c4c8424f90852c03f4675cc70ac0be9}{calc\+Height\+Mult}} ()
+\begin{DoxyCompactList}\small\item\em Pre-\/calculates height multiplier based on texture dimensions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSprite_a05722dc21e6bc8215fed33b70e7d4ec2}{Read\+Rows}} (\mbox{\hyperlink{classStream}{Stream}} stream)
+\begin{DoxyCompactList}\small\item\em Read in the number of rows for a sprite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSprite_af3202448286501a4c9abdf57d7d3333e}{Read\+Color}} (\mbox{\hyperlink{classStream}{Stream}} stream)
+\begin{DoxyCompactList}\small\item\em Read in the colour for a sprite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSprite_a4972024e9ca77bb2b729c665bb60dbe2}{Read\+Layer}} (\mbox{\hyperlink{classStream}{Stream}} stream)
+\begin{DoxyCompactList}\small\item\em Read in the layer for a sprite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSprite_aae413e0aa774c9f2055a30d841fd01b4}{Read\+Name}} (\mbox{\hyperlink{classStream}{Stream}} stream)
+\begin{DoxyCompactList}\small\item\em Read in the file name for a sprite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSprite_aede79a2eed8d0f43fbe5de7e2eaab140}{Read\+Columns}} (\mbox{\hyperlink{classStream}{Stream}} stream)
+\begin{DoxyCompactList}\small\item\em Read in the number of columns for a sprite. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSprite_aac543c66b95ab792013739f94bff252e}\label{classSprite_aac543c66b95ab792013739f94bff252e}} 
+void \mbox{\hyperlink{classSprite_aac543c66b95ab792013739f94bff252e}{Read\+Sprite}} (\mbox{\hyperlink{classStream}{Stream}})
+\begin{DoxyCompactList}\small\item\em Takes all the read in data and makes a sprite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSprite_a9418212fc83f1d000d0e2cb66378fac2}\label{classSprite_a9418212fc83f1d000d0e2cb66378fac2}} 
+int {\bfseries m\+\_\+\+Rows} = 1
+\item 
+\mbox{\Hypertarget{classSprite_abc7ceef59cb9b2242381e95506805ab8}\label{classSprite_abc7ceef59cb9b2242381e95506805ab8}} 
+int {\bfseries m\+\_\+\+Columns} = 1
+\item 
+\mbox{\Hypertarget{classSprite_a42c404a5a21cc68bd8f1c6f9570c0ce5}\label{classSprite_a42c404a5a21cc68bd8f1c6f9570c0ce5}} 
+int {\bfseries m\+\_\+\+Layer} = 2
+\item 
+\mbox{\Hypertarget{classSprite_acb82a25a5c8d418c5b74c7494736bf82}\label{classSprite_acb82a25a5c8d418c5b74c7494736bf82}} 
+int {\bfseries m\+\_\+\+Frame} = 0
+\item 
+\mbox{\Hypertarget{classSprite_a590ddbf93f28829072a0097018b67126}\label{classSprite_a590ddbf93f28829072a0097018b67126}} 
+float {\bfseries m\+\_\+\+Height\+Mult} = 1.\+0f
+\item 
+\mbox{\Hypertarget{classSprite_a2bf1ce81c140f5619181d2259a2125f5}\label{classSprite_a2bf1ce81c140f5619181d2259a2125f5}} 
+float {\bfseries m\+\_\+\+Opacity} = 1.\+0f
+\item 
+\mbox{\Hypertarget{classSprite_ac1eb97ce275efb9295f948b85618f75e}\label{classSprite_ac1eb97ce275efb9295f948b85618f75e}} 
+std\+::string {\bfseries m\+\_\+\+Filename}
+\item 
+\mbox{\Hypertarget{classSprite_a86eea754a83045cdb83e99212d1f90be}\label{classSprite_a86eea754a83045cdb83e99212d1f90be}} 
+bool {\bfseries m\+\_\+\+Is\+Textured}
+\item 
+\mbox{\Hypertarget{classSprite_a6e77d5b239a8433d2e76ba7150fc259b}\label{classSprite_a6e77d5b239a8433d2e76ba7150fc259b}} 
+\mbox{\hyperlink{classMesh}{Mesh}} $\ast$ {\bfseries m\+\_\+\+Mesh} = nullptr
+\item 
+\mbox{\Hypertarget{classSprite_a01ea1cac22f4853c67e3cb1b0e1df212}\label{classSprite_a01ea1cac22f4853c67e3cb1b0e1df212}} 
+\mbox{\hyperlink{classTexture}{Texture}} $\ast$ {\bfseries m\+\_\+\+Texture} = nullptr
+\item 
+\mbox{\Hypertarget{classSprite_aea47372d6263026a8be19b5c6e0d604d}\label{classSprite_aea47372d6263026a8be19b5c6e0d604d}} 
+glm\+::vec4 {\bfseries m\+\_\+\+Color} = \{1,1,1,1\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Stores mesh + texture, along with other data needed to draw a basic 2D sprite. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSprite_a5ffd93d766b6d21086be9ec3dbab6ea9}\label{classSprite_a5ffd93d766b6d21086be9ec3dbab6ea9}} 
+\index{Sprite@{Sprite}!Sprite@{Sprite}}
+\index{Sprite@{Sprite}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{Sprite()}{Sprite()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Sprite\+::\+Sprite (\begin{DoxyParamCaption}\item[{const char $\ast$}]{image\+\_\+file,  }\item[{int}]{columns = {\ttfamily 1},  }\item[{int}]{rows = {\ttfamily 1},  }\item[{int}]{layer = {\ttfamily 2} }\end{DoxyParamCaption})}
+
+
+
+Textured sprite constructor. Accepts image file, and (optional) rows and columns if it\textquotesingle{}s a spritesheet. Also adds this sprite\textquotesingle{}s pointer to \mbox{\hyperlink{classRenderSystem}{Render\+System}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\+\_\+file} & Path to the image file to load (single image or spritesheet) \\
+\hline
+{\em columns} & (optional) Columns of the spritesheet \\
+\hline
+{\em rows} & (optional) Rows of the spritesheet \\
+\hline
+{\em layer} & (optional) Rendering layer\+: 0-\/4. 0 is back, 4 is front. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSprite_a0ca330a6e70eeeb97a3f51ca3f8ffba4}\label{classSprite_a0ca330a6e70eeeb97a3f51ca3f8ffba4}} 
+\index{Sprite@{Sprite}!Sprite@{Sprite}}
+\index{Sprite@{Sprite}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{Sprite()}{Sprite()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Sprite\+::\+Sprite (\begin{DoxyParamCaption}\item[{bool}]{init\+\_\+square,  }\item[{glm\+::vec4}]{color = {\ttfamily \{~0,0,0,1~\}},  }\item[{int}]{layer = {\ttfamily 2} }\end{DoxyParamCaption})}
+
+
+
+Plain square sprite constructor. Accepts boolean, which needs to be true for the square to be generated, or false to create uninitialized sprite. Also adds this sprite\textquotesingle{}s pointer to \mbox{\hyperlink{classRenderSystem}{Render\+System}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em init\+\_\+square} & true/false -\/ initialize the square or nah? \\
+\hline
+{\em color} & (optional) Color to initialize the square to \\
+\hline
+{\em layer} & (optional) Rendering layer\+: 0-\/4. 0 is back, 4 is front. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSprite_a75bc27a726fc333d42693a7756d2196f}\label{classSprite_a75bc27a726fc333d42693a7756d2196f}} 
+\index{Sprite@{Sprite}!Sprite@{Sprite}}
+\index{Sprite@{Sprite}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{Sprite()}{Sprite()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Sprite\+::\+Sprite (\begin{DoxyParamCaption}\item[{std\+::type\+\_\+index}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Default constructor -\/ does not init anything. 
+
+Default constructor -\/ does nothing. \mbox{\Hypertarget{classSprite_a8accab430f9d90ae5117b57d67e32b84}\label{classSprite_a8accab430f9d90ae5117b57d67e32b84}} 
+\index{Sprite@{Sprite}!````~Sprite@{$\sim$Sprite}}
+\index{````~Sprite@{$\sim$Sprite}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{$\sim$Sprite()}{~Sprite()}}
+{\footnotesize\ttfamily Sprite\+::$\sim$\+Sprite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor\+: frees texture and mesh... for now. Resource library should take care of it. 
+
+Clears out memory, removes this sprite\textquotesingle{}s pointer from \mbox{\hyperlink{classRenderSystem}{Render\+System}}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSprite_a52c26de90f551dcc08d4b5926b1a782d}\label{classSprite_a52c26de90f551dcc08d4b5926b1a782d}} 
+\index{Sprite@{Sprite}!calcUVoffset@{calcUVoffset}}
+\index{calcUVoffset@{calcUVoffset}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{calcUVoffset()}{calcUVoffset()}}
+{\footnotesize\ttfamily glm\+::vec2 Sprite\+::calc\+UVoffset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Calculates UV offset based on current frame ~\newline
+ 
+
+Calculates UV offset based on current frame. \mbox{\Hypertarget{classSprite_ac4f77c982a39659c389f00b9d395b0db}\label{classSprite_ac4f77c982a39659c389f00b9d395b0db}} 
+\index{Sprite@{Sprite}!Clone@{Clone}}
+\index{Clone@{Clone}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Sprite\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Creates new \mbox{\hyperlink{classSprite}{Sprite}} using copy constructor. 
+
+\begin{DoxyReturn}{Returns}
+Copy of this component.
+
+pointer to copied \mbox{\hyperlink{classSprite}{Sprite}} component. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classSprite_a4d76e449da7c422cc2a2fb60aec3f096}\label{classSprite_a4d76e449da7c422cc2a2fb60aec3f096}} 
+\index{Sprite@{Sprite}!GetHeightMultiplier@{GetHeightMultiplier}}
+\index{GetHeightMultiplier@{GetHeightMultiplier}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{GetHeightMultiplier()}{GetHeightMultiplier()}}
+{\footnotesize\ttfamily float Sprite\+::\+Get\+Height\+Multiplier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Number to multiply width by, to get proportional height based on original image. 
+
+Returns the number (for transform) to multiply width by, in order to maintain scale proportions of the original image. (accounts for uv size of frames as well)
+
+\begin{DoxyReturn}{Returns}
+float\+: original image\textquotesingle{}s height divided by width
+
+multiplier for obtaining height\+: height = width $\ast$ mult 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSprite_af3202448286501a4c9abdf57d7d3333e}\label{classSprite_af3202448286501a4c9abdf57d7d3333e}} 
+\index{Sprite@{Sprite}!ReadColor@{ReadColor}}
+\index{ReadColor@{ReadColor}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{ReadColor()}{ReadColor()}}
+{\footnotesize\ttfamily void Sprite\+::\+Read\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Read in the colour for a sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & The json to read from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSprite_aede79a2eed8d0f43fbe5de7e2eaab140}\label{classSprite_aede79a2eed8d0f43fbe5de7e2eaab140}} 
+\index{Sprite@{Sprite}!ReadColumns@{ReadColumns}}
+\index{ReadColumns@{ReadColumns}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{ReadColumns()}{ReadColumns()}}
+{\footnotesize\ttfamily void Sprite\+::\+Read\+Columns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Read in the number of columns for a sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & the json to read from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSprite_a4972024e9ca77bb2b729c665bb60dbe2}\label{classSprite_a4972024e9ca77bb2b729c665bb60dbe2}} 
+\index{Sprite@{Sprite}!ReadLayer@{ReadLayer}}
+\index{ReadLayer@{ReadLayer}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{ReadLayer()}{ReadLayer()}}
+{\footnotesize\ttfamily void Sprite\+::\+Read\+Layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Read in the layer for a sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & The json to read from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSprite_aae413e0aa774c9f2055a30d841fd01b4}\label{classSprite_aae413e0aa774c9f2055a30d841fd01b4}} 
+\index{Sprite@{Sprite}!ReadName@{ReadName}}
+\index{ReadName@{ReadName}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{ReadName()}{ReadName()}}
+{\footnotesize\ttfamily void Sprite\+::\+Read\+Name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Read in the file name for a sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & The json to read from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSprite_a05722dc21e6bc8215fed33b70e7d4ec2}\label{classSprite_a05722dc21e6bc8215fed33b70e7d4ec2}} 
+\index{Sprite@{Sprite}!ReadRows@{ReadRows}}
+\index{ReadRows@{ReadRows}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{ReadRows()}{ReadRows()}}
+{\footnotesize\ttfamily void Sprite\+::\+Read\+Rows (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Read in the number of rows for a sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & The json to read from.\\
+\hline
+{\em stream} & the json to read from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSprite_a40f7e29776cccce53e44bf294ade1cb5}\label{classSprite_a40f7e29776cccce53e44bf294ade1cb5}} 
+\index{Sprite@{Sprite}!SetColor@{SetColor}}
+\index{SetColor@{SetColor}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{SetColor()}{SetColor()}}
+{\footnotesize\ttfamily void Sprite\+::\+Set\+Color (\begin{DoxyParamCaption}\item[{glm\+::vec4 const \&}]{color }\end{DoxyParamCaption})}
+
+
+
+Sets the color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & colr as a vec4 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSprite_a351dd54dac6cadbbdec48f9e1d8a36c0}\label{classSprite_a351dd54dac6cadbbdec48f9e1d8a36c0}} 
+\index{Sprite@{Sprite}!SetFrame@{SetFrame}}
+\index{SetFrame@{SetFrame}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{SetFrame()}{SetFrame()}}
+{\footnotesize\ttfamily void Sprite\+::\+Set\+Frame (\begin{DoxyParamCaption}\item[{int}]{frame }\end{DoxyParamCaption})}
+
+
+
+Sets current frame of the spritesheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & New frame index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSprite_a62b9a79a31deef902e15bdd386d12d16}\label{classSprite_a62b9a79a31deef902e15bdd386d12d16}} 
+\index{Sprite@{Sprite}!SetLayer@{SetLayer}}
+\index{SetLayer@{SetLayer}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{SetLayer()}{SetLayer()}}
+{\footnotesize\ttfamily void Sprite\+::\+Set\+Layer (\begin{DoxyParamCaption}\item[{int}]{layer }\end{DoxyParamCaption})}
+
+
+
+Sets the rendering layer \+: 0 -\/ 4. 0 is back, 4 is front. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer} & Rendering layer to move this sprite to. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Sprite.\+h\item 
+Source/\mbox{\hyperlink{Sprite_8cpp}{Sprite.\+cpp}}\end{DoxyCompactItemize}

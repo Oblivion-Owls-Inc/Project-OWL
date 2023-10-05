@@ -26,9 +26,6 @@ class BehaviorSystem : public System
 {
 private:
 
-    /// @brief      Gets called once when this System is added to the Engine
-    virtual void OnInit() override;
-
     /// @brief      Gets called once every simulation frame. Use this function for anything that affects the simulation.
     virtual void OnFixedUpdate() override;
 
@@ -37,24 +34,6 @@ private:
     /// @param dt   The elapsed time in seconds since the previous frame
     virtual void OnUpdate(float dt) override;
 
-    /// @brief      Gets called once before the Engine closes
-    virtual void OnExit() override;
-
-    /// @brief      Gets called whenever a new Scene is loaded
-    virtual void OnSceneLoad() override {}
-
-    /// @brief      Gets called whenever a scene is initialized
-    virtual void OnSceneInit() override {}
-
-    /// @brief      Gets called whenever a scene is exited
-    virtual void OnSceneExit() override;
-
-    /// @brief      Constructs the BehaviorSystem 
-    BehaviorSystem() = default;
-
-    /// @brief      The singleton instance of BehaviorSystem  
-    static BehaviorSystem< BehaviorType >* instance;
-
 
 public:
     /// @brief      Adds a new Behavior to the system
@@ -62,14 +41,16 @@ public:
     ///@brief       Removes a Behavior from the system
     void RemoveBehavior(BehaviorType* behavior);
 
+    std::vector< BehaviorType* >& GetBehaviors() const;
+
+
     /// @brief      Gets the instance of BehaviorSystem
     /// @return     BehaviorSystem pointer: new or existing instance of this system
     static BehaviorSystem< BehaviorType >* GetInstance();
-    std::vector< BehaviorType* >& GetBehaviors() const;
 
-    //-----------------------------------------------------------------------------
-    private: // reading
-    //----------------------------------------------------------------------------- 
+//-----------------------------------------------------------------------------
+private: // reading
+//----------------------------------------------------------------------------- 
 
         /// @brief the read methods of a BehaviorSystem
     static ReadMethodMap< BehaviorSystem< BehaviorType > > const s_ReadMethods;
@@ -80,6 +61,12 @@ public:
 
 private:
     std::vector< Behavior* > behaviorsList;
+
+    /// @brief      Constructs the BehaviorSystem 
+    BehaviorSystem();
+
+    /// @brief      The singleton instance of BehaviorSystem  
+    static BehaviorSystem< BehaviorType >* instance;
 
     // Prevent copying
     BehaviorSystem(BehaviorSystem& other) = delete;

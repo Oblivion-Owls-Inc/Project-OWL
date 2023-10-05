@@ -25,8 +25,8 @@ class MovementAI :
     public Behavior
 {
     public:
+        /// @brief Construct a new MovementAI object
         MovementAI();
-        ~MovementAI();
 
     private:
         virtual Component* Clone() const override;
@@ -42,23 +42,6 @@ class MovementAI :
         /// @param  other           the entity that was collided with
         /// @param  collisionData   additional data about the collision
         virtual void OnCollision( Entity* other, CollisionData const& collisionData ) override;
-
-    private:
-
-        void MovementAIUpdateRotation(float dt);
-        void MovementAIUpdateVelocity(float dt);
-        void MovementAIUpdateWeapon(float dt);
-        void MovementAISpawnBullet();
-        void MovementAISpiral(float dt);
-
-    private:
-        const float MovementAcceleration = 150.0f;
-        const float MovementSpeedMax = 500.0f;
-        const float MovementTurnRateMax = (float)M_PI / 1.5f;
-        const float MovementWeaponCooldownTime = 0.25f;
-        const float MovementWeaponBulletSpeed = 750.0f;
-        const float MovementDeathDuration = 3.0f;
-        const float FrameTime = 1.0f / 60.0f;
 
 private: // reading
 

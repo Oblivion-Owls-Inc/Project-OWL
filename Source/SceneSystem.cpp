@@ -225,6 +225,7 @@
 
     /// @brief  Constructs the SceneSystem
     SceneSystem::SceneSystem() :
+        System( "SceneSystem" ),
         m_NextSceneName( "" ),
         m_CurrentSceneName( "" ),
         m_BaseScenePath( "Data/Scenes/" )
