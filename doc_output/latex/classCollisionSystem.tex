@@ -1,0 +1,106 @@
+\hypertarget{classCollisionSystem}{}\doxysection{Collision\+System Class Reference}
+\label{classCollisionSystem}\index{CollisionSystem@{CollisionSystem}}
+
+
+responsible for checking collsisions between all Colliders  
+
+
+
+
+{\ttfamily \#include $<$Collision\+System.\+h$>$}
+
+
+
+Inheritance diagram for Collision\+System\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classCollisionSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Collision\+System\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classCollisionSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCollisionSystem_aa4abd78b50df7fec5151589e88d80ec0}{add\+Collider}} (\mbox{\hyperlink{classCollider}{Collider}} $\ast$collider)
+\begin{DoxyCompactList}\small\item\em adds a \mbox{\hyperlink{classCollider}{Collider}} to the \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollisionSystem_a77084b50e8e89f6cb22cd71de50f7bb4}{remove\+Collider}} (\mbox{\hyperlink{classCollider}{Collider}} $\ast$collider)
+\begin{DoxyCompactList}\small\item\em removes a \mbox{\hyperlink{classCollider}{Collider}} from this \mbox{\hyperlink{classSystem}{System}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollisionSystem_aeeb07f44cd623b028d28281f694bee87}\label{classCollisionSystem_aeeb07f44cd623b028d28281f694bee87}} 
+virtual void \mbox{\hyperlink{classCollisionSystem_aeeb07f44cd623b028d28281f694bee87}{On\+Fixed\+Update}} () override
+\begin{DoxyCompactList}\small\item\em Gets called once every simulation frame. Use this function for anything that affects the simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollisionSystem_a80d7b4d289e4eb1bfeaa39efbcfa9e10}\label{classCollisionSystem_a80d7b4d289e4eb1bfeaa39efbcfa9e10}} 
+{\bfseries Collision\+System} (\mbox{\hyperlink{classCollisionSystem}{Collision\+System}} \&other)=delete
+\item 
+\mbox{\Hypertarget{classCollisionSystem_a3cfdf22291461ccbc288742c8a609eba}\label{classCollisionSystem_a3cfdf22291461ccbc288742c8a609eba}} 
+void {\bfseries operator=} (const \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} $\ast$ \mbox{\hyperlink{classCollisionSystem_a0352addd6e0fd8206823b8519ce5b01a}{Get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em gets the instance of \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+responsible for checking collsisions between all Colliders 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCollisionSystem_aa4abd78b50df7fec5151589e88d80ec0}\label{classCollisionSystem_aa4abd78b50df7fec5151589e88d80ec0}} 
+\index{CollisionSystem@{CollisionSystem}!addCollider@{addCollider}}
+\index{addCollider@{addCollider}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{addCollider()}{addCollider()}}
+{\footnotesize\ttfamily void Collision\+System\+::add\+Collider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCollider}{Collider}} $\ast$}]{collider }\end{DoxyParamCaption})}
+
+
+
+adds a \mbox{\hyperlink{classCollider}{Collider}} to the \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collider} & the collider to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollisionSystem_a0352addd6e0fd8206823b8519ce5b01a}\label{classCollisionSystem_a0352addd6e0fd8206823b8519ce5b01a}} 
+\index{CollisionSystem@{CollisionSystem}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} $\ast$ Collision\+System\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+gets the instance of \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} 
+
+\begin{DoxyReturn}{Returns}
+the instance of the \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollisionSystem_a77084b50e8e89f6cb22cd71de50f7bb4}\label{classCollisionSystem_a77084b50e8e89f6cb22cd71de50f7bb4}} 
+\index{CollisionSystem@{CollisionSystem}!removeCollider@{removeCollider}}
+\index{removeCollider@{removeCollider}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{removeCollider()}{removeCollider()}}
+{\footnotesize\ttfamily void Collision\+System\+::remove\+Collider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCollider}{Collider}} $\ast$}]{collider }\end{DoxyParamCaption})}
+
+
+
+removes a \mbox{\hyperlink{classCollider}{Collider}} from this \mbox{\hyperlink{classSystem}{System}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collider} & the collider to remove \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{CollisionSystem_8h}{Collision\+System.\+h}}\item 
+Source/Collision\+System.\+cpp\end{DoxyCompactItemize}

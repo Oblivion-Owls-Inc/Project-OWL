@@ -156,7 +156,9 @@ Shader* RenderSystem::GetShader(const char* name) { return FindShader(name); }
 //-----------------------------------------------------------------------------
 
 RenderSystem::RenderSystem()
-{}
+{
+    SetName("RenderSystem");
+}
 
 RenderSystem* RenderSystem::instance = nullptr;
 

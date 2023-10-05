@@ -1,0 +1,387 @@
+\hypertarget{classStream}{}\doxysection{Stream Class Reference}
+\label{classStream}\index{Stream@{Stream}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStream_aabbff76a86f734b48c1ce48665653a7b}{Stream}} (rapidjson\+::\+Document const \&document)
+\begin{DoxyCompactList}\small\item\em Creates a \mbox{\hyperlink{classStream}{Stream}} wrapper of the root object in a json document. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStream_a80136a797390bbf026d27ffec0133c20}{Stream}} (rapidjson\+::\+Value const \&value)
+\begin{DoxyCompactList}\small\item\em Creates a stream wrapper from a json value. \end{DoxyCompactList}\item 
+rapidjson\+::\+Generic\+Object$<$ true, rapidjson\+::\+Value $>$ const  \& \mbox{\hyperlink{classStream_a6e72898690b20a6b46978c85d957d7fd}{Get\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Gets the rapidjson value as an object. \end{DoxyCompactList}\item 
+rapidjson\+::\+Generic\+Array$<$ true, rapidjson\+::\+Value $>$ const  \& \mbox{\hyperlink{classStream_a52971f253843f4f872a64033bfa9a601}{Get\+Array}} () const
+\begin{DoxyCompactList}\small\item\em Gets the rapidjson value as an object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{classStream_a237e8a4a539b9db2242062f1b5d1511e}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads a basic type from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ int \mbox{\hyperlink{classStream_acefca0c1a5b0bb0fbc4749e62d3418b6}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads an int from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ bool \mbox{\hyperlink{classStream_a979ccd4ef77a8d67aed4378af84c9440}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads an int from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ unsigned int \mbox{\hyperlink{classStream_adad89873f469c0003077bb15ee10f167}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads a basic type from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ float \mbox{\hyperlink{classStream_a0dd919619a27281151f27b3d56d00feb}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads a float from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ std\+::string \mbox{\hyperlink{classStream_ad85cdc230455bbf03d87db9b18aea457}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads a string from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ glm\+::vec3 \mbox{\hyperlink{classStream_ad7bb6376c254598deab834edc540e433}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads a vec3 from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ glm\+::vec4 \mbox{\hyperlink{classStream_a4a4e8bd442ced97a7db6f0bb5fe27fdc}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads a vec4 from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ glm\+::vec2 \mbox{\hyperlink{classStream_a161a23c9112bd845a9b389a22bdfd9f6}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads a vec2 from a json value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classStream_a19a4014f40ad60f19dd84fa81f08702a}{Read}} (T $\ast$object)
+\begin{DoxyCompactList}\small\item\em Reads data into an existing complex type. \end{DoxyCompactList}\item 
+template$<$$>$ int \mbox{\hyperlink{classStream_acefca0c1a5b0bb0fbc4749e62d3418b6}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads a basic type from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ bool \mbox{\hyperlink{classStream_a979ccd4ef77a8d67aed4378af84c9440}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads a boolean value from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ unsigned int \mbox{\hyperlink{classStream_adad89873f469c0003077bb15ee10f167}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads an unsigned int value from a json value. \end{DoxyCompactList}\item 
+template$<$$>$ float \mbox{\hyperlink{classStream_a0dd919619a27281151f27b3d56d00feb}{Read}} () const
+\begin{DoxyCompactList}\small\item\em Reads a float value from a json value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static rapidjson\+::\+Document \mbox{\hyperlink{classStream_a5e4819e5460e7e3712c2a4859bce9b9d}{Read\+From\+JSON}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Opens and parses a json document. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStream_aabbff76a86f734b48c1ce48665653a7b}\label{classStream_aabbff76a86f734b48c1ce48665653a7b}} 
+\index{Stream@{Stream}!Stream@{Stream}}
+\index{Stream@{Stream}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Stream()}{Stream()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Stream\+::\+Stream (\begin{DoxyParamCaption}\item[{rapidjson\+::\+Document const \&}]{document }\end{DoxyParamCaption})}
+
+
+
+Creates a \mbox{\hyperlink{classStream}{Stream}} wrapper of the root object in a json document. 
+
+creates a \mbox{\hyperlink{classStream}{Stream}} wrapper of the root object in a json document
+
+
+\begin{DoxyParams}{Parameters}
+{\em document} & The json document.\\
+\hline
+{\em document} & the json document. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classStream_a80136a797390bbf026d27ffec0133c20}\label{classStream_a80136a797390bbf026d27ffec0133c20}} 
+\index{Stream@{Stream}!Stream@{Stream}}
+\index{Stream@{Stream}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Stream()}{Stream()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Stream\+::\+Stream (\begin{DoxyParamCaption}\item[{rapidjson\+::\+Value const \&}]{value\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Creates a stream wrapper from a json value. 
+
+creates a stream wrapper from a json value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The json value\\
+\hline
+{\em value} & the json value \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classStream_a52971f253843f4f872a64033bfa9a601}\label{classStream_a52971f253843f4f872a64033bfa9a601}} 
+\index{Stream@{Stream}!GetArray@{GetArray}}
+\index{GetArray@{GetArray}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{GetArray()}{GetArray()}}
+{\footnotesize\ttfamily rapidjson\+::\+Generic\+Array$<$ true, rapidjson\+::\+Value $>$ const  \& Stream\+::\+Get\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the rapidjson value as an object. 
+
+gets the rapidjson value as an object
+
+\begin{DoxyReturn}{Returns}
+The rapidjson value
+
+the rapidjson value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a6e72898690b20a6b46978c85d957d7fd}\label{classStream_a6e72898690b20a6b46978c85d957d7fd}} 
+\index{Stream@{Stream}!GetObject@{GetObject}}
+\index{GetObject@{GetObject}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{GetObject()}{GetObject()}}
+{\footnotesize\ttfamily rapidjson\+::\+Generic\+Object$<$ true, rapidjson\+::\+Value $>$ const  \& Stream\+::\+Get\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the rapidjson value as an object. 
+
+gets the rapidjson value as an object
+
+\begin{DoxyReturn}{Returns}
+The rapidjson value
+
+the rapidjson value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_acefca0c1a5b0bb0fbc4749e62d3418b6}\label{classStream_acefca0c1a5b0bb0fbc4749e62d3418b6}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [1/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+int Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads a basic type from a json value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & the type to read \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a979ccd4ef77a8d67aed4378af84c9440}\label{classStream_a979ccd4ef77a8d67aed4378af84c9440}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [2/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+bool Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads a boolean value from a json value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & the type to read \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_adad89873f469c0003077bb15ee10f167}\label{classStream_adad89873f469c0003077bb15ee10f167}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [3/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+unsigned int Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads an unsigned int value from a json value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & the type to read \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a0dd919619a27281151f27b3d56d00feb}\label{classStream_a0dd919619a27281151f27b3d56d00feb}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [4/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+float Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads a float value from a json value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & the type to read \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a237e8a4a539b9db2242062f1b5d1511e}\label{classStream_a237e8a4a539b9db2242062f1b5d1511e}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [5/14]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads a basic type from a json value. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type to read \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_acefca0c1a5b0bb0fbc4749e62d3418b6}\label{classStream_acefca0c1a5b0bb0fbc4749e62d3418b6}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [6/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+int Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads an int from a json value. 
+
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a979ccd4ef77a8d67aed4378af84c9440}\label{classStream_a979ccd4ef77a8d67aed4378af84c9440}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [7/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+bool Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads an int from a json value. 
+
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_adad89873f469c0003077bb15ee10f167}\label{classStream_adad89873f469c0003077bb15ee10f167}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [8/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+unsigned int Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads a basic type from a json value. 
+
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a0dd919619a27281151f27b3d56d00feb}\label{classStream_a0dd919619a27281151f27b3d56d00feb}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [9/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+float Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads a float from a json value. 
+
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_ad85cdc230455bbf03d87db9b18aea457}\label{classStream_ad85cdc230455bbf03d87db9b18aea457}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [10/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+std\+::string Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads a string from a json value. 
+
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_ad7bb6376c254598deab834edc540e433}\label{classStream_ad7bb6376c254598deab834edc540e433}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [11/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+glm\+::vec3 Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads a vec3 from a json value. 
+
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a4a4e8bd442ced97a7db6f0bb5fe27fdc}\label{classStream_a4a4e8bd442ced97a7db6f0bb5fe27fdc}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [12/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+glm\+::vec4 Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads a vec4 from a json value. 
+
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a161a23c9112bd845a9b389a22bdfd9f6}\label{classStream_a161a23c9112bd845a9b389a22bdfd9f6}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [13/14]}}
+{\footnotesize\ttfamily template$<$$>$ \\
+glm\+::vec2 Stream\+::\+Read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Reads a vec2 from a json value. 
+
+\begin{DoxyReturn}{Returns}
+The value from the json 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a19a4014f40ad60f19dd84fa81f08702a}\label{classStream_a19a4014f40ad60f19dd84fa81f08702a}} 
+\index{Stream@{Stream}!Read@{Read}}
+\index{Read@{Read}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}\hspace{0.1cm}{\footnotesize\ttfamily [14/14]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Stream\+::\+Read (\begin{DoxyParamCaption}\item[{T $\ast$}]{object }\end{DoxyParamCaption})}
+
+
+
+Reads data into an existing complex type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type to read \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em Object} & the oject to read data into \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classStream_a5e4819e5460e7e3712c2a4859bce9b9d}\label{classStream_a5e4819e5460e7e3712c2a4859bce9b9d}} 
+\index{Stream@{Stream}!ReadFromJSON@{ReadFromJSON}}
+\index{ReadFromJSON@{ReadFromJSON}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{ReadFromJSON()}{ReadFromJSON()}}
+{\footnotesize\ttfamily rapidjson\+::\+Document Stream\+::\+Read\+From\+JSON (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filepath }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Opens and parses a json document. 
+
+Open and parse a json file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the file to read from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rapidjson document.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em filepath} & Name of the json file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rapid\+::json document parsed from the specified file. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Stream_8h}{Stream.\+h}}\item 
+Source/\mbox{\hyperlink{Stream_8cpp}{Stream.\+cpp}}\item 
+Source/\mbox{\hyperlink{Stream_8t_8cpp}{Stream.\+t.\+cpp}}\end{DoxyCompactItemize}

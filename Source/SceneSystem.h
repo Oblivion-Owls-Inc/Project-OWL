@@ -63,6 +63,8 @@ private: // virtual override methods
     /// @brief  Gets called once before the Engine closes
     virtual void OnExit() override;
 
+    /// @brief  Gets called once when this System is added to the Engine
+    virtual void OnInit() override;
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------

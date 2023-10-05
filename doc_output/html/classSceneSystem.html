@@ -62,6 +62,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classSceneSystem-members.html">List of all members</a>  </div>
@@ -78,15 +79,29 @@ $(function() {
 Inheritance diagram for SceneSystem:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSceneSystem__inherit__graph.png" border="0" usemap="#aSceneSystem_inherit__map" alt="Inheritance graph"/></div>
+<map name="aSceneSystem_inherit__map" id="aSceneSystem_inherit__map">
+<area shape="rect" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="5,80,116,107"/>
+<area shape="rect" href="classSystem.html" title="Base class for all Systems." alt="" coords="25,5,96,32"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for SceneSystem:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSceneSystem__coll__graph.png" border="0" usemap="#aSceneSystem_coll__map" alt="Collaboration graph"/></div>
+<map name="aSceneSystem_coll__map" id="aSceneSystem_coll__map">
+<area shape="rect" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="5,80,116,107"/>
+<area shape="rect" href="classSystem.html" title="Base class for all Systems." alt="" coords="25,5,96,32"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a8c233be42192b69eb340e175fa1805c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSceneSystem.html#a8c233be42192b69eb340e175fa1805c1">SetNextScene</a> (std::string nextSceneName)</td></tr>
+<tr class="memdesc:a8c233be42192b69eb340e175fa1805c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the next Scene to change to  <a href="classSceneSystem.html#a8c233be42192b69eb340e175fa1805c1">More...</a><br /></td></tr>
+<tr class="separator:a8c233be42192b69eb340e175fa1805c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56528509c11e234c5522dbcd1b88df10"><td class="memItemLeft" align="right" valign="top">std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSceneSystem.html#a56528509c11e234c5522dbcd1b88df10">GetSceneName</a> () const</td></tr>
+<tr class="memdesc:a56528509c11e234c5522dbcd1b88df10"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the name of the current scene  <a href="classSceneSystem.html#a56528509c11e234c5522dbcd1b88df10">More...</a><br /></td></tr>
+<tr class="separator:a56528509c11e234c5522dbcd1b88df10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad36109a4208c2a8a419f4c88178eee4"><td class="memItemLeft" align="right" valign="top"><a id="aad36109a4208c2a8a419f4c88178eee4"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SceneSystem</b> (<a class="el" href="classSceneSystem.html">SceneSystem</a> &amp;other)=delete</td></tr>
 <tr class="separator:aad36109a4208c2a8a419f4c88178eee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -94,12 +109,25 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classSceneSystem.html">SceneSystem</a> &amp;)=delete</td></tr>
 <tr class="separator:aea7c9fa09d222b80f5e83825de1c992d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classSystem"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classSystem')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classSystem.html">System</a></td></tr>
-<tr class="memitem:a730bbd1f35102d76d281e5d52afb33b9 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a730bbd1f35102d76d281e5d52afb33b9">getIndex</a> () const</td></tr>
-<tr class="memdesc:a730bbd1f35102d76d281e5d52afb33b9 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s index in the <a class="el" href="classEngine.html">Engine</a>.  <a href="classSystem.html#a730bbd1f35102d76d281e5d52afb33b9">More...</a><br /></td></tr>
-<tr class="separator:a730bbd1f35102d76d281e5d52afb33b9 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0d3af24f278882ec7f11b1e517650a6 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac0d3af24f278882ec7f11b1e517650a6">setIndex</a> (int index)</td></tr>
-<tr class="memdesc:ac0d3af24f278882ec7f11b1e517650a6 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s internal index value. SHOULD ONLY BE CALLED BY THE ENGINE.  <a href="classSystem.html#ac0d3af24f278882ec7f11b1e517650a6">More...</a><br /></td></tr>
-<tr class="separator:ac0d3af24f278882ec7f11b1e517650a6 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2599efd39c3969bf4da3ded49574f28 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="ab2599efd39c3969bf4da3ded49574f28"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ab2599efd39c3969bf4da3ded49574f28">OnInit</a> ()</td></tr>
+<tr class="memdesc:ab2599efd39c3969bf4da3ded49574f28 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once when this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is added to the <a class="el" href="classEngine.html">Engine</a>. <br /></td></tr>
+<tr class="separator:ab2599efd39c3969bf4da3ded49574f28 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">OnUpdate</a> (float dt)</td></tr>
+<tr class="memdesc:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every graphics frame. Do not use this function for anything that affects the simulation.  <a href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">More...</a><br /></td></tr>
+<tr class="separator:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e0ba487646e1f447ef0453552d11868 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a9e0ba487646e1f447ef0453552d11868"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a9e0ba487646e1f447ef0453552d11868">OnSceneLoad</a> ()</td></tr>
+<tr class="memdesc:a9e0ba487646e1f447ef0453552d11868 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a new Scene is loaded. <br /></td></tr>
+<tr class="separator:a9e0ba487646e1f447ef0453552d11868 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a57235c9268a213e2944d83cffa3b4aae"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a> ()</td></tr>
+<tr class="memdesc:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
+<tr class="separator:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="af16d6771ccada096b14a8aa823f9d051"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">OnSceneExit</a> ()</td></tr>
+<tr class="memdesc:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
+<tr class="separator:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a6b75872f421f9ae9a720502d37223d49"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>System</b> (<a class="el" href="classSystem.html">System</a> &amp;other)=delete</td></tr>
 <tr class="separator:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,23 +137,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a79e7cca5528251c6b857183f905dac1e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classSceneSystem.html">SceneSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSceneSystem.html#a79e7cca5528251c6b857183f905dac1e">getInstance</a> (std::string const &amp;initialSceneName=&quot;&quot;)</td></tr>
-<tr class="memdesc:a79e7cca5528251c6b857183f905dac1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the instance of <a class="el" href="classSceneSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">SceneSystem</a>  <a href="classSceneSystem.html#a79e7cca5528251c6b857183f905dac1e">More...</a><br /></td></tr>
-<tr class="separator:a79e7cca5528251c6b857183f905dac1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cf3edda7223b86b7d2d4fe151feecf4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classSceneSystem.html">SceneSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSceneSystem.html#a5cf3edda7223b86b7d2d4fe151feecf4">GetInstance</a> ()</td></tr>
+<tr class="memdesc:a5cf3edda7223b86b7d2d4fe151feecf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the instance of <a class="el" href="classSceneSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">SceneSystem</a>  <a href="classSceneSystem.html#a5cf3edda7223b86b7d2d4fe151feecf4">More...</a><br /></td></tr>
+<tr class="separator:a5cf3edda7223b86b7d2d4fe151feecf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classSystem"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classSystem')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classSystem.html">System</a></td></tr>
-<tr class="memitem:ae317936c9bcf1374d61745572e0f2f8a inherit pro_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="ae317936c9bcf1374d61745572e0f2f8a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ae317936c9bcf1374d61745572e0f2f8a">System</a> ()</td></tr>
-<tr class="memdesc:ae317936c9bcf1374d61745572e0f2f8a inherit pro_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
-<tr class="separator:ae317936c9bcf1374d61745572e0f2f8a inherit pro_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ffb94a5a2db03014de0a8440f0cee3a inherit pro_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a7ffb94a5a2db03014de0a8440f0cee3a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a7ffb94a5a2db03014de0a8440f0cee3a">System</a> ()=default</td></tr>
+<tr class="memdesc:a7ffb94a5a2db03014de0a8440f0cee3a inherit pro_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
+<tr class="separator:a7ffb94a5a2db03014de0a8440f0cee3a inherit pro_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Example <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> meant to be copy-pasted when creating new Systems. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a79e7cca5528251c6b857183f905dac1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79e7cca5528251c6b857183f905dac1e">&#9670;&nbsp;</a></span>getInstance()</h2>
+<a id="a5cf3edda7223b86b7d2d4fe151feecf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cf3edda7223b86b7d2d4fe151feecf4">&#9670;&nbsp;</a></span>GetInstance()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -134,10 +162,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classSceneSystem.html">SceneSystem</a> * SceneSystem::getInstance </td>
+          <td class="memname"><a class="el" href="classSceneSystem.html">SceneSystem</a> * SceneSystem::GetInstance </td>
           <td>(</td>
-          <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>initialSceneName</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -150,6 +177,52 @@ Additional Inherited Members</h2></td></tr>
 
 <p>gets the instance of <a class="el" href="classSceneSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">SceneSystem</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>the instance of the <a class="el" href="classSceneSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">SceneSystem</a> </dd></dl>
+
+</div>
+</div>
+<a id="a56528509c11e234c5522dbcd1b88df10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56528509c11e234c5522dbcd1b88df10">&#9670;&nbsp;</a></span>GetSceneName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string const  &amp; SceneSystem::GetSceneName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the name of the current scene </p>
+<dl class="section return"><dt>Returns</dt><dd>the name of the current scene </dd></dl>
+
+</div>
+</div>
+<a id="a8c233be42192b69eb340e175fa1805c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c233be42192b69eb340e175fa1805c1">&#9670;&nbsp;</a></span>SetNextScene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneSystem::SetNextScene </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>nextSceneName_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets the next Scene to change to </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nextSceneName</td><td>the name of the next scene </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

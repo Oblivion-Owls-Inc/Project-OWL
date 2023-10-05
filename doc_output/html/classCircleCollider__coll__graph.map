@@ -1,0 +1,5 @@
+<map id="CircleCollider" name="CircleCollider">
+<area shape="rect" id="node1" title="Circle&#45;shaped Collider." alt="" coords="5,155,115,181"/>
+<area shape="rect" id="node2" href="$classCollider.html" title="component which is used for detecting collisions and information about them" alt="" coords="24,80,96,107"/>
+<area shape="rect" id="node3" href="$classComponent.html" title=" " alt="" coords="11,5,109,32"/>
+</map>

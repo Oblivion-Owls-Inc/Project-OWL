@@ -21,6 +21,7 @@
 #include "AudioPlayer.h"
 #include "Animation.h"
 #include "TextSprite.h"
+#include "TurretBehavior.h"
 #include "PlayerController.h"
 
 template < typename ComponentType >
@@ -52,7 +53,8 @@ std::map<std::string, Component* (*)()> ComponentFactory::componentCreators = {
     { "AudioPlayer"      , Creator<AudioPlayer>      },
     { "Animation"        , Creator<Animation>        },
     { "TextSprite"       , Creator<TextSprite>       },
-    { "PlayerController" , Creator<PlayerController> }
+    { "PlayerController" , Creator<PlayerController> },
+	{ "TurretBehavior"   , Creator<TurretBehavior>   }
 };
 
 // A map of the component type IDs.
@@ -65,5 +67,6 @@ std::map<std::string, std::type_index> ComponentFactory::componentTypes = {
     { "CircleCollider"   , typeid(CircleCollider)   },
     { "AudioPlayer"      , typeid(AudioPlayer)      },
     { "Animation"        , typeid(Animation)        },
-    { "PlayerController" , typeid(PlayerController) }
+    { "PlayerController" , typeid(PlayerController) },
+    { "TurretBehavior"   , typeid(TurretBehavior)   }
 };

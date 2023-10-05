@@ -72,6 +72,11 @@
         m_CurrentSceneName = "";
     }
 
+    void SceneSystem::OnInit()
+    {
+        SetName("SceneSystem");
+    }
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
@@ -196,7 +201,8 @@
         m_NextSceneName( "" ),
         m_CurrentSceneName( "" ),
         m_BaseScenePath( "Data/Scenes/" )
-    {}
+    {
+    }
 
     /// @brief  The singleton instance of SceneSystem
     SceneSystem* SceneSystem::s_Instance = nullptr;

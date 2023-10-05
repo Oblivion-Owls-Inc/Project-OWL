@@ -70,61 +70,74 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="PlatformSystem_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="System_8h.html">System.h</a>&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;glm/vec2.hpp&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">struct </span>GLFWwindow;  <span class="comment">// forward reference for GetWindowHandle()</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">struct </span>GLFWwindow;  <span class="comment">// forward reference for GetWindowHandle()</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classPlatformSystem.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPlatformSystem.html">PlatformSystem</a> : <span class="keyword">public</span> <a class="code" href="classSystem.html">System</a></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    GLFWwindow* <a class="code" href="classPlatformSystem.html#a31290a935b15d34058ca8f127e329e7e">GetWindowHandle</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classPlatformSystem.html#a584ec85c50d98f503a727de4b75a18f6">WindowClosing</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    glm::vec2 <a class="code" href="classPlatformSystem.html#a643ac0cd4f064af4a0a22143c621bc6e">GetWindowDimensions</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    GLFWwindow* <a class="code" href="classPlatformSystem.html#a31290a935b15d34058ca8f127e329e7e">GetWindowHandle</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classPlatformSystem.html#a584ec85c50d98f503a727de4b75a18f6">WindowClosing</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    glm::vec2 <a class="code" href="classPlatformSystem.html#a643ac0cd4f064af4a0a22143c621bc6e">GetWindowDimensions</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">// Window data - dimensions and pointer</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">int</span> windowWidth, windowHeight;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::string windowName;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    GLFWwindow* window;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Window data - dimensions and pointer</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">int</span> _width, _height;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    GLFWwindow* _window;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classPlatformSystem.html">PlatformSystem</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* w_name = <span class="stringliteral">&quot;Prototype&quot;</span>, <span class="keywordtype">int</span> w_width = 800, <span class="keywordtype">int</span> w_height = 600);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classPlatformSystem.html">PlatformSystem</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnInit() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnExit() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnExit() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Unused virtuals</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnInit()<span class="keyword"> override </span>{}</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnUpdate(<span class="keywordtype">float</span> dt)<span class="keyword"> override </span>{}</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnFixedUpdate()<span class="keyword"> override </span>{}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnSceneLoad()<span class="keyword"> override </span>{}</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnSceneInit()<span class="keyword"> override </span>{}</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnSceneExit()<span class="keyword"> override </span>{}</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">static</span> <a class="code" href="classPlatformSystem.html">PlatformSystem</a> * instance;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">static</span> <a class="code" href="classPlatformSystem.html">PlatformSystem</a> * <a class="code" href="classPlatformSystem.html#a4bdac25dc7c8cf62371f953412a996ce">getInstance</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> readWindowWidth( <a class="code" href="classStream.html">Stream</a> stream );</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> readWindowHeight( <a class="code" href="classStream.html">Stream</a> stream );</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; PlatformSystem &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; System &gt; <span class="keyword">const</span>&amp; GetReadMethods() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Unused virtuals</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnUpdate(<span class="keywordtype">float</span> dt)<span class="keyword"> override </span>{}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnFixedUpdate()<span class="keyword"> override </span>{}</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnSceneLoad()<span class="keyword"> override </span>{}</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnSceneInit()<span class="keyword"> override </span>{}</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnSceneExit()<span class="keyword"> override </span>{}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">static</span> <a class="code" href="classPlatformSystem.html">PlatformSystem</a> * instance;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">static</span> <a class="code" href="classPlatformSystem.html">PlatformSystem</a> * <a class="code" href="classPlatformSystem.html#a4bdac25dc7c8cf62371f953412a996ce">getInstance</a>( <span class="keyword">const</span> <span class="keywordtype">char</span>* w_name, <span class="keywordtype">int</span> w_width, <span class="keywordtype">int</span> w_height );</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">// Prevent copying</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="classPlatformSystem.html">PlatformSystem</a>(<a class="code" href="classPlatformSystem.html">PlatformSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classPlatformSystem.html">PlatformSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">static</span> <a class="code" href="classPlatformSystem.html">PlatformSystem</a> * <a class="code" href="classPlatformSystem.html#a01ebae6f4d5422d5494e55c3ed629488">GetInstance</a>();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">// Prevent copying</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="classPlatformSystem.html">PlatformSystem</a>(<a class="code" href="classPlatformSystem.html">PlatformSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classPlatformSystem.html">PlatformSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;};</div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
 <div class="ttc" id="aclassPlatformSystem_html"><div class="ttname"><a href="classPlatformSystem.html">PlatformSystem</a></div><div class="ttdef"><b>Definition:</b> PlatformSystem.h:18</div></div>
-<div class="ttc" id="aclassPlatformSystem_html_a31290a935b15d34058ca8f127e329e7e"><div class="ttname"><a href="classPlatformSystem.html#a31290a935b15d34058ca8f127e329e7e">PlatformSystem::GetWindowHandle</a></div><div class="ttdeci">GLFWwindow * GetWindowHandle() const</div><div class="ttdoc">Returns the window handle.</div><div class="ttdef"><b>Definition:</b> PlatformSystem.cpp:103</div></div>
-<div class="ttc" id="aclassPlatformSystem_html_a4bdac25dc7c8cf62371f953412a996ce"><div class="ttname"><a href="classPlatformSystem.html#a4bdac25dc7c8cf62371f953412a996ce">PlatformSystem::getInstance</a></div><div class="ttdeci">static PlatformSystem * getInstance()</div><div class="ttdoc">gets the PlatformSystem instance, creating one if it doesn't exist</div><div class="ttdef"><b>Definition:</b> PlatformSystem.cpp:135</div></div>
-<div class="ttc" id="aclassPlatformSystem_html_a584ec85c50d98f503a727de4b75a18f6"><div class="ttname"><a href="classPlatformSystem.html#a584ec85c50d98f503a727de4b75a18f6">PlatformSystem::WindowClosing</a></div><div class="ttdeci">bool WindowClosing() const</div><div class="ttdoc">Checks if the window is closing.</div><div class="ttdef"><b>Definition:</b> PlatformSystem.cpp:121</div></div>
-<div class="ttc" id="aclassPlatformSystem_html_a643ac0cd4f064af4a0a22143c621bc6e"><div class="ttname"><a href="classPlatformSystem.html#a643ac0cd4f064af4a0a22143c621bc6e">PlatformSystem::GetWindowDimensions</a></div><div class="ttdeci">glm::vec2 GetWindowDimensions() const</div><div class="ttdoc">Returns window dimensions as a vec2.</div><div class="ttdef"><b>Definition:</b> PlatformSystem.cpp:112</div></div>
-<div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:18</div></div>
+<div class="ttc" id="aclassPlatformSystem_html_a01ebae6f4d5422d5494e55c3ed629488"><div class="ttname"><a href="classPlatformSystem.html#a01ebae6f4d5422d5494e55c3ed629488">PlatformSystem::GetInstance</a></div><div class="ttdeci">static PlatformSystem * GetInstance()</div><div class="ttdoc">gets the PlatformSystem instance, creating one if it doesn't exist</div><div class="ttdef"><b>Definition:</b> PlatformSystem.cpp:160</div></div>
+<div class="ttc" id="aclassPlatformSystem_html_a31290a935b15d34058ca8f127e329e7e"><div class="ttname"><a href="classPlatformSystem.html#a31290a935b15d34058ca8f127e329e7e">PlatformSystem::GetWindowHandle</a></div><div class="ttdeci">GLFWwindow * GetWindowHandle() const</div><div class="ttdoc">Returns the window handle.</div><div class="ttdef"><b>Definition:</b> PlatformSystem.cpp:134</div></div>
+<div class="ttc" id="aclassPlatformSystem_html_a584ec85c50d98f503a727de4b75a18f6"><div class="ttname"><a href="classPlatformSystem.html#a584ec85c50d98f503a727de4b75a18f6">PlatformSystem::WindowClosing</a></div><div class="ttdeci">bool WindowClosing() const</div><div class="ttdoc">Checks if the window is closing.</div><div class="ttdef"><b>Definition:</b> PlatformSystem.cpp:148</div></div>
+<div class="ttc" id="aclassPlatformSystem_html_a643ac0cd4f064af4a0a22143c621bc6e"><div class="ttname"><a href="classPlatformSystem.html#a643ac0cd4f064af4a0a22143c621bc6e">PlatformSystem::GetWindowDimensions</a></div><div class="ttdeci">glm::vec2 GetWindowDimensions() const</div><div class="ttdoc">Returns window dimensions as a vec2.</div><div class="ttdef"><b>Definition:</b> PlatformSystem.cpp:141</div></div>
+<div class="ttc" id="aclassStream_html"><div class="ttname"><a href="classStream.html">Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:27</div></div>
+<div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

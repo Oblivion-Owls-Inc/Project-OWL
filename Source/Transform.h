@@ -64,5 +64,7 @@ private:
     glm::mat4 m_Matrix;
     bool m_IsDirty;
 	bool m_IsDiegetic;
+	Transform* m_Parent;
+	Transform* m_Child;
 };
 

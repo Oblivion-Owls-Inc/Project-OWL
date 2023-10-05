@@ -21,6 +21,7 @@ BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::instance = nullp
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnInit()
 {
+	SetName(typeid(BehaviorType).name());
 }
 
 template<typename BehaviorType>

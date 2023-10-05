@@ -1,0 +1,121 @@
+\hypertarget{classPlayerController}{}\doxysection{Player\+Controller Class Reference}
+\label{classPlayerController}\index{PlayerController@{PlayerController}}
+
+
+Inheritance diagram for Player\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classPlayerController__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Player\+Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classPlayerController__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPlayerController_af2d4e93f407c9cd40a5de9f14cbeadec}\label{classPlayerController_af2d4e93f407c9cd40a5de9f14cbeadec}} 
+\mbox{\hyperlink{classPlayerController_af2d4e93f407c9cd40a5de9f14cbeadec}{Player\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{classPlayerController}{Player\+Controller}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlayerController_a3df7548df34b1908e5931f8adf25a811}{Player\+Controller}} (const \mbox{\hyperlink{classPlayerController}{Player\+Controller}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \mbox{\hyperlink{classPlayerController}{Player\+Controller}} class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPlayerController_a27b597bc2dbe06e2464dea6cdb3fac96}\label{classPlayerController_a27b597bc2dbe06e2464dea6cdb3fac96}} 
+\mbox{\hyperlink{classPlayerController_a27b597bc2dbe06e2464dea6cdb3fac96}{$\sim$\+Player\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classPlayerController}{Player\+Controller}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classPlayerController_a86207931cea38bd757c147cda67b7e0a}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em Clone method for the \mbox{\hyperlink{classPlayerController}{Player\+Controller}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlayerController_a6993c83e8c260d514ad3abfd1f64e2cf}{On\+Update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Update method called per frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPlayerController_af787342977e54cf19862af0d14808ba9}\label{classPlayerController_af787342977e54cf19862af0d14808ba9}} 
+virtual void \mbox{\hyperlink{classPlayerController_af787342977e54cf19862af0d14808ba9}{On\+Init}} ()
+\begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is added to the Scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classPlayerController_a02eab77eb12d134a457427c5bfea6289}{On\+Exit}} ()
+\begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is removed from the Scene \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPlayerController_a3df7548df34b1908e5931f8adf25a811}\label{classPlayerController_a3df7548df34b1908e5931f8adf25a811}} 
+\index{PlayerController@{PlayerController}!PlayerController@{PlayerController}}
+\index{PlayerController@{PlayerController}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{PlayerController()}{PlayerController()}}
+{\footnotesize\ttfamily Player\+Controller\+::\+Player\+Controller (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPlayerController}{Player\+Controller}} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Copy constructor for the \mbox{\hyperlink{classPlayerController}{Player\+Controller}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \mbox{\hyperlink{classPlayerController}{Player\+Controller}} object to copy. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPlayerController_a86207931cea38bd757c147cda67b7e0a}\label{classPlayerController_a86207931cea38bd757c147cda67b7e0a}} 
+\index{PlayerController@{PlayerController}!Clone@{Clone}}
+\index{Clone@{Clone}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Player\+Controller\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Clone method for the \mbox{\hyperlink{classPlayerController}{Player\+Controller}} class. 
+
+\begin{DoxyReturn}{Returns}
+A component pointer to a copy of the \mbox{\hyperlink{classPlayerController}{Player\+Controller}}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}{Behavior}}.
+
+\mbox{\Hypertarget{classPlayerController_a02eab77eb12d134a457427c5bfea6289}\label{classPlayerController_a02eab77eb12d134a457427c5bfea6289}} 
+\index{PlayerController@{PlayerController}!OnExit@{OnExit}}
+\index{OnExit@{OnExit}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{OnExit()}{OnExit()}}
+{\footnotesize\ttfamily void Player\+Controller\+::\+On\+Exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is removed from the Scene 
+
+\begin{DoxyNote}{Note}
+NOT CALLED WHEN THE SCENE IS EXITED -\/ that should be handled by this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classSystem}{System}} 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classComponent_a71b5ee92e9f8e65ab040a80e149fc596}{Component}}.
+
+\mbox{\Hypertarget{classPlayerController_a6993c83e8c260d514ad3abfd1f64e2cf}\label{classPlayerController_a6993c83e8c260d514ad3abfd1f64e2cf}} 
+\index{PlayerController@{PlayerController}!OnUpdate@{OnUpdate}}
+\index{OnUpdate@{OnUpdate}!PlayerController@{PlayerController}}
+\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
+{\footnotesize\ttfamily void Player\+Controller\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update method called per frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The time elapsed since the last frame. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Player\+Controller.\+h\item 
+Source/Player\+Controller.\+cpp\end{DoxyCompactItemize}

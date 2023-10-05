@@ -15,7 +15,7 @@
 #include <string>
 
 /// @brief Asset System meant to be copy-pasted when creating new Systems
-template <class T>
+template <class Asset>
 class AssetLibrarySystem : public System
 {
 
@@ -32,7 +32,8 @@ public: // public functions
 
     /// @brief  Finds and returns an asset, builds if doesnt yet exist
     /// @return the constructed or found asset
-    T const* GetAsset(std::string const& name) const;
+    Asset const* GetAsset(std::string const& name) const;
+
 
     void LoadAssets(Stream data);
 
@@ -40,7 +41,7 @@ public: // public functions
 private: // private variables
 //-----------------------------------------------------------------------------
 
-    std::map<std::string, T*> m_Assets;
+    std::map<std::string, Asset*> m_Assets;
 
 //-----------------------------------------------------------------------------
 private: // private functions

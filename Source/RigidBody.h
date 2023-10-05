@@ -46,6 +46,14 @@ public:
     /// @brief Fixed update method called at a fixed time step.
     virtual void OnFixedUpdate() override;
 
+    /// @brief called when this Component's Entity is added to the Scene
+    virtual void OnInit();
+
+    /// @brief  called when this Component's Entity is removed from the Scene
+    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
+    virtual void OnExit();
+
+
     /// @brief  Called whenever a Collider on this Behavior's Entity collides
     /// @param  other           the entity that was collided with
     /// @param  collisionData   additional data about the collision

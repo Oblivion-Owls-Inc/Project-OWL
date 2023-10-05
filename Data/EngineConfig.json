@@ -7,20 +7,22 @@
         },
         "CameraSystem": {},
         "InputSystem": {},
-        "SceneSystem": {
-            "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "XinoScene"
-        },
-        "XinoScene": {},
+      "SceneSystem": {
+        "BaseScenePath": "Data/Scenes/",
+        "NextSceneName": "TurretScene"
+      },
+        "EntitySystem": {},
         "RenderSystem": {},
         "AudioSystem": {},
         "CollisionSystem": {},
         "BehaviorSystem<MovementAI>": {},
         "BehaviorSystem<RigidBody>": {},
+        "BehaviorSystem<TurretBehavior>": {},
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<PlayerController>": {},
         "DebugSystem": {
-            "ShowFpsWindow": true
+          "ShowFpsWindow": true,
+          "ShowDebugWindow": false
         }
     }
 }

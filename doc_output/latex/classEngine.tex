@@ -3,20 +3,19 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classEngine_a5054eb56a36659e3a209cebd17a523cc}{Add\+System}} (\mbox{\hyperlink{classSystem}{System}} $\ast$system)
-\begin{DoxyCompactList}\small\item\em Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classEngine_acd5804e7140a1b5041c9046c8dc66894}{Add\+System}} (\mbox{\hyperlink{classSystem}{System}} $\ast$system, unsigned index)
-\begin{DoxyCompactList}\small\item\em Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classEngine_af4c789fb939a0870426c698a5124a0ee}\label{classEngine_af4c789fb939a0870426c698a5124a0ee}} 
 void \mbox{\hyperlink{classEngine_af4c789fb939a0870426c698a5124a0ee}{Run}} ()
 \begin{DoxyCompactList}\small\item\em Starts running the engine. Code will not advance past this point until the engine stops running. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classEngine_ac7dc8c00262aee2a11183e4080fa5faf}\label{classEngine_ac7dc8c00262aee2a11183e4080fa5faf}} 
 void \mbox{\hyperlink{classEngine_ac7dc8c00262aee2a11183e4080fa5faf}{Close}} ()
 \begin{DoxyCompactList}\small\item\em Flags the engine to close once it finishes this loop. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classEngine_a245154753498d3119b44a04e31b470ef}{get\+Fixed\+Frame\+Duration}} () const
+float \mbox{\hyperlink{classEngine_a8b5b5213266b2be7fe2c1c94b43946aa}{Get\+Fixed\+Frame\+Duration}} () const
 \begin{DoxyCompactList}\small\item\em gets the duration of each fixed frame \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classSystem}{System}} $\ast$ $>$ const  \& \mbox{\hyperlink{classEngine_a4cb37bc0114aeb9e9592c9dfa9739153}{get\+Systems}} () const
-\begin{DoxyCompactList}\small\item\em Gets the array of all Systems in the engine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEngine_a0e98f1b1054e492ba78731b1a8e800d1}{Set\+Fixed\+Frame\+Duration}} (float fixed\+Frame\+Duration)
+\begin{DoxyCompactList}\small\item\em sets the duration of each fixed frame \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classSystem}{System}} $\ast$ $>$ const  \& \mbox{\hyperlink{classEngine_a0b12e00c76c381b58c44ee4e468cfd3a}{Get\+Systems}} () const
+\begin{DoxyCompactList}\small\item\em gets the array of all Systems in the engine. \end{DoxyCompactList}\item 
+Read\+Method\+Map$<$ \mbox{\hyperlink{classEngine}{Engine}} $>$ const  \& \mbox{\hyperlink{classEngine_a025920553f77e857161214735d9825f1}{Get\+Read\+Methods}} () const
+\begin{DoxyCompactList}\small\item\em gets the map of \mbox{\hyperlink{classEngine}{Engine}} read methods \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classEngine_a821022ae1158a5214797a1a3b678e71b}\label{classEngine_a821022ae1158a5214797a1a3b678e71b}} 
 {\bfseries Engine} (\mbox{\hyperlink{classEngine}{Engine}} \&other)=delete
 \item 
@@ -26,52 +25,16 @@ void {\bfseries operator=} (const \mbox{\hyperlink{classEngine}{Engine}} \&)=del
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{classEngine}{Engine}} $\ast$ \mbox{\hyperlink{classEngine_ae8f7319cf3683c23f6a215952d47ebdf}{get\+Instance}} ()
+static \mbox{\hyperlink{classEngine}{Engine}} $\ast$ \mbox{\hyperlink{classEngine_aab953f155f37bc03fe78de7cb4dbf721}{Get\+Instance}} ()
 \begin{DoxyCompactList}\small\item\em gets the singleton instance of the \mbox{\hyperlink{classEngine}{Engine}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classEngine_a5054eb56a36659e3a209cebd17a523cc}\label{classEngine_a5054eb56a36659e3a209cebd17a523cc}} 
-\index{Engine@{Engine}!AddSystem@{AddSystem}}
-\index{AddSystem@{AddSystem}!Engine@{Engine}}
-\doxysubsubsection{\texorpdfstring{AddSystem()}{AddSystem()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily void Engine\+::\+Add\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSystem}{System}} $\ast$}]{system }\end{DoxyParamCaption})}
-
-
-
-Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}. 
-
-Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}, at the back of the systems array.
-
-
-\begin{DoxyParams}{Parameters}
-{\em system} & The system to add the \mbox{\hyperlink{classEngine}{Engine}} \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classEngine_acd5804e7140a1b5041c9046c8dc66894}\label{classEngine_acd5804e7140a1b5041c9046c8dc66894}} 
-\index{Engine@{Engine}!AddSystem@{AddSystem}}
-\index{AddSystem@{AddSystem}!Engine@{Engine}}
-\doxysubsubsection{\texorpdfstring{AddSystem()}{AddSystem()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily void Engine\+::\+Add\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSystem}{System}} $\ast$}]{system,  }\item[{unsigned}]{index }\end{DoxyParamCaption})}
-
-
-
-Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}}. 
-
-Adds a \mbox{\hyperlink{classSystem}{System}} to the \mbox{\hyperlink{classEngine}{Engine}} at the specified location in the systems array.
-
-
-\begin{DoxyParams}{Parameters}
-{\em system} & The system to add the \mbox{\hyperlink{classEngine}{Engine}} \\
-\hline
-{\em index} & The index in the \mbox{\hyperlink{classEngine}{Engine}} to insert the \mbox{\hyperlink{classSystem}{System}} into. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classEngine_a245154753498d3119b44a04e31b470ef}\label{classEngine_a245154753498d3119b44a04e31b470ef}} 
-\index{Engine@{Engine}!getFixedFrameDuration@{getFixedFrameDuration}}
-\index{getFixedFrameDuration@{getFixedFrameDuration}!Engine@{Engine}}
-\doxysubsubsection{\texorpdfstring{getFixedFrameDuration()}{getFixedFrameDuration()}}
-{\footnotesize\ttfamily float Engine\+::get\+Fixed\+Frame\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+\mbox{\Hypertarget{classEngine_a8b5b5213266b2be7fe2c1c94b43946aa}\label{classEngine_a8b5b5213266b2be7fe2c1c94b43946aa}} 
+\index{Engine@{Engine}!GetFixedFrameDuration@{GetFixedFrameDuration}}
+\index{GetFixedFrameDuration@{GetFixedFrameDuration}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{GetFixedFrameDuration()}{GetFixedFrameDuration()}}
+{\footnotesize\ttfamily float Engine\+::\+Get\+Fixed\+Frame\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -80,11 +43,11 @@ gets the duration of each fixed frame
 \begin{DoxyReturn}{Returns}
 the amount of time in seconds that each fixed frame lasts 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classEngine_ae8f7319cf3683c23f6a215952d47ebdf}\label{classEngine_ae8f7319cf3683c23f6a215952d47ebdf}} 
-\index{Engine@{Engine}!getInstance@{getInstance}}
-\index{getInstance@{getInstance}!Engine@{Engine}}
-\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classEngine}{Engine}} $\ast$ Engine\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\mbox{\Hypertarget{classEngine_aab953f155f37bc03fe78de7cb4dbf721}\label{classEngine_aab953f155f37bc03fe78de7cb4dbf721}} 
+\index{Engine@{Engine}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEngine}{Engine}} $\ast$ Engine\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -93,19 +56,59 @@ gets the singleton instance of the \mbox{\hyperlink{classEngine}{Engine}}
 \begin{DoxyReturn}{Returns}
 the singleton instance of the \mbox{\hyperlink{classEngine}{Engine}} 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classEngine_a4cb37bc0114aeb9e9592c9dfa9739153}\label{classEngine_a4cb37bc0114aeb9e9592c9dfa9739153}} 
-\index{Engine@{Engine}!getSystems@{getSystems}}
-\index{getSystems@{getSystems}!Engine@{Engine}}
-\doxysubsubsection{\texorpdfstring{getSystems()}{getSystems()}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classSystem}{System}} $\ast$ $>$ const  \& Engine\+::get\+Systems (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+\mbox{\Hypertarget{classEngine_a025920553f77e857161214735d9825f1}\label{classEngine_a025920553f77e857161214735d9825f1}} 
+\index{Engine@{Engine}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classEngine}{Engine}} $>$ const  \& Engine\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
-Gets the array of all Systems in the engine. 
+gets the map of \mbox{\hyperlink{classEngine}{Engine}} read methods 
+
+\begin{DoxyReturn}{Returns}
+the map of \mbox{\hyperlink{classEngine}{Engine}} read methods 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_a0b12e00c76c381b58c44ee4e468cfd3a}\label{classEngine_a0b12e00c76c381b58c44ee4e468cfd3a}} 
+\index{Engine@{Engine}!GetSystems@{GetSystems}}
+\index{GetSystems@{GetSystems}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{GetSystems()}{GetSystems()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classSystem}{System}} $\ast$ $>$ const  \& Engine\+::\+Get\+Systems (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the array of all Systems in the engine. 
+
+Gets the array of all Systems in the engine.
 
 \begin{DoxyReturn}{Returns}
 the array of all Systems in the engine 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_af4c789fb939a0870426c698a5124a0ee}\label{classEngine_af4c789fb939a0870426c698a5124a0ee}} 
+\index{Engine@{Engine}!Run@{Run}}
+\index{Run@{Run}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{Run()}{Run()}}
+{\footnotesize\ttfamily void Engine\+::\+Run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts running the engine. Code will not advance past this point until the engine stops running. 
+
+Starts running the engine. \mbox{\Hypertarget{classEngine_a0e98f1b1054e492ba78731b1a8e800d1}\label{classEngine_a0e98f1b1054e492ba78731b1a8e800d1}} 
+\index{Engine@{Engine}!SetFixedFrameDuration@{SetFixedFrameDuration}}
+\index{SetFixedFrameDuration@{SetFixedFrameDuration}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{SetFixedFrameDuration()}{SetFixedFrameDuration()}}
+{\footnotesize\ttfamily void Engine\+::\+Set\+Fixed\+Frame\+Duration (\begin{DoxyParamCaption}\item[{float}]{fixed\+Frame\+Duration }\end{DoxyParamCaption})}
+
+
+
+sets the duration of each fixed frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fixed\+Frame\+Duration} & the amount of time in seconds that each fixed frame lasts \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

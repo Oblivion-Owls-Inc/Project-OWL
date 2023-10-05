@@ -70,56 +70,66 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="System_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classSystem.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSystem.html">System</a></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classSystem.html#aaf0038a8ded8c50370b1c693f11ddc60">   23</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#aaf0038a8ded8c50370b1c693f11ddc60">OnInit</a>() = 0;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classSystem.html#a6df85d6baf098f16b9c18a1614af39b5">   28</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#a6df85d6baf098f16b9c18a1614af39b5">OnFixedUpdate</a>() = 0;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classSystem.html#afa0b86e4b56d71de03a702867aa951fb">   34</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#afa0b86e4b56d71de03a702867aa951fb">OnUpdate</a>(<span class="keywordtype">float</span> dt) = 0;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classSystem.html#af9cbab3440ffa313478862afa8a787f1">   39</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#af9cbab3440ffa313478862afa8a787f1">OnExit</a>() = 0;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classSystem.html#a9657db47b661f06fb2b96cdadea054aa">   44</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#a9657db47b661f06fb2b96cdadea054aa">OnSceneLoad</a>() = 0;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classSystem.html#a3679c65e097e2c0e9b8b4cef86e7619d">   49</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#a3679c65e097e2c0e9b8b4cef86e7619d">OnSceneInit</a>() = 0;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classSystem.html#ae18f56cc6886ab7a6360ebd837326d7d">   54</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#ae18f56cc6886ab7a6360ebd837326d7d">OnSceneExit</a>() = 0;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classSystem.html#a730bbd1f35102d76d281e5d52afb33b9">getIndex</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classSystem.html#ac0d3af24f278882ec7f11b1e517650a6">setIndex</a>(<span class="keywordtype">int</span> index);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="classSystem.html#ae317936c9bcf1374d61745572e0f2f8a">System</a>();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">int</span> index = -1;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="comment">// Prevent Systems from being copied</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <a class="code" href="classSystem.html#ae317936c9bcf1374d61745572e0f2f8a">System</a>(<a class="code" href="classSystem.html">System</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classSystem.html">System</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:18</div></div>
-<div class="ttc" id="aclassSystem_html_a3679c65e097e2c0e9b8b4cef86e7619d"><div class="ttname"><a href="classSystem.html#a3679c65e097e2c0e9b8b4cef86e7619d">System::OnSceneInit</a></div><div class="ttdeci">virtual void OnSceneInit()=0</div><div class="ttdoc">Gets called whenever a scene is initialized.</div></div>
-<div class="ttc" id="aclassSystem_html_a6df85d6baf098f16b9c18a1614af39b5"><div class="ttname"><a href="classSystem.html#a6df85d6baf098f16b9c18a1614af39b5">System::OnFixedUpdate</a></div><div class="ttdeci">virtual void OnFixedUpdate()=0</div><div class="ttdoc">Gets called once every simulation frame. Use this function for anything that affects the simulation.</div></div>
-<div class="ttc" id="aclassSystem_html_a730bbd1f35102d76d281e5d52afb33b9"><div class="ttname"><a href="classSystem.html#a730bbd1f35102d76d281e5d52afb33b9">System::getIndex</a></div><div class="ttdeci">int getIndex() const</div><div class="ttdoc">Gets this System's index in the Engine.</div><div class="ttdef"><b>Definition:</b> System.cpp:21</div></div>
-<div class="ttc" id="aclassSystem_html_a9657db47b661f06fb2b96cdadea054aa"><div class="ttname"><a href="classSystem.html#a9657db47b661f06fb2b96cdadea054aa">System::OnSceneLoad</a></div><div class="ttdeci">virtual void OnSceneLoad()=0</div><div class="ttdoc">Gets called whenever a new Scene is loaded.</div></div>
-<div class="ttc" id="aclassSystem_html_aaf0038a8ded8c50370b1c693f11ddc60"><div class="ttname"><a href="classSystem.html#aaf0038a8ded8c50370b1c693f11ddc60">System::OnInit</a></div><div class="ttdeci">virtual void OnInit()=0</div><div class="ttdoc">Gets called once when this System is added to the Engine.</div></div>
-<div class="ttc" id="aclassSystem_html_ac0d3af24f278882ec7f11b1e517650a6"><div class="ttname"><a href="classSystem.html#ac0d3af24f278882ec7f11b1e517650a6">System::setIndex</a></div><div class="ttdeci">void setIndex(int index)</div><div class="ttdoc">Sets this System's internal index value. SHOULD ONLY BE CALLED BY THE ENGINE.</div><div class="ttdef"><b>Definition:</b> System.cpp:30</div></div>
-<div class="ttc" id="aclassSystem_html_ae18f56cc6886ab7a6360ebd837326d7d"><div class="ttname"><a href="classSystem.html#ae18f56cc6886ab7a6360ebd837326d7d">System::OnSceneExit</a></div><div class="ttdeci">virtual void OnSceneExit()=0</div><div class="ttdoc">Gets called whenever a scene is exited.</div></div>
-<div class="ttc" id="aclassSystem_html_ae317936c9bcf1374d61745572e0f2f8a"><div class="ttname"><a href="classSystem.html#ae317936c9bcf1374d61745572e0f2f8a">System::System</a></div><div class="ttdeci">System()</div><div class="ttdoc">Constructs a System.</div><div class="ttdef"><b>Definition:</b> System.cpp:38</div></div>
-<div class="ttc" id="aclassSystem_html_af9cbab3440ffa313478862afa8a787f1"><div class="ttname"><a href="classSystem.html#af9cbab3440ffa313478862afa8a787f1">System::OnExit</a></div><div class="ttdeci">virtual void OnExit()=0</div><div class="ttdoc">Gets called once before the Engine closes.</div></div>
-<div class="ttc" id="aclassSystem_html_afa0b86e4b56d71de03a702867aa951fb"><div class="ttname"><a href="classSystem.html#afa0b86e4b56d71de03a702867aa951fb">System::OnUpdate</a></div><div class="ttdeci">virtual void OnUpdate(float dt)=0</div><div class="ttdoc">Gets called once every graphics frame. Do not use this function for anything that affects the simulat...</div></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Stream_8h.html">Stream.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classSystem.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSystem.html">System</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual methods</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classSystem.html#ab2599efd39c3969bf4da3ded49574f28">   22</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#ab2599efd39c3969bf4da3ded49574f28">OnInit</a>() {};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classSystem.html#a024e9a831c897c60edb310224be27da8">   25</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#a024e9a831c897c60edb310224be27da8">OnFixedUpdate</a>() {};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">   29</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">OnUpdate</a>(<span class="keywordtype">float</span> dt) {};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classSystem.html#abaebe51536352d44fea4c0e44f449eb5">   32</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#abaebe51536352d44fea4c0e44f449eb5">OnExit</a>() {};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classSystem.html#a9e0ba487646e1f447ef0453552d11868">   35</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#a9e0ba487646e1f447ef0453552d11868">OnSceneLoad</a>() {};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">   38</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a>() {};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">   41</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">OnSceneExit</a>() {};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span>: <span class="comment">// reading</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classSystem.html#aebc272305374d8d3a285516de14d1f5e">   50</a></span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; System &gt; <span class="keyword">const</span>&amp; <a class="code" href="classSystem.html#aebc272305374d8d3a285516de14d1f5e">GetReadMethods</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">protected</span>: <span class="comment">// constructor</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classSystem.html#a7ffb94a5a2db03014de0a8440f0cee3a">   57</a></span>&#160;    <a class="code" href="classSystem.html#a7ffb94a5a2db03014de0a8440f0cee3a">System</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Prevent Systems from being copied</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classSystem.html#a7ffb94a5a2db03014de0a8440f0cee3a">System</a>( <a class="code" href="classSystem.html">System</a>&amp; other ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> operator=( <span class="keyword">const</span> <a class="code" href="classSystem.html">System</a>&amp; ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
+<div class="ttc" id="aStream_8h_html"><div class="ttname"><a href="Stream_8h.html">Stream.h</a></div><div class="ttdoc">JSON File reading/writing.</div></div>
+<div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:15</div></div>
+<div class="ttc" id="aclassSystem_html_a024e9a831c897c60edb310224be27da8"><div class="ttname"><a href="classSystem.html#a024e9a831c897c60edb310224be27da8">System::OnFixedUpdate</a></div><div class="ttdeci">virtual void OnFixedUpdate()</div><div class="ttdoc">Gets called once every simulation frame. Use this function for anything that affects the simulation.</div><div class="ttdef"><b>Definition:</b> System.h:25</div></div>
+<div class="ttc" id="aclassSystem_html_a57235c9268a213e2944d83cffa3b4aae"><div class="ttname"><a href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">System::OnSceneInit</a></div><div class="ttdeci">virtual void OnSceneInit()</div><div class="ttdoc">Gets called whenever a scene is initialized.</div><div class="ttdef"><b>Definition:</b> System.h:38</div></div>
+<div class="ttc" id="aclassSystem_html_a7ffb94a5a2db03014de0a8440f0cee3a"><div class="ttname"><a href="classSystem.html#a7ffb94a5a2db03014de0a8440f0cee3a">System::System</a></div><div class="ttdeci">System()=default</div><div class="ttdoc">Constructs a System.</div></div>
+<div class="ttc" id="aclassSystem_html_a9e0ba487646e1f447ef0453552d11868"><div class="ttname"><a href="classSystem.html#a9e0ba487646e1f447ef0453552d11868">System::OnSceneLoad</a></div><div class="ttdeci">virtual void OnSceneLoad()</div><div class="ttdoc">Gets called whenever a new Scene is loaded.</div><div class="ttdef"><b>Definition:</b> System.h:35</div></div>
+<div class="ttc" id="aclassSystem_html_ab2599efd39c3969bf4da3ded49574f28"><div class="ttname"><a href="classSystem.html#ab2599efd39c3969bf4da3ded49574f28">System::OnInit</a></div><div class="ttdeci">virtual void OnInit()</div><div class="ttdoc">Gets called once when this System is added to the Engine.</div><div class="ttdef"><b>Definition:</b> System.h:22</div></div>
+<div class="ttc" id="aclassSystem_html_abaebe51536352d44fea4c0e44f449eb5"><div class="ttname"><a href="classSystem.html#abaebe51536352d44fea4c0e44f449eb5">System::OnExit</a></div><div class="ttdeci">virtual void OnExit()</div><div class="ttdoc">Gets called once before the Engine closes.</div><div class="ttdef"><b>Definition:</b> System.h:32</div></div>
+<div class="ttc" id="aclassSystem_html_ac80e6b0f679fe9befb8d45014ee389cb"><div class="ttname"><a href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">System::OnUpdate</a></div><div class="ttdeci">virtual void OnUpdate(float dt)</div><div class="ttdoc">Gets called once every graphics frame. Do not use this function for anything that affects the simulat...</div><div class="ttdef"><b>Definition:</b> System.h:29</div></div>
+<div class="ttc" id="aclassSystem_html_aebc272305374d8d3a285516de14d1f5e"><div class="ttname"><a href="classSystem.html#aebc272305374d8d3a285516de14d1f5e">System::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; System &gt; const  &amp; GetReadMethods() const =0</div><div class="ttdoc">gets this System's read methods</div></div>
+<div class="ttc" id="aclassSystem_html_af16d6771ccada096b14a8aa823f9d051"><div class="ttname"><a href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">System::OnSceneExit</a></div><div class="ttdeci">virtual void OnSceneExit()</div><div class="ttdoc">Gets called whenever a scene is exited.</div><div class="ttdef"><b>Definition:</b> System.h:41</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

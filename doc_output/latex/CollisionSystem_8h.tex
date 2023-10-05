@@ -1,0 +1,55 @@
+\hypertarget{CollisionSystem_8h}{}\doxysection{Source/\+Collision\+System.h File Reference}
+\label{CollisionSystem_8h}\index{Source/CollisionSystem.h@{Source/CollisionSystem.h}}
+
+
+The \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} is responsible for checking for collisions between Different Colliders.  
+
+
+{\ttfamily \#include \char`\"{}System.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$typeindex$>$}\newline
+Include dependency graph for Collision\+System.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CollisionSystem_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{CollisionSystem_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCollisionSystem}{Collision\+System}}
+\begin{DoxyCompactList}\small\item\em responsible for checking collsisions between all Colliders \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{CollisionSystem_8h_ad4a15109fc5b785904b54d6044527336}\label{CollisionSystem_8h_ad4a15109fc5b785904b54d6044527336}} 
+using \mbox{\hyperlink{CollisionSystem_8h_ad4a15109fc5b785904b54d6044527336}{Collision\+Check\+Function}} = bool($\ast$)(\mbox{\hyperlink{classCollider}{Collider}} const  $\ast$colliderA, \mbox{\hyperlink{classCollider}{Collider}} const  $\ast$colliderB, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} $\ast$collision\+Data)
+\begin{DoxyCompactList}\small\item\em function pointer to function that checks collisions between \mbox{\hyperlink{classCollider}{Collider}} types \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{CollisionSystem_8h_a82fb835394855287a6873bf742462fdc}\label{CollisionSystem_8h_a82fb835394855287a6873bf742462fdc}} 
+using \mbox{\hyperlink{CollisionSystem_8h_a82fb835394855287a6873bf742462fdc}{Collision\+Function\+Map}} = std\+::map$<$ std\+::pair$<$ std\+::type\+\_\+index, std\+::type\+\_\+index $>$, \mbox{\hyperlink{CollisionSystem_8h_ad4a15109fc5b785904b54d6044527336}{Collision\+Check\+Function}} $>$
+\begin{DoxyCompactList}\small\item\em map that stores the Collision\+Check\+Methods between each \mbox{\hyperlink{classCollider}{Collider}} type \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} is responsible for checking for collisions between Different Colliders. 
+
+\begin{DoxyAuthor}{Author}
+Jax Clayton (\href{mailto:jax.clayton@digipen.edu}{\texttt{ jax.\+clayton@digipen.\+edu}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/09-\/15
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Digipen LLC (c) 2023 
+\end{DoxyCopyright}

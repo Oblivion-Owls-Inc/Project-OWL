@@ -1,0 +1,89 @@
+\hypertarget{classBehavior}{}\doxysection{Behavior Class Reference}
+\label{classBehavior}\index{Behavior@{Behavior}}
+
+
+Inheritance diagram for Behavior\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classBehavior__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Behavior\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=153pt]{classBehavior__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}{Clone}} () const =0
+\begin{DoxyCompactList}\small\item\em virtual component clone function \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}{On\+Collision}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$other, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&collision\+Data)
+\begin{DoxyCompactList}\small\item\em Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBehavior_a2ed3e697d147e7cd41ed5afe573234a6}\label{classBehavior_a2ed3e697d147e7cd41ed5afe573234a6}} 
+virtual void {\bfseries On\+Update} (float dt)
+\item 
+\mbox{\Hypertarget{classBehavior_a6416957ece445d094b45b13c02c16f98}\label{classBehavior_a6416957ece445d094b45b13c02c16f98}} 
+virtual void {\bfseries On\+Fixed\+Update} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBehavior_aad1c5d2f143b5d6d175c01da2941d2ac}\label{classBehavior_aad1c5d2f143b5d6d175c01da2941d2ac}} 
+{\bfseries Behavior} (std\+::type\+\_\+index m\+\_\+\+Type)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}\label{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}} 
+\index{Behavior@{Behavior}!Clone@{Clone}}
+\index{Clone@{Clone}!Behavior@{Behavior}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classComponent}{Component}}$\ast$ Behavior\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+virtual component clone function 
+
+\begin{DoxyReturn}{Returns}
+new clone of component 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+
+
+Implemented in \mbox{\hyperlink{classTurretBehavior_a44ea8cc9c629e688d46abe776bc11bd0}{Turret\+Behavior}}, \mbox{\hyperlink{classRigidBody_aea849dc7c04efb0f2a9792b51989b89f}{Rigid\+Body}}, \mbox{\hyperlink{classPlayerController_a86207931cea38bd757c147cda67b7e0a}{Player\+Controller}}, and \mbox{\hyperlink{classMovementAI_a99a8dd223cd4ff32c5fece1ae40b8074}{Movement\+AI}}.
+
+\mbox{\Hypertarget{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}\label{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}} 
+\index{Behavior@{Behavior}!OnCollision@{OnCollision}}
+\index{OnCollision@{OnCollision}!Behavior@{Behavior}}
+\doxysubsubsection{\texorpdfstring{OnCollision()}{OnCollision()}}
+{\footnotesize\ttfamily virtual void Behavior\+::\+On\+Collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{other,  }\item[{\mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&}]{collision\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the entity that was collided with \\
+\hline
+{\em collision\+Data} & additional data about the collision \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classRigidBody_aa431ab44f687d1a7ca176c82fcb098a3}{Rigid\+Body}}, \mbox{\hyperlink{classMovementAI_ac91447426e69e41710160c4cd72c7878}{Movement\+AI}}, and \mbox{\hyperlink{classTurretBehavior_a61cb0d08cb83b881c5e525b0928c9b30}{Turret\+Behavior}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Behavior_8h}{Behavior.\+h}}\end{DoxyCompactItemize}

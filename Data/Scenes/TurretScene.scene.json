@@ -1,0 +1,99 @@
+{
+  "Assets": {
+    "textures": [],
+    "meshes": [],
+    "shaders": []
+  },
+  "Entities": [
+    {
+      "Name": "Turret",
+      "Components": {
+        "Sprite": {
+          "name": "Data/Textures/Turret.png",
+          "columns": 19,
+          "rows": 1,
+          "layer": 1
+        },
+        "Animation": {
+          "frameStart": 0,
+          "frameCount": 19,
+          "frameDuration": 0.13,
+          "isLooping": false,
+          "isRunning": true
+        },
+        "Transform": {
+          "translation": [ -4, 1, 0 ],
+          "scale": [ 2, 2, 2 ]
+        },
+        "TurretBehavior": {}
+      }
+    },
+    {
+      "Name": "Ball1",
+      "Components": {
+        "Sprite": {
+          "name": "Data/Textures/Balls/Ball5.png",
+          "columns": 1,
+          "rows": 1,
+          "layer": 1
+        },
+        "RigidBody": {
+          "Velocity": [ 3, 1, 0 ]
+        },
+        "CircleCollider": {
+          "Radius": 0.5
+        },
+        "Transform": {
+          "translation": [ 0, 0, 0 ],
+          "scale": [ 1, 1, 1 ]
+        },
+        "MovementAI": {}
+
+      }
+    },
+    {
+      "Name": "Ball2",
+      "Components": {
+        "Sprite": {
+          "name": "Data/Textures/Balls/Ball2.png",
+          "columns": 1,
+          "rows": 1,
+          "layer": 1
+        },
+        "RigidBody": {
+          "Velocity": [ -2, -1, 0 ]
+        },
+        "CircleCollider": {
+          "Radius": 0.5
+        },
+        "Transform": {
+          "translation": [ 2, 1, 0 ],
+          "scale": [ 1, 1, 1 ]
+        },
+        "MovementAI": {}
+      }
+    },
+    {
+      "Name": "Ball3",
+      "Components": {
+        "Sprite": {
+          "name": "Data/Textures/Balls/Ball.png",
+          "columns": 1,
+          "rows": 1,
+          "layer": 1
+        },
+        "RigidBody": {
+          "Velocity": [ 1.5, 4.3, 0 ]
+        },
+        "CircleCollider": {
+          "Radius": 0.5
+        },
+        "Transform": {
+          "translation": [ 1, 0, 0 ],
+          "scale": [ 1, 1, 1 ]
+        },
+        "MovementAI": {}
+      }
+    }
+  ]
+}

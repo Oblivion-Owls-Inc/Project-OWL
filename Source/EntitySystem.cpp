@@ -7,7 +7,7 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #include "EntitySystem.h"
-
+#include "DebugSystem.h"
 #include <algorithm>
 
 //-----------------------------------------------------------------------------
@@ -100,6 +100,53 @@
         m_Entities.clear();
     }
 
+    void EntitySystem::OnFixedUpdate()
+    {
+        for ( int i = 0; i < m_Entities.size(); ++i )
+        {
+            Entity * entity = m_Entities[i];
+
+            if (entity->IsDestroyed())
+            {
+				RemoveEntity(entity);
+                delete entity;
+
+                --i;
+            }
+		}
+    }
+
+    void EntitySystem::DebugWindow()
+    {
+        ImGui::Begin("Entity List");
+
+        if (!ImGui::TreeNode("Entities")) {
+            ImGui::End();
+            return;
+        }
+
+        for (const auto& entity : EntitySystem::GetInstance()->GetEntities())
+        {
+            if (!ImGui::TreeNode(entity->GetName().c_str())) 
+            {
+                continue;
+            }
+
+            for (const auto& componentPair : entity->getComponents())
+            {
+                const std::string componentName = componentPair.second->GetType().name() + 5; // Skip "class "
+                if (ImGui::TreeNode(componentName.c_str())) 
+                {
+                    ImGui::TreePop();
+                }
+            }
+
+            ImGui::TreePop();
+        }
+
+        ImGui::TreePop();
+        ImGui::End();
+    }
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
@@ -121,7 +168,9 @@
     /// @brief  Constructs the EntitySystem
     EntitySystem::EntitySystem() :
         m_Entities()
-    {}
+    {
+        SetName("EntitySystem");
+    }
 
     /// @brief  The singleton instance of EntitySystem
     EntitySystem * EntitySystem::s_Instance = nullptr;

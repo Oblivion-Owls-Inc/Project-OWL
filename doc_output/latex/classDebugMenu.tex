@@ -11,12 +11,22 @@ Debugging menu class derived from \mbox{\hyperlink{classGUI}{GUI}}.
 
 
 
-Inheritance diagram for Debug\+Menu\+:
-% FIG 0
+Inheritance diagram for Debug\+Menu\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{classDebugMenu__inherit__graph}
+\end{center}
+\end{figure}
 
 
-Collaboration diagram for Debug\+Menu\+:
-% FIG 1
+Collaboration diagram for Debug\+Menu\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{classDebugMenu__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -26,10 +36,13 @@ Collaboration diagram for Debug\+Menu\+:
 \mbox{\Hypertarget{classDebugMenu_afd084a5f52b2815dbb79c0b90fa3dda8}\label{classDebugMenu_afd084a5f52b2815dbb79c0b90fa3dda8}} 
 \mbox{\hyperlink{classDebugMenu_afd084a5f52b2815dbb79c0b90fa3dda8}{$\sim$\+Debug\+Menu}} ()
 \begin{DoxyCompactList}\small\item\em Destructor for \mbox{\hyperlink{classDebugMenu}{Debug\+Menu}}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classDebugMenu_a7b60b896e21cc00fcec03b927a5ad0c4}{set\+Active}} () override
+void \mbox{\hyperlink{classDebugMenu_a4cb58ee64d305cc7610621275316aa99}{Set\+Active}} () override
 \begin{DoxyCompactList}\small\item\em Set the \mbox{\hyperlink{classDebugMenu}{Debug\+Menu}} as active. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDebugMenu_a3d1089d4541a4b246a49e0bbbaf55b9b}{Render}} () override
-\begin{DoxyCompactList}\small\item\em Render function for \mbox{\hyperlink{classDebugMenu}{Debug\+Menu}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Render function for \mbox{\hyperlink{classDebugMenu}{Debug\+Menu}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugMenu_a103c679b90dbc02bd3e805eacca35396}\label{classDebugMenu_a103c679b90dbc02bd3e805eacca35396}} 
+void \mbox{\hyperlink{classDebugMenu_a103c679b90dbc02bd3e805eacca35396}{Show\+Entity\+List}} ()
+\begin{DoxyCompactList}\small\item\em Show the entity list in the debug menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -52,11 +65,11 @@ Overrides the base class function to render the \mbox{\hyperlink{classDebugMenu}
 
 Reimplemented from \mbox{\hyperlink{classGUI_a4905ff37be14b83496d098096f5848b6}{GUI}}.
 
-\mbox{\Hypertarget{classDebugMenu_a7b60b896e21cc00fcec03b927a5ad0c4}\label{classDebugMenu_a7b60b896e21cc00fcec03b927a5ad0c4}} 
-\index{DebugMenu@{DebugMenu}!setActive@{setActive}}
-\index{setActive@{setActive}!DebugMenu@{DebugMenu}}
-\doxysubsubsection{\texorpdfstring{setActive()}{setActive()}}
-{\footnotesize\ttfamily void Debug\+Menu\+::set\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+\mbox{\Hypertarget{classDebugMenu_a4cb58ee64d305cc7610621275316aa99}\label{classDebugMenu_a4cb58ee64d305cc7610621275316aa99}} 
+\index{DebugMenu@{DebugMenu}!SetActive@{SetActive}}
+\index{SetActive@{SetActive}!DebugMenu@{DebugMenu}}
+\doxysubsubsection{\texorpdfstring{SetActive()}{SetActive()}}
+{\footnotesize\ttfamily void Debug\+Menu\+::\+Set\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -66,11 +79,11 @@ Set the \mbox{\hyperlink{classGUI}{GUI}} element as inactive.
 
 Overrides the base class function to set the \mbox{\hyperlink{classDebugMenu}{Debug\+Menu}} as active. 
 
-Reimplemented from \mbox{\hyperlink{classGUI_ad211c1e2a608b1df4fb43d3e6d1a69c9}{GUI}}.
+Reimplemented from \mbox{\hyperlink{classGUI_ab78e0d174ce99cac7d69a3c7df8fd910}{GUI}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Source/\mbox{\hyperlink{GUI_8h}{GUI.\+h}}\item 
-Source/\mbox{\hyperlink{GUI_8cpp}{GUI.\+cpp}}\end{DoxyCompactItemize}
+Source/GUI.\+h\item 
+Source/GUI.\+cpp\end{DoxyCompactItemize}

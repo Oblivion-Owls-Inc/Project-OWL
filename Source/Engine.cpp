@@ -25,6 +25,7 @@
 #include "InputSystem.h"
 #include "EntitySystem.h"
 #include "PlayerController.h"
+#include "TurretBehavior.h"
 #include "Animation.h"
 
 #include "BehaviorSystem.h"
@@ -163,13 +164,12 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
     { "InputSystem",                &addSystem< InputSystem >                   },
     { "SceneSystem",                &addSystem< SceneSystem >                   },
     { "RenderSystem",               &addSystem< RenderSystem >                  },
-//#ifndef NDEBUG
     { "DebugSystem",                &addSystem< DebugSystem >                   },
-//#endif // !Debug
     { "AudioSystem",                &addSystem< AudioSystem >                   },
     { "EntitySystem",               &addSystem< EntitySystem >                  },
     { "SandboxSystem",              &addSystem< SandboxSystem >                 },
     { "XinoScene",                  &addSystem< XinoScene >                     },
+	{ "BehaviorSystem<TurretBehavior>", &addSystem< BehaviorSystem< TurretBehavior > >  },
     { "BehaviorSystem<PlayerController>", &addSystem< BehaviorSystem< PlayerController > >  },
     { "BehaviorSystem<MovementAI>", &addSystem< BehaviorSystem< MovementAI > >  },
     { "BehaviorSystem<RigidBody>",  &addSystem< BehaviorSystem< RigidBody > >   },

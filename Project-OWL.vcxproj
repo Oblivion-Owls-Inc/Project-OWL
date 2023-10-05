@@ -181,9 +181,11 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\FollowingBehavior.cpp" />
     <ClCompile Include="imgui\implot.cpp" />
     <ClCompile Include="imgui\implot_demo.cpp" />
     <ClCompile Include="imgui\implot_items.cpp" />
+    <ClCompile Include="Source\Pool.cpp" />
     <ClCompile Include="Source\Lua.cpp" />
     <ClCompile Include="Source\PlayerController.cpp" />
     <ClCompile Include="Source\AidanScene.cpp" />
@@ -213,6 +215,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\TextSprite.cpp" />
     <ClCompile Include="Source\StubScene.cpp" />
+    <ClCompile Include="Source\TurretBehavior.cpp" />
     <ClCompile Include="Source\XinoScene.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
@@ -221,7 +224,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\ExampleSystem.cpp" />
-    <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\RigidBody.cpp" />
     <ClCompile Include="Source\PlatformSystem.cpp" />
@@ -234,8 +236,11 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\CircleCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\FollowingBehavior.h" />
     <ClInclude Include="imgui\implot.h" />
     <ClInclude Include="imgui\implot_internal.h" />
+    <ClInclude Include="Source\Pool.h" />
+    <ClInclude Include="Source\AidanScene.h" />
     <ClInclude Include="Source\CollisionData.h" />
     <ClInclude Include="Source\PlayerController.h" />
     <ClInclude Include="Source\Animation.h" />
@@ -254,6 +259,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\TextSprite.h" />
     <ClInclude Include="Source\StubScene.h" />
+    <ClInclude Include="Source\TurretBehavior.h" />
     <ClInclude Include="Source\XinoScene.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
     <ClInclude Include="Source\InputSystem.h" />
@@ -277,7 +283,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Component.h" />
     <ClInclude Include="Source\DebugSystem.h" />
     <ClInclude Include="Source\Entity.h" />
-    <ClInclude Include="Source\GUI.h" />
     <ClInclude Include="Source\PlatformSystem.h" />
     <ClInclude Include="Source\SceneSystem.h" />
     <ClInclude Include="Source\Sprite.h" />
@@ -293,6 +298,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\Sandbox.scene.json" />
     <None Include="Data\Scenes\TestScene.scene.json" />
     <None Include="Data\Scenes\XinoScene.scene.json" />
+    <None Include="Data\Scenes\TurretScene.scene.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

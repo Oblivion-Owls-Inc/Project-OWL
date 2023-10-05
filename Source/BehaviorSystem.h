@@ -67,9 +67,9 @@ public:
     static BehaviorSystem< BehaviorType >* GetInstance();
     std::vector< BehaviorType* >& GetBehaviors() const;
 
-    //-----------------------------------------------------------------------------
-    private: // reading
-    //----------------------------------------------------------------------------- 
+//-----------------------------------------------------------------------------
+private: // reading
+//----------------------------------------------------------------------------- 
 
         /// @brief the read methods of a BehaviorSystem
     static ReadMethodMap< BehaviorSystem< BehaviorType > > const s_ReadMethods;

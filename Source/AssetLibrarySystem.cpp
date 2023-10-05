@@ -20,8 +20,8 @@
 
 /// @brief  Gets called whenever a scene is exited
 /// @brief	Flushes and resets library
-template<class T>
-void AssetLibrarySystem<T>::OnSceneExit()
+template<class Asset>
+void AssetLibrarySystem<Asset>::OnSceneExit()
 {
 	LibraryFlush();
 }
@@ -82,15 +82,15 @@ void AssetLibrarySystem<T>::LibraryFlush()
 //-----------------------------------------------------------------------------
 
 /// @brief map of the AssetLibrarySystem read methods
-template < class T >
-ReadMethodMap< AssetLibrarySystem< T > > const AssetLibrarySystem<T>::s_ReadMethods = {};
+template < class Asset >
+ReadMethodMap< AssetLibrarySystem< Asset > > const AssetLibrarySystem<Asset>::s_ReadMethods = {};
 
 
 
 /// @brief  gets this System's read methods
 /// @return this System's read methods
-template < class T >
-ReadMethodMap< System > const& AssetLibrarySystem< T >::GetReadMethods() const
+template < class Asset >
+ReadMethodMap< System > const& AssetLibrarySystem< Asset >::GetReadMethods() const
 {
     return (ReadMethodMap< System > const&)s_ReadMethods;
 }
@@ -100,17 +100,20 @@ ReadMethodMap< System > const& AssetLibrarySystem< T >::GetReadMethods() const
 //-----------------------------------------------------------------------------
 
 /// @brief Constructs the AssetLibrarySystem
-template<class T>
-AssetLibrarySystem< T >::AssetLibrarySystem() {}
+template<class Asset>
+AssetLibrarySystem< Asset >::AssetLibrarySystem() 
+{
+	SetName(typeid(Asset).name());
+}
 
 /// @brief The singleton instance of AssetLibrarySystem
-template<class T>
-AssetLibrarySystem< T >* AssetLibrarySystem< T >::s_Instance = nullptr;
+template<class Asset>
+AssetLibrarySystem< Asset >* AssetLibrarySystem< Asset >::s_Instance = nullptr;
 
 /// @brief gets the instance of AssetLibrarySystem
 /// @return the instance of the AssetLibrarySystem
-template<class T>
-AssetLibrarySystem< T >* AssetLibrarySystem< T>::GetInstance()
+template<class Asset>
+AssetLibrarySystem< Asset >* AssetLibrarySystem< Asset>::GetInstance()
 {
     if (s_Instance == nullptr)
     {

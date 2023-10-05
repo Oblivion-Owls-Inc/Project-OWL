@@ -19,17 +19,16 @@ static float timer = 0.0f;
 
 MovementAI::MovementAI(): Behavior(typeid(MovementAI))
 {
-    BehaviorSystem<MovementAI>::GetInstance()->AddBehavior(this);
 }
 
-MovementAI::~MovementAI()
+MovementAI::MovementAI(const MovementAI& other) : Behavior(typeid(MovementAI))
 {
-    BehaviorSystem< MovementAI >::GetInstance()->RemoveBehavior(this);
 }
+
 
 Component* MovementAI::Clone() const
 {
-	return nullptr;
+    return (Component *)new MovementAI(*this);
 }
 
 /// @brief  Called whenever a Collider on this Behavior's Entity collides
@@ -37,16 +36,16 @@ Component* MovementAI::Clone() const
 /// @param  collisionData   additional data about the collision
 void MovementAI::OnCollision( Entity* other, CollisionData const& collisionData )
 {
-    DebugConsole output2( *DebugSystem::GetInstance() );
-    output2 << GetParent()->GetName().c_str() <<":Collision Detected in Movement AI" << "\n";
 }
 
-void MovementAI::OnUpdate(float dt)
+void MovementAI::OnInit()
 {
+    BehaviorSystem<MovementAI>::GetInstance()->AddBehavior(this);
 }
 
-void MovementAI::MovementAIUpdateRotation(float dt)
+void MovementAI::OnExit()
 {
+    BehaviorSystem< MovementAI >::GetInstance()->RemoveBehavior(this);
 }
 
 void MovementAI::OnFixedUpdate()
@@ -88,18 +87,7 @@ void MovementAI::OnFixedUpdate()
     ballTransform->SetTranslation(pos);
     ballRigidBody->SetVelocity(velocity);
 }
-void MovementAI::MovementAIUpdateVelocity(float dt)
-{
-}
 
-void MovementAI::MovementAIUpdateWeapon(float dt)
-{
-}
-
-
-void MovementAI::MovementAISpiral(float dt)
-{
-}
 
 /// @brief the map of read methods for this Component
 ReadMethodMap< MovementAI > const MovementAI::readMethods = {};
@@ -107,8 +95,4 @@ ReadMethodMap< MovementAI > const MovementAI::readMethods = {};
 ReadMethodMap<Component> const& MovementAI::GetReadMethods() const
 {
     return (ReadMethodMap< Component > const&)readMethods;
-}
-
-void MovementAI::MovementAISpawnBullet()
-{
 }

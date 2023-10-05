@@ -13,7 +13,7 @@
 #include "glfw3.h"
 
 /// @brief Constructs the InputSystem
-InputSystem::InputSystem() {}
+InputSystem::InputSystem() { SetName("InputSystem"); }
 
 /// @brief fixed update for input, must be called
 void InputSystem::OnFixedUpdate()

@@ -46,11 +46,14 @@ PlatformSystem::PlatformSystem() :
 	windowWidth( 800 ),
     windowHeight( 600 ),
     windowName( "engineTest" )
-{}
+{
+}
 
 /// @brief Initializes the PlatformSystem
 void PlatformSystem::OnInit()
 {
+    SetName("PlatformSystem");
+
     // GLFW
     if ( !glfwInit() )
     {

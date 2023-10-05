@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Project OWL: Source/rapidjson/stream.h Source File</title>
+<title>Project OWL: Source/Stream.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,189 +61,102 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_4cb3b4c287a6bb8dfda5e22f43c2f46e.html">rapidjson</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">stream.h</div>  </div>
+<div class="title">Stream.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Tencent is pleased to support the open source community by making RapidJSON available.</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// Licensed under the MIT License (the &quot;License&quot;); you may not use this file except</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// in compliance with the License. You may obtain a copy of the License at</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// http://opensource.org/licenses/MIT</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// Unless required by applicable law or agreed to in writing, software distributed</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// CONDITIONS OF ANY KIND, either express or implied. See the License for the</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// specific language governing permissions and limitations under the License.</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rapidjson_8h.html">rapidjson.h</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifndef RAPIDJSON_STREAM_H_</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define RAPIDJSON_STREAM_H_</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;encodings.h&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<a class="code" href="group__RAPIDJSON__CONFIG.html#gad3806c8251fdc7da9618b7e922674ffc">RAPIDJSON_NAMESPACE_BEGIN</a></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//  Stream</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<a href="Stream_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define STREAM_H</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// Include Files:</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;rapidjson/document.h&gt;</span>  <span class="comment">// rapidjson::Document, Parse, HasParseError, GetParseError</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span>      <span class="comment">// std::string</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span>     <span class="comment">// std::ifstream</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;glm/glm.hpp&gt;</span> <span class="comment">// glm::vec3</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">// Class: Stream</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classStream.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="classStream.html">Stream</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>: <span class="comment">// static methods</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">static</span> rapidjson::Document <a class="code" href="classStream.html#a5e4819e5460e7e3712c2a4859bce9b9d">ReadFromJSON</a>(<span class="keyword">const</span> std::string&amp; name);               </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>: <span class="comment">// constructor</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classStream.html#aabbff76a86f734b48c1ce48665653a7b">Stream</a>( rapidjson::Document <span class="keyword">const</span>&amp; document );</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classStream.html#aabbff76a86f734b48c1ce48665653a7b">Stream</a>( rapidjson::Value <span class="keyword">const</span>&amp; value );</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>: <span class="comment">// acessors</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    rapidjson::GenericObject&lt; true, rapidjson::Value &gt; <span class="keyword">const</span>&amp; <a class="code" href="classStream.html#a6e72898690b20a6b46978c85d957d7fd">GetObject</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    rapidjson::GenericArray&lt; true, rapidjson::Value &gt; <span class="keyword">const</span>&amp; <a class="code" href="classStream.html#a52971f253843f4f872a64033bfa9a601">GetArray</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">   60</a></span>&#160;    T <a class="code" href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">Read</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream&gt;</div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structStreamTraits.html">   73</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structStreamTraits.html">StreamTraits</a> {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">enum</span> { copyOptimization = 0 };</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classStream.html#acefca0c1a5b0bb0fbc4749e62d3418b6">   65</a></span>&#160;    <span class="keywordtype">int</span> Read&lt;int&gt;() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classStream.html#a979ccd4ef77a8d67aed4378af84c9440">   70</a></span>&#160;    <span class="keywordtype">bool</span> Read&lt;bool&gt;() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classStream.html#adad89873f469c0003077bb15ee10f167">   75</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Read&lt;unsigned int&gt;() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classStream.html#a0dd919619a27281151f27b3d56d00feb">   80</a></span>&#160;    <span class="keywordtype">float</span> Read&lt;float&gt;() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream&gt;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> PutReserve(<a class="code" href="classrapidjson_1_1Stream.html">Stream</a>&amp; stream, <span class="keywordtype">size_t</span> count) {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    (void)stream;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    (void)count;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream&gt;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> PutUnsafe(<a class="code" href="classrapidjson_1_1Stream.html">Stream</a>&amp; stream, <span class="keyword">typename</span> Stream::Ch c) {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    stream.Put(c);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream, <span class="keyword">typename</span> Ch&gt;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> PutN(<a class="code" href="classrapidjson_1_1Stream.html">Stream</a>&amp; stream, Ch c, <span class="keywordtype">size_t</span> n) {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    PutReserve(stream, n);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; n; i++)</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        PutUnsafe(stream, c);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">// GenericStreamWrapper</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#if defined(_MSC_VER) &amp;&amp; _MSC_VER &lt;= 1800</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;RAPIDJSON_DIAG_PUSH</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;RAPIDJSON_DIAG_OFF(4702)  <span class="comment">// unreachable code</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;RAPIDJSON_DIAG_OFF(4512)  <span class="comment">// assignment operator could not be generated</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> InputStream, <span class="keyword">typename</span> Encoding = UTF8&lt;&gt; &gt;</div>
-<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="classGenericStreamWrapper.html">  119</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGenericStreamWrapper.html">GenericStreamWrapper</a> {</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Encoding::Ch Ch;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <a class="code" href="classGenericStreamWrapper.html">GenericStreamWrapper</a>(InputStream&amp; is): is_(is) {}</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    Ch Peek()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> is_.Peek(); }</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    Ch Take() { <span class="keywordflow">return</span> is_.Take(); }</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">size_t</span> Tell() { <span class="keywordflow">return</span> is_.Tell(); }</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    Ch* PutBegin() { <span class="keywordflow">return</span> is_.PutBegin(); }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> Put(Ch ch) { is_.Put(ch); }</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">void</span> Flush() { is_.Flush(); }</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">size_t</span> PutEnd(Ch* ch) { <span class="keywordflow">return</span> is_.PutEnd(ch); }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="comment">// wrapper for MemoryStream</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keyword">const</span> Ch* Peek4()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> is_.Peek4(); }</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="comment">// wrapper for AutoUTFInputStream</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    UTFType GetType()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> is_.GetType(); }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordtype">bool</span> HasBOM()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> is_.HasBOM(); }</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    InputStream&amp; is_;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;};</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#if defined(_MSC_VER) &amp;&amp; _MSC_VER &lt;= 1800</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;RAPIDJSON_DIAG_POP</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">// StringStream</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Encoding&gt;</div>
-<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="structGenericStringStream.html">  154</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structGenericStringStream.html">GenericStringStream</a> {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Encoding::Ch Ch;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <a class="code" href="structGenericStringStream.html">GenericStringStream</a>(<span class="keyword">const</span> Ch *src) : <a class="code" href="structGenericStringStream.html#aeda813798e3f2d6bfdac86afc11b6b80">src_</a>(src), <a class="code" href="structGenericStringStream.html#a3c86ef1e1f0655028cb8a3afce11ee4f">head_</a>(src) {}</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    Ch Peek()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> *<a class="code" href="structGenericStringStream.html#aeda813798e3f2d6bfdac86afc11b6b80">src_</a>; }</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    Ch Take() { <span class="keywordflow">return</span> *<a class="code" href="structGenericStringStream.html#aeda813798e3f2d6bfdac86afc11b6b80">src_</a>++; }</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordtype">size_t</span> Tell()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(<a class="code" href="structGenericStringStream.html#aeda813798e3f2d6bfdac86afc11b6b80">src_</a> - <a class="code" href="structGenericStringStream.html#a3c86ef1e1f0655028cb8a3afce11ee4f">head_</a>); }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    Ch* PutBegin() { <a class="code" href="group__RAPIDJSON__CONFIG.html#gabeba18d612187bad2ac62aed9276d47c">RAPIDJSON_ASSERT</a>(<span class="keyword">false</span>); <span class="keywordflow">return</span> 0; }</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordtype">void</span> Put(Ch) { <a class="code" href="group__RAPIDJSON__CONFIG.html#gabeba18d612187bad2ac62aed9276d47c">RAPIDJSON_ASSERT</a>(<span class="keyword">false</span>); }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordtype">void</span> Flush() { <a class="code" href="group__RAPIDJSON__CONFIG.html#gabeba18d612187bad2ac62aed9276d47c">RAPIDJSON_ASSERT</a>(<span class="keyword">false</span>); }</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordtype">size_t</span> PutEnd(Ch*) { <a class="code" href="group__RAPIDJSON__CONFIG.html#gabeba18d612187bad2ac62aed9276d47c">RAPIDJSON_ASSERT</a>(<span class="keyword">false</span>); <span class="keywordflow">return</span> 0; }</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="structGenericStringStream.html#aeda813798e3f2d6bfdac86afc11b6b80">  168</a></span>&#160;    <span class="keyword">const</span> Ch* <a class="code" href="structGenericStringStream.html#aeda813798e3f2d6bfdac86afc11b6b80">src_</a>;     </div>
-<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="structGenericStringStream.html#a3c86ef1e1f0655028cb8a3afce11ee4f">  169</a></span>&#160;    <span class="keyword">const</span> Ch* <a class="code" href="structGenericStringStream.html#a3c86ef1e1f0655028cb8a3afce11ee4f">head_</a>;    </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;};</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Encoding&gt;</div>
-<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="structStreamTraits_3_01GenericStringStream_3_01Encoding_01_4_01_4.html">  173</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structStreamTraits.html">StreamTraits</a>&lt;<a class="code" href="structGenericStringStream.html">GenericStringStream</a>&lt;<a class="code" href="classrapidjson_1_1Encoding.html">Encoding</a>&gt; &gt; {</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keyword">enum</span> { copyOptimization = 1 };</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;};</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keyword">typedef</span> <a class="code" href="structGenericStringStream.html">GenericStringStream&lt;UTF8&lt;&gt;</a> &gt; <a class="code" href="structGenericStringStream.html">StringStream</a>;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">// InsituStringStream</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Encoding&gt;</div>
-<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="structGenericInsituStringStream.html">  188</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structGenericInsituStringStream.html">GenericInsituStringStream</a> {</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">typename</span> Encoding::Ch Ch;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <a class="code" href="structGenericInsituStringStream.html">GenericInsituStringStream</a>(Ch *src) : src_(src), dst_(0), head_(src) {}</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="comment">// Read</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    Ch Peek() { <span class="keywordflow">return</span> *src_; }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    Ch Take() { <span class="keywordflow">return</span> *src_++; }</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordtype">size_t</span> Tell() { <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(src_ - head_); }</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="comment">// Write</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordtype">void</span> Put(Ch c) { <a class="code" href="group__RAPIDJSON__CONFIG.html#gabeba18d612187bad2ac62aed9276d47c">RAPIDJSON_ASSERT</a>(dst_ != 0); *dst_++ = c; }</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    Ch* PutBegin() { <span class="keywordflow">return</span> dst_ = src_; }</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordtype">size_t</span> PutEnd(Ch* begin) { <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(dst_ - begin); }</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordtype">void</span> Flush() {}</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    Ch* Push(<span class="keywordtype">size_t</span> count) { Ch* begin = dst_; dst_ += count; <span class="keywordflow">return</span> begin; }</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordtype">void</span> Pop(<span class="keywordtype">size_t</span> count) { dst_ -= count; }</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    Ch* src_;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    Ch* dst_;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    Ch* head_;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;};</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Encoding&gt;</div>
-<div class="line"><a name="l00214"></a><span class="lineno"><a class="line" href="structStreamTraits_3_01GenericInsituStringStream_3_01Encoding_01_4_01_4.html">  214</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structStreamTraits.html">StreamTraits</a>&lt;<a class="code" href="structGenericInsituStringStream.html">GenericInsituStringStream</a>&lt;<a class="code" href="classrapidjson_1_1Encoding.html">Encoding</a>&gt; &gt; {</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keyword">enum</span> { copyOptimization = 1 };</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;};</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="keyword">typedef</span> <a class="code" href="structGenericInsituStringStream.html">GenericInsituStringStream&lt;UTF8&lt;&gt;</a> &gt; <a class="code" href="structGenericInsituStringStream.html">InsituStringStream</a>;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<a class="code" href="group__RAPIDJSON__CONFIG.html#gaf18f052a98b9f5df5448d39484b743c1">RAPIDJSON_NAMESPACE_END</a></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// RAPIDJSON_STREAM_H_</span></div>
-<div class="ttc" id="aclassGenericStreamWrapper_html"><div class="ttname"><a href="classGenericStreamWrapper.html">GenericStreamWrapper</a></div><div class="ttdoc">A Stream Wrapper.</div><div class="ttdef"><b>Definition:</b> stream.h:119</div></div>
-<div class="ttc" id="aclassrapidjson_1_1Encoding_html"><div class="ttname"><a href="classrapidjson_1_1Encoding.html">Encoding</a></div><div class="ttdoc">Concept for encoding of Unicode characters.</div></div>
-<div class="ttc" id="aclassrapidjson_1_1Stream_html"><div class="ttname"><a href="classrapidjson_1_1Stream.html">Stream</a></div><div class="ttdoc">Concept for reading and writing characters.</div></div>
-<div class="ttc" id="agroup__RAPIDJSON__CONFIG_html_gabeba18d612187bad2ac62aed9276d47c"><div class="ttname"><a href="group__RAPIDJSON__CONFIG.html#gabeba18d612187bad2ac62aed9276d47c">RAPIDJSON_ASSERT</a></div><div class="ttdeci">#define RAPIDJSON_ASSERT(x)</div><div class="ttdoc">Assertion.</div><div class="ttdef"><b>Definition:</b> rapidjson.h:437</div></div>
-<div class="ttc" id="agroup__RAPIDJSON__CONFIG_html_gad3806c8251fdc7da9618b7e922674ffc"><div class="ttname"><a href="group__RAPIDJSON__CONFIG.html#gad3806c8251fdc7da9618b7e922674ffc">RAPIDJSON_NAMESPACE_BEGIN</a></div><div class="ttdeci">#define RAPIDJSON_NAMESPACE_BEGIN</div><div class="ttdoc">provide custom rapidjson namespace (opening expression)</div><div class="ttdef"><b>Definition:</b> rapidjson.h:121</div></div>
-<div class="ttc" id="agroup__RAPIDJSON__CONFIG_html_gaf18f052a98b9f5df5448d39484b743c1"><div class="ttname"><a href="group__RAPIDJSON__CONFIG.html#gaf18f052a98b9f5df5448d39484b743c1">RAPIDJSON_NAMESPACE_END</a></div><div class="ttdeci">#define RAPIDJSON_NAMESPACE_END</div><div class="ttdoc">provide custom rapidjson namespace (closing expression)</div><div class="ttdef"><b>Definition:</b> rapidjson.h:124</div></div>
-<div class="ttc" id="arapidjson_8h_html"><div class="ttname"><a href="rapidjson_8h.html">rapidjson.h</a></div><div class="ttdoc">common definitions and configuration</div></div>
-<div class="ttc" id="astructGenericInsituStringStream_html"><div class="ttname"><a href="structGenericInsituStringStream.html">GenericInsituStringStream</a></div><div class="ttdoc">A read-write string stream.</div><div class="ttdef"><b>Definition:</b> stream.h:188</div></div>
-<div class="ttc" id="astructGenericStringStream_html"><div class="ttname"><a href="structGenericStringStream.html">GenericStringStream</a></div><div class="ttdoc">Read-only string stream.</div><div class="ttdef"><b>Definition:</b> stream.h:154</div></div>
-<div class="ttc" id="astructGenericStringStream_html_a3c86ef1e1f0655028cb8a3afce11ee4f"><div class="ttname"><a href="structGenericStringStream.html#a3c86ef1e1f0655028cb8a3afce11ee4f">GenericStringStream::head_</a></div><div class="ttdeci">const Ch * head_</div><div class="ttdoc">Original head of the string.</div><div class="ttdef"><b>Definition:</b> stream.h:169</div></div>
-<div class="ttc" id="astructGenericStringStream_html_aeda813798e3f2d6bfdac86afc11b6b80"><div class="ttname"><a href="structGenericStringStream.html#aeda813798e3f2d6bfdac86afc11b6b80">GenericStringStream::src_</a></div><div class="ttdeci">const Ch * src_</div><div class="ttdoc">Current read position.</div><div class="ttdef"><b>Definition:</b> stream.h:168</div></div>
-<div class="ttc" id="astructStreamTraits_html"><div class="ttname"><a href="structStreamTraits.html">StreamTraits</a></div><div class="ttdoc">Provides additional information for stream.</div><div class="ttdef"><b>Definition:</b> stream.h:73</div></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classStream.html#ad85cdc230455bbf03d87db9b18aea457">   85</a></span>&#160;    std::string Read&lt;std::string&gt;() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classStream.html#ad7bb6376c254598deab834edc540e433">   90</a></span>&#160;    glm::vec3 Read&lt;glm::vec3&gt;() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classStream.html#a4a4e8bd442ced97a7db6f0bb5fe27fdc">   95</a></span>&#160;    glm::vec4 Read&lt;glm::vec4&gt;() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classStream.html#a161a23c9112bd845a9b389a22bdfd9f6">  100</a></span>&#160;    glm::vec2 Read&lt;glm::vec2&gt;() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">public</span>: <span class="comment">// methods</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">Read</a>( T* <span class="keywordtype">object</span> );</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    rapidjson::Value <span class="keyword">const</span>&amp; value;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;};</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">using</span> ReadMethod = void (T::*)(<a class="code" href="classStream.html">Stream</a> value);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">using</span> ReadMethodMap = std::map&lt; std::string, ReadMethod&lt; T &gt; &gt;;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#ifndef STREAM_TC</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#include &quot;stream.t.cpp&quot;</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassStream_html"><div class="ttname"><a href="classStream.html">Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:27</div></div>
+<div class="ttc" id="aclassStream_html_a237e8a4a539b9db2242062f1b5d1511e"><div class="ttname"><a href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">Stream::Read</a></div><div class="ttdeci">T Read() const</div><div class="ttdoc">Reads a basic type from a json value.</div></div>
+<div class="ttc" id="aclassStream_html_a52971f253843f4f872a64033bfa9a601"><div class="ttname"><a href="classStream.html#a52971f253843f4f872a64033bfa9a601">Stream::GetArray</a></div><div class="ttdeci">rapidjson::GenericArray&lt; true, rapidjson::Value &gt; const  &amp; GetArray() const</div><div class="ttdoc">Gets the rapidjson value as an object.</div><div class="ttdef"><b>Definition:</b> Stream.cpp:99</div></div>
+<div class="ttc" id="aclassStream_html_a5e4819e5460e7e3712c2a4859bce9b9d"><div class="ttname"><a href="classStream.html#a5e4819e5460e7e3712c2a4859bce9b9d">Stream::ReadFromJSON</a></div><div class="ttdeci">static rapidjson::Document ReadFromJSON(const std::string &amp;name)</div><div class="ttdoc">Opens and parses a json document.</div><div class="ttdef"><b>Definition:</b> Stream.cpp:25</div></div>
+<div class="ttc" id="aclassStream_html_a6e72898690b20a6b46978c85d957d7fd"><div class="ttname"><a href="classStream.html#a6e72898690b20a6b46978c85d957d7fd">Stream::GetObject</a></div><div class="ttdeci">rapidjson::GenericObject&lt; true, rapidjson::Value &gt; const  &amp; GetObject() const</div><div class="ttdoc">Gets the rapidjson value as an object.</div><div class="ttdef"><b>Definition:</b> Stream.cpp:83</div></div>
+<div class="ttc" id="aclassStream_html_aabbff76a86f734b48c1ce48665653a7b"><div class="ttname"><a href="classStream.html#aabbff76a86f734b48c1ce48665653a7b">Stream::Stream</a></div><div class="ttdeci">Stream(rapidjson::Document const &amp;document)</div><div class="ttdoc">Creates a Stream wrapper of the root object in a json document.</div><div class="ttdef"><b>Definition:</b> Stream.cpp:65</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

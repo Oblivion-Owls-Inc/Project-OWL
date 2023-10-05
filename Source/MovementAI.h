@@ -25,35 +25,29 @@ class MovementAI :
     public Behavior
 {
     public:
+        /// @brief Construct a new MovementAI object
         MovementAI();
-        ~MovementAI();
 
-    private:
+        MovementAI(const MovementAI& other);
+
+        /// @brief Clones the Component 
+        /// @return A pointer to a newly allocated Component
         Component* Clone() const override;
-        void OnUpdate(float dt) override;
+
+        /// @brief Called on a Fixed Update 
         void OnFixedUpdate() override;
+
+        /// @brief called when this Component's Entity is added to the Scene
+        virtual void OnInit() override;
+
+        /// @brief  called when this Component's Entity is removed from the Scene
+        /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
+        virtual void OnExit() override;
 
         /// @brief  Called whenever a Collider on this Behavior's Entity collides
         /// @param  other           the entity that was collided with
         /// @param  collisionData   additional data about the collision
         virtual void OnCollision( Entity* other, CollisionData const& collisionData ) override;
-
-    private:
-
-        void MovementAIUpdateRotation(float dt);
-        void MovementAIUpdateVelocity(float dt);
-        void MovementAIUpdateWeapon(float dt);
-        void MovementAISpawnBullet();
-        void MovementAISpiral(float dt);
-
-    private:
-        const float MovementAcceleration = 150.0f;
-        const float MovementSpeedMax = 500.0f;
-        const float MovementTurnRateMax = (float)M_PI / 1.5f;
-        const float MovementWeaponCooldownTime = 0.25f;
-        const float MovementWeaponBulletSpeed = 750.0f;
-        const float MovementDeathDuration = 3.0f;
-        const float FrameTime = 1.0f / 60.0f;
 
 private: // reading
 

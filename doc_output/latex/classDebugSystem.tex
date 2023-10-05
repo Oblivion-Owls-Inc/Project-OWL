@@ -11,16 +11,26 @@ Debug \mbox{\hyperlink{classSystem}{System}} Class For Debugging.
 
 
 
-Inheritance diagram for Debug\+System\+:
-% FIG 0
+Inheritance diagram for Debug\+System\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{classDebugSystem__inherit__graph}
+\end{center}
+\end{figure}
 
 
-Collaboration diagram for Debug\+System\+:
-% FIG 1
+Collaboration diagram for Debug\+System\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classDebugSystem__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classDebugSystem_a3dd4d19afeda817bae160575ed447390}{Debug\+System}} (GLFWwindow $\ast$window=glfw\+Get\+Current\+Context())
+\mbox{\hyperlink{classDebugSystem_a8749ff034ec15916244bd9d1073f76b6}{Debug\+System}} ()
 \begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{classDebugSystem}{Debug\+System}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDebugSystem_a1f04a27b70187956bf31a268ca12054f}{Set\+Window\+Handle}} (GLFWwindow $\ast$window)
 \begin{DoxyCompactList}\small\item\em Set the GLFW window handle. \end{DoxyCompactList}\item 
@@ -30,39 +40,30 @@ void \mbox{\hyperlink{classDebugSystem_a2e42eb16bc553dcaf7fd3dc8feb764ea}{On\+Up
 \begin{DoxyCompactList}\small\item\em Update the \mbox{\hyperlink{classDebugSystem}{Debug\+System}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}{On\+Exit}} () override
 \begin{DoxyCompactList}\small\item\em Exit and clean up the \mbox{\hyperlink{classDebugSystem}{Debug\+System}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classDebugSystem_a9ef7b923f0690259e70e69a533afa7e4}\label{classDebugSystem_a9ef7b923f0690259e70e69a533afa7e4}} 
-void \mbox{\hyperlink{classDebugSystem_a9ef7b923f0690259e70e69a533afa7e4}{On\+Fixed\+Update}} () override
-\begin{DoxyCompactList}\small\item\em Perform updates at a fixed time step. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classDebugSystem_ab225528599272d6606e46eb908d305a3}\label{classDebugSystem_ab225528599272d6606e46eb908d305a3}} 
-void \mbox{\hyperlink{classDebugSystem_ab225528599272d6606e46eb908d305a3}{On\+Scene\+Load}} () override
-\begin{DoxyCompactList}\small\item\em Called when a scene is loaded. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classDebugSystem_a35496f55a61a12df82257d78df887231}\label{classDebugSystem_a35496f55a61a12df82257d78df887231}} 
-void \mbox{\hyperlink{classDebugSystem_a35496f55a61a12df82257d78df887231}{On\+Scene\+Init}} () override
-\begin{DoxyCompactList}\small\item\em Called when a scene is initialized. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classDebugSystem_aad8fe04c79614333a219cfc148744fbd}\label{classDebugSystem_aad8fe04c79614333a219cfc148744fbd}} 
-void \mbox{\hyperlink{classDebugSystem_aad8fe04c79614333a219cfc148744fbd}{On\+Scene\+Exit}} () override
-\begin{DoxyCompactList}\small\item\em Called when a scene is exited. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classDebugSystem_ae879cebdfe289045c82cb0fc33c48bbf}{Toggle\+FPS}} ()
+\begin{DoxyCompactList}\small\item\em Show the Frames Per Second (FPS) in a debug window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugSystem_a2c63e065c5546a8e08b5722b7cd03ea5}\label{classDebugSystem_a2c63e065c5546a8e08b5722b7cd03ea5}} 
+void {\bfseries Toggle\+Dev} ()
+\item 
+\mbox{\Hypertarget{classDebugSystem_a70154aabaec2704bfb644cb79e9b9033}\label{classDebugSystem_a70154aabaec2704bfb644cb79e9b9033}} 
+void {\bfseries Toggle\+Entity\+List} ()
+\item 
+void \mbox{\hyperlink{classDebugSystem_a90310ccd94c0303b5594e9b94bc2a3dd}{Screen\+Print}} (const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em Print a formatted message to the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classDebugSystem_aa806a0749614d5c15bc73d2f8fb56035}\label{classDebugSystem_aa806a0749614d5c15bc73d2f8fb56035}} 
-static \mbox{\hyperlink{classDebugSystem}{Debug\+System}} $\ast$ {\bfseries get\+Instance} ()
-\item 
-static void \mbox{\hyperlink{classDebugSystem_ae879cebdfe289045c82cb0fc33c48bbf}{Toggle\+FPS}} ()
-\begin{DoxyCompactList}\small\item\em Show the Frames Per Second (FPS) in a debug window. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classDebugSystem_a2c63e065c5546a8e08b5722b7cd03ea5}\label{classDebugSystem_a2c63e065c5546a8e08b5722b7cd03ea5}} 
-static void {\bfseries Toggle\+Dev} ()
-\item 
-static void \mbox{\hyperlink{classDebugSystem_a90310ccd94c0303b5594e9b94bc2a3dd}{Screen\+Print}} (const char $\ast$format,...)
-\begin{DoxyCompactList}\small\item\em Print a formatted message to the screen. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classDebugSystem_a74681dbee9160aab7f7c279fdb087732}\label{classDebugSystem_a74681dbee9160aab7f7c279fdb087732}} 
-static void \mbox{\hyperlink{classDebugSystem_a74681dbee9160aab7f7c279fdb087732}{Show\+Debug\+Menu}} ()
-\begin{DoxyCompactList}\small\item\em Show or create the \mbox{\hyperlink{classDebugMenu}{Debug\+Menu}} \mbox{\hyperlink{classGUI}{GUI}} window. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Static Public Attributes}
+\mbox{\Hypertarget{classDebugSystem_a43cb8abec1d0af08dc6fc5c219690a68}\label{classDebugSystem_a43cb8abec1d0af08dc6fc5c219690a68}} 
+static \mbox{\hyperlink{classDebugSystem}{Debug\+System}} $\ast$ {\bfseries Get\+Instance} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classDebugSystem_a0c8288bc7aeca4c89d99cb2014880218}\label{classDebugSystem_a0c8288bc7aeca4c89d99cb2014880218}} 
-static Im\+Gui\+Text\+Buffer {\bfseries log\+Buffer}
+Im\+Gui\+Text\+Buffer {\bfseries log\+Buffer}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classDebugSystem_ab20cb70f1bdbee543d150ddaa35fc82f}\label{classDebugSystem_ab20cb70f1bdbee543d150ddaa35fc82f}} 
 static \mbox{\hyperlink{classDebugSystem}{Debug\+System}} $\ast$ {\bfseries instance} = nullptr
@@ -76,11 +77,11 @@ Debug \mbox{\hyperlink{classSystem}{System}} Class For Debugging.
 This class provides functionality for debugging within your application. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classDebugSystem_a3dd4d19afeda817bae160575ed447390}\label{classDebugSystem_a3dd4d19afeda817bae160575ed447390}} 
+\mbox{\Hypertarget{classDebugSystem_a8749ff034ec15916244bd9d1073f76b6}\label{classDebugSystem_a8749ff034ec15916244bd9d1073f76b6}} 
 \index{DebugSystem@{DebugSystem}!DebugSystem@{DebugSystem}}
 \index{DebugSystem@{DebugSystem}!DebugSystem@{DebugSystem}}
 \doxysubsubsection{\texorpdfstring{DebugSystem()}{DebugSystem()}}
-{\footnotesize\ttfamily Debug\+System\+::\+Debug\+System (\begin{DoxyParamCaption}\item[{GLFWwindow $\ast$}]{window = {\ttfamily glfwGetCurrentContext()} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Debug\+System\+::\+Debug\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -110,7 +111,7 @@ Exit and clean up the \mbox{\hyperlink{classDebugSystem}{Debug\+System}}.
 
 Perform cleanup and shutdown. 
 
-Implements \mbox{\hyperlink{classSystem_af9cbab3440ffa313478862afa8a787f1}{System}}.
+Reimplemented from \mbox{\hyperlink{classSystem_abaebe51536352d44fea4c0e44f449eb5}{System}}.
 
 \mbox{\Hypertarget{classDebugSystem_a19de560b73dd0ed49eb314a07a138f5d}\label{classDebugSystem_a19de560b73dd0ed49eb314a07a138f5d}} 
 \index{DebugSystem@{DebugSystem}!OnInit@{OnInit}}
@@ -124,7 +125,7 @@ Initialize the \mbox{\hyperlink{classDebugSystem}{Debug\+System}}.
 
 Perform initialization. 
 
-Implements \mbox{\hyperlink{classSystem_aaf0038a8ded8c50370b1c693f11ddc60}{System}}.
+Reimplemented from \mbox{\hyperlink{classSystem_ab2599efd39c3969bf4da3ded49574f28}{System}}.
 
 \mbox{\Hypertarget{classDebugSystem_a2e42eb16bc553dcaf7fd3dc8feb764ea}\label{classDebugSystem_a2e42eb16bc553dcaf7fd3dc8feb764ea}} 
 \index{DebugSystem@{DebugSystem}!OnUpdate@{OnUpdate}}
@@ -147,13 +148,13 @@ Perform updates.
 \end{DoxyParams}
 
 
-Implements \mbox{\hyperlink{classSystem_afa0b86e4b56d71de03a702867aa951fb}{System}}.
+Reimplemented from \mbox{\hyperlink{classSystem_ac80e6b0f679fe9befb8d45014ee389cb}{System}}.
 
 \mbox{\Hypertarget{classDebugSystem_a90310ccd94c0303b5594e9b94bc2a3dd}\label{classDebugSystem_a90310ccd94c0303b5594e9b94bc2a3dd}} 
 \index{DebugSystem@{DebugSystem}!ScreenPrint@{ScreenPrint}}
 \index{ScreenPrint@{ScreenPrint}!DebugSystem@{DebugSystem}}
 \doxysubsubsection{\texorpdfstring{ScreenPrint()}{ScreenPrint()}}
-{\footnotesize\ttfamily void Debug\+System\+::\+Screen\+Print (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily void Debug\+System\+::\+Screen\+Print (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
 
 
 
@@ -190,7 +191,7 @@ Set the GLFW window handle.
 \index{DebugSystem@{DebugSystem}!ToggleFPS@{ToggleFPS}}
 \index{ToggleFPS@{ToggleFPS}!DebugSystem@{DebugSystem}}
 \doxysubsubsection{\texorpdfstring{ToggleFPS()}{ToggleFPS()}}
-{\footnotesize\ttfamily void Debug\+System\+::\+Toggle\+FPS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily void Debug\+System\+::\+Toggle\+FPS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -202,5 +203,5 @@ This function displays the Frames Per Second (FPS) in a debug window when called
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Source/\mbox{\hyperlink{DebugSystem_8h}{Debug\+System.\+h}}\item 
+Source/Debug\+System.\+h\item 
 Source/Debug\+System.\+cpp\end{DoxyCompactItemize}

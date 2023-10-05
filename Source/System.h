@@ -40,7 +40,11 @@ public: // virtual methods
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() {};
 
+    /// @brief Gets Called by the Debug system to display debug information
+    virtual void DebugWindow() {};
 
+    /// @brief Gets the unique name of this System
+    _inline virtual std::string GetName() const { return m_Name; }
 //-----------------------------------------------------------------------------
 public: // reading
 //-----------------------------------------------------------------------------
@@ -55,7 +59,11 @@ protected: // constructor
     
     /// @brief  Constructs a System
     System() = default;
-
+    
+    /// @brief Sets the Unique Name of this System
+    /// @param name  - The Name of the System
+    /// @note This should only be called once, on the System's OnInit function
+    _inline void SetName( std::string name ) { m_Name = name; }
 //-----------------------------------------------------------------------------
 public: // singleton stuff
 //-----------------------------------------------------------------------------
@@ -65,5 +73,8 @@ public: // singleton stuff
     void operator=( const System& ) = delete;
 
 //-----------------------------------------------------------------------------
-
+private: // System Name
+//-----------------------------------------------------------------------------
+    /// @brief The Unique Name of this System to be used for Debug Window
+    std::string m_Name;
 };

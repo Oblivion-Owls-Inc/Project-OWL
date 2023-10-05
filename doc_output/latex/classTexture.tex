@@ -1,0 +1,98 @@
+\hypertarget{classTexture}{}\doxysection{Texture Class Reference}
+\label{classTexture}\index{Texture@{Texture}}
+
+
+Stores texture data, and allows to bind it for rendering.  
+
+
+
+
+{\ttfamily \#include $<$Texture.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTexture_a9eff962bc1991a1250e96a3fdd76cf6a}{Texture}} (const char $\ast$file\+\_\+path=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor\+: loads texture image from file upon initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTexture_abcd9b02d6d17cd74bdd35b6be23ee1a4}{Load\+Image}} (const char $\ast$file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Loads texture image from file (deletes old one if present) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}\label{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}} 
+\mbox{\hyperlink{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}{$\sim$\+Texture}} ()
+\begin{DoxyCompactList}\small\item\em Destructor\+: deletes texture data from GPU. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTexture_af57acbc82be175be8ba6574bbf3998d0}{Bind}} (unsigned int slot=0)
+\begin{DoxyCompactList}\small\item\em Sets this texture as active, so it can be used by texture shader. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{classTexture_abb5f30cd11c868992cfcb67f10e6dad7}{Get\+Image\+Dimensions}} ()
+\begin{DoxyCompactList}\small\item\em Returns the size of the original image as a vec2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Stores texture data, and allows to bind it for rendering. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTexture_a9eff962bc1991a1250e96a3fdd76cf6a}\label{classTexture_a9eff962bc1991a1250e96a3fdd76cf6a}} 
+\index{Texture@{Texture}!Texture@{Texture}}
+\index{Texture@{Texture}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{Texture()}{Texture()}}
+{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+\_\+path = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+Constructor\+: loads texture image from file upon initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & File to load \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTexture_af57acbc82be175be8ba6574bbf3998d0}\label{classTexture_af57acbc82be175be8ba6574bbf3998d0}} 
+\index{Texture@{Texture}!Bind@{Bind}}
+\index{Bind@{Bind}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{Bind()}{Bind()}}
+{\footnotesize\ttfamily void Texture\+::\+Bind (\begin{DoxyParamCaption}\item[{unsigned int}]{slot = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Sets this texture as active, so it can be used by texture shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slot} & (optional) texture slot -\/ for drawing multiple at once ig? \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTexture_abb5f30cd11c868992cfcb67f10e6dad7}\label{classTexture_abb5f30cd11c868992cfcb67f10e6dad7}} 
+\index{Texture@{Texture}!GetImageDimensions@{GetImageDimensions}}
+\index{GetImageDimensions@{GetImageDimensions}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{GetImageDimensions()}{GetImageDimensions()}}
+{\footnotesize\ttfamily glm\+::vec2 Texture\+::\+Get\+Image\+Dimensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the size of the original image as a vec2. 
+
+\begin{DoxyReturn}{Returns}
+vec2\+: x = width , y = height 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTexture_abcd9b02d6d17cd74bdd35b6be23ee1a4}\label{classTexture_abcd9b02d6d17cd74bdd35b6be23ee1a4}} 
+\index{Texture@{Texture}!LoadImage@{LoadImage}}
+\index{LoadImage@{LoadImage}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{LoadImage()}{LoadImage()}}
+{\footnotesize\ttfamily void Texture\+::\+Load\+Image (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Loads texture image from file (deletes old one if present) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & File to load \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Texture_8h}{Texture.\+h}}\item 
+Source/\mbox{\hyperlink{Texture_8cpp}{Texture.\+cpp}}\end{DoxyCompactItemize}

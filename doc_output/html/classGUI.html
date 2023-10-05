@@ -77,6 +77,10 @@ $(function() {
 Inheritance diagram for GUI:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGUI__inherit__graph.png" border="0" usemap="#aGUI_inherit__map" alt="Inheritance graph"/></div>
+<map name="aGUI_inherit__map" id="aGUI_inherit__map">
+<area shape="rect" title="Base class for user interface elements." alt="" coords="32,5,79,32"/>
+<area shape="rect" href="classDebugMenu.html" title="Debugging menu class derived from GUI." alt="" coords="5,80,105,107"/>
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,14 +101,14 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a105fb7430496f3ad447831cc0d7af8b2"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#a105fb7430496f3ad447831cc0d7af8b2">IsVisible</a> () const</td></tr>
 <tr class="memdesc:a105fb7430496f3ad447831cc0d7af8b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element is visible.  <a href="classGUI.html#a105fb7430496f3ad447831cc0d7af8b2">More...</a><br /></td></tr>
 <tr class="separator:a105fb7430496f3ad447831cc0d7af8b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88411d5086d9462359afb0b96f59a48c"><td class="memItemLeft" align="right" valign="top"><a id="a88411d5086d9462359afb0b96f59a48c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#a88411d5086d9462359afb0b96f59a48c">setInactive</a> ()</td></tr>
-<tr class="memdesc:a88411d5086d9462359afb0b96f59a48c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element as inactive. <br /></td></tr>
-<tr class="separator:a88411d5086d9462359afb0b96f59a48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad211c1e2a608b1df4fb43d3e6d1a69c9"><td class="memItemLeft" align="right" valign="top"><a id="ad211c1e2a608b1df4fb43d3e6d1a69c9"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#ad211c1e2a608b1df4fb43d3e6d1a69c9">setActive</a> ()</td></tr>
-<tr class="memdesc:ad211c1e2a608b1df4fb43d3e6d1a69c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element as active. <br /></td></tr>
-<tr class="separator:ad211c1e2a608b1df4fb43d3e6d1a69c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a013159289bf5815f5433377ce0f25b7e"><td class="memItemLeft" align="right" valign="top"><a id="a013159289bf5815f5433377ce0f25b7e"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#a013159289bf5815f5433377ce0f25b7e">SetInactive</a> ()</td></tr>
+<tr class="memdesc:a013159289bf5815f5433377ce0f25b7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element as inactive. <br /></td></tr>
+<tr class="separator:a013159289bf5815f5433377ce0f25b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab78e0d174ce99cac7d69a3c7df8fd910"><td class="memItemLeft" align="right" valign="top"><a id="ab78e0d174ce99cac7d69a3c7df8fd910"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#ab78e0d174ce99cac7d69a3c7df8fd910">SetActive</a> ()</td></tr>
+<tr class="memdesc:ab78e0d174ce99cac7d69a3c7df8fd910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element as active. <br /></td></tr>
+<tr class="separator:ab78e0d174ce99cac7d69a3c7df8fd910"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c0a50c69ba833dfdf7b225434e03051"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI.html#a4c0a50c69ba833dfdf7b225434e03051">GetWindowTitle</a> () const</td></tr>
 <tr class="memdesc:a4c0a50c69ba833dfdf7b225434e03051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the window title of the <a class="el" href="classGUI.html" title="Base class for user interface elements.">GUI</a> element.  <a href="classGUI.html#a4c0a50c69ba833dfdf7b225434e03051">More...</a><br /></td></tr>
 <tr class="separator:a4c0a50c69ba833dfdf7b225434e03051"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -261,7 +265,7 @@ false </dd></dl>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/<a class="el" href="GUI_8h_source.html">GUI.h</a></li>
-<li>Source/<a class="el" href="GUI_8cpp.html">GUI.cpp</a></li>
+<li>Source/GUI.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
