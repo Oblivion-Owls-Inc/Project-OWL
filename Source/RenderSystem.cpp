@@ -9,6 +9,8 @@
 #include "Entity.h"
 #include "Transform.h"
 #include <vector>
+#include <algorithm>
+
 static std::vector<Entity*> shapes; // this is inefficient.
 // efficiency will improve once we have resource library.
 
@@ -31,13 +33,20 @@ void RenderSystem::OnInit()
 /// @param dt   Time since last frame
 void RenderSystem::OnUpdate(float dt)
 {
-    for (std::set<Sprite*>& layer : _sprites)
-        for (Sprite* sprite : layer)
-            sprite->Draw();
+    std::stable_sort( m_Sprites.begin(), m_Sprites.end(), []( Sprite const* a, Sprite const* b ) -> bool {
+        return a->GetLayer() < b->GetLayer();
+    });
+
+    for ( Sprite* sprite : m_Sprites)
+    {
+        sprite->Draw();
+    }
 
     // Once we have resource library, this will just be clear()
     for (Entity* e : shapes)
+    {
         delete e;
+    }
 
     shapes.clear();
 
@@ -87,12 +96,18 @@ void RenderSystem::DrawLine(const glm::vec2& P1, const glm::vec2& P2, float thic
 
 /// @brief          Add sprite so it can be rendered during update. To be used by Sprite constructor.
 /// @param sprite   Sprite pointer to add and keep track of
-void RenderSystem::AddSprite(Sprite* sprite, int layer) { _sprites[layer].emplace(sprite); }
+void RenderSystem::AddSprite( Sprite* sprite )
+{
+    m_Sprites.push_back(sprite);
+}
 
 
 /// @brief          Remove sprite from the list to stop rendering it on update. To be used by Sprite destructor.
 /// @param sprite   Sprite pointer to remove
-void RenderSystem::RemoveSprite(Sprite* sprite, int layer) { _sprites[layer].erase(sprite); }
+void RenderSystem::RemoveSprite( Sprite* sprite )
+{
+    m_Sprites.erase( std::find( m_Sprites.begin(), m_Sprites.end(), sprite) );
+}
 
 
 /// @brief          Adds a shader to keep track of, so it can be freed automatically upon shutdown.

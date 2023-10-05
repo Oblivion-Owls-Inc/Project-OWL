@@ -26,8 +26,10 @@
 #include "EntitySystem.h"
 #include "PlayerController.h"
 #include "Animation.h"
+
 #include "AssetLibrarySystem.h"
 #include "Sound.h"
+#include "Texture.h"
 
 #include "BehaviorSystem.h"
 #include "RigidBody.h"
@@ -177,7 +179,9 @@ std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods =
     { "BehaviorSystem<RigidBody>",          &addSystem< BehaviorSystem< RigidBody > >           },
     { "BehaviorSystem<Animation>",          &addSystem< BehaviorSystem< Animation > >           },
     { "AssetLibrarySystem<Entity>",         &addSystem< AssetLibrarySystem< Entity > >          },
-    { "AssetLibrarySystem<Sound>",          &addSystem< AssetLibrarySystem< Sound > >           }
+    { "AssetLibrarySystem<Sound>",          &addSystem< AssetLibrarySystem< Sound > >           },
+    { "AssetLibrarySystem<Texture>",        &addSystem< AssetLibrarySystem< Texture > >         },
+
 };
 
 //-----------------------------------------------------------------------------

@@ -45,7 +45,6 @@ static bool update = false;
         soundEntity = instance->GetEntity("Sound");
 
         Ranger = instance->GetEntity("Ranger");
-        float spriteSize = Ranger->GetComponent<Sprite>()->GetHeightMultiplier();
     }
 
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.

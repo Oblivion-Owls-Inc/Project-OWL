@@ -12,6 +12,7 @@
         },
         "AssetLibrarySystem<Entity>": {},
         "AssetLibrarySystem<Sound>": {},
+        "AssetLibrarySystem<Texture>": {},
         "XinoScene": {},
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<MovementAI>": {},

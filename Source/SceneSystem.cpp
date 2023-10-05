@@ -163,7 +163,7 @@
     std::map< std::string, BaseAssetLibrarySystem* (*)() > const SceneSystem::Scene::s_AssetLibraries = {
         { "Archetypes"  , &getAssetLibrary< Entity >    },
         { "Sounds"      , &getAssetLibrary< Sound >     },
-        // { "Textures"    , &getAssetLibrary< Texture >   }
+        { "Textures"    , &getAssetLibrary< Texture >   }
     };
 
 //-----------------------------------------------------------------------------

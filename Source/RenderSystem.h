@@ -6,7 +6,7 @@
 #include "System.h"
 #include "Shader.h"
 #include "glm/glm.hpp"
-#include <set>          // for sprite references
+#include <vector>       // for sprite references
 #include <map>          // for shader storage
 
 class Sprite;   // fwd reference
@@ -35,11 +35,11 @@ public:
 
     /// @brief          Add a sprite so it can be rendered during update.
     /// @param sprite   Sprite pointer to add and keep track of
-    void AddSprite(Sprite* sprite, int layer);
+    void AddSprite( Sprite* sprite );
 
     /// @brief          Remove sprite from the list to stop rendering it on update.
     /// @param sprite   Sprite pointer to remove
-    void RemoveSprite(Sprite* sprite, int layer);
+    void RemoveSprite( Sprite* sprite );
 
     /// @brief          Adds a shader to keep track of, so it can be freed 
     ///                 automatically upon shutdown.
@@ -88,7 +88,7 @@ private:
 private:
     std::map<const char*, Shader*> _shaders;/// @brief   Shader storage
     Shader* _activeShader = nullptr;        /// @brief   Currently bound shader
-    std::set<Sprite*> _sprites[5];          /// @brief   Layered sprite references
+    std::vector<Sprite*> m_Sprites;         /// @brief   Layered sprite references
 
 
 

@@ -14,82 +14,98 @@ class Shader;   // fwd ref
 ///             instancing to draw multiple letters simultaneously.
 class TextSprite : public Sprite
 {
-public:
-    
-    /// @brief      Temporary. Allow switching to a different texture, while
-    ///             keeping track of original one. If called without argument,
-    ///             resets texture to original.
-    /// @param t    texture pointer - remember to free this one manually. 
-    void SetTexture(Texture* t = nullptr);
+//-----------------------------------------------------------------------------
+public: // constructor / destructors
+//-----------------------------------------------------------------------------
 
-
-    /// @brief              Default constructor: does nothing
+    /// @brief  default constructor
     TextSprite();
 
+    /// @brief  manual constructor
+    /// @param  texture             the texture for this TextSprite to use
+    /// @param  strideMultiplier    (optional) Multiplier to adjust stride (spacing)
+    /// @param  layer               (optional) Rendering layer: 0-4. 0 is back, 4 is front.
+    TextSprite( Texture const* texture, float strideMultiplier = 1.0f, int layer = 2 );
+
+    /// @brief  destructor
     ~TextSprite();
 
-    /// @brief              Constructor: unlike base Sprite constructor, this one 
-    ///                     requires texture and columns/rows, since it's specifically
-    ///                     for text.
-    ///                     NOTE: Spritesheet should begin with space (ASCII 32), 
-    ///                     and have the rest of the characters in proper ASCII order.
-    /// 
-    /// @param image_file   Path to the image file to load (should be spritesheet)
-    /// @param columns      Columns of the spritesheet
-    /// @param rows         Rows of the spritesheet
-    /// @param stride_mult  (optional) Multiplier to adjust stride (spacing)
-    /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
-    TextSprite(const char* image_file, int columns, int rows, float stride_mult = 1.0f, int layer = 2);
-
-    /// @brief  gets the text of this TextSprite
-    /// @return the text of this TextSprite
-    std::string const& GetText() const;
-
-    /// @brief          sets the text of this TextSprite
-    /// @param  text    the text of this TextSprite
-    void SetText(std::string const& text);
-
-    /// @brief      Sets the width of a single row (amount of columns)
-    void SetRowWidth(int columns);
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
 
     /// @brief      Draws currently stored text using parent's transform.
     virtual void Draw() override;
 
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
 
+    /// @brief  gets the text of this TextSprite
+    /// @return the text of this TextSprite
+    __inline std::string const& GetText() const { return m_Text; }
 
-    //-------------------------------------------------------------------------
-    //          data
-    //-------------------------------------------------------------------------
-private:
-    std::string m_Text;     /// @brief     text displayed by the textSprite
-    unsigned int m_InstBufferID = 0; /// @brief     ID of buffer that stores instance data
-    glm::vec2 m_StrideMult = {1,1};  /// @brief     Horizontal/vertical stride. 1.0 is full tile width
-    int m_RowWidth = 43;             /// @brief     Amount of tiles per row
-    Texture* m_Original;             /// @brief     (temp) to keep track of original texture
+    /// @brief          sets the text of this TextSprite
+    /// @param  text    the text of this TextSprite
+    __inline void SetText( std::string const& text ) { m_Text = text; } 
 
-private:
+    /// @brief  gets the row width
+    /// @return the row width
+    __inline int GetRowWidth() const { return m_RowWidth; }
 
-    void tempInit();
+    /// @brief  Sets the width of a single row (amount of columns)
+    /// @param  columns     the number of columns in each row
+    __inline void SetRowWidth( int columns ) { m_RowWidth = columns; } 
+
+    /// @brief  gets the stride multiplier
+    /// @return the stride multiplier
+    __inline glm::vec2 const& GetStrideMultiplier() const { return m_StrideMultiplier; }
+
+    /// @brief  sets the stride multiplier
+    /// @param  strideMult the stride multiplier
+    __inline void SetStrideMultiplier( glm::vec2 const& strideMult ) { m_StrideMultiplier = strideMult; } 
+
+//-----------------------------------------------------------------------------
+private: // virtual override methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  called when entering the scene
+    virtual void OnInit() override;
+
+    /// @brief  called when exiting the scene
+    virtual void OnExit() override;
+
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
+
+    /// @brief  text displayed by the textSprite
+    std::string m_Text;
+    /// @brief  ID of buffer that stores instance data
+    unsigned int m_InstBufferID = 0;
+    /// @brief  Horizontal/vertical stride. 1.0 is full tile width
+    glm::vec2 m_StrideMultiplier = {1,1};
+    /// @brief  Amount of tiles per row
+    int m_RowWidth = 43;    
 
  //-------------------------------------------------------------------------
- //  Reading
+private: // Reading
  //-------------------------------------------------------------------------
-private:
 
-    /// @brief          Read in the text this TextSprite displays
+    /// @brief  Read in the text this TextSprite displays
     /// @param  stream  The json to read from.
     void readText(Stream stream);
 
-    /// @brief          Read in the stride multiplier
+    /// @brief  Read in the stride multiplier
     /// @param  stream  The json to read from.
     void readStrideMultiplier(Stream stream);
 
-    /// @brief          Read in the amount of tile per row
+    /// @brief  Read in the amount of tile per row
     /// @param  stream  The json to read from.
     void readRowWidth( Stream stream );
 
-    /// @brief          called after loading
-    void postRead(Stream);
+    /// @brief  called after loading
+    void afterLoad(Stream);
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< TextSprite > const s_ReadMethods;
@@ -97,4 +113,6 @@ private:
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
     virtual ReadMethodMap< Component > const& GetReadMethods() const override;
+
+//-------------------------------------------------------------------------
 };
