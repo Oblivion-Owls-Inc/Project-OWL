@@ -1,15 +1,37 @@
 {
     "Assets": {
-        "textures": [],
-        "meshes": [],
-        "shaders": []
+        "Sounds": {
+            "Music": {
+                "Filepath": "Data/Sounds/test.mp3"
+            }
+        },
+        "Archetypes": {
+            "Ball": {
+                "Name": "Ball",
+                "Components": {
+                    "Sprite": {
+                        "name": "Data/Textures/Balls/Ball5.png",
+                        "columns": 1,
+                        "rows": 1,
+                        "layer": 1
+                    },
+                    "RigidBody": {},
+                    "CircleCollider": {
+                        "Radius": 0.5
+                    },
+                    "Transform": {},
+                    "MovementAI": {}
+                }
+            }
+        }
     },
     "Entities": [
         {
             "Name": "Sound",
             "Components": {
-                "AudioPlayer": {}
-
+                "AudioPlayer": {
+                    "Sound": "Music"
+                }
             }
         },
         {
@@ -41,11 +63,9 @@
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 0, 0, 0 ],
-                    "scale": [ 1, 1, 1 ]
+                    "translation": [ 0, 0, 1 ]
                 },
                 "MovementAI": {}
-
             }
         },
         {
@@ -64,8 +84,7 @@
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 2, 1, 0 ],
-                    "scale": [ 1, 1, 1 ]
+                    "translation": [ 2, 1, 1 ]
                 },
                 "MovementAI": {}
             }
@@ -86,8 +105,7 @@
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 1, 0, 0 ],
-                    "scale": [ 1, 1, 1 ]
+                    "translation": [ 1, 0, 1 ]
                 },
                 "MovementAI": {}
             }

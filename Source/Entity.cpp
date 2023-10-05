@@ -13,6 +13,7 @@
 #include "Component.h"		  // Type
 #include <cassert>			  // assert
 #include "ComponentFactory.h" // Create.
+#include "AssetLibrarySystem.h"
 #include "basics.h"
 
 //------------------------------------------------------------------------------
@@ -71,7 +72,7 @@
         // Set the component's parent as this entity
         component->SetParent( this );
 
-        // If it does not, add it to the entity.
+        // add it to the entity.
         m_Components[ component->GetType() ] = component;
     }
 
@@ -103,7 +104,7 @@
     /// @param stream The json value to read from.
     void Entity::readArchetype(Stream stream)
     {
-	    /// TODO: write Entity::readArchetypes() function
+        *this = *AssetLibrary<Entity>()->GetAsset( stream.Read<std::string>() );
     }
 
     /// @brief		  Read in the name of entity.
@@ -154,23 +155,18 @@
 // copying
 //------------------------------------------------------------------------------
 
-    /// @brief  Clones an entity.
-    /// @return A clone of an entity (Entity*).
-    Entity* Entity::Clone() const
+    /// @brief  copies all of another Entity's data and Components into this Entity
+    /// @param  other   the entity to copy from
+    void Entity::operator =( Entity const& other )
     {
-        return new Entity( *this );
-    }
+        assert( m_Components.empty() );
 
-    /// @brief	Copy constructor for the entity class
-    /// @param  other   The entity to be copied.
-    Entity::Entity(const Entity& other)
-        : m_Name(other.m_Name)
-        , m_IsDestroyed(other.m_IsDestroyed)
-    {
-        for (auto& component : other.m_Components)
+        m_Name = other.m_Name;
+        m_IsDestroyed = false;
+
+        for ( auto component : other.m_Components )
         {
-            Component* clone = component.second->Clone();
-            AddComponent( clone );
+            AddComponent( component.second->Clone() );
         }
     }
 

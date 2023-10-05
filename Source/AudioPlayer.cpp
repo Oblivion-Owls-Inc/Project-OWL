@@ -9,6 +9,7 @@
 #pragma once
 
 #include "AudioPlayer.h"
+#include "AssetLibrarySystem.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
@@ -46,13 +47,13 @@
 
     /// @brief  gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
-    Sound* AudioPlayer::GetSound()
+    Sound const* AudioPlayer::GetSound()
     {
         return m_Sound;
     }
     /// @brief  sets the SOund that this AudioPlayer plays
     /// @param  sound   the sound that this AudioPlayer will play
-    void AudioPlayer::SetSound( Sound* _sound )
+    void AudioPlayer::SetSound( Sound const* _sound )
     {
         m_Sound = _sound;
     }
@@ -124,6 +125,13 @@
 // private: reading
 //-----------------------------------------------------------------------------
 
+    /// @brief  read the sound of this component from json
+    /// @param  data    the json data
+    void AudioPlayer::readSound( Stream data )
+    {
+        m_Sound = AssetLibrary<Sound>()->GetAsset( data.Read<std::string>() );
+    }
+
     /// @brief  read the volume of this component from json
     /// @param  data    the json data
     void AudioPlayer::readVolume( Stream data )
@@ -154,10 +162,11 @@
 
     /// @brief  map of the read methods for this Component
     ReadMethodMap< AudioPlayer > AudioPlayer::s_ReadMethods = {
-        { "volume",         &readVolume         },
-        { "pitch",          &readPitch          },
-        { "volumeVariance", &readVolumeVariance },
-        { "pitchVariance",  &readPitchVariance  }
+        { "Sound",          &readSound          },
+        { "Volume",         &readVolume         },
+        { "Pitch",          &readPitch          },
+        { "VolumeVariance", &readVolumeVariance },
+        { "PitchVariance",  &readPitchVariance  }
     };
 
     /// @brief  gets the map of read methods for this Component

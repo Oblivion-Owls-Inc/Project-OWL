@@ -138,17 +138,12 @@ private: // member variables
 public: // copying
 //-----------------------------------------------------------------------------
 
-    /// @brief  Creates a copy of this Entity and all of its Components
-    /// @return the newly created copy of this Entity
-    Entity* Clone() const;
+    /// @brief  copies all of another Entity's data and Components into this Entity
+    /// @param  other   the entity to copy from
+    void operator =( Entity const& other );
 
-//-----------------------------------------------------------------------------
-private: // copying
-//-----------------------------------------------------------------------------
-    
-    /// @brief  copy constructor
-    /// @param  other   the Entity to copy
-    Entity( Entity const& other );
+    // prevent non-assignment copying
+    Entity( Entity const& other ) = delete;
 
 //------------------------------------------------------------------------------
 };

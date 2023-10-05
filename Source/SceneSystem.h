@@ -10,6 +10,8 @@
 
 #include "System.h"
 
+#include "AssetLibrarySystem.h"
+
 #include "Engine.h"
 #include <string>
 
@@ -124,6 +126,15 @@ private: // scene loading
         
         /// @brief  the read methods for a Scene
         static ReadMethodMap< Scene > const s_ReadMethods;
+
+        /// @brief  gets the asset library of the specified type
+        /// @tparam AssetType   the asset type to get the library of
+        /// @return the AssetLibrarySystem instance of the specified asset type
+        template< class AssetType >
+        static BaseAssetLibrarySystem* getAssetLibrary();
+
+        /// @brief map of asset libraries used to read assets
+        static std::map< std::string, BaseAssetLibrarySystem* (*)() > const s_AssetLibraries;
 
     };
 

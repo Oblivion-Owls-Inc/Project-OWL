@@ -29,9 +29,14 @@ class MovementAI :
         ~MovementAI();
 
     private:
-        Component* Clone() const override;
-        void OnUpdate(float dt) override;
-        void OnFixedUpdate() override;
+        virtual Component* Clone() const override;
+        MovementAI( MovementAI const& other );
+
+        virtual void OnInit() override;
+        virtual void OnExit() override;
+
+        virtual void OnUpdate(float dt) override;
+        virtual void OnFixedUpdate() override;
 
         /// @brief  Called whenever a Collider on this Behavior's Entity collides
         /// @param  other           the entity that was collided with

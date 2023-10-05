@@ -17,19 +17,28 @@
 
 static float timer = 0.0f;
 
-MovementAI::MovementAI(): Behavior(typeid(MovementAI))
-{
-    BehaviorSystem<MovementAI>::GetInstance()->AddBehavior(this);
-}
+MovementAI::MovementAI() :
+    Behavior( typeid( MovementAI ) )
+{}
 
-MovementAI::~MovementAI()
-{
-    BehaviorSystem< MovementAI >::GetInstance()->RemoveBehavior(this);
-}
+MovementAI::~MovementAI() {}
 
 Component* MovementAI::Clone() const
 {
-	return nullptr;
+	return new MovementAI( *this );
+}
+MovementAI::MovementAI( MovementAI const& other ) :
+    Behavior( other )
+{}
+
+
+void MovementAI::OnInit()
+{
+    BehaviorSystem<MovementAI>::GetInstance()->AddBehavior(this);
+}
+void MovementAI::OnExit()
+{
+    BehaviorSystem< MovementAI >::GetInstance()->RemoveBehavior(this);
 }
 
 /// @brief  Called whenever a Collider on this Behavior's Entity collides

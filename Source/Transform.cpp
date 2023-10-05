@@ -10,32 +10,27 @@
 #include "Transform.h"
 
 /// @brief Default constructor for the transform component.
-Transform::Transform() : Component(typeid(Transform))
-{
-	m_Translation = { 0, 0, 0 };
-	m_Rotation = 0.0f;
-	m_Scale = { 1, 1, 0 };
-	m_IsDirty = true;
-	m_Matrix = glm::mat4(0.0f);
-	m_IsDiegetic = true;
-}
+Transform::Transform() :
+    Component( typeid( Transform ) ),
+	m_Translation( { 0, 0, 0 } ),
+	m_Rotation( 0.0f ),
+	m_Scale( { 1, 1, 0 } ),
+	m_IsDirty( true ),
+	m_Matrix( glm::mat4(0.0f) ),
+	m_IsDiegetic( true )
+{}
 
 /// @brief		 Copy constructor for the transform component.
 /// @param other Reference to another transform component.
-Transform::Transform(const Transform& other) : Component(other)
-{
-	m_Translation = other.m_Translation;
-	m_Rotation = other.m_Rotation;
-	m_Scale = other.m_Scale;
-	m_IsDirty = other.m_IsDirty;
-	m_Matrix = other.m_Matrix;	
-	m_IsDiegetic = other.m_IsDiegetic;
-}
-
-Transform::~Transform(void)
-{
-
-}
+Transform::Transform(const Transform& other) :
+    Component( other ),
+    m_Translation(  other.m_Translation ),
+	m_Rotation(     other.m_Rotation    ),
+	m_Scale(        other.m_Scale       ),
+	m_IsDirty(      other.m_IsDirty     ),
+	m_Matrix(       other.m_Matrix      ),
+	m_IsDiegetic(   other.m_IsDiegetic  )
+{}
 
 /// @brief  Clones a transform component.
 /// @return A new transform component.
