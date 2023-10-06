@@ -63,14 +63,6 @@ private:
     virtual void OnUpdate(float dt) override;
 
 
-    // unused virtuals
-    virtual void OnFixedUpdate() override {}
-    virtual void OnExit() override {}
-    virtual void OnSceneLoad() override {}
-    virtual void OnSceneInit() override {}
-    virtual void OnSceneExit() override {}
-
-
     //-------------------------------------------------------------------------
     //          data
     //-------------------------------------------------------------------------
