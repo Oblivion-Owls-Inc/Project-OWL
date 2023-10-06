@@ -30,8 +30,7 @@
         auto iterator = std::find_if(
             m_Entities.begin(),
             m_Entities.end(),
-            [ entityName ]( Entity* entity ) -> bool
-            {
+            [ entityName ]( Entity* entity ) -> bool {
                 return entity->GetName() == entityName;
             }
         );
@@ -53,9 +52,17 @@
         if ( iterator != m_Entities.end() )
         {
             m_Entities.erase( iterator );
+            entity->ExitComponents();
+        }
+        else
+        {
+            std::ostringstream errorMessage;
+            errorMessage <<
+                "Error: Could not find entity \"" << entity->GetName() <<
+                "\" to remove from the EntitySystem";
+            throw std::runtime_error( errorMessage.str() );
         }
 
-        entity->ExitComponents();
     }
 
     /// @brief  checks if the EntitySystem contains the given Entity (for debugging)
@@ -134,7 +141,7 @@
 
             for (const auto& componentPair : entity->getComponents())
             {
-                const std::string componentName = componentPair.second->GetType().name() + 5; // Skip "class "
+                const std::string componentName = componentPair.second->GetType().name() + 6; // Skip "class "
                 if (ImGui::TreeNode(componentName.c_str())) 
                 {
                     ImGui::TreePop();
