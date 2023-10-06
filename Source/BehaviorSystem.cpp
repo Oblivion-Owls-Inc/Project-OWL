@@ -14,45 +14,73 @@
 #include "Entity.h"
 #include "Collider.h"
 #include "Behavior.h"
+#include "DebugSystem.h"
+
+///---------------------------------------------------------------------------
+/// Static 
+///---------------------------------------------------------------------------
+
+template<typename BehaviorType>
+bool BehaviorSystem<BehaviorType>::s_ShowBehaviorSystemList = false;
+
 
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 {
-	for (auto behavior : behaviorsList)
+	for (auto behavior : m_BehaviorList)
 	{
 		behavior->OnFixedUpdate();
 	}
-
 }
 
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
-	for (auto behavior : behaviorsList)
+	for (auto behavior : m_BehaviorList)
 	{
 		behavior->OnUpdate(dt);
 	}
+}
+
+template<typename BehaviorType>
+void BehaviorSystem<BehaviorType>::OnSceneExit()
+{
+    m_BehaviorList.clear();
 }
 
 
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::AddBehavior(BehaviorType* behavior)
 {
-	behaviorsList.push_back(behavior);
+	m_BehaviorList.push_back(behavior);
 }
 
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::RemoveBehavior(BehaviorType* behavior)
 {
-	behaviorsList.erase(
-        std::remove(behaviorsList.begin(), behaviorsList.end(), behavior), behaviorsList.end()
+	m_BehaviorList.erase(
+        std::remove(m_BehaviorList.begin(), m_BehaviorList.end(), behavior), m_BehaviorList.end()
     );
 }
 
 template<typename BehaviorType>
 std::vector<BehaviorType*>& BehaviorSystem<BehaviorType>::GetBehaviors() const
 {
-	return &behaviorsList;
+	return &m_BehaviorList;
+}
+
+template<typename BehaviorType>
+void BehaviorSystem<BehaviorType>::DebugWindow()
+{
+    std::string behaviorName(typeid(BehaviorType).name() + 5); // Move over the "class" part of the name
+
+    char buttonLabel[128];
+    snprintf(buttonLabel, sizeof(buttonLabel), s_ShowBehaviorSystemList ?
+        "Hide%s List" : "Show%s List", behaviorName.c_str());
+
+    if (ImGui::Button(buttonLabel))
+        s_ShowBehaviorSystemList = !s_ShowBehaviorSystemList;
+    
 }
 
 //-----------------------------------------------------------------------------
@@ -81,16 +109,16 @@ ReadMethodMap< System > const& BehaviorSystem< BehaviorType >::GetReadMethods() 
     template < typename BehaviorType >
     BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::GetInstance()
     {
-        if (instance == nullptr)
+        if (s_Instance == nullptr)
         {
-            instance = new BehaviorSystem< BehaviorType >();
+            s_Instance = new BehaviorSystem< BehaviorType >();
         }
-        return instance;
+        return s_Instance;
     }
 
     // Define the static instance variable for the templated BehaviorSystem
     template < typename BehaviorType >
-    BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::instance = nullptr;
+    BehaviorSystem< BehaviorType >* BehaviorSystem< BehaviorType >::s_Instance = nullptr;
 
     /// @brief  Constructs the BehaviorSystem
     template < typename BehaviorType >

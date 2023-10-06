@@ -4,6 +4,7 @@
 #include "RigidBody.h"
 #include "Transform.h"
 
+#include "DebugSystem.h"
 #include "LineCollider.h"
 #include "CircleCollider.h"
 
@@ -35,6 +36,17 @@ void LineCollider::AddLineSegment( vec2 p0, vec2 p1 )
 	temp.point[1] = p1;
 	m_LineSegments.push_back(temp);
     m_LineCount++;
+}
+
+void LineCollider::Inspector()
+{
+    int i = 0;
+    ///see a list of the lines
+    for (auto line : m_LineSegments)
+    {
+        ++i;
+		ImGui::Text("Line %d : [%f, %f] - [%f, %f]", i ,  line.point[0].x, line.point[0].y, line.point[1].x, line.point[1].y);
+	}
 }
 
 /// @brief		  Read in the number of line segements to create.

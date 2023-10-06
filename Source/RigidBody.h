@@ -54,6 +54,9 @@ public: // virtual override methods
     /// @param  collisionData   additional data about the collision
     virtual void OnCollision( Entity* other, CollisionData const& collisionData ) override;
 
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector() override;
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------

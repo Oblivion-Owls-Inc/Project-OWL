@@ -87,6 +87,8 @@ public: // accessors
     /// @return this Entity's name
     __inline std::string const& GetName() const { return m_Name; }
 
+     void InspectEntity();
+
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------

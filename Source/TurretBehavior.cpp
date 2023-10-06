@@ -14,7 +14,6 @@ TurretBehavior::TurretBehavior():
 	m_BulletSize(1.0f), 
 	m_BulletPrefab(nullptr)
 {
-	BehaviorSystem<TurretBehavior>::GetInstance()->AddBehavior(this);
 }
 
 TurretBehavior::TurretBehavior(const TurretBehavior& other)
@@ -30,12 +29,23 @@ TurretBehavior::TurretBehavior(const TurretBehavior& other)
 
 TurretBehavior::~TurretBehavior()
 {
-	BehaviorSystem<TurretBehavior>::GetInstance()->RemoveBehavior(this);
 }
 
 Component* TurretBehavior::Clone() const
 {
 	return (Component*)new TurretBehavior(*this);
+}
+
+void TurretBehavior::OnInit()
+{
+	/// Add this behavior to the behavior system
+		BehaviorSystem<TurretBehavior>::GetInstance()->AddBehavior(this);
+}
+
+void TurretBehavior::OnExit()
+{
+	/// Remove this behavior from the behavior system
+	BehaviorSystem<TurretBehavior>::GetInstance()->RemoveBehavior(this);
 }
 
 
@@ -68,6 +78,16 @@ void TurretBehavior::OnFixedUpdate()
 			}
 		}
 	}
+}
+
+void TurretBehavior::Inspector()
+{
+	///Edit the Behavior of the Turret 
+	ImGui::DragFloat("Range", &m_Range);
+	ImGui::DragFloat("Fire Rate", &m_FireRate);
+	ImGui::DragFloat("Bullet Damage", &m_BulletDamage);
+	ImGui::DragFloat("Bullet Speed", &m_BulletSpeed);
+	ImGui::DragFloat("Bullet Size", &m_BulletSize);
 }
 
 

@@ -50,7 +50,9 @@ public: // virtual methods
     /// @brief  called when this Component's Entity is removed from the Scene
     /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
     virtual void OnExit() {};
-
+    
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector() {};
 //-----------------------------------------------------------------------------
 public: // Accessors
 //-----------------------------------------------------------------------------

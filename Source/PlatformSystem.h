@@ -30,6 +30,9 @@ public:
     /// @return   glm vec2: x = width, y = height.
 	glm::vec2 GetWindowDimensions() const;
 
+    /// @brief  Gets Used by the DebugSystem to display debug information
+    virtual void DebugWindow() override;
+
 private:
 
     // Window data - dimensions and pointer

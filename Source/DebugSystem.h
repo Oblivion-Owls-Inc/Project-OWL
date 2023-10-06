@@ -50,10 +50,6 @@ class DebugSystem : public System
         /// @brief Exit and clean up the DebugSystem
         void OnExit() override;
 
-        /// @brief Show the Frames Per Second (FPS) in a debug window
-        /// @details This function displays the Frames Per Second (FPS) in a debug window when called.
-        void ToggleFPS();
-
         /// @brief Print a formatted message to the screen
         /// @param format The format string, similar to printf
         /// @details This function allows you to print a formatted message to the screen using ImGui.
@@ -63,9 +59,6 @@ class DebugSystem : public System
         virtual void DebugWindow() override;
 
 private:
-
-        void ShowDebugWindow();
-
         void ShowFPSWindow();
     
         void ImguiStartFrame();

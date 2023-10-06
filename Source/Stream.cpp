@@ -191,13 +191,26 @@ glm::vec2 Stream::Read<glm::vec2>() const
     if (value.IsArray() == false)
     {
         throw std::runtime_error(
-            "JSON error: unexpected value type while trying to read Vec2 type"
+            "JSON error: unexpected value type while trying to read Vec2"
         );
     }
-    glm::vec2 vector = {};
-    for (int i = 0; i < 2; i++)
+
+    if ( value.GetArray().Size() > 2 )
     {
-        assert(value[i].IsNumber());
+        throw std::runtime_error(
+            "JSON error: unexpected array size while trying to read Vec2"
+        );
+    }
+
+    glm::vec2 vector = {};
+    for (int i = 0; i < value.GetArray().Size(); i++)
+    {
+        if ( value[i].IsNumber() == false )
+        {
+            throw std::runtime_error(
+                "JSON error: unexpected value type while trying to read float in vec2"
+            );
+        }
         vector[i] = value[i].GetFloat();
     }
     return vector;
@@ -211,14 +224,26 @@ glm::vec3 Stream::Read<glm::vec3>() const
     if ( value.IsArray() == false )
     {
         throw std::runtime_error(
-            "JSON error: unexpected value type while trying to read Vec3 type"
+            "JSON error: unexpected value type while trying to read Vec3"
+        );
+    }
+
+    if ( value.GetArray().Size() > 3 )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected array size while trying to read Vec3"
         );
     }
 
     glm::vec3 vector = {};
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < value.GetArray().Size(); i++)
     {
-        assert(value[i].IsNumber());
+        if ( value[i].IsNumber() == false )
+        {
+            throw std::runtime_error(
+                "JSON error: unexpected value type while trying to read float in vec3"
+            );
+        }
         vector[i] = value[i].GetFloat();
     }
     return vector;
@@ -232,14 +257,26 @@ glm::vec4 Stream::Read<glm::vec4>() const
     if (value.IsArray() == false)
     {
         throw std::runtime_error(
-            "JSON error: unexpected value type while trying to read Vec4 type"
+            "JSON error: unexpected value type while trying to read Vec4"
+        );
+    }
+
+    if ( value.GetArray().Size() > 4 )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected array size while trying to read Vec4"
         );
     }
 
     glm::vec4 vector = {};
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < value.GetArray().Size(); i++)
     {
-        assert(value[i].IsNumber());
+        if ( value[i].IsNumber() == false )
+        {
+            throw std::runtime_error(
+                "JSON error: unexpected value type while trying to read float in vec4"
+            );
+        }
         vector[i] = value[i].GetFloat();
     }
     return vector;
@@ -253,14 +290,19 @@ glm::ivec2 Stream::Read<glm::ivec2>() const
     if (value.IsArray() == false)
     {
         throw std::runtime_error(
-            "JSON error: unexpected value type while trying to read ivec2 type"
+            "JSON error: unexpected value type while trying to read ivec2"
         );
     }
 
-    glm::vec4 vector = {};
-    for (int i = 0; i < 2; i++)
+    glm::ivec2 vector = {};
+    for (int i = 0; i < value.GetArray().Size(); i++)
     {
-        assert(value[i].IsNumber());
+        if ( value[i].IsInt() == false )
+        {
+            throw std::runtime_error(
+                "JSON error: unexpected value type while trying to read integer in ivec2"
+            );
+        }
         vector[i] = value[i].GetInt();
     }
     return vector;
