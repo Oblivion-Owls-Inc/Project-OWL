@@ -286,10 +286,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
-    <None Include="Data\Scenes\AidanScene.scene.json" />
-    <None Include="Data\Scenes\Sandbox.scene.json" />
-    <None Include="Data\Scenes\TestScene.scene.json" />
-    <None Include="Data\Scenes\XinoScene.scene.json" />
     <None Include="Data\Scenes\TurretScene.scene.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

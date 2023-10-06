@@ -227,9 +227,6 @@
     <ClCompile Include="Source\Sprite.cpp">
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SandboxSystem.cpp">
-      <Filter>Game\Scenes\SandboxSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\AudioPlayer.cpp">
       <Filter>Engine\Entity\Component\AudioPlayer</Filter>
     </ClCompile>
@@ -305,20 +302,11 @@
     <ClCompile Include="Source\EntitySystem.cpp">
       <Filter>Engine\Systems\EntitySystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\XinoScene.cpp">
-      <Filter>Game\Scenes\XinoScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AidanScene.cpp">
-      <Filter>Game\Scenes\AidenScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LineCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
     </ClCompile>
     <ClCompile Include="Source\CameraSystem.cpp">
       <Filter>Engine\Systems\CameraSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StubScene.cpp">
-      <Filter>Game\Scenes\StubScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\TextSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\TextSprite</Filter>
@@ -436,9 +424,6 @@
     <ClInclude Include="Source\Sprite.h">
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SandboxSystem.h">
-      <Filter>Game\Scenes\SandboxSystem</Filter>
-    </ClInclude>
     <ClInclude Include="Source\AudioPlayer.h">
       <Filter>Engine\Entity\Component\AudioPlayer</Filter>
     </ClInclude>
@@ -499,9 +484,6 @@
     <ClInclude Include="Source\AnimationAsset.h">
       <Filter>Engine\Entity\Component\Animation\Asset</Filter>
     </ClInclude>
-    <ClInclude Include="Source\XinoScene.h">
-      <Filter>Game\Scenes\XinoScene</Filter>
-    </ClInclude>
     <ClInclude Include="imgui\implot.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
@@ -519,9 +501,6 @@
     </ClInclude>
     <ClInclude Include="Source\TextSprite.h">
       <Filter>Engine\Entity\Component\Sprite\TextSprite</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StubScene.h">
-      <Filter>Game\Scenes\StubScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayerController.h">
       <Filter>Game\Behaviors\PlayerController</Filter>
@@ -544,9 +523,6 @@
     <ClInclude Include="Source\CollisionData.h">
       <Filter>Engine\Systems\CollisonSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AidanScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\TurretBehavior.h">
       <Filter>Engine\Entity\Component\Behavior\TurretBehavior</Filter>
     </ClInclude>
@@ -561,19 +537,7 @@
     <None Include="Data\EngineConfig.json">
       <Filter>Data</Filter>
     </None>
-    <None Include="Data\Scenes\XinoScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
     <None Include="Data\Scenes\Sandbox.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\AidanScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\Sandbox.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\TestScene.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\AidanScene.scene.json">

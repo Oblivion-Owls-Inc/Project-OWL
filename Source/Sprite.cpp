@@ -100,7 +100,7 @@
         m_Color(      other.m_Color      ),
         m_Opacity(    other.m_Opacity    ),
         m_Layer(      other.m_Layer      ),
-        m_Mesh(       other.m_Mesh       ),
+        m_Mesh(       nullptr            ),
         m_IsTextured( other.m_IsTextured ),
         m_Texture(    other.m_Texture    ),
         m_FrameIndex( other.m_FrameIndex )
