@@ -9,7 +9,9 @@
 #include <vector>       // for sprite references
 #include <map>          // for shader storage
 
-class Sprite;   // fwd reference
+// fwd references
+class Sprite;
+class Mesh;
 
 
 /// @brief      Renders all of the Sprite components, keeps track of shaders.
@@ -58,6 +60,9 @@ public:
     Shader* SetActiveShader(const char* name);
 
 
+    /// @return         Default mesh for simple quad textures
+    __inline Mesh const* GetDefaultMesh() const { return m_DefaultMesh; }
+
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
@@ -86,10 +91,10 @@ private:
     //          data
     //-------------------------------------------------------------------------
 private:
-    std::map<const char*, Shader*> _shaders;/// @brief   Shader storage
-    Shader* _activeShader = nullptr;        /// @brief   Currently bound shader
-    std::vector<Sprite*> m_Sprites;         /// @brief   Layered sprite references
-
+    std::map<const char*, Shader*> m_Shaders;   /// @brief   Shader storage
+    Shader* m_ActiveShader = nullptr;           /// @brief   Currently bound shader
+    std::vector<Sprite*> m_Sprites;             /// @brief   Layered sprite references
+    Mesh* m_DefaultMesh = nullptr;              /// @brief   Used for 1-frame textures
 
 
     //-------------------------------------------------------------------------

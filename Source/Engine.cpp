@@ -35,6 +35,8 @@
 #include "MovementAI.h"
 #include "CameraSystem.h"
 
+#include "SandboxSystem.h"
+
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -180,6 +182,7 @@
         { "AssetLibrarySystem<Sound>",          &addSystem< AssetLibrarySystem< Sound > >           },
         { "AssetLibrarySystem<Texture>",        &addSystem< AssetLibrarySystem< Texture > >         },
 
+        { "SandboxSystem",                      &addSystem< SandboxSystem >                         },
     };
 
 //-----------------------------------------------------------------------------

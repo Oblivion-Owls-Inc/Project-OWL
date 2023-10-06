@@ -210,8 +210,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\AudioSystem.cpp" />
     <ClCompile Include="Source\LineCollider.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
+    <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\Stream.t.cpp" />
-    <ClCompile Include="Source\TextSprite.cpp" />
+    <ClCompile Include="Source\TilemapSprite.cpp" />
     <ClCompile Include="Source\TurretBehavior.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
@@ -251,7 +252,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\LineCollider.h" />
     <ClInclude Include="Source\RigidBody.h" />
-    <ClInclude Include="Source\TextSprite.h" />
+    <ClInclude Include="Source\SandboxSystem.h" />
+    <ClInclude Include="Source\TilemapSprite.h" />
     <ClInclude Include="Source\TurretBehavior.h" />
     <ClInclude Include="Source\AudioPlayer.h" />
     <ClInclude Include="Source\InputSystem.h" />

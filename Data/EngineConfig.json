@@ -8,7 +8,7 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "TurretScene"
+            "NextSceneName": "Sandbox"
         },
         "AssetLibrarySystem<Entity>": {},
         "AssetLibrarySystem<Sound>": {},
@@ -25,6 +25,7 @@
         "DebugSystem": {
           "ShowFpsWindow": true,
           "ShowDebugWindow": false
-        }
+        },
+        "SandboxSystem": {}
     }
 }

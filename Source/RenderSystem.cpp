@@ -10,18 +10,20 @@
 #include "Transform.h"
 #include <vector>
 #include <algorithm>
+#include "Mesh.h"
 
 static std::vector<Entity*> shapes; // this is inefficient.
 // efficiency will improve once we have resource library.
 
-// TODO: shapes: need a nice transform constructor.
 
 /// @brief      Initializes color and texture shaders for sprites
 void RenderSystem::OnInit()
 {
+    m_DefaultMesh = new Mesh(true, 1, 1);
+
     // These 2 will be used to render basic colored and textured sprites.
-    _shaders["color"] = new Shader("Data/shaders/vshader.vert", "Data/shaders/color.frag");
-    _shaders["texture"] = new Shader("Data/shaders/vshader.vert", "Data/shaders/texture.frag");
+    m_Shaders["color"] = new Shader("Data/shaders/vshader.vert", "Data/shaders/color.frag");
+    m_Shaders["texture"] = new Shader("Data/shaders/vshader.vert", "Data/shaders/texture.frag");
 
     // Enable transparency
     glEnable(GL_BLEND);
@@ -57,8 +59,10 @@ void RenderSystem::OnUpdate(float dt)
 /// @brief      Cleans up memory
 void RenderSystem::OnExit()
 {
-    for (auto &shader : _shaders)
+    for (auto &shader : m_Shaders)
         delete shader.second;
+
+    delete m_DefaultMesh;
 }
 
 
@@ -72,8 +76,12 @@ void RenderSystem::DrawRect(const glm::vec2& position, const glm::vec2& scale,
                             float angle, const glm::vec4& color)
 {
     shapes.push_back(new Entity);
-    //shapes.back()->Add(new Transform(position, scale, angle));
-    shapes.back()->AddComponent(new Sprite(true, color));
+    Transform* t = new Transform();
+    t->SetTranslation({position.x, position.y, 0});
+    t->SetScale({scale.x, scale.y, 1});
+    t->SetRotation(angle);
+    shapes.back()->AddComponent(t);
+    //shapes.back()->AddComponent(new Sprite(true, color));
 }
 
 
@@ -113,7 +121,7 @@ void RenderSystem::RemoveSprite( Sprite* sprite )
 /// @brief          Adds a shader to keep track of, so it can be freed automatically upon shutdown.
 /// param name      Name to reference shader with
 /// param shader    Pointer to the new shader
-void RenderSystem::AddShader(const char* name, Shader* shader) { _shaders[name] = shader; }
+void RenderSystem::AddShader(const char* name, Shader* shader) { m_Shaders[name] = shader; }
 
 
 /// @brief          Helper method for finding shaders by name. If shader isn't found, prints error and returns null.
@@ -121,8 +129,8 @@ void RenderSystem::AddShader(const char* name, Shader* shader) { _shaders[name] 
 /// @return         Pointer to the shader, or nullptr if shader isn't found
 Shader* RenderSystem::FindShader(const char* name)
 {
-    std::map<const  char*, Shader*>::iterator itr = _shaders.find(name);
-    if (itr != _shaders.end())
+    std::map<const  char*, Shader*>::iterator itr = m_Shaders.find(name);
+    if (itr != m_Shaders.end())
         return itr->second;
 
     return nullptr;
@@ -139,7 +147,7 @@ Shader* RenderSystem::SetActiveShader(const char* name)
     if (s)
     {
         s->use();
-        _activeShader = s;
+        m_ActiveShader = s;
     }
 
     return s;
