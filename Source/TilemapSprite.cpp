@@ -7,7 +7,8 @@
 #include "glew.h"
 
 /// @brief              Default constructor
-TilemapSprite::TilemapSprite() : Sprite( typeid(TilemapSprite) )
+TilemapSprite::TilemapSprite() : 
+    Sprite( typeid(TilemapSprite) )
 {}
 
 
@@ -39,29 +40,43 @@ void TilemapSprite::OnInit()
     Sprite::OnInit();
 
     // Init text shader if it ain't.
-    if (!Renderer()->GetShader("text"))
+    if (!Renderer()->GetShader("tile"))
     {
-        Renderer()->AddShader("text", new Shader("Data/shaders/text_instancing.vert", 
-                                                 "Data/shaders/text_instancing.frag"));
+        Renderer()->AddShader("tile", new Shader("Data/shaders/tile_instancing.vert", 
+                                                 "Data/shaders/tile_instancing.frag"));
     }
+}
 
-    // For instancing, I'll need an extra buffer, and an additional attribute
-    // for current mesh
+
+/// @brief      Initializes instancing buffer and its VAO
+void TilemapSprite::initInstancingStuff()
+{
+    // This sprite needs its own VAO that references both the shared mesh buffer, 
+    // and the individual instance buffer.
+    // (yeah it's a bit messy, but more efficient this way)
+    glGenVertexArrays(1, &m_VAO);
+    glBindVertexArray(m_VAO);
+
+    // First, make sure it's using same mesh attributes as regular mesh VAO
+    // (position and UV), which refer to the shared buffer
+    glBindBuffer(GL_ARRAY_BUFFER, m_Texture->GetMesh()->GetBuffer());
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Mesh::Vertex), 0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Mesh::Vertex), (void*)offsetof(Mesh::Vertex, UV));
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+
+    // For instancing, I'll need an individual instance buffer...
     glGenBuffers(1, &m_InstBufferID);
     glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
 
-    glBindVertexArray(m_Texture->GetMesh()->GetVAO());
+    // ...and an extra attribute that refers to this buffer in particular.
+    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, 0);  // 1 float, no offset
+    glVertexAttribDivisor(2, 1);                            // 1 per instance
     glEnableVertexAttribArray(2);
 
-    // First 2 attribute indices are already used for vertex data.
-    // This third index will be used for instance data.
-    // index 2: 1 float, auto stride, offset 0
-    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, 0);
-    glVertexAttribDivisor(2, 1);
-
     glBindVertexArray(0);
-
 }
+
 
 /// @brief  called when exiting the scene
 void TilemapSprite::OnExit()
@@ -69,6 +84,7 @@ void TilemapSprite::OnExit()
     Sprite::OnExit();
 
     glDeleteBuffers( 1, &m_InstBufferID );
+    glDeleteVertexArrays(1, &m_VAO);
 }
 
 
@@ -106,7 +122,7 @@ void TilemapSprite::Draw()
     }
 
     // Select the shader, and send all the uniform data to it
-    Shader* sh_txt = Renderer()->SetActiveShader("text");
+    Shader* sh_txt = Renderer()->SetActiveShader("tile");
     glUniformMatrix4fv(sh_txt->GetUniformID("mvp"), 1, 0, &trm[0][0]);
     glUniform1f(sh_txt->GetUniformID("opacity"), m_Opacity);
     glUniform2f(sh_txt->GetUniformID("stridex"), stridex.x, stridex.y);
@@ -118,31 +134,28 @@ void TilemapSprite::Draw()
 
     // Bind the texture and render instanced mesh
     m_Texture->Bind();
-    glBindVertexArray(mesh->GetVAO());
+    glBindVertexArray(m_VAO);
     glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, mesh->GetVertexCount(), m_TileCount);
     glBindVertexArray(0);
 }
 
 
 /// @brief              Loads the tile array from a raw char array.
-///                     TODO: overloads for string / int vector? if needed
-/// @param char_array   tile IDs  (spritesheet frames)
+/// @param tiles        tile IDs  (spritesheet frames)
 /// @param size         array size
-void TilemapSprite::LoadTileArray(const char* char_array, int size)
+void TilemapSprite::LoadTileArray(const char* tiles, int size)
 {
-    // Load the string into buffer. sigh... chars have to be converted to floats. 
-    // (should be ints, but I can't get it to read ints from buffer correctly, 
-    // so I'll just cast them on shader)
-    std::vector<float> chars(size);
-    for (int i = 0; i < size; i++)
-        chars[i] = (float)char_array[i];
-
-    glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * size, &chars[0], GL_DYNAMIC_DRAW);
-
     m_TileCount = size;
-}
 
+    // Until I figure out what's wrong with reading ints from buffer, convert to floats.
+    std::vector<float> chars(m_TileCount);
+    for (int i = 0; i < m_TileCount; i++)
+        chars[i] = (float)tiles[i];
+
+    // Load the array into buffer.
+    glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_TileCount, &chars[0], GL_DYNAMIC_DRAW);
+}
 
 
 /// @brief            Read in the stride multiplier
@@ -152,12 +165,20 @@ void TilemapSprite::readStrideMultiplier(Stream stream)
     m_StrideMult = stream.Read<glm::vec2>();
 }
 
+
 /// @brief            Read in the amount of tiles per row
 /// @param  stream    The json to read from.
 void TilemapSprite::readRowWidth(Stream stream)
 {
     m_RowWidth = stream.Read<int>();
 }
+
+
+void TilemapSprite::afterLoad(Stream stream)
+{
+    initInstancingStuff();
+}
+
 
 /// @brief the map of read methods for this Component
 ReadMethodMap< TilemapSprite > const TilemapSprite::s_ReadMethods = {
@@ -166,7 +187,8 @@ ReadMethodMap< TilemapSprite > const TilemapSprite::s_ReadMethods = {
     { "Color"           , &readColor            },
     { "StrideMultiplier", &readStrideMultiplier },
     { "RowWidth"        , &readRowWidth         },
-    { "Opacity"         , &readOpacity          }
+    { "Opacity"         , &readOpacity          },
+    { "AFTERLOAD"       , &afterLoad            }    
 };
 
 /// @brief gets the map of read methods for this Component

@@ -323,9 +323,6 @@
     <ClCompile Include="Source\CollisionSystem.cpp">
       <Filter>Engine\Systems\CollisonSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\XinoScene.cpp">
-      <Filter>Game\XinoScene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Lua.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -342,6 +339,9 @@
       <Filter>Game\Scenes\SandboxSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -505,20 +505,11 @@
     <ClInclude Include="Source\PlayerController.h">
       <Filter>Game\Behaviors\PlayerController</Filter>
     </ClInclude>
-    <ClInclude Include="Source\XinoScene.h">
-      <Filter>Game\XinoScene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Animation.h">
       <Filter>Engine\Entity\Component\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Source\XinoScene.h">
       <Filter>Game\XinoScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StubScene.h">
-      <Filter>Game\StubScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TextSprite.h">
-      <Filter>Engine\Entity\Component\Sprite\TextSprite</Filter>
     </ClInclude>
     <ClInclude Include="Source\CollisionData.h">
       <Filter>Engine\Systems\CollisonSystem</Filter>
@@ -536,6 +527,9 @@
       <Filter>Game\Scenes\SandboxSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\TilemapSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

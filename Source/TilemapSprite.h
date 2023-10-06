@@ -31,10 +31,9 @@ public:
 
 
     /// @brief              Loads the tile array from a raw char array.
-    ///                     TODO: overloads for string / int vector? if needed
-    /// @param char_array   tile IDs  (spritesheet frames)
+    /// @param tiles        tile IDs  (spritesheet frames)
     /// @param size         array size
-    void LoadTileArray(const char* char_array, int size);
+    void LoadTileArray(const char* tiles, int size);
 
 
     /// @brief          Sets the width of a single row (amount of columns)
@@ -72,20 +71,24 @@ protected:
     //-------------------------------------------------------------------------
     //          data
     //-------------------------------------------------------------------------
-private:
+protected:
     unsigned int m_InstBufferID = 0; /// @brief     ID of buffer that stores instance data (tile IDs)
+    unsigned int m_VAO = 0;          /// @brief     VAO that uses this specific buffer
     glm::vec2 m_StrideMult = {1,1};  /// @brief     Horizontal/vertical stride. 1.0 is full tile width
-    int m_RowWidth = 10;             /// @brief     Amount of tiles per row
+    int m_RowWidth = 20;             /// @brief     Amount of tiles per row
     int m_TileCount = 0;             /// @brief     How many tiles to draw
 
+
+    // helper
 private:
+    /// @brief    Initializes instancing buffer and its VAO
+    void initInstancingStuff();
 
 
     //-------------------------------------------------------------------------
     //  Reading
     //-------------------------------------------------------------------------
-private:
-
+protected:
     /// @brief            Read in the stride multiplier
     /// @param  stream    The json to read from.
     void readStrideMultiplier(Stream stream);
@@ -94,6 +97,9 @@ private:
     /// @param  stream    The json to read from.
     void readRowWidth( Stream stream );
 
+    void afterLoad(Stream stream);
+
+private:
     /// @brief            The map of read methods for this Component
     static ReadMethodMap< TilemapSprite > const s_ReadMethods;
 

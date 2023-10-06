@@ -22,7 +22,7 @@
 /// @brief  default constructor
 Sprite::Sprite() :
     Component( typeid( Sprite ) ),
-    m_Color( { 0, 0, 0, 1, } ),
+    m_Color( { 1, 1, 1, 1 } ),
     m_Opacity( 1.0f ),
     m_Layer( 2 ),
     m_IsTextured( false ),
@@ -36,7 +36,7 @@ Sprite::Sprite() :
 /// @param  type        for use ONLY when deriving with this Constructor
 Sprite::Sprite( Texture const* texture, int layer, std::type_index type ) :
     Component( type ),
-    m_Color( { 0, 0, 0, 1, } ),
+    m_Color( { 1, 1, 1, 1 } ),
     m_Opacity( 1.0f ),
     m_Layer( layer ),
     m_IsTextured( true ),
@@ -52,7 +52,13 @@ Sprite::Sprite( Texture const* texture, int layer, std::type_index type ) :
 /// @brief              Inherited constructor
 /// @param type         typeid(DerivedClass)
 Sprite::Sprite( std::type_index type ) :
-    Component( type )
+    Component( type ),
+    m_Color( { 1, 1, 1, 1 } ),
+    m_Opacity( 1.0f ),
+    m_Layer( 2 ),
+    m_IsTextured( false ),
+    m_Texture( nullptr ),
+    m_FrameIndex( 0 )
 {}
 
 //-----------------------------------------------------------------------------

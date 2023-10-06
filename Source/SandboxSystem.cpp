@@ -12,12 +12,13 @@
 #include "AudioPlayer.h"
 #include "BehaviorSystem.h"
 #include "RenderSystem.h"
-#include "Sprite.h"
 #include "MovementAI.h"
 #include "InputSystem.h"
 #include "DebugSystem.h"
 #include "EntitySystem.h"
 #include "SceneSystem.h"
+
+#include "TilemapSprite.h"
 
 //-----------------------------------------------------------------------------
 // variables

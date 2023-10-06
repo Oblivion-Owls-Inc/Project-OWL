@@ -4,50 +4,58 @@
             "Ball1": {
                 "Filepath": "Data/Textures/Balls/Ball4.png"
             },
-            "ElfSheet": {
-                "Filepath": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png",
-                "SheetDimensions": [ 22, 17 ]
+            "FontSheet": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [ 16, 8 ]
             }
         },
         "Archetypes": {}
-      },
+    },
     "Entities": [
-        {
-            "Name": "Ranger",
-            "Components": {
-                "Transform": {
-                    "translation": [ -4, -1, 0 ],
-                    "scale": [ 8, 4, 1 ]
-                },
-                "Sprite": {
-                    "Texture": "ElfSheet"
-                },
-                "Animation": {
-                    "frameStart": 0,
-                    "frameCount": 12,
-                    "frameDuration": 0.12,
-                    "isLooping": true,
-                    "isRunning": true
-                }
-            }
-        },
         {
             "Name": "Ball",
             "Components": {
                 "Sprite": {
-                    "Texture": "Ball1",
-                    "Layer": 1
-                },
-                "RigidBody": {
-                    "Velocity": [ 3, 1, 0 ]
-                },
-                "CircleCollider": {
-                    "Radius": 0.5
+                    "Texture": "Ball1"
                 },
                 "Transform": {
-                    "translation": [ 0, 0, 1 ]
+                    "translation": [ 0, 1, 0 ],
+                    "scale": [ 0.6, 0.6, 0 ]
+                }
+            }
+        },
+        {
+            "Name": "Text",
+            "Components": {
+                "TilemapSprite": {
+                    "Texture": "FontSheet",
+                    "Color": [1,1,0,1],
+                    "StrideMultiplier":  [0.6, 1.0]
                 },
-                "MovementAI": {}
+                "Text":  {
+                    "String": "Yellow"
+                },
+                "Transform": {
+                    "translation": [ -4, 1, 0 ],
+                    "scale": [ 0.6, 0.6, 0 ]
+                }
+            }
+        },
+        {
+            "Name": "Text2",
+            "Components": {
+                "TilemapSprite": {
+                    "Texture": "FontSheet",
+                    "Color": [1,0,1,1],
+                    "StrideMultiplier":  [0.6, 1.0]
+                },
+                "Text":  {
+                    "String": "Not Yellow"
+                },
+                "Transform": {
+                    "translation": [ -4, 0, 0 ],
+                    "scale": [ 0.6, 0.6, 0 ]
+                }
             }
         }
     ]
