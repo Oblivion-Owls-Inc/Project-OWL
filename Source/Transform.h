@@ -16,7 +16,7 @@
 class Transform : public Component
 {
 //-----------------------------------------------------------------------------
-public: // constructor / destructor
+public: // constructor / destructor / inspector
 //-----------------------------------------------------------------------------
 
     /// @brief  constructor
@@ -25,6 +25,8 @@ public: // constructor / destructor
     /// @brief destructor
     ~Transform() = default;
 
+    /// @brief  inspector for this component
+    virtual void Inspector() override;
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------

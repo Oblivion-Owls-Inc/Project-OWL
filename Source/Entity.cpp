@@ -14,6 +14,7 @@
 #include <cassert>			  // assert
 #include "ComponentFactory.h" // Create.
 #include "AssetLibrarySystem.h"
+#include "DebugSystem.h"
 #include "basics.h"
 
 //------------------------------------------------------------------------------
@@ -79,6 +80,26 @@
 //------------------------------------------------------------------------------
 // private: methods
 //------------------------------------------------------------------------------
+
+    void Entity::InspectEntity()
+    {
+        if (!ImGui::TreeNode(this->GetName().c_str()))
+        {
+            return;
+        }
+
+        for (const auto& componentPair : this->getComponents())
+        {
+            const std::string componentName = componentPair.second->GetType().name() + 5; // Skip "class "
+            if (ImGui::TreeNode(componentName.c_str()))
+            {
+                componentPair.second->Inspector();
+                ImGui::TreePop();
+            }
+        }
+
+        ImGui::TreePop();
+    }
 
     /// @brief Deallocates all memory associated with an entity.
     void Entity::free()

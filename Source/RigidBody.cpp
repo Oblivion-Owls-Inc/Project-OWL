@@ -149,6 +149,16 @@
         m_CollisionResolved = true;
     }
 
+    void RigidBody::Inspector()
+    {
+        ImGui::DragFloat2("Velocity", &m_Velocity.x);
+        ImGui::DragFloat2("Acceleration", &m_Acceleration.x);
+        ImGui::DragFloat("Rotational Velocity", &m_RotationalVelocity);
+        ImGui::DragFloat("Mass", &m_Mass);
+        ImGui::DragFloat("Restitution", &m_Restitution);
+        ImGui::DragFloat("Friction", &m_Friction);
+    }
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------

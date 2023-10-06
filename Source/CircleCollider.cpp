@@ -9,6 +9,7 @@
 #pragma once
 
 #include "CircleCollider.h"
+#include "DebugSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor
@@ -19,6 +20,11 @@
         Collider( typeid( CircleCollider ) ),
         m_Radius( 1.0f )
     {}
+
+    void CircleCollider::Inspector()
+    {
+        ImGui::DragFloat( "Radius", &m_Radius);
+    }
 
 //-----------------------------------------------------------------------------
 // private: reading

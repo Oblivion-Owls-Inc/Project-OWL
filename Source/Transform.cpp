@@ -8,6 +8,7 @@
 /// @copyright (c) 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 #include "Transform.h"
+#include "DebugSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructor
@@ -25,6 +26,43 @@
 	    m_IsDiegetic( true ),
         m_Parent( nullptr )
     {}
+
+    void Transform::Inspector()
+    {
+        Transform* transform = this;
+
+        if (transform)
+        {
+            // Edit Translation
+            glm::vec3 translation = transform->GetTranslation();
+            if (ImGui::DragFloat3("Translation", &translation[0]))
+            {
+                transform->SetTranslation(translation);
+            }
+
+            // Edit Rotation
+            float rotation = transform->GetRotation();
+            if (ImGui::DragFloat("Rotation", &rotation))
+            {
+                transform->SetRotation(rotation);
+            }
+
+            // Edit Scale
+            glm::vec3 scale = transform->GetScale();
+            if (ImGui::DragFloat3("Scale", &scale[0]))
+            {
+                transform->SetScale(scale);
+            }
+
+            // Toggle Diegetic
+            bool isDiegetic = transform->GetIsDiegetic();
+            if (ImGui::Checkbox("Is Diegetic", &isDiegetic))
+            {
+                transform->SetIsDiegetic(isDiegetic);
+            }
+
+        }
+    }
 
 
 //-----------------------------------------------------------------------------

@@ -16,11 +16,13 @@
 class CircleCollider : public Collider
 {
 //-----------------------------------------------------------------------------
-public: // constructor
+public: // constructor / inpector
 //-----------------------------------------------------------------------------
 
     /// @brief  default constructor
     CircleCollider();
+
+    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 public: // accessors

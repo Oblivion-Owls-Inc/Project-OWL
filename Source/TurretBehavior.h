@@ -32,10 +32,25 @@ class TurretBehavior :
 		/// @param  collisionData   additional data about the collision
 		virtual void OnCollision( Entity* other, CollisionData const& collisionData ) {};
 
+
+		/// @brief Default constructor for the RigidBody class.
+		virtual void OnInit();
+
+		/// @brief  called when this Component's Entity is removed from the Scene
+		/// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
+		virtual void OnExit();
+
+
 	public:
+		/// @brief Called Every Frame by the system
+		/// @param dt - the time since the last frame
 		virtual void OnUpdate(float dt) override;
+
+		/// @brief Called Every Fixed Frame by the system
 		void OnFixedUpdate() override;
 
+		/// @brief Used by the Debug System to display information about this Component
+		virtual void Inspector() override;
 
 	private:
 		float m_FireRate = 1.0f;
