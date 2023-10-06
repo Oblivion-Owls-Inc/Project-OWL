@@ -195,10 +195,6 @@
             std::cerr << error.what();
         }
 
-        for ( System* system : Engine::GetInstance()->GetSystems() )
-        {
-            system->OnSceneLoad();
-        }
     }
 
     /// @brief  Initializes the current Scene

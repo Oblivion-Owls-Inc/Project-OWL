@@ -65,12 +65,6 @@ private: // reading
     /// @return this System's read methods
     virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
-	// Unused virtuals
-    virtual void OnUpdate(float dt) override {}
-	virtual void OnFixedUpdate() override {}
-	virtual void OnSceneLoad() override {}
-	virtual void OnSceneInit() override {}
-	virtual void OnSceneExit() override {}
 
     /// @brief The singleton instance of the PlatformSystem
     static PlatformSystem * instance;

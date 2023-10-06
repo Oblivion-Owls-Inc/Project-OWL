@@ -17,35 +17,12 @@
 using namespace std;
 class InputSystem : public System
 {
-private:
-
-    /// @brief unused input init
-    virtual void OnInit() override {}
-
+//-----------------------------------------------------------------------------
+private: // virtual override methods
+//-----------------------------------------------------------------------------
 
     /// @brief fixed update for input, must be called for input to function
     virtual void OnFixedUpdate() override;
-
-
-    /// @brief unused update for input
-    /// @param dt the elapsed time in seconds since the previous frame
-    virtual void OnUpdate( float dt ) override {}
-
-
-    /// @brief unused exit for input
-    virtual void OnExit() override {}
-
-
-    /// @brief unused for input
-    virtual void OnSceneLoad() override {}
-
-
-    /// @brief unused for input
-    virtual void OnSceneInit() override {}
-
-
-    /// @brief unused for input
-    virtual void OnSceneExit() override {}
 
 
 //-----------------------------------------------------------------------------

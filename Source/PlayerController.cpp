@@ -39,10 +39,10 @@ void PlayerController::OnUpdate(float dt)
     if (MoveRight())
     {
         Transform* m_Transform = GetParent()->GetComponent<Transform>();
-        vec3 POS = m_Transform->GetTranslation();
+        glm::vec3 POS = m_Transform->GetTranslation();
 
         // Calculate the desired velocity increment.
-        vec3 velocityIncrement = vec3(5.0f * acceleration * dt, 0.0f, 0.0f);
+        glm::vec3 velocityIncrement = glm::vec3(5.0f * acceleration * dt, 0.0f, 0.0f);
 
         // Apply acceleration, but limit the speed.
         if (glm::length(velocityIncrement) > maxSpeed)
@@ -56,10 +56,10 @@ void PlayerController::OnUpdate(float dt)
     else if (MoveLeft())
     {
         Transform* m_Transform = GetParent()->GetComponent<Transform>();
-        vec3 POS = m_Transform->GetTranslation();
+        glm::vec3 POS = m_Transform->GetTranslation();
 
         // Calculate the desired velocity increment.
-        vec3 velocityIncrement = vec3(-5.0f * acceleration * dt, 0.0f, 0.0f);
+        glm::vec3 velocityIncrement = glm::vec3(-5.0f * acceleration * dt, 0.0f, 0.0f);
 
         // Apply acceleration, but limit the speed.
         if (glm::length(velocityIncrement) > maxSpeed)
@@ -73,10 +73,10 @@ void PlayerController::OnUpdate(float dt)
     if (Jump())
     {
    		Transform* m_Transform = GetParent()->GetComponent<Transform>();
-		vec3 POS = m_Transform->GetTranslation();
+		glm::vec3 POS = m_Transform->GetTranslation();
 
 		// Calculate the desired velocity increment.
-		vec3 velocityIncrement = vec3(0.0f, 5.0f * acceleration * dt, 0.0f);
+		glm::vec3 velocityIncrement = glm::vec3(0.0f, 5.0f * acceleration * dt, 0.0f);
 
 		// Apply acceleration, but limit the speed.
 		if (glm::length(velocityIncrement) > maxSpeed)
@@ -90,10 +90,10 @@ void PlayerController::OnUpdate(float dt)
 	if (MoveDown())
 	{
 		Transform* m_Transform = GetParent()->GetComponent<Transform>();
-		vec3 POS = m_Transform->GetTranslation();
+		glm::vec3 POS = m_Transform->GetTranslation();
 
 		// Calculate the desired velocity increment.
-		vec3 velocityIncrement = vec3(0.0f, -5.0f * acceleration * dt, 0.0f);
+		glm::vec3 velocityIncrement = glm::vec3(0.0f, -5.0f * acceleration * dt, 0.0f);
 
 		// Apply acceleration, but limit the speed.
 		if (glm::length(velocityIncrement) > maxSpeed)
