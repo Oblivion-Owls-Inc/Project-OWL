@@ -42,35 +42,35 @@ public: // accessors
 
     /// @brief  gets the ScaleCurve
     /// @return the ScaleCurve
-    __inline Curve< glm::vec2 >& GetScaleCurve() { return m_ScaleCurve; }
+    __inline Curve< 2 >& GetScaleCurve() { return m_ScaleCurve; }
 
     /// @brief  gets the OffsetCurve
     /// @return the OffsetCurve
-    __inline Curve< glm::vec2 >& GetOffsetCurve() { return m_OffsetCurve; }
+    __inline Curve< 2 >& GetOffsetCurve() { return m_OffsetCurve; }
 
     /// @brief  gets the RotationCurve
     /// @return the RotationCurve
-    __inline Curve< float >& GetRotationCurve() { return m_RotationCurve; }
+    __inline Curve< 1 >& GetRotationCurve() { return m_RotationCurve; }
 
     /// @brief  gets the SkewCurve
     /// @return the SkewCurve
-    __inline Curve< glm::vec2 >& GetSkewCurve() { return m_SkewCurve; }
+    __inline Curve< 2 >& GetSkewCurve() { return m_SkewCurve; }
 
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
     /// @brief  curve that animates scale
-    Curve< glm::vec2 > m_ScaleCurve;
+    Curve< 2 > m_ScaleCurve;
 
     /// @brief  curve that animates offset
-    Curve< glm::vec2 > m_OffsetCurve;
+    Curve< 2 > m_OffsetCurve;
 
     /// @brief  curve that animates rotation
-    Curve< float > m_RotationCurve;
+    Curve< 1 > m_RotationCurve;
 
     /// @brief  curve that animates skew
-    Curve< glm::vec2 > m_SkewCurve;
+    Curve< 2 > m_SkewCurve;
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -84,7 +84,7 @@ private: // methods
     /// @brief  creates a rotation matrix
     /// @param  rotation    the angle to rotate by
     /// @return (glm::mat2) the rotation matrix
-    static glm::mat2 rotationMatrix( float rotation );
+    static glm::mat2 rotationMatrix( glm::vec1 rotation );
 
     /// @brief  creates a skew matrix
     /// @param  skew    the factor to skew by

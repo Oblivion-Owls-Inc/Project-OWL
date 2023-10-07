@@ -84,6 +84,11 @@ public: // acessors
     template <>
     std::string Read<std::string>() const;
 
+    /// @brief  Reads a vec1 from a json value
+    /// @return The value from the json
+    template <>
+    glm::vec1 Read<glm::vec1>() const;
+
     /// @brief  Reads a vec2 from a json value
     /// @return The value from the json
     template <>

@@ -135,7 +135,45 @@
         ImGui::DragInt(   "LoopCount", &m_LoopCount );
         ImGui::Checkbox(  "IsPlaying", &m_IsPlaying );
 
-        // TODO: select animation
+        // // TODO: implement effect selection after Jax pushes his changes
+        // 
+        // std::map< std::string, TransformAnimation const* > const& effects = AssetLibrary<TransformAnimation>()->GetAssets();
+        // 
+        // std::vector< std::string > effectNames = { "Select Effect" };
+        // int selectedEffect = 0;
+        // int i = 1;
+        // for ( auto effect : effects )
+        // {
+        //     if ( effect.second == m_CurrentEffect )
+        //     {
+        //         selectedEffect = i;
+        //     }
+        //     effectNames.push_back( effect.first );
+        //     ++i;
+        // }
+        // 
+        // if ( ImGui::BeginCombo( "Effect", effectNames[ selectedEffect ].c_str() ) ) // Display the selected effect name
+        // {
+        //     for ( i = 0; i < effectNames.size(); ++i )
+        //     {
+        //         bool isSelected = (selectedEffect == i);
+        //         if ( ImGui::Selectable( effectNames[ i ].c_str(), isSelected ) )
+        //         {
+        //             selectedEffect = i; // Change the selected scene
+        //         }
+        // 
+        //         if ( isSelected )
+        //         {
+        //             ImGui::SetItemDefaultFocus(); // Automatically focus on the selected item
+        //         }
+        //     }
+        //     ImGui::EndCombo();
+        // }
+        // 
+        // if ( selectedEffect != 0 )
+        // {
+        //     m_CurrentEffect = AssetLibrary<TransformAnimation>()->GetAsset( effectNames[ selectedEffect ] );
+        // }
 
     }
 

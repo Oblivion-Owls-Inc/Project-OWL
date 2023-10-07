@@ -16,10 +16,10 @@
 
     /// @brief default constructor
     TransformAnimation::TransformAnimation() :
-        m_ScaleCurve( { 1.0f, 1.0f } ),
-        m_OffsetCurve( { 0.0f, 0.0f } ),
-        m_RotationCurve( 0.0f ),
-        m_SkewCurve( { 0.0f, 0.0f } )
+        m_ScaleCurve( glm::vec2(1.0f, 1.0f) ),
+        m_OffsetCurve( glm::vec2(0.0f, 0.0f) ),
+        m_RotationCurve( glm::vec1(0.0f) ),
+        m_SkewCurve( glm::vec2(0.0f, 0.0f) )
     {}
 
 //-----------------------------------------------------------------------------
@@ -67,10 +67,10 @@
     /// @brief  creates a rotation matrix
     /// @param  rotation    the angle to rotate by
     /// @return (glm::mat2) the rotation matrix
-    glm::mat2 TransformAnimation::rotationMatrix( float rotation )
+    glm::mat2 TransformAnimation::rotationMatrix( glm::vec1 rotation )
     {
-        float cos = std::cosf( rotation );
-        float sin = std::sinf( rotation );
+        float cos = std::cosf( rotation[0] );
+        float sin = std::sinf( rotation[0] );
         return {
             {  cos, sin },
             { -sin, cos }
