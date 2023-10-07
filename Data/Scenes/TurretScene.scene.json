@@ -15,6 +15,33 @@
                 "Filepath": "Data/Textures/Balls/Ball.png"
             }
         },
+        "TransformAnimations": {
+            "Bounce": {
+                "ScaleCurve": {
+                    "InterpolationType": 2,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [ 1.0, 1.0 ],
+                            "Derivative": [ 1.1, -1.1 ]
+                        },
+                        {
+                            "Time": 0.25,
+                            "Value": [ 1.2, 0.833 ]
+                        },
+                        {
+                            "Time": 0.75,
+                            "Value": [ 0.833, 1.1 ]
+                        },
+                        {
+                            "Time": 1.0,
+                            "Value": [ 1.0, 1.0 ],
+                            "Derivative": [ 1.1, -1.1 ]
+                        }
+                    ]
+                }
+            }
+        },
         "Archetypes": {
             "Ball": {
                 "Name": "Ball",
@@ -53,7 +80,13 @@
                     "translation": [ -4, 1, 0 ],
                     "scale": [ 2, 2, 2 ]
                 },
-                "TurretBehavior": {}
+                "TurretBehavior": {},
+                "EffectAnimator": {
+                    "CurrentEffect": "Bounce",
+                    "IsPlaying": true,
+                    "LoopCount": -1,
+                    "Speed": 2.0
+                }
             }
         },
         {

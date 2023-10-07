@@ -27,6 +27,7 @@ public: // constructor / destructor / inspector
 
     /// @brief  inspector for this component
     virtual void Inspector() override;
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
@@ -65,6 +66,9 @@ public: // accessors
     /// @brief  sets the isDiagetic flag
     /// @param  isDiagetic  the new isDiagetic flag
     __inline void SetIsDiegetic( bool const& isDiagetic ) { m_IsDiegetic = isDiagetic; }
+
+    /// @brief  marks the transform as dirty;
+    __inline void MarkDirty() { m_IsDirty = true; }
 
 
     /// @brief  gets the matrix
