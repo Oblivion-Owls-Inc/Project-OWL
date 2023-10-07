@@ -84,6 +84,12 @@
     /// @return whether or not the two colliders are colliding
     void CollisionSystem::CheckCollision( Collider const* colliderA, Collider const* colliderB )
     {
+        if ( colliderA->GetParent()->GetComponent<Transform>() == nullptr || 
+            colliderB->GetParent()->GetComponent<Transform>() == nullptr)
+		{
+			return;
+		}
+
         std::pair< std::type_index, std::type_index > colliderTypes
             = { colliderA->GetType(), colliderB->GetType() };
 
@@ -107,7 +113,13 @@
                     "Error: no collision function implemented between " <<
                     colliderTypes.first.name() << " and " <<
                     colliderTypes.second.name();
-                throw std::runtime_error( errorMessage.str() );
+
+                ///Let it silently fail in release mode
+                #ifndef NDEBUG
+                  throw std::runtime_error( errorMessage.str() );
+                #endif // !NDEBUG
+
+             return;
             }
         }
 

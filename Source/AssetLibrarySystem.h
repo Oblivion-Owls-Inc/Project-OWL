@@ -61,6 +61,8 @@ public: // public functions
     /// @param  asset   the asset to add
     void AddAsset( std::string const& name, AssetType* asset );
 
+    /// @brief  Gets All the assets in the AssetLibrary
+    std::map< std::string, AssetType* > const& GetAssets() const;
 //-----------------------------------------------------------------------------
 private: // private variables
 //-----------------------------------------------------------------------------
@@ -76,6 +78,9 @@ private: // private functions
     /// @brief  Flushes everything in the library
     /// @brief  Automatically called on scene exit
     void FlushAssets();
+
+    ///
+    void ListAssets();
 
 //-----------------------------------------------------------------------------
 private: // reading

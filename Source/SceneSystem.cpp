@@ -96,8 +96,6 @@
         {
             SetNextScene(m_CurrentSceneName);
         }
-
-
     }
 
 //-----------------------------------------------------------------------------
@@ -250,6 +248,11 @@
                 getSceneNames();
                 for (int i = 0; i < m_SceneNames.size(); i++)
                 {
+                    if (m_SceneNames[i] == m_CurrentSceneName)
+                    {
+						continue;
+					}
+
                     bool isSelected = (selectedScene == i);
                     if (ImGui::Selectable(m_SceneNames[i].c_str(), isSelected))
                     {

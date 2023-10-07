@@ -14,9 +14,6 @@
 /// Set Static Variables
 ///-----------------------------------------------------------------------------
 
-bool EntitySystem::m_ShowEntityList = false;
-bool EntitySystem::m_ShowEntityCreate = false;
-
 //-----------------------------------------------------------------------------
 // public methods
 //-----------------------------------------------------------------------------
@@ -37,7 +34,8 @@ bool EntitySystem::m_ShowEntityCreate = false;
         auto iterator = std::find_if(
             m_Entities.begin(),
             m_Entities.end(),
-            [ entityName ]( Entity* entity ) -> bool {
+            [ entityName ]( Entity* entity ) -> bool
+            {
                 return entity->GetName() == entityName;
             }
         );
@@ -134,7 +132,7 @@ bool EntitySystem::m_ShowEntityCreate = false;
     {
         ImGui::Begin("Entity List");
 
-        if (!ImGui::TreeNode("Entities")) 
+        if (!ImGui::TreeNode("Entities"))
         {
             ImGui::End();
             return;
@@ -142,9 +140,9 @@ bool EntitySystem::m_ShowEntityCreate = false;
 
         for (const auto& entity : EntitySystem::GetInstance()->GetEntities())
         {
-            entity->InspectEntity();
+            entity->Inspect();
         }
-
+        
         ImGui::TreePop();
         ImGui::End();
     }

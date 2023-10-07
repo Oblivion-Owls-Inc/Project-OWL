@@ -82,6 +82,9 @@
             trm = proj * trm;
         }
 
+        if(!m_Texture)
+			return;
+
         // Select the shader, and send all the uniform data to it
         Shader* sh_txt = Renderer()->SetActiveShader("text");
         glUniformMatrix4fv(sh_txt->GetUniformID("mvp"), 1, 0, &trm[0][0]);
