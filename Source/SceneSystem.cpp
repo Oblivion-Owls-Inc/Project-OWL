@@ -10,9 +10,11 @@
 
 #include "EntitySystem.h"
 #include "DebugSystem.h"
+
 #include "AssetLibrarySystem.h"
 #include "Sound.h"
 #include "Texture.h"
+#include "TransformAnimation.h"
 
 #include "basics.h"
 #include "Stream.h"
@@ -94,8 +96,6 @@
         {
             SetNextScene(m_CurrentSceneName);
         }
-
-
     }
 
 //-----------------------------------------------------------------------------
@@ -183,9 +183,10 @@
 
     /// @brief map of asset libraries used to read assets
     std::map< std::string, BaseAssetLibrarySystem* (*)() > const SceneSystem::Scene::s_AssetLibraries = {
-        { "Archetypes"  , &getAssetLibrary< Entity >    },
-        { "Sounds"      , &getAssetLibrary< Sound >     },
-        { "Textures"    , &getAssetLibrary< Texture >   }
+        { "Archetypes"         , &getAssetLibrary< Entity >             },
+        { "Sounds"             , &getAssetLibrary< Sound >              },
+        { "Textures"           , &getAssetLibrary< Texture >            },
+        { "TransformAnimations", &getAssetLibrary< TransformAnimation > }
     };
 
 //-----------------------------------------------------------------------------
@@ -247,6 +248,11 @@
                 getSceneNames();
                 for (int i = 0; i < m_SceneNames.size(); i++)
                 {
+                    if (m_SceneNames[i] == m_CurrentSceneName)
+                    {
+						continue;
+					}
+
                     bool isSelected = (selectedScene == i);
                     if (ImGui::Selectable(m_SceneNames[i].c_str(), isSelected))
                     {

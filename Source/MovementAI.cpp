@@ -52,34 +52,39 @@ void MovementAI::OnUpdate(float dt)
 
 void MovementAI::OnFixedUpdate()
 {
-
     glm::vec2 WindowSize = glm::vec2(10.0f, 8.0f);
     Transform* ballTransform = GetParent()->GetComponent<Transform>();
     RigidBody* ballRigidBody = GetParent()->GetComponent<RigidBody>();
     CircleCollider* ballCollider = (CircleCollider*)GetParent()->GetComponent<CircleCollider>();
+
+    if (ballTransform == nullptr || ballRigidBody == nullptr || ballCollider == nullptr)
+	{
+		return;
+	}
+
     float radius = ballCollider->GetRadius();
 
     glm::vec3 pos = ballTransform->GetTranslation();
     glm::vec3 velocity = ballRigidBody->GetVelocity();
 
     // Check if the ball is going to exceed the screen bounds
-    if ((pos.x - radius) <= -WindowSize.x / 2)
+    if ((pos.x - radius) < -WindowSize.x / 2)
     {
         pos.x = -WindowSize.x / 2 + radius;
         velocity.x = -velocity.x;
     }
-    else if ((pos.x + radius) >= WindowSize.x / 2)
+    else if ((pos.x + radius) > WindowSize.x / 2)
     {
         pos.x = WindowSize.x / 2 - radius;
         velocity.x = -velocity.x;
     }
 
-    if ((pos.y - radius) <= -WindowSize.y / 2)
+    if ((pos.y - radius) < -WindowSize.y / 2)
     {
         pos.y = -WindowSize.y / 2 + radius;
         velocity.y = -velocity.y;
     }
-    else if ((pos.y + radius) >= WindowSize.y / 2)
+    else if ((pos.y + radius) > WindowSize.y / 2)
     {
         pos.y = WindowSize.y / 2 - radius;
         velocity.y = -velocity.y;

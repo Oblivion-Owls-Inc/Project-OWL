@@ -23,8 +23,10 @@
 #include "Animation.h"
 #include "TurretBehavior.h"
 #include "PlayerController.h"
+#include "EffectAnimator.h"
 #include "Text.h"
 #include "Tilemap.h"
+
 
 /// @brief     Creates a component of a specified type.
 /// @param key The type of component being created.
@@ -49,15 +51,16 @@ Component* ComponentFactory::Creator()
 std::map< std::string, std::pair< std::type_index, Component* (*)() > > const ComponentFactory::s_ComponentTypes = {
     { "Transform"        , ComponentInfo<Transform>()        },
     { "Sprite"           , ComponentInfo<Sprite>()           },
-    { "TilemapSprite"    , ComponentInfo<TilemapSprite>()    },
-    { "Text"             , ComponentInfo<Text>()             },
     { "RigidBody"        , ComponentInfo<RigidBody>()        },
     { "MovementAI"       , ComponentInfo<MovementAI>()       },
     { "LineCollider"     , ComponentInfo<LineCollider>()     },
     { "CircleCollider"   , ComponentInfo<CircleCollider>()   },
     { "AudioPlayer"      , ComponentInfo<AudioPlayer>()      },
     { "Animation"        , ComponentInfo<Animation>()        },
+    { "Text"             , ComponentInfo<Text>()             },
     { "PlayerController" , ComponentInfo<PlayerController>() },
     { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   },
-    { "Tilemap"          , ComponentInfo<Tilemap>()          }
+    { "EffectAnimator"   , ComponentInfo<EffectAnimator>()   },
+    { "Tilemap"          , ComponentInfo<Tilemap>()          },
+    { "TilemapSprite"    , ComponentInfo<TilemapSprite>()    }
 };

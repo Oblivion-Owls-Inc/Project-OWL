@@ -8,23 +8,25 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Sandbox"
+            "NextSceneName": "TurretScene"
         },
         "AssetLibrarySystem<Entity>": {},
         "AssetLibrarySystem<Sound>": {},
         "AssetLibrarySystem<Texture>": {},
+        "AssetLibrarySystem<TransformAnimation>": {},
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<MovementAI>": {},
         "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<RigidBody>": {},
         "CollisionSystem": {},
+        "BehaviorSystem<EffectAnimator>": {},
         "EntitySystem": {},
         "CameraSystem": {},
         "RenderSystem": {},
         "AudioSystem": {},
         "DebugSystem": {
-          "ShowFpsWindow": true,
-          "ShowDebugWindow": false
+            "ShowFpsWindow": true,
+            "ShowDebugWindow": false
         },
         "SandboxSystem": {}
     }

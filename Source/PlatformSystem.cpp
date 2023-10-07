@@ -10,7 +10,6 @@
 #include "glfw3.h"      // initialize / shutdown
 #include "glm/vec2.hpp" // for returning window dimensions
 #include <iostream>     // cout
-#include <Windows.h>
 #include <cassert>
 
 /// @brief            (callback) Gets called when there's some OpenGL error. Prints error message

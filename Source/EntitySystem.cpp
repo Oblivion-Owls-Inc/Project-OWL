@@ -14,9 +14,6 @@
 /// Set Static Variables
 ///-----------------------------------------------------------------------------
 
-bool EntitySystem::m_ShowEntityList = false;
-bool EntitySystem::m_ShowEntityCreate = false;
-
 //-----------------------------------------------------------------------------
 // public methods
 //-----------------------------------------------------------------------------
@@ -60,9 +57,17 @@ bool EntitySystem::m_ShowEntityCreate = false;
         if ( iterator != m_Entities.end() )
         {
             m_Entities.erase( iterator );
+            entity->ExitComponents();
+        }
+        else
+        {
+            std::ostringstream errorMessage;
+            errorMessage <<
+                "Error: Could not find entity \"" << entity->GetName() <<
+                "\" to remove from the EntitySystem";
+            throw std::runtime_error( errorMessage.str() );
         }
 
-        entity->ExitComponents();
     }
 
     /// @brief  checks if the EntitySystem contains the given Entity (for debugging)
@@ -127,7 +132,7 @@ bool EntitySystem::m_ShowEntityCreate = false;
     {
         ImGui::Begin("Entity List");
 
-        if (!ImGui::TreeNode("Entities")) 
+        if (!ImGui::TreeNode("Entities"))
         {
             ImGui::End();
             return;
@@ -135,9 +140,9 @@ bool EntitySystem::m_ShowEntityCreate = false;
 
         for (const auto& entity : EntitySystem::GetInstance()->GetEntities())
         {
-            entity->InspectEntity();
+            entity->Inspect();
         }
-
+        
         ImGui::TreePop();
         ImGui::End();
     }

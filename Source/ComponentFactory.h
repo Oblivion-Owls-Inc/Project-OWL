@@ -38,6 +38,7 @@ public:
 
     static std::type_index GetTypeId( std::string const& typeName );
 
+    static std::map< std::string, std::pair< std::type_index, Component* (*)() > > const& GetComponentTypes() { return s_ComponentTypes; }
 private:
 
     template < typename ComponentType >

@@ -87,7 +87,7 @@ public: // accessors
     /// @return this Entity's name
     __inline std::string const& GetName() const { return m_Name; }
 
-     void InspectEntity();
+     void Inspect();
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -95,6 +95,12 @@ private: // methods
 
 	/// @brief  deletes all components used by this Entity
 	void free();
+
+    void AddComponent();
+
+    void RemoveComponent();
+
+    void RenameEntity();
 
 //-----------------------------------------------------------------------------
 public: // reading
@@ -135,6 +141,12 @@ private: // member variables
 
 	/// @brief containter of components attached to this Entity
 	std::map<std::type_index, Component*> m_Components;
+
+    bool m_AddComponent = false;
+
+    bool m_RemoveComponent = false;
+
+    bool m_RenameEntity = false;
 
 //-----------------------------------------------------------------------------
 public: // copying

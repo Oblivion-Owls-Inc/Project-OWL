@@ -34,6 +34,9 @@ public: // methods
     /// @param slot (optional) texture slot - for drawing multiple at once ig?
     void Bind( unsigned int slot = 0 ) const;
 
+    /// @brief Used by the Debug to display information about this Texture
+    void Inspect();
+
 //-----------------------------------------------------------------------------
 public: // acccessors
 //-----------------------------------------------------------------------------

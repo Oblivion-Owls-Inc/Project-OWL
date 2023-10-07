@@ -17,8 +17,8 @@
 ///----------------------------------------------------------------------------
 /// 
 ///----------------------------------------------------------------------------
-
-static bool s_AssetLibrarySystem = false;
+ template< class AssetType >
+bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
 
 
 
@@ -72,6 +72,12 @@ static bool s_AssetLibrarySystem = false;
         m_Assets.insert( { name, asset } );
     }
 
+    template<class AssetType>
+    std::map<std::string, AssetType*> const& AssetLibrarySystem<AssetType>::GetAssets() const
+    {
+        return m_Assets;
+    }
+
 
     /// @brief  loads all assets of this AssetLibrary's type from JSON
     /// @param  data    the json data to load from
@@ -95,11 +101,19 @@ static bool s_AssetLibrarySystem = false;
         std::string AssetName(typeid(AssetType).name() + 5); // Move over the "class" part of the name
 
         char buttonLabel[128];
-        snprintf(buttonLabel, sizeof(buttonLabel), s_AssetLibrarySystem ?
+        snprintf(buttonLabel, sizeof(buttonLabel), s_ShowAssetLibraryList ?
             "Hide%s List" : "Show%s List", AssetName.c_str());
 
         if (ImGui::Button(buttonLabel))
-            s_AssetLibrarySystem = !s_AssetLibrarySystem;
+            s_ShowAssetLibraryList = !s_ShowAssetLibraryList;
+
+        if (s_ShowAssetLibraryList)
+        {
+            ImGui::Begin(AssetName.c_str(), &s_ShowAssetLibraryList, ImGuiWindowFlags_AlwaysAutoResize);
+            ListAssets();
+            ImGui::End();
+		}               
+
 
     }
 
@@ -119,6 +133,17 @@ static bool s_AssetLibrarySystem = false;
             delete key.second;
         }
         m_Assets.clear();
+    }
+
+    template<class AssetType>
+    void AssetLibrarySystem<AssetType>::ListAssets()
+    {
+
+        for (auto& key : m_Assets)
+        {
+            key.second->Inspect();
+        }
+	    
     }
 
 
@@ -149,7 +174,7 @@ static bool s_AssetLibrarySystem = false;
     /// @brief constructs the AssetLibrarySystem
     template< class AssetType >
     AssetLibrarySystem< AssetType >::AssetLibrarySystem() :
-        BaseAssetLibrarySystem( std::string( "AssetLibrary<" ) + typeid( AssetType ).name() + ">" )
+        BaseAssetLibrarySystem( std::string( "AssetLibrary<" ) + (typeid( AssetType ).name() + 6) + ">" )
     {}
 
     /// @brief the singleton instance of AssetLibrarySystem

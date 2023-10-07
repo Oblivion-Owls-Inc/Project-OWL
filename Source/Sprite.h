@@ -116,6 +116,8 @@ protected: // virtual override methods
     /// @brief  called when exiting a scene
     virtual void OnExit() override;
 
+    virtual void Inspector() override;
+
 //-----------------------------------------------------------------------------
 protected: // member variables
 //-----------------------------------------------------------------------------

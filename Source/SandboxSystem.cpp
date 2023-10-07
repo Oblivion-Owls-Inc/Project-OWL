@@ -54,9 +54,10 @@ void SandboxSystem::OnUpdate( float dt )
     if (!update)
         return;
 
-    static Tilemap* t = nullptr;
-    if (!t)
-        t = Entities()->GetEntity("Tiles")->GetComponent<Tilemap>();
+    static Entity* e = Entities()->GetEntity("Tiles");
+    if (!e)
+        return;
+    static Tilemap* t = e->GetComponent<Tilemap>();
 
     glm::ivec2 coord = t->WorldPosToTileCoord(Input()->GetMousePosWorld());
     ImGui::Begin("Sandbox");
