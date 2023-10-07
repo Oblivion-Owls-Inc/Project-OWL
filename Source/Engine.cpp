@@ -22,9 +22,7 @@
 #include "CollisionSystem.h"
 #include "InputSystem.h"
 #include "EntitySystem.h"
-#include "PlayerController.h"
-#include "TurretBehavior.h"
-#include "Animation.h"
+#include "CameraSystem.h"
 
 #include "AssetLibrarySystem.h"
 #include "Sound.h"
@@ -33,7 +31,10 @@
 #include "BehaviorSystem.h"
 #include "RigidBody.h"
 #include "MovementAI.h"
-#include "CameraSystem.h"
+#include "PlayerController.h"
+#include "TurretBehavior.h"
+#include "EffectAnimator.h"
+#include "Animation.h"
 
 
 //-----------------------------------------------------------------------------
@@ -176,10 +177,11 @@
         { "behaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >      },
         { "BehaviorSystem<RigidBody>",          &addSystem< BehaviorSystem< RigidBody > >           },
         { "BehaviorSystem<Animation>",          &addSystem< BehaviorSystem< Animation > >           },
+        { "BehaviorSystem<EffectAnimator>",     &addSystem< BehaviorSystem< EffectAnimator > >      },
         { "AssetLibrarySystem<Entity>",         &addSystem< AssetLibrarySystem< Entity > >          },
         { "AssetLibrarySystem<Sound>",          &addSystem< AssetLibrarySystem< Sound > >           },
         { "AssetLibrarySystem<Texture>",        &addSystem< AssetLibrarySystem< Texture > >         },
-
+        { "AssetLibrarySystem<TransformAnimation>",&addSystem< AssetLibrarySystem< TransformAnimation > > }
     };
 
 //-----------------------------------------------------------------------------

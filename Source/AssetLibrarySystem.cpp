@@ -149,7 +149,7 @@ static bool s_AssetLibrarySystem = false;
     /// @brief constructs the AssetLibrarySystem
     template< class AssetType >
     AssetLibrarySystem< AssetType >::AssetLibrarySystem() :
-        BaseAssetLibrarySystem( std::string( "AssetLibrary<" ) + typeid( AssetType ).name() + ">" )
+        BaseAssetLibrarySystem( std::string( "AssetLibrary<" ) + (typeid( AssetType ).name() + 6) + ">" )
     {}
 
     /// @brief the singleton instance of AssetLibrarySystem

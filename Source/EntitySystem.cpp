@@ -37,8 +37,7 @@ bool EntitySystem::m_ShowEntityCreate = false;
         auto iterator = std::find_if(
             m_Entities.begin(),
             m_Entities.end(),
-            [ entityName ]( Entity* entity ) -> bool
-            {
+            [ entityName ]( Entity* entity ) -> bool {
                 return entity->GetName() == entityName;
             }
         );
@@ -60,9 +59,17 @@ bool EntitySystem::m_ShowEntityCreate = false;
         if ( iterator != m_Entities.end() )
         {
             m_Entities.erase( iterator );
+            entity->ExitComponents();
+        }
+        else
+        {
+            std::ostringstream errorMessage;
+            errorMessage <<
+                "Error: Could not find entity \"" << entity->GetName() <<
+                "\" to remove from the EntitySystem";
+            throw std::runtime_error( errorMessage.str() );
         }
 
-        entity->ExitComponents();
     }
 
     /// @brief  checks if the EntitySystem contains the given Entity (for debugging)

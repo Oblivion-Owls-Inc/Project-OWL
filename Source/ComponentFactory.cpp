@@ -24,6 +24,7 @@
 #include "TextSprite.h"
 #include "TurretBehavior.h"
 #include "PlayerController.h"
+#include "EffectAnimator.h"
 
 /// @brief     Creates a component of a specified type.
 /// @param key The type of component being created.
@@ -56,5 +57,6 @@ std::map< std::string, std::pair< std::type_index, Component* (*)() > > const Co
     { "Animation"        , ComponentInfo<Animation>()        },
     { "TextSprite"       , ComponentInfo<TextSprite>()       },
     { "PlayerController" , ComponentInfo<PlayerController>() },
-    { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   }
+    { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   },
+    { "EffectAnimator"   , ComponentInfo<EffectAnimator>()   }
 };

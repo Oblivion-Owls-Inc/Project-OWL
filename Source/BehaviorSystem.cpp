@@ -123,7 +123,7 @@ ReadMethodMap< System > const& BehaviorSystem< BehaviorType >::GetReadMethods() 
     /// @brief  Constructs the BehaviorSystem
     template < typename BehaviorType >
     BehaviorSystem< BehaviorType >::BehaviorSystem() :
-        System( std::string( "BehaviorSystem<" ) + typeid( BehaviorType ).name() + ">" )
+        System( std::string( "BehaviorSystem<" ) + (typeid( BehaviorType ).name() + 6) + ">" )
     {}
 
 

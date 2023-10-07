@@ -82,6 +82,12 @@ private:
     static bool s_ShowBehaviorSystemList;
 };
 
+template < typename BehaviorType >
+__inline BehaviorSystem< BehaviorType >* Behaviors()
+{
+    return BehaviorSystem<BehaviorType>::GetInstance();
+}
+
 #ifndef BEHAVIORSYSTEM_C
 #include "BehaviorSystem.cpp"
 #endif
