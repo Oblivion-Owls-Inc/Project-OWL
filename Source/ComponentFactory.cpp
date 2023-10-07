@@ -24,6 +24,7 @@
 #include "TurretBehavior.h"
 #include "PlayerController.h"
 #include "Text.h"
+#include "Tilemap.h"
 
 /// @brief     Creates a component of a specified type.
 /// @param key The type of component being created.
@@ -57,5 +58,6 @@ std::map< std::string, std::pair< std::type_index, Component* (*)() > > const Co
     { "AudioPlayer"      , ComponentInfo<AudioPlayer>()      },
     { "Animation"        , ComponentInfo<Animation>()        },
     { "PlayerController" , ComponentInfo<PlayerController>() },
-    { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   }
+    { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   },
+    { "Tilemap"          , ComponentInfo<Tilemap>()          }
 };

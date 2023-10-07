@@ -7,6 +7,7 @@
 ///           instancing to draw multiple letters simultaneously.
 #pragma once
 #include "Sprite.h"
+#include <vector>
 #include <sstream>  // accept new text
 
 class Shader;   // fwd ref
@@ -36,9 +37,17 @@ public:
     void LoadTileArray(const char* tiles, int size);
 
 
+    /// @brief              Loads the tile array from a vector of ints.
+    /// @param tiles        tile IDs  (spritesheet frames)
+    void LoadTileArray(std::vector<int> tiles);
+
+
     /// @brief          Sets the width of a single row (amount of columns)
     /// @param columns  (tiles per row)
     __inline void SetRowWidth(int width) { m_RowWidth = width; }
+
+    /// @return         Tiles per row 
+    __inline int GetRowWidth() const { return m_RowWidth; }
 
 
     /// @brief          Sets the stride multiplier. Default stride is the full

@@ -1,28 +1,28 @@
-/// @file     Text.cpp
+/// @file     Tilemap.cpp
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    A version of Sprite specifically for rendering text. Uses instancing to draw multiple 
 ///           letters simultaneously.
-#include "Text.h"
+#include "Tilemap.h"
 #include "Entity.h"
 #include "TilemapSprite.h"
 
 /// @brief   default constructor
-Text::Text() :
-    Component( typeid( Text ) )
+Tilemap::Tilemap() :
+    Component( typeid( Tilemap ) )
 {}
 
 /// @return  copy of this component
-Component * Text::Clone() const
+Component * Tilemap::Clone() const
 {
-    return new Text(*this);
+    return new Tilemap(*this);
 }
 
 
 /// @brief      Loads text data into tilemap sprite.
-void Text::loadTextIntoSprite()
+void Tilemap::loadTilemapIntoSprite()
 {
-    // Make sure this Text has parent, and parent has TilemapSprite
+    // Make sure this Tilemap has parent, and parent has TilemapSprite
     Entity* parent = GetParent();
     if (!parent)
         return;
@@ -31,20 +31,26 @@ void Text::loadTextIntoSprite()
     if (!ts)
         return;
 
-    // Convert to zero-index spritesheet indices, then load in
-    std::string tiles = m_Text;
-    int size = (int)tiles.size();
-    for (int i=0; i<size; i++)
-        tiles[i] -= 32;
-
-    ts->LoadTileArray(tiles.c_str(), size);
+    ts->LoadTileArray(m_Tilemap);
+    m_RowWidth = ts->GetRowWidth();
 }
 
 
 /// @brief  called when entering a scene
-void Text::OnInit()
+void Tilemap::OnInit()
 {
-    loadTextIntoSprite();
+    loadTilemapIntoSprite();
+}
+
+
+/// @brief          Sets the tile at given coordinate to given index.
+/// @param x        column
+/// @param y        row
+/// @param tileID   index to change the tile to
+void Tilemap::SetTile(int x, int y, int tileID)
+{
+    m_Tilemap[y*m_RowWidth + x] = tileID;
+    loadTilemapIntoSprite();
 }
 
 
@@ -52,22 +58,26 @@ void Text::OnInit()
 // private: reading
 //-----------------------------------------------------------------------------
 
-/// @brief          Read in the text this Text displays
+/// @brief          Read in the text this Tilemap displays
 /// @param  stream  The json to read from.
-void Text::readText(Stream stream)
+void Tilemap::readTilemap(Stream stream)
 {
-    m_Text = stream.Read<std::string>();       
+    for (auto& tileData : stream.GetArray())
+    {
+        int ID = Stream(tileData).Read<int>(); // for debugging
+        m_Tilemap.push_back(ID);
+    }
 }
 
 
 /// @brief the map of read methods for this Component
-ReadMethodMap< Text > const Text::s_ReadMethods = {
-    { "String"            , &readText  }
+ReadMethodMap< Tilemap > const Tilemap::s_ReadMethods = {
+    { "TileData", &readTilemap  }
 };
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component
-ReadMethodMap< Component > const& Text::GetReadMethods() const
+ReadMethodMap< Component > const& Tilemap::GetReadMethods() const
 {
     return (ReadMethodMap< Component> const&)s_ReadMethods;
 }

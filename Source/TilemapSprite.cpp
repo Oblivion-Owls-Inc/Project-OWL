@@ -158,6 +158,23 @@ void TilemapSprite::LoadTileArray(const char* tiles, int size)
 }
 
 
+/// @brief              Loads the tile array from a vector of ints.
+/// @param tiles        tile IDs  (spritesheet frames)
+void TilemapSprite::LoadTileArray(std::vector<int> tiles)
+{
+    m_TileCount = (int)tiles.size();
+
+    // Until I figure out what's wrong with reading ints from buffer, convert to floats.
+    std::vector<float> chars(m_TileCount);         // (this one will load directly)
+    for (int i = 0; i < m_TileCount; i++)
+        chars[i] = (float)tiles[i];
+
+    // Load the array into buffer.
+    glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_TileCount, &chars[0], GL_DYNAMIC_DRAW);
+}
+
+
 /// @brief            Read in the stride multiplier
 /// @param  stream    The json to read from.
 void TilemapSprite::readStrideMultiplier(Stream stream)

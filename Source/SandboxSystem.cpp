@@ -18,7 +18,7 @@
 #include "EntitySystem.h"
 #include "SceneSystem.h"
 
-#include "TilemapSprite.h"
+#include "Tilemap.h"
 
 //-----------------------------------------------------------------------------
 // variables
@@ -58,7 +58,16 @@ void SandboxSystem::OnUpdate( float dt )
     if (!update)
         return;
 
+    static Tilemap* t = nullptr;
+    static int tile = 0;
+    if (!t)
+    {
+        t = Entities()->GetEntity("Tiles")->GetComponent<Tilemap>();
+        tile = t->GetTile(4, 1);
+    }
 
+    if (Input()->GetKeyTriggered(GLFW_KEY_SPACE))
+        t->SetTile(4, 1, --tile);
 }
 
 /// @brief  Gets called whenever a scene is exited

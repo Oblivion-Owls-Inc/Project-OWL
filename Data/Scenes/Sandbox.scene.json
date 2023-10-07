@@ -7,23 +7,15 @@
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
                 "SheetDimensions": [ 16, 8 ]
+            },
+            "ElfSheet": {
+                "Filepath": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png",
+                "SheetDimensions": [ 22, 17 ]
             }
         },
         "Archetypes": {}
     },
     "Entities": [
-        {
-            "Name": "Ball",
-            "Components": {
-                "Sprite": {
-                    "Texture": "Ball1"
-                },
-                "Transform": {
-                    "translation": [ 0, 1, 0 ],
-                    "scale": [ 0.6, 0.6, 0 ]
-                }
-            }
-        },
         {
             "Name": "Text",
             "Components": {
@@ -42,19 +34,19 @@
             }
         },
         {
-            "Name": "Text2",
+            "Name": "Tiles",
             "Components": {
                 "TilemapSprite": {
-                    "Texture": "FontSheet",
-                    "Color": [1,0,1,1],
-                    "StrideMultiplier":  [0.6, 1.0]
+                    "Texture": "ElfSheet",
+                    "StrideMultiplier": [0.2,0.4],
+                    "RowWidth" :  7
                 },
-                "Text":  {
-                    "String": "Not Yellow"
+                "Tilemap":  {
+                    "TileData": [22,23,24,25,26,27,28, 44,45,46,47,48,49,50]
                 },
                 "Transform": {
-                    "translation": [ -4, 0, 0 ],
-                    "scale": [ 0.6, 0.6, 0 ]
+                    "translation": [ -4.2, 1, 0 ],
+                    "scale": [ 7, 4, 1 ]
                 }
             }
         }

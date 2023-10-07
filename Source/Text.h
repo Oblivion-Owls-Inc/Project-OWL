@@ -8,7 +8,7 @@
 #include <sstream>  // accept new text
 
 
-/// @brief       Draws text as a tilemap.
+/// @brief       Uses TilemapSprite attached to parent entity to draw text.
 class Text : public Component
 {
 public:
