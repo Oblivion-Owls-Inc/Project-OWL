@@ -2,7 +2,7 @@
 
 layout(location = 0) in vec4 position;
 layout(location = 1) in vec2 UV;
-layout(location = 2) in float ascii;
+layout(location = 2) in float tileID;
 
 out vec2 v_UV;
 
@@ -27,7 +27,7 @@ void main()
     gl_Position = mvp * position + vec4(stridex,0,0) * (gl_InstanceID%rowwidth) + vec4(stridey,0,0) * (gl_InstanceID/rowwidth);
 
     // calculate UV's for current letter instance
-    int frame = int(ascii) - 32;
+    int frame = int(tileID);
     // why tf does GLSL not receive ints thru buffer correctly??? 
     // (or maybe I'm just fucking it up..)
     int row = frame / columns;

@@ -36,6 +36,7 @@
 #include "EffectAnimator.h"
 #include "Animation.h"
 
+#include "SandboxSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -181,7 +182,8 @@
         { "AssetLibrarySystem<Entity>",         &addSystem< AssetLibrarySystem< Entity > >          },
         { "AssetLibrarySystem<Sound>",          &addSystem< AssetLibrarySystem< Sound > >           },
         { "AssetLibrarySystem<Texture>",        &addSystem< AssetLibrarySystem< Texture > >         },
-        { "AssetLibrarySystem<TransformAnimation>",&addSystem< AssetLibrarySystem< TransformAnimation > > }
+        { "AssetLibrarySystem<TransformAnimation>",&addSystem< AssetLibrarySystem< TransformAnimation > > },
+        { "SandboxSystem",                      &addSystem< SandboxSystem >                         }
     };
 
 //-----------------------------------------------------------------------------

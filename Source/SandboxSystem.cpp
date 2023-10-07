@@ -12,76 +12,71 @@
 #include "AudioPlayer.h"
 #include "BehaviorSystem.h"
 #include "RenderSystem.h"
-#include "Sprite.h"
 #include "MovementAI.h"
 #include "InputSystem.h"
 #include "DebugSystem.h"
 #include "EntitySystem.h"
 #include "SceneSystem.h"
 
+#include "Tilemap.h"
+
 //-----------------------------------------------------------------------------
 // variables
 //-----------------------------------------------------------------------------
 
-Entity* soundEntity;
-Entity* Ranger;
 static bool update = false;
 
 //-----------------------------------------------------------------------------
 // virtual override methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  Gets called whenever a new Scene is loaded
-    void SandboxSystem::OnSceneLoad()
-    {
+/// @brief  Gets called whenever a scene is initialized
+void SandboxSystem::OnSceneInit()
+{
+    update = true;
 
-    }
 
-    /// @brief  Gets called whenever a scene is initialized
-    void SandboxSystem::OnSceneInit()
-    {
-        EntitySystem* instance = EntitySystem::GetInstance();
-        update = true;
-        soundEntity = instance->GetEntity("Sound");
+}
 
-        Ranger = instance->GetEntity("Ranger");
-    }
+/// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
+void SandboxSystem::OnFixedUpdate()
+{
+    if (!update)
+        return;
 
-    /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
-    void SandboxSystem::OnFixedUpdate()
-    {
-        if (!update)
-            return;
-        if ( Input()->GetKeyTriggered( GLFW_KEY_SPACE ) )
-        {
-            soundEntity->GetComponent<AudioPlayer>()->Play();
-        }
-        // Create an instance of DebugConsole
-        DebugConsole output(*DebugSystem::GetInstance());
 
-        // Append the message and the formatted value
-        glm::vec3 translation = Ranger->GetComponent<Transform>()->GetTranslation();
-        output << "Position: (" << translation.x << ", " << translation.y << ", " << translation.z << ")" << "\n";
-    }
+}
 
-    /// @brief  Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-    /// @param  dt  the elapsed time in seconds since the previous frame
-    void SandboxSystem::OnUpdate( float dt )
-    {
-        if (!update)
-            return;
+/// @brief  Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+/// @param  dt  the elapsed time in seconds since the previous frame
+void SandboxSystem::OnUpdate( float dt )
+{
+    if (!update)
+        return;
 
-        if (Input()->GetKeyTriggered(GLFW_KEY_W))
-        {
-            SceneSystem::GetInstance()->SetNextScene("XinoScene");
-        }
-    }
+    static Entity* e = Entities()->GetEntity("Tiles");
+    if (!e)
+        return;
+    static Tilemap* t = e->GetComponent<Tilemap>();
 
-    /// @brief  Gets called whenever a scene is exited
-    void SandboxSystem::OnSceneExit()
-    {
+    glm::ivec2 coord = t->WorldPosToTileCoord(Input()->GetMousePosWorld());
+    ImGui::Begin("Sandbox");
+    ImGui::InputInt2("coord", &coord.x);
+    ImGui::End();
+
+    if (Input()->GetMouseTriggered(GLFW_MOUSE_BUTTON_1) && coord.x != -1)
+        t->SetTile(coord, (int)'*'-32);
+}
+
+/// @brief  Gets called whenever a scene is exited
+void SandboxSystem::OnSceneExit()
+{
         
-    }
+}
+
+
+
+
 
 //-----------------------------------------------------------------------------
 // private: reading
@@ -102,7 +97,7 @@ static bool update = false;
 //-----------------------------------------------------------------------------
 
     /// @brief  Constructs the SandboxSystem
-    SandboxSystem::SandboxSystem() {}
+    SandboxSystem::SandboxSystem() : System( "SandboxSystem" ) {}
 
     /// @brief  The singleton instance of SandboxSystem
     SandboxSystem * SandboxSystem::s_Instance = nullptr;

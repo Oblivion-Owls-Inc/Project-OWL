@@ -1,39 +1,54 @@
 {
     "Assets": {
-        "Textures": [],
-        "Meshs": [],
-        "Shaders": [],
+        "Textures": {
+            "Ball1": {
+                "Filepath": "Data/Textures/Balls/Ball4.png"
+            },
+            "FontSheet": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [ 16, 8 ]
+            },
+            "ElfSheet": {
+                "Filepath": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png",
+                "SheetDimensions": [ 22, 17 ]
+            }
+        },
         "Archetypes": {}
     },
     "Entities": [
         {
-            "name": "Ranger",
+            "Name": "Text",
             "Components": {
+                "TilemapSprite": {
+                    "Texture": "FontSheet",
+                    "Color": [1,1,0,1],
+                    "StrideMultiplier":  [0.6, 1.0]
+                },
+                "Text":  {
+                    "String": "Yellow"
+                },
                 "Transform": {
-                    "translation": [ -4, -1, 0 ],
-                    "scale": [ 8, 4, 1 ]
-                },
-                "Sprite": {
-                    "isTextured": true,
-                    "columns": 22,
-                    "rows": 17,
-                    "name": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png"
-                },
-                "Animation": {
-                    "frameStart": 0,
-                    "frameCount": 12,
-                    "frameDuration": 0.12,
-                    "isLooping": true,
-                    "isRunning": true
+                    "translation": [ -4, 1, 0 ],
+                    "scale": [ 0.6, 0.6, 0 ]
                 }
             }
         },
         {
-            "name": "Sound",
+            "Name": "Tiles",
             "Components": {
-                "AudioPlayer": {}
+                "TilemapSprite": {
+                    "Texture": "FontSheet",
+                    "StrideMultiplier": [1,1],
+                    "RowWidth" :  7
+                },
+                "Tilemap":  {
+                    "TileData": [44,45,46,47,48,49,50,52,53,54,55,56,57,58]
+                },
+                "Transform": {
+                    "translation": [ -4.2, 0, 0 ],
+                    "scale": [ 1, 1, 1 ]
+                }
             }
-
         }
     ]
 }
