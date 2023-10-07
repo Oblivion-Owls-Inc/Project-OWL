@@ -12,11 +12,6 @@ TilemapSprite::TilemapSprite() :
 {}
 
 
-/// @brief              Inherited constructor
-/// @param type         typeid(DerivedClass)
-TilemapSprite::TilemapSprite(std::type_index type) : Sprite(type) {}
-
-
 /// @brief              Textured constructor
 /// 
 /// @param texture      Texture (spritesheet) to use for tiling
@@ -30,8 +25,45 @@ TilemapSprite::TilemapSprite(Texture* texture, float stride_mult, int layer,
 {}
 
 
+/// @brief              Loads the tile array from a raw char array.
+/// @param tiles        tile IDs  (spritesheet frames)
+/// @param size         array size
+void TilemapSprite::LoadTileArray(const char* tiles, int size)
+{
+    m_TileCount = size;
+
+    // Until I figure out what's wrong with reading ints from buffer, convert to floats.
+    std::vector<float> chars(m_TileCount);
+    for (int i = 0; i < m_TileCount; i++)
+        chars[i] = (float)tiles[i];
+
+    // Load the array into buffer.
+    glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_TileCount, &chars[0], GL_DYNAMIC_DRAW);
+}
+
+
+/// @brief              Loads the tile array from a vector of ints.
+/// @param tiles        tile IDs  (spritesheet frames)
+void TilemapSprite::LoadTileArray(std::vector<int> tiles)
+{
+    m_TileCount = (int)tiles.size();
+
+    // Until I figure out what's wrong with reading ints from buffer, convert to floats.
+    std::vector<float> chars(m_TileCount);         // (this one will load directly)
+    for (int i = 0; i < m_TileCount; i++)
+        chars[i] = (float)tiles[i];
+
+    // Load the array into buffer.
+    glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_TileCount, &chars[0], GL_DYNAMIC_DRAW);
+}
+
+
+
+
 //-----------------------------------------------------------------------------
-// private: virtual override methods
+//          Virtual overrides
 //-----------------------------------------------------------------------------
 
 /// @brief  called when entering the scene
@@ -48,36 +80,6 @@ void TilemapSprite::OnInit()
 }
 
 
-/// @brief      Initializes instancing buffer and its VAO
-void TilemapSprite::initInstancingStuff()
-{
-    // This sprite needs its own VAO that references both the shared mesh buffer, 
-    // and the individual instance buffer.
-    // (yeah it's a bit messy, but more efficient this way)
-    glGenVertexArrays(1, &m_VAO);
-    glBindVertexArray(m_VAO);
-
-    // First, make sure it's using same mesh attributes as regular mesh VAO
-    // (position and UV), which refer to the shared buffer
-    glBindBuffer(GL_ARRAY_BUFFER, m_Texture->GetMesh()->GetBuffer());
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Mesh::Vertex), 0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Mesh::Vertex), (void*)offsetof(Mesh::Vertex, UV));
-    glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
-
-    // For instancing, I'll need an individual instance buffer...
-    glGenBuffers(1, &m_InstBufferID);
-    glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
-
-    // ...and an extra attribute that refers to this buffer in particular.
-    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, 0);  // 1 float, no offset
-    glVertexAttribDivisor(2, 1);                            // 1 per instance
-    glEnableVertexAttribArray(2);
-
-    glBindVertexArray(0);
-}
-
-
 /// @brief  called when exiting the scene
 void TilemapSprite::OnExit()
 {
@@ -86,7 +88,6 @@ void TilemapSprite::OnExit()
     glDeleteBuffers( 1, &m_InstBufferID );
     glDeleteVertexArrays(1, &m_VAO);
 }
-
 
 
 /// @brief          Draws tilemap using currently loaded array.
@@ -140,40 +141,47 @@ void TilemapSprite::Draw()
 }
 
 
-/// @brief              Loads the tile array from a raw char array.
-/// @param tiles        tile IDs  (spritesheet frames)
-/// @param size         array size
-void TilemapSprite::LoadTileArray(const char* tiles, int size)
+
+
+//-----------------------------------------------------------------------------
+//              Helpers
+//-----------------------------------------------------------------------------
+
+/// @brief      Initializes instancing buffer and its VAO
+void TilemapSprite::initInstancingStuff()
 {
-    m_TileCount = size;
+    // This sprite needs its own VAO that references both the shared mesh buffer, 
+    // and the individual instance buffer.
+    // (yeah it's a bit messy, but more efficient this way)
+    glGenVertexArrays(1, &m_VAO);
+    glBindVertexArray(m_VAO);
 
-    // Until I figure out what's wrong with reading ints from buffer, convert to floats.
-    std::vector<float> chars(m_TileCount);
-    for (int i = 0; i < m_TileCount; i++)
-        chars[i] = (float)tiles[i];
+    // First, make sure it's using same mesh attributes as regular mesh VAO
+    // (position and UV), which refer to the shared buffer
+    glBindBuffer(GL_ARRAY_BUFFER, m_Texture->GetMesh()->GetBuffer());
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Mesh::Vertex), 0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Mesh::Vertex), (void*)offsetof(Mesh::Vertex, UV));
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
 
-    // Load the array into buffer.
+    // For instancing, I'll need an individual instance buffer...
+    glGenBuffers(1, &m_InstBufferID);
     glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_TileCount, &chars[0], GL_DYNAMIC_DRAW);
+
+    // ...and an extra attribute that refers to this buffer in particular.
+    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, 0);  // 1 float, no offset
+    glVertexAttribDivisor(2, 1);                            // 1 per instance
+    glEnableVertexAttribArray(2);
+
+    glBindVertexArray(0);
 }
 
 
-/// @brief              Loads the tile array from a vector of ints.
-/// @param tiles        tile IDs  (spritesheet frames)
-void TilemapSprite::LoadTileArray(std::vector<int> tiles)
-{
-    m_TileCount = (int)tiles.size();
 
-    // Until I figure out what's wrong with reading ints from buffer, convert to floats.
-    std::vector<float> chars(m_TileCount);         // (this one will load directly)
-    for (int i = 0; i < m_TileCount; i++)
-        chars[i] = (float)tiles[i];
 
-    // Load the array into buffer.
-    glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_TileCount, &chars[0], GL_DYNAMIC_DRAW);
-}
-
+//-----------------------------------------------------------------------------
+//              Reading
+//-----------------------------------------------------------------------------
 
 /// @brief            Read in the stride multiplier
 /// @param  stream    The json to read from.
@@ -207,6 +215,7 @@ ReadMethodMap< TilemapSprite > const TilemapSprite::s_ReadMethods = {
     { "Opacity"         , &readOpacity          },
     { "AFTERLOAD"       , &afterLoad            }    
 };
+
 
 /// @brief gets the map of read methods for this Component
 /// @return the map of read methods for this Component

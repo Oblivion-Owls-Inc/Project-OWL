@@ -37,16 +37,16 @@
             "Name": "Tiles",
             "Components": {
                 "TilemapSprite": {
-                    "Texture": "ElfSheet",
-                    "StrideMultiplier": [0.2,0.4],
+                    "Texture": "FontSheet",
+                    "StrideMultiplier": [1,1],
                     "RowWidth" :  7
                 },
                 "Tilemap":  {
-                    "TileData": [22,23,24,25,26,27,28, 44,45,46,47,48,49,50]
+                    "TileData": [44,45,46,47,48,49,50,52,53,54,55,56,57,58]
                 },
                 "Transform": {
-                    "translation": [ -4.2, 1, 0 ],
-                    "scale": [ 7, 4, 1 ]
+                    "translation": [ -4.2, 0, 0 ],
+                    "scale": [ 1, 1, 1 ]
                 }
             }
         }

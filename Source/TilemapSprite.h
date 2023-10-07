@@ -1,22 +1,18 @@
-#pragma once
-
 /// @file     TilemapSprite.h
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    A version of Sprite specifically for rendering text. Uses GPU
-///           instancing to draw multiple letters simultaneously.
+/// @brief    A version of Sprite specifically for rendering tiles.
 #pragma once
 #include "Sprite.h"
 #include <vector>
 #include <sstream>  // accept new text
-
-class Shader;   // fwd ref
 
 
 /// @brief      A version of Sprite for rendering tilemaps using GPU instancing.
 class TilemapSprite : public Sprite
 {
 public:
+
     /// @brief              Default constructor
     TilemapSprite();
 
@@ -27,18 +23,24 @@ public:
     /// @param stride_mult  (optional) Multiplier to adjust stride (spacing)
     /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
     /// @param type         (for derived) Component type
-    TilemapSprite(Texture* texture, float stride_mult = 1.0f, int layer = 2, 
-                  std::type_index type = typeid( TilemapSprite ));;
+    TilemapSprite(Texture* texture, float stride_mult = 1.0f, int layer = 2,
+                  std::type_index type = typeid(TilemapSprite));;
 
 
-    /// @brief              Loads the tile array from a raw char array.
-    /// @param tiles        tile IDs  (spritesheet frames)
-    /// @param size         array size
+
+//-----------------------------------------------------------------------------
+//          Public methods
+//-----------------------------------------------------------------------------
+public:
+
+    /// @brief          Loads the tile array from a raw char array.
+    /// @param tiles    tile IDs  (spritesheet frames)
+    /// @param size     array size
     void LoadTileArray(const char* tiles, int size);
 
 
-    /// @brief              Loads the tile array from a vector of ints.
-    /// @param tiles        tile IDs  (spritesheet frames)
+    /// @brief          Loads the tile array from a vector of ints.
+    /// @param tiles    tile IDs  (spritesheet frames)
     void LoadTileArray(std::vector<int> tiles);
 
 
@@ -57,19 +59,16 @@ public:
     __inline void SetStrideMultiplier(glm::vec2 mults) { m_StrideMult = mults; }
 
 
-    /// @brief          Draws tilemap using currently loaded array.
-    virtual void Draw() override;
+    /// @brief          Retreives the stride multiplier.
+    /// @return         x=horizontal, y=vertical
+    __inline glm::vec2 GetStrideMultiplier() const { return m_StrideMult; }
 
-
-protected:
-    /// @brief              Inherited constructor
-    /// @param type         typeid(DerivedClass)
-    TilemapSprite(std::type_index type);
-
-    //-----------------------------------------------------------------------------
-    // virtual override methods
-    //-----------------------------------------------------------------------------
-
+//-----------------------------------------------------------------------------
+//          Virtual overrides
+//-----------------------------------------------------------------------------
+private:
+    // from Component
+    
     /// @brief  called when entering a scene
     virtual void OnInit() override;
 
@@ -77,42 +76,57 @@ protected:
     virtual void OnExit() override;
 
 
-    //-------------------------------------------------------------------------
-    //          data
-    //-------------------------------------------------------------------------
-protected:
+public:
+    // from Sprite
+
+    /// @brief     Draws tilemap using currently loaded array.
+    virtual void Draw() override;
+
+
+
+//-----------------------------------------------------------------------------
+//              Data
+//-----------------------------------------------------------------------------
+private:
+
     unsigned int m_InstBufferID = 0; /// @brief     ID of buffer that stores instance data (tile IDs)
     unsigned int m_VAO = 0;          /// @brief     VAO that uses this specific buffer
-    glm::vec2 m_StrideMult = {1,1};  /// @brief     Horizontal/vertical stride. 1.0 is full tile width
+    glm::vec2 m_StrideMult ={1,1};   /// @brief     Horizontal/vertical stride. 1.0 is full tile width
     int m_RowWidth = 20;             /// @brief     Amount of tiles per row
     int m_TileCount = 0;             /// @brief     How many tiles to draw
 
 
-    // helper
+
+//-----------------------------------------------------------------------------
+//              Helpers
+//-----------------------------------------------------------------------------
 private:
+
     /// @brief    Initializes instancing buffer and its VAO
     void initInstancingStuff();
 
 
-    //-------------------------------------------------------------------------
-    //  Reading
-    //-------------------------------------------------------------------------
-protected:
+
+//-----------------------------------------------------------------------------
+//              Reading
+//-----------------------------------------------------------------------------
+private:
+
     /// @brief            Read in the stride multiplier
     /// @param  stream    The json to read from.
     void readStrideMultiplier(Stream stream);
 
     /// @brief            Read in the amount of tiles per row
     /// @param  stream    The json to read from.
-    void readRowWidth( Stream stream );
+    void readRowWidth(Stream stream);
 
     void afterLoad(Stream stream);
 
-private:
     /// @brief            The map of read methods for this Component
     static ReadMethodMap< TilemapSprite > const s_ReadMethods;
 
     /// @brief            Gets the map of read methods for this Component
     /// @return           The map of read methods for this Component
     virtual ReadMethodMap< Component > const& GetReadMethods() const override;
+
 };

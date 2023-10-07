@@ -59,15 +59,16 @@ void SandboxSystem::OnUpdate( float dt )
         return;
 
     static Tilemap* t = nullptr;
-    static int tile = 0;
     if (!t)
-    {
         t = Entities()->GetEntity("Tiles")->GetComponent<Tilemap>();
-        tile = t->GetTile(4, 1);
-    }
 
-    if (Input()->GetKeyTriggered(GLFW_KEY_SPACE))
-        t->SetTile(4, 1, --tile);
+    glm::ivec2 coord = t->WorldPosToTileCoord(Input()->GetMousePosWorld());
+    ImGui::Begin("Sandbox");
+    ImGui::InputInt2("coord", &coord.x);
+    ImGui::End();
+
+    if (Input()->GetMouseTriggered(GLFW_MOUSE_BUTTON_1) && coord.x != -1)
+        t->SetTile(coord, (int)'*'-32);
 }
 
 /// @brief  Gets called whenever a scene is exited
