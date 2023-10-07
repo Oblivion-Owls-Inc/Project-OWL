@@ -32,7 +32,7 @@ private:
 		typedef struct ColliderLineSegment
 		{
 			// A single line segment (P0 and P1).
-			vec2 point[2];
+			glm::vec2 point[2];
 
 		} ColliderLineSegment;
 
@@ -43,6 +43,8 @@ public:
 		Component* Clone() const;
 		void AddLineSegment(const vec2* p0, const vec2* p1);
 		void AddLineSegment(vec2 p0, vec2 p1);
+
+		virtual void Inspector() override;
 
 private:
 
@@ -58,6 +60,7 @@ private: // reading
 
 	// Number of line segments to make, read from file.
 	unsigned int m_NumSegments;
+
 	/// @brief The map of read methods for the LineCollider.
 	static ReadMethodMap< LineCollider > s_ReadMethods;
 

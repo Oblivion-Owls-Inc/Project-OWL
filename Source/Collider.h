@@ -46,6 +46,9 @@ protected: // constructors
     /// @param  other   the collider to copy
     Collider( Collider const& other );
 
+
+    virtual void Inspector() {};
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
@@ -53,6 +56,7 @@ public: // accessors
     /// @brief  gets this Collider's Transform
     /// @return this Collider's Transform
     __inline Transform* GetTransform() const { return m_Transform; }
+
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods

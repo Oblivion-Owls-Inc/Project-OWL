@@ -55,6 +55,11 @@ void RenderSystem::OnUpdate(float dt)
     (void)dt;
 }
 
+void RenderSystem::OnSceneExit()
+{
+    m_Sprites.clear();
+}
+
 
 /// @brief      Cleans up memory
 void RenderSystem::OnExit()

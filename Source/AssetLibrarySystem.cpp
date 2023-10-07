@@ -12,6 +12,15 @@
 #include "AssetLibrarySystem.h"
 #endif
 
+#include "DebugSystem.h"
+
+///----------------------------------------------------------------------------
+/// 
+///----------------------------------------------------------------------------
+
+static bool s_AssetLibrarySystem = false;
+
+
 
 //-----------------------------------------------------------------------------
 // virtual override methods
@@ -78,6 +87,20 @@
             // insert the asset into the map
             AddAsset( assetData.name.GetString(), asset );
         }
+    }
+
+    template<class AssetType>
+    void AssetLibrarySystem<AssetType>::DebugWindow()
+    {
+        std::string AssetName(typeid(AssetType).name() + 5); // Move over the "class" part of the name
+
+        char buttonLabel[128];
+        snprintf(buttonLabel, sizeof(buttonLabel), s_AssetLibrarySystem ?
+            "Hide%s List" : "Show%s List", AssetName.c_str());
+
+        if (ImGui::Button(buttonLabel))
+            s_AssetLibrarySystem = !s_AssetLibrarySystem;
+
     }
 
 

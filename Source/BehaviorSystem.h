@@ -35,7 +35,13 @@ private:
     virtual void OnUpdate(float dt) override;
 
 
+    /// @brief   Clear the list of behaviors when the scene is exited
+    virtual void OnSceneExit() override;
+
+    virtual void DebugWindow() override;
+
 public:
+
     /// @brief      Adds a new Behavior to the system
     void AddBehavior(BehaviorType* behavior);
     ///@brief       Removes a Behavior from the system
@@ -43,6 +49,7 @@ public:
 
     std::vector< BehaviorType* >& GetBehaviors() const;
 
+    ///
 
     /// @brief      Gets the instance of BehaviorSystem
     /// @return     BehaviorSystem pointer: new or existing instance of this system
@@ -60,17 +67,19 @@ private: // reading
     virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
 private:
-    std::vector< Behavior* > behaviorsList;
+    std::vector< Behavior* > m_BehaviorList;
 
     /// @brief      Constructs the BehaviorSystem 
     BehaviorSystem();
 
     /// @brief      The singleton instance of BehaviorSystem  
-    static BehaviorSystem< BehaviorType >* instance;
+    static BehaviorSystem< BehaviorType >* s_Instance;
 
     // Prevent copying
     BehaviorSystem(BehaviorSystem& other) = delete;
     void operator=(const BehaviorSystem&) = delete;
+
+    static bool s_ShowBehaviorSystemList;
 };
 
 #ifndef BEHAVIORSYSTEM_C

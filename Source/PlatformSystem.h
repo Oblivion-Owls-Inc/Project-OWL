@@ -30,6 +30,9 @@ public:
     /// @return   glm vec2: x = width, y = height.
 	glm::vec2 GetWindowDimensions() const;
 
+    /// @brief  Gets Used by the DebugSystem to display debug information
+    virtual void DebugWindow() override;
+
 private:
 
     // Window data - dimensions and pointer
@@ -65,12 +68,6 @@ private: // reading
     /// @return this System's read methods
     virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
-	// Unused virtuals
-    virtual void OnUpdate(float dt) override {}
-	virtual void OnFixedUpdate() override {}
-	virtual void OnSceneLoad() override {}
-	virtual void OnSceneInit() override {}
-	virtual void OnSceneExit() override {}
 
     /// @brief The singleton instance of the PlatformSystem
     static PlatformSystem * instance;

@@ -9,13 +9,15 @@
 #include "SceneSystem.h"
 
 #include "EntitySystem.h"
-
+#include "DebugSystem.h"
 #include "AssetLibrarySystem.h"
 #include "Sound.h"
 #include "Texture.h"
 
 #include "basics.h"
 #include "Stream.h"
+
+#include <filesystem>
 
 //-----------------------------------------------------------------------------
 // public methods
@@ -50,6 +52,12 @@
 // virtual override methods
 //-----------------------------------------------------------------------------
 
+    /// @brief  Gets called once when the engine starts
+    void SceneSystem::OnInit()
+    {
+        getSceneNames();
+    }
+
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.    
     void SceneSystem::OnFixedUpdate()
     {
@@ -74,6 +82,20 @@
         exitScene();
 
         m_CurrentSceneName = "";
+    }
+
+    /// @brief  Displays the DebugWindow GUI for this System
+    void SceneSystem::DebugWindow()
+    {
+
+        listScenes();
+
+        if (ImGui::Button("Restart Scene"))
+        {
+            SetNextScene(m_CurrentSceneName);
+        }
+
+
     }
 
 //-----------------------------------------------------------------------------
@@ -195,10 +217,6 @@
             std::cerr << error.what();
         }
 
-        for ( System* system : Engine::GetInstance()->GetSystems() )
-        {
-            system->OnSceneLoad();
-        }
     }
 
     /// @brief  Initializes the current Scene
@@ -219,6 +237,67 @@
         }
     }
 
+    void SceneSystem::listScenes()
+    {
+        static int selectedScene = 0; // Default index for dropdown, you can save this
+        if ( m_SceneNames.size() > 0 )
+        {
+            if (ImGui::BeginCombo("Scenes", m_SceneNames[selectedScene].c_str())) // Display the selected scene name
+            {
+                getSceneNames();
+                for (int i = 0; i < m_SceneNames.size(); i++)
+                {
+                    bool isSelected = (selectedScene == i);
+                    if (ImGui::Selectable(m_SceneNames[i].c_str(), isSelected))
+                    {
+                        selectedScene = i; // Change the selected scene
+                    }
+
+                    if (isSelected)
+                    {
+                        ImGui::SetItemDefaultFocus(); // Automatically focus on the selected item
+                    }
+                }
+                ImGui::EndCombo();
+            }
+        }
+
+        // Input text for typing scene name
+        static char buffer[128] = ""; // Buffer to hold the input, you can save this
+        ImGui::InputText("Type Scene Name", buffer, IM_ARRAYSIZE(buffer));
+
+        // Possibly a button to load the scene, either from the dropdown or the input text
+        if (ImGui::Button("Load Scene"))
+        {
+            if (strlen(buffer) > 0)
+            {
+                std::string sceneName(buffer);
+                SetNextScene(sceneName); // Load scene using name typed into buffer
+                buffer[0] = '\0'; // Clear the buffer
+            }
+            else
+            {
+                SetNextScene(m_SceneNames[selectedScene]); // Load scene using selected scene
+            }
+        }
+    }
+
+    /// @brief  Gets all of the Scenes in the scenes directory
+    void SceneSystem::getSceneNames()
+    {
+        m_SceneNames.clear();
+        for ( auto const& file : std::filesystem::directory_iterator( m_BaseScenePath ) )
+        {
+            std::string filename = file.path().filename().string();
+            int nameLength = filename.size() - s_SceneFileExtension.size();
+            if ( filename.substr( nameLength ) != s_SceneFileExtension )
+            {
+                continue;
+            }
+            m_SceneNames.push_back( filename.substr( 0, nameLength ) );
+        }
+    }
+
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
@@ -228,7 +307,8 @@
         System( "SceneSystem" ),
         m_NextSceneName( "" ),
         m_CurrentSceneName( "" ),
-        m_BaseScenePath( "Data/Scenes/" )
+        m_BaseScenePath( "Data/Scenes/" ),
+        m_SceneNames()
     {}
 
     /// @brief  The singleton instance of SceneSystem

@@ -48,6 +48,9 @@ private: // member variables
     /// @brief  The base path of all Scene files
     std::string m_BaseScenePath;
 
+    /// @brief  array of all Scene names in the Scenes directory
+    std::vector< std::string > m_SceneNames;
+
 //-----------------------------------------------------------------------------
 private: // constants
 //-----------------------------------------------------------------------------
@@ -59,11 +62,18 @@ private: // constants
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
+    /// @brief  Gets called once when the engine starts
+    virtual void OnInit() override;
+
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.    
     virtual void OnFixedUpdate() override;
 
     /// @brief  Gets called once before the Engine closes
     virtual void OnExit() override;
+
+    /// @brief  Displays the DebugWindow GUI for this System
+    virtual void DebugWindow() override;
+
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -101,6 +111,12 @@ private: // methods
 
     /// @brief  Exits the current Scene
     void exitScene();
+
+    /// @brief  Lists all Scenes in a DebugWindow dropdown
+    void listScenes();
+
+    /// @brief  Gets all of the Scenes in the scenes directory
+    void getSceneNames();
 
 //-----------------------------------------------------------------------------
 private: // scene loading

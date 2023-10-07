@@ -279,7 +279,8 @@
     {
         for ( System * system : m_Systems )
         {
-            system->OnFixedUpdate();
+           std::string nameDebug = system->GetName();
+           system->OnFixedUpdate();
         }
     }
 

@@ -136,6 +136,11 @@ glm::vec2 PlatformSystem::GetWindowDimensions() const
     return { windowWidth, windowHeight};
 }
 
+void PlatformSystem::DebugWindow()
+{
+
+}
+
 /// @brief    Checks if the window is closing.
 /// @return   bool: true if the window is closing.
 bool PlatformSystem::WindowClosing() const

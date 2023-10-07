@@ -10,6 +10,13 @@
 #include "DebugSystem.h"
 #include <algorithm>
 
+///-----------------------------------------------------------------------------
+/// Set Static Variables
+///-----------------------------------------------------------------------------
+
+bool EntitySystem::m_ShowEntityList = false;
+bool EntitySystem::m_ShowEntityCreate = false;
+
 //-----------------------------------------------------------------------------
 // public methods
 //-----------------------------------------------------------------------------
@@ -116,36 +123,37 @@
 		}
     }
 
-    void EntitySystem::DebugWindow()
+    void EntitySystem::EntityListWindow()
     {
         ImGui::Begin("Entity List");
 
-        if (!ImGui::TreeNode("Entities")) {
+        if (!ImGui::TreeNode("Entities")) 
+        {
             ImGui::End();
             return;
         }
 
         for (const auto& entity : EntitySystem::GetInstance()->GetEntities())
         {
-            if (!ImGui::TreeNode(entity->GetName().c_str())) 
-            {
-                continue;
-            }
-
-            for (const auto& componentPair : entity->getComponents())
-            {
-                const std::string componentName = componentPair.second->GetType().name() + 5; // Skip "class "
-                if (ImGui::TreeNode(componentName.c_str())) 
-                {
-                    ImGui::TreePop();
-                }
-            }
-
-            ImGui::TreePop();
+            entity->InspectEntity();
         }
 
         ImGui::TreePop();
         ImGui::End();
+    }
+
+    void EntitySystem::DebugWindow()
+    {
+        if (ImGui::Button(m_ShowEntityList ? "Hide Entity List" : "Show Entity List"))
+            m_ShowEntityList = !m_ShowEntityList;
+
+       if (ImGui::Button("Create Entity"))
+		   m_ShowEntityCreate = !m_ShowEntityCreate;
+
+       if (m_ShowEntityList)
+		   EntityListWindow();
+
+
     }
 //-----------------------------------------------------------------------------
 // private: reading
@@ -164,6 +172,7 @@
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
+
 
     /// @brief  Constructs the EntitySystem
     EntitySystem::EntitySystem() :

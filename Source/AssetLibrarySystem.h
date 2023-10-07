@@ -46,6 +46,8 @@ private: // virtual override methods
     /// @param  data    the json data to load from
     virtual void LoadAssets( Stream data ) override;
 
+    virtual void DebugWindow() override;
+
 //-----------------------------------------------------------------------------
 public: // public functions
 //-----------------------------------------------------------------------------
@@ -64,6 +66,8 @@ private: // private variables
 //-----------------------------------------------------------------------------
 
     std::map< std::string, AssetType* > m_Assets;
+
+    static bool s_ShowAssetLibraryList;
 
 //-----------------------------------------------------------------------------
 private: // private functions

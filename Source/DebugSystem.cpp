@@ -103,7 +103,6 @@ void DebugSystem::OnUpdate(float dt)
     if (m_ShowDebugWindow)
         DebugWindow();
 
-
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
@@ -112,45 +111,36 @@ void DebugSystem::OnUpdate(float dt)
 
 void DebugSystem::DebugWindow()
 {
-    ImGui::ShowDemoWindow();
+    //ImGui::ShowDemoWindow();
 
    ImGui::Begin("Debug Window");
+
    for(auto& system : Engine::GetInstance()->GetSystems())
    {
+       // Skip the debug system and the platform system
        if (system == GetInstance())
 		   continue;
 
       if (ImGui::TreeNodeEx(system->GetName().c_str()))
 	  {
-		  system->DebugWindow();
+		system->DebugWindow();
         ImGui::TreePop();
 	  }
    }
+
+   if (ImGui::Button(m_ShowFpsWindow ? "Show FPS" : "Hide FPS"))
+       m_ShowFpsWindow = !m_ShowFpsWindow;
+
    ImGui::End();
 }
 
 
-
-void DebugSystem::ShowDebugWindow()
-{
-    if (m_ShowDebugWindow)
-    {
-        m_ShowDebugWindow = false;
-    }
-	else
-	{
-		m_ShowDebugWindow = true;
-	}
-}
 /// @brief PerDorm updates at a fixed time step.
 void DebugSystem::OnFixedUpdate()
 {
-    
 
     if (InputSystem::GetInstance()->GetKeyTriggered(GLFW_KEY_F1))
-        ShowDebugWindow();
-
-
+        m_ShowDebugWindow = !m_ShowDebugWindow;
 
 }
 
@@ -162,20 +152,6 @@ void DebugSystem::OnExit()
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
 }
-
-/// @brief Show the Frames Per Second (FPS) display.
-void DebugSystem::ToggleFPS()
-{
-    if (m_ShowFpsWindow)
-    {
-        m_ShowFpsWindow = false;
-    }
-    else
-    {
-        m_ShowFpsWindow = true;
-    }
-}
-
 
 /// @brief Print a formatted message to the screen.
 /// @param format The format string, similar to printf.

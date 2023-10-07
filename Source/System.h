@@ -31,9 +31,6 @@ public: // virtual methods
     /// @brief  Gets called once before the Engine closes
     virtual void OnExit() {};
 
-    /// @brief  Gets called whenever a new Scene is loaded
-    virtual void OnSceneLoad() {};
-
     /// @brief  Gets called whenever a scene is initialized
     virtual void OnSceneInit() {};
 
@@ -48,7 +45,7 @@ public: // methods
 //-----------------------------------------------------------------------------
 
     /// @brief Gets the unique name of this System
-    _inline std::string GetName() const { return m_Name; }
+    _inline std::string const& GetName() const { return m_Name; }
 
 //-----------------------------------------------------------------------------
 public: // reading
@@ -78,6 +75,9 @@ public: // singleton stuff
 //-----------------------------------------------------------------------------
 private: // System Name
 //-----------------------------------------------------------------------------
+
     /// @brief The Unique Name of this System to be used for Debug Window
     std::string m_Name;
+
+//-----------------------------------------------------------------------------
 };

@@ -30,10 +30,6 @@ static bool update = false;
 // virtual override methods
 //-----------------------------------------------------------------------------
 
-/// @brief  Gets called whenever a new Scene is loaded
-void SandboxSystem::OnSceneLoad()
-{}
-
 /// @brief  Gets called whenever a scene is initialized
 void SandboxSystem::OnSceneInit()
 {
