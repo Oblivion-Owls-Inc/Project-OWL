@@ -36,9 +36,14 @@ void PlayerController::OnExit()
 
 void PlayerController::OnUpdate(float dt)
 {
+
+    Transform* m_Transform = GetParent()->GetComponent<Transform>();
+
+	if (!m_Transform)
+		return;
+
     if (MoveRight())
     {
-        Transform* m_Transform = GetParent()->GetComponent<Transform>();
         glm::vec3 POS = m_Transform->GetTranslation();
 
         // Calculate the desired velocity increment.
@@ -53,9 +58,10 @@ void PlayerController::OnUpdate(float dt)
         // Update the position gradually.
         m_Transform->SetTranslation(POS + velocityIncrement);
     }
-    else if (MoveLeft())
+     if (MoveLeft())
     {
         Transform* m_Transform = GetParent()->GetComponent<Transform>();
+
         glm::vec3 POS = m_Transform->GetTranslation();
 
         // Calculate the desired velocity increment.

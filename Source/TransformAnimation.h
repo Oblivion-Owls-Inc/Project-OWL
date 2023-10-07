@@ -16,7 +16,7 @@
 class TransformAnimation
 {
 //-----------------------------------------------------------------------------
-public: // constructor / destructor
+public: // constructor / destructor / Inspector
 //-----------------------------------------------------------------------------
 
     /// @brief default constructor
@@ -24,6 +24,9 @@ public: // constructor / destructor
 
     /// @brief Destroys this TransformAnimation
     ~TransformAnimation() = default;
+
+    /// @brief Used by the DebugSystem to display information about this TransformAnimation
+    void Inspect() {};
 
 //-----------------------------------------------------------------------------
 public: // methods

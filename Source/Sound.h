@@ -61,6 +61,9 @@ public: // accessors
     /// @return this Sound's filepath
     __inline std::string const& GetFilepath() const { return m_Filepath; }
 
+    /// @brief Used by the Debug System to display information about this Sound
+    void Inspect();
+
 //-----------------------------------------------------------------------------
 public: // reading
 //-----------------------------------------------------------------------------

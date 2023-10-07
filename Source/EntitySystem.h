@@ -78,8 +78,8 @@ private: // member variables
     /// @brief  Container for all Entities in the Scene
     std::vector< Entity* > m_Entities;
 
-    static bool m_ShowEntityList;
-    static bool m_ShowEntityCreate;
+    bool m_ShowEntityList = false;
+    bool m_ShowEntityCreate = false;
 
 
 //-----------------------------------------------------------------------------

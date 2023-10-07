@@ -19,13 +19,13 @@
     CircleCollider::CircleCollider() :
         Collider( typeid( CircleCollider ) ),
         m_Radius( 1.0f )
-    {}
+    {
+    }
 
     void CircleCollider::Inspector()
     {
         ImGui::DragFloat( "Radius", &m_Radius);
     }
-
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------

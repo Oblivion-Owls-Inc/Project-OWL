@@ -63,6 +63,8 @@
 
 	    Transform* m_Transform = (Transform*)GetParent()->GetComponent<Transform>();
 
+        if (!m_Transform)
+            return;
 
 	    // linear movement
         glm::vec3 position = m_Transform->GetTranslation();
