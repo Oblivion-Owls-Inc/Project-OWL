@@ -217,6 +217,7 @@
         static float const pointRadius = 4.0f;
         static ImVec4 const pointColor = { 0.0f, 1.0f, 1.0f, 1.0f };
         static ImVec4 const tangentColor = { 1.0f, 1.0f, 0.0f, 1.0f };
+        static ImVec4 const selectedColor = { 1.0f, 0.0f, 0.0f, 1.0f };
         static int const sampleCount = 64;
 
         // the currently selected controlPoint index
@@ -281,7 +282,7 @@
                 // display the draggable point
                 ImPlotPoint points[2];
                 points[0] = ImPlotPoint( value[ dimensionality ], value[ axis ] );
-                if ( ImPlot::DragPoint( 2 * i, &points[0].x, &points[0].y, pointColor, pointRadius, ImPlotDragToolFlags_None ) )
+                if ( ImPlot::DragPoint( 2 * i, &points[0].x, &points[0].y, (selectedIndex == i) ? selectedColor : pointColor, pointRadius + (selectedIndex == i) * pointRadius, ImPlotDragToolFlags_None ) )
                 {
                     selectedIndex = i;
                 }
@@ -377,6 +378,7 @@
                 AddControlPoint( cp );
             }
 
+            ++selectedIndex;
         }
 
         if ( ImGui::Button( ( "Remove Point##" + std::to_string( m_Id ) ).c_str() ) )
@@ -388,6 +390,7 @@
             else
             {
                 RemoveControlPoint( selectedIndex );
+                --selectedIndex;
             }
         }
 
