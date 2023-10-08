@@ -128,25 +128,6 @@
 		}
     }
 
-    void EntitySystem::EntityListWindow()
-    {
-        ImGui::Begin("Entity List");
-
-        if (!ImGui::TreeNode("Entities"))
-        {
-            ImGui::End();
-            return;
-        }
-
-        for (const auto& entity : EntitySystem::GetInstance()->GetEntities())
-        {
-            entity->Inspect();
-        }
-        
-        ImGui::TreePop();
-        ImGui::End();
-    }
-
     void EntitySystem::DebugWindow()
     {
         if (ImGui::Button(m_ShowEntityList ? "Hide Entity List" : "Show Entity List"))
@@ -160,6 +141,37 @@
 
 
     }
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+    void EntitySystem::EntityListWindow()
+    {
+        ImGui::Begin("Entity List");
+
+        if (!ImGui::TreeNode("Entities"))
+        {
+            ImGui::End();
+            return;
+        }
+
+        for (const auto& entity : EntitySystem::GetInstance()->GetEntities())
+        {
+            if ( !ImGui::TreeNodeEx( entity->GetName().c_str() ) )
+            {
+                continue;
+            }
+
+            entity->Inspect();
+
+            ImGui::TreePop();
+        }
+
+        ImGui::TreePop();
+        ImGui::End();
+    }
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------

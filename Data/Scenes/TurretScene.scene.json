@@ -40,6 +40,33 @@
                         }
                     ]
                 }
+            },
+            "Spin": {
+                "RotationCurve": {
+                    "InterpolationType": 2,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": 0.0
+                        },
+                        {
+                            "Time": 0.5,
+                            "Value": -1.0
+                        },
+                        {
+                            "Time": 1.5,
+                            "Value": 7.28
+                        },
+                        {
+                            "Time": 2.0,
+                            "Value": 6.283
+                        },
+                        {
+                            "Time": 3.0,
+                            "Value": 6.283
+                        }
+                    ]
+                }
             }
         },
         "Archetypes": {

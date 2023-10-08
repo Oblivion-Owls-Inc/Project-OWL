@@ -183,6 +183,15 @@ std::string Stream::Read<std::string>() const
     return value.GetString();
 }
 
+/// @brief  Reads a glm::vec1 from a json value
+/// @return The value from the json
+template <>
+glm::vec1 Stream::Read<glm::vec1>() const
+{
+    return glm::vec1( Read<float>() );
+}
+
+
 /// @brief  Reads a glm::vec2 from a json value
 /// @return The value from the json
 template <>

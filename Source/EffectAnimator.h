@@ -11,6 +11,8 @@
 #include "Behavior.h"
 #include "basics.h"
 
+#include <functional>
+
 #include "TransformAnimation.h"
 
 class Transform;
@@ -99,6 +101,13 @@ public: // accessors
     __inline void SetIsPlaying( float isPlaying ) { m_IsPlaying = isPlaying; }
 
 
+    /// @brief  sets the callback function to be called when the animation completes
+    /// @param  callback    the function to be called when the animation completes
+    /// @note   YOU MUST CLEAR THE CALLBACK BY PASSING nullptr IF YOU ARE DONE WITH IT,
+    ///         the callback will be called every time the animation completes (but not each time it loops)
+    __inline void SetCallback( std::function< void() >& callback ) { m_Callback = std::move( callback ); }
+
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -112,6 +121,9 @@ private: // virtual override methods
     /// @brief  called every frame
     /// @param  dt  the amount of time since the previous frame
     virtual void OnUpdate( float dt ) override;
+
+    /// @brief  displays this EffectAnimator in the Inspector
+    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 private: // members
@@ -134,6 +146,9 @@ private: // members
 
     /// @brief  speed multiplier for how quickly the effect is played
     float m_Speed;
+
+    /// @brief  callback function to call when the animation completes
+    std::function< void() > m_Callback;
 
 //-----------------------------------------------------------------------------
 private: // reading

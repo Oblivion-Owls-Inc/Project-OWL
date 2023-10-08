@@ -6,8 +6,6 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
-#pragma once
-
 #include "TransformAnimation.h"
 
 //-----------------------------------------------------------------------------
@@ -16,16 +14,19 @@
 
     /// @brief default constructor
     TransformAnimation::TransformAnimation() :
-        m_ScaleCurve( { 1.0f, 1.0f } ),
-        m_OffsetCurve( { 0.0f, 0.0f } ),
-        m_RotationCurve( 0.0f ),
-        m_SkewCurve( { 0.0f, 0.0f } )
+        m_ScaleCurve( glm::vec2(1.0f, 1.0f) ),
+        m_OffsetCurve( glm::vec2(0.0f, 0.0f) ),
+        m_RotationCurve( glm::vec1(0.0f) ),
+        m_SkewCurve( glm::vec2(0.0f, 0.0f) )
     {}
 
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------
 
+    /// @brief  samples this TransformAnimation at the specified time
+    /// @param  time    the time to sample this TransformAnimation at
+    /// @return a matrix of the effect transform at the specified time
     glm::mat4 TransformAnimation::SampleAtTime( float time ) const
     {
         glm::mat4 transformation =
@@ -49,6 +50,38 @@
         );
     }
 
+    /// @brief  Used by the DebugSystem to display information about this TransformAnimation
+    void TransformAnimation::Inspect()
+    {
+        if ( ImGui::TreeNode( "Scale Curve" ) )
+        {
+            m_ScaleCurve.Inspect();
+
+            ImGui::TreePop();
+        }
+
+        if ( ImGui::TreeNode( "Offset Curve" ) )
+        {
+            m_OffsetCurve.Inspect();
+
+            ImGui::TreePop();
+        }
+
+        if ( ImGui::TreeNode( "Rotation Curve" ) )
+        {
+            m_RotationCurve.Inspect();
+
+            ImGui::TreePop();
+        }
+
+        if ( ImGui::TreeNode( "Skew Curve" ) )
+        {
+            m_SkewCurve.Inspect();
+
+            ImGui::TreePop();
+        }
+    }
+
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
@@ -67,10 +100,10 @@
     /// @brief  creates a rotation matrix
     /// @param  rotation    the angle to rotate by
     /// @return (glm::mat2) the rotation matrix
-    glm::mat2 TransformAnimation::rotationMatrix( float rotation )
+    glm::mat2 TransformAnimation::rotationMatrix( glm::vec1 rotation )
     {
-        float cos = std::cosf( rotation );
-        float sin = std::sinf( rotation );
+        float cos = std::cosf( rotation[0] );
+        float sin = std::sinf( rotation[0] );
         return {
             {  cos, sin },
             { -sin, cos }
@@ -83,8 +116,8 @@
     glm::mat2 TransformAnimation::skewMatrix( glm::vec2 skew )
     {
         return {
-            { 1, skew.x },
-            { skew.y, 1 }
+            { 1, skew.y },
+            { skew.x, 1 }
         };
     }
 

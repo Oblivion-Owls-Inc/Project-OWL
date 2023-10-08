@@ -16,7 +16,7 @@
 #include <vector>
 
 /// @brief  control points used by this Curve
-template< typename ValueType >
+template< int dimensionality >
 class ControlPoint
 {
 //-----------------------------------------------------------------------------
@@ -27,24 +27,44 @@ public: // constructor / destructor
     ControlPoint();
 
     /// @brief  value constructor
-    /// @param  value   the value to assign to this ControlPoint
-    ControlPoint( ValueType value );
+    /// @param  value       the value to assign to this ControlPoint
+    /// @param  time        the time to assign to this ControlPoint
+    /// @param  derivative  the derivative to assign to this ControlPoint
+    ControlPoint( glm::vec< dimensionality, float > const& value, float time = 0.0f, glm::vec< dimensionality, float > const& derivative = glm::vec< dimensionality, float >( 0 ) );
 
     /// @brief  destructor
     ~ControlPoint() = default;
 
 //-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+    
+    /// @brief  gets the time of this ControlPoint
+    /// @return the time of this ControlPoint
+    __inline float GetTime() const { return M_Value[ dimensionality ]; }
+
+    /// @brief  sets the time of this ControlPoint
+    /// @return the time of this ControlPoint
+    __inline void SetTime( float time ) { M_Value[ dimensionality ] = time; }
+
+//-----------------------------------------------------------------------------
+public: // comparison operator
+//-----------------------------------------------------------------------------
+
+    /// @brief  checks if one ControlPoint is before another (for sorting)
+    /// @param  other   the ControlPoint to compare against
+    /// @return whether this ControlPoint is before the other
+    __inline bool operator < ( ControlPoint const& other ) const { return GetTime() < other.GetTime(); }
+    
+//-----------------------------------------------------------------------------
 public: // member variables
 //-----------------------------------------------------------------------------
 
-    /// @brief  the time value this ControlPoint is located at
-    float M_Time;
+    /// @brief  the value at this ControlPoint
+    glm::vec< dimensionality + 1, float > M_Value;
 
     /// @brief  the value at this ControlPoint
-    ValueType M_Value;
-
-    /// @brief  the value at this ControlPoint
-    ValueType M_Derivative;
+    glm::vec< dimensionality, float > M_Derivative;
 
 //-----------------------------------------------------------------------------
 public: // reading
@@ -79,10 +99,7 @@ private: // reading
 };
 
 
-
-
-
-template < typename ValueType >
+template< int dimensionality >
 class Curve
 {
 
@@ -95,7 +112,7 @@ public: // constructor / destructor
 
     /// @brief value constructor
     /// @param  value   the value to assign to the initial ControlPoint
-    Curve( ValueType value );
+    Curve( glm::vec< dimensionality, float > value );
 
     /// @brief destructor
     ~Curve() = default;
@@ -107,10 +124,13 @@ public: // methods
     /// @brief  gets the value of this Curve at the specified time
     /// @param  time    the time to sample this Curve at
     /// @return the value of this Curve at the specified time
-    ValueType GetValueAtTime( float time ) const;
+    glm::vec< dimensionality, float > GetValueAtTime( float time ) const;
 
     /// @brief  marks this Curve as dirty to be recalculated
     __inline void MarkDirty() { m_IsDirty = true; }
+
+    /// @brief  displays this curve in the Inspector
+    void Inspect();
 
 //-----------------------------------------------------------------------------
 public: // types
@@ -132,25 +152,43 @@ public: // accessors
 
     /// @brief  gets how many control points are in this Curve
     /// @return the nuber of control points in this Curve
-    __inline int GetControlPointCount() const { return m_ControlPoints.size(); }
+    __inline int GetControlPointCount() const { return m_ControlPoints.dimensionality(); }
+
 
     /// @brief  gets the total amount of time the Curve takes up
     /// @return the total time of the Curve
-    __inline float GetTotalTime() const { return m_ControlPoints[ m_ControlPoints.size() - 1 ].M_Time; }
+    __inline float GetTotalTime() const { return m_ControlPoints[ m_ControlPoints.size() - 1 ].GetTime(); }
+
+
+    /// @brief  gets the smallest values of each axis among all ControlPoints
+    /// @return the smallest values of each axis among all ControlPoints
+    __inline glm::vec< dimensionality, float > const& GetMinPointValue() const { if ( m_IsDirty ) const_cast< Curve<dimensionality>* >(this)->calculate; return m_MinPointValue; }
+
+    /// @brief  gets the largest values of each axis among all ControlPoints
+    /// @return the largest values of each axis among all ControlPoints
+    __inline glm::vec< dimensionality, float > const& GetMaxPointValue() const { if ( m_IsDirty ) const_cast< Curve<dimensionality>* >(this)->calculate; return m_MaxPointValue; }
+
 
     /// @brief  gets a reference to the ControlPoint at the specified index
     /// @param  index   the index to get the control point at
     /// @return a reference to the ControlPoint
-    __inline ControlPoint<ValueType> const& operator []( int index ) const { return m_ControlPoints[ index ]; }
+    __inline ControlPoint< dimensionality > const& operator []( int index ) const { if ( m_IsDirty ) const_cast< Curve<dimensionality>* >(this)->calculate; return m_ControlPoints[ index ]; }
 
     /// @brief  gets a reference to the ControlPoint at the specified index
     /// @param  index   the index to get the control point at
     /// @return a reference to the ControlPoint
-    __inline ControlPoint<ValueType>& operator []( int index ) { return m_ControlPoints[ index ]; MarkDirty(); }
+    /// @note   this method DOES NOT automatically clean up the Curve
+    __inline ControlPoint< dimensionality >& operator []( int index ) { return m_ControlPoints[ index ]; MarkDirty(); }
+
 
     /// @brief  adds a control point to the Curve
     /// @param  controlPoint    the control point to add
-    __inline void AddControlPoint( ControlPoint<ValueType> const& controlPoint ) { m_ControlPoints.push_back( controlPoint ); MarkDirty(); }
+    __inline void AddControlPoint( ControlPoint< dimensionality > const& controlPoint ) { m_ControlPoints.push_back( controlPoint ); MarkDirty(); }
+
+    /// @brief  removes a control point to the Curve
+    /// @param  index   the index to remove a ControlPoint from
+    __inline void RemoveControlPoint( int index ) { m_ControlPoints.erase( m_ControlPoints.begin() + index ); MarkDirty(); }
+
 
     /// @brief  gets this Curve's interpolation type
     /// @return this Curve's interpolation type
@@ -160,6 +198,7 @@ public: // accessors
     /// @param  interpolationType   the interpolation type to set this Curve to
     __inline void SetInterpolationType( InterpolationType interpolationType ) { m_InterpolationType = interpolationType; MarkDirty(); }
 
+
     /// @brief  gets whether this curve loops
     /// @return whether this curve loops
     __inline bool GetIsLooping() const { return m_IsLooping; }
@@ -168,13 +207,15 @@ public: // accessors
     /// @param  isLooping   whether this curve is looping
     __inline void SetIsLooping( bool isLooping ) { m_IsLooping = isLooping; MarkDirty(); }
 
+
 //-----------------------------------------------------------------------------
 private: // types
 //-----------------------------------------------------------------------------
 
+    /// @brief  cubic polynomial coefficients for cubic interpolation
     struct Coefficients
     {
-        ValueType a, b, c, d;
+        glm::vec< dimensionality, float > a, b;
     };
 
 //-----------------------------------------------------------------------------
@@ -188,17 +229,18 @@ private: // methods
     /// @param  index   the index of the control point to sample from
     /// @param  time    the time to sample the curve at
     /// @return (ValueType) the value of the curve at the specified time
-    ValueType interpolate( int index, float time ) const;
+    glm::vec< dimensionality, float > interpolate( int index, float time ) const;
 
     /// @brief  calculates the coefficients for the cubic polynomials
     void calculateCubicCoefficients();
+
 
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
     /// @brief  the control points in this Curve
-    std::vector< ControlPoint<ValueType> > m_ControlPoints;
+    std::vector< ControlPoint< dimensionality > > m_ControlPoints;
 
     /// @brief  the coefficients of the cubic polynomials (if interpolation is cubic)
     std::vector< Coefficients > m_CubicCoefficients;
@@ -211,6 +253,15 @@ private: // member variables
 
     /// @brief  whether the Curve needs to be recalculated
     bool m_IsDirty;
+
+    /// @brief  the smallest value among all points
+    glm::vec< dimensionality, float > m_MinPointValue;
+
+    /// @brief  the largest value among all points
+    glm::vec< dimensionality, float > m_MaxPointValue;
+
+    /// @brief  unique id for this curve
+    unsigned m_Id;
 
 //-----------------------------------------------------------------------------
 public: // reading

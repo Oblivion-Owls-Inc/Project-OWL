@@ -89,10 +89,6 @@
 
     void Entity::Inspect()
     {
-        if (!ImGui::TreeNodeEx(this->GetName().c_str()))
-        {
-            return;
-        }
 
         if (ImGui::Button("Add Component", ImVec2(-1, 0)))
         {
@@ -134,7 +130,6 @@
             }
         }
 
-        ImGui::TreePop();
     }
 
     /// @brief Deallocates all memory associated with an entity.
