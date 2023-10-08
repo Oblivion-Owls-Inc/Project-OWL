@@ -6,7 +6,7 @@
 #include "glm/glm.hpp"
 
 #include "Stream.h"
-
+#include "Mesh.h"
 
 /// @brief          Stores texture data, and allows to bind it for rendering.
 class Texture
@@ -47,11 +47,23 @@ public: // acccessors
 
     /// @brief  Returns the size of the original image in pixels
     /// @return float: the aspec ratio of the Texture
-    __inline float GetAspectRatio() const { return (float)m_PixelDimensions.x / m_PixelDimensions.y; }
+    __inline float GetAspectRatio() const { return (float)(m_PixelDimensions.x * m_SheetDimensions.y) /
+                                                          (m_PixelDimensions.y * m_SheetDimensions.x); }
 
     /// @brief  Returns how many tiles/frames are in the texture
     /// @return ivec2: x = width ,  y = height
     __inline glm::ivec2 const& GetSheetDimensions() const { return m_SheetDimensions; }
+
+
+#if 1
+    /// @brief  gets the Mesh this Sprite is using
+    /// @return the Mesh this Sprite is using
+    __inline Mesh const* GetMesh() const { return m_Mesh; }
+
+    /// @brief  sets the Mesh this Sprite is using
+    /// @param  mesh    the Mesh to set this Sprite to use
+    __inline void SetMesh( Mesh const* mesh ) { m_Mesh = mesh; }
+#endif
 
 //-----------------------------------------------------------------------------
 public: // reading
@@ -101,6 +113,9 @@ private: // member variables
 
     /// @brief   How many tiles/frames are in the texture
     glm::ivec2 m_SheetDimensions;
+
+    /// @brief   Mesh to render texture onto
+    Mesh const* m_Mesh = nullptr;
 
 //-----------------------------------------------------------------------------
 };

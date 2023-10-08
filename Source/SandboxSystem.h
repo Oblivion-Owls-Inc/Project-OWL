@@ -16,10 +16,6 @@ class SandboxSystem : public System
 private: // virtual override methods
 
     /// @brief  Gets called whenever a new Scene is loaded
-    virtual void OnSceneLoad() override;
-
-
-    /// @brief  Gets called whenever a scene is initialized
     virtual void OnSceneInit() override;
 
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.

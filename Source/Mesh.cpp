@@ -8,7 +8,7 @@
 
 /// @brief              Constructor: loads unit square vertices if needed.
 /// @param init_square  true/false: should unit square be initialized
-Mesh::Mesh(bool init_square, int rows, int columns)
+Mesh::Mesh(bool init_square, int columns, int rows)
 {
     if (!init_square)
         return;

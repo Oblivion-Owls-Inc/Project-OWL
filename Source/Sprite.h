@@ -18,29 +18,25 @@ class Sprite : public Component
 public: // constructor / destructors
 //-----------------------------------------------------------------------------
 
-    /// @brief  default constructor
+    /// @brief              Default constructor
     Sprite();
 
-    /// @brief  Textured constructor
-    /// @param  texture the texture for this Sprite to use
-    /// @param  layer   (optional) Rendering layer: 0-4. 0 is back, 4 is front.
-    /// @param  type    for use ONLY when deriving with this Constructor
+    /// @brief              Textured constructor.
+    /// @param  texture     the texture for this Sprite to use
+    /// @param  layer       (optional) Rendering layer: 0-4. 0 is back, 4 is front.
+    /// @param  type        for use ONLY when deriving with this Constructor
     Sprite( Texture const* texture, int layer = 2, std::type_index type = typeid( Sprite ) );
 
-    /// @brief  Plain square constructor
-    /// @param  init_square true/false - initialize the square or nah?
-    /// @param  color       (optional) Color to initialize the square to
-    /// @param  layer       (optional) Rendering layer: 0-4. 0 is back, 4 is front.
-    Sprite( bool init_square, glm::vec4 const& color = { 0, 0, 0, 1 }, int layer = 2 );
 
-    /// @brief  Destructor: frees texture and mesh... for now. Resource library should take care of it.
-    virtual ~Sprite();
+    /// @brief              Virtual destructor: just to let derived types free stuff
+    virtual ~Sprite() {}
 
 //-----------------------------------------------------------------------------
 protected: // constructor
 //-----------------------------------------------------------------------------
 
-    /// @brief  inherited constructor
+    /// @brief              Inherited constructor
+    /// @param type         typeid(DerivedClass)
     Sprite( std::type_index type );
 
 //-----------------------------------------------------------------------------
@@ -109,22 +105,15 @@ public: // accessors
     /// @param  texture the Texture to set this Sprite to use
     __inline void SetTexture( Texture const* texture ) { m_Texture = texture; }
 
-    /// @brief  gets the Mesh this Sprite is using
-    /// @return the Mesh this Sprite is using
-    __inline Mesh const* GetMesh() const { return m_Mesh; }
-
-    /// @brief  sets the Mesh this Sprite is using
-    /// @param  mesh    the Mesh to set this Sprite to use
-    __inline void SetMesh( Mesh const* mesh ) { m_Mesh = mesh; }
 
 //-----------------------------------------------------------------------------
 protected: // virtual override methods
 //-----------------------------------------------------------------------------
     
-    /// @brief  called when entering the scene
+    /// @brief  called when entering a scene
     virtual void OnInit() override;
 
-    /// @brief  called when exiting the scene
+    /// @brief  called when exiting a scene
     virtual void OnExit() override;
 
     virtual void Inspector() override;
@@ -141,7 +130,6 @@ protected: // member variables
 
     bool m_IsTextured;
 
-    Mesh const* m_Mesh;
     Texture const* m_Texture;
 
 //-----------------------------------------------------------------------------

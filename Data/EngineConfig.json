@@ -27,6 +27,7 @@
         "DebugSystem": {
             "ShowFpsWindow": true,
             "ShowDebugWindow": false
-        }
+        },
+        "SandboxSystem": {}
     }
 }

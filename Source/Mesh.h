@@ -57,6 +57,10 @@ public:
     /// @return              vertex count
     __inline unsigned int GetVertexCount() const { return m_VertexCount; }
 
+    /// @return              Id of the vertex buffer
+    __inline unsigned int GetBuffer() const { return m_Buffer; }
+
+
 
 
     //-------------------------------------------------------------------------
