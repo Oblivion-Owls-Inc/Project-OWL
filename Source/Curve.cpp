@@ -145,6 +145,11 @@
             const_cast< Curve< dimensionality >* >(this)->calculate();
         }
 
+        if ( m_ControlPoints.size() == 1 )
+        {
+            return m_ControlPoints[0].M_Value;
+        }
+
         // handle looping cases
         if ( m_IsLooping )
         {
@@ -186,6 +191,27 @@
     template< int dimensionality >
     void Curve< dimensionality >::Inspect()
     {
+        // interpolation type dropdown
+        static char const* interpolationTypes[ 3 ] = { "None", "Linear", "Cubic" };
+        if ( ImGui::BeginCombo( ("Interpolation Type##" + std::to_string( m_Id )).c_str(), interpolationTypes[ (int)m_InterpolationType] ) )
+        {
+            for ( int i = 0; i < 3; ++i )
+            {
+                bool isSelected = ( (int)m_InterpolationType == i );
+                if ( ImGui::Selectable( interpolationTypes[ i ], isSelected ) )
+                {
+                    m_InterpolationType = (InterpolationType)i; // Change the selected scene
+                    calculate();
+                }
+
+                if ( isSelected )
+                {
+                    ImGui::SetItemDefaultFocus(); // Automatically focus on the selected item
+                }
+            }
+
+            ImGui::EndCombo();
+        }
 
         // rendering info
         static float const pointRadius = 4.0f;
@@ -213,9 +239,7 @@
                 case 2: axisName = "Z Axis"; break;
                 case 3: axisName = "W Axis"; break;
                 default:
-                    axisName = "Axis [";
-                    axisName += axis;
-                    axisName += ']';
+                    axisName = "Axis [" + std::to_string(axis) + ']';
                     break;
             }
             axisName += "##" + std::to_string( m_Id );
@@ -231,7 +255,7 @@
             float timeBuffer = GetTotalTime() * 0.1f;
 
             // start the plot
-            if ( !ImPlot::BeginPlot( axisName.c_str(), ImVec2(-1, 0), ImPlotFlags_CanvasOnly ) )
+            if ( !ImPlot::BeginPlot( (axisName + "plot").c_str(), ImVec2(-1, 0), ImPlotFlags_CanvasOnly))
             {
                 ImGui::TreePop();
                 continue;
@@ -239,10 +263,12 @@
 
             // set up the axes
             ImPlot::SetupAxes( 0, 0, ImPlotAxisFlags_None, ImPlotAxisFlags_None );
-            ImPlot::SetupAxesLimits(
-                m_MinPointValue[ axis ] - buffer[ axis ], m_MaxPointValue[axis] + buffer[axis],
-                -timeBuffer, GetTotalTime() + timeBuffer
-            );
+            // ImPlot::SetupAxesLimits(
+            //     m_MinPointValue[ axis ] - buffer[ axis ], m_MaxPointValue[axis] + buffer[axis],
+            //     -timeBuffer, GetTotalTime() + timeBuffer
+            // );
+
+            std::string guiLabel;
 
             // loop through each control point
             for ( int i = 0; i < m_ControlPoints.size(); ++i )
@@ -252,7 +278,7 @@
                 glm::vec< dimensionality, float >& derivative = m_ControlPoints[ i ].M_Derivative;
 
 
-                // display the draggable points
+                // display the draggable point
                 ImPlotPoint points[2];
                 points[0] = ImPlotPoint( value[ dimensionality ], value[ axis ] );
                 if ( ImPlot::DragPoint( 2 * i, &points[0].x, &points[0].y, pointColor, pointRadius, ImPlotDragToolFlags_None ) )
@@ -260,22 +286,27 @@
                     selectedIndex = i;
                 }
 
-                points[1] = ImPlotPoint( points[0].x + timeBuffer, points[0].y + derivative[axis] * timeBuffer );
-                if ( ImPlot::DragPoint( 2 * i + 1, &points[1].x, &points[1].y, tangentColor, pointRadius, ImPlotDragToolFlags_None ) )
-                {
-                    selectedIndex = i;
-                }
-
-
-                // draw the tangent line
-                ImPlot::SetNextLineStyle( tangentColor );
-                std::string guiLabel = "##tangent" + std::to_string( m_Id ) + '_' + std::to_string( axis ) + '_' + std::to_string(i);
-                ImPlot::PlotLine( guiLabel.c_str(), &points[0].x, &points[0].y, 2, 0, 0, sizeof(ImPlotPoint));
-
                 // save the adjusted values
                 value[ axis ] = (float)points[0].y;
                 value[ dimensionality ] = (float)points[0].x;
-                derivative[ axis ] = (float)( points[1].y - points[0].y ) / (float)( points[1].x - points[0].x );
+
+                // draw tangents
+                if ( m_InterpolationType == InterpolationType::cubic )
+                {
+                    // draggable point
+                    points[1] = ImPlotPoint( points[0].x + timeBuffer, points[0].y + derivative[axis] * timeBuffer );
+                    if ( ImPlot::DragPoint( 2 * i + 1, &points[1].x, &points[1].y, tangentColor, pointRadius, ImPlotDragToolFlags_None ) )
+                    {
+                        selectedIndex = i;
+                    }
+
+                    // draw the tangent line
+                    ImPlot::SetNextLineStyle( tangentColor );
+                    guiLabel = "##tangent" + std::to_string( m_Id ) + '_' + std::to_string( axis ) + '_' + std::to_string(i);
+                    ImPlot::PlotLine( guiLabel.c_str(), &points[0].x, &points[0].y, 2, 0, 0, sizeof(ImPlotPoint));
+
+                    derivative[ axis ] = (float)( points[1].y - points[0].y ) / (float)( points[1].x - points[0].x );
+                }
 
                 // don't draw any curve after the last point
                 if ( i >= m_ControlPoints.size() - 1 )
@@ -306,10 +337,15 @@
             ImGui::TreePop();
         }
 
-        ImGui::DragInt( ( "Point##" + std::to_string( m_Id ) ).c_str(), (int*)& selectedIndex, 0.05f, 0, m_ControlPoints.size() - 1);
+        ImGui::DragInt( ( "Point##" + std::to_string( m_Id ) ).c_str(), (int*)&selectedIndex, 0.05f, 0, m_ControlPoints.size() - 1, nullptr, (m_ControlPoints.size() <= 1) ? ImGuiSliderFlags_NoInput : ImGuiSliderFlags_None );
+
         ImGui::DragFloat( ( "Time##" + std::to_string( m_Id ) ).c_str(), &m_ControlPoints[ selectedIndex ].M_Value[ dimensionality ], 0.01f );
         ImGui::DragScalarN( ( "Value##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndex ].M_Value[0], dimensionality, 0.01f );
-        ImGui::DragScalarN( ( "Derivative##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndex ].M_Derivative[0], dimensionality, 0.01f );
+
+        if ( m_InterpolationType == InterpolationType::cubic )
+        {
+            ImGui::DragScalarN( ( "Derivative##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndex ].M_Derivative[0], dimensionality, 0.01f );
+        }
 
         if ( ImGui::Button( ( "Add Point##" + std::to_string( m_Id ) ).c_str() ) )
         {
