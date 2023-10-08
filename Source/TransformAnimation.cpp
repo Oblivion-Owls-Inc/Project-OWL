@@ -116,8 +116,8 @@
     glm::mat2 TransformAnimation::skewMatrix( glm::vec2 skew )
     {
         return {
-            { 1, skew.x },
-            { skew.y, 1 }
+            { 1, skew.y },
+            { skew.x, 1 }
         };
     }
 
