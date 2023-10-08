@@ -34,6 +34,45 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
 	    FlushAssets();
     }
 
+    /// @brief  loads all assets of this AssetLibrary's type from JSON
+    /// @param  data    the json data to load from
+    template< class AssetType >
+    void AssetLibrarySystem< AssetType >::LoadAssets( Stream data )
+    {
+        for ( auto& assetData : data.GetObject() )
+        {
+            // create and read the asset
+            AssetType* asset = new AssetType();
+            Stream( assetData.value ).Read( asset );
+
+            // insert the asset into the map
+            AddAsset( assetData.name.GetString(), asset );
+        }
+    }
+
+    template<class AssetType>
+    void AssetLibrarySystem<AssetType>::DebugWindow()
+    {
+        std::string AssetName(typeid(AssetType).name() + 5); // Move over the "class" part of the name
+
+        char buttonLabel[128];
+        snprintf(buttonLabel, sizeof(buttonLabel), s_ShowAssetLibraryList ?
+            "Hide%s List" : "Show%s List", AssetName.c_str());
+
+        if (ImGui::Button(buttonLabel))
+            s_ShowAssetLibraryList = !s_ShowAssetLibraryList;
+
+        if (s_ShowAssetLibraryList)
+        {
+            ImGui::Begin( AssetName.c_str(), &s_ShowAssetLibraryList );
+
+            ListAssets();
+
+            ImGui::End();
+        }               
+
+
+    }
 
 //-----------------------------------------------------------------------------
 // public: public functions
@@ -78,46 +117,6 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
         return m_Assets;
     }
 
-
-    /// @brief  loads all assets of this AssetLibrary's type from JSON
-    /// @param  data    the json data to load from
-    template< class AssetType >
-    void AssetLibrarySystem< AssetType >::LoadAssets( Stream data )
-    {
-        for ( auto& assetData : data.GetObject() )
-        {
-            // create and read the asset
-            AssetType* asset = new AssetType();
-            Stream( assetData.value ).Read( asset );
-
-            // insert the asset into the map
-            AddAsset( assetData.name.GetString(), asset );
-        }
-    }
-
-    template<class AssetType>
-    void AssetLibrarySystem<AssetType>::DebugWindow()
-    {
-        std::string AssetName(typeid(AssetType).name() + 5); // Move over the "class" part of the name
-
-        char buttonLabel[128];
-        snprintf(buttonLabel, sizeof(buttonLabel), s_ShowAssetLibraryList ?
-            "Hide%s List" : "Show%s List", AssetName.c_str());
-
-        if (ImGui::Button(buttonLabel))
-            s_ShowAssetLibraryList = !s_ShowAssetLibraryList;
-
-        if (s_ShowAssetLibraryList)
-        {
-            ImGui::Begin(AssetName.c_str(), &s_ShowAssetLibraryList, ImGuiWindowFlags_AlwaysAutoResize);
-            ListAssets();
-            ImGui::End();
-		}               
-
-
-    }
-
-
 //-----------------------------------------------------------------------------
 // private: private functions
 //-----------------------------------------------------------------------------
@@ -141,7 +140,14 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
 
         for (auto& key : m_Assets)
         {
+            if ( !ImGui::TreeNode( key.first.c_str() ) )
+            {
+                continue;
+            }
+
             key.second->Inspect();
+
+            ImGui::TreePop();
         }
 	    
     }

@@ -37,23 +37,22 @@
         ControlPoint< dimensionality >::ControlPoint() :
             M_Value( 0 ),
             M_Derivative( 0 )
-        {
-            M_Derivative[dimensionality] = 1.0f;
-        }
+        {}
 
         /// @brief  value constructor
         /// @tparam dimensionality  the number of dimensions this curve goes through
         /// @param  value       the value to assing to this ControlPoint
+        /// @param  time        the time to assign to this ControlPoint
+        /// @param  derivative  the derivative to assign to this ControlPoint
         template< int dimensionality >
-        ControlPoint< dimensionality >::ControlPoint( glm::vec< dimensionality, float > const& value ) :
-            M_Value ( 0 ),
-            M_Derivative( 0 )
+        ControlPoint< dimensionality >::ControlPoint( glm::vec< dimensionality, float > const& value, float time, glm::vec< dimensionality, float > const& derivative ) :
+            M_Derivative( derivative )
         {
             for ( int i = 0; i < dimensionality; ++i )
             {
-                M_Value[i] = value[i];
+                M_Value[ i ] = value[ i ];
             }
-            M_Derivative[dimensionality] = 1.0f;
+            M_Value[ dimensionality ] = time;
         }
 
     //-----------------------------------------------------------------------------
@@ -88,11 +87,7 @@
         template< int dimensionality >
         void ControlPoint< dimensionality >::readDerivative( Stream stream )
         {
-            M_Derivative = stream.Read< glm::vec< dimensionality + 1, float > >();
-            if ( M_Derivative[ dimensionality ] == 0.0f )
-            {
-                M_Derivative[ dimensionality ] = 1.0f;
-            }
+            M_Derivative = stream.Read< glm::vec< dimensionality, float > >();
         }
 
         /// @brief  map of the SceneSystem read methods
@@ -117,7 +112,8 @@
         m_ControlPoints( { ControlPoint< dimensionality >() } ),
         m_CubicCoefficients(),
         m_InterpolationType( InterpolationType::linear ),
-        m_IsDirty( true )
+        m_IsDirty( true ),
+        m_Id( GetUniqueId() )
     {}
 
     /// @brief value constructor
@@ -128,7 +124,8 @@
         m_ControlPoints( { ControlPoint< dimensionality >( value ) } ),
         m_CubicCoefficients(),
         m_InterpolationType( InterpolationType::linear ),
-        m_IsDirty( true )
+        m_IsDirty( true ),
+        m_Id( GetUniqueId() )
     {}
 
 //-----------------------------------------------------------------------------
@@ -183,58 +180,183 @@
         throw std::runtime_error( errorMessage.str() );
     }
 
+
     /// @brief  displays a 1d in the Inspector
     /// @tparam dimensionality  the number of dimensions this curve goes through
     template< int dimensionality >
-    void Curve< dimensionality >::Inspector()
+    void Curve< dimensionality >::Inspect()
     {
-        ImGui::BulletText("Click and drag each point.");
 
-        static ImPlotDragToolFlags flags = ImPlotDragToolFlags_None;
-        static ImPlotAxisFlags ax_flags = ImPlotAxisFlags_None;
-        if ( ImPlot::BeginPlot( "Curve", ImVec2( -1, 0 ), ImPlotFlags_CanvasOnly ) )
+        // rendering info
+        static float const pointRadius = 4.0f;
+        static ImVec4 const pointColor = { 0.0f, 1.0f, 1.0f, 1.0f };
+        static ImVec4 const tangentColor = { 1.0f, 1.0f, 0.0f, 1.0f };
+        static int const sampleCount = 64;
+
+        // the currently selected controlPoint index
+        static unsigned selectedIndex = 0;
+        if ( selectedIndex >= m_ControlPoints.size() )
         {
-            ImPlot::SetupAxes( 0, 0, ax_flags, ax_flags );
-            ImPlot::SetupAxesLimits( 0, 1, 0, 1 );
-            static ImPlotPoint P[] = {
-                ImPlotPoint( .05f, .05f ),
-                ImPlotPoint( 0.2, 0.4 ),
-                ImPlotPoint( 0.8, 0.6 ),
-                ImPlotPoint( .95f, .95f )
-            };
+            selectedIndex = 0;
+        }
 
-            ImPlot::DragPoint( 0, &P[ 0 ].x, &P[ 0 ].y, ImVec4( 0, 0.9f, 0, 1 ), 4, flags );
-            ImPlot::DragPoint( 1, &P[ 1 ].x, &P[ 1 ].y, ImVec4( 1, 0.5f, 1, 1 ), 4, flags );
-            ImPlot::DragPoint( 2, &P[ 2 ].x, &P[ 2 ].y, ImVec4( 0, 0.5f, 1, 1 ), 4, flags );
-            ImPlot::DragPoint( 3, &P[ 3 ].x, &P[ 3 ].y, ImVec4( 0, 0.9f, 0, 1 ), 4, flags );
+        // create a plot for each axis
+        for ( int axis = 0; axis < dimensionality; ++axis )
+        {
 
-            static ImPlotPoint B[100];
-            for (int i = 0; i < 100; ++i)
+            // get the axis name
+            std::string axisName;
+            switch ( axis )
             {
-                double t  = i / 99.0;
-                double u  = 1 - t;
-                double w1 = u*u*u;
-                double w2 = 3*u*u*t;
-                double w3 = 3*u*t*t;
-                double w4 = t*t*t;
-                B[i] = ImPlotPoint(
-                    w1 * P[ 0 ].x + w2 * P[ 1 ].x + w3 * P[ 2 ].x + w4 * P[ 3 ].x,
-                    w1 * P[ 0 ].y + w2 * P[ 1 ].y + w3 * P[ 2 ].y + w4 * P[ 3 ].y
-                );
+                case 0: axisName = "X Axis"; break;
+                case 1: axisName = "Y Axis"; break;
+                case 2: axisName = "Z Axis"; break;
+                case 3: axisName = "W Axis"; break;
+                default:
+                    axisName = "Axis [";
+                    axisName += axis;
+                    axisName += ']';
+                    break;
+            }
+            axisName += "##" + std::to_string( m_Id );
+
+            // put the plot in a dropdown
+            if ( !ImGui::TreeNode( axisName.c_str() ) )
+            {
+                continue;
             }
 
+            // calculate buffer zone outside of curve
+            glm::vec< dimensionality, float > buffer = (m_MaxPointValue - m_MinPointValue) * 0.1f;
+            float timeBuffer = GetTotalTime() * 0.1f;
 
-            ImPlot::SetNextLineStyle( ImVec4( 1, 0.5f, 1, 1 ) );
-            ImPlot::PlotLine( "##h1", &P[ 0 ].x, &P[ 0 ].y, 2, 0, 0, sizeof( ImPlotPoint ) );
+            // start the plot
+            if ( !ImPlot::BeginPlot( axisName.c_str(), ImVec2(-1, 0), ImPlotFlags_CanvasOnly ) )
+            {
+                ImGui::TreePop();
+                continue;
+            }
 
-            ImPlot::SetNextLineStyle( ImVec4( 0, 0.5f, 1, 1 ) );
-            ImPlot::PlotLine( "##h2", &P[ 2 ].x, &P[ 2 ].y, 2, 0, 0, sizeof( ImPlotPoint ) );
+            // set up the axes
+            ImPlot::SetupAxes( 0, 0, ImPlotAxisFlags_None, ImPlotAxisFlags_None );
+            ImPlot::SetupAxesLimits(
+                m_MinPointValue[ axis ] - buffer[ axis ], m_MaxPointValue[axis] + buffer[axis],
+                -timeBuffer, GetTotalTime() + timeBuffer
+            );
 
-            ImPlot::SetNextLineStyle( ImVec4( 0, 0.9f, 0, 1 ), 2 );
-            ImPlot::PlotLine( "##bez", &B[ 0 ].x, &B[ 0 ].y, 100, 0, 0, sizeof( ImPlotPoint ) );
+            // loop through each control point
+            for ( int i = 0; i < m_ControlPoints.size(); ++i )
+            {
+                // get values
+                glm::vec< dimensionality + 1, float >& value = m_ControlPoints[ i ].M_Value;
+                glm::vec< dimensionality, float >& derivative = m_ControlPoints[ i ].M_Derivative;
+
+
+                // display the draggable points
+                ImPlotPoint points[2];
+                points[0] = ImPlotPoint( value[ dimensionality ], value[ axis ] );
+                if ( ImPlot::DragPoint( 2 * i, &points[0].x, &points[0].y, pointColor, pointRadius, ImPlotDragToolFlags_None ) )
+                {
+                    selectedIndex = i;
+                }
+
+                points[1] = ImPlotPoint( points[0].x + timeBuffer, points[0].y + derivative[axis] * timeBuffer );
+                if ( ImPlot::DragPoint( 2 * i + 1, &points[1].x, &points[1].y, tangentColor, pointRadius, ImPlotDragToolFlags_None ) )
+                {
+                    selectedIndex = i;
+                }
+
+
+                // draw the tangent line
+                ImPlot::SetNextLineStyle( tangentColor );
+                std::string guiLabel = "##tangent" + std::to_string( m_Id ) + '_' + std::to_string( axis ) + '_' + std::to_string(i);
+                ImPlot::PlotLine( guiLabel.c_str(), &points[0].x, &points[0].y, 2, 0, 0, sizeof(ImPlotPoint));
+
+                // save the adjusted values
+                value[ axis ] = (float)points[0].y;
+                value[ dimensionality ] = (float)points[0].x;
+                derivative[ axis ] = (float)( points[1].y - points[0].y ) / (float)( points[1].x - points[0].x );
+
+                // don't draw any curve after the last point
+                if ( i >= m_ControlPoints.size() - 1 )
+                {
+                    break;
+                }
+
+                // sample along the curve
+                float duration = m_ControlPoints[ i + 1 ].GetTime() - value[ dimensionality ];
+                std::vector< ImPlotPoint > samples;
+                samples.resize( sampleCount );
+                for ( int j = 0; j < sampleCount; ++j )
+                {
+                    float t = j * duration / ( sampleCount - 1 ) + value[ dimensionality ];
+                    float sampledValue = interpolate( i, t )[ axis ];
+                    samples[ j ] = ImPlotPoint( t, sampledValue );
+                }
+
+                // draw the curve
+                ImPlot::SetNextLineStyle( ImVec4( 1.0f, 1.0f, 1.0f, 1.0f ) );
+                guiLabel = "##curve" + std::to_string( m_Id ) + '_' + std::to_string( axis ) + '_' + std::to_string(i);
+                ImPlot::PlotLine( guiLabel.c_str(), &samples[0].x, &samples[0].y, sampleCount, 0, 0, sizeof(ImPlotPoint));
+
+            }
 
             ImPlot::EndPlot();
+
+            ImGui::TreePop();
         }
+
+        ImGui::DragInt( ( "Point##" + std::to_string( m_Id ) ).c_str(), (int*)& selectedIndex, 0.05f, 0, m_ControlPoints.size() - 1);
+        ImGui::DragFloat( ( "Time##" + std::to_string( m_Id ) ).c_str(), &m_ControlPoints[ selectedIndex ].M_Value[ dimensionality ], 0.01f );
+        ImGui::DragScalarN( ( "Value##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndex ].M_Value[0], dimensionality, 0.01f );
+        ImGui::DragScalarN( ( "Derivative##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndex ].M_Derivative[0], dimensionality, 0.01f );
+
+        if ( ImGui::Button( ( "Add Point##" + std::to_string( m_Id ) ).c_str() ) )
+        {
+            ControlPoint< dimensionality > cp;
+            if ( selectedIndex == m_ControlPoints.size() - 1 )
+            {
+                cp.SetTime( GetTotalTime() + 1.0f );
+                AddControlPoint( cp );
+            }
+            else
+            {
+                
+                cp.SetTime( 0.5f * ( m_ControlPoints[ selectedIndex + 1 ].GetTime() + m_ControlPoints[ selectedIndex ].GetTime() ) );
+                glm::vec< dimensionality, float > sample = interpolate( selectedIndex, cp.GetTime() );
+                
+                for ( int i = 0; i < dimensionality; ++i )
+                {
+                    cp.M_Value[ i ] = sample[ i ];
+                }
+
+                if ( m_InterpolationType == InterpolationType::cubic )
+                {
+                    Coefficients coefficients = m_CubicCoefficients[ selectedIndex ];
+                    glm::vec< dimensionality, float > c = m_ControlPoints[ selectedIndex ].M_Derivative;
+                    float duration =  m_ControlPoints[ selectedIndex + 1 ].GetTime() - m_ControlPoints[ selectedIndex ].GetTime();
+                    cp.M_Derivative = (3.0f / 4.0f * coefficients.a + coefficients.b + c) / duration;
+                }
+
+                AddControlPoint( cp );
+            }
+
+        }
+
+        if ( ImGui::Button( ( "Remove Point##" + std::to_string( m_Id ) ).c_str() ) )
+        {
+            if ( m_ControlPoints.size() <= 1 )
+            {
+                m_ControlPoints[ 0 ] = ControlPoint< dimensionality >();
+            }
+            else
+            {
+                RemoveControlPoint( selectedIndex );
+            }
+        }
+
+        calculate();
+        
     }
 
 
@@ -242,6 +364,7 @@
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  calculates the curve, preparing it to be sampled
     /// @tparam dimensionality  the number of dimensions this curve goes through
@@ -251,14 +374,28 @@
         // ensure that the ControlPoints are in time order
         std::sort( m_ControlPoints.begin(), m_ControlPoints.end() );
 
-        m_CubicCoefficients.clear();
+        // calculate minimum and maximum values
+        m_MinPointValue = m_ControlPoints[0].M_Value;
+        m_MaxPointValue = m_ControlPoints[0].M_Value;
+        for ( int i = 1; i < m_ControlPoints.size(); ++i )
+        {
+            for ( int j = 0; j < dimensionality; ++j )
+            {
+                m_MinPointValue[ j ] = std::min( m_MinPointValue[ j ], m_ControlPoints[ i ].M_Value[ j ] );
+                m_MaxPointValue[ j ] = std::max( m_MaxPointValue[ j ], m_ControlPoints[ i ].M_Value[ j ] );
+            }
+        }
 
         // calculate the cubic coefficients if necessary
+        m_CubicCoefficients.clear();
         if ( m_InterpolationType == InterpolationType::cubic )
         {
             calculateCubicCoefficients();
         }
+
+        m_IsDirty = false;
     }
+
 
     /// @brief  samples the value of the curve at the specied time after the specified control point
     /// @tparam dimensionality  the number of dimensions this curve goes through
@@ -281,16 +418,22 @@
                 return lerp( m_ControlPoints[ index ].M_Value, m_ControlPoints[ index + 1 ].M_Value, time );
 
             case InterpolationType::cubic:
+            {
                 // interpolate between ControlPoints using precomputed cubic polynomial coefficients
+                float duration = m_ControlPoints[ index + 1 ].GetTime() - m_ControlPoints[ index ].GetTime();
                 time = (time - m_ControlPoints[ index ].GetTime())
-                    / (m_ControlPoints[ index + 1 ].GetTime() - m_ControlPoints[ index ].GetTime());
+                    / duration;
                 Coefficients coefficients = m_CubicCoefficients[ index ];
-                return (coefficients.a * time * time * time) + (coefficients.b * time * time) + (coefficients.c * time) + coefficients.d;
+                glm::vec< dimensionality, float > c = m_ControlPoints[ index ].M_Derivative * duration;
+                glm::vec< dimensionality, float > d = m_ControlPoints[ index ].M_Value;
+                return (coefficients.a * time * time * time) + (coefficients.b * time * time) + (c * time) + d;
+            }
 
             default:
                 throw std::runtime_error( "Error: invalid Curve interpolation type" );
         }
     }
+
 
     /// @brief  calculates the coefficients for the cubic polynomials
     /// @tparam dimensionality  the number of dimensions this curve goes through
@@ -310,9 +453,7 @@
             // calculate cubic polynomial coefficients such that f(0) = p0, f(1) = p1, f'(0) = d0, and f'(1) = d1
             m_CubicCoefficients.push_back( {
                 2.0f * p0 - 2.0f * p1 + d0 + d1,
-                -3.0f * p0 + 3.0f * p1 - 2.0f * d0 - d1,
-                d0,
-                p0
+                -3.0f * p0 + 3.0f * p1 - 2.0f * d0 - d1
             } );
         }
     }
@@ -345,6 +486,7 @@
     template< int dimensionality >
     void Curve< dimensionality >::readControlPoints( Stream stream )
     {
+        m_ControlPoints.clear();
         for ( auto& pointData : stream.GetArray() )
         {
             ControlPoint< dimensionality > point;

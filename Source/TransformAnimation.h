@@ -25,19 +25,21 @@ public: // constructor / destructor / Inspector
     /// @brief Destroys this TransformAnimation
     ~TransformAnimation() = default;
 
-    /// @brief Used by the DebugSystem to display information about this TransformAnimation
-    void Inspect() {};
-
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
 
+    /// @brief  samples this TransformAnimation at the specified time
+    /// @param  time    the time to sample this TransformAnimation at
+    /// @return a matrix of the effect transform at the specified time
     glm::mat4 SampleAtTime( float time ) const;
 
-    
     /// @brief  gets the amount of time this Effect takes to complete
     /// @return the amount of time this Effect takes to complete
     float GetTotalTime() const;
+
+    /// @brief Used by the DebugSystem to display information about this TransformAnimation
+    void Inspect();
 
 //-----------------------------------------------------------------------------
 public: // accessors

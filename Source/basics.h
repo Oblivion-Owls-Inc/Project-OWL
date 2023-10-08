@@ -18,3 +18,9 @@ __inline T lerp( T const& a, T const& b, float time )
 {
     return b * time + a * (1 - time);
 }
+
+__inline unsigned GetUniqueId()
+{
+    static unsigned id = 0;
+    return ++id;
+}

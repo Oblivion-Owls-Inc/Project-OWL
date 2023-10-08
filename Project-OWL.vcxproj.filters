@@ -105,9 +105,6 @@
     <Filter Include="Engine\Systems\AssetLibrarySystem">
       <UniqueIdentifier>{4d891ce7-a202-4957-aaa5-fbc0908075eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Animation">
-      <UniqueIdentifier>{f80d0ed4-3969-4370-994f-09374cc3b4a3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Collider\LineCollider">
       <UniqueIdentifier>{65fb5e3e-f000-41f3-b5de-e4e439e2ad94}</UniqueIdentifier>
     </Filter>
@@ -159,8 +156,14 @@
     <Filter Include="Engine\Entity\Component\Behavior\Animation\Asset">
       <UniqueIdentifier>{4ef39645-2d4e-4936-8ebf-80abd5fb3eb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Framework\Pools">
+      <UniqueIdentifier>{f2e1e11a-6966-48bf-90af-219074be36e6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Game\Behaviors\TurretBehavior">
       <UniqueIdentifier>{e523f30f-0b00-4ea5-b75b-339074d48b3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\EffectAnimator\Asset">
+      <UniqueIdentifier>{a8d430fd-f8d6-4b89-8727-92c43de633df}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -281,9 +284,6 @@
     <ClCompile Include="Source\ComponentFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Stream.t.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\AssetLibrarySystem.cpp">
       <Filter>Engine\Systems\AssetLibrarySystem</Filter>
     </ClCompile>
@@ -329,12 +329,6 @@
     <ClCompile Include="Source\TurretBehavior.cpp">
       <Filter>Game\Behaviors\TurretBehavior</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Pool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FollowingBehavior.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Stream.t.cpp">
       <Filter>Engine\Framework\Stream</Filter>
     </ClCompile>
@@ -344,11 +338,20 @@
     <ClCompile Include="Source\Curve.cpp">
       <Filter>Engine\Framework\Curve</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TransformAnimation.cpp">
-      <Filter>Engine\Entity\Component\Behavior\EffectAnimator</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EffectAnimator.cpp">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stream.t.cpp">
+      <Filter>Engine\Framework\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FollowingBehavior.cpp">
+      <Filter>Game\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Pool.cpp">
+      <Filter>Engine\Framework\Pools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TransformAnimation.cpp">
+      <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -520,12 +523,6 @@
     <ClInclude Include="Source\TurretBehavior.h">
       <Filter>Game\Behaviors\TurretBehavior</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Pool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\FollowingBehavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Stream.h">
       <Filter>Engine\Framework\Stream</Filter>
     </ClInclude>
@@ -535,8 +532,14 @@
     <ClInclude Include="Source\EffectAnimator.h">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator</Filter>
     </ClInclude>
+    <ClInclude Include="Source\FollowingBehavior.h">
+      <Filter>Game\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Pool.h">
+      <Filter>Engine\Framework\Pools</Filter>
+    </ClInclude>
     <ClInclude Include="Source\TransformAnimation.h">
-      <Filter>Engine\Entity\Component\Behavior\EffectAnimator</Filter>
+      <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

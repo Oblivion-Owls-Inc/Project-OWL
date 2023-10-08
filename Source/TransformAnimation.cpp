@@ -6,8 +6,6 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
-#pragma once
-
 #include "TransformAnimation.h"
 
 //-----------------------------------------------------------------------------
@@ -26,6 +24,9 @@
 // public: methods
 //-----------------------------------------------------------------------------
 
+    /// @brief  samples this TransformAnimation at the specified time
+    /// @param  time    the time to sample this TransformAnimation at
+    /// @return a matrix of the effect transform at the specified time
     glm::mat4 TransformAnimation::SampleAtTime( float time ) const
     {
         glm::mat4 transformation =
@@ -47,6 +48,38 @@
             std::max( m_ScaleCurve.GetTotalTime(), m_OffsetCurve.GetTotalTime() ),
             std::max( m_RotationCurve.GetTotalTime(), m_SkewCurve.GetTotalTime() )
         );
+    }
+
+    /// @brief  Used by the DebugSystem to display information about this TransformAnimation
+    void TransformAnimation::Inspect()
+    {
+        if ( ImGui::TreeNode( "Scale Curve" ) )
+        {
+            m_ScaleCurve.Inspect();
+
+            ImGui::TreePop();
+        }
+
+        if ( ImGui::TreeNode( "Offset Curve" ) )
+        {
+            m_OffsetCurve.Inspect();
+
+            ImGui::TreePop();
+        }
+
+        if ( ImGui::TreeNode( "Rotation Curve" ) )
+        {
+            m_RotationCurve.Inspect();
+
+            ImGui::TreePop();
+        }
+
+        if ( ImGui::TreeNode( "Skew Curve" ) )
+        {
+            m_SkewCurve.Inspect();
+
+            ImGui::TreePop();
+        }
     }
 
 //-----------------------------------------------------------------------------

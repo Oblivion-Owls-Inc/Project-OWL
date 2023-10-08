@@ -63,6 +63,7 @@ public: // public functions
 
     /// @brief  Gets All the assets in the AssetLibrary
     std::map< std::string, AssetType* > const& GetAssets() const;
+
 //-----------------------------------------------------------------------------
 private: // private variables
 //-----------------------------------------------------------------------------
