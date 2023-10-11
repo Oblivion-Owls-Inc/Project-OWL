@@ -147,13 +147,6 @@
 	    { "diegetic"	, &readIsDiegetic	   }
     };
 
-    /// @brief  Gets a map of the read methods for transform component.
-    /// @return A map of all the transform component read methods.
-    ReadMethodMap< Component > const& Transform::GetReadMethods() const
-    {
-	    return (ReadMethodMap< Component > const&)s_ReadMethods;
-    }
-
 
 //-----------------------------------------------------------------------------
 // private: copying

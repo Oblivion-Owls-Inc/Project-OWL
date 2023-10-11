@@ -294,10 +294,3 @@ ReadMethodMap< Animation > const Animation::s_ReadMethods = {
 	
 };
 
-/// @brief Gets the map of read methods for this Component
-/// @return the map of read methods for this Component
-ReadMethodMap< Component > const& Animation::GetReadMethods() const
-{
-	return (ReadMethodMap< Component > const&)s_ReadMethods;
-}
-

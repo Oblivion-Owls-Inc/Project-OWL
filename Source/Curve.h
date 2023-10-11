@@ -10,14 +10,14 @@
 
 #define CURVE_H
 
-#include "Stream.h"
+#include "ISerializable.h"
 
 #include <glm/glm.hpp>
 #include <vector>
 
 /// @brief  control points used by this Curve
 template< int dimensionality >
-class ControlPoint
+class ControlPoint : public ISerializable
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructor
@@ -41,11 +41,11 @@ public: // accessors
     
     /// @brief  gets the time of this ControlPoint
     /// @return the time of this ControlPoint
-    __inline float GetTime() const { return M_Value[ dimensionality ]; }
+    float GetTime() const { return M_Value[ dimensionality ]; }
 
     /// @brief  sets the time of this ControlPoint
     /// @return the time of this ControlPoint
-    __inline void SetTime( float time ) { M_Value[ dimensionality ] = time; }
+    void SetTime( float time ) { M_Value[ dimensionality ] = time; }
 
 //-----------------------------------------------------------------------------
 public: // comparison operator
@@ -54,7 +54,7 @@ public: // comparison operator
     /// @brief  checks if one ControlPoint is before another (for sorting)
     /// @param  other   the ControlPoint to compare against
     /// @return whether this ControlPoint is before the other
-    __inline bool operator < ( ControlPoint const& other ) const { return GetTime() < other.GetTime(); }
+    bool operator <( ControlPoint const& other ) const { return GetTime() < other.GetTime(); }
     
 //-----------------------------------------------------------------------------
 public: // member variables
@@ -65,16 +65,6 @@ public: // member variables
 
     /// @brief  the value at this ControlPoint
     glm::vec< dimensionality, float > M_Derivative;
-
-//-----------------------------------------------------------------------------
-public: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  gets the Curve read method map
-    /// @return the read method map
-    static __inline ReadMethodMap< ControlPoint > const& GetReadMethods() { return s_ReadMethods; }
-
-    void AfterRead() {}
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -93,16 +83,22 @@ private: // reading
     void readDerivative( Stream stream );
 
     /// @brief  map of the SceneSystem read methods
-    static ReadMethodMap< ControlPoint > const s_ReadMethods;
+    static ReadMethodMap< ControlPoint< dimensionality > > const s_ReadMethods;
+
+    /// @brief  gets the Curve read method map
+    /// @return the read method map
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
 //-----------------------------------------------------------------------------
 };
 
 
 template< int dimensionality >
-class Curve
+class Curve : public ISerializable
 {
-
 //-----------------------------------------------------------------------------
 public: // constructor / destructor
 //-----------------------------------------------------------------------------
@@ -127,7 +123,7 @@ public: // methods
     glm::vec< dimensionality, float > GetValueAtTime( float time ) const;
 
     /// @brief  marks this Curve as dirty to be recalculated
-    __inline void MarkDirty() { m_IsDirty = true; }
+    void MarkDirty() { m_IsDirty = true; }
 
     /// @brief  displays this curve in the Inspector
     void Inspect();
@@ -264,14 +260,6 @@ private: // member variables
     unsigned m_Id;
 
 //-----------------------------------------------------------------------------
-public: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  gets the Curve read method map
-    /// @return the read method map
-    static __inline ReadMethodMap< Curve > const& GetReadMethods() { return s_ReadMethods; }
-
-//-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
@@ -289,6 +277,13 @@ private: // reading
 
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< Curve > const s_ReadMethods;
+
+    /// @brief  gets the Curve read method map
+    /// @return the read method map
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
 //-----------------------------------------------------------------------------
 };

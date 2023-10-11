@@ -96,41 +96,36 @@ void TurretBehavior::FireBullet()
 	/// Todo: Make this actually work
 }
 
-void TurretBehavior::ReadFireRate(Stream jsonValue)
+void TurretBehavior::readFireRate(Stream jsonValue)
 {
 	m_FireRate = jsonValue.Read<float>();
 }
 
-void TurretBehavior::ReadRange(Stream jsonValue)
+void TurretBehavior::readRange(Stream jsonValue)
 {
 	m_Range = jsonValue.Read<float>();
 }
 
-void TurretBehavior::ReadBulletDamage(Stream jsonValue)
+void TurretBehavior::readBulletDamage(Stream jsonValue)
 {
 	m_BulletDamage = jsonValue.Read<float>();
 }
 
-void TurretBehavior::ReadBulletSpeed(Stream jsonValue)
+void TurretBehavior::readBulletSpeed(Stream jsonValue)
 {
 	m_BulletSpeed = jsonValue.Read<float>();
 }
 
-void TurretBehavior::ReadBulletSize(Stream jsonValue)
+void TurretBehavior::readBulletSize(Stream jsonValue)
 {
 	m_BulletSize = jsonValue.Read<float>();
 }
 
-ReadMethodMap<TurretBehavior> const TurretBehavior::readMethods =
+ReadMethodMap<TurretBehavior> const TurretBehavior::s_ReadMethods =
 {
-	{ "fireRate",			  &ReadFireRate },
-	{ "range",					 &ReadRange },
-	{ "bulletdamage",	  &ReadBulletDamage },
-	{ "bulletspeed",	   &ReadBulletSpeed },
-	{ "bulletsize",		    &ReadBulletSize }
+	{ "fireRate",			  &readFireRate },
+	{ "range",					 &readRange },
+	{ "bulletdamage",	  &readBulletDamage },
+	{ "bulletspeed",	   &readBulletSpeed },
+	{ "bulletsize",		    &readBulletSize }
 };
-
-ReadMethodMap<Component> const& TurretBehavior::GetReadMethods() const
-{
-	return (ReadMethodMap<Component> const&)readMethods;
-}

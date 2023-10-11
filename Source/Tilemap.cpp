@@ -159,12 +159,3 @@ void Tilemap::readTilemap(Stream stream)
 ReadMethodMap< Tilemap > const Tilemap::s_ReadMethods = {
     { "TileData", &readTilemap  }
 };
-
-
-/// @brief      Gets the map of read methods for this Component
-/// @return     The map of read methods for this Component
-ReadMethodMap< Component > const& Tilemap::GetReadMethods() const
-{
-    return (ReadMethodMap< Component> const&)s_ReadMethods;
-}
-

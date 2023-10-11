@@ -84,17 +84,6 @@ private: // private functions
     void ListAssets();
 
 //-----------------------------------------------------------------------------
-private: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief map of the AssetLibrarySystem read methods
-    static ReadMethodMap< AssetLibrarySystem > const s_ReadMethods;
-
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    virtual ReadMethodMap< System > const& GetReadMethods() const override;
-
-//-----------------------------------------------------------------------------
 private: // singleton stuff
 //-----------------------------------------------------------------------------
 

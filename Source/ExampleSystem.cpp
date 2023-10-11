@@ -20,13 +20,6 @@
     /// @brief  map of the ExampleSystem read methods
     ReadMethodMap< ExampleSystem > const ExampleSystem::s_ReadMethods = {};
 
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    ReadMethodMap< System > const& ExampleSystem::GetReadMethods() const
-    {
-        return (ReadMethodMap< System > const&)s_ReadMethods;
-    }
-
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------

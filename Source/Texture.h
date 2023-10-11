@@ -5,11 +5,12 @@
 #pragma once
 #include "glm/glm.hpp"
 
-#include "Stream.h"
+#include "ISerializable.h"
+
 #include "Mesh.h"
 
 /// @brief          Stores texture data, and allows to bind it for rendering.
-class Texture
+class Texture : public ISerializable
 {
 
 //-----------------------------------------------------------------------------
@@ -66,14 +67,6 @@ public: // acccessors
 #endif
 
 //-----------------------------------------------------------------------------
-public: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  gets the read method map
-    /// @return the read method map
-    static __inline ReadMethodMap< Texture > const& GetReadMethods() { return s_ReadMethods; }
-
-//-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
@@ -86,10 +79,16 @@ private: // reading
     void readSheetDimensions( Stream stream );
 
     /// @brief  gets called after reading all arugments 
-    void afterLoad( Stream );
+    void AfterLoad();
 
     /// @brief  the read methods for textures
     static ReadMethodMap< Texture > const s_ReadMethods;
+
+    /// @brief  gets the read method map
+    /// @return the read method map
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
 //-----------------------------------------------------------------------------
 private: // methods

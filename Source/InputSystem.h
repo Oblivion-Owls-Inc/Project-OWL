@@ -24,17 +24,7 @@ private: // virtual override methods
     /// @brief fixed update for input, must be called for input to function
     virtual void OnFixedUpdate() override;
 
-
 //-----------------------------------------------------------------------------
-private: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief map of the InputSystem read methods
-    static ReadMethodMap< InputSystem > const s_ReadMethods;
-
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    virtual ReadMethodMap< System > const& GetReadMethods() const override;
 
      /// @brief Constructs the InputSystem
     InputSystem();

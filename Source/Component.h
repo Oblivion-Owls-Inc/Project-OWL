@@ -11,11 +11,12 @@
 #include <typeindex>
 #include <map>
 #include <string>
-#include "Stream.h"
+
+#include "ISerializable.h"
 
 class Entity;
 
-class Component
+class Component : public ISerializable
 {
 //-----------------------------------------------------------------------------
 public: // destructor
@@ -68,14 +69,6 @@ public: // Accessors
     /// @brief returns the components parent entity
     /// @return the parent entity of the component
     __inline Entity* GetParent() const { return m_Parent; }
-
-//-----------------------------------------------------------------------------
-public: // virtual reading
-//-----------------------------------------------------------------------------
-    
-	/// @brief  gets the map of read methods for this Component
-	/// @return the map of read methods for this Component
-	virtual ReadMethodMap< Component > const& GetReadMethods() const = 0;
 
 //-----------------------------------------------------------------------------
 private: // member variables

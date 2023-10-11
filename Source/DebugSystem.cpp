@@ -253,13 +253,6 @@ void DebugSystem::ImguiStartFrame()
 		{ "ShowDebugWindow", &readShowDebugWindow }
     };
 
-    /// @brief  gets the map of read methods
-    /// @return the map of read methods
-    ReadMethodMap< System > const& DebugSystem::GetReadMethods() const
-    {
-        return (ReadMethodMap< System > const&)s_ReadMethods;
-    }
-
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------

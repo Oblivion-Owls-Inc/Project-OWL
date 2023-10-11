@@ -67,13 +67,5 @@ class PlayerController :
         // Define the maximum speed for smooth movement.
         float maxSpeed = 5.0f;
 
-    private: // reading
-
-        /// @brief the map of read methods for this Component
-        static ReadMethodMap< PlayerController > const readMethods;
-
-        /// @brief gets the map of read methods for this Component
-        /// @return the map of read methods for this Component
-        virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 };
 

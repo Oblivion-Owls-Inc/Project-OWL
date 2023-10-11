@@ -11,12 +11,12 @@
 #include <vector>
 
 #include "basics.h"
-#include "Stream.h"
+#include "ISerializable.h"
 
 #include "System.h"
 
 
-class Engine
+class Engine : public ISerializable
 {
 
 //-----------------------------------------------------------------------------
@@ -45,13 +45,6 @@ public: // accessors
     /// @return the array of all Systems in the engine
     std::vector< System * > const& GetSystems() const;
 
-//-----------------------------------------------------------------------------
-public: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  gets the map of Engine read methods
-    /// @return the map of Engine read methods
-    ReadMethodMap< Engine > const& GetReadMethods() const;
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -67,6 +60,13 @@ private: // reading
 
     /// @brief map containing Engine read methods
     static ReadMethodMap< Engine > const s_ReadMethods;
+
+    /// @brief  gets the map of Engine read methods
+    /// @return the map of Engine read methods
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
     /// @brief  Adds a System to the Engine.
     /// @tparam SystemType  The type of system to add the Engine

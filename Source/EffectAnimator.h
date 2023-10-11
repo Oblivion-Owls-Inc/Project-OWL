@@ -179,9 +179,9 @@ private: // reading
 
     /// @brief  gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    __inline virtual ReadMethodMap< Component > const& GetReadMethods() const override
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
     {
-        return (ReadMethodMap< Component > const&)s_ReadMethods;
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
 //-----------------------------------------------------------------------------

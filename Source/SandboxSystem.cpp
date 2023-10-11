@@ -75,23 +75,6 @@ void SandboxSystem::OnSceneExit()
 }
 
 
-
-
-
-//-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  map of the SandboxSystem read methods
-    ReadMethodMap< SandboxSystem > const SandboxSystem::s_ReadMethods = {};
-
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    ReadMethodMap< System > const& SandboxSystem::GetReadMethods() const
-    {
-        return (ReadMethodMap< System > const&)s_ReadMethods;
-    }
-
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------

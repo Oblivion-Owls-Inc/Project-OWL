@@ -62,17 +62,6 @@ private: // virtual override methods
     virtual void DebugWindow() override;
 
 //-----------------------------------------------------------------------------
-private: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  map of the EntitySystem read methods
-    static ReadMethodMap< EntitySystem > const s_ReadMethods;
-
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    virtual ReadMethodMap< System > const& GetReadMethods() const override;
-
-//-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 

@@ -84,24 +84,6 @@ void BehaviorSystem<BehaviorType>::DebugWindow()
 }
 
 //-----------------------------------------------------------------------------
-// private: reading
-//----------------------------------------------------------------------------- 
-
-	/// @brief                  the read methods of a BehaviorSystem
-	/// @tparam BehaviorType    the type of behavior this BehaviorSystem manages
-template<typename BehaviorType>
-ReadMethodMap< BehaviorSystem< BehaviorType > > const BehaviorSystem< BehaviorType >::s_ReadMethods = {};
-
-/// @brief                  gets the read methods for this System
-/// @tparam BehaviorType    the type of behavior this BehaviorSystem manages
-/// @return                 the read methods for this System
-template<typename BehaviorType>
-ReadMethodMap< System > const& BehaviorSystem< BehaviorType >::GetReadMethods() const
-{
-	return (ReadMethodMap< System > const&)s_ReadMethods;
-}
-
-//-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 

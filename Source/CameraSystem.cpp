@@ -125,13 +125,6 @@ void CameraSystem::recalcMatrices()
     /// @brief map of the CameraSystem read methods
     ReadMethodMap< CameraSystem > const CameraSystem::s_ReadMethods = {};
 
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    ReadMethodMap< System > const& CameraSystem::GetReadMethods() const
-    {
-        return (ReadMethodMap< System > const&)s_ReadMethods;
-    }
-
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------

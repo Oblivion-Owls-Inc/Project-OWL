@@ -122,23 +122,9 @@
         { "NextSceneName", &readNextSceneName }
     };
 
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    ReadMethodMap< System > const& SceneSystem::GetReadMethods() const
-    {
-        return (ReadMethodMap< System > const&)s_ReadMethods;
-    }
-
 //-----------------------------------------------------------------------------
 // private: scene loading
 //-----------------------------------------------------------------------------
-
-    /// @brief  gets the Scene read methods
-    /// @return a map of the Scene read methods
-    ReadMethodMap< SceneSystem::Scene > const& SceneSystem::Scene::GetReadMethods() const
-    {
-        return s_ReadMethods;
-    }
 
     /// @brief  reads the assets in a Scene
     /// @param  stream  the data to read from
@@ -295,7 +281,7 @@
         for ( auto const& file : std::filesystem::directory_iterator( m_BaseScenePath ) )
         {
             std::string filename = file.path().filename().string();
-            int nameLength = filename.size() - s_SceneFileExtension.size();
+            unsigned nameLength = filename.size() - s_SceneFileExtension.size();
             if ( filename.substr( nameLength ) != s_SceneFileExtension )
             {
                 continue;

@@ -272,11 +272,4 @@ ReadMethodMap< Sprite > const Sprite::s_ReadMethods = {
     { "FrameIndex", &readFrameIndex }
 };
 
-/// @brief gets the map of read methods for this Component
-/// @return the map of read methods for this Component
-ReadMethodMap< Component > const& Sprite::GetReadMethods() const
-{
-    return (ReadMethodMap< Component> const&)s_ReadMethods;
-}
-
 //-----------------------------------------------------------------------------

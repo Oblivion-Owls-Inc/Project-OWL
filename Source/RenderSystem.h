@@ -63,17 +63,6 @@ public:
     /// @return         Default mesh for simple quad textures
     __inline Mesh const* GetDefaultMesh() const { return m_DefaultMesh; }
 
-//-----------------------------------------------------------------------------
-private: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief map of the RenderSystem read methods
-    static ReadMethodMap< RenderSystem > const s_ReadMethods;
-
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    virtual ReadMethodMap< System > const& GetReadMethods() const override;
-
 
     //-------------------------------------------------------------------------
     //          inherited virtuals

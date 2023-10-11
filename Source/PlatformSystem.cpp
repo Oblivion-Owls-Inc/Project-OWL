@@ -114,13 +114,6 @@ void PlatformSystem::OnExit()
         { "WindowHeight", &readWindowHeight }
     };
 
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    ReadMethodMap< System > const& PlatformSystem::GetReadMethods() const
-    {
-        return (ReadMethodMap< System > const&)s_ReadMethods;
-    }
-
 /// @brief    Returns the window handle.
 /// @return   GLFWwindow pointer: Current window handle.
 GLFWwindow* PlatformSystem::GetWindowHandle() const

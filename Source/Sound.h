@@ -10,10 +10,10 @@
 
 #include <fmod.hpp>
 
-#include "Stream.h"
+#include "ISerializable.h"
 
 /// @brief Example System meant to be copy-pasted when creating new Systems
-class Sound
+class Sound : public ISerializable
 {
 
 //-----------------------------------------------------------------------------
@@ -64,13 +64,6 @@ public: // accessors
     /// @brief Used by the Debug System to display information about this Sound
     void Inspect();
 
-//-----------------------------------------------------------------------------
-public: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  gets the Sound read method map
-    /// @return the read method map
-    static __inline ReadMethodMap< Sound > const& GetReadMethods() { return s_ReadMethods; }
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -89,6 +82,13 @@ private: // reading
 
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< Sound > const s_ReadMethods;
+
+    /// @brief  gets the Sound read method map
+    /// @return the read method map
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
 //-----------------------------------------------------------------------------
 private: // member variables

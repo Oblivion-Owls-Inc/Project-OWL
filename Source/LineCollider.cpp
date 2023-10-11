@@ -84,11 +84,4 @@ void LineCollider::ReadLineVectors(Stream stream)
         { "lineVectors" , &ReadLineVectors    }
     };
 
-    /// @brief gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
-    ReadMethodMap< Component > const& LineCollider::GetReadMethods() const
-    {
-        return (ReadMethodMap< Component > const&)s_ReadMethods;
-    }
-
 //-----------------------------------------------------------------------------

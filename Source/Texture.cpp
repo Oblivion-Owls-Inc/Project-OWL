@@ -91,7 +91,7 @@ void Texture::readSheetDimensions( Stream stream )
 
 
 /// @brief  gets called after reading all arugments 
-void Texture::afterLoad( Stream )
+void Texture::AfterLoad()
 {
     if ( m_Filepath.empty() == false )
     {
@@ -103,8 +103,7 @@ void Texture::afterLoad( Stream )
 /// @brief  the read methods for textures
 ReadMethodMap< Texture > const Texture::s_ReadMethods = {
     { "Filepath",        &readFilepath        },
-    { "SheetDimensions", &readSheetDimensions },
-    { "AFTERLOAD",       &afterLoad           }
+    { "SheetDimensions", &readSheetDimensions }
 };
 
 

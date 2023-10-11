@@ -23,6 +23,8 @@
 #include "imgui.h"
 #include "implot.h"
 
+#include <sstream>
+
 //-----------------------------------------------------------------------------
 // Class ControlPoint
 //-----------------------------------------------------------------------------
@@ -213,6 +215,8 @@
             ImGui::EndCombo();
         }
 
+        ImGui::Checkbox( "Is Looping", &m_IsLooping );
+
         // rendering info
         static float const pointRadius = 4.0f;
         static ImVec4 const pointColor = { 0.0f, 1.0f, 1.0f, 1.0f };
@@ -220,11 +224,11 @@
         static ImVec4 const selectedColor = { 1.0f, 0.0f, 0.0f, 1.0f };
         static int const sampleCount = 64;
 
-        // the currently selected controlPoint index
-        static unsigned selectedIndex = 0;
-        if ( selectedIndex >= m_ControlPoints.size() )
+        // the currently selected controlPoint index for each Curve
+        static std::map< unsigned, unsigned > selectedIndices;
+        if ( selectedIndices[ m_Id ] >= m_ControlPoints.size() )
         {
-            selectedIndex = 0;
+            selectedIndices[ m_Id ] = 0;
         }
 
         // create a plot for each axis
@@ -282,9 +286,9 @@
                 // display the draggable point
                 ImPlotPoint points[2];
                 points[0] = ImPlotPoint( value[ dimensionality ], value[ axis ] );
-                if ( ImPlot::DragPoint( 2 * i, &points[0].x, &points[0].y, (selectedIndex == i) ? selectedColor : pointColor, pointRadius + (selectedIndex == i) * pointRadius, ImPlotDragToolFlags_None ) )
+                if ( ImPlot::DragPoint( 2 * i, &points[0].x, &points[0].y, (selectedIndices[ m_Id ] == i) ? selectedColor : pointColor, pointRadius + (selectedIndices[ m_Id ] == i) * pointRadius, ImPlotDragToolFlags_None ) )
                 {
-                    selectedIndex = i;
+                    selectedIndices[ m_Id ] = i;
                 }
 
                 // save the adjusted values
@@ -298,7 +302,7 @@
                     points[1] = ImPlotPoint( points[0].x + timeBuffer, points[0].y + derivative[axis] * timeBuffer );
                     if ( ImPlot::DragPoint( 2 * i + 1, &points[1].x, &points[1].y, tangentColor, pointRadius, ImPlotDragToolFlags_None ) )
                     {
-                        selectedIndex = i;
+                        selectedIndices[ m_Id ] = i;
                     }
 
                     // draw the tangent line
@@ -338,20 +342,20 @@
             ImGui::TreePop();
         }
 
-        ImGui::DragInt( ( "Point##" + std::to_string( m_Id ) ).c_str(), (int*)&selectedIndex, 0.05f, 0, m_ControlPoints.size() - 1, nullptr, (m_ControlPoints.size() <= 1) ? ImGuiSliderFlags_NoInput : ImGuiSliderFlags_None );
+        ImGui::DragInt( ( "Point##" + std::to_string( m_Id ) ).c_str(), (int*)&selectedIndices[ m_Id ], 0.05f, 0, m_ControlPoints.size() - 1, nullptr, (m_ControlPoints.size() <= 1) ? ImGuiSliderFlags_NoInput : ImGuiSliderFlags_None );
 
-        ImGui::DragFloat( ( "Time##" + std::to_string( m_Id ) ).c_str(), &m_ControlPoints[ selectedIndex ].M_Value[ dimensionality ], 0.01f );
-        ImGui::DragScalarN( ( "Value##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndex ].M_Value[0], dimensionality, 0.01f );
+        ImGui::DragFloat( ( "Time##" + std::to_string( m_Id ) ).c_str(), &m_ControlPoints[ selectedIndices[ m_Id ] ].M_Value[ dimensionality ], 0.01f );
+        ImGui::DragScalarN( ( "Value##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndices[ m_Id ] ].M_Value[0], dimensionality, 0.01f );
 
         if ( m_InterpolationType == InterpolationType::cubic )
         {
-            ImGui::DragScalarN( ( "Derivative##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndex ].M_Derivative[0], dimensionality, 0.01f );
+            ImGui::DragScalarN( ( "Derivative##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndices[ m_Id ] ].M_Derivative[0], dimensionality, 0.01f );
         }
 
         if ( ImGui::Button( ( "Add Point##" + std::to_string( m_Id ) ).c_str() ) )
         {
             ControlPoint< dimensionality > cp;
-            if ( selectedIndex == m_ControlPoints.size() - 1 )
+            if ( selectedIndices[ m_Id ] == m_ControlPoints.size() - 1 )
             {
                 cp.SetTime( GetTotalTime() + 1.0f );
                 AddControlPoint( cp );
@@ -359,8 +363,8 @@
             else
             {
                 
-                cp.SetTime( 0.5f * ( m_ControlPoints[ selectedIndex + 1 ].GetTime() + m_ControlPoints[ selectedIndex ].GetTime() ) );
-                glm::vec< dimensionality, float > sample = interpolate( selectedIndex, cp.GetTime() );
+                cp.SetTime( 0.5f * ( m_ControlPoints[ selectedIndices[ m_Id ] + 1 ].GetTime() + m_ControlPoints[ selectedIndices[ m_Id ] ].GetTime() ) );
+                glm::vec< dimensionality, float > sample = interpolate( selectedIndices[ m_Id ], cp.GetTime() );
                 
                 for ( int i = 0; i < dimensionality; ++i )
                 {
@@ -369,16 +373,16 @@
 
                 if ( m_InterpolationType == InterpolationType::cubic )
                 {
-                    Coefficients coefficients = m_CubicCoefficients[ selectedIndex ];
-                    glm::vec< dimensionality, float > c = m_ControlPoints[ selectedIndex ].M_Derivative;
-                    float duration =  m_ControlPoints[ selectedIndex + 1 ].GetTime() - m_ControlPoints[ selectedIndex ].GetTime();
+                    Coefficients coefficients = m_CubicCoefficients[ selectedIndices[ m_Id ] ];
+                    glm::vec< dimensionality, float > c = m_ControlPoints[ selectedIndices[ m_Id ] ].M_Derivative;
+                    float duration =  m_ControlPoints[ selectedIndices[ m_Id ] + 1 ].GetTime() - m_ControlPoints[ selectedIndices[ m_Id ] ].GetTime();
                     cp.M_Derivative = (3.0f / 4.0f * coefficients.a + coefficients.b + c) / duration;
                 }
 
                 AddControlPoint( cp );
             }
 
-            ++selectedIndex;
+            ++selectedIndices[ m_Id ];
         }
 
         if ( ImGui::Button( ( "Remove Point##" + std::to_string( m_Id ) ).c_str() ) )
@@ -389,8 +393,8 @@
             }
             else
             {
-                RemoveControlPoint( selectedIndex );
-                --selectedIndex;
+                RemoveControlPoint( selectedIndices[ m_Id ] );
+                --selectedIndices[ m_Id ];
             }
         }
 
