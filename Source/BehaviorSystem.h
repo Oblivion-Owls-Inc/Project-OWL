@@ -55,17 +55,6 @@ public:
     /// @return     BehaviorSystem pointer: new or existing instance of this system
     static BehaviorSystem< BehaviorType >* GetInstance();
 
-//-----------------------------------------------------------------------------
-private: // reading
-//----------------------------------------------------------------------------- 
-
-        /// @brief the read methods of a BehaviorSystem
-    static ReadMethodMap< BehaviorSystem< BehaviorType > > const s_ReadMethods;
-
-    /// @brief gets the read methods for this System
-    /// @return the read methods for this System
-    virtual ReadMethodMap< System > const& GetReadMethods() const override;
-
 private:
     std::vector< Behavior* > m_BehaviorList;
 

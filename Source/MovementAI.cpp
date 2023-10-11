@@ -94,12 +94,3 @@ void MovementAI::OnFixedUpdate()
     ballTransform->SetTranslation(pos);
     ballRigidBody->SetVelocity(velocity);
 }
-
-
-/// @brief the map of read methods for this Component
-ReadMethodMap< MovementAI > const MovementAI::readMethods = {};
-
-ReadMethodMap<Component> const& MovementAI::GetReadMethods() const
-{
-    return (ReadMethodMap< Component > const&)readMethods;
-}

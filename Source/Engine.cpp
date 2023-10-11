@@ -94,17 +94,6 @@
     }
 
 //-----------------------------------------------------------------------------
-// public: reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  gets the map of Engine read methods
-    /// @return the map of Engine read methods
-    ReadMethodMap< Engine > const& Engine::GetReadMethods() const
-    {
-        return s_ReadMethods;
-    }
-
-//-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
 

@@ -80,13 +80,6 @@
         { "MaxChannels", &readMaxChannels }
     };
 
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    ReadMethodMap< System > const& AudioSystem::GetReadMethods() const
-    {
-        return (ReadMethodMap< System > const&)s_ReadMethods;
-    }
-
 //-----------------------------------------------------------------------------
 // private: static methods
 //-----------------------------------------------------------------------------

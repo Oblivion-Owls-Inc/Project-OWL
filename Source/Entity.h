@@ -17,14 +17,13 @@
 #include <map>        // std::map
 #include <string>	  // std::string
 #include <vector>	  // std::vector
-#include "Stream.h"
 
-#pragma once
+#include "ISerializable.h"
 
 //-----------------------------------------------------------------------------
 // Class: Entity
 //-----------------------------------------------------------------------------
-class Entity
+class Entity : public ISerializable
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructor
@@ -103,16 +102,9 @@ private: // methods
     void RenameEntity();
 
 //-----------------------------------------------------------------------------
-public: // reading
-//-----------------------------------------------------------------------------
-
-	/// @brief  gets the map of read methods for Entities
-	/// @return the map of read methods for Entities
-	static __inline ReadMethodMap< Entity > const& GetReadMethods() { return s_ReadMethods; }
-
-//-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
+
 
     /// @brief  reads this Entity's Archetype
     /// @param  stream  the json data to read from
@@ -128,6 +120,13 @@ private: // reading
 
     /// @brief  map of read methods for Entity
     static ReadMethodMap< Entity > const s_ReadMethods;
+
+    /// @brief  gets the map of read methods for Entities
+    /// @return the map of read methods for Entities
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
 //-----------------------------------------------------------------------------
 private: // member variables

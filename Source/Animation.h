@@ -124,10 +124,15 @@ private: // reading
 	void ReadFrameDuration(Stream stream);
 	void ReadIsRunning(Stream stream);
 	void ReadIsLooping(Stream stream);
+
 	// A map of all the read methods for animation component.
-	static ReadMethodMap<Animation> const s_ReadMethods;
+	static ReadMethodMap< Animation > const s_ReadMethods;
+
 	// A function that gets all the read methods for the animation component.
-	virtual ReadMethodMap<Component> const& GetReadMethods() const override;
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
 //-----------------------------------------------------------------------------
 private: // private functions

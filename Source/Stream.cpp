@@ -9,7 +9,9 @@
 //-----------------------------------------------------------------------------
 // Include files
 //-----------------------------------------------------------------------------
+
 #include "Stream.h"
+#include "ISerializable.h"
 
 #include <iostream>
 #include <map>
@@ -315,4 +317,43 @@ glm::ivec2 Stream::Read<glm::ivec2>() const
         vector[i] = value[i].GetInt();
     }
     return vector;
+}
+
+/// @brief  Reads data into an existing complex type
+/// @param  object  the oject to read data into
+void Stream::Read( ISerializable* object )
+{
+    // A map containing the different read methods for the object.
+    ReadMethodMap< ISerializable > const& readMethods( object->GetReadMethods() );
+
+    // Error checking.
+    if ( value.IsObject() == false )
+    {
+        throw std::runtime_error(
+            "JSON error: unexpected type encountered while trying to read an object"
+        );
+    }
+
+    // Iterates through the json value searching for a value.
+    for ( auto& item : value.GetObject() )
+    {
+        auto methodIt = readMethods.find( item.name.GetString() );
+        // Error checking.
+        if ( methodIt == readMethods.end() )
+        {
+            throw std::runtime_error(
+                std::string() +
+                "unreconized token \"" +
+                item.name.GetString() +
+                "\" encountered"
+            );
+        }
+
+        // Get the read method for the object from the map.
+        ReadMethod< ISerializable > readMethod = (*methodIt).second;
+        // Read the data from the json value into the object. 
+        (object->*readMethod)(Stream(item.value));
+    }
+
+    object->AfterLoad();
 }

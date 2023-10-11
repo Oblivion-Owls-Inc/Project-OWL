@@ -48,21 +48,18 @@ public:
 
 private:
 
-		std::vector<ColliderLineSegment> m_LineSegments;
+	std::vector<ColliderLineSegment> m_LineSegments;
 
-		unsigned int m_LineCount;
+	unsigned int m_LineCount;
 
-		unsigned int m_Counter;
+	unsigned int m_Counter;
 
 	bool doesDamage = false;
 
+    // Number of line segments to make, read from file.
+    unsigned int m_NumSegments;
+
 private: // reading
-
-	// Number of line segments to make, read from file.
-	unsigned int m_NumSegments;
-
-	/// @brief The map of read methods for the LineCollider.
-	static ReadMethodMap< LineCollider > s_ReadMethods;
 
 	/// @brief		  Read in the number of line segements to create.
 	/// @param stream The json data to read from.
@@ -71,9 +68,14 @@ private: // reading
 	/// @brief		  Read in the data for the line vectors.
 	/// @param stream The json data to read from.
 	void ReadLineVectors( Stream stream );
+    /// @brief The map of read methods for the LineCollider.
+    static ReadMethodMap< LineCollider > s_ReadMethods;
 
 	/// @brief  Gets the map of read methods for this component.
 	/// @return The map of read methods for this component.
-	virtual ReadMethodMap< Component > const& GetReadMethods() const override;
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 };
 

@@ -173,20 +173,6 @@
     }
 
 //-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  map of the EntitySystem read methods
-    ReadMethodMap< EntitySystem > const EntitySystem::s_ReadMethods = {};
-
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    ReadMethodMap< System > const& EntitySystem::GetReadMethods() const
-    {
-        return (ReadMethodMap< System > const&)s_ReadMethods;
-    }
-
-//-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 

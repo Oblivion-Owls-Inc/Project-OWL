@@ -156,12 +156,3 @@ bool PlayerController::MoveDown()
 		return false;
 	}
 }
-
-
-/// @brief the map of read methods for this Component
-ReadMethodMap< PlayerController > const PlayerController::readMethods = {};
-
-ReadMethodMap<Component> const& PlayerController::GetReadMethods() const
-{
-	return (ReadMethodMap< Component > const&)readMethods;
-}

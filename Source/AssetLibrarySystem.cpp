@@ -154,25 +154,6 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
 
 
 //-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
-
-
-    /// @brief map of the AssetLibrarySystem read methods
-    template < class AssetType >
-    ReadMethodMap< AssetLibrarySystem< AssetType > > const AssetLibrarySystem<AssetType>::s_ReadMethods = {};
-
-
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    template < class AssetType >
-    ReadMethodMap< System > const& AssetLibrarySystem< AssetType >::GetReadMethods() const
-    {
-        return ( ReadMethodMap< System > const& )s_ReadMethods;
-    }
-
-
-//-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 

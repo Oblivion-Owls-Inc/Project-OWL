@@ -8,12 +8,11 @@
 
 #pragma once
 
-#include "Stream.h"
+#include "ISerializable.h"
 
 /// @brief  Base class for all Systems
-class System
+class System : public ISerializable
 {
-
 //-----------------------------------------------------------------------------
 public: // virtual methods
 //-----------------------------------------------------------------------------
@@ -41,19 +40,11 @@ public: // virtual methods
     virtual void DebugWindow() {};
 
 //-----------------------------------------------------------------------------
-public: // methods
+public: // accessors
 //-----------------------------------------------------------------------------
 
     /// @brief Gets the unique name of this System
-    _inline std::string const& GetName() const { return m_Name; }
-
-//-----------------------------------------------------------------------------
-public: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    virtual ReadMethodMap< System > const& GetReadMethods() const = 0;
+    std::string const& GetName() const { return m_Name; }
 
 //-----------------------------------------------------------------------------
 protected: // constructor
@@ -73,7 +64,7 @@ public: // singleton stuff
     void operator=( const System& ) = delete;
 
 //-----------------------------------------------------------------------------
-private: // System Name
+private: // member variables
 //-----------------------------------------------------------------------------
 
     /// @brief The Unique Name of this System to be used for Debug Window

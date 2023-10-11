@@ -43,13 +43,6 @@ class MovementAI :
         /// @param  collisionData   additional data about the collision
         virtual void OnCollision( Entity* other, CollisionData const& collisionData ) override;
 
-private: // reading
 
-    /// @brief the map of read methods for this Component
-    static ReadMethodMap< MovementAI > const readMethods;
-
-    /// @brief gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
-    virtual ReadMethodMap< Component > const& GetReadMethods() const override;
 };
 

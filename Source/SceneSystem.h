@@ -92,7 +92,10 @@ private: // reading
 
     /// @brief  gets this System's read methods
     /// @return this System's read methods
-    virtual ReadMethodMap< System > const& GetReadMethods() const override;
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -122,14 +125,8 @@ private: // methods
 private: // scene loading
 //-----------------------------------------------------------------------------
 
-    class Scene
+    class Scene : public ISerializable
     {
-    public:
-
-        /// @brief  gets the Scene read methods
-        /// @return a map of the Scene read methods
-        ReadMethodMap< Scene > const& GetReadMethods() const;
-
     private:
         
         /// @brief  reads the assets in a Scene
@@ -142,6 +139,13 @@ private: // scene loading
         
         /// @brief  the read methods for a Scene
         static ReadMethodMap< Scene > const s_ReadMethods;
+
+        /// @brief  gets the Scene read methods
+        /// @return a map of the Scene read methods
+        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+        {
+            return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+        }
 
         /// @brief  gets the asset library of the specified type
         /// @tparam AssetType   the asset type to get the library of

@@ -65,11 +65,4 @@ ReadMethodMap< Text > const Text::s_ReadMethods = {
     { "String"            , &readText  }
 };
 
-/// @brief gets the map of read methods for this Component
-/// @return the map of read methods for this Component
-ReadMethodMap< Component > const& Text::GetReadMethods() const
-{
-    return (ReadMethodMap< Component> const&)s_ReadMethods;
-}
-
 //-----------------------------------------------------------------------------

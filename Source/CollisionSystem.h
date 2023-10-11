@@ -112,7 +112,10 @@ private: // reading
 
     /// @brief  gets this System's read methods
     /// @return this System's read methods
-    virtual ReadMethodMap< System > const& GetReadMethods() const override;
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
 
 //-----------------------------------------------------------------------------

@@ -215,11 +215,3 @@ ReadMethodMap< TilemapSprite > const TilemapSprite::s_ReadMethods = {
     { "Opacity"         , &readOpacity          },
     { "AFTERLOAD"       , &afterLoad            }    
 };
-
-
-/// @brief gets the map of read methods for this Component
-/// @return the map of read methods for this Component
-ReadMethodMap< Component > const& TilemapSprite::GetReadMethods() const
-{
-    return (ReadMethodMap< Component> const&)s_ReadMethods;
-}

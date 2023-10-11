@@ -28,17 +28,6 @@ private: // virtual override methods
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
-//-----------------------------------------------------------------------------
-private: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  map of the SandboxSystem read methods
-    static ReadMethodMap< SandboxSystem > const s_ReadMethods;
-
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    virtual ReadMethodMap< System > const& GetReadMethods() const override;
-
 private: // singleton stuff
 
     /// @brief  Constructs the SandboxSystem

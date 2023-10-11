@@ -36,7 +36,4 @@ class Behavior : public Component
 
 		virtual void OnFixedUpdate() {};
 
-		/// @brief Used by the Debug System to display information about this Component
-		virtual void Inspector() {};
-
 };

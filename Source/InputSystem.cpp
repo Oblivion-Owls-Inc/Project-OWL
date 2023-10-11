@@ -162,20 +162,6 @@ glm::vec2 InputSystem::GetMousePosWorld()
 }
 
 //-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
-
-    /// @brief map of the InputSystem read methods
-    ReadMethodMap< InputSystem > const InputSystem::s_ReadMethods = {};
-
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
-    ReadMethodMap< System > const& InputSystem::GetReadMethods() const
-    {
-        return (ReadMethodMap< System > const&)s_ReadMethods;
-    }
-
-//-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 

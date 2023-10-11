@@ -68,30 +68,33 @@ class TurretBehavior :
 
 		/// @brief reads the fire rate from the json file
 		/// @param jsonValue  the json data
-		void ReadFireRate(Stream jsonValue);
+		void readFireRate(Stream jsonValue);
 
 		/// @brief reads the range from the json file
 		/// @param jsonValue the json data
-		void ReadRange(Stream jsonValue);
+		void readRange(Stream jsonValue);
 
 		/// @brief reads the bullet damage from the json file
 		/// @param jsonValue the json data
-		void ReadBulletDamage(Stream jsonValue);
+		void readBulletDamage(Stream jsonValue);
 		
 		/// @brief reads the Bullet Speed from the json file
 		/// @param jsonValue the json data
-		void ReadBulletSpeed(Stream jsonValue);
+		void readBulletSpeed(Stream jsonValue);
 
 		/// @brief reads the bullet size from the json file
 		/// @param jsonValue the json data
-		void ReadBulletSize(Stream jsonValue);
+		void readBulletSize(Stream jsonValue);
 
 		/// @brief the map of read methods for this Component
-		static ReadMethodMap< TurretBehavior > const readMethods;
+		static ReadMethodMap< TurretBehavior > const s_ReadMethods;
 
 		/// @brief gets the map of read methods for this Component
 		/// @return the map of read methods for this Component
-		virtual ReadMethodMap< Component > const& GetReadMethods() const override;
+        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+        {
+            return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+        }
 
 };
 

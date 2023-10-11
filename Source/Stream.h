@@ -7,18 +7,23 @@
 /// @copyright  © 2023 DigiPen (USA) Corporation.
 /// ------------------------------------------------------------------------------
 
-#define STREAM_H
-
 #pragma once
 
 //------------------------------------------------------------------------------
-// Include Files:
+// Include Files
 //------------------------------------------------------------------------------
+
 #include <rapidjson/document.h>  // rapidjson::Document, Parse, HasParseError, GetParseError
 #include <string>      // std::string
 #include <fstream>     // std::ifstream
 #include <glm/glm.hpp> // glm::vec3
 #include <map>
+
+//------------------------------------------------------------------------------
+// Forward references
+//------------------------------------------------------------------------------
+
+class ISerializable;
 
 //------------------------------------------------------------------------------
 // Class: Stream
@@ -111,11 +116,9 @@ public: // acessors
 
 public: // methods
 
-	/// @brief	  Reads data into an existing complex type
-	/// @tparam T The type to read
-	/// @param	  Object the oject to read data into
-	template < typename T >
-	void Read( T* object );
+	/// @brief  Reads data into an existing complex type
+	/// @param  object  the oject to read data into
+	void Read( ISerializable* object );
 
 private: // member variables
 
@@ -123,13 +126,3 @@ private: // member variables
 	rapidjson::Value const& value;
 
 };
-
-template < typename T >
-using ReadMethod = void (T::*)(Stream value);
-
-template < typename T >
-using ReadMethodMap = std::map< std::string, ReadMethod< T > >;
-
-#ifndef STREAM_TC
-#include "stream.t.cpp"
-#endif

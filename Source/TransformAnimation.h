@@ -8,12 +8,12 @@
 
 #pragma once
 
-#include "Stream.h"
+#include "ISerializable.h"
 
 #include "Curve.h"
 
 /// @brief  Asset that animates a Transform with Curves
-class TransformAnimation
+class TransformAnimation : public ISerializable
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructor / Inspector
@@ -97,7 +97,7 @@ private: // methods
     static glm::mat2 skewMatrix( glm::vec2 skew );
 
 //-----------------------------------------------------------------------------
-public: // reading
+private: // reading
 //-----------------------------------------------------------------------------
 
     /// @brief  reads the ScaleCurve
@@ -116,18 +116,17 @@ public: // reading
     /// @param  stream the json data to read from
     void readSkewCurve( Stream stream );
 
-    /// @brief  gets the TransformAnimation read method map
-    /// @return the read method map
-    static __inline ReadMethodMap< TransformAnimation > const& GetReadMethods() { return s_ReadMethods; }
-
-    void AfterLoad() {}
-
-//-----------------------------------------------------------------------------
-private: // reading
-//-----------------------------------------------------------------------------
-
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< TransformAnimation > const s_ReadMethods;
+
+    /// @brief  gets the TransformAnimation read method map
+    /// @return the read method map
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
+
+    void AfterLoad() {}
 
 //-----------------------------------------------------------------------------
 };
