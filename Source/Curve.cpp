@@ -213,6 +213,8 @@
             ImGui::EndCombo();
         }
 
+        ImGui::Checkbox( "Is Looping", &m_IsLooping );
+
         // rendering info
         static float const pointRadius = 4.0f;
         static ImVec4 const pointColor = { 0.0f, 1.0f, 1.0f, 1.0f };
