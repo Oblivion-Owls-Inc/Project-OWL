@@ -126,7 +126,5 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-    void AfterLoad() {}
-
 //-----------------------------------------------------------------------------
 };

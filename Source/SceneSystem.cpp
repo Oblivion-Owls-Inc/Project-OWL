@@ -15,6 +15,7 @@
 #include "Sound.h"
 #include "Texture.h"
 #include "TransformAnimation.h"
+#include "AnimationAsset.h"
 
 #include "basics.h"
 #include "Stream.h"
@@ -172,7 +173,8 @@
         { "Archetypes"         , &getAssetLibrary< Entity >             },
         { "Sounds"             , &getAssetLibrary< Sound >              },
         { "Textures"           , &getAssetLibrary< Texture >            },
-        { "TransformAnimations", &getAssetLibrary< TransformAnimation > }
+        { "TransformAnimations", &getAssetLibrary< TransformAnimation > },
+        { "Animations"         , &getAssetLibrary< AnimationAsset >     }
     };
 
 //-----------------------------------------------------------------------------
