@@ -34,6 +34,7 @@ public: // constructor / Destructor
 public: // methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  starts playing an effect
     /// @param  effectName      the name of the effect to get from the AssetLibrary
     /// @param  playbackSpeed   the speed multiplier for how fast to play the effect
@@ -51,13 +52,26 @@ public: // methods
     /// @param  loopCount       how many times to play the effect ( -1 to loop infinitely )
     void Play( float playbackSpeed = 1.0f, int loopCount = 1 );
 
+
     /// @brief  pauses the current effect
-    __inline void Pause() { m_IsPlaying = false; }
+    void Pause() { m_IsPlaying = false; }
 
 
-    /// @brief  how much longer until the current effect is done playing
+    /// @brief  how much longer until the current animation is done playing
     /// @return the amount of remaining time
     float GetRemainingTime() const;
+
+
+    /// @brief  adds a callback function to be called when the animation completes
+    /// @param  callback    the function to be called when the animation completes
+    /// @return a handle to the created callback
+    /// @note   YOU MUST CLEAR THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
+    /// @note   the callback will be called every time the animation completes (but not each time it loops)
+    unsigned AddOnAnimationCompleteCallback( std::function< void() > callback );
+
+    /// @brief  removes a callback function to be called when the animation completes
+    /// @param  callbackHandle  the handle of the callback to remove
+    void RemoveOnAnimationCompleteCallback( unsigned callbackHandle );
 
 
 //-----------------------------------------------------------------------------
@@ -67,45 +81,38 @@ public: // accessors
 
     /// @brief  gets the effect currently in this EffectAnimator
     /// @return the effect currently in this EffectAnimator
-    __inline TransformAnimation const* GetCurrentEffect() const { return m_CurrentEffect; }
+    TransformAnimation const* GetCurrentEffect() const { return m_CurrentEffect; }
 
     /// @brief  sets the effect in this EffectAnimator
     /// @param  effect  the effect in this EffectAnimator
-    __inline void SetCurrentEffect( TransformAnimation const* effect ) { m_CurrentEffect = effect; }
+    void SetCurrentEffect( TransformAnimation const* effect ) { m_CurrentEffect = effect; }
 
 
     /// @brief  gets how far into the current effect we are
     /// @return how far into the current effect we are
-    __inline float GetTime() const { return m_Time; }
+    float GetTime() const { return m_Time; }
 
     /// @brief  sets how far into the current effect we are
     /// @param  time    how far into the current effect we are
-    __inline void SetTime( float time ) { m_Time = time; }
+    void SetTime( float time ) { m_Time = time; }
 
 
     /// @brief  gets how many loops are remaining
     /// @return how many loops are remaining ( -1 for infinit looping )
-    __inline int GetLoopCount() const { return m_LoopCount; }
+    int GetLoopCount() const { return m_LoopCount; }
 
     /// @brief  sets how many loops are remaining
     /// @param  loopCount   how many loops are remaining ( -1 for infinit looping )
-    __inline void SetLoopCount( int loopCount ) { m_LoopCount = loopCount; }
+    void SetLoopCount( int loopCount ) { m_LoopCount = loopCount; }
 
 
     /// @brief  gets whether or not this EffectAnimator is currently playing
     /// @return whether or not this EffectAnimator is currently playing ( -1 for infinit looping )
-    __inline float GetIsPlaying() const { return m_IsPlaying; }
+    float GetIsPlaying() const { return m_IsPlaying; }
 
     /// @brief  sets whether or not this EffectAnimator is currently playing
     /// @param  isPlaying   whether or not this EffectAnimator is currently playing ( -1 for infinit looping )
-    __inline void SetIsPlaying( float isPlaying ) { m_IsPlaying = isPlaying; }
-
-
-    /// @brief  sets the callback function to be called when the animation completes
-    /// @param  callback    the function to be called when the animation completes
-    /// @note   YOU MUST CLEAR THE CALLBACK BY PASSING nullptr IF YOU ARE DONE WITH IT,
-    ///         the callback will be called every time the animation completes (but not each time it loops)
-    __inline void SetCallback( std::function< void() >& callback ) { m_Callback = std::move( callback ); }
+    void SetIsPlaying( float isPlaying ) { m_IsPlaying = isPlaying; }
 
 
 //-----------------------------------------------------------------------------
@@ -147,8 +154,8 @@ private: // members
     /// @brief  speed multiplier for how quickly the effect is played
     float m_Speed;
 
-    /// @brief  callback function to call when the animation completes
-    std::function< void() > m_Callback;
+    /// @brief  callback functions to call when the animation completes
+    std::map< unsigned, std::function< void() > > m_OnAnimationCompleteCallbacks;
 
 //-----------------------------------------------------------------------------
 private: // reading

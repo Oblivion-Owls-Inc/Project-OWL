@@ -28,7 +28,8 @@
         m_LoopCount( 1 ),
         m_Speed( 1.0f ),
         m_Time( 0.0f ),
-        m_Transform( nullptr )
+        m_Transform( nullptr ),
+        m_OnAnimationCompleteCallbacks()
     {}
 
 //-----------------------------------------------------------------------------
@@ -66,11 +67,32 @@
         m_IsPlaying = true;
     }
 
+
     /// @brief  how much longer until the current effect is done playing
     /// @return the amount of remaining time
     float EffectAnimator::GetRemainingTime() const
     {
         return m_CurrentEffect->GetTotalTime() - m_Time;
+    }
+    
+
+    /// @brief  adds a callback function to be called when the animation completes
+    /// @param  callback    the function to be called when the animation completes
+    /// @return a handle to the created callback
+    /// @note   YOU MUST CLEAR THE CALLBACK IF YOU ARE DONE WITH IT,
+    /// @note   the callback will be called every time the animation completes (but not each time it loops)
+    unsigned EffectAnimator::AddOnAnimationCompleteCallback( std::function< void() > callback )
+    {
+        unsigned handle = GetUniqueId();
+        m_OnAnimationCompleteCallbacks.emplace( handle, std::move( callback ) );
+        return handle;
+    }
+
+    /// @brief  removes a callback function to be called when the animation completes
+    /// @param  callbackHandle  the handle of the callback to remove
+    void EffectAnimator::RemoveOnAnimationCompleteCallback( unsigned callbackHandle )
+    {
+        m_OnAnimationCompleteCallbacks.erase( callbackHandle );
     }
 
 
@@ -120,9 +142,9 @@
         m_Transform->MarkDirty();
         m_Transform->SetMatrix( m_Transform->GetMatrix() * m_CurrentEffect->SampleAtTime( m_Time ) );
 
-        if ( m_LoopCount == 0 && m_Callback )
+        for ( auto callback : m_OnAnimationCompleteCallbacks )
         {
-            m_Callback();
+            callback.second();
         }
     }
 
@@ -225,6 +247,7 @@
         { "IsPlaying"    , &readIsPlaying     }
     };
 
+
 //-----------------------------------------------------------------------------
 // private: copying
 //-----------------------------------------------------------------------------
@@ -238,7 +261,8 @@
         m_LoopCount( other.m_LoopCount ),
         m_Speed( other.m_Speed ),
         m_Time( other.m_Time ),
-        m_Transform( nullptr )
+        m_Transform( nullptr ),
+        m_OnAnimationCompleteCallbacks()
     {}
 
 //-----------------------------------------------------------------------------

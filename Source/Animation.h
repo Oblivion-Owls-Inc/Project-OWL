@@ -44,6 +44,24 @@ public: // methods
     /// @brief  starts playing this Animation
     void Play();
 
+    /// @brief  pauses the current animation
+    void Pause() { m_IsRunning = false; }
+
+    /// @brief  how much longer until the current animation is done playing
+    /// @return the amount of remaining time
+    float GetRemainingTime() const;
+
+    /// @brief  adds a callback function to be called when the animation completes
+    /// @param  callback    the function to be called when the animation completes
+    /// @return a handle to the created callback
+    /// @note   YOU MUST CLEAR THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
+    /// @note   the callback will be called every time the animation completes (but not each time it loops)
+    unsigned AddOnAnimationCompleteCallback( std::function< void() > callback );
+
+    /// @brief  removes a callback function to be called when the animation completes
+    /// @param  callbackHandle  the handle of the callback to remove
+    void RemoveOnAnimationCompleteCallback( unsigned callbackHandle );
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
@@ -70,10 +88,6 @@ public: // accessors
 	/// @brief	Sets a new running status
 	/// @param	running running status to set
 	void SetRunning( bool running );
-
-	/// @brief  sets a callback function to run when the current animation finishes playing
-	/// @param  callback 
-	void SetCallback( std::function< void() > const& callback );
 
 	/// @brief	Gets the current animation asset
 	/// @return	The asset currently connected
@@ -115,8 +129,8 @@ private: // member variables
     /// @brief  whether the animation is currenty running
     bool m_IsRunning;
 
-    /// @brief  callback which gets called when the current animation finishes playing
-    std::function< void() > m_Callback;
+    /// @brief  callbacks which gets called when the current animation finishes playing
+    std::map< unsigned,  std::function< void() > > m_OnAnimationCompleteCallbacks;
 
 //-----------------------------------------------------------------------------
 private: // methods

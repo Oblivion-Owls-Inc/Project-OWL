@@ -24,7 +24,7 @@
 	    m_FrameIndex( 0 ),
 	    m_FrameDelay( 0.0 ),
 	    m_IsRunning( false ),
-        m_Callback( nullptr ),
+        m_OnAnimationCompleteCallbacks(),
 	    m_Asset( nullptr ),
         m_Sprite( nullptr )
     {}
@@ -58,6 +58,35 @@
         
         m_Sprite->SetFrameIndex( m_FrameIndex );
     }
+
+
+    /// @brief  how much longer until the current animation is done playing
+    /// @return the amount of remaining time
+    float Animation::GetRemainingTime() const
+    {
+        return m_FrameDelay + (m_Asset->GetEnd() - m_FrameIndex - 1) * m_Asset->GetFrameDuration();
+    }
+
+
+    /// @brief  adds a callback function to be called when the animation completes
+    /// @param  callback    the function to be called when the animation completes
+    /// @return a handle to the created callback
+    /// @note   YOU MUST CLEAR THE CALLBACK IF YOU ARE DONE WITH IT,
+    /// @note   the callback will be called every time the animation completes (but not each time it loops)
+    unsigned Animation::AddOnAnimationCompleteCallback( std::function< void() > callback )
+    {
+        unsigned handle = GetUniqueId();
+        m_OnAnimationCompleteCallbacks.emplace( handle, std::move( callback ) );
+        return handle;
+    }
+
+    /// @brief  removes a callback function to be called when the animation completes
+    /// @param  callbackHandle  the handle of the callback to remove
+    void Animation::RemoveOnAnimationCompleteCallback( unsigned callbackHandle )
+    {
+        m_OnAnimationCompleteCallbacks.erase( callbackHandle );
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: accessors
@@ -175,9 +204,10 @@
 		    {
 			    m_FrameIndex = m_Asset->GetEnd() - 1;
 			    m_IsRunning = false;
-                if ( m_Callback )
+                
+                for ( auto callback : m_OnAnimationCompleteCallbacks )
                 {
-                    m_Callback();
+                    callback.second();
                 }
 		    }
 	    }
@@ -253,7 +283,7 @@
         m_FrameDelay( other.m_FrameDelay ),
         m_IsRunning( other.m_IsRunning ),
         m_Asset( other.m_Asset ),
-        m_Callback( nullptr ),
+        m_OnAnimationCompleteCallbacks(),
         m_Sprite( nullptr )
     {}
 
