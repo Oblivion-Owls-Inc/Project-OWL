@@ -87,7 +87,7 @@ private: // static methods
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    static void CheckCollision( Collider const* colliderA, Collider const* colliderB );
+    static void CheckCollision( Collider* colliderA, Collider* colliderB );
 
     /// @brief  checks a collision between two circle colliders
     /// @param  colliderA       the first collider

@@ -84,7 +84,7 @@
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    void CollisionSystem::CheckCollision( Collider const* colliderA, Collider const* colliderB )
+    void CollisionSystem::CheckCollision( Collider* colliderA, Collider* colliderB )
     {
         if ( colliderA->GetParent()->GetComponent<Transform>() == nullptr || 
             colliderB->GetParent()->GetComponent<Transform>() == nullptr)
@@ -103,7 +103,7 @@
                 colliderTypes.first
             };
 
-            Collider const* temp = colliderA;
+            Collider* temp = colliderA;
             colliderA = colliderB;
             colliderB = temp;
 
@@ -128,17 +128,11 @@
         CollisionData collisionData;
         if ( (*checkFuncIt->second)( colliderA, colliderB, &collisionData ) )
         {
-            for ( Behavior* behavior : colliderA->GetParent()->GetComponentsOfType<Behavior>() )
-            {
-                behavior->OnCollision( colliderB->GetParent(), collisionData );
-            }
+            colliderA->CallOnCollisionCallbacks( colliderB->GetParent(), collisionData );
 
             collisionData.normal *= -1;
 
-            for ( Behavior* behavior : colliderB->GetParent()->GetComponentsOfType<Behavior>() )
-            {
-                behavior->OnCollision( colliderA->GetParent(), collisionData );
-            }
+            colliderB->CallOnCollisionCallbacks( colliderA->GetParent(), collisionData );
         }
     }
 

@@ -172,11 +172,23 @@ public: // copying
     ComponentType* Entity::GetComponent()
     {
         auto componentIterator = m_Components.find( typeid( ComponentType ) );
-        if ( componentIterator == m_Components.end() )
+        if ( componentIterator != m_Components.end() )
         {
-            return nullptr;
+            return static_cast< ComponentType* >((*componentIterator).second);
         }
-        return static_cast<ComponentType*>((*componentIterator).second);
+
+        // if exact type not found, fall back to searching for a derived type
+        for ( auto pair : m_Components )
+        {
+            ComponentType* component = dynamic_cast< ComponentType* >( pair.second );
+            if ( component != nullptr )
+            {
+                return component;
+            }
+        }
+
+        // if no derived component found, return nullptr
+        return nullptr;
     }
 
     /// @brief  gets all of the components derived from the specified type from this Entity

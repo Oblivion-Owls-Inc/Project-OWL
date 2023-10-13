@@ -35,7 +35,9 @@
     void RigidBody::OnInit()
     {
         BehaviorSystem<RigidBody>::GetInstance()->AddBehavior(this);
-
+        m_OnCollisionCallbackHandle = GetParent()->GetComponent<Collider>()->AddOnCollisionCallback(
+            std::bind( &RigidBody::OnCollision, this, std::placeholders::_1, std::placeholders::_2 )
+        );
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
@@ -43,6 +45,7 @@
     void RigidBody::OnExit()
     {
         BehaviorSystem<RigidBody>::GetInstance()->RemoveBehavior(this);
+        GetParent()->GetComponent<Collider>()->RemoveOnCollisionCallback( m_OnCollisionCallbackHandle );
     }
 
     /// @brief Update method called per frame.

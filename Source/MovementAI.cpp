@@ -39,13 +39,6 @@ void MovementAI::OnExit()
     BehaviorSystem< MovementAI >::GetInstance()->RemoveBehavior(this);
 }
 
-/// @brief  Called whenever a Collider on this Behavior's Entity collides
-/// @param  other           the entity that was collided with
-/// @param  collisionData   additional data about the collision
-void MovementAI::OnCollision( Entity* other, CollisionData const& collisionData )
-{
-}
-
 void MovementAI::OnUpdate(float dt)
 {
 }
