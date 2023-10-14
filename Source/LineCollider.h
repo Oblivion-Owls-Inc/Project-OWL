@@ -61,10 +61,6 @@ private:
 
 private: // reading
 
-	/// @brief		  Read in the number of line segements to create.
-	/// @param stream The json data to read from.
-	void readNumLineSegments( nlohmann::json const& data );
-
 	/// @brief		  Read in the data for the line vectors.
 	/// @param stream The json data to read from.
 	void readLineVectors( nlohmann::json const& data );
