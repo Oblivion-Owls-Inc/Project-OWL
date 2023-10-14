@@ -82,12 +82,12 @@
 
     /// @brief  loads all of the m_Entities in a scene
     /// @param  entityData  the json object containing the entity data
-    void EntitySystem::LoadEntities( Stream entityArray )
+    void EntitySystem::LoadEntities( nlohmann::ordered_json const& data )
     {
-        for ( auto& entityData : entityArray.GetArray() )
+        for ( int i = 0; i < data.size(); ++i )
         {
             Entity * entity = new Entity();
-            Stream( entityData ).Read( entity );
+            Stream::Read< ISerializable >( entity, data[i] );
             m_Entities.push_back( entity );
         }
 

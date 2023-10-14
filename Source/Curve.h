@@ -72,15 +72,15 @@ private: // reading
 
     /// @brief  reads the time of this ControlPoint
     /// @param  stream  the json data to read from
-    void readTime( Stream stream );
+    void readTime( nlohmann::ordered_json const& data );
 
     /// @brief  reads the value of this ControlPoint
     /// @param  stream  the json data to read from
-    void readValue( Stream stream );
+    void readValue( nlohmann::ordered_json const& data );
 
     /// @brief  reads the derivative of this ControlPoint
     /// @param  stream  the json data to read from
-    void readDerivative( Stream stream );
+    void readDerivative( nlohmann::ordered_json const& data );
 
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< ControlPoint< dimensionality > > const s_ReadMethods;
@@ -265,15 +265,15 @@ private: // reading
 
     /// @brief  reads the interpolation type of this Curve
     /// @param  stream  the json data to read from
-    void readInterpolationType( Stream stream );
+    void readInterpolationType( nlohmann::ordered_json const& data );
 
     /// @brief  reads whether this Curve loops
     /// @param  stream  the json data to read from
-    void readIsLooping( Stream stream );
+    void readIsLooping( nlohmann::ordered_json const& data );
 
     /// @brief  reads the control points of this Curve
     /// @param  stream  the json data to read from
-    void readControlPoints( Stream stream );
+    void readControlPoints( nlohmann::ordered_json const& data );
 
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< Curve > const s_ReadMethods;

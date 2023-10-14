@@ -146,23 +146,23 @@ protected: // reading
 
     /// @brief  reads the Texture of this Sprite
     /// @param  stream  the json data to read from
-    void readTexture( Stream stream );
+    void readTexture( nlohmann::ordered_json const& data );
 
     /// @brief  reads the frame index of this Sprite
     /// @param  stream  the json data to read from
-    void readFrameIndex( Stream stream );
+    void readFrameIndex( nlohmann::ordered_json const& data );
 
     /// @brief  Read in the color for a sprite.
     /// @param  stream  The json to read from.
-    void readColor(Stream stream);
+    void readColor( nlohmann::ordered_json const& data );
 
     /// @brief  Read in the opacity for a sprite.
     /// @param  stream  The json to read from.
-    void readOpacity(Stream stream);
+    void readOpacity( nlohmann::ordered_json const& data );
 
     /// @brief  Read in the layer for a sprite.
     /// @param  stream  The json to read from.
-    void readLayer(Stream stream);
+    void readLayer( nlohmann::ordered_json const& data );
     
 //-----------------------------------------------------------------------------
 private: // reading

@@ -11,7 +11,6 @@
 #include "Engine.h"
 
 #include "basics.h"
-#include <rapidjson/document.h>
 #include <fstream>
 
 #include "PlatformSystem.h"
@@ -98,22 +97,20 @@
 //-----------------------------------------------------------------------------
 
     /// @brief  reads the fixedFrameDuration
-    /// @param  stream  the stream to read the data from
-    void Engine::readFixedFrameDuration( Stream stream )
+    /// @param  data    the stream to read the data from
+    void Engine::readFixedFrameDuration( nlohmann::ordered_json const& data )
     {
-        m_FixedFrameDuration = stream.Read<float>();
+        m_FixedFrameDuration = Stream::Read<float>( data );
     }
 
     /// @brief  reads the systems
-    /// @param  stream  the stream to read the data from
-    void Engine::readSystems( Stream stream )
+    /// @param  data    the stream to read the data from
+    void Engine::readSystems( nlohmann::ordered_json const& data )
     {
-        for ( auto& systemData : stream.GetObject() )
+        for ( auto& [ key, value ] : data.items() )
         {
             // get the appropriate System creation method
-            auto addSystemMethod = s_AddSystemMethods.find(
-                systemData.name.GetString()
-            );
+            auto addSystemMethod = s_AddSystemMethods.find( key );
 
             // throw an error if token not found
             if ( addSystemMethod == s_AddSystemMethods.end() )
@@ -122,14 +119,14 @@
                     (
                         std::stringstream() <<
                         "unrecognized token \"" <<
-                        systemData.name.GetString() <<
+                        key <<
                         "\" encountered while reading Systems in Engine"
                     ).str()
                 );
             }
            
             System* system = ( this->*addSystemMethod->second )(); // create and add the System to the Engine
-            Stream( systemData.value ).Read( system ); // have the System load itself
+            Stream::Read< ISerializable >( system, value ); // have the System load itself
         }
     }
 
@@ -183,11 +180,11 @@
     /// @brief  Loads the engine config from "Data/EngineConfig.json"
     void Engine::load()
     {
-        rapidjson::Document document = Stream::ReadFromJSON( "Data/EngineConfig.json" );
+        nlohmann::ordered_json json = Stream::ReadFromFile( "Data/EngineConfig.json" );
 
         try
         {
-            Stream( document ).Read( this );
+            Stream::Read< ISerializable >( this, json );
         }
         catch ( std::runtime_error error )
         {

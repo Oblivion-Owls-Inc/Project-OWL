@@ -17,14 +17,7 @@
 
     /// @brief Default constructor for the transform component.
     Transform::Transform() :
-        Component( typeid( Transform ) ),
-	    m_Translation( 0, 0, 1 ),
-	    m_Rotation( 0.0f ),
-	    m_Scale( 1, 1, 0 ),
-	    m_IsDirty( true ),
-	    m_Matrix( glm::mat4(0.0f) ),
-	    m_IsDiegetic( true ),
-        m_Parent( nullptr )
+        Component( typeid( Transform ) )
     {}
 
     void Transform::Inspector()
@@ -34,8 +27,8 @@
         if (transform)
         {
             // Edit Translation
-            glm::vec3 translation = transform->GetTranslation();
-            if (ImGui::DragFloat3("Translation", &translation[0]))
+            glm::vec2 translation = transform->GetTranslation();
+            if (ImGui::DragFloat2("Translation", &translation[0]))
             {
                 transform->SetTranslation(translation);
             }
@@ -48,8 +41,8 @@
             }
 
             // Edit Scale
-            glm::vec3 scale = transform->GetScale();
-            if (ImGui::DragFloat3("Scale", &scale[0]))
+            glm::vec2 scale = transform->GetScale();
+            if (ImGui::DragFloat2("Scale", &scale[0]))
             {
                 transform->SetScale(scale);
             }
@@ -69,6 +62,17 @@
 // public: accessors
 //-----------------------------------------------------------------------------
 
+    /// @brief  unified set method that sets all three components of Transform at once
+    /// @param  translation the new translation to set
+    /// @param  rotation    the new rotation to set
+    /// @param  scale       the new scale to set
+    void Transform::Set( glm::vec2 const& translation, float rotation, glm::vec2 const& scale )
+    {
+        m_Translation = translation;
+        m_Rotation = rotation;
+        m_Scale = scale;
+        MarkChanged();
+    }
 
     /// @brief  Calculates and gets the translation matrix of the transform component.
     /// @return The translation matrix of the transform component.
@@ -76,18 +80,17 @@
     {
         if (m_IsDirty)
         {
-            glm::mat4 rotateTemp(1);
-            glm::mat4 scaleTemp(1);
-            glm::mat4 transferTemp(1);
-            glm::mat4 result;
+            glm::mat4 rotate(1);
+            glm::mat4 scale(1);
+            glm::mat4 translate(1);
 
-            rotateTemp = glm::rotate(rotateTemp, m_Rotation, {0, 0, 1});
-            scaleTemp = glm::scale(scaleTemp, m_Scale);
-            transferTemp = glm::translate(transferTemp, m_Translation);
-            result = rotateTemp * scaleTemp;
+            rotate = glm::rotate( rotate, m_Rotation, {0, 0, 1} );
+            scale = glm::scale( scale, { m_Scale.x, m_Scale.y, 1.0f } );
+            translate = glm::translate( translate, { m_Translation.x, m_Translation.y, 0.0 } );
 
+            // const cast to allow this method to be called on a Transform marked const
             Transform* self = const_cast< Transform* >(this);
-            self->m_Matrix = transferTemp * result;
+            self->m_Matrix = translate * rotate * scale;
 
             self->m_IsDirty = false;
         }
@@ -103,39 +106,58 @@
 
 
 //-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  marks this Transform as dirty and calls the OnTransformChanged callbacks
+    void Transform::MarkChanged()
+    {
+        m_IsDirty = true;
+
+        for ( auto callback : m_OnTransformChangedCallbacks )
+        {
+            callback.second();
+        }
+    }
+
+//-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
 
 
     /// @brief			 Reads in a translation vector from a JSON value.
     /// @param jsonValue The value to read from.
-    void Transform::readTranslation( Stream jsonValue )
+    void Transform::readTranslation( nlohmann::ordered_json const& data )
     {
-	    m_Translation = jsonValue.Read<glm::vec3>();
-	    m_IsDirty = true;
+	    m_Translation = Stream::Read< 2, float >(data);
     }
 
     /// @brief			 Reads in a rotation from a JSON value.
     /// @param jsonValue The value to read from.
-    void Transform::readRotation( Stream jsonValue )
+    void Transform::readRotation( nlohmann::ordered_json const& data )
     {
-	    m_Rotation = jsonValue.Read<float>();
-	    m_IsDirty = true;
+	    m_Rotation = Stream::Read<float>(data);
     }
 
     /// @brief			 Reads in a scale vector from a JSON value.
     /// @param jsonValue The value to read from.
-    void Transform::readScale( Stream jsonValue )
+    void Transform::readScale( nlohmann::ordered_json const& data )
     {
-	    m_Scale = jsonValue.Read<glm::vec3>();
-	    m_IsDirty = true;
+	    m_Scale = Stream::Read< 2, float >(data);
     }
 
     /// @brief			 Reads in a flag from a JSON value.
     /// @param jsonValue The value to read from.
-    void Transform::readIsDiegetic( Stream jsonValue )
+    void Transform::readIsDiegetic( nlohmann::ordered_json const& data )
     {
-	    m_IsDiegetic = jsonValue.Read<bool>();
+	    m_IsDiegetic = Stream::Read<bool>(data);
+    }
+
+
+    /// @brief  called after finished reading
+    void Transform::AfterLoad()
+    {
+        MarkChanged();
     }
 
 
@@ -144,7 +166,7 @@
 	    { "translation" , &readTranslation },
 	    { "rotation"	, &readRotation    },
 	    { "scale"		, &readScale       },
-	    { "diegetic"	, &readIsDiegetic	   }
+	    { "diegetic"	, &readIsDiegetic  }
     };
 
 
@@ -171,7 +193,8 @@
         m_IsDirty(     other.m_IsDirty     ),
         m_Matrix(      other.m_Matrix      ),
         m_IsDiegetic(  other.m_IsDiegetic  ),
-        m_Parent(      other.m_Parent      )
+        m_Parent(      other.m_Parent      ),
+        m_OnTransformChangedCallbacks()
     {}
 
 

@@ -43,7 +43,7 @@ public: // methods
 
     /// @brief  loads all of the entities in a scene
     /// @param  entityData  the json object containing the entity data
-    void LoadEntities( Stream entityArray );
+    void LoadEntities( nlohmann::ordered_json const& data );
 
     /// @brief returns the container of all Entities in the Scene
     /// @return the container of all Entities in the Scene

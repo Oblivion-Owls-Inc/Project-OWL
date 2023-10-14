@@ -65,8 +65,8 @@ void TurretBehavior::OnFixedUpdate()
 		Transform* m_Transform = entity->GetComponent<Transform>();
 		if (m_Transform)
 		{
-			glm::vec3 entityPOS = m_Transform->GetTranslation(); 
-			glm::vec3 turretPOS = GetParent()->GetComponent<Transform>()->GetTranslation();
+			glm::vec2 entityPOS = m_Transform->GetTranslation(); 
+			glm::vec2 turretPOS = GetParent()->GetComponent<Transform>()->GetTranslation();
 
 			/// Caclulate the area of attack for the turret
 			float AOA = glm::length(entityPOS - turretPOS);
@@ -96,29 +96,29 @@ void TurretBehavior::FireBullet()
 	/// Todo: Make this actually work
 }
 
-void TurretBehavior::readFireRate(Stream jsonValue)
+void TurretBehavior::readFireRate( nlohmann::ordered_json const& data )
 {
-	m_FireRate = jsonValue.Read<float>();
+	m_FireRate = Stream::Read<float>(data);
 }
 
-void TurretBehavior::readRange(Stream jsonValue)
+void TurretBehavior::readRange( nlohmann::ordered_json const& data )
 {
-	m_Range = jsonValue.Read<float>();
+	m_Range = Stream::Read<float>(data);
 }
 
-void TurretBehavior::readBulletDamage(Stream jsonValue)
+void TurretBehavior::readBulletDamage( nlohmann::ordered_json const& data )
 {
-	m_BulletDamage = jsonValue.Read<float>();
+	m_BulletDamage = Stream::Read<float>(data);
 }
 
-void TurretBehavior::readBulletSpeed(Stream jsonValue)
+void TurretBehavior::readBulletSpeed( nlohmann::ordered_json const& data )
 {
-	m_BulletSpeed = jsonValue.Read<float>();
+	m_BulletSpeed = Stream::Read<float>(data);
 }
 
-void TurretBehavior::readBulletSize(Stream jsonValue)
+void TurretBehavior::readBulletSize( nlohmann::ordered_json const& data )
 {
-	m_BulletSize = jsonValue.Read<float>();
+	m_BulletSize = Stream::Read<float>(data);
 }
 
 ReadMethodMap<TurretBehavior> const TurretBehavior::s_ReadMethods =

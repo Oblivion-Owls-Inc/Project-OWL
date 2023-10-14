@@ -104,23 +104,23 @@ private: // reading
 
     /// @brief  read the sound of this component from json
     /// @param  data    the json data
-    void readSound( Stream data );
+    void readSound( nlohmann::ordered_json const& data );
 
     /// @brief  read the volume of this component from json
     /// @param  data    the json data
-    void readVolume( Stream data );
+    void readVolume( nlohmann::ordered_json const& data );
 
     /// @brief  read the pitch of this component from json
     /// @param  data    the json data
-    void readPitch( Stream data );
+    void readPitch( nlohmann::ordered_json const& data );
 
     /// @brief  read the volumeVariance of this component from json
     /// @param  data    the json data
-    void readVolumeVariance( Stream data );
+    void readVolumeVariance( nlohmann::ordered_json const& data );
 
     /// @brief  read the pitchVariance of this component from json
     /// @param  data    the json data
-    void readPitchVariance( Stream data );
+    void readPitchVariance( nlohmann::ordered_json const& data );
 
     /// @brief  map of the read methods for this Component
     static ReadMethodMap< AudioPlayer > s_ReadMethods;

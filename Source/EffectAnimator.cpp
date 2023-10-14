@@ -139,7 +139,7 @@
             }
         }
 
-        m_Transform->MarkDirty();
+        m_Transform->SetIsDirty( true );
         m_Transform->SetMatrix( m_Transform->GetMatrix() * m_CurrentEffect->SampleAtTime( m_Time ) );
 
         for ( auto callback : m_OnAnimationCompleteCallbacks )
@@ -205,37 +205,37 @@
 
     /// @brief  reads the current effect
     /// @param  stream  the json data to read from
-    void EffectAnimator::readCurrentEffect( Stream stream )
+    void EffectAnimator::readCurrentEffect( nlohmann::ordered_json const& data )
     {
-        m_CurrentEffect = AssetLibrary<TransformAnimation>()->GetAsset( stream.Read<std::string>() );
+        m_CurrentEffect = AssetLibrary<TransformAnimation>()->GetAsset( Stream::Read<std::string>(data) );
     }
 
     /// @brief  reads the current time
     /// @param  stream  the json data to read from
-    void EffectAnimator::readTime( Stream stream )
+    void EffectAnimator::readTime( nlohmann::ordered_json const& data )
     {
-        m_Time = stream.Read<float>();
+        m_Time = Stream::Read<float>(data);
     }
 
     /// @brief  reads the playback speed
     /// @param  stream  the json data to read from
-    void EffectAnimator::readSpeed( Stream stream )
+    void EffectAnimator::readSpeed( nlohmann::ordered_json const& data )
     {
-        m_Speed = stream.Read<float>();
+        m_Speed = Stream::Read<float>(data);
     }
 
     /// @brief  reads the loop count
     /// @param  stream  the json data to read from
-    void EffectAnimator::readLoopCount( Stream stream )
+    void EffectAnimator::readLoopCount( nlohmann::ordered_json const& data )
     {
-        m_LoopCount = stream.Read<int>();
+        m_LoopCount = Stream::Read<int>(data);
     }
 
     /// @brief  reads whether the effect is currently playing
     /// @param  stream  the json data to read from
-    void EffectAnimator::readIsPlaying( Stream stream )
+    void EffectAnimator::readIsPlaying( nlohmann::ordered_json const& data )
     {
-        m_IsPlaying = stream.Read<bool>();
+        m_IsPlaying = Stream::Read<bool>(data);
     }
 
     /// @brief  map of the read methods for this Component

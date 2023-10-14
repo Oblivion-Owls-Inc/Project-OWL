@@ -68,23 +68,23 @@ class TurretBehavior :
 
 		/// @brief reads the fire rate from the json file
 		/// @param jsonValue  the json data
-		void readFireRate(Stream jsonValue);
+		void readFireRate( nlohmann::ordered_json const& data );
 
 		/// @brief reads the range from the json file
 		/// @param jsonValue the json data
-		void readRange(Stream jsonValue);
+		void readRange( nlohmann::ordered_json const& data );
 
 		/// @brief reads the bullet damage from the json file
 		/// @param jsonValue the json data
-		void readBulletDamage(Stream jsonValue);
+		void readBulletDamage( nlohmann::ordered_json const& data );
 		
 		/// @brief reads the Bullet Speed from the json file
 		/// @param jsonValue the json data
-		void readBulletSpeed(Stream jsonValue);
+		void readBulletSpeed( nlohmann::ordered_json const& data );
 
 		/// @brief reads the bullet size from the json file
 		/// @param jsonValue the json data
-		void readBulletSize(Stream jsonValue);
+		void readBulletSize( nlohmann::ordered_json const& data );
 
 		/// @brief the map of read methods for this Component
 		static ReadMethodMap< TurretBehavior > const s_ReadMethods;

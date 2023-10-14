@@ -55,11 +55,11 @@ private: // reading
 
     /// @brief reads the window width
     /// @param stream the data to read from
-    void readWindowWidth( Stream stream );
+    void readWindowWidth( nlohmann::ordered_json const& data );
 
     /// @brief reads the window width
     /// @param stream the data to read from
-    void readWindowHeight( Stream stream );
+    void readWindowHeight( nlohmann::ordered_json const& data );
 
     /// @brief map of the PlatformSystem read methods
     static ReadMethodMap< PlatformSystem > const s_ReadMethods;

@@ -145,11 +145,11 @@ void Tilemap::updateMat()
 
 /// @brief          Read in the text this Tilemap displays
 /// @param  stream  The json to read from.
-void Tilemap::readTilemap(Stream stream)
+void Tilemap::readTilemap( nlohmann::ordered_json const& data )
 {
-    for (auto& tileData : stream.GetArray())
+    for (int i = 0; i < data.size(); ++i)
     {
-        int ID = Stream(tileData).Read<int>(); // for debugging
+        int ID = Stream::Read<int>(data[i]); // for debugging
         m_Tilemap.push_back(ID);
     }
 }

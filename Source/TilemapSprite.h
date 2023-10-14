@@ -114,13 +114,13 @@ private:
 
     /// @brief            Read in the stride multiplier
     /// @param  stream    The json to read from.
-    void readStrideMultiplier(Stream stream);
+    void readStrideMultiplier( nlohmann::ordered_json const& data );
 
     /// @brief            Read in the amount of tiles per row
     /// @param  stream    The json to read from.
-    void readRowWidth(Stream stream);
+    void readRowWidth( nlohmann::ordered_json const& data );
 
-    void afterLoad(Stream stream);
+    virtual void AfterLoad() override;
 
     /// @brief            The map of read methods for this Component
     static ReadMethodMap< TilemapSprite > const s_ReadMethods;

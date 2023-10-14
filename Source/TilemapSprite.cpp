@@ -185,21 +185,22 @@ void TilemapSprite::initInstancingStuff()
 
 /// @brief            Read in the stride multiplier
 /// @param  stream    The json to read from.
-void TilemapSprite::readStrideMultiplier(Stream stream)
+void TilemapSprite::readStrideMultiplier( nlohmann::ordered_json const& data )
 {
-    m_StrideMult = stream.Read<glm::vec2>();
+    m_StrideMult = Stream::Read< 2, float >(data);
 }
 
 
 /// @brief            Read in the amount of tiles per row
 /// @param  stream    The json to read from.
-void TilemapSprite::readRowWidth(Stream stream)
+void TilemapSprite::readRowWidth( nlohmann::ordered_json const& data )
 {
-    m_RowWidth = stream.Read<int>();
+    m_RowWidth = Stream::Read<int>(data);
 }
 
-
-void TilemapSprite::afterLoad(Stream stream)
+/// @brief Handles all initialisation of an object after reading its data from
+///        a file.
+void TilemapSprite::AfterLoad()
 {
     initInstancingStuff();
 }
@@ -212,6 +213,5 @@ ReadMethodMap< TilemapSprite > const TilemapSprite::s_ReadMethods = {
     { "Color"           , &readColor            },
     { "StrideMultiplier", &readStrideMultiplier },
     { "RowWidth"        , &readRowWidth         },
-    { "Opacity"         , &readOpacity          },
-    { "AFTERLOAD"       , &afterLoad            }    
+    { "Opacity"         , &readOpacity          },  
 };

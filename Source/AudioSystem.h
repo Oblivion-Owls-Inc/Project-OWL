@@ -43,7 +43,7 @@ private: // reading
 
     /// @brief  reads the max channels
     /// @param  stream  the data to read from
-    void readMaxChannels( Stream stream );
+    void readMaxChannels( nlohmann::ordered_json const& data );
 
     /// @brief  map of the AudioSystem read methods
     static ReadMethodMap< AudioSystem > const s_ReadMethods;

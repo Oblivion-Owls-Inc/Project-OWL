@@ -234,34 +234,34 @@
 // private: reading
 //------------------------------------------------------------------------------
 
-    /// @brief		  Clone this entity from an archetype.
-    /// @param stream The json value to read from.
-    void Entity::readArchetype(Stream stream)
+    /// @brief  Clone this entity from an archetype.
+    /// @param  data    The json value to read from.
+    void Entity::readArchetype( nlohmann::ordered_json const& data )
     {
-        *this = *AssetLibrary<Entity>()->GetAsset( stream.Read<std::string>() );
+        *this = *AssetLibrary<Entity>()->GetAsset( Stream::Read<std::string>( data ) );
     }
 
-    /// @brief		  Read in the name of entity.
-    /// @param stream The json value to read from.
-    void Entity::readName(Stream stream)
+    /// @brief  Read in the name of entity.
+    /// @param  data    The json value to read from.
+    void Entity::readName( nlohmann::ordered_json const& data )
     {
-	    m_Name = stream.Read<std::string>();
+	    m_Name = Stream::Read<std::string>( data );
     }
 
-    /// @brief		  Read in the data for all the components of entity.
-    /// @param stream The json object to read from.
-    void Entity::readComponents(Stream stream)
+    /// @brief  Read in the data for all the components of entity.
+    /// @param  data    The json object to read from.
+    void Entity::readComponents( nlohmann::ordered_json const& data )
     {
-	    for ( auto& componentData : stream.GetObject() )
+        for ( auto& [ key, value ] : data.items() )
 	    {
 
             // [] operator finds the key in the map, or creates it if it doesn't exist yet.
-            Component*& component = m_Components[ ComponentFactory::GetTypeId( componentData.name.GetString() ) ];
+            Component*& component = m_Components[ ComponentFactory::GetTypeId( key ) ];
 
             // if the component doesn't exist yet, create and add it.
             if ( component == nullptr )
             {
-                component = ComponentFactory::Create( componentData.name.GetString() );
+                component = ComponentFactory::Create( key );
                 component->SetParent( this );
             }
 
@@ -269,7 +269,7 @@
 		    try
 		    {
 			    // Read in all the data for the component from the json.
-			    Stream( componentData.value ).Read( component );
+			    Stream::Read< ISerializable >( component, value );
 		    }
 		    catch (std::runtime_error error)
 		    {

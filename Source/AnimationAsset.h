@@ -83,23 +83,23 @@ private: // reading
 
     /// @brief  reads the start frame index of this Animation
     /// @param  stream  the json data to read from
-    void readStart( Stream stream );
+    void readStart( nlohmann::ordered_json const& data );
 
     /// @brief  reads the end frame index of this Animation
     /// @param  stream  the json data to read from
-    void readEnd( Stream stream );
+    void readEnd( nlohmann::ordered_json const& data );
 
     /// @brief  reads the frame duration of this Animation
     /// @param  stream  the json data to read from
-    void readFrameDuration( Stream stream );
+    void readFrameDuration( nlohmann::ordered_json const& data );
 
     /// @brief  reads the frame rate of this Animation
     /// @param  stream  the json data to read from
-    void readFrameRate( Stream stream );
+    void readFrameRate( nlohmann::ordered_json const& data );
 
     /// @brief  reads the whether this Animation is looping
     /// @param  stream  the json data to read from
-    void readIsLooping( Stream stream );
+    void readIsLooping( nlohmann::ordered_json const& data );
 
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< AnimationAsset > const s_ReadMethods;

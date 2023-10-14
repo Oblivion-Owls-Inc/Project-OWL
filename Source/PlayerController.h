@@ -30,8 +30,7 @@ class PlayerController :
 
     public:
 	    /// @brief Update method called per frame.
-	    /// @param dt The time elapsed since the last frame.
-	    void OnUpdate(float dt) override;
+	    virtual void OnFixedUpdate() override;
 
         /// @brief called when this Component's Entity is added to the Scene
         virtual void OnInit();

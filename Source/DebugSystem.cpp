@@ -235,16 +235,18 @@ void DebugSystem::ImguiStartFrame()
 // private: reading
 //-----------------------------------------------------------------------------
 
-    /// @brief          reads whether to show the FPS window
-    /// @param stream   the data to read from
-    void DebugSystem::readShowFpsWindow( Stream stream )
+    /// @brief  reads whether to show the FPS window
+    /// @param  data    the data to read from
+    void DebugSystem::readShowFpsWindow( nlohmann::ordered_json const& data )
     {
-        m_ShowFpsWindow = stream.Read<bool>();
+        m_ShowFpsWindow = Stream::Read<bool>( data );
     }
 
-    void DebugSystem::readShowDebugWindow(Stream stream)
+    /// @brief  reads whether to show the debug window
+    /// @param  data    the data to read from
+    void DebugSystem::readShowDebugWindow( nlohmann::ordered_json const& data )
     {
-		m_ShowDebugWindow = stream.Read<bool>();
+		m_ShowDebugWindow = Stream::Read<bool>( data );
     }
 
     /// @brief map containing read methods

@@ -61,13 +61,9 @@ private:
 
 private: // reading
 
-	/// @brief		  Read in the number of line segements to create.
-	/// @param stream The json data to read from.
-	void ReadNumLineSegments(Stream stream);
-
 	/// @brief		  Read in the data for the line vectors.
 	/// @param stream The json data to read from.
-	void ReadLineVectors( Stream stream );
+	void readLineVectors( nlohmann::ordered_json const& data );
     /// @brief The map of read methods for the LineCollider.
     static ReadMethodMap< LineCollider > s_ReadMethods;
 

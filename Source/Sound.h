@@ -70,15 +70,15 @@ private: // reading
 //-----------------------------------------------------------------------------
 
     /// @brief  reads filepath
-    /// @param  stream  the JSON data to read from
-    void readFilepath( Stream stream );
+    /// @param  data    the JSON data to read from
+    void readFilepath( nlohmann::ordered_json const& data );
 
     /// @brief  reads isLooping
-    /// @param  stream  the JSON data to read from
-    void readIsLooping( Stream stream );
+    /// @param  data    the JSON data to read from
+    void readIsLooping( nlohmann::ordered_json const& data );
 
     /// @brief  runs after Sound has been loaded 
-    void afterLoad( Stream );
+    void AfterLoad();
 
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< Sound > const s_ReadMethods;

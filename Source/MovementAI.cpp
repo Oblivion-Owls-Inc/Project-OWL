@@ -57,8 +57,8 @@ void MovementAI::OnFixedUpdate()
 
     float radius = ballCollider->GetRadius();
 
-    glm::vec3 pos = ballTransform->GetTranslation();
-    glm::vec3 velocity = ballRigidBody->GetVelocity();
+    glm::vec2 pos = ballTransform->GetTranslation();
+    glm::vec2 velocity = ballRigidBody->GetVelocity();
 
     // Check if the ball is going to exceed the screen bounds
     if ((pos.x - radius) < -WindowSize.x / 2)

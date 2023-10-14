@@ -37,16 +37,16 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     /// @brief  loads all assets of this AssetLibrary's type from JSON
     /// @param  data    the json data to load from
     template< class AssetType >
-    void AssetLibrarySystem< AssetType >::LoadAssets( Stream data )
+    void AssetLibrarySystem< AssetType >::LoadAssets( nlohmann::ordered_json const& data )
     {
-        for ( auto& assetData : data.GetObject() )
+        for ( auto& [ key, value ] : data.items() )
         {
             // create and read the asset
             AssetType* asset = new AssetType();
-            Stream( assetData.value ).Read( asset );
+            Stream::Read< ISerializable >( asset, value );
 
             // insert the asset into the map
-            AddAsset( assetData.name.GetString(), asset );
+            AddAsset( key, asset );
         }
     }
 

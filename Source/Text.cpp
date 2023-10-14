@@ -53,10 +53,10 @@ void Text::OnInit()
 //-----------------------------------------------------------------------------
 
 /// @brief          Read in the text this Text displays
-/// @param  stream  The json to read from.
-void Text::readText(Stream stream)
+/// @param  data  The json to read from.
+void Text::readText( nlohmann::ordered_json const& data )
 {
-    m_Text = stream.Read<std::string>();       
+    m_Text = Stream::Read<std::string>(data);       
 }
 
 

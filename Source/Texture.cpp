@@ -75,18 +75,18 @@ void Texture::Bind(unsigned int slot) const
 
 
 /// @brief  reads the filepath of the Texture
-/// @param  stream  the data to read from
-void Texture::readFilepath( Stream stream )
+/// @param  data    the data to read from
+void Texture::readFilepath( nlohmann::ordered_json const& data )
 {
-    m_Filepath = stream.Read<std::string>();
+    m_Filepath = Stream::Read<std::string>( data );
 }
 
 
 /// @brief  reads the sheetDimension of the Texture
-/// @param  stream  the data to read from
-void Texture::readSheetDimensions( Stream stream )
+/// @param  data    the data to read from
+void Texture::readSheetDimensions( nlohmann::ordered_json const& data )
 {
-    m_SheetDimensions = stream.Read<glm::ivec2>();
+    m_SheetDimensions = Stream::Read< 2, int >( data );
 }
 
 

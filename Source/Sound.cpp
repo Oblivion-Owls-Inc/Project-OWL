@@ -92,22 +92,28 @@
 //-----------------------------------------------------------------------------
 
     /// @brief  reads filepath
-    /// @param  stream  the JSON data to read from
-    void Sound::readFilepath( Stream stream )
+    /// @param  data    the JSON data to read from
+    void Sound::readFilepath( nlohmann::ordered_json const& data )
     {
-        m_Filepath = stream.Read<std::string>();
+        m_Filepath = Stream::Read<std::string>( data );
     }
 
     /// @brief  reads isLooping
-    /// @param  stream  the JSON data to read from
-    void Sound::readIsLooping( Stream stream )
+    /// @param  data    the JSON data to read from
+    void Sound::readIsLooping( nlohmann::ordered_json const& data )
     {
-        m_IsLooping = stream.Read<bool>();
+        m_IsLooping = Stream::Read<bool>( data );
     }
 
     /// @brief  runs after Sound has been loaded 
-    void Sound::afterLoad( Stream )
+    void Sound::AfterLoad()
     {
+        if ( m_Sound != nullptr )
+        {
+            m_Sound->release();
+            m_Sound = nullptr;
+        }
+
         AudioSystem::GetInstance()->GetFMOD()->createSound(
             m_Filepath.c_str(),
             m_IsLooping ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
@@ -119,8 +125,7 @@
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< Sound > const Sound::s_ReadMethods = {
         { "IsLooping", &readIsLooping },
-        { "Filepath" , &readFilepath  },
-        { "AFTERLOAD", &afterLoad     }
+        { "Filepath" , &readFilepath  }
     };
 
 

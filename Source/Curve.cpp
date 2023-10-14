@@ -65,31 +65,27 @@
         /// @tparam dimensionality  the number of dimensions this curve goes through
         /// @param  stream      the json data to read from
         template< int dimensionality >
-        void ControlPoint< dimensionality >::readTime( Stream stream )
+        void ControlPoint< dimensionality >::readTime( nlohmann::ordered_json const& data )
         {
-            M_Value[ dimensionality ] = stream.Read<float>();
+            M_Value[ dimensionality ] = Stream::Read<float>( data );
         }
 
         /// @brief  reads the value of this ControlPoint
         /// @tparam dimensionality  the number of dimensions this curve goes through
         /// @param  stream      the json data to read from
         template< int dimensionality >
-        void ControlPoint< dimensionality >::readValue( Stream stream )
+        void ControlPoint< dimensionality >::readValue( nlohmann::ordered_json const& data )
         {
-            glm::vec< dimensionality, float > value = stream.Read< glm::vec< dimensionality, float > >();
-            for ( int i = 0; i < dimensionality; ++i )
-            {
-                M_Value[i] = value[i];
-            }
+            Stream::Read< dimensionality + 1, float >( &M_Value, data );
         }
 
         /// @brief  reads the derivative of this ControlPoint
         /// @tparam dimensionality  the number of dimensions this curve goes through
         /// @param  stream      the json data to read from
         template< int dimensionality >
-        void ControlPoint< dimensionality >::readDerivative( Stream stream )
+        void ControlPoint< dimensionality >::readDerivative( nlohmann::ordered_json const& data )
         {
-            M_Derivative = stream.Read< glm::vec< dimensionality, float > >();
+            M_Derivative = Stream::Read< dimensionality, float >( data );
         }
 
         /// @brief  map of the SceneSystem read methods
@@ -342,7 +338,7 @@
             ImGui::TreePop();
         }
 
-        ImGui::DragInt( ( "Point##" + std::to_string( m_Id ) ).c_str(), (int*)&selectedIndices[ m_Id ], 0.05f, 0, m_ControlPoints.size() - 1, nullptr, (m_ControlPoints.size() <= 1) ? ImGuiSliderFlags_NoInput : ImGuiSliderFlags_None );
+        ImGui::DragInt( ( "Point##" + std::to_string( m_Id ) ).c_str(), (int*)&selectedIndices[ m_Id ], 0.05f, 0, (int)m_ControlPoints.size() - 1, nullptr, (m_ControlPoints.size() <= 1) ? ImGuiSliderFlags_NoInput : ImGuiSliderFlags_None );
 
         ImGui::DragFloat( ( "Time##" + std::to_string( m_Id ) ).c_str(), &m_ControlPoints[ selectedIndices[ m_Id ] ].M_Value[ dimensionality ], 0.01f );
         ImGui::DragScalarN( ( "Value##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndices[ m_Id ] ].M_Value[0], dimensionality, 0.01f );
@@ -507,33 +503,33 @@
 
     /// @brief  reads the interpolation type of this Curve
     /// @tparam dimensionality  the number of dimensions this curve goes through
-    /// @param  stream      the json data to read from
+    /// @param  data            the json data to read from
     template< int dimensionality >
-    void Curve< dimensionality >::readInterpolationType( Stream stream )
+    void Curve< dimensionality >::readInterpolationType( nlohmann::ordered_json const& data )
     {
-        m_InterpolationType = (InterpolationType)stream.Read<int>();
+        m_InterpolationType = (InterpolationType)Stream::Read<int>( data );
     }
 
     /// @brief  reads whether this Curve loops
     /// @tparam dimensionality  the number of dimensions this curve goes through
-    /// @param  stream  the json data to read from
+    /// @param  data            the json data to read from
     template< int dimensionality >
-    void Curve< dimensionality >::readIsLooping( Stream stream )
+    void Curve< dimensionality >::readIsLooping( nlohmann::ordered_json const& data )
     {
-        m_IsLooping = stream.Read<bool>();
+        m_IsLooping = Stream::Read<bool>( data );
     }
 
     /// @brief  reads the control points of this Curve
     /// @tparam dimensionality  the number of dimensions this curve goes through
-    /// @param  stream  the json data to read from
+    /// @param  data            the json data to read from
     template< int dimensionality >
-    void Curve< dimensionality >::readControlPoints( Stream stream )
+    void Curve< dimensionality >::readControlPoints( nlohmann::ordered_json const& data )
     {
         m_ControlPoints.clear();
-        for ( auto& pointData : stream.GetArray() )
+        for ( int i = 0; i < data.size(); ++i )
         {
             ControlPoint< dimensionality > point;
-            Stream( pointData ).Read( &point );
+            Stream::Read< ISerializable >( &point, data[ i ] );
             AddControlPoint( point );
         }
     }
