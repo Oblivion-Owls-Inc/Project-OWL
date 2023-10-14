@@ -44,26 +44,8 @@ public: // methods
     void ApplyImpulse( glm::vec2 const& impulse );
 
 //-----------------------------------------------------------------------------
-public: // virtual override methods
+public: // accessors
 //-----------------------------------------------------------------------------
-
-    /// @brief Default constructor for the RigidBody class.
-    virtual void OnInit() override;
-
-    /// @brief  called when this Component's Entity is removed from the Scene
-    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
-    virtual void OnExit() override;
-
-    /// @brief Update method called per frame.
-    /// @param dt The time elapsed since the last frame.
-    virtual void OnUpdate( float dt ) override;
-
-    /// @brief Fixed update method called at a fixed time step.
-    virtual void OnFixedUpdate() override;
-
-    /// @brief Used by the Debug System to display information about this Component
-    virtual void Inspector() override;
-
 
     /// @brief  Get the acceleration vector of the rigidBody.
     /// @return the acceleration vector.

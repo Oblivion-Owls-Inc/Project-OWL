@@ -13,6 +13,9 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include <rapidjson/document.h> // rapidjson::Value
 
+#include <functional>
+#include <map>
+
 class Transform : public Component
 {
 //-----------------------------------------------------------------------------
@@ -25,50 +28,71 @@ public: // constructor / destructor / inspector
     /// @brief destructor
     ~Transform() = default;
 
-    /// @brief  inspector for this component
-    virtual void Inspector() override;
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+    
+    /// @brief  adds an OnTransformChanged callback to this Transform
+    /// @param  callback    the callback function to add
+    /// @return a handle to the added callback
+    unsigned AddOnTransformChangedCallback( std::function< void() > callback );
+
+    /// @brief  removes an OnTransformChanged callback from this Transform
+    /// @param  callbackHandle  handle to the callback to remove
+    void RemoveOnTransformChangedCallback( unsigned callbackHandle );
+
+
 
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
 
+    /// @brief  unified set method that sets all three components of Transform at once
+    /// @param  translation the new translation to set
+    /// @param  rotation    the new rotation to set
+    /// @param  scale       the new scale to set
+    void Set( glm::vec2 const& translation, float rotation = 0.0f, glm::vec2 const& scale = { 1.0f, 1.0f } );
+
+
 	/// @brief  gets the translation
 	/// @return (gl::vec3)  the translation
-	__inline glm::vec3 const& GetTranslation() const { return m_Translation; }
+	glm::vec2 const& GetTranslation() const { return m_Translation; }
 
 	/// @brief  sets the translation
 	/// @param  translation the new translation
-	__inline void SetTranslation( glm::vec3 const& translation ) { m_Translation = translation; m_IsDirty = true; }
+	void SetTranslation( glm::vec2 const& translation ) { m_Translation = translation; MarkChanged(); }
 
 
     /// @brief  gets the rotation
     /// @return (float) the rotation
-	__inline float GetRotation() const { return m_Rotation; }
+	float GetRotation() const { return m_Rotation; }
 
     /// @brief  sets the rotation
     /// @param  rotation    the new rotation
-	__inline void SetRotation( float rotation ) { m_Rotation = rotation; m_IsDirty = true; }
+	void SetRotation( float rotation ) { m_Rotation = rotation; MarkChanged(); }
 
 
     /// @brief  gets the scale
     /// @return (glm::vec3) the scale
-    __inline glm::vec3 const& GetScale() const { return m_Scale; }
+    glm::vec2 const& GetScale() const { return m_Scale; }
 
     /// @brief  sets the scale
     /// @param  scale   the new scale
-    __inline void SetScale( glm::vec3 const& scale ) { m_Scale = scale; m_IsDirty = true; }
+    void SetScale( glm::vec2 const& scale ) { m_Scale = scale; MarkChanged(); }
 
 
     /// @brief  gets the isDiagetic flag
     /// @return (bool)  the isDiagetic flag
-    __inline bool const& GetIsDiegetic() const { return m_IsDiegetic; }
+    bool const& GetIsDiegetic() const { return m_IsDiegetic; }
 
     /// @brief  sets the isDiagetic flag
     /// @param  isDiagetic  the new isDiagetic flag
-    __inline void SetIsDiegetic( bool const& isDiagetic ) { m_IsDiegetic = isDiagetic; }
+    void SetIsDiegetic( bool const& isDiagetic ) { m_IsDiegetic = isDiagetic; }
 
-    /// @brief  marks the transform as dirty;
-    __inline void MarkDirty() { m_IsDirty = true; }
+
+    /// @brief  sets the dirty flag of this Transform
+    /// @param  dirty   whether this transform is dirty
+    void SetIsDirty( bool dirty ) { m_IsDirty = true; }
 
 
     /// @brief  gets the matrix
@@ -80,14 +104,56 @@ public: // accessors
     void SetMatrix( glm::mat4 const& matrix );
 
 //-----------------------------------------------------------------------------
+private: // virtual override methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  inspector for this component
+    virtual void Inspector() override;
+
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
+
+    /// @brief  the position of this Transform
+    glm::vec2 m_Translation = { 0.0f, 0.0f };
+
+    /// @brief  the scale of this Transform
+    glm::vec2 m_Scale = { 1.0f, 1.0f };
+
+    /// @brief  the rotation of this Transform
+    float m_Rotation = 0.0f;
+
+    /// @brief  the matrix for this Transform
+    glm::mat4 m_Matrix = glm::mat4(1);
+
+    /// @brief  flag for when the matrix needs to be regenerated
+    bool m_IsDirty = true;
+
+	/// @brief  whether this Transform exists in world or screen space
+	bool m_IsDiegetic = false;
+
+	/// @brief  the Transform that this Transform descends from
+	Transform* m_Parent = nullptr;
+
+    /// @brief  callbacks to be called whenever this Transform changes
+    std::map< unsigned, std::function< void () > > m_OnTransformChangedCallbacks = {};
+
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+    
+    /// @brief  marks this Transform as dirty and calls the OnTransformChanged callbacks
+    void MarkChanged();
+
+//-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
-	
+
     /// @brief  reads the translation
     /// @param  jsonValue   the json data to read from
     void readTranslation( Stream jsonValue );
-	
+
     /// @brief  reads the rotation
     /// @param  jsonValue   the json data to read from
     void readRotation( Stream jsonValue );
@@ -95,14 +161,17 @@ private: // reading
     /// @brief  reads the scale
     /// @param  jsonValue   the json data to read from
     void readScale( Stream jsonValue );
-	
+
     /// @brief  reads the isDiagetic flag
     /// @param  jsonValue   the json data to read from
     void readIsDiegetic( Stream jsonValue );
 
+    /// @brief  called after finished reading
+    virtual void AfterLoad() override;
+
 
     /// @brief  map of read methods
-	static ReadMethodMap< Transform > s_ReadMethods;
+    static ReadMethodMap< Transform > s_ReadMethods;
 
     /// @brief  gets the map of read methods
     /// @return the map of read methods
@@ -122,31 +191,6 @@ private: // copying
     /// @brief  copy constructor
     /// @param  other   the other Transform to copy
     Transform( Transform const& other );
-
-//-----------------------------------------------------------------------------
-private: // member variables
-//-----------------------------------------------------------------------------
-
-    /// @brief  the position of this Transform
-    glm::vec3 m_Translation;
-
-    /// @brief  the scale of this Transform
-    glm::vec3 m_Scale;
-
-    /// @brief  the rotation of this Transform
-    float m_Rotation;
-
-    /// @brief  the matrix for this Transform
-    glm::mat4 m_Matrix;
-
-    /// @brief  flag for when the matrix needs to be regenerated
-    bool m_IsDirty;
-
-	/// @brief  whether this Transform exists in world or screen space
-	bool m_IsDiegetic;
-
-	/// @brief  the Transform that this Transform descends from
-	Transform* m_Parent;
 
 //-----------------------------------------------------------------------------
 };

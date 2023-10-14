@@ -342,7 +342,7 @@
             ImGui::TreePop();
         }
 
-        ImGui::DragInt( ( "Point##" + std::to_string( m_Id ) ).c_str(), (int*)&selectedIndices[ m_Id ], 0.05f, 0, m_ControlPoints.size() - 1, nullptr, (m_ControlPoints.size() <= 1) ? ImGuiSliderFlags_NoInput : ImGuiSliderFlags_None );
+        ImGui::DragInt( ( "Point##" + std::to_string( m_Id ) ).c_str(), (int*)&selectedIndices[ m_Id ], 0.05f, 0, (int)m_ControlPoints.size() - 1, nullptr, (m_ControlPoints.size() <= 1) ? ImGuiSliderFlags_NoInput : ImGuiSliderFlags_None );
 
         ImGui::DragFloat( ( "Time##" + std::to_string( m_Id ) ).c_str(), &m_ControlPoints[ selectedIndices[ m_Id ] ].M_Value[ dimensionality ], 0.01f );
         ImGui::DragScalarN( ( "Value##" + std::to_string( m_Id ) ).c_str(), ImGuiDataType_Float, &m_ControlPoints[ selectedIndices[ m_Id ] ].M_Value[0], dimensionality, 0.01f );

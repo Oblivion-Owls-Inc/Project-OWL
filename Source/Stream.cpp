@@ -206,15 +206,10 @@ glm::vec2 Stream::Read<glm::vec2>() const
         );
     }
 
-    if ( value.GetArray().Size() > 2 )
-    {
-        throw std::runtime_error(
-            "JSON error: unexpected array size while trying to read Vec2"
-        );
-    }
+    int size = std::min( 2, (int)value.GetArray().Size() );
 
     glm::vec2 vector = {};
-    for (int i = 0; i < value.GetArray().Size(); i++)
+    for (int i = 0; i < size; i++)
     {
         if ( value[i].IsNumber() == false )
         {
@@ -239,15 +234,10 @@ glm::vec3 Stream::Read<glm::vec3>() const
         );
     }
 
-    if ( value.GetArray().Size() > 3 )
-    {
-        throw std::runtime_error(
-            "JSON error: unexpected array size while trying to read Vec3"
-        );
-    }
+    int size = std::min( 3, (int)value.GetArray().Size() );
 
     glm::vec3 vector = {};
-    for (int i = 0; i < value.GetArray().Size(); i++)
+    for (int i = 0; i < size; i++)
     {
         if ( value[i].IsNumber() == false )
         {
@@ -272,15 +262,10 @@ glm::vec4 Stream::Read<glm::vec4>() const
         );
     }
 
-    if ( value.GetArray().Size() > 4 )
-    {
-        throw std::runtime_error(
-            "JSON error: unexpected array size while trying to read Vec4"
-        );
-    }
+    int size = std::min( 4, (int)value.GetArray().Size() );
 
     glm::vec4 vector = {};
-    for (int i = 0; i < value.GetArray().Size(); i++)
+    for (int i = 0; i < size; i++)
     {
         if ( value[i].IsNumber() == false )
         {
@@ -305,8 +290,10 @@ glm::ivec2 Stream::Read<glm::ivec2>() const
         );
     }
 
+    int size = std::min( 2, (int)value.GetArray().Size() );
+
     glm::ivec2 vector = {};
-    for (int i = 0; i < value.GetArray().Size(); i++)
+    for (int i = 0; i < size; i++)
     {
         if ( value[i].IsInt() == false )
         {

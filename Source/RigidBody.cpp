@@ -73,7 +73,7 @@
 	    float dt = Engine::GetInstance()->GetFixedFrameDuration();
 
 	    // linear movement
-        glm::vec3 position = m_Transform->GetTranslation();
+        glm::vec2 position = m_Transform->GetTranslation();
 	    m_Velocity += m_Acceleration * dt;
         position += m_Velocity * dt;
 
@@ -82,8 +82,7 @@
 	    rotation += m_RotationalVelocity * dt;
 
         // apply movement
-	    m_Transform->SetRotation( rotation );
-	    m_Transform->SetTranslation( position );
+	    m_Transform->Set( position, rotation );
     }
 
     /// @brief  Called whenever a Collider on this Behavior's Entity collides
@@ -153,6 +152,7 @@
         m_CollisionResolved = true;
     }
 
+    /// @brief Used by the Debug System to display information about this Component
     void RigidBody::Inspector()
     {
         ImGui::DragFloat2("Velocity", &m_Velocity.x);

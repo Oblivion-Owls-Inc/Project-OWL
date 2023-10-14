@@ -34,125 +34,51 @@ void PlayerController::OnExit()
 	BehaviorSystem< PlayerController >::GetInstance()->RemoveBehavior(this);
 }
 
-void PlayerController::OnUpdate(float dt)
+void PlayerController::OnFixedUpdate()
 {
 
-    Transform* m_Transform = GetParent()->GetComponent<Transform>();
-
-	if (!m_Transform)
-		return;
+    glm::vec2 direction = { 0.0f, 0.0f };
 
     if (MoveRight())
     {
-        glm::vec3 POS = m_Transform->GetTranslation();
-
-        // Calculate the desired velocity increment.
-        glm::vec3 velocityIncrement = glm::vec3(5.0f * acceleration * dt, 0.0f, 0.0f);
-
-        // Apply acceleration, but limit the speed.
-        if (glm::length(velocityIncrement) > maxSpeed)
-        {
-            velocityIncrement = glm::normalize(velocityIncrement) * maxSpeed;
-        }
-
-        // Update the position gradually.
-        m_Transform->SetTranslation(POS + velocityIncrement);
+        direction += glm::vec2( 1.0f, 0.0f );
     }
-     if (MoveLeft())
+    if (MoveLeft())
     {
-        Transform* m_Transform = GetParent()->GetComponent<Transform>();
-
-        glm::vec3 POS = m_Transform->GetTranslation();
-
-        // Calculate the desired velocity increment.
-        glm::vec3 velocityIncrement = glm::vec3(-5.0f * acceleration * dt, 0.0f, 0.0f);
-
-        // Apply acceleration, but limit the speed.
-        if (glm::length(velocityIncrement) > maxSpeed)
-        {
-            velocityIncrement = glm::normalize(velocityIncrement) * maxSpeed;
-        }
-
-        // Update the position gradually.
-        m_Transform->SetTranslation(POS + velocityIncrement);
+        direction += glm::vec2( -1.0f, 0.0f );
     }
     if (Jump())
     {
-   		Transform* m_Transform = GetParent()->GetComponent<Transform>();
-		glm::vec3 POS = m_Transform->GetTranslation();
-
-		// Calculate the desired velocity increment.
-		glm::vec3 velocityIncrement = glm::vec3(0.0f, 5.0f * acceleration * dt, 0.0f);
-
-		// Apply acceleration, but limit the speed.
-		if (glm::length(velocityIncrement) > maxSpeed)
-		{
-			velocityIncrement = glm::normalize(velocityIncrement) * maxSpeed;
-		}
-
-		// Update the position gradually.
-		m_Transform->SetTranslation(POS + velocityIncrement);
+        direction += glm::vec2( 0.0f, 1.0f );
     }
 	if (MoveDown())
 	{
-		Transform* m_Transform = GetParent()->GetComponent<Transform>();
-		glm::vec3 POS = m_Transform->GetTranslation();
-
-		// Calculate the desired velocity increment.
-		glm::vec3 velocityIncrement = glm::vec3(0.0f, -5.0f * acceleration * dt, 0.0f);
-
-		// Apply acceleration, but limit the speed.
-		if (glm::length(velocityIncrement) > maxSpeed)
-		{
-			velocityIncrement = glm::normalize(velocityIncrement) * maxSpeed;
-		}
-
-		// Update the position gradually.
-		m_Transform->SetTranslation(POS + velocityIncrement);
+        direction += glm::vec2( 0.0f, -1.0f );
 	}
+
+    direction = glm::normalize(direction);
+
+    GetParent()->GetComponent<RigidBody>()->SetVelocity( direction * maxSpeed );
+
 }
 
 
 bool PlayerController::MoveRight()
 {
-	if (input->GetKeyDown(GLFW_KEY_D))
-	{
-		return true;
-	}
-	{
-		return false;
-	}
+	return input->GetKeyDown(GLFW_KEY_D);
 }
 
 bool PlayerController::MoveLeft()
 {
-	if (input->GetKeyDown(GLFW_KEY_A))
-	{
-		return true;
-	}
-	{
-		return false;
-	}
+	return input->GetKeyDown(GLFW_KEY_A);
 }
 
 bool PlayerController::Jump()
 {
-	if (input->GetKeyDown(GLFW_KEY_W))
-	{
-		return true;
-	}
-	{
-		return false;
-	}
+	return input->GetKeyDown(GLFW_KEY_W);
 }
 
 bool PlayerController::MoveDown()
 {
-	if (input->GetKeyDown(GLFW_KEY_S))
-	{
-		return true;
-	}
-	{
-		return false;
-	}
+	return input->GetKeyDown(GLFW_KEY_S);
 }

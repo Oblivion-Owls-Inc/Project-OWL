@@ -65,8 +65,8 @@ void TurretBehavior::OnFixedUpdate()
 		Transform* m_Transform = entity->GetComponent<Transform>();
 		if (m_Transform)
 		{
-			glm::vec3 entityPOS = m_Transform->GetTranslation(); 
-			glm::vec3 turretPOS = GetParent()->GetComponent<Transform>()->GetTranslation();
+			glm::vec2 entityPOS = m_Transform->GetTranslation(); 
+			glm::vec2 turretPOS = GetParent()->GetComponent<Transform>()->GetTranslation();
 
 			/// Caclulate the area of attack for the turret
 			float AOA = glm::length(entityPOS - turretPOS);

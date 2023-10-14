@@ -139,7 +139,7 @@
             }
         }
 
-        m_Transform->MarkDirty();
+        m_Transform->SetIsDirty( true );
         m_Transform->SetMatrix( m_Transform->GetMatrix() * m_CurrentEffect->SampleAtTime( m_Time ) );
 
         for ( auto callback : m_OnAnimationCompleteCallbacks )
