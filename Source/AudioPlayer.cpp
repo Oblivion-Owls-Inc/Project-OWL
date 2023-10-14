@@ -165,12 +165,17 @@
     nlohmann::ordered_json AudioPlayer::Write() const
     {
         nlohmann::ordered_json data;
-        data.object();
-
+    
         data["Volume"] = m_Volume;
         data["Pitch"] = m_Pitch;
         data["VolumeVariance"] = m_VolumeVariance;
         data["PitchVariance"] = m_PitchVariance;
+
+        std::string name = AssetLibrary<Sound>()->GetAssetName(m_Sound);
+        if (!name.empty())
+        {
+            data["Sound"] = name;
+        }
 
         return data;
     }
