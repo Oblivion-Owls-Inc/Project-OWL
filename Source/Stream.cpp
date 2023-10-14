@@ -31,6 +31,7 @@
                 std::string() + "Error: unable to open file \"" + filepath + "\""
             );
         }
+        // TODO: error handling?
         return nlohmann::ordered_json::parse( file );
     }
 
@@ -39,7 +40,6 @@
     /// @param  json        the json data to write to the file
     void Stream::WriteToFile( std::string const& filepath, nlohmann::ordered_json const& json )
     {
-        // TODO: error handling
         std::ofstream file( filepath );
         if ( file.is_open() == false )
         {
@@ -47,7 +47,7 @@
                 std::string() + "Error: unable to open file \"" + filepath + "\""
             );
         }
-        file << json;
+        file << std::setw( 4 ) << json << std::endl;
     }
 
 

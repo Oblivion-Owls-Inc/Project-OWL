@@ -1,0 +1,28 @@
+{
+    "FixedFrameDuration": 0.016699999570846558,
+    "Systems": {
+        "PlatformSystem": {},
+        "InputSystem": {},
+        "SceneSystem": {
+            "BaseScenePath": "Data/Scenes/",
+            "NextSceneName": "TurretScene"
+        },
+        "AssetLibrary<Entity>": {},
+        "AssetLibrary<Sound>": {},
+        "AssetLibrary<Texture>": {},
+        "AssetLibrary<TransformAnimation>": {},
+        "AssetLibrary<AnimationAsset>": {},
+        "BehaviorSystem<Animation>": {},
+        "BehaviorSystem<MovementAI>": {},
+        "BehaviorSystem<PlayerController>": {},
+        "BehaviorSystem<RigidBody>": {},
+        "CollisionSystem": {},
+        "BehaviorSystem<EffectAnimator>": {},
+        "EntitySystem": {},
+        "CameraSystem": {},
+        "RenderSystem": {},
+        "AudioSystem": {},
+        "DebugSystem": {},
+        "SandboxSystem": {}
+    }
+}

@@ -178,15 +178,16 @@
     nlohmann::ordered_json Engine::Write() const
     {
         nlohmann::ordered_json json;
-        json.object();
 
         json[ "FixedFrameDuration" ] = m_FixedFrameDuration;
 
-        nlohmann::ordered_json systems = json[ "Systems" ].object();
+        nlohmann::ordered_json& systems = json[ "Systems" ];
         for ( System* system : m_Systems )
         {
             systems[ system->GetName() ] = system->Write();
         }
+
+        return json;
     }
 
 //-----------------------------------------------------------------------------

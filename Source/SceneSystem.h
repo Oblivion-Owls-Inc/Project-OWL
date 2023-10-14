@@ -97,6 +97,10 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+//-----------------------------------------------------------------------------
+public: // writing
+//-----------------------------------------------------------------------------
+
     /// @brief  writes this System to json
     virtual nlohmann::ordered_json Write() const override;
 
