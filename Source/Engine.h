@@ -76,6 +76,10 @@ private: // reading
     /// @brief  contains the function for adding each System type to the Engine. Used for Loading systems from config.
     static std::map< std::string, System* (Engine::*)() > const s_AddSystemMethods;
 
+    /// @brief  writes the Engine config to json
+    /// @return the written json data
+    virtual nlohmann::ordered_json Write() const override;
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------

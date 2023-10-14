@@ -39,7 +39,7 @@ public: // virtual methods
 
     /// @brief  writes this object to json
     /// @return the json data of this object
-    virtual nlohmann::ordered_json Write() const { return {}; }
+    virtual nlohmann::ordered_json Write() const { return nlohmann::ordered_json().object(); }
 
 //-----------------------------------------------------------------------------
 };

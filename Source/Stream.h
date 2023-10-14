@@ -32,7 +32,7 @@ class ISerializable;
 class Stream
 {
 //------------------------------------------------------------------------------
-public: // static methods
+public: // file io
 //------------------------------------------------------------------------------
 
 	/// @brief	Opens and parses a json document.
@@ -45,6 +45,9 @@ public: // static methods
     /// @param  json        the json data to write to the file
     static void WriteToFile( std::string const& filepath, nlohmann::ordered_json const& json );
 
+//------------------------------------------------------------------------------
+public: // reading
+//------------------------------------------------------------------------------
 
     /// @brief  reads a basic type from json
     /// @tparam ValueType   the type to read
@@ -83,10 +86,22 @@ public: // static methods
     static void Read( glm::vec< size, ValueType >* value, nlohmann::ordered_json const& json );
 
 //------------------------------------------------------------------------------
+public: // writing
+//------------------------------------------------------------------------------
+    
+    /// @brief  writes a glm vector to json
+    /// @tparam ValueType   the type of value of the vector
+    /// @tparam size        the size of the vector
+    /// @param  value       the vector to write
+    /// @return the json data of the vector
+    template< int size, typename ValueType >
+    static nlohmann::ordered_json Write( glm::vec< size, ValueType > const& value );
+
+//------------------------------------------------------------------------------
 };
 
 //------------------------------------------------------------------------------
-// template method definitions
+// template read method definitions
 //------------------------------------------------------------------------------
 
     /// @brief  reads a basic type from json
@@ -154,5 +169,21 @@ public: // static methods
         }
     }
 
+//------------------------------------------------------------------------------
+// template read method definitions
+//------------------------------------------------------------------------------
+
+    /// @brief  writes a glm vector to json
+    /// @tparam ValueType   the type of value of the vector
+    /// @tparam size        the size of the vector
+    /// @param  value       the vector to write
+    /// @return the json data of the vector
+    template< int size, typename ValueType >
+    nlohmann::ordered_json Stream::Write( glm::vec< size, ValueType > const& value )
+    {
+        nlohmann::json json;
+        json.array( value );
+        return json;
+    }
 
 //------------------------------------------------------------------------------

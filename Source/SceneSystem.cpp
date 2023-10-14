@@ -123,6 +123,16 @@
         { "NextSceneName", &readNextSceneName }
     };
 
+    /// @brief  writes this System to json
+    nlohmann::ordered_json SceneSystem::Write() const
+    {
+        nlohmann::ordered_json json;
+        json.object();
+        json[ "BaseScenePath" ] = m_BaseScenePath;
+        json[ "NextSceneName" ] = m_CurrentSceneName;
+        return json;
+    }
+
 //-----------------------------------------------------------------------------
 // private: scene loading
 //-----------------------------------------------------------------------------
