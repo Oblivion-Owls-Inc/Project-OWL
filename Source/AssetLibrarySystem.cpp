@@ -100,6 +100,22 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
         }
     }
 
+    /// @brief Finds an returns the name of the specified asset.
+    /// @param asset The asset to search for.
+    template<class AssetType>
+    std::string const& AssetLibrarySystem<AssetType>::GetAssetName(AssetType* f_Asset) const
+    {
+        for ( auto pair : m_Assets)
+        {
+            if (pair.second == f_Asset)
+            {
+                return pair.first();
+            }
+        }
+
+        return "";
+    }
+
 
     /// @brief  Adds an asset to the AssetLibrary
     /// @param  name    the name of the asset to add

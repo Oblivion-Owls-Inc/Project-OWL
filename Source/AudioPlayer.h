@@ -122,10 +122,6 @@ private: // reading
     /// @param  data    the json data
     void readPitchVariance( nlohmann::ordered_json const& data );
 
-    /// @brief  Writes all AudioPlayr data to a JSON file.
-    /// @return The JSON file containing the data.
-    virtual nlohmann::ordered_json Write() const override;
-
     /// @brief  map of the read methods for this Component
     static ReadMethodMap< AudioPlayer > s_ReadMethods;
 
@@ -135,6 +131,12 @@ private: // reading
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
+
+private:
+
+    /// @brief  Writes all AudioPlayr data to a JSON file.
+    /// @return The JSON file containing the data.
+    virtual nlohmann::ordered_json Write() const override;
 
 //-----------------------------------------------------------------------------
 private: // copying
