@@ -147,9 +147,9 @@ void Tilemap::updateMat()
 /// @param  stream  The json to read from.
 void Tilemap::readTilemap( nlohmann::json const& data )
 {
-    for (auto& tileData : stream.GetArray())
+    for (int i = 0; i < data.size(); ++i)
     {
-        int ID = Stream(tileData).Read<int>(); // for debugging
+        int ID = Stream::Read<int>(data[i]); // for debugging
         m_Tilemap.push_back(ID);
     }
 }
