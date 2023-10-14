@@ -28,35 +28,35 @@
     /// @param  stream  the json data to read from
     void AnimationAsset::readStart( nlohmann::json const& data )
     {
-        m_Start = stream.Read<int>();
+        m_Start = Stream::Read<int>(data);
     }
 
     /// @brief  reads the end frame index of this Animation
     /// @param  stream  the json data to read from
     void AnimationAsset::readEnd( nlohmann::json const& data )
     {
-        m_End = stream.Read<int>();
+        m_End = Stream::Read<int>(data);
     }
 
     /// @brief  reads the frame duration of this Animation
     /// @param  stream  the json data to read from
     void AnimationAsset::readFrameDuration( nlohmann::json const& data )
     {
-        m_FrameDuration = stream.Read<float>();
+        m_FrameDuration = Stream::Read<float>(data);
     }
 
     /// @brief  reads the frame rate of this Animation
     /// @param  stream  the json data to read from
     void AnimationAsset::readFrameRate( nlohmann::json const& data )
     {
-        m_FrameDuration = 1.0f / stream.Read<float>();
+        m_FrameDuration = 1.0f / Stream::Read<float>(data);
     }
 
     /// @brief  reads the whether this Animation is looping
     /// @param  stream  the json data to read from
     void AnimationAsset::readIsLooping( nlohmann::json const& data )
     {
-        m_IsLooping = stream.Read<bool>();
+        m_IsLooping = Stream::Read<bool>(data);
     }
 
     /// @brief  map of the SceneSystem read methods
