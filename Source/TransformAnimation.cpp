@@ -127,30 +127,30 @@
 
     /// @brief  reads the ScaleCurve
     /// @param  stream the json data to read from
-    void TransformAnimation::readScaleCurve( nlohmann::json const& data )
+    void TransformAnimation::readScaleCurve( nlohmann::ordered_json const& data )
     {
-        Stream::Read( &m_ScaleCurve, data );
+        Stream::Read< ISerializable >( &m_ScaleCurve, data );
     }
 
     /// @brief  reads the OffsetCurve
     /// @param  stream the json data to read from
-    void TransformAnimation::readOffsetCurve( nlohmann::json const& data )
+    void TransformAnimation::readOffsetCurve( nlohmann::ordered_json const& data )
     {
-        Stream::Read( &m_OffsetCurve, data );
+        Stream::Read< ISerializable >( &m_OffsetCurve, data );
     }
 
     /// @brief  reads the RotationCurve
     /// @param  stream the json data to read from
-    void TransformAnimation::readRotationCurve( nlohmann::json const& data )
+    void TransformAnimation::readRotationCurve( nlohmann::ordered_json const& data )
     {
-        Stream::Read( &m_RotationCurve, data );
+        Stream::Read< ISerializable >( &m_RotationCurve, data );
     }
 
     /// @brief  reads the SkewCurve
     /// @param  stream the json data to read from
-    void TransformAnimation::readSkewCurve( nlohmann::json const& data )
+    void TransformAnimation::readSkewCurve( nlohmann::ordered_json const& data )
     {
-        Stream::Read( &m_SkewCurve, data );
+        Stream::Read< ISerializable >( &m_SkewCurve, data );
     }
 
     /// @brief  map of the SceneSystem read methods

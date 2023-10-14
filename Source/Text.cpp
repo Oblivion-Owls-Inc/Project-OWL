@@ -54,7 +54,7 @@ void Text::OnInit()
 
 /// @brief          Read in the text this Text displays
 /// @param  data  The json to read from.
-void Text::readText( nlohmann::json const& data )
+void Text::readText( nlohmann::ordered_json const& data )
 {
     m_Text = Stream::Read<std::string>(data);       
 }

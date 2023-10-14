@@ -38,12 +38,12 @@ public: // static methods
 	/// @brief	Opens and parses a json document.
 	/// @param  filepath    name of the file to read from.
 	/// @return	the parsed json data
-	static nlohmann::json ReadFromFile( std::string const& filepath );
+	static nlohmann::ordered_json ReadFromFile( std::string const& filepath );
 
     /// @brief  Writes json data to a file
     /// @param  filepath    the path of the file to write to
     /// @param  json        the json data to write to the file
-    static void WriteToFile( std::string const& filepath, nlohmann::json const& json );
+    static void WriteToFile( std::string const& filepath, nlohmann::ordered_json const& json );
 
 
     /// @brief  reads a basic type from json
@@ -51,22 +51,20 @@ public: // static methods
     /// @param  json        the json data to read from
     /// @return the read data
     template< typename ValueType >
-    static ValueType Read( nlohmann::json const& json );
+    static ValueType Read( nlohmann::ordered_json const& json );
 
     /// @brief  reads a basic type from json
     /// @tparam ValueType   the type to read
     /// @param  value       pointer to where to store the read data
     /// @param  json        the json data to read from
     template< typename ValueType >
-    static void Read( ValueType* value, nlohmann::json const& json );
-
+    static void Read( ValueType* value, nlohmann::ordered_json const& json );
 
     /// @brief  reads a serializable object from json
     /// @param  object  the object to read from json
     /// @param  json    the json data to read from
     template<>
-    static void Read< ISerializable >( ISerializable* object, nlohmann::json const& json );
-
+    static void Read< ISerializable >( ISerializable* object, nlohmann::ordered_json const& json );
 
     /// @brief  reads a glm vector from json
     /// @tparam size        the size of the vector
@@ -74,7 +72,7 @@ public: // static methods
     /// @param  json        the json data to read from
     /// @return the read vector
     template< int size, typename ValueType >
-    static glm::vec< size, ValueType > Read( nlohmann::json const& json );
+    static glm::vec< size, ValueType > Read( nlohmann::ordered_json const& json );
 
     /// @brief  reads a glm vector from json
     /// @tparam size        the size of the vector
@@ -82,7 +80,7 @@ public: // static methods
     /// @param  value       the vector to read into
     /// @param  json        the json data to read from
     template< int size, typename ValueType >
-    static void Read( glm::vec< size, ValueType >* value, nlohmann::json const& json );
+    static void Read( glm::vec< size, ValueType >* value, nlohmann::ordered_json const& json );
 
 //------------------------------------------------------------------------------
 };
@@ -96,7 +94,7 @@ public: // static methods
     /// @param  json        the json data to read from
     /// @return the read data
     template< typename ValueType >
-    ValueType Stream::Read( nlohmann::json const& json )
+    ValueType Stream::Read( nlohmann::ordered_json const& json )
     {
         // TODO: error handling
         return json.get< ValueType >();
@@ -107,7 +105,7 @@ public: // static methods
     /// @param  value       pointer to where to store the read data
     /// @param  json        the json data to read from
     template< typename ValueType >
-    void Stream::Read( ValueType* value, nlohmann::json const& json )
+    void Stream::Read( ValueType* value, nlohmann::ordered_json const& json )
     {
         // TODO: error handling
         *value = json.get< ValueType >();
@@ -120,7 +118,7 @@ public: // static methods
     /// @param  json        the json data to read from
     /// @return the read vector
     template< int size, typename ValueType >
-    glm::vec< size, ValueType > Stream::Read( nlohmann::json const& json )
+    glm::vec< size, ValueType > Stream::Read( nlohmann::ordered_json const& json )
     {
         glm::vec< size, ValueType > value;
         Read< size, ValueType >( &value, json );
@@ -133,21 +131,24 @@ public: // static methods
     /// @param  value       the vector to read into
     /// @param  json        the json data to read from
     template< int size, typename ValueType >
-    void Stream::Read( glm::vec< size, ValueType >* value, nlohmann::json const& json )
+    void Stream::Read( glm::vec< size, ValueType >* value, nlohmann::ordered_json const& json )
     {
         if ( json.is_array() == false )
         {
-            // TODO: error handling
+            throw std::runtime_error(
+                std::string() + "Error: unexpected json type \"" + json.type_name() +
+                "\" encountered while trying to read vector of " + std::to_string(size) + " " + typeid(ValueType).name() + "s"
+            );
         }
 
         int count = size;
         if ( json.size() != size )
         {
             // TODO: throw warning, not error
-            int count = std::min( json.size(), size );
+            count = std::min( (int)json.size(), size );
         }
 
-        for ( int i = 0; i < count, ++i )
+        for ( int i = 0; i < count; ++i )
         {
             (*value)[ i ] = json[ i ].get< ValueType >();
         }

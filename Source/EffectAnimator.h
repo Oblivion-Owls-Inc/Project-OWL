@@ -163,23 +163,23 @@ private: // reading
 
     /// @brief  reads the current effect
     /// @param  stream  the json data to read from
-    void readCurrentEffect( nlohmann::json const& data );
+    void readCurrentEffect( nlohmann::ordered_json const& data );
 
     /// @brief  reads the current time
     /// @param  stream  the json data to read from
-    void readTime( nlohmann::json const& data );
+    void readTime( nlohmann::ordered_json const& data );
 
     /// @brief  reads the playback speed
     /// @param  stream  the json data to read from
-    void readSpeed( nlohmann::json const& data );
+    void readSpeed( nlohmann::ordered_json const& data );
 
     /// @brief  reads the loop count
     /// @param  stream  the json data to read from
-    void readLoopCount( nlohmann::json const& data );
+    void readLoopCount( nlohmann::ordered_json const& data );
 
     /// @brief  reads whether the effect is currently playing
     /// @param  stream  the json data to read from
-    void readIsPlaying( nlohmann::json const& data );
+    void readIsPlaying( nlohmann::ordered_json const& data );
 
     /// @brief  map of the read methods for this Component
     static ReadMethodMap< EffectAnimator > s_ReadMethods;

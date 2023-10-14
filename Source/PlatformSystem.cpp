@@ -96,14 +96,14 @@ void PlatformSystem::OnExit()
 
     /// @brief  reads the window width
     /// @param  data    the data to read from
-    void PlatformSystem::readWindowWidth( nlohmann::json const& data )
+    void PlatformSystem::readWindowWidth( nlohmann::ordered_json const& data )
     {
         windowWidth = Stream::Read<int>( data );
     }
 
     /// @brief  reads the window width
     /// @param  data    the data to read from
-    void PlatformSystem::readWindowHeight( nlohmann::json const& data )
+    void PlatformSystem::readWindowHeight( nlohmann::ordered_json const& data )
     {
         windowHeight = Stream::Read<int>( data );
     }

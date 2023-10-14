@@ -11,7 +11,6 @@
 #include "Engine.h"
 
 #include "basics.h"
-#include <rapidjson/document.h>
 #include <fstream>
 
 #include "PlatformSystem.h"
@@ -99,14 +98,14 @@
 
     /// @brief  reads the fixedFrameDuration
     /// @param  data    the stream to read the data from
-    void Engine::readFixedFrameDuration( nlohmann::json const& data )
+    void Engine::readFixedFrameDuration( nlohmann::ordered_json const& data )
     {
         m_FixedFrameDuration = Stream::Read<float>( data );
     }
 
     /// @brief  reads the systems
     /// @param  data    the stream to read the data from
-    void Engine::readSystems( nlohmann::json const& data )
+    void Engine::readSystems( nlohmann::ordered_json const& data )
     {
         for ( auto& [ key, value ] : data.items() )
         {
@@ -127,7 +126,7 @@
             }
            
             System* system = ( this->*addSystemMethod->second )(); // create and add the System to the Engine
-            Stream::Read( system, value ); // have the System load itself
+            Stream::Read< ISerializable >( system, value ); // have the System load itself
         }
     }
 
@@ -181,11 +180,11 @@
     /// @brief  Loads the engine config from "Data/EngineConfig.json"
     void Engine::load()
     {
-        nlohmann::json json = Stream::ReadFromFile( "Data/EngineConfig.json" );
+        nlohmann::ordered_json json = Stream::ReadFromFile( "Data/EngineConfig.json" );
 
         try
         {
-            Stream::Read( this, json );
+            Stream::Read< ISerializable >( this, json );
         }
         catch ( std::runtime_error error )
         {

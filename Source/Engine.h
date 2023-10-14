@@ -52,11 +52,11 @@ private: // reading
 
     /// @brief  reads the fixedFrameDuration
     /// @param  stream  the stream to read the data from
-    void readFixedFrameDuration( nlohmann::json const& data );
+    void readFixedFrameDuration( nlohmann::ordered_json const& data );
 
     /// @brief  reads the systems
     /// @param  stream  the stream to read the data from
-    void readSystems( nlohmann::json const& data );
+    void readSystems( nlohmann::ordered_json const& data );
 
     /// @brief map containing Engine read methods
     static ReadMethodMap< Engine > const s_ReadMethods;

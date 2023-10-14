@@ -11,7 +11,6 @@
 #include "basics.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
-#include <rapidjson/document.h> // rapidjson::Value
 
 #include <functional>
 #include <map>
@@ -152,19 +151,19 @@ private: // reading
 
     /// @brief  reads the translation
     /// @param  jsonValue   the json data to read from
-    void readTranslation( nlohmann::json const& data );
+    void readTranslation( nlohmann::ordered_json const& data );
 
     /// @brief  reads the rotation
     /// @param  jsonValue   the json data to read from
-    void readRotation( nlohmann::json const& data );
+    void readRotation( nlohmann::ordered_json const& data );
 
     /// @brief  reads the scale
     /// @param  jsonValue   the json data to read from
-    void readScale( nlohmann::json const& data );
+    void readScale( nlohmann::ordered_json const& data );
 
     /// @brief  reads the isDiagetic flag
     /// @param  jsonValue   the json data to read from
-    void readIsDiegetic( nlohmann::json const& data );
+    void readIsDiegetic( nlohmann::ordered_json const& data );
 
     /// @brief  called after finished reading
     virtual void AfterLoad() override;

@@ -127,28 +127,28 @@
 
     /// @brief			 Reads in a translation vector from a JSON value.
     /// @param jsonValue The value to read from.
-    void Transform::readTranslation( nlohmann::json const& data )
+    void Transform::readTranslation( nlohmann::ordered_json const& data )
     {
-	    m_Translation = Stream::Read<glm::vec2>(data);
+	    m_Translation = Stream::Read< 2, float >(data);
     }
 
     /// @brief			 Reads in a rotation from a JSON value.
     /// @param jsonValue The value to read from.
-    void Transform::readRotation( nlohmann::json const& data )
+    void Transform::readRotation( nlohmann::ordered_json const& data )
     {
 	    m_Rotation = Stream::Read<float>(data);
     }
 
     /// @brief			 Reads in a scale vector from a JSON value.
     /// @param jsonValue The value to read from.
-    void Transform::readScale( nlohmann::json const& data )
+    void Transform::readScale( nlohmann::ordered_json const& data )
     {
-	    m_Scale = Stream::Read<glm::vec2>(data);
+	    m_Scale = Stream::Read< 2, float >(data);
     }
 
     /// @brief			 Reads in a flag from a JSON value.
     /// @param jsonValue The value to read from.
-    void Transform::readIsDiegetic( nlohmann::json const& data )
+    void Transform::readIsDiegetic( nlohmann::ordered_json const& data )
     {
 	    m_IsDiegetic = Stream::Read<bool>(data);
     }

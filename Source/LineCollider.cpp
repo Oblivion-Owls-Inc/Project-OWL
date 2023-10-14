@@ -51,7 +51,7 @@ void LineCollider::Inspector()
 
 /// @brief		  Read in the data for the line vectors.
 /// @param stream The json data to read from.
-void LineCollider::readLineVectors( nlohmann::json const& data )
+void LineCollider::readLineVectors( nlohmann::ordered_json const& data )
 {
     assert( data.is_array() );
     // Create and add as many line segments as needed.

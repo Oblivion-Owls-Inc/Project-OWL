@@ -14,7 +14,7 @@
 #include "Stream.h"
 
 template < typename T >
-using ReadMethod = void (T::*)( nlohmann::json const& json );
+using ReadMethod = void (T::*)( nlohmann::ordered_json const& json );
 
 template < typename T >
 using ReadMethodMap = std::map< std::string, ReadMethod< T > >;
@@ -39,7 +39,7 @@ public: // virtual methods
 
     /// @brief  writes this object to json
     /// @return the json data of this object
-    virtual nlohmann::json Write() const { return {}; }
+    virtual nlohmann::ordered_json Write() const { return {}; }
 
 //-----------------------------------------------------------------------------
 };

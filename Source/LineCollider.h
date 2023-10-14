@@ -63,7 +63,7 @@ private: // reading
 
 	/// @brief		  Read in the data for the line vectors.
 	/// @param stream The json data to read from.
-	void readLineVectors( nlohmann::json const& data );
+	void readLineVectors( nlohmann::ordered_json const& data );
     /// @brief The map of read methods for the LineCollider.
     static ReadMethodMap< LineCollider > s_ReadMethods;
 

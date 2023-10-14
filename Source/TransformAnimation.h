@@ -102,19 +102,19 @@ private: // reading
 
     /// @brief  reads the ScaleCurve
     /// @param  stream the json data to read from
-    void readScaleCurve( nlohmann::json const& data );
+    void readScaleCurve( nlohmann::ordered_json const& data );
 
     /// @brief  reads the OffsetCurve
     /// @param  stream the json data to read from
-    void readOffsetCurve( nlohmann::json const& data );
+    void readOffsetCurve( nlohmann::ordered_json const& data );
 
     /// @brief  reads the RotationCurve
     /// @param  stream the json data to read from
-    void readRotationCurve( nlohmann::json const& data );
+    void readRotationCurve( nlohmann::ordered_json const& data );
 
     /// @brief  reads the SkewCurve
     /// @param  stream the json data to read from
-    void readSkewCurve( nlohmann::json const& data );
+    void readSkewCurve( nlohmann::ordered_json const& data );
 
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< TransformAnimation > const s_ReadMethods;

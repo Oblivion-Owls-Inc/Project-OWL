@@ -71,11 +71,11 @@ private: // reading
 
     /// @brief  reads filepath
     /// @param  data    the JSON data to read from
-    void readFilepath( nlohmann::json const& data );
+    void readFilepath( nlohmann::ordered_json const& data );
 
     /// @brief  reads isLooping
     /// @param  data    the JSON data to read from
-    void readIsLooping( nlohmann::json const& data );
+    void readIsLooping( nlohmann::ordered_json const& data );
 
     /// @brief  runs after Sound has been loaded 
     void AfterLoad();

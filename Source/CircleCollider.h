@@ -49,7 +49,7 @@ private: // reading
 
     /// @brief  Reads the radius
     /// @param  stream  The json data to read from
-    void readRadius( nlohmann::json const& data );
+    void readRadius( nlohmann::ordered_json const& data );
 
     /// @brief map of the read methods for this Component
     static ReadMethodMap< CircleCollider > s_ReadMethods;

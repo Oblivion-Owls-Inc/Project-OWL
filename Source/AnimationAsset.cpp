@@ -26,35 +26,35 @@
 
     /// @brief  reads the start frame index of this Animation
     /// @param  stream  the json data to read from
-    void AnimationAsset::readStart( nlohmann::json const& data )
+    void AnimationAsset::readStart( nlohmann::ordered_json const& data )
     {
         m_Start = Stream::Read<int>(data);
     }
 
     /// @brief  reads the end frame index of this Animation
     /// @param  stream  the json data to read from
-    void AnimationAsset::readEnd( nlohmann::json const& data )
+    void AnimationAsset::readEnd( nlohmann::ordered_json const& data )
     {
         m_End = Stream::Read<int>(data);
     }
 
     /// @brief  reads the frame duration of this Animation
     /// @param  stream  the json data to read from
-    void AnimationAsset::readFrameDuration( nlohmann::json const& data )
+    void AnimationAsset::readFrameDuration( nlohmann::ordered_json const& data )
     {
         m_FrameDuration = Stream::Read<float>(data);
     }
 
     /// @brief  reads the frame rate of this Animation
     /// @param  stream  the json data to read from
-    void AnimationAsset::readFrameRate( nlohmann::json const& data )
+    void AnimationAsset::readFrameRate( nlohmann::ordered_json const& data )
     {
         m_FrameDuration = 1.0f / Stream::Read<float>(data);
     }
 
     /// @brief  reads the whether this Animation is looping
     /// @param  stream  the json data to read from
-    void AnimationAsset::readIsLooping( nlohmann::json const& data )
+    void AnimationAsset::readIsLooping( nlohmann::ordered_json const& data )
     {
         m_IsLooping = Stream::Read<bool>(data);
     }

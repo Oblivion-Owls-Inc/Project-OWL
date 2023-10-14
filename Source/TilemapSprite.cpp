@@ -185,15 +185,15 @@ void TilemapSprite::initInstancingStuff()
 
 /// @brief            Read in the stride multiplier
 /// @param  stream    The json to read from.
-void TilemapSprite::readStrideMultiplier( nlohmann::json const& data )
+void TilemapSprite::readStrideMultiplier( nlohmann::ordered_json const& data )
 {
-    m_StrideMult = Stream::Read<glm::vec2>(data);
+    m_StrideMult = Stream::Read< 2, float >(data);
 }
 
 
 /// @brief            Read in the amount of tiles per row
 /// @param  stream    The json to read from.
-void TilemapSprite::readRowWidth( nlohmann::json const& data )
+void TilemapSprite::readRowWidth( nlohmann::ordered_json const& data )
 {
     m_RowWidth = Stream::Read<int>(data);
 }

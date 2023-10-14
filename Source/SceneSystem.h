@@ -81,11 +81,11 @@ private: // reading
 
     /// @brief  reads the base scene path
     /// @param  stream  the data to read from
-    void readBaseScenePath( nlohmann::json const& data );
+    void readBaseScenePath( nlohmann::ordered_json const& data );
 
     /// @brief  reads the next scene name
     /// @param  stream  the data to read from
-    void readNextSceneName( nlohmann::json const& data );
+    void readNextSceneName( nlohmann::ordered_json const& data );
 
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< SceneSystem > const s_ReadMethods;
@@ -131,11 +131,11 @@ private: // scene loading
         
         /// @brief  reads the assets in a Scene
         /// @param  stream  the data to read from
-        void readAssets( nlohmann::json const& data );
+        void readAssets( nlohmann::ordered_json const& data );
 
         /// @brief  reads the entities in a Scene
         /// @param  stream  the data to read from
-        void readEntities( nlohmann::json const& data );
+        void readEntities( nlohmann::ordered_json const& data );
         
         /// @brief  the read methods for a Scene
         static ReadMethodMap< Scene > const s_ReadMethods;

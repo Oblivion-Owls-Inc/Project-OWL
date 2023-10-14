@@ -108,15 +108,15 @@ private: // reading
 
     /// @brief  reads this Entity's Archetype
     /// @param  stream  the json data to read from
-    void readArchetype( nlohmann::json const& data );
+    void readArchetype( nlohmann::ordered_json const& data );
 
     /// @brief  reads this Entity's Name
     /// @param  stream  the json data to read from
-    void readName( nlohmann::json const& data );
+    void readName( nlohmann::ordered_json const& data );
 
     /// @brief  reads this Entity's Components
     /// @param  stream  the json data to read from
-    void readComponents( nlohmann::json const& data );
+    void readComponents( nlohmann::ordered_json const& data );
 
     /// @brief  map of read methods for Entity
     static ReadMethodMap< Entity > const s_ReadMethods;

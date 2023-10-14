@@ -53,7 +53,7 @@ private: // Reading
 
     /// @brief  Read in the text this Text displays
     /// @param  stream  The json to read from.
-    void readText( nlohmann::json const& data );
+    void readText( nlohmann::ordered_json const& data );
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Text > const s_ReadMethods;

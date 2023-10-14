@@ -127,35 +127,35 @@
 
     /// @brief  read the sound of this component from json
     /// @param  data    the json data
-    void AudioPlayer::readSound( nlohmann::json const& data )
+    void AudioPlayer::readSound( nlohmann::ordered_json const& data )
     {
         m_Sound = AssetLibrary<Sound>()->GetAsset( Stream::Read<std::string>(data) );
     }
 
     /// @brief  read the volume of this component from json
     /// @param  data    the json data
-    void AudioPlayer::readVolume( nlohmann::json const& data )
+    void AudioPlayer::readVolume( nlohmann::ordered_json const& data )
     {
         m_Volume = Stream::Read<float>(data);
     }
 
     /// @brief  read the pitch of this component from json
     /// @param  data    the json data
-    void AudioPlayer::readPitch( nlohmann::json const& data )
+    void AudioPlayer::readPitch( nlohmann::ordered_json const& data )
     {
         m_Pitch = Stream::Read<float>(data);
     }
 
     /// @brief  read the volumeVariance of this component from json
     /// @param  data    the json data
-    void AudioPlayer::readVolumeVariance( nlohmann::json const& data )
+    void AudioPlayer::readVolumeVariance( nlohmann::ordered_json const& data )
     {
         m_VolumeVariance = Stream::Read<float>(data);
     }
 
     /// @brief  read the pitchVariance of this component from json
     /// @param  data    the json data
-    void AudioPlayer::readPitchVariance( nlohmann::json const& data )
+    void AudioPlayer::readPitchVariance( nlohmann::ordered_json const& data )
     {
         m_PitchVariance = Stream::Read<float>(data);
     }

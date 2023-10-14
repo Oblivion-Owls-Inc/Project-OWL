@@ -105,14 +105,14 @@
 
     /// @brief  reads the base scene path
     /// @param  data    the data to read from
-    void SceneSystem::readBaseScenePath( nlohmann::json const& data )
+    void SceneSystem::readBaseScenePath( nlohmann::ordered_json const& data )
     {
         m_BaseScenePath = Stream::Read<std::string>( data );
     }
 
     /// @brief  reads the next scene name
     /// @param  data    the data to read from
-    void SceneSystem::readNextSceneName( nlohmann::json const& data )
+    void SceneSystem::readNextSceneName( nlohmann::ordered_json const& data )
     {
         m_NextSceneName = Stream::Read<std::string>( data );
     }
@@ -129,7 +129,7 @@
 
     /// @brief  reads the assets in a Scene
     /// @param  data    the data to read from
-    void SceneSystem::Scene::readAssets( nlohmann::json const& data )
+    void SceneSystem::Scene::readAssets( nlohmann::ordered_json const& data )
     {
         for ( auto& [ key, value ] : data.items() )
         {
@@ -148,7 +148,7 @@
 
     /// @brief  reads the entities in a Scene
     /// @param  data    the data to read from
-    void SceneSystem::Scene::readEntities( nlohmann::json const& data )
+    void SceneSystem::Scene::readEntities( nlohmann::ordered_json const& data )
     {
         EntitySystem::GetInstance()->LoadEntities( data );
     }
@@ -193,12 +193,12 @@
     void SceneSystem::loadScene()
     {
 
-        nlohmann::json json = Stream::ReadFromFile( scenePath( m_CurrentSceneName ) );
+        nlohmann::ordered_json json = Stream::ReadFromFile( scenePath( m_CurrentSceneName ) );
 
         Scene scene = Scene();
         try
         {
-            Stream::Read( &scene, json );
+            Stream::Read< ISerializable >( &scene, json );
         }
         catch ( std::runtime_error error )
         {
@@ -282,7 +282,7 @@
         for ( auto const& file : std::filesystem::directory_iterator( m_BaseScenePath ) )
         {
             std::string filename = file.path().filename().string();
-            unsigned nameLength = filename.size() - s_SceneFileExtension.size();
+            size_t nameLength = filename.size() - s_SceneFileExtension.size();
             if ( filename.substr( nameLength ) != s_SceneFileExtension )
             {
                 continue;

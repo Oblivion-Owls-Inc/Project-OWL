@@ -236,21 +236,21 @@
 
     /// @brief  Clone this entity from an archetype.
     /// @param  data    The json value to read from.
-    void Entity::readArchetype( nlohmann::json const& data )
+    void Entity::readArchetype( nlohmann::ordered_json const& data )
     {
         *this = *AssetLibrary<Entity>()->GetAsset( Stream::Read<std::string>( data ) );
     }
 
     /// @brief  Read in the name of entity.
     /// @param  data    The json value to read from.
-    void Entity::readName( nlohmann::json const& data )
+    void Entity::readName( nlohmann::ordered_json const& data )
     {
 	    m_Name = Stream::Read<std::string>( data );
     }
 
     /// @brief  Read in the data for all the components of entity.
     /// @param  data    The json object to read from.
-    void Entity::readComponents( nlohmann::json const& data )
+    void Entity::readComponents( nlohmann::ordered_json const& data )
     {
         for ( auto& [ key, value ] : data.items() )
 	    {
@@ -269,7 +269,7 @@
 		    try
 		    {
 			    // Read in all the data for the component from the json.
-			    Stream::Read( component, value );
+			    Stream::Read< ISerializable >( component, value );
 		    }
 		    catch (std::runtime_error error)
 		    {

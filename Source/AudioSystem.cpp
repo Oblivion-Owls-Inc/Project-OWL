@@ -70,7 +70,7 @@
 
     /// @brief  reads the max channels
     /// @param  stream  the data to read from
-    void AudioSystem::readMaxChannels( nlohmann::json const& data )
+    void AudioSystem::readMaxChannels( nlohmann::ordered_json const& data )
     {
         m_MaxChannels = Stream::Read<int>( data );
     }

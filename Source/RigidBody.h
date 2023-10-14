@@ -183,28 +183,28 @@ private: // reading
 
     /// @brief reads the velocity from json
     /// @param data the json data
-    void readVelocity( nlohmann::json const& data );
+    void readVelocity( nlohmann::ordered_json const& data );
 
     /// @brief reads the acceleration from json
     /// @param data the json data
-    void readAcceleration( nlohmann::json const& data );
+    void readAcceleration( nlohmann::ordered_json const& data );
 
     /// @brief reads the rotationalVelocity from json
     /// @param data the json data
-    void readRotationalVelocity( nlohmann::json const& data );
+    void readRotationalVelocity( nlohmann::ordered_json const& data );
 
 
     /// @brief reads the mass from json
     /// @param data the json data
-    void readMass( nlohmann::json const& data );
+    void readMass( nlohmann::ordered_json const& data );
 
     /// @brief reads the restitution from json
     /// @param data the json data
-    void readRestitution( nlohmann::json const& data );
+    void readRestitution( nlohmann::ordered_json const& data );
 
     /// @brief reads the friction from json
     /// @param data the json data
-    void readFriction( nlohmann::json const& data );
+    void readFriction( nlohmann::ordered_json const& data );
 
 
     /// @brief the map of read methods for RigidBodys

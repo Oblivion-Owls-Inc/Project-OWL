@@ -145,19 +145,19 @@ private: // reading
 
 	/// @brief  reads the current frame of this Animation (non-relative)
 	/// @param  stream  the json data to read from
-	void readFrameIndex( nlohmann::json const& data );
+	void readFrameIndex( nlohmann::ordered_json const& data );
 
     /// @brief  reads the frame delay of this Animation
     /// @param  stream  the json data to read from
-	void readFrameDelay( nlohmann::json const& data );
+	void readFrameDelay( nlohmann::ordered_json const& data );
 
     /// @brief  reads the running state of this Animation
     /// @param  stream  the json data to read from
-	void readIsRunning( nlohmann::json const& data );
+	void readIsRunning( nlohmann::ordered_json const& data );
 
     /// @brief  reads the animation asset this Animation is using
     /// @param  stream  the json data to read from
-    void readAnimation( nlohmann::json const& data );
+    void readAnimation( nlohmann::ordered_json const& data );
 
 	/// @brief  map of read methods
 	static ReadMethodMap< Animation > const s_ReadMethods;

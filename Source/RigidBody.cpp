@@ -169,42 +169,42 @@
 
     /// @brief reads the velocity from json
     /// @param data the json data
-    void RigidBody::readVelocity( nlohmann::json const& data )
+    void RigidBody::readVelocity( nlohmann::ordered_json const& data )
     {
-	    m_Velocity = Stream::Read< glm::vec2 >(data);
+	    m_Velocity = Stream::Read< 2, float >(data);
     }
 
     /// @brief reads the acceleration from json
     /// @param data the json data
-    void RigidBody::readAcceleration( nlohmann::json const& data )
+    void RigidBody::readAcceleration( nlohmann::ordered_json const& data )
     {
-	    m_Acceleration = Stream::Read< glm::vec2 >(data);
+	    m_Acceleration = Stream::Read< 2, float >(data);
     }
 
     /// @brief reads the rotationalVelocity from json
     /// @param data the json data
-    void RigidBody::readRotationalVelocity( nlohmann::json const& data )
+    void RigidBody::readRotationalVelocity( nlohmann::ordered_json const& data )
     {
 	    m_RotationalVelocity = Stream::Read< float >(data);
     }
 
     /// @brief reads the inverseMass from json
     /// @param data the json data
-    void RigidBody::readMass( nlohmann::json const& data )
+    void RigidBody::readMass( nlohmann::ordered_json const& data )
     {
         m_Mass = Stream::Read<float>(data);
     }
 
     /// @brief reads the restitution from json
     /// @param data the json data
-    void RigidBody::readRestitution( nlohmann::json const& data )
+    void RigidBody::readRestitution( nlohmann::ordered_json const& data )
     {
         m_Restitution = Stream::Read<float>(data);
     }
 
     /// @brief reads the friction from json
     /// @param data the json data
-    void RigidBody::readFriction( nlohmann::json const& data )
+    void RigidBody::readFriction( nlohmann::ordered_json const& data )
     {
         m_Friction = Stream::Read<float>(data);
     }

@@ -71,11 +71,11 @@ private: // reading
 
     /// @brief          reads whether to show the FPS window
     /// @param stream   the data to read from
-    void readShowFpsWindow( nlohmann::json const& data );
+    void readShowFpsWindow( nlohmann::ordered_json const& data );
 
     /// @brief Reads whether to show the debug window
     /// @param stream  the data to read from
-    void readShowDebugWindow( nlohmann::json const& data );
+    void readShowDebugWindow( nlohmann::ordered_json const& data );
 
     /// @brief map containing read methods
     static ReadMethodMap< DebugSystem > const s_ReadMethods;
