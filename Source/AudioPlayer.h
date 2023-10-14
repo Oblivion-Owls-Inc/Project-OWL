@@ -81,22 +81,22 @@ private: // members
 //-----------------------------------------------------------------------------
 
     /// @brief  the relative volume this AudioPlayer will play at
-    float m_Volume;
+    float m_Volume = 1.0f;
     /// @brief  the pitch this AudioPlayer will play at
-    float m_Pitch;
+    float m_Pitch = 1.0f;
     /// @brief  the maximum variation of the volume
-    float m_VolumeVariance;
+    float m_VolumeVariance = 0.0f;
     /// @brief  the maxumum variation of the pitch
-    float m_PitchVariance;
+    float m_PitchVariance = 0.0f;
 
     /// @brief  The sound that this AudioPlayer will play
-    Sound const* m_Sound;
+    Sound const* m_Sound = nullptr;
 
     /// @brief  The channel currently being used by this AudioPlayer
-    FMOD::Channel* m_Channel;
+    FMOD::Channel* m_Channel = nullptr;
 
     /// @brief  The channelGroup to play sounds in
-    FMOD::ChannelGroup* m_ChannelGroup;
+    FMOD::ChannelGroup* m_ChannelGroup = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -121,6 +121,10 @@ private: // reading
     /// @brief  read the pitchVariance of this component from json
     /// @param  data    the json data
     void readPitchVariance( nlohmann::ordered_json const& data );
+
+    /// @brief  Writes all AudioPlayr data to a JSON file.
+    /// @return The JSON file containing the data.
+    virtual nlohmann::ordered_json Write() const override;
 
     /// @brief  map of the read methods for this Component
     static ReadMethodMap< AudioPlayer > s_ReadMethods;
