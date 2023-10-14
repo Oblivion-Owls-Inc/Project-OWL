@@ -120,7 +120,7 @@ private:
     /// @param  stream    The json to read from.
     void readRowWidth( nlohmann::json const& data );
 
-    void afterLoad(Stream stream);
+    virtual void AfterLoad() override;
 
     /// @brief            The map of read methods for this Component
     static ReadMethodMap< TilemapSprite > const s_ReadMethods;
