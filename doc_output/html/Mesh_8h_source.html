@@ -95,36 +95,42 @@ $(function() {
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMesh.html#a0d3023d68fcf77eef8220379ff4c21c2">LoadSquare</a>(<span class="keywordtype">int</span> rows = 1, <span class="keywordtype">int</span> columns = 1);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    glm::vec2 <a class="code" href="classMesh.html#a53d7c42693d29241933f2d06dcd83bba">GetUVsize</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classMesh.html#aafa13fa13ca5fb5e15b544ae1870da45">GetVAO</a>();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classMesh.html#a2ee88be25d23414d77e7807f1bb564de">GetVertCount</a>();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classMesh.html#aa7dfde4bc25999f25dd17bf010230832">   49</a></span>&#160;    __inline glm::vec2 <a class="code" href="classMesh.html#aa7dfde4bc25999f25dd17bf010230832">GetUVsize</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_UVsize; }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classMesh.html#a3296d89ba3eafe6b740f31c3b81298c4">   54</a></span>&#160;    __inline <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classMesh.html#a3296d89ba3eafe6b740f31c3b81298c4">GetVAO</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_VAO; }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classMesh.html#a409224e328e4abfafbc2e55938f0ec8e">   58</a></span>&#160;    __inline <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classMesh.html#a409224e328e4abfafbc2e55938f0ec8e">GetVertexCount</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_VertexCount; }</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">//-------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">//          data</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">//-------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_VAO = 0;         </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_Buffer = 0;      </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_VertexCount = 0; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    glm::vec2 m_UVsize ={1,1};      </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// helper</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> initVAO();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classMesh.html#a6c07f81c07709939a9955058fa4e52d5">   61</a></span>&#160;    __inline <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classMesh.html#a6c07f81c07709939a9955058fa4e52d5">GetBuffer</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Buffer; }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">//          data</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_VAO = 0;         </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_Buffer = 0;      </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_VertexCount = 0; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    glm::vec2 m_UVsize ={1,1};      </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">// helper</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> initVAO();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
 <div class="ttc" id="aclassMesh_html"><div class="ttname"><a href="classMesh.html">Mesh</a></div><div class="ttdoc">Stores data needed to render a basic mesh.</div><div class="ttdef"><b>Definition:</b> Mesh.h:12</div></div>
 <div class="ttc" id="aclassMesh_html_a0d3023d68fcf77eef8220379ff4c21c2"><div class="ttname"><a href="classMesh.html#a0d3023d68fcf77eef8220379ff4c21c2">Mesh::LoadSquare</a></div><div class="ttdeci">void LoadSquare(int rows=1, int columns=1)</div><div class="ttdoc">Loads a list of vertices that make a centered unit square. Provide rows and columns if this is for a ...</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:47</div></div>
-<div class="ttc" id="aclassMesh_html_a2ee88be25d23414d77e7807f1bb564de"><div class="ttname"><a href="classMesh.html#a2ee88be25d23414d77e7807f1bb564de">Mesh::GetVertCount</a></div><div class="ttdeci">unsigned int GetVertCount()</div><div class="ttdoc">Returns the amount of vertices in this mesh.</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:71</div></div>
-<div class="ttc" id="aclassMesh_html_a53d7c42693d29241933f2d06dcd83bba"><div class="ttname"><a href="classMesh.html#a53d7c42693d29241933f2d06dcd83bba">Mesh::GetUVsize</a></div><div class="ttdeci">glm::vec2 GetUVsize()</div><div class="ttdoc">Returns the UV size.</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:67</div></div>
+<div class="ttc" id="aclassMesh_html_a3296d89ba3eafe6b740f31c3b81298c4"><div class="ttname"><a href="classMesh.html#a3296d89ba3eafe6b740f31c3b81298c4">Mesh::GetVAO</a></div><div class="ttdeci">__inline unsigned int GetVAO() const</div><div class="ttdoc">Returns the VAO index of this mesh. It can be used for rendering the mesh, or defining additional att...</div><div class="ttdef"><b>Definition:</b> Mesh.h:54</div></div>
+<div class="ttc" id="aclassMesh_html_a409224e328e4abfafbc2e55938f0ec8e"><div class="ttname"><a href="classMesh.html#a409224e328e4abfafbc2e55938f0ec8e">Mesh::GetVertexCount</a></div><div class="ttdeci">__inline unsigned int GetVertexCount() const</div><div class="ttdoc">Returns the amount of vertices in this mesh.</div><div class="ttdef"><b>Definition:</b> Mesh.h:58</div></div>
 <div class="ttc" id="aclassMesh_html_a5efe4da1a4c0971cfb037bd70304c303"><div class="ttname"><a href="classMesh.html#a5efe4da1a4c0971cfb037bd70304c303">Mesh::~Mesh</a></div><div class="ttdeci">virtual ~Mesh()</div><div class="ttdoc">Destructor: cleans up memory.</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:25</div></div>
 <div class="ttc" id="aclassMesh_html_a5f6ef1000561a3b70ba31afec1a02500"><div class="ttname"><a href="classMesh.html#a5f6ef1000561a3b70ba31afec1a02500">Mesh::Mesh</a></div><div class="ttdeci">Mesh(bool init_square=false, int rows=1, int columns=1)</div><div class="ttdoc">Initializes mesh to square, or to nothing.</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:11</div></div>
+<div class="ttc" id="aclassMesh_html_a6c07f81c07709939a9955058fa4e52d5"><div class="ttname"><a href="classMesh.html#a6c07f81c07709939a9955058fa4e52d5">Mesh::GetBuffer</a></div><div class="ttdeci">__inline unsigned int GetBuffer() const</div><div class="ttdef"><b>Definition:</b> Mesh.h:61</div></div>
 <div class="ttc" id="aclassMesh_html_a72c6c70d0a5146317d0fa11d9dc33da0"><div class="ttname"><a href="classMesh.html#a72c6c70d0a5146317d0fa11d9dc33da0">Mesh::LoadVertices</a></div><div class="ttdeci">void LoadVertices(std::vector&lt; Vertex &gt; vertices)</div><div class="ttdoc">Loads provided vertices to initialize (or change) the mesh. Provide rows and columns if this is for a...</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:34</div></div>
-<div class="ttc" id="aclassMesh_html_aafa13fa13ca5fb5e15b544ae1870da45"><div class="ttname"><a href="classMesh.html#aafa13fa13ca5fb5e15b544ae1870da45">Mesh::GetVAO</a></div><div class="ttdeci">unsigned int GetVAO()</div><div class="ttdoc">Returns the VAO index of this mesh. It can be used for rendering the mesh, or defining additional att...</div><div class="ttdef"><b>Definition:</b> Mesh.cpp:63</div></div>
+<div class="ttc" id="aclassMesh_html_aa7dfde4bc25999f25dd17bf010230832"><div class="ttname"><a href="classMesh.html#aa7dfde4bc25999f25dd17bf010230832">Mesh::GetUVsize</a></div><div class="ttdeci">__inline glm::vec2 GetUVsize() const</div><div class="ttdoc">Returns the UV size.</div><div class="ttdef"><b>Definition:</b> Mesh.h:49</div></div>
 <div class="ttc" id="astructMesh_1_1Vertex_html"><div class="ttname"><a href="structMesh_1_1Vertex.html">Mesh::Vertex</a></div><div class="ttdoc">Vertex struct - defines data that will be loaded into buffer.</div><div class="ttdef"><b>Definition:</b> Mesh.h:16</div></div>
 <div class="ttc" id="astructMesh_1_1Vertex_html_a19e30aa643b16f4d9f33bded3ab44d8d"><div class="ttname"><a href="structMesh_1_1Vertex.html#a19e30aa643b16f4d9f33bded3ab44d8d">Mesh::Vertex::UV</a></div><div class="ttdeci">glm::vec2 UV</div><div class="ttdoc">Vertex coordinate.</div><div class="ttdef"><b>Definition:</b> Mesh.h:18</div></div>
 </div><!-- fragment --></div><!-- contents -->

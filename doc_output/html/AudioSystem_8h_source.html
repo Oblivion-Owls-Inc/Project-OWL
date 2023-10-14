@@ -102,52 +102,55 @@ $(function() {
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; AudioSystem &gt; <span class="keyword">const</span> s_ReadMethods;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; System &gt; <span class="keyword">const</span>&amp; GetReadMethods() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    FMOD::System* m_System;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; GetReadMethods()<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">int</span> m_MaxChannels;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    FMOD::System* m_System;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">private</span>: <span class="comment">// static methods</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">static</span> FMOD_RESULT fmodCallback(</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        FMOD_SYSTEM* system,</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        FMOD_SYSTEM_CALLBACK_TYPE m_Type,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordtype">void</span>* commandData1,</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordtype">void</span>* commandData2,</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">void</span>* userData</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    );</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton stuff</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classAudioSystem.html">AudioSystem</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">int</span> m_MaxChannels;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">private</span>: <span class="comment">// static methods</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">static</span> FMOD_RESULT fmodCallback(</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        FMOD_SYSTEM* system,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        FMOD_SYSTEM_CALLBACK_TYPE m_Type,</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">void</span>* commandData1,</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">void</span>* commandData2,</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordtype">void</span>* userData</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    );</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton stuff</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">static</span> <a class="code" href="classAudioSystem.html">AudioSystem</a> * s_Instance;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classAudioSystem.html">AudioSystem</a>();</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keyword">static</span> <a class="code" href="classAudioSystem.html">AudioSystem</a> * <a class="code" href="classAudioSystem.html#a36df26ebde1e0cab04eae82b37cd750d">GetInstance</a>();</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">// Prevent copying</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="classAudioSystem.html">AudioSystem</a>( <a class="code" href="classAudioSystem.html">AudioSystem</a>&amp; other ) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> operator=( <span class="keyword">const</span> <a class="code" href="classAudioSystem.html">AudioSystem</a>&amp; ) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">static</span> <a class="code" href="classAudioSystem.html">AudioSystem</a> * s_Instance;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">static</span> <a class="code" href="classAudioSystem.html">AudioSystem</a> * <a class="code" href="classAudioSystem.html#a36df26ebde1e0cab04eae82b37cd750d">GetInstance</a>();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">// Prevent copying</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="classAudioSystem.html">AudioSystem</a>( <a class="code" href="classAudioSystem.html">AudioSystem</a>&amp; other ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">void</span> operator=( <span class="keyword">const</span> <a class="code" href="classAudioSystem.html">AudioSystem</a>&amp; ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;};</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
 <div class="ttc" id="aclassAudioSystem_html"><div class="ttname"><a href="classAudioSystem.html">AudioSystem</a></div><div class="ttdoc">Example System meant to be copy-pasted when creating new Systems.</div><div class="ttdef"><b>Definition:</b> AudioSystem.h:16</div></div>
 <div class="ttc" id="aclassAudioSystem_html_a1c110f51e7b41650b96e92f0a18a34dc"><div class="ttname"><a href="classAudioSystem.html#a1c110f51e7b41650b96e92f0a18a34dc">AudioSystem::GetFMOD</a></div><div class="ttdeci">FMOD::System * GetFMOD()</div><div class="ttdoc">gets the internal FMOD::System</div><div class="ttdef"><b>Definition:</b> AudioSystem.cpp:18</div></div>
-<div class="ttc" id="aclassAudioSystem_html_a36df26ebde1e0cab04eae82b37cd750d"><div class="ttname"><a href="classAudioSystem.html#a36df26ebde1e0cab04eae82b37cd750d">AudioSystem::GetInstance</a></div><div class="ttdeci">static AudioSystem * GetInstance()</div><div class="ttdoc">gets the instance of AudioSystem</div><div class="ttdef"><b>Definition:</b> AudioSystem.cpp:140</div></div>
-<div class="ttc" id="aclassStream_html"><div class="ttname"><a href="classStream.html">Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:27</div></div>
+<div class="ttc" id="aclassAudioSystem_html_a36df26ebde1e0cab04eae82b37cd750d"><div class="ttname"><a href="classAudioSystem.html#a36df26ebde1e0cab04eae82b37cd750d">AudioSystem::GetInstance</a></div><div class="ttdeci">static AudioSystem * GetInstance()</div><div class="ttdoc">gets the instance of AudioSystem</div><div class="ttdef"><b>Definition:</b> AudioSystem.cpp:134</div></div>
+<div class="ttc" id="aclassStream_html"><div class="ttname"><a href="classStream.html">Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:32</div></div>
 <div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

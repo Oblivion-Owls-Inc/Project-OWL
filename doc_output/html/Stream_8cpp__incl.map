@@ -1,12 +1,12 @@
 <map id="Source/Stream.cpp" name="Source/Stream.cpp">
-<area shape="rect" id="node1" title="JSON File reading/writing." alt="" coords="545,5,689,32"/>
-<area shape="rect" id="node2" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="385,80,466,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="629,155,680,181"/>
-<area shape="rect" id="node9" title=" " alt="" coords="616,80,696,107"/>
-<area shape="rect" id="node10" title=" " alt="" coords="720,80,920,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,155,168,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="192,155,251,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="275,155,349,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="373,155,477,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="501,155,605,181"/>
+<area shape="rect" id="node1" title="JSON File reading/writing." alt="" coords="381,5,525,32"/>
+<area shape="rect" id="node2" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="271,155,353,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="501,229,552,256"/>
+<area shape="rect" id="node8" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="251,80,365,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="491,80,571,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="595,80,795,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,229,168,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="192,229,251,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="275,229,349,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="373,229,477,256"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="Sprite" name="Sprite">
-<area shape="rect" id="node1" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite." alt="" coords="132,95,192,121"/>
-<area shape="rect" id="node2" href="$classComponent.html" title=" " alt="" coords="5,5,103,32"/>
-<area shape="rect" id="node3" href="$classTexture.html" title="Stores texture data, and allows to bind it for rendering." alt="" coords="127,5,197,32"/>
-<area shape="rect" id="node4" href="$classMesh.html" title="Stores data needed to render a basic mesh." alt="" coords="237,5,295,32"/>
+<area shape="rect" id="node1" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite." alt="" coords="77,171,137,197"/>
+<area shape="rect" id="node2" href="$classComponent.html" title=" " alt="" coords="5,81,103,108"/>
+<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="56,5,159,32"/>
+<area shape="rect" id="node4" href="$classTexture.html" title="Stores texture data, and allows to bind it for rendering." alt="" coords="127,81,197,108"/>
 </map>

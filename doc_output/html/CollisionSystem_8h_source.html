@@ -116,70 +116,76 @@ $(function() {
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCollisionSystem.html#aeeb07f44cd623b028d28281f694bee87">OnFixedUpdate</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> checkCollisions();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCollisionSystem.html#a10abfba9770cc7be71bd42c318da1e44">OnSceneExit</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">private</span>: <span class="comment">// members</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::vector&lt; Collider* &gt; m_Colliders;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> checkCollisions();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">private</span>: <span class="comment">// members</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">private</span>: <span class="comment">// static methods</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> CheckCollision( <a class="code" href="classCollider.html">Collider</a> <span class="keyword">const</span>* colliderA, <a class="code" href="classCollider.html">Collider</a> <span class="keyword">const</span>* colliderB );</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> CheckCircleCircle( <a class="code" href="classCollider.html">Collider</a> <span class="keyword">const</span>* colliderA, <a class="code" href="classCollider.html">Collider</a> <span class="keyword">const</span>* colliderB, <a class="code" href="structCollisionData.html">CollisionData</a>* collisionData );</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">private</span>: <span class="comment">// static members</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">static</span> <a class="code" href="CollisionSystem_8h.html#a82fb835394855287a6873bf742462fdc">CollisionFunctionMap</a> <span class="keyword">const</span> s_CollisionFunctions;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    std::vector&lt; Collider* &gt; m_Colliders;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">private</span>: <span class="comment">// static methods</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> CheckCollision( <a class="code" href="classCollider.html">Collider</a> <span class="keyword">const</span>* colliderA, <a class="code" href="classCollider.html">Collider</a> <span class="keyword">const</span>* colliderB );</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> CheckCircleCircle( <a class="code" href="classCollider.html">Collider</a> <span class="keyword">const</span>* colliderA, <a class="code" href="classCollider.html">Collider</a> <span class="keyword">const</span>* colliderB, <a class="code" href="structCollisionData.html">CollisionData</a>* collisionData );</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">private</span>: <span class="comment">// static members</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; CollisionSystem &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">static</span> <a class="code" href="CollisionSystem_8h.html#a82fb835394855287a6873bf742462fdc">CollisionFunctionMap</a> <span class="keyword">const</span> s_CollisionFunctions;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; System &gt; <span class="keyword">const</span>&amp; GetReadMethods() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton stuff</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="classCollisionSystem.html">CollisionSystem</a>();</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCollisionSystem.html">CollisionSystem</a>* s_Instance;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; CollisionSystem &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; GetReadMethods()<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton stuff</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCollisionSystem.html">CollisionSystem</a>* <a class="code" href="classCollisionSystem.html#a0352addd6e0fd8206823b8519ce5b01a">GetInstance</a>();</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="comment">// Prevent copying</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="classCollisionSystem.html">CollisionSystem</a>(<a class="code" href="classCollisionSystem.html">CollisionSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classCollisionSystem.html">CollisionSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;};</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <a class="code" href="classCollisionSystem.html">CollisionSystem</a>();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCollisionSystem.html">CollisionSystem</a>* s_Instance;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCollisionSystem.html">CollisionSystem</a>* <a class="code" href="classCollisionSystem.html#a0352addd6e0fd8206823b8519ce5b01a">GetInstance</a>();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="comment">// Prevent copying</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <a class="code" href="classCollisionSystem.html">CollisionSystem</a>(<a class="code" href="classCollisionSystem.html">CollisionSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classCollisionSystem.html">CollisionSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;};</div>
 <div class="ttc" id="aCollisionSystem_8h_html_a82fb835394855287a6873bf742462fdc"><div class="ttname"><a href="CollisionSystem_8h.html#a82fb835394855287a6873bf742462fdc">CollisionFunctionMap</a></div><div class="ttdeci">std::map&lt; std::pair&lt; std::type_index, std::type_index &gt;, CollisionCheckFunction &gt; CollisionFunctionMap</div><div class="ttdoc">map that stores the CollisionCheckMethods between each Collider type</div><div class="ttdef"><b>Definition:</b> CollisionSystem.h:34</div></div>
 <div class="ttc" id="aCollisionSystem_8h_html_ad4a15109fc5b785904b54d6044527336"><div class="ttname"><a href="CollisionSystem_8h.html#ad4a15109fc5b785904b54d6044527336">CollisionCheckFunction</a></div><div class="ttdeci">bool(*)(Collider const  *colliderA, Collider const  *colliderB, CollisionData *collisionData) CollisionCheckFunction</div><div class="ttdoc">function pointer to function that checks collisions between Collider types</div><div class="ttdef"><b>Definition:</b> CollisionSystem.h:31</div></div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
 <div class="ttc" id="aclassCollider_html"><div class="ttname"><a href="classCollider.html">Collider</a></div><div class="ttdoc">component which is used for detecting collisions and information about them</div><div class="ttdef"><b>Definition:</b> Collider.h:36</div></div>
 <div class="ttc" id="aclassCollisionSystem_html"><div class="ttname"><a href="classCollisionSystem.html">CollisionSystem</a></div><div class="ttdoc">responsible for checking collsisions between all Colliders</div><div class="ttdef"><b>Definition:</b> CollisionSystem.h:43</div></div>
-<div class="ttc" id="aclassCollisionSystem_html_a0352addd6e0fd8206823b8519ce5b01a"><div class="ttname"><a href="classCollisionSystem.html#a0352addd6e0fd8206823b8519ce5b01a">CollisionSystem::GetInstance</a></div><div class="ttdeci">static CollisionSystem * GetInstance()</div><div class="ttdoc">gets the instance of CollisionSystem</div><div class="ttdef"><b>Definition:</b> CollisionSystem.cpp:197</div></div>
-<div class="ttc" id="aclassCollisionSystem_html_a77084b50e8e89f6cb22cd71de50f7bb4"><div class="ttname"><a href="classCollisionSystem.html#a77084b50e8e89f6cb22cd71de50f7bb4">CollisionSystem::removeCollider</a></div><div class="ttdeci">void removeCollider(Collider *collider)</div><div class="ttdoc">removes a Collider from this System</div><div class="ttdef"><b>Definition:</b> CollisionSystem.cpp:38</div></div>
-<div class="ttc" id="aclassCollisionSystem_html_aa4abd78b50df7fec5151589e88d80ec0"><div class="ttname"><a href="classCollisionSystem.html#aa4abd78b50df7fec5151589e88d80ec0">CollisionSystem::addCollider</a></div><div class="ttdeci">void addCollider(Collider *collider)</div><div class="ttdoc">adds a Collider to the CollisionSystem</div><div class="ttdef"><b>Definition:</b> CollisionSystem.cpp:31</div></div>
-<div class="ttc" id="aclassCollisionSystem_html_aeeb07f44cd623b028d28281f694bee87"><div class="ttname"><a href="classCollisionSystem.html#aeeb07f44cd623b028d28281f694bee87">CollisionSystem::OnFixedUpdate</a></div><div class="ttdeci">virtual void OnFixedUpdate() override</div><div class="ttdoc">Gets called once every simulation frame. Use this function for anything that affects the simulation.</div><div class="ttdef"><b>Definition:</b> CollisionSystem.cpp:50</div></div>
+<div class="ttc" id="aclassCollisionSystem_html_a0352addd6e0fd8206823b8519ce5b01a"><div class="ttname"><a href="classCollisionSystem.html#a0352addd6e0fd8206823b8519ce5b01a">CollisionSystem::GetInstance</a></div><div class="ttdeci">static CollisionSystem * GetInstance()</div><div class="ttdoc">gets the instance of CollisionSystem</div><div class="ttdef"><b>Definition:</b> CollisionSystem.cpp:211</div></div>
+<div class="ttc" id="aclassCollisionSystem_html_a10abfba9770cc7be71bd42c318da1e44"><div class="ttname"><a href="classCollisionSystem.html#a10abfba9770cc7be71bd42c318da1e44">CollisionSystem::OnSceneExit</a></div><div class="ttdeci">virtual void OnSceneExit() override</div><div class="ttdoc">Gets called whenever a scene is exited.</div><div class="ttdef"><b>Definition:</b> CollisionSystem.cpp:57</div></div>
+<div class="ttc" id="aclassCollisionSystem_html_a77084b50e8e89f6cb22cd71de50f7bb4"><div class="ttname"><a href="classCollisionSystem.html#a77084b50e8e89f6cb22cd71de50f7bb4">CollisionSystem::removeCollider</a></div><div class="ttdeci">void removeCollider(Collider *collider)</div><div class="ttdoc">removes a Collider from this System</div><div class="ttdef"><b>Definition:</b> CollisionSystem.cpp:40</div></div>
+<div class="ttc" id="aclassCollisionSystem_html_aa4abd78b50df7fec5151589e88d80ec0"><div class="ttname"><a href="classCollisionSystem.html#aa4abd78b50df7fec5151589e88d80ec0">CollisionSystem::addCollider</a></div><div class="ttdeci">void addCollider(Collider *collider)</div><div class="ttdoc">adds a Collider to the CollisionSystem</div><div class="ttdef"><b>Definition:</b> CollisionSystem.cpp:33</div></div>
+<div class="ttc" id="aclassCollisionSystem_html_aeeb07f44cd623b028d28281f694bee87"><div class="ttname"><a href="classCollisionSystem.html#aeeb07f44cd623b028d28281f694bee87">CollisionSystem::OnFixedUpdate</a></div><div class="ttdeci">virtual void OnFixedUpdate() override</div><div class="ttdoc">Gets called once every simulation frame. Use this function for anything that affects the simulation.</div><div class="ttdef"><b>Definition:</b> CollisionSystem.cpp:52</div></div>
 <div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:15</div></div>
 <div class="ttc" id="astructCollisionData_html"><div class="ttname"><a href="structCollisionData.html">CollisionData</a></div><div class="ttdoc">Struct that holds data about collisions.</div><div class="ttdef"><b>Definition:</b> CollisionData.h:16</div></div>
 </div><!-- fragment --></div><!-- contents -->

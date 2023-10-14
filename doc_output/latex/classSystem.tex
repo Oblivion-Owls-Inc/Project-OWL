@@ -11,11 +11,22 @@ Base class for all Systems.
 
 
 
-Inheritance diagram for System\+:\nopagebreak
+Inheritance diagram for System\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{classSystem__inherit__graph}
+\includegraphics[width=350pt]{classSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classSystem__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -32,17 +43,18 @@ virtual void \mbox{\hyperlink{classSystem_ac80e6b0f679fe9befb8d45014ee389cb}{On\
 \mbox{\Hypertarget{classSystem_abaebe51536352d44fea4c0e44f449eb5}\label{classSystem_abaebe51536352d44fea4c0e44f449eb5}} 
 virtual void \mbox{\hyperlink{classSystem_abaebe51536352d44fea4c0e44f449eb5}{On\+Exit}} ()
 \begin{DoxyCompactList}\small\item\em Gets called once before the \mbox{\hyperlink{classEngine}{Engine}} closes. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSystem_a9e0ba487646e1f447ef0453552d11868}\label{classSystem_a9e0ba487646e1f447ef0453552d11868}} 
-virtual void \mbox{\hyperlink{classSystem_a9e0ba487646e1f447ef0453552d11868}{On\+Scene\+Load}} ()
-\begin{DoxyCompactList}\small\item\em Gets called whenever a new Scene is loaded. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSystem_a57235c9268a213e2944d83cffa3b4aae}\label{classSystem_a57235c9268a213e2944d83cffa3b4aae}} 
 virtual void \mbox{\hyperlink{classSystem_a57235c9268a213e2944d83cffa3b4aae}{On\+Scene\+Init}} ()
 \begin{DoxyCompactList}\small\item\em Gets called whenever a scene is initialized. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSystem_af16d6771ccada096b14a8aa823f9d051}\label{classSystem_af16d6771ccada096b14a8aa823f9d051}} 
 virtual void \mbox{\hyperlink{classSystem_af16d6771ccada096b14a8aa823f9d051}{On\+Scene\+Exit}} ()
 \begin{DoxyCompactList}\small\item\em Gets called whenever a scene is exited. \end{DoxyCompactList}\item 
-virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classSystem}{System}} $>$ const  \& \mbox{\hyperlink{classSystem_aebc272305374d8d3a285516de14d1f5e}{Get\+Read\+Methods}} () const =0
-\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSystem_ac37b07a2ad20e2d2fe1f77766902af5d}\label{classSystem_ac37b07a2ad20e2d2fe1f77766902af5d}} 
+virtual void \mbox{\hyperlink{classSystem_ac37b07a2ad20e2d2fe1f77766902af5d}{Debug\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Gets Called by the Debug system to display debug information. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSystem_a804bac94c6ffee7f7369c6c3928a5574}\label{classSystem_a804bac94c6ffee7f7369c6c3928a5574}} 
+std\+::string const  \& \mbox{\hyperlink{classSystem_a804bac94c6ffee7f7369c6c3928a5574}{Get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the unique name of this \mbox{\hyperlink{classSystem}{System}}. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSystem_a6b75872f421f9ae9a720502d37223d49}\label{classSystem_a6b75872f421f9ae9a720502d37223d49}} 
 {\bfseries System} (\mbox{\hyperlink{classSystem}{System}} \&other)=delete
 \item 
@@ -52,8 +64,8 @@ void {\bfseries operator=} (const \mbox{\hyperlink{classSystem}{System}} \&)=del
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a}\label{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a}} 
-\mbox{\hyperlink{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a}{System}} ()=default
+\mbox{\Hypertarget{classSystem_a9cd1cf06022ecbde6f0b27be372a0cf6}\label{classSystem_a9cd1cf06022ecbde6f0b27be372a0cf6}} 
+\mbox{\hyperlink{classSystem_a9cd1cf06022ecbde6f0b27be372a0cf6}{System}} (std\+::string const \&name)
 \begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classSystem}{System}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -61,19 +73,6 @@ void {\bfseries operator=} (const \mbox{\hyperlink{classSystem}{System}} \&)=del
 Base class for all Systems. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classSystem_aebc272305374d8d3a285516de14d1f5e}\label{classSystem_aebc272305374d8d3a285516de14d1f5e}} 
-\index{System@{System}!GetReadMethods@{GetReadMethods}}
-\index{GetReadMethods@{GetReadMethods}!System@{System}}
-\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
-{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classSystem}{System}} $>$ const\& System\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-
-
-gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
-
-\begin{DoxyReturn}{Returns}
-this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
-\end{DoxyReturn}
 \mbox{\Hypertarget{classSystem_ac80e6b0f679fe9befb8d45014ee389cb}\label{classSystem_ac80e6b0f679fe9befb8d45014ee389cb}} 
 \index{System@{System}!OnUpdate@{OnUpdate}}
 \index{OnUpdate@{OnUpdate}!System@{System}}

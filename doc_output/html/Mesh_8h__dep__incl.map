@@ -1,6 +1,11 @@
 <map id="Source/Mesh.h" name="Source/Mesh.h">
-<area shape="rect" id="node1" title="Mesh class &#45; holds on to buffer/VAO references, draws their contents." alt="" coords="170,5,287,32"/>
+<area shape="rect" id="node1" title="Mesh class &#45; holds on to buffer/VAO references, draws their contents." alt="" coords="266,5,383,32"/>
 <area shape="rect" id="node2" href="$Mesh_8cpp.html" title="Implementation of Mesh class." alt="" coords="5,80,137,107"/>
-<area shape="rect" id="node3" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="161,80,296,107"/>
-<area shape="rect" id="node4" href="$TextSprite_8cpp.html" title="A version of Sprite specifically for rendering text. Uses instancing to draw multiple letters simulta..." alt="" coords="321,80,483,107"/>
+<area shape="rect" id="node3" href="$RenderSystem_8cpp.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="162,80,354,107"/>
+<area shape="rect" id="node4" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="261,155,396,181"/>
+<area shape="rect" id="node5" href="$Texture_8h.html" title="Header for the OpenGL texture wrapper." alt="" coords="553,80,683,107"/>
+<area shape="rect" id="node6" href="$Engine_8cpp.html" title="Engine class." alt="" coords="421,155,562,181"/>
+<area shape="rect" id="node7" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="587,155,772,181"/>
+<area shape="rect" id="node8" href="$Texture_8cpp.html" title="Wrapper/manager for OpenGL texture." alt="" coords="796,155,941,181"/>
+<area shape="rect" id="node9" href="$XinoScene_8cpp.html" title=" " alt="" coords="966,155,1131,181"/>
 </map>

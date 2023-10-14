@@ -1,4 +1,5 @@
 <map id="DebugSystem" name="DebugSystem">
-<area shape="rect" id="node1" title="Debug System Class For Debugging." alt="" coords="5,81,119,108"/>
-<area shape="rect" id="node2" href="$classSystem.html" title="Base class for all Systems." alt="" coords="27,5,97,32"/>
+<area shape="rect" id="node1" title="Debug System Class For Debugging." alt="" coords="5,157,119,184"/>
+<area shape="rect" id="node2" href="$classSystem.html" title="Base class for all Systems." alt="" coords="27,81,97,108"/>
+<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="11,5,113,32"/>
 </map>

@@ -1,11 +1,13 @@
 <map id="Behavior" name="Behavior">
-<area shape="rect" id="node1" title=" " alt="" coords="438,80,518,107"/>
-<area shape="rect" id="node3" href="$classAnimation.html" title=" " alt="" coords="5,155,95,181"/>
-<area shape="rect" id="node4" href="$classFollowingBehavior.html" title=" " alt="" coords="119,155,261,181"/>
-<area shape="rect" id="node5" href="$classMovementAI.html" title=" " alt="" coords="285,155,391,181"/>
-<area shape="rect" id="node6" href="$classPlayerController.html" title=" " alt="" coords="415,155,541,181"/>
-<area shape="rect" id="node7" href="$classPool.html" title=" " alt="" coords="566,155,617,181"/>
-<area shape="rect" id="node8" href="$classRigidBody.html" title=" " alt="" coords="641,155,729,181"/>
-<area shape="rect" id="node9" href="$classTurretBehavior.html" title=" " alt="" coords="753,155,870,181"/>
-<area shape="rect" id="node2" href="$classComponent.html" title=" " alt="" coords="429,5,527,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="301,183,381,209"/>
+<area shape="rect" id="node4" href="$classAnimation.html" title=" " alt="" coords="456,5,545,32"/>
+<area shape="rect" id="node5" href="$classEffectAnimator.html" title="Component that can play audio." alt="" coords="441,56,560,83"/>
+<area shape="rect" id="node6" href="$classFollowingBehavior.html" title=" " alt="" coords="429,107,572,133"/>
+<area shape="rect" id="node7" href="$classMovementAI.html" title=" " alt="" coords="448,157,553,184"/>
+<area shape="rect" id="node8" href="$classPlayerController.html" title=" " alt="" coords="437,208,564,235"/>
+<area shape="rect" id="node9" href="$classPool.html" title=" " alt="" coords="475,259,526,285"/>
+<area shape="rect" id="node10" href="$classRigidBody.html" title=" " alt="" coords="457,309,545,336"/>
+<area shape="rect" id="node11" href="$classTurretBehavior.html" title=" " alt="" coords="442,360,559,387"/>
+<area shape="rect" id="node2" href="$classComponent.html" title=" " alt="" coords="156,183,253,209"/>
+<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="5,183,108,209"/>
 </map>

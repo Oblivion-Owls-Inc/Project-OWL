@@ -1,0 +1,6 @@
+<map id="TilemapSprite" name="TilemapSprite">
+<area shape="rect" id="node1" title="A version of Sprite for rendering tilemaps using GPU instancing." alt="" coords="5,229,119,256"/>
+<area shape="rect" id="node2" href="$classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite." alt="" coords="32,155,92,181"/>
+<area shape="rect" id="node3" href="$classComponent.html" title=" " alt="" coords="13,80,111,107"/>
+<area shape="rect" id="node4" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="11,5,113,32"/>
+</map>

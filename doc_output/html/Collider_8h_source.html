@@ -104,36 +104,41 @@ $(function() {
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classCollider.html#a9c724325eb4e1de7e55ace880f6c878d">Collider</a>( <a class="code" href="classCollider.html">Collider</a> <span class="keyword">const</span>&amp; other );</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">public</span>: <span class="comment">// accessors</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classCollider.html#ad507de19d4036729a1f06024739607de">   55</a></span>&#160;    __inline <a class="code" href="classTransform.html">Transform</a>* <a class="code" href="classCollider.html#ad507de19d4036729a1f06024739607de">GetTransform</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Transform; }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">private</span>: <span class="comment">// virtual override methods</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classCollider.html#af04513587fb3aec142b96e79ad2551c3">   50</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classCollider.html#af04513587fb3aec142b96e79ad2551c3">Inspector</a>() {};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">public</span>: <span class="comment">// accessors</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classCollider.html#ad507de19d4036729a1f06024739607de">   58</a></span>&#160;    __inline <a class="code" href="classTransform.html">Transform</a>* <a class="code" href="classCollider.html#ad507de19d4036729a1f06024739607de">GetTransform</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Transform; }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnInit() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnExit() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">private</span>: <span class="comment">// virtual override methods</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnInit() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classTransform.html">Transform</a>* m_Transform;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnExit() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classTransform.html">Transform</a>* m_Transform;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
 <div class="ttc" id="aComponent_8h_html"><div class="ttname"><a href="Component_8h.html">Component.h</a></div><div class="ttdoc">Virtual component header.</div></div>
 <div class="ttc" id="aTransform_8h_html"><div class="ttname"><a href="Transform_8h.html">Transform.h</a></div><div class="ttdoc">Transform.</div></div>
 <div class="ttc" id="aclassCircleCollider_html"><div class="ttname"><a href="classCircleCollider.html">CircleCollider</a></div><div class="ttdoc">Circle-shaped Collider.</div><div class="ttdef"><b>Definition:</b> CircleCollider.h:17</div></div>
 <div class="ttc" id="aclassCollider_html"><div class="ttname"><a href="classCollider.html">Collider</a></div><div class="ttdoc">component which is used for detecting collisions and information about them</div><div class="ttdef"><b>Definition:</b> Collider.h:36</div></div>
 <div class="ttc" id="aclassCollider_html_a9c724325eb4e1de7e55ace880f6c878d"><div class="ttname"><a href="classCollider.html#a9c724325eb4e1de7e55ace880f6c878d">Collider::Collider</a></div><div class="ttdeci">Collider(std::type_index type)</div><div class="ttdoc">default constructor</div><div class="ttdef"><b>Definition:</b> Collider.cpp:22</div></div>
-<div class="ttc" id="aclassCollider_html_ad507de19d4036729a1f06024739607de"><div class="ttname"><a href="classCollider.html#ad507de19d4036729a1f06024739607de">Collider::GetTransform</a></div><div class="ttdeci">__inline Transform * GetTransform() const</div><div class="ttdoc">gets this Collider's Transform</div><div class="ttdef"><b>Definition:</b> Collider.h:55</div></div>
-<div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:19</div></div>
-<div class="ttc" id="aclassTransform_html"><div class="ttname"><a href="classTransform.html">Transform</a></div><div class="ttdef"><b>Definition:</b> Transform.h:19</div></div>
+<div class="ttc" id="aclassCollider_html_ad507de19d4036729a1f06024739607de"><div class="ttname"><a href="classCollider.html#ad507de19d4036729a1f06024739607de">Collider::GetTransform</a></div><div class="ttdeci">__inline Transform * GetTransform() const</div><div class="ttdoc">gets this Collider's Transform</div><div class="ttdef"><b>Definition:</b> Collider.h:58</div></div>
+<div class="ttc" id="aclassCollider_html_af04513587fb3aec142b96e79ad2551c3"><div class="ttname"><a href="classCollider.html#af04513587fb3aec142b96e79ad2551c3">Collider::Inspector</a></div><div class="ttdeci">virtual void Inspector()</div><div class="ttdoc">Used by the Debug System to display information about this Component.</div><div class="ttdef"><b>Definition:</b> Collider.h:50</div></div>
+<div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:20</div></div>
+<div class="ttc" id="aclassTransform_html"><div class="ttname"><a href="classTransform.html">Transform</a></div><div class="ttdef"><b>Definition:</b> Transform.h:17</div></div>
 <div class="ttc" id="astructCollisionData_html"><div class="ttname"><a href="structCollisionData.html">CollisionData</a></div><div class="ttdoc">Struct that holds data about collisions.</div><div class="ttdef"><b>Definition:</b> CollisionData.h:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

@@ -1,0 +1,299 @@
+\hypertarget{classEffectAnimator}{}\doxysection{Effect\+Animator Class Reference}
+\label{classEffectAnimator}\index{EffectAnimator@{EffectAnimator}}
+
+
+\mbox{\hyperlink{classComponent}{Component}} that can play audio.  
+
+
+
+
+{\ttfamily \#include $<$Effect\+Animator.\+h$>$}
+
+
+
+Inheritance diagram for Effect\+Animator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classEffectAnimator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Effect\+Animator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classEffectAnimator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEffectAnimator_a4d9853f62a1ea49748dbf64970df7eef}\label{classEffectAnimator_a4d9853f62a1ea49748dbf64970df7eef}} 
+\mbox{\hyperlink{classEffectAnimator_a4d9853f62a1ea49748dbf64970df7eef}{Effect\+Animator}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEffectAnimator_a64663fa65b284f80f1dcf29f1e843393}\label{classEffectAnimator_a64663fa65b284f80f1dcf29f1e843393}} 
+\mbox{\hyperlink{classEffectAnimator_a64663fa65b284f80f1dcf29f1e843393}{$\sim$\+Effect\+Animator}} ()=default
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEffectAnimator_aafbe844b4bdafea524a20c8d5a867098}{Play}} (std\+::string const \&effect\+Name, float playback\+Speed=1.\+0f, int loop\+Count=1)
+\begin{DoxyCompactList}\small\item\em starts playing an effect \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEffectAnimator_aaa446582c8df22d7caea8db08e15d0f8}{Play}} (\mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} const $\ast$effect, float playback\+Speed=1.\+0f, int loop\+Count=1)
+\begin{DoxyCompactList}\small\item\em starts playing an effect \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEffectAnimator_a88e7becef8b67ea4c50c4d8b58ab3057}{Play}} (float playback\+Speed=1.\+0f, int loop\+Count=1)
+\begin{DoxyCompactList}\small\item\em starts playing the current effect \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEffectAnimator_a89a19880bb6732c5fd5bea08ae6895d3}\label{classEffectAnimator_a89a19880bb6732c5fd5bea08ae6895d3}} 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classEffectAnimator_a89a19880bb6732c5fd5bea08ae6895d3}{Pause}} ()
+\begin{DoxyCompactList}\small\item\em pauses the current effect \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classEffectAnimator_aeda0204f1f4a9ae5c8d33e398b014df9}{Get\+Remaining\+Time}} () const
+\begin{DoxyCompactList}\small\item\em how much longer until the current effect is done playing \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline \mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} const  $\ast$ \mbox{\hyperlink{classEffectAnimator_ab96049df1beb01f2c315142fa1f42e15}{Get\+Current\+Effect}} () const
+\begin{DoxyCompactList}\small\item\em gets the effect currently in this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classEffectAnimator_addc9132ccc3bdcc32851e0385537827a}{Set\+Current\+Effect}} (\mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} const $\ast$effect)
+\begin{DoxyCompactList}\small\item\em sets the effect in this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline float \mbox{\hyperlink{classEffectAnimator_a7d78be55dff6df5d05feef79bc96dded}{Get\+Time}} () const
+\begin{DoxyCompactList}\small\item\em gets how far into the current effect we are \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classEffectAnimator_a1665b79341ab97f41c75697ade5c41bc}{Set\+Time}} (float time)
+\begin{DoxyCompactList}\small\item\em sets how far into the current effect we are \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline int \mbox{\hyperlink{classEffectAnimator_a701ef4f5b08daad6244ad89c5c9cb898}{Get\+Loop\+Count}} () const
+\begin{DoxyCompactList}\small\item\em gets how many loops are remaining \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classEffectAnimator_a98bdb0aa782d09d570728dde9835e5a3}{Set\+Loop\+Count}} (int loop\+Count)
+\begin{DoxyCompactList}\small\item\em sets how many loops are remaining \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline float \mbox{\hyperlink{classEffectAnimator_a7aa35901f39d3874a7e84585eff6b557}{Get\+Is\+Playing}} () const
+\begin{DoxyCompactList}\small\item\em gets whether or not this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} is currently playing \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classEffectAnimator_a8d913899983b5aa3e79b6cd6563ba06d}{Set\+Is\+Playing}} (float is\+Playing)
+\begin{DoxyCompactList}\small\item\em sets whether or not this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} is currently playing \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classEffectAnimator_a914bceb1003cc73ea66ad2f5c3e93cd8}{Set\+Callback}} (std\+::function$<$ void() $>$ \&callback)
+\begin{DoxyCompactList}\small\item\em sets the callback function to be called when the animation completes \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEffectAnimator_a433c95326ae6e78f55dd87e56fb20183}\label{classEffectAnimator_a433c95326ae6e78f55dd87e56fb20183}} 
+void {\bfseries operator=} (const \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classComponent}{Component}} that can play audio. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEffectAnimator_ab96049df1beb01f2c315142fa1f42e15}\label{classEffectAnimator_ab96049df1beb01f2c315142fa1f42e15}} 
+\index{EffectAnimator@{EffectAnimator}!GetCurrentEffect@{GetCurrentEffect}}
+\index{GetCurrentEffect@{GetCurrentEffect}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{GetCurrentEffect()}{GetCurrentEffect()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline \mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} const$\ast$ Effect\+Animator\+::\+Get\+Current\+Effect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the effect currently in this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} 
+
+\begin{DoxyReturn}{Returns}
+the effect currently in this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEffectAnimator_a7aa35901f39d3874a7e84585eff6b557}\label{classEffectAnimator_a7aa35901f39d3874a7e84585eff6b557}} 
+\index{EffectAnimator@{EffectAnimator}!GetIsPlaying@{GetIsPlaying}}
+\index{GetIsPlaying@{GetIsPlaying}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{GetIsPlaying()}{GetIsPlaying()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline float Effect\+Animator\+::\+Get\+Is\+Playing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets whether or not this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} is currently playing 
+
+\begin{DoxyReturn}{Returns}
+whether or not this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} is currently playing ( -\/1 for infinit looping ) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEffectAnimator_a701ef4f5b08daad6244ad89c5c9cb898}\label{classEffectAnimator_a701ef4f5b08daad6244ad89c5c9cb898}} 
+\index{EffectAnimator@{EffectAnimator}!GetLoopCount@{GetLoopCount}}
+\index{GetLoopCount@{GetLoopCount}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{GetLoopCount()}{GetLoopCount()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline int Effect\+Animator\+::\+Get\+Loop\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets how many loops are remaining 
+
+\begin{DoxyReturn}{Returns}
+how many loops are remaining ( -\/1 for infinit looping ) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEffectAnimator_aeda0204f1f4a9ae5c8d33e398b014df9}\label{classEffectAnimator_aeda0204f1f4a9ae5c8d33e398b014df9}} 
+\index{EffectAnimator@{EffectAnimator}!GetRemainingTime@{GetRemainingTime}}
+\index{GetRemainingTime@{GetRemainingTime}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{GetRemainingTime()}{GetRemainingTime()}}
+{\footnotesize\ttfamily float Effect\+Animator\+::\+Get\+Remaining\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+how much longer until the current effect is done playing 
+
+\begin{DoxyReturn}{Returns}
+the amount of remaining time 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEffectAnimator_a7d78be55dff6df5d05feef79bc96dded}\label{classEffectAnimator_a7d78be55dff6df5d05feef79bc96dded}} 
+\index{EffectAnimator@{EffectAnimator}!GetTime@{GetTime}}
+\index{GetTime@{GetTime}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{GetTime()}{GetTime()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline float Effect\+Animator\+::\+Get\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets how far into the current effect we are 
+
+\begin{DoxyReturn}{Returns}
+how far into the current effect we are 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEffectAnimator_a88e7becef8b67ea4c50c4d8b58ab3057}\label{classEffectAnimator_a88e7becef8b67ea4c50c4d8b58ab3057}} 
+\index{EffectAnimator@{EffectAnimator}!Play@{Play}}
+\index{Play@{Play}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{Play()}{Play()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Effect\+Animator\+::\+Play (\begin{DoxyParamCaption}\item[{float}]{playback\+Speed = {\ttfamily 1.0f},  }\item[{int}]{loop\+Count = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+starts playing the current effect 
+
+
+\begin{DoxyParams}{Parameters}
+{\em playback\+Speed} & the speed multiplier for how fast to play the effect \\
+\hline
+{\em loop\+Count} & how many times to play the effect ( -\/1 to loop infinitely )\\
+\hline
+{\em playback\+Speed} & the speed multiplier for how fast to play the effect \\
+\hline
+{\em loop\+Count} & how many times to play the effect ( negative to loop infinitely ) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEffectAnimator_aafbe844b4bdafea524a20c8d5a867098}\label{classEffectAnimator_aafbe844b4bdafea524a20c8d5a867098}} 
+\index{EffectAnimator@{EffectAnimator}!Play@{Play}}
+\index{Play@{Play}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{Play()}{Play()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Effect\+Animator\+::\+Play (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{effect\+Name,  }\item[{float}]{playback\+Speed = {\ttfamily 1.0f},  }\item[{int}]{loop\+Count = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+starts playing an effect 
+
+
+\begin{DoxyParams}{Parameters}
+{\em effect\+Name} & the name of the effect to get from the Asset\+Library \\
+\hline
+{\em playback\+Speed} & the speed multiplier for how fast to play the effect \\
+\hline
+{\em loop\+Count} & how many times to play the effect ( -\/1 to loop infinitely )\\
+\hline
+{\em effect\+Name} & the name of the effect to get from the Asset\+Library \\
+\hline
+{\em playback\+Speed} & the speed multiplier for how fast to play the effect \\
+\hline
+{\em loop\+Count} & how many times to play the effect ( negative to loop infinitely ) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEffectAnimator_aaa446582c8df22d7caea8db08e15d0f8}\label{classEffectAnimator_aaa446582c8df22d7caea8db08e15d0f8}} 
+\index{EffectAnimator@{EffectAnimator}!Play@{Play}}
+\index{Play@{Play}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{Play()}{Play()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Effect\+Animator\+::\+Play (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} const $\ast$}]{effect,  }\item[{float}]{playback\+Speed = {\ttfamily 1.0f},  }\item[{int}]{loop\+Count = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+starts playing an effect 
+
+
+\begin{DoxyParams}{Parameters}
+{\em effect} & the effect to play \\
+\hline
+{\em playback\+Speed} & the speed multiplier for how fast to play the effect \\
+\hline
+{\em loop\+Count} & how many times to play the effect ( -\/1 to loop infinitely )\\
+\hline
+{\em effect} & the effect to play \\
+\hline
+{\em playback\+Speed} & the speed multiplier for how fast to play the effect \\
+\hline
+{\em loop\+Count} & how many times to play the effect ( negative to loop infinitely ) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEffectAnimator_a914bceb1003cc73ea66ad2f5c3e93cd8}\label{classEffectAnimator_a914bceb1003cc73ea66ad2f5c3e93cd8}} 
+\index{EffectAnimator@{EffectAnimator}!SetCallback@{SetCallback}}
+\index{SetCallback@{SetCallback}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{SetCallback()}{SetCallback()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Effect\+Animator\+::\+Set\+Callback (\begin{DoxyParamCaption}\item[{std\+::function$<$ void() $>$ \&}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the callback function to be called when the animation completes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & the function to be called when the animation completes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+YOU MUST CLEAR THE CALLBACK BY PASSING nullptr IF YOU ARE DONE WITH IT, the callback will be called every time the animation completes (but not each time it loops) 
+\end{DoxyNote}
+\mbox{\Hypertarget{classEffectAnimator_addc9132ccc3bdcc32851e0385537827a}\label{classEffectAnimator_addc9132ccc3bdcc32851e0385537827a}} 
+\index{EffectAnimator@{EffectAnimator}!SetCurrentEffect@{SetCurrentEffect}}
+\index{SetCurrentEffect@{SetCurrentEffect}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{SetCurrentEffect()}{SetCurrentEffect()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Effect\+Animator\+::\+Set\+Current\+Effect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} const $\ast$}]{effect }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the effect in this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em effect} & the effect in this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEffectAnimator_a8d913899983b5aa3e79b6cd6563ba06d}\label{classEffectAnimator_a8d913899983b5aa3e79b6cd6563ba06d}} 
+\index{EffectAnimator@{EffectAnimator}!SetIsPlaying@{SetIsPlaying}}
+\index{SetIsPlaying@{SetIsPlaying}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{SetIsPlaying()}{SetIsPlaying()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Effect\+Animator\+::\+Set\+Is\+Playing (\begin{DoxyParamCaption}\item[{float}]{is\+Playing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets whether or not this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} is currently playing 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Playing} & whether or not this \mbox{\hyperlink{classEffectAnimator}{Effect\+Animator}} is currently playing ( -\/1 for infinit looping ) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEffectAnimator_a98bdb0aa782d09d570728dde9835e5a3}\label{classEffectAnimator_a98bdb0aa782d09d570728dde9835e5a3}} 
+\index{EffectAnimator@{EffectAnimator}!SetLoopCount@{SetLoopCount}}
+\index{SetLoopCount@{SetLoopCount}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{SetLoopCount()}{SetLoopCount()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Effect\+Animator\+::\+Set\+Loop\+Count (\begin{DoxyParamCaption}\item[{int}]{loop\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets how many loops are remaining 
+
+
+\begin{DoxyParams}{Parameters}
+{\em loop\+Count} & how many loops are remaining ( -\/1 for infinit looping ) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEffectAnimator_a1665b79341ab97f41c75697ade5c41bc}\label{classEffectAnimator_a1665b79341ab97f41c75697ade5c41bc}} 
+\index{EffectAnimator@{EffectAnimator}!SetTime@{SetTime}}
+\index{SetTime@{SetTime}!EffectAnimator@{EffectAnimator}}
+\doxysubsubsection{\texorpdfstring{SetTime()}{SetTime()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Effect\+Animator\+::\+Set\+Time (\begin{DoxyParamCaption}\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets how far into the current effect we are 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & how far into the current effect we are \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{EffectAnimator_8h}{Effect\+Animator.\+h}}\item 
+Source/\mbox{\hyperlink{EffectAnimator_8cpp}{Effect\+Animator.\+cpp}}\end{DoxyCompactItemize}

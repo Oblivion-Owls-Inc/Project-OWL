@@ -1,4 +1,12 @@
 <map id="Source/AssetLibrarySystem.h" name="Source/AssetLibrarySystem.h">
-<area shape="rect" id="node1" title="Asset System." alt="" coords="13,5,225,32"/>
+<area shape="rect" id="node1" title="Asset System." alt="" coords="581,5,793,32"/>
 <area shape="rect" id="node2" href="$AssetLibrarySystem_8cpp.html" title="AssetLibrarySystem." alt="" coords="5,80,232,107"/>
+<area shape="rect" id="node3" href="$AudioPlayer_8cpp.html" title="Component that plays audio." alt="" coords="257,80,431,107"/>
+<area shape="rect" id="node4" href="$EffectAnimator_8cpp.html" title="Component that animates a Transform&#39;s matrix." alt="" coords="455,80,649,107"/>
+<area shape="rect" id="node5" href="$Engine_8cpp.html" title="Engine class." alt="" coords="616,155,757,181"/>
+<area shape="rect" id="node6" href="$Entity_8cpp.html" title="Function definitions for the Entity class." alt="" coords="724,80,857,107"/>
+<area shape="rect" id="node7" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="1009,155,1194,181"/>
+<area shape="rect" id="node8" href="$SceneSystem_8h.html" title="handles the process of resetting and changing scenes" alt="" coords="881,80,1052,107"/>
+<area shape="rect" id="node10" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="1127,80,1262,107"/>
+<area shape="rect" id="node9" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="781,155,984,181"/>
 </map>

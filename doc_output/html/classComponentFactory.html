@@ -71,16 +71,19 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aba36241b43f2fd733c3a1513ff0eb943"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classComponent.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponentFactory.html#aba36241b43f2fd733c3a1513ff0eb943">Create</a> (std::string key)</td></tr>
-<tr class="memdesc:aba36241b43f2fd733c3a1513ff0eb943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a component of a specified type.  <a href="classComponentFactory.html#aba36241b43f2fd733c3a1513ff0eb943">More...</a><br /></td></tr>
-<tr class="separator:aba36241b43f2fd733c3a1513ff0eb943"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2906c017ba738dc78e7b3618a89c3fee"><td class="memItemLeft" align="right" valign="top"><a id="a2906c017ba738dc78e7b3618a89c3fee"></a>
-static std::type_index&#160;</td><td class="memItemRight" valign="bottom"><b>GetTypeId</b> (std::string typeName)</td></tr>
-<tr class="separator:a2906c017ba738dc78e7b3618a89c3fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf3f687f031d3c16d860d17af7a58647"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classComponent.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponentFactory.html#acf3f687f031d3c16d860d17af7a58647">Create</a> (std::string const &amp;key)</td></tr>
+<tr class="memdesc:acf3f687f031d3c16d860d17af7a58647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a component of a specified type.  <a href="classComponentFactory.html#acf3f687f031d3c16d860d17af7a58647">More...</a><br /></td></tr>
+<tr class="separator:acf3f687f031d3c16d860d17af7a58647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1e8726be6a2b23eb6935f5e834cede5"><td class="memItemLeft" align="right" valign="top"><a id="aa1e8726be6a2b23eb6935f5e834cede5"></a>
+static std::type_index&#160;</td><td class="memItemRight" valign="bottom"><b>GetTypeId</b> (std::string const &amp;typeName)</td></tr>
+<tr class="separator:aa1e8726be6a2b23eb6935f5e834cede5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d54d148a5dee184ede407a8915535d6"><td class="memItemLeft" align="right" valign="top"><a id="a9d54d148a5dee184ede407a8915535d6"></a>
+static std::map&lt; std::string, std::pair&lt; std::type_index, <a class="el" href="classComponent.html">Component</a> *(*)() &gt; &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetComponentTypes</b> ()</td></tr>
+<tr class="separator:a9d54d148a5dee184ede407a8915535d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aba36241b43f2fd733c3a1513ff0eb943"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba36241b43f2fd733c3a1513ff0eb943">&#9670;&nbsp;</a></span>Create()</h2>
+<a id="acf3f687f031d3c16d860d17af7a58647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf3f687f031d3c16d860d17af7a58647">&#9670;&nbsp;</a></span>Create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -91,7 +94,7 @@ static std::type_index&#160;</td><td class="memItemRight" valign="bottom"><b>Get
         <tr>
           <td class="memname"><a class="el" href="classComponent.html">Component</a> * ComponentFactory::Create </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
           <td></td>
         </tr>

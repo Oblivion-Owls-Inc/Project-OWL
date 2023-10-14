@@ -11,7 +11,8 @@ Debug \mbox{\hyperlink{classSystem}{System}} Class For Debugging.
 
 
 
-Inheritance diagram for Debug\+System\+:\nopagebreak
+Inheritance diagram for Debug\+System\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,7 +21,8 @@ Inheritance diagram for Debug\+System\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for Debug\+System\+:\nopagebreak
+Collaboration diagram for Debug\+System\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -40,16 +42,11 @@ void \mbox{\hyperlink{classDebugSystem_a2e42eb16bc553dcaf7fd3dc8feb764ea}{On\+Up
 \begin{DoxyCompactList}\small\item\em Update the \mbox{\hyperlink{classDebugSystem}{Debug\+System}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}{On\+Exit}} () override
 \begin{DoxyCompactList}\small\item\em Exit and clean up the \mbox{\hyperlink{classDebugSystem}{Debug\+System}}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classDebugSystem_ae879cebdfe289045c82cb0fc33c48bbf}{Toggle\+FPS}} ()
-\begin{DoxyCompactList}\small\item\em Show the Frames Per Second (FPS) in a debug window. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classDebugSystem_a2c63e065c5546a8e08b5722b7cd03ea5}\label{classDebugSystem_a2c63e065c5546a8e08b5722b7cd03ea5}} 
-void {\bfseries Toggle\+Dev} ()
-\item 
-\mbox{\Hypertarget{classDebugSystem_a70154aabaec2704bfb644cb79e9b9033}\label{classDebugSystem_a70154aabaec2704bfb644cb79e9b9033}} 
-void {\bfseries Toggle\+Entity\+List} ()
-\item 
 void \mbox{\hyperlink{classDebugSystem_a90310ccd94c0303b5594e9b94bc2a3dd}{Screen\+Print}} (const char $\ast$format,...)
-\begin{DoxyCompactList}\small\item\em Print a formatted message to the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Print a formatted message to the screen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugSystem_a2c641267002ad60b29e2d9704bb5f79b}\label{classDebugSystem_a2c641267002ad60b29e2d9704bb5f79b}} 
+virtual void \mbox{\hyperlink{classDebugSystem_a2c641267002ad60b29e2d9704bb5f79b}{Debug\+Window}} () override
+\begin{DoxyCompactList}\small\item\em Gets Called by the Debug system to display debug information. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -187,19 +184,7 @@ Set the GLFW window handle.
 {\em window} & The GLFW window handle to set \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classDebugSystem_ae879cebdfe289045c82cb0fc33c48bbf}\label{classDebugSystem_ae879cebdfe289045c82cb0fc33c48bbf}} 
-\index{DebugSystem@{DebugSystem}!ToggleFPS@{ToggleFPS}}
-\index{ToggleFPS@{ToggleFPS}!DebugSystem@{DebugSystem}}
-\doxysubsubsection{\texorpdfstring{ToggleFPS()}{ToggleFPS()}}
-{\footnotesize\ttfamily void Debug\+System\+::\+Toggle\+FPS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-
-
-Show the Frames Per Second (FPS) in a debug window. 
-
-Show the Frames Per Second (FPS) display.
-
-This function displays the Frames Per Second (FPS) in a debug window when called. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

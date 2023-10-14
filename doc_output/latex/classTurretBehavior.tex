@@ -2,7 +2,8 @@
 \label{classTurretBehavior}\index{TurretBehavior@{TurretBehavior}}
 
 
-Inheritance diagram for Turret\+Behavior\+:\nopagebreak
+Inheritance diagram for Turret\+Behavior\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,7 +12,8 @@ Inheritance diagram for Turret\+Behavior\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for Turret\+Behavior\+:\nopagebreak
+Collaboration diagram for Turret\+Behavior\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,10 +30,16 @@ Collaboration diagram for Turret\+Behavior\+:\nopagebreak
 \begin{DoxyCompactList}\small\item\em virtual component clone function \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classTurretBehavior_a61cb0d08cb83b881c5e525b0928c9b30}{On\+Collision}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$other, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&collision\+Data)
 \begin{DoxyCompactList}\small\item\em Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTurretBehavior_a6a9dd5b6698949d03b3db74fc29936af}{On\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTurretBehavior_a7a548454358e1f727ff634286f533ae4}{On\+Exit}} ()
+\begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is removed from the Scene \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classTurretBehavior_a54e1edadc9ce7f28c98e7fb6f2a66359}{On\+Update}} (float dt) override
-\item 
+\begin{DoxyCompactList}\small\item\em Called Every Frame by the system. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTurretBehavior_a8878953527baa87319cd1ee21d344881}{On\+Fixed\+Update}} () override
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Called Every Fixed Frame by the system. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTurretBehavior_a82ce36309353ca73633c6452067473b4}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -52,6 +60,20 @@ new clone of component
 
 
 Implements \mbox{\hyperlink{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}{Behavior}}.
+
+\mbox{\Hypertarget{classTurretBehavior_a82ce36309353ca73633c6452067473b4}\label{classTurretBehavior_a82ce36309353ca73633c6452067473b4}} 
+\index{TurretBehavior@{TurretBehavior}!Inspector@{Inspector}}
+\index{Inspector@{Inspector}!TurretBehavior@{TurretBehavior}}
+\doxysubsubsection{\texorpdfstring{Inspector()}{Inspector()}}
+{\footnotesize\ttfamily void Turret\+Behavior\+::\+Inspector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. 
+
+Edit the \mbox{\hyperlink{classBehavior}{Behavior}} of the Turret
+
+Reimplemented from \mbox{\hyperlink{classComponent_a5bfbb00a07c361c4c8d7b1812b9937ff}{Component}}.
 
 \mbox{\Hypertarget{classTurretBehavior_a61cb0d08cb83b881c5e525b0928c9b30}\label{classTurretBehavior_a61cb0d08cb83b881c5e525b0928c9b30}} 
 \index{TurretBehavior@{TurretBehavior}!OnCollision@{OnCollision}}
@@ -74,11 +96,32 @@ Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hype
 
 Reimplemented from \mbox{\hyperlink{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}{Behavior}}.
 
+\mbox{\Hypertarget{classTurretBehavior_a7a548454358e1f727ff634286f533ae4}\label{classTurretBehavior_a7a548454358e1f727ff634286f533ae4}} 
+\index{TurretBehavior@{TurretBehavior}!OnExit@{OnExit}}
+\index{OnExit@{OnExit}!TurretBehavior@{TurretBehavior}}
+\doxysubsubsection{\texorpdfstring{OnExit()}{OnExit()}}
+{\footnotesize\ttfamily void Turret\+Behavior\+::\+On\+Exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is removed from the Scene 
+
+\begin{DoxyNote}{Note}
+NOT CALLED WHEN THE SCENE IS EXITED -\/ that should be handled by this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classSystem}{System}} 
+\end{DoxyNote}
+Remove this behavior from the behavior system
+
+Reimplemented from \mbox{\hyperlink{classComponent_a71b5ee92e9f8e65ab040a80e149fc596}{Component}}.
+
 \mbox{\Hypertarget{classTurretBehavior_a8878953527baa87319cd1ee21d344881}\label{classTurretBehavior_a8878953527baa87319cd1ee21d344881}} 
 \index{TurretBehavior@{TurretBehavior}!OnFixedUpdate@{OnFixedUpdate}}
 \index{OnFixedUpdate@{OnFixedUpdate}!TurretBehavior@{TurretBehavior}}
 \doxysubsubsection{\texorpdfstring{OnFixedUpdate()}{OnFixedUpdate()}}
 {\footnotesize\ttfamily void Turret\+Behavior\+::\+On\+Fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Called Every Fixed Frame by the system. 
 
 Check if any entities are in range
 
@@ -88,12 +131,35 @@ Check if the entity is in range
 
 Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
 
+\mbox{\Hypertarget{classTurretBehavior_a6a9dd5b6698949d03b3db74fc29936af}\label{classTurretBehavior_a6a9dd5b6698949d03b3db74fc29936af}} 
+\index{TurretBehavior@{TurretBehavior}!OnInit@{OnInit}}
+\index{OnInit@{OnInit}!TurretBehavior@{TurretBehavior}}
+\doxysubsubsection{\texorpdfstring{OnInit()}{OnInit()}}
+{\footnotesize\ttfamily void Turret\+Behavior\+::\+On\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Default constructor for the \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} class. 
+
+Add this behavior to the behavior system
+
+Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
+
 \mbox{\Hypertarget{classTurretBehavior_a54e1edadc9ce7f28c98e7fb6f2a66359}\label{classTurretBehavior_a54e1edadc9ce7f28c98e7fb6f2a66359}} 
 \index{TurretBehavior@{TurretBehavior}!OnUpdate@{OnUpdate}}
 \index{OnUpdate@{OnUpdate}!TurretBehavior@{TurretBehavior}}
 \doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
 {\footnotesize\ttfamily void Turret\+Behavior\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
+
+
+Called Every Frame by the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & -\/ the time since the last frame \\
+\hline
+\end{DoxyParams}
 Do Turret Debug Stuff
 
 Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.

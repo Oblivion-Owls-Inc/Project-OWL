@@ -1,4 +1,5 @@
 <map id="AidanScene" name="AidanScene">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,104,107"/>
-<area shape="rect" id="node2" href="$classSystem.html" title="Base class for all Systems." alt="" coords="19,5,90,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="7,155,106,181"/>
+<area shape="rect" id="node2" href="$classSystem.html" title="Base class for all Systems." alt="" coords="21,80,92,107"/>
+<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="5,5,108,32"/>
 </map>

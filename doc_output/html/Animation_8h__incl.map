@@ -1,17 +1,17 @@
 <map id="Source/Animation.h" name="Source/Animation.h">
-<area shape="rect" id="node1" title="animation component class" alt="" coords="301,5,451,32"/>
-<area shape="rect" id="node2" href="$Sprite_8h_source.html" title=" " alt="" coords="287,155,359,181"/>
-<area shape="rect" id="node12" href="$Behavior_8h.html" title="Virtual behavior component header." alt="" coords="383,155,473,181"/>
-<area shape="rect" id="node14" href="$AnimationAsset_8h.html" title="animation Asset class" alt="" coords="307,80,445,107"/>
-<area shape="rect" id="node15" title=" " alt="" coords="520,80,600,107"/>
-<area shape="rect" id="node3" href="$Component_8h.html" title="Virtual component header." alt="" coords="176,229,285,256"/>
-<area shape="rect" id="node7" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="275,304,357,331"/>
-<area shape="rect" id="node10" title=" " alt="" coords="576,379,680,405"/>
-<area shape="rect" id="node4" title=" " alt="" coords="55,304,142,331"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,379,56,405"/>
-<area shape="rect" id="node6" title=" " alt="" coords="80,379,139,405"/>
-<area shape="rect" id="node8" title=" " alt="" coords="163,379,325,405"/>
-<area shape="rect" id="node9" title=" " alt="" coords="350,379,423,405"/>
-<area shape="rect" id="node11" title=" " alt="" coords="448,379,552,405"/>
-<area shape="rect" id="node13" href="$CollisionData_8h_source.html" title=" " alt="" coords="473,229,594,256"/>
+<area shape="rect" id="node1" title="animation component class" alt="" coords="144,5,293,32"/>
+<area shape="rect" id="node2" href="$Sprite_8h_source.html" title=" " alt="" coords="129,155,201,181"/>
+<area shape="rect" id="node12" href="$Behavior_8h.html" title="Virtual behavior component header." alt="" coords="225,155,316,181"/>
+<area shape="rect" id="node14" href="$AnimationAsset_8h.html" title="animation Asset class" alt="" coords="150,80,287,107"/>
+<area shape="rect" id="node15" title=" " alt="" coords="363,80,443,107"/>
+<area shape="rect" id="node3" href="$Component_8h.html" title="Virtual component header." alt="" coords="292,229,401,256"/>
+<area shape="rect" id="node9" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="199,379,281,405"/>
+<area shape="rect" id="node11" title=" " alt="" coords="5,453,109,480"/>
+<area shape="rect" id="node4" title=" " alt="" coords="342,304,429,331"/>
+<area shape="rect" id="node5" title=" " alt="" coords="419,453,469,480"/>
+<area shape="rect" id="node6" title=" " alt="" coords="493,453,552,480"/>
+<area shape="rect" id="node7" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="203,304,317,331"/>
+<area shape="rect" id="node8" title=" " alt="" coords="232,453,395,480"/>
+<area shape="rect" id="node10" title=" " alt="" coords="134,453,207,480"/>
+<area shape="rect" id="node13" href="$CollisionData_8h_source.html" title=" " alt="" coords="54,379,175,405"/>
 </map>

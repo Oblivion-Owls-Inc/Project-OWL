@@ -27,12 +27,14 @@ void \mbox{\hyperlink{classMesh_a72c6c70d0a5146317d0fa11d9dc33da0}{Load\+Vertice
 \begin{DoxyCompactList}\small\item\em Loads provided vertices to initialize (or change) the mesh. Provide rows and columns if this is for a spritesheet. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMesh_a0d3023d68fcf77eef8220379ff4c21c2}{Load\+Square}} (int rows=1, int columns=1)
 \begin{DoxyCompactList}\small\item\em Loads a list of vertices that make a centered unit square. Provide rows and columns if this is for a spritesheet. \end{DoxyCompactList}\item 
-glm\+::vec2 \mbox{\hyperlink{classMesh_a53d7c42693d29241933f2d06dcd83bba}{Get\+UVsize}} ()
+\+\_\+\+\_\+inline glm\+::vec2 \mbox{\hyperlink{classMesh_aa7dfde4bc25999f25dd17bf010230832}{Get\+UVsize}} () const
 \begin{DoxyCompactList}\small\item\em Returns the UV size. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{classMesh_aafa13fa13ca5fb5e15b544ae1870da45}{Get\+VAO}} ()
+\+\_\+\+\_\+inline unsigned int \mbox{\hyperlink{classMesh_a3296d89ba3eafe6b740f31c3b81298c4}{Get\+VAO}} () const
 \begin{DoxyCompactList}\small\item\em Returns the VAO index of this mesh. It can be used for rendering the mesh, or defining additional attributes. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{classMesh_a2ee88be25d23414d77e7807f1bb564de}{Get\+Vert\+Count}} ()
-\begin{DoxyCompactList}\small\item\em Returns the amount of vertices in this mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\+\_\+\+\_\+inline unsigned int \mbox{\hyperlink{classMesh_a409224e328e4abfafbc2e55938f0ec8e}{Get\+Vertex\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Returns the amount of vertices in this mesh. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline unsigned int \mbox{\hyperlink{classMesh_a6c07f81c07709939a9955058fa4e52d5}{Get\+Buffer}} () const
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -43,7 +45,7 @@ Stores data needed to render a basic mesh.
 \index{Mesh@{Mesh}!Mesh@{Mesh}}
 \index{Mesh@{Mesh}!Mesh@{Mesh}}
 \doxysubsubsection{\texorpdfstring{Mesh()}{Mesh()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Mesh\+::\+Mesh (\begin{DoxyParamCaption}\item[{bool}]{init\+\_\+square = {\ttfamily false},  }\item[{int}]{rows = {\ttfamily 1},  }\item[{int}]{columns = {\ttfamily 1} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Mesh\+::\+Mesh (\begin{DoxyParamCaption}\item[{bool}]{init\+\_\+square = {\ttfamily false},  }\item[{int}]{columns = {\ttfamily 1},  }\item[{int}]{rows = {\ttfamily 1} }\end{DoxyParamCaption})}
 
 
 
@@ -92,11 +94,20 @@ Destructor\+: cleans up memory.
 Cleans up memory. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classMesh_a53d7c42693d29241933f2d06dcd83bba}\label{classMesh_a53d7c42693d29241933f2d06dcd83bba}} 
+\mbox{\Hypertarget{classMesh_a6c07f81c07709939a9955058fa4e52d5}\label{classMesh_a6c07f81c07709939a9955058fa4e52d5}} 
+\index{Mesh@{Mesh}!GetBuffer@{GetBuffer}}
+\index{GetBuffer@{GetBuffer}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{GetBuffer()}{GetBuffer()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline unsigned int Mesh\+::\+Get\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Id of the vertex buffer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMesh_aa7dfde4bc25999f25dd17bf010230832}\label{classMesh_aa7dfde4bc25999f25dd17bf010230832}} 
 \index{Mesh@{Mesh}!GetUVsize@{GetUVsize}}
 \index{GetUVsize@{GetUVsize}!Mesh@{Mesh}}
 \doxysubsubsection{\texorpdfstring{GetUVsize()}{GetUVsize()}}
-{\footnotesize\ttfamily glm\+::vec2 Mesh\+::\+Get\+UVsize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::vec2 Mesh\+::\+Get\+UVsize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -105,11 +116,11 @@ Returns the UV size.
 \begin{DoxyReturn}{Returns}
 UV size (x = width, y = height) 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMesh_aafa13fa13ca5fb5e15b544ae1870da45}\label{classMesh_aafa13fa13ca5fb5e15b544ae1870da45}} 
+\mbox{\Hypertarget{classMesh_a3296d89ba3eafe6b740f31c3b81298c4}\label{classMesh_a3296d89ba3eafe6b740f31c3b81298c4}} 
 \index{Mesh@{Mesh}!GetVAO@{GetVAO}}
 \index{GetVAO@{GetVAO}!Mesh@{Mesh}}
 \doxysubsubsection{\texorpdfstring{GetVAO()}{GetVAO()}}
-{\footnotesize\ttfamily unsigned int Mesh\+::\+Get\+VAO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline unsigned int Mesh\+::\+Get\+VAO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -118,11 +129,11 @@ Returns the VAO index of this mesh. It can be used for rendering the mesh, or de
 \begin{DoxyReturn}{Returns}
 UV size (x = width, y = height) 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMesh_a2ee88be25d23414d77e7807f1bb564de}\label{classMesh_a2ee88be25d23414d77e7807f1bb564de}} 
-\index{Mesh@{Mesh}!GetVertCount@{GetVertCount}}
-\index{GetVertCount@{GetVertCount}!Mesh@{Mesh}}
-\doxysubsubsection{\texorpdfstring{GetVertCount()}{GetVertCount()}}
-{\footnotesize\ttfamily unsigned int Mesh\+::\+Get\+Vert\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classMesh_a409224e328e4abfafbc2e55938f0ec8e}\label{classMesh_a409224e328e4abfafbc2e55938f0ec8e}} 
+\index{Mesh@{Mesh}!GetVertexCount@{GetVertexCount}}
+\index{GetVertexCount@{GetVertexCount}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{GetVertexCount()}{GetVertexCount()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline unsigned int Mesh\+::\+Get\+Vertex\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

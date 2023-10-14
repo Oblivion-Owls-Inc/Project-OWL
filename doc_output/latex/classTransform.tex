@@ -2,109 +2,87 @@
 \label{classTransform}\index{Transform@{Transform}}
 
 
-Inheritance diagram for Transform\+:\nopagebreak
+Inheritance diagram for Transform\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=153pt]{classTransform__inherit__graph}
+\includegraphics[width=157pt]{classTransform__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Transform\+:\nopagebreak
+Collaboration diagram for Transform\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=153pt]{classTransform__coll__graph}
+\includegraphics[width=157pt]{classTransform__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classTransform_aa08ca4266efabc768973cdeea51945ab}\label{classTransform_aa08ca4266efabc768973cdeea51945ab}} 
 \mbox{\hyperlink{classTransform_aa08ca4266efabc768973cdeea51945ab}{Transform}} ()
-\begin{DoxyCompactList}\small\item\em Default constructor for the transform component. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classTransform_a32e14e9f06877459a5731ad34656798b}{Transform}} (const \mbox{\hyperlink{classTransform}{Transform}} \&other)
-\begin{DoxyCompactList}\small\item\em Copy constructor for the transform component. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classTransform_a9df912719db3853eccb6a4934d6ad37f}{Clone}} () const override
-\begin{DoxyCompactList}\small\item\em Clones a transform component. \end{DoxyCompactList}\item 
-vec3 const  \& \mbox{\hyperlink{classTransform_a5179b9bd222656a5ff6bb99e8eba5f88}{Get\+Translation}} () const
-\begin{DoxyCompactList}\small\item\em Gets a constant version of the translation vector. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classTransform_ab5cea38233e2517f3009979b6b347218}{Set\+Translation}} (vec3 const \&new\+Translation)
-\begin{DoxyCompactList}\small\item\em Sets the value of the translation vector. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classTransform_a7ac8cd28bcca090112452a466a11732a}{Get\+Rotation}} () const
-\begin{DoxyCompactList}\small\item\em Gets the rotation value of the transform component. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classTransform_a7989a8ed6a5b2215171f006ceecc067e}{Set\+Rotation}} (float new\+Rotation)
-\begin{DoxyCompactList}\small\item\em Sets the rotation value of the transform component. \end{DoxyCompactList}\item 
-vec3 const  \& \mbox{\hyperlink{classTransform_a282f1046827fc17b8b691666511acd02}{Get\+Scale}} () const
-\begin{DoxyCompactList}\small\item\em Gets a constant version of the transform\textquotesingle{}s scale vector. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classTransform_ac6a506943137b5c0912eeda471b72096}{Set\+Scale}} (vec3 new\+Scale)
-\begin{DoxyCompactList}\small\item\em Sets the scale vector of the transform component. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTransform_a0bccb958391795992a6b9100739047f1}\label{classTransform_a0bccb958391795992a6b9100739047f1}} 
+\mbox{\hyperlink{classTransform_a0bccb958391795992a6b9100739047f1}{$\sim$\+Transform}} ()=default
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTransform_a65ed830216cba782f361ca770b4ccd7d}\label{classTransform_a65ed830216cba782f361ca770b4ccd7d}} 
+virtual void \mbox{\hyperlink{classTransform_a65ed830216cba782f361ca770b4ccd7d}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em inspector for this component \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline glm\+::vec3 const  \& \mbox{\hyperlink{classTransform_a83cc36dfcfdba530db4b2e848bde8dd5}{Get\+Translation}} () const
+\begin{DoxyCompactList}\small\item\em gets the translation \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classTransform_a58c94cac00549a45e10053257c193353}{Set\+Translation}} (glm\+::vec3 const \&translation)
+\begin{DoxyCompactList}\small\item\em sets the translation \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline float \mbox{\hyperlink{classTransform_aa7e0383177f74d73f5ffc884272a75d3}{Get\+Rotation}} () const
+\begin{DoxyCompactList}\small\item\em gets the rotation \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classTransform_a4c8a5e8e290de3d817c29e2a2930569e}{Set\+Rotation}} (float rotation)
+\begin{DoxyCompactList}\small\item\em sets the rotation \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline glm\+::vec3 const  \& \mbox{\hyperlink{classTransform_a4b7c183932d73ebc2ed2db292fce17e7}{Get\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em gets the scale \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classTransform_a0009411001e42301e3b71f741cf422cb}{Set\+Scale}} (glm\+::vec3 const \&scale)
+\begin{DoxyCompactList}\small\item\em sets the scale \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline bool const  \& \mbox{\hyperlink{classTransform_a47246d7c4f6d4100a8282e3e5c3bf54b}{Get\+Is\+Diegetic}} () const
+\begin{DoxyCompactList}\small\item\em gets the is\+Diagetic flag \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classTransform_a597a0c87cc45350401ac0c890bd2df44}{Set\+Is\+Diegetic}} (bool const \&is\+Diagetic)
+\begin{DoxyCompactList}\small\item\em sets the is\+Diagetic flag \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTransform_a9de96e7096e4aac63944402baf758670}\label{classTransform_a9de96e7096e4aac63944402baf758670}} 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classTransform_a9de96e7096e4aac63944402baf758670}{Mark\+Dirty}} ()
+\begin{DoxyCompactList}\small\item\em marks the transform as dirty; \end{DoxyCompactList}\item 
 glm\+::mat4 const  \& \mbox{\hyperlink{classTransform_afd0c4e0cc369913d0503addfa03384d9}{Get\+Matrix}} () const
-\begin{DoxyCompactList}\small\item\em Calculates and gets the translation matrix of the transform component. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classTransform_a8fdce04300deea8db61820132ae26b64}{Set\+Matrix}} (glm\+::mat4 const \&new\+Matrix)
-\begin{DoxyCompactList}\small\item\em Sets the transform component\textquotesingle{}s translation matrix. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classTransform_a8accc5e9a4e0b779588feafa0026cadd}{Get\+Is\+Dirty}} () const
-\begin{DoxyCompactList}\small\item\em Gets the status of the is dirty flag. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classTransform_a860d7f48cf60afac95f833a47ad30df0}{Set\+Is\+Dirty}} (bool new\+Is\+Dirty)
-\begin{DoxyCompactList}\small\item\em Sets the is dirty flag on the transform component. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classTransform_a6be4b4a85ab004f873448fe35505162a}\label{classTransform_a6be4b4a85ab004f873448fe35505162a}} 
-bool {\bfseries Get\+Is\+Diegetic} () const
-\item 
-\mbox{\Hypertarget{classTransform_abcf9a16736286804429f376aefae8e4d}\label{classTransform_abcf9a16736286804429f376aefae8e4d}} 
-void {\bfseries Set\+Is\+Diegetic} (bool new\+Is\+Diegetic)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em gets the matrix \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTransform_afe4192f88f660966abd5a98d10295aa0}{Set\+Matrix}} (glm\+::mat4 const \&matrix)
+\begin{DoxyCompactList}\small\item\em sets the matrix \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classTransform_a32e14e9f06877459a5731ad34656798b}\label{classTransform_a32e14e9f06877459a5731ad34656798b}} 
+\mbox{\Hypertarget{classTransform_aa08ca4266efabc768973cdeea51945ab}\label{classTransform_aa08ca4266efabc768973cdeea51945ab}} 
 \index{Transform@{Transform}!Transform@{Transform}}
 \index{Transform@{Transform}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{Transform()}{Transform()}}
-{\footnotesize\ttfamily Transform\+::\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTransform}{Transform}} \&}]{other }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Transform\+::\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Copy constructor for the transform component. 
+constructor 
 
-
-\begin{DoxyParams}{Parameters}
-{\em other} & Reference to another transform component. \\
-\hline
-\end{DoxyParams}
-
+Default constructor for the transform component. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classTransform_a9df912719db3853eccb6a4934d6ad37f}\label{classTransform_a9df912719db3853eccb6a4934d6ad37f}} 
-\index{Transform@{Transform}!Clone@{Clone}}
-\index{Clone@{Clone}!Transform@{Transform}}
-\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Transform\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+\mbox{\Hypertarget{classTransform_a47246d7c4f6d4100a8282e3e5c3bf54b}\label{classTransform_a47246d7c4f6d4100a8282e3e5c3bf54b}} 
+\index{Transform@{Transform}!GetIsDiegetic@{GetIsDiegetic}}
+\index{GetIsDiegetic@{GetIsDiegetic}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{GetIsDiegetic()}{GetIsDiegetic()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline bool const\& Transform\+::\+Get\+Is\+Diegetic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Clones a transform component. 
-
-\begin{DoxyReturn}{Returns}
-A new transform component. 
-\end{DoxyReturn}
-
-
-Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
-
-\mbox{\Hypertarget{classTransform_a8accc5e9a4e0b779588feafa0026cadd}\label{classTransform_a8accc5e9a4e0b779588feafa0026cadd}} 
-\index{Transform@{Transform}!GetIsDirty@{GetIsDirty}}
-\index{GetIsDirty@{GetIsDirty}!Transform@{Transform}}
-\doxysubsubsection{\texorpdfstring{GetIsDirty()}{GetIsDirty()}}
-{\footnotesize\ttfamily bool Transform\+::\+Get\+Is\+Dirty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Gets the status of the is dirty flag. 
+gets the is\+Diagetic flag 
 
 \begin{DoxyReturn}{Returns}
-Whether or not the transform component is dirty. 
+(bool) the is\+Diagetic flag 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classTransform_afd0c4e0cc369913d0503addfa03384d9}\label{classTransform_afd0c4e0cc369913d0503addfa03384d9}} 
 \index{Transform@{Transform}!GetMatrix@{GetMatrix}}
@@ -114,66 +92,70 @@ Whether or not the transform component is dirty.
 
 
 
-Calculates and gets the translation matrix of the transform component. 
+gets the matrix 
+
+Calculates and gets the translation matrix of the transform component.
 
 \begin{DoxyReturn}{Returns}
+(glm\+::mat4) the matrix
+
 The translation matrix of the transform component. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTransform_a7ac8cd28bcca090112452a466a11732a}\label{classTransform_a7ac8cd28bcca090112452a466a11732a}} 
+\mbox{\Hypertarget{classTransform_aa7e0383177f74d73f5ffc884272a75d3}\label{classTransform_aa7e0383177f74d73f5ffc884272a75d3}} 
 \index{Transform@{Transform}!GetRotation@{GetRotation}}
 \index{GetRotation@{GetRotation}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{GetRotation()}{GetRotation()}}
-{\footnotesize\ttfamily float Transform\+::\+Get\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline float Transform\+::\+Get\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Gets the rotation value of the transform component. 
+gets the rotation 
 
 \begin{DoxyReturn}{Returns}
-The rotation value of the transform component. 
+(float) the rotation 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTransform_a282f1046827fc17b8b691666511acd02}\label{classTransform_a282f1046827fc17b8b691666511acd02}} 
+\mbox{\Hypertarget{classTransform_a4b7c183932d73ebc2ed2db292fce17e7}\label{classTransform_a4b7c183932d73ebc2ed2db292fce17e7}} 
 \index{Transform@{Transform}!GetScale@{GetScale}}
 \index{GetScale@{GetScale}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{GetScale()}{GetScale()}}
-{\footnotesize\ttfamily glm\+::vec3 const  \& Transform\+::\+Get\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::vec3 const\& Transform\+::\+Get\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Gets a constant version of the transform\textquotesingle{}s scale vector. 
+gets the scale 
 
 \begin{DoxyReturn}{Returns}
-A constant version of the transform\textquotesingle{}s scale vector. 
+(glm\+::vec3) the scale 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTransform_a5179b9bd222656a5ff6bb99e8eba5f88}\label{classTransform_a5179b9bd222656a5ff6bb99e8eba5f88}} 
+\mbox{\Hypertarget{classTransform_a83cc36dfcfdba530db4b2e848bde8dd5}\label{classTransform_a83cc36dfcfdba530db4b2e848bde8dd5}} 
 \index{Transform@{Transform}!GetTranslation@{GetTranslation}}
 \index{GetTranslation@{GetTranslation}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{GetTranslation()}{GetTranslation()}}
-{\footnotesize\ttfamily glm\+::vec3 const  \& Transform\+::\+Get\+Translation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::vec3 const\& Transform\+::\+Get\+Translation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Gets a constant version of the translation vector. 
+gets the translation 
 
 \begin{DoxyReturn}{Returns}
-Constant version of the translation vector. 
+(gl\+::vec3) the translation 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTransform_a860d7f48cf60afac95f833a47ad30df0}\label{classTransform_a860d7f48cf60afac95f833a47ad30df0}} 
-\index{Transform@{Transform}!SetIsDirty@{SetIsDirty}}
-\index{SetIsDirty@{SetIsDirty}!Transform@{Transform}}
-\doxysubsubsection{\texorpdfstring{SetIsDirty()}{SetIsDirty()}}
-{\footnotesize\ttfamily void Transform\+::\+Set\+Is\+Dirty (\begin{DoxyParamCaption}\item[{bool}]{new\+Is\+Dirty }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classTransform_a597a0c87cc45350401ac0c890bd2df44}\label{classTransform_a597a0c87cc45350401ac0c890bd2df44}} 
+\index{Transform@{Transform}!SetIsDiegetic@{SetIsDiegetic}}
+\index{SetIsDiegetic@{SetIsDiegetic}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{SetIsDiegetic()}{SetIsDiegetic()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Transform\+::\+Set\+Is\+Diegetic (\begin{DoxyParamCaption}\item[{bool const \&}]{is\+Diagetic }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Sets the is dirty flag on the transform component. 
+sets the is\+Diagetic flag 
 
 
 \begin{DoxyParams}{Parameters}
-{\em new\+Is\+Dirty} & New value for the is dirty flag. \\
+{\em is\+Diagetic} & the new is\+Diagetic flag \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTransform_a8fdce04300deea8db61820132ae26b64}\label{classTransform_a8fdce04300deea8db61820132ae26b64}} 
+\mbox{\Hypertarget{classTransform_afe4192f88f660966abd5a98d10295aa0}\label{classTransform_afe4192f88f660966abd5a98d10295aa0}} 
 \index{Transform@{Transform}!SetMatrix@{SetMatrix}}
 \index{SetMatrix@{SetMatrix}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{SetMatrix()}{SetMatrix()}}
@@ -181,57 +163,60 @@ Sets the is dirty flag on the transform component.
 
 
 
-Sets the transform component\textquotesingle{}s translation matrix. 
+sets the matrix 
+
+Sets the transform component\textquotesingle{}s translation matrix.
 
 
 \begin{DoxyParams}{Parameters}
+{\em matrix} & the new matrix\\
+\hline
 {\em new\+Matrix} & The new translation matrix. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTransform_a7989a8ed6a5b2215171f006ceecc067e}\label{classTransform_a7989a8ed6a5b2215171f006ceecc067e}} 
+\mbox{\Hypertarget{classTransform_a4c8a5e8e290de3d817c29e2a2930569e}\label{classTransform_a4c8a5e8e290de3d817c29e2a2930569e}} 
 \index{Transform@{Transform}!SetRotation@{SetRotation}}
 \index{SetRotation@{SetRotation}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{SetRotation()}{SetRotation()}}
-{\footnotesize\ttfamily void Transform\+::\+Set\+Rotation (\begin{DoxyParamCaption}\item[{float}]{new\+Rotation }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Transform\+::\+Set\+Rotation (\begin{DoxyParamCaption}\item[{float}]{rotation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Sets the rotation value of the transform component. 
+sets the rotation 
 
 
 \begin{DoxyParams}{Parameters}
-{\em new\+Rotation} & The new value of the transform\textquotesingle{}s rotation. \\
+{\em rotation} & the new rotation \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTransform_ac6a506943137b5c0912eeda471b72096}\label{classTransform_ac6a506943137b5c0912eeda471b72096}} 
+\mbox{\Hypertarget{classTransform_a0009411001e42301e3b71f741cf422cb}\label{classTransform_a0009411001e42301e3b71f741cf422cb}} 
 \index{Transform@{Transform}!SetScale@{SetScale}}
 \index{SetScale@{SetScale}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{SetScale()}{SetScale()}}
-{\footnotesize\ttfamily void Transform\+::\+Set\+Scale (\begin{DoxyParamCaption}\item[{vec3}]{new\+Scale }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Transform\+::\+Set\+Scale (\begin{DoxyParamCaption}\item[{glm\+::vec3 const \&}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Sets the scale vector of the transform component. 
+sets the scale 
 
 
 \begin{DoxyParams}{Parameters}
-{\em new\+Scale} & The new value of the scale vector \\
+{\em scale} & the new scale \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTransform_ab5cea38233e2517f3009979b6b347218}\label{classTransform_ab5cea38233e2517f3009979b6b347218}} 
+\mbox{\Hypertarget{classTransform_a58c94cac00549a45e10053257c193353}\label{classTransform_a58c94cac00549a45e10053257c193353}} 
 \index{Transform@{Transform}!SetTranslation@{SetTranslation}}
 \index{SetTranslation@{SetTranslation}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{SetTranslation()}{SetTranslation()}}
-{\footnotesize\ttfamily void Transform\+::\+Set\+Translation (\begin{DoxyParamCaption}\item[{vec3 const \&}]{new\+Translation }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Transform\+::\+Set\+Translation (\begin{DoxyParamCaption}\item[{glm\+::vec3 const \&}]{translation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Sets the value of the translation vector. 
+sets the translation 
 
 
 \begin{DoxyParams}{Parameters}
-{\em new\+Translation} & The new translation vector. ~\newline
- \\
+{\em translation} & the new translation \\
 \hline
 \end{DoxyParams}
 

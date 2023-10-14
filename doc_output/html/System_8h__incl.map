@@ -1,10 +1,10 @@
 <map id="Source/System.h" name="Source/System.h">
-<area shape="rect" id="node1" title="Base class for all Systems." alt="" coords="303,5,433,32"/>
-<area shape="rect" id="node2" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="327,80,409,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,155,168,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="192,155,251,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="275,155,349,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="373,155,477,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="501,155,552,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="576,155,680,181"/>
+<area shape="rect" id="node1" title="Base class for all Systems." alt="" coords="89,5,220,32"/>
+<area shape="rect" id="node2" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="97,80,212,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,229,56,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="80,229,139,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="389,229,552,256"/>
+<area shape="rect" id="node6" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="167,155,249,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="291,229,365,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="163,229,267,256"/>
 </map>

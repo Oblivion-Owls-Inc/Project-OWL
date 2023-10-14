@@ -1,18 +1,22 @@
 <map id="Component" name="Component">
-<area shape="rect" id="node1" title=" " alt="" coords="5,360,103,387"/>
-<area shape="rect" id="node2" href="$classAudioPlayer.html" title="Component that can play audio." alt="" coords="151,157,251,184"/>
-<area shape="rect" id="node3" href="$classBehavior.html" title=" " alt="" coords="161,208,241,235"/>
-<area shape="rect" id="node11" href="$classCollider.html" title="component which is used for detecting collisions and information about them" alt="" coords="165,360,237,387"/>
-<area shape="rect" id="node14" href="$classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite." alt="" coords="171,411,231,437"/>
-<area shape="rect" id="node16" href="$classTransform.html" title=" " alt="" coords="157,461,244,488"/>
-<area shape="rect" id="node4" href="$classAnimation.html" title=" " alt="" coords="325,5,415,32"/>
-<area shape="rect" id="node5" href="$classFollowingBehavior.html" title=" " alt="" coords="299,56,441,83"/>
-<area shape="rect" id="node6" href="$classMovementAI.html" title=" " alt="" coords="317,107,423,133"/>
-<area shape="rect" id="node7" href="$classPlayerController.html" title=" " alt="" coords="307,157,433,184"/>
-<area shape="rect" id="node8" href="$classPool.html" title=" " alt="" coords="345,208,395,235"/>
-<area shape="rect" id="node9" href="$classRigidBody.html" title=" " alt="" coords="326,259,414,285"/>
-<area shape="rect" id="node10" href="$classTurretBehavior.html" title=" " alt="" coords="311,309,429,336"/>
-<area shape="rect" id="node12" href="$classCircleCollider.html" title="Circle&#45;shaped Collider." alt="" coords="315,360,425,387"/>
-<area shape="rect" id="node13" href="$classLineCollider.html" title=" " alt="" coords="321,411,419,437"/>
-<area shape="rect" id="node15" href="$classTextSprite.html" title="A version of Sprite specifically for rendering text. Uses GPU instancing to draw multiple letters sim..." alt="" coords="327,461,413,488"/>
+<area shape="rect" id="node1" title=" " alt="" coords="156,461,253,488"/>
+<area shape="rect" id="node3" href="$classAudioPlayer.html" title="Component that can play audio." alt="" coords="301,183,401,209"/>
+<area shape="rect" id="node4" href="$classBehavior.html" title=" " alt="" coords="311,233,391,260"/>
+<area shape="rect" id="node13" href="$classCollider.html" title="component which is used for detecting collisions and information about them" alt="" coords="315,411,387,437"/>
+<area shape="rect" id="node16" href="$classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite." alt="" coords="321,461,381,488"/>
+<area shape="rect" id="node18" href="$classText.html" title="Uses TilemapSprite attached to parent entity to draw text." alt="" coords="327,512,376,539"/>
+<area shape="rect" id="node19" href="$classTilemap.html" title="Loads and manages a tilemap array." alt="" coords="314,563,389,589"/>
+<area shape="rect" id="node20" href="$classTransform.html" title=" " alt="" coords="308,613,395,640"/>
+<area shape="rect" id="node2" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="5,461,108,488"/>
+<area shape="rect" id="node5" href="$classAnimation.html" title=" " alt="" coords="476,5,565,32"/>
+<area shape="rect" id="node6" href="$classEffectAnimator.html" title="Component that can play audio." alt="" coords="461,56,580,83"/>
+<area shape="rect" id="node7" href="$classFollowingBehavior.html" title=" " alt="" coords="449,107,592,133"/>
+<area shape="rect" id="node8" href="$classMovementAI.html" title=" " alt="" coords="468,157,573,184"/>
+<area shape="rect" id="node9" href="$classPlayerController.html" title=" " alt="" coords="457,208,584,235"/>
+<area shape="rect" id="node10" href="$classPool.html" title=" " alt="" coords="495,259,546,285"/>
+<area shape="rect" id="node11" href="$classRigidBody.html" title=" " alt="" coords="477,309,565,336"/>
+<area shape="rect" id="node12" href="$classTurretBehavior.html" title=" " alt="" coords="462,360,579,387"/>
+<area shape="rect" id="node14" href="$classCircleCollider.html" title="Circle&#45;shaped Collider." alt="" coords="466,411,575,437"/>
+<area shape="rect" id="node15" href="$classLineCollider.html" title=" " alt="" coords="471,461,570,488"/>
+<area shape="rect" id="node17" href="$classTilemapSprite.html" title="A version of Sprite for rendering tilemaps using GPU instancing." alt="" coords="464,512,577,539"/>
 </map>

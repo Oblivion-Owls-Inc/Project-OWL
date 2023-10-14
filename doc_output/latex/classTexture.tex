@@ -9,49 +9,86 @@ Stores texture data, and allows to bind it for rendering.
 
 {\ttfamily \#include $<$Texture.\+h$>$}
 
+
+
+Inheritance diagram for Texture\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classTexture__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Texture\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classTexture__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classTexture_a9eff962bc1991a1250e96a3fdd76cf6a}{Texture}} (const char $\ast$file\+\_\+path=nullptr)
+\mbox{\Hypertarget{classTexture_a6c275e3f186675ff6ed73ccf970e552f}\label{classTexture_a6c275e3f186675ff6ed73ccf970e552f}} 
+\mbox{\hyperlink{classTexture_a6c275e3f186675ff6ed73ccf970e552f}{Texture}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTexture_a4aa512788c343c7c73f7569bf2a72ac6}{Texture}} (std\+::string const \&filepath, glm\+::ivec2 const \&sheet\+Dimensions=\{ 1, 1 \})
 \begin{DoxyCompactList}\small\item\em Constructor\+: loads texture image from file upon initialization. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classTexture_abcd9b02d6d17cd74bdd35b6be23ee1a4}{Load\+Image}} (const char $\ast$file\+\_\+path)
-\begin{DoxyCompactList}\small\item\em Loads texture image from file (deletes old one if present) \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}\label{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}} 
 \mbox{\hyperlink{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}{$\sim$\+Texture}} ()
 \begin{DoxyCompactList}\small\item\em Destructor\+: deletes texture data from GPU. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classTexture_af57acbc82be175be8ba6574bbf3998d0}{Bind}} (unsigned int slot=0)
+void \mbox{\hyperlink{classTexture_a14a2a70d9f130ac91a5ac95c8a4c7831}{Bind}} (unsigned int slot=0) const
 \begin{DoxyCompactList}\small\item\em Sets this texture as active, so it can be used by texture shader. \end{DoxyCompactList}\item 
-glm\+::vec2 \mbox{\hyperlink{classTexture_abb5f30cd11c868992cfcb67f10e6dad7}{Get\+Image\+Dimensions}} ()
-\begin{DoxyCompactList}\small\item\em Returns the size of the original image as a vec2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classTexture_a8374f8cf2a8425a46e95ab2d1a0aebf5}{Inspect}} ()
+\begin{DoxyCompactList}\small\item\em Used by the Debug to display information about this \mbox{\hyperlink{classTexture}{Texture}}. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline glm\+::ivec2 const  \& \mbox{\hyperlink{classTexture_ae0d942070b7a0925f41511b6f2884ab3}{Get\+Pixel\+Dimensions}} () const
+\begin{DoxyCompactList}\small\item\em Returns the size of the original image in pixels. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline float \mbox{\hyperlink{classTexture_a6a359a101095f149dd1754242cc47472}{Get\+Aspect\+Ratio}} () const
+\begin{DoxyCompactList}\small\item\em Returns the size of the original image in pixels. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline glm\+::ivec2 const  \& \mbox{\hyperlink{classTexture_a775ad645b4c61af24c1cbb53bec1fc49}{Get\+Sheet\+Dimensions}} () const
+\begin{DoxyCompactList}\small\item\em Returns how many tiles/frames are in the texture. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline \mbox{\hyperlink{classMesh}{Mesh}} const  $\ast$ \mbox{\hyperlink{classTexture_a735680df526bd8809aef3162f48024ca}{Get\+Mesh}} () const
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classTexture_a34824525978e7bc15067cd194bf6cfe2}{Set\+Mesh}} (\mbox{\hyperlink{classMesh}{Mesh}} const $\ast$mesh)
+\begin{DoxyCompactList}\small\item\em sets the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Stores texture data, and allows to bind it for rendering. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classTexture_a9eff962bc1991a1250e96a3fdd76cf6a}\label{classTexture_a9eff962bc1991a1250e96a3fdd76cf6a}} 
+\mbox{\Hypertarget{classTexture_a4aa512788c343c7c73f7569bf2a72ac6}\label{classTexture_a4aa512788c343c7c73f7569bf2a72ac6}} 
 \index{Texture@{Texture}!Texture@{Texture}}
 \index{Texture@{Texture}!Texture@{Texture}}
 \doxysubsubsection{\texorpdfstring{Texture()}{Texture()}}
-{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+\_\+path = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{filepath,  }\item[{glm\+::ivec2 const \&}]{sheet\+Dimensions = {\ttfamily \{~1,~1~\}} }\end{DoxyParamCaption})}
 
 
 
 Constructor\+: loads texture image from file upon initialization. 
 
+Convenience constructor\+: loads texture image from file upon initialization.
+
 
 \begin{DoxyParams}{Parameters}
-{\em file\+\_\+path} & File to load \\
+{\em filepath} & File to load\\
+\hline
+{\em filepath} & File to load \\
+\hline
+{\em sheet\+Dimensions} & x=columns, y=rows (of the spritesheet) \\
 \hline
 \end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classTexture_af57acbc82be175be8ba6574bbf3998d0}\label{classTexture_af57acbc82be175be8ba6574bbf3998d0}} 
+\mbox{\Hypertarget{classTexture_a14a2a70d9f130ac91a5ac95c8a4c7831}\label{classTexture_a14a2a70d9f130ac91a5ac95c8a4c7831}} 
 \index{Texture@{Texture}!Bind@{Bind}}
 \index{Bind@{Bind}!Texture@{Texture}}
 \doxysubsubsection{\texorpdfstring{Bind()}{Bind()}}
-{\footnotesize\ttfamily void Texture\+::\+Bind (\begin{DoxyParamCaption}\item[{unsigned int}]{slot = {\ttfamily 0} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Texture\+::\+Bind (\begin{DoxyParamCaption}\item[{unsigned int}]{slot = {\ttfamily 0} }\end{DoxyParamCaption}) const}
 
 
 
@@ -62,32 +99,81 @@ Sets this texture as active, so it can be used by texture shader.
 {\em slot} & (optional) texture slot -\/ for drawing multiple at once ig? \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTexture_abb5f30cd11c868992cfcb67f10e6dad7}\label{classTexture_abb5f30cd11c868992cfcb67f10e6dad7}} 
-\index{Texture@{Texture}!GetImageDimensions@{GetImageDimensions}}
-\index{GetImageDimensions@{GetImageDimensions}!Texture@{Texture}}
-\doxysubsubsection{\texorpdfstring{GetImageDimensions()}{GetImageDimensions()}}
-{\footnotesize\ttfamily glm\+::vec2 Texture\+::\+Get\+Image\+Dimensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classTexture_a6a359a101095f149dd1754242cc47472}\label{classTexture_a6a359a101095f149dd1754242cc47472}} 
+\index{Texture@{Texture}!GetAspectRatio@{GetAspectRatio}}
+\index{GetAspectRatio@{GetAspectRatio}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{GetAspectRatio()}{GetAspectRatio()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline float Texture\+::\+Get\+Aspect\+Ratio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Returns the size of the original image as a vec2. 
+Returns the size of the original image in pixels. 
 
 \begin{DoxyReturn}{Returns}
-vec2\+: x = width , y = height 
+float\+: the aspec ratio of the \mbox{\hyperlink{classTexture}{Texture}} 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTexture_abcd9b02d6d17cd74bdd35b6be23ee1a4}\label{classTexture_abcd9b02d6d17cd74bdd35b6be23ee1a4}} 
-\index{Texture@{Texture}!LoadImage@{LoadImage}}
-\index{LoadImage@{LoadImage}!Texture@{Texture}}
-\doxysubsubsection{\texorpdfstring{LoadImage()}{LoadImage()}}
-{\footnotesize\ttfamily void Texture\+::\+Load\+Image (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+\_\+path }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classTexture_a735680df526bd8809aef3162f48024ca}\label{classTexture_a735680df526bd8809aef3162f48024ca}} 
+\index{Texture@{Texture}!GetMesh@{GetMesh}}
+\index{GetMesh@{GetMesh}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{GetMesh()}{GetMesh()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline \mbox{\hyperlink{classMesh}{Mesh}} const$\ast$ Texture\+::\+Get\+Mesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Loads texture image from file (deletes old one if present) 
+gets the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{Sprite}} is using 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{Sprite}} is using 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTexture_ae0d942070b7a0925f41511b6f2884ab3}\label{classTexture_ae0d942070b7a0925f41511b6f2884ab3}} 
+\index{Texture@{Texture}!GetPixelDimensions@{GetPixelDimensions}}
+\index{GetPixelDimensions@{GetPixelDimensions}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{GetPixelDimensions()}{GetPixelDimensions()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::ivec2 const\& Texture\+::\+Get\+Pixel\+Dimensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the size of the original image in pixels. 
+
+\begin{DoxyReturn}{Returns}
+ivec2\+: x = width , y = height 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTexture_a775ad645b4c61af24c1cbb53bec1fc49}\label{classTexture_a775ad645b4c61af24c1cbb53bec1fc49}} 
+\index{Texture@{Texture}!GetSheetDimensions@{GetSheetDimensions}}
+\index{GetSheetDimensions@{GetSheetDimensions}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{GetSheetDimensions()}{GetSheetDimensions()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::ivec2 const\& Texture\+::\+Get\+Sheet\+Dimensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns how many tiles/frames are in the texture. 
+
+\begin{DoxyReturn}{Returns}
+ivec2\+: x = width , y = height 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTexture_a8374f8cf2a8425a46e95ab2d1a0aebf5}\label{classTexture_a8374f8cf2a8425a46e95ab2d1a0aebf5}} 
+\index{Texture@{Texture}!Inspect@{Inspect}}
+\index{Inspect@{Inspect}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
+{\footnotesize\ttfamily void Texture\+::\+Inspect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Used by the Debug to display information about this \mbox{\hyperlink{classTexture}{Texture}}. 
+
+todo\+: add inspector\mbox{\Hypertarget{classTexture_a34824525978e7bc15067cd194bf6cfe2}\label{classTexture_a34824525978e7bc15067cd194bf6cfe2}} 
+\index{Texture@{Texture}!SetMesh@{SetMesh}}
+\index{SetMesh@{SetMesh}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{SetMesh()}{SetMesh()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Texture\+::\+Set\+Mesh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMesh}{Mesh}} const $\ast$}]{mesh }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{Sprite}} is using 
 
 
 \begin{DoxyParams}{Parameters}
-{\em file\+\_\+path} & File to load \\
+{\em mesh} & the \mbox{\hyperlink{classMesh}{Mesh}} to set this \mbox{\hyperlink{classSprite}{Sprite}} to use \\
 \hline
 \end{DoxyParams}
 

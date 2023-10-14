@@ -1,12 +1,12 @@
 <map id="Source/AudioSystem.h" name="Source/AudioSystem.h">
-<area shape="rect" id="node1" title="System that implements FMOD and allows the loading and playing of audio." alt="" coords="337,5,505,32"/>
-<area shape="rect" id="node2" href="$System_8h.html" title="Base class for all Systems." alt="" coords="327,80,409,107"/>
-<area shape="rect" id="node10" title=" " alt="" coords="434,80,518,107"/>
-<area shape="rect" id="node3" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="327,155,409,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,229,168,256"/>
-<area shape="rect" id="node5" title=" " alt="" coords="192,229,251,256"/>
-<area shape="rect" id="node6" title=" " alt="" coords="275,229,349,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="373,229,477,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="501,229,552,256"/>
-<area shape="rect" id="node9" title=" " alt="" coords="576,229,680,256"/>
+<area shape="rect" id="node1" title="System that implements FMOD and allows the loading and playing of audio." alt="" coords="124,5,292,32"/>
+<area shape="rect" id="node2" href="$System_8h.html" title="Base class for all Systems." alt="" coords="113,80,196,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="221,80,305,107"/>
+<area shape="rect" id="node3" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="97,155,212,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,304,56,331"/>
+<area shape="rect" id="node5" title=" " alt="" coords="80,304,139,331"/>
+<area shape="rect" id="node6" title=" " alt="" coords="389,304,552,331"/>
+<area shape="rect" id="node7" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="167,229,249,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="291,304,365,331"/>
+<area shape="rect" id="node9" title=" " alt="" coords="163,304,267,331"/>
 </map>

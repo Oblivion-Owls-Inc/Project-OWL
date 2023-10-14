@@ -4,7 +4,6 @@
 
 int main ()
 {
-
     // *** Initialize the window using glfw *******************************************************
 
     Engine* engine = Engine::GetInstance();
