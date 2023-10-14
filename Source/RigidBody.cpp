@@ -16,15 +16,26 @@
 
     /// @brief Default constructor for the RigidBody class.
     RigidBody::RigidBody() : 
-        Behavior( typeid( RigidBody ) ),
-	    m_Velocity( 0, 0, 0 ),
-	    m_Acceleration( 0, -9.81, 0 ),
-	    m_RotationalVelocity( 0 ),
-        m_Mass( 1.0f ),
-        m_Restitution( 1.0f ),
-        m_Friction( 0.0f ),
-        m_CollisionResolved( false )
+        Behavior( typeid( RigidBody ) )
     {}
+
+//-----------------------------------------------------------------------------
+// public: methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  applies a force to this RigidBody this frame
+    /// @param  force   the force to apply
+    void RigidBody::ApplyForce( glm::vec2 const& force )
+    {
+        ApplyImpulse( force * Engine::GetInstance()->GetFixedFrameDuration() );
+    }
+
+    /// @brief  applies an impulse to this RigidBody this frame
+    /// @param  impulse the impulse to apply
+    void RigidBody::ApplyImpulse( glm::vec2 const& impulse )
+    {
+        m_Velocity += impulse / m_Mass;
+    }
 
 //-----------------------------------------------------------------------------
 // public: virtual override methods
@@ -38,6 +49,7 @@
         m_OnCollisionCallbackHandle = GetParent()->GetComponent<Collider>()->AddOnCollisionCallback(
             std::bind( &RigidBody::OnCollision, this, std::placeholders::_1, std::placeholders::_2 )
         );
+        m_Transform = GetParent()->GetComponent<Transform>();
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
@@ -52,22 +64,13 @@
     /// @param dt The time elapsed since the last frame.
     void RigidBody::OnUpdate(float dt)
     {
-        ////#ifndef NDEBUG
-        //	ImGui::Begin("Gravity");
-        //	ImGui::InputFloat("Gravity", &gravity);
-        //	ImGui::End();
-        ////#endif // !NDEBUG
+        // TODO: interpolate visual position
     }
 
     /// @brief Fixed update method called at a fixed time step.
     void RigidBody::OnFixedUpdate()
     {
 	    float dt = Engine::GetInstance()->GetFixedFrameDuration();
-
-	    Transform* m_Transform = (Transform*)GetParent()->GetComponent<Transform>();
-
-        if (!m_Transform)
-            return;
 
 	    // linear movement
         glm::vec3 position = m_Transform->GetTranslation();
@@ -88,8 +91,6 @@
     /// @param  collisionData   additional data about the collision
     void RigidBody::OnCollision( Entity* other, CollisionData const& collisionData )
     {
-        //DebugConsole output(*DebugSystem::GetInstance());
-        //output << GetParent()->GetName().c_str() << ":Collision Detected in RigidBody" << "\n";
 
         // only handle collisions with other rigidBodies
         RigidBody* rigidBodyB = other->GetComponent<RigidBody>();
@@ -104,14 +105,12 @@
             return;
         }
 
-
-        Transform* transformA = GetParent()->GetComponent<Transform>();
         Transform* transformB = other->GetComponent<Transform>();
 
         // move the bodies away from each other so they no longer overlap
-        glm::vec2 position = transformA->GetTranslation();
+        glm::vec2 position = m_Transform->GetTranslation();
         position += collisionData.normal * collisionData.depth * 0.5f;
-        transformA->SetTranslation(
+        m_Transform->SetTranslation(
             glm::vec3(position.x, position.y, 1.0f)
         );
 
@@ -148,8 +147,8 @@
         velA += collisionData.normal * (newSpeedA - speedA);
         velB += collisionData.normal * (newSpeedB - speedB);
 
-        m_Velocity = { velA.x, velA.y, 0.0f };
-        rigidBodyB->SetVelocity( { velB.x, velB.y, 0.0f } );
+        m_Velocity = velA;
+        rigidBodyB->SetVelocity( velB );
 
         m_CollisionResolved = true;
     }
@@ -172,14 +171,14 @@
     /// @param data the json data
     void RigidBody::readVelocity(Stream data)
     {
-	    m_Velocity = data.Read< glm::vec3 >();
+	    m_Velocity = data.Read< glm::vec2 >();
     }
 
     /// @brief reads the acceleration from json
     /// @param data the json data
     void RigidBody::readAcceleration(Stream data)
     {
-	    m_Acceleration = data.Read< glm::vec3 >();
+	    m_Acceleration = data.Read< glm::vec2 >();
     }
 
     /// @brief reads the rotationalVelocity from json
@@ -215,7 +214,7 @@
 	    { "Velocity"            , &readVelocity             },
 	    { "Acceleration"        , &readAcceleration         },
 	    { "RotationalVelocity"  , &readRotationalVelocity   },
-        { "InverseMass"         , &readMass          },
+        { "InverseMass"         , &readMass                 },
         { "Restitution"         , &readRestitution          },
         { "Friction"            , &readFriction             }
     };
@@ -234,14 +233,16 @@
     /// @brief  copy-constructor for the RigidBody
     /// @param  other   the other RigidBody to copy
     RigidBody::RigidBody(const RigidBody& other) :
-        Behavior(             other                      ),
+        Behavior( other ),
         m_Velocity(           other.m_Velocity           ),
         m_Acceleration(       other.m_Acceleration       ),
         m_RotationalVelocity( other.m_RotationalVelocity ),
         m_Mass(               other.m_Mass               ),
         m_Restitution(        other.m_Restitution        ),
         m_Friction(           other.m_Friction           ),
-        m_CollisionResolved(  false                      )
+        m_CollisionResolved( false ),
+        m_OnCollisionCallbackHandle( 0 ),
+        m_Transform( nullptr )
     {}
 
 //-----------------------------------------------------------------------------

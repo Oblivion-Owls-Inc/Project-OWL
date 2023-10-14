@@ -32,6 +32,18 @@ public: // constructor / destructors
     RigidBody();
 
 //-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+    
+    /// @brief  applies a force to this RigidBody this frame
+    /// @param  force   the force to apply
+    void ApplyForce( glm::vec2 const& force );
+
+    /// @brief  applies an impulse to this RigidBody this frame
+    /// @param  impulse the impulse to apply
+    void ApplyImpulse( glm::vec2 const& impulse );
+
+//-----------------------------------------------------------------------------
 public: // virtual override methods
 //-----------------------------------------------------------------------------
 
@@ -44,7 +56,7 @@ public: // virtual override methods
 
     /// @brief Update method called per frame.
     /// @param dt The time elapsed since the last frame.
-    virtual void OnUpdate(float dt) override;
+    virtual void OnUpdate( float dt ) override;
 
     /// @brief Fixed update method called at a fixed time step.
     virtual void OnFixedUpdate() override;
@@ -52,27 +64,23 @@ public: // virtual override methods
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() override;
 
-//-----------------------------------------------------------------------------
-public: // accessors
-//-----------------------------------------------------------------------------
-
 
     /// @brief  Get the acceleration vector of the rigidBody.
     /// @return the acceleration vector.
-    __inline glm::vec3 const& GetAcceleration() const { return m_Acceleration; }
+    __inline glm::vec2 const& GetAcceleration() const { return m_Acceleration; }
 
     /// @brief  Set the acceleration vector of the rigidBody.
     /// @param  acceleration    the new acceleration vector.
-    __inline void SetAcceleration( glm::vec3 const& acceleration ) { m_Acceleration = acceleration; }
+    __inline void SetAcceleration( glm::vec2 const& acceleration ) { m_Acceleration = acceleration; }
 
 
     /// @brief  Get the velocity vector of the rigidBody.
     /// @return the velocity vector.
-    __inline glm::vec3 const& GetVelocity() const { return m_Velocity; }
+    __inline glm::vec2 const& GetVelocity() const { return m_Velocity; }
 
     /// @brief  Set the velocity vector of the rigidBody.
     /// @param  velocity    the new velocity vector.
-    __inline void SetVelocity( glm::vec3 const& velocity ) { m_Velocity = velocity; }
+    __inline void SetVelocity( glm::vec2 const& velocity ) { m_Velocity = velocity; }
 
 
     /// @brief Get the rotational velocity of the rigidBody.
@@ -122,6 +130,27 @@ public: // accessors
     __inline void SetCollisionResolved( bool collisionResolved ) { m_CollisionResolved = collisionResolved; }
 
 //-----------------------------------------------------------------------------
+public: // virtual override methods
+//-----------------------------------------------------------------------------
+
+    /// @brief Default constructor for the RigidBody class.
+    virtual void OnInit() override;
+
+    /// @brief  called when this Component's Entity is removed from the Scene
+    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
+    virtual void OnExit() override;
+
+    /// @brief Update method called per frame.
+    /// @param dt The time elapsed since the last frame.
+    virtual void OnUpdate( float dt ) override;
+
+    /// @brief Fixed update method called at a fixed time step.
+    virtual void OnFixedUpdate() override;
+
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector() override;
+
+//-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
@@ -129,6 +158,41 @@ private: // methods
     /// @param  other           the entity that was collided with
     /// @param  collisionData   additional data about the collision
     void OnCollision( Entity* other, CollisionData const& collisionData );
+
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
+
+    /// @brief The velocity vector of the rigidBody.
+    glm::vec2 m_Velocity = { 0.0f, 0.0f };
+
+    /// @brief The acceleration vector of the rigidBody.
+    glm::vec2 m_Acceleration = { 0.0f, -9.81f };
+
+    /// @brief The rotational velocity of the rigidBody.
+    float m_RotationalVelocity = 0.0f;
+
+
+    /// @brief the mass of this RigidBody
+    float m_Mass = 1.0f;
+
+    /// @brief how bouncy this RigidBody is
+    float m_Restitution = 1.0f;
+
+    /// @brief how much friction this RigidBody has
+    float m_Friction = 0.0f;
+
+
+    /// @brief flag of whether a collision between two rigidBodies has already been resolved;
+    bool m_CollisionResolved = false;
+
+    /// @brief  handle of this RigidBody's OnCollision callback
+    unsigned m_OnCollisionCallbackHandle = 0;
+
+
+    /// @brief  the transform associated with this RigidBody
+    Transform* m_Transform = nullptr;
+
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -170,37 +234,6 @@ private: // reading
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
-
-//-----------------------------------------------------------------------------
-private: // member variables
-//-----------------------------------------------------------------------------
-
-    /// @brief The velocity vector of the rigidBody.
-    glm::vec3 m_Velocity;
-
-    /// @brief The acceleration vector of the rigidBody.
-    glm::vec3 m_Acceleration;
-
-    /// @brief The rotational velocity of the rigidBody.
-    float m_RotationalVelocity;
-
-
-    /// @brief the mass of this RigidBody
-    float m_Mass;
-
-    /// @brief how bouncy this RigidBody is
-    float m_Restitution;
-
-    /// @brief how much friction this RigidBody has
-    float m_Friction;
-
-
-    /// @brief flag of whether a collision between two rigidBodies has already been resolved;
-    bool m_CollisionResolved;
-
-    /// @brief  handle of this RigidBody's OnCollision callback
-    unsigned m_OnCollisionCallbackHandle;
-
 
 //-----------------------------------------------------------------------------
 private: // copying
