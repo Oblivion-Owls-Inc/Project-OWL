@@ -2,11 +2,22 @@
 \label{classComponent}\index{Component@{Component}}
 
 
-Inheritance diagram for Component\+:\nopagebreak
+Inheritance diagram for Component\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classComponent__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Component\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classComponent__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -22,14 +33,15 @@ virtual void \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{
 \begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is added to the Scene \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classComponent_a71b5ee92e9f8e65ab040a80e149fc596}{On\+Exit}} ()
 \begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is removed from the Scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classComponent_a5bfbb00a07c361c4c8d7b1812b9937ff}\label{classComponent_a5bfbb00a07c361c4c8d7b1812b9937ff}} 
+virtual void \mbox{\hyperlink{classComponent_a5bfbb00a07c361c4c8d7b1812b9937ff}{Inspector}} ()
+\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline std\+::type\+\_\+index \mbox{\hyperlink{classComponent_ae724c7a0df398cd43bfabaeca25fa944}{Get\+Type}} () const
 \begin{DoxyCompactList}\small\item\em gets the components type \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classComponent_a883bf85e78b4967fe5b0f187ee7ef7cb}{Set\+Parent}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em sets the parent entity of the component \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline \mbox{\hyperlink{classEntity}{Entity}} $\ast$ \mbox{\hyperlink{classComponent_a43a9bf2a6c718eb966f649567bbb0f59}{Get\+Parent}} () const
-\begin{DoxyCompactList}\small\item\em returns the components parent entity \end{DoxyCompactList}\item 
-virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classComponent}{Component}} $>$ const  \& \mbox{\hyperlink{classComponent_a50d70dddfcd52148669c9946cbd12e6e}{Get\+Read\+Methods}} () const =0
-\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em returns the components parent entity \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -96,7 +108,7 @@ new clone of component
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{classTurretBehavior_a44ea8cc9c629e688d46abe776bc11bd0}{Turret\+Behavior}}, \mbox{\hyperlink{classTransform_a9df912719db3853eccb6a4934d6ad37f}{Transform}}, \mbox{\hyperlink{classSprite_ac4f77c982a39659c389f00b9d395b0db}{Sprite}}, \mbox{\hyperlink{classRigidBody_aea849dc7c04efb0f2a9792b51989b89f}{Rigid\+Body}}, \mbox{\hyperlink{classPlayerController_a86207931cea38bd757c147cda67b7e0a}{Player\+Controller}}, \mbox{\hyperlink{classMovementAI_a99a8dd223cd4ff32c5fece1ae40b8074}{Movement\+AI}}, \mbox{\hyperlink{classCircleCollider_a31fae47f8e77ce5e37a3fc4bcd20a84f}{Circle\+Collider}}, \mbox{\hyperlink{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}{Behavior}}, and \mbox{\hyperlink{classLineCollider_a81c679f3f85f0c43ed4ebec18eeec1fa}{Line\+Collider}}.
+Implemented in \mbox{\hyperlink{classTurretBehavior_a44ea8cc9c629e688d46abe776bc11bd0}{Turret\+Behavior}}, \mbox{\hyperlink{classTilemap_abd1c4b122ecc29c2b77c3f47c9d3e54f}{Tilemap}}, \mbox{\hyperlink{classText_ac971ea4d6d43c1635ffd078f1c0e7e95}{Text}}, \mbox{\hyperlink{classSprite_ac4f77c982a39659c389f00b9d395b0db}{Sprite}}, \mbox{\hyperlink{classPlayerController_a86207931cea38bd757c147cda67b7e0a}{Player\+Controller}}, \mbox{\hyperlink{classCircleCollider_a31fae47f8e77ce5e37a3fc4bcd20a84f}{Circle\+Collider}}, \mbox{\hyperlink{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}{Behavior}}, and \mbox{\hyperlink{classLineCollider_a81c679f3f85f0c43ed4ebec18eeec1fa}{Line\+Collider}}.
 
 \mbox{\Hypertarget{classComponent_a43a9bf2a6c718eb966f649567bbb0f59}\label{classComponent_a43a9bf2a6c718eb966f649567bbb0f59}} 
 \index{Component@{Component}!GetParent@{GetParent}}
@@ -110,19 +122,6 @@ returns the components parent entity
 
 \begin{DoxyReturn}{Returns}
 the parent entity of the component 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classComponent_a50d70dddfcd52148669c9946cbd12e6e}\label{classComponent_a50d70dddfcd52148669c9946cbd12e6e}} 
-\index{Component@{Component}!GetReadMethods@{GetReadMethods}}
-\index{GetReadMethods@{GetReadMethods}!Component@{Component}}
-\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
-{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classComponent}{Component}} $>$ const\& Component\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-
-
-gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
-
-\begin{DoxyReturn}{Returns}
-the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classComponent_ae724c7a0df398cd43bfabaeca25fa944}\label{classComponent_ae724c7a0df398cd43bfabaeca25fa944}} 
 \index{Component@{Component}!GetType@{GetType}}
@@ -152,7 +151,7 @@ NOT CALLED WHEN THE SCENE IS EXITED -\/ that should be handled by this \mbox{\hy
 \end{DoxyNote}
 
 
-Reimplemented in \mbox{\hyperlink{classMovementAI_a3a886dc5d99139dcef36f31a66955ecc}{Movement\+AI}}, \mbox{\hyperlink{classRigidBody_a75c7258a2158796aff4a82732e38d80b}{Rigid\+Body}}, and \mbox{\hyperlink{classPlayerController_a02eab77eb12d134a457427c5bfea6289}{Player\+Controller}}.
+Reimplemented in \mbox{\hyperlink{classSprite_a5c74462e3560a9a46a7d7af03f7519fd}{Sprite}}, \mbox{\hyperlink{classTurretBehavior_a7a548454358e1f727ff634286f533ae4}{Turret\+Behavior}}, \mbox{\hyperlink{classRigidBody_a75c7258a2158796aff4a82732e38d80b}{Rigid\+Body}}, and \mbox{\hyperlink{classPlayerController_a02eab77eb12d134a457427c5bfea6289}{Player\+Controller}}.
 
 \mbox{\Hypertarget{classComponent_a883bf85e78b4967fe5b0f187ee7ef7cb}\label{classComponent_a883bf85e78b4967fe5b0f187ee7ef7cb}} 
 \index{Component@{Component}!SetParent@{SetParent}}

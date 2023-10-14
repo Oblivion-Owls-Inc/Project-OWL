@@ -1,0 +1,4 @@
+<map id="Texture" name="Texture">
+<area shape="rect" id="node1" title="Stores texture data, and allows to bind it for rendering." alt="" coords="21,80,92,107"/>
+<area shape="rect" id="node2" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="5,5,108,32"/>
+</map>

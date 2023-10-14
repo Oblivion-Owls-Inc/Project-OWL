@@ -1,19 +1,21 @@
 <map id="System" name="System">
-<area shape="rect" id="node1" title="Base class for all Systems." alt="" coords="5,401,76,428"/>
-<area shape="rect" id="node2" href="$classAidanScene.html" title=" " alt="" coords="176,5,275,32"/>
-<area shape="rect" id="node3" href="$classAssetLibrarySystem.html" title="Asset System meant to be copy&#45;pasted when creating new Systems." alt="" coords="130,56,321,83"/>
-<area shape="rect" id="node4" href="$classAudioSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="171,107,279,133"/>
-<area shape="rect" id="node5" href="$classBehaviorSystem.html" title=" " alt="" coords="124,158,327,199"/>
-<area shape="rect" id="node6" href="$classCameraSystem.html" title="Handles camera and coordinate systems / spaces." alt="" coords="164,224,287,251"/>
-<area shape="rect" id="node7" href="$classCollisionSystem.html" title="responsible for checking collsisions between all Colliders" alt="" coords="162,275,289,301"/>
-<area shape="rect" id="node8" href="$classDebugSystem.html" title="Debug System Class For Debugging." alt="" coords="169,325,282,352"/>
-<area shape="rect" id="node9" href="$classEntitySystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="171,376,280,403"/>
-<area shape="rect" id="node10" href="$classExampleSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="161,427,289,453"/>
-<area shape="rect" id="node11" href="$classInputSystem.html" title=" " alt="" coords="173,477,277,504"/>
-<area shape="rect" id="node12" href="$classPlatformSystem.html" title=" " alt="" coords="162,528,289,555"/>
-<area shape="rect" id="node13" href="$classRenderSystem.html" title="Renders all of the Sprite components, keeps track of shaders." alt="" coords="167,579,284,605"/>
-<area shape="rect" id="node14" href="$classSandboxSystem.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="162,629,289,656"/>
-<area shape="rect" id="node15" href="$classSceneSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="170,680,281,707"/>
-<area shape="rect" id="node16" href="$classStubScene.html" title=" " alt="" coords="180,731,271,757"/>
-<area shape="rect" id="node17" href="$classXinoScene.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="180,781,271,808"/>
+<area shape="rect" id="node1" title="Base class for all Systems." alt="" coords="156,401,227,428"/>
+<area shape="rect" id="node3" href="$classAidanScene.html" title=" " alt="" coords="327,5,425,32"/>
+<area shape="rect" id="node4" href="$classAudioSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="322,56,430,83"/>
+<area shape="rect" id="node5" href="$classBaseAssetLibrarySystem.html" title=" " alt="" coords="284,107,468,133"/>
+<area shape="rect" id="node7" href="$classBehaviorSystem.html" title=" " alt="" coords="275,158,477,199"/>
+<area shape="rect" id="node8" href="$classCameraSystem.html" title="Handles camera and coordinate systems / spaces." alt="" coords="315,224,437,251"/>
+<area shape="rect" id="node9" href="$classCollisionSystem.html" title="responsible for checking collsisions between all Colliders" alt="" coords="313,275,439,301"/>
+<area shape="rect" id="node10" href="$classDebugSystem.html" title="Debug System Class For Debugging." alt="" coords="319,325,433,352"/>
+<area shape="rect" id="node11" href="$classEntitySystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="321,376,431,403"/>
+<area shape="rect" id="node12" href="$classExampleSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="312,427,440,453"/>
+<area shape="rect" id="node13" href="$classInputSystem.html" title=" " alt="" coords="324,477,428,504"/>
+<area shape="rect" id="node14" href="$classPlatformSystem.html" title=" " alt="" coords="313,528,439,555"/>
+<area shape="rect" id="node15" href="$classRenderSystem.html" title="Renders all of the Sprite components, keeps track of shaders." alt="" coords="317,579,435,605"/>
+<area shape="rect" id="node16" href="$classSandboxSystem.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="313,629,439,656"/>
+<area shape="rect" id="node17" href="$classSceneSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="321,680,431,707"/>
+<area shape="rect" id="node18" href="$classStubScene.html" title=" " alt="" coords="331,731,421,757"/>
+<area shape="rect" id="node19" href="$classXinoScene.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="331,781,421,808"/>
+<area shape="rect" id="node2" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="5,401,108,428"/>
+<area shape="rect" id="node6" href="$classAssetLibrarySystem.html" title="Asset System meant to be copy&#45;pasted when creating new Systems." alt="" coords="525,99,677,141"/>
 </map>

@@ -75,74 +75,71 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;typeindex&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Stream_8h.html">Stream.h</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="classEntity.html">Entity</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classComponent.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classComponent.html">Component</a></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>: <span class="comment">// destructor</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">   25</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">~Component</a>() {};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">protected</span>: <span class="comment">// constructors</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classComponent.html#ac70649aafa6c287ce26ed3237896d512">Component</a>( std::type_index m_Type );</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classComponent.html#ac70649aafa6c287ce26ed3237896d512">Component</a>( <a class="code" href="classComponent.html">Component</a> <span class="keyword">const</span>&amp; other );</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual methods</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">   45</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classComponent.html">Component</a>* <a class="code" href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">Clone</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classComponent.html#a2a76b143949c4f40b890c182cdd18a22">   48</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classComponent.html#a2a76b143949c4f40b890c182cdd18a22">OnInit</a>() {};</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classComponent.html#a71b5ee92e9f8e65ab040a80e149fc596">   52</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classComponent.html#a71b5ee92e9f8e65ab040a80e149fc596">OnExit</a>() {};</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">public</span>: <span class="comment">// Accessors</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classComponent.html#ae724c7a0df398cd43bfabaeca25fa944">   60</a></span>&#160;    __inline std::type_index <a class="code" href="classComponent.html#ae724c7a0df398cd43bfabaeca25fa944">GetType</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Type; }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classComponent.html#a883bf85e78b4967fe5b0f187ee7ef7cb">   64</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classComponent.html#a883bf85e78b4967fe5b0f187ee7ef7cb">SetParent</a>( <a class="code" href="classEntity.html">Entity</a>* parent ) { m_Parent = parent; }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classComponent.html#a43a9bf2a6c718eb966f649567bbb0f59">   68</a></span>&#160;    __inline <a class="code" href="classEntity.html">Entity</a>* <a class="code" href="classComponent.html#a43a9bf2a6c718eb966f649567bbb0f59">GetParent</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Parent; }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual reading</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    </div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classComponent.html#a50d70dddfcd52148669c9946cbd12e6e">   76</a></span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; Component &gt; <span class="keyword">const</span>&amp; <a class="code" href="classComponent.html#a50d70dddfcd52148669c9946cbd12e6e">GetReadMethods</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    std::type_index m_Type;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classEntity.html">Entity</a>* m_Parent;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
-<div class="ttc" id="aStream_8h_html"><div class="ttname"><a href="Stream_8h.html">Stream.h</a></div><div class="ttdoc">JSON File reading/writing.</div></div>
-<div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:19</div></div>
-<div class="ttc" id="aclassComponent_html_a2a76b143949c4f40b890c182cdd18a22"><div class="ttname"><a href="classComponent.html#a2a76b143949c4f40b890c182cdd18a22">Component::OnInit</a></div><div class="ttdeci">virtual void OnInit()</div><div class="ttdoc">called when this Component's Entity is added to the Scene</div><div class="ttdef"><b>Definition:</b> Component.h:48</div></div>
-<div class="ttc" id="aclassComponent_html_a2e9aa4348314d981f05f67397ad2f872"><div class="ttname"><a href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">Component::~Component</a></div><div class="ttdeci">virtual ~Component()</div><div class="ttdoc">virtual destructor</div><div class="ttdef"><b>Definition:</b> Component.h:25</div></div>
-<div class="ttc" id="aclassComponent_html_a43a9bf2a6c718eb966f649567bbb0f59"><div class="ttname"><a href="classComponent.html#a43a9bf2a6c718eb966f649567bbb0f59">Component::GetParent</a></div><div class="ttdeci">__inline Entity * GetParent() const</div><div class="ttdoc">returns the components parent entity</div><div class="ttdef"><b>Definition:</b> Component.h:68</div></div>
-<div class="ttc" id="aclassComponent_html_a50d70dddfcd52148669c9946cbd12e6e"><div class="ttname"><a href="classComponent.html#a50d70dddfcd52148669c9946cbd12e6e">Component::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; Component &gt; const  &amp; GetReadMethods() const =0</div><div class="ttdoc">gets the map of read methods for this Component</div></div>
-<div class="ttc" id="aclassComponent_html_a71b5ee92e9f8e65ab040a80e149fc596"><div class="ttname"><a href="classComponent.html#a71b5ee92e9f8e65ab040a80e149fc596">Component::OnExit</a></div><div class="ttdeci">virtual void OnExit()</div><div class="ttdoc">called when this Component's Entity is removed from the Scene</div><div class="ttdef"><b>Definition:</b> Component.h:52</div></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ISerializable_8h.html">ISerializable.h</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="classEntity.html">Entity</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classComponent.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classComponent.html">Component</a> : <span class="keyword">public</span> <a class="code" href="classISerializable.html">ISerializable</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>: <span class="comment">// destructor</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">   26</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">~Component</a>() {};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">protected</span>: <span class="comment">// constructors</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classComponent.html#ac70649aafa6c287ce26ed3237896d512">Component</a>( std::type_index m_Type );</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classComponent.html#ac70649aafa6c287ce26ed3237896d512">Component</a>( <a class="code" href="classComponent.html">Component</a> <span class="keyword">const</span>&amp; other );</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual methods</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">   46</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classComponent.html">Component</a>* <a class="code" href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">Clone</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classComponent.html#a2a76b143949c4f40b890c182cdd18a22">   49</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classComponent.html#a2a76b143949c4f40b890c182cdd18a22">OnInit</a>() {};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classComponent.html#a71b5ee92e9f8e65ab040a80e149fc596">   53</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classComponent.html#a71b5ee92e9f8e65ab040a80e149fc596">OnExit</a>() {};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classComponent.html#a5bfbb00a07c361c4c8d7b1812b9937ff">   56</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classComponent.html#a5bfbb00a07c361c4c8d7b1812b9937ff">Inspector</a>() {};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">public</span>: <span class="comment">// Accessors</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classComponent.html#ae724c7a0df398cd43bfabaeca25fa944">   63</a></span>&#160;    __inline std::type_index <a class="code" href="classComponent.html#ae724c7a0df398cd43bfabaeca25fa944">GetType</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Type; }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classComponent.html#a883bf85e78b4967fe5b0f187ee7ef7cb">   67</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classComponent.html#a883bf85e78b4967fe5b0f187ee7ef7cb">SetParent</a>( <a class="code" href="classEntity.html">Entity</a>* parent ) { m_Parent = parent; }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classComponent.html#a43a9bf2a6c718eb966f649567bbb0f59">   71</a></span>&#160;    __inline <a class="code" href="classEntity.html">Entity</a>* <a class="code" href="classComponent.html#a43a9bf2a6c718eb966f649567bbb0f59">GetParent</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Parent; }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::type_index m_Type;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classEntity.html">Entity</a>* m_Parent;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};</div>
+<div class="ttc" id="aISerializable_8h_html"><div class="ttname"><a href="ISerializable_8h.html">ISerializable.h</a></div><div class="ttdoc">interface for all serializable objects</div></div>
+<div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:20</div></div>
+<div class="ttc" id="aclassComponent_html_a2a76b143949c4f40b890c182cdd18a22"><div class="ttname"><a href="classComponent.html#a2a76b143949c4f40b890c182cdd18a22">Component::OnInit</a></div><div class="ttdeci">virtual void OnInit()</div><div class="ttdoc">called when this Component's Entity is added to the Scene</div><div class="ttdef"><b>Definition:</b> Component.h:49</div></div>
+<div class="ttc" id="aclassComponent_html_a2e9aa4348314d981f05f67397ad2f872"><div class="ttname"><a href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">Component::~Component</a></div><div class="ttdeci">virtual ~Component()</div><div class="ttdoc">virtual destructor</div><div class="ttdef"><b>Definition:</b> Component.h:26</div></div>
+<div class="ttc" id="aclassComponent_html_a43a9bf2a6c718eb966f649567bbb0f59"><div class="ttname"><a href="classComponent.html#a43a9bf2a6c718eb966f649567bbb0f59">Component::GetParent</a></div><div class="ttdeci">__inline Entity * GetParent() const</div><div class="ttdoc">returns the components parent entity</div><div class="ttdef"><b>Definition:</b> Component.h:71</div></div>
+<div class="ttc" id="aclassComponent_html_a5bfbb00a07c361c4c8d7b1812b9937ff"><div class="ttname"><a href="classComponent.html#a5bfbb00a07c361c4c8d7b1812b9937ff">Component::Inspector</a></div><div class="ttdeci">virtual void Inspector()</div><div class="ttdoc">Used by the Debug System to display information about this Component.</div><div class="ttdef"><b>Definition:</b> Component.h:56</div></div>
+<div class="ttc" id="aclassComponent_html_a71b5ee92e9f8e65ab040a80e149fc596"><div class="ttname"><a href="classComponent.html#a71b5ee92e9f8e65ab040a80e149fc596">Component::OnExit</a></div><div class="ttdeci">virtual void OnExit()</div><div class="ttdoc">called when this Component's Entity is removed from the Scene</div><div class="ttdef"><b>Definition:</b> Component.h:53</div></div>
 <div class="ttc" id="aclassComponent_html_a84ffb31637b6208fc8114114fb60dc4a"><div class="ttname"><a href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">Component::Clone</a></div><div class="ttdeci">virtual Component * Clone() const =0</div><div class="ttdoc">virtual component clone function</div></div>
-<div class="ttc" id="aclassComponent_html_a883bf85e78b4967fe5b0f187ee7ef7cb"><div class="ttname"><a href="classComponent.html#a883bf85e78b4967fe5b0f187ee7ef7cb">Component::SetParent</a></div><div class="ttdeci">__inline void SetParent(Entity *parent)</div><div class="ttdoc">sets the parent entity of the component</div><div class="ttdef"><b>Definition:</b> Component.h:64</div></div>
+<div class="ttc" id="aclassComponent_html_a883bf85e78b4967fe5b0f187ee7ef7cb"><div class="ttname"><a href="classComponent.html#a883bf85e78b4967fe5b0f187ee7ef7cb">Component::SetParent</a></div><div class="ttdeci">__inline void SetParent(Entity *parent)</div><div class="ttdoc">sets the parent entity of the component</div><div class="ttdef"><b>Definition:</b> Component.h:67</div></div>
 <div class="ttc" id="aclassComponent_html_ac70649aafa6c287ce26ed3237896d512"><div class="ttname"><a href="classComponent.html#ac70649aafa6c287ce26ed3237896d512">Component::Component</a></div><div class="ttdeci">Component(std::type_index m_Type)</div><div class="ttdoc">default component constructor</div><div class="ttdef"><b>Definition:</b> Component.cpp:17</div></div>
-<div class="ttc" id="aclassComponent_html_ae724c7a0df398cd43bfabaeca25fa944"><div class="ttname"><a href="classComponent.html#ae724c7a0df398cd43bfabaeca25fa944">Component::GetType</a></div><div class="ttdeci">__inline std::type_index GetType() const</div><div class="ttdoc">gets the components type</div><div class="ttdef"><b>Definition:</b> Component.h:60</div></div>
+<div class="ttc" id="aclassComponent_html_ae724c7a0df398cd43bfabaeca25fa944"><div class="ttname"><a href="classComponent.html#ae724c7a0df398cd43bfabaeca25fa944">Component::GetType</a></div><div class="ttdeci">__inline std::type_index GetType() const</div><div class="ttdoc">gets the components type</div><div class="ttdef"><b>Definition:</b> Component.h:63</div></div>
 <div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:27</div></div>
+<div class="ttc" id="aclassISerializable_html"><div class="ttname"><a href="classISerializable.html">ISerializable</a></div><div class="ttdoc">interface for all serializable objects</div><div class="ttdef"><b>Definition:</b> ISerializable.h:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

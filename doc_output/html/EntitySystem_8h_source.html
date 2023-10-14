@@ -106,57 +106,61 @@ $(function() {
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnFixedUpdate() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> DebugWindow() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; EntitySystem &gt; <span class="keyword">const</span> s_ReadMethods;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; System &gt; <span class="keyword">const</span>&amp; GetReadMethods() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    std::vector&lt; Entity* &gt; m_Entities;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">bool</span> m_ShowEntityList = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">bool</span> m_ShowEntityCreate = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::vector&lt; Entity* &gt; m_Entities;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton stuff</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="classEntitySystem.html">EntitySystem</a>();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">private</span>: <span class="comment">// Private Methods</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> EntityListWindow();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton stuff</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classEntitySystem.html">EntitySystem</a>();</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">static</span> <a class="code" href="classEntitySystem.html">EntitySystem</a> * s_Instance;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">static</span> <a class="code" href="classEntitySystem.html">EntitySystem</a> * <a class="code" href="classEntitySystem.html#aa4b627775f4eaba0dab84b7e3234e7cb">GetInstance</a>();</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">// Prevent copying</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="classEntitySystem.html">EntitySystem</a>( <a class="code" href="classEntitySystem.html">EntitySystem</a>&amp; other ) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> operator=( <span class="keyword">const</span> <a class="code" href="classEntitySystem.html">EntitySystem</a>&amp; ) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="EntitySystem_8h.html#a1fafda0be7ca4bd366ae0c611dd89793">  108</a></span>&#160;__inline <a class="code" href="classEntitySystem.html">EntitySystem</a>* <a class="code" href="EntitySystem_8h.html#a1fafda0be7ca4bd366ae0c611dd89793">Entities</a>() { <span class="keywordflow">return</span> <a class="code" href="classEntitySystem.html#aa4b627775f4eaba0dab84b7e3234e7cb">EntitySystem::GetInstance</a>(); }</div>
-<div class="ttc" id="aEntitySystem_8h_html_a1fafda0be7ca4bd366ae0c611dd89793"><div class="ttname"><a href="EntitySystem_8h.html#a1fafda0be7ca4bd366ae0c611dd89793">Entities</a></div><div class="ttdeci">__inline EntitySystem * Entities()</div><div class="ttdoc">shorthand function to get the EntitySystem instance</div><div class="ttdef"><b>Definition:</b> EntitySystem.h:108</div></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">static</span> <a class="code" href="classEntitySystem.html">EntitySystem</a> * s_Instance;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">static</span> <a class="code" href="classEntitySystem.html">EntitySystem</a> * <a class="code" href="classEntitySystem.html#aa4b627775f4eaba0dab84b7e3234e7cb">GetInstance</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">// Prevent copying</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="classEntitySystem.html">EntitySystem</a>( <a class="code" href="classEntitySystem.html">EntitySystem</a>&amp; other ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">void</span> operator=( <span class="keyword">const</span> <a class="code" href="classEntitySystem.html">EntitySystem</a>&amp; ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="EntitySystem_8h.html#a1fafda0be7ca4bd366ae0c611dd89793">  109</a></span>&#160;__inline <a class="code" href="classEntitySystem.html">EntitySystem</a>* <a class="code" href="EntitySystem_8h.html#a1fafda0be7ca4bd366ae0c611dd89793">Entities</a>() { <span class="keywordflow">return</span> <a class="code" href="classEntitySystem.html#aa4b627775f4eaba0dab84b7e3234e7cb">EntitySystem::GetInstance</a>(); }</div>
+<div class="ttc" id="aEntitySystem_8h_html_a1fafda0be7ca4bd366ae0c611dd89793"><div class="ttname"><a href="EntitySystem_8h.html#a1fafda0be7ca4bd366ae0c611dd89793">Entities</a></div><div class="ttdeci">__inline EntitySystem * Entities()</div><div class="ttdoc">shorthand function to get the EntitySystem instance</div><div class="ttdef"><b>Definition:</b> EntitySystem.h:109</div></div>
 <div class="ttc" id="aEntity_8h_html"><div class="ttname"><a href="Entity_8h.html">Entity.h</a></div><div class="ttdoc">Declaration for the Entity Class.</div></div>
 <div class="ttc" id="aStream_8h_html"><div class="ttname"><a href="Stream_8h.html">Stream.h</a></div><div class="ttdoc">JSON File reading/writing.</div></div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
 <div class="ttc" id="aclassEntitySystem_html"><div class="ttname"><a href="classEntitySystem.html">EntitySystem</a></div><div class="ttdoc">Example System meant to be copy-pasted when creating new Systems.</div><div class="ttdef"><b>Definition:</b> EntitySystem.h:20</div></div>
-<div class="ttc" id="aclassEntitySystem_html_a285cb347255f00e4ba4d26214420a16a"><div class="ttname"><a href="classEntitySystem.html#a285cb347255f00e4ba4d26214420a16a">EntitySystem::GetEntity</a></div><div class="ttdeci">Entity * GetEntity(std::string const &amp;entityName)</div><div class="ttdoc">gets an Entity by name</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:28</div></div>
-<div class="ttc" id="aclassEntitySystem_html_a61b4aa488083b35dc0f188cc58af935d"><div class="ttname"><a href="classEntitySystem.html#a61b4aa488083b35dc0f188cc58af935d">EntitySystem::AddEntity</a></div><div class="ttdeci">void AddEntity(Entity *entity)</div><div class="ttdoc">Adds an Entity to the EntitySystem.</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:19</div></div>
-<div class="ttc" id="aclassEntitySystem_html_a7143c495b23a3dfab627dde07b43cd6c"><div class="ttname"><a href="classEntitySystem.html#a7143c495b23a3dfab627dde07b43cd6c">EntitySystem::RemoveEntity</a></div><div class="ttdeci">void RemoveEntity(Entity *entity)</div><div class="ttdoc">removes an Entity from the EntitySystem</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:49</div></div>
-<div class="ttc" id="aclassEntitySystem_html_a86f324f2d492e696283f08a10a6f2ac0"><div class="ttname"><a href="classEntitySystem.html#a86f324f2d492e696283f08a10a6f2ac0">EntitySystem::HasEntity</a></div><div class="ttdeci">bool HasEntity(Entity *entity)</div><div class="ttdoc">checks if the EntitySystem contains the given Entity (for debugging)</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:64</div></div>
-<div class="ttc" id="aclassEntitySystem_html_aa4b627775f4eaba0dab84b7e3234e7cb"><div class="ttname"><a href="classEntitySystem.html#aa4b627775f4eaba0dab84b7e3234e7cb">EntitySystem::GetInstance</a></div><div class="ttdeci">static EntitySystem * GetInstance()</div><div class="ttdoc">gets the instance of EntitySystem</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:147</div></div>
+<div class="ttc" id="aclassEntitySystem_html_a285cb347255f00e4ba4d26214420a16a"><div class="ttname"><a href="classEntitySystem.html#a285cb347255f00e4ba4d26214420a16a">EntitySystem::GetEntity</a></div><div class="ttdeci">Entity * GetEntity(std::string const &amp;entityName)</div><div class="ttdoc">gets an Entity by name</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:32</div></div>
+<div class="ttc" id="aclassEntitySystem_html_a61b4aa488083b35dc0f188cc58af935d"><div class="ttname"><a href="classEntitySystem.html#a61b4aa488083b35dc0f188cc58af935d">EntitySystem::AddEntity</a></div><div class="ttdeci">void AddEntity(Entity *entity)</div><div class="ttdoc">Adds an Entity to the EntitySystem.</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:23</div></div>
+<div class="ttc" id="aclassEntitySystem_html_a7143c495b23a3dfab627dde07b43cd6c"><div class="ttname"><a href="classEntitySystem.html#a7143c495b23a3dfab627dde07b43cd6c">EntitySystem::RemoveEntity</a></div><div class="ttdeci">void RemoveEntity(Entity *entity)</div><div class="ttdoc">removes an Entity from the EntitySystem</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:53</div></div>
+<div class="ttc" id="aclassEntitySystem_html_a86f324f2d492e696283f08a10a6f2ac0"><div class="ttname"><a href="classEntitySystem.html#a86f324f2d492e696283f08a10a6f2ac0">EntitySystem::HasEntity</a></div><div class="ttdeci">bool HasEntity(Entity *entity)</div><div class="ttdoc">checks if the EntitySystem contains the given Entity (for debugging)</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:76</div></div>
+<div class="ttc" id="aclassEntitySystem_html_aa4b627775f4eaba0dab84b7e3234e7cb"><div class="ttname"><a href="classEntitySystem.html#aa4b627775f4eaba0dab84b7e3234e7cb">EntitySystem::GetInstance</a></div><div class="ttdeci">static EntitySystem * GetInstance()</div><div class="ttdoc">gets the instance of EntitySystem</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:191</div></div>
 <div class="ttc" id="aclassEntitySystem_html_aa527daa36c0689122424d88acc2d8476"><div class="ttname"><a href="classEntitySystem.html#aa527daa36c0689122424d88acc2d8476">EntitySystem::GetEntities</a></div><div class="ttdeci">std::vector&lt; Entity * &gt; const  &amp; GetEntities() const</div><div class="ttdoc">returns the container of all Entities in the Scene</div><div class="ttdef"><b>Definition:</b> EntitySystem.h:50</div></div>
-<div class="ttc" id="aclassEntitySystem_html_abab96c75248c3ce796b19689b85e189a"><div class="ttname"><a href="classEntitySystem.html#abab96c75248c3ce796b19689b85e189a">EntitySystem::LoadEntities</a></div><div class="ttdeci">void LoadEntities(Stream entityArray)</div><div class="ttdoc">loads all of the entities in a scene</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:73</div></div>
+<div class="ttc" id="aclassEntitySystem_html_abab96c75248c3ce796b19689b85e189a"><div class="ttname"><a href="classEntitySystem.html#abab96c75248c3ce796b19689b85e189a">EntitySystem::LoadEntities</a></div><div class="ttdeci">void LoadEntities(Stream entityArray)</div><div class="ttdoc">loads all of the entities in a scene</div><div class="ttdef"><b>Definition:</b> EntitySystem.cpp:85</div></div>
 <div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:27</div></div>
-<div class="ttc" id="aclassStream_html"><div class="ttname"><a href="classStream.html">Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:27</div></div>
+<div class="ttc" id="aclassStream_html"><div class="ttname"><a href="classStream.html">Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:32</div></div>
 <div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

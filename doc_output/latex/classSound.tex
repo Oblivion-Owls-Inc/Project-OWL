@@ -9,9 +9,32 @@ Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when cr
 
 {\ttfamily \#include $<$Sound.\+h$>$}
 
+
+
+Inheritance diagram for Sound\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classSound__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Sound\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classSound__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{classSound_a539c205cdf06fe2c621fd77c37bcfac9}\label{classSound_a539c205cdf06fe2c621fd77c37bcfac9}} 
+\mbox{\hyperlink{classSound_a539c205cdf06fe2c621fd77c37bcfac9}{Sound}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classSound_aa21a20c69fe6b61a50c385e70595a531}{Sound}} (char const $\ast$filepath, bool looping)
 \begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{classSound}{Sound}}. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSound_a0907389078bf740be2a5763366ad3376}\label{classSound_a0907389078bf740be2a5763366ad3376}} 
@@ -20,7 +43,13 @@ Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when cr
 FMOD\+::\+Channel $\ast$ \mbox{\hyperlink{classSound_a7c2a6c5297ff3df5940386523d0ef438}{Play}} (FMOD\+::\+Channel\+Group $\ast$group=nullptr, float volume=1.\+0f, float pitch=1.\+0f) const
 \begin{DoxyCompactList}\small\item\em Plays this sound. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classSound_a53409029f147921fe18d255394e971eb}{Get\+Length}} () const
-\begin{DoxyCompactList}\small\item\em gets the length of this sound \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em gets the length of this sound \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline bool \mbox{\hyperlink{classSound_a77113b04eebdea69290e4e49a6477b77}{Get\+Looping}} () const
+\begin{DoxyCompactList}\small\item\em gets whether this \mbox{\hyperlink{classSound}{Sound}} is looping \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline std\+::string const  \& \mbox{\hyperlink{classSound_ab8328222f7f3070212b948bf2d814f7f}{Get\+Filepath}} () const
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSound}{Sound}}\textquotesingle{}s filepath \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSound_a7b62427aac8703c909ac96045ae46170}{Inspect}} ()
+\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classSound}{Sound}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -49,6 +78,19 @@ constructs a new \mbox{\hyperlink{classSound}{Sound}}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSound_ab8328222f7f3070212b948bf2d814f7f}\label{classSound_ab8328222f7f3070212b948bf2d814f7f}} 
+\index{Sound@{Sound}!GetFilepath@{GetFilepath}}
+\index{GetFilepath@{GetFilepath}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{GetFilepath()}{GetFilepath()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline std\+::string const\& Sound\+::\+Get\+Filepath (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets this \mbox{\hyperlink{classSound}{Sound}}\textquotesingle{}s filepath 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classSound}{Sound}}\textquotesingle{}s filepath 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classSound_a53409029f147921fe18d255394e971eb}\label{classSound_a53409029f147921fe18d255394e971eb}} 
 \index{Sound@{Sound}!GetLength@{GetLength}}
 \index{GetLength@{GetLength}!Sound@{Sound}}
@@ -62,7 +104,30 @@ gets the length of this sound
 \begin{DoxyReturn}{Returns}
 the length of this sound in seconds 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSound_a7c2a6c5297ff3df5940386523d0ef438}\label{classSound_a7c2a6c5297ff3df5940386523d0ef438}} 
+\mbox{\Hypertarget{classSound_a77113b04eebdea69290e4e49a6477b77}\label{classSound_a77113b04eebdea69290e4e49a6477b77}} 
+\index{Sound@{Sound}!GetLooping@{GetLooping}}
+\index{GetLooping@{GetLooping}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{GetLooping()}{GetLooping()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline bool Sound\+::\+Get\+Looping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets whether this \mbox{\hyperlink{classSound}{Sound}} is looping 
+
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classSound}{Sound}} is looping 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSound_a7b62427aac8703c909ac96045ae46170}\label{classSound_a7b62427aac8703c909ac96045ae46170}} 
+\index{Sound@{Sound}!Inspect@{Inspect}}
+\index{Inspect@{Inspect}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
+{\footnotesize\ttfamily void Sound\+::\+Inspect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classSound}{Sound}}. 
+
+todo\+: add inspector\mbox{\Hypertarget{classSound_a7c2a6c5297ff3df5940386523d0ef438}\label{classSound_a7c2a6c5297ff3df5940386523d0ef438}} 
 \index{Sound@{Sound}!Play@{Play}}
 \index{Play@{Play}!Sound@{Sound}}
 \doxysubsubsection{\texorpdfstring{Play()}{Play()}}

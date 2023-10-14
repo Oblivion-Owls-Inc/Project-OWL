@@ -1,0 +1,68 @@
+\hypertarget{classISerializable}{}\doxysection{ISerializable Class Reference}
+\label{classISerializable}\index{ISerializable@{ISerializable}}
+
+
+interface for all serializable objects  
+
+
+
+
+{\ttfamily \#include $<$ISerializable.\+h$>$}
+
+
+
+Inheritance diagram for ISerializable\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classISerializable__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{Get\+Read\+Methods}} () const
+\begin{DoxyCompactList}\small\item\em Gets the map of read methods for this object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classISerializable_a7b60e4aca93fb97f18c9ff41ee53bc3a}\label{classISerializable_a7b60e4aca93fb97f18c9ff41ee53bc3a}} 
+virtual void \mbox{\hyperlink{classISerializable_a7b60e4aca93fb97f18c9ff41ee53bc3a}{After\+Load}} ()
+\begin{DoxyCompactList}\small\item\em function which gets called after all data is read into this object on deserialization \end{DoxyCompactList}\item 
+virtual rapidjson\+::\+Value \mbox{\hyperlink{classISerializable_a45dc972744561d6ace6fc0d54017a14d}{Write}} () const
+\begin{DoxyCompactList}\small\item\em writes this object to json \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+interface for all serializable objects 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}\label{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}} 
+\index{ISerializable@{ISerializable}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!ISerializable@{ISerializable}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& ISerializable\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gets the map of read methods for this object. 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for htis object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classISerializable_a45dc972744561d6ace6fc0d54017a14d}\label{classISerializable_a45dc972744561d6ace6fc0d54017a14d}} 
+\index{ISerializable@{ISerializable}!Write@{Write}}
+\index{Write@{Write}!ISerializable@{ISerializable}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily virtual rapidjson\+::\+Value ISerializable\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+writes this object to json 
+
+\begin{DoxyReturn}{Returns}
+the json data of this object 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{ISerializable_8h}{ISerializable.\+h}}\end{DoxyCompactItemize}

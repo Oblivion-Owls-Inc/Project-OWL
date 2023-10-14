@@ -1,12 +1,12 @@
 <map id="Source/Component.cpp" name="Source/Component.cpp">
-<area shape="rect" id="node1" title="Virtual component header." alt="" coords="69,5,241,32"/>
-<area shape="rect" id="node2" href="$Component_8h.html" title="Virtual component header." alt="" coords="101,80,210,107"/>
+<area shape="rect" id="node1" title="Virtual component header." alt="" coords="108,5,280,32"/>
+<area shape="rect" id="node2" href="$Component_8h.html" title="Virtual component header." alt="" coords="139,80,249,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,155,92,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="77,229,127,256"/>
-<area shape="rect" id="node5" title=" " alt="" coords="151,229,210,256"/>
-<area shape="rect" id="node6" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="245,155,327,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="490,229,653,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="677,229,751,256"/>
-<area shape="rect" id="node9" title=" " alt="" coords="234,229,338,256"/>
-<area shape="rect" id="node10" title=" " alt="" coords="362,229,466,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="514,304,565,331"/>
+<area shape="rect" id="node5" title=" " alt="" coords="18,304,77,331"/>
+<area shape="rect" id="node6" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="202,155,317,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="327,304,490,331"/>
+<area shape="rect" id="node8" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="219,229,300,256"/>
+<area shape="rect" id="node9" title=" " alt="" coords="101,304,175,331"/>
+<area shape="rect" id="node10" title=" " alt="" coords="199,304,303,331"/>
 </map>

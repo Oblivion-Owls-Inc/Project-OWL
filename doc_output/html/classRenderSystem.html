@@ -79,8 +79,9 @@ Inheritance diagram for RenderSystem:</div>
 <div class="dyncontent">
 <div class="center"><img src="classRenderSystem__inherit__graph.png" border="0" usemap="#aRenderSystem_inherit__map" alt="Inheritance graph"/></div>
 <map name="aRenderSystem_inherit__map" id="aRenderSystem_inherit__map">
-<area shape="rect" title="Renders all of the Sprite components, keeps track of shaders." alt="" coords="5,80,123,107"/>
-<area shape="rect" href="classSystem.html" title="Base class for all Systems." alt="" coords="29,5,99,32"/>
+<area shape="rect" title="Renders all of the Sprite components, keeps track of shaders." alt="" coords="5,155,123,181"/>
+<area shape="rect" href="classSystem.html" title="Base class for all Systems." alt="" coords="29,80,99,107"/>
+<area shape="rect" href="classISerializable.html" title="interface for all serializable objects" alt="" coords="13,5,115,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -88,8 +89,9 @@ Collaboration diagram for RenderSystem:</div>
 <div class="dyncontent">
 <div class="center"><img src="classRenderSystem__coll__graph.png" border="0" usemap="#aRenderSystem_coll__map" alt="Collaboration graph"/></div>
 <map name="aRenderSystem_coll__map" id="aRenderSystem_coll__map">
-<area shape="rect" title="Renders all of the Sprite components, keeps track of shaders." alt="" coords="5,80,123,107"/>
-<area shape="rect" href="classSystem.html" title="Base class for all Systems." alt="" coords="29,5,99,32"/>
+<area shape="rect" title="Renders all of the Sprite components, keeps track of shaders." alt="" coords="5,155,123,181"/>
+<area shape="rect" href="classSystem.html" title="Base class for all Systems." alt="" coords="29,80,99,107"/>
+<area shape="rect" href="classISerializable.html" title="interface for all serializable objects" alt="" coords="13,5,115,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -101,12 +103,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f9b534f381ac0f5eb0bf889f49cc805"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#a1f9b534f381ac0f5eb0bf889f49cc805">DrawLine</a> (const glm::vec2 &amp;P1, const glm::vec2 &amp;P2, float thickness=8, const glm::vec4 &amp;color={ 0, 0.2, 0.5, 1 })</td></tr>
 <tr class="memdesc:a1f9b534f381ac0f5eb0bf889f49cc805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a line between 2 points.  <a href="classRenderSystem.html#a1f9b534f381ac0f5eb0bf889f49cc805">More...</a><br /></td></tr>
 <tr class="separator:a1f9b534f381ac0f5eb0bf889f49cc805"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb8e2475ea283f65c7a447d7c9a1b458"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#adb8e2475ea283f65c7a447d7c9a1b458">AddSprite</a> (<a class="el" href="classSprite.html">Sprite</a> *sprite, int layer)</td></tr>
-<tr class="memdesc:adb8e2475ea283f65c7a447d7c9a1b458"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a sprite so it can be rendered during update.  <a href="classRenderSystem.html#adb8e2475ea283f65c7a447d7c9a1b458">More...</a><br /></td></tr>
-<tr class="separator:adb8e2475ea283f65c7a447d7c9a1b458"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e6f07714597cf65f132e82be2a791f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#a3e6f07714597cf65f132e82be2a791f7">RemoveSprite</a> (<a class="el" href="classSprite.html">Sprite</a> *sprite, int layer)</td></tr>
-<tr class="memdesc:a3e6f07714597cf65f132e82be2a791f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove sprite from the list to stop rendering it on update.  <a href="classRenderSystem.html#a3e6f07714597cf65f132e82be2a791f7">More...</a><br /></td></tr>
-<tr class="separator:a3e6f07714597cf65f132e82be2a791f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa568ccaf7a44b88dd7acccd37f7ab54a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#aa568ccaf7a44b88dd7acccd37f7ab54a">AddSprite</a> (<a class="el" href="classSprite.html">Sprite</a> *sprite)</td></tr>
+<tr class="memdesc:aa568ccaf7a44b88dd7acccd37f7ab54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a sprite so it can be rendered during update.  <a href="classRenderSystem.html#aa568ccaf7a44b88dd7acccd37f7ab54a">More...</a><br /></td></tr>
+<tr class="separator:aa568ccaf7a44b88dd7acccd37f7ab54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22427a72cf0570e5288b8dbd05761314"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#a22427a72cf0570e5288b8dbd05761314">RemoveSprite</a> (<a class="el" href="classSprite.html">Sprite</a> *sprite)</td></tr>
+<tr class="memdesc:a22427a72cf0570e5288b8dbd05761314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove sprite from the list to stop rendering it on update.  <a href="classRenderSystem.html#a22427a72cf0570e5288b8dbd05761314">More...</a><br /></td></tr>
+<tr class="separator:a22427a72cf0570e5288b8dbd05761314"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a9bd5e1eedecd94901c1c8dd06dbdfb"><td class="memItemLeft" align="right" valign="top"><a id="a3a9bd5e1eedecd94901c1c8dd06dbdfb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#a3a9bd5e1eedecd94901c1c8dd06dbdfb">AddShader</a> (const char *name, <a class="el" href="classShader.html">Shader</a> *shader)</td></tr>
 <tr class="memdesc:a3a9bd5e1eedecd94901c1c8dd06dbdfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a shader to keep track of, so it can be freed automatically upon shutdown. param name Name to reference shader with param shader Pointer to the new shader. <br /></td></tr>
@@ -117,6 +119,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:af0b12d0120dc0ccd05fa77e94302b246"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classShader.html">Shader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#af0b12d0120dc0ccd05fa77e94302b246">SetActiveShader</a> (const char *name)</td></tr>
 <tr class="memdesc:af0b12d0120dc0ccd05fa77e94302b246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets shader with given name as active, and returns pointer to it.  <a href="classRenderSystem.html#af0b12d0120dc0ccd05fa77e94302b246">More...</a><br /></td></tr>
 <tr class="separator:af0b12d0120dc0ccd05fa77e94302b246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d2fbbd8eecb7149e10e74921d72d3ec"><td class="memItemLeft" align="right" valign="top">__inline <a class="el" href="classMesh.html">Mesh</a> const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#a8d2fbbd8eecb7149e10e74921d72d3ec">GetDefaultMesh</a> () const</td></tr>
+<tr class="separator:a8d2fbbd8eecb7149e10e74921d72d3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1bfbbf8394d62575d921b9283c49ed6"><td class="memItemLeft" align="right" valign="top"><a id="af1bfbbf8394d62575d921b9283c49ed6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>RenderSystem</b> (<a class="el" href="classRenderSystem.html">RenderSystem</a> &amp;other)=delete</td></tr>
 <tr class="separator:af1bfbbf8394d62575d921b9283c49ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,24 +132,35 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a024e9a831c897c60edb310224be27da8">OnFixedUpdate</a> ()</td></tr>
 <tr class="memdesc:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every simulation frame. Use this function for anything that affects the simulation. <br /></td></tr>
 <tr class="separator:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e0ba487646e1f447ef0453552d11868 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a9e0ba487646e1f447ef0453552d11868"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a9e0ba487646e1f447ef0453552d11868">OnSceneLoad</a> ()</td></tr>
-<tr class="memdesc:a9e0ba487646e1f447ef0453552d11868 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a new Scene is loaded. <br /></td></tr>
-<tr class="separator:a9e0ba487646e1f447ef0453552d11868 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a57235c9268a213e2944d83cffa3b4aae"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a> ()</td></tr>
 <tr class="memdesc:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
 <tr class="separator:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="af16d6771ccada096b14a8aa823f9d051"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">OnSceneExit</a> ()</td></tr>
-<tr class="memdesc:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
-<tr class="separator:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="ac37b07a2ad20e2d2fe1f77766902af5d"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac37b07a2ad20e2d2fe1f77766902af5d">DebugWindow</a> ()</td></tr>
+<tr class="memdesc:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Called by the Debug system to display debug information. <br /></td></tr>
+<tr class="separator:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a804bac94c6ffee7f7369c6c3928a5574"></a>
+std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a804bac94c6ffee7f7369c6c3928a5574">GetName</a> () const</td></tr>
+<tr class="memdesc:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unique name of this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
+<tr class="separator:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a6b75872f421f9ae9a720502d37223d49"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>System</b> (<a class="el" href="classSystem.html">System</a> &amp;other)=delete</td></tr>
 <tr class="separator:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c2cb035d0f63fabe49c0af69238208f inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a1c2cb035d0f63fabe49c0af69238208f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classSystem.html">System</a> &amp;)=delete</td></tr>
 <tr class="separator:a1c2cb035d0f63fabe49c0af69238208f inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classISerializable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classISerializable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classISerializable.html">ISerializable</a></td></tr>
+<tr class="memitem:a28ebd6e1c108281c986f97d36f3bbfd1 inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a28ebd6e1c108281c986f97d36f3bbfd1">GetReadMethods</a> () const</td></tr>
+<tr class="memdesc:a28ebd6e1c108281c986f97d36f3bbfd1 inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the map of read methods for this object.  <a href="classISerializable.html#a28ebd6e1c108281c986f97d36f3bbfd1">More...</a><br /></td></tr>
+<tr class="separator:a28ebd6e1c108281c986f97d36f3bbfd1 inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top"><a id="a7b60e4aca93fb97f18c9ff41ee53bc3a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
+<tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
+<tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
+<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
+<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -156,16 +171,16 @@ Static Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classSystem"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classSystem')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classSystem.html">System</a></td></tr>
-<tr class="memitem:a7ffb94a5a2db03014de0a8440f0cee3a inherit pro_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a7ffb94a5a2db03014de0a8440f0cee3a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a7ffb94a5a2db03014de0a8440f0cee3a">System</a> ()=default</td></tr>
-<tr class="memdesc:a7ffb94a5a2db03014de0a8440f0cee3a inherit pro_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
-<tr class="separator:a7ffb94a5a2db03014de0a8440f0cee3a inherit pro_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd1cf06022ecbde6f0b27be372a0cf6 inherit pro_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a9cd1cf06022ecbde6f0b27be372a0cf6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a9cd1cf06022ecbde6f0b27be372a0cf6">System</a> (std::string const &amp;name)</td></tr>
+<tr class="memdesc:a9cd1cf06022ecbde6f0b27be372a0cf6 inherit pro_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
+<tr class="separator:a9cd1cf06022ecbde6f0b27be372a0cf6 inherit pro_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Renders all of the <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> components, keeps track of shaders. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="adb8e2475ea283f65c7a447d7c9a1b458"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb8e2475ea283f65c7a447d7c9a1b458">&#9670;&nbsp;</a></span>AddSprite()</h2>
+<a id="aa568ccaf7a44b88dd7acccd37f7ab54a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa568ccaf7a44b88dd7acccd37f7ab54a">&#9670;&nbsp;</a></span>AddSprite()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,18 +189,8 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">void RenderSystem::AddSprite </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classSprite.html">Sprite</a> *&#160;</td>
-          <td class="paramname"><em>sprite</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>sprite</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>layer</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -303,6 +308,32 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a8d2fbbd8eecb7149e10e74921d72d3ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d2fbbd8eecb7149e10e74921d72d3ec">&#9670;&nbsp;</a></span>GetDefaultMesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">__inline <a class="el" href="classMesh.html">Mesh</a> const* RenderSystem::GetDefaultMesh </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Default mesh for simple quad textures </dd></dl>
+
+</div>
+</div>
 <a id="aee10caebfac0d2ef0b5a24e0f2c1d7b2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aee10caebfac0d2ef0b5a24e0f2c1d7b2">&#9670;&nbsp;</a></span>GetInstance()</h2>
 
@@ -358,8 +389,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a3e6f07714597cf65f132e82be2a791f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e6f07714597cf65f132e82be2a791f7">&#9670;&nbsp;</a></span>RemoveSprite()</h2>
+<a id="a22427a72cf0570e5288b8dbd05761314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22427a72cf0570e5288b8dbd05761314">&#9670;&nbsp;</a></span>RemoveSprite()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -368,18 +399,8 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">void RenderSystem::RemoveSprite </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classSprite.html">Sprite</a> *&#160;</td>
-          <td class="paramname"><em>sprite</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>sprite</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>layer</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

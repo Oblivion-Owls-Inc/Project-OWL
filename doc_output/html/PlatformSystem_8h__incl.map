@@ -1,12 +1,12 @@
 <map id="Source/PlatformSystem.h" name="Source/PlatformSystem.h">
-<area shape="rect" id="node1" title="Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit." alt="" coords="120,5,307,32"/>
-<area shape="rect" id="node2" href="$System_8h.html" title="Base class for all Systems." alt="" coords="172,80,255,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,229,64,256"/>
-<area shape="rect" id="node10" title=" " alt="" coords="279,80,390,107"/>
-<area shape="rect" id="node3" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="271,155,353,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="88,229,251,256"/>
-<area shape="rect" id="node6" title=" " alt="" coords="275,229,349,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="373,229,477,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="501,229,552,256"/>
-<area shape="rect" id="node9" title=" " alt="" coords="576,229,680,256"/>
+<area shape="rect" id="node1" title="Patform System class: initializes window and graphics (GLFW and GLEW), shuts them down on exit." alt="" coords="64,5,251,32"/>
+<area shape="rect" id="node2" href="$System_8h.html" title="Base class for all Systems." alt="" coords="116,80,199,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,304,64,331"/>
+<area shape="rect" id="node10" title=" " alt="" coords="223,80,334,107"/>
+<area shape="rect" id="node3" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="181,155,296,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="501,304,552,331"/>
+<area shape="rect" id="node6" title=" " alt="" coords="315,304,477,331"/>
+<area shape="rect" id="node7" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="198,229,279,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="89,304,162,331"/>
+<area shape="rect" id="node9" title=" " alt="" coords="187,304,291,331"/>
 </map>

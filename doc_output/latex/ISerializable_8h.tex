@@ -1,0 +1,58 @@
+\hypertarget{ISerializable_8h}{}\doxysection{Source/\+ISerializable.h File Reference}
+\label{ISerializable_8h}\index{Source/ISerializable.h@{Source/ISerializable.h}}
+
+
+interface for all serializable objects  
+
+
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}rapidjson/document.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Stream.\+h\char`\"{}}\newline
+Include dependency graph for ISerializable.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ISerializable_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ISerializable_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classISerializable}{ISerializable}}
+\begin{DoxyCompactList}\small\item\em interface for all serializable objects \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ISerializable_8h_a6b3a4f8a8b4c9191ab310908bd2b81fa}\label{ISerializable_8h_a6b3a4f8a8b4c9191ab310908bd2b81fa}} 
+{\footnotesize template$<$typename T $>$ }\\using {\bfseries Read\+Method} = void(T\+::$\ast$)(\mbox{\hyperlink{classStream}{Stream}} value)
+\item 
+\mbox{\Hypertarget{ISerializable_8h_a25da5788395ce478c8adfe6b8bacf07d}\label{ISerializable_8h_a25da5788395ce478c8adfe6b8bacf07d}} 
+{\footnotesize template$<$typename T $>$ }\\using {\bfseries Read\+Method\+Map} = std\+::map$<$ std\+::string, Read\+Method$<$ T $>$ $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+interface for all serializable objects 
+
+\begin{DoxyAuthor}{Author}
+Steve Bukowinski (\href{mailto:steve.bukowinski@digipen.edu}{\texttt{ steve.\+bukowinski@digipen.\+edu}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/10-\/10
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Digipen Institute of Technology 
+\end{DoxyCopyright}

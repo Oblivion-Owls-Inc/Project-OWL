@@ -1,0 +1,175 @@
+\hypertarget{classTilemapSprite}{}\doxysection{Tilemap\+Sprite Class Reference}
+\label{classTilemapSprite}\index{TilemapSprite@{TilemapSprite}}
+
+
+A version of \mbox{\hyperlink{classSprite}{Sprite}} for rendering tilemaps using GPU instancing.  
+
+
+
+
+{\ttfamily \#include $<$Tilemap\+Sprite.\+h$>$}
+
+
+
+Inheritance diagram for Tilemap\+Sprite\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{classTilemapSprite__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Tilemap\+Sprite\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{classTilemapSprite__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTilemapSprite_ae0092a169d3ebae5ba593094ecec4fd8}\label{classTilemapSprite_ae0092a169d3ebae5ba593094ecec4fd8}} 
+\mbox{\hyperlink{classTilemapSprite_ae0092a169d3ebae5ba593094ecec4fd8}{Tilemap\+Sprite}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTilemapSprite_aacc42f13bb996c067acfeabbb8e61502}{Tilemap\+Sprite}} (\mbox{\hyperlink{classTexture}{Texture}} $\ast$texture, float stride\+\_\+mult=1.\+0f, int layer=2, std\+::type\+\_\+index type=typeid(\mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}}))
+\begin{DoxyCompactList}\small\item\em Textured constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTilemapSprite_a7e846266495ed45f4b082696a16e3bb9}{Load\+Tile\+Array}} (const char $\ast$tiles, int size)
+\begin{DoxyCompactList}\small\item\em Loads the tile array from a raw char array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTilemapSprite_aee927c2de899762926f80f09b235ef77}{Load\+Tile\+Array}} (std\+::vector$<$ int $>$ tiles)
+\begin{DoxyCompactList}\small\item\em Loads the tile array from a vector of ints. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classTilemapSprite_aa3d5a5edaef9109f7241eaaeaebfd487}{Set\+Row\+Width}} (int width)
+\begin{DoxyCompactList}\small\item\em Sets the width of a single row (amount of columns) \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline int \mbox{\hyperlink{classTilemapSprite_a90b190dd21553ba3b87938150bf1b154}{Get\+Row\+Width}} () const
+\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classTilemapSprite_a8a4b6c1c84a388f92ff3632142588ff2}{Set\+Stride\+Multiplier}} (glm\+::vec2 mults)
+\begin{DoxyCompactList}\small\item\em Sets the stride multiplier. Default stride is the full width/height of single tile. (Example\+: To space out the tiles, set multipliers to over 1.\+0) \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline glm\+::vec2 \mbox{\hyperlink{classTilemapSprite_a6d2267b43d3b7c84fe12d4e3c8728fdc}{Get\+Stride\+Multiplier}} () const
+\begin{DoxyCompactList}\small\item\em Retreives the stride multiplier. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}\label{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}} 
+virtual void \mbox{\hyperlink{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}{Draw}} () override
+\begin{DoxyCompactList}\small\item\em Draws tilemap using currently loaded array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A version of \mbox{\hyperlink{classSprite}{Sprite}} for rendering tilemaps using GPU instancing. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTilemapSprite_aacc42f13bb996c067acfeabbb8e61502}\label{classTilemapSprite_aacc42f13bb996c067acfeabbb8e61502}} 
+\index{TilemapSprite@{TilemapSprite}!TilemapSprite@{TilemapSprite}}
+\index{TilemapSprite@{TilemapSprite}!TilemapSprite@{TilemapSprite}}
+\doxysubsubsection{\texorpdfstring{TilemapSprite()}{TilemapSprite()}}
+{\footnotesize\ttfamily Tilemap\+Sprite\+::\+Tilemap\+Sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTexture}{Texture}} $\ast$}]{texture,  }\item[{float}]{stride\+\_\+mult = {\ttfamily 1.0f},  }\item[{int}]{layer = {\ttfamily 2},  }\item[{std\+::type\+\_\+index}]{type = {\ttfamily typeid(\mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}})} }\end{DoxyParamCaption})}
+
+
+
+Textured constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & \mbox{\hyperlink{classTexture}{Texture}} (spritesheet) to use for tiling \\
+\hline
+{\em stride\+\_\+mult} & (optional) Multiplier to adjust stride (spacing) \\
+\hline
+{\em layer} & (optional) Rendering layer\+: 0-\/4. 0 is back, 4 is front. \\
+\hline
+{\em type} & (for derived) \mbox{\hyperlink{classComponent}{Component}} type \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTilemapSprite_a90b190dd21553ba3b87938150bf1b154}\label{classTilemapSprite_a90b190dd21553ba3b87938150bf1b154}} 
+\index{TilemapSprite@{TilemapSprite}!GetRowWidth@{GetRowWidth}}
+\index{GetRowWidth@{GetRowWidth}!TilemapSprite@{TilemapSprite}}
+\doxysubsubsection{\texorpdfstring{GetRowWidth()}{GetRowWidth()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline int Tilemap\+Sprite\+::\+Get\+Row\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Tiles per row 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemapSprite_a6d2267b43d3b7c84fe12d4e3c8728fdc}\label{classTilemapSprite_a6d2267b43d3b7c84fe12d4e3c8728fdc}} 
+\index{TilemapSprite@{TilemapSprite}!GetStrideMultiplier@{GetStrideMultiplier}}
+\index{GetStrideMultiplier@{GetStrideMultiplier}!TilemapSprite@{TilemapSprite}}
+\doxysubsubsection{\texorpdfstring{GetStrideMultiplier()}{GetStrideMultiplier()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::vec2 Tilemap\+Sprite\+::\+Get\+Stride\+Multiplier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retreives the stride multiplier. 
+
+\begin{DoxyReturn}{Returns}
+x=horizontal, y=vertical 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemapSprite_a7e846266495ed45f4b082696a16e3bb9}\label{classTilemapSprite_a7e846266495ed45f4b082696a16e3bb9}} 
+\index{TilemapSprite@{TilemapSprite}!LoadTileArray@{LoadTileArray}}
+\index{LoadTileArray@{LoadTileArray}!TilemapSprite@{TilemapSprite}}
+\doxysubsubsection{\texorpdfstring{LoadTileArray()}{LoadTileArray()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Tilemap\+Sprite\+::\+Load\+Tile\+Array (\begin{DoxyParamCaption}\item[{const char $\ast$}]{tiles,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Loads the tile array from a raw char array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiles} & tile IDs (spritesheet frames) \\
+\hline
+{\em size} & array size \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTilemapSprite_aee927c2de899762926f80f09b235ef77}\label{classTilemapSprite_aee927c2de899762926f80f09b235ef77}} 
+\index{TilemapSprite@{TilemapSprite}!LoadTileArray@{LoadTileArray}}
+\index{LoadTileArray@{LoadTileArray}!TilemapSprite@{TilemapSprite}}
+\doxysubsubsection{\texorpdfstring{LoadTileArray()}{LoadTileArray()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Tilemap\+Sprite\+::\+Load\+Tile\+Array (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{tiles }\end{DoxyParamCaption})}
+
+
+
+Loads the tile array from a vector of ints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiles} & tile IDs (spritesheet frames) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTilemapSprite_aa3d5a5edaef9109f7241eaaeaebfd487}\label{classTilemapSprite_aa3d5a5edaef9109f7241eaaeaebfd487}} 
+\index{TilemapSprite@{TilemapSprite}!SetRowWidth@{SetRowWidth}}
+\index{SetRowWidth@{SetRowWidth}!TilemapSprite@{TilemapSprite}}
+\doxysubsubsection{\texorpdfstring{SetRowWidth()}{SetRowWidth()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Tilemap\+Sprite\+::\+Set\+Row\+Width (\begin{DoxyParamCaption}\item[{int}]{width }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the width of a single row (amount of columns) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em columns} & (tiles per row) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTilemapSprite_a8a4b6c1c84a388f92ff3632142588ff2}\label{classTilemapSprite_a8a4b6c1c84a388f92ff3632142588ff2}} 
+\index{TilemapSprite@{TilemapSprite}!SetStrideMultiplier@{SetStrideMultiplier}}
+\index{SetStrideMultiplier@{SetStrideMultiplier}!TilemapSprite@{TilemapSprite}}
+\doxysubsubsection{\texorpdfstring{SetStrideMultiplier()}{SetStrideMultiplier()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline void Tilemap\+Sprite\+::\+Set\+Stride\+Multiplier (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{mults }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the stride multiplier. Default stride is the full width/height of single tile. (Example\+: To space out the tiles, set multipliers to over 1.\+0) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mults} & x=horizontal, y=vertical \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{TilemapSprite_8h}{Tilemap\+Sprite.\+h}}\item 
+Source/Tilemap\+Sprite.\+cpp\end{DoxyCompactItemize}

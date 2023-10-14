@@ -72,33 +72,102 @@ $(function() {
 <a href="Texture_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;glm/glm.hpp&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classTexture.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTexture.html">Texture</a></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classTexture.html#a9eff962bc1991a1250e96a3fdd76cf6a">Texture</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* file_path = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#abcd9b02d6d17cd74bdd35b6be23ee1a4">LoadImage</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* file_path);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classTexture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">~Texture</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#af57acbc82be175be8ba6574bbf3998d0">Bind</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slot = 0);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ISerializable_8h.html">ISerializable.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Mesh_8h.html">Mesh.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classTexture.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTexture.html">Texture</a> : <span class="keyword">public</span> <a class="code" href="classISerializable.html">ISerializable</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>: <span class="comment">// constructors/destructors</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classTexture.html#a6c275e3f186675ff6ed73ccf970e552f">Texture</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classTexture.html#a6c275e3f186675ff6ed73ccf970e552f">Texture</a>( std::string <span class="keyword">const</span>&amp; filepath, glm::ivec2 <span class="keyword">const</span>&amp; sheetDimensions = { 1, 1 } );</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classTexture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">~Texture</a>();</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    glm::vec2 <a class="code" href="classTexture.html#abb5f30cd11c868992cfcb67f10e6dad7">GetImageDimensions</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>: <span class="comment">// methods</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_TextureID = 0;    </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">int</span> m_W = 0, m_H = 0;            </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
-<div class="ttc" id="aclassTexture_html"><div class="ttname"><a href="classTexture.html">Texture</a></div><div class="ttdoc">Stores texture data, and allows to bind it for rendering.</div><div class="ttdef"><b>Definition:</b> Texture.h:11</div></div>
-<div class="ttc" id="aclassTexture_html_a09c4bcb7462f64c1d20fa69dba3cee8a"><div class="ttname"><a href="classTexture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">Texture::~Texture</a></div><div class="ttdeci">~Texture()</div><div class="ttdoc">Destructor: deletes texture data from GPU.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:21</div></div>
-<div class="ttc" id="aclassTexture_html_a9eff962bc1991a1250e96a3fdd76cf6a"><div class="ttname"><a href="classTexture.html#a9eff962bc1991a1250e96a3fdd76cf6a">Texture::Texture</a></div><div class="ttdeci">Texture(const char *file_path=nullptr)</div><div class="ttdoc">Constructor: loads texture image from file upon initialization.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:14</div></div>
-<div class="ttc" id="aclassTexture_html_abb5f30cd11c868992cfcb67f10e6dad7"><div class="ttname"><a href="classTexture.html#abb5f30cd11c868992cfcb67f10e6dad7">Texture::GetImageDimensions</a></div><div class="ttdeci">glm::vec2 GetImageDimensions()</div><div class="ttdoc">Returns the size of the original image as a vec2.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:73</div></div>
-<div class="ttc" id="aclassTexture_html_abcd9b02d6d17cd74bdd35b6be23ee1a4"><div class="ttname"><a href="classTexture.html#abcd9b02d6d17cd74bdd35b6be23ee1a4">Texture::LoadImage</a></div><div class="ttdeci">void LoadImage(const char *file_path)</div><div class="ttdoc">Loads texture image from file (deletes old one if present)</div><div class="ttdef"><b>Definition:</b> Texture.cpp:29</div></div>
-<div class="ttc" id="aclassTexture_html_af57acbc82be175be8ba6574bbf3998d0"><div class="ttname"><a href="classTexture.html#af57acbc82be175be8ba6574bbf3998d0">Texture::Bind</a></div><div class="ttdeci">void Bind(unsigned int slot=0)</div><div class="ttdoc">Sets this texture as active, so it can be used by texture shader.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:65</div></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a14a2a70d9f130ac91a5ac95c8a4c7831">Bind</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slot = 0 ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a8374f8cf2a8425a46e95ab2d1a0aebf5">Inspect</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>: <span class="comment">// acccessors</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">   47</a></span>&#160;    __inline glm::ivec2 <span class="keyword">const</span>&amp; <a class="code" href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">GetPixelDimensions</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_PixelDimensions; }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classTexture.html#a6a359a101095f149dd1754242cc47472">   51</a></span>&#160;    __inline <span class="keywordtype">float</span> <a class="code" href="classTexture.html#a6a359a101095f149dd1754242cc47472">GetAspectRatio</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">float</span>)(m_PixelDimensions.x * m_SheetDimensions.y) /</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                                                          (m_PixelDimensions.y * m_SheetDimensions.x); }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">   56</a></span>&#160;    __inline glm::ivec2 <span class="keyword">const</span>&amp; <a class="code" href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">GetSheetDimensions</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_SheetDimensions; }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#if 1</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classTexture.html#a735680df526bd8809aef3162f48024ca">   62</a></span>&#160;    __inline <a class="code" href="classMesh.html">Mesh</a> <span class="keyword">const</span>* <a class="code" href="classTexture.html#a735680df526bd8809aef3162f48024ca">GetMesh</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Mesh; }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">   66</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">SetMesh</a>( <a class="code" href="classMesh.html">Mesh</a> <span class="keyword">const</span>* mesh ) { m_Mesh = mesh; }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> readFilepath( <a class="code" href="classStream.html">Stream</a> stream );</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> readSheetDimensions( <a class="code" href="classStream.html">Stream</a> stream );</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> AfterLoad();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; Texture &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; GetReadMethods()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> LoadImage();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    std::string m_Filepath;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_TextureID = 0;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    glm::ivec2 m_PixelDimensions;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    glm::ivec2 m_SheetDimensions;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="classMesh.html">Mesh</a> <span class="keyword">const</span>* m_Mesh = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;};</div>
+<div class="ttc" id="aISerializable_8h_html"><div class="ttname"><a href="ISerializable_8h.html">ISerializable.h</a></div><div class="ttdoc">interface for all serializable objects</div></div>
+<div class="ttc" id="aMesh_8h_html"><div class="ttname"><a href="Mesh_8h.html">Mesh.h</a></div><div class="ttdoc">Mesh class - holds on to buffer/VAO references, draws their contents.</div></div>
+<div class="ttc" id="aclassISerializable_html"><div class="ttname"><a href="classISerializable.html">ISerializable</a></div><div class="ttdoc">interface for all serializable objects</div><div class="ttdef"><b>Definition:</b> ISerializable.h:25</div></div>
+<div class="ttc" id="aclassMesh_html"><div class="ttname"><a href="classMesh.html">Mesh</a></div><div class="ttdoc">Stores data needed to render a basic mesh.</div><div class="ttdef"><b>Definition:</b> Mesh.h:12</div></div>
+<div class="ttc" id="aclassStream_html"><div class="ttname"><a href="classStream.html">Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:32</div></div>
+<div class="ttc" id="aclassTexture_html"><div class="ttname"><a href="classTexture.html">Texture</a></div><div class="ttdoc">Stores texture data, and allows to bind it for rendering.</div><div class="ttdef"><b>Definition:</b> Texture.h:14</div></div>
+<div class="ttc" id="aclassTexture_html_a09c4bcb7462f64c1d20fa69dba3cee8a"><div class="ttname"><a href="classTexture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">Texture::~Texture</a></div><div class="ttdeci">~Texture()</div><div class="ttdoc">Destructor: deletes texture data from GPU.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:41</div></div>
+<div class="ttc" id="aclassTexture_html_a14a2a70d9f130ac91a5ac95c8a4c7831"><div class="ttname"><a href="classTexture.html#a14a2a70d9f130ac91a5ac95c8a4c7831">Texture::Bind</a></div><div class="ttdeci">void Bind(unsigned int slot=0) const</div><div class="ttdoc">Sets this texture as active, so it can be used by texture shader.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:59</div></div>
+<div class="ttc" id="aclassTexture_html_a34824525978e7bc15067cd194bf6cfe2"><div class="ttname"><a href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">Texture::SetMesh</a></div><div class="ttdeci">__inline void SetMesh(Mesh const *mesh)</div><div class="ttdoc">sets the Mesh this Sprite is using</div><div class="ttdef"><b>Definition:</b> Texture.h:66</div></div>
+<div class="ttc" id="aclassTexture_html_a6a359a101095f149dd1754242cc47472"><div class="ttname"><a href="classTexture.html#a6a359a101095f149dd1754242cc47472">Texture::GetAspectRatio</a></div><div class="ttdeci">__inline float GetAspectRatio() const</div><div class="ttdoc">Returns the size of the original image in pixels.</div><div class="ttdef"><b>Definition:</b> Texture.h:51</div></div>
+<div class="ttc" id="aclassTexture_html_a6c275e3f186675ff6ed73ccf970e552f"><div class="ttname"><a href="classTexture.html#a6c275e3f186675ff6ed73ccf970e552f">Texture::Texture</a></div><div class="ttdeci">Texture()</div><div class="ttdoc">default constructor</div><div class="ttdef"><b>Definition:</b> Texture.cpp:18</div></div>
+<div class="ttc" id="aclassTexture_html_a735680df526bd8809aef3162f48024ca"><div class="ttname"><a href="classTexture.html#a735680df526bd8809aef3162f48024ca">Texture::GetMesh</a></div><div class="ttdeci">__inline Mesh const  * GetMesh() const</div><div class="ttdoc">gets the Mesh this Sprite is using</div><div class="ttdef"><b>Definition:</b> Texture.h:62</div></div>
+<div class="ttc" id="aclassTexture_html_a775ad645b4c61af24c1cbb53bec1fc49"><div class="ttname"><a href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">Texture::GetSheetDimensions</a></div><div class="ttdeci">__inline glm::ivec2 const  &amp; GetSheetDimensions() const</div><div class="ttdoc">Returns how many tiles/frames are in the texture.</div><div class="ttdef"><b>Definition:</b> Texture.h:56</div></div>
+<div class="ttc" id="aclassTexture_html_a8374f8cf2a8425a46e95ab2d1a0aebf5"><div class="ttname"><a href="classTexture.html#a8374f8cf2a8425a46e95ab2d1a0aebf5">Texture::Inspect</a></div><div class="ttdeci">void Inspect()</div><div class="ttdoc">Used by the Debug to display information about this Texture.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:67</div></div>
+<div class="ttc" id="aclassTexture_html_ae0d942070b7a0925f41511b6f2884ab3"><div class="ttname"><a href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">Texture::GetPixelDimensions</a></div><div class="ttdeci">__inline glm::ivec2 const  &amp; GetPixelDimensions() const</div><div class="ttdoc">Returns the size of the original image in pixels.</div><div class="ttdef"><b>Definition:</b> Texture.h:47</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,4 +1,5 @@
 <map id="InputSystem" name="InputSystem">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,109,107"/>
-<area shape="rect" id="node2" href="$classSystem.html" title="Base class for all Systems." alt="" coords="22,5,93,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,155,109,181"/>
+<area shape="rect" id="node2" href="$classSystem.html" title="Base class for all Systems." alt="" coords="22,80,93,107"/>
+<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="6,5,109,32"/>
 </map>

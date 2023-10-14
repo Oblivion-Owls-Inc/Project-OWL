@@ -1,4 +1,11 @@
 <map id="Source/Sound.h" name="Source/Sound.h">
-<area shape="rect" id="node1" title="Wrapper class for FMOD sounds." alt="" coords="5,5,128,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="25,80,109,107"/>
+<area shape="rect" id="node1" title="Wrapper class for FMOD sounds." alt="" coords="47,5,170,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,89,107"/>
+<area shape="rect" id="node3" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="114,80,229,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="15,229,66,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="90,229,149,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="399,229,562,256"/>
+<area shape="rect" id="node7" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="177,155,259,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="301,229,375,256"/>
+<area shape="rect" id="node9" title=" " alt="" coords="173,229,277,256"/>
 </map>

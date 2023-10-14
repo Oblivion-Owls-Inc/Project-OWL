@@ -96,23 +96,27 @@ $(function() {
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">static</span> <a class="code" href="classComponent.html">Component</a>* <a class="code" href="classComponentFactory.html#aba36241b43f2fd733c3a1513ff0eb943">Create</a>( std::string key );</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">static</span> <a class="code" href="classComponent.html">Component</a>* <a class="code" href="classComponentFactory.html#acf3f687f031d3c16d860d17af7a58647">Create</a>( std::string <span class="keyword">const</span>&amp; key );</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">static</span> std::type_index GetTypeId( std::string typeName );</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">static</span> std::type_index GetTypeId( std::string <span class="keyword">const</span>&amp; typeName );</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">typename</span> ComponentType &gt;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">static</span> <a class="code" href="classComponent.html">Component</a>* Creator();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// A map of the component constructors.</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">static</span> std::map&lt;std::string, <a class="code" href="classComponent.html">Component</a>* (*)()&gt; componentCreators;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// A map of the component IDs.</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">static</span> std::map&lt;std::string, std::type_index&gt; componentTypes;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">static</span> std::map&lt; std::string, std::pair&lt; std::type_index, <a class="code" href="classComponent.html">Component</a>* (*)() &gt; &gt; <span class="keyword">const</span>&amp; GetComponentTypes() { <span class="keywordflow">return</span> s_ComponentTypes; }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">typename</span> ComponentType &gt;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">static</span> <a class="code" href="classComponent.html">Component</a>* Creator();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">typename</span> ComponentType &gt;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">static</span> __inline std::pair&lt; std::type_index, <a class="code" href="classComponent.html">Component</a>* (*)() &gt; ComponentInfo() {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">return</span> { <span class="keyword">typeid</span>( ComponentType ), Creator&lt; ComponentType &gt; };</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">static</span> std::map&lt; std::string, std::pair&lt; std::type_index, <a class="code" href="classComponent.html">Component</a>* (*)() &gt; &gt; <span class="keyword">const</span> s_ComponentTypes;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="ttc" id="aclassComponentFactory_html"><div class="ttname"><a href="classComponentFactory.html">ComponentFactory</a></div><div class="ttdef"><b>Definition:</b> ComponentFactory.h:29</div></div>
-<div class="ttc" id="aclassComponentFactory_html_aba36241b43f2fd733c3a1513ff0eb943"><div class="ttname"><a href="classComponentFactory.html#aba36241b43f2fd733c3a1513ff0eb943">ComponentFactory::Create</a></div><div class="ttdeci">static Component * Create(std::string key)</div><div class="ttdoc">Creates a component of a specified type.</div><div class="ttdef"><b>Definition:</b> ComponentFactory.cpp:35</div></div>
-<div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:19</div></div>
+<div class="ttc" id="aclassComponentFactory_html_acf3f687f031d3c16d860d17af7a58647"><div class="ttname"><a href="classComponentFactory.html#acf3f687f031d3c16d860d17af7a58647">ComponentFactory::Create</a></div><div class="ttdeci">static Component * Create(std::string const &amp;key)</div><div class="ttdoc">Creates a component of a specified type.</div><div class="ttdef"><b>Definition:</b> ComponentFactory.cpp:34</div></div>
+<div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

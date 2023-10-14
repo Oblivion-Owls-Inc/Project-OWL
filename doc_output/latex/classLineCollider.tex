@@ -2,20 +2,22 @@
 \label{classLineCollider}\index{LineCollider@{LineCollider}}
 
 
-Inheritance diagram for Line\+Collider\+:\nopagebreak
+Inheritance diagram for Line\+Collider\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=154pt]{classLineCollider__inherit__graph}
+\includegraphics[width=157pt]{classLineCollider__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Line\+Collider\+:\nopagebreak
+Collaboration diagram for Line\+Collider\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=154pt]{classLineCollider__coll__graph}
+\includegraphics[width=157pt]{classLineCollider__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -27,7 +29,9 @@ void \mbox{\hyperlink{classLineCollider_a271aa3c71dae3168474bb633b9da8fb4}{Add\+
 \begin{DoxyCompactList}\small\item\em Add a line segment to the line collider\textquotesingle{}s list. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classLineCollider_a72b38035f4199a2f1995b45adced9feb}\label{classLineCollider_a72b38035f4199a2f1995b45adced9feb}} 
 void {\bfseries Add\+Line\+Segment} (vec2 p0, vec2 p1)
-\end{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classLineCollider_a5a0822693ae9fa4c691403598a7a19df}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -65,6 +69,20 @@ new clone of component
 
 
 Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classLineCollider_a5a0822693ae9fa4c691403598a7a19df}\label{classLineCollider_a5a0822693ae9fa4c691403598a7a19df}} 
+\index{LineCollider@{LineCollider}!Inspector@{Inspector}}
+\index{Inspector@{Inspector}!LineCollider@{LineCollider}}
+\doxysubsubsection{\texorpdfstring{Inspector()}{Inspector()}}
+{\footnotesize\ttfamily void Line\+Collider\+::\+Inspector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. 
+
+see a list of the lines
+
+Reimplemented from \mbox{\hyperlink{classCollider_af04513587fb3aec142b96e79ad2551c3}{Collider}}.
 
 
 

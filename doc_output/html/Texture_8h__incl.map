@@ -1,4 +1,12 @@
 <map id="Source/Texture.h" name="Source/Texture.h">
-<area shape="rect" id="node1" title="Header for the OpenGL texture wrapper." alt="" coords="5,5,136,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="19,80,123,107"/>
+<area shape="rect" id="node1" title="Header for the OpenGL texture wrapper." alt="" coords="399,5,529,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="448,229,552,256"/>
+<area shape="rect" id="node3" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="244,80,359,107"/>
+<area shape="rect" id="node9" href="$Mesh_8h.html" title="Mesh class &#45; holds on to buffer/VAO references, draws their contents." alt="" coords="429,80,499,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="192,229,243,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="365,229,424,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,229,168,256"/>
+<area shape="rect" id="node7" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="261,155,342,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="267,229,341,256"/>
+<area shape="rect" id="node10" title=" " alt="" coords="469,155,531,181"/>
 </map>
