@@ -39,14 +39,14 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     template< class AssetType >
     void AssetLibrarySystem< AssetType >::LoadAssets( nlohmann::json const& data )
     {
-        for ( auto& assetData : data.GetObject() )
+        for ( auto& [ key, value ] : data.Items() )
         {
             // create and read the asset
             AssetType* asset = new AssetType();
-            Stream( assetData.value ).Read( asset );
+            Stream::Read( asset, value );
 
             // insert the asset into the map
-            AddAsset( assetData.name.GetString(), asset );
+            AddAsset( key, asset );
         }
     }
 

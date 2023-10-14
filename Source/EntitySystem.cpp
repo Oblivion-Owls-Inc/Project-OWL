@@ -84,10 +84,10 @@
     /// @param  entityData  the json object containing the entity data
     void EntitySystem::LoadEntities( nlohmann::json const& data )
     {
-        for ( auto& entityData : entityArray.GetArray() )
+        for ( int i = 0; i < data.size(); ++i )
         {
             Entity * entity = new Entity();
-            Stream( entityData ).Read( entity );
+            Stream::Read( entity, data[i] );
             m_Entities.push_back( entity );
         }
 

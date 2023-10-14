@@ -67,7 +67,7 @@
         template< int dimensionality >
         void ControlPoint< dimensionality >::readTime( nlohmann::json const& data )
         {
-            M_Value[ dimensionality ] = stream.Read<float>();
+            M_Value[ dimensionality ] = Stream::Read<float>( data );
         }
 
         /// @brief  reads the value of this ControlPoint
@@ -76,11 +76,7 @@
         template< int dimensionality >
         void ControlPoint< dimensionality >::readValue( nlohmann::json const& data )
         {
-            glm::vec< dimensionality, float > value = stream.Read< glm::vec< dimensionality, float > >();
-            for ( int i = 0; i < dimensionality; ++i )
-            {
-                M_Value[i] = value[i];
-            }
+            Stream::Read< dimensionality + 1, float >( &M_Value, data );
         }
 
         /// @brief  reads the derivative of this ControlPoint
@@ -89,7 +85,7 @@
         template< int dimensionality >
         void ControlPoint< dimensionality >::readDerivative( nlohmann::json const& data )
         {
-            M_Derivative = stream.Read< glm::vec< dimensionality, float > >();
+            M_Derivative = Stream::Read< dimensionality, float >( data );
         }
 
         /// @brief  map of the SceneSystem read methods
