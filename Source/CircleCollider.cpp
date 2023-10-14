@@ -32,7 +32,7 @@
 
     /// @brief  Reads the radius
     /// @param  stream  The json data to read from
-    void CircleCollider::readRadius( Stream stream )
+    void CircleCollider::readRadius( nlohmann::json const& data )
     {
         m_Radius = stream.Read<float>();
     }

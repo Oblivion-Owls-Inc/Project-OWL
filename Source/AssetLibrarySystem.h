@@ -18,7 +18,7 @@
 class BaseAssetLibrarySystem : public System
 {
 public:
-    virtual void LoadAssets( Stream data ) = 0;
+    virtual void LoadAssets( nlohmann::json const& data ) = 0;
 protected:
     BaseAssetLibrarySystem( std::string const& name ) :
         System( name )
@@ -44,7 +44,7 @@ private: // virtual override methods
 
     /// @brief  loads all assets of this AssetLibrary's type from JSON
     /// @param  data    the json data to load from
-    virtual void LoadAssets( Stream data ) override;
+    virtual void LoadAssets( nlohmann::json const& data ) override;
 
     virtual void DebugWindow() override;
 

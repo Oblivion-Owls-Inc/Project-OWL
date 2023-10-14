@@ -96,27 +96,27 @@ void TurretBehavior::FireBullet()
 	/// Todo: Make this actually work
 }
 
-void TurretBehavior::readFireRate(Stream jsonValue)
+void TurretBehavior::readFireRate( nlohmann::json const& data )
 {
 	m_FireRate = jsonValue.Read<float>();
 }
 
-void TurretBehavior::readRange(Stream jsonValue)
+void TurretBehavior::readRange( nlohmann::json const& data )
 {
 	m_Range = jsonValue.Read<float>();
 }
 
-void TurretBehavior::readBulletDamage(Stream jsonValue)
+void TurretBehavior::readBulletDamage( nlohmann::json const& data )
 {
 	m_BulletDamage = jsonValue.Read<float>();
 }
 
-void TurretBehavior::readBulletSpeed(Stream jsonValue)
+void TurretBehavior::readBulletSpeed( nlohmann::json const& data )
 {
 	m_BulletSpeed = jsonValue.Read<float>();
 }
 
-void TurretBehavior::readBulletSize(Stream jsonValue)
+void TurretBehavior::readBulletSize( nlohmann::json const& data )
 {
 	m_BulletSize = jsonValue.Read<float>();
 }

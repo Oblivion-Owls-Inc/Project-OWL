@@ -236,21 +236,21 @@
 
     /// @brief		  Clone this entity from an archetype.
     /// @param stream The json value to read from.
-    void Entity::readArchetype(Stream stream)
+    void Entity::readArchetype( nlohmann::json const& data )
     {
         *this = *AssetLibrary<Entity>()->GetAsset( stream.Read<std::string>() );
     }
 
     /// @brief		  Read in the name of entity.
     /// @param stream The json value to read from.
-    void Entity::readName(Stream stream)
+    void Entity::readName( nlohmann::json const& data )
     {
 	    m_Name = stream.Read<std::string>();
     }
 
     /// @brief		  Read in the data for all the components of entity.
     /// @param stream The json object to read from.
-    void Entity::readComponents(Stream stream)
+    void Entity::readComponents( nlohmann::json const& data )
     {
 	    for ( auto& componentData : stream.GetObject() )
 	    {

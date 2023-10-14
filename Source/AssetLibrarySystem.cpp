@@ -37,7 +37,7 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     /// @brief  loads all assets of this AssetLibrary's type from JSON
     /// @param  data    the json data to load from
     template< class AssetType >
-    void AssetLibrarySystem< AssetType >::LoadAssets( Stream data )
+    void AssetLibrarySystem< AssetType >::LoadAssets( nlohmann::json const& data )
     {
         for ( auto& assetData : data.GetObject() )
         {

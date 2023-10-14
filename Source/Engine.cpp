@@ -99,14 +99,14 @@
 
     /// @brief  reads the fixedFrameDuration
     /// @param  stream  the stream to read the data from
-    void Engine::readFixedFrameDuration( Stream stream )
+    void Engine::readFixedFrameDuration( nlohmann::json const& data )
     {
         m_FixedFrameDuration = stream.Read<float>();
     }
 
     /// @brief  reads the systems
     /// @param  stream  the stream to read the data from
-    void Engine::readSystems( Stream stream )
+    void Engine::readSystems( nlohmann::json const& data )
     {
         for ( auto& systemData : stream.GetObject() )
         {

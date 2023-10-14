@@ -93,14 +93,14 @@
 
     /// @brief  reads filepath
     /// @param  stream  the JSON data to read from
-    void Sound::readFilepath( Stream stream )
+    void Sound::readFilepath( nlohmann::json const& data )
     {
         m_Filepath = stream.Read<std::string>();
     }
 
     /// @brief  reads isLooping
     /// @param  stream  the JSON data to read from
-    void Sound::readIsLooping( Stream stream )
+    void Sound::readIsLooping( nlohmann::json const& data )
     {
         m_IsLooping = stream.Read<bool>();
     }

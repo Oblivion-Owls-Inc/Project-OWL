@@ -145,7 +145,7 @@ void Tilemap::updateMat()
 
 /// @brief          Read in the text this Tilemap displays
 /// @param  stream  The json to read from.
-void Tilemap::readTilemap(Stream stream)
+void Tilemap::readTilemap( nlohmann::json const& data )
 {
     for (auto& tileData : stream.GetArray())
     {

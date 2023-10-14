@@ -114,11 +114,11 @@ private:
 
     /// @brief            Read in the stride multiplier
     /// @param  stream    The json to read from.
-    void readStrideMultiplier(Stream stream);
+    void readStrideMultiplier( nlohmann::json const& data );
 
     /// @brief            Read in the amount of tiles per row
     /// @param  stream    The json to read from.
-    void readRowWidth(Stream stream);
+    void readRowWidth( nlohmann::json const& data );
 
     void afterLoad(Stream stream);
 

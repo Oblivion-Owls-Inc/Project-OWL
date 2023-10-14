@@ -169,42 +169,42 @@
 
     /// @brief reads the velocity from json
     /// @param data the json data
-    void RigidBody::readVelocity(Stream data)
+    void RigidBody::readVelocity( nlohmann::json const& data )
     {
 	    m_Velocity = data.Read< glm::vec2 >();
     }
 
     /// @brief reads the acceleration from json
     /// @param data the json data
-    void RigidBody::readAcceleration(Stream data)
+    void RigidBody::readAcceleration( nlohmann::json const& data )
     {
 	    m_Acceleration = data.Read< glm::vec2 >();
     }
 
     /// @brief reads the rotationalVelocity from json
     /// @param data the json data
-    void RigidBody::readRotationalVelocity(Stream data)
+    void RigidBody::readRotationalVelocity( nlohmann::json const& data )
     {
 	    m_RotationalVelocity = data.Read< float >();
     }
 
     /// @brief reads the inverseMass from json
     /// @param data the json data
-    void RigidBody::readMass(Stream data)
+    void RigidBody::readMass( nlohmann::json const& data )
     {
         m_Mass = data.Read<float>();
     }
 
     /// @brief reads the restitution from json
     /// @param data the json data
-    void RigidBody::readRestitution(Stream data)
+    void RigidBody::readRestitution( nlohmann::json const& data )
     {
         m_Restitution = data.Read<float>();
     }
 
     /// @brief reads the friction from json
     /// @param data the json data
-    void RigidBody::readFriction(Stream data)
+    void RigidBody::readFriction( nlohmann::json const& data )
     {
         m_Friction = data.Read<float>();
     }

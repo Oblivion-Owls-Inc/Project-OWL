@@ -223,39 +223,39 @@ glm::vec2 Sprite::calcUVoffset() const
 //-----------------------------------------------------------------------------
 
 /// @brief  reads the Texture of this Sprite
-/// @param  stream  the json data to read from
-void Sprite::readTexture( Stream stream )
+/// @param  data  the json data to read from
+void Sprite::readTexture( nlohmann::json const& data )
 {
-    m_Texture = AssetLibrary<Texture>()->GetAsset( stream.Read<std::string>() );
+    m_Texture = AssetLibrary<Texture>()->GetAsset( Stream::Read<std::string>( data ) );
     m_IsTextured = true;
 }
 
 /// @brief  reads the frame index of this Sprite
-/// @param  stream  the json data to read from
-void Sprite::readFrameIndex( Stream stream )
+/// @param  data  the json data to read from
+void Sprite::readFrameIndex( nlohmann::json const& data )
 {
-    m_FrameIndex = stream.Read<int>();
+    m_FrameIndex = Stream::Read<int>( data );
 }
 
 /// @brief        Read in the colour for a sprite.
-/// @param stream The json to read from.
-void Sprite::readColor( Stream stream )
+/// @param data The json to read from.
+void Sprite::readColor( nlohmann::json const& data )
 {
-    m_Color = stream.Read<glm::vec4>();
+    m_Color = Stream::Read<glm::vec4>( data );
 }
 
 /// @brief  Read in the opacity for a sprite.
-/// @param  stream  The json to read from.
-void Sprite::readOpacity( Stream stream )
+/// @param  data  The json to read from.
+void Sprite::readOpacity( nlohmann::json const& data )
 {
-    m_Opacity = stream.Read<float>();
+    m_Opacity = Stream::Read<float>( data );
 }
 
 /// @brief        Read in the layer for a sprite.
-/// @param stream The json to read from.
-void Sprite::readLayer( Stream stream )
+/// @param data The json to read from.
+void Sprite::readLayer( nlohmann::json const& data )
 {
-    int layer = stream.Read<int>();
+    int layer = Stream::Read<int>( data );
     m_Layer = std::max( 0, std::min( layer, 4 ) );
 }
 

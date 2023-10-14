@@ -72,11 +72,11 @@ private: // reading
 
     /// @brief  reads the filepath of the Texture
     /// @param  stream  the data to read from
-    void readFilepath( Stream stream );
+    void readFilepath( nlohmann::json const& data );
 
     /// @brief  reads the sheetDimension of the Texture
     /// @param  stream  the data to read from
-    void readSheetDimensions( Stream stream );
+    void readSheetDimensions( nlohmann::json const& data );
 
     /// @brief  gets called after reading all arugments 
     void AfterLoad();

@@ -76,7 +76,7 @@ void Texture::Bind(unsigned int slot) const
 
 /// @brief  reads the filepath of the Texture
 /// @param  stream  the data to read from
-void Texture::readFilepath( Stream stream )
+void Texture::readFilepath( nlohmann::json const& data )
 {
     m_Filepath = stream.Read<std::string>();
 }
@@ -84,7 +84,7 @@ void Texture::readFilepath( Stream stream )
 
 /// @brief  reads the sheetDimension of the Texture
 /// @param  stream  the data to read from
-void Texture::readSheetDimensions( Stream stream )
+void Texture::readSheetDimensions( nlohmann::json const& data )
 {
     m_SheetDimensions = stream.Read<glm::ivec2>();
 }

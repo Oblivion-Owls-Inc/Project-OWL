@@ -82,7 +82,7 @@
 
     /// @brief  loads all of the m_Entities in a scene
     /// @param  entityData  the json object containing the entity data
-    void EntitySystem::LoadEntities( Stream entityArray )
+    void EntitySystem::LoadEntities( nlohmann::json const& data )
     {
         for ( auto& entityData : entityArray.GetArray() )
         {

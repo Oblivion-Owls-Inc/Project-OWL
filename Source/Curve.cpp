@@ -65,7 +65,7 @@
         /// @tparam dimensionality  the number of dimensions this curve goes through
         /// @param  stream      the json data to read from
         template< int dimensionality >
-        void ControlPoint< dimensionality >::readTime( Stream stream )
+        void ControlPoint< dimensionality >::readTime( nlohmann::json const& data )
         {
             M_Value[ dimensionality ] = stream.Read<float>();
         }
@@ -74,7 +74,7 @@
         /// @tparam dimensionality  the number of dimensions this curve goes through
         /// @param  stream      the json data to read from
         template< int dimensionality >
-        void ControlPoint< dimensionality >::readValue( Stream stream )
+        void ControlPoint< dimensionality >::readValue( nlohmann::json const& data )
         {
             glm::vec< dimensionality, float > value = stream.Read< glm::vec< dimensionality, float > >();
             for ( int i = 0; i < dimensionality; ++i )
@@ -87,7 +87,7 @@
         /// @tparam dimensionality  the number of dimensions this curve goes through
         /// @param  stream      the json data to read from
         template< int dimensionality >
-        void ControlPoint< dimensionality >::readDerivative( Stream stream )
+        void ControlPoint< dimensionality >::readDerivative( nlohmann::json const& data )
         {
             M_Derivative = stream.Read< glm::vec< dimensionality, float > >();
         }
@@ -509,7 +509,7 @@
     /// @tparam dimensionality  the number of dimensions this curve goes through
     /// @param  stream      the json data to read from
     template< int dimensionality >
-    void Curve< dimensionality >::readInterpolationType( Stream stream )
+    void Curve< dimensionality >::readInterpolationType( nlohmann::json const& data )
     {
         m_InterpolationType = (InterpolationType)stream.Read<int>();
     }
@@ -518,7 +518,7 @@
     /// @tparam dimensionality  the number of dimensions this curve goes through
     /// @param  stream  the json data to read from
     template< int dimensionality >
-    void Curve< dimensionality >::readIsLooping( Stream stream )
+    void Curve< dimensionality >::readIsLooping( nlohmann::json const& data )
     {
         m_IsLooping = stream.Read<bool>();
     }
@@ -527,7 +527,7 @@
     /// @tparam dimensionality  the number of dimensions this curve goes through
     /// @param  stream  the json data to read from
     template< int dimensionality >
-    void Curve< dimensionality >::readControlPoints( Stream stream )
+    void Curve< dimensionality >::readControlPoints( nlohmann::json const& data )
     {
         m_ControlPoints.clear();
         for ( auto& pointData : stream.GetArray() )

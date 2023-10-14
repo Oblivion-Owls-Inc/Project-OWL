@@ -185,7 +185,7 @@ void TilemapSprite::initInstancingStuff()
 
 /// @brief            Read in the stride multiplier
 /// @param  stream    The json to read from.
-void TilemapSprite::readStrideMultiplier(Stream stream)
+void TilemapSprite::readStrideMultiplier( nlohmann::json const& data )
 {
     m_StrideMult = stream.Read<glm::vec2>();
 }
@@ -193,7 +193,7 @@ void TilemapSprite::readStrideMultiplier(Stream stream)
 
 /// @brief            Read in the amount of tiles per row
 /// @param  stream    The json to read from.
-void TilemapSprite::readRowWidth(Stream stream)
+void TilemapSprite::readRowWidth( nlohmann::json const& data )
 {
     m_RowWidth = stream.Read<int>();
 }

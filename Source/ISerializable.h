@@ -10,12 +10,11 @@
 
 #include <map>
 #include <string>
-#include "rapidjson/document.h"
 
 #include "Stream.h"
 
 template < typename T >
-using ReadMethod = void (T::*)( Stream value );
+using ReadMethod = void (T::*)( nlohmann::json const& json );
 
 template < typename T >
 using ReadMethodMap = std::map< std::string, ReadMethod< T > >;
@@ -40,7 +39,7 @@ public: // virtual methods
 
     /// @brief  writes this object to json
     /// @return the json data of this object
-    virtual rapidjson::Value Write() const { return {}; }
+    virtual nlohmann::json Write() const { return {}; }
 
 //-----------------------------------------------------------------------------
 };

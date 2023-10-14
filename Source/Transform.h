@@ -152,19 +152,19 @@ private: // reading
 
     /// @brief  reads the translation
     /// @param  jsonValue   the json data to read from
-    void readTranslation( Stream jsonValue );
+    void readTranslation( nlohmann::json const& data );
 
     /// @brief  reads the rotation
     /// @param  jsonValue   the json data to read from
-    void readRotation( Stream jsonValue );
+    void readRotation( nlohmann::json const& data );
 
     /// @brief  reads the scale
     /// @param  jsonValue   the json data to read from
-    void readScale( Stream jsonValue );
+    void readScale( nlohmann::json const& data );
 
     /// @brief  reads the isDiagetic flag
     /// @param  jsonValue   the json data to read from
-    void readIsDiegetic( Stream jsonValue );
+    void readIsDiegetic( nlohmann::json const& data );
 
     /// @brief  called after finished reading
     virtual void AfterLoad() override;

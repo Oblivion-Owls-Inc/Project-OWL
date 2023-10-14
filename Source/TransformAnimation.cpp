@@ -127,28 +127,28 @@
 
     /// @brief  reads the ScaleCurve
     /// @param  stream the json data to read from
-    void TransformAnimation::readScaleCurve( Stream stream )
+    void TransformAnimation::readScaleCurve( nlohmann::json const& data )
     {
         stream.Read( &m_ScaleCurve );
     }
 
     /// @brief  reads the OffsetCurve
     /// @param  stream the json data to read from
-    void TransformAnimation::readOffsetCurve( Stream stream )
+    void TransformAnimation::readOffsetCurve( nlohmann::json const& data )
     {
         stream.Read( &m_OffsetCurve );
     }
 
     /// @brief  reads the RotationCurve
     /// @param  stream the json data to read from
-    void TransformAnimation::readRotationCurve( Stream stream )
+    void TransformAnimation::readRotationCurve( nlohmann::json const& data )
     {
         stream.Read( &m_RotationCurve );
     }
 
     /// @brief  reads the SkewCurve
     /// @param  stream the json data to read from
-    void TransformAnimation::readSkewCurve( Stream stream )
+    void TransformAnimation::readSkewCurve( nlohmann::json const& data )
     {
         stream.Read( &m_SkewCurve );
     }

@@ -229,28 +229,28 @@
 
     /// @brief		  Read from a JSON the frame index.
     /// @param stream The JSON to read from.
-    void Animation::readFrameIndex(Stream stream)
+    void Animation::readFrameIndex( nlohmann::json const& data )
     {
 	    m_FrameIndex = stream.Read<unsigned>();
     }
 
     /// @brief		  Read from JSON the frame count.
     /// @param stream The JSON to read from.
-    void Animation::readFrameDelay(Stream stream)
+    void Animation::readFrameDelay( nlohmann::json const& data )
     {
 	    m_FrameDelay = stream.Read<float>();
     }
 
     /// @brief		  Read from JSON is the animation running.
     /// @param stream The JSON to read from.
-    void Animation::readIsRunning(Stream stream)
+    void Animation::readIsRunning( nlohmann::json const& data )
     {
 	    m_IsRunning = stream.Read<bool>();
     }
 
     /// @brief  reads the animation asset this Animation is using
     /// @param  stream  the json data to read from
-    void Animation::readAnimation( Stream stream )
+    void Animation::readAnimation( nlohmann::json const& data )
     {
         m_Asset = AssetLibrary< AnimationAsset >()->GetAsset( stream.Read<std::string>() );
     }

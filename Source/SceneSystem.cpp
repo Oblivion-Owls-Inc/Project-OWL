@@ -105,14 +105,14 @@
 
     /// @brief  reads the base scene path
     /// @param  stream  the data to read from
-    void SceneSystem::readBaseScenePath( Stream stream )
+    void SceneSystem::readBaseScenePath( nlohmann::json const& data )
     {
         m_BaseScenePath = stream.Read<std::string>();
     }
 
     /// @brief  reads the next scene name
     /// @param  stream  the data to read from
-    void SceneSystem::readNextSceneName( Stream stream )
+    void SceneSystem::readNextSceneName( nlohmann::json const& data )
     {
         m_NextSceneName = stream.Read<std::string>();
     }
@@ -129,7 +129,7 @@
 
     /// @brief  reads the assets in a Scene
     /// @param  stream  the data to read from
-    void SceneSystem::Scene::readAssets( Stream stream )
+    void SceneSystem::Scene::readAssets( nlohmann::json const& data )
     {
         for ( auto& assetTypeData : stream.GetObject() )
         {
@@ -148,7 +148,7 @@
 
     /// @brief  reads the entities in a Scene
     /// @param  stream  the data to read from
-    void SceneSystem::Scene::readEntities( Stream stream )
+    void SceneSystem::Scene::readEntities( nlohmann::json const& data )
     {
         EntitySystem::GetInstance()->LoadEntities( stream );
     }

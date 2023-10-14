@@ -109,7 +109,7 @@ private:
 
     /// @brief  Read in the text this Tilemap displays
     /// @param  stream  The json to read from.
-    void readTilemap(Stream stream);
+    void readTilemap( nlohmann::json const& data );
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Tilemap > const s_ReadMethods;

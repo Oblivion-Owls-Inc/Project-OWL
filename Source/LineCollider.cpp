@@ -51,14 +51,14 @@ void LineCollider::Inspector()
 
 /// @brief		  Read in the number of line segements to create.
 /// @param stream The json data to read from.
-void LineCollider::ReadNumLineSegments(Stream stream)
+void LineCollider::readNumLineSegments( nlohmann::json const& data )
 {
     m_NumSegments = stream.Read<unsigned int>();
 }
 
 /// @brief		  Read in the data for the line vectors.
 /// @param stream The json data to read from.
-void LineCollider::ReadLineVectors(Stream stream)
+void LineCollider::readLineVectors( nlohmann::json const& data )
 {
     // Create and add as many line segments as possible.
     for(size_t i = 0; i < m_NumSegments; i++)

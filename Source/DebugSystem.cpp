@@ -237,12 +237,12 @@ void DebugSystem::ImguiStartFrame()
 
     /// @brief          reads whether to show the FPS window
     /// @param stream   the data to read from
-    void DebugSystem::readShowFpsWindow( Stream stream )
+    void DebugSystem::readShowFpsWindow( nlohmann::json const& data )
     {
         m_ShowFpsWindow = stream.Read<bool>();
     }
 
-    void DebugSystem::readShowDebugWindow(Stream stream)
+    void DebugSystem::readShowDebugWindow( nlohmann::json const& data )
     {
 		m_ShowDebugWindow = stream.Read<bool>();
     }

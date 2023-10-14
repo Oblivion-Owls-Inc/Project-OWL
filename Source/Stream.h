@@ -13,11 +13,12 @@
 // Include Files
 //------------------------------------------------------------------------------
 
-#include <rapidjson/document.h>  // rapidjson::Document, Parse, HasParseError, GetParseError
 #include <string>      // std::string
-#include <fstream>     // std::ifstream
-#include <glm/glm.hpp> // glm::vec3
 #include <map>
+
+#include <glm/glm.hpp> // glm::vec3
+
+#include <nlohmann/json.hpp>
 
 //------------------------------------------------------------------------------
 // Forward references
@@ -30,99 +31,58 @@ class ISerializable;
 //------------------------------------------------------------------------------
 class Stream
 {
+//------------------------------------------------------------------------------
 public: // static methods
+//------------------------------------------------------------------------------
 
-	/// @brief		  Opens and parses a json document.
-	/// @param name   Name of the file to read from.
-	/// @return		  rapidjson document.
-	static rapidjson::Document ReadFromJSON(const std::string& name);               
+	/// @brief	Opens and parses a json document.
+	/// @param  filepath    name of the file to read from.
+	/// @return	the parsed json data
+	static nlohmann::json ReadFromFile( std::string const& filepath );
 
-public: // constructor
+    /// @brief  Writes json data to a file
+    /// @param  filepath    the path of the file to write to
+    /// @param  json        the json data to write to the file
+    static void WriteToFile( std::string const& filepath, nlohmann::json const& json );
 
-	/// @brief			Creates a Stream wrapper of the root object in a 
-	///					json document.
-	/// @param document The json document.
-	Stream( rapidjson::Document const& document );
 
-	/// @brief		 Creates a stream wrapper from a json value.
-	/// @param value The json value
-	Stream( rapidjson::Value const& value );
+    /// @brief  reads a basic type from json
+    /// @tparam ValueType   the type to read
+    /// @param  json        the json data to read from
+    /// @return the read data
+    template< typename ValueType >
+    static ValueType Read( nlohmann::json const& json );
 
-public: // acessors
+    /// @brief  reads a basic type from json
+    /// @tparam ValueType   the type to read
+    /// @param  value       pointer to where to store the read data
+    /// @param  json        the json data to read from
+    template< typename ValueType >
+    static void Read( ValueType* value, nlohmann::json const& json );
 
-	/// @brief  Gets the rapidjson value as an object
-	/// @return The rapidjson value
-	rapidjson::GenericObject< true, rapidjson::Value > const& GetObject() const;
 
-    /// @brief  Gets the rapidjson value as an object
-    /// @return The rapidjson value
-    rapidjson::GenericArray< true, rapidjson::Value > const& GetArray() const;
+    /// @brief  reads a serializable object from json
+    /// @param  object  the object to read from json
+    /// @param  json    the json data to read from
+    template<>
+    static void Read< ISerializable >( ISerializable* object, nlohmann::json const& json );
 
-	/// @brief	  Reads a basic type from a json value
-	/// @tparam T The type to read
-	/// @return	  The value from the json
-	template < typename T >
-	T Read() const;
 
-    /// @brief  Reads an int from a json value
-    /// @return The value from the json
-    template <>
-    int Read<int>() const;
+    /// @brief  reads a glm vector from json
+    /// @tparam size        the size of the vector
+    /// @tparam ValueType   the value type of the vector
+    /// @param  json        the json data to read from
+    /// @return the read vector
+    template< int size, typename ValueType >
+    static glm::vec< size, ValueType > Read( nlohmann::json const& json );
 
-	/// @brief  Reads an int from a json value
-	/// @return The value from the json
-	template <>
-	bool Read<bool>() const;
+    /// @brief  reads a glm vector from json
+    /// @tparam size        the size of the vector
+    /// @tparam ValueType   the value type of the vector
+    /// @param  value       the vector to read into
+    /// @param  json        the json data to read from
+    template< int size, typename ValueType >
+    static void Read( glm::vec< size, ValueType >* value, nlohmann::json const& json );
 
-	/// @brief  Reads a basic type from a json value
-	/// @return The value from the json
-	template <>
-	unsigned int Read<unsigned int>() const;
-
-    /// @brief  Reads a float from a json value
-    /// @return The value from the json
-    template <>
-    float Read<float>() const;
-
-    /// @brief  Reads a string from a json value
-    /// @return The value from the json
-    template <>
-    std::string Read<std::string>() const;
-
-    /// @brief  Reads a vec1 from a json value
-    /// @return The value from the json
-    template <>
-    glm::vec1 Read<glm::vec1>() const;
-
-    /// @brief  Reads a vec2 from a json value
-    /// @return The value from the json
-    template <>
-    glm::vec2 Read<glm::vec2>() const;
-
-    /// @brief  Reads a vec3 from a json value
-    /// @return The value from the json
-    template <>
-    glm::vec3 Read<glm::vec3>() const;
-
-	/// @brief  Reads a vec4 from a json value
-	/// @return The value from the json
-	template <>
-	glm::vec4 Read<glm::vec4>() const;
-
-    /// @brief  Reads an ivec2 from a json value
-    /// @return The value from the json
-    template <>
-    glm::ivec2 Read<glm::ivec2>() const;
-
-public: // methods
-
-	/// @brief  Reads data into an existing complex type
-	/// @param  object  the oject to read data into
-	void Read( ISerializable* object );
-
-private: // member variables
-
-	/// @brief The json value containing the data to read
-	rapidjson::Value const& value;
-
+//------------------------------------------------------------------------------
 };
