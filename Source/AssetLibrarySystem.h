@@ -56,6 +56,11 @@ public: // public functions
     /// @return the constructed or found asset
     AssetType const* GetAsset( std::string const& name ) const;
 
+    /// @brief Finds an returns the name of the specified asset.
+    /// @param asset The asset to search for.
+    /// @return The name of the asset.
+    std::string const& GetAssetName(AssetType* asset) const;
+
     /// @brief  Adds an asset to the AssetLibrary
     /// @param  name    the name of the asset to add
     /// @param  asset   the asset to add

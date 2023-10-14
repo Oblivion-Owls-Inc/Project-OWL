@@ -181,7 +181,7 @@ public: // writing
     template< int size, typename ValueType >
     nlohmann::ordered_json Stream::Write( glm::vec< size, ValueType > const& value )
     {
-        nlohmann::json json;
+        nlohmann::ordered_json json;
         json.array( value );
         return json;
     }
