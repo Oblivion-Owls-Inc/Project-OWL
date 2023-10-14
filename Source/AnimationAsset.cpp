@@ -1,79 +1,71 @@
-/*****************************************************************//**
- * \file   Animation.cpp
- * \brief  animation component implimentation
- * 
- * \author Tyler Birdsall (tyler.birdsall@digipen.edu)
- * \date   September 2023
- *********************************************************************/
+/// @file       AnimationAsset.cpp
+/// @author     Tyler Birdsall (tyler.birdsall@digipen.edu)
+/// @brief      Asset that contains information about a spritesheet animation
+/// @version    0.1
+/// @date       September 2023
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
-#include "Animation.h"
-#include "Sprite.h"
-#include "Behavior.h"
-#include "Entity.h"
 #include "AnimationAsset.h"
 
- /// @brief	Default constructor
-AnimationAsset::AnimationAsset()
-{
-	m_FrameStart = 0;
-	m_FrameEnd = 0;
-	m_Duration = 0.0f;
-	m_Looping = false;
-}
+//-----------------------------------------------------------------------------
+// public: constructor
+//-----------------------------------------------------------------------------
 
-/// @brief	Gets the start frame of the animation
-/// @return	Start frame of the animation
-const unsigned AnimationAsset::GetStart() const
-{
-	return m_FrameStart;
-}
+     /// @brief	Default constructor
+    AnimationAsset::AnimationAsset() :
+	    m_Start( 0 ),
+	    m_End( 1 ),
+	    m_FrameDuration( 1.0f / 12.0f ),
+	    m_IsLooping( false )
+    {}
 
-/// @brief	Sets a new start frame
-/// @param	New start frame to set
-void AnimationAsset::SetStart(unsigned newStart)
-{
-	m_FrameStart = newStart;
-}
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
 
-/// @brief	Gets the end frame of the animation
-/// @return End frame of the animation
-const unsigned AnimationAsset::GetEnd() const
-{
-	return m_FrameEnd;
-}
+    /// @brief  reads the start frame index of this Animation
+    /// @param  stream  the json data to read from
+    void AnimationAsset::readStart( Stream stream )
+    {
+        m_Start = stream.Read<int>();
+    }
 
-/// @brief	Sets a new end frame
-/// @param	New end frame to set
-void AnimationAsset::SetEnd(unsigned newEnd)
-{
-	m_FrameEnd = newEnd;
-}
+    /// @brief  reads the end frame index of this Animation
+    /// @param  stream  the json data to read from
+    void AnimationAsset::readEnd( Stream stream )
+    {
+        m_End = stream.Read<int>();
+    }
 
-/// @brief	Gets the duration of the animation
-/// @return	Duration of the animation
-const float AnimationAsset::GetDuration() const
-{
-	return m_Duration;
-}
+    /// @brief  reads the frame duration of this Animation
+    /// @param  stream  the json data to read from
+    void AnimationAsset::readFrameDuration( Stream stream )
+    {
+        m_FrameDuration = stream.Read<float>();
+    }
 
-/// @brief	Sets a new duration
-/// @param	New duration to set
-void AnimationAsset::SetDuration(float newDuration)
-{
-	m_Duration = newDuration;
-}
+    /// @brief  reads the frame rate of this Animation
+    /// @param  stream  the json data to read from
+    void AnimationAsset::readFrameRate( Stream stream )
+    {
+        m_FrameDuration = 1.0f / stream.Read<float>();
+    }
 
-/// @brief	Gets if the animation is looping
-/// @return	Looping status of the animation
-const bool AnimationAsset::GetLooping() const
-{
-	return	m_Looping;
-}
+    /// @brief  reads the whether this Animation is looping
+    /// @param  stream  the json data to read from
+    void AnimationAsset::readIsLooping( Stream stream )
+    {
+        m_IsLooping = stream.Read<bool>();
+    }
 
-/// @brief	Sets a new looping status
-/// @param	New looping status to set
-void AnimationAsset::SetLooping(bool newLooping)
-{
-	m_Looping = newLooping;
-}
+    /// @brief  map of the SceneSystem read methods
+    ReadMethodMap< AnimationAsset > const AnimationAsset::s_ReadMethods = {
+        { "Start"        , &readStart         },
+        { "End"          , &readEnd           },
+        { "FrameDuration", &readFrameDuration },
+        { "FrameRate"    , &readFrameRate     },
+        { "IsLooping"    , &readIsLooping     }
+    };
 
+//-----------------------------------------------------------------------------

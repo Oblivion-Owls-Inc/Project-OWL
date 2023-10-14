@@ -1,62 +1,115 @@
-/*****************************************************************//**
- * \file   AnimationAsset.h
- * \brief  animation Asset class
- * 
- * \author Tyler Birdsall (tyler.birdsall@digipen.edu)
- * \date   September 2023
- *********************************************************************/
+/// @file       AnimationAsset.h
+/// @author     Tyler Birdsall (tyler.birdsall@digipen.edu)
+/// @brief      Asset that contains information about a spritesheet animation
+/// @version    0.1
+/// @date       September 2023
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #pragma once
 
-#include "Sprite.h"
-#include "Behavior.h"
-#include "Animation.h"
+#include "ISerializable.h"
 
-class AnimationAsset
+class AnimationAsset : public ISerializable
 {
 //-----------------------------------------------------------------------------
-public: // public functions
+public: // constructor
 //-----------------------------------------------------------------------------
 
-	/// @brief	Default constructor
+	/// @brief	constructor
 	AnimationAsset();
 
-	/// @brief	Gets the start frame of the animation
-	/// @return	Start frame of the animation
-	const unsigned GetStart() const;
-	/// @brief	Sets a new start frame
-	/// @param	New start frame to set
-	void SetStart(unsigned newStart);
+    /// @brief  destructor
+    ~AnimationAsset() = default;
 
-	/// @brief	Gets the end frame of the animation
-	/// @return End frame of the animation
-	const unsigned GetEnd() const;
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
 
-	/// @brief	Sets a new end frame
-	/// @param	New end frame to set
-	void SetEnd(unsigned newEnd);
+	/// @brief	gets the start frame of the animation
+	/// @return	start frame of the animation
+	unsigned GetStart() const { return m_Start; }
+	/// @brief	sets a new start frame
+	/// @param	start   start frame to set
+	void SetStart( unsigned start ) { m_Start = start; }
 
-	/// @brief	Gets the duration of the animation
-	/// @return	Duration of the animation
-	const float GetDuration() const;
+	/// @brief	gets the end frame of the animation
+	/// @return end frame of the animation
+	unsigned GetEnd() const { return m_End; }
+	/// @brief	sets a new end frame
+	/// @param	end end frame to set
+	void SetEnd( unsigned end ) { m_End = end; }
 
-	/// @brief	Sets a new duration
-	/// @param	New duration to set
-	void SetDuration(float newDuration);
+	/// @brief	gets the duration of each frame of animation
+	/// @return	duration of each frame
+	float GetFrameDuration() const { return m_FrameDuration; }
+	/// @brief	sets a new frame duration
+	/// @param	frameDuration   frame duration to set
+	void SetFrameDuration( float frameDuration ) { m_FrameDuration = frameDuration; }
 
 	/// @brief	Gets if the animation is looping
 	/// @return	Looping status of the animation
-	const bool GetLooping() const;
-
+	bool GetIsLooping() const { return m_IsLooping; }
 	/// @brief	Sets a new looping status
 	/// @param	New looping status to set
-	void SetLooping(bool newLopping);
+	void SetIsLooping( bool isLooping ) { m_IsLooping = isLooping; }
 
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+
+    // TODO: move this into a base class
+    void Inspect() {}
+    
 //-----------------------------------------------------------------------------
 private: // private variables
 //-----------------------------------------------------------------------------	
-	unsigned m_FrameStart;
-	unsigned m_FrameEnd;
-	float m_Duration;
-	bool m_Looping;
+
+	/// @brief  the start frame index of the animation
+	unsigned m_Start;
+
+	/// @brief  the end frame index of the animation
+	unsigned m_End;
+
+	/// @brief  how long each frame lasts
+	float m_FrameDuration;
+
+	/// @brief  whether this animation loops
+	bool m_IsLooping;
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief  reads the start frame index of this Animation
+    /// @param  stream  the json data to read from
+    void readStart( Stream stream );
+
+    /// @brief  reads the end frame index of this Animation
+    /// @param  stream  the json data to read from
+    void readEnd( Stream stream );
+
+    /// @brief  reads the frame duration of this Animation
+    /// @param  stream  the json data to read from
+    void readFrameDuration( Stream stream );
+
+    /// @brief  reads the frame rate of this Animation
+    /// @param  stream  the json data to read from
+    void readFrameRate( Stream stream );
+
+    /// @brief  reads the whether this Animation is looping
+    /// @param  stream  the json data to read from
+    void readIsLooping( Stream stream );
+
+    /// @brief  map of the SceneSystem read methods
+    static ReadMethodMap< AnimationAsset > const s_ReadMethods;
+
+    /// @brief  gets the AnimationAsset read method map
+    /// @return the read method map
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
+
+//-----------------------------------------------------------------------------	
 };

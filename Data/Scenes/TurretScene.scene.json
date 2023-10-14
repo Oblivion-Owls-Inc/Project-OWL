@@ -69,6 +69,14 @@
                 }
             }
         },
+        "Animations": {
+            "TurretSpin": {
+                "Start": 0,
+                "End": 19,
+                "FrameRate": 8,
+                "IsLooping": false
+            }
+        },
         "Archetypes": {
             "Ball": {
                 "Name": "Ball",
@@ -97,11 +105,9 @@
                     "Layer": 1
                 },
                 "Animation": {
-                    "frameStart": 0,
-                    "frameCount": 19,
-                    "frameDuration": 0.13,
-                    "isLooping": false,
-                    "isRunning": true
+                    "FrameIndex": 0,
+                    "IsRunning": true,
+                    "Animation": "TurretSpin"
                 },
                 "Transform": {
                     "translation": [ -4, 1, 0 ],

@@ -36,11 +36,11 @@ public: // virtual override methods
 //-----------------------------------------------------------------------------
 
     /// @brief Default constructor for the RigidBody class.
-    virtual void OnInit();
+    virtual void OnInit() override;
 
     /// @brief  called when this Component's Entity is removed from the Scene
     /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
-    virtual void OnExit();
+    virtual void OnExit() override;
 
     /// @brief Update method called per frame.
     /// @param dt The time elapsed since the last frame.
@@ -48,11 +48,6 @@ public: // virtual override methods
 
     /// @brief Fixed update method called at a fixed time step.
     virtual void OnFixedUpdate() override;
-
-    /// @brief  Called whenever a Collider on this Behavior's Entity collides
-    /// @param  other           the entity that was collided with
-    /// @param  collisionData   additional data about the collision
-    virtual void OnCollision( Entity* other, CollisionData const& collisionData ) override;
 
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() override;
@@ -126,6 +121,14 @@ public: // accessors
     /// @note   SHOULD ONLY BE CALLED BY RigidBody::OnCollision();
     __inline void SetCollisionResolved( bool collisionResolved ) { m_CollisionResolved = collisionResolved; }
 
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  Called whenever a Collider on this Behavior's Entity collides
+    /// @param  other           the entity that was collided with
+    /// @param  collisionData   additional data about the collision
+    void OnCollision( Entity* other, CollisionData const& collisionData );
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -194,6 +197,9 @@ private: // member variables
 
     /// @brief flag of whether a collision between two rigidBodies has already been resolved;
     bool m_CollisionResolved;
+
+    /// @brief  handle of this RigidBody's OnCollision callback
+    unsigned m_OnCollisionCallbackHandle;
 
 
 //-----------------------------------------------------------------------------

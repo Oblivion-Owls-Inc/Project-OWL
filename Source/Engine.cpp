@@ -172,6 +172,7 @@
         { "AssetLibrarySystem<Sound>",          &addSystem< AssetLibrarySystem< Sound > >           },
         { "AssetLibrarySystem<Texture>",        &addSystem< AssetLibrarySystem< Texture > >         },
         { "AssetLibrarySystem<TransformAnimation>",&addSystem< AssetLibrarySystem< TransformAnimation > > },
+        { "AssetLibrarySystem<AnimationAsset>", &addSystem< AssetLibrarySystem< AnimationAsset > >  },
         { "SandboxSystem",                      &addSystem< SandboxSystem >                         }
     };
 

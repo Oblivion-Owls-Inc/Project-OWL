@@ -8,151 +8,178 @@
 
 #pragma once
 
-#include "Sprite.h"
 #include "Behavior.h"
+
 #include "AnimationAsset.h"
-#include "stream.h"
+
+#include <functional>
+
+class Sprite;
 
 class Animation : public Behavior
 {
 //-----------------------------------------------------------------------------
-public: // public functions
+public: // constructor / destructor
 //-----------------------------------------------------------------------------
 	
 	/// @brief	Defualt constructor
 	Animation();
 
 	/// @brief	Default Destructor
-	~Animation();
-	
+	~Animation() = default;
+
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  starts playing an Animation
+    /// @param  assetName   the AnimationAsset to play
+    void Play( std::string const& assetName );
+
+    /// @brief  starts playing an Animation
+    /// @param  asset   the AnimationAsset to play
+    void Play( AnimationAsset const* asset );
+
+    /// @brief  starts playing this Animation
+    void Play();
+
+    /// @brief  pauses the current animation
+    void Pause() { m_IsRunning = false; }
+
+    /// @brief  how much longer until the current animation is done playing
+    /// @return the amount of remaining time
+    float GetRemainingTime() const;
+
+    /// @brief  adds a callback function to be called when the animation completes
+    /// @param  callback    the function to be called when the animation completes
+    /// @return a handle to the created callback
+    /// @note   YOU MUST CLEAR THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
+    /// @note   the callback will be called every time the animation completes (but not each time it loops)
+    unsigned AddOnAnimationCompleteCallback( std::function< void() > callback );
+
+    /// @brief  removes a callback function to be called when the animation completes
+    /// @param  callbackHandle  the handle of the callback to remove
+    void RemoveOnAnimationCompleteCallback( unsigned callbackHandle );
+
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
 	/// @brief	Gets the frame index of the animation
+    /// @param  relative    if true, return the index relative to the start of the current animation
 	/// @return	Frame index of the animation
-	const unsigned GetIndex() const;
-
+    unsigned GetIndex( bool relative = true ) const;
 	/// @brief	Sets a new frame index
-	/// @param	New frame index to set
-	void SetIndex(unsigned newIndex);
+    /// @param  relative    if true, set the index relative to the start of the current animation
+	/// @param	index       frame index to set
+	void SetIndex( unsigned index, bool relative = true );
 
-	/// @brief	Gets the frame count of the animation
-	/// @return	Frame count of the animation
-	const unsigned GetCount() const;
-
-	/// @brief	Sets a new frame count
-	/// @param	New frame count to set
-	void SetCount(unsigned newCount);
-
-	/// @brief	Gets the frame delay of the animation
-	/// @return	Frame delay of the animation
-	const float GetDelay() const;
-
+	/// @brief	Gets the amount of time until the frame changes
+	/// @return	the amount of time until the frame next changes
+    float GetDelay() const;
 	/// @brief	Sets a new frame delay
-	/// @param	New frame delay to set
-	void SetDelay(float newDelay);
-
-	/// @brief	Gets the frame duration of the animation
-	/// @return	Frame duration of the animation
-	const float GetDuration() const;
-
-	/// @brief	Sets a new frame duration
-	/// @param	New frame duration to set
-	void SetDuration(float newDuration);
+	/// @param	delay   frame delay to set
+	void SetDelay( float delay );
 
 	/// @brief	Gets the running status of the animation
 	/// @return	Running status of the animation
-	const bool GetRunning() const;
-
+    bool GetRunning() const;
 	/// @brief	Sets a new running status
-	/// @param	New running status to set
-	void SetRunning(bool newRunning);
-
-	/// @brief	Gets the looping status of the animation
-	/// @return	Looping status of the animation
-	const bool GetLooping() const;
-
-	/// @brief	Sets a new looping status
-	/// @param	New looping status to set
-	void SetLooping(bool newLooping);
-
-	/// @brief	Gets if the animation is done
-	/// @return	done of the animation
-	const bool GetDone() const;
-
-	/// @brief	Sets a new done status
-	/// @param	New done status to set
-	void SetDone(bool newDone);
+	/// @param	running running status to set
+	void SetRunning( bool running );
 
 	/// @brief	Gets the current animation asset
 	/// @return	The asset currently connected
-	const AnimationAsset* GetAsset() const;
-
-	/// @brief	Sets a new animation asset
-	/// @brief	this and animation play can change
-	/// @brief	the current animation without
-	///	@brief	having to swap the sprite sheet
-	/// @brief	or other information
-	/// @param	New animation asset to set
-	void SetAsset(AnimationAsset* newAsset);
-
-	/// @brief	Sets the animation to play
-	/// @brief	this should only be played
-	/// @brief	when you want to start,
-	/// @brief	this is not an update call
-	void AnimationPlay();
-
-	
+	AnimationAsset const* GetAsset() const;
+	/// @brief	Sets the animation asset this Animation Component is using
+	/// @param	asset   animation asset to set
+	void SetAsset( AnimationAsset const* asset );
 
 //-----------------------------------------------------------------------------
-private: // overrides
+private: // virtual override methods
 //-----------------------------------------------------------------------------
 
-	/// @brief	Clones an animation
-	/// @return New animation copy
-	virtual Component* Behavior::Clone() const override;
+    /// @brief  gets called once when entering the scene
+    virtual void OnInit() override;
+
+    /// @brief  gets called once when exiting the scene
+    virtual void OnExit() override;
 
 	/// @brief	updates animation
-	/// @param	dt
+	/// @param	dt  the time since the last graphics frame
 	virtual void OnUpdate(float dt) override;
+
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
+
+    /// @brief  the sprite that this Animation Component is animating
+    Sprite* m_Sprite;
+
+    /// @brief  the animation asset this Animation Component is using
+    AnimationAsset const* m_Asset;
+
+    /// @brief  the current frame index
+    unsigned m_FrameIndex;
+    
+    /// @brief  how long until the next frame
+    float m_FrameDelay;
+
+    /// @brief  whether the animation is currenty running
+    bool m_IsRunning;
+
+    /// @brief  callbacks which gets called when the current animation finishes playing
+    std::map< unsigned,  std::function< void() > > m_OnAnimationCompleteCallbacks;
+
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  advances the frame of this Animation
+    void AdvanceFrame();
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
-	void ReadFrameIndex(Stream stream);
-	void ReadFrameStart(Stream stream);
-	void ReadFrameCount(Stream stream);
-	void ReadFrameDelay(Stream stream);
-	void ReadFrameDuration(Stream stream);
-	void ReadIsRunning(Stream stream);
-	void ReadIsLooping(Stream stream);
+	/// @brief  reads the current frame of this Animation (non-relative)
+	/// @param  stream  the json data to read from
+	void readFrameIndex( Stream stream );
 
-	// A map of all the read methods for animation component.
+    /// @brief  reads the frame delay of this Animation
+    /// @param  stream  the json data to read from
+	void readFrameDelay( Stream stream );
+
+    /// @brief  reads the running state of this Animation
+    /// @param  stream  the json data to read from
+	void readIsRunning( Stream stream );
+
+    /// @brief  reads the animation asset this Animation is using
+    /// @param  stream  the json data to read from
+    void readAnimation( Stream stream );
+
+	/// @brief  map of read methods
 	static ReadMethodMap< Animation > const s_ReadMethods;
 
-	// A function that gets all the read methods for the animation component.
+    /// @brief  gets the map of read methods
+    /// @return the map of read methods
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
 //-----------------------------------------------------------------------------
-private: // private functions
+private: // copying
 //-----------------------------------------------------------------------------
 
-	void AdvanceFrame();
-	Animation(Animation const&);
-	AnimationAsset* m_asset;
+    /// @brief	Clones an animation
+    /// @return New animation copy
+    virtual Component* Behavior::Clone() const override;
 
+    /// @brief  copy constructor
+    /// @param  other the Animation to copy
+    Animation( Animation const& other );
 
 //-----------------------------------------------------------------------------
-private: // private variables
-//-----------------------------------------------------------------------------
-	
-	unsigned m_FrameIndex;
-	unsigned m_FrameStart;
-	unsigned m_FrameCount;
-	float m_FrameDelay;
-	float m_FrameDuration;
-	bool m_IsRunning;
-	bool m_IsLooping;
-	bool m_IsDone;
 };
