@@ -104,17 +104,17 @@
 //-----------------------------------------------------------------------------
 
     /// @brief  reads the base scene path
-    /// @param  stream  the data to read from
+    /// @param  data    the data to read from
     void SceneSystem::readBaseScenePath( nlohmann::json const& data )
     {
-        m_BaseScenePath = stream.Read<std::string>();
+        m_BaseScenePath = Stream::Read<std::string>( data );
     }
 
     /// @brief  reads the next scene name
-    /// @param  stream  the data to read from
+    /// @param  data    the data to read from
     void SceneSystem::readNextSceneName( nlohmann::json const& data )
     {
-        m_NextSceneName = stream.Read<std::string>();
+        m_NextSceneName = Stream::Read<std::string>( data );
     }
 
     /// @brief  map of the SceneSystem read methods
@@ -128,29 +128,29 @@
 //-----------------------------------------------------------------------------
 
     /// @brief  reads the assets in a Scene
-    /// @param  stream  the data to read from
+    /// @param  data    the data to read from
     void SceneSystem::Scene::readAssets( nlohmann::json const& data )
     {
-        for ( auto& assetTypeData : stream.GetObject() )
+        for ( auto& [ key, value ] : data.items() )
         {
-            auto it = s_AssetLibraries.find( assetTypeData.name.GetString() );
+            auto it = s_AssetLibraries.find( key );
             if ( it == s_AssetLibraries.end() )
             {
                 std::stringstream errorMessage;
                 errorMessage <<
-                    "JSON error: unexpected token \"" << assetTypeData.name.GetString() <<
+                    "JSON error: unexpected token \"" << key <<
                     "\" encountered while reading Scene asset types";
                 throw std::runtime_error( errorMessage.str() );
             }
-            (*it).second()->LoadAssets( Stream( assetTypeData.value ) );
+            it->second()->LoadAssets( value );
         }
     }
 
     /// @brief  reads the entities in a Scene
-    /// @param  stream  the data to read from
+    /// @param  data    the data to read from
     void SceneSystem::Scene::readEntities( nlohmann::json const& data )
     {
-        EntitySystem::GetInstance()->LoadEntities( stream );
+        EntitySystem::GetInstance()->LoadEntities( data );
     }
 
     /// @brief  the read methods for a Scene
