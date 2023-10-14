@@ -94,18 +94,18 @@ void PlatformSystem::OnExit()
 // private: reading
 //-----------------------------------------------------------------------------
 
-    /// @brief reads the window width
-    /// @param stream the data to read from
+    /// @brief  reads the window width
+    /// @param  data    the data to read from
     void PlatformSystem::readWindowWidth( nlohmann::json const& data )
     {
-        windowWidth = stream.Read<int>();
+        windowWidth = Stream::Read<int>( data );
     }
 
-    /// @brief reads the window width
-    /// @param stream the data to read from
+    /// @brief  reads the window width
+    /// @param  data    the data to read from
     void PlatformSystem::readWindowHeight( nlohmann::json const& data )
     {
-        windowHeight = stream.Read<int>();
+        windowHeight = Stream::Read<int>( data );
     }
 
     /// @brief map of the PlatformSystem read methods

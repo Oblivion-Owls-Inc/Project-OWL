@@ -72,7 +72,7 @@
     /// @param  stream  the data to read from
     void AudioSystem::readMaxChannels( nlohmann::json const& data )
     {
-        m_MaxChannels = stream.Read<int>();
+        m_MaxChannels = Stream::Read<int>( data );
     }
 
     /// @brief  map of the AudioSystem read methods
