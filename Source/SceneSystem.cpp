@@ -193,13 +193,12 @@
     void SceneSystem::loadScene()
     {
 
-        rapidjson::Document document = Stream::ReadFromJSON( scenePath( m_CurrentSceneName ) );
+        nlohmann::json json = Stream::ReadFromFile( scenePath( m_CurrentSceneName ) );
 
         Scene scene = Scene();
-        // TODO: have some AssetSystem or something like that handle loading assets
         try
         {
-            Stream( document ).Read( &scene );
+            Stream::Read( &scene, json );
         }
         catch ( std::runtime_error error )
         {

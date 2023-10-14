@@ -181,11 +181,11 @@
     /// @brief  Loads the engine config from "Data/EngineConfig.json"
     void Engine::load()
     {
-        rapidjson::Document document = Stream::ReadFromJSON( "Data/EngineConfig.json" );
+        nlohmann::json json = Stream::ReadFromFile( "Data/EngineConfig.json" );
 
         try
         {
-            Stream( document ).Read( this );
+            Stream::Read( this, json );
         }
         catch ( std::runtime_error error )
         {

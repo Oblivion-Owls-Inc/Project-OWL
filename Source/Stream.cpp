@@ -7,12 +7,10 @@
 /// @copyright  © 2023 DigiPen (USA) Corporation.
 /// ------------------------------------------------------------------------------
 
-
 //------------------------------------------------------------------------------
 // Include Files
 //------------------------------------------------------------------------------
 
-#include "Stream.h"
 #include "ISerializable.h"
 
 #include <fstream>     // std::ifstream
@@ -37,29 +35,6 @@
     {
         // TODO: error handling
         std::ofstream( filepath ) << json;
-    }
-
-
-    /// @brief  reads a basic type from json
-    /// @tparam ValueType   the type to read
-    /// @param  json        the json data to read from
-    /// @return the read data
-    template< typename ValueType >
-    ValueType Stream::Read( nlohmann::json const& json )
-    {
-        // TODO: error handling
-        return json.get< ValueType >();
-    }
-
-    /// @brief  reads a basic type from json
-    /// @tparam ValueType   the type to read
-    /// @param  value       pointer to where to store the read data
-    /// @param  json        the json data to read from
-    template< typename ValueType >
-    void Stream::Read( ValueType* value, nlohmann::json const& json )
-    {
-        // TODO: error handling
-        *value = json.get< ValueType >();
     }
 
 
@@ -88,46 +63,6 @@
         }
 
         object->AfterLoad();
-    }
-
-
-    /// @brief  reads a glm vector from json
-    /// @tparam size        the size of the vector
-    /// @tparam ValueType   the value type of the vector
-    /// @param  json        the json data to read from
-    /// @return the read vector
-    template< int size, typename ValueType >
-    glm::vec< size, ValueType > Stream::Read( nlohmann::json const& json )
-    {
-        glm::vec< size, ValueType > value;
-        Read< size, ValueType >( &value, json );
-        return value;
-    }
-
-    /// @brief  reads a glm vector from json
-    /// @tparam size        the size of the vector
-    /// @tparam ValueType   the value type of the vector
-    /// @param  value       the vector to read into
-    /// @param  json        the json data to read from
-    template< int size, typename ValueType >
-    void Stream::Read( glm::vec< size, ValueType >* value, nlohmann::json const& json )
-    {
-        if ( json.is_array() == false )
-        {
-            // TODO: error handling
-        }
-
-        int count = size;
-        if ( json.size() != size )
-        {
-            // TODO: throw warning, not error
-            int count = std::min( json.size(), size );
-        }
-
-        for ( int i = 0; i < count, ++i )
-        {
-            (*value)[ i ] = json[ i ].get< ValueType >();
-        }
     }
 
 //------------------------------------------------------------------------------

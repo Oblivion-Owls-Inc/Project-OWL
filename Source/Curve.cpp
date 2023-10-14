@@ -503,33 +503,33 @@
 
     /// @brief  reads the interpolation type of this Curve
     /// @tparam dimensionality  the number of dimensions this curve goes through
-    /// @param  stream      the json data to read from
+    /// @param  data            the json data to read from
     template< int dimensionality >
     void Curve< dimensionality >::readInterpolationType( nlohmann::json const& data )
     {
-        m_InterpolationType = (InterpolationType)stream.Read<int>();
+        m_InterpolationType = (InterpolationType)Stream::Read<int>( data );
     }
 
     /// @brief  reads whether this Curve loops
     /// @tparam dimensionality  the number of dimensions this curve goes through
-    /// @param  stream  the json data to read from
+    /// @param  data            the json data to read from
     template< int dimensionality >
     void Curve< dimensionality >::readIsLooping( nlohmann::json const& data )
     {
-        m_IsLooping = stream.Read<bool>();
+        m_IsLooping = Stream::Read<bool>( data );
     }
 
     /// @brief  reads the control points of this Curve
     /// @tparam dimensionality  the number of dimensions this curve goes through
-    /// @param  stream  the json data to read from
+    /// @param  data            the json data to read from
     template< int dimensionality >
     void Curve< dimensionality >::readControlPoints( nlohmann::json const& data )
     {
         m_ControlPoints.clear();
-        for ( auto& pointData : stream.GetArray() )
+        for ( int i = 0; i < data.size(); ++i )
         {
             ControlPoint< dimensionality > point;
-            Stream( pointData ).Read( &point );
+            Stream::Read( &point, data[ i ] );
             AddControlPoint( point );
         }
     }
