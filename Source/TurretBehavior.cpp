@@ -98,27 +98,27 @@ void TurretBehavior::FireBullet()
 
 void TurretBehavior::readFireRate( nlohmann::json const& data )
 {
-	m_FireRate = jsonValue.Read<float>();
+	m_FireRate = Stream::Read<float>(data);
 }
 
 void TurretBehavior::readRange( nlohmann::json const& data )
 {
-	m_Range = jsonValue.Read<float>();
+	m_Range = Stream::Read<float>(data);
 }
 
 void TurretBehavior::readBulletDamage( nlohmann::json const& data )
 {
-	m_BulletDamage = jsonValue.Read<float>();
+	m_BulletDamage = Stream::Read<float>(data);
 }
 
 void TurretBehavior::readBulletSpeed( nlohmann::json const& data )
 {
-	m_BulletSpeed = jsonValue.Read<float>();
+	m_BulletSpeed = Stream::Read<float>(data);
 }
 
 void TurretBehavior::readBulletSize( nlohmann::json const& data )
 {
-	m_BulletSize = jsonValue.Read<float>();
+	m_BulletSize = Stream::Read<float>(data);
 }
 
 ReadMethodMap<TurretBehavior> const TurretBehavior::s_ReadMethods =
