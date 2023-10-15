@@ -238,6 +238,26 @@
         m_IsPlaying = Stream::Read<bool>(data);
     }
 
+    /// @brief  Write all EffectAnimator data to a JSON file.
+    /// @return The JSON file containing the EffectAnimator data.
+    nlohmann::ordered_json EffectAnimator::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["Time"] = m_Time;
+        data["Speed"] = m_Speed;
+        data["LoopCount"] = m_LoopCount;
+        data["IsPlaying"] = m_IsPlaying;
+
+        std::string const& name = AssetLibrary<TransformAnimation>()->GetAssetName(m_CurrentEffect);
+        if (!name.empty())
+        {
+            data["CurrentEffect"] = name;
+        }
+
+        return nlohmann::ordered_json();
+    }
+
     /// @brief  map of the read methods for this Component
     ReadMethodMap< EffectAnimator > EffectAnimator::s_ReadMethods = {
         { "CurrentEffect", &readCurrentEffect },
