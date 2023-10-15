@@ -61,6 +61,12 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+public:
+
+    /// @brief Write all CircleCollider component data to a JSON file.
+    /// @return The JSON file containing the CircleCollider component data.
+    virtual nlohmann::ordered_json Write() const override;
+
 //-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------

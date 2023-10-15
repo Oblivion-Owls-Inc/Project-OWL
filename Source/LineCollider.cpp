@@ -26,7 +26,6 @@ void LineCollider::AddLineSegment(const vec2* p0, const vec2* p1)
 	temp.point[0] = *p0;
 	temp.point[1] = *p1;
 	m_LineSegments.push_back(temp);
-	m_LineCount++;
 }
 
 void LineCollider::AddLineSegment( vec2 p0, vec2 p1 )
@@ -35,7 +34,6 @@ void LineCollider::AddLineSegment( vec2 p0, vec2 p1 )
 	temp.point[0] = p0;
 	temp.point[1] = p1;
 	m_LineSegments.push_back(temp);
-    m_LineCount++;
 }
 
 void LineCollider::Inspector()
@@ -63,6 +61,22 @@ void LineCollider::readLineVectors( nlohmann::ordered_json const& data )
         glm::vec2 p2 = Stream::Read< 2, float >( data[ i ][ 1 ] );
         AddLineSegment( p1, p2 );
     }
+}
+
+/// @brief  Write all LineCollider component data to a JSON file.
+/// @return The JSON file containing the LineCollider component data.
+nlohmann::ordered_json LineCollider::Write() const
+{
+    nlohmann::ordered_json data;
+
+    nlohmann::ordered_json& lines = data["LineVectors"];
+    for (ColliderLineSegment const& segment : m_LineSegments)
+    {
+        lines[0] = Stream::Write( segment.point[0] );
+        lines[1] = Stream::Write( segment.point[1] );
+    }
+
+    return nlohmann::ordered_json();
 }
 
 //-----------------------------------------------------------------------------

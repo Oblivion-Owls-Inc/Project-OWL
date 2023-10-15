@@ -160,6 +160,26 @@
         m_PitchVariance = Stream::Read<float>(data);
     }
 
+    /// @brief  Writes all AudioPlayr data to a JSON file.
+    /// @return The JSON file containing the data.
+    nlohmann::ordered_json AudioPlayer::Write() const
+    {
+        nlohmann::ordered_json data;
+    
+        data["Volume"] = m_Volume;
+        data["Pitch"] = m_Pitch;
+        data["VolumeVariance"] = m_VolumeVariance;
+        data["PitchVariance"] = m_PitchVariance;
+
+        std::string const& name = AssetLibrary<Sound>()->GetAssetName( m_Sound );
+        if (!name.empty())
+        {
+            data["Sound"] = name;
+        }
+
+        return data;
+    }
+
     /// @brief  map of the read methods for this Component
     ReadMethodMap< AudioPlayer > AudioPlayer::s_ReadMethods = {
         { "Sound",          &readSound          },

@@ -173,6 +173,23 @@
         { "SandboxSystem",                      &addSystem< SandboxSystem >                         }
     };
 
+    /// @brief  writes the Engine config to json
+    /// @return the written json data
+    nlohmann::ordered_json Engine::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        json[ "FixedFrameDuration" ] = m_FixedFrameDuration;
+
+        nlohmann::ordered_json& systems = json[ "Systems" ];
+        for ( System* system : m_Systems )
+        {
+            systems[ system->GetName() ] = system->Write();
+        }
+
+        return json;
+    }
+
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------

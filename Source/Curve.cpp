@@ -98,6 +98,25 @@
         };
 
     //-----------------------------------------------------------------------------
+    // public: writing
+    //-----------------------------------------------------------------------------
+
+        /// @brief  writes this ControlPoint to json
+        /// @tparam dimensionality  the number of dimensions this curve goes through
+        /// @return the written json data
+        template< int dimensionality >
+        nlohmann::ordered_json ControlPoint< dimensionality >::Write() const
+        {
+            nlohmann::ordered_json json;
+
+            json[ "Time" ] = GetTime();
+            json[ "Value" ] = Stream::Write( M_Value );
+            json[ "Derivative" ] = Stream::Write( M_Derivative );
+
+            return json;
+        }
+
+//-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructor
@@ -542,5 +561,29 @@
         { "IsLooping"        , &readIsLooping         },
         { "ControlPoints"    , &readControlPoints     }
     };
+
+//-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  writes this Curve to json
+    /// @tparam dimensionality  the number of dimensions this curve goes through
+    /// @return the written json data
+    template< int dimensionality >
+    nlohmann::ordered_json Curve< dimensionality >::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        json[ "InterpolationType" ] = (int)m_InterpolationType;
+        json[ "IsLooping" ] = m_IsLooping;
+        
+        nlohmann::ordered_json& cps = json[ "ControlPoints" ];
+        for ( ControlPoint< dimensionality > const& cp : m_ControlPoints )
+        {
+            cps.push_back( cp.Write() );
+        }
+
+        return json;
+    }
 
 //-----------------------------------------------------------------------------

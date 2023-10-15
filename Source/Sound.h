@@ -90,6 +90,12 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+public:
+
+    /// @brief Write all Sound data to a JSON file.
+    /// @return The JSON data containing the Sound data.
+    virtual nlohmann::ordered_json Write() const override;
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------

@@ -45,6 +45,10 @@ public: // methods
     /// @param  entityData  the json object containing the entity data
     void LoadEntities( nlohmann::ordered_json const& data );
 
+    /// @brief  saves all of the entities in a scene
+    /// @return the written json data
+    nlohmann::ordered_json SaveEntities() const;
+
     /// @brief returns the container of all Entities in the Scene
     /// @return the container of all Entities in the Scene
     std::vector< Entity* > const& GetEntities() const { return m_Entities; }

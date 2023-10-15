@@ -1,0 +1,506 @@
+{
+    "Assets": {
+        "Sounds": null,
+        "Textures": {
+            "Ball1": {
+                "Filepath": "Data/Textures/Balls/Ball.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ]
+            },
+            "Ball2": {
+                "Filepath": "Data/Textures/Balls/Ball2.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ]
+            },
+            "Ball5": {
+                "Filepath": "Data/Textures/Balls/Ball5.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ]
+            },
+            "Turret": {
+                "Filepath": "Data/Textures/Turret.png",
+                "SheetDimensions": [
+                    19,
+                    1
+                ]
+            }
+        },
+        "TransformAnimations": {
+            "Bounce": {
+                "ScaleCurve": {
+                    "InterpolationType": 2,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                1.100000023841858,
+                                -1.100000023841858
+                            ]
+                        },
+                        {
+                            "Time": 0.25,
+                            "Value": [
+                                1.2000000476837158,
+                                0.8330000042915344,
+                                0.25
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        {
+                            "Time": 0.75,
+                            "Value": [
+                                0.8330000042915344,
+                                1.100000023841858,
+                                0.75
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        {
+                            "Time": 1.0,
+                            "Value": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Derivative": [
+                                1.100000023841858,
+                                -1.100000023841858
+                            ]
+                        }
+                    ]
+                },
+                "OffsetCurve": {
+                    "InterpolationType": 1,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                },
+                "RotationCurve": {
+                    "InterpolationType": 1,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                0.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                0.0
+                            ]
+                        }
+                    ]
+                },
+                "SkewCurve": {
+                    "InterpolationType": 1,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                }
+            },
+            "Spin": {
+                "ScaleCurve": {
+                    "InterpolationType": 1,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                1.0,
+                                1.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                },
+                "OffsetCurve": {
+                    "InterpolationType": 1,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                },
+                "RotationCurve": {
+                    "InterpolationType": 2,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                0.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                0.0
+                            ]
+                        },
+                        {
+                            "Time": 0.5,
+                            "Value": [
+                                -1.0,
+                                0.5
+                            ],
+                            "Derivative": [
+                                0.0
+                            ]
+                        },
+                        {
+                            "Time": 1.5,
+                            "Value": [
+                                7.28000020980835,
+                                1.5
+                            ],
+                            "Derivative": [
+                                0.0
+                            ]
+                        },
+                        {
+                            "Time": 2.0,
+                            "Value": [
+                                6.2829999923706055,
+                                2.0
+                            ],
+                            "Derivative": [
+                                0.0
+                            ]
+                        },
+                        {
+                            "Time": 3.0,
+                            "Value": [
+                                6.2829999923706055,
+                                3.0
+                            ],
+                            "Derivative": [
+                                0.0
+                            ]
+                        }
+                    ]
+                },
+                "SkewCurve": {
+                    "InterpolationType": 1,
+                    "IsLooping": false,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Derivative": [
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "Animations": {
+            "TurretSpin": {
+                "Start": 0,
+                "End": 19,
+                "FrameDuration": 0.125,
+                "IsLooping": false
+            }
+        },
+        "Archetypes": {
+            "Ball": {
+                "Name": "Ball",
+                "Components": {
+                    "CircleCollider": {
+                        "Radius": 0.5
+                    },
+                    "MovementAI": {},
+                    "RigidBody": {
+                        "Velocity": [
+                            0.0,
+                            0.0
+                        ],
+                        "Acceleration": [
+                            0.0,
+                            -9.8100004196167
+                        ],
+                        "RotationalVelocity": 0.0,
+                        "InverseMass": 1.0,
+                        "Restitution": 1.0,
+                        "Friction": 0.0
+                    },
+                    "Sprite": {
+                        "Layer": 1,
+                        "Color": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": "Ball1"
+                    },
+                    "Transform": {
+                        "translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "rotation": 0.0,
+                        "scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "diegetic": false
+                    }
+                }
+            }
+        }
+    },
+    "Entities": {
+        "Turret": {
+            "Name": "Turret",
+            "Components": {
+                "Animation": {
+                    "FrameIndex": 18,
+                    "FrameDelay": 0.0,
+                    "IsRunning": false,
+                    "Animation": "TurretSpin"
+                },
+                "EffectAnimator": {
+                    "Time": 0.25584256649017334,
+                    "Speed": 2.0,
+                    "LoopCount": -1,
+                    "IsPlaying": true,
+                    "CurrentEffect": "Bounce"
+                },
+                "Sprite": {
+                    "Layer": 1,
+                    "Color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 18,
+                    "Texture": "Turret"
+                },
+                "Transform": {
+                    "translation": [
+                        -4.0,
+                        1.0
+                    ],
+                    "rotation": 0.0,
+                    "scale": [
+                        2.0,
+                        2.0
+                    ],
+                    "diegetic": false
+                },
+                "TurretBehavior": {
+                    "fireRate": 1.0,
+                    "range": 5.0,
+                    "bulletdamage": 1.0,
+                    "bulletspeed": 1.0,
+                    "bulletsize": 1.0
+                }
+            }
+        },
+        "Ball1": {
+            "Name": "Ball1",
+            "Components": {
+                "CircleCollider": {
+                    "Radius": 0.5
+                },
+                "MovementAI": {},
+                "RigidBody": {
+                    "Velocity": [
+                        1.13473641872406,
+                        -3.984065294265747
+                    ],
+                    "Acceleration": [
+                        0.0,
+                        -9.8100004196167
+                    ],
+                    "RotationalVelocity": 0.0,
+                    "InverseMass": 1.0,
+                    "Restitution": 1.0,
+                    "Friction": 0.0
+                },
+                "Sprite": {
+                    "Layer": 1,
+                    "Color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Ball5"
+                },
+                "Transform": {
+                    "translation": [
+                        -2.4271602630615234,
+                        -1.5360465049743652
+                    ],
+                    "rotation": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "diegetic": false
+                }
+            }
+        },
+        "Ball2": {
+            "Name": "Ball2",
+            "Components": {
+                "CircleCollider": {
+                    "Radius": 0.5
+                },
+                "MovementAI": {},
+                "RigidBody": {
+                    "Velocity": [
+                        -0.18993616104125977,
+                        -5.371691703796387
+                    ],
+                    "Acceleration": [
+                        0.0,
+                        -9.8100004196167
+                    ],
+                    "RotationalVelocity": 0.0,
+                    "InverseMass": 1.0,
+                    "Restitution": 1.0,
+                    "Friction": 0.0
+                },
+                "Sprite": {
+                    "Layer": 1,
+                    "Color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Ball2"
+                },
+                "Transform": {
+                    "translation": [
+                        0.4117774963378906,
+                        -1.4980260133743286
+                    ],
+                    "rotation": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "diegetic": false
+                }
+            }
+        },
+        "Ball3": {
+            "Name": "Ball3",
+            "Components": {
+                "CircleCollider": {
+                    "Radius": 0.5
+                },
+                "MovementAI": {},
+                "RigidBody": {
+                    "Velocity": [
+                        4.57470703125,
+                        -0.44498211145401
+                    ],
+                    "Acceleration": [
+                        0.0,
+                        -9.8100004196167
+                    ],
+                    "RotationalVelocity": 0.0,
+                    "InverseMass": 1.0,
+                    "Restitution": 1.0,
+                    "Friction": 0.0
+                },
+                "Sprite": {
+                    "Layer": 1,
+                    "Color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Ball1"
+                },
+                "Transform": {
+                    "translation": [
+                        -0.5448559522628784,
+                        1.080623984336853
+                    ],
+                    "rotation": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "diegetic": false
+                }
+            }
+        }
+    }
+}

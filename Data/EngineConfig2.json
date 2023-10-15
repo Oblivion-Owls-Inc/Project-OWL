@@ -1,8 +1,11 @@
 {
-    "FixedFrameDuration": 0.0167,
+    "FixedFrameDuration": 0.016699999570846558,
     "Systems": {
         "PlatformSystem": {
-            "WindowSize": [ 800, 600 ],
+            "WindowSize": [
+                800,
+                600
+            ],
             "WindowName": "Dig Deeper"
         },
         "InputSystem": {},
@@ -10,11 +13,11 @@
             "BaseScenePath": "Data/Scenes/",
             "NextSceneName": "TurretScene"
         },
-        "AssetLibrarySystem<Entity>": {},
-        "AssetLibrarySystem<Sound>": {},
-        "AssetLibrarySystem<Texture>": {},
-        "AssetLibrarySystem<TransformAnimation>": {},
-        "AssetLibrarySystem<AnimationAsset>": {},
+        "AssetLibrary<Entity>": {},
+        "AssetLibrary<Sound>": {},
+        "AssetLibrary<Texture>": {},
+        "AssetLibrary<TransformAnimation>": {},
+        "AssetLibrary<AnimationAsset>": {},
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<MovementAI>": {},
         "BehaviorSystem<PlayerController>": {},
@@ -27,7 +30,7 @@
         "AudioSystem": {},
         "DebugSystem": {
             "ShowFpsWindow": true,
-            "ShowDebugWindow": false
+            "ShowDebugWindow": true
         },
         "SandboxSystem": {}
     }

@@ -84,10 +84,10 @@
     /// @param  entityData  the json object containing the entity data
     void EntitySystem::LoadEntities( nlohmann::ordered_json const& data )
     {
-        for ( int i = 0; i < data.size(); ++i )
+        for ( auto& [ key, value ] : data.items() )
         {
             Entity * entity = new Entity();
-            Stream::Read< ISerializable >( entity, data[i] );
+            Stream::Read< ISerializable >( entity, value );
             m_Entities.push_back( entity );
         }
 
@@ -95,6 +95,20 @@
         {
             entity->InitComponents();
         }
+    }
+
+    /// @brief  saves all of the entities in a scene
+    /// @return the written json data
+    nlohmann::ordered_json EntitySystem::SaveEntities() const
+    {
+        nlohmann::ordered_json json;
+
+        for ( Entity* entity : m_Entities )
+        {
+            json[ entity->GetName() ] = entity->Write();
+        }
+
+        return json;
     }
 
 //-----------------------------------------------------------------------------

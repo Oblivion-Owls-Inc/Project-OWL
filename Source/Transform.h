@@ -179,6 +179,12 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+public:
+
+    /// @brief Write all Transform component data to a JSON file.
+    /// @return The JSON file containing the Transform component data.
+    virtual nlohmann::ordered_json Write() const override;
+
 //-----------------------------------------------------------------------------
 private: // copying
 //-----------------------------------------------------------------------------

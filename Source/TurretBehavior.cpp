@@ -121,6 +121,21 @@ void TurretBehavior::readBulletSize( nlohmann::ordered_json const& data )
 	m_BulletSize = Stream::Read<float>(data);
 }
 
+/// @brief Write all TurretBehavior data to a JSON file.
+/// @return The JSON file containing the TurretBehavior data.
+nlohmann::ordered_json TurretBehavior::Write() const
+{
+	nlohmann::ordered_json data;
+
+	data["fireRate"] = m_FireRate;
+	data["range"] = m_Range;
+	data["bulletdamage"] = m_BulletDamage;
+	data["bulletspeed"] = m_BulletSpeed;
+	data["bulletsize"] = m_BulletSize;
+
+	return data;
+}
+
 ReadMethodMap<TurretBehavior> const TurretBehavior::s_ReadMethods =
 {
 	{ "fireRate",			  &readFireRate },

@@ -224,7 +224,7 @@
     }
 
 //-----------------------------------------------------------------------------
-// private: reading
+// private: reading/writing
 //-----------------------------------------------------------------------------
 
     /// @brief		  Read from a JSON the frame index.
@@ -255,6 +255,25 @@
         m_Asset = AssetLibrary< AnimationAsset >()->GetAsset( Stream::Read<std::string>(data) );
     }
 
+    /// @brief  Write all Animation component data to a JSON file.
+    /// @return The JSON file containing the Animation component data.
+    nlohmann::ordered_json Animation::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["FrameIndex"] = m_FrameIndex;
+        data["FrameDelay"] = m_FrameDelay;
+        data["IsRunning"] = m_IsRunning;
+        
+        std::string name = AssetLibrary<AnimationAsset>()->GetAssetName(m_Asset);
+        if (!name.empty())
+        {
+            data["Animation"] = name;
+        }
+
+        return data;
+    }
+
     /// @brief  map of read methods
     ReadMethodMap< Animation > const Animation::s_ReadMethods = {
 	    {"FrameIndex", &readFrameIndex },
@@ -273,7 +292,6 @@
     {
         return new Animation(*this);
     }
-
 
     /// @brief	Copy constructor
     /// @param	Other animation to copy

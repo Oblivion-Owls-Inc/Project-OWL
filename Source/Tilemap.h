@@ -121,4 +121,9 @@ private:
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+public:
+
+    /// @brief Write all Tilemap component data to a JSON file.
+    /// @return The JSON file containing the Tilemap component data.
+    virtual nlohmann::ordered_json Write() const override;
 };

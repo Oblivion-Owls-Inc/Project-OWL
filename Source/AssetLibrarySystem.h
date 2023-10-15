@@ -19,6 +19,7 @@ class BaseAssetLibrarySystem : public System
 {
 public:
     virtual void LoadAssets( nlohmann::ordered_json const& data ) = 0;
+    virtual nlohmann::ordered_json SaveAssets() const = 0;
 protected:
     BaseAssetLibrarySystem( std::string const& name ) :
         System( name )
@@ -46,6 +47,10 @@ private: // virtual override methods
     /// @param  data    the json data to load from
     virtual void LoadAssets( nlohmann::ordered_json const& data ) override;
 
+    /// @brief  saves all assets of this AssetLibrary's type to JSON
+    /// @return the written json data
+    virtual nlohmann::ordered_json SaveAssets() const override;
+
     virtual void DebugWindow() override;
 
 //-----------------------------------------------------------------------------
@@ -55,6 +60,11 @@ public: // public functions
     /// @brief  Finds and returns an asset, builds if doesnt yet exist
     /// @return the constructed or found asset
     AssetType const* GetAsset( std::string const& name ) const;
+
+    /// @brief Finds an returns the name of the specified asset.
+    /// @param asset The asset to search for.
+    /// @return The name of the asset.
+    std::string const& GetAssetName(AssetType const* asset) const;
 
     /// @brief  Adds an asset to the AssetLibrary
     /// @param  name    the name of the asset to add

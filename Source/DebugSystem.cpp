@@ -113,25 +113,40 @@ void DebugSystem::DebugWindow()
 {
     //ImGui::ShowDemoWindow();
 
-   ImGui::Begin("Debug Window");
-
-   for(auto& system : Engine::GetInstance()->GetSystems())
-   {
-       // Skip the debug system and the platform system
-       if (system == GetInstance())
-		   continue;
-
-      if (ImGui::TreeNodeEx(system->GetName().c_str()))
-	  {
-		system->DebugWindow();
-        ImGui::TreePop();
-	  }
-   }
-
-   if (ImGui::Button(m_ShowFpsWindow ? "Show FPS" : "Hide FPS"))
-       m_ShowFpsWindow = !m_ShowFpsWindow;
-
-   ImGui::End();
+    if ( !ImGui::Begin( "Debug Window" ) )
+    {
+        return;
+    }
+    
+    for ( auto& system : Engine::GetInstance()->GetSystems() )
+    {
+        // Skip the debug system and the platform system
+        if (system == GetInstance())
+	 	    continue;
+    
+       if (ImGui::TreeNodeEx(system->GetName().c_str()))
+	   {
+	 	    system->DebugWindow();
+            ImGui::TreePop();
+	   }
+    }
+    
+    if ( ImGui::Button( m_ShowFpsWindow ? "Show FPS" : "Hide FPS" ) )
+    {
+        m_ShowFpsWindow = !m_ShowFpsWindow;
+    }
+    
+    // engine config saving
+    static char buffer[ 128 ] = "Data/EngineConfig.json"; // Buffer to hold the input, you can save this
+    ImGui::InputText( "Type Scene Name", buffer, IM_ARRAYSIZE( buffer ) );
+    
+    if ( ImGui::Button( "Save Engine Config" ) )
+    {
+        Stream::WriteToFile( buffer, Engine::GetInstance()->Write() );
+    }
+    
+    
+    ImGui::End();
 }
 
 
@@ -254,6 +269,22 @@ void DebugSystem::ImguiStartFrame()
         { "ShowFpsWindow", &readShowFpsWindow },
 		{ "ShowDebugWindow", &readShowDebugWindow }
     };
+
+//-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  writes this System config
+    /// @return the writting System config
+    nlohmann::ordered_json DebugSystem::Write() const
+    {
+        nlohmann::ordered_json json;
+        
+        json[ "ShowFpsWindow" ] = m_ShowFpsWindow;
+        json[ "ShowDebugWindow" ] = m_ShowDebugWindow;
+
+        return json;
+    }
 
 //-----------------------------------------------------------------------------
 // singleton stuff

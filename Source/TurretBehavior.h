@@ -96,5 +96,11 @@ class TurretBehavior :
             return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
         }
 
+public:
+
+	/// @brief Write all TurretBehavior data to a JSON file.
+	/// @return The JSON file containing the TurretBehavior data.
+	virtual nlohmann::ordered_json Write() const override;
+
 };
 

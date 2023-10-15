@@ -50,6 +50,23 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
         }
     }
 
+    /// @brief  saves all assets of this AssetLibrary's type to JSON
+    /// @tparam AssetType   the type of asset
+    /// @return the written json data
+    template< class AssetType >
+    nlohmann::ordered_json AssetLibrarySystem< AssetType >::SaveAssets() const
+    {
+        nlohmann::ordered_json json;
+        json.object();
+
+        for ( auto& [ key, value ] : m_Assets )
+        {
+            json[ key ] = value->Write();
+        }
+
+        return json;
+    }
+
     template<class AssetType>
     void AssetLibrarySystem<AssetType>::DebugWindow()
     {
@@ -98,6 +115,22 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
                 "\" could not be found";
             throw std::runtime_error( errorMessage.str() );
         }
+    }
+
+    /// @brief Finds an returns the name of the specified asset.
+    /// @param asset The asset to search for.
+    template<class AssetType>
+    std::string const& AssetLibrarySystem<AssetType>::GetAssetName(AssetType const* f_Asset) const
+    {
+        for ( auto& pair : m_Assets)
+        {
+            if (pair.second == f_Asset)
+            {
+                return pair.first;
+            }
+        }
+
+        return "";
     }
 
 

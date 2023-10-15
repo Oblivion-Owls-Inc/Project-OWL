@@ -153,6 +153,20 @@
         Stream::Read< ISerializable >( &m_SkewCurve, data );
     }
 
+    /// @brief  Write all TransformAnimation data to a JSON file.
+    /// @return The JSON file containing the TransformAnimation data.
+    nlohmann::ordered_json TransformAnimation::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["ScaleCurve"] = m_ScaleCurve.Write();
+        data["OffsetCurve"] = m_OffsetCurve.Write();
+        data["RotationCurve"] = m_RotationCurve.Write();
+        data["SkewCurve"] = m_SkewCurve.Write();
+
+        return data;
+    }
+
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< TransformAnimation > const TransformAnimation::s_ReadMethods = {
         { "ScaleCurve"   , &readScaleCurve    },

@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "Texture.h"
 #include "glew.h"
+#include "AssetLibrarySystem.h"
 
 /// @brief              Default constructor
 TilemapSprite::TilemapSprite() : 
@@ -203,6 +204,27 @@ void TilemapSprite::readRowWidth( nlohmann::ordered_json const& data )
 void TilemapSprite::AfterLoad()
 {
     initInstancingStuff();
+}
+
+/// @brief Write all TilemapSprite component data to a JSON file.
+/// @return The JSON file containing the TilemapSprite component data.
+nlohmann::ordered_json TilemapSprite::Write() const
+{
+    nlohmann::ordered_json data;
+
+    data["Layer"] = m_Layer;
+    data["Color"] = Stream::Write(m_Color);
+    data["StrideMultiplier"] = Stream::Write(m_StrideMult);
+    data["RowWidth"] = m_RowWidth;
+    data["Opacity"] = m_Opacity;
+
+    std::string const& name = AssetLibrary<Texture>()->GetAssetName(m_Texture);
+    if (!name.empty())
+    {
+        data["Texture"] = name;
+    }
+
+    return data;
 }
 
 
