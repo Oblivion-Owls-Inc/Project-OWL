@@ -59,6 +59,17 @@ void Text::readText( nlohmann::ordered_json const& data )
     m_Text = Stream::Read<std::string>(data);       
 }
 
+/// @brief Write all Text component data to a JSON file.
+/// @return The JSON file containing the Text component data.
+nlohmann::ordered_json Text::Write() const
+{
+    nlohmann::ordered_json data;
+
+    data["String"] = m_Text;
+
+    return data;
+}
+
 
 /// @brief the map of read methods for this Component
 ReadMethodMap< Text > const Text::s_ReadMethods = {
