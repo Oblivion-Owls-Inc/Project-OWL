@@ -3,22 +3,29 @@
 /// 
 /// @brief    Tilemap component - loads and manages a tilemap array.
 #pragma once
-#include "Component.h"
-#include <vector>
-#include <sstream>  // accept new text
+#define TILEMAP_H
+
+#include "Behavior.h"
+#include "Transform.h"
+#include <functional>   // callbacks
+#include <map>
 
 
 /// @brief        Loads and manages a tilemap array.
-class Tilemap : public Component
+template < typename TileType >
+class Tilemap : public Behavior
 {
 public:
 
     /// @brief    Default constructor
     Tilemap();
 
-
     /// @return   A copy of this component
     virtual Component * Clone() const override;
+
+    /// @brief        Copy constructor
+    /// @param other  Tilemap to copy
+    Tilemap(Tilemap const& other);
 
 
 
@@ -29,25 +36,26 @@ public:
 
     /// @brief          Retrieve entire tilemap
     /// @return         array (vector) of tile IDs
-    __inline std::vector<int> const& GetTilemap() const { return m_Tilemap; }
+    __inline std::vector<TileType> const& GetTilemap() const { return m_Tilemap; }
 
     /// @brief          Sets the whole tilemap to a given array (vector)
     /// @param  tiles   vector of tile IDs
-    void SetTilemap(std::vector<int> const& tiles);
+    void SetTilemap(std::vector<TileType> const& tiles);
 
 
     /// @brief          Gets the index of the tile at given coordinate.
     /// @param coord    tile 2D coordinate (within the tilemap)
     /// @return         index of the tile
-    __inline int GetTile(glm::ivec2 coord) const { return m_Tilemap[coord.y*m_RowWidth + coord.x]; }
+    __inline TileType GetTile(glm::ivec2 coord) const { return m_Tilemap[coord.y*m_RowWidth + coord.x]; }
 
     /// @brief          Sets the tile at given coordinate to given index.
     /// @param coord    Tile 2D coordinate (within the tilemap)
     /// @param tileID   Index to change the tile to
-    void SetTile(glm::ivec2 coord, int tileID);
+    void SetTile(glm::ivec2 coord, TileType const& tile);
 
 
     /// @brief          Gets tilemap coordinate of the tile at given world position.
+    ///                 NOTE: this assumes the (0,0) tile is the top-left.
     /// @param pos      Position in world space
     /// @return         Tilemap coordinate of the tile. If the provided location
     ///                 is outside the tilemap, returns (-1,-1)
@@ -55,10 +63,44 @@ public:
 
 
     /// @brief          Gets world position of the given tilemap coordinates.
+    ///                 NOTE: this assumes the (0,0) tile is the top-left.
     /// @param coord    Tilemap coordinate
     /// @return         World position of the tile at given tilemap coordinate
     glm::vec2 TileCoordToWorldPos(glm::ivec2 coord);
 
+
+    /// @brief          Adds a function to the list of callbacks. The given
+    ///                 function will get called whenever the tilemap is updated.
+    /// @param objPtr   Pointer to object (this), used to keep track of function.
+    /// @param function Callback function
+    void AddOnTilemapChangedCallback( void* objPtr, std::function<void()> function );
+
+    /// @brief          Removes a function from the list of callbacks
+    /// @param objPtr   Pointer to object (this)
+    void RemoveOnTilemapChangedCallback(void* objPtr);
+
+
+    /// @brief          Sets the tile scale. Default scale (1,1) is the full
+    ///                 width/height of single tile.
+    /// @param mults    x=horizontal, y=vertical
+    __inline void SetTileScale(glm::vec2 mults) { m_TileScale = mults; m_Modified = false; }
+
+
+    /// @brief          Retreives the tile scale.
+    /// @return         x=horizontal, y=vertical
+    __inline glm::vec2 GetTileScale() const { return m_TileScale; }
+
+
+    /// @brief          Sets the width of a single row (amount of columns)
+    /// @param columns  (tiles per row)
+    __inline void SetRowWidth(int width) { m_RowWidth = width; m_Modified = false; }
+
+
+    /// @return         Tiles per row 
+    __inline int GetTilemapWidth() const { return m_RowWidth; }
+
+    /// @return         Tiles per column
+    __inline int GetTilemapHeight() const { return m_Tilemap.size() / m_RowWidth; }
 
 
 //-----------------------------------------------------------------------------
@@ -66,9 +108,14 @@ public:
 //-----------------------------------------------------------------------------
 private:
 
-    /// @brief  called when entering a scene
+    /// @brief  called after component is added & read
     virtual void OnInit() override;
 
+    /// @brief  called every frame
+    virtual void OnUpdate( float dt );
+
+    /// @brief  called when component is removed
+    virtual void OnExit() override;
 
 
 //-----------------------------------------------------------------------------
@@ -77,10 +124,13 @@ private:
 private:
 
     /// @brief   Tilemap array
-    std::vector<int> m_Tilemap;
+    std::vector<TileType> m_Tilemap;
 
-    /// @brief   Keep a local copy of TilemapSprite's row width for coord accessors
-    int m_RowWidth = 0;
+    /// @brief   Width of each row (amount of columns)
+    int m_RowWidth = 10;
+
+    /// @brief   Scale of tiles (on top of transform) - to adjust spacing
+    glm::vec2 m_TileScale = {1,1};
 
     /// @brief   Inverse transform for converting world position to tile coord
     glm::mat4 m_InvMat = glm::mat4(1);
@@ -88,15 +138,20 @@ private:
     /// @brief   Parent's old transform mat, for comparing. Invert as rarely as possible
     glm::mat4 m_Mat = glm::mat4(1);
 
+    /// @brief   Parent's transform (cached)
+    Transform* m_PTransform = nullptr;
+
+    /// @brief   Callback functions - they get called whenever tilemap changes.
+    std::map< void*, std::function<void()> > m_Callbacks;
+
+    /// @brief   Whether tilemap has been modified during this frame
+    bool m_Modified = false;
 
 
 //-----------------------------------------------------------------------------
 //              Helpers
 //-----------------------------------------------------------------------------
 private:
-
-    /// @brief  Loads tilemap array into TilemapSprite of the parent for rendering.
-    void loadTilemapIntoSprite();
 
     /// @brief  Updates inverse transform matrix, if parent's transform has changed.
     void updateMat();
@@ -107,9 +162,17 @@ private:
 //-----------------------------------------------------------------------------
 private:
 
-    /// @brief  Read in the text this Tilemap displays
-    /// @param  stream  The json to read from.
-    void readTilemap( nlohmann::ordered_json const& data );
+    /// @brief          Read in the tile data
+    /// @param stream   The json to read from.
+    void readTilemap( nlohmann::ordered_json const& data);
+
+    /// @brief          Read in the row width of the tilemap
+    /// @param stream   The json to read from
+    void readRowWidth( nlohmann::ordered_json const& data );
+
+    /// @brief            Read in the stride multiplier
+    /// @param  stream    The json to read from.
+    void readTileScale( nlohmann::ordered_json const& data );
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Tilemap > const s_ReadMethods;
@@ -126,4 +189,10 @@ public:
     /// @brief Write all Tilemap component data to a JSON file.
     /// @return The JSON file containing the Tilemap component data.
     virtual nlohmann::ordered_json Write() const override;
+
 };
+
+
+#ifndef TILEMAP_C
+#include "Tilemap.cpp"
+#endif

@@ -44,24 +44,6 @@ public:
     void LoadTileArray(std::vector<int> tiles);
 
 
-    /// @brief          Sets the width of a single row (amount of columns)
-    /// @param columns  (tiles per row)
-    __inline void SetRowWidth(int width) { m_RowWidth = width; }
-
-    /// @return         Tiles per row 
-    __inline int GetRowWidth() const { return m_RowWidth; }
-
-
-    /// @brief          Sets the stride multiplier. Default stride is the full
-    ///                 width/height of single tile. (Example: To space out the 
-    ///                 tiles, set multipliers to over 1.0)
-    /// @param mults    x=horizontal, y=vertical
-    __inline void SetStrideMultiplier(glm::vec2 mults) { m_StrideMult = mults; }
-
-
-    /// @brief          Retreives the stride multiplier.
-    /// @return         x=horizontal, y=vertical
-    __inline glm::vec2 GetStrideMultiplier() const { return m_StrideMult; }
 
 //-----------------------------------------------------------------------------
 //          Virtual overrides
@@ -89,12 +71,14 @@ public:
 //-----------------------------------------------------------------------------
 private:
 
-    unsigned int m_InstBufferID = 0; /// @brief     ID of buffer that stores instance data (tile IDs)
-    unsigned int m_VAO = 0;          /// @brief     VAO that uses this specific buffer
-    glm::vec2 m_StrideMult ={1,1};   /// @brief     Horizontal/vertical stride. 1.0 is full tile width
-    int m_RowWidth = 20;             /// @brief     Amount of tiles per row
-    int m_TileCount = 0;             /// @brief     How many tiles to draw
-
+    unsigned int m_InstBufferID = 0; /// @brief   ID of buffer that stores instance data (tile IDs)
+    unsigned int m_VAO = 0;          /// @brief   VAO that uses this specific buffer
+    int m_TileCount = 0;             /// @brief   How many tiles to draw
+    bool m_TilemapChanged = true;    /// @brief   Whether new tiles need to be loaded in
+    
+    // keep local copies of these to keep drawing without Tilemap's updates
+    int m_RowWidth = 10;             /// @brief   Tiles per row (amount of columns)
+    glm::vec2 m_StrideMult = {1,1};  /// @brief   Stride multiplier(s): 1 is full tile width/height
 
 
 //-----------------------------------------------------------------------------
@@ -106,36 +90,8 @@ private:
     void initInstancingStuff();
 
 
-
-//-----------------------------------------------------------------------------
-//              Reading
-//-----------------------------------------------------------------------------
-private:
-
-    /// @brief            Read in the stride multiplier
-    /// @param  stream    The json to read from.
-    void readStrideMultiplier( nlohmann::ordered_json const& data );
-
-    /// @brief            Read in the amount of tiles per row
-    /// @param  stream    The json to read from.
-    void readRowWidth( nlohmann::ordered_json const& data );
-
-    virtual void AfterLoad() override;
-
-    /// @brief            The map of read methods for this Component
-    static ReadMethodMap< TilemapSprite > const s_ReadMethods;
-
-    /// @brief            Gets the map of read methods for this Component
-    /// @return           The map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
-
-public:
-
-    /// @brief Write all TilemapSprite component data to a JSON file.
-    /// @return The JSON file containing the TilemapSprite component data. 
-    virtual nlohmann::ordered_json Write() const override;
+    /// @brief          Sets TilemapChanged flag to true. Used as callbeck for
+    ///                 Tilemap component. The flag is reset when Draw() is called.
+    __inline void onTilemapChanged() { m_TilemapChanged = true; }
 
 };

@@ -1,11 +1,16 @@
+/// @file     TilemapSprite.cpp
+/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// 
+/// @brief    A version of Sprite specifically for rendering tiles.
 #include "TilemapSprite.h"
 #include "RenderSystem.h"
-#include "CameraSystem.h"
-#include "Entity.h"
+#include "Tilemap.h"        // callback for when tilemap array updates
+#include "CameraSystem.h"   // projection matrices
+#include "Entity.h"         // parent
 #include "Transform.h"
 #include "Texture.h"
 #include "glew.h"
-#include "AssetLibrarySystem.h"
+#include <functional>       // callback binding
 
 /// @brief              Default constructor
 TilemapSprite::TilemapSprite() : 
@@ -21,8 +26,7 @@ TilemapSprite::TilemapSprite() :
 /// @param type         (for derived) Component type
 TilemapSprite::TilemapSprite(Texture* texture, float stride_mult, int layer, 
                              std::type_index type) :
-    Sprite(texture, layer, type),
-    m_StrideMult(stride_mult)
+    Sprite(texture, layer, type)
 {}
 
 
@@ -71,12 +75,21 @@ void TilemapSprite::LoadTileArray(std::vector<int> tiles)
 void TilemapSprite::OnInit()
 {
     Sprite::OnInit();
+    initInstancingStuff();
 
     // Init text shader if it ain't.
     if (!Renderer()->GetShader("tile"))
     {
         Renderer()->AddShader("tile", new Shader("Data/shaders/tile_instancing.vert", 
                                                  "Data/shaders/tile_instancing.frag"));
+    }
+
+    // Set up callback for when Tilemap array changes
+    if (GetParent())
+    {
+        Tilemap<int>* tm = GetParent()->GetComponent< Tilemap<int> >();
+        if (tm)
+            tm->AddOnTilemapChangedCallback(this, std::bind(&TilemapSprite::onTilemapChanged, this));
     }
 }
 
@@ -88,31 +101,57 @@ void TilemapSprite::OnExit()
 
     glDeleteBuffers( 1, &m_InstBufferID );
     glDeleteVertexArrays(1, &m_VAO);
+
+    if (GetParent())            // TODO: cache instead
+    {
+        Tilemap<int>* tm = GetParent()->GetComponent< Tilemap<int> >();
+        if (tm)
+            tm->RemoveOnTilemapChangedCallback(this);
+    }
 }
 
 
 /// @brief          Draws tilemap using currently loaded array.
+///                 Note: currently, it draws with or without transform. Should I
+///                       just NOT allow transform-less rendering?...
 void TilemapSprite::Draw()
 {
     Mesh const* mesh = m_Texture->GetMesh();
+    Entity* parent = GetParent();
     glm::mat4 trm(1);                       // transform matrix - identity by default
-    glm::vec2 stridex(m_StrideMult.x, 0);   // x stride vector - pointing right by default
-    glm::vec2 stridey(0, -m_StrideMult.y);  // y stride vector - down
     glm::vec2 uvsize = mesh->GetUVsize();   // UV size (for the frames of spritesheet)
 
-    // Calculate matrix and stride based on parent't transform
-    if (GetParent() && GetParent()->GetComponent<Transform>())
+    // Get data from Tilemap component, if it has been updated.
+    if (m_TilemapChanged)
     {
-        Transform* tr = GetParent()->GetComponent<Transform>();
-        glm::mat4 proj;
+        Tilemap<int>* tm = parent->GetComponent< Tilemap<int> >();  // TODO: cache
 
+        LoadTileArray(tm->GetTilemap());
+        m_StrideMult = tm->GetTileScale();
+        m_RowWidth = tm->GetTilemapWidth();
+        m_TileCount = (int)tm->GetTilemap().size();
+
+        m_TilemapChanged = false;
+    }
+
+
+    // Calculate matrix and stride based on parent't transform
+
+    glm::vec2 stridex = {m_StrideMult.x,0};  // right vector (x stride)
+    glm::vec2 stridey = {0,-m_StrideMult.y}; // down vector (y stride)
+
+    if (parent && parent->GetComponent<Transform>())
+    {
+        Transform* tr = parent->GetComponent<Transform>();
+        trm = tr->GetMatrix();
+
+        // world or camera projection
+        glm::mat4 proj;
         if (tr->GetIsDiegetic())
             proj = Camera()->GetMat_WorldToClip();
         else
             proj = Camera()->GetMat_UItoClip();
 
-        // get transform matrix, and its linear part (for stride)
-        trm = tr->GetMatrix();
 
         // calculate stride vectors using linear transform (projected)
         glm::mat2 trm_linear = glm::mat2(proj) * glm::mat2(trm);
@@ -133,6 +172,7 @@ void TilemapSprite::Draw()
     glUniform1i(sh_txt->GetUniformID("columns"), m_Texture->GetSheetDimensions().x);
     glUniform1i(sh_txt->GetUniformID("rowwidth"), m_RowWidth);
     glUniform4fv(sh_txt->GetUniformID("tint"), 1, &m_Color[0]);
+
 
     // Bind the texture and render instanced mesh
     m_Texture->Bind();
@@ -178,62 +218,3 @@ void TilemapSprite::initInstancingStuff()
 }
 
 
-
-
-//-----------------------------------------------------------------------------
-//              Reading
-//-----------------------------------------------------------------------------
-
-/// @brief            Read in the stride multiplier
-/// @param  stream    The json to read from.
-void TilemapSprite::readStrideMultiplier( nlohmann::ordered_json const& data )
-{
-    m_StrideMult = Stream::Read< 2, float >(data);
-}
-
-
-/// @brief            Read in the amount of tiles per row
-/// @param  stream    The json to read from.
-void TilemapSprite::readRowWidth( nlohmann::ordered_json const& data )
-{
-    m_RowWidth = Stream::Read<int>(data);
-}
-
-/// @brief Handles all initialisation of an object after reading its data from
-///        a file.
-void TilemapSprite::AfterLoad()
-{
-    initInstancingStuff();
-}
-
-/// @brief Write all TilemapSprite component data to a JSON file.
-/// @return The JSON file containing the TilemapSprite component data.
-nlohmann::ordered_json TilemapSprite::Write() const
-{
-    nlohmann::ordered_json data;
-
-    data["Layer"] = m_Layer;
-    data["Color"] = Stream::Write(m_Color);
-    data["StrideMultiplier"] = Stream::Write(m_StrideMult);
-    data["RowWidth"] = m_RowWidth;
-    data["Opacity"] = m_Opacity;
-
-    std::string const& name = AssetLibrary<Texture>()->GetAssetName(m_Texture);
-    if (!name.empty())
-    {
-        data["Texture"] = name;
-    }
-
-    return data;
-}
-
-
-/// @brief the map of read methods for this Component
-ReadMethodMap< TilemapSprite > const TilemapSprite::s_ReadMethods = {
-    { "Texture"         , &readTexture          },
-    { "Layer"           , &readLayer            },
-    { "Color"           , &readColor            },
-    { "StrideMultiplier", &readStrideMultiplier },
-    { "RowWidth"        , &readRowWidth         },
-    { "Opacity"         , &readOpacity          },  
-};

@@ -18,13 +18,22 @@
 #include "EntitySystem.h"
 #include "SceneSystem.h"
 
-#include "Tilemap.h"
+#include "Pathfinder.h"
+#include "AssetLibrarySystem.h"
+#include "RigidBody.h"
+
+
+static void spawnEnemy(glm::vec2 mousepos);
+static void pathfindDemo(float dt);
 
 //-----------------------------------------------------------------------------
 // variables
 //-----------------------------------------------------------------------------
 
 static bool update = false;
+
+static Entity* tiles;
+static std::vector<Entity*> enemies;
 
 //-----------------------------------------------------------------------------
 // virtual override methods
@@ -54,25 +63,101 @@ void SandboxSystem::OnUpdate( float dt )
     if (!update)
         return;
 
-    static Entity* e = Entities()->GetEntity("Tiles");
-    if (!e)
+    tiles = Entities()->GetEntity("Tiles");
+    if (!tiles)
         return;
-    static Tilemap* t = e->GetComponent<Tilemap>();
 
-    glm::ivec2 coord = t->WorldPosToTileCoord(Input()->GetMousePosWorld());
-    ImGui::Begin("Sandbox");
-    ImGui::InputInt2("coord", &coord.x);
-    ImGui::End();
-
-    if (Input()->GetMouseTriggered(GLFW_MOUSE_BUTTON_1) && coord.x != -1)
-        t->SetTile(coord, (int)'*'-32);
+    pathfindDemo(dt);
 }
+
 
 /// @brief  Gets called whenever a scene is exited
 void SandboxSystem::OnSceneExit()
 {
-        
+    
 }
+
+
+
+static void pathfindDemo(float dt)
+{
+    // init stuff
+    static Tilemap<int>* t = tiles->GetComponent<Tilemap<int>>();
+    static Pathfinder* pf = tiles->GetComponent<Pathfinder>();
+    static glm::ivec2 dest = {-1,-1};
+    if (dest.x == -1)
+    {
+        dest = t->WorldPosToTileCoord(pf->GetDestination());
+        t->SetTile(dest, 2);
+    }
+
+
+    glm::vec2 mousepos = Input()->GetMousePosWorld();
+    glm::ivec2 coord = t->WorldPosToTileCoord(mousepos); // (tile column+row)
+
+    // Right click: delete tile
+    if (Input()->GetMouseDown(GLFW_MOUSE_BUTTON_2) && coord.x != -1 && t->GetTile(coord) != 0)
+        t->SetTile(coord, 0);
+
+    // D: set new destination
+    if (Input()->GetKeyTriggered(GLFW_KEY_D))
+    {
+        pf->SetDestination( mousepos );
+        t->SetTile(dest, 0);
+        dest = coord;
+        t->SetTile(dest, 2);
+    }
+
+    // S: spawn enemy
+    if (Input()->GetKeyTriggered(GLFW_KEY_S))
+        spawnEnemy(mousepos);
+
+    // Space (hold): enemies move to destination
+    if (Input()->GetKeyDown(GLFW_KEY_SPACE))
+    {
+        for (auto& enemy : enemies)
+        {
+            glm::vec2 pos = enemy->GetComponent<Transform>()->GetTranslation();
+            RigidBody* rb = enemy->GetComponent<RigidBody>();
+
+            // accelerate along path
+            glm::vec3 moveDir = glm::vec3(pf->GetDirectionAt(pos),0);
+            rb->SetAcceleration(moveDir*12.0f);
+
+            // air friction or something
+            float af = 5.5f;
+            glm::vec2 vel = rb->GetVelocity();
+            rb->SetVelocity(vel * (1.0f - af*dt) );
+        }
+    }
+
+    // they stop when space is released
+    if (Input()->GetKeyReleased(GLFW_KEY_SPACE))
+        for (auto& enemy : enemies)
+        {
+            RigidBody* rb = enemy->GetComponent<RigidBody>();
+            rb->SetAcceleration({});
+            rb->SetVelocity({});
+        }
+}
+
+
+
+static void spawnEnemy(glm::vec2 mousepos)
+{
+    static const Entity* enemy = AssetLibrary<Entity>()->GetAsset("Enemy");
+    static int i = 0;
+    if (!enemy || i>10)
+        return;
+
+    Entity* enemycopy = new Entity;
+    *enemycopy = *enemy;
+    enemycopy->GetComponent<Transform>()->SetTranslation(mousepos);
+    enemycopy->SetName("AAAAAAAAAAAAAA" + i++);  // each will have shorter name
+    Entities()->AddEntity(enemycopy);
+    enemies.push_back(enemycopy);
+}
+
 
 
 //-----------------------------------------------------------------------------

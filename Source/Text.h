@@ -1,8 +1,7 @@
 /// @file     Text.h
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    A version of Sprite specifically for rendering text. Uses GPU
-///           instancing to draw multiple letters simultaneously.
+/// @brief    Component that makes use of Tilemap to draw text.
 #pragma once
 #include "Component.h"
 #include <sstream>  // accept new text
@@ -26,7 +25,7 @@ public:
 
     /// @brief          sets the text of this Text
     /// @param  text    the text of this Text
-    __inline void SetText( std::string const& text ) { m_Text = text; loadTextIntoSprite(); } 
+    __inline void SetText( std::string const& text ) { m_Text = text; loadTextIntoTilemap(); } 
 
 
 //-----------------------------------------------------------------------------
@@ -44,12 +43,13 @@ private: // member variables / helpers
     std::string m_Text;
 
     /// @brief  Loads text array into TilemapSprite of the parent for rendering.
-    void loadTextIntoSprite();
+    void loadTextIntoTilemap();
 
 
- //-------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 private: // Reading
- //-------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     /// @brief  Read in the text this Text displays
     /// @param  stream  The json to read from.
@@ -71,5 +71,6 @@ public:
     /// @return The JSON file containing the Text component data.
     virtual nlohmann::ordered_json Write() const override;
 
-    //-------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 };

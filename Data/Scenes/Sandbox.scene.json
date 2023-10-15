@@ -1,52 +1,67 @@
 {
     "Assets": {
         "Textures": {
-            "Ball1": {
-                "Filepath": "Data/Textures/Balls/Ball4.png"
-            },
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
                 "SheetDimensions": [ 16, 8 ]
             },
-            "ElfSheet": {
-                "Filepath": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png",
-                "SheetDimensions": [ 22, 17 ]
+            "4pxSheet": {
+                "Filepath": "Data/Textures/4px.png",
+                "SheetDimensions": [ 4, 1 ]
             }
         },
-        "Archetypes": {}
-    },
-    "Entities": [
-        {
-            "Name": "Text",
-            "Components": {
-                "TilemapSprite": {
-                    "Texture": "FontSheet",
-                    "Color": [1,1,0,1],
-                    "StrideMultiplier":  [0.6, 1.0]
-                },
-                "Text":  {
-                    "String": "Yellow"
-                },
-                "Transform": {
-                    "translation": [ -4, 1, 0 ],
-                    "scale": [ 0.6, 0.6, 0 ]
+        "Archetypes": {
+            "Enemy": {
+                "Name": "Enemy",
+                "Components": {
+                    "Sprite": {
+                        "Texture": "4pxSheet",
+                        "FrameIndex": 3,
+                        "Layer": 3
+                    },
+                    "Transform": {
+                        "scale": [ 0.4, 0.4 ]
+                    },
+                    "RigidBody": {
+                        "Acceleration": [ 0.0, 0.0, 0 ]
+                    },
+                    "CircleCollider": {
+                        "Radius": 0.3
+                    }
                 }
             }
-        },
+        }
+    },
+    "Entities": [
         {
             "Name": "Tiles",
             "Components": {
                 "TilemapSprite": {
-                    "Texture": "FontSheet",
-                    "StrideMultiplier": [1,1],
-                    "RowWidth" :  7
+                    "Texture": "4pxSheet"
                 },
-                "Tilemap":  {
-                    "TileData": [44,45,46,47,48,49,50,52,53,54,55,56,57,58]
+                "Tilemap<int>":  {
+                    "TileData": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
+                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
+                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
+                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
+                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
+                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
+                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
+                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
+                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
+                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
+                                 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+                    ],
+                    "RowWidth" :  16
                 },
                 "Transform": {
-                    "translation": [ -4.2, 0, 0 ],
-                    "scale": [ 1, 1, 1 ]
+                    "translation": [ -4.9, 3.8, 0 ],
+                    "scale": [ 0.65, 0.65, 1 ]
+                },
+                "Pathfinder": {
+                    "Destination": [4.2, 3],
+                    "Walkables": [0]
                 }
             }
         }

@@ -187,6 +187,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="imgui\implot.cpp" />
     <ClCompile Include="imgui\implot_demo.cpp" />
     <ClCompile Include="imgui\implot_items.cpp" />
+    <ClCompile Include="Source\Pathfinder.cpp" />
     <ClCompile Include="Source\Pool.cpp" />
     <ClCompile Include="Source\Lua.cpp" />
     <ClCompile Include="Source\PlayerController.cpp" />
@@ -214,8 +215,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\Text.cpp" />
-    <ClCompile Include="Source\Tilemap.cpp" />
     <ClCompile Include="Source\TilemapSprite.cpp" />
+    <ClCompile Include="Source\Tilemap.cpp" />
     <ClCompile Include="Source\TransformAnimation.cpp" />
     <ClCompile Include="Source\TurretBehavior.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
@@ -243,6 +244,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="imgui\implot.h" />
     <ClInclude Include="imgui\implot_internal.h" />
     <ClInclude Include="Source\ISerializable.h" />
+    <ClInclude Include="Source\Pathfinder.h" />
     <ClInclude Include="Source\Pool.h" />
     <ClInclude Include="Source\CollisionData.h" />
     <ClInclude Include="Source\PlayerController.h" />
@@ -261,8 +263,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\RigidBody.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\Text.h" />
-    <ClInclude Include="Source\Tilemap.h" />
     <ClInclude Include="Source\TilemapSprite.h" />
+    <ClInclude Include="Source\Tilemap.h" />
     <ClInclude Include="Source\TransformAnimation.h" />
     <ClInclude Include="Source\TurretBehavior.h" />
     <ClInclude Include="Source\AudioPlayer.h" />

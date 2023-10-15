@@ -165,6 +165,9 @@
     <Filter Include="Engine\Framework\Serialization">
       <UniqueIdentifier>{7235ed80-dce2-4347-81a6-55527e3167fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\Pathfinder">
+      <UniqueIdentifier>{09f5ca7d-4323-4aac-b628-c6ed0790810d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -335,9 +338,6 @@
     <ClCompile Include="Source\EffectAnimator.cpp">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Stream.t.cpp">
-      <Filter>Engine\Framework\Stream</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Pool.cpp">
       <Filter>Engine\Framework\Pools</Filter>
     </ClCompile>
@@ -358,6 +358,9 @@
     </ClCompile>
     <ClCompile Include="Source\Text.cpp">
       <Filter>Engine\Entity\Component\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Pathfinder.cpp">
+      <Filter>Engine\Entity\Component\Behavior\Pathfinder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -517,9 +520,6 @@
     <ClInclude Include="Source\Animation.h">
       <Filter>Engine\Entity\Component\Behavior\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="Source\TextSprite.h">
-      <Filter>Engine\Entity\Component\Sprite\TextSprite</Filter>
-    </ClInclude>
     <ClInclude Include="Source\CollisionData.h">
       <Filter>Engine\Systems\CollisonSystem</Filter>
     </ClInclude>
@@ -558,6 +558,9 @@
     </ClInclude>
     <ClInclude Include="Source\ISerializable.h">
       <Filter>Engine\Framework\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Pathfinder.h">
+      <Filter>Engine\Entity\Component\Behavior\Pathfinder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
