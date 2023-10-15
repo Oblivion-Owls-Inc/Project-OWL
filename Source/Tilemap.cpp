@@ -154,6 +154,17 @@ void Tilemap::readTilemap( nlohmann::ordered_json const& data )
     }
 }
 
+/// @brief Write all Tilemap component data to a JSON file.
+/// @return The JSON file containing the Tilemap component data.
+nlohmann::ordered_json Tilemap::Write() const
+{
+    nlohmann::ordered_json data;
+
+    data["TileData"] = m_Tilemap;
+
+    return data;
+}
+
 
 /// @brief      The map of read methods for this Component
 ReadMethodMap< Tilemap > const Tilemap::s_ReadMethods = {

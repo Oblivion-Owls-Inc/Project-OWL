@@ -209,6 +209,22 @@
         m_Friction = Stream::Read<float>(data);
     }
 
+    /// @brief  Write all RigidBody component data to a JSON file.
+    /// @return The JSON file containing the RigidBody component data.
+    nlohmann::ordered_json RigidBody::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["Velocity"] = Stream::Write(m_Velocity);
+        data["Acceleration"] = Stream::Write(m_Acceleration);
+        data["RotationalVelocity"] = m_RotationalVelocity;
+        data["InverseMass"] = m_Mass;
+        data["Restitution"] = m_Restitution;
+        data["Friction"] = m_Friction;
+
+        return data;
+    }
+
     /// @brief the map of read methods for RigidBodys
     ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
 	    { "Velocity"            , &readVelocity             },

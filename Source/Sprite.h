@@ -163,6 +163,12 @@ protected: // reading
     /// @brief  Read in the layer for a sprite.
     /// @param  stream  The json to read from.
     void readLayer( nlohmann::ordered_json const& data );
+
+public:
+
+    /// @brief Write all Sprite component data to a JSON file.
+    /// @return The JSON file containing the Sprite component data.
+    virtual nlohmann::ordered_json Write() const override;
     
 //-----------------------------------------------------------------------------
 private: // reading

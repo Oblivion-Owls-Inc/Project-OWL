@@ -164,7 +164,7 @@
         data["RotationCurve"] = m_RotationCurve.Write();
         data["SkewCurve"] = m_SkewCurve.Write();
 
-        return nlohmann::ordered_json();
+        return data;
     }
 
     /// @brief  map of the SceneSystem read methods
