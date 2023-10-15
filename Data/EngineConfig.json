@@ -8,7 +8,7 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "TurretScene"
+            "NextSceneName": "Sandbox"
         },
         "AssetLibrarySystem<Entity>": {},
         "AssetLibrarySystem<Sound>": {},
@@ -21,6 +21,7 @@
         "BehaviorSystem<RigidBody>": {},
         "CollisionSystem": {},
         "BehaviorSystem<EffectAnimator>": {},
+        "BehaviorSystem<Tilemap<int>>": {},
         "EntitySystem": {},
         "CameraSystem": {},
         "RenderSystem": {},

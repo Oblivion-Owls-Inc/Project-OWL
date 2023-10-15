@@ -34,6 +34,7 @@
 #include "TurretBehavior.h"
 #include "EffectAnimator.h"
 #include "Animation.h"
+#include "Tilemap.h"
 
 #include "SandboxSystem.h"
 
@@ -165,6 +166,7 @@
         { "BehaviorSystem<RigidBody>",          &addSystem< BehaviorSystem< RigidBody > >           },
         { "BehaviorSystem<Animation>",          &addSystem< BehaviorSystem< Animation > >           },
         { "BehaviorSystem<EffectAnimator>",     &addSystem< BehaviorSystem< EffectAnimator > >      },
+        { "BehaviorSystem<Tilemap<int>>",       &addSystem< BehaviorSystem< Tilemap<int> > >        },
         { "AssetLibrarySystem<Entity>",         &addSystem< AssetLibrarySystem< Entity > >          },
         { "AssetLibrarySystem<Sound>",          &addSystem< AssetLibrarySystem< Sound > >           },
         { "AssetLibrarySystem<Texture>",        &addSystem< AssetLibrarySystem< Texture > >         },

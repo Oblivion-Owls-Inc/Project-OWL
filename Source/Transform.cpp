@@ -74,6 +74,16 @@
         MarkChanged();
     }
 
+    /// @brief  unified set method that sets translation and rotation at once
+    /// @param  translation the new translation to set
+    /// @param  rotation    the new rotation to set
+    void Transform::Set( glm::vec2 const& translation, float rotation )
+    {
+        m_Translation = translation;
+        m_Rotation = rotation;
+        MarkChanged();
+    }
+
     /// @brief  Calculates and gets the translation matrix of the transform component.
     /// @return The translation matrix of the transform component.
     glm::mat4 const& Transform::GetMatrix() const
