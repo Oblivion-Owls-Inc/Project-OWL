@@ -37,6 +37,17 @@
         m_Radius = Stream::Read<float>(data);
     }
 
+    /// @brief Write all CircleCollider component data to a JSON file.
+    /// @return The JSON file containing the CircleCollider component data.
+    nlohmann::ordered_json CircleCollider::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["Radius"] = m_Radius;
+
+        return nlohmann::ordered_json();
+    }
+
     /// @brief map of the read methods for this Component
     ReadMethodMap< CircleCollider > CircleCollider::s_ReadMethods = {
         { "Radius", &readRadius }
