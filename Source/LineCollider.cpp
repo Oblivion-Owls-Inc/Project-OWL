@@ -65,6 +65,22 @@ void LineCollider::readLineVectors( nlohmann::ordered_json const& data )
     }
 }
 
+/// @brief  Write all LineCollider component data to a JSON file.
+/// @return The JSON file containing the LineCollider component data.
+nlohmann::ordered_json LineCollider::Write() const
+{
+    nlohmann::ordered_json data;
+
+    nlohmann::ordered_json& lines = data["LineVectors"];
+    for (ColliderLineSegment const& segment : m_LineSegments)
+    {
+        lines[0] = Stream::Write( segment.point[0] );
+        lines[1] = Stream::Write( segment.point[1] );
+    }
+
+    return nlohmann::ordered_json();
+}
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------

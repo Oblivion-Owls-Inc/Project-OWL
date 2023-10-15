@@ -50,14 +50,7 @@ private:
 
 	std::vector<ColliderLineSegment> m_LineSegments;
 
-	unsigned int m_LineCount;
-
-	unsigned int m_Counter;
-
 	bool doesDamage = false;
-
-    // Number of line segments to make, read from file.
-    unsigned int m_NumSegments;
 
 private: // reading
 
@@ -73,5 +66,11 @@ private: // reading
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
+
+public:
+
+	/// @brief  Write all LineCollider component data to a JSON file.
+	/// @return The JSON file containing the LineCollider component data.
+	virtual nlohmann::ordered_json Write()const override;
 };
 
