@@ -1,0 +1,195 @@
+{
+    "Assets": {
+        "Animations": {},
+        "Archetypes": {},
+        "Sounds": {},
+        "Textures": {},
+        "TransformAnimations": {}
+    },
+    "Entities": {
+        "Turret": {
+            "Name": "Turret",
+            "Components": {
+                "Animation": {
+                    "FrameIndex": 18,
+                    "FrameDelay": 0.0,
+                    "IsRunning": false,
+                    "Animation": "TurretSpin"
+                },
+                "EffectAnimator": {
+                    "Time": 0.9129995107650757,
+                    "Speed": 2.0,
+                    "LoopCount": -1,
+                    "IsPlaying": true,
+                    "CurrentEffect": "Bounce"
+                },
+                "Sprite": {
+                    "Layer": 1,
+                    "Color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 18,
+                    "Texture": "Turret"
+                },
+                "Transform": {
+                    "translation": [
+                        -4.0,
+                        1.0
+                    ],
+                    "rotation": 0.0,
+                    "scale": [
+                        2.0,
+                        2.0
+                    ],
+                    "diegetic": false
+                },
+                "TurretBehavior": {}
+            }
+        },
+        "Ball1": {
+            "Name": "Ball1",
+            "Components": {
+                "CircleCollider": {
+                    "Radius": 0.5
+                },
+                "MovementAI": {},
+                "RigidBody": {
+                    "Velocity": [
+                        0.5167407989501953,
+                        7.367282867431641
+                    ],
+                    "Acceleration": [
+                        0.0,
+                        -9.8100004196167
+                    ],
+                    "RotationalVelocity": 0.0,
+                    "InverseMass": 1.0,
+                    "Restitution": 1.0,
+                    "Friction": 0.0
+                },
+                "Sprite": {
+                    "Layer": 1,
+                    "Color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Ball5"
+                },
+                "Transform": {
+                    "translation": [
+                        -4.344663619995117,
+                        -3.1226913928985596
+                    ],
+                    "rotation": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "diegetic": false
+                }
+            }
+        },
+        "Ball2": {
+            "Name": "Ball2",
+            "Components": {
+                "CircleCollider": {
+                    "Radius": 0.5
+                },
+                "MovementAI": {},
+                "RigidBody": {
+                    "Velocity": [
+                        -0.18993616104125977,
+                        6.096195220947266
+                    ],
+                    "Acceleration": [
+                        0.0,
+                        -9.8100004196167
+                    ],
+                    "RotationalVelocity": 0.0,
+                    "InverseMass": 1.0,
+                    "Restitution": 1.0,
+                    "Friction": 0.0
+                },
+                "Sprite": {
+                    "Layer": 1,
+                    "Color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Ball2"
+                },
+                "Transform": {
+                    "translation": [
+                        0.6338119506835938,
+                        -1.8257418870925903
+                    ],
+                    "rotation": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "diegetic": false
+                }
+            }
+        },
+        "Ball3": {
+            "Name": "Ball3",
+            "Components": {
+                "CircleCollider": {
+                    "Radius": 0.5
+                },
+                "MovementAI": {},
+                "RigidBody": {
+                    "Velocity": [
+                        -1.5773043632507324,
+                        -6.617302894592285
+                    ],
+                    "Acceleration": [
+                        0.0,
+                        -9.8100004196167
+                    ],
+                    "RotationalVelocity": 0.0,
+                    "InverseMass": 1.0,
+                    "Restitution": 1.0,
+                    "Friction": 0.0
+                },
+                "Sprite": {
+                    "Layer": 1,
+                    "Color": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Ball1"
+                },
+                "Transform": {
+                    "translation": [
+                        -4.187771797180176,
+                        -0.33939698338508606
+                    ],
+                    "rotation": 0.0,
+                    "scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "diegetic": false
+                }
+            }
+        }
+    }
+}
