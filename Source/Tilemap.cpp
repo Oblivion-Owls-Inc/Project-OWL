@@ -162,7 +162,7 @@ nlohmann::ordered_json Tilemap::Write() const
 
     data["TileData"] = m_Tilemap;
 
-    return nlohmann::ordered_json();
+    return data;
 }
 
 

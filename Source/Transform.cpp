@@ -160,6 +160,19 @@
         MarkChanged();
     }
 
+    /// @brief Write all Transform component data to a JSON file.
+    /// @return The JSON file containing the Transform component data.
+    nlohmann::ordered_json Transform::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["translation"] = Stream::Write(m_Translation);
+        data["rotation"] = m_Rotation;
+        data["scale"] = Stream::Write(m_Scale);
+        data["diegetic"] = m_IsDiegetic;
+
+        return data;
+    }
 
     // Map of all the read methods for the transform component.
     ReadMethodMap< Transform > Transform::s_ReadMethods = {
@@ -173,7 +186,6 @@
 //-----------------------------------------------------------------------------
 // private: copying
 //-----------------------------------------------------------------------------
-
 
     /// @brief  Clones a transform component.
     /// @return A new transform component.
