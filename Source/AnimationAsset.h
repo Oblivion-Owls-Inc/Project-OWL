@@ -111,5 +111,11 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+public:
+
+	/// @brief  Write all data for the AnimationAsset to a JSON file.
+	/// @return The file containing all the AnimationAsset data.
+	virtual nlohmann::ordered_json Write() const override;
+
 //-----------------------------------------------------------------------------	
 };

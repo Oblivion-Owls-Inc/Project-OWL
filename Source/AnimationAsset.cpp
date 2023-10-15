@@ -59,6 +59,20 @@
         m_IsLooping = Stream::Read<bool>(data);
     }
 
+    /// @brief  Write all data for the AnimationAsset to a JSON file.
+    /// @return The file containing all the AnimationAsset data.
+    nlohmann::ordered_json AnimationAsset::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["Start"] = m_Start;
+        data["End"] = m_End;
+        data["FrameDuration"] = m_FrameDuration;
+        data["IsLooping"] = m_IsLooping;
+
+        return nlohmann::ordered_json();
+    }
+
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< AnimationAsset > const AnimationAsset::s_ReadMethods = {
         { "Start"        , &readStart         },
