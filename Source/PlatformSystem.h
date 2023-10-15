@@ -9,7 +9,8 @@
 #pragma once
 
 #include "System.h"
-#include "glm/vec2.hpp"
+
+#include <glm/glm.hpp>
 #include <string>
 
 struct GLFWwindow;	// forward reference for GetWindowHandle()
@@ -27,18 +28,15 @@ public:
 	bool WindowClosing() const;
 
     /// @brief    Returns window dimensions as a vec2.
-    /// @return   glm vec2: x = width, y = height.
-	glm::vec2 GetWindowDimensions() const;
-
-    /// @brief  Gets Used by the DebugSystem to display debug information
-    virtual void DebugWindow() override;
+    /// @return   glm ivec2: x = width, y = height.
+	glm::ivec2 GetWindowDimensions() const;
 
 private:
 
     // Window data - dimensions and pointer
-	int windowWidth, windowHeight;
-    std::string windowName;
-	GLFWwindow* window;
+	glm::ivec2 m_WindowSize = { 800, 600 };
+    std::string m_WindowName = "Default Window";
+	GLFWwindow* m_Window = nullptr;
 
     /// @brief Constructor
     PlatformSystem();
@@ -53,13 +51,13 @@ private:
 private: // reading
 //-----------------------------------------------------------------------------
 
-    /// @brief reads the window width
+    /// @brief reads the window size
     /// @param stream the data to read from
-    void readWindowWidth( nlohmann::ordered_json const& data );
+    void readWindowSize( nlohmann::ordered_json const& data );
 
-    /// @brief reads the window width
+    /// @brief reads the window name
     /// @param stream the data to read from
-    void readWindowHeight( nlohmann::ordered_json const& data );
+    void readWindowName( nlohmann::ordered_json const& data );
 
     /// @brief map of the PlatformSystem read methods
     static ReadMethodMap< PlatformSystem > const s_ReadMethods;
@@ -71,6 +69,17 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+//-----------------------------------------------------------------------------
+public: // writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  writes this System config
+    /// @return the writting System config
+    virtual nlohmann::ordered_json Write() const override;
+
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
 
     /// @brief The singleton instance of the PlatformSystem
     static PlatformSystem * instance;

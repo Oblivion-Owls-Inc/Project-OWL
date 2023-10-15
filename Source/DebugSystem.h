@@ -26,37 +26,43 @@ class Entity;
 /// @details This class provides functionality for debugging within your application.
 class DebugSystem : public System
 {
-    public:
-        static DebugSystem* instance;
-        static DebugSystem* GetInstance();
+public:
+    static DebugSystem* instance;
+    static DebugSystem* GetInstance();
 
-        ImGuiTextBuffer logBuffer;
+    ImGuiTextBuffer logBuffer;
 
-        /// @brief Constructor for DebugSystem
-        /// @param window The GLFW window handle (default is the current context)
-        DebugSystem();
+    /// @brief Constructor for DebugSystem
+    /// @param window The GLFW window handle (default is the current context)
+    DebugSystem();
 
-        /// @brief Set the GLFW window handle
-        /// @param window The GLFW window handle to set
-        void SetWindowHandle(GLFWwindow* window) { _window = window; }
+    /// @brief Set the GLFW window handle
+    /// @param window The GLFW window handle to set
+    void SetWindowHandle(GLFWwindow* window) { _window = window; }
 
-        /// @brief Initialize the DebugSystem
-        void OnInit() override;
+    /// @brief Initialize the DebugSystem
+    void OnInit() override;
 
-        /// @brief Update the DebugSystem
-        /// @param dt The time elapsed since the last update
-        void OnUpdate(float dt) override;
+    /// @brief Update the DebugSystem
+    /// @param dt The time elapsed since the last update
+    void OnUpdate(float dt) override;
 
-        /// @brief Exit and clean up the DebugSystem
-        void OnExit() override;
+    /// @brief Exit and clean up the DebugSystem
+    void OnExit() override;
 
-        /// @brief Print a formatted message to the screen
-        /// @param format The format string, similar to printf
-        /// @details This function allows you to print a formatted message to the screen using ImGui.
-        void ScreenPrint(const char* format, ...);
+    /// @brief Print a formatted message to the screen
+    /// @param format The format string, similar to printf
+    /// @details This function allows you to print a formatted message to the screen using ImGui.
+    void ScreenPrint(const char* format, ...);
 
-        /// @brief Gets Called by the Debug system to display debug information
-        virtual void DebugWindow() override;
+    /// @brief Gets Called by the Debug system to display debug information
+    virtual void DebugWindow() override;
+
+private:
+    GLFWwindow* _window; /// @brief The GLFW window handle
+    bool m_ShowFpsWindow; /// @brief Flag to control FPS display
+    bool m_ShowDebugWindow; /// @brief Flag to control dev display
+    ImGuiIO* io; /// @brief Pointer to the ImGui Input/Output structure
 
 private:
         void ShowFPSWindow();
@@ -87,11 +93,15 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-    private:
-        GLFWwindow* _window; /// @brief The GLFW window handle
-        bool m_ShowFpsWindow; /// @brief Flag to control FPS display
-        bool m_ShowDebugWindow; /// @brief Flag to control dev display
-        ImGuiIO* io; /// @brief Pointer to the ImGui Input/Output structure
+//-----------------------------------------------------------------------------
+public: // writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  writes this System config
+    /// @return the writting System config
+    virtual nlohmann::ordered_json Write() const override;
+
+//-----------------------------------------------------------------------------
 };
 
 class DebugConsole

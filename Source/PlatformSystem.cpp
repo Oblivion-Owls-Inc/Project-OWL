@@ -57,22 +57,22 @@ void PlatformSystem::OnInit()
     //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); TODO: needed or nah?
 
     // Window
-    window = glfwCreateWindow( windowWidth, windowHeight, windowName.c_str(), NULL, NULL);
+    m_Window = glfwCreateWindow( m_WindowSize.x, m_WindowSize.y, m_WindowName.c_str(), NULL, NULL);
 
-    if (!window)
+    if (!m_Window)
     {
         glfwTerminate();
         std::cerr << "Failed to create GLFW window" << std::endl;
         assert(false);
     }
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(m_Window);
     glfwSwapInterval(1); // enable vsync
 
     // GLEW
     if (glewInit() != GLEW_OK)
     {
         glfwTerminate();
-        glfwDestroyWindow(window);
+        glfwDestroyWindow(m_Window);
         std::cerr << "Failed to initialize GLEW" << std::endl;
         assert(false);
     }
@@ -84,61 +84,71 @@ void PlatformSystem::OnInit()
 /// @brief    Shuts down the the platform.
 void PlatformSystem::OnExit()
 {
-    glfwDestroyWindow( window );
+    glfwDestroyWindow( m_Window );
     glfwTerminate();
     std::cout << "\nShutdown complete." << std::endl;
 }
-
-
-//-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
-
-    /// @brief  reads the window width
-    /// @param  data    the data to read from
-    void PlatformSystem::readWindowWidth( nlohmann::ordered_json const& data )
-    {
-        windowWidth = Stream::Read<int>( data );
-    }
-
-    /// @brief  reads the window width
-    /// @param  data    the data to read from
-    void PlatformSystem::readWindowHeight( nlohmann::ordered_json const& data )
-    {
-        windowHeight = Stream::Read<int>( data );
-    }
-
-    /// @brief map of the PlatformSystem read methods
-    ReadMethodMap< PlatformSystem > const PlatformSystem::s_ReadMethods = {
-        { "WindowWidth",  &readWindowWidth  },
-        { "WindowHeight", &readWindowHeight }
-    };
 
 /// @brief    Returns the window handle.
 /// @return   GLFWwindow pointer: Current window handle.
 GLFWwindow* PlatformSystem::GetWindowHandle() const
 {
-    return window;
+    return m_Window;
 }
 
 /// @brief    Returns window dimensions as a vec2.
-/// @return   glm vec2: x = width, y = height.
-glm::vec2 PlatformSystem::GetWindowDimensions() const
+/// @return   glm ivec2: x = width, y = height.
+glm::ivec2 PlatformSystem::GetWindowDimensions() const
 {
-    return { windowWidth, windowHeight};
-}
-
-void PlatformSystem::DebugWindow()
-{
-
+    return m_WindowSize;
 }
 
 /// @brief    Checks if the window is closing.
 /// @return   bool: true if the window is closing.
 bool PlatformSystem::WindowClosing() const
 {
-    return glfwWindowShouldClose(window);
+    return glfwWindowShouldClose(m_Window);
 }
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief reads the window size
+    /// @param stream the data to read from
+    void PlatformSystem::readWindowSize( nlohmann::ordered_json const& data )
+    {
+        m_WindowSize = Stream::Read< 2, int >( data );
+    }
+
+    /// @brief reads the window name
+    /// @param stream the data to read from
+    void PlatformSystem::readWindowName( nlohmann::ordered_json const& data )
+    {
+        m_WindowName = Stream::Read< std::string >( data );
+    }
+
+    /// @brief map of the PlatformSystem read methods
+    ReadMethodMap< PlatformSystem > const PlatformSystem::s_ReadMethods = {
+        { "WindowSize", &readWindowSize },
+        { "WindowName", &readWindowName }
+    };
+
+//-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  writes this System config
+    /// @return the writting System config
+    nlohmann::ordered_json PlatformSystem::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        json[ "WindowSize" ] = Stream::Write< 2, int >( m_WindowSize );
+        json[ "WindowName" ] = m_WindowName;
+
+        return json;
+    }
 
 //-----------------------------------------------------------------------------
 // singleton stuff
@@ -146,11 +156,7 @@ bool PlatformSystem::WindowClosing() const
 
     /// @brief Constructor
     PlatformSystem::PlatformSystem() :
-        System( "PlatformSystem" ),
-        window( nullptr ),
-        windowWidth( 800 ),
-        windowHeight( 600 ),
-        windowName( "engineTest" )
+        System( "PlatformSystem" )
     {}
 
     /// @brief The singleton instance of ExampleSystem

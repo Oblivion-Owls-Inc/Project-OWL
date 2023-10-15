@@ -271,6 +271,22 @@ void DebugSystem::ImguiStartFrame()
     };
 
 //-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  writes this System config
+    /// @return the writting System config
+    nlohmann::ordered_json DebugSystem::Write() const
+    {
+        nlohmann::ordered_json json;
+        
+        json[ "ShowFpsWindow" ] = m_ShowFpsWindow;
+        json[ "ShowDebugWindow" ] = m_ShowDebugWindow;
+
+        return json;
+    }
+
+//-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 

@@ -2,8 +2,8 @@
     "FixedFrameDuration": 0.0167,
     "Systems": {
         "PlatformSystem": {
-            "WindowWidth": 800,
-            "WindowHeight": 600
+            "WindowSize": [ 800, 600 ],
+            "WindowName": "Dig Deeper"
         },
         "InputSystem": {},
         "SceneSystem": {

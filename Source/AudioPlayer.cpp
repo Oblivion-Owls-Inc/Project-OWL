@@ -171,7 +171,7 @@
         data["VolumeVariance"] = m_VolumeVariance;
         data["PitchVariance"] = m_PitchVariance;
 
-        std::string name = AssetLibrary<Sound>()->GetAssetName(m_Sound);
+        std::string const& name = AssetLibrary<Sound>()->GetAssetName( m_Sound );
         if (!name.empty())
         {
             data["Sound"] = name;

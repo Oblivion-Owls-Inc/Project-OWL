@@ -109,7 +109,7 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
         {
             if (pair.second == f_Asset)
             {
-                return pair.first();
+                return pair.first;
             }
         }
 
