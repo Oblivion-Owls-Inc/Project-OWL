@@ -255,7 +255,7 @@
             data["CurrentEffect"] = name;
         }
 
-        return nlohmann::ordered_json();
+        return data;
     }
 
     /// @brief  map of the read methods for this Component

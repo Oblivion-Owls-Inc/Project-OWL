@@ -259,6 +259,20 @@ void Sprite::readLayer( nlohmann::ordered_json const& data )
     m_Layer = std::max( 0, std::min( layer, 4 ) );
 }
 
+/// @brief Write all Sprite component data to a JSON file.
+/// @return The JSON file containing the Sprite component data.
+nlohmann::ordered_json Sprite::Write() const
+{
+    nlohmann::ordered_json data;
+
+    data["Layer"] = m_Layer;
+    data["Color"] = Stream::Write(m_Color);
+    data["Opacity"] = m_Opacity;
+    data["FrameIndex"] = m_FrameIndex;
+
+    return data;
+}
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------

@@ -222,7 +222,7 @@
         data["Restitution"] = m_Restitution;
         data["Friction"] = m_Friction;
 
-        return nlohmann::ordered_json();
+        return data;
     }
 
     /// @brief the map of read methods for RigidBodys

@@ -271,7 +271,7 @@
             data["Animation"] = name;
         }
 
-        return nlohmann::ordered_json();
+        return data;
     }
 
     /// @brief  map of read methods

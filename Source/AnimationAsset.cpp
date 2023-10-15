@@ -70,7 +70,7 @@
         data["FrameDuration"] = m_FrameDuration;
         data["IsLooping"] = m_IsLooping;
 
-        return nlohmann::ordered_json();
+        return data;
     }
 
     /// @brief  map of the SceneSystem read methods
