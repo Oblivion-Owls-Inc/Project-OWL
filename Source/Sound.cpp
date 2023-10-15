@@ -122,6 +122,18 @@
         );
     }
 
+    /// @brief Write all Sound data to a JSON file.
+    /// @return The JSON data containing the Sound data.
+    nlohmann::ordered_json Sound::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["IsLooping"] = m_IsLooping;
+        data["FilePath"] = m_Filepath;
+
+        return data;
+    }
+
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< Sound > const Sound::s_ReadMethods = {
         { "IsLooping", &readIsLooping },

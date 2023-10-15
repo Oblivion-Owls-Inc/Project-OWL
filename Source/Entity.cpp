@@ -285,12 +285,14 @@
         nlohmann::ordered_json data;
 
         data["Name"] = m_Name;
-        auto& components = data["Components"];
 
+        auto& components = data["Components"];
         for ( auto& [ key, value ] : m_Components )
         {
-
+            components[PrefixlessName(key)] = value->Write();
         }
+
+        return data;
     }
 
     /// @brief A map of the all read methods used by the Entity class.
