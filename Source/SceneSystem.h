@@ -25,7 +25,11 @@ public: // methods
 
     /// @brief  sets the next Scene to change to
     /// @param  nextSceneName   the name of the next scene
-    void SetNextScene( std::string nextSceneName );
+    void SetNextScene( std::string const& nextSceneName );
+
+    /// @brief  saves the current scene to a file
+    /// @param  sceneName   the file to save the scene to
+    void SaveScene( std::string const& sceneName = "" ) const;
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -111,7 +115,7 @@ private: // methods
     /// @brief  assembles the filepath of a scene with the given name
     /// @param  sceneName   the name of the scene to assemble the filepath of
     /// @return the filepath of the scene
-    std::string scenePath( std::string const& sceneName );
+    std::string scenePath( std::string const& sceneName ) const;
 
     /// @brief  Loads the next Scene
     void loadScene();
@@ -123,7 +127,8 @@ private: // methods
     void exitScene();
 
     /// @brief  Lists all Scenes in a DebugWindow dropdown
-    void listScenes();
+    /// @return the selected scene index
+    unsigned listScenes();
 
     /// @brief  Gets all of the Scenes in the scenes directory
     void getSceneNames();
@@ -162,6 +167,12 @@ private: // scene loading
 
         /// @brief map of asset libraries used to read assets
         static std::map< std::string, BaseAssetLibrarySystem* (*)() > const s_AssetLibraries;
+
+    public:
+
+        /// @brief  writes this Scene to json
+        /// @return the written json data
+        virtual nlohmann::ordered_json Write() const override;
 
     };
 

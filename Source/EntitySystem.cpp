@@ -97,6 +97,20 @@
         }
     }
 
+    /// @brief  saves all of the entities in a scene
+    /// @return the written json data
+    nlohmann::ordered_json EntitySystem::SaveEntities() const
+    {
+        nlohmann::ordered_json json;
+
+        for ( Entity* entity : m_Entities )
+        {
+            json[ entity->GetName() ] = entity->Write();
+        }
+
+        return json;
+    }
+
 //-----------------------------------------------------------------------------
 // virtual override methods
 //-----------------------------------------------------------------------------

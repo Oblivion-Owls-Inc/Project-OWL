@@ -28,9 +28,23 @@
 
     /// @brief  sets the next Scene to change to
     /// @param  nextSceneName   the name of the next scene
-    void SceneSystem::SetNextScene( std::string nextSceneName_ )
+    void SceneSystem::SetNextScene( std::string const& nextSceneName_ )
     {
         m_NextSceneName = nextSceneName_;
+    }
+
+    /// @brief  saves the current scene to a file
+    /// @param  sceneName   the file to save the scene to
+    void SceneSystem::SaveScene( std::string const& sceneName ) const
+    {
+        // if file not specified, override current scene file
+        std::string const* name = &sceneName;
+        if ( name->empty() )
+        {
+            name = &m_CurrentSceneName;
+        }
+
+        Stream::WriteToFile( scenePath( *name ), Scene().Write() );
     }
 
 //-----------------------------------------------------------------------------
@@ -91,7 +105,32 @@
     void SceneSystem::DebugWindow()
     {
 
-        listScenes();
+        unsigned selectedScene = listScenes();
+
+
+        // Input text for typing scene name
+        static char buffer[128] = ""; // Buffer to hold the input, you can save this
+        ImGui::InputText("Type Scene Name", buffer, IM_ARRAYSIZE(buffer));
+
+        // Possibly a button to load the scene, either from the dropdown or the input text
+        if (ImGui::Button("Load Scene"))
+        {
+            if (strlen(buffer) > 0)
+            {
+                std::string sceneName(buffer);
+                SetNextScene(sceneName); // Load scene using name typed into buffer
+                buffer[0] = '\0'; // Clear the buffer
+            }
+            else
+            {
+                SetNextScene(m_SceneNames[selectedScene]); // Load scene using selected scene
+            }
+        }
+
+        if ( ImGui::Button( "Save Scene" ) )
+        {
+            SaveScene( buffer );
+        }
 
         if (ImGui::Button("Restart Scene"))
         {
@@ -187,6 +226,23 @@
         { "Animations"         , &getAssetLibrary< AnimationAsset >     }
     };
 
+    /// @brief  writes this Scene to json
+    /// @return the written json data
+    nlohmann::ordered_json SceneSystem::Scene::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        nlohmann::ordered_json& assets = json[ "Assets" ];
+        for ( auto& [ key, value ] : s_AssetLibraries )
+        {
+            assets[ key ] = value()->Write();
+        }
+
+        json[ "Entities" ] = Entities()->SaveEntities();
+
+        return json;
+    }
+
 //-----------------------------------------------------------------------------
 // private methods
 //-----------------------------------------------------------------------------
@@ -194,7 +250,7 @@
     /// @brief  assembles the filepath of a scene with the given name
     /// @param  sceneName   the name of the scene to assemble the filepath of
     /// @return the filepath of the scene
-    std::string SceneSystem::scenePath( std::string const& sceneName )
+    std::string SceneSystem::scenePath( std::string const& sceneName ) const
     {
         return m_BaseScenePath + sceneName + s_SceneFileExtension;
     }
@@ -235,7 +291,7 @@
         }
     }
 
-    void SceneSystem::listScenes()
+    unsigned SceneSystem::listScenes()
     {
         static int selectedScene = 0; // Default index for dropdown, you can save this
         if ( m_SceneNames.size() > 0 )
@@ -265,24 +321,7 @@
             }
         }
 
-        // Input text for typing scene name
-        static char buffer[128] = ""; // Buffer to hold the input, you can save this
-        ImGui::InputText("Type Scene Name", buffer, IM_ARRAYSIZE(buffer));
-
-        // Possibly a button to load the scene, either from the dropdown or the input text
-        if (ImGui::Button("Load Scene"))
-        {
-            if (strlen(buffer) > 0)
-            {
-                std::string sceneName(buffer);
-                SetNextScene(sceneName); // Load scene using name typed into buffer
-                buffer[0] = '\0'; // Clear the buffer
-            }
-            else
-            {
-                SetNextScene(m_SceneNames[selectedScene]); // Load scene using selected scene
-            }
-        }
+        return selectedScene;
     }
 
     /// @brief  Gets all of the Scenes in the scenes directory
