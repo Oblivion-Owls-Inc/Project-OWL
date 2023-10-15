@@ -99,6 +99,19 @@ void Texture::AfterLoad()
     }
 }
 
+/// @brief  Write all Texture data to a JSON file.
+/// @return The JSON file containing the Texture data.
+nlohmann::ordered_json Texture::Write() const
+{
+    nlohmann::ordered_json data;
+
+    data["Filepath"] = m_Filepath;
+    data["SheetDimensions"] = Stream::Write(m_SheetDimensions);
+
+    return data;
+}
+
+
 
 /// @brief  the read methods for textures
 ReadMethodMap< Texture > const Texture::s_ReadMethods = {
@@ -111,7 +124,6 @@ ReadMethodMap< Texture > const Texture::s_ReadMethods = {
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
-
 
 /// @brief  Loads texture image from file (deletes old one if present)
 void Texture::LoadImage()
