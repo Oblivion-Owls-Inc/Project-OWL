@@ -182,7 +182,12 @@ public: // writing
     nlohmann::ordered_json Stream::Write( glm::vec< size, ValueType > const& value )
     {
         nlohmann::ordered_json json;
-        json.array( value );
+
+        for ( int i = 0; i < size; ++i )
+        {
+            json[i] = value[i];
+        }
+
         return json;
     }
 

@@ -105,7 +105,7 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     template<class AssetType>
     std::string const& AssetLibrarySystem<AssetType>::GetAssetName(AssetType const* f_Asset) const
     {
-        for ( auto pair : m_Assets)
+        for ( auto& pair : m_Assets)
         {
             if (pair.second == f_Asset)
             {
