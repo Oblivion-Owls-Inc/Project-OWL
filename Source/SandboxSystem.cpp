@@ -33,7 +33,13 @@ static void pathfindDemo(float dt);
 static bool update = false;
 
 static Entity* tiles;
+static Tilemap<int>* t;
+static Pathfinder* pf;
+
+static const Entity* enemyArch;
 static std::vector<Entity*> enemies;
+static int eCount; // enemy count
+static glm::ivec2 dest;
 
 //-----------------------------------------------------------------------------
 // virtual override methods
@@ -44,7 +50,16 @@ void SandboxSystem::OnSceneInit()
 {
     update = true;
 
+    tiles = Entities()->GetEntity("Tiles");
+    if (!tiles)
+        return;
 
+    t = tiles->GetComponent<Tilemap<int>>();
+    pf = tiles->GetComponent<Pathfinder>();
+    enemyArch = AssetLibrary<Entity>()->GetAsset("Enemy");
+    eCount = 0;
+    dest = t->WorldPosToTileCoord(pf->GetDestination());
+    t->SetTile(dest, 2);
 }
 
 /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
@@ -63,35 +78,22 @@ void SandboxSystem::OnUpdate( float dt )
     if (!update)
         return;
 
-    tiles = Entities()->GetEntity("Tiles");
-    if (!tiles)
-        return;
-
-    pathfindDemo(dt);
+    if (tiles)
+        pathfindDemo(dt);
 }
 
 
 /// @brief  Gets called whenever a scene is exited
 void SandboxSystem::OnSceneExit()
 {
-    
+    tiles = nullptr;
+    enemies.clear();
 }
 
 
 
 static void pathfindDemo(float dt)
 {
-    // init stuff
-    static Tilemap<int>* t = tiles->GetComponent<Tilemap<int>>();
-    static Pathfinder* pf = tiles->GetComponent<Pathfinder>();
-    static glm::ivec2 dest = {-1,-1};
-    if (dest.x == -1)
-    {
-        dest = t->WorldPosToTileCoord(pf->GetDestination());
-        t->SetTile(dest, 2);
-    }
-
-
     glm::vec2 mousepos = Input()->GetMousePosWorld();
     glm::ivec2 coord = t->WorldPosToTileCoord(mousepos); // (tile column+row)
 
@@ -145,15 +147,13 @@ static void pathfindDemo(float dt)
 
 static void spawnEnemy(glm::vec2 mousepos)
 {
-    static const Entity* enemy = AssetLibrary<Entity>()->GetAsset("Enemy");
-    static int i = 0;
-    if (!enemy || i>10)
+    if (!enemyArch || eCount>10)
         return;
 
     Entity* enemycopy = new Entity;
-    *enemycopy = *enemy;
+    *enemycopy = *enemyArch;
     enemycopy->GetComponent<Transform>()->SetTranslation(mousepos);
-    enemycopy->SetName("AAAAAAAAAAAAAA" + i++);  // each will have shorter name
+    enemycopy->SetName("AAAAAAAAAAAAAA" + eCount++);  // each will have shorter name
     Entities()->AddEntity(enemycopy);
     enemies.push_back(enemycopy);
 }

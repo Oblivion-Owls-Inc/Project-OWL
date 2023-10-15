@@ -50,7 +50,12 @@ public: // accessors
     /// @param  translation the new translation to set
     /// @param  rotation    the new rotation to set
     /// @param  scale       the new scale to set
-    void Set( glm::vec2 const& translation, float rotation = 0.0f, glm::vec2 const& scale = { 1.0f, 1.0f } );
+    void Set( glm::vec2 const& translation, float rotation, glm::vec2 const& scale );
+
+    /// @brief  unified set method that sets translation and rotation at once
+    /// @param  translation the new translation to set
+    /// @param  rotation    the new rotation to set
+    void Set( glm::vec2 const& translation, float rotation );
 
 
 	/// @brief  gets the translation
