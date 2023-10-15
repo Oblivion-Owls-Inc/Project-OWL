@@ -128,6 +128,12 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+public:
+
+    /// @brief  Write all Entity data to a JSON file.
+    /// @return The JSON file containing the Entity data.
+    virtual nlohmann::ordered_json Write() const override;
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------

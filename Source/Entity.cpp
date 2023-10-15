@@ -278,6 +278,21 @@
 	    }
     }
 
+    /// @brief  Write all Entity data to a JSON file.
+    /// @return The JSON file containing the Entity data.
+    nlohmann::ordered_json Entity::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["Name"] = m_Name;
+        auto& components = data["Components"];
+
+        for ( auto& [ key, value ] : m_Components )
+        {
+
+        }
+    }
+
     /// @brief A map of the all read methods used by the Entity class.
     ReadMethodMap< Entity > const Entity::s_ReadMethods = {
 	    { "Archetype"  , &readArchetype  },
