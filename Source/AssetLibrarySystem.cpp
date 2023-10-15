@@ -57,6 +57,7 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     nlohmann::ordered_json AssetLibrarySystem< AssetType >::SaveAssets() const
     {
         nlohmann::ordered_json json;
+        json.object();
 
         for ( auto& [ key, value ] : m_Assets )
         {

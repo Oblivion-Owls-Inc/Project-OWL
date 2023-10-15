@@ -165,8 +165,8 @@ private: // scene loading
         template< class AssetType >
         static BaseAssetLibrarySystem* getAssetLibrary();
 
-        /// @brief map of asset libraries used to read assets
-        static std::map< std::string, BaseAssetLibrarySystem* (*)() > const s_AssetLibraries;
+        /// @brief "map" of asset libraries used to read assets
+        static std::vector< std::pair< std::string, BaseAssetLibrarySystem* (*)() > > const s_AssetLibraries;
 
     public:
 

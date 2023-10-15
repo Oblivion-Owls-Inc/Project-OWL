@@ -93,6 +93,14 @@ private: // reading
     }
 
 //-----------------------------------------------------------------------------
+public: // writing
+//-----------------------------------------------------------------------------
+    
+    /// @brief  writes this ControlPoint to json
+    /// @return the written json data
+    virtual nlohmann::ordered_json Write() const override;
+
+//-----------------------------------------------------------------------------
 };
 
 
@@ -284,6 +292,14 @@ private: // reading
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
+
+//-----------------------------------------------------------------------------
+public: // writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  writes this Curve to json
+    /// @return the written json data
+    virtual nlohmann::ordered_json Write() const override;
 
 //-----------------------------------------------------------------------------
 };

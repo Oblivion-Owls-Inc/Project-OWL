@@ -182,7 +182,17 @@
     {
         for ( auto& [ key, value ] : data.items() )
         {
-            auto it = s_AssetLibraries.find( key );
+            
+            // basically just std::find but different because we're not actually using a std::map
+            auto it = s_AssetLibraries.begin();
+            for ( ; it != s_AssetLibraries.end(); ++it )
+            {
+                if ( it->first == key )
+                {
+                    break;
+                }
+            }
+
             if ( it == s_AssetLibraries.end() )
             {
                 std::stringstream errorMessage;
@@ -218,12 +228,12 @@
     }
 
     /// @brief map of asset libraries used to read assets
-    std::map< std::string, BaseAssetLibrarySystem* (*)() > const SceneSystem::Scene::s_AssetLibraries = {
-        { "Archetypes"         , &getAssetLibrary< Entity >             },
+    std::vector< std::pair< std::string, BaseAssetLibrarySystem* (*)() > > const SceneSystem::Scene::s_AssetLibraries = {
         { "Sounds"             , &getAssetLibrary< Sound >              },
         { "Textures"           , &getAssetLibrary< Texture >            },
         { "TransformAnimations", &getAssetLibrary< TransformAnimation > },
-        { "Animations"         , &getAssetLibrary< AnimationAsset >     }
+        { "Animations"         , &getAssetLibrary< AnimationAsset >     },
+        { "Archetypes"         , &getAssetLibrary< Entity >             }
     };
 
     /// @brief  writes this Scene to json
@@ -235,7 +245,7 @@
         nlohmann::ordered_json& assets = json[ "Assets" ];
         for ( auto& [ key, value ] : s_AssetLibraries )
         {
-            assets[ key ] = value()->Write();
+            assets[ key ] = value()->SaveAssets();
         }
 
         json[ "Entities" ] = Entities()->SaveEntities();
