@@ -184,8 +184,8 @@
         {
             
             // basically just std::find but different because we're not actually using a std::map
-            auto it = s_AssetLibraries.begin();
-            for ( ; it != s_AssetLibraries.end(); ++it )
+            std::vector< std::pair< std::string, BaseAssetLibrarySystem* (*)() > >::const_iterator it;
+            for ( it = s_AssetLibraries.begin(); it != s_AssetLibraries.end(); ++it )
             {
                 if ( it->first == key )
                 {
@@ -201,6 +201,7 @@
                     "\" encountered while reading Scene asset types";
                 throw std::runtime_error( errorMessage.str() );
             }
+
             it->second()->LoadAssets( value );
         }
     }
