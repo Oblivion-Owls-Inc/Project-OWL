@@ -16,13 +16,11 @@
 class CircleCollider : public Collider
 {
 //-----------------------------------------------------------------------------
-public: // constructor / inpector
+public: // constructor
 //-----------------------------------------------------------------------------
 
     /// @brief  default constructor
     CircleCollider();
-
-    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -35,6 +33,13 @@ public: // accessors
     /// @brief  sets this CircleCollider's radius
     /// @param  radius  the radius
     __inline void SetRadius( float radius ) { m_Radius = radius; }
+
+//-----------------------------------------------------------------------------
+private: // virtual overrides
+//-----------------------------------------------------------------------------
+
+    /// @brief  inspector for this CircleCollider
+    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 private: // members

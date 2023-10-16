@@ -13,6 +13,7 @@
 #include "Transform.h"
 
 #include "CollisionSystem.h"
+#include "DebugSystem.h"
 
 //-----------------------------------------------------------------------------
 // protected: constructor
@@ -27,7 +28,9 @@
     /// @brief  copy-constructor
     /// @param  other   the collider to copy
     Collider::Collider( Collider const& other ) :
-        Component( other )
+        Component( other ),
+        m_CollisionLayerId(    other.m_CollisionLayerId    ),
+        m_CollisionLayerFlags( other.m_CollisionLayerFlags )
     {}
 
 //-----------------------------------------------------------------------------
@@ -95,6 +98,49 @@
     void Collider::OnExit()
     {
         CollisionSystem::GetInstance()->removeCollider(this);
+    }
+
+
+    /// @brief  debug inspector for Colliders
+    void Collider::Inspector()
+    {
+        std::vector< std::string > const& collisionLayerNames = Collisions()->GetLayerNames();
+
+        // collision layer
+        if ( ImGui::BeginCombo( ( std::string( "Collision Layer##" ) + std::to_string( GetId() ) ).c_str(), collisionLayerNames[ m_CollisionLayerId ].c_str()) ) // Default displayed
+        {
+            for (int i = 0; i < collisionLayerNames.size(); ++i)
+            {
+                if ( ImGui::Selectable( collisionLayerNames[ i ].c_str(), m_CollisionLayerId == i ) )
+                {
+                    m_CollisionLayerId = i;
+                }
+            }
+            ImGui::EndCombo();
+        }
+
+        /// collision layer flags
+        std::vector flagNames = Collisions()->GetLayerNames( m_CollisionLayerFlags );
+        std::string flagNamesString = "";
+        if ( flagNames.size() > 0 )
+        {
+            flagNamesString = flagNames[ 0 ];
+            for ( int i = 1; i < flagNames.size(); ++i )
+            {
+                flagNamesString += ", " + flagNames[ i ];
+            }
+        }
+        if ( ImGui::BeginCombo( ( std::string( "Collision Layer Flags##" ) + std::to_string( GetId() ) ).c_str(), flagNamesString.c_str() ) ) // Default displayed
+        {
+            for (int i = 0; i < collisionLayerNames.size(); ++i)
+            {
+                if ( ImGui::Selectable( collisionLayerNames[ i ].c_str(), m_CollisionLayerFlags & (1 << i), ImGuiSelectableFlags_DontClosePopups ) )
+                {
+                    m_CollisionLayerFlags ^= 1 << i;
+                }
+            }
+            ImGui::EndCombo();
+        }
     }
 
 //-----------------------------------------------------------------------------

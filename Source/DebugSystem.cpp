@@ -138,7 +138,7 @@ void DebugSystem::DebugWindow()
     
     // engine config saving
     static char buffer[ 128 ] = "Data/EngineConfig.json"; // Buffer to hold the input, you can save this
-    ImGui::InputText( "Type Scene Name", buffer, IM_ARRAYSIZE( buffer ) );
+    ImGui::InputText( "Engine config filepath", buffer, IM_ARRAYSIZE( buffer ) );
     
     if ( ImGui::Button( "Save Engine Config" ) )
     {

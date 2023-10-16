@@ -25,6 +25,8 @@
 #include <sstream>
 #include <algorithm>
 
+#include "DebugSystem.h"
+
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------
@@ -112,6 +114,35 @@
     void CollisionSystem::OnSceneExit()
     {
         m_Colliders.clear();
+    }
+
+    /// @brief  creates the debug window for the CollisionSystem
+    void CollisionSystem::DebugWindow()
+    {
+        if ( !ImGui::BeginListBox("Collision Layers") )
+        {
+            return;
+        }
+
+        for (int i = 0; i < m_CollisionLayerNames.size(); ++i )
+        {
+            char buffer[ 64 ];
+            strncpy_s( buffer, IM_ARRAYSIZE( buffer ), m_CollisionLayerNames[i].c_str(), m_CollisionLayerNames[i].size());
+            ImGui::InputText( (std::string() + "Layer Name##" + std::to_string( i )).c_str(), buffer, IM_ARRAYSIZE(buffer));
+            m_CollisionLayerNames[ i ] = buffer;
+        }
+
+        ImGui::EndListBox();
+
+        if ( ImGui::Button( "Add Layer" ) )
+        {
+            m_CollisionLayerNames.push_back( "new_layer" );
+        }
+
+        if ( ImGui::Button( "Remove Layer" ) )
+        {
+            m_CollisionLayerNames.pop_back();
+        }
     }
 
 //-----------------------------------------------------------------------------
@@ -278,6 +309,17 @@
     ReadMethodMap< CollisionSystem > const CollisionSystem::s_ReadMethods = {
         { "CollisionLayerNames", &readCollisionLayerNames }
     };
+
+    /// @brief  writes the CollisionSystem config to json
+    /// @return the written json data
+    nlohmann::ordered_json CollisionSystem::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        json[ "CollisionLayerNames" ] = m_CollisionLayerNames;
+
+        return json;
+    }
 
 //-----------------------------------------------------------------------------
 // singleton stuff

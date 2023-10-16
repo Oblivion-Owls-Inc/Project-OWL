@@ -19,13 +19,20 @@
     CircleCollider::CircleCollider() :
         Collider( typeid( CircleCollider ) ),
         m_Radius( 1.0f )
-    {
-    }
+    {}
 
+//-----------------------------------------------------------------------------
+// private: virtual overrides
+//-----------------------------------------------------------------------------
+
+    /// @brief  inspector for this CircleCollider
     void CircleCollider::Inspector()
     {
-        ImGui::DragFloat( "Radius", &m_Radius);
+        ImGui::DragFloat( ( std::string( "Radius##" ) + std::to_string( GetId() ) ).c_str(), &m_Radius, 0.05f, 0.0f );
+
+        Collider::Inspector();
     }
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------

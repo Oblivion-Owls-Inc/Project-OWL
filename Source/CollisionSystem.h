@@ -79,7 +79,15 @@ public: // methods
     std::string const& GetLayerName( unsigned layerId ) const;
 
 //-----------------------------------------------------------------------------
-public: // virtual override methods
+public: // accessors
+//-----------------------------------------------------------------------------
+    
+    /// @brief  gets the collision layer names
+    /// @return the array of collision layer names
+    std::vector< std::string > const& GetLayerNames() const { return m_CollisionLayerNames; }
+
+//-----------------------------------------------------------------------------
+private: // virtual override methods
 //-----------------------------------------------------------------------------
 
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
@@ -87,6 +95,9 @@ public: // virtual override methods
 
     /// @brief  gets called once whenever a scene exits
     virtual void OnSceneExit() override;
+
+    /// @brief  creates the debug window for the CollisionSystem
+    virtual void DebugWindow() override;
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -148,6 +159,9 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+    /// @brief  writes the CollisionSystem config to json
+    /// @return the written json data
+    virtual nlohmann::ordered_json Write() const override;
 
 //-----------------------------------------------------------------------------
 private: // singleton stuff

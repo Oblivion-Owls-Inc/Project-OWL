@@ -119,6 +119,9 @@ protected: // virtual override methods
     /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
     virtual void OnExit() override;
 
+    /// @brief  debug inspector for Colliders
+    virtual void Inspector() override;
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
