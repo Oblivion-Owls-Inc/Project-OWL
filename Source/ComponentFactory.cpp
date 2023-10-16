@@ -26,6 +26,7 @@
 #include "EffectAnimator.h"
 #include "Text.h"
 #include "Tilemap.h"
+#include "Pathfinder.h"
 
 
 //-----------------------------------------------------------------------------
@@ -104,8 +105,9 @@
         { "PlayerController" , ComponentInfo<PlayerController>() },
         { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   },
         { "EffectAnimator"   , ComponentInfo<EffectAnimator>()   },
-        { "Tilemap"          , ComponentInfo<Tilemap>()          },
-        { "TilemapSprite"    , ComponentInfo<TilemapSprite>()    }
+        { "Tilemap<int>"     , ComponentInfo< Tilemap<int> >()   },
+        { "TilemapSprite"    , ComponentInfo<TilemapSprite>()    },
+        { "Pathfinder"       , ComponentInfo<Pathfinder>()       }
     };
 
 //-----------------------------------------------------------------------------

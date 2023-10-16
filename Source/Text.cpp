@@ -1,11 +1,12 @@
 /// @file     Text.cpp
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    A version of Sprite specifically for rendering text. Uses instancing to draw multiple 
-///           letters simultaneously.
+/// @brief    Component that makes use of Tilemap to draw text.
 #include "Text.h"
 #include "Entity.h"
-#include "TilemapSprite.h"
+#include "Tilemap.h"
+
+// TODO: update when text (Tilemap) changes
 
 /// @brief   default constructor
 Text::Text() :
@@ -20,31 +21,31 @@ Component * Text::Clone() const
 
 
 /// @brief      Loads text data into tilemap sprite.
-void Text::loadTextIntoSprite()
+void Text::loadTextIntoTilemap()
 {
-    // Make sure this Text has parent, and parent has TilemapSprite
+    // Make sure this Text has parent, and parent has Tilemap
     Entity* parent = GetParent();
     if (!parent)
         return;
 
-    TilemapSprite* ts =  parent->GetComponent<TilemapSprite>();
-    if (!ts)
+    Tilemap<int>* tm =  parent->GetComponent<Tilemap<int>>();
+    if (!tm)
         return;
 
     // Convert to zero-index spritesheet indices, then load in
-    std::string tiles = m_Text;
-    int size = (int)tiles.size();
+    int size = (int)m_Text.size();
+    std::vector<int> tiles(size);
     for (int i=0; i<size; i++)
-        tiles[i] -= 32;
+        tiles[i] = (int)m_Text[i] - 32;
 
-    ts->LoadTileArray(tiles.c_str(), size);
+    tm->SetTilemap(tiles);
 }
 
 
 /// @brief  called when entering a scene
 void Text::OnInit()
 {
-    loadTextIntoSprite();
+    loadTextIntoTilemap();
 }
 
 
