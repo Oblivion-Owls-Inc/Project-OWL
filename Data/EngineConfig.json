@@ -8,7 +8,7 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Sandbox"
+            "NextSceneName": "TurretScene"
         },
         "AssetLibrarySystem<Entity>": {},
         "AssetLibrarySystem<Sound>": {},
@@ -19,7 +19,9 @@
         "BehaviorSystem<MovementAI>": {},
         "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<RigidBody>": {},
-        "CollisionSystem": {},
+        "CollisionSystem": {
+            "CollisionLayerNames": [ "physics", "terrain", "enemies", "player", "base", "projectiles" ]
+        },
         "BehaviorSystem<EffectAnimator>": {},
         "BehaviorSystem<Tilemap<int>>": {},
         "EntitySystem": {},

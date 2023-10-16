@@ -54,21 +54,26 @@ public: // virtual methods
     
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() {};
+
 //-----------------------------------------------------------------------------
 public: // Accessors
 //-----------------------------------------------------------------------------
 
     /// @brief gets the components type
     /// @return component type
-    __inline std::type_index GetType() const { return m_Type; }
+    std::type_index GetType() const { return m_Type; }
 
     /// @brief sets the parent entity of the component
     /// @param parent, the parent entity of the component
-    __inline void SetParent( Entity* parent ) { m_Parent = parent; }
+    void SetParent( Entity* parent ) { m_Parent = parent; }
 
     /// @brief returns the components parent entity
     /// @return the parent entity of the component
-    __inline Entity* GetParent() const { return m_Parent; }
+    Entity* GetParent() const { return m_Parent; }
+
+    /// @brief  gets the Id of this Component
+    /// @return the Id of this Component
+    unsigned GetId() const { return m_Id; }
 
 //-----------------------------------------------------------------------------
 private: // member variables
@@ -79,6 +84,9 @@ private: // member variables
 
 	/// @brief  the parent Entity of this Component
 	Entity* m_Parent;
+
+    /// @brief  the ID of this Component
+    unsigned m_Id;
 
 //-----------------------------------------------------------------------------
 };

@@ -7,6 +7,7 @@
 /// @copyright Copyright (c) 2023 Digipen Institute of Technology
 
 #include "Component.h"
+#include "basics.h"
 
 //-----------------------------------------------------------------------------
 // protected: constructors
@@ -16,14 +17,16 @@
     /// @param type_ type of Component being created.
     Component::Component( std::type_index type ) :
         m_Type( type ),
-        m_Parent( nullptr )
+        m_Parent( nullptr ),
+        m_Id( GetUniqueId() )
     {}
 
     /// @brief Copy-constructor for Component base class
     /// @param other the other Component to copy
     Component::Component( Component const& other ) :
         m_Type( other.m_Type ),
-        m_Parent( nullptr )
+        m_Parent( nullptr ),
+        m_Id( GetUniqueId() )
     {}
 
 //-----------------------------------------------------------------------------

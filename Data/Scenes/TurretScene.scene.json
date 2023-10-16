@@ -87,7 +87,9 @@
                     },
                     "RigidBody": {},
                     "CircleCollider": {
-                        "Radius": 0.5
+                        "Radius": 0.5,
+                        "CollisionLayer": "physics",
+                        "CollisionLayerFlags": [ "physics" ]
                     },
                     "Transform": {},
                     "MovementAI": {}
