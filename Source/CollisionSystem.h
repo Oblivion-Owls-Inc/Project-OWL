@@ -33,6 +33,9 @@ using CollisionCheckFunction = bool (*)( Collider const* colliderA, Collider con
 /// @brief  map that stores the CollisionCheckMethods between each Collider type
 using CollisionFunctionMap = std::map< std::pair< std::type_index, std::type_index >, CollisionCheckFunction >;
 
+/// @brief  bit flags of which layers a collider collides with
+using CollisionLayerFlags = unsigned;
+
 //-----------------------------------------------------------------------------
 // class
 //-----------------------------------------------------------------------------
@@ -54,6 +57,27 @@ public: // methods
     /// @param  collider    the collider to remove
     void removeCollider( Collider* collider );
 
+
+    /// @brief  makes a CollisionLayerFlags for a set of layer names
+    /// @param  layerNames  the names of the layers to include in the flags
+    CollisionLayerFlags GetLayerFlags( std::vector< std::string > const& layerNames ) const;
+
+    /// @brief  gets the collision layer ID with the specified name
+    /// @param  layerName   the name of the layer to get
+    /// @return the collision layer ID
+    unsigned GetCollisionLayerId( std::string const& layerName ) const;
+
+
+    /// @brief  gets the names of the layers in a CollisionLayerFlags
+    /// @param  layerFlags  the layer flags to get the names of
+    /// @return the names of the layers
+    std::vector< std::string > GetLayerNames( CollisionLayerFlags layerFlags ) const;
+
+    /// @brief  gets the name of the specified layer
+    /// @param  layerId the ID of the layer to get the name of
+    /// @return the name of the layer
+    std::string const& GetLayerName( unsigned layerId ) const;
+
 //-----------------------------------------------------------------------------
 public: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -61,7 +85,7 @@ public: // virtual override methods
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
     virtual void OnFixedUpdate() override;
 
-    ///
+    /// @brief  gets called once whenever a scene exits
     virtual void OnSceneExit() override;
 
 //-----------------------------------------------------------------------------
@@ -75,8 +99,11 @@ private: // methods
 private: // members
 //-----------------------------------------------------------------------------
 
-    /// @brief all Colliders in the Scene
-    std::vector< Collider* > m_Colliders;
+    /// @brief  all Colliders in the Scene
+    std::vector< Collider* > m_Colliders = {};
+
+    /// @brief  the names of each collision layer
+    std::vector< std::string > m_CollisionLayerNames = {};
 
 //-----------------------------------------------------------------------------
 private: // static methods
@@ -106,6 +133,10 @@ private: // static members
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
+
+    /// @brief  reads the collision layer names from json
+    /// @param  data    the json data to read from
+    void readCollisionLayerNames( nlohmann::ordered_json const& data );
 
     /// @brief map of the CollisionSystem read methods
     static ReadMethodMap< CollisionSystem > const s_ReadMethods;
@@ -142,3 +173,10 @@ public: // singleton stuff
 
 //-----------------------------------------------------------------------------
 };
+
+/// @brief  shorthand method for getting the collision system
+/// @return the collision system instance
+__inline CollisionSystem* Collisions()
+{
+    return CollisionSystem::GetInstance();
+}

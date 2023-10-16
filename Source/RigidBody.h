@@ -12,9 +12,11 @@
 ///*****************************************************************/
 #include "Component.h"
 #include "basics.h"
-#include "Transform.h"
 #include "Entity.h"
 #include "Behavior.h"
+
+class Transform;
+class Collider;
 
 ///*****************************************************************/
 /// RigidBody class
@@ -137,9 +139,9 @@ private: // methods
 //-----------------------------------------------------------------------------
 
     /// @brief  Called whenever a Collider on this Behavior's Entity collides
-    /// @param  other           the entity that was collided with
+    /// @param  other           the collider that was collided with
     /// @param  collisionData   additional data about the collision
-    void OnCollision( Entity* other, CollisionData const& collisionData );
+    void OnCollision( Collider* other, CollisionData const& collisionData );
 
 //-----------------------------------------------------------------------------
 private: // member variables
@@ -174,6 +176,9 @@ private: // member variables
 
     /// @brief  the transform associated with this RigidBody
     Transform* m_Transform = nullptr;
+
+    /// @brief  the Collider associated with this RigidBody
+    Collider* m_Collider = nullptr;
 
 
 //-----------------------------------------------------------------------------

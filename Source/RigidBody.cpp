@@ -10,6 +10,9 @@
 #include "DebugSystem.h"
 #include "Engine.h"
 
+#include "Collider.h"
+#include "Transform.h"
+
 //-----------------------------------------------------------------------------
 // public: constructor / destructors
 //-----------------------------------------------------------------------------
@@ -46,10 +49,12 @@
     void RigidBody::OnInit()
     {
         BehaviorSystem<RigidBody>::GetInstance()->AddBehavior(this);
-        m_OnCollisionCallbackHandle = GetParent()->GetComponent<Collider>()->AddOnCollisionCallback(
+        m_Transform = GetParent()->GetComponent<Transform>();
+        m_Collider = GetParent()->GetComponent<Collider>();
+        
+        m_OnCollisionCallbackHandle = m_Collider->AddOnCollisionCallback(
             std::bind( &RigidBody::OnCollision, this, std::placeholders::_1, std::placeholders::_2 )
         );
-        m_Transform = GetParent()->GetComponent<Transform>();
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
@@ -57,7 +62,7 @@
     void RigidBody::OnExit()
     {
         BehaviorSystem<RigidBody>::GetInstance()->RemoveBehavior(this);
-        GetParent()->GetComponent<Collider>()->RemoveOnCollisionCallback( m_OnCollisionCallbackHandle );
+        m_Collider->RemoveOnCollisionCallback( m_OnCollisionCallbackHandle );
     }
 
     /// @brief Update method called per frame.
@@ -86,13 +91,13 @@
     }
 
     /// @brief  Called whenever a Collider on this Behavior's Entity collides
-    /// @param  other           the entity that was collided with
+    /// @param  other           the collider that was collided with
     /// @param  collisionData   additional data about the collision
-    void RigidBody::OnCollision( Entity* other, CollisionData const& collisionData )
+    void RigidBody::OnCollision( Collider* other, CollisionData const& collisionData )
     {
 
         // only handle collisions with other rigidBodies
-        RigidBody* rigidBodyB = other->GetComponent<RigidBody>();
+        RigidBody* rigidBodyB = other->GetParent()->GetComponent<RigidBody>();
         if ( rigidBodyB == nullptr )
         {
             return;
@@ -104,7 +109,7 @@
             return;
         }
 
-        Transform* transformB = other->GetComponent<Transform>();
+        Transform* transformB = other->GetTransform();
 
         // move the bodies away from each other so they no longer overlap
         glm::vec2 position = m_Transform->GetTranslation();
@@ -149,7 +154,11 @@
         m_Velocity = velA;
         rigidBodyB->SetVelocity( velB );
 
-        m_CollisionResolved = true;
+        // if other will also collide with this, mark the collision as already resolved
+        if ( other->GetCollisionLayerFlags() & (1 << m_Collider->GetCollisionLayerId()) )
+        {
+            m_CollisionResolved = true;
+        }
     }
 
     /// @brief Used by the Debug System to display information about this Component

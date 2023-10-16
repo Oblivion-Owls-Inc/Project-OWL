@@ -23,6 +23,7 @@
 #include "Transform.h"
 
 #include <sstream>
+#include <algorithm>
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -42,6 +43,60 @@
         m_Colliders.erase(
             std::remove( m_Colliders.begin(), m_Colliders.end(), collider )
         );
+    }
+
+
+    /// @brief  makes a CollisionLayerFlags for a set of layer names
+    /// @param  layerNames  the names of the layers to include in the flags
+    CollisionLayerFlags CollisionSystem::GetLayerFlags( std::vector< std::string > const& layerNames ) const
+    {
+        CollisionLayerFlags flags = 0;
+        for ( std::string const& name : layerNames )
+        {
+            flags |= 1 << GetCollisionLayerId( name );
+        }
+        return flags;
+    }
+
+    /// @brief  gets the collision layer ID with the specified name
+    /// @param  layerName   the name of the layer to get
+    /// @return the collision layer ID
+    unsigned CollisionSystem::GetCollisionLayerId( std::string const& layerName ) const
+    {
+        auto it = std::find( m_CollisionLayerNames.begin(), m_CollisionLayerNames.end(), layerName );
+        if ( it == m_CollisionLayerNames.end() )
+        {
+            throw std::runtime_error(
+                std::string() + "Error: \"" + layerName + "\" is not a recognized collision layer name"
+            );
+        }
+
+        return it - m_CollisionLayerNames.begin();
+    }
+
+    /// @brief  gets the names of the layers in a CollisionLayerFlags
+    /// @param  layerFlags  the layer flags to get the names of
+    /// @return the names of the layers
+    std::vector< std::string > CollisionSystem::GetLayerNames( CollisionLayerFlags layerFlags ) const
+    {
+        std::vector< std::string > layerNames;
+        for ( unsigned i = 0; layerFlags > 0; ++i )
+        {
+            if ( layerFlags & (1 << i) )
+            {
+                layerNames.push_back( GetLayerName( i ) );
+                layerFlags ^= 1 << i;
+            }
+        }
+        return layerNames;
+    }
+
+    /// @brief  gets the name of the specified layer
+    /// @param  layerId the ID of the layer to get the name of
+    /// @return the name of the layer
+    std::string const& CollisionSystem::GetLayerName( unsigned layerId ) const
+    {
+        return m_CollisionLayerNames[ layerId ];
     }
 
 //-----------------------------------------------------------------------------
@@ -86,53 +141,80 @@
     /// @return whether or not the two colliders are colliding
     void CollisionSystem::CheckCollision( Collider* colliderA, Collider* colliderB )
     {
-        if ( colliderA->GetParent()->GetComponent<Transform>() == nullptr || 
-            colliderB->GetParent()->GetComponent<Transform>() == nullptr)
+        // check if the layers interact
+        bool aCollidesB = colliderA->GetCollisionLayerFlags() & ( 1 << colliderB->GetCollisionLayerId() );
+        bool bCollidesA = colliderB->GetCollisionLayerFlags() & ( 1 << colliderA->GetCollisionLayerId() );
+
+        // if collision layers don't interact, don't test collision
+        if ( !aCollidesB && !bCollidesA )
+        {
+            return;
+        }
+
+        // ensure that both colliders have Transforms
+        if ( colliderA->GetTransform() == nullptr || colliderB->GetTransform() == nullptr )
 		{
-			return;
+            throw std::runtime_error(
+                "Error: Collider component must always be accompanied by a Transform component"
+            );
 		}
 
-        std::pair< std::type_index, std::type_index > colliderTypes
-            = { colliderA->GetType(), colliderB->GetType() };
+        // check type of each collider
+        std::pair< std::type_index, std::type_index > colliderTypes = {
+            colliderA->GetType(),
+            colliderB->GetType()
+        };
 
+        // find the collision function between those two shapes
         auto checkFuncIt = s_CollisionFunctions.find( colliderTypes );
         if ( checkFuncIt == s_CollisionFunctions.end() )
         {
+            // if no collision function found, swap the order of the colliders and search again
             colliderTypes = {
                 colliderTypes.second,
                 colliderTypes.first
             };
 
-            Collider* temp = colliderA;
+            Collider* tempPtr = colliderA;
             colliderA = colliderB;
-            colliderB = temp;
+            colliderB = tempPtr;
+
+            bool tempBool = aCollidesB;
+            aCollidesB = bCollidesA;
+            bCollidesA = tempBool;
 
             checkFuncIt = s_CollisionFunctions.find( colliderTypes );
             if ( checkFuncIt == s_CollisionFunctions.end() )
             {
-                std::stringstream errorMessage;
-                errorMessage <<
-                    "Error: no collision function implemented between " <<
-                    colliderTypes.first.name() << " and " <<
-                    colliderTypes.second.name();
-
-                ///Let it silently fail in release mode
-                #ifndef NDEBUG
-                  throw std::runtime_error( errorMessage.str() );
+                // if still no function found, fail
+                #ifndef NDEBUG // Let it silently fail in release mode
+                    throw std::runtime_error(
+                        std::string() +
+                        "Error: no collision function implemented between " +
+                        colliderTypes.first.name() + " and " +
+                        colliderTypes.second.name()
+                    );
                 #endif // !NDEBUG
 
-             return;
+                return;
             }
         }
 
+        // check the collision
         CollisionData collisionData;
         if ( (*checkFuncIt->second)( colliderA, colliderB, &collisionData ) )
         {
-            colliderA->CallOnCollisionCallbacks( colliderB->GetParent(), collisionData );
+            // call callbacks 
+            if ( aCollidesB )
+            {
+                colliderA->CallOnCollisionCallbacks( colliderB, collisionData );
+            }
 
-            collisionData.normal *= -1;
-
-            colliderB->CallOnCollisionCallbacks( colliderA->GetParent(), collisionData );
+            if ( bCollidesA )
+            {
+                collisionData.normal *= -1;
+                colliderB->CallOnCollisionCallbacks( colliderA, collisionData );
+            }
         }
     }
 
@@ -185,8 +267,17 @@
 // private: reading
 //-----------------------------------------------------------------------------
 
+    /// @brief  reads the collision layer names from json
+    /// @param  data    the json data to read from
+    void CollisionSystem::readCollisionLayerNames( nlohmann::ordered_json const& data )
+    {
+        m_CollisionLayerNames = data;
+    }
+
     /// @brief map of the CollisionSystem read methods
-    ReadMethodMap< CollisionSystem > const CollisionSystem::s_ReadMethods = {};
+    ReadMethodMap< CollisionSystem > const CollisionSystem::s_ReadMethods = {
+        { "CollisionLayerNames", &readCollisionLayerNames }
+    };
 
 //-----------------------------------------------------------------------------
 // singleton stuff

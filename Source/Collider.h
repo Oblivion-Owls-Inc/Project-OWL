@@ -13,7 +13,6 @@
 //-----------------------------------------------------------------------------
 
 #include "Component.h"
-#include "Transform.h"
 
 #include <map>
 #include <functional>
@@ -24,8 +23,13 @@
 
 struct CollisionData;
 
-class CircleCollider;
-class TilemapCollider;
+class Transform;
+
+//-----------------------------------------------------------------------------
+// typedefs
+//-----------------------------------------------------------------------------
+
+using CollisionLayerFlags = unsigned;
 
 //-----------------------------------------------------------------------------
 // class
@@ -56,7 +60,7 @@ public: // methods
     /// @return a handle to the created callback
     /// @note   YOU MUST CLEAR THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
     /// @note   the callback will be called every time this collider collides (but not each time it loops)
-    unsigned AddOnCollisionCallback( std::function< void ( Entity*, CollisionData const& ) > callback );
+    unsigned AddOnCollisionCallback( std::function< void ( Collider*, CollisionData const& ) > callback );
 
     /// @brief  removes a callback function to be called when this collider collides
     /// @param  callbackHandle  the handle of the callback to remove
@@ -65,18 +69,47 @@ public: // methods
     /// @brief  calls all OnCollision callbacks attached to this Collider
     /// @param  other           the other entity this Collider collided with
     /// @param  collisionData   the collisionData of the collision
-    void CallOnCollisionCallbacks( Entity* other, CollisionData const& collisionData );
+    void CallOnCollisionCallbacks( Collider* other, CollisionData const& collisionData );
+
+
+    /// @brief  sets the collision layer of this Collider
+    /// @param  layerName   the name of the collision layer to set
+    void SetCollisionLayer( std::string const& layerName );
+
+    /// @brief  sets the collision layer of this Collider
+    /// @param  layerNames  the name of the collision layer to set
+    void SetCollisionLayerNames( std::vector< std::string > const& layerNames );
     
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
 
+
     /// @brief  gets this Collider's Transform
     /// @return this Collider's Transform
     Transform* GetTransform() const { return m_Transform; }
 
+
+    /// @brief  gets the collision layer of this Collider
+    /// @return the collision layer of this Collider
+    unsigned GetCollisionLayerId() const { return m_CollisionLayerId; }
+
+    /// @brief  sets the collision layer of this Collider
+    /// @param  layerId the collision layer to set
+    void SetCollisionLayerId( unsigned layerId ) { m_CollisionLayerId = layerId; }
+
+
+    /// @brief  gets the flags of which layers this Collider collides with
+    /// @return the flags of which layers this Collider collides with
+    CollisionLayerFlags GetCollisionLayerFlags() const { return m_CollisionLayerFlags; }
+
+    /// @brief  sets the flags of which layers this Collider collides with
+    /// @param  layerFlags  the flags of which layers this Collider collides with
+    void SetCollisionLayerFlags( CollisionLayerFlags layerFlags ) {m_CollisionLayerFlags = layerFlags; }
+
+
 //-----------------------------------------------------------------------------
-private: // virtual override methods
+protected: // virtual override methods
 //-----------------------------------------------------------------------------
 
     /// @brief  called when this Component's Entity enters the Scene
@@ -91,10 +124,28 @@ private: // member variables
 //-----------------------------------------------------------------------------
     
     /// @brief The transform of this Collider's Entity
-    Transform* m_Transform;
+    Transform* m_Transform = nullptr;
+
+    /// @brief  the collision layer of this Collider
+    unsigned m_CollisionLayerId = 0;
+
+    /// @brief  flags of which layers this Collider collides with
+    CollisionLayerFlags m_CollisionLayerFlags = 0;
 
     /// @brief  callbacks which get called whenever this collider collides
-    std::map< unsigned, std::function< void ( Entity*, CollisionData const& ) > > m_OnCollisionCallbacks;
+    std::map< unsigned, std::function< void ( Collider*, CollisionData const& ) > > m_OnCollisionCallbacks = {};
 
+//-----------------------------------------------------------------------------
+protected: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief  reads the collision layer from json
+    /// @param  data    the json data to read from
+    void readCollisionLayer( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the collision layer flags from json
+    /// @param  data    the json data to read from
+    void readCollisionLayerFlags( nlohmann::ordered_json const& data );
+    
 //-----------------------------------------------------------------------------
 };

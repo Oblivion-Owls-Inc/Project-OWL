@@ -44,13 +44,17 @@
         nlohmann::ordered_json data;
 
         data["Radius"] = m_Radius;
+        data["CollisionLayer"] = GetCollisionLayerId();
+        data["CollisionLayerFlags"] = GetCollisionLayerFlags();
 
         return data;
     }
 
     /// @brief map of the read methods for this Component
     ReadMethodMap< CircleCollider > CircleCollider::s_ReadMethods = {
-        { "Radius", &readRadius }
+        { "Radius"             , &readRadius              },
+        { "CollisionLayer"     , &readCollisionLayer      },
+        { "CollisionLayerFlags", &readCollisionLayerFlags }
     };
 
 //-----------------------------------------------------------------------------
