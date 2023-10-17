@@ -71,7 +71,7 @@
             }
         },
         {
-            "Name": "Ball1",
+            "Name": "Ball",
             "Components": {
                 "Sprite": {
                     "Texture": "Ball5",
@@ -90,7 +90,7 @@
             }
         },
         {
-            "Name": "Ball2",
+            "Name": "Ball",
             "Components": {
                 "Sprite": {
                     "Texture": "Ball2",
@@ -109,7 +109,7 @@
             }
         },
         {
-            "Name": "Ball3",
+            "Name": "Ball",
             "Components": {
                 "Sprite": {
                     "Texture": "Ball1",

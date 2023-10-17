@@ -30,7 +30,8 @@
     Entity::Entity() :
         m_Name( "" ),
 	    m_IsDestroyed( false ),
-	    m_Components()
+	    m_Components(),
+        m_Id( GetUniqueId() )
     {}
 
     /// @brief destructor

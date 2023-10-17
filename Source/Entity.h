@@ -86,8 +86,13 @@ public: // accessors
     /// @return this Entity's name
     __inline std::string const& GetName() const { return m_Name; }
 
+     /// @brief used by the Debug System to display information about this Entity
      void Inspect();
 
+
+     /// @brief  gets the Id of this Component
+     /// @return the Id of this Component
+     unsigned GetId() const { return m_Id; }
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
@@ -153,6 +158,8 @@ private: // member variables
 
     bool m_RenameEntity = false;
 
+    /// @brief  the ID of this Component
+    unsigned m_Id;
 //-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------

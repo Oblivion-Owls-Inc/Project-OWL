@@ -1,5 +1,3 @@
-#pragma once
-
 #include <glew.h>
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>
@@ -7,11 +5,14 @@
 #include <iostream>
 #include <cassert>
 #include <cstdlib>
-
+#include <atomic>
 #include <typeindex>
 
-#pragma warning(disable : 26451)
+#ifndef BASICS_H
+#define BASICS_H
+#pragma once
 
+#pragma warning(disable : 26451)
 /// @brief  returns a random float between min and max
 /// @param  min the minimum possible value
 /// @param  max the maximum possible value
@@ -35,10 +36,10 @@ __inline T lerp( T const& a, T const& b, float time )
 
 /// @brief  gets a unique ID value every time this function is called
 /// @return the unique ID
-/// @note   NOT THREAD SAFE
+/// @note   MODIFYED FROM THE ORIGINAL TO USE ATOMIC 
 __inline unsigned GetUniqueId()
 {
-    static unsigned id = 0;
+    static std::atomic< unsigned > id{ 0 };
     return ++id;
 }
 
@@ -57,3 +58,5 @@ __inline std::string PrefixlessName( std::type_index const& type )
 
     return name.substr( index + 1 );
 }
+
+#endif  // UNIQUE_ID_H
