@@ -68,6 +68,8 @@ void SandboxSystem::OnFixedUpdate()
     if (!update)
         return;
 
+    if (tiles)
+        pathfindDemo(Engine::GetInstance()->GetFixedFrameDuration());
 
 }
 
@@ -78,8 +80,6 @@ void SandboxSystem::OnUpdate( float dt )
     if (!update)
         return;
 
-    if (tiles)
-        pathfindDemo(dt);
 }
 
 
