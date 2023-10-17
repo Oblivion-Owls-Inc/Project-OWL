@@ -91,23 +91,23 @@
     /// @brief Fixed update method called at a fixed time step.
     void RigidBody::OnFixedUpdate()
     {
-	    float dt = Engine::GetInstance()->GetFixedFrameDuration();
+        float dt = Engine::GetInstance()->GetFixedFrameDuration();
 
-	    // linear movement
+        // linear movement
         glm::vec2 position = m_Transform->GetTranslation();
-	    m_Velocity += m_Acceleration * dt;
+        m_Velocity += m_Acceleration * dt;
         position += m_Velocity * dt;
 
         // angular movement
         float rotation = m_Transform->GetRotation();
-	    rotation += m_RotationalVelocity * dt;
+        rotation += m_RotationalVelocity * dt;
 
         // apply drag
         m_Velocity -= (m_Velocity * m_Drag * dt) / m_Mass;
         // TODO: angular drag
 
         // apply movement
-	    m_Transform->Set( position, rotation );
+        m_Transform->Set( position, rotation );
     }
 
     /// @brief  Called whenever a Collider on this Behavior's Entity collides
@@ -197,21 +197,21 @@
     /// @param data the json data
     void RigidBody::readVelocity( nlohmann::ordered_json const& data )
     {
-	    m_Velocity = Stream::Read< 2, float >(data);
+        m_Velocity = Stream::Read< 2, float >(data);
     }
 
     /// @brief reads the acceleration from json
     /// @param data the json data
     void RigidBody::readAcceleration( nlohmann::ordered_json const& data )
     {
-	    m_Acceleration = Stream::Read< 2, float >(data);
+        m_Acceleration = Stream::Read< 2, float >(data);
     }
 
     /// @brief reads the rotationalVelocity from json
     /// @param data the json data
     void RigidBody::readRotationalVelocity( nlohmann::ordered_json const& data )
     {
-	    m_RotationalVelocity = Stream::Read< float >(data);
+        m_RotationalVelocity = Stream::Read< float >(data);
     }
 
     /// @brief reads the inverseMass from json
@@ -261,9 +261,9 @@
 
     /// @brief the map of read methods for RigidBodys
     ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
-	    { "Velocity"            , &readVelocity             },
-	    { "Acceleration"        , &readAcceleration         },
-	    { "RotationalVelocity"  , &readRotationalVelocity   },
+        { "Velocity"            , &readVelocity             },
+        { "Acceleration"        , &readAcceleration         },
+        { "RotationalVelocity"  , &readRotationalVelocity   },
         { "InverseMass"         , &readMass                 },
         { "Restitution"         , &readRestitution          },
         { "Friction"            , &readFriction             },
