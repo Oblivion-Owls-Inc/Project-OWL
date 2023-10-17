@@ -17,6 +17,7 @@
 
 class Transform;
 class Collider;
+class StaticBody;
 
 ///*****************************************************************/
 /// RigidBody class
@@ -77,7 +78,7 @@ public: // accessors
 
     /// @brief Get the rotational velocity of the rigidBody.
     /// @return The rotational velocity.
-    float GetRotationalVelocity() { return m_RotationalVelocity; }
+    float GetRotationalVelocity() const { return m_RotationalVelocity; }
 
     /// @brief Set the rotational velocity of the rigidBody.
     /// @param rotationalVelocity The new rotational velocity.
@@ -86,7 +87,7 @@ public: // accessors
 
     /// @brief Get the mass of the rigidBody.
     /// @return The mass of the rigidBody
-    float GetMass() { return m_Mass; }
+    float GetMass() const { return m_Mass; }
 
     /// @brief Set the mass of the rigidBody.
     /// @param mass The new mass.
@@ -95,7 +96,7 @@ public: // accessors
 
     /// @brief Get the restitution of the rigidBody.
     /// @return The restitution.
-    float GetRestitution() { return m_Restitution; }
+    float GetRestitution() const { return m_Restitution; }
 
     /// @brief Set the restitution of the rigidBody.
     /// @param restitution The new restitution.
@@ -104,7 +105,7 @@ public: // accessors
 
     /// @brief Get the friction of the rigidBody.
     /// @return The friction.
-    float GetFriction() { return m_Friction; }
+    float GetFriction() const { return m_Friction; }
 
     /// @brief Set the friction of the rigidBody.
     /// @param friction The new friction.
@@ -113,7 +114,7 @@ public: // accessors
 
     /// @brief Get the drag of the rigidBody.
     /// @return The drag.
-    float GetDrag() { return m_Drag; }
+    float GetDrag() const { return m_Drag; }
 
     /// @brief Set the drag of the rigidBody.
     /// @param drag The new drag.
@@ -159,6 +160,11 @@ private: // methods
     /// @param  other           the collider that was collided with
     /// @param  collisionData   additional data about the collision
     void OnCollision( Collider* other, CollisionData const& collisionData );
+
+    /// @brief  resolve collision between this RigidBody and a StaticBody
+    /// @param  other           the StaticBody to collide with
+    /// @param  collisionData   additional data about the collision
+    void CollideWithStatic( StaticBody const* other, CollisionData const& collisionData );
 
 //-----------------------------------------------------------------------------
 private: // member variables
@@ -246,7 +252,9 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-public:
+//-----------------------------------------------------------------------------
+public: // writing
+//-----------------------------------------------------------------------------
 
     /// @brief  Write all RigidBody component data to a JSON file.
     /// @return The JSON file containing the RigidBody component data.

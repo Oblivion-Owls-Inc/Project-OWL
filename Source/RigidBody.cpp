@@ -12,6 +12,7 @@
 
 #include "Collider.h"
 #include "Transform.h"
+#include "StaticBody.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructors
@@ -91,29 +92,55 @@
     /// @brief Fixed update method called at a fixed time step.
     void RigidBody::OnFixedUpdate()
     {
-	    float dt = Engine::GetInstance()->GetFixedFrameDuration();
+        float dt = Engine::GetInstance()->GetFixedFrameDuration();
 
-	    // linear movement
+        // linear movement
         glm::vec2 position = m_Transform->GetTranslation();
-	    m_Velocity += m_Acceleration * dt;
+        m_Velocity += m_Acceleration * dt;
         position += m_Velocity * dt;
 
         // angular movement
         float rotation = m_Transform->GetRotation();
-	    rotation += m_RotationalVelocity * dt;
+        rotation += m_RotationalVelocity * dt;
 
         // apply drag
         m_Velocity -= (m_Velocity * m_Drag * dt) / m_Mass;
+        // TODO: angular drag
 
         // apply movement
-	    m_Transform->Set( position, rotation );
+        m_Transform->Set( position, rotation );
     }
+
+    /// @brief Used by the Debug System to display information about this Component
+    void RigidBody::Inspector()
+    {
+        ImGui::DragFloat2("Velocity", &m_Velocity.x);
+        ImGui::DragFloat2("Acceleration", &m_Acceleration.x);
+        ImGui::DragFloat("Rotational Velocity", &m_RotationalVelocity);
+        ImGui::DragFloat("Mass", &m_Mass, 0.05f, 0.05f, 1000000.0f);
+        ImGui::DragFloat("Restitution", &m_Restitution, 0.05f, 0.0f, 1.0f);
+        ImGui::DragFloat("Friction", &m_Friction, 0.05f, 0.0f, 1000000.0f);
+        ImGui::DragFloat("Drag", &m_Drag, 0.05f, 0.0f, 1000000.0f);
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
 
     /// @brief  Called whenever a Collider on this Behavior's Entity collides
     /// @param  other           the collider that was collided with
     /// @param  collisionData   additional data about the collision
     void RigidBody::OnCollision( Collider* other, CollisionData const& collisionData )
     {
+        // detect if colliding with StaticBody
+        StaticBody const* staticBody = other->GetParent()->GetComponent<StaticBody>();
+        if ( staticBody != nullptr )
+        {
+            CollideWithStatic( staticBody, collisionData );
+            return;
+        }
 
         // only handle collisions with other rigidBodies
         RigidBody* rigidBodyB = other->GetParent()->GetComponent<RigidBody>();
@@ -158,7 +185,7 @@
         float momentum = massA * speedA + massB * speedB;
 
         float restitution = m_Restitution * rigidBodyB->GetRestitution();
-        
+
         float newSpeedA = (restitution * massB * relativeSpeed + momentum) / totalMass;
         float newSpeedB = (restitution * massA * -relativeSpeed + momentum) / totalMass;
 
@@ -176,16 +203,22 @@
         }
     }
 
-    /// @brief Used by the Debug System to display information about this Component
-    void RigidBody::Inspector()
+
+    /// @brief  resolve collision between this RigidBody and a StaticBody
+    /// @param  other           the StaticBody to collide with
+    /// @param  collisionData   additional data about the collision
+    void RigidBody::CollideWithStatic( StaticBody const* other, CollisionData const& collisionData )
     {
-        ImGui::DragFloat2("Velocity", &m_Velocity.x);
-        ImGui::DragFloat2("Acceleration", &m_Acceleration.x);
-        ImGui::DragFloat("Rotational Velocity", &m_RotationalVelocity);
-        ImGui::DragFloat("Mass", &m_Mass, 0.05f, 0.05f, 1000000.0f);
-        ImGui::DragFloat("Restitution", &m_Restitution, 0.05f, 0.0f, 1.0f);
-        ImGui::DragFloat("Friction", &m_Friction, 0.05f, 0.0f, 1000000.0f);
-        ImGui::DragFloat("Drag", &m_Drag, 0.05f, 0.0f, 1000000.0f);
+        // move out of collision
+        glm::vec2 pos = m_Transform->GetTranslation();
+        pos += collisionData.normal * collisionData.depth;
+        m_Transform->SetTranslation( pos );
+
+        float speed = glm::dot( m_Velocity, collisionData.normal );
+
+        float newSpeed = -speed * m_Restitution * other->GetRestitution();
+
+        m_Velocity += collisionData.normal * (newSpeed - speed);
     }
 
 //-----------------------------------------------------------------------------
@@ -196,21 +229,21 @@
     /// @param data the json data
     void RigidBody::readVelocity( nlohmann::ordered_json const& data )
     {
-	    m_Velocity = Stream::Read< 2, float >(data);
+        m_Velocity = Stream::Read< 2, float >(data);
     }
 
     /// @brief reads the acceleration from json
     /// @param data the json data
     void RigidBody::readAcceleration( nlohmann::ordered_json const& data )
     {
-	    m_Acceleration = Stream::Read< 2, float >(data);
+        m_Acceleration = Stream::Read< 2, float >(data);
     }
 
     /// @brief reads the rotationalVelocity from json
     /// @param data the json data
     void RigidBody::readRotationalVelocity( nlohmann::ordered_json const& data )
     {
-	    m_RotationalVelocity = Stream::Read< float >(data);
+        m_RotationalVelocity = Stream::Read< float >(data);
     }
 
     /// @brief reads the inverseMass from json
@@ -241,6 +274,17 @@
         m_Drag = Stream::Read<float>(data);
     }
 
+    /// @brief the map of read methods for RigidBodys
+    ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
+        { "Velocity"            , &readVelocity             },
+        { "Acceleration"        , &readAcceleration         },
+        { "RotationalVelocity"  , &readRotationalVelocity   },
+        { "InverseMass"         , &readMass                 },
+        { "Restitution"         , &readRestitution          },
+        { "Friction"            , &readFriction             },
+        { "Drag"                , &readDrag                 }
+    };
+
     /// @brief  Write all RigidBody component data to a JSON file.
     /// @return The JSON file containing the RigidBody component data.
     nlohmann::ordered_json RigidBody::Write() const
@@ -257,17 +301,6 @@
 
         return data;
     }
-
-    /// @brief the map of read methods for RigidBodys
-    ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
-	    { "Velocity"            , &readVelocity             },
-	    { "Acceleration"        , &readAcceleration         },
-	    { "RotationalVelocity"  , &readRotationalVelocity   },
-        { "InverseMass"         , &readMass                 },
-        { "Restitution"         , &readRestitution          },
-        { "Friction"            , &readFriction             },
-        { "Drag"                , &readDrag                 }
-    };
 
 //-----------------------------------------------------------------------------
 // private: copying
@@ -290,6 +323,7 @@
         m_Mass(               other.m_Mass               ),
         m_Restitution(        other.m_Restitution        ),
         m_Friction(           other.m_Friction           ),
+        m_Drag(               other.m_Drag               ),
         m_CollisionResolved( false ),
         m_OnCollisionCallbackHandle( 0 ),
         m_Transform( nullptr )

@@ -7,7 +7,11 @@
             },
             "4pxSheet": {
                 "Filepath": "Data/Textures/4px.png",
-                "SheetDimensions": [ 4, 1 ]
+                "SheetDimensions": [ 4, 1 ],
+                "Pivot": [ 0, 1 ]
+            },
+            "Ball": {
+                "Filepath": "Data/Textures/Balls/Ball.png"
             }
         },
         "Archetypes": {
@@ -15,18 +19,19 @@
                 "Name": "Enemy",
                 "Components": {
                     "Sprite": {
-                        "Texture": "4pxSheet",
-                        "FrameIndex": 3,
+                        "Texture": "Ball",
                         "Layer": 3
                     },
                     "Transform": {
-                        "scale": [ 0.4, 0.4 ]
+                        "scale": [ 1, 1 ]
                     },
                     "RigidBody": {
                         "Acceleration": [ 0.0, 0.0 ]
                     },
                     "CircleCollider": {
-                        "Radius": 0
+                        "Radius": 0.5,
+                        "CollisionLayer": "physics",
+                        "CollisionLayerFlags": [ "physics" ]
                     }
                 }
             }
@@ -40,29 +45,31 @@
                     "Texture": "4pxSheet"
                 },
                 "Tilemap<int>":  {
-                    "TileData": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                                 1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                                 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+                    "TileData": [
+                        1,1,1,1,1,1,1,1,1,1,1,
+                        1,0,0,1,1,1,1,1,0,0,1,
+                        1,0,0,1,1,1,1,1,0,0,1,
+                        1,0,0,1,1,1,1,1,0,0,1,
+                        1,0,0,1,1,1,1,1,0,0,1,
+                        1,0,0,1,1,1,1,1,0,0,1,
+                        1,0,0,1,1,1,1,1,0,0,1,
+                        1,1,1,1,1,1,1,1,1,1,1
                     ],
-                    "RowWidth" :  16
+                    "RowWidth" :  11
                 },
                 "Transform": {
                     "translation": [ -4.9, 3.8, 0 ],
-                    "scale": [ 0.65, 0.65, 1 ]
+                    "scale": [ 1, 1, 1 ]
                 },
                 "Pathfinder": {
-                    "Destination": [4.2, 3],
-                    "Walkables": [0]
-                }
+                    "Destination": [ 4, 0 ],
+                    "Walkables": [ 0 ]
+                },
+                "TilemapCollider": {
+                    "CollisionLayer": "physics",
+                    "CollisionLayerFlags": []
+                },
+                "StaticBody": {}
             }
         },
         {

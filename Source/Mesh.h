@@ -19,16 +19,16 @@ public:
     };
 
 
-    /// @brief              Initializes mesh to square, or to nothing.
-    /// @param init_square  (optional) init square or no?
-    /// @param rows         (optional) spritesheet rows
-    /// @param columns      (optional) spritesheet columns
-    Mesh(bool init_square = false, int rows = 1, int columns = 1);
+    /// @brief  Creates mesh as a quad.
+    /// @param  scale           (optional) the size of the mesh
+    /// @param  sheetDimensions (optional) the dimensions of the spriteSheet
+    /// @param  pivot           (optional) the pivot point of the mesh
+    Mesh( glm::vec2 scale = { 1.0f, 1.0f }, glm::ivec2 sheetDimensions = { 1, 1 }, glm::vec2 pivot = { 0.5f, 0.5f } );
 
 
     /// @brief              Constructor: inits mesh with given vertices.
     /// @param vertices     Vector of vertices to initialize this mesh with
-    Mesh(std::vector<Vertex> vertices);
+    Mesh( std::vector<Vertex> vertices );
 
     /// @brief              Destructor: cleans up memory
     virtual ~Mesh();
@@ -38,9 +38,11 @@ public:
     /// @param vertices     vector of vertices to load
     void LoadVertices(std::vector<Vertex> vertices);
 
-    /// @brief              Loads a list of vertices that make a centered unit square.
-    ///                     Provide rows and columns if this is for a spritesheet.
-    void LoadSquare(int rows = 1, int columns = 1);
+    /// @brief  Initializes mesh as a quad.
+    /// @param  scale           (optional) the size of the mesh
+    /// @param  sheetDimensions (optional) the dimensions of the spriteSheet
+    /// @param  pivot           (optional) the pivot point of the mesh
+    void LoadQuad( glm::vec2 scale = { 1.0f, 1.0f }, glm::ivec2 sheetDimensions = { 1, 1 }, glm::vec2 pivot = { 0.5f, 0.5f } );
 
 
 

@@ -1,8 +1,8 @@
-/// @file       CircleCollider.h
-/// @author     Jax Clayton (jax.clayton@digipen.edu)
-/// @brief      Circle-shaped collider
+/// @file       TilemapCollider.h
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      tilemap collider
 /// @version    0.1
-/// @date       2023-09-13
+/// @date       2023-10-16
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
@@ -11,53 +11,48 @@
 #include "Collider.h"
 #include "Stream.h"
 
-/// @class  CircleCollider
+template< typename TileType >
+class Tilemap;
+
+/// @class  TilemapCollider
 /// @brief  Circle-shaped Collider
-class CircleCollider : public Collider
+class TilemapCollider : public Collider
 {
 //-----------------------------------------------------------------------------
 public: // constructor
 //-----------------------------------------------------------------------------
 
     /// @brief  default constructor
-    CircleCollider();
+    TilemapCollider();
 
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
 
-    /// @brief  gets this CircleCollider's radius
-    /// @return this CircleCollider's radius
-    __inline float GetRadius() const { return m_Radius; }
-
-    /// @brief  sets this CircleCollider's radius
-    /// @param  radius  the radius
-    __inline void SetRadius( float radius ) { m_Radius = radius; }
+    /// @brief  gets the Tilemap associated with this TilemapCollider
+    /// @return the tilemap
+    Tilemap< int > const* GetTilemap() const { return m_Tilemap; }
 
 //-----------------------------------------------------------------------------
 private: // virtual overrides
 //-----------------------------------------------------------------------------
 
-    /// @brief  inspector for this CircleCollider
-    virtual void Inspector() override;
+    /// @brief  called once when entering the scene
+    virtual void OnInit() override;
 
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
-    /// @brief The radius of this CircleCollider
-    float m_Radius;
+    /// @brief  the Tilemap component associated with this TilemapCollider
+    Tilemap< int >* m_Tilemap = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
-    /// @brief  Reads the radius
-    /// @param  stream  The json data to read from
-    void readRadius( nlohmann::ordered_json const& data );
-
     /// @brief map of the read methods for this Component
-    static ReadMethodMap< CircleCollider > s_ReadMethods;
+    static ReadMethodMap< TilemapCollider > s_ReadMethods;
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
@@ -80,7 +75,7 @@ public: // copying
 
     /// @brief  virtual component clone function
     /// @return new clone of component
-    virtual CircleCollider* Clone() const override;
+    virtual TilemapCollider* Clone() const override;
 
 //-----------------------------------------------------------------------------
 private: // copying
@@ -88,7 +83,7 @@ private: // copying
 
     /// @brief  copy-constructor
     /// @param  other   the collider to copy
-    CircleCollider( CircleCollider const& other );
-    
+    TilemapCollider( TilemapCollider const& other );
+
 //-----------------------------------------------------------------------------
 };

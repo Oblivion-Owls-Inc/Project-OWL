@@ -103,6 +103,15 @@ public:
     __inline int GetTilemapHeight() const { return m_Tilemap.size() / m_RowWidth; }
 
 
+    /// @brief  gets the Tilemap to word matrix
+    /// @return the matrix
+    glm::mat4 const& GetTilemapToWorldMatrix() const { return m_Mat; }
+
+    /// @brief  gets the World to Tilemap matrix
+    /// @return the matrix
+    glm::mat4 const& GetWorldToTilemapMatrix() const { return m_InvMat; }
+
+
 //-----------------------------------------------------------------------------
 //          Virtual overrides
 //-----------------------------------------------------------------------------
