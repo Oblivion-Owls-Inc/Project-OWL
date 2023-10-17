@@ -26,6 +26,22 @@
 // public: methods
 //-----------------------------------------------------------------------------
 
+
+    /// @brief  applies an acceleration to this RigidBody this frame
+    /// @param  acceleration    the acceleration to apply
+    void RigidBody::ApplyAcceleration( glm::vec2 const& acceleration )
+    {
+        m_Velocity += acceleration * Engine::GetInstance()->GetFixedFrameDuration();
+    }
+
+    /// @brief  adds to the Velocity of this Rigidbody
+    /// @param  velocity    the velocity to apply
+    void RigidBody::ApplyVelocity( glm::vec2 const& velocity )
+    {
+        m_Velocity += velocity;
+    }
+
+
     /// @brief  applies a force to this RigidBody this frame
     /// @param  force   the force to apply
     void RigidBody::ApplyForce( glm::vec2 const& force )
