@@ -103,7 +103,7 @@
 	    rotation += m_RotationalVelocity * dt;
 
         // apply drag
-        m_Velocity -= m_Velocity * m_Drag * dt;
+        m_Velocity -= (m_Velocity * m_Drag * dt) / m_Mass;
 
         // apply movement
 	    m_Transform->Set( position, rotation );
