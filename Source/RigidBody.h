@@ -36,12 +36,20 @@ public: // constructor / destructors
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
+
+    /// @brief  applies an acceleration to this RigidBody this frame
+    /// @param  acceleration    the acceleration to apply
+    void ApplyAcceleration( glm::vec2 const& acceleration );
+
+    /// @brief  adds to the Velocity of this Rigidbody
+    /// @param  velocity    the velocity to apply
+    void ApplyVelocity( glm::vec2 const& velocity );
     
     /// @brief  applies a force to this RigidBody this frame
     /// @param  force   the force to apply
     void ApplyForce( glm::vec2 const& force );
 
-    /// @brief  applies an impulse to this RigidBody this frame
+    /// @brief  applies an impulse to this RigidBody
     /// @param  impulse the impulse to apply
     void ApplyImpulse( glm::vec2 const& impulse );
 
@@ -51,67 +59,76 @@ public: // accessors
 
     /// @brief  Get the acceleration vector of the rigidBody.
     /// @return the acceleration vector.
-    __inline glm::vec2 const& GetAcceleration() const { return m_Acceleration; }
+    glm::vec2 const& GetAcceleration() const { return m_Acceleration; }
 
     /// @brief  Set the acceleration vector of the rigidBody.
     /// @param  acceleration    the new acceleration vector.
-    __inline void SetAcceleration( glm::vec2 const& acceleration ) { m_Acceleration = acceleration; }
+    void SetAcceleration( glm::vec2 const& acceleration ) { m_Acceleration = acceleration; }
 
 
     /// @brief  Get the velocity vector of the rigidBody.
     /// @return the velocity vector.
-    __inline glm::vec2 const& GetVelocity() const { return m_Velocity; }
+    glm::vec2 const& GetVelocity() const { return m_Velocity; }
 
     /// @brief  Set the velocity vector of the rigidBody.
     /// @param  velocity    the new velocity vector.
-    __inline void SetVelocity( glm::vec2 const& velocity ) { m_Velocity = velocity; }
+    void SetVelocity( glm::vec2 const& velocity ) { m_Velocity = velocity; }
 
 
     /// @brief Get the rotational velocity of the rigidBody.
     /// @return The rotational velocity.
-    __inline float GetRotationalVelocity() { return m_RotationalVelocity; }
+    float GetRotationalVelocity() { return m_RotationalVelocity; }
 
     /// @brief Set the rotational velocity of the rigidBody.
     /// @param rotationalVelocity The new rotational velocity.
-    __inline void SetRotationalVelocity( float rotationalVelocity ) { m_RotationalVelocity = rotationalVelocity; }
+    void SetRotationalVelocity( float rotationalVelocity ) { m_RotationalVelocity = rotationalVelocity; }
 
 
     /// @brief Get the mass of the rigidBody.
     /// @return The mass of the rigidBody
-    __inline float GetMass() { return m_Mass; }
+    float GetMass() { return m_Mass; }
 
     /// @brief Set the mass of the rigidBody.
     /// @param mass The new mass.
-    __inline void SetMass( float mass ) { m_Mass = mass; }
+    void SetMass( float mass ) { m_Mass = mass; }
 
 
     /// @brief Get the restitution of the rigidBody.
     /// @return The restitution.
-    __inline float GetRestitution() { return m_Restitution; }
+    float GetRestitution() { return m_Restitution; }
 
     /// @brief Set the restitution of the rigidBody.
     /// @param restitution The new restitution.
-    __inline void SetRestitution( float restitution ) { m_Restitution = restitution; }
+    void SetRestitution( float restitution ) { m_Restitution = restitution; }
 
 
     /// @brief Get the friction of the rigidBody.
     /// @return The friction.
-    __inline float GetFriction() { return m_Friction; }
+    float GetFriction() { return m_Friction; }
 
     /// @brief Set the friction of the rigidBody.
     /// @param friction The new friction.
-    __inline void SetFriction( float friction ) { m_Friction = friction; }
+    void SetFriction( float friction ) { m_Friction = friction; }
+
+
+    /// @brief Get the drag of the rigidBody.
+    /// @return The drag.
+    float GetDrag() { return m_Drag; }
+
+    /// @brief Set the drag of the rigidBody.
+    /// @param drag The new drag.
+    void SetDrag( float drag ) { m_Drag = drag; }
 
 
     /// @brief  gets whether the collision between two RigidBodies has already been resolved;
     /// @return whether the collision between two RigidBodies has already been resolved;
     /// @note   SHOULD ONLY BE CALLED BY RigidBody::OnCollision();
-    __inline bool GetCollisionResolved() const { return m_CollisionResolved; }
+    bool GetCollisionResolved() const { return m_CollisionResolved; }
 
     /// @brief  sets whether the collision between two RigidBodies has already been resolved;
     /// @param  collisionResolved   whether the collision between two RigidBodies has already been resolved;
     /// @note   SHOULD ONLY BE CALLED BY RigidBody::OnCollision();
-    __inline void SetCollisionResolved( bool collisionResolved ) { m_CollisionResolved = collisionResolved; }
+    void SetCollisionResolved( bool collisionResolved ) { m_CollisionResolved = collisionResolved; }
 
 //-----------------------------------------------------------------------------
 public: // virtual override methods
@@ -166,6 +183,9 @@ private: // member variables
     /// @brief how much friction this RigidBody has
     float m_Friction = 0.0f;
 
+    /// @brief  how much drag / air resistance this RigidBody has
+    float m_Drag = 0.0f;
+
 
     /// @brief flag of whether a collision between two rigidBodies has already been resolved;
     bool m_CollisionResolved = false;
@@ -186,30 +206,34 @@ private: // reading
 //-----------------------------------------------------------------------------
 
 
-    /// @brief reads the velocity from json
-    /// @param data the json data
+    /// @brief  reads the velocity from json
+    /// @param  data    the json data
     void readVelocity( nlohmann::ordered_json const& data );
 
-    /// @brief reads the acceleration from json
-    /// @param data the json data
+    /// @brief  reads the acceleration from json
+    /// @param  data    the json data
     void readAcceleration( nlohmann::ordered_json const& data );
 
-    /// @brief reads the rotationalVelocity from json
-    /// @param data the json data
+    /// @brief  reads the rotationalVelocity from json
+    /// @param  data    the json data
     void readRotationalVelocity( nlohmann::ordered_json const& data );
 
 
-    /// @brief reads the mass from json
-    /// @param data the json data
+    /// @brief  reads the mass from json
+    /// @param  data    the json data
     void readMass( nlohmann::ordered_json const& data );
 
-    /// @brief reads the restitution from json
-    /// @param data the json data
+    /// @brief  reads the restitution from json
+    /// @param  data    the json data
     void readRestitution( nlohmann::ordered_json const& data );
 
-    /// @brief reads the friction from json
-    /// @param data the json data
+    /// @brief  reads the friction from json
+    /// @param  data    the json data
     void readFriction( nlohmann::ordered_json const& data );
+
+    /// @brief  reads te drag from json
+    /// @param  data    the json data
+    void readDrag( nlohmann::ordered_json const& data );
 
 
     /// @brief the map of read methods for RigidBodys

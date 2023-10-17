@@ -26,6 +26,22 @@
 // public: methods
 //-----------------------------------------------------------------------------
 
+
+    /// @brief  applies an acceleration to this RigidBody this frame
+    /// @param  acceleration    the acceleration to apply
+    void RigidBody::ApplyAcceleration( glm::vec2 const& acceleration )
+    {
+        m_Velocity += acceleration * Engine::GetInstance()->GetFixedFrameDuration();
+    }
+
+    /// @brief  adds to the Velocity of this Rigidbody
+    /// @param  velocity    the velocity to apply
+    void RigidBody::ApplyVelocity( glm::vec2 const& velocity )
+    {
+        m_Velocity += velocity;
+    }
+
+
     /// @brief  applies a force to this RigidBody this frame
     /// @param  force   the force to apply
     void RigidBody::ApplyForce( glm::vec2 const& force )
@@ -86,6 +102,9 @@
         float rotation = m_Transform->GetRotation();
 	    rotation += m_RotationalVelocity * dt;
 
+        // apply drag
+        m_Velocity -= (m_Velocity * m_Drag * dt) / m_Mass;
+
         // apply movement
 	    m_Transform->Set( position, rotation );
     }
@@ -127,25 +146,21 @@
         // calculate the momentum and energy of the collision in the axis of the collision normal
         float massA = m_Mass;
         float massB = rigidBodyB->GetMass();
+        float totalMass = massA + massB;
+
         glm::vec2 velA = m_Velocity;
         glm::vec2 velB = rigidBodyB->GetVelocity();
 
         float speedA = glm::dot( velA, collisionData.normal );
         float speedB = glm::dot( velB, collisionData.normal );
-        float momentum = speedA * massA + speedB * massB;
+        float relativeSpeed = speedB - speedA;
 
-        float energy = ( // techically this should be 1/2 this, but that cancells out in the algebra
-            speedA * speedA * massA +
-            speedB * speedB * massB
-        ) * m_Restitution * rigidBodyB->GetRestitution();
+        float momentum = massA * speedA + massB * speedB;
 
-        // solve the quadratic formula to get the new velocities of the objects after the collision
-        float a = massA * massA + massA * massB;
-        float b = -2.0f * momentum * massA;
-        float c = momentum * momentum - massB * energy;
-
-        float newSpeedA = (-b + std::sqrt( b * b - 4.0f * a * c )) / (a * a);
-        float newSpeedB = (momentum - newSpeedA * massA) / massB;
+        float restitution = m_Restitution * rigidBodyB->GetRestitution();
+        
+        float newSpeedA = (restitution * massB * relativeSpeed + momentum) / totalMass;
+        float newSpeedB = (restitution * massA * -relativeSpeed + momentum) / totalMass;
 
         // apply the new velocities in the axis of the collision normal
         velA += collisionData.normal * (newSpeedA - speedA);
@@ -167,9 +182,10 @@
         ImGui::DragFloat2("Velocity", &m_Velocity.x);
         ImGui::DragFloat2("Acceleration", &m_Acceleration.x);
         ImGui::DragFloat("Rotational Velocity", &m_RotationalVelocity);
-        ImGui::DragFloat("Mass", &m_Mass);
-        ImGui::DragFloat("Restitution", &m_Restitution);
-        ImGui::DragFloat("Friction", &m_Friction);
+        ImGui::DragFloat("Mass", &m_Mass, 0.05f, 0.05f, 1000000.0f);
+        ImGui::DragFloat("Restitution", &m_Restitution, 0.05f, 0.0f, 1.0f);
+        ImGui::DragFloat("Friction", &m_Friction, 0.05f, 0.0f, 1000000.0f);
+        ImGui::DragFloat("Drag", &m_Drag, 0.05f, 0.0f, 1000000.0f);
     }
 
 //-----------------------------------------------------------------------------
@@ -218,6 +234,13 @@
         m_Friction = Stream::Read<float>(data);
     }
 
+    /// @brief  reads te drag from json
+    /// @param  data    the json data
+    void RigidBody::readDrag( nlohmann::ordered_json const& data )
+    {
+        m_Drag = Stream::Read<float>(data);
+    }
+
     /// @brief  Write all RigidBody component data to a JSON file.
     /// @return The JSON file containing the RigidBody component data.
     nlohmann::ordered_json RigidBody::Write() const
@@ -230,6 +253,7 @@
         data["InverseMass"] = m_Mass;
         data["Restitution"] = m_Restitution;
         data["Friction"] = m_Friction;
+        data["Drag"] = m_Drag;
 
         return data;
     }
@@ -241,7 +265,8 @@
 	    { "RotationalVelocity"  , &readRotationalVelocity   },
         { "InverseMass"         , &readMass                 },
         { "Restitution"         , &readRestitution          },
-        { "Friction"            , &readFriction             }
+        { "Friction"            , &readFriction             },
+        { "Drag"                , &readDrag                 }
     };
 
 //-----------------------------------------------------------------------------

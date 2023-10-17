@@ -57,7 +57,6 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     nlohmann::ordered_json AssetLibrarySystem< AssetType >::SaveAssets() const
     {
         nlohmann::ordered_json json;
-        json.object();
 
         for ( auto& [ key, value ] : m_Assets )
         {
@@ -119,18 +118,19 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
 
     /// @brief Finds an returns the name of the specified asset.
     /// @param asset The asset to search for.
+    /// @return The name of the asset.
     template<class AssetType>
-    std::string const& AssetLibrarySystem<AssetType>::GetAssetName(AssetType const* f_Asset) const
+    char const* AssetLibrarySystem<AssetType>::GetAssetName( AssetType const* asset ) const
     {
         for ( auto& pair : m_Assets)
         {
-            if (pair.second == f_Asset)
+            if (pair.second == asset)
             {
-                return pair.first;
+                return pair.first.c_str();
             }
         }
 
-        return "";
+        return nullptr;
     }
 
 
