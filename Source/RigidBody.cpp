@@ -104,6 +104,7 @@
 
         // apply drag
         m_Velocity -= (m_Velocity * m_Drag * dt) / m_Mass;
+        // TODO: angular drag
 
         // apply movement
 	    m_Transform->Set( position, rotation );
