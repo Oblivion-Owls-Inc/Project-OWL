@@ -102,6 +102,9 @@
         float rotation = m_Transform->GetRotation();
 	    rotation += m_RotationalVelocity * dt;
 
+        // apply drag
+        m_Velocity -= m_Velocity * m_Drag * dt;
+
         // apply movement
 	    m_Transform->Set( position, rotation );
     }
@@ -182,6 +185,7 @@
         ImGui::DragFloat("Mass", &m_Mass, 0.05f, 0.05f, 1000000.0f);
         ImGui::DragFloat("Restitution", &m_Restitution, 0.05f, 0.0f, 1.0f);
         ImGui::DragFloat("Friction", &m_Friction, 0.05f, 0.0f, 1000000.0f);
+        ImGui::DragFloat("Drag", &m_Drag, 0.05f, 0.0f, 1000000.0f);
     }
 
 //-----------------------------------------------------------------------------
@@ -230,6 +234,13 @@
         m_Friction = Stream::Read<float>(data);
     }
 
+    /// @brief  reads te drag from json
+    /// @param  data    the json data
+    void RigidBody::readDrag( nlohmann::ordered_json const& data )
+    {
+        m_Drag = Stream::Read<float>(data);
+    }
+
     /// @brief  Write all RigidBody component data to a JSON file.
     /// @return The JSON file containing the RigidBody component data.
     nlohmann::ordered_json RigidBody::Write() const
@@ -242,6 +253,7 @@
         data["InverseMass"] = m_Mass;
         data["Restitution"] = m_Restitution;
         data["Friction"] = m_Friction;
+        data["Drag"] = m_Drag;
 
         return data;
     }
@@ -253,7 +265,8 @@
 	    { "RotationalVelocity"  , &readRotationalVelocity   },
         { "InverseMass"         , &readMass                 },
         { "Restitution"         , &readRestitution          },
-        { "Friction"            , &readFriction             }
+        { "Friction"            , &readFriction             },
+        { "Drag"                , &readDrag                 }
     };
 
 //-----------------------------------------------------------------------------
