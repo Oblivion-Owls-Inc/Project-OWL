@@ -73,7 +73,7 @@
             );
         }
 
-        return it - m_CollisionLayerNames.begin();
+        return (int)(it - m_CollisionLayerNames.begin());
     }
 
     /// @brief  gets the names of the layers in a CollisionLayerFlags
