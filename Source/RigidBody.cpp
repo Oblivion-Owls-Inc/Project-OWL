@@ -127,25 +127,21 @@
         // calculate the momentum and energy of the collision in the axis of the collision normal
         float massA = m_Mass;
         float massB = rigidBodyB->GetMass();
+        float totalMass = massA + massB;
+
         glm::vec2 velA = m_Velocity;
         glm::vec2 velB = rigidBodyB->GetVelocity();
 
         float speedA = glm::dot( velA, collisionData.normal );
         float speedB = glm::dot( velB, collisionData.normal );
-        float momentum = speedA * massA + speedB * massB;
+        float relativeSpeed = speedB - speedA;
 
-        float energy = ( // techically this should be 1/2 this, but that cancells out in the algebra
-            speedA * speedA * massA +
-            speedB * speedB * massB
-        ) * m_Restitution * rigidBodyB->GetRestitution();
+        float momentum = massA * speedA + massB * speedB;
 
-        // solve the quadratic formula to get the new velocities of the objects after the collision
-        float a = massA * massA + massA * massB;
-        float b = -2.0f * momentum * massA;
-        float c = momentum * momentum - massB * energy;
-
-        float newSpeedA = (-b + std::sqrt( b * b - 4.0f * a * c )) / (a * a);
-        float newSpeedB = (momentum - newSpeedA * massA) / massB;
+        float restitution = m_Restitution * rigidBodyB->GetRestitution();
+        
+        float newSpeedA = (restitution * massB * relativeSpeed + momentum) / totalMass;
+        float newSpeedB = (restitution * massA * -relativeSpeed + momentum) / totalMass;
 
         // apply the new velocities in the axis of the collision normal
         velA += collisionData.normal * (newSpeedA - speedA);
@@ -167,9 +163,9 @@
         ImGui::DragFloat2("Velocity", &m_Velocity.x);
         ImGui::DragFloat2("Acceleration", &m_Acceleration.x);
         ImGui::DragFloat("Rotational Velocity", &m_RotationalVelocity);
-        ImGui::DragFloat("Mass", &m_Mass);
-        ImGui::DragFloat("Restitution", &m_Restitution);
-        ImGui::DragFloat("Friction", &m_Friction);
+        ImGui::DragFloat("Mass", &m_Mass, 0.05f, 0.05f, 1000000.0f);
+        ImGui::DragFloat("Restitution", &m_Restitution, 0.05f, 0.0f, 1.0f);
+        ImGui::DragFloat("Friction", &m_Friction, 0.05f, 0.0f, 1000000.0f);
     }
 
 //-----------------------------------------------------------------------------
