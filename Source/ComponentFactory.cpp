@@ -27,6 +27,8 @@
 #include "Text.h"
 #include "Tilemap.h"
 #include "Pathfinder.h"
+#include "TilemapCollider.h"
+#include "StaticBody.h"
 
 
 //-----------------------------------------------------------------------------
@@ -107,7 +109,9 @@
         { "EffectAnimator"   , ComponentInfo<EffectAnimator>()   },
         { "Tilemap<int>"     , ComponentInfo< Tilemap<int> >()   },
         { "TilemapSprite"    , ComponentInfo<TilemapSprite>()    },
-        { "Pathfinder"       , ComponentInfo<Pathfinder>()       }
+        { "Pathfinder"       , ComponentInfo<Pathfinder>()       },
+        { "TilemapCollider"  , ComponentInfo<TilemapCollider>()  },
+        { "StaticBody"       , ComponentInfo<StaticBody>()       }
     };
 
 //-----------------------------------------------------------------------------

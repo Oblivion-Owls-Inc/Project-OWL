@@ -84,8 +84,7 @@ glm::ivec2 Tilemap<TileType>::WorldPosToTileCoord(glm::vec2 pos)
 
     // convert to tilemap coordinate
     glm::vec4 pos4(pos, 0, 1);
-    glm::ivec2 coord = glm::round( glm::vec2(m_InvMat * pos4) );
-    coord.y = -coord.y;
+    glm::ivec2 coord = glm::vec2(m_InvMat * pos4);
 
     // return it if it's within the tilemap, or (-1,-1) otherwise
     int i = coord.y*m_RowWidth + coord.x;
@@ -185,7 +184,7 @@ void Tilemap<TileType>::updateMat()
 
     // account for stride multiplier (kinda faking it, it kinda works this way)
     m_Mat[0][0] *= m_TileScale.x;
-    m_Mat[1][1] *= m_TileScale.y;
+    m_Mat[1][1] *= -m_TileScale.y;
 
     m_InvMat = glm::inverse(m_Mat);
 }

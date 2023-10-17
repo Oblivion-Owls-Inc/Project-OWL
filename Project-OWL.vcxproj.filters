@@ -168,6 +168,9 @@
     <Filter Include="Engine\Entity\Component\Behavior\Pathfinder">
       <UniqueIdentifier>{09f5ca7d-4323-4aac-b628-c6ed0790810d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Collider\TilemapCollider">
+      <UniqueIdentifier>{3e30138e-86f9-44e3-a4e3-092b4cdeacad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -361,6 +364,9 @@
     </ClCompile>
     <ClCompile Include="Source\Pathfinder.cpp">
       <Filter>Engine\Entity\Component\Behavior\Pathfinder</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TilemapCollider.cpp">
+      <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -561,6 +567,9 @@
     </ClInclude>
     <ClInclude Include="Source\Pathfinder.h">
       <Filter>Engine\Entity\Component\Behavior\Pathfinder</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TilemapCollider.h">
+      <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

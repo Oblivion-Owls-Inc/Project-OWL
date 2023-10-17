@@ -362,7 +362,7 @@
             }
         },
         "Ball1": {
-            "Name": "Ball1",
+            "Name": "Ball",
             "Components": {
                 "CircleCollider": {
                     "Radius": 0.5
@@ -409,7 +409,7 @@
             }
         },
         "Ball2": {
-            "Name": "Ball2",
+            "Name": "Ball",
             "Components": {
                 "CircleCollider": {
                     "Radius": 0.5
@@ -456,7 +456,7 @@
             }
         },
         "Ball3": {
-            "Name": "Ball3",
+            "Name": "Ball",
             "Components": {
                 "CircleCollider": {
                     "Radius": 0.5

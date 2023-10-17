@@ -20,9 +20,11 @@ public: // constructors/destructors
     /// @brief  default constructor
     Texture();
 
-    /// @brief              Constructor: loads texture image from file upon initialization
-    /// @param  filepath    File to load
-    Texture( std::string const& filepath, glm::ivec2 const& sheetDimensions = { 1, 1 } );
+    /// @brief  Constructor: loads texture image from file upon initialization
+    /// @param  filepath        File to load
+    /// @param  sheetDimensions x=columns, y=rows (of the spritesheet)
+    /// @param  pivot           the pivot point of this Texture
+    Texture( std::string const& filepath, glm::ivec2 const& sheetDimensions = { 1, 1 }, glm::vec2 const& pivot = { 0.5f, 0.5f } );
 
     /// @brief      Destructor: deletes texture data from GPU
     ~Texture();
@@ -78,6 +80,10 @@ private: // reading
     /// @param  stream  the data to read from
     void readSheetDimensions( nlohmann::ordered_json const& data );
 
+    /// @brief  reads the pivot of this Texture
+    /// @param  data    the data to read from
+    void readPivot( nlohmann::ordered_json const& data );
+
     /// @brief  gets called after reading all arugments 
     void AfterLoad();
 
@@ -108,16 +114,19 @@ private: // member variables
 //-----------------------------------------------------------------------------
     
     /// @brief  the filepath to the texture
-    std::string m_Filepath;
+    std::string m_Filepath = "";
 
-    /// @brief   ID that texture is tracked with on GPU
+    /// @brief  ID that texture is tracked with on GPU
     unsigned int m_TextureID = 0;
 
-    /// @brief   Width and height of the original image
-    glm::ivec2 m_PixelDimensions;
+    /// @brief  Width and height of the original image
+    glm::ivec2 m_PixelDimensions = { 0, 0 };
 
-    /// @brief   How many tiles/frames are in the texture
-    glm::ivec2 m_SheetDimensions;
+    /// @brief  How many tiles/frames are in the texture
+    glm::ivec2 m_SheetDimensions = { 1.0f, 1.0f };
+
+    /// @brief  The pivot of the mesh this Texture uses
+    glm::vec2 m_Pivot = { 0.5f, 0.5f };
 
     /// @brief   Mesh to render texture onto
     Mesh const* m_Mesh = nullptr;

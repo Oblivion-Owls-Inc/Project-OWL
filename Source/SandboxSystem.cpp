@@ -147,13 +147,11 @@ static void pathfindDemo(float dt)
 
 static void spawnEnemy(glm::vec2 mousepos)
 {
-    if (!enemyArch || eCount>10)
-        return;
 
     Entity* enemycopy = new Entity;
     *enemycopy = *enemyArch;
     enemycopy->GetComponent<Transform>()->SetTranslation(mousepos);
-    enemycopy->SetName("AAAAAAAAAAAAAA" + eCount++);  // each will have shorter name
+    enemycopy->SetName("Enemy");
     Entities()->AddEntity(enemycopy);
     enemies.push_back(enemycopy);
 }

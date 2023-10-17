@@ -16,6 +16,9 @@
 
 #include "Collider.h"
 #include "CircleCollider.h"
+#include "TilemapCollider.h"
+#include "Tilemap.h"
+
 #include "CollisionData.h"
 
 #include "Entity.h"
@@ -26,6 +29,7 @@
 #include <algorithm>
 
 #include "DebugSystem.h"
+#include "RenderSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -285,13 +289,210 @@
         return true;
     }
 
+
+    /// @brief  checks a collision between a circle and tilemap collider
+    /// @param  colliderA       the first collider
+    /// @param  colliderB       the second collider
+    /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @return whether or not the two colliders are colliding
+    bool CollisionSystem::CheckCircleTilemap( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData )
+    {
+        CircleCollider const* circle = (CircleCollider const*)colliderA;
+        Tilemap< int > const* tilemap = ((TilemapCollider const*)colliderB)->GetTilemap();
+
+        glm::mat4 const& worldToTile = tilemap->GetWorldToTilemapMatrix();
+        glm::mat4 const& tileToWorld = tilemap->GetTilemapToWorldMatrix();
+        glm::vec2 const& tileSize = tilemap->GetTileScale();
+
+        glm::vec2 pos = circle->GetTransform()->GetTranslation();
+        float radius = circle->GetRadius() / tileSize.x;
+
+        if ( std::abs( tileSize.x ) != std::abs( tileSize.y ) )
+        {
+            throw std::runtime_error(
+                "Error: Tilemap must be uniformly scaled for collisions to work"
+            );
+        }
+
+        // Renderer()->DrawRect( pos, glm::vec2( radius * 2.0f ) );
+
+        pos = worldToTile * glm::vec4( pos, 0, 1 );
+        glm::vec2 extents = glm::vec2( radius, radius );
+        glm::ivec2 minTile = pos - extents;
+        glm::ivec2 maxTile = pos + extents;
+
+
+
+        bool collision = false;
+
+        glm::ivec2 tilePos;
+        for ( tilePos.y = minTile.y; tilePos.y <= maxTile.y; ++tilePos.y )
+        {
+            for ( tilePos.x = minTile.x; tilePos.x <= maxTile.x; ++tilePos.x )
+            {
+                if (
+                    tilePos.x < 0 || tilePos.x >= tilemap->GetTilemapWidth() ||
+                    tilePos.y < 0 || tilePos.y >= tilemap->GetTilemapHeight()
+                )
+                {
+                    continue;
+                }
+
+                if ( tilemap->GetTile( tilePos ) == 0 )
+                {
+                    continue;
+                }
+
+                // Renderer()->DrawRect( tileToWorld * glm::vec4( (glm::vec2)tilePos + glm::vec2( 0.5f, 0.5f), 0, 1 ), tileToWorld * glm::vec4( 1, 1, 0, 0 ) );
+
+                CollisionData tempCollisionData;
+                if ( !CheckCircleAABB( pos, radius, tilePos, tilePos + glm::ivec2( 1, 1 ), collisionData ? &tempCollisionData : nullptr) )
+                {
+                    continue;
+                }
+
+                collision = true;
+                if ( collisionData && tempCollisionData.depth > collisionData->depth )
+                {
+                    *collisionData = tempCollisionData;
+                }
+            }
+        }
+
+        if ( collisionData )
+        {
+            collisionData->normal = tileToWorld * glm::vec4( collisionData->normal, 0, 0 );
+            collisionData->position = tileToWorld * glm::vec4( collisionData->position, 0, 1 );
+        }
+
+        return collision;
+
+    }
+
+
+    /// @brief  helper function which checks a circle against an axis aligned rectangle
+    /// @param  circlePos       the position of the circle
+    /// @param  circleRadius    the radius of the circle
+    /// @param  aabbMin         the min pos of the AABB
+    /// @param  aabbMax         the max pos of the AABB
+    /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @return whether or not the two shapes are colliding
+    /// @note   ASSUMES THAT THE AABB OF THE CIRCLE IS KNOWN TO OVERLAP THE RECTANGLE
+    bool CollisionSystem::CheckCircleAABB( glm::vec2 circlePos, float circleRadius, glm::vec2 aabbMin, glm::vec2 aabbMax, CollisionData* collisionData )
+    {
+        if ( circlePos.x >= aabbMax.x )
+        {
+            if ( circlePos.y >= aabbMax.y )
+            { // top right corner
+                return CheckCirclePoint( circlePos, circleRadius, aabbMax, collisionData );
+            }
+            else if ( circlePos.y <= aabbMin.y )
+            { // bottom right corner
+                return CheckCirclePoint( circlePos, circleRadius, glm::vec2( aabbMax.x, aabbMin.y ), collisionData );
+            }
+            else
+            { // right edge
+                if ( collisionData != nullptr )
+                {
+                    collisionData->depth = aabbMax.x - (circlePos.x - circleRadius);
+                    collisionData->position = circlePos - glm::vec2( circleRadius, 0 );
+                    collisionData->normal = glm::vec2( 1, 0 );
+                }
+
+                return true;
+            }
+        }
+        else if ( circlePos.x <= aabbMin.x )
+        {
+            if ( circlePos.y >= aabbMax.y )
+            { // top left corner
+                return CheckCirclePoint( circlePos, circleRadius, glm::vec2( aabbMin.x, aabbMax.y ), collisionData);
+            }
+            else if ( circlePos.y <= aabbMin.y )
+            { // bottom left corner
+                return CheckCirclePoint( circlePos, circleRadius, aabbMin , collisionData );
+            }
+            else
+            { // left edge
+                if ( collisionData != nullptr )
+                {
+                    collisionData->depth = (circlePos.x + circleRadius) - aabbMin.x;
+                    collisionData->position = circlePos + glm::vec2( circleRadius, 0 );
+                    collisionData->normal = glm::vec2( -1, 0 );
+                }
+
+                return true;
+            }
+        }
+        else
+        {
+            if ( circlePos.y >= aabbMax.y )
+            { // top edge
+                if ( collisionData != nullptr )
+                {
+                    collisionData->depth = aabbMax.y - (circlePos.y - circleRadius);
+                    collisionData->position = circlePos - glm::vec2( 0, circleRadius );
+                    collisionData->normal = glm::vec2( 0, 1 );
+                }
+
+                return true;
+            }
+            else if ( circlePos.y <= aabbMin.y )
+            { // bottom edge
+                if ( collisionData != nullptr )
+                {
+                    collisionData->depth = (circlePos.y + circleRadius) - aabbMin.y;
+                    collisionData->position = circlePos + glm::vec2( 0, circleRadius );
+                    collisionData->normal = glm::vec2( 0, -1 );
+                }
+
+                return true;
+            }
+            else
+            { // interior
+                return false;
+            }
+        }
+    }
+
+
+    /// @brief  helper function which checks a circle against a point
+    /// @param  circlePos       the position of the circle
+    /// @param  circleRadius    the radius of the circle
+    /// @param  point           the pos position of the point
+    /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @return whether or not the two shapes are colliding
+    bool CollisionSystem::CheckCirclePoint( glm::vec2 circlePos, float circleRadius, glm::vec2 point, CollisionData* collisionData )
+    {
+        glm::vec2 offset = circlePos - point;
+
+        float distanceSquared = glm::dot( offset, offset );
+
+        if ( distanceSquared >= circleRadius * circleRadius )
+        {
+            return false;
+        }
+
+        if ( collisionData != nullptr )
+        {
+            float distance = std::sqrt( distanceSquared );
+            collisionData->depth = circleRadius - distance;
+            collisionData->normal = offset / distance;
+            collisionData->position = point;
+        }
+
+        return true;
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: static members
 //-----------------------------------------------------------------------------
 
     /// @brief map that stores the CollisionCheckMethods between each Collider type
     CollisionFunctionMap const CollisionSystem::s_CollisionFunctions = {
-        { { typeid( CircleCollider ), typeid( CircleCollider ) }, &CheckCircleCircle }
+        { { typeid( CircleCollider ), typeid( CircleCollider )  }, &CheckCircleCircle  },
+        { { typeid( CircleCollider ), typeid( TilemapCollider ) }, &CheckCircleTilemap }
     };
 
 //-----------------------------------------------------------------------------

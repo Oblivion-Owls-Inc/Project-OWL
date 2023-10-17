@@ -6,14 +6,13 @@
 #include "glew.h"
 #include "RenderSystem.h"
 
-/// @brief              Constructor: loads unit square vertices if needed.
-/// @param init_square  true/false: should unit square be initialized
-Mesh::Mesh(bool init_square, int columns, int rows)
+/// @brief  Creates mesh as a quad.
+/// @param  scale           (optional) the size of the mesh
+/// @param  sheetDimensions (optional) the dimensions of the spriteSheet
+/// @param  pivot           (optional) the pivot point of the mesh
+Mesh::Mesh( glm::vec2 scale, glm::ivec2 sheetDimensions, glm::vec2 pivot )
 {
-    if (!init_square)
-        return;
-
-    LoadSquare(rows, columns);
+    LoadQuad( scale, sheetDimensions, pivot );
 }
 
 /// @brief              Constructor: inits data to 0, loads provided vertices to make a mesh.
@@ -43,17 +42,19 @@ void Mesh::LoadVertices(std::vector<Vertex> vertices)
 }
 
 
-/// @brief      Loads a list of vertices that make a centered unit square. (rows/columns for spritesheet)
-void Mesh::LoadSquare(int rows, int columns)
+/// @brief  Initializes mesh as a quad.
+/// @param  scale           (optional) the size of the mesh
+/// @param  sheetDimensions (optional) the dimensions of the spriteSheet
+/// @param  pivot           (optional) the pivot point of the mesh
+void Mesh::LoadQuad( glm::vec2 scale, glm::ivec2 sheetDimensions, glm::vec2 pivot )
 {
-    float usize = 1.0f / columns;
-    float vsize = 1.0f / rows;
-    LoadVertices({ {{-0.5,  0.5}, {0.0,   0.0}},
-                    {{ 0.5,  0.5}, {usize, 0.0}},
-                    {{-0.5, -0.5}, {0.0,   vsize}},
-                    {{ 0.5, -0.5}, {usize, vsize}} });   // unit square
-
-    m_UVsize = { usize, vsize };
+    m_UVsize = glm::vec2( 1, 1 ) / (glm::vec2)sheetDimensions;
+    LoadVertices( {
+        { glm::vec2( 0, 1 ) - pivot, glm::vec2( 0         , 0          ) },
+        { glm::vec2( 1, 1 ) - pivot, glm::vec2( m_UVsize.x, 0          ) },
+        { glm::vec2( 0, 0 ) - pivot, glm::vec2( 0         , m_UVsize.y ) },
+        { glm::vec2( 1, 0 ) - pivot, glm::vec2( m_UVsize.x, m_UVsize.y ) }
+    } );
 }
 
 

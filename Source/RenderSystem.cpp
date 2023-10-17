@@ -11,6 +11,8 @@
 #include <vector>
 #include <algorithm>
 #include "Mesh.h"
+#include "AssetLibrarySystem.h"
+#include "Texture.h"
 
 static std::vector<Entity*> shapes; // this is inefficient.
 // efficiency will improve once we have resource library.
@@ -19,7 +21,7 @@ static std::vector<Entity*> shapes; // this is inefficient.
 /// @brief      Initializes color and texture shaders for sprites
 void RenderSystem::OnInit()
 {
-    m_DefaultMesh = new Mesh(true, 1, 1);
+    m_DefaultMesh = new Mesh();
 
     // These 2 will be used to render basic colored and textured sprites.
     m_Shaders["color"] = new Shader("Data/shaders/vshader.vert", "Data/shaders/color.frag");
@@ -44,12 +46,12 @@ void RenderSystem::OnUpdate(float dt)
         sprite->Draw();
     }
 
-    // Once we have resource library, this will just be clear()
-    for (Entity* e : shapes)
+    // draw debug shapes
+    for ( Entity* entity : shapes )
     {
-        delete e;
+        entity->GetComponent<Sprite>()->Draw();
+        delete entity;
     }
-
     shapes.clear();
 
     (void)dt;
@@ -80,13 +82,16 @@ void RenderSystem::OnExit()
 void RenderSystem::DrawRect(const glm::vec2& position, const glm::vec2& scale,
                             float angle, const glm::vec4& color)
 {
+    static Texture debugTexture = Texture( "Data/Textures/DebugRectangle.png" );
+
     shapes.push_back(new Entity);
     Transform* t = new Transform();
     t->SetTranslation( position );
     t->SetScale( scale );
     t->SetRotation(angle);
     shapes.back()->AddComponent(t);
-    //shapes.back()->AddComponent(new Sprite(true, color));
+    Sprite* s = new Sprite( &debugTexture, 1 );
+    shapes.back()->AddComponent(s);
 }
 
 

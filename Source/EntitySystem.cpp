@@ -172,7 +172,8 @@
 
         for (const auto& entity : EntitySystem::GetInstance()->GetEntities())
         {
-            if ( !ImGui::TreeNodeEx( entity->GetName().c_str() ) )
+            std::string Name = entity->GetName() + std::string("##");
+            if (!ImGui::TreeNodeEx( ( Name + std::to_string( entity->GetId() ) ).c_str() ) )
             {
                 continue;
             }

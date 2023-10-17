@@ -15,22 +15,17 @@
 //-----------------------------------------------------------------------------
 
 /// @brief  default constructor
-Texture::Texture() :
-    m_Filepath(),
-    m_PixelDimensions( { 0, 0 } ),
-    m_SheetDimensions( { 1, 1 } ),
-    m_TextureID( 0 )
-{}
+Texture::Texture() {}
 
-
-/// @brief                   Convenience constructor: loads texture image from 
-///                          file upon initialization
-/// @param  filepath         File to load
-/// @param  sheetDimensions  x=columns, y=rows (of the spritesheet)
-Texture::Texture( std::string const& filepath, glm::ivec2 const& sheetDimensions ) :
+/// @brief                  Convenience constructor: loads texture image from 
+///                         file upon initialization
+/// @param  filepath        File to load
+/// @param  sheetDimensions x=columns, y=rows (of the spritesheet)
+/// @param  pivot           the pivot point of this Texture
+Texture::Texture( std::string const& filepath, glm::ivec2 const& sheetDimensions, glm::vec2 const& pivot) :
     m_Filepath( filepath ),
-    m_PixelDimensions( { 0, 0 } ),
     m_SheetDimensions( sheetDimensions ),
+    m_Pivot( pivot ),
     m_TextureID( 0 )
 {
     LoadImage();
@@ -89,6 +84,12 @@ void Texture::readSheetDimensions( nlohmann::ordered_json const& data )
     m_SheetDimensions = Stream::Read< 2, int >( data );
 }
 
+/// @brief  reads the pivot of this Texture
+/// @param  data    the data to read from
+void Texture::readPivot( nlohmann::ordered_json const& data )
+{
+    m_Pivot = Stream::Read< 2, float >( data );
+}
 
 /// @brief  gets called after reading all arugments 
 void Texture::AfterLoad()
@@ -107,6 +108,7 @@ nlohmann::ordered_json Texture::Write() const
 
     data["Filepath"] = m_Filepath;
     data["SheetDimensions"] = Stream::Write(m_SheetDimensions);
+    data["Pivot"] = Stream::Write( m_Pivot );
 
     return data;
 }
@@ -115,8 +117,9 @@ nlohmann::ordered_json Texture::Write() const
 
 /// @brief  the read methods for textures
 ReadMethodMap< Texture > const Texture::s_ReadMethods = {
-    { "Filepath",        &readFilepath        },
-    { "SheetDimensions", &readSheetDimensions }
+    { "Filepath"       , &readFilepath        },
+    { "SheetDimensions", &readSheetDimensions },
+    { "Pivot"          , &readPivot           }
 };
 
 
@@ -162,7 +165,7 @@ void Texture::LoadImage()
         if (m_SheetDimensions.x == 1 && m_SheetDimensions.y == 1)
             m_Mesh = Renderer()->GetDefaultMesh();
         else
-            m_Mesh = new Mesh( true, m_SheetDimensions.x, m_SheetDimensions.y );
+            m_Mesh = new Mesh( glm::vec2( GetAspectRatio(), 1 ), m_SheetDimensions, m_Pivot );
     }
     else
         std::cout << "TEXTURE ERROR: could not load file " << m_Filepath << std::endl;

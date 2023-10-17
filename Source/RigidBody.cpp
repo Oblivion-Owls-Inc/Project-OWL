@@ -12,6 +12,7 @@
 
 #include "Collider.h"
 #include "Transform.h"
+#include "StaticBody.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructors
@@ -110,11 +111,36 @@
         m_Transform->Set( position, rotation );
     }
 
+    /// @brief Used by the Debug System to display information about this Component
+    void RigidBody::Inspector()
+    {
+        ImGui::DragFloat2("Velocity", &m_Velocity.x);
+        ImGui::DragFloat2("Acceleration", &m_Acceleration.x);
+        ImGui::DragFloat("Rotational Velocity", &m_RotationalVelocity);
+        ImGui::DragFloat("Mass", &m_Mass, 0.05f, 0.05f, 1000000.0f);
+        ImGui::DragFloat("Restitution", &m_Restitution, 0.05f, 0.0f, 1.0f);
+        ImGui::DragFloat("Friction", &m_Friction, 0.05f, 0.0f, 1000000.0f);
+        ImGui::DragFloat("Drag", &m_Drag, 0.05f, 0.0f, 1000000.0f);
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+
     /// @brief  Called whenever a Collider on this Behavior's Entity collides
     /// @param  other           the collider that was collided with
     /// @param  collisionData   additional data about the collision
     void RigidBody::OnCollision( Collider* other, CollisionData const& collisionData )
     {
+        // detect if colliding with StaticBody
+        StaticBody const* staticBody = other->GetParent()->GetComponent<StaticBody>();
+        if ( staticBody != nullptr )
+        {
+            CollideWithStatic( staticBody, collisionData );
+            return;
+        }
 
         // only handle collisions with other rigidBodies
         RigidBody* rigidBodyB = other->GetParent()->GetComponent<RigidBody>();
@@ -159,7 +185,7 @@
         float momentum = massA * speedA + massB * speedB;
 
         float restitution = m_Restitution * rigidBodyB->GetRestitution();
-        
+
         float newSpeedA = (restitution * massB * relativeSpeed + momentum) / totalMass;
         float newSpeedB = (restitution * massA * -relativeSpeed + momentum) / totalMass;
 
@@ -177,16 +203,22 @@
         }
     }
 
-    /// @brief Used by the Debug System to display information about this Component
-    void RigidBody::Inspector()
+
+    /// @brief  resolve collision between this RigidBody and a StaticBody
+    /// @param  other           the StaticBody to collide with
+    /// @param  collisionData   additional data about the collision
+    void RigidBody::CollideWithStatic( StaticBody const* other, CollisionData const& collisionData )
     {
-        ImGui::DragFloat2("Velocity", &m_Velocity.x);
-        ImGui::DragFloat2("Acceleration", &m_Acceleration.x);
-        ImGui::DragFloat("Rotational Velocity", &m_RotationalVelocity);
-        ImGui::DragFloat("Mass", &m_Mass, 0.05f, 0.05f, 1000000.0f);
-        ImGui::DragFloat("Restitution", &m_Restitution, 0.05f, 0.0f, 1.0f);
-        ImGui::DragFloat("Friction", &m_Friction, 0.05f, 0.0f, 1000000.0f);
-        ImGui::DragFloat("Drag", &m_Drag, 0.05f, 0.0f, 1000000.0f);
+        // move out of collision
+        glm::vec2 pos = m_Transform->GetTranslation();
+        pos += collisionData.normal * collisionData.depth;
+        m_Transform->SetTranslation( pos );
+
+        float speed = glm::dot( m_Velocity, collisionData.normal );
+
+        float newSpeed = -speed * m_Restitution * other->GetRestitution();
+
+        m_Velocity += collisionData.normal * (newSpeed - speed);
     }
 
 //-----------------------------------------------------------------------------
@@ -291,6 +323,7 @@
         m_Mass(               other.m_Mass               ),
         m_Restitution(        other.m_Restitution        ),
         m_Friction(           other.m_Friction           ),
+        m_Drag(               other.m_Drag               ),
         m_CollisionResolved( false ),
         m_OnCollisionCallbackHandle( 0 ),
         m_Transform( nullptr )

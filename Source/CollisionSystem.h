@@ -134,6 +134,34 @@ private: // static methods
     /// @return whether or not the two colliders are colliding
     static bool CheckCircleCircle( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
 
+    /// @brief  checks a collision between a circle and tilemap collider
+    /// @param  colliderA       the first collider
+    /// @param  colliderB       the second collider
+    /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @return whether or not the two colliders are colliding
+    static bool CheckCircleTilemap( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
+
+
+
+    /// @brief  helper function which checks a circle against an AABB
+    /// @param  circlePos       the position of the circle
+    /// @param  circleRadius    the radius of the circle
+    /// @param  aabbMin         the min pos of the AABB
+    /// @param  aabbMax         the max pos of the AABB
+    /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @return whether or not the two shapes are colliding
+    /// @note   ASSUMES THAT THE AABB OF THE CIRCLE IS KNOWN TO OVERLAP THE RECTANGLE
+    static bool CheckCircleAABB( glm::vec2 circlePos, float circleRadius, glm::vec2 aabbMin, glm::vec2 aabbMax, CollisionData* collisionData );
+
+    /// @brief  helper function which checks a circle against a point
+    /// @param  circlePos       the position of the circle
+    /// @param  circleRadius    the radius of the circle
+    /// @param  point           the pos position of the point
+    /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @return whether or not the two shapes are colliding
+    static bool CheckCirclePoint( glm::vec2 circlePos, float circleRadius, glm::vec2 point, CollisionData* collisionData );
+
+
 //-----------------------------------------------------------------------------
 private: // static members
 //-----------------------------------------------------------------------------
