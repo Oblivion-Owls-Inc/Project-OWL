@@ -80,6 +80,8 @@ void PlayerController::OnFixedUpdate()
         direction = glm::normalize(m_downwardDirection);
         GetParent()->GetComponent<RigidBody>()->SetVelocity(direction * m_maxSpeed);
 	}
+
+    GetParent()->GetComponent<RigidBody>()->SetVelocity(direction * m_maxSpeed);
 }
 
 //-----------------------------------------------------------------------------

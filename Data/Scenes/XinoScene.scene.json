@@ -160,7 +160,7 @@
                     "Radius": 0.5
                 },
                 "RigidBody": {
-
+                    "Acceleration": [0, 0]
                 },
                 "PlayerController": {
                     "left": [ -1, 0 ],
