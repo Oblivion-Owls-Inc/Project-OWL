@@ -16,12 +16,16 @@
 #include <vector>
 #include <typeindex>
 
+#include "CollisionData.h"
+
 //-----------------------------------------------------------------------------
 // Forward references:
 //-----------------------------------------------------------------------------
 
 class Collider;
-struct CollisionData;
+
+class TilemapCollider;
+class CircleCollider;
 
 //-----------------------------------------------------------------------------
 // typedefs
@@ -78,6 +82,14 @@ public: // methods
     /// @return the name of the layer
     std::string const& GetLayerName( unsigned layerId ) const;
 
+    /// @brief  casts a ray in the scene
+    /// @param  origin      the origin of the cast ray
+    /// @param  direction   the direction of the ray
+    /// @param  maxDistance the maximum distance of the raycast
+    /// @param  layers      the layers for the raycast to collide with
+    /// @return RayCastHit struct containing information about the result of the raycast
+    RayCastHit RayCast( glm::vec2 const& origin, glm::vec2 const& direction, float maxDistance = 100.0f, CollisionLayerFlags layers = (CollisionLayerFlags)-1 ) const;
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
@@ -125,21 +137,21 @@ private: // static methods
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    static void CheckCollision( Collider* colliderA, Collider* colliderB );
+    static void checkCollision( Collider* colliderA, Collider* colliderB );
 
     /// @brief  checks a collision between two circle colliders
     /// @param  colliderA       the first collider
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    static bool CheckCircleCircle( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
+    static bool checkCircleCircle( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
 
     /// @brief  checks a collision between a circle and tilemap collider
     /// @param  colliderA       the first collider
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    static bool CheckCircleTilemap( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
+    static bool checkCircleTilemap( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
 
 
 
@@ -151,7 +163,7 @@ private: // static methods
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two shapes are colliding
     /// @note   ASSUMES THAT THE AABB OF THE CIRCLE IS KNOWN TO OVERLAP THE RECTANGLE
-    static bool CheckCircleAABB( glm::vec2 circlePos, float circleRadius, glm::vec2 aabbMin, glm::vec2 aabbMax, CollisionData* collisionData );
+    static bool checkCircleAABB( glm::vec2 const& circlePos, float circleRadius, glm::vec2 const& aabbMin, glm::vec2 const& aabbMax, CollisionData* collisionData );
 
     /// @brief  helper function which checks a circle against a point
     /// @param  circlePos       the position of the circle
@@ -159,7 +171,22 @@ private: // static methods
     /// @param  point           the pos position of the point
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two shapes are colliding
-    static bool CheckCirclePoint( glm::vec2 circlePos, float circleRadius, glm::vec2 point, CollisionData* collisionData );
+    static bool checkCirclePoint( glm::vec2 const& circlePos, float circleRadius, glm::vec2 const& point, CollisionData* collisionData );
+
+
+    /// @brief  checks if a raycast hits a Circle
+    /// @param  rayOrigin       the origin of the cast ray
+    /// @param  rayDirection    the direction of the cast ray
+    /// @param  circle          the CircleCollider to test the ray against
+    /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
+    static void checkRayCircle( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, CircleCollider* circle, RayCastHit* rayCastHit );
+
+    /// @brief  checks if a raycast hits a Circle
+    /// @param  rayOrigin       the origin of the cast ray
+    /// @param  rayDirection    the direction of the cast ray
+    /// @param  tilemap         the TilemapCollider to test the ray against
+    /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
+    static void checkRayTilemap( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, TilemapCollider* tilemap, RayCastHit* rayCastHit );
 
 
 //-----------------------------------------------------------------------------

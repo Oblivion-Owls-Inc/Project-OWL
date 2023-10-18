@@ -10,6 +10,8 @@
 
 #include <glm/glm.hpp>
 
+class Collider;
+
 /// @struct CollisionData
 /// @brief  Struct that holds data about collisions
 struct CollisionData
@@ -22,4 +24,21 @@ struct CollisionData
 
     /// @brief How deep the collision penetrated
     float depth;
+};
+
+/// @struct RayCastHit
+/// @brief  the result of a raycast
+struct RayCastHit
+{
+    /// @brief  the collider that was hit
+    Collider* colliderHit = nullptr;
+
+    /// @brief  the normal of the collider where the ray hit it
+    glm::vec2 normal = { 0, 0 };
+
+    /// @brief  the distance the ray travelled
+    float distance = 100.0f;
+
+    /// @brief  implicit conversion to bool
+    operator bool() const { return colliderHit != nullptr; }
 };

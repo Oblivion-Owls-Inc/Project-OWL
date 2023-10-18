@@ -17,6 +17,7 @@
 #include "DebugSystem.h"
 #include "EntitySystem.h"
 #include "SceneSystem.h"
+#include "CollisionSystem.h"
 
 #include "Pathfinder.h"
 #include "AssetLibrarySystem.h"
@@ -40,6 +41,8 @@ static const Entity* enemyArch;
 static std::vector<Entity*> enemies;
 static int eCount; // enemy count
 static glm::ivec2 dest;
+
+static glm::vec2 rayOrigin;
 
 //-----------------------------------------------------------------------------
 // virtual override methods
@@ -79,6 +82,21 @@ void SandboxSystem::OnUpdate( float dt )
 {
     if (!update)
         return;
+
+
+    // R: set raycast start point
+    if ( Input()->GetKeyTriggered( GLFW_KEY_R ) )
+    {
+        rayOrigin = Input()->GetMousePosWorld();
+    }
+
+    // Left-Shift (hold): show raycast
+    if ( Input()->GetKeyDown( GLFW_KEY_LEFT_SHIFT ) )
+    {
+        glm::vec2 direction = glm::normalize( Input()->GetMousePosWorld() - rayOrigin );
+        RayCastHit hit = Collisions()->RayCast( rayOrigin, direction );
+        Renderer()->DrawLine( rayOrigin, rayOrigin + direction * hit.distance, 0.1f );
+    }
 
 }
 
