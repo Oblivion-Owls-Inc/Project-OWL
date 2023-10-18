@@ -41,7 +41,7 @@
     /// @param  stream  The json data to read from
     void CircleCollider::readRadius( nlohmann::ordered_json const& data )
     {
-        m_Radius = Stream::Read<float>(data);
+        m_Radius = data;
     }
 
     /// @brief Write all CircleCollider component data to a JSON file.
@@ -53,6 +53,7 @@
         data["Radius"] = m_Radius;
         data["CollisionLayer"] = GetCollisionLayerId();
         data["CollisionLayerFlags"] = GetCollisionLayerFlags();
+        data[ "Priority" ] = GetPriority();
 
         return data;
     }
@@ -61,7 +62,8 @@
     ReadMethodMap< CircleCollider > CircleCollider::s_ReadMethods = {
         { "Radius"             , &readRadius              },
         { "CollisionLayer"     , &readCollisionLayer      },
-        { "CollisionLayerFlags", &readCollisionLayerFlags }
+        { "CollisionLayerFlags", &readCollisionLayerFlags },
+        { "Priority"           , &readPriority            }
     };
 
 //-----------------------------------------------------------------------------

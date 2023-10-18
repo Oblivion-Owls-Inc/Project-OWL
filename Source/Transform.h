@@ -33,14 +33,12 @@ public: // methods
     
     /// @brief  adds an OnTransformChanged callback to this Transform
     /// @param  callback    the callback function to add
-    /// @return a handle to the added callback
-    unsigned AddOnTransformChangedCallback( std::function< void() > callback );
+    /// @param  ownerId     the ID of the owner of the callback
+    void AddOnTransformChangedCallback( unsigned ownerId, std::function< void() > callback );
 
     /// @brief  removes an OnTransformChanged callback from this Transform
-    /// @param  callbackHandle  handle to the callback to remove
-    void RemoveOnTransformChangedCallback( unsigned callbackHandle );
-
-
+    /// @param  ownerId handle to the callback to remove
+    void RemoveOnTransformChangedCallback( unsigned ownerId );
 
 //-----------------------------------------------------------------------------
 public: // accessors

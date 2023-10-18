@@ -39,21 +39,18 @@
 
     /// @brief  adds a callback function to be called when this collider collides
     /// @param  callback    the function to be called when this collider collides
-    /// @return a handle to the created callback
-    /// @note   YOU MUST CLEAR THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
-    /// @note   the callback will be called every time this collider collides (but not each time it loops)
-    unsigned Collider::AddOnCollisionCallback( std::function< void ( Collider*, CollisionData const& ) > callback )
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @note   YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT
+    void Collider::AddOnCollisionCallback( unsigned ownerId, std::function< void ( Collider*, CollisionData const& ) > callback )
     {
-        unsigned handle = GetUniqueId();
-        m_OnCollisionCallbacks.emplace( handle, std::move( callback ) );
-        return handle;
+        m_OnCollisionCallbacks.emplace( ownerId, std::move( callback ) );
     }
 
     /// @brief  removes a callback function to be called when this collider collides
-    /// @param  callbackHandle  the handle of the callback to remove
-    void Collider::RemoveOnCollisionCallback( unsigned callbackHandle )
+    /// @param  ownerId the ID of the owner of the callback to remove
+    void Collider::RemoveOnCollisionCallback( unsigned ownerId )
     {
-        m_OnCollisionCallbacks.erase( callbackHandle );
+        m_OnCollisionCallbacks.erase( ownerId );
     }
 
     /// @brief  calls all OnCollision callbacks attached to this Collider
@@ -173,6 +170,13 @@
         {
             SetCollisionLayerFlags( data );
         }
+    }
+
+    /// @brief  reads the priority of this Collider
+    /// @param  data    the json data to read from
+    void Collider::readPriority( nlohmann::ordered_json const& data )
+    {
+        m_Priority = data;
     }
 
 //-----------------------------------------------------------------------------

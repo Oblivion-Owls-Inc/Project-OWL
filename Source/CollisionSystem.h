@@ -128,6 +128,9 @@ private: // members
     /// @brief  the names of each collision layer
     std::vector< std::string > m_CollisionLayerNames = {};
 
+    /// @brief  the number of time to check collisions each frame
+    unsigned m_CollisionSteps = 1;
+
 //-----------------------------------------------------------------------------
 private: // static methods
 //-----------------------------------------------------------------------------
@@ -203,6 +206,10 @@ private: // reading
     /// @brief  reads the collision layer names from json
     /// @param  data    the json data to read from
     void readCollisionLayerNames( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the number of collision steps each frame
+    /// @param  data    the json data to read from
+    void readCollisionSteps( nlohmann::ordered_json const& data );
 
     /// @brief map of the CollisionSystem read methods
     static ReadMethodMap< CollisionSystem > const s_ReadMethods;

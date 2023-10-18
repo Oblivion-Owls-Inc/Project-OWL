@@ -26,7 +26,8 @@
                         "scale": [ 0.2, 0.2 ]
                     },
                     "RigidBody": {
-                        "Acceleration": [ 0.0, 0.0 ]
+                        "Acceleration": [ 0.0, 0.0 ],
+                        "Restitution": 1
                     },
                     "CircleCollider": {
                         "Radius": 0.1,
@@ -73,7 +74,8 @@
                 },
                 "TilemapCollider": {
                     "CollisionLayer": "physics",
-                    "CollisionLayerFlags": []
+                    "CollisionLayerFlags": [],
+                    "Priority": 100
                 },
                 "StaticBody": {}
             }

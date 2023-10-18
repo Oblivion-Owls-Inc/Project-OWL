@@ -120,7 +120,7 @@ glm::vec2 Tilemap<TileType>::TileCoordToWorldPos(glm::ivec2 coord)
 ///                 function will get called whenever the tilemap is updated.
 /// @param function Callback function
 template < typename TileType >
-void Tilemap<TileType>::AddOnTilemapChangedCallback(int componentID, std::function<void()> function)
+void Tilemap<TileType>::AddOnTilemapChangedCallback( int componentID, std::function<void()> function )
 {
     m_Callbacks[componentID] = function;
 }
