@@ -53,7 +53,6 @@
         data["Radius"] = m_Radius;
         data["CollisionLayer"] = GetCollisionLayerId();
         data["CollisionLayerFlags"] = GetCollisionLayerFlags();
-        data[ "Priority" ] = GetPriority();
 
         return data;
     }
@@ -62,8 +61,7 @@
     ReadMethodMap< CircleCollider > CircleCollider::s_ReadMethods = {
         { "Radius"             , &readRadius              },
         { "CollisionLayer"     , &readCollisionLayer      },
-        { "CollisionLayerFlags", &readCollisionLayerFlags },
-        { "Priority"           , &readPriority            }
+        { "CollisionLayerFlags", &readCollisionLayerFlags }
     };
 
 //-----------------------------------------------------------------------------

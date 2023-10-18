@@ -172,11 +172,4 @@
         }
     }
 
-    /// @brief  reads the priority of this Collider
-    /// @param  data    the json data to read from
-    void Collider::readPriority( nlohmann::ordered_json const& data )
-    {
-        m_Priority = data;
-    }
-
 //-----------------------------------------------------------------------------

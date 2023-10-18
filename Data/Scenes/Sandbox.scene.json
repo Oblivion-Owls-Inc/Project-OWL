@@ -74,8 +74,7 @@
                 },
                 "TilemapCollider": {
                     "CollisionLayer": "physics",
-                    "CollisionLayerFlags": [],
-                    "Priority": 100
+                    "CollisionLayerFlags": []
                 },
                 "StaticBody": {}
             }
