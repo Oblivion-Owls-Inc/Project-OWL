@@ -8,6 +8,10 @@
 #include "Pathfinder.h"
 #include "Entity.h"     // parent
 
+#ifndef NDEBUG
+#include <iostream>
+#endif
+
 
 /// @brief      Default constructor
 Pathfinder::Pathfinder() : Component(typeid(Pathfinder)) 
@@ -33,7 +37,15 @@ void Pathfinder::OnInit()
 
     m_Tilemap = GetParent()->GetComponent< Tilemap<int> >();
 
-    m_Tilemap->AddOnTilemapChangedCallback( this, std::bind(&Pathfinder::explore, this) );
+#ifndef NDEBUG
+    if (!m_Tilemap)
+    {
+        std::cout << "Pathfinder: parent does not have Tilemap component." << std::endl;
+        return;
+    }
+#endif
+
+    m_Tilemap->AddOnTilemapChangedCallback( GetId(), std::bind(&Pathfinder::explore, this));
     m_Nodes.resize( m_Tilemap->GetTilemap().size() );
     SetDestination(m_DestPos);
     explore();
@@ -46,7 +58,7 @@ void Pathfinder::OnExit()
     if (!m_Tilemap)
         return;
 
-    m_Tilemap->RemoveOnTilemapChangedCallback(this);
+    m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
 }
 
 
@@ -82,6 +94,21 @@ glm::vec2 Pathfinder::GetDirectionAt(glm::vec2 pos) const
         return {0,0};
 
     return m_Nodes[coord.y * m_Tilemap->GetTilemapWidth() + coord.x].direction;
+}
+
+
+
+/// @brief       Gets the travel distance (in tiles) to the destination
+/// @param pos   Position from which to travel
+/// @return      Amount of tiles to travel til destination. If out of bounds, 
+///              returns -1.
+int Pathfinder::GetTravelDistanceAt(glm::vec2 pos)
+{
+    glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
+    if (coord.x == -1)
+        return -1;
+
+    return m_Nodes[coord.y * m_Tilemap->GetTilemapWidth() + coord.x].cost;
 }
 
 

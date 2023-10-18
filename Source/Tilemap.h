@@ -73,17 +73,17 @@ public:
     ///                 function will get called whenever the tilemap is updated.
     /// @param objPtr   Pointer to object (this), used to keep track of function.
     /// @param function Callback function
-    void AddOnTilemapChangedCallback( void* objPtr, std::function<void()> function );
+    void AddOnTilemapChangedCallback( int componentID, std::function<void()> function );
 
     /// @brief          Removes a function from the list of callbacks
     /// @param objPtr   Pointer to object (this)
-    void RemoveOnTilemapChangedCallback(void* objPtr);
+    void RemoveOnTilemapChangedCallback(int componentID);
 
 
     /// @brief          Sets the tile scale. Default scale (1,1) is the full
     ///                 width/height of single tile.
     /// @param mults    x=horizontal, y=vertical
-    __inline void SetTileScale(glm::vec2 mults) { m_TileScale = mults; m_Modified = false; }
+    __inline void SetTileScale(glm::vec2 mults) { m_TileScale = mults; m_Modified = true; }
 
 
     /// @brief          Retreives the tile scale.
@@ -93,14 +93,14 @@ public:
 
     /// @brief          Sets the width of a single row (amount of columns)
     /// @param columns  (tiles per row)
-    __inline void SetRowWidth(int width) { m_RowWidth = width; m_Modified = false; }
+    __inline void SetRowWidth(int width) { m_RowWidth = width; m_Modified = true; }
 
 
     /// @return         Tiles per row 
     __inline int GetTilemapWidth() const { return m_RowWidth; }
 
     /// @return         Tiles per column
-    __inline int GetTilemapHeight() const { return m_Tilemap.size() / m_RowWidth; }
+    __inline int GetTilemapHeight() const { return (int)m_Tilemap.size() / m_RowWidth; }
 
 
     /// @brief  gets the Tilemap to word matrix
@@ -141,17 +141,17 @@ private:
     /// @brief   Scale of tiles (on top of transform) - to adjust spacing
     glm::vec2 m_TileScale = {1,1};
 
-    /// @brief   Inverse transform for converting world position to tile coord
-    glm::mat4 m_InvMat = glm::mat4(1);
-
-    /// @brief   Parent's old transform mat, for comparing. Invert as rarely as possible
+    /// @brief   Matrix for converting tile coord to world pos
     glm::mat4 m_Mat = glm::mat4(1);
+
+    /// @brief   Matrix for converting world pos to tile coord
+    glm::mat4 m_InvMat = glm::mat4(1);
 
     /// @brief   Parent's transform (cached)
     Transform* m_PTransform = nullptr;
 
     /// @brief   Callback functions - they get called whenever tilemap changes.
-    std::map< void*, std::function<void()> > m_Callbacks;
+    std::map< int, std::function<void()> > m_Callbacks;
 
     /// @brief   Whether tilemap has been modified during this frame
     bool m_Modified = false;

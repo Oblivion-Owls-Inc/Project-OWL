@@ -5,8 +5,10 @@
 #pragma once
 #include "Sprite.h"
 #include <vector>
-#include <sstream>  // accept new text
 
+// fwd ref
+template< typename TileType >
+class Tilemap;
 
 /// @brief      A version of Sprite for rendering tilemaps using GPU instancing.
 class TilemapSprite : public Sprite
@@ -73,12 +75,9 @@ private:
 
     unsigned int m_InstBufferID = 0; /// @brief   ID of buffer that stores instance data (tile IDs)
     unsigned int m_VAO = 0;          /// @brief   VAO that uses this specific buffer
-    int m_TileCount = 0;             /// @brief   How many tiles to draw
     bool m_TilemapChanged = true;    /// @brief   Whether new tiles need to be loaded in
-    
-    // keep local copies of these to keep drawing without Tilemap's updates
-    int m_RowWidth = 10;             /// @brief   Tiles per row (amount of columns)
-    glm::vec2 m_StrideMult = {1,1};  /// @brief   Stride multiplier(s): 1 is full tile width/height
+
+    Tilemap<int>* m_Tilemap = nullptr;/// @brief   Parent's tilemap (to render)
 
 
 //-----------------------------------------------------------------------------
