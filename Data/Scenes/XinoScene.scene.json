@@ -130,29 +130,12 @@
         {
             "Name": "TextEnt",
             "Components": {
-                "TextSprite": {
-                    "Texture": "FontSheet",
-                    "StrideMultiplier": [0.6, 1],
-                    "Layer": 1,
-                    "Text": "The Quick Brown Fox Jumps Over The Lazy Dog"
+                "Text": {
+                    "String": "The Quick Brown Fox Jumps Over The Lazy Dog"
                 },
                 "Transform": {
                     "translation": [ -4.9, 2, 0 ],
                     "scale": [ 0.35, 0.35, 0 ]
-                }
-            }
-        },
-        {
-            "Name": "TileEnt",
-            "Components": {
-                "TextSprite": {
-                    "Texture": "FontSheet",
-                    "Layer": 1,
-                    "RowWidth": 5
-                },
-                "Transform": {
-                    "translation": [ -4, 1, 0 ],
-                    "scale": [ 0.6, 0.6, 0 ]
                 }
             }
         },
@@ -173,7 +156,19 @@
                     "isLooping": true,
                     "isRunning": true
                 },
-                "PlayerController": {}
+                "CircleCollider": {
+                    "Radius": 0.5
+                },
+                "RigidBody": {
+
+                },
+                "PlayerController": {
+                    "left": [ -1, 0 ],
+                    "right": [ 1, 0 ],
+                    "up": [ 0, 1 ],
+                    "down": [ 0, -1 ],
+                    "maxSpeed": 5
+                }
             }
         },
         {

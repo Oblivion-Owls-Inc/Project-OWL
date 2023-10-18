@@ -8,7 +8,7 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Sandbox"
+            "NextSceneName": "XinoScene"
         },
         "AssetLibrarySystem<Entity>": {},
         "AssetLibrarySystem<Sound>": {},
@@ -31,7 +31,6 @@
         "DebugSystem": {
             "ShowFpsWindow": true,
             "ShowDebugWindow": false
-        },
-        "SandboxSystem": {}
+        }
     }
 }

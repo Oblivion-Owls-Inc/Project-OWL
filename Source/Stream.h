@@ -13,12 +13,10 @@
 // Include Files
 //------------------------------------------------------------------------------
 
-#include <string>      // std::string
-#include <map>
-
-#include <glm/glm.hpp> // glm::vec3
-
-#include <nlohmann/json.hpp>
+#include <string>            // std::string
+#include <map>               // std::map
+#include <glm/glm.hpp>       // glm::vec3
+#include <nlohmann/json.hpp> // nlohman::ordered_json
 
 //------------------------------------------------------------------------------
 // Forward references
@@ -45,9 +43,13 @@ public: // file io
     /// @param  json        the json data to write to the file
     static void WriteToFile( std::string const& filepath, nlohmann::ordered_json const& json );
 
-//------------------------------------------------------------------------------
+    /// @brief Write a message to the trace log.
+    /// @param traceMessage The message to write.
+    static void WriteToTraceLog(std::string const& traceMessage);
+
+//-----------------------------------------------------------------------------
 public: // reading
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     /// @brief  reads a basic type from json
     /// @tparam ValueType   the type to read
@@ -170,7 +172,7 @@ public: // writing
     }
 
 //------------------------------------------------------------------------------
-// template read method definitions
+// template write method definitions
 //------------------------------------------------------------------------------
 
     /// @brief  writes a glm vector to json
