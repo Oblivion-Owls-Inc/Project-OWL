@@ -12,6 +12,11 @@
 #include "glew.h"
 #include <functional>       // callback binding
 
+#ifndef NDEBUG
+#include <iostream>
+#endif
+
+
 /// @brief              Default constructor
 TilemapSprite::TilemapSprite() : 
     Sprite( typeid(TilemapSprite) )
@@ -35,16 +40,14 @@ TilemapSprite::TilemapSprite(Texture* texture, float stride_mult, int layer,
 /// @param size         array size
 void TilemapSprite::LoadTileArray(const char* tiles, int size)
 {
-    m_TileCount = size;
-
     // Until I figure out what's wrong with reading ints from buffer, convert to floats.
-    std::vector<float> chars(m_TileCount);
-    for (int i = 0; i < m_TileCount; i++)
+    std::vector<float> chars(size);
+    for (int i = 0; i < size; i++)
         chars[i] = (float)tiles[i];
 
     // Load the array into buffer.
     glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_TileCount, &chars[0], GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * size, &chars[0], GL_DYNAMIC_DRAW);
 }
 
 
@@ -52,16 +55,16 @@ void TilemapSprite::LoadTileArray(const char* tiles, int size)
 /// @param tiles        tile IDs  (spritesheet frames)
 void TilemapSprite::LoadTileArray(std::vector<int> tiles)
 {
-    m_TileCount = (int)tiles.size();
+    int size = (int)tiles.size();
 
     // Until I figure out what's wrong with reading ints from buffer, convert to floats.
-    std::vector<float> chars(m_TileCount);         // (this one will load directly)
-    for (int i = 0; i < m_TileCount; i++)
+    std::vector<float> chars(size);         // (this one will load directly)
+    for (int i = 0; i < size; i++)
         chars[i] = (float)tiles[i];
 
     // Load the array into buffer.
     glBindBuffer(GL_ARRAY_BUFFER, m_InstBufferID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_TileCount, &chars[0], GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * size, &chars[0], GL_DYNAMIC_DRAW);
 }
 
 
@@ -87,9 +90,14 @@ void TilemapSprite::OnInit()
     // Set up callback for when Tilemap array changes
     if (GetParent())
     {
-        Tilemap<int>* tm = GetParent()->GetComponent< Tilemap<int> >();
-        if (tm)
-            tm->AddOnTilemapChangedCallback(this, std::bind(&TilemapSprite::onTilemapChanged, this));
+        m_Tilemap = GetParent()->GetComponent< Tilemap<int> >();
+        if (m_Tilemap)
+            m_Tilemap->AddOnTilemapChangedCallback( GetId(), 
+                            std::bind(&TilemapSprite::onTilemapChanged, this) );
+#ifndef NDEBUG
+        else
+            std::cout << "TilemapSprite: Parent does not have Tilemap component." << std::endl;
+#endif
     }
 }
 
@@ -102,12 +110,8 @@ void TilemapSprite::OnExit()
     glDeleteBuffers( 1, &m_InstBufferID );
     glDeleteVertexArrays(1, &m_VAO);
 
-    if (GetParent())            // TODO: cache instead
-    {
-        Tilemap<int>* tm = GetParent()->GetComponent< Tilemap<int> >();
-        if (tm)
-            tm->RemoveOnTilemapChangedCallback(this);
-    }
+    if (m_Tilemap)
+        m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
 }
 
 
@@ -116,20 +120,21 @@ void TilemapSprite::OnExit()
 ///                       just NOT allow transform-less rendering?...
 void TilemapSprite::Draw()
 {
+    if (!m_Tilemap)
+        return;
+
     Mesh const* mesh = m_Texture->GetMesh();
     Entity* parent = GetParent();
     glm::mat4 trm(1);                       // transform matrix - identity by default
     glm::vec2 uvsize = mesh->GetUVsize();   // UV size (for the frames of spritesheet)
+    
+    glm::vec2 tileScale = m_Tilemap->GetTileScale();
+    int rowWidth = m_Tilemap->GetTilemapWidth();
 
     // Get data from Tilemap component, if it has been updated.
     if (m_TilemapChanged)
     {
-        Tilemap<int>* tm = parent->GetComponent< Tilemap<int> >();  // TODO: cache
-
-        LoadTileArray(tm->GetTilemap());
-        m_StrideMult = tm->GetTileScale();
-        m_RowWidth = tm->GetTilemapWidth();
-        m_TileCount = (int)tm->GetTilemap().size();
+        LoadTileArray(m_Tilemap->GetTilemap());
 
         m_TilemapChanged = false;
     }
@@ -137,8 +142,8 @@ void TilemapSprite::Draw()
 
     // Calculate matrix and stride based on parent't transform
 
-    glm::vec2 stridex = {m_StrideMult.x,0};  // right vector (x stride)
-    glm::vec2 stridey = {0,-m_StrideMult.y}; // down vector (y stride)
+    glm::vec2 stridex = {tileScale.x,0};  // right vector (x stride)
+    glm::vec2 stridey = {0,-tileScale.y}; // down vector (y stride)
 
     if (parent && parent->GetComponent<Transform>())
     {
@@ -153,10 +158,10 @@ void TilemapSprite::Draw()
             proj = Camera()->GetMat_UItoClip();
 
 
-        // calculate stride vectors using linear transform (projected)
-        glm::mat2 trm_linear = glm::mat2(proj) * glm::mat2(trm);
-        stridex = trm_linear * stridex;
-        stridey = trm_linear * stridey;
+        // apply projection to stride vectors
+        glm::mat2 proj_linear(proj);
+        stridex = proj_linear * stridex;
+        stridey = proj_linear * stridey;
 
         // apply full projection to full transform, for the actual mesh position
         trm = proj * trm;
@@ -170,14 +175,14 @@ void TilemapSprite::Draw()
     glUniform2f(sh_txt->GetUniformID("stridey"), stridey.x, stridey.y);
     glUniform2f(sh_txt->GetUniformID("UVsize"), uvsize.x, uvsize.y);
     glUniform1i(sh_txt->GetUniformID("columns"), m_Texture->GetSheetDimensions().x);
-    glUniform1i(sh_txt->GetUniformID("rowwidth"), m_RowWidth);
+    glUniform1i(sh_txt->GetUniformID("rowwidth"), rowWidth);
     glUniform4fv(sh_txt->GetUniformID("tint"), 1, &m_Color[0]);
 
 
     // Bind the texture and render instanced mesh
     m_Texture->Bind();
     glBindVertexArray(m_VAO);
-    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, mesh->GetVertexCount(), m_TileCount);
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, mesh->GetVertexCount(), (int)m_Tilemap->GetTilemap().size());
     glBindVertexArray(0);
 }
 

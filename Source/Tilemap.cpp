@@ -16,6 +16,10 @@
 #include "Transform.h"
 #include "BehaviorSystem.h"
 
+#ifndef NDEBUG
+#include <iostream>
+#endif
+
 /// @brief    Default constructor
 template < typename TileType >
 Tilemap<TileType>::Tilemap() :
@@ -66,6 +70,9 @@ void Tilemap<TileType>::SetTilemap( std::vector<TileType> const& tiles )
 template < typename TileType >
 void Tilemap<TileType>::SetTile(glm::ivec2 coord, TileType const& tile)
 {
+    if (coord.x == -1)
+        return;
+
     m_Tilemap[coord.y*m_RowWidth + coord.x] = tile;
 
     m_Modified = true;
@@ -113,19 +120,19 @@ glm::vec2 Tilemap<TileType>::TileCoordToWorldPos(glm::ivec2 coord)
 ///                 function will get called whenever the tilemap is updated.
 /// @param function Callback function
 template < typename TileType >
-void Tilemap<TileType>::AddOnTilemapChangedCallback(void* objPtr, std::function<void()> function)
+void Tilemap<TileType>::AddOnTilemapChangedCallback(int componentID, std::function<void()> function)
 {
-    m_Callbacks[objPtr] = function;
+    m_Callbacks[componentID] = function;
 }
 
 
 /// @brief          Removes a function from the list of callbacks
 /// @param objPtr   Pointer to object (this)
 template < typename TileType >
-void Tilemap<TileType>::RemoveOnTilemapChangedCallback(void* objPtr)
+void Tilemap<TileType>::RemoveOnTilemapChangedCallback(int componentID)
 {
-    if (m_Callbacks.find(objPtr) != m_Callbacks.end())
-        m_Callbacks.erase(objPtr);
+    if (m_Callbacks.find(componentID) != m_Callbacks.end())
+        m_Callbacks.erase(componentID);
 }
 
 
@@ -143,6 +150,14 @@ void Tilemap<TileType>::OnInit()
 
     Behaviors< Tilemap<int> >()->AddBehavior(this);
     m_PTransform = GetParent()->GetComponent<Transform>();
+
+#ifndef NDEBUG
+    if (!m_PTransform)
+    {
+        std::cout << "Tilemap: parent does not have transform" << std::endl;
+        return;
+    }
+#endif
     
     updateMat();
 }
@@ -180,11 +195,10 @@ void Tilemap<TileType>::updateMat()
     if (!m_PTransform)
         return;
 
-    m_Mat = m_PTransform->GetMatrix();
-
-    // account for stride multiplier (kinda faking it, it kinda works this way)
-    m_Mat[0][0] *= m_TileScale.x;
-    m_Mat[1][1] *= -m_TileScale.y;
+    // combine tilemap scale with parent transform position  (will rotation ever be needed?)
+    m_Mat = glm::scale(glm::mat4(1), {m_TileScale.x, -m_TileScale.y, 1});
+    glm::vec4 pos = {m_PTransform->GetTranslation(),0,1};
+    m_Mat[3] = pos;
 
     m_InvMat = glm::inverse(m_Mat);
 }

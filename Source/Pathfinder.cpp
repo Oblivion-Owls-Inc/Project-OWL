@@ -8,6 +8,10 @@
 #include "Pathfinder.h"
 #include "Entity.h"     // parent
 
+#ifndef NDEBUG
+#include <iostream>
+#endif
+
 
 /// @brief      Default constructor
 Pathfinder::Pathfinder() : Component(typeid(Pathfinder)) 
@@ -33,7 +37,15 @@ void Pathfinder::OnInit()
 
     m_Tilemap = GetParent()->GetComponent< Tilemap<int> >();
 
-    m_Tilemap->AddOnTilemapChangedCallback( this, std::bind(&Pathfinder::explore, this) );
+#ifndef NDEBUG
+    if (!m_Tilemap)
+    {
+        std::cout << "Pathfinder: parent does not have Tilemap component." << std::endl;
+        return;
+    }
+#endif
+
+    m_Tilemap->AddOnTilemapChangedCallback( GetId(), std::bind(&Pathfinder::explore, this));
     m_Nodes.resize( m_Tilemap->GetTilemap().size() );
     SetDestination(m_DestPos);
     explore();
@@ -46,7 +58,7 @@ void Pathfinder::OnExit()
     if (!m_Tilemap)
         return;
 
-    m_Tilemap->RemoveOnTilemapChangedCallback(this);
+    m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
 }
 
 
