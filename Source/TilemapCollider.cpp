@@ -43,8 +43,9 @@
     {
         nlohmann::ordered_json data;
 
-        data["CollisionLayer"] = GetCollisionLayerId();
-        data["CollisionLayerFlags"] = GetCollisionLayerFlags();
+        data[ "CollisionLayer" ] = GetCollisionLayerId();
+        data[ "CollisionLayerFlags" ] = GetCollisionLayerFlags();
+        data[ "Priority" ] = GetPriority();
 
         return data;
     }
@@ -52,7 +53,8 @@
     /// @brief map of the read methods for this Component
     ReadMethodMap< TilemapCollider > TilemapCollider::s_ReadMethods = {
         { "CollisionLayer"     , &readCollisionLayer      },
-        { "CollisionLayerFlags", &readCollisionLayerFlags }
+        { "CollisionLayerFlags", &readCollisionLayerFlags },
+        { "Priority"           , &readPriority            }
     };
 
 //-----------------------------------------------------------------------------

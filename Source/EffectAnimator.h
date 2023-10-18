@@ -63,15 +63,14 @@ public: // methods
 
 
     /// @brief  adds a callback function to be called when the animation completes
+    /// @param  ownerId     the ID of the owner of the callback
     /// @param  callback    the function to be called when the animation completes
-    /// @return a handle to the created callback
-    /// @note   YOU MUST CLEAR THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
-    /// @note   the callback will be called every time the animation completes (but not each time it loops)
-    unsigned AddOnAnimationCompleteCallback( std::function< void() > callback );
+    /// @note   YOU MUST REMOVE THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
+    void AddOnAnimationCompleteCallback( unsigned ownerId, std::function< void() > callback );
 
     /// @brief  removes a callback function to be called when the animation completes
-    /// @param  callbackHandle  the handle of the callback to remove
-    void RemoveOnAnimationCompleteCallback( unsigned callbackHandle );
+    /// @param  ownerId the ID of the owner of the callback to remove
+    void RemoveOnAnimationCompleteCallback( unsigned ownerId );
 
 
 //-----------------------------------------------------------------------------

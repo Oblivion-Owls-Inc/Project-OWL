@@ -142,7 +142,14 @@
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
     void CollisionSystem::OnFixedUpdate()
     {
-        checkCollisions();
+        std::stable_sort( m_Colliders.begin(), m_Colliders.end(), []( Collider const* a, Collider const* b ) -> bool {
+            return a->GetPriority() < b->GetPriority();
+        });
+
+        for ( unsigned i = 0; i < m_CollisionSteps; ++i )
+        {
+            checkCollisions();
+        }
     }
 
     void CollisionSystem::OnSceneExit()
@@ -308,7 +315,7 @@
 
         if ( collisionData != nullptr )
         {
-            collisionData->normal = -displacement / distance;
+            collisionData->normal = distance == 0 ? glm::vec2( 0 ) : - displacement / distance;
             collisionData->position = (
                 posA - collisionData->normal * circleA->GetRadius() +
                 posB + collisionData->normal * circleB->GetRadius()
@@ -507,7 +514,7 @@
         {
             float distance = std::sqrt( distanceSquared );
             collisionData->depth = circleRadius - distance;
-            collisionData->normal = offset / distance;
+            collisionData->normal = distance == 0 ? glm::vec2( 0 ) : offset / distance;
             collisionData->position = point;
         }
 
@@ -648,9 +655,17 @@
         m_CollisionLayerNames = data;
     }
 
+    /// @brief  reads the number of collision steps each frame
+    /// @param  data    the json data to read from
+    void CollisionSystem::readCollisionSteps( nlohmann::ordered_json const& data )
+    {
+        m_CollisionSteps = data;
+    }
+
     /// @brief map of the CollisionSystem read methods
     ReadMethodMap< CollisionSystem > const CollisionSystem::s_ReadMethods = {
-        { "CollisionLayerNames", &readCollisionLayerNames }
+        { "CollisionLayerNames", &readCollisionLayerNames },
+        { "CollisionSteps"     , &readCollisionSteps      }
     };
 
     /// @brief  writes the CollisionSystem config to json
@@ -660,6 +675,7 @@
         nlohmann::ordered_json json;
 
         json[ "CollisionLayerNames" ] = m_CollisionLayerNames;
+        json[ "CollisionSteps" ] = m_CollisionSteps;
 
         return json;
     }
