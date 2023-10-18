@@ -274,17 +274,6 @@
         m_Drag = Stream::Read<float>(data);
     }
 
-    /// @brief the map of read methods for RigidBodys
-    ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
-        { "Velocity"            , &readVelocity             },
-        { "Acceleration"        , &readAcceleration         },
-        { "RotationalVelocity"  , &readRotationalVelocity   },
-        { "InverseMass"         , &readMass                 },
-        { "Restitution"         , &readRestitution          },
-        { "Friction"            , &readFriction             },
-        { "Drag"                , &readDrag                 }
-    };
-
     /// @brief  Write all RigidBody component data to a JSON file.
     /// @return The JSON file containing the RigidBody component data.
     nlohmann::ordered_json RigidBody::Write() const
@@ -301,6 +290,17 @@
 
         return data;
     }
+
+    /// @brief the map of read methods for RigidBodys
+    ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
+        { "Velocity"            , &readVelocity             },
+        { "Acceleration"        , &readAcceleration         },
+        { "RotationalVelocity"  , &readRotationalVelocity   },
+        { "InverseMass"         , &readMass                 },
+        { "Restitution"         , &readRestitution          },
+        { "Friction"            , &readFriction             },
+        { "Drag"                , &readDrag                 }
+    };
 
 //-----------------------------------------------------------------------------
 // private: copying

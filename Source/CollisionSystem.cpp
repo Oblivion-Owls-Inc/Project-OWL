@@ -105,6 +105,36 @@
         return m_CollisionLayerNames[ layerId ];
     }
 
+
+    /// @brief  casts a ray in the scene
+    /// @param  origin      the origin of the cast ray
+    /// @param  direction   the direction of the ray
+    /// @param  maxDistance the maximum distance of the raycast
+    /// @param  layers      the layers for the raycast to collide with
+    /// @return RayCastHit struct containing information about the result of the raycast
+    RayCastHit CollisionSystem::RayCast( glm::vec2 const& origin, glm::vec2 const& direction, float maxDistance, CollisionLayerFlags layers ) const
+    {
+        RayCastHit hit;
+        hit.distance = maxDistance;
+        for ( Collider* collider : m_Colliders )
+        {
+            if ( !(layers & (1 << collider->GetCollisionLayerId())) )
+            {
+                continue;
+            }
+
+            if ( collider->GetType() == typeid( CircleCollider ) )
+            {
+                checkRayCircle( origin, direction, (CircleCollider*)collider, &hit );
+            }
+            else if ( collider->GetType() == typeid( TilemapCollider ) )
+            {
+                checkRayTilemap( origin, direction, (TilemapCollider*)collider, &hit );
+            }
+        }
+        return hit;
+    }
+
 //-----------------------------------------------------------------------------
 // public: virtual override methods
 //-----------------------------------------------------------------------------
@@ -160,7 +190,7 @@
         {
             for ( int j = i + 1; j < m_Colliders.size(); ++j )
             {
-                CheckCollision( m_Colliders[i], m_Colliders[j] );
+                checkCollision( m_Colliders[i], m_Colliders[j] );
             }
         }
     }
@@ -174,7 +204,7 @@
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    void CollisionSystem::CheckCollision( Collider* colliderA, Collider* colliderB )
+    void CollisionSystem::checkCollision( Collider* colliderA, Collider* colliderB )
     {
         // check if the layers interact
         bool aCollidesB = colliderA->GetCollisionLayerFlags() & ( 1 << colliderB->GetCollisionLayerId() );
@@ -258,7 +288,7 @@
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    bool CollisionSystem::CheckCircleCircle( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData )
+    bool CollisionSystem::checkCircleCircle( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData )
     {
         CircleCollider const* circleA = (CircleCollider const*)colliderA;
         CircleCollider const* circleB = (CircleCollider const*)colliderB;
@@ -295,7 +325,7 @@
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    bool CollisionSystem::CheckCircleTilemap( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData )
+    bool CollisionSystem::checkCircleTilemap( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData )
     {
         CircleCollider const* circle = (CircleCollider const*)colliderA;
         Tilemap< int > const* tilemap = ((TilemapCollider const*)colliderB)->GetTilemap();
@@ -346,7 +376,7 @@
                 // Renderer()->DrawRect( tileToWorld * glm::vec4( (glm::vec2)tilePos + glm::vec2( 0.5f, 0.5f), 0, 1 ), tileToWorld * glm::vec4( 1, 1, 0, 0 ) );
 
                 CollisionData tempCollisionData;
-                if ( !CheckCircleAABB( pos, radius, tilePos, tilePos + glm::ivec2( 1, 1 ), collisionData ? &tempCollisionData : nullptr) )
+                if ( !checkCircleAABB( pos, radius, tilePos, tilePos + glm::ivec2( 1, 1 ), collisionData ? &tempCollisionData : nullptr) )
                 {
                     continue;
                 }
@@ -378,17 +408,17 @@
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two shapes are colliding
     /// @note   ASSUMES THAT THE AABB OF THE CIRCLE IS KNOWN TO OVERLAP THE RECTANGLE
-    bool CollisionSystem::CheckCircleAABB( glm::vec2 circlePos, float circleRadius, glm::vec2 aabbMin, glm::vec2 aabbMax, CollisionData* collisionData )
+    bool CollisionSystem::checkCircleAABB( glm::vec2 const& circlePos, float circleRadius, glm::vec2 const& aabbMin, glm::vec2 const& aabbMax, CollisionData* collisionData )
     {
         if ( circlePos.x >= aabbMax.x )
         {
             if ( circlePos.y >= aabbMax.y )
             { // top right corner
-                return CheckCirclePoint( circlePos, circleRadius, aabbMax, collisionData );
+                return checkCirclePoint( circlePos, circleRadius, aabbMax, collisionData );
             }
             else if ( circlePos.y <= aabbMin.y )
             { // bottom right corner
-                return CheckCirclePoint( circlePos, circleRadius, glm::vec2( aabbMax.x, aabbMin.y ), collisionData );
+                return checkCirclePoint( circlePos, circleRadius, glm::vec2( aabbMax.x, aabbMin.y ), collisionData );
             }
             else
             { // right edge
@@ -406,11 +436,11 @@
         {
             if ( circlePos.y >= aabbMax.y )
             { // top left corner
-                return CheckCirclePoint( circlePos, circleRadius, glm::vec2( aabbMin.x, aabbMax.y ), collisionData);
+                return checkCirclePoint( circlePos, circleRadius, glm::vec2( aabbMin.x, aabbMax.y ), collisionData);
             }
             else if ( circlePos.y <= aabbMin.y )
             { // bottom left corner
-                return CheckCirclePoint( circlePos, circleRadius, aabbMin , collisionData );
+                return checkCirclePoint( circlePos, circleRadius, aabbMin , collisionData );
             }
             else
             { // left edge
@@ -462,7 +492,7 @@
     /// @param  point           the pos position of the point
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two shapes are colliding
-    bool CollisionSystem::CheckCirclePoint( glm::vec2 circlePos, float circleRadius, glm::vec2 point, CollisionData* collisionData )
+    bool CollisionSystem::checkCirclePoint( glm::vec2 const& circlePos, float circleRadius, glm::vec2 const& point, CollisionData* collisionData )
     {
         glm::vec2 offset = circlePos - point;
 
@@ -485,14 +515,126 @@
     }
 
 
+
+
+    /// @brief  checks if a raycast hits a Circle
+    /// @param  rayOrigin       the origin of the cast ray
+    /// @param  rayDirection    the direction of the cast ray
+    /// @param  circle          the CircleCollider to test the ray against
+    /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
+    void CollisionSystem::checkRayCircle( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, CircleCollider* circle, RayCastHit* rayCastHit )
+    {
+        glm::vec2 offset = rayOrigin - circle->GetTransform()->GetTranslation();
+        
+        // quadratic coefficients
+        float a = glm::dot( rayDirection, rayDirection );
+        float b = 2 * glm::dot( rayDirection, offset );
+        float c = glm::dot( offset, offset ) - circle->GetRadius() * circle->GetRadius();
+
+        // if part inside of radical would be negative, there's no collision
+        float radical = b * b - 4 * a * c;
+        if ( radical < 0 )
+        {
+            return;
+        }
+        radical = std::sqrt( radical );
+
+        // get the smaller of the two results (only collide when entering circle, not when exiting)
+        float distance = ( -b - radical ) / ( 2 * a );
+
+        if ( distance >= 0 && distance < rayCastHit->distance )
+        {
+            rayCastHit->distance = distance;
+            rayCastHit->colliderHit = circle;
+            rayCastHit->normal = glm::normalize( offset );
+        }
+    }
+
+
+    /// @brief  checks if a raycast hits a Circle
+    /// @param  rayOrigin       the origin of the cast ray
+    /// @param  rayDirection    the direction of the cast ray
+    /// @param  tilemapCollider the TilemapCollider to test the ray against
+    /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
+    void CollisionSystem::checkRayTilemap( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, TilemapCollider* tilemapCollider, RayCastHit* rayCastHit )
+    {
+        // get relevant variables from collider
+        Tilemap<int> const* tilemap = tilemapCollider->GetTilemap();
+        glm::mat4 const& worldToTile = tilemap->GetWorldToTilemapMatrix();
+
+        // convert to tilemap space
+        glm::vec2 tilePos = worldToTile * glm::vec4( rayOrigin, 0, 1 );
+        glm::vec2 tileVel = worldToTile * glm::vec4( rayDirection, 0, 0 );
+
+        glm::ivec2 tile = tilePos;
+        // direction of the step in each axis
+        glm::ivec2 stepDir = {
+            tileVel.x > 0 ? 1 : ( tileVel.x < 0 ? -1 : 0 ),
+            tileVel.y > 0 ? 1 : ( tileVel.y < 0 ? -1 : 0 )
+        };
+
+        // length of the step in each axis
+        glm::vec2 deltaT = {
+            tileVel.x == 0 ? INFINITY : 1 / std::abs( tileVel.x ),
+            tileVel.y == 0 ? INFINITY : 1 / std::abs( tileVel.y )
+        };
+
+        // current position in each axis
+        glm::vec2 t = tilePos - (glm::vec2)tile;
+        if ( stepDir.x == 1 ) { t.x = 1 - t.x; }
+        if ( stepDir.y == 1 ) { t.y = 1 - t.y; }
+        t *= deltaT;
+
+        // loop until max distance reached
+        while ( t.x < rayCastHit->distance || t.y < rayCastHit->distance )
+        {
+            // step in the closest direction
+            int stepAxis;
+            if ( t.x < t.y )
+            {
+                tile.x += stepDir.x;
+                t.x += deltaT.x;
+                stepAxis = 0;
+            }
+            else
+            {
+                tile.y += stepDir.y;
+                t.y += deltaT.y;
+                stepAxis = 1;
+            }
+
+            // ensure within bounds of tilemap
+            if (
+                tile.x < 0 || tile.x >= tilemap->GetTilemapWidth() ||
+                tile.y < 0 || tile.y >= tilemap->GetTilemapHeight()
+            )
+            {
+                continue;
+            }
+
+            // check tile at current position
+            if ( tilemap->GetTile( tile ) != 0 )
+            {
+                rayCastHit->distance = t[ stepAxis ] - deltaT[ stepAxis ];
+                rayCastHit->colliderHit = tilemapCollider;
+
+                rayCastHit->normal = stepDir;
+                rayCastHit->normal[ (int)!stepAxis ] = 0;
+
+                return;
+            }
+        }
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: static members
 //-----------------------------------------------------------------------------
 
     /// @brief map that stores the CollisionCheckMethods between each Collider type
     CollisionFunctionMap const CollisionSystem::s_CollisionFunctions = {
-        { { typeid( CircleCollider ), typeid( CircleCollider )  }, &CheckCircleCircle  },
-        { { typeid( CircleCollider ), typeid( TilemapCollider ) }, &CheckCircleTilemap }
+        { { typeid( CircleCollider ), typeid( CircleCollider )  }, &checkCircleCircle  },
+        { { typeid( CircleCollider ), typeid( TilemapCollider ) }, &checkCircleTilemap }
     };
 
 //-----------------------------------------------------------------------------
