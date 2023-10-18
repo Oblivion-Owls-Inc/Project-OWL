@@ -97,6 +97,21 @@ glm::vec2 Pathfinder::GetDirectionAt(glm::vec2 pos) const
 }
 
 
+
+/// @brief       Gets the travel distance (in tiles) to the destination
+/// @param pos   Position from which to travel
+/// @return      Amount of tiles to travel til destination. If out of bounds, 
+///              returns -1.
+int Pathfinder::GetTravelDistanceAt(glm::vec2 pos)
+{
+    glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
+    if (coord.x == -1)
+        return -1;
+
+    return m_Nodes[coord.y * m_Tilemap->GetTilemapWidth() + coord.x].cost;
+}
+
+
 /// @brief       Checks if the given world position is walkable.
 /// @param pos   World position
 /// @return      Walkable or not

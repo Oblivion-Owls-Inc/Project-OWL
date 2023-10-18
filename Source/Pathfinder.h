@@ -52,6 +52,13 @@ public:
     __inline void SetWalkables(std::vector<int> const& walkables) { m_Walkables = walkables; }
 
 
+    /// @brief       Gets the travel distance (in tiles) to the destination
+    /// @param pos   Position from which to travel
+    /// @return      Amount of tiles to travel til destination. If out of bounds, 
+    ///              returns -1.
+    int GetTravelDistanceAt(glm::vec2 pos);
+
+
 
 //-----------------------------------------------------------------------------
 //          Virtual overrides
