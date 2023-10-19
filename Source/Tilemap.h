@@ -126,6 +126,8 @@ private:
     /// @brief  called when component is removed
     virtual void OnExit() override;
 
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector();
 
 //-----------------------------------------------------------------------------
 //              Data

@@ -28,6 +28,7 @@
 #include "Tilemap.h"
 #include "Pathfinder.h"
 #include "TilemapCollider.h"
+#include "Pool.h"
 #include "StaticBody.h"
 
 
@@ -108,6 +109,8 @@
         { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   },
         { "EffectAnimator"   , ComponentInfo<EffectAnimator>()   },
         { "Tilemap<int>"     , ComponentInfo< Tilemap<int> >()   },
+        { "Pool<int>"        , ComponentInfo< Pool < int > >()   },
+        { "Pool<float>"      , ComponentInfo< Pool < float > >() },
         { "TilemapSprite"    , ComponentInfo<TilemapSprite>()    },
         { "Pathfinder"       , ComponentInfo<Pathfinder>()       },
         { "TilemapCollider"  , ComponentInfo<TilemapCollider>()  },
