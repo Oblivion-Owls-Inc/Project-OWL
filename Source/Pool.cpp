@@ -1,1 +1,155 @@
+/// @file       Pool.cpp
+/// @author     Jax Clayton (jax.clayton@digipen.edu)
+/// @brief       
+/// @version    0.1
+/// @date       2023-10-06
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+#define POOL_C
+
+#ifndef POOL_H
 #include "Pool.h"
+#endif // !POOL_H
+#pragma once
+
+#include "basics.h"
+#include "DebugSystem.h"
+
+template<typename Value>
+inline Pool<Value>::Pool():
+	Component( typeid(Pool) ),
+	m_CurrentValue( 0 ), 
+	m_DefaultValue( 0 ), 
+	m_Active(false),
+	m_Name(std::string( ( std::string("Pool" + GetUniqueId() ) ) ) )
+{
+}
+
+template<typename Value>
+Pool<Value>::Pool(const Pool& other): 
+	Component(typeid(Pool)),
+	m_CurrentValue(other.m_CurrentValue), 
+	m_DefaultValue(other.m_DefaultValue), 
+	m_Active(other.m_Active),
+	m_Name(other.m_Name)
+{
+}
+
+template<typename Value>
+std::string const& Pool<Value>::GetName() const
+{
+	return m_Name;
+}
+
+template<typename Value>
+Value const& Pool<Value>::GetCurrent() const
+{
+	return m_CurrentValue;
+}
+
+template<typename Value>
+Value const& Pool<Value>::GetDefault() const
+{
+	return m_DefaultValue;
+}
+
+template<typename Value>
+bool const& Pool<Value>::GetActive() const
+{
+	return m_Active;
+}
+
+template<typename Value>
+void Pool<Value>::SetCurrent(Value value)
+{
+	m_CurrentValue = value;
+}
+
+template<typename Value>
+void Pool<Value>::SetDefault(Value value)
+{
+	m_DefaultValue = value;
+}
+
+template<typename Value>
+void Pool<Value>::SetActive(bool active)
+{
+	m_Active = active;
+}
+
+template<typename Value>
+void Pool<Value>::SetName(std::string name)
+{
+	m_Name = name;
+}
+
+template<typename Value>
+Component* Pool<Value>::Clone() const
+{
+	return (Component *) new Pool(*this);
+}
+
+template<typename Value>
+void Pool<Value>::Inspector()
+{
+	ImGui::Text("Name: %s", m_Name.c_str());
+
+	float currentValue = static_cast<float>(m_CurrentValue);
+	if (ImGui::DragFloat("Current Value", &currentValue))
+	{
+		m_CurrentValue = static_cast<Value>(currentValue);
+	}
+
+	float defaultValue = static_cast<float>(m_DefaultValue);
+	if (ImGui::DragFloat("Default Value", &defaultValue))
+	{
+		m_DefaultValue = static_cast<Value>(defaultValue);
+	}
+
+	if (ImGui::Checkbox("Active", &m_Active))
+	{
+		m_Active = !m_Active;
+	}
+
+	if (ImGui::Button("Reset"))
+	{
+		Reset();
+	}
+}
+
+template<typename Value>
+void Pool<Value>::readName(nlohmann::ordered_json const& data)
+{
+	m_Name = Stream::Read<std::string>(data);
+}
+
+template<typename Value>
+void Pool<Value>::readBaseValue(nlohmann::ordered_json const& data)
+{
+	m_DefaultValue = Stream::Read<Value>(data);
+}
+
+template<typename Value>
+void Pool<Value>::readActive(nlohmann::ordered_json const& data)
+{
+	m_Active = Stream::Read<bool>(data);
+}
+
+template<typename Value>
+ReadMethodMap< Pool < Value > > const Pool<Value>::s_ReadMethods = {
+	{ "name",      &Pool<Value>::readName      },	
+	{ "BaseValue", &Pool<Value>::readBaseValue },
+	{ "Active",    &Pool<Value>::readActive    }
+};
+
+template<typename Value>
+nlohmann::ordered_json Pool<Value>::Write() const
+{
+	nlohmann::ordered_json data;
+
+	data["BaseValue"] = m_DefaultValue;
+	data["CurrentValue"] = m_CurrentValue;
+	data["Active"] = m_Active;
+
+	return data;
+}
