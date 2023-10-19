@@ -49,7 +49,8 @@ public: // accessors
 	/// @brief Changes the base value
 	/// @param value - the new base value
 	__inline void SetDefault(Value value);
-
+	
+	__inline void DecreasePoolTime(Value value) { m_CurrentValue -= value;}
 	/// @brief Changes if the pool is active
 	/// @param active - the new active state
 	__inline void SetActive(bool active);

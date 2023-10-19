@@ -40,6 +40,7 @@ static Pathfinder* pf;
 
 static const Entity* enemyArch;
 static std::vector<Entity*> enemies;
+static Entity* turret;
 static int eCount; // enemy count
 static glm::ivec2 dest;
 
@@ -123,6 +124,15 @@ static void pathfindDemo(float dt)
     // D: set new destination
     if (Input()->GetKeyTriggered(GLFW_KEY_D))
     {
+        if(!turret)
+        {
+            turret = new Entity;
+            *turret = *AssetLibrary<Entity>()->GetAsset("Turret");
+            turret->SetName("Turret");
+            Entities()->AddEntity(turret);
+        }
+
+        turret->GetComponent<Transform>()->SetTranslation(mousepos);
         pf->SetDestination( mousepos );
         t->SetTile(dest, 0);
         dest = coord;
@@ -166,7 +176,6 @@ static void pathfindDemo(float dt)
 
 static void spawnEnemy(glm::vec2 mousepos)
 {
-
     Entity* enemycopy = new Entity;
     *enemycopy = *enemyArch;
     enemycopy->GetComponent<Transform>()->SetTranslation(mousepos);

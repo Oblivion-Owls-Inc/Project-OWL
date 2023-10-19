@@ -1,6 +1,10 @@
 {
   "Assets": {
     "Textures": {
+      "Turret": {
+        "Filepath": "Data/Textures/Turret.png",
+        "SheetDimensions": [ 19, 1 ]
+      },
       "FontSheet": {
         "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
         "SheetDimensions": [ 16, 8 ]
@@ -14,6 +18,7 @@
         "Filepath": "Data/Textures/Balls/Ball.png"
       }
     },
+
     "Archetypes": {
       "Enemy": {
         "Name": "Enemy",
@@ -31,8 +36,8 @@
           },
           "CircleCollider": {
             "Radius": 0.1,
-            "CollisionLayer": "physics",
-            "CollisionLayerFlags": [ "physics" ]
+            "CollisionLayer": "enemies",
+            "CollisionLayerFlags": [ "player", "enemies" ]
           },
           "Pool<int>": {
             "name": "Health",
@@ -40,6 +45,25 @@
             "BaseValue": 100
           }
 
+        }
+      },
+      "Turret": {
+        "Name": "Turret",
+        "Components": {
+          "Sprite": {
+            "Texture": "Turret",
+            "Layer": 1
+          },
+          "Transform": {
+            "translation": [ -4, 1, 0 ],
+            "scale": [ 2, 2, 2 ]
+          },
+          "CircleCollider": {
+            "Radius": 0.1,
+            "CollisionLayer": "player",
+            "CollisionLayerFlags": [ "enemies" ]
+          },
+          "TurretBehavior": {}
         }
       }
 

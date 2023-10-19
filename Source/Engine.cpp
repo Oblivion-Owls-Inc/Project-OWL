@@ -162,7 +162,7 @@
         { "EntitySystem",                       &addSystem< EntitySystem >                          },
         { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >    },
         { "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >          },
-        { "behaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >      },
+        { "BehaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >      },
         { "BehaviorSystem<RigidBody>",          &addSystem< BehaviorSystem< RigidBody > >           },
         { "BehaviorSystem<Animation>",          &addSystem< BehaviorSystem< Animation > >           },
         { "BehaviorSystem<EffectAnimator>",     &addSystem< BehaviorSystem< EffectAnimator > >      },

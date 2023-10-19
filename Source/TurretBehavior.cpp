@@ -2,28 +2,39 @@
 #include "BehaviorSystem.h"
 #include "EntitySystem.h"
 #include "Transform.h"
+#include "CircleCollider.h"
+#include "CollisionSystem.h"
 #include "Animation.h"
+#include "Engine.h"
+#include "Pool.h"
 #include "DebugSystem.h"
 
+#pragma warning(push, 0)
 TurretBehavior::TurretBehavior(): 
 	Behavior(typeid(TurretBehavior)),
+	m_CollisionLayerFlags(0),
 	m_FireRate(1.0f), 
 	m_Range(5.0f), 
 	m_BulletDamage(1.0f), 
 	m_BulletSpeed(1.0f),
 	m_BulletSize(1.0f), 
-	m_BulletPrefab(nullptr)
+	m_LastFireTime(0.0f),
+	m_BulletPrefab(nullptr),
+	m_Target(nullptr)
 {
 }
 
 TurretBehavior::TurretBehavior(const TurretBehavior& other)
 	             : Behavior(typeid(TurretBehavior)), 
+					m_CollisionLayerFlags(0),
 					m_FireRate(other.m_FireRate), 
 					m_Range(other.m_Range), 
 					m_BulletDamage(other.m_BulletDamage), 
 					m_BulletSpeed(other.m_BulletSpeed), 
-					m_BulletSize(other.m_BulletSize), 
-					m_BulletPrefab(other.m_BulletPrefab)
+					m_BulletSize(other.m_BulletSize),
+					m_LastFireTime(other.m_LastFireTime),
+					m_BulletPrefab(other.m_BulletPrefab),
+					m_Target(other.m_Target)
 {
 }
 
@@ -39,61 +50,92 @@ Component* TurretBehavior::Clone() const
 void TurretBehavior::OnInit()
 {
 	/// Add this behavior to the behavior system
-		BehaviorSystem<TurretBehavior>::GetInstance()->AddBehavior(this);
+	Behaviors<TurretBehavior>()->AddBehavior(this);
 }
 
 void TurretBehavior::OnExit()
 {
 	/// Remove this behavior from the behavior system
-	BehaviorSystem<TurretBehavior>::GetInstance()->RemoveBehavior(this);
-}
+	Behaviors<TurretBehavior>()->RemoveBehavior(this);
+}	
 
 
 
 void TurretBehavior::OnUpdate(float dt)
 {
- /// Do Turret Debug Stuff
+
 }
 
 void TurretBehavior::OnFixedUpdate()
 {
-	///Check if any entities are in range
-	for (auto entity : EntitySystem::GetInstance()->GetEntities())
-	{
-		if (entity == GetParent())
-			continue;
-		Transform* m_Transform = entity->GetComponent<Transform>();
-		if (m_Transform)
-		{
-			glm::vec2 entityPOS = m_Transform->GetTranslation(); 
-			glm::vec2 turretPOS = GetParent()->GetComponent<Transform>()->GetTranslation();
+	/// Check for a target
+	CheckForTarget();
 
-			/// Caclulate the area of attack for the turret
-			float AOA = glm::length(entityPOS - turretPOS);
-			/// Check if the entity is in range
-			if (AOA <= m_Range)
-			{
-				FireBullet();
-				//entity->Destroy();
-			}
-		}
-	}
+	/// Fire a bullet
+	FireBullet();
 }
 
 void TurretBehavior::Inspector()
 {
-	///Edit the Behavior of the Turret 
+	// Edit the Behavior of the Turret 
 	ImGui::DragFloat("Range", &m_Range);
 	ImGui::DragFloat("Fire Rate", &m_FireRate);
 	ImGui::DragFloat("Bullet Damage", &m_BulletDamage);
 	ImGui::DragFloat("Bullet Speed", &m_BulletSpeed);
 	ImGui::DragFloat("Bullet Size", &m_BulletSize);
+
 }
+
 
 
 void TurretBehavior::FireBullet()
 {
-	/// Todo: Make this actually work
+	//float currentTime = Engine::GetInstance()->GetFixedFrameDuration();
+	//if (currentTime - m_LastFireTime < m_FireRate)
+	//	return;
+
+	if (!m_Target)
+		return;
+
+	Pool<int>* pool = m_Target->GetComponent<Pool<int>>();
+
+	if (!pool || !pool->GetActive() || pool->GetName() != std::string("Health"))
+		return;
+
+	pool->DecreasePoolTime(m_BulletDamage);
+
+	//m_LastFireTime = currentTime;  // Update the last fire time
+}
+
+void TurretBehavior::CheckForTarget()
+{
+    for (auto& entity : Entities()->GetEntities())
+    {
+        if (entity == GetParent())
+        {
+            continue;  // Skip the parent entity
+        }
+
+		/// Get the position of the turret
+        glm::vec2 turretPosition = GetParent()->GetComponent<Transform>()->GetTranslation();  
+
+		/// Get the position of the entity
+		glm::vec2 enemyPosition = entity->GetComponent<Transform>()->GetTranslation();
+
+		/// Calculate the direction from the turret to the entity
+        glm::vec2 directionToEntity = turretPosition - enemyPosition;
+
+
+		CircleCollider* collider = (CircleCollider *)GetParent()->GetComponent<Collider>();
+        // Cast a ray from the turret towards the entity
+        RayCastHit hit = CollisionSystem::GetInstance()->RayCast(turretPosition, directionToEntity, m_Range, collider->GetCollisionLayerFlags());
+
+        if (hit)  // If a collider was hit
+        {
+			m_Target = entity;  // Set the hit entity as the target
+            return;  // Exit the method as a target has been found
+        }
+    }
 }
 
 void TurretBehavior::readFireRate( nlohmann::ordered_json const& data )
@@ -144,3 +186,4 @@ ReadMethodMap<TurretBehavior> const TurretBehavior::s_ReadMethods =
 	{ "bulletspeed",	   &readBulletSpeed },
 	{ "bulletsize",		    &readBulletSize }
 };
+#pragma	warning(pop)

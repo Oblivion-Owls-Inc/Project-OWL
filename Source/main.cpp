@@ -1,6 +1,4 @@
 #include "Engine.h"
-#pragma warning(disable : 4099) //Disabling warning for missing PDB 
-#pragma warning(disable : 33019) //Disabling warning for missing PDB files
 
 int main ()
 {

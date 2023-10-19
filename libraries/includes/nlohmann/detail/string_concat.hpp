@@ -16,6 +16,7 @@
 #include <nlohmann/detail/meta/detected.hpp>
 
 NLOHMANN_JSON_NAMESPACE_BEGIN
+#pragma warning(push, 0)
 namespace detail
 {
 
@@ -143,4 +144,5 @@ inline OutStringType concat(Args && ... args)
 }
 
 }  // namespace detail
+#pragma warning(pop)
 NLOHMANN_JSON_NAMESPACE_END

@@ -111,7 +111,7 @@ void Pool<Value>::Inspector()
 
 	if (ImGui::Checkbox("Active", &m_Active))
 	{
-		m_Active != m_Active;
+		m_Active = !m_Active;
 	}
 
 	if (ImGui::Button("Reset"))

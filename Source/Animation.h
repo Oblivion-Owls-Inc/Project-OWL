@@ -109,6 +109,8 @@ private: // virtual override methods
 	/// @param	dt  the time since the last graphics frame
 	virtual void OnUpdate(float dt) override;
 
+    virtual void OnFixedUpdate() override {};
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------

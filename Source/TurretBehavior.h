@@ -17,6 +17,8 @@
 ///			
 ///*****************************************************************/
 
+using CollisionLayerFlags = unsigned;
+
 class TurretBehavior :
     public Behavior
 {
@@ -32,7 +34,6 @@ class TurretBehavior :
 		/// @param  collisionData   additional data about the collision
 		virtual void OnCollision( Entity* other, CollisionData const& collisionData ) {};
 
-
 		/// @brief Default constructor for the RigidBody class.
 		virtual void OnInit();
 
@@ -42,6 +43,7 @@ class TurretBehavior :
 
 
 	public:
+
 		/// @brief Called Every Frame by the system
 		/// @param dt - the time since the last frame
 		virtual void OnUpdate(float dt) override;
@@ -53,16 +55,22 @@ class TurretBehavior :
 		virtual void Inspector() override;
 
 	private:
+
+		CollisionLayerFlags m_CollisionLayerFlags;
 		float m_FireRate = 1.0f;
 		float m_Range = 5.0f;
 		float m_BulletDamage = 1.0f;
 		float m_BulletSpeed = 1.0f;
 		float m_BulletSize = 1.0f;
+		float m_LastFireTime = 0.0f;
 		Entity* m_BulletPrefab = nullptr; /// Todo: Make this a prefab actually work
+		Entity* m_Target = nullptr;
+
 
 	private:
 
 		void FireBullet();
+		void CheckForTarget();
 
 	private: ///Reading 
 
