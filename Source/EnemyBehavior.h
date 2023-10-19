@@ -11,6 +11,7 @@
 #include "behavior.h"
 
 
+class Pathfinder;
 
 class EnemyBehavior :
 	public Behavior 
@@ -24,7 +25,6 @@ public: // constructor / destructor / inspector
 //-----------------------------------------------------------------------------
 private: // Member Variables
 //----------------------------------------------------------------------------
-
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
@@ -49,7 +49,6 @@ private: // virtual override methods
 
     virtual void OnFixedUpdate() override;
 
-
 public:
 
     /// @brief Write all Transform component data to a JSON file.
@@ -57,10 +56,10 @@ public:
     virtual nlohmann::ordered_json Write() const override;
 
 //-----------------------------------------------------------------------------
-private: // reading
+private: // 
 //-----------------------------------------------------------------------------
-
-
+    void ChaseTarget(Pathfinder* pathfinder, float dt);
+    
  //-----------------------------------------------------------------------------
 private: // copying
 //-----------------------------------------------------------------------------

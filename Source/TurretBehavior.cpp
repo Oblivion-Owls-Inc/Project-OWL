@@ -94,7 +94,10 @@ void TurretBehavior::FireBullet()
 	if (currentTime - m_LastFireTime < m_FireRate)
 		return;
 
-	if (!m_Target)
+	if (!m_Target || m_Target->IsDestroyed())
+		return;
+
+	if(Entities()->CheckDeletedEntities(m_Target->GetId()))
 		return;
 
 	Pool<int>* pool = m_Target->GetComponent<Pool<int>>();
@@ -105,7 +108,7 @@ void TurretBehavior::FireBullet()
 	///@note this will be moved elsewhere
 	pool->DecreasePoolTime(m_BulletDamage);
 
-	if (!pool->GetActive())
+	if(m_Target->IsDestroyed())
 		m_Target = nullptr;
 
 	m_LastFireTime = currentTime;  // Update the last fire time
@@ -119,6 +122,11 @@ void TurretBehavior::CheckForTarget()
         {
             continue;  // Skip the parent entity
         }
+
+		if (entity->GetName() == std::string("Bullet"))
+		{
+			continue;
+		}
 
 		/// Get the position of the turret
         glm::vec2 turretPosition = GetParent()->GetComponent<Transform>()->GetTranslation();  

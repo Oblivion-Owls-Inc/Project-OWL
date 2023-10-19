@@ -115,6 +115,20 @@
 // virtual override methods
 //-----------------------------------------------------------------------------
 
+    bool EntitySystem::CheckDeletedEntities(unsigned ID)
+    {
+        for (auto entityID : m_DeletedEnties)
+        {
+            
+            if (ID == entityID || ID == 0)
+            {
+                return true;
+			}
+        }
+
+        return false;
+    }
+
     /// @brief  Gets called whenever a scene is exited
     void EntitySystem::OnSceneExit()
     {
@@ -135,6 +149,7 @@
             if (entity->IsDestroyed())
             {
 				RemoveEntity(entity);
+                m_DeletedEnties.push_back(entity->GetId());
                 delete entity;
                 --i;
             }

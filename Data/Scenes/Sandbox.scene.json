@@ -44,7 +44,11 @@
             "Active": true,
             "BaseValue": 100
           },
-          "EnemyBehavior": {}
+          "EnemyBehavior": {},
+          "Pathfinder": {
+            "Destination": [ 4, 0 ],
+            "Walkables": [ 0 ]
+          }
         }
       },
       "Turret": {

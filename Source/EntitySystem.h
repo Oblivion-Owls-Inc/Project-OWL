@@ -53,6 +53,9 @@ public: // methods
     /// @return the container of all Entities in the Scene
     std::vector< Entity* > const& GetEntities() const { return m_Entities; }
 
+    /// @brief Checks if the ID of the entity is in the deleted list
+    /// @param ID - the ID of the entity to check
+    bool CheckDeletedEntities(unsigned ID);
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -71,10 +74,9 @@ private: // member variables
 
     /// @brief  Container for all Entities in the Scene
     std::vector< Entity* > m_Entities;
-
+    std::vector<unsigned> m_DeletedEnties;
     bool m_ShowEntityList = false;
     bool m_ShowEntityCreate = false;
-
 
 //-----------------------------------------------------------------------------
 private: // Private Methods

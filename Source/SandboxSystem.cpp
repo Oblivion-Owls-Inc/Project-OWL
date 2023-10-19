@@ -35,7 +35,7 @@ static void pathfindDemo(float dt);
 static bool update = false;
 
 static Entity* tiles;
-static Tilemap<int>* t;
+static Tilemap<int>* tilemap;
 static Pathfinder* pf;
 
 static const Entity* enemyArch;
@@ -58,12 +58,12 @@ void SandboxSystem::OnSceneInit()
     if (!tiles)
         return;
 
-    t = tiles->GetComponent<Tilemap<int>>();
+    tilemap = tiles->GetComponent<Tilemap<int>>();
     pf = tiles->GetComponent<Pathfinder>();
     enemyArch = AssetLibrary<Entity>()->GetAsset("Enemy");
     eCount = 0;
-    dest = t->WorldPosToTileCoord(pf->GetDestination());
-    t->SetTile(dest, 2);
+    dest = tilemap->WorldPosToTileCoord(pf->GetDestination());
+    tilemap->SetTile(dest, 2);
 }
 
 /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
@@ -112,11 +112,11 @@ void SandboxSystem::OnSceneExit()
 static void pathfindDemo(float dt)
 {
     glm::vec2 mousepos = Input()->GetMousePosWorld();
-    glm::ivec2 coord = t->WorldPosToTileCoord(mousepos); // (tile column+row)
+    glm::ivec2 coord = tilemap->WorldPosToTileCoord(mousepos); // (tile column+row)
 
     // Right click: delete tile
-    if (Input()->GetMouseDown(GLFW_MOUSE_BUTTON_2) && coord.x != -1 && t->GetTile(coord) != 0)
-        t->SetTile(coord, 0);
+    if (Input()->GetMouseDown(GLFW_MOUSE_BUTTON_2) && coord.x != -1 && tilemap->GetTile(coord) != 0)
+        tilemap->SetTile(coord, 0);
 
     // D: set new destination
     if (Input()->GetKeyTriggered(GLFW_KEY_D))
@@ -131,9 +131,9 @@ static void pathfindDemo(float dt)
 
         turret->GetComponent<Transform>()->SetTranslation(mousepos);
         pf->SetDestination( mousepos );
-        t->SetTile(dest, 0);
+        tilemap->SetTile(dest, 0);
         dest = coord;
-        t->SetTile(dest, 2);
+        tilemap->SetTile(dest, 2);
     }
 
     // S: spawn enemy
@@ -154,7 +154,8 @@ static void pathfindDemo(float dt)
             {
                 continue;
             }
-                glm::vec2 pos = transform->GetTranslation();
+
+            glm::vec2 pos = transform->GetTranslation();
             
 
             RigidBody* rb = enemy->GetComponent<RigidBody>();
