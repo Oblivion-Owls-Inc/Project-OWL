@@ -83,9 +83,9 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5f6ef1000561a3b70ba31afec1a02500"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a5f6ef1000561a3b70ba31afec1a02500">Mesh</a> (bool init_square=false, int rows=1, int columns=1)</td></tr>
-<tr class="memdesc:a5f6ef1000561a3b70ba31afec1a02500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes mesh to square, or to nothing.  <a href="classMesh.html#a5f6ef1000561a3b70ba31afec1a02500">More...</a><br /></td></tr>
-<tr class="separator:a5f6ef1000561a3b70ba31afec1a02500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1f6dba6fb7f837714fceafd671b75cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#ae1f6dba6fb7f837714fceafd671b75cc">Mesh</a> (glm::vec2 scale={ 1.0f, 1.0f }, glm::ivec2 sheetDimensions={ 1, 1 }, glm::vec2 pivot={ 0.5f, 0.5f })</td></tr>
+<tr class="memdesc:ae1f6dba6fb7f837714fceafd671b75cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates mesh as a quad.  <a href="classMesh.html#ae1f6dba6fb7f837714fceafd671b75cc">More...</a><br /></td></tr>
+<tr class="separator:ae1f6dba6fb7f837714fceafd671b75cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e68ec6c32108ed7d4c4739af46b2561"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a7e68ec6c32108ed7d4c4739af46b2561">Mesh</a> (std::vector&lt; <a class="el" href="structMesh_1_1Vertex.html">Vertex</a> &gt; vertices)</td></tr>
 <tr class="memdesc:a7e68ec6c32108ed7d4c4739af46b2561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: inits mesh with given vertices.  <a href="classMesh.html#a7e68ec6c32108ed7d4c4739af46b2561">More...</a><br /></td></tr>
 <tr class="separator:a7e68ec6c32108ed7d4c4739af46b2561"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -95,9 +95,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a72c6c70d0a5146317d0fa11d9dc33da0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a72c6c70d0a5146317d0fa11d9dc33da0">LoadVertices</a> (std::vector&lt; <a class="el" href="structMesh_1_1Vertex.html">Vertex</a> &gt; vertices)</td></tr>
 <tr class="memdesc:a72c6c70d0a5146317d0fa11d9dc33da0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads provided vertices to initialize (or change) the mesh. Provide rows and columns if this is for a spritesheet.  <a href="classMesh.html#a72c6c70d0a5146317d0fa11d9dc33da0">More...</a><br /></td></tr>
 <tr class="separator:a72c6c70d0a5146317d0fa11d9dc33da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d3023d68fcf77eef8220379ff4c21c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a0d3023d68fcf77eef8220379ff4c21c2">LoadSquare</a> (int rows=1, int columns=1)</td></tr>
-<tr class="memdesc:a0d3023d68fcf77eef8220379ff4c21c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a list of vertices that make a centered unit square. Provide rows and columns if this is for a spritesheet.  <a href="classMesh.html#a0d3023d68fcf77eef8220379ff4c21c2">More...</a><br /></td></tr>
-<tr class="separator:a0d3023d68fcf77eef8220379ff4c21c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83c363283500c6211baae5c531f5a4f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a83c363283500c6211baae5c531f5a4f8">LoadQuad</a> (glm::vec2 scale={ 1.0f, 1.0f }, glm::ivec2 sheetDimensions={ 1, 1 }, glm::vec2 pivot={ 0.5f, 0.5f })</td></tr>
+<tr class="memdesc:a83c363283500c6211baae5c531f5a4f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes mesh as a quad.  <a href="classMesh.html#a83c363283500c6211baae5c531f5a4f8">More...</a><br /></td></tr>
+<tr class="separator:a83c363283500c6211baae5c531f5a4f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7dfde4bc25999f25dd17bf010230832"><td class="memItemLeft" align="right" valign="top">__inline glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#aa7dfde4bc25999f25dd17bf010230832">GetUVsize</a> () const</td></tr>
 <tr class="memdesc:aa7dfde4bc25999f25dd17bf010230832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the UV size.  <a href="classMesh.html#aa7dfde4bc25999f25dd17bf010230832">More...</a><br /></td></tr>
 <tr class="separator:aa7dfde4bc25999f25dd17bf010230832"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,8 +113,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Stores data needed to render a basic mesh. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a5f6ef1000561a3b70ba31afec1a02500"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f6ef1000561a3b70ba31afec1a02500">&#9670;&nbsp;</a></span>Mesh() <span class="overload">[1/2]</span></h2>
+<a id="ae1f6dba6fb7f837714fceafd671b75cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1f6dba6fb7f837714fceafd671b75cc">&#9670;&nbsp;</a></span>Mesh() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,20 +122,20 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Mesh::Mesh </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>init_square</em> = <code>false</code>, </td>
+          <td class="paramtype">glm::vec2&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>{&#160;1.0f,&#160;1.0f&#160;}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>columns</em> = <code>1</code>, </td>
+          <td class="paramtype">glm::ivec2&#160;</td>
+          <td class="paramname"><em>sheetDimensions</em> = <code>{&#160;1,&#160;1&#160;}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>rows</em> = <code>1</code>&#160;</td>
+          <td class="paramtype">glm::vec2&#160;</td>
+          <td class="paramname"><em>pivot</em> = <code>{&#160;0.5f,&#160;0.5f&#160;}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -145,14 +145,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initializes mesh to square, or to nothing. </p>
-<p>Constructor: loads unit square vertices if needed.</p>
+<p>Creates mesh as a quad. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">init_square</td><td>(optional) init square or no? </td></tr>
-    <tr><td class="paramname">rows</td><td>(optional) spritesheet rows </td></tr>
-    <tr><td class="paramname">columns</td><td>(optional) spritesheet columns</td></tr>
-    <tr><td class="paramname">init_square</td><td>true/false: should unit square be initialized </td></tr>
+    <tr><td class="paramname">scale</td><td>(optional) the size of the mesh </td></tr>
+    <tr><td class="paramname">sheetDimensions</td><td>(optional) the dimensions of the spriteSheet </td></tr>
+    <tr><td class="paramname">pivot</td><td>(optional) the pivot point of the mesh </td></tr>
   </table>
   </dd>
 </dl>
@@ -325,23 +323,29 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0d3023d68fcf77eef8220379ff4c21c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d3023d68fcf77eef8220379ff4c21c2">&#9670;&nbsp;</a></span>LoadSquare()</h2>
+<a id="a83c363283500c6211baae5c531f5a4f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83c363283500c6211baae5c531f5a4f8">&#9670;&nbsp;</a></span>LoadQuad()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mesh::LoadSquare </td>
+          <td class="memname">void Mesh::LoadQuad </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>rows</em> = <code>1</code>, </td>
+          <td class="paramtype">glm::vec2&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>{&#160;1.0f,&#160;1.0f&#160;}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>columns</em> = <code>1</code>&#160;</td>
+          <td class="paramtype">glm::ivec2&#160;</td>
+          <td class="paramname"><em>sheetDimensions</em> = <code>{&#160;1,&#160;1&#160;}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec2&#160;</td>
+          <td class="paramname"><em>pivot</em> = <code>{&#160;0.5f,&#160;0.5f&#160;}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -351,8 +355,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Loads a list of vertices that make a centered unit square. Provide rows and columns if this is for a spritesheet. </p>
-<p>Loads a list of vertices that make a centered unit square. (rows/columns for spritesheet) </p>
+<p>Initializes mesh as a quad. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scale</td><td>(optional) the size of the mesh </td></tr>
+    <tr><td class="paramname">sheetDimensions</td><td>(optional) the dimensions of the spriteSheet </td></tr>
+    <tr><td class="paramname">pivot</td><td>(optional) the pivot point of the mesh </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

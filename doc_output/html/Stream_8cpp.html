@@ -65,8 +65,6 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Stream.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -74,196 +72,31 @@ $(function() {
 
 <p>JSON File reading/writing.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="Stream_8h_source.html">Stream.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ISerializable_8h_source.html">ISerializable.h</a>&quot;</code><br />
-<code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;map&gt;</code><br />
-<code>#include &lt;rapidjson/istreamwrapper.h&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="ISerializable_8h_source.html">ISerializable.h</a>&quot;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Stream.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="Stream_8cpp__incl.png" border="0" usemap="#aSource_2Stream_8cpp" alt=""/></div>
 <map name="aSource_2Stream_8cpp" id="aSource_2Stream_8cpp">
-<area shape="rect" title="JSON File reading/writing." alt="" coords="381,5,525,32"/>
-<area shape="rect" href="Stream_8h.html" title="JSON File reading/writing." alt="" coords="271,155,353,181"/>
-<area shape="rect" title=" " alt="" coords="501,229,552,256"/>
-<area shape="rect" href="ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="251,80,365,107"/>
-<area shape="rect" title=" " alt="" coords="491,80,571,107"/>
-<area shape="rect" title=" " alt="" coords="595,80,795,107"/>
-<area shape="rect" title=" " alt="" coords="5,229,168,256"/>
-<area shape="rect" title=" " alt="" coords="192,229,251,256"/>
-<area shape="rect" title=" " alt="" coords="275,229,349,256"/>
-<area shape="rect" title=" " alt="" coords="373,229,477,256"/>
+<area shape="rect" title="JSON File reading/writing." alt="" coords="88,5,232,32"/>
+<area shape="rect" href="ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="44,80,159,107"/>
+<area shape="rect" title=" " alt="" coords="183,80,257,107"/>
+<area shape="rect" title=" " alt="" coords="5,229,56,256"/>
+<area shape="rect" title=" " alt="" coords="80,229,139,256"/>
+<area shape="rect" href="Stream_8h.html" title="JSON File reading/writing." alt="" coords="139,155,221,181"/>
+<area shape="rect" title=" " alt="" coords="163,229,267,256"/>
+<area shape="rect" title=" " alt="" coords="291,229,437,256"/>
 </map>
 </div>
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a9d2e32dc4bed9dddbb2f0b7cff7e9868"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a9d2e32dc4bed9dddbb2f0b7cff7e9868"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Stream_8cpp.html#a9d2e32dc4bed9dddbb2f0b7cff7e9868">Stream::Read&lt; std::string &gt;</a> () const</td></tr>
-<tr class="memdesc:a9d2e32dc4bed9dddbb2f0b7cff7e9868"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a string from a json value.  <a href="Stream_8cpp.html#a9d2e32dc4bed9dddbb2f0b7cff7e9868">More...</a><br /></td></tr>
-<tr class="separator:a9d2e32dc4bed9dddbb2f0b7cff7e9868"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afaf45052ed753f92e117296582143cfc"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:afaf45052ed753f92e117296582143cfc"><td class="memTemplItemLeft" align="right" valign="top">glm::vec1&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Stream_8cpp.html#afaf45052ed753f92e117296582143cfc">Stream::Read&lt; glm::vec1 &gt;</a> () const</td></tr>
-<tr class="memdesc:afaf45052ed753f92e117296582143cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a glm::vec1 from a json value.  <a href="Stream_8cpp.html#afaf45052ed753f92e117296582143cfc">More...</a><br /></td></tr>
-<tr class="separator:afaf45052ed753f92e117296582143cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff92d165207be913165f9bb8575cd7ad"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:aff92d165207be913165f9bb8575cd7ad"><td class="memTemplItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Stream_8cpp.html#aff92d165207be913165f9bb8575cd7ad">Stream::Read&lt; glm::vec2 &gt;</a> () const</td></tr>
-<tr class="memdesc:aff92d165207be913165f9bb8575cd7ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a glm::vec2 from a json value.  <a href="Stream_8cpp.html#aff92d165207be913165f9bb8575cd7ad">More...</a><br /></td></tr>
-<tr class="separator:aff92d165207be913165f9bb8575cd7ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d6f43b555b102e9144e05a781aa3c81"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a7d6f43b555b102e9144e05a781aa3c81"><td class="memTemplItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Stream_8cpp.html#a7d6f43b555b102e9144e05a781aa3c81">Stream::Read&lt; glm::vec3 &gt;</a> () const</td></tr>
-<tr class="memdesc:a7d6f43b555b102e9144e05a781aa3c81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a glm::vec3 from a json value.  <a href="Stream_8cpp.html#a7d6f43b555b102e9144e05a781aa3c81">More...</a><br /></td></tr>
-<tr class="separator:a7d6f43b555b102e9144e05a781aa3c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab41b6951b51e85423e5be6eea4ef5d47"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:ab41b6951b51e85423e5be6eea4ef5d47"><td class="memTemplItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Stream_8cpp.html#ab41b6951b51e85423e5be6eea4ef5d47">Stream::Read&lt; glm::vec4 &gt;</a> () const</td></tr>
-<tr class="memdesc:ab41b6951b51e85423e5be6eea4ef5d47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a glm::vec4 from a json value.  <a href="Stream_8cpp.html#ab41b6951b51e85423e5be6eea4ef5d47">More...</a><br /></td></tr>
-<tr class="separator:ab41b6951b51e85423e5be6eea4ef5d47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30c690aefdb8d5de3f2de3867ca3af53"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a30c690aefdb8d5de3f2de3867ca3af53"><td class="memTemplItemLeft" align="right" valign="top">glm::ivec2&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Stream_8cpp.html#a30c690aefdb8d5de3f2de3867ca3af53">Stream::Read&lt; glm::ivec2 &gt;</a> () const</td></tr>
-<tr class="memdesc:a30c690aefdb8d5de3f2de3867ca3af53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads an ivec2 from a json value.  <a href="Stream_8cpp.html#a30c690aefdb8d5de3f2de3867ca3af53">More...</a><br /></td></tr>
-<tr class="separator:a30c690aefdb8d5de3f2de3867ca3af53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>JSON File reading/writing. </p>
 <dl class="section author"><dt>Author</dt><dd>Aidan Straker (<a href="#" onclick="location.href='mai'+'lto:'+'aid'+'an'+'.st'+'ra'+'ker'+'@d'+'igi'+'pe'+'n.e'+'du'; return false;">aidan<span style="display: none;">.nosp@m.</span>.str<span style="display: none;">.nosp@m.</span>aker@<span style="display: none;">.nosp@m.</span>digi<span style="display: none;">.nosp@m.</span>pen.e<span style="display: none;">.nosp@m.</span>du</a>) </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023-09-10</dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>© 2023 DigiPen (USA) Corporation. </dd></dl>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a30c690aefdb8d5de3f2de3867ca3af53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30c690aefdb8d5de3f2de3867ca3af53">&#9670;&nbsp;</a></span>Stream::Read&lt; glm::ivec2 &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::ivec2 <a class="el" href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">Stream::Read</a>&lt; glm::ivec2 &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads an ivec2 from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="afaf45052ed753f92e117296582143cfc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afaf45052ed753f92e117296582143cfc">&#9670;&nbsp;</a></span>Stream::Read&lt; glm::vec1 &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::vec1 <a class="el" href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">Stream::Read</a>&lt; glm::vec1 &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a glm::vec1 from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="aff92d165207be913165f9bb8575cd7ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff92d165207be913165f9bb8575cd7ad">&#9670;&nbsp;</a></span>Stream::Read&lt; glm::vec2 &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::vec2 <a class="el" href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">Stream::Read</a>&lt; glm::vec2 &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a glm::vec2 from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a7d6f43b555b102e9144e05a781aa3c81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d6f43b555b102e9144e05a781aa3c81">&#9670;&nbsp;</a></span>Stream::Read&lt; glm::vec3 &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::vec3 <a class="el" href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">Stream::Read</a>&lt; glm::vec3 &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a glm::vec3 from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="ab41b6951b51e85423e5be6eea4ef5d47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab41b6951b51e85423e5be6eea4ef5d47">&#9670;&nbsp;</a></span>Stream::Read&lt; glm::vec4 &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::vec4 <a class="el" href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">Stream::Read</a>&lt; glm::vec4 &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a glm::vec4 from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a9d2e32dc4bed9dddbb2f0b7cff7e9868"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d2e32dc4bed9dddbb2f0b7cff7e9868">&#9670;&nbsp;</a></span>Stream::Read&lt; std::string &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string <a class="el" href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">Stream::Read</a>&lt; std::string &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a string from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-</div><!-- contents -->
+<h2><a class="anchor" id="autotoc_md7"></a>
+@copyright  © 2023 DigiPen (USA) Corporation.</h2>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1

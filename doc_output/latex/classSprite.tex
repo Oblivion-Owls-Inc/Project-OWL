@@ -11,8 +11,7 @@ Stores mesh + texture, along with other data needed to draw a basic 2D sprite.
 
 
 
-Inheritance diagram for Sprite\+:
-\nopagebreak
+Inheritance diagram for Sprite\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Sprite\+:
 \end{figure}
 
 
-Collaboration diagram for Sprite\+:
-\nopagebreak
+Collaboration diagram for Sprite\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -63,7 +61,9 @@ virtual void \mbox{\hyperlink{classSprite_a054a4c340c14c3d218b99e484bf83d21}{Dra
 \+\_\+\+\_\+inline \mbox{\hyperlink{classTexture}{Texture}} const  $\ast$ \mbox{\hyperlink{classSprite_a0956ca2a207a07b11c4c07641f4c1f75}{Get\+Texture}} () const
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classTexture}{Texture}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classSprite_add75a99e4693d8570349f7726577bff8}{Set\+Texture}} (\mbox{\hyperlink{classTexture}{Texture}} const $\ast$texture)
-\begin{DoxyCompactList}\small\item\em sets the \mbox{\hyperlink{classTexture}{Texture}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em sets the \mbox{\hyperlink{classTexture}{Texture}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classSprite_a7f236ad7df686bd5bc9a21bed0eb7e4b}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classSprite}{Sprite}} component data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -78,15 +78,15 @@ virtual void \mbox{\hyperlink{classSprite_af2b858a23242efb4b764f1a28d79e4a3}{Ins
 \begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
 glm\+::vec2 \mbox{\hyperlink{classSprite_a0225af1f47f30e6484229f64ab1113c1}{calc\+UVoffset}} () const
 \begin{DoxyCompactList}\small\item\em Calculates UV offset based on current frame\+Index. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classSprite_ac6ca1e4120d8cd90239c92c13e0b3381}{read\+Texture}} (\mbox{\hyperlink{classStream}{Stream}} stream)
+void \mbox{\hyperlink{classSprite_ad7c68f929b3ec3e4c5ffcdf586559684}{read\+Texture}} (nlohmann\+::ordered\+\_\+json const \&data)
 \begin{DoxyCompactList}\small\item\em reads the \mbox{\hyperlink{classTexture}{Texture}} of this \mbox{\hyperlink{classSprite}{Sprite}} \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classSprite_a1dcf3838a5518445e1ac283eadaf6c83}{read\+Frame\+Index}} (\mbox{\hyperlink{classStream}{Stream}} stream)
+void \mbox{\hyperlink{classSprite_aacbf1b206c4b8011233a6d19757553fc}{read\+Frame\+Index}} (nlohmann\+::ordered\+\_\+json const \&data)
 \begin{DoxyCompactList}\small\item\em reads the frame index of this \mbox{\hyperlink{classSprite}{Sprite}} \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classSprite_ab52e12001937bfcbbd613c94260d996f}{read\+Color}} (\mbox{\hyperlink{classStream}{Stream}} stream)
+void \mbox{\hyperlink{classSprite_a2cfed0de34c5d9f5cb6eff050ac543c3}{read\+Color}} (nlohmann\+::ordered\+\_\+json const \&data)
 \begin{DoxyCompactList}\small\item\em Read in the color for a sprite. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classSprite_ad0b36740bb4a825d62cb7f2d974314a8}{read\+Opacity}} (\mbox{\hyperlink{classStream}{Stream}} stream)
+void \mbox{\hyperlink{classSprite_afadfcfd6e2c2a42d53b71ce567170617}{read\+Opacity}} (nlohmann\+::ordered\+\_\+json const \&data)
 \begin{DoxyCompactList}\small\item\em Read in the opacity for a sprite. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classSprite_acf4c8341fbbb1b0a263490e32985f595}{read\+Layer}} (\mbox{\hyperlink{classStream}{Stream}} stream)
+void \mbox{\hyperlink{classSprite_a2f0845263caa0cee9863679498635ce0}{read\+Layer}} (nlohmann\+::ordered\+\_\+json const \&data)
 \begin{DoxyCompactList}\small\item\em Read in the layer for a sprite. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -289,11 +289,11 @@ called when entering the scene
 
 Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
 
-\mbox{\Hypertarget{classSprite_ab52e12001937bfcbbd613c94260d996f}\label{classSprite_ab52e12001937bfcbbd613c94260d996f}} 
+\mbox{\Hypertarget{classSprite_a2cfed0de34c5d9f5cb6eff050ac543c3}\label{classSprite_a2cfed0de34c5d9f5cb6eff050ac543c3}} 
 \index{Sprite@{Sprite}!readColor@{readColor}}
 \index{readColor@{readColor}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{readColor()}{readColor()}}
-{\footnotesize\ttfamily void Sprite\+::read\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily void Sprite\+::read\+Color (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -303,14 +303,16 @@ Read in the colour for a sprite.
 
 
 \begin{DoxyParams}{Parameters}
-{\em stream} & The json to read from. \\
+{\em stream} & The json to read from.\\
+\hline
+{\em data} & The json to read from. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSprite_a1dcf3838a5518445e1ac283eadaf6c83}\label{classSprite_a1dcf3838a5518445e1ac283eadaf6c83}} 
+\mbox{\Hypertarget{classSprite_aacbf1b206c4b8011233a6d19757553fc}\label{classSprite_aacbf1b206c4b8011233a6d19757553fc}} 
 \index{Sprite@{Sprite}!readFrameIndex@{readFrameIndex}}
 \index{readFrameIndex@{readFrameIndex}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{readFrameIndex()}{readFrameIndex()}}
-{\footnotesize\ttfamily void Sprite\+::read\+Frame\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily void Sprite\+::read\+Frame\+Index (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -318,14 +320,16 @@ reads the frame index of this \mbox{\hyperlink{classSprite}{Sprite}}
 
 
 \begin{DoxyParams}{Parameters}
-{\em stream} & the json data to read from \\
+{\em stream} & the json data to read from\\
+\hline
+{\em data} & the json data to read from \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSprite_acf4c8341fbbb1b0a263490e32985f595}\label{classSprite_acf4c8341fbbb1b0a263490e32985f595}} 
+\mbox{\Hypertarget{classSprite_a2f0845263caa0cee9863679498635ce0}\label{classSprite_a2f0845263caa0cee9863679498635ce0}} 
 \index{Sprite@{Sprite}!readLayer@{readLayer}}
 \index{readLayer@{readLayer}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{readLayer()}{readLayer()}}
-{\footnotesize\ttfamily void Sprite\+::read\+Layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily void Sprite\+::read\+Layer (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -333,14 +337,16 @@ Read in the layer for a sprite.
 
 
 \begin{DoxyParams}{Parameters}
-{\em stream} & The json to read from. \\
+{\em stream} & The json to read from.\\
+\hline
+{\em data} & The json to read from. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSprite_ad0b36740bb4a825d62cb7f2d974314a8}\label{classSprite_ad0b36740bb4a825d62cb7f2d974314a8}} 
+\mbox{\Hypertarget{classSprite_afadfcfd6e2c2a42d53b71ce567170617}\label{classSprite_afadfcfd6e2c2a42d53b71ce567170617}} 
 \index{Sprite@{Sprite}!readOpacity@{readOpacity}}
 \index{readOpacity@{readOpacity}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{readOpacity()}{readOpacity()}}
-{\footnotesize\ttfamily void Sprite\+::read\+Opacity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily void Sprite\+::read\+Opacity (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -348,14 +354,16 @@ Read in the opacity for a sprite.
 
 
 \begin{DoxyParams}{Parameters}
-{\em stream} & The json to read from. \\
+{\em stream} & The json to read from.\\
+\hline
+{\em data} & The json to read from. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSprite_ac6ca1e4120d8cd90239c92c13e0b3381}\label{classSprite_ac6ca1e4120d8cd90239c92c13e0b3381}} 
+\mbox{\Hypertarget{classSprite_ad7c68f929b3ec3e4c5ffcdf586559684}\label{classSprite_ad7c68f929b3ec3e4c5ffcdf586559684}} 
 \index{Sprite@{Sprite}!readTexture@{readTexture}}
 \index{readTexture@{readTexture}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{readTexture()}{readTexture()}}
-{\footnotesize\ttfamily void Sprite\+::read\+Texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily void Sprite\+::read\+Texture (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -363,7 +371,9 @@ reads the \mbox{\hyperlink{classTexture}{Texture}} of this \mbox{\hyperlink{clas
 
 
 \begin{DoxyParams}{Parameters}
-{\em stream} & the json data to read from \\
+{\em stream} & the json data to read from\\
+\hline
+{\em data} & the json data to read from \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classSprite_abbfee434d423324f10c67b5016c15181}\label{classSprite_abbfee434d423324f10c67b5016c15181}} 
@@ -441,6 +451,23 @@ sets the \mbox{\hyperlink{classTexture}{Texture}} this \mbox{\hyperlink{classSpr
 {\em texture} & the \mbox{\hyperlink{classTexture}{Texture}} to set this \mbox{\hyperlink{classSprite}{Sprite}} to use \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classSprite_a7f236ad7df686bd5bc9a21bed0eb7e4b}\label{classSprite_a7f236ad7df686bd5bc9a21bed0eb7e4b}} 
+\index{Sprite@{Sprite}!Write@{Write}}
+\index{Write@{Write}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Sprite\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classSprite}{Sprite}} component data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classSprite}{Sprite}} component data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

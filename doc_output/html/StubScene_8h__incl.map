@@ -1,11 +1,10 @@
 <map id="Source/StubScene.h" name="Source/StubScene.h">
-<area shape="rect" id="node1" title="A stub file for easy scene creation." alt="" coords="79,5,230,32"/>
-<area shape="rect" id="node2" href="$System_8h.html" title="Base class for all Systems." alt="" coords="113,80,196,107"/>
-<area shape="rect" id="node3" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="97,155,212,181"/>
+<area shape="rect" id="node1" title="A stub file for easy scene creation." alt="" coords="26,5,177,32"/>
+<area shape="rect" id="node2" href="$System_8h.html" title="Base class for all Systems." alt="" coords="60,80,143,107"/>
+<area shape="rect" id="node3" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="44,155,159,181"/>
 <area shape="rect" id="node4" title=" " alt="" coords="5,304,56,331"/>
 <area shape="rect" id="node5" title=" " alt="" coords="80,304,139,331"/>
-<area shape="rect" id="node6" title=" " alt="" coords="389,304,552,331"/>
-<area shape="rect" id="node7" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="167,229,249,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="291,304,365,331"/>
-<area shape="rect" id="node9" title=" " alt="" coords="163,304,267,331"/>
+<area shape="rect" id="node6" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="139,229,221,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="163,304,267,331"/>
+<area shape="rect" id="node8" title=" " alt="" coords="291,304,437,331"/>
 </map>

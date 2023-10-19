@@ -7,7 +7,6 @@ interface for all serializable objects
 
 {\ttfamily \#include $<$map$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
-{\ttfamily \#include \char`\"{}rapidjson/document.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Stream.\+h\char`\"{}}\newline
 Include dependency graph for ISerializable.\+h\+:
 \nopagebreak
@@ -33,8 +32,8 @@ class \mbox{\hyperlink{classISerializable}{ISerializable}}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{ISerializable_8h_a6b3a4f8a8b4c9191ab310908bd2b81fa}\label{ISerializable_8h_a6b3a4f8a8b4c9191ab310908bd2b81fa}} 
-{\footnotesize template$<$typename T $>$ }\\using {\bfseries Read\+Method} = void(T\+::$\ast$)(\mbox{\hyperlink{classStream}{Stream}} value)
+\mbox{\Hypertarget{ISerializable_8h_abecd5e38078ae83dc14db8d67badc067}\label{ISerializable_8h_abecd5e38078ae83dc14db8d67badc067}} 
+{\footnotesize template$<$typename T $>$ }\\using {\bfseries Read\+Method} = void(T\+::$\ast$)(nlohmann\+::ordered\+\_\+json const  \&json)
 \item 
 \mbox{\Hypertarget{ISerializable_8h_a25da5788395ce478c8adfe6b8bacf07d}\label{ISerializable_8h_a25da5788395ce478c8adfe6b8bacf07d}} 
 {\footnotesize template$<$typename T $>$ }\\using {\bfseries Read\+Method\+Map} = std\+::map$<$ std\+::string, Read\+Method$<$ T $>$ $>$

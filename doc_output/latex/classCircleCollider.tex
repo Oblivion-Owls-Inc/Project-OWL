@@ -11,8 +11,7 @@ Circle-\/shaped \mbox{\hyperlink{classCollider}{Collider}}.
 
 
 
-Inheritance diagram for Circle\+Collider\+:
-\nopagebreak
+Inheritance diagram for Circle\+Collider\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Circle\+Collider\+:
 \end{figure}
 
 
-Collaboration diagram for Circle\+Collider\+:
-\nopagebreak
+Collaboration diagram for Circle\+Collider\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,13 +33,12 @@ Collaboration diagram for Circle\+Collider\+:
 \mbox{\Hypertarget{classCircleCollider_a7cc4635f197708b726e181d99eeb9d9a}\label{classCircleCollider_a7cc4635f197708b726e181d99eeb9d9a}} 
 \mbox{\hyperlink{classCircleCollider_a7cc4635f197708b726e181d99eeb9d9a}{Circle\+Collider}} ()
 \begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classCircleCollider_ad0e5b8df02c66afa78374c0ce1f91804}\label{classCircleCollider_ad0e5b8df02c66afa78374c0ce1f91804}} 
-virtual void \mbox{\hyperlink{classCircleCollider_ad0e5b8df02c66afa78374c0ce1f91804}{Inspector}} () override
-\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline float \mbox{\hyperlink{classCircleCollider_aaf8d4e62f1dd66621809a950194c2e76}{Get\+Radius}} () const
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classCircleCollider}{Circle\+Collider}}\textquotesingle{}s radius \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classCircleCollider_af250016e506f6a2f7a3f2a38b3f0c1df}{Set\+Radius}} (float radius)
 \begin{DoxyCompactList}\small\item\em sets this \mbox{\hyperlink{classCircleCollider}{Circle\+Collider}}\textquotesingle{}s radius \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCircleCollider_a6c39df7b80e132f10eafe90f3652dd63}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classCircleCollider}{Circle\+Collider}} component data to a JSON file. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classCircleCollider}{Circle\+Collider}} $\ast$ \mbox{\hyperlink{classCircleCollider_a31fae47f8e77ce5e37a3fc4bcd20a84f}{Clone}} () const override
 \begin{DoxyCompactList}\small\item\em virtual component clone function \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
@@ -96,6 +93,23 @@ sets this \mbox{\hyperlink{classCircleCollider}{Circle\+Collider}}\textquotesing
 {\em radius} & the radius \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classCircleCollider_a6c39df7b80e132f10eafe90f3652dd63}\label{classCircleCollider_a6c39df7b80e132f10eafe90f3652dd63}} 
+\index{CircleCollider@{CircleCollider}!Write@{Write}}
+\index{Write@{Write}!CircleCollider@{CircleCollider}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Circle\+Collider\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classCircleCollider}{Circle\+Collider}} component data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classCircleCollider}{Circle\+Collider}} component data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

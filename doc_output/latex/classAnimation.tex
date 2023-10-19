@@ -2,8 +2,7 @@
 \label{classAnimation}\index{Animation@{Animation}}
 
 
-Inheritance diagram for Animation\+:
-\nopagebreak
+Inheritance diagram for Animation\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Animation\+:
 \end{figure}
 
 
-Collaboration diagram for Animation\+:
-\nopagebreak
+Collaboration diagram for Animation\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,66 +24,72 @@ Collaboration diagram for Animation\+:
 \mbox{\Hypertarget{classAnimation_a83f0a16cef7117f187ad596de38dd9d6}\label{classAnimation_a83f0a16cef7117f187ad596de38dd9d6}} 
 \mbox{\hyperlink{classAnimation_a83f0a16cef7117f187ad596de38dd9d6}{Animation}} ()
 \begin{DoxyCompactList}\small\item\em Defualt constructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classAnimation_a401b68793d4fbf48d481c030ee4b2a16}\label{classAnimation_a401b68793d4fbf48d481c030ee4b2a16}} 
-\mbox{\hyperlink{classAnimation_a401b68793d4fbf48d481c030ee4b2a16}{$\sim$\+Animation}} ()
+\mbox{\Hypertarget{classAnimation_aa93a530b4235cd1098758c1d1985a3eb}\label{classAnimation_aa93a530b4235cd1098758c1d1985a3eb}} 
+\mbox{\hyperlink{classAnimation_aa93a530b4235cd1098758c1d1985a3eb}{$\sim$\+Animation}} ()=default
 \begin{DoxyCompactList}\small\item\em Default Destructor. \end{DoxyCompactList}\item 
-const unsigned \mbox{\hyperlink{classAnimation_a80f4fbdfd277561512a8e55ac4116416}{Get\+Index}} () const
+void \mbox{\hyperlink{classAnimation_a8a0a71df1656ae406932a52e47bb939b}{Play}} (std\+::string const \&asset\+Name)
+\begin{DoxyCompactList}\small\item\em starts playing an \mbox{\hyperlink{classAnimation}{Animation}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAnimation_abebfc0ff5eaa43096b3de6b9ce54c66e}{Play}} (\mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} const $\ast$asset)
+\begin{DoxyCompactList}\small\item\em starts playing an \mbox{\hyperlink{classAnimation}{Animation}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAnimation_a1abe69f13ed1b6a20af291f5889aebfd}\label{classAnimation_a1abe69f13ed1b6a20af291f5889aebfd}} 
+void \mbox{\hyperlink{classAnimation_a1abe69f13ed1b6a20af291f5889aebfd}{Play}} ()
+\begin{DoxyCompactList}\small\item\em starts playing this \mbox{\hyperlink{classAnimation}{Animation}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAnimation_a491febb8b8a99b0497aca865a0416aa1}\label{classAnimation_a491febb8b8a99b0497aca865a0416aa1}} 
+void \mbox{\hyperlink{classAnimation_a491febb8b8a99b0497aca865a0416aa1}{Pause}} ()
+\begin{DoxyCompactList}\small\item\em pauses the current animation \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classAnimation_aff7204d12365b0f15f991b7f351b9953}{Get\+Remaining\+Time}} () const
+\begin{DoxyCompactList}\small\item\em how much longer until the current animation is done playing \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAnimation_ab8bd5a6a015625074a75f6ce7a3f7089}{Add\+On\+Animation\+Complete\+Callback}} (unsigned owner\+Id, std\+::function$<$ void() $>$ callback)
+\begin{DoxyCompactList}\small\item\em adds a callback function to be called when the animation completes \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAnimation_a5b974a67bc84e872f8f9089b52ef071c}{Remove\+On\+Animation\+Complete\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em removes a callback function to be called when the animation completes \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{classAnimation_abd69b45d04077e520036b046592f2123}{Get\+Index}} (bool relative=true) const
 \begin{DoxyCompactList}\small\item\em Gets the frame index of the animation. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimation_a7a94e8ba6af2e77dc44cd25486c1defa}{Set\+Index}} (unsigned new\+Index)
+void \mbox{\hyperlink{classAnimation_ae3f8eace1d5e6663e22c8cfb4991cc05}{Set\+Index}} (unsigned index, bool relative=true)
 \begin{DoxyCompactList}\small\item\em Sets a new frame index. \end{DoxyCompactList}\item 
-const unsigned \mbox{\hyperlink{classAnimation_aaef5e4dd10ef307bf4cf5e05856521c2}{Get\+Count}} () const
-\begin{DoxyCompactList}\small\item\em Gets the frame count of the animation. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimation_a64742c84fedbae94984867347b7ad707}{Set\+Count}} (unsigned new\+Count)
-\begin{DoxyCompactList}\small\item\em Sets a new frame count. \end{DoxyCompactList}\item 
-const float \mbox{\hyperlink{classAnimation_ac4304ab4b39717788210a638f8bd11fc}{Get\+Delay}} () const
-\begin{DoxyCompactList}\small\item\em Gets the frame delay of the animation. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimation_a61298644c3866b5a5367c79f79160635}{Set\+Delay}} (float new\+Delay)
+float \mbox{\hyperlink{classAnimation_ac28e01b03cabb2d19175cb51608d9252}{Get\+Delay}} () const
+\begin{DoxyCompactList}\small\item\em Gets the amount of time until the frame changes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAnimation_ad16d8c9ea3afbc1ccb94692e34f4cbbf}{Set\+Delay}} (float delay)
 \begin{DoxyCompactList}\small\item\em Sets a new frame delay. \end{DoxyCompactList}\item 
-const float \mbox{\hyperlink{classAnimation_a20de44ea02f9044458427f826327a4d6}{Get\+Duration}} () const
-\begin{DoxyCompactList}\small\item\em Gets the frame duration of the animation. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimation_a12a99c6ca87adda8ad7a2e56c3315411}{Set\+Duration}} (float new\+Duration)
-\begin{DoxyCompactList}\small\item\em Sets a new frame duration. \end{DoxyCompactList}\item 
-const bool \mbox{\hyperlink{classAnimation_a1e001473b64d13cc03fb355e1c801eb6}{Get\+Running}} () const
+bool \mbox{\hyperlink{classAnimation_a1140f01bf5174c954135d5bee306724a}{Get\+Running}} () const
 \begin{DoxyCompactList}\small\item\em Gets the running status of the animation. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimation_a60868dfd5686146ecae4dcc772ae85c7}{Set\+Running}} (bool new\+Running)
+void \mbox{\hyperlink{classAnimation_ab5d8496702b34e4b21203b5376c397e5}{Set\+Running}} (bool running)
 \begin{DoxyCompactList}\small\item\em Sets a new running status. \end{DoxyCompactList}\item 
-const bool \mbox{\hyperlink{classAnimation_a7f232da11d95ab97b8a6c7812537d9f1}{Get\+Looping}} () const
-\begin{DoxyCompactList}\small\item\em Gets the looping status of the animation. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimation_ad78f9fd3e46f6a311c3d8c5841c2810e}{Set\+Looping}} (bool new\+Looping)
-\begin{DoxyCompactList}\small\item\em Sets a new looping status. \end{DoxyCompactList}\item 
-const bool \mbox{\hyperlink{classAnimation_a3d5626577c9c7f2b14e9205b2601ab44}{Get\+Done}} () const
-\begin{DoxyCompactList}\small\item\em Gets if the animation is done. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimation_a9e451532143121ee4bee72024a893f8f}{Set\+Done}} (bool new\+Done)
-\begin{DoxyCompactList}\small\item\em Sets a new done status. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} $\ast$ \mbox{\hyperlink{classAnimation_a3d9aefe019981fbf16e193d03b9e63b4}{Get\+Asset}} () const
+\mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} const  $\ast$ \mbox{\hyperlink{classAnimation_af6772d11241169ea260de95b8ae0b62d}{Get\+Asset}} () const
 \begin{DoxyCompactList}\small\item\em Gets the current animation asset. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimation_abe73900cd023a6126e6a3d1d87817760}{Set\+Asset}} (\mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} $\ast$new\+Asset)
-\begin{DoxyCompactList}\small\item\em Sets a new animation asset. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimation_a865ad92ff3ab51f7ff1a41c7a01269cd}{Animation\+Play}} ()
-\begin{DoxyCompactList}\small\item\em Sets the animation to play. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classAnimation_af830dbf24e74c516dea945b5125d30a4}{Set\+Asset}} (\mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} const $\ast$asset)
+\begin{DoxyCompactList}\small\item\em Sets the animation asset this \mbox{\hyperlink{classAnimation}{Animation}} \mbox{\hyperlink{classComponent}{Component}} is using. \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classAnimation_a562de7e80ea741b8d9a892514fa6094a}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classAnimation}{Animation}} component data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classAnimation_a865ad92ff3ab51f7ff1a41c7a01269cd}\label{classAnimation_a865ad92ff3ab51f7ff1a41c7a01269cd}} 
-\index{Animation@{Animation}!AnimationPlay@{AnimationPlay}}
-\index{AnimationPlay@{AnimationPlay}!Animation@{Animation}}
-\doxysubsubsection{\texorpdfstring{AnimationPlay()}{AnimationPlay()}}
-{\footnotesize\ttfamily void Animation\+::\+Animation\+Play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classAnimation_ab8bd5a6a015625074a75f6ce7a3f7089}\label{classAnimation_ab8bd5a6a015625074a75f6ce7a3f7089}} 
+\index{Animation@{Animation}!AddOnAnimationCompleteCallback@{AddOnAnimationCompleteCallback}}
+\index{AddOnAnimationCompleteCallback@{AddOnAnimationCompleteCallback}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{AddOnAnimationCompleteCallback()}{AddOnAnimationCompleteCallback()}}
+{\footnotesize\ttfamily void Animation\+::\+Add\+On\+Animation\+Complete\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{std\+::function$<$ void() $>$}]{callback }\end{DoxyParamCaption})}
 
 
 
-Sets the animation to play. 
+adds a callback function to be called when the animation completes 
 
-this should only be played
 
-when you want to start,
-
-this is not an update call \mbox{\Hypertarget{classAnimation_a3d9aefe019981fbf16e193d03b9e63b4}\label{classAnimation_a3d9aefe019981fbf16e193d03b9e63b4}} 
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+{\em callback} & the function to be called when the animation completes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+YOU MUST REMOVE THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT 
+\end{DoxyNote}
+\mbox{\Hypertarget{classAnimation_af6772d11241169ea260de95b8ae0b62d}\label{classAnimation_af6772d11241169ea260de95b8ae0b62d}} 
 \index{Animation@{Animation}!GetAsset@{GetAsset}}
 \index{GetAsset@{GetAsset}!Animation@{Animation}}
 \doxysubsubsection{\texorpdfstring{GetAsset()}{GetAsset()}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} $\ast$ Animation\+::\+Get\+Asset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} const  $\ast$ Animation\+::\+Get\+Asset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -94,89 +98,59 @@ Gets the current animation asset.
 \begin{DoxyReturn}{Returns}
 The asset currently connected 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classAnimation_aaef5e4dd10ef307bf4cf5e05856521c2}\label{classAnimation_aaef5e4dd10ef307bf4cf5e05856521c2}} 
-\index{Animation@{Animation}!GetCount@{GetCount}}
-\index{GetCount@{GetCount}!Animation@{Animation}}
-\doxysubsubsection{\texorpdfstring{GetCount()}{GetCount()}}
-{\footnotesize\ttfamily const unsigned Animation\+::\+Get\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Gets the frame count of the animation. 
-
-\begin{DoxyReturn}{Returns}
-Frame count of the animation 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classAnimation_ac4304ab4b39717788210a638f8bd11fc}\label{classAnimation_ac4304ab4b39717788210a638f8bd11fc}} 
+\mbox{\Hypertarget{classAnimation_ac28e01b03cabb2d19175cb51608d9252}\label{classAnimation_ac28e01b03cabb2d19175cb51608d9252}} 
 \index{Animation@{Animation}!GetDelay@{GetDelay}}
 \index{GetDelay@{GetDelay}!Animation@{Animation}}
 \doxysubsubsection{\texorpdfstring{GetDelay()}{GetDelay()}}
-{\footnotesize\ttfamily const float Animation\+::\+Get\+Delay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily float Animation\+::\+Get\+Delay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
-Gets the frame delay of the animation. 
+Gets the amount of time until the frame changes. 
+
+Gets the frame delay of the animation.
 
 \begin{DoxyReturn}{Returns}
+the amount of time until the frame next changes
+
 Frame delay of the animation 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classAnimation_a3d5626577c9c7f2b14e9205b2601ab44}\label{classAnimation_a3d5626577c9c7f2b14e9205b2601ab44}} 
-\index{Animation@{Animation}!GetDone@{GetDone}}
-\index{GetDone@{GetDone}!Animation@{Animation}}
-\doxysubsubsection{\texorpdfstring{GetDone()}{GetDone()}}
-{\footnotesize\ttfamily const bool Animation\+::\+Get\+Done (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Gets if the animation is done. 
-
-\begin{DoxyReturn}{Returns}
-done of the animation 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classAnimation_a20de44ea02f9044458427f826327a4d6}\label{classAnimation_a20de44ea02f9044458427f826327a4d6}} 
-\index{Animation@{Animation}!GetDuration@{GetDuration}}
-\index{GetDuration@{GetDuration}!Animation@{Animation}}
-\doxysubsubsection{\texorpdfstring{GetDuration()}{GetDuration()}}
-{\footnotesize\ttfamily const float Animation\+::\+Get\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Gets the frame duration of the animation. 
-
-\begin{DoxyReturn}{Returns}
-Frame duration of the animation 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classAnimation_a80f4fbdfd277561512a8e55ac4116416}\label{classAnimation_a80f4fbdfd277561512a8e55ac4116416}} 
+\mbox{\Hypertarget{classAnimation_abd69b45d04077e520036b046592f2123}\label{classAnimation_abd69b45d04077e520036b046592f2123}} 
 \index{Animation@{Animation}!GetIndex@{GetIndex}}
 \index{GetIndex@{GetIndex}!Animation@{Animation}}
 \doxysubsubsection{\texorpdfstring{GetIndex()}{GetIndex()}}
-{\footnotesize\ttfamily const unsigned Animation\+::\+Get\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily unsigned Animation\+::\+Get\+Index (\begin{DoxyParamCaption}\item[{bool}]{relative = {\ttfamily true} }\end{DoxyParamCaption}) const}
 
 
 
 Gets the frame index of the animation. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em relative} & if true, return the index relative to the start of the current animation \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Frame index of the animation 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classAnimation_a7f232da11d95ab97b8a6c7812537d9f1}\label{classAnimation_a7f232da11d95ab97b8a6c7812537d9f1}} 
-\index{Animation@{Animation}!GetLooping@{GetLooping}}
-\index{GetLooping@{GetLooping}!Animation@{Animation}}
-\doxysubsubsection{\texorpdfstring{GetLooping()}{GetLooping()}}
-{\footnotesize\ttfamily const bool Animation\+::\+Get\+Looping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+\mbox{\Hypertarget{classAnimation_aff7204d12365b0f15f991b7f351b9953}\label{classAnimation_aff7204d12365b0f15f991b7f351b9953}} 
+\index{Animation@{Animation}!GetRemainingTime@{GetRemainingTime}}
+\index{GetRemainingTime@{GetRemainingTime}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{GetRemainingTime()}{GetRemainingTime()}}
+{\footnotesize\ttfamily float Animation\+::\+Get\+Remaining\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
-Gets the looping status of the animation. 
+how much longer until the current animation is done playing 
 
 \begin{DoxyReturn}{Returns}
-Looping status of the animation 
+the amount of remaining time 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classAnimation_a1e001473b64d13cc03fb355e1c801eb6}\label{classAnimation_a1e001473b64d13cc03fb355e1c801eb6}} 
+\mbox{\Hypertarget{classAnimation_a1140f01bf5174c954135d5bee306724a}\label{classAnimation_a1140f01bf5174c954135d5bee306724a}} 
 \index{Animation@{Animation}!GetRunning@{GetRunning}}
 \index{GetRunning@{GetRunning}!Animation@{Animation}}
 \doxysubsubsection{\texorpdfstring{GetRunning()}{GetRunning()}}
-{\footnotesize\ttfamily const bool Animation\+::\+Get\+Running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily bool Animation\+::\+Get\+Running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -185,16 +159,68 @@ Gets the running status of the animation.
 \begin{DoxyReturn}{Returns}
 Running status of the animation 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classAnimation_abe73900cd023a6126e6a3d1d87817760}\label{classAnimation_abe73900cd023a6126e6a3d1d87817760}} 
+\mbox{\Hypertarget{classAnimation_abebfc0ff5eaa43096b3de6b9ce54c66e}\label{classAnimation_abebfc0ff5eaa43096b3de6b9ce54c66e}} 
+\index{Animation@{Animation}!Play@{Play}}
+\index{Play@{Play}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{Play()}{Play()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Animation\+::\+Play (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} const $\ast$}]{asset }\end{DoxyParamCaption})}
+
+
+
+starts playing an \mbox{\hyperlink{classAnimation}{Animation}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em asset} & the \mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} to play \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAnimation_a8a0a71df1656ae406932a52e47bb939b}\label{classAnimation_a8a0a71df1656ae406932a52e47bb939b}} 
+\index{Animation@{Animation}!Play@{Play}}
+\index{Play@{Play}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{Play()}{Play()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Animation\+::\+Play (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{asset\+Name }\end{DoxyParamCaption})}
+
+
+
+starts playing an \mbox{\hyperlink{classAnimation}{Animation}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em asset\+Name} & the \mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} to play \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAnimation_a5b974a67bc84e872f8f9089b52ef071c}\label{classAnimation_a5b974a67bc84e872f8f9089b52ef071c}} 
+\index{Animation@{Animation}!RemoveOnAnimationCompleteCallback@{RemoveOnAnimationCompleteCallback}}
+\index{RemoveOnAnimationCompleteCallback@{RemoveOnAnimationCompleteCallback}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{RemoveOnAnimationCompleteCallback()}{RemoveOnAnimationCompleteCallback()}}
+{\footnotesize\ttfamily void Animation\+::\+Remove\+On\+Animation\+Complete\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+removes a callback function to be called when the animation completes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAnimation_af830dbf24e74c516dea945b5125d30a4}\label{classAnimation_af830dbf24e74c516dea945b5125d30a4}} 
 \index{Animation@{Animation}!SetAsset@{SetAsset}}
 \index{SetAsset@{SetAsset}!Animation@{Animation}}
 \doxysubsubsection{\texorpdfstring{SetAsset()}{SetAsset()}}
-{\footnotesize\ttfamily void Animation\+::\+Set\+Asset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} $\ast$}]{new\+Asset }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Animation\+::\+Set\+Asset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} const $\ast$}]{new\+Asset }\end{DoxyParamCaption})}
 
 
 
-Sets a new animation asset. 
+Sets the animation asset this \mbox{\hyperlink{classAnimation}{Animation}} \mbox{\hyperlink{classComponent}{Component}} is using. 
 
+Sets a new animation asset.
+
+
+\begin{DoxyParams}{Parameters}
+{\em asset} & animation asset to set\\
+\hline
+\end{DoxyParams}
 this and animation play can change
 
 the current animation without
@@ -206,22 +232,7 @@ or other information
 {\em New} & animation asset to set \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classAnimation_a64742c84fedbae94984867347b7ad707}\label{classAnimation_a64742c84fedbae94984867347b7ad707}} 
-\index{Animation@{Animation}!SetCount@{SetCount}}
-\index{SetCount@{SetCount}!Animation@{Animation}}
-\doxysubsubsection{\texorpdfstring{SetCount()}{SetCount()}}
-{\footnotesize\ttfamily void Animation\+::\+Set\+Count (\begin{DoxyParamCaption}\item[{unsigned}]{new\+Count }\end{DoxyParamCaption})}
-
-
-
-Sets a new frame count. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em New} & frame count to set \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classAnimation_a61298644c3866b5a5367c79f79160635}\label{classAnimation_a61298644c3866b5a5367c79f79160635}} 
+\mbox{\Hypertarget{classAnimation_ad16d8c9ea3afbc1ccb94692e34f4cbbf}\label{classAnimation_ad16d8c9ea3afbc1ccb94692e34f4cbbf}} 
 \index{Animation@{Animation}!SetDelay@{SetDelay}}
 \index{SetDelay@{SetDelay}!Animation@{Animation}}
 \doxysubsubsection{\texorpdfstring{SetDelay()}{SetDelay()}}
@@ -233,44 +244,16 @@ Sets a new frame delay.
 
 
 \begin{DoxyParams}{Parameters}
+{\em delay} & frame delay to set\\
+\hline
 {\em New} & frame delay to set \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classAnimation_a9e451532143121ee4bee72024a893f8f}\label{classAnimation_a9e451532143121ee4bee72024a893f8f}} 
-\index{Animation@{Animation}!SetDone@{SetDone}}
-\index{SetDone@{SetDone}!Animation@{Animation}}
-\doxysubsubsection{\texorpdfstring{SetDone()}{SetDone()}}
-{\footnotesize\ttfamily void Animation\+::\+Set\+Done (\begin{DoxyParamCaption}\item[{bool}]{new\+Done }\end{DoxyParamCaption})}
-
-
-
-Sets a new done status. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em New} & done status to set \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classAnimation_a12a99c6ca87adda8ad7a2e56c3315411}\label{classAnimation_a12a99c6ca87adda8ad7a2e56c3315411}} 
-\index{Animation@{Animation}!SetDuration@{SetDuration}}
-\index{SetDuration@{SetDuration}!Animation@{Animation}}
-\doxysubsubsection{\texorpdfstring{SetDuration()}{SetDuration()}}
-{\footnotesize\ttfamily void Animation\+::\+Set\+Duration (\begin{DoxyParamCaption}\item[{float}]{new\+Duration }\end{DoxyParamCaption})}
-
-
-
-Sets a new frame duration. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em New} & frame duration to set \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classAnimation_a7a94e8ba6af2e77dc44cd25486c1defa}\label{classAnimation_a7a94e8ba6af2e77dc44cd25486c1defa}} 
+\mbox{\Hypertarget{classAnimation_ae3f8eace1d5e6663e22c8cfb4991cc05}\label{classAnimation_ae3f8eace1d5e6663e22c8cfb4991cc05}} 
 \index{Animation@{Animation}!SetIndex@{SetIndex}}
 \index{SetIndex@{SetIndex}!Animation@{Animation}}
 \doxysubsubsection{\texorpdfstring{SetIndex()}{SetIndex()}}
-{\footnotesize\ttfamily void Animation\+::\+Set\+Index (\begin{DoxyParamCaption}\item[{unsigned}]{new\+Index }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Animation\+::\+Set\+Index (\begin{DoxyParamCaption}\item[{unsigned}]{index,  }\item[{bool}]{relative = {\ttfamily true} }\end{DoxyParamCaption})}
 
 
 
@@ -278,25 +261,12 @@ Sets a new frame index.
 
 
 \begin{DoxyParams}{Parameters}
-{\em New} & frame index to set \\
+{\em relative} & if true, set the index relative to the start of the current animation \\
+\hline
+{\em index} & frame index to set \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classAnimation_ad78f9fd3e46f6a311c3d8c5841c2810e}\label{classAnimation_ad78f9fd3e46f6a311c3d8c5841c2810e}} 
-\index{Animation@{Animation}!SetLooping@{SetLooping}}
-\index{SetLooping@{SetLooping}!Animation@{Animation}}
-\doxysubsubsection{\texorpdfstring{SetLooping()}{SetLooping()}}
-{\footnotesize\ttfamily void Animation\+::\+Set\+Looping (\begin{DoxyParamCaption}\item[{bool}]{new\+Looping }\end{DoxyParamCaption})}
-
-
-
-Sets a new looping status. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em New} & looping status to set \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classAnimation_a60868dfd5686146ecae4dcc772ae85c7}\label{classAnimation_a60868dfd5686146ecae4dcc772ae85c7}} 
+\mbox{\Hypertarget{classAnimation_ab5d8496702b34e4b21203b5376c397e5}\label{classAnimation_ab5d8496702b34e4b21203b5376c397e5}} 
 \index{Animation@{Animation}!SetRunning@{SetRunning}}
 \index{SetRunning@{SetRunning}!Animation@{Animation}}
 \doxysubsubsection{\texorpdfstring{SetRunning()}{SetRunning()}}
@@ -308,9 +278,28 @@ Sets a new running status.
 
 
 \begin{DoxyParams}{Parameters}
+{\em running} & running status to set\\
+\hline
 {\em New} & running status to set \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classAnimation_a562de7e80ea741b8d9a892514fa6094a}\label{classAnimation_a562de7e80ea741b8d9a892514fa6094a}} 
+\index{Animation@{Animation}!Write@{Write}}
+\index{Write@{Write}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Animation\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classAnimation}{Animation}} component data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classAnimation}{Animation}} component data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

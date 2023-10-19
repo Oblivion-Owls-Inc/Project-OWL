@@ -141,9 +141,6 @@
     <Filter Include="Engine\Entity\Component\Behavior\Animation\Asset">
       <UniqueIdentifier>{4ef39645-2d4e-4936-8ebf-80abd5fb3eb9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Framework\Pools">
-      <UniqueIdentifier>{f2e1e11a-6966-48bf-90af-219074be36e6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Behaviors\TurretBehavior">
       <UniqueIdentifier>{e523f30f-0b00-4ea5-b75b-339074d48b3b}</UniqueIdentifier>
     </Filter>
@@ -170,6 +167,12 @@
     </Filter>
     <Filter Include="Engine\Entity\Component\Behavior\Tilemap">
       <UniqueIdentifier>{7c0f06d8-341a-42ab-ad77-109c905fe568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Pools">
+      <UniqueIdentifier>{f2e1e11a-6966-48bf-90af-219074be36e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Behaviors\EnemyBehavior">
+      <UniqueIdentifier>{076ac8b2-f5d1-423e-a7e6-e83f7eed1584}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -342,7 +345,7 @@
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Pool.cpp">
-      <Filter>Engine\Framework\Pools</Filter>
+      <Filter>Engine\Entity\Component\Pools</Filter>
     </ClCompile>
     <ClCompile Include="Source\TransformAnimation.cpp">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
@@ -370,6 +373,9 @@
     </ClCompile>
     <ClCompile Include="Source\StaticBody.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EnemyBehavior.cpp">
+      <Filter>Game\Behaviors\EnemyBehavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -545,7 +551,7 @@
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator</Filter>
     </ClInclude>
     <ClInclude Include="Source\Pool.h">
-      <Filter>Engine\Framework\Pools</Filter>
+      <Filter>Engine\Entity\Component\Pools</Filter>
     </ClInclude>
     <ClInclude Include="Source\TransformAnimation.h">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
@@ -576,6 +582,9 @@
     </ClInclude>
     <ClInclude Include="Source\StaticBody.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemyBehavior.h">
+      <Filter>Game\Behaviors\EnemyBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

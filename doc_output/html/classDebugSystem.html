@@ -121,6 +121,9 @@ Public Member Functions</h2></td></tr>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a2c641267002ad60b29e2d9704bb5f79b">DebugWindow</a> () override</td></tr>
 <tr class="memdesc:a2c641267002ad60b29e2d9704bb5f79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Called by the Debug system to display debug information. <br /></td></tr>
 <tr class="separator:a2c641267002ad60b29e2d9704bb5f79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae994854f516187647c79c65db6abb8e"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#aae994854f516187647c79c65db6abb8e">Write</a> () const override</td></tr>
+<tr class="memdesc:aae994854f516187647c79c65db6abb8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> config  <a href="classDebugSystem.html#aae994854f516187647c79c65db6abb8e">More...</a><br /></td></tr>
+<tr class="separator:aae994854f516187647c79c65db6abb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classSystem"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classSystem')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classSystem.html">System</a></td></tr>
 <tr class="memitem:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a57235c9268a213e2944d83cffa3b4aae"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a> ()</td></tr>
@@ -145,9 +148,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
 <tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -379,6 +379,36 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aae994854f516187647c79c65db6abb8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae994854f516187647c79c65db6abb8e">&#9670;&nbsp;</a></span>Write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json DebugSystem::Write </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>writes this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> config </p>
+<dl class="section return"><dt>Returns</dt><dd>the writting <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> config </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
 
 </div>
 </div>

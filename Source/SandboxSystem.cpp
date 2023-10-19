@@ -39,7 +39,6 @@ static Tilemap<int>* t;
 static Pathfinder* pf;
 
 static const Entity* enemyArch;
-static std::vector<Entity*> enemies;
 static Entity* turret;
 static int eCount; // enemy count
 static glm::ivec2 dest;
@@ -99,7 +98,6 @@ void SandboxSystem::OnUpdate( float dt )
         RayCastHit hit = Collisions()->RayCast( rayOrigin, direction );
         Renderer()->DrawLine( rayOrigin, rayOrigin + direction * hit.distance, 0.1f );
     }
-
 }
 
 
@@ -107,7 +105,6 @@ void SandboxSystem::OnUpdate( float dt )
 void SandboxSystem::OnSceneExit()
 {
     tiles = nullptr;
-    enemies.clear();
 }
 
 
@@ -146,9 +143,20 @@ static void pathfindDemo(float dt)
     // Space (hold): enemies move to destination
     if (Input()->GetKeyDown(GLFW_KEY_SPACE))
     {
-        for (auto& enemy : enemies)
+        for (auto& enemy : Entities()->GetEntities())
         {
-            glm::vec2 pos = enemy->GetComponent<Transform>()->GetTranslation();
+            if(enemy->GetName() != std::string("Enemy"))
+				continue;
+
+            Transform* transform = enemy->GetComponent<Transform>();
+
+            if (!transform)
+            {
+                continue;
+            }
+                glm::vec2 pos = transform->GetTranslation();
+            
+
             RigidBody* rb = enemy->GetComponent<RigidBody>();
 
             // accelerate along path
@@ -164,12 +172,17 @@ static void pathfindDemo(float dt)
 
     // they stop when space is released
     if (Input()->GetKeyReleased(GLFW_KEY_SPACE))
-        for (auto& enemy : enemies)
+    {
+        for (auto& enemy : Entities()->GetEntities())
         {
+            if (enemy->GetName() != std::string("Enemy"))
+                continue;
+
             RigidBody* rb = enemy->GetComponent<RigidBody>();
             rb->SetAcceleration({});
             rb->SetVelocity({});
         }
+    }
 }
 
 
@@ -181,7 +194,6 @@ static void spawnEnemy(glm::vec2 mousepos)
     enemycopy->GetComponent<Transform>()->SetTranslation(mousepos);
     enemycopy->SetName("Enemy");
     Entities()->AddEntity(enemycopy);
-    enemies.push_back(enemycopy);
 }
 
 

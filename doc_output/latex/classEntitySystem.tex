@@ -11,8 +11,7 @@ Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when cr
 
 
 
-Inheritance diagram for Entity\+System\+:
-\nopagebreak
+Inheritance diagram for Entity\+System\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Entity\+System\+:
 \end{figure}
 
 
-Collaboration diagram for Entity\+System\+:
-\nopagebreak
+Collaboration diagram for Entity\+System\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -40,8 +38,10 @@ void \mbox{\hyperlink{classEntitySystem_a7143c495b23a3dfab627dde07b43cd6c}{Remov
 \begin{DoxyCompactList}\small\item\em removes an \mbox{\hyperlink{classEntity}{Entity}} from the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classEntitySystem_a86f324f2d492e696283f08a10a6f2ac0}{Has\+Entity}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)
 \begin{DoxyCompactList}\small\item\em checks if the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} contains the given \mbox{\hyperlink{classEntity}{Entity}} (for debugging) \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classEntitySystem_abab96c75248c3ce796b19689b85e189a}{Load\+Entities}} (\mbox{\hyperlink{classStream}{Stream}} entity\+Array)
+void \mbox{\hyperlink{classEntitySystem_aa1413b1ebe7d025a06da369297b7c8b8}{Load\+Entities}} (nlohmann\+::ordered\+\_\+json const \&data)
 \begin{DoxyCompactList}\small\item\em loads all of the entities in a scene \end{DoxyCompactList}\item 
+nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEntitySystem_abee09afc33e2dddda270d3e4bacb247c}{Save\+Entities}} () const
+\begin{DoxyCompactList}\small\item\em saves all of the entities in a scene \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $\ast$ $>$ const  \& \mbox{\hyperlink{classEntitySystem_aa527daa36c0689122424d88acc2d8476}{Get\+Entities}} () const
 \begin{DoxyCompactList}\small\item\em returns the container of all Entities in the Scene \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classEntitySystem_a2a5373dc2163f8de05f07ec49c8afb9d}\label{classEntitySystem_a2a5373dc2163f8de05f07ec49c8afb9d}} 
@@ -146,11 +146,11 @@ checks if the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} contains the 
 \begin{DoxyReturn}{Returns}
 whether or not the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} has the specified \mbox{\hyperlink{classEntity}{Entity}} 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classEntitySystem_abab96c75248c3ce796b19689b85e189a}\label{classEntitySystem_abab96c75248c3ce796b19689b85e189a}} 
+\mbox{\Hypertarget{classEntitySystem_aa1413b1ebe7d025a06da369297b7c8b8}\label{classEntitySystem_aa1413b1ebe7d025a06da369297b7c8b8}} 
 \index{EntitySystem@{EntitySystem}!LoadEntities@{LoadEntities}}
 \index{LoadEntities@{LoadEntities}!EntitySystem@{EntitySystem}}
 \doxysubsubsection{\texorpdfstring{LoadEntities()}{LoadEntities()}}
-{\footnotesize\ttfamily void Entity\+System\+::\+Load\+Entities (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStream}{Stream}}}]{entity\+Array }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Entity\+System\+::\+Load\+Entities (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -178,6 +178,19 @@ removes an \mbox{\hyperlink{classEntity}{Entity}} from the \mbox{\hyperlink{clas
 {\em entity} & the \mbox{\hyperlink{classEntity}{Entity}} to remove \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classEntitySystem_abee09afc33e2dddda270d3e4bacb247c}\label{classEntitySystem_abee09afc33e2dddda270d3e4bacb247c}} 
+\index{EntitySystem@{EntitySystem}!SaveEntities@{SaveEntities}}
+\index{SaveEntities@{SaveEntities}!EntitySystem@{EntitySystem}}
+\doxysubsubsection{\texorpdfstring{SaveEntities()}{SaveEntities()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Entity\+System\+::\+Save\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+saves all of the entities in a scene 
+
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

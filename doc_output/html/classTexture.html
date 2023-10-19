@@ -98,9 +98,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a6c275e3f186675ff6ed73ccf970e552f">Texture</a> ()</td></tr>
 <tr class="memdesc:a6c275e3f186675ff6ed73ccf970e552f"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor <br /></td></tr>
 <tr class="separator:a6c275e3f186675ff6ed73ccf970e552f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4aa512788c343c7c73f7569bf2a72ac6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a4aa512788c343c7c73f7569bf2a72ac6">Texture</a> (std::string const &amp;filepath, glm::ivec2 const &amp;sheetDimensions={ 1, 1 })</td></tr>
-<tr class="memdesc:a4aa512788c343c7c73f7569bf2a72ac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: loads texture image from file upon initialization.  <a href="classTexture.html#a4aa512788c343c7c73f7569bf2a72ac6">More...</a><br /></td></tr>
-<tr class="separator:a4aa512788c343c7c73f7569bf2a72ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af524f915a86db480a81170c08f4b0e50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#af524f915a86db480a81170c08f4b0e50">Texture</a> (std::string const &amp;filepath, glm::ivec2 const &amp;sheetDimensions={ 1, 1 }, glm::vec2 const &amp;pivot={ 0.5f, 0.5f })</td></tr>
+<tr class="memdesc:af524f915a86db480a81170c08f4b0e50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: loads texture image from file upon initialization.  <a href="classTexture.html#af524f915a86db480a81170c08f4b0e50">More...</a><br /></td></tr>
+<tr class="separator:af524f915a86db480a81170c08f4b0e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09c4bcb7462f64c1d20fa69dba3cee8a"><td class="memItemLeft" align="right" valign="top"><a id="a09c4bcb7462f64c1d20fa69dba3cee8a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">~Texture</a> ()</td></tr>
 <tr class="memdesc:a09c4bcb7462f64c1d20fa69dba3cee8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: deletes texture data from GPU. <br /></td></tr>
@@ -126,16 +126,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a34824525978e7bc15067cd194bf6cfe2"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">SetMesh</a> (<a class="el" href="classMesh.html">Mesh</a> const *mesh)</td></tr>
 <tr class="memdesc:a34824525978e7bc15067cd194bf6cfe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the <a class="el" href="classMesh.html" title="Stores data needed to render a basic mesh.">Mesh</a> this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> is using  <a href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">More...</a><br /></td></tr>
 <tr class="separator:a34824525978e7bc15067cd194bf6cfe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classISerializable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classISerializable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classISerializable.html">ISerializable</a></td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad558ead96f52ead97b4f2b33ad8d778"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#aad558ead96f52ead97b4f2b33ad8d778">Write</a> () const override</td></tr>
+<tr class="memdesc:aad558ead96f52ead97b4f2b33ad8d778"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> data to a JSON file.  <a href="classTexture.html#aad558ead96f52ead97b4f2b33ad8d778">More...</a><br /></td></tr>
+<tr class="separator:aad558ead96f52ead97b4f2b33ad8d778"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Stores texture data, and allows to bind it for rendering. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a4aa512788c343c7c73f7569bf2a72ac6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4aa512788c343c7c73f7569bf2a72ac6">&#9670;&nbsp;</a></span>Texture()</h2>
+<a id="af524f915a86db480a81170c08f4b0e50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af524f915a86db480a81170c08f4b0e50">&#9670;&nbsp;</a></span>Texture()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -150,7 +149,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">glm::ivec2 const &amp;&#160;</td>
-          <td class="paramname"><em>sheetDimensions</em> = <code>{&#160;1,&#160;1&#160;}</code>&#160;</td>
+          <td class="paramname"><em>sheetDimensions</em> = <code>{&#160;1,&#160;1&#160;}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec2 const &amp;&#160;</td>
+          <td class="paramname"><em>pivot</em> = <code>{&#160;0.5f,&#160;0.5f&#160;}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -164,9 +169,9 @@ Public Member Functions</h2></td></tr>
 <p>Convenience constructor: loads texture image from file upon initialization.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filepath</td><td>File to load</td></tr>
     <tr><td class="paramname">filepath</td><td>File to load </td></tr>
     <tr><td class="paramname">sheetDimensions</td><td>x=columns, y=rows (of the spritesheet) </td></tr>
+    <tr><td class="paramname">pivot</td><td>the pivot point of this <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -363,6 +368,36 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aad558ead96f52ead97b4f2b33ad8d778"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad558ead96f52ead97b4f2b33ad8d778">&#9670;&nbsp;</a></span>Write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json Texture::Write </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write all <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> data to a JSON file. </p>
+<dl class="section return"><dt>Returns</dt><dd>The JSON file containing the <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> data. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
 
 </div>
 </div>

@@ -2,8 +2,7 @@
 \label{classTransform}\index{Transform@{Transform}}
 
 
-Inheritance diagram for Transform\+:
-\nopagebreak
+Inheritance diagram for Transform\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Transform\+:
 \end{figure}
 
 
-Collaboration diagram for Transform\+:
-\nopagebreak
+Collaboration diagram for Transform\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,32 +26,38 @@ Collaboration diagram for Transform\+:
 \mbox{\Hypertarget{classTransform_a0bccb958391795992a6b9100739047f1}\label{classTransform_a0bccb958391795992a6b9100739047f1}} 
 \mbox{\hyperlink{classTransform_a0bccb958391795992a6b9100739047f1}{$\sim$\+Transform}} ()=default
 \begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classTransform_a65ed830216cba782f361ca770b4ccd7d}\label{classTransform_a65ed830216cba782f361ca770b4ccd7d}} 
-virtual void \mbox{\hyperlink{classTransform_a65ed830216cba782f361ca770b4ccd7d}{Inspector}} () override
-\begin{DoxyCompactList}\small\item\em inspector for this component \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline glm\+::vec3 const  \& \mbox{\hyperlink{classTransform_a83cc36dfcfdba530db4b2e848bde8dd5}{Get\+Translation}} () const
+void \mbox{\hyperlink{classTransform_a49df3d496669c5d930c60b4fa90a6d58}{Add\+On\+Transform\+Changed\+Callback}} (unsigned owner\+Id, std\+::function$<$ void() $>$ callback)
+\begin{DoxyCompactList}\small\item\em adds an On\+Transform\+Changed callback to this \mbox{\hyperlink{classTransform}{Transform}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTransform_a7ebd0a78b54328c2d6eb0aa1452eeb88}{Remove\+On\+Transform\+Changed\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em removes an On\+Transform\+Changed callback from this \mbox{\hyperlink{classTransform}{Transform}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTransform_a2bd1d8c86ce3146f8d70c19d9515de25}{Set}} (glm\+::vec2 const \&translation, float rotation, glm\+::vec2 const \&scale)
+\begin{DoxyCompactList}\small\item\em unified set method that sets all three components of \mbox{\hyperlink{classTransform}{Transform}} at once \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTransform_a163808ec51338e2dfd540ee223cb06c0}{Set}} (glm\+::vec2 const \&translation, float rotation)
+\begin{DoxyCompactList}\small\item\em unified set method that sets translation and rotation at once \end{DoxyCompactList}\item 
+glm\+::vec2 const  \& \mbox{\hyperlink{classTransform_a2bb042a5e38fcfb20876ca76777506fc}{Get\+Translation}} () const
 \begin{DoxyCompactList}\small\item\em gets the translation \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classTransform_a58c94cac00549a45e10053257c193353}{Set\+Translation}} (glm\+::vec3 const \&translation)
+void \mbox{\hyperlink{classTransform_aaefe38226e2e7ba191b5e0c665ea3a51}{Set\+Translation}} (glm\+::vec2 const \&translation)
 \begin{DoxyCompactList}\small\item\em sets the translation \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline float \mbox{\hyperlink{classTransform_aa7e0383177f74d73f5ffc884272a75d3}{Get\+Rotation}} () const
+float \mbox{\hyperlink{classTransform_a7ac8cd28bcca090112452a466a11732a}{Get\+Rotation}} () const
 \begin{DoxyCompactList}\small\item\em gets the rotation \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classTransform_a4c8a5e8e290de3d817c29e2a2930569e}{Set\+Rotation}} (float rotation)
+void \mbox{\hyperlink{classTransform_a6eec005151e6d371f8f36a9e49609248}{Set\+Rotation}} (float rotation)
 \begin{DoxyCompactList}\small\item\em sets the rotation \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline glm\+::vec3 const  \& \mbox{\hyperlink{classTransform_a4b7c183932d73ebc2ed2db292fce17e7}{Get\+Scale}} () const
+glm\+::vec2 const  \& \mbox{\hyperlink{classTransform_a7ae046ca18d86c0e10f0faa04d4945d8}{Get\+Scale}} () const
 \begin{DoxyCompactList}\small\item\em gets the scale \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classTransform_a0009411001e42301e3b71f741cf422cb}{Set\+Scale}} (glm\+::vec3 const \&scale)
+void \mbox{\hyperlink{classTransform_a9bfb1f6d9b3a57e2c59b0467803aee3e}{Set\+Scale}} (glm\+::vec2 const \&scale)
 \begin{DoxyCompactList}\small\item\em sets the scale \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline bool const  \& \mbox{\hyperlink{classTransform_a47246d7c4f6d4100a8282e3e5c3bf54b}{Get\+Is\+Diegetic}} () const
+bool const  \& \mbox{\hyperlink{classTransform_a68ce4ffc5f317995c2c917bc4bd61c62}{Get\+Is\+Diegetic}} () const
 \begin{DoxyCompactList}\small\item\em gets the is\+Diagetic flag \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classTransform_a597a0c87cc45350401ac0c890bd2df44}{Set\+Is\+Diegetic}} (bool const \&is\+Diagetic)
+void \mbox{\hyperlink{classTransform_af4904a1fff5d70afd6ea14bba22a33ea}{Set\+Is\+Diegetic}} (bool const \&is\+Diagetic)
 \begin{DoxyCompactList}\small\item\em sets the is\+Diagetic flag \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classTransform_a9de96e7096e4aac63944402baf758670}\label{classTransform_a9de96e7096e4aac63944402baf758670}} 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classTransform_a9de96e7096e4aac63944402baf758670}{Mark\+Dirty}} ()
-\begin{DoxyCompactList}\small\item\em marks the transform as dirty; \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTransform_aba1f0c01903eb9ccac5a8eb7c7feb7f3}{Set\+Is\+Dirty}} (bool dirty)
+\begin{DoxyCompactList}\small\item\em sets the dirty flag of this \mbox{\hyperlink{classTransform}{Transform}} \end{DoxyCompactList}\item 
 glm\+::mat4 const  \& \mbox{\hyperlink{classTransform_afd0c4e0cc369913d0503addfa03384d9}{Get\+Matrix}} () const
 \begin{DoxyCompactList}\small\item\em gets the matrix \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTransform_afe4192f88f660966abd5a98d10295aa0}{Set\+Matrix}} (glm\+::mat4 const \&matrix)
-\begin{DoxyCompactList}\small\item\em sets the matrix \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em sets the matrix \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classTransform_a216e58bd1b07384a78e08b0ba806260f}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classTransform}{Transform}} component data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -71,11 +75,28 @@ constructor
 Default constructor for the transform component. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classTransform_a47246d7c4f6d4100a8282e3e5c3bf54b}\label{classTransform_a47246d7c4f6d4100a8282e3e5c3bf54b}} 
+\mbox{\Hypertarget{classTransform_a49df3d496669c5d930c60b4fa90a6d58}\label{classTransform_a49df3d496669c5d930c60b4fa90a6d58}} 
+\index{Transform@{Transform}!AddOnTransformChangedCallback@{AddOnTransformChangedCallback}}
+\index{AddOnTransformChangedCallback@{AddOnTransformChangedCallback}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{AddOnTransformChangedCallback()}{AddOnTransformChangedCallback()}}
+{\footnotesize\ttfamily void Transform\+::\+Add\+On\+Transform\+Changed\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{std\+::function$<$ void() $>$}]{callback }\end{DoxyParamCaption})}
+
+
+
+adds an On\+Transform\+Changed callback to this \mbox{\hyperlink{classTransform}{Transform}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & the callback function to add \\
+\hline
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTransform_a68ce4ffc5f317995c2c917bc4bd61c62}\label{classTransform_a68ce4ffc5f317995c2c917bc4bd61c62}} 
 \index{Transform@{Transform}!GetIsDiegetic@{GetIsDiegetic}}
 \index{GetIsDiegetic@{GetIsDiegetic}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{GetIsDiegetic()}{GetIsDiegetic()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline bool const\& Transform\+::\+Get\+Is\+Diegetic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool const\& Transform\+::\+Get\+Is\+Diegetic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -101,11 +122,11 @@ Calculates and gets the translation matrix of the transform component.
 
 The translation matrix of the transform component. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTransform_aa7e0383177f74d73f5ffc884272a75d3}\label{classTransform_aa7e0383177f74d73f5ffc884272a75d3}} 
+\mbox{\Hypertarget{classTransform_a7ac8cd28bcca090112452a466a11732a}\label{classTransform_a7ac8cd28bcca090112452a466a11732a}} 
 \index{Transform@{Transform}!GetRotation@{GetRotation}}
 \index{GetRotation@{GetRotation}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{GetRotation()}{GetRotation()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline float Transform\+::\+Get\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily float Transform\+::\+Get\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -114,11 +135,11 @@ gets the rotation
 \begin{DoxyReturn}{Returns}
 (float) the rotation 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTransform_a4b7c183932d73ebc2ed2db292fce17e7}\label{classTransform_a4b7c183932d73ebc2ed2db292fce17e7}} 
+\mbox{\Hypertarget{classTransform_a7ae046ca18d86c0e10f0faa04d4945d8}\label{classTransform_a7ae046ca18d86c0e10f0faa04d4945d8}} 
 \index{Transform@{Transform}!GetScale@{GetScale}}
 \index{GetScale@{GetScale}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{GetScale()}{GetScale()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::vec3 const\& Transform\+::\+Get\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily glm\+::vec2 const\& Transform\+::\+Get\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -127,11 +148,11 @@ gets the scale
 \begin{DoxyReturn}{Returns}
 (glm\+::vec3) the scale 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTransform_a83cc36dfcfdba530db4b2e848bde8dd5}\label{classTransform_a83cc36dfcfdba530db4b2e848bde8dd5}} 
+\mbox{\Hypertarget{classTransform_a2bb042a5e38fcfb20876ca76777506fc}\label{classTransform_a2bb042a5e38fcfb20876ca76777506fc}} 
 \index{Transform@{Transform}!GetTranslation@{GetTranslation}}
 \index{GetTranslation@{GetTranslation}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{GetTranslation()}{GetTranslation()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::vec3 const\& Transform\+::\+Get\+Translation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily glm\+::vec2 const\& Transform\+::\+Get\+Translation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -140,11 +161,62 @@ gets the translation
 \begin{DoxyReturn}{Returns}
 (gl\+::vec3) the translation 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTransform_a597a0c87cc45350401ac0c890bd2df44}\label{classTransform_a597a0c87cc45350401ac0c890bd2df44}} 
+\mbox{\Hypertarget{classTransform_a7ebd0a78b54328c2d6eb0aa1452eeb88}\label{classTransform_a7ebd0a78b54328c2d6eb0aa1452eeb88}} 
+\index{Transform@{Transform}!RemoveOnTransformChangedCallback@{RemoveOnTransformChangedCallback}}
+\index{RemoveOnTransformChangedCallback@{RemoveOnTransformChangedCallback}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{RemoveOnTransformChangedCallback()}{RemoveOnTransformChangedCallback()}}
+{\footnotesize\ttfamily void Transform\+::\+Remove\+On\+Transform\+Changed\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+removes an On\+Transform\+Changed callback from this \mbox{\hyperlink{classTransform}{Transform}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & handle to the callback to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTransform_a163808ec51338e2dfd540ee223cb06c0}\label{classTransform_a163808ec51338e2dfd540ee223cb06c0}} 
+\index{Transform@{Transform}!Set@{Set}}
+\index{Set@{Set}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{Set()}{Set()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Transform\+::\+Set (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{translation,  }\item[{float}]{rotation }\end{DoxyParamCaption})}
+
+
+
+unified set method that sets translation and rotation at once 
+
+
+\begin{DoxyParams}{Parameters}
+{\em translation} & the new translation to set \\
+\hline
+{\em rotation} & the new rotation to set \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTransform_a2bd1d8c86ce3146f8d70c19d9515de25}\label{classTransform_a2bd1d8c86ce3146f8d70c19d9515de25}} 
+\index{Transform@{Transform}!Set@{Set}}
+\index{Set@{Set}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{Set()}{Set()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Transform\+::\+Set (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{translation,  }\item[{float}]{rotation,  }\item[{glm\+::vec2 const \&}]{scale }\end{DoxyParamCaption})}
+
+
+
+unified set method that sets all three components of \mbox{\hyperlink{classTransform}{Transform}} at once 
+
+
+\begin{DoxyParams}{Parameters}
+{\em translation} & the new translation to set \\
+\hline
+{\em rotation} & the new rotation to set \\
+\hline
+{\em scale} & the new scale to set \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTransform_af4904a1fff5d70afd6ea14bba22a33ea}\label{classTransform_af4904a1fff5d70afd6ea14bba22a33ea}} 
 \index{Transform@{Transform}!SetIsDiegetic@{SetIsDiegetic}}
 \index{SetIsDiegetic@{SetIsDiegetic}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{SetIsDiegetic()}{SetIsDiegetic()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Transform\+::\+Set\+Is\+Diegetic (\begin{DoxyParamCaption}\item[{bool const \&}]{is\+Diagetic }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Transform\+::\+Set\+Is\+Diegetic (\begin{DoxyParamCaption}\item[{bool const \&}]{is\+Diagetic }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -153,6 +225,21 @@ sets the is\+Diagetic flag
 
 \begin{DoxyParams}{Parameters}
 {\em is\+Diagetic} & the new is\+Diagetic flag \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTransform_aba1f0c01903eb9ccac5a8eb7c7feb7f3}\label{classTransform_aba1f0c01903eb9ccac5a8eb7c7feb7f3}} 
+\index{Transform@{Transform}!SetIsDirty@{SetIsDirty}}
+\index{SetIsDirty@{SetIsDirty}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{SetIsDirty()}{SetIsDirty()}}
+{\footnotesize\ttfamily void Transform\+::\+Set\+Is\+Dirty (\begin{DoxyParamCaption}\item[{bool}]{dirty }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the dirty flag of this \mbox{\hyperlink{classTransform}{Transform}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dirty} & whether this transform is dirty \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classTransform_afe4192f88f660966abd5a98d10295aa0}\label{classTransform_afe4192f88f660966abd5a98d10295aa0}} 
@@ -174,11 +261,11 @@ Sets the transform component\textquotesingle{}s translation matrix.
 {\em new\+Matrix} & The new translation matrix. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTransform_a4c8a5e8e290de3d817c29e2a2930569e}\label{classTransform_a4c8a5e8e290de3d817c29e2a2930569e}} 
+\mbox{\Hypertarget{classTransform_a6eec005151e6d371f8f36a9e49609248}\label{classTransform_a6eec005151e6d371f8f36a9e49609248}} 
 \index{Transform@{Transform}!SetRotation@{SetRotation}}
 \index{SetRotation@{SetRotation}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{SetRotation()}{SetRotation()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Transform\+::\+Set\+Rotation (\begin{DoxyParamCaption}\item[{float}]{rotation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Transform\+::\+Set\+Rotation (\begin{DoxyParamCaption}\item[{float}]{rotation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -189,11 +276,11 @@ sets the rotation
 {\em rotation} & the new rotation \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTransform_a0009411001e42301e3b71f741cf422cb}\label{classTransform_a0009411001e42301e3b71f741cf422cb}} 
+\mbox{\Hypertarget{classTransform_a9bfb1f6d9b3a57e2c59b0467803aee3e}\label{classTransform_a9bfb1f6d9b3a57e2c59b0467803aee3e}} 
 \index{Transform@{Transform}!SetScale@{SetScale}}
 \index{SetScale@{SetScale}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{SetScale()}{SetScale()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Transform\+::\+Set\+Scale (\begin{DoxyParamCaption}\item[{glm\+::vec3 const \&}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Transform\+::\+Set\+Scale (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -204,11 +291,11 @@ sets the scale
 {\em scale} & the new scale \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTransform_a58c94cac00549a45e10053257c193353}\label{classTransform_a58c94cac00549a45e10053257c193353}} 
+\mbox{\Hypertarget{classTransform_aaefe38226e2e7ba191b5e0c665ea3a51}\label{classTransform_aaefe38226e2e7ba191b5e0c665ea3a51}} 
 \index{Transform@{Transform}!SetTranslation@{SetTranslation}}
 \index{SetTranslation@{SetTranslation}!Transform@{Transform}}
 \doxysubsubsection{\texorpdfstring{SetTranslation()}{SetTranslation()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Transform\+::\+Set\+Translation (\begin{DoxyParamCaption}\item[{glm\+::vec3 const \&}]{translation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Transform\+::\+Set\+Translation (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{translation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -219,6 +306,23 @@ sets the translation
 {\em translation} & the new translation \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classTransform_a216e58bd1b07384a78e08b0ba806260f}\label{classTransform_a216e58bd1b07384a78e08b0ba806260f}} 
+\index{Transform@{Transform}!Write@{Write}}
+\index{Write@{Write}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Transform\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classTransform}{Transform}} component data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classTransform}{Transform}} component data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -3,34 +3,63 @@
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classComponentFactory_acf3f687f031d3c16d860d17af7a58647}{Create}} (std\+::string const \&key)
-\begin{DoxyCompactList}\small\item\em Creates a component of a specified type. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classComponentFactory_aa1e8726be6a2b23eb6935f5e834cede5}\label{classComponentFactory_aa1e8726be6a2b23eb6935f5e834cede5}} 
-static std\+::type\+\_\+index {\bfseries Get\+Type\+Id} (std\+::string const \&type\+Name)
-\item 
-\mbox{\Hypertarget{classComponentFactory_a9d54d148a5dee184ede407a8915535d6}\label{classComponentFactory_a9d54d148a5dee184ede407a8915535d6}} 
-static std\+::map$<$ std\+::string, std\+::pair$<$ std\+::type\+\_\+index, \mbox{\hyperlink{classComponent}{Component}} $\ast$($\ast$)() $>$ $>$ const  \& {\bfseries Get\+Component\+Types} ()
-\end{DoxyCompactItemize}
+static \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classComponentFactory_a21deb8a2432611a0209140cd05e5c926}{Create}} (std\+::string const \&type\+Name)
+\begin{DoxyCompactList}\small\item\em creates a new \mbox{\hyperlink{classComponent}{Component}} with the specified type \end{DoxyCompactList}\item 
+static std\+::type\+\_\+index \mbox{\hyperlink{classComponentFactory_aa1e8726be6a2b23eb6935f5e834cede5}{Get\+Type\+Id}} (std\+::string const \&type\+Name)
+\begin{DoxyCompactList}\small\item\em gets the std\+::type\+\_\+index of the \mbox{\hyperlink{classComponent}{Component}} type with the specified name \end{DoxyCompactList}\item 
+static std\+::map$<$ std\+::string, std\+::pair$<$ std\+::type\+\_\+index, \mbox{\hyperlink{classComponent}{Component}} $\ast$($\ast$)() $>$ $>$ const  \& \mbox{\hyperlink{classComponentFactory_a9d54d148a5dee184ede407a8915535d6}{Get\+Component\+Types}} ()
+\begin{DoxyCompactList}\small\item\em gets the map of \mbox{\hyperlink{classComponent}{Component}} types be name \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classComponentFactory_acf3f687f031d3c16d860d17af7a58647}\label{classComponentFactory_acf3f687f031d3c16d860d17af7a58647}} 
+\mbox{\Hypertarget{classComponentFactory_a21deb8a2432611a0209140cd05e5c926}\label{classComponentFactory_a21deb8a2432611a0209140cd05e5c926}} 
 \index{ComponentFactory@{ComponentFactory}!Create@{Create}}
 \index{Create@{Create}!ComponentFactory@{ComponentFactory}}
 \doxysubsubsection{\texorpdfstring{Create()}{Create()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Component\+Factory\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Component\+Factory\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{type\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
-Creates a component of a specified type. 
+creates a new \mbox{\hyperlink{classComponent}{Component}} with the specified type 
 
 
 \begin{DoxyParams}{Parameters}
-{\em key} & The type of component being created. \\
+{\em type\+Name} & the type name of \mbox{\hyperlink{classComponent}{Component}} to create \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A pointer to the new component. 
+the created component 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classComponentFactory_a9d54d148a5dee184ede407a8915535d6}\label{classComponentFactory_a9d54d148a5dee184ede407a8915535d6}} 
+\index{ComponentFactory@{ComponentFactory}!GetComponentTypes@{GetComponentTypes}}
+\index{GetComponentTypes@{GetComponentTypes}!ComponentFactory@{ComponentFactory}}
+\doxysubsubsection{\texorpdfstring{GetComponentTypes()}{GetComponentTypes()}}
+{\footnotesize\ttfamily static std\+::map$<$ std\+::string, std\+::pair$<$ std\+::type\+\_\+index, \mbox{\hyperlink{classComponent}{Component}}$\ast$ ($\ast$)() $>$ $>$ const\& Component\+Factory\+::\+Get\+Component\+Types (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+gets the map of \mbox{\hyperlink{classComponent}{Component}} types be name 
+
+\begin{DoxyReturn}{Returns}
+the map of \mbox{\hyperlink{classComponent}{Component}} types by name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classComponentFactory_aa1e8726be6a2b23eb6935f5e834cede5}\label{classComponentFactory_aa1e8726be6a2b23eb6935f5e834cede5}} 
+\index{ComponentFactory@{ComponentFactory}!GetTypeId@{GetTypeId}}
+\index{GetTypeId@{GetTypeId}!ComponentFactory@{ComponentFactory}}
+\doxysubsubsection{\texorpdfstring{GetTypeId()}{GetTypeId()}}
+{\footnotesize\ttfamily std\+::type\+\_\+index Component\+Factory\+::\+Get\+Type\+Id (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{type\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+gets the std\+::type\+\_\+index of the \mbox{\hyperlink{classComponent}{Component}} type with the specified name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type\+Name} & the type name of the \mbox{\hyperlink{classComponent}{Component}} type to get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the std\+::type\+\_\+index of the \mbox{\hyperlink{classComponent}{Component}} type 
 \end{DoxyReturn}
 
 

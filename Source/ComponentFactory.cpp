@@ -19,6 +19,7 @@
 #include "MovementAI.h"
 #include "LineCollider.h"
 #include "CircleCollider.h"
+#include "EnemyBehavior.h"
 #include "AudioPlayer.h"
 #include "Animation.h"
 #include "TurretBehavior.h"
@@ -108,6 +109,7 @@
         { "PlayerController" , ComponentInfo<PlayerController>() },
         { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   },
         { "EffectAnimator"   , ComponentInfo<EffectAnimator>()   },
+		{ "EnemyBehavior"    , ComponentInfo<EnemyBehavior>()    },
         { "Tilemap<int>"     , ComponentInfo< Tilemap<int> >()   },
         { "Pool<int>"        , ComponentInfo< Pool < int > >()   },
         { "Pool<float>"      , ComponentInfo< Pool < float > >() },

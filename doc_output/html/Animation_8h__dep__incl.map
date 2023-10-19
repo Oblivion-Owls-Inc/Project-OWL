@@ -1,8 +1,7 @@
 <map id="Source/Animation.h" name="Source/Animation.h">
-<area shape="rect" id="node1" title="animation component class" alt="" coords="323,5,473,32"/>
+<area shape="rect" id="node1" title="animation component class" alt="" coords="329,5,478,32"/>
 <area shape="rect" id="node2" href="$Animation_8cpp.html" title="animation component implimentation" alt="" coords="5,80,169,107"/>
-<area shape="rect" id="node3" href="$AnimationAsset_8h.html" title="animation Asset class" alt="" coords="193,80,379,107"/>
-<area shape="rect" id="node4" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="403,80,620,107"/>
-<area shape="rect" id="node5" href="$Engine_8cpp.html" title="Engine class." alt="" coords="645,80,786,107"/>
-<area shape="rect" id="node6" href="$XinoScene_8cpp.html" title=" " alt="" coords="810,80,975,107"/>
+<area shape="rect" id="node3" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="193,80,411,107"/>
+<area shape="rect" id="node4" href="$Engine_8cpp.html" title="Engine class." alt="" coords="435,80,577,107"/>
+<area shape="rect" id="node5" href="$XinoScene_8cpp.html" title=" " alt="" coords="601,80,766,107"/>
 </map>

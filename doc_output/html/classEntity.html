@@ -130,8 +130,15 @@ __inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr class="memdesc:acaafccffe6773a8c7d14c912b99153fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classEntity.html">Entity</a>'s name  <a href="classEntity.html#acaafccffe6773a8c7d14c912b99153fc">More...</a><br /></td></tr>
 <tr class="separator:acaafccffe6773a8c7d14c912b99153fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fc31d7ba1031dbf6792de15a46321cd"><td class="memItemLeft" align="right" valign="top"><a id="a1fc31d7ba1031dbf6792de15a46321cd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Inspect</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#a1fc31d7ba1031dbf6792de15a46321cd">Inspect</a> ()</td></tr>
+<tr class="memdesc:a1fc31d7ba1031dbf6792de15a46321cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classEntity.html">Entity</a> <br /></td></tr>
 <tr class="separator:a1fc31d7ba1031dbf6792de15a46321cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f5f57edd21a3880debf6db30bd20d52"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#a2f5f57edd21a3880debf6db30bd20d52">GetId</a> () const</td></tr>
+<tr class="memdesc:a2f5f57edd21a3880debf6db30bd20d52"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the Id of this <a class="el" href="classComponent.html">Component</a>  <a href="classEntity.html#a2f5f57edd21a3880debf6db30bd20d52">More...</a><br /></td></tr>
+<tr class="separator:a2f5f57edd21a3880debf6db30bd20d52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a200205e7648a0ed28b46c3b76d393fdf"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#a200205e7648a0ed28b46c3b76d393fdf">Write</a> () const override</td></tr>
+<tr class="memdesc:a200205e7648a0ed28b46c3b76d393fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classEntity.html">Entity</a> data to a JSON file.  <a href="classEntity.html#a200205e7648a0ed28b46c3b76d393fdf">More...</a><br /></td></tr>
+<tr class="separator:a200205e7648a0ed28b46c3b76d393fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7af42f3ae673e43f2c48bd2402985dce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#a7af42f3ae673e43f2c48bd2402985dce">operator=</a> (<a class="el" href="classEntity.html">Entity</a> const &amp;other)</td></tr>
 <tr class="memdesc:a7af42f3ae673e43f2c48bd2402985dce"><td class="mdescLeft">&#160;</td><td class="mdescRight">copies all of another <a class="el" href="classEntity.html">Entity</a>'s data and Components into this <a class="el" href="classEntity.html">Entity</a>  <a href="classEntity.html#a7af42f3ae673e43f2c48bd2402985dce">More...</a><br /></td></tr>
 <tr class="separator:a7af42f3ae673e43f2c48bd2402985dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,9 +150,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Inspect</b> ()</td></
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
 <tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a980f368aa07ce358583982821533a54a"></a>
@@ -300,6 +304,34 @@ template&lt;typename ComponentType &gt; </div>
 
 </div>
 </div>
+<a id="a2f5f57edd21a3880debf6db30bd20d52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f5f57edd21a3880debf6db30bd20d52">&#9670;&nbsp;</a></span>GetId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned Entity::GetId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets the Id of this <a class="el" href="classComponent.html">Component</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>the Id of this <a class="el" href="classComponent.html">Component</a> </dd></dl>
+
+</div>
+</div>
 <a id="acaafccffe6773a8c7d14c912b99153fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acaafccffe6773a8c7d14c912b99153fc">&#9670;&nbsp;</a></span>GetName()</h2>
 
@@ -433,6 +465,36 @@ template&lt;typename ComponentType &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a200205e7648a0ed28b46c3b76d393fdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a200205e7648a0ed28b46c3b76d393fdf">&#9670;&nbsp;</a></span>Write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json Entity::Write </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write all <a class="el" href="classEntity.html">Entity</a> data to a JSON file. </p>
+<dl class="section return"><dt>Returns</dt><dd>The JSON file containing the <a class="el" href="classEntity.html">Entity</a> data. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
 
 </div>
 </div>

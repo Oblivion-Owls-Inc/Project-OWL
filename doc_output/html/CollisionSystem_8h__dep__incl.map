@@ -1,5 +1,6 @@
 <map id="Source/CollisionSystem.h" name="Source/CollisionSystem.h">
-<area shape="rect" id="node1" title="The CollisionSystem is responsible for checking for collisions between Different Colliders." alt="" coords="69,5,256,32"/>
+<area shape="rect" id="node1" title="The CollisionSystem is responsible for checking for collisions between Different Colliders." alt="" coords="153,5,340,32"/>
 <area shape="rect" id="node2" href="$Collider_8cpp.html" title="Base component for detecting collisions." alt="" coords="5,80,152,107"/>
 <area shape="rect" id="node3" href="$Engine_8cpp.html" title="Engine class." alt="" coords="176,80,317,107"/>
+<area shape="rect" id="node4" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="341,80,544,107"/>
 </map>

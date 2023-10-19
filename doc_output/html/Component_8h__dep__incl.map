@@ -1,42 +1,49 @@
 <map id="Source/Component.h" name="Source/Component.h">
-<area shape="rect" id="node1" title="Virtual component header." alt="" coords="1983,5,2141,32"/>
-<area shape="rect" id="node2" href="$AudioPlayer_8h.html" title="Component that plays audio." alt="" coords="1140,229,1299,256"/>
-<area shape="rect" id="node7" href="$Behavior_8h.html" title="Virtual behavior component header." alt="" coords="766,80,905,107"/>
-<area shape="rect" id="node19" href="$RigidBody_8h_source.html" title=" " alt="" coords="1081,155,1227,181"/>
-<area shape="rect" id="node20" href="$Collider_8h.html" title="Base component for detecting collisions." alt="" coords="1814,155,1945,181"/>
-<area shape="rect" id="node25" href="$Component_8cpp.html" title="Virtual component header." alt="" coords="2671,80,2843,107"/>
-<area shape="rect" id="node26" href="$Entity_8cpp.html" title="Function definitions for the Entity class." alt="" coords="3242,155,3375,181"/>
-<area shape="rect" id="node27" href="$Entity_8h.html" title="Declaration for the Entity Class." alt="" coords="2375,80,2493,107"/>
-<area shape="rect" id="node35" href="$Sprite_8h_source.html" title=" " alt="" coords="2002,80,2122,107"/>
-<area shape="rect" id="node37" href="$Text_8h.html" title="A version of Sprite specifically for rendering text. Uses GPU instancing to draw multiple letters sim..." alt="" coords="2795,155,2905,181"/>
-<area shape="rect" id="node38" href="$Tilemap_8h.html" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="2929,155,3064,181"/>
-<area shape="rect" id="node39" href="$Transform_8h.html" title="Transform." alt="" coords="1717,80,1863,107"/>
-<area shape="rect" id="node3" href="$AudioPlayer_8cpp.html" title="Component that plays audio." alt="" coords="1209,304,1384,331"/>
-<area shape="rect" id="node4" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="1464,304,1681,331"/>
-<area shape="rect" id="node5" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="1817,304,2019,331"/>
-<area shape="rect" id="node6" href="$XinoScene_8cpp.html" title=" " alt="" coords="1019,304,1185,331"/>
-<area shape="rect" id="node8" href="$Animation_8h.html" title="animation component class" alt="" coords="1489,155,1638,181"/>
-<area shape="rect" id="node10" href="$AnimationAsset_8h.html" title="animation Asset class" alt="" coords="1476,229,1661,256"/>
-<area shape="rect" id="node12" href="$BehaviorSystem_8h_source.html" title=" " alt="" coords="583,155,773,181"/>
-<area shape="rect" id="node14" href="$EffectAnimator_8h.html" title="Component that animates a Transform&#39;s matrix." alt="" coords="366,155,545,181"/>
-<area shape="rect" id="node15" href="$FollowingBehavior_8h_source.html" title=" " alt="" coords="5,155,207,181"/>
-<area shape="rect" id="node16" href="$MovementAI_8h_source.html" title=" " alt="" coords="899,229,1065,256"/>
-<area shape="rect" id="node17" href="$PlayerController_8h_source.html" title=" " alt="" coords="689,229,875,256"/>
-<area shape="rect" id="node18" href="$Pool_8h_source.html" title=" " alt="" coords="231,155,341,181"/>
-<area shape="rect" id="node9" href="$Animation_8cpp.html" title="animation component implimentation" alt="" coords="1685,229,1849,256"/>
-<area shape="rect" id="node11" href="$Engine_8cpp.html" title="Engine class." alt="" coords="530,304,671,331"/>
-<area shape="rect" id="node13" href="$EffectAnimator_8cpp.html" title="Component that animates a Transform&#39;s matrix." alt="" coords="319,229,512,256"/>
-<area shape="rect" id="node21" href="$CircleCollider_8h.html" title="Circle&#45;shaped collider." alt="" coords="2107,229,2275,256"/>
-<area shape="rect" id="node23" href="$Collider_8cpp.html" title="Base component for detecting collisions." alt="" coords="2299,229,2446,256"/>
-<area shape="rect" id="node24" href="$LineCollider_8h_source.html" title=" " alt="" coords="1873,229,2032,256"/>
-<area shape="rect" id="node22" href="$CircleCollider_8cpp.html" title="Circle&#45;shaped collider." alt="" coords="2100,304,2283,331"/>
-<area shape="rect" id="node28" href="$EntitySystem_8h.html" title="System that manages the storing and handling of Entities." alt="" coords="2997,229,3167,256"/>
-<area shape="rect" id="node31" href="$RenderSystem_8cpp.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="2179,155,2371,181"/>
-<area shape="rect" id="node32" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="2020,155,2155,181"/>
-<area shape="rect" id="node33" href="$Text_8cpp.html" title="A version of Sprite specifically for rendering text. Uses instancing to draw multiple letters simulta..." alt="" coords="2696,229,2820,256"/>
-<area shape="rect" id="node34" href="$Tilemap_8cpp.html" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="2521,229,2672,256"/>
-<area shape="rect" id="node29" href="$EntitySystem_8cpp.html" title="System that manages the storing and handling of Entities." alt="" coords="2885,304,3069,331"/>
-<area shape="rect" id="node30" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="3093,304,3279,331"/>
-<area shape="rect" id="node36" href="$TilemapSprite_8h.html" title="A version of Sprite specifically for rendering tiles." alt="" coords="2497,155,2670,181"/>
-<area shape="rect" id="node40" href="$Transform_8cpp.html" title="Function definitions for the Transform class." alt="" coords="1302,155,1465,181"/>
+<area shape="rect" id="node1" title="Virtual component header." alt="" coords="1888,5,2045,32"/>
+<area shape="rect" id="node2" href="$AudioPlayer_8h.html" title="Component that plays audio." alt="" coords="207,304,366,331"/>
+<area shape="rect" id="node7" href="$Behavior_8h.html" title="Virtual behavior component header." alt="" coords="821,80,960,107"/>
+<area shape="rect" id="node24" href="$RigidBody_8h_source.html" title=" " alt="" coords="376,229,523,256"/>
+<area shape="rect" id="node25" href="$Collider_8h.html" title="Base component for detecting collisions." alt="" coords="2175,229,2305,256"/>
+<area shape="rect" id="node31" href="$Component_8cpp.html" title="Virtual component header." alt="" coords="1709,80,1881,107"/>
+<area shape="rect" id="node32" href="$Entity_8cpp.html" title="Function definitions for the Entity class." alt="" coords="1588,229,1721,256"/>
+<area shape="rect" id="node33" href="$Entity_8h.html" title="Declaration for the Entity Class." alt="" coords="1957,155,2075,181"/>
+<area shape="rect" id="node39" href="$Pool_8h_source.html" title=" " alt="" coords="13,379,123,405"/>
+<area shape="rect" id="node41" href="$Sprite_8h_source.html" title=" " alt="" coords="2805,155,2925,181"/>
+<area shape="rect" id="node43" href="$StaticBody_8h.html" title="pysics body which can be collided with and does not move" alt="" coords="3254,80,3405,107"/>
+<area shape="rect" id="node45" href="$Text_8h.html" title="Component that makes use of Tilemap to draw text." alt="" coords="3036,304,3145,331"/>
+<area shape="rect" id="node46" href="$Transform_8h.html" title="Transform." alt="" coords="2421,155,2568,181"/>
+<area shape="rect" id="node3" href="$AudioPlayer_8cpp.html" title="Component that plays audio." alt="" coords="199,379,374,405"/>
+<area shape="rect" id="node4" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="1689,453,1906,480"/>
+<area shape="rect" id="node5" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="437,453,640,480"/>
+<area shape="rect" id="node6" href="$XinoScene_8cpp.html" title=" " alt="" coords="969,379,1135,405"/>
+<area shape="rect" id="node8" href="$Animation_8h.html" title="animation component class" alt="" coords="1236,155,1385,181"/>
+<area shape="rect" id="node11" href="$BehaviorSystem_8h_source.html" title=" " alt="" coords="796,155,985,181"/>
+<area shape="rect" id="node14" href="$Tilemap_8h.html" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="1753,304,1887,331"/>
+<area shape="rect" id="node20" href="$EffectAnimator_8h.html" title="Component that animates a Transform&#39;s matrix." alt="" coords="492,155,671,181"/>
+<area shape="rect" id="node21" href="$FollowingBehavior_8h_source.html" title=" " alt="" coords="1010,155,1211,181"/>
+<area shape="rect" id="node22" href="$MovementAI_8h_source.html" title=" " alt="" coords="695,304,860,331"/>
+<area shape="rect" id="node23" href="$PlayerController_8h_source.html" title=" " alt="" coords="985,304,1172,331"/>
+<area shape="rect" id="node9" href="$Animation_8cpp.html" title="animation component implimentation" alt="" coords="1399,229,1563,256"/>
+<area shape="rect" id="node10" href="$Engine_8cpp.html" title="Engine class." alt="" coords="753,379,895,405"/>
+<area shape="rect" id="node12" href="$EffectAnimator_8cpp.html" title="Component that animates a Transform&#39;s matrix." alt="" coords="927,229,1121,256"/>
+<area shape="rect" id="node13" href="$Tilemap_8cpp.html" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="1898,229,2049,256"/>
+<area shape="rect" id="node15" href="$Pathfinder_8h.html" title="Interface file of Pathfinder component." alt="" coords="1780,379,1927,405"/>
+<area shape="rect" id="node17" href="$Text_8cpp.html" title="Component that makes use of Tilemap to draw text." alt="" coords="2174,379,2298,405"/>
+<area shape="rect" id="node18" href="$TilemapCollider_8cpp.html" title="tilemap collider" alt="" coords="1951,379,2150,405"/>
+<area shape="rect" id="node19" href="$TilemapSprite_8cpp.html" title="A version of Sprite specifically for rendering tiles." alt="" coords="2735,379,2923,405"/>
+<area shape="rect" id="node16" href="$Pathfinder_8cpp.html" title="Implementation of Pathfinder component. Runs vector field pathfinding algo whenever parent&#39;s Tilemap ..." alt="" coords="2299,453,2461,480"/>
+<area shape="rect" id="node26" href="$CircleCollider_8h.html" title="Circle&#45;shaped collider." alt="" coords="2355,304,2523,331"/>
+<area shape="rect" id="node28" href="$Collider_8cpp.html" title="Base component for detecting collisions." alt="" coords="2648,304,2795,331"/>
+<area shape="rect" id="node29" href="$LineCollider_8h_source.html" title=" " alt="" coords="1963,304,2122,331"/>
+<area shape="rect" id="node30" href="$TilemapCollider_8h.html" title="tilemap collider" alt="" coords="2147,304,2331,331"/>
+<area shape="rect" id="node27" href="$CircleCollider_8cpp.html" title="Circle&#45;shaped collider." alt="" coords="2475,379,2658,405"/>
+<area shape="rect" id="node34" href="$EntitySystem_8h.html" title="System that manages the storing and handling of Entities." alt="" coords="1349,304,1518,331"/>
+<area shape="rect" id="node37" href="$RenderSystem_8cpp.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="2769,229,2961,256"/>
+<area shape="rect" id="node38" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="3037,229,3171,256"/>
+<area shape="rect" id="node35" href="$EntitySystem_8cpp.html" title="System that manages the storing and handling of Entities." alt="" coords="1471,379,1655,405"/>
+<area shape="rect" id="node36" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="1261,379,1446,405"/>
+<area shape="rect" id="node40" href="$Pool_8cpp.html" title=" " alt="" coords="5,453,131,480"/>
+<area shape="rect" id="node42" href="$TilemapSprite_8h.html" title="A version of Sprite specifically for rendering tiles." alt="" coords="3169,304,3343,331"/>
+<area shape="rect" id="node44" href="$StaticBody_8cpp.html" title="pysics body which can be collided with and does not move" alt="" coords="3247,155,3412,181"/>
+<area shape="rect" id="node47" href="$Transform_8cpp.html" title="Function definitions for the Transform class." alt="" coords="2532,229,2695,256"/>
 </map>

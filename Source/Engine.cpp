@@ -28,6 +28,7 @@
 #include "Texture.h"
 
 #include "BehaviorSystem.h"
+#include "EnemyBehavior.h"
 #include "RigidBody.h"
 #include "MovementAI.h"
 #include "PlayerController.h"
@@ -164,6 +165,7 @@
         { "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >          },
         { "BehaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >      },
         { "BehaviorSystem<RigidBody>",          &addSystem< BehaviorSystem< RigidBody > >           },
+        { "BehaviorSystem<EnemyBehavior>",      &addSystem< BehaviorSystem< EnemyBehavior> >        },
         { "BehaviorSystem<Animation>",          &addSystem< BehaviorSystem< Animation > >           },
         { "BehaviorSystem<EffectAnimator>",     &addSystem< BehaviorSystem< EffectAnimator > >      },
         { "BehaviorSystem<Tilemap<int>>",       &addSystem< BehaviorSystem< Tilemap<int> > >        },

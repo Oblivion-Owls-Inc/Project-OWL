@@ -75,6 +75,18 @@ void Pool<Value>::SetDefault(Value value)
 }
 
 template<typename Value>
+void Pool<Value>::DecreasePoolTime(Value value)
+{
+	m_CurrentValue -= value;
+
+	if (m_CurrentValue <= 0)
+	{
+		m_CurrentValue = 0;
+		m_Active = false;
+	}
+}
+
+template<typename Value>
 void Pool<Value>::SetActive(bool active)
 {
 	m_Active = active;

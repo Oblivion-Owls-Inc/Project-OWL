@@ -11,8 +11,7 @@ control points used by this \mbox{\hyperlink{classCurve}{Curve}}
 
 
 
-Inheritance diagram for Control\+Point$<$ dimensionality $>$\+:
-\nopagebreak
+Inheritance diagram for Control\+Point$<$ dimensionality $>$\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Control\+Point$<$ dimensionality $>$\+:
 \end{figure}
 
 
-Collaboration diagram for Control\+Point$<$ dimensionality $>$\+:
-\nopagebreak
+Collaboration diagram for Control\+Point$<$ dimensionality $>$\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -44,7 +42,9 @@ float \mbox{\hyperlink{classControlPoint_afb49f19ebb4bb3df8afa1182dc1d1e66}{Get\
 void \mbox{\hyperlink{classControlPoint_a3a19e267bba3338c0b0cf981120fd26c}{Set\+Time}} (float time)
 \begin{DoxyCompactList}\small\item\em sets the time of this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classControlPoint_a6e8ef17440ddbb5d6f6fde0b096ec454}{operator$<$}} (\mbox{\hyperlink{classControlPoint}{Control\+Point}} const \&other) const
-\begin{DoxyCompactList}\small\item\em checks if one \mbox{\hyperlink{classControlPoint}{Control\+Point}} is before another (for sorting) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em checks if one \mbox{\hyperlink{classControlPoint}{Control\+Point}} is before another (for sorting) \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classControlPoint_a252a623a13c8dec86c29438e023640b7}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classControlPoint}{Control\+Point}} to json \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -163,6 +163,32 @@ sets the time of this \mbox{\hyperlink{classControlPoint}{Control\+Point}}
 \begin{DoxyReturn}{Returns}
 the time of this \mbox{\hyperlink{classControlPoint}{Control\+Point}} 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classControlPoint_a252a623a13c8dec86c29438e023640b7}\label{classControlPoint_a252a623a13c8dec86c29438e023640b7}} 
+\index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}!Write@{Write}}
+\index{Write@{Write}!ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$\+::Write\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classControlPoint}{Control\+Point}} to json 
+
+\begin{DoxyReturn}{Returns}
+the written json data
+\end{DoxyReturn}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em dimensionality} & the number of dimensions this curve goes through \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -11,8 +11,7 @@ Asset that animates a \mbox{\hyperlink{classTransform}{Transform}} with Curves.
 
 
 
-Inheritance diagram for Transform\+Animation\+:
-\nopagebreak
+Inheritance diagram for Transform\+Animation\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Transform\+Animation\+:
 \end{figure}
 
 
-Collaboration diagram for Transform\+Animation\+:
-\nopagebreak
+Collaboration diagram for Transform\+Animation\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -52,7 +50,9 @@ void \mbox{\hyperlink{classTransformAnimation_ade41f6cce3964d6ff239d69aadef071b}
 \+\_\+\+\_\+inline \mbox{\hyperlink{classCurve}{Curve}}$<$ 1 $>$ \& \mbox{\hyperlink{classTransformAnimation_a1fd2e153db8dc54fe1f92bf6a2009d03}{Get\+Rotation\+Curve}} ()
 \begin{DoxyCompactList}\small\item\em gets the Rotation\+Curve \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline \mbox{\hyperlink{classCurve}{Curve}}$<$ 2 $>$ \& \mbox{\hyperlink{classTransformAnimation_a78d77c13f9c18a45b75561516e34e7c3}{Get\+Skew\+Curve}} ()
-\begin{DoxyCompactList}\small\item\em gets the Skew\+Curve \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em gets the Skew\+Curve \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classTransformAnimation_a7d74bdfc1962d0ce2aeaa656e50b364a}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -142,6 +142,23 @@ samples this \mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} at
 \begin{DoxyReturn}{Returns}
 a matrix of the effect transform at the specified time 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classTransformAnimation_a7d74bdfc1962d0ce2aeaa656e50b364a}\label{classTransformAnimation_a7d74bdfc1962d0ce2aeaa656e50b364a}} 
+\index{TransformAnimation@{TransformAnimation}!Write@{Write}}
+\index{Write@{Write}!TransformAnimation@{TransformAnimation}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Transform\+Animation\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -90,9 +90,9 @@ void TurretBehavior::Inspector()
 
 void TurretBehavior::FireBullet()
 {
-	//float currentTime = Engine::GetInstance()->GetFixedFrameDuration();
-	//if (currentTime - m_LastFireTime < m_FireRate)
-	//	return;
+	float currentTime = glfwGetTime();
+	if (currentTime - m_LastFireTime < m_FireRate)
+		return;
 
 	if (!m_Target)
 		return;
@@ -102,9 +102,13 @@ void TurretBehavior::FireBullet()
 	if (!pool || !pool->GetActive() || pool->GetName() != std::string("Health"))
 		return;
 
+	///@note this will be moved elsewhere
 	pool->DecreasePoolTime(m_BulletDamage);
 
-	//m_LastFireTime = currentTime;  // Update the last fire time
+	if (!pool->GetActive())
+		m_Target = nullptr;
+
+	m_LastFireTime = currentTime;  // Update the last fire time
 }
 
 void TurretBehavior::CheckForTarget()
@@ -123,8 +127,9 @@ void TurretBehavior::CheckForTarget()
 		glm::vec2 enemyPosition = entity->GetComponent<Transform>()->GetTranslation();
 
 		/// Calculate the direction from the turret to the entity
-        glm::vec2 directionToEntity = turretPosition - enemyPosition;
+        glm::vec2 directionToEntity = enemyPosition - turretPosition;
 
+		directionToEntity = glm::normalize(directionToEntity);
 
 		CircleCollider* collider = (CircleCollider *)GetParent()->GetComponent<Collider>();
         // Cast a ray from the turret towards the entity

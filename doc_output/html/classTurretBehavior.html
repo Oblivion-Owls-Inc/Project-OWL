@@ -114,31 +114,35 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8878953527baa87319cd1ee21d344881"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretBehavior.html#a8878953527baa87319cd1ee21d344881">OnFixedUpdate</a> () override</td></tr>
 <tr class="memdesc:a8878953527baa87319cd1ee21d344881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called Every Fixed Frame by the system.  <a href="classTurretBehavior.html#a8878953527baa87319cd1ee21d344881">More...</a><br /></td></tr>
 <tr class="separator:a8878953527baa87319cd1ee21d344881"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82ce36309353ca73633c6452067473b4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretBehavior.html#a82ce36309353ca73633c6452067473b4">Inspector</a> () override</td></tr>
-<tr class="memdesc:a82ce36309353ca73633c6452067473b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classComponent.html">Component</a>.  <a href="classTurretBehavior.html#a82ce36309353ca73633c6452067473b4">More...</a><br /></td></tr>
+<tr class="memitem:a82ce36309353ca73633c6452067473b4"><td class="memItemLeft" align="right" valign="top"><a id="a82ce36309353ca73633c6452067473b4"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretBehavior.html#a82ce36309353ca73633c6452067473b4">Inspector</a> () override</td></tr>
+<tr class="memdesc:a82ce36309353ca73633c6452067473b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classComponent.html">Component</a>. <br /></td></tr>
 <tr class="separator:a82ce36309353ca73633c6452067473b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a429f24752ddbb82106d0d47d7bddc215"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTurretBehavior.html#a429f24752ddbb82106d0d47d7bddc215">Write</a> () const override</td></tr>
+<tr class="memdesc:a429f24752ddbb82106d0d47d7bddc215"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classTurretBehavior.html">TurretBehavior</a> data to a JSON file.  <a href="classTurretBehavior.html#a429f24752ddbb82106d0d47d7bddc215">More...</a><br /></td></tr>
+<tr class="separator:a429f24752ddbb82106d0d47d7bddc215"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classComponent"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classComponent')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classComponent.html">Component</a></td></tr>
 <tr class="memitem:a2e9aa4348314d981f05f67397ad2f872 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a id="a2e9aa4348314d981f05f67397ad2f872"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">~Component</a> ()</td></tr>
 <tr class="memdesc:a2e9aa4348314d981f05f67397ad2f872 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtual destructor <br /></td></tr>
 <tr class="separator:a2e9aa4348314d981f05f67397ad2f872 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae724c7a0df398cd43bfabaeca25fa944 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">__inline std::type_index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ae724c7a0df398cd43bfabaeca25fa944">GetType</a> () const</td></tr>
-<tr class="memdesc:ae724c7a0df398cd43bfabaeca25fa944 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the components type  <a href="classComponent.html#ae724c7a0df398cd43bfabaeca25fa944">More...</a><br /></td></tr>
-<tr class="separator:ae724c7a0df398cd43bfabaeca25fa944 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a883bf85e78b4967fe5b0f187ee7ef7cb inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a883bf85e78b4967fe5b0f187ee7ef7cb">SetParent</a> (<a class="el" href="classEntity.html">Entity</a> *parent)</td></tr>
-<tr class="memdesc:a883bf85e78b4967fe5b0f187ee7ef7cb inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the parent entity of the component  <a href="classComponent.html#a883bf85e78b4967fe5b0f187ee7ef7cb">More...</a><br /></td></tr>
-<tr class="separator:a883bf85e78b4967fe5b0f187ee7ef7cb inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43a9bf2a6c718eb966f649567bbb0f59 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">__inline <a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a43a9bf2a6c718eb966f649567bbb0f59">GetParent</a> () const</td></tr>
-<tr class="memdesc:a43a9bf2a6c718eb966f649567bbb0f59 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the components parent entity  <a href="classComponent.html#a43a9bf2a6c718eb966f649567bbb0f59">More...</a><br /></td></tr>
-<tr class="separator:a43a9bf2a6c718eb966f649567bbb0f59 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab75652d7b0af6b7c604cc67efb34cfeb inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">std::type_index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ab75652d7b0af6b7c604cc67efb34cfeb">GetType</a> () const</td></tr>
+<tr class="memdesc:ab75652d7b0af6b7c604cc67efb34cfeb inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the components type  <a href="classComponent.html#ab75652d7b0af6b7c604cc67efb34cfeb">More...</a><br /></td></tr>
+<tr class="separator:ab75652d7b0af6b7c604cc67efb34cfeb inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">SetParent</a> (<a class="el" href="classEntity.html">Entity</a> *parent)</td></tr>
+<tr class="memdesc:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the parent entity of the component  <a href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">More...</a><br /></td></tr>
+<tr class="separator:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a1c2eb7952e1a90a45ba7672cf7307504">GetParent</a> () const</td></tr>
+<tr class="memdesc:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the components parent entity  <a href="classComponent.html#a1c2eb7952e1a90a45ba7672cf7307504">More...</a><br /></td></tr>
+<tr class="separator:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">GetId</a> () const</td></tr>
+<tr class="memdesc:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the Id of this <a class="el" href="classComponent.html">Component</a>  <a href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">More...</a><br /></td></tr>
+<tr class="separator:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classISerializable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classISerializable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classISerializable.html">ISerializable</a></td></tr>
 <tr class="memitem:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top"><a id="a7b60e4aca93fb97f18c9ff41ee53bc3a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
 <tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -185,36 +189,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a82ce36309353ca73633c6452067473b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82ce36309353ca73633c6452067473b4">&#9670;&nbsp;</a></span>Inspector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TurretBehavior::Inspector </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classComponent.html">Component</a>. </p>
-<p>Edit the <a class="el" href="classBehavior.html">Behavior</a> of the Turret</p>
-
-<p>Reimplemented from <a class="el" href="classComponent.html#a5bfbb00a07c361c4c8d7b1812b9937ff">Component</a>.</p>
-
-</div>
-</div>
 <a id="a61cb0d08cb83b881c5e525b0928c9b30"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a61cb0d08cb83b881c5e525b0928c9b30">&#9670;&nbsp;</a></span>OnCollision()</h2>
 
@@ -257,8 +231,6 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p>Reimplemented from <a class="el" href="classBehavior.html#a6cbaf9cec40b0e918df7b2cdda43108b">Behavior</a>.</p>
 
 </div>
 </div>
@@ -317,11 +289,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Called Every Fixed Frame by the system. </p>
-<p>Check if any entities are in range</p>
-<p>Caclulate the area of attack for the turret</p>
-<p>Check if the entity is in range</p>
+<p>Check for a target</p>
+<p>Fire a bullet</p>
 
-<p>Reimplemented from <a class="el" href="classBehavior.html">Behavior</a>.</p>
+<p>Implements <a class="el" href="classBehavior.html">Behavior</a>.</p>
 
 </div>
 </div>
@@ -386,9 +357,38 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>Do Turret Debug Stuff</p>
 
 <p>Reimplemented from <a class="el" href="classBehavior.html">Behavior</a>.</p>
+
+</div>
+</div>
+<a id="a429f24752ddbb82106d0d47d7bddc215"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a429f24752ddbb82106d0d47d7bddc215">&#9670;&nbsp;</a></span>Write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json TurretBehavior::Write </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write all <a class="el" href="classTurretBehavior.html">TurretBehavior</a> data to a JSON file. </p>
+<dl class="section return"><dt>Returns</dt><dd>The JSON file containing the <a class="el" href="classTurretBehavior.html">TurretBehavior</a> data. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
 
 </div>
 </div>

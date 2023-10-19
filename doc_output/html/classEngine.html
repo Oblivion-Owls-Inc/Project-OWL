@@ -106,6 +106,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a0b12e00c76c381b58c44ee4e468cfd3a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classSystem.html">System</a> * &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a0b12e00c76c381b58c44ee4e468cfd3a">GetSystems</a> () const</td></tr>
 <tr class="memdesc:a0b12e00c76c381b58c44ee4e468cfd3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the array of all Systems in the engine.  <a href="classEngine.html#a0b12e00c76c381b58c44ee4e468cfd3a">More...</a><br /></td></tr>
 <tr class="separator:a0b12e00c76c381b58c44ee4e468cfd3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b35c45e93492eb6d52f004c05fdcf54"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a2b35c45e93492eb6d52f004c05fdcf54">Write</a> () const override</td></tr>
+<tr class="memdesc:a2b35c45e93492eb6d52f004c05fdcf54"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes the <a class="el" href="classEngine.html">Engine</a> config to json  <a href="classEngine.html#a2b35c45e93492eb6d52f004c05fdcf54">More...</a><br /></td></tr>
+<tr class="separator:a2b35c45e93492eb6d52f004c05fdcf54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a821022ae1158a5214797a1a3b678e71b"><td class="memItemLeft" align="right" valign="top"><a id="a821022ae1158a5214797a1a3b678e71b"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Engine</b> (<a class="el" href="classEngine.html">Engine</a> &amp;other)=delete</td></tr>
 <tr class="separator:a821022ae1158a5214797a1a3b678e71b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,9 +120,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
 <tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -240,6 +240,36 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a2b35c45e93492eb6d52f004c05fdcf54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b35c45e93492eb6d52f004c05fdcf54">&#9670;&nbsp;</a></span>Write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json Engine::Write </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>writes the <a class="el" href="classEngine.html">Engine</a> config to json </p>
+<dl class="section return"><dt>Returns</dt><dd>the written json data </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
 
 </div>
 </div>

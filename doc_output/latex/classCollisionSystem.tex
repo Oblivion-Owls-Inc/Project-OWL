@@ -11,8 +11,7 @@ responsible for checking collsisions between all Colliders
 
 
 
-Inheritance diagram for Collision\+System\+:
-\nopagebreak
+Inheritance diagram for Collision\+System\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Collision\+System\+:
 \end{figure}
 
 
-Collaboration diagram for Collision\+System\+:
-\nopagebreak
+Collaboration diagram for Collision\+System\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -36,12 +34,18 @@ void \mbox{\hyperlink{classCollisionSystem_aa4abd78b50df7fec5151589e88d80ec0}{ad
 \begin{DoxyCompactList}\small\item\em adds a \mbox{\hyperlink{classCollider}{Collider}} to the \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classCollisionSystem_a77084b50e8e89f6cb22cd71de50f7bb4}{remove\+Collider}} (\mbox{\hyperlink{classCollider}{Collider}} $\ast$collider)
 \begin{DoxyCompactList}\small\item\em removes a \mbox{\hyperlink{classCollider}{Collider}} from this \mbox{\hyperlink{classSystem}{System}} \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classCollisionSystem_aeeb07f44cd623b028d28281f694bee87}\label{classCollisionSystem_aeeb07f44cd623b028d28281f694bee87}} 
-virtual void \mbox{\hyperlink{classCollisionSystem_aeeb07f44cd623b028d28281f694bee87}{On\+Fixed\+Update}} () override
-\begin{DoxyCompactList}\small\item\em Gets called once every simulation frame. Use this function for anything that affects the simulation. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classCollisionSystem_a10abfba9770cc7be71bd42c318da1e44}\label{classCollisionSystem_a10abfba9770cc7be71bd42c318da1e44}} 
-virtual void \mbox{\hyperlink{classCollisionSystem_a10abfba9770cc7be71bd42c318da1e44}{On\+Scene\+Exit}} () override
-\begin{DoxyCompactList}\small\item\em Gets called whenever a scene is exited. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}{Collision\+Layer\+Flags}} \mbox{\hyperlink{classCollisionSystem_a2222bb7d13df934b47e22eaf8bd3fe69}{Get\+Layer\+Flags}} (std\+::vector$<$ std\+::string $>$ const \&layer\+Names) const
+\begin{DoxyCompactList}\small\item\em makes a Collision\+Layer\+Flags for a set of layer names \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{classCollisionSystem_a0f58d705d0917277436a743b6df048c8}{Get\+Collision\+Layer\+Id}} (std\+::string const \&layer\+Name) const
+\begin{DoxyCompactList}\small\item\em gets the collision layer ID with the specified name \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classCollisionSystem_a8c40544ea78bbcf20d85f07dc3a3c97f}{Get\+Layer\+Names}} (\mbox{\hyperlink{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}{Collision\+Layer\+Flags}} layer\+Flags) const
+\begin{DoxyCompactList}\small\item\em gets the names of the layers in a Collision\+Layer\+Flags \end{DoxyCompactList}\item 
+std\+::string const  \& \mbox{\hyperlink{classCollisionSystem_a6718f5eb32ffeccb6161374180c5cf96}{Get\+Layer\+Name}} (unsigned layer\+Id) const
+\begin{DoxyCompactList}\small\item\em gets the name of the specified layer \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRayCastHit}{Ray\+Cast\+Hit}} \mbox{\hyperlink{classCollisionSystem_af04af5451859cad163d5db8cf24825f6}{Ray\+Cast}} (glm\+::vec2 const \&origin, glm\+::vec2 const \&direction, float max\+Distance=100.\+0f, \mbox{\hyperlink{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}{Collision\+Layer\+Flags}} layers=(\mbox{\hyperlink{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}{Collision\+Layer\+Flags}}) -\/1) const
+\begin{DoxyCompactList}\small\item\em casts a ray in the scene \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ const  \& \mbox{\hyperlink{classCollisionSystem_a99936a53abc19e4fa6e493bed4086dda}{Get\+Layer\+Names}} () const
+\begin{DoxyCompactList}\small\item\em gets the collision layer names \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classCollisionSystem_a80d7b4d289e4eb1bfeaa39efbcfa9e10}\label{classCollisionSystem_a80d7b4d289e4eb1bfeaa39efbcfa9e10}} 
 {\bfseries Collision\+System} (\mbox{\hyperlink{classCollisionSystem}{Collision\+System}} \&other)=delete
 \item 
@@ -75,6 +79,24 @@ adds a \mbox{\hyperlink{classCollider}{Collider}} to the \mbox{\hyperlink{classC
 {\em collider} & the collider to add \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classCollisionSystem_a0f58d705d0917277436a743b6df048c8}\label{classCollisionSystem_a0f58d705d0917277436a743b6df048c8}} 
+\index{CollisionSystem@{CollisionSystem}!GetCollisionLayerId@{GetCollisionLayerId}}
+\index{GetCollisionLayerId@{GetCollisionLayerId}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{GetCollisionLayerId()}{GetCollisionLayerId()}}
+{\footnotesize\ttfamily unsigned Collision\+System\+::\+Get\+Collision\+Layer\+Id (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{layer\+Name }\end{DoxyParamCaption}) const}
+
+
+
+gets the collision layer ID with the specified name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer\+Name} & the name of the layer to get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the collision layer ID 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classCollisionSystem_a0352addd6e0fd8206823b8519ce5b01a}\label{classCollisionSystem_a0352addd6e0fd8206823b8519ce5b01a}} 
 \index{CollisionSystem@{CollisionSystem}!GetInstance@{GetInstance}}
 \index{GetInstance@{GetInstance}!CollisionSystem@{CollisionSystem}}
@@ -87,6 +109,94 @@ gets the instance of \mbox{\hyperlink{classCollisionSystem}{Collision\+System}}
 
 \begin{DoxyReturn}{Returns}
 the instance of the \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollisionSystem_a2222bb7d13df934b47e22eaf8bd3fe69}\label{classCollisionSystem_a2222bb7d13df934b47e22eaf8bd3fe69}} 
+\index{CollisionSystem@{CollisionSystem}!GetLayerFlags@{GetLayerFlags}}
+\index{GetLayerFlags@{GetLayerFlags}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{GetLayerFlags()}{GetLayerFlags()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}{Collision\+Layer\+Flags}} Collision\+System\+::\+Get\+Layer\+Flags (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$ const \&}]{layer\+Names }\end{DoxyParamCaption}) const}
+
+
+
+makes a Collision\+Layer\+Flags for a set of layer names 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer\+Names} & the names of the layers to include in the flags \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollisionSystem_a6718f5eb32ffeccb6161374180c5cf96}\label{classCollisionSystem_a6718f5eb32ffeccb6161374180c5cf96}} 
+\index{CollisionSystem@{CollisionSystem}!GetLayerName@{GetLayerName}}
+\index{GetLayerName@{GetLayerName}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{GetLayerName()}{GetLayerName()}}
+{\footnotesize\ttfamily std\+::string const  \& Collision\+System\+::\+Get\+Layer\+Name (\begin{DoxyParamCaption}\item[{unsigned}]{layer\+Id }\end{DoxyParamCaption}) const}
+
+
+
+gets the name of the specified layer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer\+Id} & the ID of the layer to get the name of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the name of the layer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollisionSystem_a99936a53abc19e4fa6e493bed4086dda}\label{classCollisionSystem_a99936a53abc19e4fa6e493bed4086dda}} 
+\index{CollisionSystem@{CollisionSystem}!GetLayerNames@{GetLayerNames}}
+\index{GetLayerNames@{GetLayerNames}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{GetLayerNames()}{GetLayerNames()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ const\& Collision\+System\+::\+Get\+Layer\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the collision layer names 
+
+\begin{DoxyReturn}{Returns}
+the array of collision layer names 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollisionSystem_a8c40544ea78bbcf20d85f07dc3a3c97f}\label{classCollisionSystem_a8c40544ea78bbcf20d85f07dc3a3c97f}} 
+\index{CollisionSystem@{CollisionSystem}!GetLayerNames@{GetLayerNames}}
+\index{GetLayerNames@{GetLayerNames}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{GetLayerNames()}{GetLayerNames()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Collision\+System\+::\+Get\+Layer\+Names (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}{Collision\+Layer\+Flags}}}]{layer\+Flags }\end{DoxyParamCaption}) const}
+
+
+
+gets the names of the layers in a Collision\+Layer\+Flags 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer\+Flags} & the layer flags to get the names of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the names of the layers 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollisionSystem_af04af5451859cad163d5db8cf24825f6}\label{classCollisionSystem_af04af5451859cad163d5db8cf24825f6}} 
+\index{CollisionSystem@{CollisionSystem}!RayCast@{RayCast}}
+\index{RayCast@{RayCast}!CollisionSystem@{CollisionSystem}}
+\doxysubsubsection{\texorpdfstring{RayCast()}{RayCast()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRayCastHit}{Ray\+Cast\+Hit}} Collision\+System\+::\+Ray\+Cast (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{origin,  }\item[{glm\+::vec2 const \&}]{direction,  }\item[{float}]{max\+Distance = {\ttfamily 100.0f},  }\item[{\mbox{\hyperlink{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}{Collision\+Layer\+Flags}}}]{layers = {\ttfamily (\mbox{\hyperlink{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}{Collision\+Layer\+Flags}})-\/1} }\end{DoxyParamCaption}) const}
+
+
+
+casts a ray in the scene 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origin} & the origin of the cast ray \\
+\hline
+{\em direction} & the direction of the ray \\
+\hline
+{\em max\+Distance} & the maximum distance of the raycast \\
+\hline
+{\em layers} & the layers for the raycast to collide with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structRayCastHit}{Ray\+Cast\+Hit}} struct containing information about the result of the raycast 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classCollisionSystem_a77084b50e8e89f6cb22cd71de50f7bb4}\label{classCollisionSystem_a77084b50e8e89f6cb22cd71de50f7bb4}} 
 \index{CollisionSystem@{CollisionSystem}!removeCollider@{removeCollider}}

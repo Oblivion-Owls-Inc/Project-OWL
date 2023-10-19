@@ -2,8 +2,7 @@
 \label{classEngine}\index{Engine@{Engine}}
 
 
-Inheritance diagram for Engine\+:
-\nopagebreak
+Inheritance diagram for Engine\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Engine\+:
 \end{figure}
 
 
-Collaboration diagram for Engine\+:
-\nopagebreak
+Collaboration diagram for Engine\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -34,6 +32,8 @@ void \mbox{\hyperlink{classEngine_a0e98f1b1054e492ba78731b1a8e800d1}{Set\+Fixed\
 \begin{DoxyCompactList}\small\item\em sets the duration of each fixed frame \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classSystem}{System}} $\ast$ $>$ const  \& \mbox{\hyperlink{classEngine_a0b12e00c76c381b58c44ee4e468cfd3a}{Get\+Systems}} () const
 \begin{DoxyCompactList}\small\item\em gets the array of all Systems in the engine. \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEngine_a2b35c45e93492eb6d52f004c05fdcf54}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes the \mbox{\hyperlink{classEngine}{Engine}} config to json \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classEngine_a821022ae1158a5214797a1a3b678e71b}\label{classEngine_a821022ae1158a5214797a1a3b678e71b}} 
 {\bfseries Engine} (\mbox{\hyperlink{classEngine}{Engine}} \&other)=delete
 \item 
@@ -114,6 +114,23 @@ sets the duration of each fixed frame
 {\em fixed\+Frame\+Duration} & the amount of time in seconds that each fixed frame lasts \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classEngine_a2b35c45e93492eb6d52f004c05fdcf54}\label{classEngine_a2b35c45e93492eb6d52f004c05fdcf54}} 
+\index{Engine@{Engine}!Write@{Write}}
+\index{Write@{Write}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Engine\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes the \mbox{\hyperlink{classEngine}{Engine}} config to json 
+
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -97,13 +97,73 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a28203d38d278da0695ace20c66ee5f0a">RigidBody</a> ()</td></tr>
 <tr class="memdesc:a28203d38d278da0695ace20c66ee5f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for the <a class="el" href="classRigidBody.html">RigidBody</a> class. <br /></td></tr>
 <tr class="separator:a28203d38d278da0695ace20c66ee5f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11fc10a8a99629edbde7e498a43a95e1"><td class="memItemLeft" align="right" valign="top"><a id="a11fc10a8a99629edbde7e498a43a95e1"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a11fc10a8a99629edbde7e498a43a95e1">OnInit</a> ()</td></tr>
-<tr class="memdesc:a11fc10a8a99629edbde7e498a43a95e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for the <a class="el" href="classRigidBody.html">RigidBody</a> class. <br /></td></tr>
-<tr class="separator:a11fc10a8a99629edbde7e498a43a95e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75c7258a2158796aff4a82732e38d80b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a75c7258a2158796aff4a82732e38d80b">OnExit</a> ()</td></tr>
-<tr class="memdesc:a75c7258a2158796aff4a82732e38d80b"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when this <a class="el" href="classComponent.html">Component</a>'s <a class="el" href="classEntity.html">Entity</a> is removed from the Scene  <a href="classRigidBody.html#a75c7258a2158796aff4a82732e38d80b">More...</a><br /></td></tr>
-<tr class="separator:a75c7258a2158796aff4a82732e38d80b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dcf931625b7d23866bc76c729e98cf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a5dcf931625b7d23866bc76c729e98cf6">ApplyAcceleration</a> (glm::vec2 const &amp;acceleration)</td></tr>
+<tr class="memdesc:a5dcf931625b7d23866bc76c729e98cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">applies an acceleration to this <a class="el" href="classRigidBody.html">RigidBody</a> this frame  <a href="classRigidBody.html#a5dcf931625b7d23866bc76c729e98cf6">More...</a><br /></td></tr>
+<tr class="separator:a5dcf931625b7d23866bc76c729e98cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3a900d2fc64341b4d073b1d120fc9ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#ad3a900d2fc64341b4d073b1d120fc9ea">ApplyVelocity</a> (glm::vec2 const &amp;velocity)</td></tr>
+<tr class="memdesc:ad3a900d2fc64341b4d073b1d120fc9ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds to the Velocity of this Rigidbody  <a href="classRigidBody.html#ad3a900d2fc64341b4d073b1d120fc9ea">More...</a><br /></td></tr>
+<tr class="separator:ad3a900d2fc64341b4d073b1d120fc9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b8b085207f6557c3bbe8371c9c929aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a8b8b085207f6557c3bbe8371c9c929aa">ApplyForce</a> (glm::vec2 const &amp;force)</td></tr>
+<tr class="memdesc:a8b8b085207f6557c3bbe8371c9c929aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">applies a force to this <a class="el" href="classRigidBody.html">RigidBody</a> this frame  <a href="classRigidBody.html#a8b8b085207f6557c3bbe8371c9c929aa">More...</a><br /></td></tr>
+<tr class="separator:a8b8b085207f6557c3bbe8371c9c929aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec7978bffa11d23f0ec2d16a4678e52d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#aec7978bffa11d23f0ec2d16a4678e52d">ApplyImpulse</a> (glm::vec2 const &amp;impulse)</td></tr>
+<tr class="memdesc:aec7978bffa11d23f0ec2d16a4678e52d"><td class="mdescLeft">&#160;</td><td class="mdescRight">applies an impulse to this <a class="el" href="classRigidBody.html">RigidBody</a>  <a href="classRigidBody.html#aec7978bffa11d23f0ec2d16a4678e52d">More...</a><br /></td></tr>
+<tr class="separator:aec7978bffa11d23f0ec2d16a4678e52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b84d9e179c09127b2f2c04743ccd3b4"><td class="memItemLeft" align="right" valign="top">glm::vec2 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a9b84d9e179c09127b2f2c04743ccd3b4">GetAcceleration</a> () const</td></tr>
+<tr class="memdesc:a9b84d9e179c09127b2f2c04743ccd3b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the acceleration vector of the rigidBody.  <a href="classRigidBody.html#a9b84d9e179c09127b2f2c04743ccd3b4">More...</a><br /></td></tr>
+<tr class="separator:a9b84d9e179c09127b2f2c04743ccd3b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf57c69db1dd1d012b6bfbb3c1dd930b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#adf57c69db1dd1d012b6bfbb3c1dd930b">SetAcceleration</a> (glm::vec2 const &amp;acceleration)</td></tr>
+<tr class="memdesc:adf57c69db1dd1d012b6bfbb3c1dd930b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the acceleration vector of the rigidBody.  <a href="classRigidBody.html#adf57c69db1dd1d012b6bfbb3c1dd930b">More...</a><br /></td></tr>
+<tr class="separator:adf57c69db1dd1d012b6bfbb3c1dd930b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2524686509b92c0b220101a8764621"><td class="memItemLeft" align="right" valign="top">glm::vec2 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a8a2524686509b92c0b220101a8764621">GetVelocity</a> () const</td></tr>
+<tr class="memdesc:a8a2524686509b92c0b220101a8764621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the velocity vector of the rigidBody.  <a href="classRigidBody.html#a8a2524686509b92c0b220101a8764621">More...</a><br /></td></tr>
+<tr class="separator:a8a2524686509b92c0b220101a8764621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15860b892dfd15d3d39c2d19b631bc43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a15860b892dfd15d3d39c2d19b631bc43">SetVelocity</a> (glm::vec2 const &amp;velocity)</td></tr>
+<tr class="memdesc:a15860b892dfd15d3d39c2d19b631bc43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the velocity vector of the rigidBody.  <a href="classRigidBody.html#a15860b892dfd15d3d39c2d19b631bc43">More...</a><br /></td></tr>
+<tr class="separator:a15860b892dfd15d3d39c2d19b631bc43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5927dc17dfe7855c53b06277304e104"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#ab5927dc17dfe7855c53b06277304e104">GetRotationalVelocity</a> () const</td></tr>
+<tr class="memdesc:ab5927dc17dfe7855c53b06277304e104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the rotational velocity of the rigidBody.  <a href="classRigidBody.html#ab5927dc17dfe7855c53b06277304e104">More...</a><br /></td></tr>
+<tr class="separator:ab5927dc17dfe7855c53b06277304e104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af00fdffbcde6e378860bb0151f714faa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#af00fdffbcde6e378860bb0151f714faa">SetRotationalVelocity</a> (float rotationalVelocity)</td></tr>
+<tr class="memdesc:af00fdffbcde6e378860bb0151f714faa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the rotational velocity of the rigidBody.  <a href="classRigidBody.html#af00fdffbcde6e378860bb0151f714faa">More...</a><br /></td></tr>
+<tr class="separator:af00fdffbcde6e378860bb0151f714faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7ab62b3f1a76f870436094cfc7eab86"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#ae7ab62b3f1a76f870436094cfc7eab86">GetMass</a> () const</td></tr>
+<tr class="memdesc:ae7ab62b3f1a76f870436094cfc7eab86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the mass of the rigidBody.  <a href="classRigidBody.html#ae7ab62b3f1a76f870436094cfc7eab86">More...</a><br /></td></tr>
+<tr class="separator:ae7ab62b3f1a76f870436094cfc7eab86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a647ff00d3d31e01ce3a1bfa6e7a8f8ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a647ff00d3d31e01ce3a1bfa6e7a8f8ee">SetMass</a> (float mass)</td></tr>
+<tr class="memdesc:a647ff00d3d31e01ce3a1bfa6e7a8f8ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the mass of the rigidBody.  <a href="classRigidBody.html#a647ff00d3d31e01ce3a1bfa6e7a8f8ee">More...</a><br /></td></tr>
+<tr class="separator:a647ff00d3d31e01ce3a1bfa6e7a8f8ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad25d91e23489af5c06806e9ea36888bc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#ad25d91e23489af5c06806e9ea36888bc">GetRestitution</a> () const</td></tr>
+<tr class="memdesc:ad25d91e23489af5c06806e9ea36888bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the restitution of the rigidBody.  <a href="classRigidBody.html#ad25d91e23489af5c06806e9ea36888bc">More...</a><br /></td></tr>
+<tr class="separator:ad25d91e23489af5c06806e9ea36888bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8acf72f4913bd04919bc7fae3efa7ed1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a8acf72f4913bd04919bc7fae3efa7ed1">SetRestitution</a> (float restitution)</td></tr>
+<tr class="memdesc:a8acf72f4913bd04919bc7fae3efa7ed1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the restitution of the rigidBody.  <a href="classRigidBody.html#a8acf72f4913bd04919bc7fae3efa7ed1">More...</a><br /></td></tr>
+<tr class="separator:a8acf72f4913bd04919bc7fae3efa7ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa49d910fad4fdfbb47f4dc6711a8a68"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#afa49d910fad4fdfbb47f4dc6711a8a68">GetFriction</a> () const</td></tr>
+<tr class="memdesc:afa49d910fad4fdfbb47f4dc6711a8a68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the friction of the rigidBody.  <a href="classRigidBody.html#afa49d910fad4fdfbb47f4dc6711a8a68">More...</a><br /></td></tr>
+<tr class="separator:afa49d910fad4fdfbb47f4dc6711a8a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a954229b7fd37eb266ada3cbb95696dba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a954229b7fd37eb266ada3cbb95696dba">SetFriction</a> (float friction)</td></tr>
+<tr class="memdesc:a954229b7fd37eb266ada3cbb95696dba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the friction of the rigidBody.  <a href="classRigidBody.html#a954229b7fd37eb266ada3cbb95696dba">More...</a><br /></td></tr>
+<tr class="separator:a954229b7fd37eb266ada3cbb95696dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a474c69b3f29075a68724ed4ce283cbc6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a474c69b3f29075a68724ed4ce283cbc6">GetDrag</a> () const</td></tr>
+<tr class="memdesc:a474c69b3f29075a68724ed4ce283cbc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the drag of the rigidBody.  <a href="classRigidBody.html#a474c69b3f29075a68724ed4ce283cbc6">More...</a><br /></td></tr>
+<tr class="separator:a474c69b3f29075a68724ed4ce283cbc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d019f983ae66c938f8baabedcfc9a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#ae8d019f983ae66c938f8baabedcfc9a4">SetDrag</a> (float drag)</td></tr>
+<tr class="memdesc:ae8d019f983ae66c938f8baabedcfc9a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the drag of the rigidBody.  <a href="classRigidBody.html#ae8d019f983ae66c938f8baabedcfc9a4">More...</a><br /></td></tr>
+<tr class="separator:ae8d019f983ae66c938f8baabedcfc9a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b51b3f82fe2b57e509ca16509b27451"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a2b51b3f82fe2b57e509ca16509b27451">GetCollisionResolved</a> () const</td></tr>
+<tr class="memdesc:a2b51b3f82fe2b57e509ca16509b27451"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether the collision between two RigidBodies has already been resolved;  <a href="classRigidBody.html#a2b51b3f82fe2b57e509ca16509b27451">More...</a><br /></td></tr>
+<tr class="separator:a2b51b3f82fe2b57e509ca16509b27451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b12c332f7a98e5af1f9f7e9d949dafa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a7b12c332f7a98e5af1f9f7e9d949dafa">SetCollisionResolved</a> (bool collisionResolved)</td></tr>
+<tr class="memdesc:a7b12c332f7a98e5af1f9f7e9d949dafa"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether the collision between two RigidBodies has already been resolved;  <a href="classRigidBody.html#a7b12c332f7a98e5af1f9f7e9d949dafa">More...</a><br /></td></tr>
+<tr class="separator:a7b12c332f7a98e5af1f9f7e9d949dafa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a602aa0eeb38db9fcae85e4cbc9850627"><td class="memItemLeft" align="right" valign="top"><a id="a602aa0eeb38db9fcae85e4cbc9850627"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a602aa0eeb38db9fcae85e4cbc9850627">OnInit</a> () override</td></tr>
+<tr class="memdesc:a602aa0eeb38db9fcae85e4cbc9850627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for the <a class="el" href="classRigidBody.html">RigidBody</a> class. <br /></td></tr>
+<tr class="separator:a602aa0eeb38db9fcae85e4cbc9850627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a770d7ad3c7ce05ba7a1ea111b19f53af"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a770d7ad3c7ce05ba7a1ea111b19f53af">OnExit</a> () override</td></tr>
+<tr class="memdesc:a770d7ad3c7ce05ba7a1ea111b19f53af"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when this <a class="el" href="classComponent.html">Component</a>'s <a class="el" href="classEntity.html">Entity</a> is removed from the Scene  <a href="classRigidBody.html#a770d7ad3c7ce05ba7a1ea111b19f53af">More...</a><br /></td></tr>
+<tr class="separator:a770d7ad3c7ce05ba7a1ea111b19f53af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9145294889ad223ec37b7b1447af42c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#ac9145294889ad223ec37b7b1447af42c">OnUpdate</a> (float dt) override</td></tr>
 <tr class="memdesc:ac9145294889ad223ec37b7b1447af42c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update method called per frame.  <a href="classRigidBody.html#ac9145294889ad223ec37b7b1447af42c">More...</a><br /></td></tr>
 <tr class="separator:ac9145294889ad223ec37b7b1447af42c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,55 +171,13 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a917128cf7a2629cfc9449b202f51d463">OnFixedUpdate</a> () override</td></tr>
 <tr class="memdesc:a917128cf7a2629cfc9449b202f51d463"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed update method called at a fixed time step. <br /></td></tr>
 <tr class="separator:a917128cf7a2629cfc9449b202f51d463"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa431ab44f687d1a7ca176c82fcb098a3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#aa431ab44f687d1a7ca176c82fcb098a3">OnCollision</a> (<a class="el" href="classEntity.html">Entity</a> *other, <a class="el" href="structCollisionData.html">CollisionData</a> const &amp;collisionData) override</td></tr>
-<tr class="memdesc:aa431ab44f687d1a7ca176c82fcb098a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called whenever a <a class="el" href="classCollider.html" title="component which is used for detecting collisions and information about them">Collider</a> on this <a class="el" href="classBehavior.html">Behavior</a>'s <a class="el" href="classEntity.html">Entity</a> collides.  <a href="classRigidBody.html#aa431ab44f687d1a7ca176c82fcb098a3">More...</a><br /></td></tr>
-<tr class="separator:aa431ab44f687d1a7ca176c82fcb098a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c4b289170298754343537ca703e46b7"><td class="memItemLeft" align="right" valign="top"><a id="a0c4b289170298754343537ca703e46b7"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a0c4b289170298754343537ca703e46b7">Inspector</a> () override</td></tr>
 <tr class="memdesc:a0c4b289170298754343537ca703e46b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classComponent.html">Component</a>. <br /></td></tr>
 <tr class="separator:a0c4b289170298754343537ca703e46b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00ebfbf97ea46bcfc7921e5552cf7668"><td class="memItemLeft" align="right" valign="top">__inline glm::vec3 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a00ebfbf97ea46bcfc7921e5552cf7668">GetAcceleration</a> () const</td></tr>
-<tr class="memdesc:a00ebfbf97ea46bcfc7921e5552cf7668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the acceleration vector of the rigidBody.  <a href="classRigidBody.html#a00ebfbf97ea46bcfc7921e5552cf7668">More...</a><br /></td></tr>
-<tr class="separator:a00ebfbf97ea46bcfc7921e5552cf7668"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abee028bfe311fe7ce4212a400ca0f8ba"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#abee028bfe311fe7ce4212a400ca0f8ba">SetAcceleration</a> (glm::vec3 const &amp;acceleration)</td></tr>
-<tr class="memdesc:abee028bfe311fe7ce4212a400ca0f8ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the acceleration vector of the rigidBody.  <a href="classRigidBody.html#abee028bfe311fe7ce4212a400ca0f8ba">More...</a><br /></td></tr>
-<tr class="separator:abee028bfe311fe7ce4212a400ca0f8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add5f49e98d67cf5273018f06a4868be7"><td class="memItemLeft" align="right" valign="top">__inline glm::vec3 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#add5f49e98d67cf5273018f06a4868be7">GetVelocity</a> () const</td></tr>
-<tr class="memdesc:add5f49e98d67cf5273018f06a4868be7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the velocity vector of the rigidBody.  <a href="classRigidBody.html#add5f49e98d67cf5273018f06a4868be7">More...</a><br /></td></tr>
-<tr class="separator:add5f49e98d67cf5273018f06a4868be7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe1c9bce84e8c08d11472a994bfd6b97"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#afe1c9bce84e8c08d11472a994bfd6b97">SetVelocity</a> (glm::vec3 const &amp;velocity)</td></tr>
-<tr class="memdesc:afe1c9bce84e8c08d11472a994bfd6b97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the velocity vector of the rigidBody.  <a href="classRigidBody.html#afe1c9bce84e8c08d11472a994bfd6b97">More...</a><br /></td></tr>
-<tr class="separator:afe1c9bce84e8c08d11472a994bfd6b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7387bf075f15e207cf71dbfc6cb95333"><td class="memItemLeft" align="right" valign="top">__inline float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a7387bf075f15e207cf71dbfc6cb95333">GetRotationalVelocity</a> ()</td></tr>
-<tr class="memdesc:a7387bf075f15e207cf71dbfc6cb95333"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the rotational velocity of the rigidBody.  <a href="classRigidBody.html#a7387bf075f15e207cf71dbfc6cb95333">More...</a><br /></td></tr>
-<tr class="separator:a7387bf075f15e207cf71dbfc6cb95333"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3464079ef7741ca818ad91a8b5d44c14"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a3464079ef7741ca818ad91a8b5d44c14">SetRotationalVelocity</a> (float rotationalVelocity)</td></tr>
-<tr class="memdesc:a3464079ef7741ca818ad91a8b5d44c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the rotational velocity of the rigidBody.  <a href="classRigidBody.html#a3464079ef7741ca818ad91a8b5d44c14">More...</a><br /></td></tr>
-<tr class="separator:a3464079ef7741ca818ad91a8b5d44c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acec445231c7aaea91c0b556d51c1174b"><td class="memItemLeft" align="right" valign="top">__inline float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#acec445231c7aaea91c0b556d51c1174b">GetMass</a> ()</td></tr>
-<tr class="memdesc:acec445231c7aaea91c0b556d51c1174b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the mass of the rigidBody.  <a href="classRigidBody.html#acec445231c7aaea91c0b556d51c1174b">More...</a><br /></td></tr>
-<tr class="separator:acec445231c7aaea91c0b556d51c1174b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8712866c80900aff028bfa291fcbf4c2"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a8712866c80900aff028bfa291fcbf4c2">SetMass</a> (float mass)</td></tr>
-<tr class="memdesc:a8712866c80900aff028bfa291fcbf4c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the mass of the rigidBody.  <a href="classRigidBody.html#a8712866c80900aff028bfa291fcbf4c2">More...</a><br /></td></tr>
-<tr class="separator:a8712866c80900aff028bfa291fcbf4c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42fa69b21423cc31c40e1b2d5f49581d"><td class="memItemLeft" align="right" valign="top">__inline float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a42fa69b21423cc31c40e1b2d5f49581d">GetRestitution</a> ()</td></tr>
-<tr class="memdesc:a42fa69b21423cc31c40e1b2d5f49581d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the restitution of the rigidBody.  <a href="classRigidBody.html#a42fa69b21423cc31c40e1b2d5f49581d">More...</a><br /></td></tr>
-<tr class="separator:a42fa69b21423cc31c40e1b2d5f49581d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff2089e3669bc1d1f8d22cd6a9d2366c"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#aff2089e3669bc1d1f8d22cd6a9d2366c">SetRestitution</a> (float restitution)</td></tr>
-<tr class="memdesc:aff2089e3669bc1d1f8d22cd6a9d2366c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the restitution of the rigidBody.  <a href="classRigidBody.html#aff2089e3669bc1d1f8d22cd6a9d2366c">More...</a><br /></td></tr>
-<tr class="separator:aff2089e3669bc1d1f8d22cd6a9d2366c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abce3923b43708abffd8a4bc1ce9a5b00"><td class="memItemLeft" align="right" valign="top">__inline float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#abce3923b43708abffd8a4bc1ce9a5b00">GetFriction</a> ()</td></tr>
-<tr class="memdesc:abce3923b43708abffd8a4bc1ce9a5b00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the friction of the rigidBody.  <a href="classRigidBody.html#abce3923b43708abffd8a4bc1ce9a5b00">More...</a><br /></td></tr>
-<tr class="separator:abce3923b43708abffd8a4bc1ce9a5b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e58f52c13e3dce9d4498241a8110cf8"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a5e58f52c13e3dce9d4498241a8110cf8">SetFriction</a> (float friction)</td></tr>
-<tr class="memdesc:a5e58f52c13e3dce9d4498241a8110cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the friction of the rigidBody.  <a href="classRigidBody.html#a5e58f52c13e3dce9d4498241a8110cf8">More...</a><br /></td></tr>
-<tr class="separator:a5e58f52c13e3dce9d4498241a8110cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e7776b3cbece7de6d9d747543b77ac9"><td class="memItemLeft" align="right" valign="top">__inline bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a8e7776b3cbece7de6d9d747543b77ac9">GetCollisionResolved</a> () const</td></tr>
-<tr class="memdesc:a8e7776b3cbece7de6d9d747543b77ac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether the collision between two RigidBodies has already been resolved;  <a href="classRigidBody.html#a8e7776b3cbece7de6d9d747543b77ac9">More...</a><br /></td></tr>
-<tr class="separator:a8e7776b3cbece7de6d9d747543b77ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2cf856039158d2d833f84c67eebd54f"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#aa2cf856039158d2d833f84c67eebd54f">SetCollisionResolved</a> (bool collisionResolved)</td></tr>
-<tr class="memdesc:aa2cf856039158d2d833f84c67eebd54f"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether the collision between two RigidBodies has already been resolved;  <a href="classRigidBody.html#aa2cf856039158d2d833f84c67eebd54f">More...</a><br /></td></tr>
-<tr class="separator:aa2cf856039158d2d833f84c67eebd54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4783016ea152257cb416a41a633504d7"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRigidBody.html#a4783016ea152257cb416a41a633504d7">Write</a> () const override</td></tr>
+<tr class="memdesc:a4783016ea152257cb416a41a633504d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classRigidBody.html">RigidBody</a> component data to a JSON file.  <a href="classRigidBody.html#a4783016ea152257cb416a41a633504d7">More...</a><br /></td></tr>
+<tr class="separator:a4783016ea152257cb416a41a633504d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affe7e505799efc05ad54db0abb3b2c53"><td class="memItemLeft" align="right" valign="top"><a id="affe7e505799efc05ad54db0abb3b2c53"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classRigidBody.html">RigidBody</a> &amp;)=delete</td></tr>
 <tr class="separator:affe7e505799efc05ad54db0abb3b2c53"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,23 +186,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">~Component</a> ()</td></tr>
 <tr class="memdesc:a2e9aa4348314d981f05f67397ad2f872 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtual destructor <br /></td></tr>
 <tr class="separator:a2e9aa4348314d981f05f67397ad2f872 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae724c7a0df398cd43bfabaeca25fa944 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">__inline std::type_index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ae724c7a0df398cd43bfabaeca25fa944">GetType</a> () const</td></tr>
-<tr class="memdesc:ae724c7a0df398cd43bfabaeca25fa944 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the components type  <a href="classComponent.html#ae724c7a0df398cd43bfabaeca25fa944">More...</a><br /></td></tr>
-<tr class="separator:ae724c7a0df398cd43bfabaeca25fa944 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a883bf85e78b4967fe5b0f187ee7ef7cb inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a883bf85e78b4967fe5b0f187ee7ef7cb">SetParent</a> (<a class="el" href="classEntity.html">Entity</a> *parent)</td></tr>
-<tr class="memdesc:a883bf85e78b4967fe5b0f187ee7ef7cb inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the parent entity of the component  <a href="classComponent.html#a883bf85e78b4967fe5b0f187ee7ef7cb">More...</a><br /></td></tr>
-<tr class="separator:a883bf85e78b4967fe5b0f187ee7ef7cb inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43a9bf2a6c718eb966f649567bbb0f59 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">__inline <a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a43a9bf2a6c718eb966f649567bbb0f59">GetParent</a> () const</td></tr>
-<tr class="memdesc:a43a9bf2a6c718eb966f649567bbb0f59 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the components parent entity  <a href="classComponent.html#a43a9bf2a6c718eb966f649567bbb0f59">More...</a><br /></td></tr>
-<tr class="separator:a43a9bf2a6c718eb966f649567bbb0f59 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab75652d7b0af6b7c604cc67efb34cfeb inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">std::type_index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ab75652d7b0af6b7c604cc67efb34cfeb">GetType</a> () const</td></tr>
+<tr class="memdesc:ab75652d7b0af6b7c604cc67efb34cfeb inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the components type  <a href="classComponent.html#ab75652d7b0af6b7c604cc67efb34cfeb">More...</a><br /></td></tr>
+<tr class="separator:ab75652d7b0af6b7c604cc67efb34cfeb inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">SetParent</a> (<a class="el" href="classEntity.html">Entity</a> *parent)</td></tr>
+<tr class="memdesc:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the parent entity of the component  <a href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">More...</a><br /></td></tr>
+<tr class="separator:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a1c2eb7952e1a90a45ba7672cf7307504">GetParent</a> () const</td></tr>
+<tr class="memdesc:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the components parent entity  <a href="classComponent.html#a1c2eb7952e1a90a45ba7672cf7307504">More...</a><br /></td></tr>
+<tr class="separator:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">GetId</a> () const</td></tr>
+<tr class="memdesc:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the Id of this <a class="el" href="classComponent.html">Component</a>  <a href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">More...</a><br /></td></tr>
+<tr class="separator:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classISerializable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classISerializable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classISerializable.html">ISerializable</a></td></tr>
 <tr class="memitem:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top"><a id="a7b60e4aca93fb97f18c9ff41ee53bc3a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
 <tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -201,8 +219,113 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ae32e78850821b3e1b7d50b1f72839060 inherit pro_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a00ebfbf97ea46bcfc7921e5552cf7668"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00ebfbf97ea46bcfc7921e5552cf7668">&#9670;&nbsp;</a></span>GetAcceleration()</h2>
+<a id="a5dcf931625b7d23866bc76c729e98cf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dcf931625b7d23866bc76c729e98cf6">&#9670;&nbsp;</a></span>ApplyAcceleration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RigidBody::ApplyAcceleration </td>
+          <td>(</td>
+          <td class="paramtype">glm::vec2 const &amp;&#160;</td>
+          <td class="paramname"><em>acceleration</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>applies an acceleration to this <a class="el" href="classRigidBody.html">RigidBody</a> this frame </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">acceleration</td><td>the acceleration to apply </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8b8b085207f6557c3bbe8371c9c929aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b8b085207f6557c3bbe8371c9c929aa">&#9670;&nbsp;</a></span>ApplyForce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RigidBody::ApplyForce </td>
+          <td>(</td>
+          <td class="paramtype">glm::vec2 const &amp;&#160;</td>
+          <td class="paramname"><em>force</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>applies a force to this <a class="el" href="classRigidBody.html">RigidBody</a> this frame </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">force</td><td>the force to apply </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aec7978bffa11d23f0ec2d16a4678e52d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec7978bffa11d23f0ec2d16a4678e52d">&#9670;&nbsp;</a></span>ApplyImpulse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RigidBody::ApplyImpulse </td>
+          <td>(</td>
+          <td class="paramtype">glm::vec2 const &amp;&#160;</td>
+          <td class="paramname"><em>impulse</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>applies an impulse to this <a class="el" href="classRigidBody.html">RigidBody</a> </p>
+<p>applies an impulse to this <a class="el" href="classRigidBody.html">RigidBody</a> this frame</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">impulse</td><td>the impulse to apply </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad3a900d2fc64341b4d073b1d120fc9ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3a900d2fc64341b4d073b1d120fc9ea">&#9670;&nbsp;</a></span>ApplyVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RigidBody::ApplyVelocity </td>
+          <td>(</td>
+          <td class="paramtype">glm::vec2 const &amp;&#160;</td>
+          <td class="paramname"><em>velocity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>adds to the Velocity of this Rigidbody </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">velocity</td><td>the velocity to apply </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9b84d9e179c09127b2f2c04743ccd3b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b84d9e179c09127b2f2c04743ccd3b4">&#9670;&nbsp;</a></span>GetAcceleration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +334,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline glm::vec3 const&amp; RigidBody::GetAcceleration </td>
+          <td class="memname">glm::vec2 const&amp; RigidBody::GetAcceleration </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -229,8 +352,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a8e7776b3cbece7de6d9d747543b77ac9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e7776b3cbece7de6d9d747543b77ac9">&#9670;&nbsp;</a></span>GetCollisionResolved()</h2>
+<a id="a2b51b3f82fe2b57e509ca16509b27451"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b51b3f82fe2b57e509ca16509b27451">&#9670;&nbsp;</a></span>GetCollisionResolved()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,7 +362,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline bool RigidBody::GetCollisionResolved </td>
+          <td class="memname">bool RigidBody::GetCollisionResolved </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -254,12 +377,12 @@ Additional Inherited Members</h2></td></tr>
 
 <p>gets whether the collision between two RigidBodies has already been resolved; </p>
 <dl class="section return"><dt>Returns</dt><dd>whether the collision between two RigidBodies has already been resolved; </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>SHOULD ONLY BE CALLED BY <a class="el" href="classRigidBody.html#aa431ab44f687d1a7ca176c82fcb098a3" title="Called whenever a Collider on this Behavior&#39;s Entity collides.">RigidBody::OnCollision()</a>; </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>SHOULD ONLY BE CALLED BY RigidBody::OnCollision(); </dd></dl>
 
 </div>
 </div>
-<a id="abce3923b43708abffd8a4bc1ce9a5b00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abce3923b43708abffd8a4bc1ce9a5b00">&#9670;&nbsp;</a></span>GetFriction()</h2>
+<a id="a474c69b3f29075a68724ed4ce283cbc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a474c69b3f29075a68724ed4ce283cbc6">&#9670;&nbsp;</a></span>GetDrag()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,10 +391,38 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline float RigidBody::GetFriction </td>
+          <td class="memname">float RigidBody::GetDrag </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the drag of the rigidBody. </p>
+<dl class="section return"><dt>Returns</dt><dd>The drag. </dd></dl>
+
+</div>
+</div>
+<a id="afa49d910fad4fdfbb47f4dc6711a8a68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa49d910fad4fdfbb47f4dc6711a8a68">&#9670;&nbsp;</a></span>GetFriction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float RigidBody::GetFriction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -286,8 +437,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="acec445231c7aaea91c0b556d51c1174b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acec445231c7aaea91c0b556d51c1174b">&#9670;&nbsp;</a></span>GetMass()</h2>
+<a id="ae7ab62b3f1a76f870436094cfc7eab86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7ab62b3f1a76f870436094cfc7eab86">&#9670;&nbsp;</a></span>GetMass()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -296,10 +447,10 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline float RigidBody::GetMass </td>
+          <td class="memname">float RigidBody::GetMass </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -314,8 +465,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a42fa69b21423cc31c40e1b2d5f49581d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42fa69b21423cc31c40e1b2d5f49581d">&#9670;&nbsp;</a></span>GetRestitution()</h2>
+<a id="ad25d91e23489af5c06806e9ea36888bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad25d91e23489af5c06806e9ea36888bc">&#9670;&nbsp;</a></span>GetRestitution()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -324,10 +475,10 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline float RigidBody::GetRestitution </td>
+          <td class="memname">float RigidBody::GetRestitution </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -342,8 +493,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a7387bf075f15e207cf71dbfc6cb95333"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7387bf075f15e207cf71dbfc6cb95333">&#9670;&nbsp;</a></span>GetRotationalVelocity()</h2>
+<a id="ab5927dc17dfe7855c53b06277304e104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5927dc17dfe7855c53b06277304e104">&#9670;&nbsp;</a></span>GetRotationalVelocity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,10 +503,10 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline float RigidBody::GetRotationalVelocity </td>
+          <td class="memname">float RigidBody::GetRotationalVelocity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -370,8 +521,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="add5f49e98d67cf5273018f06a4868be7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add5f49e98d67cf5273018f06a4868be7">&#9670;&nbsp;</a></span>GetVelocity()</h2>
+<a id="a8a2524686509b92c0b220101a8764621"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a2524686509b92c0b220101a8764621">&#9670;&nbsp;</a></span>GetVelocity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -380,7 +531,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline glm::vec3 const&amp; RigidBody::GetVelocity </td>
+          <td class="memname">glm::vec2 const&amp; RigidBody::GetVelocity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -398,55 +549,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa431ab44f687d1a7ca176c82fcb098a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa431ab44f687d1a7ca176c82fcb098a3">&#9670;&nbsp;</a></span>OnCollision()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void RigidBody::OnCollision </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classEntity.html">Entity</a> *&#160;</td>
-          <td class="paramname"><em>other</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structCollisionData.html">CollisionData</a> const &amp;&#160;</td>
-          <td class="paramname"><em>collisionData</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Called whenever a <a class="el" href="classCollider.html" title="component which is used for detecting collisions and information about them">Collider</a> on this <a class="el" href="classBehavior.html">Behavior</a>'s <a class="el" href="classEntity.html">Entity</a> collides. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">other</td><td>the entity that was collided with </td></tr>
-    <tr><td class="paramname">collisionData</td><td>additional data about the collision </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Reimplemented from <a class="el" href="classBehavior.html#a6cbaf9cec40b0e918df7b2cdda43108b">Behavior</a>.</p>
-
-</div>
-</div>
-<a id="a75c7258a2158796aff4a82732e38d80b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75c7258a2158796aff4a82732e38d80b">&#9670;&nbsp;</a></span>OnExit()</h2>
+<a id="a770d7ad3c7ce05ba7a1ea111b19f53af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a770d7ad3c7ce05ba7a1ea111b19f53af">&#9670;&nbsp;</a></span>OnExit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -463,7 +567,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -511,8 +615,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="abee028bfe311fe7ce4212a400ca0f8ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abee028bfe311fe7ce4212a400ca0f8ba">&#9670;&nbsp;</a></span>SetAcceleration()</h2>
+<a id="adf57c69db1dd1d012b6bfbb3c1dd930b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf57c69db1dd1d012b6bfbb3c1dd930b">&#9670;&nbsp;</a></span>SetAcceleration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -521,9 +625,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline void RigidBody::SetAcceleration </td>
+          <td class="memname">void RigidBody::SetAcceleration </td>
           <td>(</td>
-          <td class="paramtype">glm::vec3 const &amp;&#160;</td>
+          <td class="paramtype">glm::vec2 const &amp;&#160;</td>
           <td class="paramname"><em>acceleration</em></td><td>)</td>
           <td></td>
         </tr>
@@ -545,8 +649,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa2cf856039158d2d833f84c67eebd54f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2cf856039158d2d833f84c67eebd54f">&#9670;&nbsp;</a></span>SetCollisionResolved()</h2>
+<a id="a7b12c332f7a98e5af1f9f7e9d949dafa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b12c332f7a98e5af1f9f7e9d949dafa">&#9670;&nbsp;</a></span>SetCollisionResolved()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -555,7 +659,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline void RigidBody::SetCollisionResolved </td>
+          <td class="memname">void RigidBody::SetCollisionResolved </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>collisionResolved</em></td><td>)</td>
@@ -576,12 +680,12 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>SHOULD ONLY BE CALLED BY <a class="el" href="classRigidBody.html#aa431ab44f687d1a7ca176c82fcb098a3" title="Called whenever a Collider on this Behavior&#39;s Entity collides.">RigidBody::OnCollision()</a>; </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>SHOULD ONLY BE CALLED BY RigidBody::OnCollision(); </dd></dl>
 
 </div>
 </div>
-<a id="a5e58f52c13e3dce9d4498241a8110cf8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e58f52c13e3dce9d4498241a8110cf8">&#9670;&nbsp;</a></span>SetFriction()</h2>
+<a id="ae8d019f983ae66c938f8baabedcfc9a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8d019f983ae66c938f8baabedcfc9a4">&#9670;&nbsp;</a></span>SetDrag()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -590,7 +694,41 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline void RigidBody::SetFriction </td>
+          <td class="memname">void RigidBody::SetDrag </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>drag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the drag of the rigidBody. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">drag</td><td>The new drag. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a954229b7fd37eb266ada3cbb95696dba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a954229b7fd37eb266ada3cbb95696dba">&#9670;&nbsp;</a></span>SetFriction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RigidBody::SetFriction </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>friction</em></td><td>)</td>
@@ -614,8 +752,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a8712866c80900aff028bfa291fcbf4c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8712866c80900aff028bfa291fcbf4c2">&#9670;&nbsp;</a></span>SetMass()</h2>
+<a id="a647ff00d3d31e01ce3a1bfa6e7a8f8ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a647ff00d3d31e01ce3a1bfa6e7a8f8ee">&#9670;&nbsp;</a></span>SetMass()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -624,7 +762,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline void RigidBody::SetMass </td>
+          <td class="memname">void RigidBody::SetMass </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>mass</em></td><td>)</td>
@@ -648,8 +786,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aff2089e3669bc1d1f8d22cd6a9d2366c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff2089e3669bc1d1f8d22cd6a9d2366c">&#9670;&nbsp;</a></span>SetRestitution()</h2>
+<a id="a8acf72f4913bd04919bc7fae3efa7ed1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8acf72f4913bd04919bc7fae3efa7ed1">&#9670;&nbsp;</a></span>SetRestitution()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -658,7 +796,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline void RigidBody::SetRestitution </td>
+          <td class="memname">void RigidBody::SetRestitution </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>restitution</em></td><td>)</td>
@@ -682,8 +820,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a3464079ef7741ca818ad91a8b5d44c14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3464079ef7741ca818ad91a8b5d44c14">&#9670;&nbsp;</a></span>SetRotationalVelocity()</h2>
+<a id="af00fdffbcde6e378860bb0151f714faa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af00fdffbcde6e378860bb0151f714faa">&#9670;&nbsp;</a></span>SetRotationalVelocity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -692,7 +830,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline void RigidBody::SetRotationalVelocity </td>
+          <td class="memname">void RigidBody::SetRotationalVelocity </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>rotationalVelocity</em></td><td>)</td>
@@ -716,8 +854,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="afe1c9bce84e8c08d11472a994bfd6b97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe1c9bce84e8c08d11472a994bfd6b97">&#9670;&nbsp;</a></span>SetVelocity()</h2>
+<a id="a15860b892dfd15d3d39c2d19b631bc43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15860b892dfd15d3d39c2d19b631bc43">&#9670;&nbsp;</a></span>SetVelocity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -726,9 +864,9 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline void RigidBody::SetVelocity </td>
+          <td class="memname">void RigidBody::SetVelocity </td>
           <td>(</td>
-          <td class="paramtype">glm::vec3 const &amp;&#160;</td>
+          <td class="paramtype">glm::vec2 const &amp;&#160;</td>
           <td class="paramname"><em>velocity</em></td><td>)</td>
           <td></td>
         </tr>
@@ -747,6 +885,36 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a4783016ea152257cb416a41a633504d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4783016ea152257cb416a41a633504d7">&#9670;&nbsp;</a></span>Write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json RigidBody::Write </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write all <a class="el" href="classRigidBody.html">RigidBody</a> component data to a JSON file. </p>
+<dl class="section return"><dt>Returns</dt><dd>The JSON file containing the <a class="el" href="classRigidBody.html">RigidBody</a> component data. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
 
 </div>
 </div>

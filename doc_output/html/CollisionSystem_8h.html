@@ -67,7 +67,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">CollisionSystem.h File Reference</div>  </div>
 </div><!--header-->
@@ -78,22 +79,23 @@ $(function() {
 <div class="textblock"><code>#include &quot;<a class="el" href="System_8h_source.html">System.h</a>&quot;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;typeindex&gt;</code><br />
+<code>#include &quot;CollisionData.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for CollisionSystem.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="CollisionSystem_8h__incl.png" border="0" usemap="#aSource_2CollisionSystem_8h" alt=""/></div>
 <map name="aSource_2CollisionSystem_8h" id="aSource_2CollisionSystem_8h">
-<area shape="rect" title="The CollisionSystem is responsible for checking for collisions between Different Colliders." alt="" coords="159,5,345,32"/>
-<area shape="rect" href="System_8h.html" title="Base class for all Systems." alt="" coords="113,80,196,107"/>
-<area shape="rect" title=" " alt="" coords="221,80,283,107"/>
-<area shape="rect" title=" " alt="" coords="307,80,394,107"/>
-<area shape="rect" href="ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="97,155,212,181"/>
-<area shape="rect" title=" " alt="" coords="5,304,56,331"/>
-<area shape="rect" title=" " alt="" coords="80,304,139,331"/>
-<area shape="rect" title=" " alt="" coords="389,304,552,331"/>
-<area shape="rect" href="Stream_8h.html" title="JSON File reading/writing." alt="" coords="167,229,249,256"/>
-<area shape="rect" title=" " alt="" coords="291,304,365,331"/>
-<area shape="rect" title=" " alt="" coords="163,304,267,331"/>
+<area shape="rect" title="The CollisionSystem is responsible for checking for collisions between Different Colliders." alt="" coords="283,5,469,32"/>
+<area shape="rect" href="System_8h.html" title="Base class for all Systems." alt="" coords="205,80,288,107"/>
+<area shape="rect" title=" " alt="" coords="379,80,442,107"/>
+<area shape="rect" title=" " alt="" coords="466,80,553,107"/>
+<area shape="rect" href="CollisionData_8h_source.html" title=" " alt="" coords="301,155,422,181"/>
+<area shape="rect" href="ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="157,155,272,181"/>
+<area shape="rect" title=" " alt="" coords="259,304,309,331"/>
+<area shape="rect" title=" " alt="" coords="5,304,64,331"/>
+<area shape="rect" href="Stream_8h.html" title="JSON File reading/writing." alt="" coords="165,229,246,256"/>
+<area shape="rect" title=" " alt="" coords="333,304,437,331"/>
+<area shape="rect" title=" " alt="" coords="88,304,235,331"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -101,9 +103,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="CollisionSystem_8h__dep__incl.png" border="0" usemap="#aSource_2CollisionSystem_8hdep" alt=""/></div>
 <map name="aSource_2CollisionSystem_8hdep" id="aSource_2CollisionSystem_8hdep">
-<area shape="rect" title="The CollisionSystem is responsible for checking for collisions between Different Colliders." alt="" coords="69,5,256,32"/>
+<area shape="rect" title="The CollisionSystem is responsible for checking for collisions between Different Colliders." alt="" coords="153,5,340,32"/>
 <area shape="rect" href="Collider_8cpp.html" title="Base component for detecting collisions." alt="" coords="5,80,152,107"/>
 <area shape="rect" href="Engine_8cpp.html" title="Engine class." alt="" coords="176,80,317,107"/>
+<area shape="rect" href="SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="341,80,544,107"/>
 </map>
 </div>
 </div>
@@ -125,6 +128,16 @@ using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Col
 using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CollisionSystem_8h.html#a82fb835394855287a6873bf742462fdc">CollisionFunctionMap</a> = std::map&lt; std::pair&lt; std::type_index, std::type_index &gt;, <a class="el" href="CollisionSystem_8h.html#ad4a15109fc5b785904b54d6044527336">CollisionCheckFunction</a> &gt;</td></tr>
 <tr class="memdesc:a82fb835394855287a6873bf742462fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">map that stores the CollisionCheckMethods between each <a class="el" href="classCollider.html" title="component which is used for detecting collisions and information about them">Collider</a> type <br /></td></tr>
 <tr class="separator:a82fb835394855287a6873bf742462fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe804fe1964b76bbf5d5c5f63f0b25fd"><td class="memItemLeft" align="right" valign="top"><a id="abe804fe1964b76bbf5d5c5f63f0b25fd"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CollisionSystem_8h.html#abe804fe1964b76bbf5d5c5f63f0b25fd">CollisionLayerFlags</a> = unsigned</td></tr>
+<tr class="memdesc:abe804fe1964b76bbf5d5c5f63f0b25fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit flags of which layers a collider collides with <br /></td></tr>
+<tr class="separator:abe804fe1964b76bbf5d5c5f63f0b25fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a8d24eb15f86c83a03bc49e285bff7936"><td class="memItemLeft" align="right" valign="top">__inline <a class="el" href="classCollisionSystem.html">CollisionSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CollisionSystem_8h.html#a8d24eb15f86c83a03bc49e285bff7936">Collisions</a> ()</td></tr>
+<tr class="memdesc:a8d24eb15f86c83a03bc49e285bff7936"><td class="mdescLeft">&#160;</td><td class="mdescRight">shorthand method for getting the collision system  <a href="CollisionSystem_8h.html#a8d24eb15f86c83a03bc49e285bff7936">More...</a><br /></td></tr>
+<tr class="separator:a8d24eb15f86c83a03bc49e285bff7936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classCollisionSystem.html" title="responsible for checking collsisions between all Colliders">CollisionSystem</a> is responsible for checking for collisions between Different Colliders. </p>
@@ -132,7 +145,28 @@ using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Col
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023-09-15</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Digipen LLC (c) 2023 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a8d24eb15f86c83a03bc49e285bff7936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d24eb15f86c83a03bc49e285bff7936">&#9670;&nbsp;</a></span>Collisions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__inline <a class="el" href="classCollisionSystem.html">CollisionSystem</a>* Collisions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>shorthand method for getting the collision system </p>
+<dl class="section return"><dt>Returns</dt><dd>the collision system instance </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1

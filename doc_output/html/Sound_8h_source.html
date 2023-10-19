@@ -116,11 +116,11 @@ $(function() {
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> readFilepath( <a class="code" href="classStream.html">Stream</a> stream );</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> readFilepath( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> readIsLooping( <a class="code" href="classStream.html">Stream</a> stream );</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> readIsLooping( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> afterLoad( <a class="code" href="classStream.html">Stream</a> );</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> AfterLoad();</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; Sound &gt; <span class="keyword">const</span> s_ReadMethods;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
@@ -129,29 +129,33 @@ $(function() {
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    FMOD::Sound* m_Sound;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">bool</span> m_IsLooping;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classSound.html#a2f18bf280c094d8b0e2d6ac6a37539be">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    std::string m_Filepath;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    FMOD::Sound* m_Sound;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;};</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">bool</span> m_IsLooping;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    std::string m_Filepath;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;};</div>
 <div class="ttc" id="aISerializable_8h_html"><div class="ttname"><a href="ISerializable_8h.html">ISerializable.h</a></div><div class="ttdoc">interface for all serializable objects</div></div>
-<div class="ttc" id="aclassISerializable_html"><div class="ttname"><a href="classISerializable.html">ISerializable</a></div><div class="ttdoc">interface for all serializable objects</div><div class="ttdef"><b>Definition:</b> ISerializable.h:25</div></div>
+<div class="ttc" id="aclassISerializable_html"><div class="ttname"><a href="classISerializable.html">ISerializable</a></div><div class="ttdoc">interface for all serializable objects</div><div class="ttdef"><b>Definition:</b> ISerializable.h:24</div></div>
 <div class="ttc" id="aclassSound_html"><div class="ttname"><a href="classSound.html">Sound</a></div><div class="ttdoc">Example System meant to be copy-pasted when creating new Systems.</div><div class="ttdef"><b>Definition:</b> Sound.h:17</div></div>
 <div class="ttc" id="aclassSound_html_a0907389078bf740be2a5763366ad3376"><div class="ttname"><a href="classSound.html#a0907389078bf740be2a5763366ad3376">Sound::~Sound</a></div><div class="ttdeci">~Sound()</div><div class="ttdoc">Destroys this Sound.</div><div class="ttdef"><b>Definition:</b> Sound.cpp:37</div></div>
+<div class="ttc" id="aclassSound_html_a2f18bf280c094d8b0e2d6ac6a37539be"><div class="ttname"><a href="classSound.html#a2f18bf280c094d8b0e2d6ac6a37539be">Sound::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Sound data to a JSON file.</div><div class="ttdef"><b>Definition:</b> Sound.cpp:127</div></div>
 <div class="ttc" id="aclassSound_html_a53409029f147921fe18d255394e971eb"><div class="ttname"><a href="classSound.html#a53409029f147921fe18d255394e971eb">Sound::GetLength</a></div><div class="ttdeci">float GetLength() const</div><div class="ttdoc">gets the length of this sound</div><div class="ttdef"><b>Definition:</b> Sound.cpp:78</div></div>
 <div class="ttc" id="aclassSound_html_a539c205cdf06fe2c621fd77c37bcfac9"><div class="ttname"><a href="classSound.html#a539c205cdf06fe2c621fd77c37bcfac9">Sound::Sound</a></div><div class="ttdeci">Sound()</div><div class="ttdoc">default constructor</div><div class="ttdef"><b>Definition:</b> Sound.cpp:17</div></div>
 <div class="ttc" id="aclassSound_html_a77113b04eebdea69290e4e49a6477b77"><div class="ttname"><a href="classSound.html#a77113b04eebdea69290e4e49a6477b77">Sound::GetLooping</a></div><div class="ttdeci">__inline bool GetLooping() const</div><div class="ttdoc">gets whether this Sound is looping</div><div class="ttdef"><b>Definition:</b> Sound.h:58</div></div>
 <div class="ttc" id="aclassSound_html_a7b62427aac8703c909ac96045ae46170"><div class="ttname"><a href="classSound.html#a7b62427aac8703c909ac96045ae46170">Sound::Inspect</a></div><div class="ttdeci">void Inspect()</div><div class="ttdoc">Used by the Debug System to display information about this Sound.</div><div class="ttdef"><b>Definition:</b> Sound.cpp:85</div></div>
 <div class="ttc" id="aclassSound_html_a7c2a6c5297ff3df5940386523d0ef438"><div class="ttname"><a href="classSound.html#a7c2a6c5297ff3df5940386523d0ef438">Sound::Play</a></div><div class="ttdeci">FMOD::Channel * Play(FMOD::ChannelGroup *group=nullptr, float volume=1.0f, float pitch=1.0f) const</div><div class="ttdoc">Plays this sound.</div><div class="ttdef"><b>Definition:</b> Sound.cpp:50</div></div>
 <div class="ttc" id="aclassSound_html_ab8328222f7f3070212b948bf2d814f7f"><div class="ttname"><a href="classSound.html#ab8328222f7f3070212b948bf2d814f7f">Sound::GetFilepath</a></div><div class="ttdeci">__inline std::string const  &amp; GetFilepath() const</div><div class="ttdoc">gets this Sound's filepath</div><div class="ttdef"><b>Definition:</b> Sound.h:62</div></div>
-<div class="ttc" id="aclassStream_html"><div class="ttname"><a href="classStream.html">Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

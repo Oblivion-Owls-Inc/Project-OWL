@@ -16,6 +16,7 @@
     "AssetLibrarySystem<TransformAnimation>": {},
     "AssetLibrarySystem<AnimationAsset>": {},
     "BehaviorSystem<Animation>": {},
+    "BehaviorSystem<EnemyBehavior>": {},
     "BehaviorSystem<MovementAI>": {},
     "BehaviorSystem<PlayerController>": {},
     "BehaviorSystem<TurretBehavior>": {},

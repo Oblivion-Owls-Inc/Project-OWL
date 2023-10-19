@@ -43,8 +43,8 @@
             "name": "Health",
             "Active": true,
             "BaseValue": 100
-          }
-
+          },
+          "EnemyBehavior": {}
         }
       },
       "Turret": {
@@ -56,14 +56,17 @@
           },
           "Transform": {
             "translation": [ -4, 1, 0 ],
-            "scale": [ 2, 2, 2 ]
+            "scale": [ 1, 1, 1 ]
           },
           "CircleCollider": {
             "Radius": 0.1,
             "CollisionLayer": "player",
             "CollisionLayerFlags": [ "enemies" ]
           },
-          "TurretBehavior": {}
+          "TurretBehavior": {
+            "range": 2,
+            "bulletdamage": 20
+          }
         }
       }
 

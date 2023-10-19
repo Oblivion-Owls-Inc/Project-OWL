@@ -66,7 +66,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">Tilemap.h File Reference</div>  </div>
 </div><!--header-->
@@ -74,26 +75,42 @@ $(function() {
 
 <p><a class="el" href="classTilemap.html" title="Loads and manages a tilemap array.">Tilemap</a> component - loads and manages a tilemap array.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="Component_8h_source.html">Component.h</a>&quot;</code><br />
-<code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;sstream&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="Behavior_8h_source.html">Behavior.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Transform_8h_source.html">Transform.h</a>&quot;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;map&gt;</code><br />
+<code>#include &quot;<a class="el" href="Tilemap_8cpp.html">Tilemap.cpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Tilemap.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="Tilemap_8h__incl.png" border="0" usemap="#aSource_2Tilemap_8h" alt=""/></div>
 <map name="aSource_2Tilemap_8h" id="aSource_2Tilemap_8h">
-<area shape="rect" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="237,5,372,32"/>
-<area shape="rect" href="Component_8h.html" title="Virtual component header." alt="" coords="139,80,249,107"/>
-<area shape="rect" title=" " alt="" coords="273,80,336,107"/>
-<area shape="rect" title=" " alt="" coords="361,80,435,107"/>
-<area shape="rect" title=" " alt="" coords="5,155,92,181"/>
-<area shape="rect" title=" " alt="" coords="514,304,565,331"/>
-<area shape="rect" title=" " alt="" coords="18,304,77,331"/>
-<area shape="rect" href="ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="202,155,317,181"/>
-<area shape="rect" title=" " alt="" coords="327,304,490,331"/>
-<area shape="rect" href="Stream_8h.html" title="JSON File reading/writing." alt="" coords="219,229,300,256"/>
-<area shape="rect" title=" " alt="" coords="101,304,175,331"/>
-<area shape="rect" title=" " alt="" coords="199,304,303,331"/>
+<area shape="rect" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="820,5,955,32"/>
+<area shape="rect" href="Behavior_8h.html" title="Virtual behavior component header." alt="" coords="1023,229,1114,256"/>
+<area shape="rect" title=" " alt="" coords="1153,528,1203,555"/>
+<area shape="rect" href="Transform_8h.html" title="Transform." alt="" coords="629,229,727,256"/>
+<area shape="rect" title=" " alt="" coords="5,304,92,331"/>
+<area shape="rect" href="Tilemap_8cpp.html" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="976,80,1079,107"/>
+<area shape="rect" href="Component_8h.html" title="Virtual component header." alt="" coords="1067,304,1177,331"/>
+<area shape="rect" href="CollisionData_8h_source.html" title=" " alt="" coords="507,453,628,480"/>
+<area shape="rect" title=" " alt="" coords="977,379,1064,405"/>
+<area shape="rect" title=" " alt="" coords="1431,528,1490,555"/>
+<area shape="rect" href="ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="1361,379,1475,405"/>
+<area shape="rect" href="Stream_8h.html" title="JSON File reading/writing." alt="" coords="1292,453,1373,480"/>
+<area shape="rect" title=" " alt="" coords="355,528,459,555"/>
+<area shape="rect" title=" " alt="" coords="1259,528,1406,555"/>
+<area shape="rect" href="basics_8h_source.html" title=" " alt="" coords="585,304,659,331"/>
+<area shape="rect" title=" " alt="" coords="116,304,333,331"/>
+<area shape="rect" title=" " alt="" coords="374,379,438,405"/>
+<area shape="rect" title=" " alt="" coords="463,379,563,405"/>
+<area shape="rect" title=" " alt="" coords="771,379,851,405"/>
+<area shape="rect" title=" " alt="" coords="587,379,657,405"/>
+<area shape="rect" title=" " alt="" coords="681,379,747,405"/>
+<area shape="rect" title=" " alt="" coords="283,379,350,405"/>
+<area shape="rect" href="Entity_8h.html" title="Declaration for the Entity Class." alt="" coords="1189,229,1260,256"/>
+<area shape="rect" href="BehaviorSystem_8h_source.html" title=" " alt="" coords="1211,155,1353,181"/>
+<area shape="rect" title=" " alt="" coords="1353,304,1416,331"/>
+<area shape="rect" href="System_8h.html" title="Base class for all Systems." alt="" coords="1401,229,1483,256"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -101,10 +118,16 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="Tilemap_8h__dep__incl.png" border="0" usemap="#aSource_2Tilemap_8hdep" alt=""/></div>
 <map name="aSource_2Tilemap_8hdep" id="aSource_2Tilemap_8hdep">
-<area shape="rect" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="281,5,416,32"/>
-<area shape="rect" href="ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="5,80,223,107"/>
-<area shape="rect" href="SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="247,80,450,107"/>
-<area shape="rect" href="Tilemap_8cpp.html" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="475,80,625,107"/>
+<area shape="rect" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="532,5,667,32"/>
+<area shape="rect" href="ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="5,155,223,181"/>
+<area shape="rect" href="Engine_8cpp.html" title="Engine class." alt="" coords="121,80,262,107"/>
+<area shape="rect" href="Pathfinder_8h.html" title="Interface file of Pathfinder component." alt="" coords="286,80,433,107"/>
+<area shape="rect" href="Text_8cpp.html" title="Component that makes use of Tilemap to draw text." alt="" coords="457,80,581,107"/>
+<area shape="rect" href="Tilemap_8cpp.html" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="605,80,756,107"/>
+<area shape="rect" href="TilemapCollider_8cpp.html" title="tilemap collider" alt="" coords="780,80,979,107"/>
+<area shape="rect" href="TilemapSprite_8cpp.html" title="A version of Sprite specifically for rendering tiles." alt="" coords="1003,80,1191,107"/>
+<area shape="rect" href="Pathfinder_8cpp.html" title="Implementation of Pathfinder component. Runs vector field pathfinding algo whenever parent&#39;s Tilemap ..." alt="" coords="263,155,424,181"/>
+<area shape="rect" href="SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="449,155,651,181"/>
 </map>
 </div>
 </div>
@@ -112,7 +135,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html">Tilemap</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html">Tilemap&lt; TileType &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads and manages a tilemap array.  <a href="classTilemap.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>

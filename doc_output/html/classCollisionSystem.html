@@ -103,14 +103,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a77084b50e8e89f6cb22cd71de50f7bb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollisionSystem.html#a77084b50e8e89f6cb22cd71de50f7bb4">removeCollider</a> (<a class="el" href="classCollider.html">Collider</a> *collider)</td></tr>
 <tr class="memdesc:a77084b50e8e89f6cb22cd71de50f7bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes a <a class="el" href="classCollider.html" title="component which is used for detecting collisions and information about them">Collider</a> from this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>  <a href="classCollisionSystem.html#a77084b50e8e89f6cb22cd71de50f7bb4">More...</a><br /></td></tr>
 <tr class="separator:a77084b50e8e89f6cb22cd71de50f7bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeeb07f44cd623b028d28281f694bee87"><td class="memItemLeft" align="right" valign="top"><a id="aeeb07f44cd623b028d28281f694bee87"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollisionSystem.html#aeeb07f44cd623b028d28281f694bee87">OnFixedUpdate</a> () override</td></tr>
-<tr class="memdesc:aeeb07f44cd623b028d28281f694bee87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every simulation frame. Use this function for anything that affects the simulation. <br /></td></tr>
-<tr class="separator:aeeb07f44cd623b028d28281f694bee87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10abfba9770cc7be71bd42c318da1e44"><td class="memItemLeft" align="right" valign="top"><a id="a10abfba9770cc7be71bd42c318da1e44"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollisionSystem.html#a10abfba9770cc7be71bd42c318da1e44">OnSceneExit</a> () override</td></tr>
-<tr class="memdesc:a10abfba9770cc7be71bd42c318da1e44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
-<tr class="separator:a10abfba9770cc7be71bd42c318da1e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2222bb7d13df934b47e22eaf8bd3fe69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CollisionSystem_8h.html#abe804fe1964b76bbf5d5c5f63f0b25fd">CollisionLayerFlags</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollisionSystem.html#a2222bb7d13df934b47e22eaf8bd3fe69">GetLayerFlags</a> (std::vector&lt; std::string &gt; const &amp;layerNames) const</td></tr>
+<tr class="memdesc:a2222bb7d13df934b47e22eaf8bd3fe69"><td class="mdescLeft">&#160;</td><td class="mdescRight">makes a CollisionLayerFlags for a set of layer names  <a href="classCollisionSystem.html#a2222bb7d13df934b47e22eaf8bd3fe69">More...</a><br /></td></tr>
+<tr class="separator:a2222bb7d13df934b47e22eaf8bd3fe69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f58d705d0917277436a743b6df048c8"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollisionSystem.html#a0f58d705d0917277436a743b6df048c8">GetCollisionLayerId</a> (std::string const &amp;layerName) const</td></tr>
+<tr class="memdesc:a0f58d705d0917277436a743b6df048c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the collision layer ID with the specified name  <a href="classCollisionSystem.html#a0f58d705d0917277436a743b6df048c8">More...</a><br /></td></tr>
+<tr class="separator:a0f58d705d0917277436a743b6df048c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c40544ea78bbcf20d85f07dc3a3c97f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollisionSystem.html#a8c40544ea78bbcf20d85f07dc3a3c97f">GetLayerNames</a> (<a class="el" href="CollisionSystem_8h.html#abe804fe1964b76bbf5d5c5f63f0b25fd">CollisionLayerFlags</a> layerFlags) const</td></tr>
+<tr class="memdesc:a8c40544ea78bbcf20d85f07dc3a3c97f"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the names of the layers in a CollisionLayerFlags  <a href="classCollisionSystem.html#a8c40544ea78bbcf20d85f07dc3a3c97f">More...</a><br /></td></tr>
+<tr class="separator:a8c40544ea78bbcf20d85f07dc3a3c97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6718f5eb32ffeccb6161374180c5cf96"><td class="memItemLeft" align="right" valign="top">std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollisionSystem.html#a6718f5eb32ffeccb6161374180c5cf96">GetLayerName</a> (unsigned layerId) const</td></tr>
+<tr class="memdesc:a6718f5eb32ffeccb6161374180c5cf96"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the name of the specified layer  <a href="classCollisionSystem.html#a6718f5eb32ffeccb6161374180c5cf96">More...</a><br /></td></tr>
+<tr class="separator:a6718f5eb32ffeccb6161374180c5cf96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af04af5451859cad163d5db8cf24825f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRayCastHit.html">RayCastHit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollisionSystem.html#af04af5451859cad163d5db8cf24825f6">RayCast</a> (glm::vec2 const &amp;origin, glm::vec2 const &amp;direction, float maxDistance=100.0f, <a class="el" href="CollisionSystem_8h.html#abe804fe1964b76bbf5d5c5f63f0b25fd">CollisionLayerFlags</a> layers=(<a class="el" href="CollisionSystem_8h.html#abe804fe1964b76bbf5d5c5f63f0b25fd">CollisionLayerFlags</a>) -1) const</td></tr>
+<tr class="memdesc:af04af5451859cad163d5db8cf24825f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">casts a ray in the scene  <a href="classCollisionSystem.html#af04af5451859cad163d5db8cf24825f6">More...</a><br /></td></tr>
+<tr class="separator:af04af5451859cad163d5db8cf24825f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99936a53abc19e4fa6e493bed4086dda"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollisionSystem.html#a99936a53abc19e4fa6e493bed4086dda">GetLayerNames</a> () const</td></tr>
+<tr class="memdesc:a99936a53abc19e4fa6e493bed4086dda"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the collision layer names  <a href="classCollisionSystem.html#a99936a53abc19e4fa6e493bed4086dda">More...</a><br /></td></tr>
+<tr class="separator:a99936a53abc19e4fa6e493bed4086dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80d7b4d289e4eb1bfeaa39efbcfa9e10"><td class="memItemLeft" align="right" valign="top"><a id="a80d7b4d289e4eb1bfeaa39efbcfa9e10"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>CollisionSystem</b> (<a class="el" href="classCollisionSystem.html">CollisionSystem</a> &amp;other)=delete</td></tr>
 <tr class="separator:a80d7b4d289e4eb1bfeaa39efbcfa9e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,10 +143,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a> ()</td></tr>
 <tr class="memdesc:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
 <tr class="separator:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="ac37b07a2ad20e2d2fe1f77766902af5d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac37b07a2ad20e2d2fe1f77766902af5d">DebugWindow</a> ()</td></tr>
-<tr class="memdesc:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Called by the Debug system to display debug information. <br /></td></tr>
-<tr class="separator:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a804bac94c6ffee7f7369c6c3928a5574"></a>
 std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a804bac94c6ffee7f7369c6c3928a5574">GetName</a> () const</td></tr>
 <tr class="memdesc:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unique name of this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
@@ -152,9 +158,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
 <tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -199,6 +202,33 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a0f58d705d0917277436a743b6df048c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f58d705d0917277436a743b6df048c8">&#9670;&nbsp;</a></span>GetCollisionLayerId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned CollisionSystem::GetCollisionLayerId </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>layerName</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the collision layer ID with the specified name </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">layerName</td><td>the name of the layer to get </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the collision layer ID </dd></dl>
+
+</div>
+</div>
 <a id="a0352addd6e0fd8206823b8519ce5b01a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0352addd6e0fd8206823b8519ce5b01a">&#9670;&nbsp;</a></span>GetInstance()</h2>
 
@@ -224,6 +254,166 @@ Additional Inherited Members</h2></td></tr>
 
 <p>gets the instance of <a class="el" href="classCollisionSystem.html" title="responsible for checking collsisions between all Colliders">CollisionSystem</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>the instance of the <a class="el" href="classCollisionSystem.html" title="responsible for checking collsisions between all Colliders">CollisionSystem</a> </dd></dl>
+
+</div>
+</div>
+<a id="a2222bb7d13df934b47e22eaf8bd3fe69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2222bb7d13df934b47e22eaf8bd3fe69">&#9670;&nbsp;</a></span>GetLayerFlags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="CollisionSystem_8h.html#abe804fe1964b76bbf5d5c5f63f0b25fd">CollisionLayerFlags</a> CollisionSystem::GetLayerFlags </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>layerNames</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>makes a CollisionLayerFlags for a set of layer names </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">layerNames</td><td>the names of the layers to include in the flags </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6718f5eb32ffeccb6161374180c5cf96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6718f5eb32ffeccb6161374180c5cf96">&#9670;&nbsp;</a></span>GetLayerName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string const  &amp; CollisionSystem::GetLayerName </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>layerId</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the name of the specified layer </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">layerId</td><td>the ID of the layer to get the name of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the name of the layer </dd></dl>
+
+</div>
+</div>
+<a id="a99936a53abc19e4fa6e493bed4086dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99936a53abc19e4fa6e493bed4086dda">&#9670;&nbsp;</a></span>GetLayerNames() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; const&amp; CollisionSystem::GetLayerNames </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets the collision layer names </p>
+<dl class="section return"><dt>Returns</dt><dd>the array of collision layer names </dd></dl>
+
+</div>
+</div>
+<a id="a8c40544ea78bbcf20d85f07dc3a3c97f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c40544ea78bbcf20d85f07dc3a3c97f">&#9670;&nbsp;</a></span>GetLayerNames() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; CollisionSystem::GetLayerNames </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="CollisionSystem_8h.html#abe804fe1964b76bbf5d5c5f63f0b25fd">CollisionLayerFlags</a>&#160;</td>
+          <td class="paramname"><em>layerFlags</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the names of the layers in a CollisionLayerFlags </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">layerFlags</td><td>the layer flags to get the names of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the names of the layers </dd></dl>
+
+</div>
+</div>
+<a id="af04af5451859cad163d5db8cf24825f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af04af5451859cad163d5db8cf24825f6">&#9670;&nbsp;</a></span>RayCast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structRayCastHit.html">RayCastHit</a> CollisionSystem::RayCast </td>
+          <td>(</td>
+          <td class="paramtype">glm::vec2 const &amp;&#160;</td>
+          <td class="paramname"><em>origin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec2 const &amp;&#160;</td>
+          <td class="paramname"><em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxDistance</em> = <code>100.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="CollisionSystem_8h.html#abe804fe1964b76bbf5d5c5f63f0b25fd">CollisionLayerFlags</a>&#160;</td>
+          <td class="paramname"><em>layers</em> = <code>(<a class="el" href="CollisionSystem_8h.html#abe804fe1964b76bbf5d5c5f63f0b25fd">CollisionLayerFlags</a>)-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>casts a ray in the scene </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">origin</td><td>the origin of the cast ray </td></tr>
+    <tr><td class="paramname">direction</td><td>the direction of the ray </td></tr>
+    <tr><td class="paramname">maxDistance</td><td>the maximum distance of the raycast </td></tr>
+    <tr><td class="paramname">layers</td><td>the layers for the raycast to collide with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structRayCastHit.html" title="the result of a raycast">RayCastHit</a> struct containing information about the result of the raycast </dd></dl>
 
 </div>
 </div>

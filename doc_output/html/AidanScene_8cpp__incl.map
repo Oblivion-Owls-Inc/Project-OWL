@@ -1,12 +1,11 @@
 <map id="Source/AidanScene.cpp" name="Source/AidanScene.cpp">
-<area shape="rect" id="node1" title="Stub file for easier scene creation." alt="" coords="68,5,241,32"/>
-<area shape="rect" id="node2" href="$AidanScene_8h.html" title="A stub file for easy scene creation." alt="" coords="99,80,210,107"/>
-<area shape="rect" id="node3" href="$System_8h.html" title="Base class for all Systems." alt="" coords="113,155,196,181"/>
-<area shape="rect" id="node4" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="97,229,212,256"/>
+<area shape="rect" id="node1" title="Stub file for easier scene creation." alt="" coords="15,5,188,32"/>
+<area shape="rect" id="node2" href="$AidanScene_8h.html" title="A stub file for easy scene creation." alt="" coords="46,80,157,107"/>
+<area shape="rect" id="node3" href="$System_8h.html" title="Base class for all Systems." alt="" coords="60,155,143,181"/>
+<area shape="rect" id="node4" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="44,229,159,256"/>
 <area shape="rect" id="node5" title=" " alt="" coords="5,379,56,405"/>
 <area shape="rect" id="node6" title=" " alt="" coords="80,379,139,405"/>
-<area shape="rect" id="node7" title=" " alt="" coords="389,379,552,405"/>
-<area shape="rect" id="node8" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="167,304,249,331"/>
-<area shape="rect" id="node9" title=" " alt="" coords="291,379,365,405"/>
-<area shape="rect" id="node10" title=" " alt="" coords="163,379,267,405"/>
+<area shape="rect" id="node7" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="139,304,221,331"/>
+<area shape="rect" id="node8" title=" " alt="" coords="163,379,267,405"/>
+<area shape="rect" id="node9" title=" " alt="" coords="291,379,437,405"/>
 </map>

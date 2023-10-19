@@ -11,8 +11,7 @@ Asset \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when crea
 
 
 
-Inheritance diagram for Asset\+Library\+System$<$ Asset\+Type $>$\+:
-\nopagebreak
+Inheritance diagram for Asset\+Library\+System$<$ Asset\+Type $>$\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Asset\+Library\+System$<$ Asset\+Type $>$\+:
 \end{figure}
 
 
-Collaboration diagram for Asset\+Library\+System$<$ Asset\+Type $>$\+:
-\nopagebreak
+Collaboration diagram for Asset\+Library\+System$<$ Asset\+Type $>$\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -34,6 +32,8 @@ Collaboration diagram for Asset\+Library\+System$<$ Asset\+Type $>$\+:
 \item 
 Asset\+Type const  $\ast$ \mbox{\hyperlink{classAssetLibrarySystem_afa2464ba44daf6d7e70baccc5fe50d02}{Get\+Asset}} (std\+::string const \&name) const
 \begin{DoxyCompactList}\small\item\em Finds and returns an asset, builds if doesnt yet exist. \end{DoxyCompactList}\item 
+char const  $\ast$ \mbox{\hyperlink{classAssetLibrarySystem_a5e907a5b6c2b3db7f73eaba16e6a3b1f}{Get\+Asset\+Name}} (Asset\+Type const $\ast$asset) const
+\begin{DoxyCompactList}\small\item\em Finds an returns the name of the specified asset. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classAssetLibrarySystem_a55746d2800bec315d38aea402c26dd1d}{Add\+Asset}} (std\+::string const \&name, Asset\+Type $\ast$asset)
 \begin{DoxyCompactList}\small\item\em Adds an asset to the Asset\+Library. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classAssetLibrarySystem_ae87d5039fa55b29c883a1508d8e9ed70}\label{classAssetLibrarySystem_ae87d5039fa55b29c883a1508d8e9ed70}} 
@@ -91,6 +91,25 @@ Finds and returns an asset, builds if doesnt yet exist.
 
 \begin{DoxyReturn}{Returns}
 the constructed or found asset 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAssetLibrarySystem_a5e907a5b6c2b3db7f73eaba16e6a3b1f}\label{classAssetLibrarySystem_a5e907a5b6c2b3db7f73eaba16e6a3b1f}} 
+\index{AssetLibrarySystem$<$ AssetType $>$@{AssetLibrarySystem$<$ AssetType $>$}!GetAssetName@{GetAssetName}}
+\index{GetAssetName@{GetAssetName}!AssetLibrarySystem$<$ AssetType $>$@{AssetLibrarySystem$<$ AssetType $>$}}
+\doxysubsubsection{\texorpdfstring{GetAssetName()}{GetAssetName()}}
+{\footnotesize\ttfamily template$<$class Asset\+Type $>$ \\
+char const  $\ast$ \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}}$<$ Asset\+Type $>$\+::Get\+Asset\+Name (\begin{DoxyParamCaption}\item[{Asset\+Type const $\ast$}]{asset }\end{DoxyParamCaption}) const}
+
+
+
+Finds an returns the name of the specified asset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em asset} & The asset to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The name of the asset. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classAssetLibrarySystem_a74bf911f9210a9eb224d914c3f9288ba}\label{classAssetLibrarySystem_a74bf911f9210a9eb224d914c3f9288ba}} 
 \index{AssetLibrarySystem$<$ AssetType $>$@{AssetLibrarySystem$<$ AssetType $>$}!GetInstance@{GetInstance}}
