@@ -7,8 +7,6 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 #pragma once
 
-#include "Pool.h"
-
 #define POOL_C
 
 #ifndef POOL_H
