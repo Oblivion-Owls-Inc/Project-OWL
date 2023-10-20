@@ -46,6 +46,7 @@ PlayerController::~PlayerController()
 void PlayerController::OnInit()
 {
 	BehaviorSystem<PlayerController>::GetInstance()->AddBehavior(this);
+    m_RigidBody = GetParent()->GetComponent<RigidBody>();
 }
 
 /// @brief Removes this behavior from the behavior system on exit
@@ -63,25 +64,23 @@ void PlayerController::OnFixedUpdate()
     if (MoveRight())
     {
         direction = glm::normalize(m_rightDirection);
-        GetParent()->GetComponent<RigidBody>()->SetVelocity(direction * m_maxSpeed);
+        m_RigidBody->ApplyVelocity(direction);
     }
     if (MoveLeft())
     {
         direction = glm::normalize(m_leftDirection);
-        GetParent()->GetComponent<RigidBody>()->SetVelocity(direction * m_maxSpeed);
+        m_RigidBody->ApplyVelocity(direction);
     }
     if (MoveUp())
     {
         direction = glm::normalize(m_upwardDirection);
-        GetParent()->GetComponent<RigidBody>()->SetVelocity(direction * m_maxSpeed);
+        m_RigidBody->ApplyVelocity(direction);
     }
 	if (MoveDown())
 	{
         direction = glm::normalize(m_downwardDirection);
-        GetParent()->GetComponent<RigidBody>()->SetVelocity(direction * m_maxSpeed);
+        m_RigidBody->ApplyVelocity(direction);
 	}
-
-    GetParent()->GetComponent<RigidBody>()->SetVelocity(direction * m_maxSpeed);
 }
 
 //-----------------------------------------------------------------------------

@@ -15,6 +15,8 @@
 #include "Behavior.h"
 #include <glm/glm.hpp> // glm::vec2
 
+class RigidBody;
+
 class PlayerController : public Behavior
 {
 //-----------------------------------------------------------------------------
@@ -75,6 +77,8 @@ private: // member variables
     glm::vec2 m_upwardDirection;
     // Vector responsible for downward direction movement.
     glm::vec2 m_downwardDirection;
+
+    RigidBody* m_RigidBody;
 
 //-----------------------------------------------------------------------------
 private: // reading
