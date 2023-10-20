@@ -32,12 +32,12 @@ ReadMethodMap< EnemyBehavior > const EnemyBehavior::s_ReadMethods = {};
 void EnemyBehavior::OnFixedUpdate()
 {
 	Pool<int>* pool = GetParent()->GetComponent<Pool<int>>();
-    Pathfinder* pathfinder = GetParent()->GetComponent<Pathfinder>();
+   // Pathfinder* pathfinder = GetParent()->GetComponent<Pathfinder>();
 
-	if (!pool || pathfinder)
+	if (!pool )
 		return;
 
-	ChaseTarget(pathfinder, Engine::GetInstance()->GetFixedFrameDuration());
+	//ChaseTarget(pathfinder, Engine::GetInstance()->GetFixedFrameDuration());
 
 	if (!pool->GetActive())
 	{

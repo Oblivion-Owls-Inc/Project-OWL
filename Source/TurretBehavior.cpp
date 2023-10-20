@@ -19,8 +19,7 @@ TurretBehavior::TurretBehavior():
 	m_BulletSpeed(1.0f),
 	m_BulletSize(1.0f), 
 	m_LastFireTime(0.0f),
-	m_BulletPrefab(nullptr),
-	m_Target(nullptr)
+	m_BulletPrefab(nullptr)
 {
 }
 
@@ -33,8 +32,7 @@ TurretBehavior::TurretBehavior(const TurretBehavior& other)
 					m_BulletSpeed(other.m_BulletSpeed), 
 					m_BulletSize(other.m_BulletSize),
 					m_LastFireTime(other.m_LastFireTime),
-					m_BulletPrefab(other.m_BulletPrefab),
-					m_Target(other.m_Target)
+					m_BulletPrefab(other.m_BulletPrefab)
 {
 }
 
@@ -69,38 +67,35 @@ void TurretBehavior::OnUpdate(float dt)
 void TurretBehavior::OnFixedUpdate()
 {
 	/// Check for a target
-	CheckForTarget();
+	Entity* target = CheckForTarget();
 
-	/// Fire a bullet
-	FireBullet();
+	if (target)
+	{
+		/// Fire a bullet at the target
+		FireBullet(target);
+	}
+
 }
 
 void TurretBehavior::Inspector()
 {
 	// Edit the Behavior of the Turret 
-	ImGui::DragFloat("Range", &m_Range);
-	ImGui::DragFloat("Fire Rate", &m_FireRate);
-	ImGui::DragFloat("Bullet Damage", &m_BulletDamage);
-	ImGui::DragFloat("Bullet Speed", &m_BulletSpeed);
-	ImGui::DragFloat("Bullet Size", &m_BulletSize);
-
+	ImGui::DragFloat("Range", &m_Range, 1.0f, 1.0f);
+	ImGui::DragFloat("Fire Rate", &m_FireRate, 1.0f, 1.0f);
+	ImGui::DragFloat("Bullet Damage", &m_BulletDamage, 1.0f, 1.0f);
+	ImGui::DragFloat("Bullet Speed", &m_BulletSpeed, 1.0f, 1.0f);
+	ImGui::DragFloat("Bullet Size", &m_BulletSize, 1.0f, 1.0f);
 }
 
 
 
-void TurretBehavior::FireBullet()
+void TurretBehavior::FireBullet(Entity* Target)
 {
 	float currentTime = glfwGetTime();
 	if (currentTime - m_LastFireTime < m_FireRate)
 		return;
 
-	if (!m_Target || m_Target->IsDestroyed())
-		return;
-
-	if(Entities()->CheckDeletedEntities(m_Target->GetId()))
-		return;
-
-	Pool<int>* pool = m_Target->GetComponent<Pool<int>>();
+	Pool<int>* pool = Target->GetComponent<Pool<int>>();
 
 	if (!pool || !pool->GetActive() || pool->GetName() != std::string("Health"))
 		return;
@@ -108,13 +103,10 @@ void TurretBehavior::FireBullet()
 	///@note this will be moved elsewhere
 	pool->DecreasePoolTime(m_BulletDamage);
 
-	if(m_Target->IsDestroyed())
-		m_Target = nullptr;
-
 	m_LastFireTime = currentTime;  // Update the last fire time
 }
 
-void TurretBehavior::CheckForTarget()
+Entity* TurretBehavior::CheckForTarget()
 {
     for (auto& entity : Entities()->GetEntities())
     {
@@ -145,10 +137,11 @@ void TurretBehavior::CheckForTarget()
 
         if (hit)  // If a collider was hit
         {
-			m_Target = entity;  // Set the hit entity as the target
-            return;  // Exit the method as a target has been found
+			return entity;  // Set the hit entity as the target
         }
     }
+
+	return nullptr;
 }
 
 void TurretBehavior::readFireRate( nlohmann::ordered_json const& data )
