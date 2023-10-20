@@ -20,6 +20,7 @@
 #include "CollisionSystem.h"
 
 #include "Pathfinder.h"
+#include "Pool.h"
 #include "AssetLibrarySystem.h"
 #include "RigidBody.h"
 
