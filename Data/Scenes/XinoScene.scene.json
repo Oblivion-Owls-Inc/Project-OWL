@@ -32,9 +32,27 @@
             }
         },
         "Animations": {
-            "Player": {
+            "PlayerMoveDown": {
                 "Start": 0,
                 "End": 12,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveUp": {
+                "Start": 12,
+                "End": 24,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveRight": {
+                "Start": 24,
+                "End": 36,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveLeft": {
+                "Start": 36,
+                "End": 48,
                 "FrameRate": 12,
                 "IsLooping": true
             }
@@ -176,10 +194,11 @@
                     "right": [ 1, 0 ],
                     "up": [ 0, 1 ],
                     "down": [ 0, -1 ],
-                    "maxSpeed": 1
+                    "maxSpeed": 1,
+                    "animationName": ["PlayerMoveRight", "PlayerMoveLeft", "PlayerMoveUp", "PlayerMoveDown"]
                 },
                 "Animation": {
-                    "Animation": "Player",
+                    "Animation": "PlayerMoveRight",
                     "IsRunning": true
                 }
             }
