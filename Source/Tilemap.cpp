@@ -120,7 +120,7 @@ glm::vec2 Tilemap<TileType>::TileCoordToWorldPos(glm::ivec2 coord)
 ///                 function will get called whenever the tilemap is updated.
 /// @param function Callback function
 template < typename TileType >
-void Tilemap<TileType>::AddOnTilemapChangedCallback(int componentID, std::function<void()> function)
+void Tilemap<TileType>::AddOnTilemapChangedCallback( int componentID, std::function<void()> function )
 {
     m_Callbacks[componentID] = function;
 }
@@ -180,6 +180,25 @@ template < typename TileType >
 void Tilemap<TileType>::OnExit()
 {
     Behaviors< Tilemap<int> >()->RemoveBehavior(this);
+}
+
+template<typename TileType>
+void Tilemap<TileType>::Inspector()
+{
+    int width = GetTilemapWidth();
+    int totalTiles = GetTilemapWidth() * GetTilemapHeight();
+
+    for (int i = 0; i < totalTiles; ++i)
+    {
+        int x = i % width;
+        int y = i / width;
+
+        TileType tile = GetTile(glm::ivec2(x, y));
+        ImGui::Text("%d,", tile);  // Display the tile value
+
+        if (x < width - 1)
+            ImGui::SameLine();  // Keep tiles on the same row except for the last tile
+    }
 }
 
 

@@ -20,43 +20,24 @@
         Component( typeid( Transform ) )
     {}
 
-    void Transform::Inspector()
+//-----------------------------------------------------------------------------
+// public: methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  adds an OnTransformChanged callback to this Transform
+    /// @param  callback    the callback function to add
+    /// @param  ownerId     the ID of the owner of the callback
+    void Transform::AddOnTransformChangedCallback( unsigned ownerId, std::function< void() > callback )
     {
-        Transform* transform = this;
-
-        if (transform)
-        {
-            // Edit Translation
-            glm::vec2 translation = transform->GetTranslation();
-            if (ImGui::DragFloat2("Translation", &translation[0]))
-            {
-                transform->SetTranslation(translation);
-            }
-
-            // Edit Rotation
-            float rotation = transform->GetRotation();
-            if (ImGui::DragFloat("Rotation", &rotation))
-            {
-                transform->SetRotation(rotation);
-            }
-
-            // Edit Scale
-            glm::vec2 scale = transform->GetScale();
-            if (ImGui::DragFloat2("Scale", &scale[0]))
-            {
-                transform->SetScale(scale);
-            }
-
-            // Toggle Diegetic
-            bool isDiegetic = transform->GetIsDiegetic();
-            if (ImGui::Checkbox("Is Diegetic", &isDiegetic))
-            {
-                transform->SetIsDiegetic(isDiegetic);
-            }
-
-        }
+        m_OnTransformChangedCallbacks.emplace( ownerId, std::move( callback ) );
     }
 
+    /// @brief  removes an OnTransformChanged callback from this Transform
+    /// @param  ownerId handle to the callback to remove
+    void Transform::RemoveOnTransformChangedCallback( unsigned ownerId )
+    {
+        m_OnTransformChangedCallbacks.erase( ownerId );
+    }
 
 //-----------------------------------------------------------------------------
 // public: accessors
@@ -112,6 +93,47 @@
     void Transform::SetMatrix(glm::mat4 const& newMatrix)
     {
         m_Matrix = newMatrix;
+    }
+
+//-----------------------------------------------------------------------------
+// private: virtual override methods
+//-----------------------------------------------------------------------------
+
+    void Transform::Inspector()
+    {
+        Transform* transform = this;
+
+        if (transform)
+        {
+            // Edit Translation
+            glm::vec2 translation = transform->GetTranslation();
+            if (ImGui::DragFloat2("Translation", &translation[0]))
+            {
+                transform->SetTranslation(translation);
+            }
+
+            // Edit Rotation
+            float rotation = transform->GetRotation();
+            if (ImGui::DragFloat("Rotation", &rotation))
+            {
+                transform->SetRotation(rotation);
+            }
+
+            // Edit Scale
+            glm::vec2 scale = transform->GetScale();
+            if (ImGui::DragFloat2("Scale", &scale[0]))
+            {
+                transform->SetScale(scale);
+            }
+
+            // Toggle Diegetic
+            bool isDiegetic = transform->GetIsDiegetic();
+            if (ImGui::Checkbox("Is Diegetic", &isDiegetic))
+            {
+                transform->SetIsDiegetic(isDiegetic);
+            }
+
+        }
     }
 
 

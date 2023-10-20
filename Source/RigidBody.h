@@ -196,9 +196,6 @@ private: // member variables
     /// @brief flag of whether a collision between two rigidBodies has already been resolved;
     bool m_CollisionResolved = false;
 
-    /// @brief  handle of this RigidBody's OnCollision callback
-    unsigned m_OnCollisionCallbackHandle = 0;
-
 
     /// @brief  the transform associated with this RigidBody
     Transform* m_Transform = nullptr;

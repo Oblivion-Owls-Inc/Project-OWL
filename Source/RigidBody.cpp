@@ -69,9 +69,13 @@
         m_Transform = GetParent()->GetComponent<Transform>();
         m_Collider = GetParent()->GetComponent<Collider>();
         
-        m_OnCollisionCallbackHandle = m_Collider->AddOnCollisionCallback(
-            std::bind( &RigidBody::OnCollision, this, std::placeholders::_1, std::placeholders::_2 )
-        );
+        if ( m_Collider != nullptr )
+        {
+            m_Collider->AddOnCollisionCallback(
+                GetId(),
+                std::bind( &RigidBody::OnCollision, this, std::placeholders::_1, std::placeholders::_2 )
+            );
+        }
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
@@ -79,7 +83,11 @@
     void RigidBody::OnExit()
     {
         BehaviorSystem<RigidBody>::GetInstance()->RemoveBehavior(this);
-        m_Collider->RemoveOnCollisionCallback( m_OnCollisionCallbackHandle );
+
+        if ( m_Collider != nullptr )
+        {
+            m_Collider->RemoveOnCollisionCallback( GetId() );
+        }
     }
 
     /// @brief Update method called per frame.
@@ -157,20 +165,17 @@
 
         Transform* transformB = other->GetTransform();
 
-        // move the bodies away from each other so they no longer overlap
+
+        // calculate new positions
         glm::vec2 position = m_Transform->GetTranslation();
         position += collisionData.normal * collisionData.depth * 0.5f;
-        m_Transform->SetTranslation(
-            glm::vec3(position.x, position.y, 1.0f)
-        );
+        m_Transform->SetTranslation( position );
 
         position = transformB->GetTranslation();
         position -= collisionData.normal * collisionData.depth * 0.5f;
-        transformB->SetTranslation(
-            glm::vec3(position.x, position.y, 1.0f)
-        );
+        transformB->SetTranslation( position );
 
-        // calculate the momentum and energy of the collision in the axis of the collision normal
+        // get the appropriate variables from each body
         float massA = m_Mass;
         float massB = rigidBodyB->GetMass();
         float totalMass = massA + massB;
@@ -178,10 +183,13 @@
         glm::vec2 velA = m_Velocity;
         glm::vec2 velB = rigidBodyB->GetVelocity();
 
+        // get speed in axis of collision
         float speedA = glm::dot( velA, collisionData.normal );
         float speedB = glm::dot( velB, collisionData.normal );
-        float relativeSpeed = speedB - speedA;
 
+
+        // calculate the resulting velocities after the collision
+        float relativeSpeed = speedB - speedA;
         float momentum = massA * speedA + massB * speedB;
 
         float restitution = m_Restitution * rigidBodyB->GetRestitution();
@@ -325,7 +333,6 @@
         m_Friction(           other.m_Friction           ),
         m_Drag(               other.m_Drag               ),
         m_CollisionResolved( false ),
-        m_OnCollisionCallbackHandle( 0 ),
         m_Transform( nullptr )
     {}
 

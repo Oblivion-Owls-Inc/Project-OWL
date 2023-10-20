@@ -1,3 +1,7 @@
+
+
+#pragma once
+
 #include <glew.h>
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>
@@ -8,11 +12,8 @@
 #include <atomic>
 #include <typeindex>
 
-#ifndef BASICS_H
-#define BASICS_H
-#pragma once
-
 #pragma warning(disable : 26451)
+
 /// @brief  returns a random float between min and max
 /// @param  min the minimum possible value
 /// @param  max the maximum possible value
@@ -59,4 +60,8 @@ __inline std::string PrefixlessName( std::type_index const& type )
     return name.substr( index + 1 );
 }
 
-#endif  // UNIQUE_ID_H
+template< typename T >
+__inline int Sign( T const& value )
+{
+    return ( value > 0 ) - ( value < 0 );
+}

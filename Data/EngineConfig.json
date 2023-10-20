@@ -20,7 +20,8 @@
         "BehaviorSystem<PlayerController>": {},
         "BehaviorSystem<RigidBody>": {},
         "CollisionSystem": {
-            "CollisionLayerNames": [ "physics", "terrain", "enemies", "player", "base", "projectiles" ]
+            "CollisionLayerNames": [ "physics", "terrain", "enemies", "player", "base", "projectiles" ],
+            "CollisionSteps": 2
         },
         "BehaviorSystem<EffectAnimator>": {},
         "BehaviorSystem<Tilemap<int>>": {},

@@ -57,14 +57,13 @@ public: // methods
 
     /// @brief  adds a callback function to be called when this collider collides
     /// @param  callback    the function to be called when this collider collides
-    /// @return a handle to the created callback
-    /// @note   YOU MUST CLEAR THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
-    /// @note   the callback will be called every time this collider collides (but not each time it loops)
-    unsigned AddOnCollisionCallback( std::function< void ( Collider*, CollisionData const& ) > callback );
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @note   YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT
+    void AddOnCollisionCallback( unsigned ownerId, std::function< void ( Collider*, CollisionData const& ) > callback );
 
     /// @brief  removes a callback function to be called when this collider collides
-    /// @param  callbackHandle  the handle of the callback to remove
-    void RemoveOnCollisionCallback( unsigned callbackHandle );
+    /// @param  ownerId the ID of the owner of the callback to remove
+    void RemoveOnCollisionCallback( unsigned ownerId );
 
     /// @brief  calls all OnCollision callbacks attached to this Collider
     /// @param  other           the other entity this Collider collided with
@@ -97,6 +96,15 @@ public: // accessors
     /// @brief  sets the collision layer of this Collider
     /// @param  layerId the collision layer to set
     void SetCollisionLayerId( unsigned layerId ) { m_CollisionLayerId = layerId; }
+
+
+    /// @brief  gets the priority of this Collider
+    /// @return the priority of this Collider
+    int GetPriority() const { return m_Priority; }
+
+    /// @brief  sets the priority of this Collider
+    /// @param  priority    the priority to set
+    void SetPriority( unsigned priority ) { m_Priority = priority; }
 
 
     /// @brief  gets the flags of which layers this Collider collides with
@@ -132,6 +140,9 @@ private: // member variables
     /// @brief  the collision layer of this Collider
     unsigned m_CollisionLayerId = 0;
 
+    /// @brief  the priority of this collider. higher priority colliders are checked against last
+    int m_Priority = 0;
+
     /// @brief  flags of which layers this Collider collides with
     CollisionLayerFlags m_CollisionLayerFlags = 0;
 
@@ -149,6 +160,10 @@ protected: // reading
     /// @brief  reads the collision layer flags from json
     /// @param  data    the json data to read from
     void readCollisionLayerFlags( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the priority of this Collider
+    /// @param  data    the json data to read from
+    void readPriority( nlohmann::ordered_json const& data );
     
 //-----------------------------------------------------------------------------
 };

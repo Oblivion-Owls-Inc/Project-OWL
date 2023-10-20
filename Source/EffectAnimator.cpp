@@ -77,22 +77,19 @@
     
 
     /// @brief  adds a callback function to be called when the animation completes
+    /// @param  ownerId     the ID of the owner of the callback
     /// @param  callback    the function to be called when the animation completes
-    /// @return a handle to the created callback
-    /// @note   YOU MUST CLEAR THE CALLBACK IF YOU ARE DONE WITH IT,
-    /// @note   the callback will be called every time the animation completes (but not each time it loops)
-    unsigned EffectAnimator::AddOnAnimationCompleteCallback( std::function< void() > callback )
+    /// @note   YOU MUST REMOVE THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
+    void EffectAnimator::AddOnAnimationCompleteCallback( unsigned ownerId, std::function< void() > callback )
     {
-        unsigned handle = GetUniqueId();
-        m_OnAnimationCompleteCallbacks.emplace( handle, std::move( callback ) );
-        return handle;
+        m_OnAnimationCompleteCallbacks.emplace( ownerId, std::move( callback ) );
     }
 
     /// @brief  removes a callback function to be called when the animation completes
-    /// @param  callbackHandle  the handle of the callback to remove
-    void EffectAnimator::RemoveOnAnimationCompleteCallback( unsigned callbackHandle )
+    /// @param  ownerId the ID of the owner of the callback to remove
+    void EffectAnimator::RemoveOnAnimationCompleteCallback( unsigned ownerId )
     {
-        m_OnAnimationCompleteCallbacks.erase( callbackHandle );
+        m_OnAnimationCompleteCallbacks.erase( ownerId );
     }
 
 
