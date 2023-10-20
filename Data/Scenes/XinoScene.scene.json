@@ -30,6 +30,14 @@
                 "SheetDimensions": [ 22, 17 ]
             }
         },
+        "Animations": {
+            "Elf": {
+                "Start": 0,
+                "End": 12,
+                "FrameRate": 12,
+                "IsLooping": true
+            }
+        },
         "Archetypes": {
             "Ball": {
                 "Name": "Ball",
@@ -38,8 +46,10 @@
                         "Texture": "Ball5",
                         "Layer": 1
                     },
-                    "RigidBody": {},
+                    "RigidBody": {
+                    },
                     "CircleCollider": {
+                        "CollisionLayerFlags": [ "physics" ],
                         "Radius": 0.5
                     },
                     "Transform": {},
@@ -81,6 +91,7 @@
                     "Velocity": [ 3, 1, 0 ]
                 },
                 "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
                     "Radius": 0.5
                 },
                 "Transform": {
@@ -100,6 +111,7 @@
                     "Velocity": [ -2, -1, 0 ]
                 },
                 "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
                     "Radius": 0.5
                 },
                 "Transform": {
@@ -119,6 +131,7 @@
                     "Velocity": [ 1.5, 4.3, 0 ]
                 },
                 "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
                     "Radius": 0.5
                 },
                 "Transform": {
@@ -149,18 +162,12 @@
                 "Sprite": {
                     "Texture": "ElfSheet"
                 },
-                "Animation": {
-                    "frameStart": 0,
-                    "frameCount": 12,
-                    "frameDuration": 0.12,
-                    "isLooping": true,
-                    "isRunning": true
-                },
                 "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
                     "Radius": 0.5
                 },
                 "RigidBody": {
-                    "Acceleration": [0, 0]
+                    "Acceleration": [ 0, 0 ]
                 },
                 "PlayerController": {
                     "left": [ -1, 0 ],
@@ -168,6 +175,10 @@
                     "up": [ 0, 1 ],
                     "down": [ 0, -1 ],
                     "maxSpeed": 5
+                },
+                "Animation": {
+                    "Animation": "Elf",
+                    "IsRunning": true
                 }
             }
         },
