@@ -13,7 +13,7 @@
 
 #include "ISerializable.h"
 
-#include <fstream>     // std::ifstream
+#include <fstream> // std::ifstream
 
 //------------------------------------------------------------------------------
 // public: static methods
@@ -33,6 +33,23 @@
         }
         // TODO: error handling?
         return nlohmann::ordered_json::parse( file );
+    }
+
+    /// @brief Write a meesage to the trace log.
+    /// @param traceMessage The message to be written.
+    void Stream::WriteToTraceLog(std::string const& traceMessage)
+    {
+        // Attempt to open the trace log for writing.
+        std::ofstream traceFile("trace.log");
+        if (!traceFile.is_open())
+        {
+            throw std::runtime_error(
+                std::string() + "Error: unable to open trace log"
+            );
+        }
+
+        // Write the trace message to the log.
+        traceFile << traceMessage;
     }
 
     /// @brief  Writes json data to a file
@@ -81,5 +98,4 @@
 
         object->AfterLoad();
     }
-
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
