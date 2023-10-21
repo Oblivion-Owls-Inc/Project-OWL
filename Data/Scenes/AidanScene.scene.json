@@ -27,10 +27,10 @@
                     ]
                 },
                 "Transform": {
-                    "translation": [ -4, -1, 0 ],
-                    "rotation": 0,
-                    "scale": [ 8, 4, 1 ],
-                    "diegetic": false
+                    "Translation": [ -4, -1, 0 ],
+                    "Rotation": 0,
+                    "Scale": [ 8, 4, 1 ],
+                    "IsDiegetic": false
                 }
 
             }

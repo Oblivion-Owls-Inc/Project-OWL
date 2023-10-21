@@ -4,7 +4,7 @@
             "Turret": {
                 "Filepath": "Data/Textures/Turret.png",
                 "SheetDimensions": [ 19, 1 ],
-                "Pivot": [ 0.75, 0.67 ]
+                "Pivot": [ 0.7, 0.8 ]
             },
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
@@ -18,10 +18,36 @@
             "Ball": {
                 "Filepath": "Data/Textures/Balls/Ball.png"
             },
-            "ElfSheet": {
-                "Filepath": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png",
-                "SheetDimensions": [ 22, 17 ],
-                "Pivot": [ 0.5, 0.17 ]
+            "PlayerSheet": {
+                "Filepath": "Data/Textures/Full Spritesheet.png",
+                "SheetDimensions": [ 12, 15 ],
+                "Pivot": [ 0.5, 0.32 ]
+            }
+        },
+        "Animations": {
+            "PlayerMoveDown": {
+                "Start": 0,
+                "End": 12,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveUp": {
+                "Start": 12,
+                "End": 24,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveRight": {
+                "Start": 24,
+                "End": 36,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveLeft": {
+                "Start": 36,
+                "End": 48,
+                "FrameRate": 12,
+                "IsLooping": true
             }
         },
         "Archetypes": {
@@ -33,7 +59,7 @@
                         "Layer": 2
                     },
                     "Transform": {
-                        "scale": [ 0.2, 0.2 ]
+                        "Scale": [ 0.2, 0.2 ]
                     },
                     "RigidBody": {
                         "Acceleration": [ 0.0, 0.0 ],
@@ -41,8 +67,8 @@
                     },
                     "CircleCollider": {
                         "Radius": 0.1,
-                        "CollisionLayer": "physics",
-                        "CollisionLayerFlags": [ "physics" ]
+                        "CollisionLayer": "Enemies",
+                        "CollisionLayerFlags": [ "Terrain", "Player" ]
                     },
                     "Pool<int>": {
                         "name": "Health",
@@ -58,7 +84,9 @@
                         "Texture": "Turret",
                         "Layer": 1
                     },
-                    "Transform": {}
+                    "Transform": {
+                        "Scale": [ 2, 2 ]
+                    }
                 }
             }
         }
@@ -67,46 +95,64 @@
         {
             "Name": "Tiles",
             "Components": {
+                "Transform": {
+                    "Translation": [ -5, 3.8 ],
+                    "Scale": [ 1, 1 ]
+                },
+                "Tilemap<int>":  {
+                    "TileData": [
+                        1,1,1,1,1,1,1,1,1,1,
+                        1,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,1,1,0,1,
+                        1,0,0,0,0,0,0,0,0,1,
+                        1,0,1,0,0,0,0,0,0,1,
+                        1,0,1,1,1,1,1,0,0,1,
+                        1,0,0,0,0,0,0,0,0,1,
+                        1,1,1,1,1,1,1,1,1,1
+                    ],
+                    "RowWidth" :  10,
+                    "TileScale": [ 1, 1 ]
+                },
                 "TilemapSprite": {
                     "Texture": "4pxSheet",
                     "Layer": 0
                 },
-                "Tilemap<int>":  {
-                    "TileData": [
-                        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-                        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-                    ],
-                    "RowWidth" :  16,
-                    "TileScale": [ 0.6, 0.6 ]
+                "TilemapCollider": {
+                    "CollisionLayer": "Terrain"
                 },
-                "Transform": {
-                    "translation": [ -4.8, 3.8 ],
-                    "scale": [ 0.6, 0.6 ]
-                }
+                "StaticBody": {}
             }
         },
         {
             "Name": "Player",
             "Components": {
-                "Transform": {},
-                "Sprite": {
-                    "Texture": "ElfSheet",
-                    "Layer": 1
+                "Transform": {
+                    "Translation": [ -4, -1 ],
+                    "Scale": [ 2, 2 ]
                 },
-                "PlayerController": {},
+                "Sprite": {
+                    "Texture": "PlayerSheet"
+                },
+                "CircleCollider": {
+                    "CollisionLayer": "Player",
+                    "CollisionLayerFlags": [ "Terrain", "Enemies" ],
+                    "Radius": 0.5
+                },
                 "RigidBody": {
-                    "Acceleration": [ 0, 0 ]
+                    "Acceleration": [ 0, 0 ],
+                    "Drag": 15
+                },
+                "PlayerController": {
+                    "left": [ -1, 0 ],
+                    "right": [ 1, 0 ],
+                    "up": [ 0, 1 ],
+                    "down": [ 0, -1 ],
+                    "maxSpeed": 1,
+                    "animationName": [ "PlayerMoveRight", "PlayerMoveLeft", "PlayerMoveUp", "PlayerMoveDown" ]
+                },
+                "Animation": {
+                    "Animation": "PlayerMoveRight",
+                    "IsRunning": true
                 }
             }
         },
@@ -120,13 +166,16 @@
                             "Cost": 10
                         }
                     ],
-                    "PlacementRange": 1.0,
+                    "PlacementRange": 2.0,
                     "TilemapName": "Tiles",
                     "PlayerName": "Player"
                 },
-                "Transform": {},
+                "Transform": {
+                    "Scale": [ 2, 2 ]
+                },
                 "Sprite": {
-                    "Opacity": 0
+                    "Opacity": 0,
+                    "Layer": 1
                 }
             }
         }

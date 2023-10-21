@@ -21,7 +21,7 @@
         "BehaviorSystem<Tilemap<int>>": {},
         "BehaviorSystem<RigidBody>": {},
         "CollisionSystem": {
-            "CollisionLayerNames": [ "physics", "terrain", "enemies", "player", "base", "projectiles" ],
+            "CollisionLayerNames": [ "Terrain", "Enemies", "Player", "Base", "Projectiles" ],
             "CollisionSteps": 2
         },
         "BehaviorSystem<Animation>": {},
@@ -33,7 +33,6 @@
         "DebugSystem": {
             "ShowFpsWindow": true,
             "ShowDebugWindow": false
-        },
-        "SandboxSystem": {}
+        }
     }
 }

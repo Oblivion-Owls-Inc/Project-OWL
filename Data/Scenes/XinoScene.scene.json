@@ -25,9 +25,36 @@
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
                 "SheetDimensions": [ 16, 8 ]
             },
-            "ElfSheet": {
-                "Filepath": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png",
-                "SheetDimensions": [ 22, 17 ]
+            "PlayerSheet": {
+                "Filepath": "Data/Textures/Full Spritesheet.png",
+                "SheetDimensions": [ 12, 15 ],
+                "Pivot": [ 0.5, 0.16 ]
+            }
+        },
+        "Animations": {
+            "PlayerMoveDown": {
+                "Start": 0,
+                "End": 12,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveUp": {
+                "Start": 12,
+                "End": 24,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveRight": {
+                "Start": 24,
+                "End": 36,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveLeft": {
+                "Start": 36,
+                "End": 48,
+                "FrameRate": 12,
+                "IsLooping": true
             }
         },
         "Archetypes": {
@@ -38,8 +65,10 @@
                         "Texture": "Ball5",
                         "Layer": 1
                     },
-                    "RigidBody": {},
+                    "RigidBody": {
+                    },
                     "CircleCollider": {
+                        "CollisionLayerFlags": [ "physics" ],
                         "Radius": 0.5
                     },
                     "Transform": {},
@@ -65,8 +94,8 @@
                     "Layer": 0
                 },
                 "Transform": {
-                    "translation": [ 0, -3, 0 ],
-                    "scale": [ 10, 10, 10 ]
+                    "Translation": [ 0, -3, 0 ],
+                    "Scale": [ 10, 10, 10 ]
                 }
             }
         },
@@ -81,10 +110,11 @@
                     "Velocity": [ 3, 1, 0 ]
                 },
                 "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 0, 0, 1 ]
+                    "Translation": [ 0, 0, 1 ]
                 },
                 "MovementAI": {}
             }
@@ -100,10 +130,11 @@
                     "Velocity": [ -2, -1, 0 ]
                 },
                 "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 2, 1, 1 ]
+                    "Translation": [ 2, 1, 1 ]
                 },
                 "MovementAI": {}
             }
@@ -119,10 +150,11 @@
                     "Velocity": [ 1.5, 4.3, 0 ]
                 },
                 "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 1, 0, 1 ]
+                    "Translation": [ 1, 0, 1 ]
                 },
                 "MovementAI": {}
             }
@@ -130,58 +162,53 @@
         {
             "Name": "TextEnt",
             "Components": {
-                "TextSprite": {
-                    "Texture": "FontSheet",
-                    "StrideMultiplier": [0.6, 1],
-                    "Layer": 1,
-                    "Text": "The Quick Brown Fox Jumps Over The Lazy Dog"
+                "Text": {
+                    "String": "The Quick Brown Fox Jumps Over The Lazy Dog"
                 },
                 "Transform": {
-                    "translation": [ -4.9, 2, 0 ],
-                    "scale": [ 0.35, 0.35, 0 ]
+                    "Translation": [ -4.9, 2, 0 ],
+                    "Scale": [ 0.35, 0.35, 0 ]
                 }
             }
         },
         {
-            "Name": "TileEnt",
-            "Components": {
-                "TextSprite": {
-                    "Texture": "FontSheet",
-                    "Layer": 1,
-                    "RowWidth": 5
-                },
-                "Transform": {
-                    "translation": [ -4, 1, 0 ],
-                    "scale": [ 0.6, 0.6, 0 ]
-                }
-            }
-        },
-        {
-            "Name": "Ranger",
+            "Name": "Player",
             "Components": {
                 "Transform": {
-                    "translation": [ -4, -1, 0 ],
-                    "scale": [ 8, 4, 1 ]
+                    "Translation": [ -4, -1],
+                    "Scale": [ 2, 2 ]
                 },
                 "Sprite": {
-                    "Texture": "ElfSheet"
+                    "Texture": "PlayerSheet"
+                },
+                "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
+                    "Radius": 0.5
+                },
+                "RigidBody": {
+                    "Acceleration": [ 0, 0 ],
+                    "Drag": 15
+                },
+                "PlayerController": {
+                    "left": [ -1, 0 ],
+                    "right": [ 1, 0 ],
+                    "up": [ 0, 1 ],
+                    "down": [ 0, -1 ],
+                    "maxSpeed": 1,
+                    "animationName": ["PlayerMoveRight", "PlayerMoveLeft", "PlayerMoveUp", "PlayerMoveDown"]
                 },
                 "Animation": {
-                    "frameStart": 0,
-                    "frameCount": 12,
-                    "frameDuration": 0.12,
-                    "isLooping": true,
-                    "isRunning": true
-                },
-                "PlayerController": {}
+                    "Animation": "PlayerMoveRight",
+                    "IsRunning": true
+                }
             }
         },
         {
             "Name": "Planet1",
             "Components": {
               "Transform": {
-                "translation": [ 2, 1, 0 ],
-                "scale": [ 2.5, 2.5, 1 ]
+                "Translation": [ 2, 1, 0 ],
+                "Scale": [ 2.5, 2.5, 1 ]
               },
               "Sprite": {
                 "Texture": "Ball4",
@@ -194,8 +221,8 @@
             "Name": "Planet2",
             "Components": {
               "Transform": {
-                "translation": [ 2, 1, 0 ],
-                "scale": [ 1, 1, 1 ]
+                "Translation": [ 2, 1, 0 ],
+                "Scale": [ 1, 1, 1 ]
               },
               "Sprite": {
                 "Texture": "Ball5",

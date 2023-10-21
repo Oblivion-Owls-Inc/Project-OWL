@@ -114,9 +114,9 @@
         else
         {
             offset += mousePos - buildPos;
-            distanceSquared = glm::dot( offset, offset );
+            float distance = std::sqrt( glm::dot( offset, offset ) );
             m_Sprite->SetColor( { 0.5f, 0, 0, 0 } );
-            m_Sprite->SetOpacity( std::lerp( 0.5f, 0.0f, std::clamp( distanceSquared - m_PlacementRange * m_PlacementRange, 0.0f, 1.0f ) ) );
+            m_Sprite->SetOpacity( std::lerp( 0.5f, 0.0f, std::clamp( distance - m_PlacementRange, 0.0f, 1.0f ) ) );
         }
     }
 
