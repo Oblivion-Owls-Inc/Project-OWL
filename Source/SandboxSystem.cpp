@@ -52,6 +52,10 @@ static glm::vec2 rayOrigin;
 /// @brief  Gets called whenever a scene is initialized
 void SandboxSystem::OnSceneInit()
 {
+    if ( SceneSystem::GetInstance()->GetSceneName() != "Sandbox" )
+    {
+        return;
+    }
     update = true;
 
     tiles = Entities()->GetEntity("Tiles");

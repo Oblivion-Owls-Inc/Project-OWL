@@ -30,6 +30,7 @@
 #include "TilemapCollider.h"
 #include "Pool.h"
 #include "StaticBody.h"
+#include "ConstructionBehavior.h"
 
 
 //-----------------------------------------------------------------------------
@@ -96,25 +97,26 @@
 
     /// @brief  map containing information on Component types by name
     std::map< std::string, std::pair< std::type_index, Component* (*)() > > const ComponentFactory::s_ComponentTypes = {
-        { "Transform"        , ComponentInfo<Transform>()        },
-        { "Sprite"           , ComponentInfo<Sprite>()           },
-        { "RigidBody"        , ComponentInfo<RigidBody>()        },
-        { "MovementAI"       , ComponentInfo<MovementAI>()       },
-        { "LineCollider"     , ComponentInfo<LineCollider>()     },
-        { "CircleCollider"   , ComponentInfo<CircleCollider>()   },
-        { "AudioPlayer"      , ComponentInfo<AudioPlayer>()      },
-        { "Animation"        , ComponentInfo<Animation>()        },
-        { "Text"             , ComponentInfo<Text>()             },
-        { "PlayerController" , ComponentInfo<PlayerController>() },
-        { "TurretBehavior"   , ComponentInfo<TurretBehavior>()   },
-        { "EffectAnimator"   , ComponentInfo<EffectAnimator>()   },
-        { "Tilemap<int>"     , ComponentInfo< Tilemap<int> >()   },
-        { "Pool<int>"        , ComponentInfo< Pool < int > >()   },
-        { "Pool<float>"      , ComponentInfo< Pool < float > >() },
-        { "TilemapSprite"    , ComponentInfo<TilemapSprite>()    },
-        { "Pathfinder"       , ComponentInfo<Pathfinder>()       },
-        { "TilemapCollider"  , ComponentInfo<TilemapCollider>()  },
-        { "StaticBody"       , ComponentInfo<StaticBody>()       }
+        { "Transform"           , ComponentInfo< Transform >()            },
+        { "Sprite"              , ComponentInfo< Sprite >()               },
+        { "RigidBody"           , ComponentInfo< RigidBody >()            },
+        { "MovementAI"          , ComponentInfo< MovementAI >()           },
+        { "LineCollider"        , ComponentInfo< LineCollider >()         },
+        { "CircleCollider"      , ComponentInfo< CircleCollider >()       },
+        { "AudioPlayer"         , ComponentInfo< AudioPlayer >()          },
+        { "Animation"           , ComponentInfo< Animation >()            },
+        { "Text"                , ComponentInfo< Text >()                 },
+        { "PlayerController"    , ComponentInfo< PlayerController >()     },
+        { "TurretBehavior"      , ComponentInfo< TurretBehavior >()       },
+        { "EffectAnimator"      , ComponentInfo< EffectAnimator >()       },
+        { "Tilemap<int>"        , ComponentInfo< Tilemap<int> >()         },
+        { "Pool<int>"           , ComponentInfo< Pool<int> >()            },
+        { "Pool<float>"         , ComponentInfo< Pool<float> >()          },
+        { "TilemapSprite"       , ComponentInfo< TilemapSprite >()        },
+        { "Pathfinder"          , ComponentInfo< Pathfinder >()           },
+        { "TilemapCollider"     , ComponentInfo< TilemapCollider >()      },
+        { "StaticBody"          , ComponentInfo< StaticBody >()           },
+        { "ConstructionBehavior", ComponentInfo< ConstructionBehavior >() },
     };
 
 //-----------------------------------------------------------------------------

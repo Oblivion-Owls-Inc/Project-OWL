@@ -142,10 +142,6 @@
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
     void CollisionSystem::OnFixedUpdate()
     {
-        std::stable_sort( m_Colliders.begin(), m_Colliders.end(), []( Collider const* a, Collider const* b ) -> bool {
-            return a->GetPriority() < b->GetPriority();
-        });
-
         for ( unsigned i = 0; i < m_CollisionSteps; ++i )
         {
             checkCollisions();

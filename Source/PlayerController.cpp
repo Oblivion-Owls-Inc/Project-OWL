@@ -83,30 +83,33 @@ void PlayerController::OnFixedUpdate()
     {
         // 0 is right.
         m_Animation->SetAsset(m_playerAnimations[0]);
-        direction = glm::normalize(m_rightDirection);
-        m_RigidBody->ApplyVelocity(direction);
+        direction += m_rightDirection;
     }
     if (MoveLeft())
     {
         // 1 is left
         m_Animation->SetAsset(m_playerAnimations[1]);
-        direction = glm::normalize(m_leftDirection);
-        m_RigidBody->ApplyVelocity(direction);
+        direction += m_leftDirection;
     }
     if (MoveUp())
     {
         // 2 is up.
         m_Animation->SetAsset(m_playerAnimations[2]);
-        direction = glm::normalize(m_upwardDirection);
-        m_RigidBody->ApplyVelocity(direction);
+        direction += m_upwardDirection;
     }
 	if (MoveDown())
 	{
         // 3 is down.
         m_Animation->SetAsset(m_playerAnimations[3]);
-        direction = glm::normalize(m_downwardDirection);
-        m_RigidBody->ApplyVelocity(direction);
+        direction += m_downwardDirection;
 	}
+
+    if ( direction != glm::vec2( 0 ) )
+    {
+        direction = glm::normalize( direction );
+    }
+
+    m_RigidBody->ApplyVelocity(direction * m_maxSpeed);
 }
 
 //-----------------------------------------------------------------------------

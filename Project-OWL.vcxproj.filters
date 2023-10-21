@@ -171,6 +171,9 @@
     <Filter Include="Engine\Entity\Component\Behavior\Tilemap">
       <UniqueIdentifier>{7c0f06d8-341a-42ab-ad77-109c905fe568}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Behaviors\ConstructionBehavior">
+      <UniqueIdentifier>{278dd904-bde9-4181-bd98-8a632d0db159}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -370,6 +373,9 @@
     </ClCompile>
     <ClCompile Include="Source\StaticBody.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ConstructionBehavior.cpp">
+      <Filter>Game\Behaviors\ConstructionBehavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -577,6 +583,9 @@
     <ClInclude Include="Source\StaticBody.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ConstructionBehavior.h">
+      <Filter>Game\Behaviors\ConstructionBehavior</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -595,6 +604,9 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\XinoScene.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>

@@ -94,8 +94,8 @@
                     "Layer": 0
                 },
                 "Transform": {
-                    "translation": [ 0, -3, 0 ],
-                    "scale": [ 10, 10, 10 ]
+                    "Translation": [ 0, -3, 0 ],
+                    "Scale": [ 10, 10, 10 ]
                 }
             }
         },
@@ -114,7 +114,7 @@
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 0, 0, 1 ]
+                    "Translation": [ 0, 0, 1 ]
                 },
                 "MovementAI": {}
             }
@@ -134,7 +134,7 @@
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 2, 1, 1 ]
+                    "Translation": [ 2, 1, 1 ]
                 },
                 "MovementAI": {}
             }
@@ -154,7 +154,7 @@
                     "Radius": 0.5
                 },
                 "Transform": {
-                    "translation": [ 1, 0, 1 ]
+                    "Translation": [ 1, 0, 1 ]
                 },
                 "MovementAI": {}
             }
@@ -166,8 +166,8 @@
                     "String": "The Quick Brown Fox Jumps Over The Lazy Dog"
                 },
                 "Transform": {
-                    "translation": [ -4.9, 2, 0 ],
-                    "scale": [ 0.35, 0.35, 0 ]
+                    "Translation": [ -4.9, 2, 0 ],
+                    "Scale": [ 0.35, 0.35, 0 ]
                 }
             }
         },
@@ -175,8 +175,8 @@
             "Name": "Player",
             "Components": {
                 "Transform": {
-                    "translation": [ -4, -1],
-                    "scale": [ 2, 2 ]
+                    "Translation": [ -4, -1],
+                    "Scale": [ 2, 2 ]
                 },
                 "Sprite": {
                     "Texture": "PlayerSheet"
@@ -207,8 +207,8 @@
             "Name": "Planet1",
             "Components": {
               "Transform": {
-                "translation": [ 2, 1, 0 ],
-                "scale": [ 2.5, 2.5, 1 ]
+                "Translation": [ 2, 1, 0 ],
+                "Scale": [ 2.5, 2.5, 1 ]
               },
               "Sprite": {
                 "Texture": "Ball4",
@@ -221,8 +221,8 @@
             "Name": "Planet2",
             "Components": {
               "Transform": {
-                "translation": [ 2, 1, 0 ],
-                "scale": [ 1, 1, 1 ]
+                "Translation": [ 2, 1, 0 ],
+                "Scale": [ 1, 1, 1 ]
               },
               "Sprite": {
                 "Texture": "Ball5",

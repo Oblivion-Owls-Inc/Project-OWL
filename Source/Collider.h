@@ -98,15 +98,6 @@ public: // accessors
     void SetCollisionLayerId( unsigned layerId ) { m_CollisionLayerId = layerId; }
 
 
-    /// @brief  gets the priority of this Collider
-    /// @return the priority of this Collider
-    int GetPriority() const { return m_Priority; }
-
-    /// @brief  sets the priority of this Collider
-    /// @param  priority    the priority to set
-    void SetPriority( unsigned priority ) { m_Priority = priority; }
-
-
     /// @brief  gets the flags of which layers this Collider collides with
     /// @return the flags of which layers this Collider collides with
     CollisionLayerFlags GetCollisionLayerFlags() const { return m_CollisionLayerFlags; }
@@ -140,9 +131,6 @@ private: // member variables
     /// @brief  the collision layer of this Collider
     unsigned m_CollisionLayerId = 0;
 
-    /// @brief  the priority of this collider. higher priority colliders are checked against last
-    int m_Priority = 0;
-
     /// @brief  flags of which layers this Collider collides with
     CollisionLayerFlags m_CollisionLayerFlags = 0;
 
@@ -160,10 +148,6 @@ protected: // reading
     /// @brief  reads the collision layer flags from json
     /// @param  data    the json data to read from
     void readCollisionLayerFlags( nlohmann::ordered_json const& data );
-
-    /// @brief  reads the priority of this Collider
-    /// @param  data    the json data to read from
-    void readPriority( nlohmann::ordered_json const& data );
     
 //-----------------------------------------------------------------------------
 };

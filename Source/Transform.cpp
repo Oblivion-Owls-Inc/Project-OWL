@@ -198,20 +198,20 @@
     {
         nlohmann::ordered_json data;
 
-        data["translation"] = Stream::Write(m_Translation);
-        data["rotation"] = m_Rotation;
-        data["scale"] = Stream::Write(m_Scale);
-        data["diegetic"] = m_IsDiegetic;
+        data["Translation"] = Stream::Write(m_Translation);
+        data["Rotation"] = m_Rotation;
+        data["Scale"] = Stream::Write(m_Scale);
+        data["IsDiegetic"] = m_IsDiegetic;
 
         return data;
     }
 
     // Map of all the read methods for the transform component.
     ReadMethodMap< Transform > Transform::s_ReadMethods = {
-	    { "translation" , &readTranslation },
-	    { "rotation"	, &readRotation    },
-	    { "scale"		, &readScale       },
-	    { "diegetic"	, &readIsDiegetic  }
+	    { "Translation" , &readTranslation },
+	    { "Rotation"	, &readRotation    },
+	    { "Scale"		, &readScale       },
+	    { "IsDiegetic"	, &readIsDiegetic  }
     };
 
 

@@ -64,6 +64,12 @@ public: // accessors
     template < typename ComponentType >
     ComponentType* GetComponent();
 
+    /// @brief  gets the component of the specified type from this Entity
+    /// @tparam ComponentType   the type of component to get
+    /// @return the component of the specified type (nullptr if component doesn't exist)
+    template < typename ComponentType >
+    ComponentType const* GetComponent() const;
+
     /// @brief  gets all of the components derived from the specified type from this Entity
     /// @tparam ComponentType   the type of component to get
     /// @return a vector of all components of the specified type
@@ -93,6 +99,7 @@ public: // accessors
      /// @brief  gets the Id of this Component
      /// @return the Id of this Component
      unsigned GetId() const { return m_Id; }
+
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
@@ -168,8 +175,17 @@ public: // copying
     /// @param  other   the entity to copy from
     void operator =( Entity const& other );
 
+    /// @brief  makes a copy of this Entity
+    /// @return the new copy of this Entity
+    Entity* Clone() const {
+        Entity* clone = new Entity;
+        *clone = *this;
+        return clone;
+    }
+
     // prevent non-assignment copying
     Entity( Entity const& other ) = delete;
+
 
 //------------------------------------------------------------------------------
 };
@@ -202,6 +218,15 @@ public: // copying
 
         // if no derived component found, return nullptr
         return nullptr;
+    }
+
+    /// @brief  gets the component of the specified type from this Entity
+    /// @tparam ComponentType   the type of component to get
+    /// @return the component of the specified type (nullptr if component doesn't exist)
+    template < typename ComponentType >
+    ComponentType const* Entity::GetComponent() const
+    {
+        return const_cast< Entity* >( this )->GetComponent< ComponentType >();
     }
 
     /// @brief  gets all of the components derived from the specified type from this Entity
