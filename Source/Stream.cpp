@@ -40,7 +40,7 @@
     void Stream::WriteToTraceLog(std::string const& traceMessage)
     {
         // Attempt to open the trace log for writing.
-        std::ofstream traceFile("trace.log");
+        static std::ofstream traceFile("trace.log");
         if (!traceFile.is_open())
         {
             throw std::runtime_error(

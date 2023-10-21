@@ -15,6 +15,10 @@
 #include "Behavior.h"
 #include <glm/glm.hpp> // glm::vec2
 
+class RigidBody;
+class Animation;
+class AnimationAsset;
+
 class PlayerController : public Behavior
 {
 //-----------------------------------------------------------------------------
@@ -75,6 +79,14 @@ private: // member variables
     glm::vec2 m_upwardDirection;
     // Vector responsible for downward direction movement.
     glm::vec2 m_downwardDirection;
+    // All the names of the animations for the player.
+    std::string m_animationNames[4];
+    // A cached instance of the parent's rigidbody.
+    RigidBody* m_RigidBody;
+    // A cached instance of the parent's animation.
+    Animation* m_Animation;
+    // All the animations for the player.
+    AnimationAsset const* m_playerAnimations[4];
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -99,6 +111,10 @@ private: // reading
     /// @brief Read in the max speed for the player.
     /// @param data The JSON file to read from.
     void readMaxSpeed(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the animation names for the player.
+    /// @param data The JSON file to read from.
+    void readAnimationNames(nlohmann::ordered_json const& data);
 
 
     /// @brief the map of read methods for this Component

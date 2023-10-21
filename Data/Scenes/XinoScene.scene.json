@@ -25,15 +25,34 @@
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
                 "SheetDimensions": [ 16, 8 ]
             },
-            "ElfSheet": {
-                "Filepath": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png",
-                "SheetDimensions": [ 22, 17 ]
+            "PlayerSheet": {
+                "Filepath": "Data/Textures/Full Spritesheet.png",
+                "SheetDimensions": [ 12, 15 ],
+                "Pivot": [ 0.5, 0.16 ]
             }
         },
         "Animations": {
-            "Elf": {
+            "PlayerMoveDown": {
                 "Start": 0,
                 "End": 12,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveUp": {
+                "Start": 12,
+                "End": 24,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveRight": {
+                "Start": 24,
+                "End": 36,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveLeft": {
+                "Start": 36,
+                "End": 48,
                 "FrameRate": 12,
                 "IsLooping": true
             }
@@ -153,31 +172,33 @@
             }
         },
         {
-            "Name": "Ranger",
+            "Name": "Player",
             "Components": {
                 "Transform": {
-                    "translation": [ -4, -1, 0 ],
-                    "scale": [ 8, 4, 1 ]
+                    "translation": [ -4, -1],
+                    "scale": [ 2, 2 ]
                 },
                 "Sprite": {
-                    "Texture": "ElfSheet"
+                    "Texture": "PlayerSheet"
                 },
                 "CircleCollider": {
                     "CollisionLayerFlags": [ "physics" ],
                     "Radius": 0.5
                 },
                 "RigidBody": {
-                    "Acceleration": [ 0, 0 ]
+                    "Acceleration": [ 0, 0 ],
+                    "Drag": 15
                 },
                 "PlayerController": {
                     "left": [ -1, 0 ],
                     "right": [ 1, 0 ],
                     "up": [ 0, 1 ],
                     "down": [ 0, -1 ],
-                    "maxSpeed": 5
+                    "maxSpeed": 1,
+                    "animationName": ["PlayerMoveRight", "PlayerMoveLeft", "PlayerMoveUp", "PlayerMoveDown"]
                 },
                 "Animation": {
-                    "Animation": "Elf",
+                    "Animation": "PlayerMoveRight",
                     "IsRunning": true
                 }
             }
