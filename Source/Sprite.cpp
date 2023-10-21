@@ -22,7 +22,7 @@
 /// @brief  default constructor
 Sprite::Sprite() :
     Component( typeid( Sprite ) ),
-    m_Color( { 1, 1, 1, 1 } ),
+    m_Color( { 0, 0, 0, 0 } ),
     m_Opacity( 1.0f ),
     m_Layer( 2 ),
     m_IsTextured( false ),
@@ -53,7 +53,7 @@ Sprite::Sprite( Texture const* texture, int layer, std::type_index type ) :
 /// @param type         typeid(DerivedClass)
 Sprite::Sprite( std::type_index type ) :
     Component( type ),
-    m_Color( { 1, 1, 1, 1 } ),
+    m_Color( { 0, 0, 0, 0 } ),
     m_Opacity( 1.0f ),
     m_Layer( 2 ),
     m_IsTextured( false ),
@@ -118,8 +118,9 @@ void Sprite::Draw()
         }
     }
 
-    glUniformMatrix4fv(sh->GetUniformID("mvp"), 1, 0, &mat[0][0]);
+    glUniformMatrix4fv(sh->GetUniformID("mvp"), 1, false, &mat[0][0]);
     glUniform1f(sh->GetUniformID("opacity"), m_Opacity);
+    glUniform4fv(sh->GetUniformID("tint"), 1, &m_Color[0]);
 
     // Render it with triangle strip mode
     Mesh const* m = m_Texture->GetMesh();
@@ -162,8 +163,10 @@ void Sprite::OnExit()
         {
             return;
         }
-        if (ImGui::DragInt("Frame Index", &m_FrameIndex, 1, 0, 
-            m_Texture->GetSheetDimensions().x * m_Texture->GetSheetDimensions().y))
+        if ( ImGui::DragInt(
+            "Frame Index", &m_FrameIndex, 1, 0, 
+            m_Texture->GetSheetDimensions().x * m_Texture->GetSheetDimensions().y
+        ) )
         {
 			SetFrameIndex(m_FrameIndex);
 		}

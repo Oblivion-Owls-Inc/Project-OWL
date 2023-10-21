@@ -8,23 +8,24 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Sandbox"
+            "NextSceneName": "Prototype"
         },
         "AssetLibrarySystem<Entity>": {},
         "AssetLibrarySystem<Sound>": {},
         "AssetLibrarySystem<Texture>": {},
         "AssetLibrarySystem<TransformAnimation>": {},
         "AssetLibrarySystem<AnimationAsset>": {},
-        "BehaviorSystem<Animation>": {},
+        "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<MovementAI>": {},
         "BehaviorSystem<PlayerController>": {},
+        "BehaviorSystem<Tilemap<int>>": {},
         "BehaviorSystem<RigidBody>": {},
         "CollisionSystem": {
             "CollisionLayerNames": [ "physics", "terrain", "enemies", "player", "base", "projectiles" ],
             "CollisionSteps": 2
         },
+        "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
-        "BehaviorSystem<Tilemap<int>>": {},
         "EntitySystem": {},
         "CameraSystem": {},
         "RenderSystem": {},

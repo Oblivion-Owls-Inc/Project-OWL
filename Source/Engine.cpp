@@ -160,6 +160,7 @@
     //#endif // !Debug
         { "AudioSystem",                        &addSystem< AudioSystem >                           },
         { "EntitySystem",                       &addSystem< EntitySystem >                          },
+        { "BehaviorSystem<Behavior>",           &addSystem< BehaviorSystem< Behavior > >            },
         { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >    },
         { "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >          },
         { "behaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >      },

@@ -1,0 +1,134 @@
+{
+    "Assets": {
+        "Textures": {
+            "Turret": {
+                "Filepath": "Data/Textures/Turret.png",
+                "SheetDimensions": [ 19, 1 ],
+                "Pivot": [ 0.75, 0.67 ]
+            },
+            "FontSheet": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [ 16, 8 ]
+            },
+            "4pxSheet": {
+                "Filepath": "Data/Textures/4px.png",
+                "SheetDimensions": [ 4, 1 ],
+                "Pivot": [ 0, 1 ]
+            },
+            "Ball": {
+                "Filepath": "Data/Textures/Balls/Ball.png"
+            },
+            "ElfSheet": {
+                "Filepath": "Data/Textures/Elementals_leaf_ranger_288x128_SpriteSheet.png",
+                "SheetDimensions": [ 22, 17 ],
+                "Pivot": [ 0.5, 0.17 ]
+            }
+        },
+        "Archetypes": {
+            "Enemy": {
+                "Name": "Enemy",
+                "Components": {
+                    "Sprite": {
+                        "Texture": "Ball",
+                        "Layer": 2
+                    },
+                    "Transform": {
+                        "scale": [ 0.2, 0.2 ]
+                    },
+                    "RigidBody": {
+                        "Acceleration": [ 0.0, 0.0 ],
+                        "Restitution": 1
+                    },
+                    "CircleCollider": {
+                        "Radius": 0.1,
+                        "CollisionLayer": "physics",
+                        "CollisionLayerFlags": [ "physics" ]
+                    },
+                    "Pool<int>": {
+                        "name": "Health",
+                        "Active": true,
+                        "BaseValue": 100
+                    }
+                }
+            },
+            "Turret": {
+                "Name": "Turret",
+                "Components": {
+                    "Sprite": {
+                        "Texture": "Turret",
+                        "Layer": 1
+                    },
+                    "Transform": {}
+                }
+            }
+        }
+    },
+    "Entities": [
+        {
+            "Name": "Tiles",
+            "Components": {
+                "TilemapSprite": {
+                    "Texture": "4pxSheet",
+                    "Layer": 0
+                },
+                "Tilemap<int>":  {
+                    "TileData": [
+                        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+                        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+                    ],
+                    "RowWidth" :  16,
+                    "TileScale": [ 0.6, 0.6 ]
+                },
+                "Transform": {
+                    "translation": [ -4.8, 3.8 ],
+                    "scale": [ 0.6, 0.6 ]
+                }
+            }
+        },
+        {
+            "Name": "Player",
+            "Components": {
+                "Transform": {},
+                "Sprite": {
+                    "Texture": "ElfSheet",
+                    "Layer": 1
+                },
+                "PlayerController": {},
+                "RigidBody": {
+                    "Acceleration": [ 0, 0 ]
+                }
+            }
+        },
+        {
+            "Name": "ConstructionManager",
+            "Components": {
+                "ConstructionBehavior": {
+                    "Buildings": [
+                        {
+                            "Name": "Turret",
+                            "Cost": 10
+                        }
+                    ],
+                    "PlacementRange": 1.0,
+                    "TilemapName": "Tiles",
+                    "PlayerName": "Player"
+                },
+                "Transform": {},
+                "Sprite": {
+                    "Opacity": 0
+                }
+            }
+        }
+    ]
+}

@@ -56,7 +56,10 @@ void PlayerController::OnFixedUpdate()
         direction += glm::vec2( 0.0f, -1.0f );
 	}
 
-    direction = glm::normalize(direction);
+    if ( direction != glm::vec2( 0 ) )
+    {
+        direction = glm::normalize( direction );
+    }
 
     GetParent()->GetComponent<RigidBody>()->SetVelocity( direction * maxSpeed );
 

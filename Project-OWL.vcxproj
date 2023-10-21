@@ -183,6 +183,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\ConstructionBehavior.cpp" />
     <ClCompile Include="Source\Curve.cpp" />
     <ClCompile Include="Source\EffectAnimator.cpp" />
     <ClCompile Include="Source\FollowingBehavior.cpp" />
@@ -242,6 +243,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\CircleCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\ConstructionBehavior.h" />
     <ClInclude Include="Source\Curve.h" />
     <ClInclude Include="Source\EffectAnimator.h" />
     <ClInclude Include="Source\FollowingBehavior.h" />
@@ -307,6 +309,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
     <None Include="Data\Scenes\AidanScene.scene.json" />
+    <None Include="Data\Scenes\Prototype.scene.json" />
     <None Include="Data\Scenes\Sandbox.scene.json" />
     <None Include="Data\Scenes\TestScene.scene.json" />
     <None Include="Data\Scenes\TurretScene.scene.json" />
