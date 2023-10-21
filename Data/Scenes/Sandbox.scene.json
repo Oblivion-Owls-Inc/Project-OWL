@@ -39,12 +39,12 @@
             "CollisionLayer": "enemies",
             "CollisionLayerFlags": [ "player", "enemies" ]
           },
-          "Pool<int>": {
-            "name": "Health",
-            "Active": true,
-            "BaseValue": 100
-          },
-          "EnemyBehavior": {}
+          "EnemyBehavior": {
+            "Health": {
+              "Active": true,
+              "BaseValue": 40
+            }
+          }
         }
       },
       "Turret": {
@@ -65,7 +65,8 @@
           },
           "TurretBehavior": {
             "range": 2,
-            "bulletdamage": 20
+            "bulletdamage": 20,
+            "Target":  "Enemy"
           }
         }
       }

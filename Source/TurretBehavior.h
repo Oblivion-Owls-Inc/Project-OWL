@@ -63,6 +63,7 @@ class TurretBehavior :
 		float m_BulletSpeed = 1.0f;
 		float m_BulletSize = 1.0f;
 		float m_LastFireTime = 0.0f;
+		std::string m_TargetName;
 		Entity* m_BulletPrefab = nullptr; /// Todo: Make this a prefab actually work
 
 	private:
@@ -71,6 +72,10 @@ class TurretBehavior :
 		Entity* CheckForTarget();
 
 	private: ///Reading 
+
+		/// @brief reads in the name of the target
+		/// @param data - the json data to read from
+		void readTargetName(nlohmann::ordered_json const& data);
 
 		/// @brief reads the fire rate from the json file
 		/// @param jsonValue  the json data

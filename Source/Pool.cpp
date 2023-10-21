@@ -17,18 +17,16 @@
 #include "DebugSystem.h"
 
 template<typename Value>
-inline Pool<Value>::Pool():
-	Component( typeid(Pool) ),
+inline Pool<Value>::Pool(std::string Name):
 	m_CurrentValue( 0 ), 
 	m_DefaultValue( 0 ), 
 	m_Active(false),
-	m_Name(std::string( ( std::string("Pool" + GetUniqueId() ) ) ) )
+	m_Name(std::string( ( Name + std::string(" Pool") ) ) )
 {
 }
 
 template<typename Value>
 Pool<Value>::Pool(const Pool& other): 
-	Component(typeid(Pool)),
 	m_CurrentValue(other.m_CurrentValue), 
 	m_DefaultValue(other.m_DefaultValue), 
 	m_Active(other.m_Active),
@@ -96,11 +94,6 @@ void Pool<Value>::SetName(std::string name)
 	m_Name = name;
 }
 
-template<typename Value>
-Component* Pool<Value>::Clone() const
-{
-	return (Component *) new Pool(*this);
-}
 
 template<typename Value>
 void Pool<Value>::Inspector()

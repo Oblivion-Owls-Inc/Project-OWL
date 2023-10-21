@@ -7,18 +7,18 @@
 
 
 #define POOL_H
+#include "ISerializable.h"
 
-#include "Component.h"
 
 template <typename Value>
-class Pool : public Component
+class Pool : public ISerializable
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructor
 //-----------------------------------------------------------------------------
 
 	///@brief constructor
-	Pool();
+	Pool(std::string name);
 
 	Pool(const Pool& other);
 
@@ -65,12 +65,6 @@ public: // accessors
 //-----------------------------------------------------------------------------
 public: // virtual methods
 //-----------------------------------------------------------------------------
-
-
-	/// @brief virtual component clone function
-	/// @return new clone of component
-	virtual Component* Clone() const;
-	
 	/// @brief Used by the Debug System to display information about this Component
 	virtual void Inspector();
 

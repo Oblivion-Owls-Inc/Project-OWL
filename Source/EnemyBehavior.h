@@ -9,7 +9,7 @@
 
 #pragma once
 #include "behavior.h"
-
+#include "Pool.h"
 
 class Pathfinder;
 
@@ -19,13 +19,19 @@ class EnemyBehavior :
 //-----------------------------------------------------------------------------
 public: // constructor / destructor / inspector
 //-----------------------------------------------------------------------------
-	
 	EnemyBehavior();
+
+///-----------------------------------------------------------------------------
+public: //Methods
+///-----------------------------------------------------------------------------
+
+    Pool<int>* GetHealth() { return &m_Health; }
 
 //-----------------------------------------------------------------------------
 private: // Member Variables
 //----------------------------------------------------------------------------
-
+    ///@   The Health of the Enemy
+    Pool<int> m_Health; 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -54,6 +60,12 @@ public:
     /// @brief Write all Transform component data to a JSON file.
     /// @return The JSON file containing the Transform component data.
     virtual nlohmann::ordered_json Write() const override;
+
+///-----------------------------------------------------------------------------
+private: // Read Methods
+///-----------------------------------------------------------------------------
+
+    void readHealth(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 private: // 

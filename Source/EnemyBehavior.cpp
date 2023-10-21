@@ -9,13 +9,14 @@
 #include "Pool.h"
 #include "Entity.h"
 
-EnemyBehavior::EnemyBehavior() : Behavior(typeid(EnemyBehavior))
+EnemyBehavior::EnemyBehavior() : Behavior(typeid(EnemyBehavior)), m_Health("Health")
 {
 }
 
 void EnemyBehavior::OnInit()
 {
 	BehaviorSystem<EnemyBehavior>::GetInstance()->AddBehavior(this);
+    m_Health.OnInit();
 }
 
 void EnemyBehavior::OnExit()
@@ -25,21 +26,20 @@ void EnemyBehavior::OnExit()
 
 void EnemyBehavior::Inspector()
 {
+    m_Health.Inspector();
 }
 
-ReadMethodMap< EnemyBehavior > const EnemyBehavior::s_ReadMethods = {};
+ReadMethodMap< EnemyBehavior > const EnemyBehavior::s_ReadMethods = {
+	{ "Health", &EnemyBehavior::readHealth }
+};
 
 void EnemyBehavior::OnFixedUpdate()
 {
-	Pool<int>* pool = GetParent()->GetComponent<Pool<int>>();
-   // Pathfinder* pathfinder = GetParent()->GetComponent<Pathfinder>();
 
-	if (!pool )
-		return;
 
 	//ChaseTarget(pathfinder, Engine::GetInstance()->GetFixedFrameDuration());
 
-	if (!pool->GetActive())
+	if (!m_Health.GetActive())
 	{
        GetParent()->Destroy();
 	}
@@ -48,9 +48,13 @@ void EnemyBehavior::OnFixedUpdate()
 nlohmann::ordered_json EnemyBehavior::Write() const
 {
 	nlohmann::ordered_json data;
-	data["Active"] = GetParent()->GetComponent<Pool<int>>()->GetActive();
-
+    data["Health"] = m_Health.Write();
 	return data;
+}
+
+void EnemyBehavior::readHealth(nlohmann::ordered_json const& data)
+{
+    Stream::Read<ISerializable>(&m_Health, data);
 }
 
 void EnemyBehavior::ChaseTarget(Pathfinder* pathfinder, float dt)
@@ -88,6 +92,6 @@ Component* EnemyBehavior::Clone() const
 	return new EnemyBehavior(*this);
 }
 
-EnemyBehavior::EnemyBehavior(EnemyBehavior const& other) : Behavior(typeid(EnemyBehavior))
+EnemyBehavior::EnemyBehavior(EnemyBehavior const& other) : Behavior(typeid(EnemyBehavior)), m_Health(other.m_Health)
 {
 }

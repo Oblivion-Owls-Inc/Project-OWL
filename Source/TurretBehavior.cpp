@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "CircleCollider.h"
 #include "CollisionSystem.h"
+#include "EnemyBehavior.h"
 #include "Animation.h"
 #include "Engine.h"
 #include "Pool.h"
@@ -32,7 +33,8 @@ TurretBehavior::TurretBehavior(const TurretBehavior& other)
 					m_BulletSpeed(other.m_BulletSpeed), 
 					m_BulletSize(other.m_BulletSize),
 					m_LastFireTime(other.m_LastFireTime),
-					m_BulletPrefab(other.m_BulletPrefab)
+					m_BulletPrefab(other.m_BulletPrefab),
+					m_TargetName(other.m_TargetName)
 {
 }
 
@@ -85,6 +87,7 @@ void TurretBehavior::Inspector()
 	ImGui::DragFloat("Bullet Damage", &m_BulletDamage, 1.0f, 1.0f);
 	ImGui::DragFloat("Bullet Speed", &m_BulletSpeed, 1.0f, 1.0f);
 	ImGui::DragFloat("Bullet Size", &m_BulletSize, 1.0f, 1.0f);
+	ImGui::Text("Target Name: %c", m_TargetName.c_str());
 }
 
 
@@ -95,9 +98,9 @@ void TurretBehavior::FireBullet(Entity* Target)
 	if (currentTime - m_LastFireTime < m_FireRate)
 		return;
 
-	Pool<int>* pool = Target->GetComponent<Pool<int>>();
+	Pool<int>* pool = Target->GetComponent<EnemyBehavior>()->GetHealth();
 
-	if (!pool || !pool->GetActive() || pool->GetName() != std::string("Health"))
+	if (!pool)
 		return;
 
 	///@note this will be moved elsewhere
@@ -110,12 +113,8 @@ Entity* TurretBehavior::CheckForTarget()
 {
     for (auto& entity : Entities()->GetEntities())
     {
-        if (entity == GetParent())
-        {
-            continue;  // Skip the parent entity
-        }
-
-		if (entity->GetName() == std::string("Bullet"))
+		/// Skip the entities that don't match the target name		
+		if (entity->GetName() != m_TargetName)
 		{
 			continue;
 		}
@@ -142,6 +141,11 @@ Entity* TurretBehavior::CheckForTarget()
     }
 
 	return nullptr;
+}
+
+void TurretBehavior::readTargetName(nlohmann::ordered_json const& data)
+{
+	m_TargetName = Stream::Read<std::string>(data);
 }
 
 void TurretBehavior::readFireRate( nlohmann::ordered_json const& data )
@@ -180,6 +184,7 @@ nlohmann::ordered_json TurretBehavior::Write() const
 	data["bulletdamage"] = m_BulletDamage;
 	data["bulletspeed"] = m_BulletSpeed;
 	data["bulletsize"] = m_BulletSize;
+	data["Target"] = m_TargetName;
 
 	return data;
 }
@@ -190,6 +195,7 @@ ReadMethodMap<TurretBehavior> const TurretBehavior::s_ReadMethods =
 	{ "range",					 &readRange },
 	{ "bulletdamage",	  &readBulletDamage },
 	{ "bulletspeed",	   &readBulletSpeed },
-	{ "bulletsize",		    &readBulletSize }
+	{ "bulletsize",		    &readBulletSize },
+	{ "Target",				&readTargetName }
 };
 #pragma	warning(pop)
