@@ -18,6 +18,8 @@
 #include <glm/glm.hpp>       // glm::vec3
 #include <nlohmann/json.hpp> // nlohman::ordered_json
 
+#include "ISerializable.h"
+
 //------------------------------------------------------------------------------
 // Forward references
 //------------------------------------------------------------------------------
@@ -63,13 +65,7 @@ public: // reading
     /// @param  value       pointer to where to store the read data
     /// @param  json        the json data to read from
     template< typename ValueType >
-    static void Read( ValueType* value, nlohmann::ordered_json const& json );
-
-    /// @brief  reads a serializable object from json
-    /// @param  object  the object to read from json
-    /// @param  json    the json data to read from
-    template<>
-    static void Read< ISerializable >( ISerializable* object, nlohmann::ordered_json const& json );
+    static void Read( ValueType& value, nlohmann::ordered_json const& json );
 
     /// @brief  reads a glm vector from json
     /// @tparam size        the size of the vector
@@ -90,6 +86,13 @@ public: // reading
 //------------------------------------------------------------------------------
 public: // writing
 //------------------------------------------------------------------------------
+
+    /// @brief  writes data to json
+    /// @tparam ValueType   the type of data to write to json
+    /// @param  value       the data to write to json
+    /// @return the written json data
+    template< typename ValueType >
+    static nlohmann::ordered_json Write( ValueType const& value );
     
     /// @brief  writes a glm vector to json
     /// @tparam ValueType   the type of value of the vector
@@ -98,6 +101,81 @@ public: // writing
     /// @return the json data of the vector
     template< int size, typename ValueType >
     static nlohmann::ordered_json Write( glm::vec< size, ValueType > const& value );
+
+//-----------------------------------------------------------------------------
+private: // pointer-aware methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  used to differentiate between pointers and non-pointers
+    /// @tparam B   whether ValueType is a pointer
+    template< bool B > struct IsPointer {};
+
+    /// @brief  reads data into a value by pointer
+    /// @tparam ValueType   the type of value to read
+    /// @param  value       the value to read data into
+    /// @param  json        the json data to read from
+    template< typename ValueType >
+    static void Read( ValueType& value, nlohmann::ordered_json const& json, IsPointer<true> );
+
+    /// @brief  reads data into a value by reference
+    /// @tparam ValueType   the type of value to read
+    /// @param  value       the value to read data into
+    /// @param  json        the json data to read from
+    template< typename ValueType >
+    static void Read( ValueType& value, nlohmann::ordered_json const& json, IsPointer<false> );
+
+
+    /// @brief  writes data into a value by pointer
+    /// @tparam ValueType   the type of value to write
+    /// @param  value       the value to write
+    /// @return the written json data
+    template< typename ValueType >
+    static nlohmann::ordered_json Write( ValueType const& value, IsPointer<true> );
+    
+    /// @brief  writes data into a value by pointer
+    /// @tparam ValueType   the type of value to write
+    /// @param  value       the value to write
+    /// @return the written json data
+    template< typename ValueType >
+    static nlohmann::ordered_json Write( ValueType const& value, IsPointer<false> );
+
+//-----------------------------------------------------------------------------
+private: // ISerializable-aware methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  used to differentiate when types are derived from ISerializable
+    /// @tparam B   whether ValueType is derived from ISerializable
+    template< bool B > struct IsISerializable {};
+
+
+    /// @brief  reads an ISerializable
+    /// @tparam ValueType   the type to read
+    /// @param  value       the value to read into
+    /// @param  json        the json data to read from
+    template< typename ValueType >
+    static void Read( ValueType& value, nlohmann::ordered_json const& json, IsISerializable<true> );
+
+    /// @brief  reads a basic type
+    /// @tparam ValueType   the type to read
+    /// @param  value       the value to read into
+    /// @param  json        the json data to read from
+    template< typename ValueType >
+    static void Read( ValueType& value, nlohmann::ordered_json const& json, IsISerializable<false> );
+
+
+    /// @brief  write an ISerializable
+    /// @tparam ValueType   the type to write
+    /// @param  value       the value to write
+    /// @return the written json data
+    template< typename ValueType >
+    static nlohmann::ordered_json Write( ValueType const& value, IsISerializable<true> );
+
+    /// @brief  write a basic type
+    /// @tparam ValueType   the type to write
+    /// @param  value       the value to write
+    /// @return the written json data
+    template< typename ValueType >
+    static nlohmann::ordered_json Write( ValueType const& value, IsISerializable<false> );
 
 //------------------------------------------------------------------------------
 };
@@ -122,12 +200,11 @@ public: // writing
     /// @param  value       pointer to where to store the read data
     /// @param  json        the json data to read from
     template< typename ValueType >
-    void Stream::Read( ValueType* value, nlohmann::ordered_json const& json )
+    void Stream::Read( ValueType& value, nlohmann::ordered_json const& json )
     {
-        // TODO: error handling
-        *value = json.get< ValueType >();
+        // call a function depending on whether or not ValueType is an ISerializable
+        Read< ValueType >( value, json, IsPointer< std::is_pointer_v< ValueType > >() );
     }
-
 
     /// @brief  reads a glm vector from json
     /// @tparam size        the size of the vector
@@ -175,6 +252,18 @@ public: // writing
 // template write method definitions
 //------------------------------------------------------------------------------
 
+
+    /// @brief  writes data to json
+    /// @tparam ValueType   the type of data to write to json
+    /// @param  value       the data to write to json
+    /// @return the written json data
+    template< typename ValueType >
+    nlohmann::ordered_json Stream::Write( ValueType const& value )
+    {
+        return Write< ValueType >( value, IsPointer< std::is_pointer_v< ValueType > >() );
+    }
+
+
     /// @brief  writes a glm vector to json
     /// @tparam ValueType   the type of value of the vector
     /// @tparam size        the size of the vector
@@ -191,6 +280,124 @@ public: // writing
         }
 
         return json;
+    }
+
+//-----------------------------------------------------------------------------
+// private: pointer-aware methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  reads data into a value by pointer
+    /// @tparam ValueType   the type of value to read
+    /// @param  value       the value to read data into
+    /// @param  json        the json data to read from
+    template< typename ValueType >
+    void Stream::Read( ValueType& value, nlohmann::ordered_json const& json, IsPointer<true> )
+    {
+        Read< std::remove_pointer_t< ValueType > >( *value, json, IsISerializable< std::derived_from< std::remove_pointer_t< ValueType >, ISerializable > >() );
+    }
+
+    /// @brief  reads data into a value by reference
+    /// @tparam ValueType   the type of value to read
+    /// @param  value       the value to read data into
+    /// @param  json        the json data to read from
+    template< typename ValueType >
+    void Stream::Read( ValueType& value, nlohmann::ordered_json const& json, IsPointer<false> )
+    {
+        Read< ValueType >( value, json, IsISerializable< std::derived_from< ValueType, ISerializable > >() );
+    }
+
+
+    /// @brief  writes data into a value by pointer
+    /// @tparam ValueType   the type of value to write
+    /// @param  value       the value to write
+    /// @return the written json data
+    template< typename ValueType >
+    nlohmann::ordered_json Stream::Write( ValueType const& value, IsPointer<true> )
+    {
+        if ( value == nullptr )
+        {
+            return nlohmann::ordered_json();
+        }
+
+        return Write< std::remove_pointer_t< ValueType > >( *value, IsISerializable< std::derived_from< std::remove_pointer_t< ValueType >, ISerializable > >() );
+    }
+
+    /// @brief  writes data into a value by pointer
+    /// @tparam ValueType   the type of value to write
+    /// @param  value       the value to write
+    /// @return the written json data
+    template< typename ValueType >
+    nlohmann::ordered_json Stream::Write( ValueType const& value, IsPointer<false> )
+    {
+        return Write< ValueType >( value, IsISerializable< std::derived_from< ValueType, ISerializable > >() );
+    }
+
+//-----------------------------------------------------------------------------
+// private: ISerializable-aware methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  reads an ISerializable
+    /// @tparam ValueType   the type to read
+    /// @param  value       the value to read into
+    /// @param  json        the json data to read from
+    template< typename ValueType >
+    void Stream::Read( ValueType& value, nlohmann::ordered_json const& json, IsISerializable<true> )
+    {
+        if ( json.is_object() == false )
+        {
+            throw std::runtime_error(
+                "Error: json is not an object"
+            );
+        }
+
+        ReadMethodMap< ISerializable > const& readMethods = value.GetReadMethods();
+        for ( auto& [ name, data ] : json.items() )
+        {
+            auto it = readMethods.find( name );
+            if ( it == readMethods.end() )
+            {
+                throw std::runtime_error(
+                    std::string() + "Error: unrecognized token \"" + name + "\" encountered"
+                );
+            }
+
+            ReadMethod< ISerializable > const& readMethod = it->second;
+            (value.*readMethod)( data );
+        }
+
+        value.AfterLoad();
+    }
+
+    /// @brief  reads a basic type
+    /// @tparam ValueType   the type to read
+    /// @param  value       the value to read into
+    /// @param  json        the json data to read from
+    template< typename ValueType >
+    void Stream::Read( ValueType& value, nlohmann::ordered_json const& json, IsISerializable<false> )
+    {
+        value = json.get< ValueType >();
+    }
+
+
+    /// @brief  write an ISerializable
+    /// @tparam ValueType   the type to write
+    /// @param  value       the value to write
+    /// @return the written json data
+    template< typename ValueType >
+    nlohmann::ordered_json Stream::Write( ValueType const& value, IsISerializable<true> )
+    {
+        return value.Write();
+    }
+
+    /// @brief  write a basic type
+    /// @tparam ValueType   the type to write
+    /// @param  value       the value to write
+    /// @return the written json data
+    template< typename ValueType >
+    nlohmann::ordered_json Stream::Write( ValueType const& value, IsISerializable<false> )
+    {
+        return nlohmann::ordered_json( value );
     }
 
 //------------------------------------------------------------------------------

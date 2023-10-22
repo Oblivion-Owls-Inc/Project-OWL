@@ -11,7 +11,7 @@
 #include <map>
 #include <string>
 
-#include "Stream.h"
+#include <nlohmann/json.hpp>
 
 template < typename T >
 using ReadMethod = void (T::*)( nlohmann::ordered_json const& json );

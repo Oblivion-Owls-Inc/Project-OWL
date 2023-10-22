@@ -40,8 +40,13 @@
     void ConstructionBehavior::OnInit()
     {
         Behaviors< Behavior >()->AddBehavior( this );
+
         m_PlayerTransform = Entities()->GetEntity( m_PlayerName )->GetComponent< Transform >();
-        m_Tilemap = Entities()->GetEntity( m_TilemapName )->GetComponent< Tilemap< int > >();
+
+        Entity* tilemapEntity = Entities()->GetEntity( m_TilemapName );
+        m_Tilemap = tilemapEntity->GetComponent< Tilemap< int > >();
+        m_Buildings = tilemapEntity->GetComponent< Tilemap< Entity* > >();
+
         m_Transform = GetParent()->GetComponent<Transform>();
         m_Sprite = GetParent()->GetComponent<Sprite>();
     }
@@ -91,9 +96,10 @@
             m_Sprite->SetOpacity( 0.5f );
 
             if (
-                tilePos.x < 0 || tilePos.x >= m_Tilemap->GetTilemapWidth() ||
-                tilePos.y < 0 || tilePos.y >= m_Tilemap->GetTilemapHeight() ||
-                m_Tilemap->GetTile( tilePos ) != 0
+                tilePos.x < 0 || tilePos.x >= m_Tilemap->GetDimensions().x ||
+                tilePos.y < 0 || tilePos.y >= m_Tilemap->GetDimensions().y ||
+                m_Tilemap->GetTile( tilePos ) != 0 ||
+                m_Buildings->GetTile( tilePos ) != nullptr
             )
             {
                 m_Sprite->SetColor( { 0.5f, 0, 0.0f, 0 } );
@@ -108,7 +114,9 @@
             {
                 Entity* turret = m_BuildingArchetypes[ m_BuildingIndex ]->Clone();
                 turret->GetComponent<Transform>()->SetTranslation( buildPos );
+
                 Entities()->AddEntity( turret );
+                m_Buildings->SetTile( tilePos, turret );
             }
         }
         else

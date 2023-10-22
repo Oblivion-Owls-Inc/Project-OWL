@@ -7,6 +7,7 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #include "TransformAnimation.h"
+#include "Stream.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructor
@@ -129,28 +130,28 @@
     /// @param  stream the json data to read from
     void TransformAnimation::readScaleCurve( nlohmann::ordered_json const& data )
     {
-        Stream::Read< ISerializable >( &m_ScaleCurve, data );
+        Stream::Read( m_ScaleCurve, data );
     }
 
     /// @brief  reads the OffsetCurve
     /// @param  stream the json data to read from
     void TransformAnimation::readOffsetCurve( nlohmann::ordered_json const& data )
     {
-        Stream::Read< ISerializable >( &m_OffsetCurve, data );
+        Stream::Read( m_OffsetCurve, data );
     }
 
     /// @brief  reads the RotationCurve
     /// @param  stream the json data to read from
     void TransformAnimation::readRotationCurve( nlohmann::ordered_json const& data )
     {
-        Stream::Read< ISerializable >( &m_RotationCurve, data );
+        Stream::Read( m_RotationCurve, data );
     }
 
     /// @brief  reads the SkewCurve
     /// @param  stream the json data to read from
     void TransformAnimation::readSkewCurve( nlohmann::ordered_json const& data )
     {
-        Stream::Read< ISerializable >( &m_SkewCurve, data );
+        Stream::Read( m_SkewCurve, data );
     }
 
     /// @brief  Write all TransformAnimation data to a JSON file.

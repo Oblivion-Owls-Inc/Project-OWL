@@ -127,7 +127,7 @@
             }
            
             System* system = ( this->*addSystemMethod->second )(); // create and add the System to the Engine
-            Stream::Read< ISerializable >( system, value ); // have the System load itself
+            Stream::Read( system, value ); // have the System load itself
         }
     }
 
@@ -204,7 +204,8 @@
 
         try
         {
-            Stream::Read< ISerializable >( this, json );
+            Engine* self = this; // convert from rvalue into lvalue
+            Stream::Read( self, json );
         }
         catch ( std::runtime_error error )
         {

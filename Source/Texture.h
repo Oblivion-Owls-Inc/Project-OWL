@@ -84,19 +84,21 @@ private: // reading
     /// @param  data    the data to read from
     void readPivot( nlohmann::ordered_json const& data );
 
-    /// @brief  gets called after reading all arugments 
-    void AfterLoad();
 
     /// @brief  the read methods for textures
     static ReadMethodMap< Texture > const s_ReadMethods;
+
+
+public:
+
+    /// @brief  gets called after reading all arugments 
+    void AfterLoad();
 
     /// @brief  gets the read method map
     /// @return the read method map
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
-
-public:
 
     /// @brief  Write all Texture data to a JSON file.
     /// @return The JSON file containing the Texture data.

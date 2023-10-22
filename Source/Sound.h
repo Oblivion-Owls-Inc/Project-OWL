@@ -77,11 +77,15 @@ private: // reading
     /// @param  data    the JSON data to read from
     void readIsLooping( nlohmann::ordered_json const& data );
 
-    /// @brief  runs after Sound has been loaded 
-    void AfterLoad();
 
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< Sound > const s_ReadMethods;
+
+
+public:
+
+    /// @brief  runs after Sound has been loaded 
+    void AfterLoad();
 
     /// @brief  gets the Sound read method map
     /// @return the read method map
@@ -89,8 +93,6 @@ private: // reading
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
-
-public:
 
     /// @brief Write all Sound data to a JSON file.
     /// @return The JSON data containing the Sound data.

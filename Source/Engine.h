@@ -61,12 +61,6 @@ private: // reading
     /// @brief map containing Engine read methods
     static ReadMethodMap< Engine > const s_ReadMethods;
 
-    /// @brief  gets the map of Engine read methods
-    /// @return the map of Engine read methods
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
 
     /// @brief  Adds a System to the Engine.
     /// @tparam SystemType  The type of system to add the Engine
@@ -77,8 +71,15 @@ private: // reading
     static std::map< std::string, System* (Engine::*)() > const s_AddSystemMethods;
 
 //-----------------------------------------------------------------------------
-public: // writing
+public: // reading / writing
 //-----------------------------------------------------------------------------
+
+    /// @brief  gets the map of Engine read methods
+    /// @return the map of Engine read methods
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
     /// @brief  writes the Engine config to json
     /// @return the written json data

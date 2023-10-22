@@ -19,6 +19,7 @@
 #include <vector>	  // std::vector
 
 #include "ISerializable.h"
+#include "Stream.h"
 
 //-----------------------------------------------------------------------------
 // Class: Entity
@@ -133,14 +134,14 @@ private: // reading
     /// @brief  map of read methods for Entity
     static ReadMethodMap< Entity > const s_ReadMethods;
 
+public:
+
     /// @brief  gets the map of read methods for Entities
     /// @return the map of read methods for Entities
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
-
-public:
 
     /// @brief  Write all Entity data to a JSON file.
     /// @return The JSON file containing the Entity data.

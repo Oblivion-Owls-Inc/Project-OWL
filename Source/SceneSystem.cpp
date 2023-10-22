@@ -274,7 +274,7 @@
         Scene scene = Scene();
         try
         {
-            Stream::Read< ISerializable >( &scene, json );
+            Stream::Read( scene, json );
         }
         catch ( std::runtime_error error )
         {

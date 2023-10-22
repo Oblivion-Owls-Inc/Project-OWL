@@ -270,7 +270,7 @@
 		    try
 		    {
 			    // Read in all the data for the component from the json.
-			    Stream::Read< ISerializable >( component, value );
+			    Stream::Read( component, value );
 		    }
 		    catch (std::runtime_error error)
 		    {
