@@ -18,6 +18,9 @@
 #include <glm/glm.hpp>       // glm::vec3
 #include <nlohmann/json.hpp> // nlohman::ordered_json
 
+#include <type_traits>
+#include <iostream>
+
 #include "ISerializable.h"
 
 //------------------------------------------------------------------------------
@@ -202,8 +205,13 @@ private: // ISerializable-aware methods
     template< typename ValueType >
     void Stream::Read( ValueType& value, nlohmann::ordered_json const& json )
     {
-        // call a function depending on whether or not ValueType is an ISerializable
-        Read< ValueType >( value, json, IsPointer< std::is_pointer_v< ValueType > >() );
+        // call a function depending on whether or not ValueType is a pointer
+        Read< ValueType >(
+            value, json,
+            IsPointer<
+                std::is_pointer_v< ValueType >
+            >()
+        );
     }
 
     /// @brief  reads a glm vector from json
@@ -229,16 +237,18 @@ private: // ISerializable-aware methods
     {
         if ( json.is_array() == false )
         {
-            throw std::runtime_error(
-                std::string() + "Error: unexpected json type \"" + json.type_name() +
-                "\" encountered while trying to read vector of " + std::to_string(size) + " " + typeid(ValueType).name() + "s"
-            );
+            std::cerr << "JSON Error: unexpected json type \"" << json.type_name() <<
+                "\" encountered (expected an Array instead) while trying to read vector of " <<
+                std::to_string(size) << " " << typeid(ValueType).name() << "s" << std::endl;
+            return;
         }
 
         int count = size;
         if ( json.size() != size )
         {
-            // TODO: throw warning, not error
+            std::cout << "JSON Warning: expected an array of size " << size << " while reading a vector of " << typeid( ValueType ).name() <<
+                "s but encountered an array of size " << json.size() << " instead" << std::endl;
+
             count = std::min( (int)json.size(), size );
         }
 
@@ -260,7 +270,13 @@ private: // ISerializable-aware methods
     template< typename ValueType >
     nlohmann::ordered_json Stream::Write( ValueType const& value )
     {
-        return Write< ValueType >( value, IsPointer< std::is_pointer_v< ValueType > >() );
+        // call the appropriate function based on if ValueType is a pointer
+        return Write< ValueType >(
+            value,
+            IsPointer<
+                std::is_pointer_v< ValueType >
+            >()
+        );
     }
 
 
@@ -293,7 +309,17 @@ private: // ISerializable-aware methods
     template< typename ValueType >
     void Stream::Read( ValueType& value, nlohmann::ordered_json const& json, IsPointer<true> )
     {
-        Read< std::remove_pointer_t< ValueType > >( *value, json, IsISerializable< std::derived_from< std::remove_pointer_t< ValueType >, ISerializable > >() );
+        // recursively remove pointers until all pointers have been removed
+        Read<
+            std::remove_pointer_t< ValueType >
+        >(
+            *value, json,
+            IsPointer<
+                std::is_pointer_v<
+                    std::remove_pointer_t< ValueType >
+                >
+            >()
+        );
     }
 
     /// @brief  reads data into a value by reference
@@ -303,7 +329,13 @@ private: // ISerializable-aware methods
     template< typename ValueType >
     void Stream::Read( ValueType& value, nlohmann::ordered_json const& json, IsPointer<false> )
     {
-        Read< ValueType >( value, json, IsISerializable< std::derived_from< ValueType, ISerializable > >() );
+        // call the appropriate function based on if ValueType is derived from ISerializable
+        Read< ValueType >(
+            value, json,
+            IsISerializable<
+                std::derived_from< ValueType, ISerializable >
+            >()
+        );
     }
 
 
@@ -316,10 +348,12 @@ private: // ISerializable-aware methods
     {
         if ( value == nullptr )
         {
+            // write null
             return nlohmann::ordered_json();
         }
 
-        return Write< std::remove_pointer_t< ValueType > >( *value, IsISerializable< std::derived_from< std::remove_pointer_t< ValueType >, ISerializable > >() );
+        // recursively remove pointers
+        return Write< std::remove_pointer_t< ValueType > >( *value, IsPointer< std::is_pointer_v< std::remove_pointer_t< ValueType > > >() );
     }
 
     /// @brief  writes data into a value by pointer
@@ -329,7 +363,13 @@ private: // ISerializable-aware methods
     template< typename ValueType >
     nlohmann::ordered_json Stream::Write( ValueType const& value, IsPointer<false> )
     {
-        return Write< ValueType >( value, IsISerializable< std::derived_from< ValueType, ISerializable > >() );
+        // call the appropriate function based on if ValueType is ISerializable
+        return Write< ValueType >(
+            value,
+            IsISerializable<
+                std::derived_from< ValueType, ISerializable >
+            >()
+        );
     }
 
 //-----------------------------------------------------------------------------
@@ -346,9 +386,9 @@ private: // ISerializable-aware methods
     {
         if ( json.is_object() == false )
         {
-            throw std::runtime_error(
-                "Error: json is not an object"
-            );
+            std::cerr << "JSON Error: unexpected type " << json.type_name() << " encountered while trying to read json Object of " <<
+                typeid( ValueType ).name() << std::endl;
+            return;
         }
 
         ReadMethodMap< ISerializable > const& readMethods = value.GetReadMethods();
@@ -357,9 +397,9 @@ private: // ISerializable-aware methods
             auto it = readMethods.find( name );
             if ( it == readMethods.end() )
             {
-                throw std::runtime_error(
-                    std::string() + "Error: unrecognized token \"" + name + "\" encountered"
-                );
+                std::cerr << "JSON Error: unrecognized token " << name << " encountered while trying to read " <<
+                    typeid( ValueType ).name() << std::endl;
+                continue;
             }
 
             ReadMethod< ISerializable > const& readMethod = it->second;
