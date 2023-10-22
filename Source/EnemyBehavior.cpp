@@ -15,13 +15,13 @@ EnemyBehavior::EnemyBehavior() : Behavior(typeid(EnemyBehavior)), m_Health("Heal
 
 void EnemyBehavior::OnInit()
 {
-	BehaviorSystem<EnemyBehavior>::GetInstance()->AddBehavior(this);
+    Behaviors<Behavior>()->AddBehavior(this);
     m_Health.OnInit();
 }
 
 void EnemyBehavior::OnExit()
 {
-	BehaviorSystem<EnemyBehavior>::GetInstance()->RemoveBehavior(this);
+    Behaviors<Behavior>()->RemoveBehavior(this);
 }
 
 void EnemyBehavior::Inspector()

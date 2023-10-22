@@ -50,13 +50,13 @@ Component* TurretBehavior::Clone() const
 void TurretBehavior::OnInit()
 {
 	/// Add this behavior to the behavior system
-	Behaviors<TurretBehavior>()->AddBehavior(this);
+	Behaviors<Behavior>()->AddBehavior(this);
 }
 
 void TurretBehavior::OnExit()
 {
 	/// Remove this behavior from the behavior system
-	Behaviors<TurretBehavior>()->RemoveBehavior(this);
+	Behaviors<Behavior>()->RemoveBehavior(this);
 }	
 
 
@@ -98,13 +98,13 @@ void TurretBehavior::FireBullet(Entity* Target)
 	if (currentTime - m_LastFireTime < m_FireRate)
 		return;
 
-	Pool<int>* pool = Target->GetComponent<EnemyBehavior>()->GetHealth();
+	Entity* bullet = new Entity;
 
-	if (!pool)
-		return;
+	*bullet = *m_BulletPrefab;
+	
+	bullet->SetTarget(Target);
 
-	///@note this will be moved elsewhere
-	pool->DecreasePoolTime(m_BulletDamage);
+	Entities()->AddEntity(bullet);
 
 	m_LastFireTime = currentTime;  // Update the last fire time
 }
@@ -141,6 +141,16 @@ Entity* TurretBehavior::CheckForTarget()
     }
 
 	return nullptr;
+}
+
+void TurretBehavior::CheckIfBulletChanged()
+{
+		/// Check if the bullet prefab has changed
+		if (m_BulletName != m_BulletPrefab->GetName())
+		{
+		 	/// Get the new bullet prefab
+		 	m_BulletPrefab = Entities()->GetEntity(m_BulletName);
+		}
 }
 
 void TurretBehavior::readTargetName(nlohmann::ordered_json const& data)

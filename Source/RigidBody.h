@@ -1,6 +1,6 @@
 ///*****************************************************************/
 /// @file	 RigidBody.h
-/// @Author  Jax Clayton (jax.clayton@digipen.edu)
+/// @author  Jax Clayton (jax.clayton@digipen.edu)
 /// @date	 9/15/2021
 /// @brief   RigidBody class header
 /// @details This class contains the RigidBody component

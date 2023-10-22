@@ -16,10 +16,7 @@
     "AssetLibrarySystem<TransformAnimation>": {},
     "AssetLibrarySystem<AnimationAsset>": {},
     "BehaviorSystem<Animation>": {},
-    "BehaviorSystem<EnemyBehavior>": {},
-    "BehaviorSystem<MovementAI>": {},
-    "BehaviorSystem<PlayerController>": {},
-    "BehaviorSystem<TurretBehavior>": {},
+    "BehaviorSystem<Behavior>": {},
     "BehaviorSystem<RigidBody>": {},
     "CollisionSystem": {
       "CollisionLayerNames": [ "physics", "terrain", "enemies", "player", "base", "projectiles" ],

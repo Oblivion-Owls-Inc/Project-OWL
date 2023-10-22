@@ -26,12 +26,12 @@ Component* PlayerController::Clone() const
 
 void PlayerController::OnInit()
 {
-	BehaviorSystem<PlayerController>::GetInstance()->AddBehavior(this);
+    Behaviors<Behavior>()->AddBehavior(this);
 }
 
 void PlayerController::OnExit()
 {
-	BehaviorSystem< PlayerController >::GetInstance()->RemoveBehavior(this);
+    Behaviors<Behavior>()->RemoveBehavior(this);
 }
 
 void PlayerController::OnFixedUpdate()

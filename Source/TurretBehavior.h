@@ -64,12 +64,14 @@ class TurretBehavior :
 		float m_BulletSize = 1.0f;
 		float m_LastFireTime = 0.0f;
 		std::string m_TargetName;
+		std::string m_BulletName;
 		Entity* m_BulletPrefab = nullptr; /// Todo: Make this a prefab actually work
 
 	private:
 
 		void FireBullet(Entity* target);
 		Entity* CheckForTarget();
+		void CheckIfBulletChanged();
 
 	private: ///Reading 
 
