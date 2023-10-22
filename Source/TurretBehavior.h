@@ -69,8 +69,8 @@ class TurretBehavior :
 
 	private:
 
-		void FireBullet(Entity* target);
-		Entity* CheckForTarget();
+		void FireBullet(RayCastHit target);
+		RayCastHit CheckForTarget();
 		void CheckIfBulletChanged();
 
 	private: ///Reading 

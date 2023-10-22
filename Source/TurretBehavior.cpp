@@ -2,6 +2,7 @@
 #include "BehaviorSystem.h"
 #include "EntitySystem.h"
 #include "Transform.h"
+#include "BulletBehavior.h"
 #include "CircleCollider.h"
 #include "CollisionSystem.h"
 #include "EnemyBehavior.h"
@@ -69,12 +70,12 @@ void TurretBehavior::OnUpdate(float dt)
 void TurretBehavior::OnFixedUpdate()
 {
 	/// Check for a target
-	Entity* target = CheckForTarget();
+	RayCastHit Target = CheckForTarget();
 
-	if (target)
+	if (Target)
 	{
 		/// Fire a bullet at the target
-		FireBullet(target);
+		FireBullet(Target);
 	}
 
 }
@@ -92,7 +93,7 @@ void TurretBehavior::Inspector()
 
 
 
-void TurretBehavior::FireBullet(Entity* Target)
+void TurretBehavior::FireBullet(RayCastHit Target)
 {
 	float currentTime = glfwGetTime();
 	if (currentTime - m_LastFireTime < m_FireRate)
@@ -102,15 +103,16 @@ void TurretBehavior::FireBullet(Entity* Target)
 
 	*bullet = *m_BulletPrefab;
 	
-	bullet->SetTarget(Target);
+	bullet->GetComponent<BulletBehavior>()->SetTarget(Target);
 
 	Entities()->AddEntity(bullet);
 
 	m_LastFireTime = currentTime;  // Update the last fire time
 }
 
-Entity* TurretBehavior::CheckForTarget()
+RayCastHit TurretBehavior::CheckForTarget()
 {
+	RayCastHit hit;
     for (auto& entity : Entities()->GetEntities())
     {
 		/// Skip the entities that don't match the target name		
@@ -132,15 +134,11 @@ Entity* TurretBehavior::CheckForTarget()
 
 		CircleCollider* collider = (CircleCollider *)GetParent()->GetComponent<Collider>();
         // Cast a ray from the turret towards the entity
-        RayCastHit hit = CollisionSystem::GetInstance()->RayCast(turretPosition, directionToEntity, m_Range, collider->GetCollisionLayerFlags());
+        hit = CollisionSystem::GetInstance()->RayCast(turretPosition, directionToEntity, m_Range, collider->GetCollisionLayerFlags());
 
-        if (hit)  // If a collider was hit
-        {
-			return entity;  // Set the hit entity as the target
-        }
+		return hit;
     }
-
-	return nullptr;
+	return hit;
 }
 
 void TurretBehavior::CheckIfBulletChanged()

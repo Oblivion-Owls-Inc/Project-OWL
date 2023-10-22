@@ -7,8 +7,9 @@ BulletBehavior::BulletBehavior(): Behavior(typeid(BulletBehavior))
 {
 }
 
-void BulletBehavior::SetTarget(Entity* target)
+void BulletBehavior::SetTarget(RayCastHit target)
 {
+	m_Target = target;
 }
 
 void BulletBehavior::OnInit()
@@ -43,6 +44,8 @@ void BulletBehavior::CollideWithStatic(StaticBody const* other, CollisionData co
 
 void BulletBehavior::OnUpdate(float dt)
 {
+	if (m_Target)
+
 }
 
 void BulletBehavior::OnFixedUpdate()
