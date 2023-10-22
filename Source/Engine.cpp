@@ -167,7 +167,7 @@
         { "BehaviorSystem<RigidBody>",          &addSystem< BehaviorSystem< RigidBody > >           },
         { "BehaviorSystem<Animation>",          &addSystem< BehaviorSystem< Animation > >           },
         { "BehaviorSystem<EffectAnimator>",     &addSystem< BehaviorSystem< EffectAnimator > >      },
-        { "BehaviorSystem<Tilemap<int>>",       &addSystem< BehaviorSystem< Tilemap<int> > >        },
+        { "BehaviorSystem<TilemapBase>",        &addSystem< BehaviorSystem< TilemapBase > >         },
         { "AssetLibrarySystem<Entity>",         &addSystem< AssetLibrarySystem< Entity > >          },
         { "AssetLibrarySystem<Sound>",          &addSystem< AssetLibrarySystem< Sound > >           },
         { "AssetLibrarySystem<Texture>",        &addSystem< AssetLibrarySystem< Texture > >         },

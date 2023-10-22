@@ -18,7 +18,7 @@
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<MovementAI>": {},
         "BehaviorSystem<PlayerController>": {},
-        "BehaviorSystem<Tilemap<int>>": {},
+        "BehaviorSystem<TilemapBase>": {},
         "BehaviorSystem<RigidBody>": {},
         "CollisionSystem": {
             "CollisionLayerNames": [ "Terrain", "Enemies", "Player", "Base", "Projectiles" ],
