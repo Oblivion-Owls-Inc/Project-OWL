@@ -72,9 +72,7 @@
         auto it = std::find( m_CollisionLayerNames.begin(), m_CollisionLayerNames.end(), layerName );
         if ( it == m_CollisionLayerNames.end() )
         {
-            throw std::runtime_error(
-                std::string() + "Error: \"" + layerName + "\" is not a recognized collision layer name"
-            );
+            std::cerr << "Warning: \"" << layerName << "\" is not a recognized collision layer name";
         }
 
         return (int)(it - m_CollisionLayerNames.begin());

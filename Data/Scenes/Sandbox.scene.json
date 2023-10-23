@@ -39,8 +39,8 @@
           },
           "CircleCollider": {
             "Radius": 0.1,
-            "CollisionLayer": "enemies",
-            "CollisionLayerFlags": [ "player", "enemies" ]
+            "CollisionLayer": "Enemies",
+            "CollisionLayerFlags": [ "Player", "Enemies", "Terrain" ]
           },
           "EnemyBehavior": {
             "Health": {
@@ -58,7 +58,7 @@
             "Layer": 2
           },
           "Transform": {
-            "scale": [ 0.3, 0.3 ]
+            "Scale": [ 0.3, 0.3 ]
           },
           "BulletBehavior": {
             "Pool": {
@@ -69,8 +69,8 @@
           },
           "CircleCollider": {
             "Radius": 0.1,
-            "CollisionLayer": "player",
-            "CollisionLayerFlags": [ "enemies", "terrain" ]
+            "CollisionLayer": "Player",
+            "CollisionLayerFlags": [ "Enemies", "Terrain" ]
           },
           "RigidBody": {
             "Acceleration": [ 0.0, 0.0 ],
@@ -86,13 +86,12 @@
             "Layer": 1
           },
           "Transform": {
-            "translation": [ -4, 1, 0 ],
-            "scale": [ 1, 1, 1 ]
+            "Translation": [ -4, 1 ]
           },
           "CircleCollider": {
             "Radius": 0.1,
-            "CollisionLayer": "player",
-            "CollisionLayerFlags": [ "enemies" ]
+            "CollisionLayer": "Player",
+            "CollisionLayerFlags": [ "Enemies" ]
           },
           "TurretBehavior": {
             "range": 5,
@@ -106,6 +105,15 @@
     }
   },
     "Entities": [
+        {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 10
+                },
+                "Transform": {}
+            }
+        },
         {
             "Name": "Tiles",
             "Components": {
@@ -128,19 +136,19 @@
                         1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
                         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
                     ],
-                    "RowWidth" :  16,
+                    "Dimensions": [ 16, 13 ],
                     "TileScale": [0.6,0.6]
                 },
                 "Transform": {
-                    "Translation": [ -4.8, 3.8, 0 ],
-                    "Scale": [ 0.6, 0.6, 1 ]
+                    "Translation": [ -4.8, 3.8 ],
+                    "Scale": [ 0.6, 0.6 ]
                 },
                 "Pathfinder": {
                     "Destination": [ 4, 0 ],
                     "Walkables": [ 0 ]
                 },
                 "TilemapCollider": {
-                    "CollisionLayer": "physics",
+                    "CollisionLayer": "Terrain",
                     "CollisionLayerFlags": []
                 },
                 "StaticBody": {}
@@ -157,8 +165,8 @@
                     "String": "Right click (hold): delete tiles         D: set destination         S: spawn enemySpace (hold): enemies move to destination"
                 },
                 "Tilemap<int>":  {
-                    "RowWidth" :  41,
-                    "TileScale": [0.12, 0.34]
+                    "Dimensions": [ 41, 0 ],
+                    "TileScale": [ 0.12, 0.34 ]
                 },
                 "Transform": {
                     "Translation": [ -2.5, 3.6 ],
