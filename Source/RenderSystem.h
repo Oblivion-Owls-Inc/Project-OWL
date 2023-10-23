@@ -23,16 +23,32 @@ public:
     /// @param scale        (optional) Scale
     /// @param angle        (optional) Angle
     /// @param color        (optional) Color
-    void DrawRect(const glm::vec2& position, const glm::vec2& scale = {100,100}, 
-                  float angle = 0.0f, const glm::vec4& color = {0.1,0.6,0.1,1.0});
+    /// @param alpha        (optional) transparency
+    void DrawRect(
+        glm::vec2 const& position, glm::vec2 const& scale = { 1.0f, 1.0f }, float angle = 0.0f,
+        glm::vec4 const& color = { 0.1f, 0.6f, 0.1f, 0.0f }, float alpha = 0.5f
+    );
+
+    /// @brief              Draws a circle.
+    /// @param position     Position
+    /// @param radius       (optional) Radius
+    /// @param color        (optional) Color
+    /// @param alpha        (optional) transparency
+    void DrawCircle(
+        const glm::vec2& position, float radius = 1.0f, 
+        const glm::vec4& color = { 0.1f, 0.6f, 0.1f, 0.0f }, float alpha = 0.5f
+    );
 
     /// @brief              Draws a line between 2 points.
     /// @param P1           Point 1
     /// @param P2           Point 2
     /// @param thickness    (optional) How thicc the line is
     /// @param color        (optional) Color of the line
-    void DrawLine(const glm::vec2& P1, const glm::vec2& P2, float thickness = 8,
-                  const glm::vec4& color = { 0,0.2,0.5,1 });
+    /// @param alpha        (optional) transparency
+    void DrawLine(
+        glm::vec2 const& P1, glm::vec2 const& P2, float thickness = 1.0f,
+        glm::vec4 const& color = { 0.0f, 0.2f, 0.5f, 0.0f }, float alpha = 0.5f
+    );
 
 
     /// @brief          Add a sprite so it can be rendered during update.
