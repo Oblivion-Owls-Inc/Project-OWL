@@ -147,7 +147,7 @@ static glm::vec2 convert(glm::mat4 matrix)
 /// @return returns the current mouse pos as a vec2
 glm::vec2 InputSystem::GetMousePosUI()
 {
-    glm::mat4 matrix = Camera()->GetMat_ScreenToUI();
+    glm::mat4 matrix = Cameras()->GetMat_ScreenToUI();
     
     return convert(matrix);
 }
@@ -156,7 +156,7 @@ glm::vec2 InputSystem::GetMousePosUI()
 /// @return returns the current mouse pos as a vec2
 glm::vec2 InputSystem::GetMousePosWorld()
 {
-    glm::mat4 matrix = Camera()->GetMat_ScreenToWorld();
+    glm::mat4 matrix = Cameras()->GetMat_ScreenToWorld();
     
     return convert(matrix);
 }

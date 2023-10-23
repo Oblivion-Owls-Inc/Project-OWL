@@ -31,6 +31,7 @@
 #include "Pool.h"
 #include "StaticBody.h"
 #include "ConstructionBehavior.h"
+#include "Camera.h"
 
 
 //-----------------------------------------------------------------------------
@@ -116,6 +117,7 @@
         { "TilemapCollider"     , ComponentInfo< TilemapCollider >()      },
         { "StaticBody"          , ComponentInfo< StaticBody >()           },
         { "ConstructionBehavior", ComponentInfo< ConstructionBehavior >() },
+        { "Camera"              , ComponentInfo< Camera >()               },
     };
 
 //-----------------------------------------------------------------------------

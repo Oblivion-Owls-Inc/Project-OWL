@@ -89,7 +89,7 @@ public: // accessors
 
     /// @brief  sets the isDiagetic flag
     /// @param  isDiagetic  the new isDiagetic flag
-    void SetIsDiegetic( bool const& isDiagetic ) { m_IsDiegetic = isDiagetic; }
+    void SetIsDiegetic( bool isDiagetic ) { m_IsDiegetic = isDiagetic; }
 
 
     /// @brief  sets the dirty flag of this Transform
@@ -132,7 +132,7 @@ private: // member variables
     bool m_IsDirty = true;
 
 	/// @brief  whether this Transform exists in world or screen space
-	bool m_IsDiegetic = false;
+	bool m_IsDiegetic = true;
 
 	/// @brief  the Transform that this Transform descends from
 	Transform* m_Parent = nullptr;

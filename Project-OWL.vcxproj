@@ -183,6 +183,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\ConstructionBehavior.cpp" />
     <ClCompile Include="Source\Curve.cpp" />
     <ClCompile Include="Source\EffectAnimator.cpp" />
@@ -243,6 +244,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\CircleCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\ConstructionBehavior.h" />
     <ClInclude Include="Source\Curve.h" />
     <ClInclude Include="Source\EffectAnimator.h" />

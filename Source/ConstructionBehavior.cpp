@@ -74,6 +74,7 @@
 
         if ( m_BuildingIndex == -1 )
         {
+            m_Sprite->SetOpacity( 0.0f );
             return;
         }
 
