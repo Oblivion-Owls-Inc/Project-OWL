@@ -88,6 +88,15 @@
     },
     "Entities": [
         {
+            "Name": "Camera",
+            "Components": {
+                "Transform": {},
+                "Camera": {
+                    "Width": 10
+                }
+            }
+        },
+        {
             "Name": "Tiles",
             "Components": {
                 "Transform": {

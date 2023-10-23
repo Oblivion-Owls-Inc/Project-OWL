@@ -94,3 +94,8 @@ public:
     PlatformSystem(PlatformSystem& other) = delete;
     void operator=(const PlatformSystem&) = delete;
 };
+
+__inline PlatformSystem* Platform()
+{
+    return PlatformSystem::GetInstance();
+}

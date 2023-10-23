@@ -177,6 +177,9 @@
     <Filter Include="Engine\Entity\Component\StaticBody">
       <UniqueIdentifier>{cb22a236-e348-4362-b443-aa70c5bc5671}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Camera">
+      <UniqueIdentifier>{3b8f4986-5f51-4a7a-a2e4-15aa9b2b6fcb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -379,6 +382,9 @@
     </ClCompile>
     <ClCompile Include="Source\StaticBody.cpp">
       <Filter>Engine\Entity\Component\StaticBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera.cpp">
+      <Filter>Engine\Entity\Component\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -588,6 +594,9 @@
     </ClInclude>
     <ClInclude Include="Source\StaticBody.h">
       <Filter>Engine\Entity\Component\StaticBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera.h">
+      <Filter>Engine\Entity\Component\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

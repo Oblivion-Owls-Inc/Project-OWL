@@ -112,9 +112,9 @@ void Sprite::Draw()
 
             // world or UI space
             if (t->GetIsDiegetic())
-                mat = Camera()->GetMat_WorldToClip() * mat;
+                mat = Cameras()->GetMat_WorldToClip() * mat;
             else
-                mat = Camera()->GetMat_UItoClip() * mat;
+                mat = Cameras()->GetMat_UItoClip() * mat;
         }
     }
 

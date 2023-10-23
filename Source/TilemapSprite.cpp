@@ -153,9 +153,9 @@ void TilemapSprite::Draw()
         // world or camera projection
         glm::mat4 proj;
         if (tr->GetIsDiegetic())
-            proj = Camera()->GetMat_WorldToClip();
+            proj = Cameras()->GetMat_WorldToClip();
         else
-            proj = Camera()->GetMat_UItoClip();
+            proj = Cameras()->GetMat_UItoClip();
 
 
         // apply projection to stride vectors
