@@ -62,16 +62,17 @@
                         "Layer": 3
                     },
                     "Transform": {
-                        "Scale": [ 0.2, 0.2 ]
+                        "Scale": [ 0.6, 0.6 ]
                     },
                     "RigidBody": {
                         "Acceleration": [ 0.0, 0.0 ],
+                        "Drag": 1,
                         "Restitution": 1
                     },
                     "CircleCollider": {
-                        "Radius": 0.1,
+                        "Radius": 0.3,
                         "CollisionLayer": "Enemies",
-                        "CollisionLayerFlags": [ "Terrain" ]
+                        "CollisionLayerFlags": [ "Terrain", "Player", "Enemies" ]
                     },
                     "EnemyBehavior": {
                         "Health": {
@@ -179,14 +180,20 @@
                 "TilemapCollider": {
                     "CollisionLayer": "Terrain"
                 },
-                "StaticBody": {}
+                "StaticBody": {
+                    "Restitution": 1
+                },
+                "Pathfinder": {
+                    "Destination": [ 15, 2 ],
+                    "Walkables": [ 0 ]
+                }
             }
         },
         {
             "Name": "Player",
             "Components": {
                 "Transform": {
-                    "Translation": [ -4, -1 ]
+                    "Translation": [ 0.5, 4.5 ]
                 },
                 "Sprite": {
                     "Texture": "PlayerSheet"
@@ -198,7 +205,8 @@
                 },
                 "RigidBody": {
                     "Acceleration": [ 0, 0 ],
-                    "Drag": 15
+                    "Drag": 12,
+                    "Restitution": 0
                 },
                 "PlayerController": {
                     "left": [ -1, 0 ],
@@ -232,6 +240,14 @@
                 "Sprite": {
                     "Opacity": 0,
                     "Layer": 100
+                }
+            }
+        },
+        {
+            "Archetype": "Enemy",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 3.5, -7.5 ]
                 }
             }
         }

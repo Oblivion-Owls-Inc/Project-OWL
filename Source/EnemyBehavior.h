@@ -25,9 +25,17 @@ public: // constructor / destructor / inspector
 public: //Methods
 ///-----------------------------------------------------------------------------
 
+    /// @brief Returns the health of the enemy
+    /// @return - the health of the enemy
     Pool<int>* GetHealth() { return &m_Health; }
 
+    /// @brief Apply damage to the enemy 
+    /// @param damage - the amount of damage to enemy
     void TakeDamage(int damage);
+
+    /// @brief Overload For TakeDamage
+    /// @param damage - the amount of damage to enemy
+    void TakeDamage(float damage);
 
 //-----------------------------------------------------------------------------
 private: // Member Variables
@@ -38,15 +46,32 @@ private: // Member Variables
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
+    /// @brief initializes the component
     virtual void OnInit() override;
 
+    /// @brief Called when the component is destroyed
     virtual void OnExit() override;
+
+    /// @brief Called at a fixed interval
+    virtual void OnFixedUpdate() override;
 
     /// @brief  inspector for this component
     virtual void Inspector() override;
 
+///-----------------------------------------------------------------------------
+private: // Reading
+///-----------------------------------------------------------------------------
+
+    /// @brief Reads the health of the enemy from json
+    /// @param data - the json data to read from
+    void readHealth(nlohmann::ordered_json const& data);
+
     /// @brief  map of read methods
     static ReadMethodMap< EnemyBehavior > const s_ReadMethods;
+
+///-----------------------------------------------------------------------------
+public: // reading / writing
+///-----------------------------------------------------------------------------
 
     /// @brief  gets the map of read methods
     /// @return the map of read methods
@@ -55,36 +80,43 @@ private: // virtual override methods
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+    /// @brief Called at a fixed interval
     virtual void OnFixedUpdate() override;
 
 public:
 
+
+
     /// @brief Write all Transform component data to a JSON file.
     /// @return The JSON file containing the Transform component data.
-    virtual nlohmann::ordered_json Write() const override;
-
 ///-----------------------------------------------------------------------------
 private: // Read Methods
 ///-----------------------------------------------------------------------------
 
+    /// @brief Reads the health of the enemy from json
+    /// @param data - the json data to read from
     void readHealth(nlohmann::ordered_json const& data);
 
-//-----------------------------------------------------------------------------
+    /// @param data - the json data to read from
 private: // 
 //-----------------------------------------------------------------------------
-    void ChaseTarget(Pathfinder* pathfinder, float dt);
-    
+ //-----------------------------------------------------------------------------
+private: // 
+//-----------------------------------------------------------------------------
+ //-----------------------------------------------------------------------------
+private: // 
+//-----------------------------------------------------------------------------
  //-----------------------------------------------------------------------------
 private: // copying
 //-----------------------------------------------------------------------------
 
-        /// @brief  creates a new copy of this Component
-        /// @return the newly created component
+    /// @brief  creates a new copy of this Component
+    /// @return the newly created component
     virtual Component* Clone() const override;
 
     /// @brief  copy constructor
     /// @param  other   the other Transform to copy
-    EnemyBehavior(EnemyBehavior const& other);
+    EnemyBehavior( EnemyBehavior const& other );
 
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 };

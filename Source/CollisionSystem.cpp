@@ -1,5 +1,5 @@
 /// @file CollisionSystem.h
-/// @author Jax Clayton  (jax.clayton@digipen.edu)
+/// @author Jax Clayton (jax.clayton@digipen.edu), Steve Bukowinski (steve.bukowinski@digipen.edu)
 /// @brief The CollisionSystem is responsible for checking for collisions between Different Colliders
 /// @version 0.1
 /// @date 2023-09-15
@@ -27,6 +27,7 @@
 
 #include <sstream>
 #include <algorithm>
+#include <cmath>
 
 #include "DebugSystem.h"
 #include "RenderSystem.h"
@@ -270,6 +271,8 @@
         CollisionData collisionData;
         if ( (*checkFuncIt->second)( colliderA, colliderB, &collisionData ) )
         {
+            collisionData.depth += 0.001;
+
             // call callbacks 
             if ( aCollidesB )
             {
