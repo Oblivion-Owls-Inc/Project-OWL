@@ -152,12 +152,6 @@ private: // scene loading
         /// @brief  the read methods for a Scene
         static ReadMethodMap< Scene > const s_ReadMethods;
 
-        /// @brief  gets the Scene read methods
-        /// @return a map of the Scene read methods
-        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-        {
-            return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-        }
 
         /// @brief  gets the asset library of the specified type
         /// @tparam AssetType   the asset type to get the library of
@@ -169,6 +163,13 @@ private: // scene loading
         static std::vector< std::pair< std::string, BaseAssetLibrarySystem* (*)() > > const s_AssetLibraries;
 
     public:
+
+        /// @brief  gets the Scene read methods
+        /// @return a map of the Scene read methods
+        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+        {
+            return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+        }
 
         /// @brief  writes this Scene to json
         /// @return the written json data

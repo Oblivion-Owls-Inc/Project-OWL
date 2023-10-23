@@ -10,10 +10,31 @@
 #include <functional>   // callbacks
 #include <map>
 
+/// @brief  untemplatized base Tilemap class
+class TilemapBase : public Behavior
+{
+//-----------------------------------------------------------------------------
+protected: // constructor
+//-----------------------------------------------------------------------------
+
+    /// @brief    Default constructor
+    TilemapBase( std::type_index type ) :
+        Behavior( type )
+    {}
+
+    /// @brief        Copy constructor
+    /// @param other  TilemapBase to copy
+    TilemapBase( TilemapBase const& other ) :
+        Behavior( other )
+    {}
+
+//-----------------------------------------------------------------------------    
+};
+
 
 /// @brief        Loads and manages a tilemap array.
 template < typename TileType >
-class Tilemap : public Behavior
+class Tilemap : public TilemapBase
 {
 public:
 
@@ -36,7 +57,7 @@ public:
 
     /// @brief          Retrieve entire tilemap
     /// @return         array (vector) of tile IDs
-    __inline std::vector<TileType> const& GetTilemap() const { return m_Tilemap; }
+    std::vector<TileType> const& GetTilemap() const { return m_Tilemap; }
 
     /// @brief          Sets the whole tilemap to a given array (vector)
     /// @param  tiles   vector of tile IDs
@@ -46,7 +67,7 @@ public:
     /// @brief          Gets the index of the tile at given coordinate.
     /// @param coord    tile 2D coordinate (within the tilemap)
     /// @return         index of the tile
-    __inline TileType GetTile(glm::ivec2 coord) const { return m_Tilemap[coord.y*m_RowWidth + coord.x]; }
+    TileType GetTile(glm::ivec2 coord) const { return m_Tilemap[coord.y*m_Dimensions.x + coord.x]; }
 
     /// @brief          Sets the tile at given coordinate to given index.
     /// @param coord    Tile 2D coordinate (within the tilemap)
@@ -83,24 +104,20 @@ public:
     /// @brief          Sets the tile scale. Default scale (1,1) is the full
     ///                 width/height of single tile.
     /// @param mults    x=horizontal, y=vertical
-    __inline void SetTileScale(glm::vec2 mults) { m_TileScale = mults; m_Modified = true; }
+    void SetTileScale(glm::vec2 mults) { m_TileScale = mults; m_Modified = true; }
 
 
     /// @brief          Retreives the tile scale.
     /// @return         x=horizontal, y=vertical
-    __inline glm::vec2 GetTileScale() const { return m_TileScale; }
+    glm::vec2 GetTileScale() const { return m_TileScale; }
 
 
-    /// @brief          Sets the width of a single row (amount of columns)
-    /// @param columns  (tiles per row)
-    __inline void SetRowWidth(int width) { m_RowWidth = width; m_Modified = true; }
+    /// @brief  sets the size of the tilemap in tiles
+    /// @param  dimensions  the size of the tilemap
+    void SetDimensions( glm::ivec2 const& dimensions ) { m_Dimensions = dimensions; m_Tilemap.resize( dimensions.x * dimensions.y ); }
 
-
-    /// @return         Tiles per row 
-    __inline int GetTilemapWidth() const { return m_RowWidth; }
-
-    /// @return         Tiles per column
-    __inline int GetTilemapHeight() const { return (int)m_Tilemap.size() / m_RowWidth; }
+    /// @return size of the tilemap in tiles
+    glm::ivec2 GetDimensions() const { return m_Dimensions; }
 
 
     /// @brief  gets the Tilemap to word matrix
@@ -139,8 +156,8 @@ private:
     /// @brief   Tilemap array
     std::vector<TileType> m_Tilemap;
 
-    /// @brief   Width of each row (amount of columns)
-    int m_RowWidth = 10;
+    /// @brief   Size of the Tilemap in tiles
+    glm::ivec2 m_Dimensions = { 10, 0 };
 
     /// @brief   Scale of tiles (on top of transform) - to adjust spacing
     glm::vec2 m_TileScale = {1,1};
@@ -181,7 +198,7 @@ private:
 
     /// @brief          Read in the row width of the tilemap
     /// @param stream   The json to read from
-    void readRowWidth( nlohmann::ordered_json const& data );
+    void readDimensions( nlohmann::ordered_json const& data );
 
     /// @brief            Read in the stride multiplier
     /// @param  stream    The json to read from.

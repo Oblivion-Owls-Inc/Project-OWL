@@ -13,6 +13,7 @@
 #include <string>
 
 #include "ISerializable.h"
+#include "Stream.h"
 
 class Entity;
 

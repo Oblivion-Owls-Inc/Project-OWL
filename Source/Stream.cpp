@@ -11,9 +11,9 @@
 // Include Files
 //------------------------------------------------------------------------------
 
-#include "ISerializable.h"
+#include "Stream.h"
 
-#include <fstream>     // std::ifstream
+#include <fstream> // std::ifstream
 
 //------------------------------------------------------------------------------
 // public: static methods
@@ -35,6 +35,23 @@
         return nlohmann::ordered_json::parse( file );
     }
 
+    /// @brief Write a meesage to the trace log.
+    /// @param traceMessage The message to be written.
+    void Stream::WriteToTraceLog(std::string const& traceMessage)
+    {
+        // Attempt to open the trace log for writing.
+        static std::ofstream traceFile("trace.log");
+        if (!traceFile.is_open())
+        {
+            throw std::runtime_error(
+                std::string() + "Error: unable to open trace log"
+            );
+        }
+
+        // Write the trace message to the log.
+        traceFile << traceMessage;
+    }
+
     /// @brief  Writes json data to a file
     /// @param  filepath    the path of the file to write to
     /// @param  json        the json data to write to the file
@@ -51,35 +68,4 @@
     }
 
 
-    /// @brief  reads a serializable object from json
-    /// @param  object  the object to read from json
-    /// @param  json    the json data to read from
-    template<>
-    void Stream::Read< ISerializable >( ISerializable* object, nlohmann::ordered_json const& json )
-    {
-        if ( json.is_object() == false )
-        {
-            throw std::runtime_error(
-                "Error: json is not an object"
-            );
-        }
-
-        ReadMethodMap< ISerializable > const& readMethods = object->GetReadMethods();
-        for ( auto& [ key, value ] : json.items() )
-        {
-            auto it = readMethods.find( key );
-            if ( it == readMethods.end() )
-            {
-                throw std::runtime_error(
-                    std::string() + "Error: unrecognized token \"" + key + "\" encountered"
-                );
-            }
-
-            ReadMethod< ISerializable > const& readMethod = it->second;
-            (object->*it->second)( value );
-        }
-
-        object->AfterLoad();
-    }
-
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------

@@ -142,10 +142,6 @@
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
     void CollisionSystem::OnFixedUpdate()
     {
-        std::stable_sort( m_Colliders.begin(), m_Colliders.end(), []( Collider const* a, Collider const* b ) -> bool {
-            return a->GetPriority() < b->GetPriority();
-        });
-
         for ( unsigned i = 0; i < m_CollisionSteps; ++i )
         {
             checkCollisions();
@@ -368,8 +364,8 @@
             for ( tilePos.x = minTile.x; tilePos.x <= maxTile.x; ++tilePos.x )
             {
                 if (
-                    tilePos.x < 0 || tilePos.x >= tilemap->GetTilemapWidth() ||
-                    tilePos.y < 0 || tilePos.y >= tilemap->GetTilemapHeight()
+                    tilePos.x < 0 || tilePos.x >= tilemap->GetDimensions().x ||
+                    tilePos.y < 0 || tilePos.y >= tilemap->GetDimensions().y
                 )
                 {
                     continue;
@@ -612,8 +608,8 @@
 
             // ensure within bounds of tilemap
             if (
-                tile.x < 0 || tile.x >= tilemap->GetTilemapWidth() ||
-                tile.y < 0 || tile.y >= tilemap->GetTilemapHeight()
+                tile.x < 0 || tile.x >= tilemap->GetDimensions().x ||
+                tile.y < 0 || tile.y >= tilemap->GetDimensions().y
             )
             {
                 continue;

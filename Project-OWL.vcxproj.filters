@@ -168,11 +168,14 @@
     <Filter Include="Engine\Entity\Component\Behavior\Tilemap">
       <UniqueIdentifier>{7c0f06d8-341a-42ab-ad77-109c905fe568}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Pools">
-      <UniqueIdentifier>{f2e1e11a-6966-48bf-90af-219074be36e6}</UniqueIdentifier>
+    <Filter Include="Game\Behaviors\ConstructionBehavior">
+      <UniqueIdentifier>{278dd904-bde9-4181-bd98-8a632d0db159}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Behaviors\EnemyBehavior">
-      <UniqueIdentifier>{076ac8b2-f5d1-423e-a7e6-e83f7eed1584}</UniqueIdentifier>
+    <Filter Include="Engine\Entity\Component\StaticBody">
+      <UniqueIdentifier>{cb22a236-e348-4362-b443-aa70c5bc5671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Camera">
+      <UniqueIdentifier>{3b8f4986-5f51-4a7a-a2e4-15aa9b2b6fcb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -371,8 +374,14 @@
     <ClCompile Include="Source\TilemapCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ConstructionBehavior.cpp">
+      <Filter>Game\Behaviors\ConstructionBehavior</Filter>
+    </ClCompile>
     <ClCompile Include="Source\StaticBody.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine\Entity\Component\StaticBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera.cpp">
+      <Filter>Engine\Entity\Component\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Source\EnemyBehavior.cpp">
       <Filter>Game\Behaviors\EnemyBehavior</Filter>
@@ -580,8 +589,14 @@
     <ClInclude Include="Source\TilemapCollider.h">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ConstructionBehavior.h">
+      <Filter>Game\Behaviors\ConstructionBehavior</Filter>
+    </ClInclude>
     <ClInclude Include="Source\StaticBody.h">
-      <Filter>Header Files</Filter>
+      <Filter>Engine\Entity\Component\StaticBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera.h">
+      <Filter>Engine\Entity\Component\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Source\EnemyBehavior.h">
       <Filter>Game\Behaviors\EnemyBehavior</Filter>
@@ -604,6 +619,9 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\XinoScene.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>

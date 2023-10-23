@@ -19,6 +19,7 @@
 #include <vector>	  // std::vector
 
 #include "ISerializable.h"
+#include "Stream.h"
 
 //-----------------------------------------------------------------------------
 // Class: Entity
@@ -64,6 +65,12 @@ public: // accessors
     template < typename ComponentType >
     ComponentType* GetComponent();
 
+    /// @brief  gets the component of the specified type from this Entity
+    /// @tparam ComponentType   the type of component to get
+    /// @return the component of the specified type (nullptr if component doesn't exist)
+    template < typename ComponentType >
+    ComponentType const* GetComponent() const;
+
     /// @brief  gets all of the components derived from the specified type from this Entity
     /// @tparam ComponentType   the type of component to get
     /// @return a vector of all components of the specified type
@@ -93,6 +100,7 @@ public: // accessors
      /// @brief  gets the Id of this Component
      /// @return the Id of this Component
      unsigned GetId() const { return m_Id; }
+
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
@@ -126,14 +134,14 @@ private: // reading
     /// @brief  map of read methods for Entity
     static ReadMethodMap< Entity > const s_ReadMethods;
 
+public:
+
     /// @brief  gets the map of read methods for Entities
     /// @return the map of read methods for Entities
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
-
-public:
 
     /// @brief  Write all Entity data to a JSON file.
     /// @return The JSON file containing the Entity data.
@@ -168,8 +176,17 @@ public: // copying
     /// @param  other   the entity to copy from
     void operator =( Entity const& other );
 
+    /// @brief  makes a copy of this Entity
+    /// @return the new copy of this Entity
+    Entity* Clone() const {
+        Entity* clone = new Entity;
+        *clone = *this;
+        return clone;
+    }
+
     // prevent non-assignment copying
     Entity( Entity const& other ) = delete;
+
 
 //------------------------------------------------------------------------------
 };
@@ -204,6 +221,15 @@ public: // copying
         return nullptr;
     }
 
+    /// @brief  gets the component of the specified type from this Entity
+    /// @tparam ComponentType   the type of component to get
+    /// @return the component of the specified type (nullptr if component doesn't exist)
+    template < typename ComponentType >
+    ComponentType const* Entity::GetComponent() const
+    {
+        return const_cast< Entity* >( this )->GetComponent< ComponentType >();
+    }
+
     /// @brief  gets all of the components derived from the specified type from this Entity
     /// @tparam ComponentType   the type of component to get
     /// @return a vector of all components of the specified type
@@ -225,4 +251,4 @@ public: // copying
 
     }
 
-//------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------

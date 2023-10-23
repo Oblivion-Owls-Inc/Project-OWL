@@ -5,13 +5,12 @@
 /// @date       2023-10-06
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
-#pragma once
-
 #define POOL_C
 
 #ifndef POOL_H
 #include "Pool.h"
 #endif // !POOL_H
+#pragma once
 
 #include "basics.h"
 #include "DebugSystem.h"

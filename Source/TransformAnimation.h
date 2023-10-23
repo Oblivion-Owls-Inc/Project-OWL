@@ -119,14 +119,15 @@ private: // reading
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< TransformAnimation > const s_ReadMethods;
 
-    /// @brief  gets the TransformAnimation read method map
-    /// @return the read method map
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
 
  public:
+
+     /// @brief  gets the TransformAnimation read method map
+     /// @return the read method map
+     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+     {
+         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+     }
 
      /// @brief  Write all TransformAnimation data to a JSON file.
      /// @return The JSON file containing the TransformAnimation data.

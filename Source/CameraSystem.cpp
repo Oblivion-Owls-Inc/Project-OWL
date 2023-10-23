@@ -7,139 +7,102 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 
-/// @brief      Performs initial matrix calculations.
-void CameraSystem::OnInit() {
-    recalcMatrices();
-}
+//-------------------------------------------------------------------------
+// public: accessors
+//-------------------------------------------------------------------------
+
+    /// @brief  sets the active Camera
+    /// @return the active camera
+    Camera* CameraSystem::GetActiveCamera()
+    {
+        return m_ActiveCamera;
+    }
+    /// @brief  gets the active Camera
+    /// @param  camera  the active Camera to set to
+    void CameraSystem::SetActiveCamera( Camera* camera )
+    {
+        if ( m_ActiveCamera != nullptr )
+        {
+            m_ActiveCamera->SetIsActive( false );
+        }
+        m_ActiveCamera = camera;
+        camera->SetIsActive( true );
+    }
 
 
-/// @brief      Re-calculates matrices if there's been changes to camera state.
-/// @param dt
-void CameraSystem::OnUpdate(float dt)
-{
-    if (m_Dirty)
-        recalcMatrices();
+    /// @return     UI space to clip space matrix
+    glm::mat4 const& CameraSystem::GetMat_UItoClip() const { return m_UiToClip; }
 
-    // TODO: optimizations, maybe? Multiple dirty flags, only recalculate
-    //       matrices that are affected by latest changes? Or maybe it dont matter
+    /// @return     World space to clip space matrix
+    glm::mat4 const& CameraSystem::GetMat_WorldToClip() const { return m_ActiveCamera->GetWorldToClip(); }
 
-    (void) dt;
-}
+    /// @return     Screen to UI space matrix
+    glm::mat4 const& CameraSystem::GetMat_ScreenToUI() const { return m_ScreenToUi; }
 
-
-//-----------------------------------------------------------------------------
-//          setters and getters
-//-----------------------------------------------------------------------------
-
-/// @brief            Sets all camera transform properties at once.
-/// @param position
-/// @param zoom       zoom factor: 1.0 is standard, higher = further away.
-/// @param rotation
-void CameraSystem::Set(glm::vec2 position, float zoom, float rotation)
-{
-    m_CamPos = position;
-    m_CamZoom = zoom;
-    m_CamAngle = rotation;
-    m_Dirty = true;
-}
-
-/// @brief            Sets the camera position.
-/// @param position
-void CameraSystem::SetPosition(glm::vec2 position)
-{
-    m_CamPos = position;
-    m_Dirty = true;
-}
-
-/// @brief            Sets the camera rotation.
-/// @param rotation
-void CameraSystem::SetRotation(float rotation)
-{
-    m_CamAngle = rotation;
-    m_Dirty = true;
-}
-
-/// @brief            Sets the camera zoom factor.
-/// @param zoom       1.0 is the default zoom. Higher number = zoom out.
-void CameraSystem::SetZoom(float zoom)
-{
-    m_CamZoom = zoom;
-    m_Dirty = true;
-}
+    /// @return     Screen to world space matrix
+    glm::mat4 CameraSystem::GetMat_ScreenToWorld() const
+    {
+        return m_ActiveCamera->GetClipToWorld() * m_ScreenToClip;
+    }
 
 
-/// @return     UI space to clip space matrix
-glm::mat4 const& CameraSystem::GetMat_UItoClip() const { return m_UI2Clip; }
+//-------------------------------------------------------------------------
+// private: virtual override methods
+//-------------------------------------------------------------------------
 
-/// @return     World space to clip space matrix
-glm::mat4 const& CameraSystem::GetMat_WorldToClip() const { return m_World2Clip; }
+    /// @brief  called once when the engine starts
+    void CameraSystem::OnInit()
+    {
+        calculateMatrices();
+    }
 
-/// @return     Screen to UI space matrix
-glm::mat4 const& CameraSystem::GetMat_ScreenToUI() const { return m_Screen2UI; }
+//-------------------------------------------------------------------------
+// private: methods
+//-------------------------------------------------------------------------
 
-/// @return     Screen to world space matrix
-glm::mat4 const& CameraSystem::GetMat_ScreenToWorld() const { return m_Screen2World; }
+    /// @brief  Calculates all the CameraSystem Matrices
+    void CameraSystem::calculateMatrices()
+    {
+        glm::mat4 I(1);
+        glm::vec2 screen = PlatformSystem::GetInstance()->GetWindowDimensions();
+        float screen_ratio = screen.y / screen.x;
 
-/// @return     UI space to world space matrix
-glm::mat4 const& CameraSystem::GetMat_UItoWorld() const { return m_UI2World; }
+        // screen to clip
+        glm::vec2 scale = glm::vec2( 2, -2 ) / screen;
+        glm::vec2 offset = glm::vec2( -1, 1 );
+        m_ScreenToClip = glm::mat4( 0 );
+        m_ScreenToClip[ 0 ][ 0 ] = scale.x;
+        m_ScreenToClip[ 1 ][ 1 ] = scale.y;
+        m_ScreenToClip[ 3 ] = glm::vec4( offset, 0, 1 );
 
-/// @return     World space to UI space matrix
-glm::mat4 const& CameraSystem::GetMat_WorldToUI() const { return m_World2UI; }
-
-
-// helper
-/// @brief    Calculates all the matrices using current camera data
-void CameraSystem::recalcMatrices()
-{
-    glm::mat4 I(1);
-    glm::vec2 screen = PlatformSystem::GetInstance()->GetWindowDimensions();
-    float screen_ratio = screen.y / screen.x;
-
-    // screen to UI: re-scale based on screen width/height, flip, move to center
-    glm::vec3 scale = glm::vec3( 10.0f/screen.x,  -10.0f * screen_ratio/screen.y,  0.0 );
-    glm::vec3 shift = glm::vec3(-5, 5 * screen_ratio, 0);
-    m_Screen2UI = glm::translate(I, shift) * glm::scale(glm::mat4(1), scale);
-
-    // UI to world: it's just the camera transform.
-    glm::mat4 s = glm::scale(I, {m_CamZoom, m_CamZoom, 1});
-    glm::mat4 r = glm::rotate(I, m_CamAngle, {0,0,1});
-    glm::mat4 t = glm::translate(I, {m_CamPos.x, m_CamPos.y, 0});
-    m_UI2World = t * r * s;
-    // and its inverse
-    m_World2UI = glm::inverse(m_UI2World);
+        // screen to UI: re-scale based on screen width/height, flip, move to center
+        scale = glm::vec2( 10.0f, -10.0f) / screen.x;
+        offset = glm::vec2( -5, 5 * screen_ratio );
+        m_ScreenToUi[ 0 ][ 0 ] = scale.x;
+        m_ScreenToUi[ 1 ][ 1 ] = scale.y;
+        m_ScreenToUi[ 3 ] = glm::vec4( offset, 0, 1 );
     
-    // UI to clip (-1 to 1)
-    m_UI2Clip = glm::scale(glm::mat4(1), {1.0f/5, 1.0f/(screen_ratio * 5), 0});
-
-    // these 2 are just combinations (go through UI)
-    m_Screen2World = m_UI2World * m_Screen2UI;
-    m_World2Clip = m_UI2Clip * m_World2UI;
-
-    m_Dirty = false;
-}
-
-//-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
-
-    /// @brief map of the CameraSystem read methods
-    ReadMethodMap< CameraSystem > const CameraSystem::s_ReadMethods = {};
+        // UI to clip (-1 to 1)
+        m_UiToClip = glm::scale( glm::mat4( 1 ), glm::vec3( 1.0f / 5, 1.0f / (screen_ratio * 5), 0 ) );
+    }
 
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
-CameraSystem* CameraSystem::instance = nullptr;
 
-CameraSystem::CameraSystem() :
-    System( "CameraSystem" )
-{}
+    CameraSystem* CameraSystem::instance = nullptr;
 
-CameraSystem* CameraSystem::GetInstance()
-{
-    if (instance == nullptr)
+    CameraSystem::CameraSystem() :
+        System( "CameraSystem" )
+    {}
+
+    CameraSystem* CameraSystem::GetInstance()
     {
-        instance = new CameraSystem();
+        if (instance == nullptr)
+        {
+            instance = new CameraSystem();
+        }
+        return instance;
     }
-    return instance;
-}
 
+//-----------------------------------------------------------------------------

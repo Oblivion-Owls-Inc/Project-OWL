@@ -1,6 +1,6 @@
 #version 330 core
 
-uniform vec4 color = vec4(0,0,0,1);
+uniform vec4 color = vec4(1,1,1,1);
 uniform float opacity = 1.0f;
 
 out vec4 out_color;

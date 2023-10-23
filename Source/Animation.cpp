@@ -147,7 +147,9 @@
     /// @param	New animation asset to set
     void Animation::SetAsset( AnimationAsset const* newAsset )
     {
+        int index = GetIndex(true);
 	    m_Asset = newAsset;
+        SetIndex(index, true);
     }
 
 //-----------------------------------------------------------------------------

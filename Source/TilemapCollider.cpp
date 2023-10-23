@@ -45,7 +45,6 @@
 
         data[ "CollisionLayer" ] = GetCollisionLayerId();
         data[ "CollisionLayerFlags" ] = GetCollisionLayerFlags();
-        data[ "Priority" ] = GetPriority();
 
         return data;
     }
@@ -53,8 +52,7 @@
     /// @brief map of the read methods for this Component
     ReadMethodMap< TilemapCollider > TilemapCollider::s_ReadMethods = {
         { "CollisionLayer"     , &readCollisionLayer      },
-        { "CollisionLayerFlags", &readCollisionLayerFlags },
-        { "Priority"           , &readPriority            }
+        { "CollisionLayerFlags", &readCollisionLayerFlags }
     };
 
 //-----------------------------------------------------------------------------

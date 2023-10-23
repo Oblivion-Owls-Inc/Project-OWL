@@ -107,21 +107,21 @@
         {
             // Edit Translation
             glm::vec2 translation = transform->GetTranslation();
-            if (ImGui::DragFloat2("Translation", &translation[0]))
+            if ( ImGui::DragFloat2( "Translation", &translation[0], 0.05f ) )
             {
                 transform->SetTranslation(translation);
             }
 
             // Edit Rotation
             float rotation = transform->GetRotation();
-            if (ImGui::DragFloat("Rotation", &rotation))
+            if ( ImGui::DragFloat( "Rotation", &rotation, 0.05f ) )
             {
                 transform->SetRotation(rotation);
             }
 
             // Edit Scale
             glm::vec2 scale = transform->GetScale();
-            if (ImGui::DragFloat2("Scale", &scale[0]))
+            if ( ImGui::DragFloat2( "Scale", &scale[0], 0.05f ) )
             {
                 transform->SetScale(scale);
             }
@@ -198,20 +198,20 @@
     {
         nlohmann::ordered_json data;
 
-        data["translation"] = Stream::Write(m_Translation);
-        data["rotation"] = m_Rotation;
-        data["scale"] = Stream::Write(m_Scale);
-        data["diegetic"] = m_IsDiegetic;
+        data["Translation"] = Stream::Write(m_Translation);
+        data["Rotation"] = m_Rotation;
+        data["Scale"] = Stream::Write(m_Scale);
+        data["IsDiegetic"] = m_IsDiegetic;
 
         return data;
     }
 
     // Map of all the read methods for the transform component.
     ReadMethodMap< Transform > Transform::s_ReadMethods = {
-	    { "translation" , &readTranslation },
-	    { "rotation"	, &readRotation    },
-	    { "scale"		, &readScale       },
-	    { "diegetic"	, &readIsDiegetic  }
+	    { "Translation" , &readTranslation },
+	    { "Rotation"	, &readRotation    },
+	    { "Scale"		, &readScale       },
+	    { "IsDiegetic"	, &readIsDiegetic  }
     };
 
 

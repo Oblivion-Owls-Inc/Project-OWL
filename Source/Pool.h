@@ -1,8 +1,10 @@
-
-
-
-
-
+/// @file       Pool.h
+/// @author     Jax Clayton (jax.clayton@digipen.edu)
+/// @brief      Used for Pools like Time or Health 
+/// @version    0.1
+/// @date       2023-10-06
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 #pragma once
 
 
