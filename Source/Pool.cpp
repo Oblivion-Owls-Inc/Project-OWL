@@ -17,11 +17,11 @@
 #include "DebugSystem.h"
 
 template<typename Value>
-inline Pool<Value>::Pool(std::string Name):
-	m_CurrentValue( 0 ), 
-	m_DefaultValue( 0 ), 
-	m_Active(false),
-	m_Name(std::string( ( Name + std::string(" Pool") ) ) )
+Pool<Value>::Pool(std::string name, Value value, bool active): 
+	m_CurrentValue(value), 
+	m_DefaultValue(value), 
+	m_Active(active),
+	m_Name(std::string( ( name + std::string(" Pool") ) ) )
 {
 }
 
@@ -98,7 +98,7 @@ void Pool<Value>::SetName(std::string name)
 template<typename Value>
 void Pool<Value>::Inspector()
 {
-	ImGui::Text("Name: %s", m_Name.c_str());
+	ImGui::Text("Pool Name: %s", m_Name.c_str());
 
 	float currentValue = static_cast<float>(m_CurrentValue);
 	if (ImGui::DragFloat("Current Value", &currentValue))
@@ -133,6 +133,7 @@ template<typename Value>
 void Pool<Value>::readBaseValue(nlohmann::ordered_json const& data)
 {
 	m_DefaultValue = Stream::Read<Value>(data);
+	Reset();
 }
 
 template<typename Value>
@@ -158,4 +159,125 @@ nlohmann::ordered_json Pool<Value>::Write() const
 	data["Active"] = m_Active;
 
 	return data;
+}
+
+template <typename Value>
+Pool<Value> operator+(const Pool<Value>& lhs, const Pool<Value>& rhs)
+{
+	Pool<Value> result(lhs);
+	result.m_CurrentValue += rhs.m_CurrentValue;
+	return result;
+}
+
+template <typename Value>
+Pool<Value> operator-(const Pool<Value>& lhs, const Pool<Value>& rhs)
+{
+	Pool<Value> result(lhs);
+	result.m_CurrentValue -= rhs.m_CurrentValue;
+	return result;
+}
+
+template <typename Value>
+Pool<Value> operator*(const Pool<Value>& lhs, const Pool<Value>& rhs)
+{
+	Pool<Value> result(lhs);
+	result.m_CurrentValue *= rhs.m_CurrentValue;
+	return result;
+}
+
+template <typename Value>
+Pool<Value> operator/(const Pool<Value>& lhs, const Pool<Value>& rhs)
+{
+	Pool<Value> result(lhs);
+	result.m_CurrentValue /= rhs.m_CurrentValue;
+	return result;
+}
+
+template <typename Value>
+bool operator==(const Pool<Value>& lhs, const Pool<Value>& rhs)
+{
+	return lhs.m_CurrentValue == rhs.m_CurrentValue;
+}
+
+template <typename Value>
+bool operator!=(const Pool<Value>& lhs, const Pool<Value>& rhs)
+{
+	return !(lhs == rhs);
+}
+
+template <typename Value>
+Pool<Value>& Pool<Value>::operator+=(const Value& value)
+{
+	m_CurrentValue += value;
+	if (m_CurrentValue > 0)
+	{
+		m_Active = true;
+	}
+	return *this;
+}
+
+template <typename Value>
+Pool<Value>& Pool<Value>::operator-=(const Value& value)
+{
+	m_CurrentValue -= value;
+
+	if (m_CurrentValue <= 0)
+	{
+		m_CurrentValue = 0;
+		m_Active = false;
+	}
+
+	return *this;
+}
+
+template <typename Value>
+Pool<Value>& Pool<Value>::operator*=(const Value& value)
+{
+	m_CurrentValue *= value;
+
+	if (m_CurrentValue <= 0)
+	{
+		m_CurrentValue = 0;
+		m_Active = false;
+	}
+	
+	return *this;
+}
+
+template <typename Value>
+Pool<Value>& Pool<Value>::operator/=(const Value& value)
+{
+	m_CurrentValue /= value;
+
+	if (m_CurrentValue <= 0)
+	{
+		m_CurrentValue = 0;
+		m_Active = false;
+	}
+
+	return *this;
+}
+
+template <typename Value>
+bool operator>(const Pool<Value>& lhs, const Pool<Value>& rhs)
+{
+	return lhs.m_CurrentValue > rhs.m_CurrentValue;
+}
+
+template <typename Value>
+bool operator<(const Pool<Value>& lhs, const Pool<Value>& rhs)
+{
+	return lhs.m_CurrentValue < rhs.m_CurrentValue;
+}
+
+template <typename Value>
+bool operator>=(const Pool<Value>& lhs, const Pool<Value>& rhs)
+{
+	return !(lhs < rhs);
+}
+
+template <typename Value>
+bool operator<=(const Pool<Value>& lhs, const Pool<Value>& rhs)
+{
+	return !(lhs > rhs);
 }

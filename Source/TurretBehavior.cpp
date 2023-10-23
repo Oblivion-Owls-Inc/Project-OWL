@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "BulletBehavior.h"
 #include "CircleCollider.h"
+#include "AssetLibrarySystem.h"
 #include "CollisionSystem.h"
 #include "EnemyBehavior.h"
 #include "Animation.h"
@@ -69,13 +70,16 @@ void TurretBehavior::OnUpdate(float dt)
 
 void TurretBehavior::OnFixedUpdate()
 {
+	float dt = Engine::GetInstance()->GetFixedFrameDuration();
+	CheckIfBulletChanged();
+
 	/// Check for a target
 	RayCastHit Target = CheckForTarget();
 
 	if (Target)
 	{
 		/// Fire a bullet at the target
-		FireBullet(Target);
+		FireBullet(Target, dt);
 	}
 
 }
@@ -83,31 +87,53 @@ void TurretBehavior::OnFixedUpdate()
 void TurretBehavior::Inspector()
 {
 	// Edit the Behavior of the Turret 
-	ImGui::DragFloat("Range", &m_Range, 1.0f, 1.0f);
-	ImGui::DragFloat("Fire Rate", &m_FireRate, 1.0f, 1.0f);
-	ImGui::DragFloat("Bullet Damage", &m_BulletDamage, 1.0f, 1.0f);
-	ImGui::DragFloat("Bullet Speed", &m_BulletSpeed, 1.0f, 1.0f);
-	ImGui::DragFloat("Bullet Size", &m_BulletSize, 1.0f, 1.0f);
-	ImGui::Text("Target Name: %c", m_TargetName.c_str());
+	ImGui::InputFloat("Range", &m_Range, 0.5f, 1.0f);
+	ImGui::InputFloat("Fire Rate", &m_FireRate, 0.5f, 1.0f);
+	ImGui::InputFloat("Bullet Damage", &m_BulletDamage, 0.5f, 1.0f);
+	ImGui::InputFloat("Bullet Speed", &m_BulletSpeed, 0.5f, 1.0f);
+	ImGui::InputFloat("Bullet Size", &m_BulletSize, 0.5f, 1.0f);
+	ImGui::Text("Target Name: %s", m_TargetName.c_str());
 }
 
 
 
-void TurretBehavior::FireBullet(RayCastHit Target)
+void TurretBehavior::FireBullet(RayCastHit Target, float dt)
 {
-	float currentTime = glfwGetTime();
-	if (currentTime - m_LastFireTime < m_FireRate)
+	m_LastFireTime += dt;  // Increment the time since the last bullet was fired.
+
+	if (m_LastFireTime < 1.0f / m_FireRate)
 		return;
+
+	m_LastFireTime = 0.0f;  // Reset the timer since we're firing a bullet.
 
 	Entity* bullet = new Entity;
 
+	if (!bullet)
+		return;
+
 	*bullet = *m_BulletPrefab;
 	
+	bullet->SetName("Bullet");
+
+	glm::vec2 turretPos = GetParent()->GetComponent<Transform>()->GetTranslation();
+
+	bullet->GetComponent<CircleCollider>()->AddOnCollisionCallback(
+		GetParent()->GetId(),
+		[bulletBehavior = bullet->GetComponent<BulletBehavior>()](Collider* collider, CollisionData const& collisionData) {
+			bulletBehavior->OnCollision(collider, collisionData);
+		}
+	);
+
+	bullet->GetComponent<Transform>()->SetTranslation(turretPos );
+
 	bullet->GetComponent<BulletBehavior>()->SetTarget(Target);
+	bullet->GetComponent<BulletBehavior>()->SetBulletDamage(m_BulletDamage);
+	bullet->GetComponent<BulletBehavior>()->SetBulletSpeed(m_BulletSpeed);
+	
+	bullet->GetComponent<Transform>()->SetScale(glm::vec2(m_BulletSize));
 
 	Entities()->AddEntity(bullet);
 
-	m_LastFireTime = currentTime;  // Update the last fire time
 }
 
 RayCastHit TurretBehavior::CheckForTarget()
@@ -134,7 +160,9 @@ RayCastHit TurretBehavior::CheckForTarget()
 
 		CircleCollider* collider = (CircleCollider *)GetParent()->GetComponent<Collider>();
         // Cast a ray from the turret towards the entity
-        hit = CollisionSystem::GetInstance()->RayCast(turretPosition, directionToEntity, m_Range, collider->GetCollisionLayerFlags());
+        hit = CollisionSystem::GetInstance()->RayCast(
+			turretPosition, directionToEntity, m_Range, collider->GetCollisionLayerFlags()
+		);
 
 		return hit;
     }
@@ -143,12 +171,21 @@ RayCastHit TurretBehavior::CheckForTarget()
 
 void TurretBehavior::CheckIfBulletChanged()
 {
-		/// Check if the bullet prefab has changed
-		if (m_BulletName != m_BulletPrefab->GetName())
-		{
-		 	/// Get the new bullet prefab
-		 	m_BulletPrefab = Entities()->GetEntity(m_BulletName);
-		}
+
+	/// Check if the bullet prefab has changed
+	if (m_BulletName != m_BulletPrefab->GetName())
+	{
+		m_BulletName = m_BulletPrefab->GetName();
+		/// Get the new bullet prefab
+		m_BulletPrefab = AssetLibrarySystem<Entity>::GetInstance()->GetAsset(m_BulletName);
+
+	}
+}
+
+void TurretBehavior::readBulletName(nlohmann::ordered_json const& data)
+{
+	m_BulletName = Stream::Read<std::string>(data);
+	m_BulletPrefab = AssetLibrarySystem<Entity>::GetInstance()->GetAsset(m_BulletName);
 }
 
 void TurretBehavior::readTargetName(nlohmann::ordered_json const& data)
@@ -192,6 +229,7 @@ nlohmann::ordered_json TurretBehavior::Write() const
 	data["bulletdamage"] = m_BulletDamage;
 	data["bulletspeed"] = m_BulletSpeed;
 	data["bulletsize"] = m_BulletSize;
+	data["bulletname"] = m_BulletName;
 	data["Target"] = m_TargetName;
 
 	return data;
@@ -201,6 +239,7 @@ ReadMethodMap<TurretBehavior> const TurretBehavior::s_ReadMethods =
 {
 	{ "fireRate",			  &readFireRate },
 	{ "range",					 &readRange },
+	{ "bulletName",		   &readBulletName  },
 	{ "bulletdamage",	  &readBulletDamage },
 	{ "bulletspeed",	   &readBulletSpeed },
 	{ "bulletsize",		    &readBulletSize },

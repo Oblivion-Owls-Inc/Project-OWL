@@ -33,6 +33,7 @@
 #include "MovementAI.h"
 #include "PlayerController.h"
 #include "TurretBehavior.h"
+#include "BulletBehavior.h"
 #include "EffectAnimator.h"
 #include "Animation.h"
 #include "Tilemap.h"
@@ -163,6 +164,7 @@
                                                                                                           
         { "BehaviorSystem<RigidBody>",             &addSystem< BehaviorSystem< RigidBody > >              },
         { "BehaviorSystem<Behavior>",              &addSystem< BehaviorSystem< Behavior > >               },
+        { "BehaviorSystem<BulletBehavior>",        &addSystem< BehaviorSystem< BulletBehavior > >         },
         { "BehaviorSystem<Animation>",             &addSystem< BehaviorSystem< Animation > >              },
         { "BehaviorSystem<EffectAnimator>",        &addSystem< BehaviorSystem< EffectAnimator > >         },
         { "BehaviorSystem<Tilemap<int>>",          &addSystem< BehaviorSystem< Tilemap<int> > >           },

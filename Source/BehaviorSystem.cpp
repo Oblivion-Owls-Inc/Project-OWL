@@ -29,7 +29,13 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 {
 	for (auto behavior : m_BehaviorList)
 	{
-		behavior->OnFixedUpdate();
+        if (!behavior)
+        {
+            continue;
+        }
+
+        behavior->OnFixedUpdate();
+        
 	}
 }
 
@@ -38,6 +44,11 @@ void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
 	for (auto behavior : m_BehaviorList)
 	{
+        if (!behavior)
+        {
+            continue;
+        }
+
 		behavior->OnUpdate(dt);
 	}
 }

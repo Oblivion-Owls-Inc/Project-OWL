@@ -27,6 +27,8 @@ public: //Methods
 
     Pool<int>* GetHealth() { return &m_Health; }
 
+    void TakeDamage(int damage);
+
 //-----------------------------------------------------------------------------
 private: // Member Variables
 //----------------------------------------------------------------------------

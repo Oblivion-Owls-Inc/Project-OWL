@@ -18,7 +18,7 @@ public: // constructor / destructor
 //-----------------------------------------------------------------------------
 
 	///@brief constructor
-	Pool(std::string name);
+	Pool(std::string name = std::string("Pool"), Value value = 0, bool active = 0);
 
 	Pool(const Pool& other);
 
@@ -111,6 +111,31 @@ private: // reading
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
+
+//-----------------------------------------------------------------------------
+public: // Operators
+//-----------------------------------------------------------------------------
+
+	friend Pool operator+(const Pool& lhs, const Pool& rhs);
+	friend Pool operator-(const Pool& lhs, const Pool& rhs);
+	friend Pool operator*(const Pool& lhs, const Pool& rhs);
+	friend Pool operator/(const Pool& lhs, const Pool& rhs);
+
+	friend bool operator==(const Pool& lhs, const Pool& rhs);
+	friend bool operator!=(const Pool& lhs, const Pool& rhs);
+
+	Pool& operator+=(const Value& value);
+	Pool& operator-=(const Value& value);
+	Pool& operator*=(const Value& value);
+	Pool& operator/=(const Value& value);
+
+
+	friend bool operator>(const Pool& lhs, const Pool& rhs);
+	friend bool operator<(const Pool& lhs, const Pool& rhs);
+	friend bool operator>=(const Pool& lhs, const Pool& rhs);
+	friend bool operator<=(const Pool& lhs, const Pool& rhs);
+
+	operator bool() const { return m_Active; }
 
 //-----------------------------------------------------------------------------
 public: // writing

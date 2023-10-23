@@ -21,6 +21,7 @@
 #include "CircleCollider.h"
 #include "EnemyBehavior.h"
 #include "AudioPlayer.h"
+#include "BulletBehavior.h"
 #include "Animation.h"
 #include "TurretBehavior.h"
 #include "PlayerController.h"
@@ -111,6 +112,7 @@
 		{ "EnemyBehavior"    , ComponentInfo<EnemyBehavior>()    },
         { "Tilemap<int>"     , ComponentInfo< Tilemap<int> >()   },
         { "TilemapSprite"    , ComponentInfo<TilemapSprite>()    },
+		{ "BulletBehavior"   , ComponentInfo<BulletBehavior>()   },
         { "Pathfinder"       , ComponentInfo<Pathfinder>()       },
         { "TilemapCollider"  , ComponentInfo<TilemapCollider>()  },
         { "StaticBody"       , ComponentInfo<StaticBody>()       }

@@ -65,15 +65,19 @@ class TurretBehavior :
 		float m_LastFireTime = 0.0f;
 		std::string m_TargetName;
 		std::string m_BulletName;
-		Entity* m_BulletPrefab = nullptr; /// Todo: Make this a prefab actually work
+		const Entity* m_BulletPrefab = nullptr; /// Todo: Make this a prefab actually work
 
 	private:
 
-		void FireBullet(RayCastHit target);
+		void FireBullet(RayCastHit target, float dt);
 		RayCastHit CheckForTarget();
 		void CheckIfBulletChanged();
 
 	private: ///Reading 
+
+		/// @brief Reads the name of the bullet prefab to grab from AssetLib
+		/// @param data - the json data to read from
+		void readBulletName(nlohmann::ordered_json const& data);
 
 		/// @brief reads in the name of the target
 		/// @param data - the json data to read from

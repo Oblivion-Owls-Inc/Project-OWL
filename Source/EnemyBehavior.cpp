@@ -13,6 +13,15 @@ EnemyBehavior::EnemyBehavior() : Behavior(typeid(EnemyBehavior)), m_Health("Heal
 {
 }
 
+void EnemyBehavior::TakeDamage(int damage)
+{
+    m_Health -= damage;
+    if (!m_Health)
+    {
+		GetParent()->Destroy();
+	}
+}
+
 void EnemyBehavior::OnInit()
 {
     Behaviors<Behavior>()->AddBehavior(this);
@@ -36,13 +45,6 @@ ReadMethodMap< EnemyBehavior > const EnemyBehavior::s_ReadMethods = {
 void EnemyBehavior::OnFixedUpdate()
 {
 
-
-	//ChaseTarget(pathfinder, Engine::GetInstance()->GetFixedFrameDuration());
-
-	if (!m_Health.GetActive())
-	{
-       GetParent()->Destroy();
-	}
 }
 
 nlohmann::ordered_json EnemyBehavior::Write() const

@@ -16,6 +16,9 @@
       },
       "Ball": {
         "Filepath": "Data/Textures/Balls/Ball.png"
+      },
+      "Ball1": {
+        "Filepath": "Data/Textures/Balls/Ball2.png"
       }
     },
 
@@ -47,6 +50,34 @@
           }
         }
       },
+      "Bullet": {
+        "Name": "Bullet",
+        "Components": {
+          "Sprite": {
+            "Texture": "Ball1",
+            "Layer": 2
+          },
+          "Transform": {
+            "scale": [ 0.3, 0.3 ]
+          },
+          "BulletBehavior": {
+            "Pool": {
+              "name": "LifeTime",
+              "Active": true,
+              "BaseValue": 3
+            }
+          },
+          "CircleCollider": {
+            "Radius": 0.1,
+            "CollisionLayer": "player",
+            "CollisionLayerFlags": [ "enemies", "terrain" ]
+          },
+          "RigidBody": {
+            "Acceleration": [ 0.0, 0.0 ],
+            "Restitution": 1
+          }
+        }
+      },
       "Turret": {
         "Name": "Turret",
         "Components": {
@@ -64,13 +95,14 @@
             "CollisionLayerFlags": [ "enemies" ]
           },
           "TurretBehavior": {
-            "range": 2,
+            "range": 5,
             "bulletdamage": 20,
-            "Target":  "Enemy"
+            "Target": "Enemy",
+            "bulletName": "Bullet",
+            "bulletsize":  0.3
           }
         }
       }
-
     }
   },
     "Entities": [

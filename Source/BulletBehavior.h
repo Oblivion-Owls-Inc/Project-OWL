@@ -8,6 +8,7 @@
 
 #pragma once
 #include "Behavior.h"
+#include "Pool.h"
 
 class StaticBody;
 
@@ -24,6 +25,9 @@ public: // methods
 //-----------------------------------------------------------------------------
 
     void SetTarget(RayCastHit target);
+    __inline void SetBulletDamage(float damage) { m_BulletDamage = damage; }
+    __inline void SetBulletSpeed(float speed) { m_BulletSpeed = speed; }
+
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -44,12 +48,7 @@ public: // virtual override methods
     /// @brief  Called whenever a Collider on this Behavior's Entity collides
     /// @param  other           the entity that was collided with
     /// @param  collisionData   additional data about the collision
-    virtual void OnCollision(Entity* other, CollisionData const& collisionData);
-
-    /// @brief  resolve collision between this RigidBody and a StaticBody
-    /// @param  other           the StaticBody to collide with
-    /// @param  collisionData   additional data about the collision
-    void CollideWithStatic( StaticBody const* other, CollisionData const& collisionData );
+    virtual void OnCollision(Collider* other, CollisionData const& collisionData);
 
     /// @brief Update method called per frame.
     /// @param dt The time elapsed since the last frame.
@@ -67,18 +66,35 @@ private: // methods
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
-  
     RayCastHit m_Target;
+
+    float m_BulletDamage;
+
+    float m_BulletSpeed;
+
+    Pool<float> m_BulletLifeTime;
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
-    
+
+    ///
+    void readPool(nlohmann::ordered_json const& data);
+
+
+    /// @brief the map of read methods for this Component
+    static ReadMethodMap< BulletBehavior > const s_ReadMethods;
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
+
 //-----------------------------------------------------------------------------
 public: // writing
 //-----------------------------------------------------------------------------
-
-
 
 //-----------------------------------------------------------------------------
 private: // copying
