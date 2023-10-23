@@ -89,7 +89,7 @@
             "Translation": [ -4, 1 ]
           },
           "CircleCollider": {
-            "Radius": 0.1,
+            "Radius": 0,
             "CollisionLayer": "Player",
             "CollisionLayerFlags": [ "Enemies" ]
           },

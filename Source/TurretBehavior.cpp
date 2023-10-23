@@ -263,6 +263,6 @@ ReadMethodMap<TurretBehavior> const TurretBehavior::s_ReadMethods =
 	{ "bulletdamage",	  &readBulletDamage },
 	{ "bulletspeed",	   &readBulletSpeed },
 	{ "bulletsize",		    &readBulletSize },
-	{ "Target",				&readTargetName }
+	{ "Target",				&readTargetName },
 };
 #pragma	warning(pop)
