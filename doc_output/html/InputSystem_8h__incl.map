@@ -1,11 +1,10 @@
 <map id="Source/InputSystem.h" name="Source/InputSystem.h">
-<area shape="rect" id="node1" title="Input system, handles key and mouse inputs." alt="" coords="145,5,309,32"/>
+<area shape="rect" id="node1" title="Input system, handles key and mouse inputs." alt="" coords="114,5,278,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,304,56,331"/>
-<area shape="rect" id="node3" href="$System_8h.html" title="Base class for all Systems." alt="" coords="185,80,268,107"/>
-<area shape="rect" id="node9" title=" " alt="" coords="448,304,552,331"/>
-<area shape="rect" id="node4" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="169,155,284,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="365,304,424,331"/>
-<area shape="rect" id="node6" title=" " alt="" coords="80,304,243,331"/>
-<area shape="rect" id="node7" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="242,229,323,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="267,304,341,331"/>
+<area shape="rect" id="node3" href="$System_8h.html" title="Base class for all Systems." alt="" coords="155,80,237,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="333,304,437,331"/>
+<area shape="rect" id="node4" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="139,155,253,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="251,304,309,331"/>
+<area shape="rect" id="node6" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="155,229,237,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="80,304,227,331"/>
 </map>

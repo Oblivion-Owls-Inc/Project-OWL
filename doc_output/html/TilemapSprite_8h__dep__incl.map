@@ -1,6 +1,5 @@
 <map id="Source/TilemapSprite.h" name="Source/TilemapSprite.h">
-<area shape="rect" id="node1" title="A version of Sprite specifically for rendering tiles." alt="" coords="222,5,395,32"/>
+<area shape="rect" id="node1" title="A version of Sprite specifically for rendering tiles." alt="" coords="141,5,314,32"/>
 <area shape="rect" id="node2" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="5,80,223,107"/>
-<area shape="rect" id="node3" href="$Text_8cpp.html" title="A version of Sprite specifically for rendering text. Uses instancing to draw multiple letters simulta..." alt="" coords="247,80,371,107"/>
-<area shape="rect" id="node4" href="$Tilemap_8cpp.html" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="395,80,545,107"/>
+<area shape="rect" id="node3" href="$TilemapSprite_8cpp.html" title="A version of Sprite specifically for rendering tiles." alt="" coords="247,80,435,107"/>
 </map>

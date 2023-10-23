@@ -29,7 +29,13 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 {
 	for (auto behavior : m_BehaviorList)
 	{
-		behavior->OnFixedUpdate();
+        if (!behavior)
+        {
+            continue;
+        }
+
+        behavior->OnFixedUpdate();
+        
 	}
 }
 
@@ -38,6 +44,11 @@ void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
 	for (auto behavior : m_BehaviorList)
 	{
+        if (!behavior)
+        {
+            continue;
+        }
+
 		behavior->OnUpdate(dt);
 	}
 }
@@ -80,7 +91,23 @@ void BehaviorSystem<BehaviorType>::DebugWindow()
 
     if (ImGui::Button(buttonLabel))
         s_ShowBehaviorSystemList = !s_ShowBehaviorSystemList;
-    
+
+    if (s_ShowBehaviorSystemList)
+    {
+        for (auto behavior : m_BehaviorList)
+        {
+            std::string parentName = behavior->GetParent()->GetName();
+            int nodeId = (int)behavior->GetId();
+            std::string label = parentName + "'s Behavior";
+
+            if (ImGui::TreeNode(std::string(std::to_string(nodeId)).c_str(), label.c_str()))
+            {
+                behavior->Inspector();
+                ImGui::TreePop();
+            }
+        }
+    }
+
 }
 
 //-----------------------------------------------------------------------------

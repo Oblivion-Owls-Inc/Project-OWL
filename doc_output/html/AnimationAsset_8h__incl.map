@@ -1,17 +1,9 @@
 <map id="Source/AnimationAsset.h" name="Source/AnimationAsset.h">
-<area shape="rect" id="node1" title="animation Asset class" alt="" coords="273,5,458,32"/>
-<area shape="rect" id="node2" href="$Sprite_8h_source.html" title=" " alt="" coords="429,155,501,181"/>
-<area shape="rect" id="node12" href="$Behavior_8h.html" title="Virtual behavior component header." alt="" coords="211,155,301,181"/>
-<area shape="rect" id="node14" href="$Animation_8h.html" title="animation component class" alt="" coords="315,80,416,107"/>
-<area shape="rect" id="node3" href="$Component_8h.html" title="Virtual component header." alt="" coords="201,229,311,256"/>
-<area shape="rect" id="node9" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="215,379,297,405"/>
-<area shape="rect" id="node11" title=" " alt="" coords="448,453,552,480"/>
-<area shape="rect" id="node4" title=" " alt="" coords="87,304,174,331"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,453,56,480"/>
-<area shape="rect" id="node6" title=" " alt="" coords="365,453,424,480"/>
-<area shape="rect" id="node7" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="199,304,313,331"/>
-<area shape="rect" id="node8" title=" " alt="" coords="80,453,243,480"/>
-<area shape="rect" id="node10" title=" " alt="" coords="267,453,341,480"/>
-<area shape="rect" id="node13" href="$CollisionData_8h_source.html" title=" " alt="" coords="425,379,546,405"/>
-<area shape="rect" id="node15" title=" " alt="" coords="325,155,405,181"/>
+<area shape="rect" id="node1" title="Asset that contains information about a spritesheet animation." alt="" coords="9,5,194,32"/>
+<area shape="rect" id="node2" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="44,80,159,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,229,56,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="80,229,139,256"/>
+<area shape="rect" id="node5" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="139,155,221,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="163,229,267,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="291,229,437,256"/>
 </map>

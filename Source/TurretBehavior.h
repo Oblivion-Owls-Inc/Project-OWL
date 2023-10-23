@@ -17,6 +17,8 @@
 ///			
 ///*****************************************************************/
 
+using CollisionLayerFlags = unsigned;
+
 class TurretBehavior :
     public Behavior
 {
@@ -32,7 +34,6 @@ class TurretBehavior :
 		/// @param  collisionData   additional data about the collision
 		virtual void OnCollision( Entity* other, CollisionData const& collisionData ) {};
 
-
 		/// @brief Default constructor for the RigidBody class.
 		virtual void OnInit();
 
@@ -42,6 +43,7 @@ class TurretBehavior :
 
 
 	public:
+
 		/// @brief Called Every Frame by the system
 		/// @param dt - the time since the last frame
 		virtual void OnUpdate(float dt) override;
@@ -53,18 +55,33 @@ class TurretBehavior :
 		virtual void Inspector() override;
 
 	private:
+
+		CollisionLayerFlags m_CollisionLayerFlags;
 		float m_FireRate = 1.0f;
 		float m_Range = 5.0f;
 		float m_BulletDamage = 1.0f;
 		float m_BulletSpeed = 1.0f;
 		float m_BulletSize = 1.0f;
-		Entity* m_BulletPrefab = nullptr; /// Todo: Make this a prefab actually work
+		float m_LastFireTime = 0.0f;
+		std::string m_TargetName;
+		std::string m_BulletName;
+		const Entity* m_BulletPrefab = nullptr; /// Todo: Make this a prefab actually work
 
 	private:
 
-		void FireBullet();
+		void FireBullet(RayCastHit target, float dt);
+		RayCastHit CheckForTarget();
+		void CheckIfBulletChanged();
 
 	private: ///Reading 
+
+		/// @brief Reads the name of the bullet prefab to grab from AssetLib
+		/// @param data - the json data to read from
+		void readBulletName(nlohmann::ordered_json const& data);
+
+		/// @brief reads in the name of the target
+		/// @param data - the json data to read from
+		void readTargetName(nlohmann::ordered_json const& data);
 
 		/// @brief reads the fire rate from the json file
 		/// @param jsonValue  the json data

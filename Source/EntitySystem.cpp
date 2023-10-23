@@ -136,7 +136,6 @@
             {
 				RemoveEntity(entity);
                 delete entity;
-
                 --i;
             }
 		}

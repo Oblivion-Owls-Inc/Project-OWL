@@ -1,6 +1,12 @@
 <map id="Source/Tilemap.h" name="Source/Tilemap.h">
-<area shape="rect" id="node1" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="281,5,416,32"/>
-<area shape="rect" id="node2" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="5,80,223,107"/>
-<area shape="rect" id="node3" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="247,80,450,107"/>
-<area shape="rect" id="node4" href="$Tilemap_8cpp.html" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="475,80,625,107"/>
+<area shape="rect" id="node1" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="532,5,667,32"/>
+<area shape="rect" id="node2" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="5,155,223,181"/>
+<area shape="rect" id="node3" href="$Engine_8cpp.html" title="Engine class." alt="" coords="121,80,262,107"/>
+<area shape="rect" id="node4" href="$Pathfinder_8h.html" title="Interface file of Pathfinder component." alt="" coords="286,80,433,107"/>
+<area shape="rect" id="node7" href="$Text_8cpp.html" title="Component that makes use of Tilemap to draw text." alt="" coords="457,80,581,107"/>
+<area shape="rect" id="node8" href="$Tilemap_8cpp.html" title="Tilemap component &#45; loads and manages a tilemap array." alt="" coords="605,80,756,107"/>
+<area shape="rect" id="node9" href="$TilemapCollider_8cpp.html" title="tilemap collider" alt="" coords="780,80,979,107"/>
+<area shape="rect" id="node10" href="$TilemapSprite_8cpp.html" title="A version of Sprite specifically for rendering tiles." alt="" coords="1003,80,1191,107"/>
+<area shape="rect" id="node5" href="$Pathfinder_8cpp.html" title="Implementation of Pathfinder component. Runs vector field pathfinding algo whenever parent&#39;s Tilemap ..." alt="" coords="263,155,424,181"/>
+<area shape="rect" id="node6" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="449,155,651,181"/>
 </map>

@@ -1,0 +1,5 @@
+<map id="Source/TilemapCollider.h" name="Source/TilemapCollider.h">
+<area shape="rect" id="node1" title="tilemap collider" alt="" coords="138,5,322,32"/>
+<area shape="rect" id="node2" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="5,80,223,107"/>
+<area shape="rect" id="node3" href="$TilemapCollider_8cpp.html" title="tilemap collider" alt="" coords="247,80,445,107"/>
+</map>

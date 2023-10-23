@@ -124,10 +124,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a78d77c13f9c18a45b75561516e34e7c3"><td class="memItemLeft" align="right" valign="top">__inline <a class="el" href="classCurve.html">Curve</a>&lt; 2 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformAnimation.html#a78d77c13f9c18a45b75561516e34e7c3">GetSkewCurve</a> ()</td></tr>
 <tr class="memdesc:a78d77c13f9c18a45b75561516e34e7c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the SkewCurve  <a href="classTransformAnimation.html#a78d77c13f9c18a45b75561516e34e7c3">More...</a><br /></td></tr>
 <tr class="separator:a78d77c13f9c18a45b75561516e34e7c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d74bdfc1962d0ce2aeaa656e50b364a"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransformAnimation.html#a7d74bdfc1962d0ce2aeaa656e50b364a">Write</a> () const override</td></tr>
+<tr class="memdesc:a7d74bdfc1962d0ce2aeaa656e50b364a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classTransformAnimation.html" title="Asset that animates a Transform with Curves.">TransformAnimation</a> data to a JSON file.  <a href="classTransformAnimation.html#a7d74bdfc1962d0ce2aeaa656e50b364a">More...</a><br /></td></tr>
+<tr class="separator:a7d74bdfc1962d0ce2aeaa656e50b364a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classISerializable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classISerializable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classISerializable.html">ISerializable</a></td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top"><a id="a7b60e4aca93fb97f18c9ff41ee53bc3a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
+<tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
+<tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Asset that animates a <a class="el" href="classTransform.html">Transform</a> with Curves. </p>
@@ -288,6 +292,36 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a matrix of the effect transform at the specified time </dd></dl>
+
+</div>
+</div>
+<a id="a7d74bdfc1962d0ce2aeaa656e50b364a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d74bdfc1962d0ce2aeaa656e50b364a">&#9670;&nbsp;</a></span>Write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json TransformAnimation::Write </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write all <a class="el" href="classTransformAnimation.html" title="Asset that animates a Transform with Curves.">TransformAnimation</a> data to a JSON file. </p>
+<dl class="section return"><dt>Returns</dt><dd>The JSON file containing the <a class="el" href="classTransformAnimation.html" title="Asset that animates a Transform with Curves.">TransformAnimation</a> data. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
 
 </div>
 </div>

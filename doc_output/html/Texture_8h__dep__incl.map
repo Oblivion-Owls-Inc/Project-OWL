@@ -1,8 +1,10 @@
 <map id="Source/Texture.h" name="Source/Texture.h">
-<area shape="rect" id="node1" title="Header for the OpenGL texture wrapper." alt="" coords="383,5,513,32"/>
+<area shape="rect" id="node1" title="Header for the OpenGL texture wrapper." alt="" coords="599,5,729,32"/>
 <area shape="rect" id="node2" href="$Engine_8cpp.html" title="Engine class." alt="" coords="5,80,147,107"/>
-<area shape="rect" id="node3" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="171,80,357,107"/>
-<area shape="rect" id="node4" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="381,80,515,107"/>
-<area shape="rect" id="node5" href="$Texture_8cpp.html" title="Wrapper/manager for OpenGL texture." alt="" coords="539,80,685,107"/>
-<area shape="rect" id="node6" href="$XinoScene_8cpp.html" title=" " alt="" coords="709,80,875,107"/>
+<area shape="rect" id="node3" href="$RenderSystem_8cpp.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="171,80,363,107"/>
+<area shape="rect" id="node4" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="387,80,573,107"/>
+<area shape="rect" id="node5" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="597,80,731,107"/>
+<area shape="rect" id="node6" href="$Texture_8cpp.html" title="Wrapper/manager for OpenGL texture." alt="" coords="755,80,901,107"/>
+<area shape="rect" id="node7" href="$TilemapSprite_8cpp.html" title="A version of Sprite specifically for rendering tiles." alt="" coords="925,80,1113,107"/>
+<area shape="rect" id="node8" href="$XinoScene_8cpp.html" title=" " alt="" coords="1137,80,1303,107"/>
 </map>

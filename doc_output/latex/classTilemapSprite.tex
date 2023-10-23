@@ -11,8 +11,7 @@ A version of \mbox{\hyperlink{classSprite}{Sprite}} for rendering tilemaps using
 
 
 
-Inheritance diagram for Tilemap\+Sprite\+:
-\nopagebreak
+Inheritance diagram for Tilemap\+Sprite\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Tilemap\+Sprite\+:
 \end{figure}
 
 
-Collaboration diagram for Tilemap\+Sprite\+:
-\nopagebreak
+Collaboration diagram for Tilemap\+Sprite\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -41,15 +39,6 @@ void \mbox{\hyperlink{classTilemapSprite_a7e846266495ed45f4b082696a16e3bb9}{Load
 \begin{DoxyCompactList}\small\item\em Loads the tile array from a raw char array. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTilemapSprite_aee927c2de899762926f80f09b235ef77}{Load\+Tile\+Array}} (std\+::vector$<$ int $>$ tiles)
 \begin{DoxyCompactList}\small\item\em Loads the tile array from a vector of ints. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classTilemapSprite_aa3d5a5edaef9109f7241eaaeaebfd487}{Set\+Row\+Width}} (int width)
-\begin{DoxyCompactList}\small\item\em Sets the width of a single row (amount of columns) \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline int \mbox{\hyperlink{classTilemapSprite_a90b190dd21553ba3b87938150bf1b154}{Get\+Row\+Width}} () const
-\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classTilemapSprite_a8a4b6c1c84a388f92ff3632142588ff2}{Set\+Stride\+Multiplier}} (glm\+::vec2 mults)
-\begin{DoxyCompactList}\small\item\em Sets the stride multiplier. Default stride is the full width/height of single tile. (Example\+: To space out the tiles, set multipliers to over 1.\+0) \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline glm\+::vec2 \mbox{\hyperlink{classTilemapSprite_a6d2267b43d3b7c84fe12d4e3c8728fdc}{Get\+Stride\+Multiplier}} () const
-\begin{DoxyCompactList}\small\item\em Retreives the stride multiplier. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}\label{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}} 
 virtual void \mbox{\hyperlink{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}{Draw}} () override
 \begin{DoxyCompactList}\small\item\em Draws tilemap using currently loaded array. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
@@ -83,28 +72,20 @@ Textured constructor.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classTilemapSprite_a90b190dd21553ba3b87938150bf1b154}\label{classTilemapSprite_a90b190dd21553ba3b87938150bf1b154}} 
-\index{TilemapSprite@{TilemapSprite}!GetRowWidth@{GetRowWidth}}
-\index{GetRowWidth@{GetRowWidth}!TilemapSprite@{TilemapSprite}}
-\doxysubsubsection{\texorpdfstring{GetRowWidth()}{GetRowWidth()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline int Tilemap\+Sprite\+::\+Get\+Row\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-\begin{DoxyReturn}{Returns}
-Tiles per row 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classTilemapSprite_a6d2267b43d3b7c84fe12d4e3c8728fdc}\label{classTilemapSprite_a6d2267b43d3b7c84fe12d4e3c8728fdc}} 
-\index{TilemapSprite@{TilemapSprite}!GetStrideMultiplier@{GetStrideMultiplier}}
-\index{GetStrideMultiplier@{GetStrideMultiplier}!TilemapSprite@{TilemapSprite}}
-\doxysubsubsection{\texorpdfstring{GetStrideMultiplier()}{GetStrideMultiplier()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::vec2 Tilemap\+Sprite\+::\+Get\+Stride\+Multiplier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\Hypertarget{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}\label{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}} 
+\index{TilemapSprite@{TilemapSprite}!Draw@{Draw}}
+\index{Draw@{Draw}!TilemapSprite@{TilemapSprite}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Tilemap\+Sprite\+::\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
-Retreives the stride multiplier. 
+Draws tilemap using currently loaded array. 
 
-\begin{DoxyReturn}{Returns}
-x=horizontal, y=vertical 
-\end{DoxyReturn}
+Draws tilemap using currently loaded array. Note\+: currently, it draws with or without transform. Should I just NOT allow transform-\/less rendering?... 
+
+Reimplemented from \mbox{\hyperlink{classSprite_a054a4c340c14c3d218b99e484bf83d21}{Sprite}}.
+
 \mbox{\Hypertarget{classTilemapSprite_a7e846266495ed45f4b082696a16e3bb9}\label{classTilemapSprite_a7e846266495ed45f4b082696a16e3bb9}} 
 \index{TilemapSprite@{TilemapSprite}!LoadTileArray@{LoadTileArray}}
 \index{LoadTileArray@{LoadTileArray}!TilemapSprite@{TilemapSprite}}
@@ -137,39 +118,9 @@ Loads the tile array from a vector of ints.
 {\em tiles} & tile IDs (spritesheet frames) \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTilemapSprite_aa3d5a5edaef9109f7241eaaeaebfd487}\label{classTilemapSprite_aa3d5a5edaef9109f7241eaaeaebfd487}} 
-\index{TilemapSprite@{TilemapSprite}!SetRowWidth@{SetRowWidth}}
-\index{SetRowWidth@{SetRowWidth}!TilemapSprite@{TilemapSprite}}
-\doxysubsubsection{\texorpdfstring{SetRowWidth()}{SetRowWidth()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Tilemap\+Sprite\+::\+Set\+Row\+Width (\begin{DoxyParamCaption}\item[{int}]{width }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Sets the width of a single row (amount of columns) 
-
-
-\begin{DoxyParams}{Parameters}
-{\em columns} & (tiles per row) \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classTilemapSprite_a8a4b6c1c84a388f92ff3632142588ff2}\label{classTilemapSprite_a8a4b6c1c84a388f92ff3632142588ff2}} 
-\index{TilemapSprite@{TilemapSprite}!SetStrideMultiplier@{SetStrideMultiplier}}
-\index{SetStrideMultiplier@{SetStrideMultiplier}!TilemapSprite@{TilemapSprite}}
-\doxysubsubsection{\texorpdfstring{SetStrideMultiplier()}{SetStrideMultiplier()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Tilemap\+Sprite\+::\+Set\+Stride\+Multiplier (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{mults }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Sets the stride multiplier. Default stride is the full width/height of single tile. (Example\+: To space out the tiles, set multipliers to over 1.\+0) 
-
-
-\begin{DoxyParams}{Parameters}
-{\em mults} & x=horizontal, y=vertical \\
-\hline
-\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
 Source/\mbox{\hyperlink{TilemapSprite_8h}{Tilemap\+Sprite.\+h}}\item 
-Source/Tilemap\+Sprite.\+cpp\end{DoxyCompactItemize}
+Source/\mbox{\hyperlink{TilemapSprite_8cpp}{Tilemap\+Sprite.\+cpp}}\end{DoxyCompactItemize}

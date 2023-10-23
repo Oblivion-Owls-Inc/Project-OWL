@@ -35,11 +35,11 @@ static void pathfindDemo(float dt);
 static bool update = false;
 
 static Entity* tiles;
-static Tilemap<int>* t;
+static Tilemap<int>* tilemap;
 static Pathfinder* pf;
 
 static const Entity* enemyArch;
-static std::vector<Entity*> enemies;
+static Entity* turret;
 static int eCount; // enemy count
 static glm::ivec2 dest;
 
@@ -62,12 +62,12 @@ void SandboxSystem::OnSceneInit()
     if (!tiles)
         return;
 
-    t = tiles->GetComponent<Tilemap<int>>();
+    tilemap = tiles->GetComponent<Tilemap<int>>();
     pf = tiles->GetComponent<Pathfinder>();
     enemyArch = AssetLibrary<Entity>()->GetAsset("Enemy");
     eCount = 0;
-    dest = t->WorldPosToTileCoord(pf->GetDestination());
-    t->SetTile(dest, 2);
+    dest = tilemap->WorldPosToTileCoord(pf->GetDestination());
+    tilemap->SetTile(dest, 2);
 }
 
 /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
@@ -102,7 +102,6 @@ void SandboxSystem::OnUpdate( float dt )
         RayCastHit hit = Collisions()->RayCast( rayOrigin, direction );
         Renderer()->DrawLine( rayOrigin, rayOrigin + direction * hit.distance, 0.1f );
     }
-
 }
 
 
@@ -110,7 +109,6 @@ void SandboxSystem::OnUpdate( float dt )
 void SandboxSystem::OnSceneExit()
 {
     tiles = nullptr;
-    enemies.clear();
 }
 
 
@@ -118,19 +116,28 @@ void SandboxSystem::OnSceneExit()
 static void pathfindDemo(float dt)
 {
     glm::vec2 mousepos = Input()->GetMousePosWorld();
-    glm::ivec2 coord = t->WorldPosToTileCoord(mousepos); // (tile column+row)
+    glm::ivec2 coord = tilemap->WorldPosToTileCoord(mousepos); // (tile column+row)
 
     // Right click: delete tile
-    if (Input()->GetMouseDown(GLFW_MOUSE_BUTTON_2) && coord.x != -1 && t->GetTile(coord) != 0)
-        t->SetTile(coord, 0);
+    if (Input()->GetMouseDown(GLFW_MOUSE_BUTTON_2) && coord.x != -1 && tilemap->GetTile(coord) != 0)
+        tilemap->SetTile(coord, 0);
 
     // D: set new destination
     if (Input()->GetKeyTriggered(GLFW_KEY_D))
     {
+        if(!turret)
+        {
+            turret = new Entity;
+            *turret = *AssetLibrary<Entity>()->GetAsset("Turret");
+            turret->SetName("Turret");
+            Entities()->AddEntity(turret);
+        }
+
+        turret->GetComponent<Transform>()->SetTranslation(mousepos);
         pf->SetDestination( mousepos );
-        t->SetTile(dest, 0);
+        tilemap->SetTile(dest, 0);
         dest = coord;
-        t->SetTile(dest, 2);
+        tilemap->SetTile(dest, 2);
     }
 
     // S: spawn enemy
@@ -140,9 +147,21 @@ static void pathfindDemo(float dt)
     // Space (hold): enemies move to destination
     if (Input()->GetKeyDown(GLFW_KEY_SPACE))
     {
-        for (auto& enemy : enemies)
+        for (auto& enemy : Entities()->GetEntities())
         {
-            glm::vec2 pos = enemy->GetComponent<Transform>()->GetTranslation();
+            if(enemy->GetName() != std::string("Enemy"))
+				continue;
+
+            Transform* transform = enemy->GetComponent<Transform>();
+
+            if (!transform)
+            {
+                continue;
+            }
+
+            glm::vec2 pos = transform->GetTranslation();
+            
+
             RigidBody* rb = enemy->GetComponent<RigidBody>();
 
             // accelerate along path
@@ -158,25 +177,28 @@ static void pathfindDemo(float dt)
 
     // they stop when space is released
     if (Input()->GetKeyReleased(GLFW_KEY_SPACE))
-        for (auto& enemy : enemies)
+    {
+        for (auto& enemy : Entities()->GetEntities())
         {
+            if (enemy->GetName() != std::string("Enemy"))
+                continue;
+
             RigidBody* rb = enemy->GetComponent<RigidBody>();
             rb->SetAcceleration({});
             rb->SetVelocity({});
         }
+    }
 }
 
 
 
 static void spawnEnemy(glm::vec2 mousepos)
 {
-
     Entity* enemycopy = new Entity;
     *enemycopy = *enemyArch;
     enemycopy->GetComponent<Transform>()->SetTranslation(mousepos);
     enemycopy->SetName("Enemy");
     Entities()->AddEntity(enemycopy);
-    enemies.push_back(enemycopy);
 }
 
 

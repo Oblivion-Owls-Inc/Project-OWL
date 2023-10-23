@@ -1,6 +1,8 @@
 <map id="Source/AnimationAsset.h" name="Source/AnimationAsset.h">
-<area shape="rect" id="node1" title="animation Asset class" alt="" coords="311,5,496,32"/>
+<area shape="rect" id="node1" title="Asset that contains information about a spritesheet animation." alt="" coords="509,5,695,32"/>
 <area shape="rect" id="node2" href="$Animation_8h.html" title="animation component class" alt="" coords="329,80,478,107"/>
+<area shape="rect" id="node7" href="$AnimationAsset_8cpp.html" title="Asset that contains information about a spritesheet animation." alt="" coords="502,80,702,107"/>
+<area shape="rect" id="node8" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="727,80,912,107"/>
 <area shape="rect" id="node3" href="$Animation_8cpp.html" title="animation component implimentation" alt="" coords="5,155,169,181"/>
 <area shape="rect" id="node4" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="193,155,411,181"/>
 <area shape="rect" id="node5" href="$Engine_8cpp.html" title="Engine class." alt="" coords="435,155,577,181"/>

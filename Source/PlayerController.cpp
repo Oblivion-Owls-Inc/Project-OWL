@@ -54,7 +54,7 @@ PlayerController::~PlayerController()
 /// @brief Adds this behavior to the behavior system on init.
 void PlayerController::OnInit()
 {
-	BehaviorSystem<PlayerController>::GetInstance()->AddBehavior(this);
+	BehaviorSystem<Behavior>::GetInstance()->AddBehavior(this);
     // Get the parent's rigidbody component.
     m_RigidBody = GetParent()->GetComponent<RigidBody>();
     // Get the parent' animation component.
@@ -70,7 +70,7 @@ void PlayerController::OnInit()
 /// @brief Removes this behavior from the behavior system on exit
 void PlayerController::OnExit()
 {
-	BehaviorSystem< PlayerController >::GetInstance()->RemoveBehavior(this);
+    Behaviors<Behavior>()->RemoveBehavior(this);
 }
 
 /// @brief on fixed update check which input is being pressed.

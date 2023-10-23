@@ -102,6 +102,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afa2464ba44daf6d7e70baccc5fe50d02"><td class="memItemLeft" align="right" valign="top">AssetType const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetLibrarySystem.html#afa2464ba44daf6d7e70baccc5fe50d02">GetAsset</a> (std::string const &amp;name) const</td></tr>
 <tr class="memdesc:afa2464ba44daf6d7e70baccc5fe50d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds and returns an asset, builds if doesnt yet exist.  <a href="classAssetLibrarySystem.html#afa2464ba44daf6d7e70baccc5fe50d02">More...</a><br /></td></tr>
 <tr class="separator:afa2464ba44daf6d7e70baccc5fe50d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e907a5b6c2b3db7f73eaba16e6a3b1f"><td class="memItemLeft" align="right" valign="top">char const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetLibrarySystem.html#a5e907a5b6c2b3db7f73eaba16e6a3b1f">GetAssetName</a> (AssetType const *asset) const</td></tr>
+<tr class="memdesc:a5e907a5b6c2b3db7f73eaba16e6a3b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds an returns the name of the specified asset.  <a href="classAssetLibrarySystem.html#a5e907a5b6c2b3db7f73eaba16e6a3b1f">More...</a><br /></td></tr>
+<tr class="separator:a5e907a5b6c2b3db7f73eaba16e6a3b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55746d2800bec315d38aea402c26dd1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetLibrarySystem.html#a55746d2800bec315d38aea402c26dd1d">AddAsset</a> (std::string const &amp;name, AssetType *asset)</td></tr>
 <tr class="memdesc:a55746d2800bec315d38aea402c26dd1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an asset to the AssetLibrary.  <a href="classAssetLibrarySystem.html#a55746d2800bec315d38aea402c26dd1d">More...</a><br /></td></tr>
 <tr class="separator:a55746d2800bec315d38aea402c26dd1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,9 +163,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
 <tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa16420df0e7bb8f2c51adc9b920655 inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">Write</a> () const</td></tr>
+<tr class="memdesc:a9fa16420df0e7bb8f2c51adc9b920655 inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">More...</a><br /></td></tr>
+<tr class="separator:a9fa16420df0e7bb8f2c51adc9b920655 inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -247,6 +250,35 @@ template&lt;class AssetType &gt; </div>
 
 <p>Finds and returns an asset, builds if doesnt yet exist. </p>
 <dl class="section return"><dt>Returns</dt><dd>the constructed or found asset </dd></dl>
+
+</div>
+</div>
+<a id="a5e907a5b6c2b3db7f73eaba16e6a3b1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e907a5b6c2b3db7f73eaba16e6a3b1f">&#9670;&nbsp;</a></span>GetAssetName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class AssetType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">char const  * <a class="el" href="classAssetLibrarySystem.html">AssetLibrarySystem</a>&lt; AssetType &gt;::GetAssetName </td>
+          <td>(</td>
+          <td class="paramtype">AssetType const *&#160;</td>
+          <td class="paramname"><em>asset</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds an returns the name of the specified asset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">asset</td><td>The asset to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The name of the asset. </dd></dl>
 
 </div>
 </div>

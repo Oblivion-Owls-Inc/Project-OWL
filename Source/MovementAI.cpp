@@ -32,11 +32,11 @@ MovementAI::MovementAI( MovementAI const& other ) :
 
 void MovementAI::OnInit()
 {
-    BehaviorSystem<MovementAI>::GetInstance()->AddBehavior(this);
+    Behaviors<Behavior>()->AddBehavior(this);
 }
 void MovementAI::OnExit()
 {
-    BehaviorSystem< MovementAI >::GetInstance()->RemoveBehavior(this);
+    Behaviors<Behavior>()->RemoveBehavior(this);
 }
 
 void MovementAI::OnUpdate(float dt)

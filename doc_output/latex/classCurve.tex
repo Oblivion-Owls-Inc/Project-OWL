@@ -2,8 +2,7 @@
 \label{classCurve}\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
 
 
-Inheritance diagram for Curve$<$ dimensionality $>$\+:
-\nopagebreak
+Inheritance diagram for Curve$<$ dimensionality $>$\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Curve$<$ dimensionality $>$\+:
 \end{figure}
 
 
-Collaboration diagram for Curve$<$ dimensionality $>$\+:
-\nopagebreak
+Collaboration diagram for Curve$<$ dimensionality $>$\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -69,7 +67,9 @@ void \mbox{\hyperlink{classCurve_a20079e7143c4b878cd7750e83a9d864f}{Inspect}} ()
 \+\_\+\+\_\+inline bool \mbox{\hyperlink{classCurve_a1f04e52ca324b910c5117542cab3f6af}{Get\+Is\+Looping}} () const
 \begin{DoxyCompactList}\small\item\em gets whether this curve loops \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classCurve_a2aeb0f8a21a21444498ea5db3a7cad88}{Set\+Is\+Looping}} (bool is\+Looping)
-\begin{DoxyCompactList}\small\item\em sets whether this curve loops \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em sets whether this curve loops \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCurve_a5f48c58fbbd4b0cdf97f244138ae5132}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classCurve}{Curve}} to json \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -357,6 +357,32 @@ sets whether this curve loops
 {\em is\+Looping} & whether this curve is looping \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classCurve_a5f48c58fbbd4b0cdf97f244138ae5132}\label{classCurve_a5f48c58fbbd4b0cdf97f244138ae5132}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!Write@{Write}}
+\index{Write@{Write}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Write\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classCurve}{Curve}} to json 
+
+\begin{DoxyReturn}{Returns}
+the written json data
+\end{DoxyReturn}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em dimensionality} & the number of dimensions this curve goes through \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

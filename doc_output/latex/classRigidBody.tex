@@ -2,8 +2,7 @@
 \label{classRigidBody}\index{RigidBody@{RigidBody}}
 
 
-Inheritance diagram for Rigid\+Body\+:
-\nopagebreak
+Inheritance diagram for Rigid\+Body\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Rigid\+Body\+:
 \end{figure}
 
 
-Collaboration diagram for Rigid\+Body\+:
-\nopagebreak
+Collaboration diagram for Rigid\+Body\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,49 +24,61 @@ Collaboration diagram for Rigid\+Body\+:
 \mbox{\Hypertarget{classRigidBody_a28203d38d278da0695ace20c66ee5f0a}\label{classRigidBody_a28203d38d278da0695ace20c66ee5f0a}} 
 \mbox{\hyperlink{classRigidBody_a28203d38d278da0695ace20c66ee5f0a}{Rigid\+Body}} ()
 \begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} class. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRigidBody_a11fc10a8a99629edbde7e498a43a95e1}\label{classRigidBody_a11fc10a8a99629edbde7e498a43a95e1}} 
-virtual void \mbox{\hyperlink{classRigidBody_a11fc10a8a99629edbde7e498a43a95e1}{On\+Init}} ()
+void \mbox{\hyperlink{classRigidBody_a5dcf931625b7d23866bc76c729e98cf6}{Apply\+Acceleration}} (glm\+::vec2 const \&acceleration)
+\begin{DoxyCompactList}\small\item\em applies an acceleration to this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} this frame \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_ad3a900d2fc64341b4d073b1d120fc9ea}{Apply\+Velocity}} (glm\+::vec2 const \&velocity)
+\begin{DoxyCompactList}\small\item\em adds to the Velocity of this Rigidbody \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_a8b8b085207f6557c3bbe8371c9c929aa}{Apply\+Force}} (glm\+::vec2 const \&force)
+\begin{DoxyCompactList}\small\item\em applies a force to this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} this frame \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_aec7978bffa11d23f0ec2d16a4678e52d}{Apply\+Impulse}} (glm\+::vec2 const \&impulse)
+\begin{DoxyCompactList}\small\item\em applies an impulse to this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} \end{DoxyCompactList}\item 
+glm\+::vec2 const  \& \mbox{\hyperlink{classRigidBody_a9b84d9e179c09127b2f2c04743ccd3b4}{Get\+Acceleration}} () const
+\begin{DoxyCompactList}\small\item\em Get the acceleration vector of the rigid\+Body. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_adf57c69db1dd1d012b6bfbb3c1dd930b}{Set\+Acceleration}} (glm\+::vec2 const \&acceleration)
+\begin{DoxyCompactList}\small\item\em Set the acceleration vector of the rigid\+Body. \end{DoxyCompactList}\item 
+glm\+::vec2 const  \& \mbox{\hyperlink{classRigidBody_a8a2524686509b92c0b220101a8764621}{Get\+Velocity}} () const
+\begin{DoxyCompactList}\small\item\em Get the velocity vector of the rigid\+Body. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_a15860b892dfd15d3d39c2d19b631bc43}{Set\+Velocity}} (glm\+::vec2 const \&velocity)
+\begin{DoxyCompactList}\small\item\em Set the velocity vector of the rigid\+Body. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classRigidBody_ab5927dc17dfe7855c53b06277304e104}{Get\+Rotational\+Velocity}} () const
+\begin{DoxyCompactList}\small\item\em Get the rotational velocity of the rigid\+Body. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_af00fdffbcde6e378860bb0151f714faa}{Set\+Rotational\+Velocity}} (float rotational\+Velocity)
+\begin{DoxyCompactList}\small\item\em Set the rotational velocity of the rigid\+Body. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classRigidBody_ae7ab62b3f1a76f870436094cfc7eab86}{Get\+Mass}} () const
+\begin{DoxyCompactList}\small\item\em Get the mass of the rigid\+Body. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_a647ff00d3d31e01ce3a1bfa6e7a8f8ee}{Set\+Mass}} (float mass)
+\begin{DoxyCompactList}\small\item\em Set the mass of the rigid\+Body. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classRigidBody_ad25d91e23489af5c06806e9ea36888bc}{Get\+Restitution}} () const
+\begin{DoxyCompactList}\small\item\em Get the restitution of the rigid\+Body. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_a8acf72f4913bd04919bc7fae3efa7ed1}{Set\+Restitution}} (float restitution)
+\begin{DoxyCompactList}\small\item\em Set the restitution of the rigid\+Body. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classRigidBody_afa49d910fad4fdfbb47f4dc6711a8a68}{Get\+Friction}} () const
+\begin{DoxyCompactList}\small\item\em Get the friction of the rigid\+Body. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_a954229b7fd37eb266ada3cbb95696dba}{Set\+Friction}} (float friction)
+\begin{DoxyCompactList}\small\item\em Set the friction of the rigid\+Body. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classRigidBody_a474c69b3f29075a68724ed4ce283cbc6}{Get\+Drag}} () const
+\begin{DoxyCompactList}\small\item\em Get the drag of the rigid\+Body. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_ae8d019f983ae66c938f8baabedcfc9a4}{Set\+Drag}} (float drag)
+\begin{DoxyCompactList}\small\item\em Set the drag of the rigid\+Body. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRigidBody_a2b51b3f82fe2b57e509ca16509b27451}{Get\+Collision\+Resolved}} () const
+\begin{DoxyCompactList}\small\item\em gets whether the collision between two Rigid\+Bodies has already been resolved; \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRigidBody_a7b12c332f7a98e5af1f9f7e9d949dafa}{Set\+Collision\+Resolved}} (bool collision\+Resolved)
+\begin{DoxyCompactList}\small\item\em sets whether the collision between two Rigid\+Bodies has already been resolved; \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRigidBody_a602aa0eeb38db9fcae85e4cbc9850627}\label{classRigidBody_a602aa0eeb38db9fcae85e4cbc9850627}} 
+virtual void \mbox{\hyperlink{classRigidBody_a602aa0eeb38db9fcae85e4cbc9850627}{On\+Init}} () override
 \begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} class. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classRigidBody_a75c7258a2158796aff4a82732e38d80b}{On\+Exit}} ()
+virtual void \mbox{\hyperlink{classRigidBody_a770d7ad3c7ce05ba7a1ea111b19f53af}{On\+Exit}} () override
 \begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is removed from the Scene \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classRigidBody_ac9145294889ad223ec37b7b1447af42c}{On\+Update}} (float dt) override
 \begin{DoxyCompactList}\small\item\em Update method called per frame. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classRigidBody_a917128cf7a2629cfc9449b202f51d463}\label{classRigidBody_a917128cf7a2629cfc9449b202f51d463}} 
 virtual void \mbox{\hyperlink{classRigidBody_a917128cf7a2629cfc9449b202f51d463}{On\+Fixed\+Update}} () override
 \begin{DoxyCompactList}\small\item\em Fixed update method called at a fixed time step. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classRigidBody_aa431ab44f687d1a7ca176c82fcb098a3}{On\+Collision}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$other, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&collision\+Data) override
-\begin{DoxyCompactList}\small\item\em Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classRigidBody_a0c4b289170298754343537ca703e46b7}\label{classRigidBody_a0c4b289170298754343537ca703e46b7}} 
 virtual void \mbox{\hyperlink{classRigidBody_a0c4b289170298754343537ca703e46b7}{Inspector}} () override
 \begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline glm\+::vec3 const  \& \mbox{\hyperlink{classRigidBody_a00ebfbf97ea46bcfc7921e5552cf7668}{Get\+Acceleration}} () const
-\begin{DoxyCompactList}\small\item\em Get the acceleration vector of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classRigidBody_abee028bfe311fe7ce4212a400ca0f8ba}{Set\+Acceleration}} (glm\+::vec3 const \&acceleration)
-\begin{DoxyCompactList}\small\item\em Set the acceleration vector of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline glm\+::vec3 const  \& \mbox{\hyperlink{classRigidBody_add5f49e98d67cf5273018f06a4868be7}{Get\+Velocity}} () const
-\begin{DoxyCompactList}\small\item\em Get the velocity vector of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classRigidBody_afe1c9bce84e8c08d11472a994bfd6b97}{Set\+Velocity}} (glm\+::vec3 const \&velocity)
-\begin{DoxyCompactList}\small\item\em Set the velocity vector of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline float \mbox{\hyperlink{classRigidBody_a7387bf075f15e207cf71dbfc6cb95333}{Get\+Rotational\+Velocity}} ()
-\begin{DoxyCompactList}\small\item\em Get the rotational velocity of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classRigidBody_a3464079ef7741ca818ad91a8b5d44c14}{Set\+Rotational\+Velocity}} (float rotational\+Velocity)
-\begin{DoxyCompactList}\small\item\em Set the rotational velocity of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline float \mbox{\hyperlink{classRigidBody_acec445231c7aaea91c0b556d51c1174b}{Get\+Mass}} ()
-\begin{DoxyCompactList}\small\item\em Get the mass of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classRigidBody_a8712866c80900aff028bfa291fcbf4c2}{Set\+Mass}} (float mass)
-\begin{DoxyCompactList}\small\item\em Set the mass of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline float \mbox{\hyperlink{classRigidBody_a42fa69b21423cc31c40e1b2d5f49581d}{Get\+Restitution}} ()
-\begin{DoxyCompactList}\small\item\em Get the restitution of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classRigidBody_aff2089e3669bc1d1f8d22cd6a9d2366c}{Set\+Restitution}} (float restitution)
-\begin{DoxyCompactList}\small\item\em Set the restitution of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline float \mbox{\hyperlink{classRigidBody_abce3923b43708abffd8a4bc1ce9a5b00}{Get\+Friction}} ()
-\begin{DoxyCompactList}\small\item\em Get the friction of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classRigidBody_a5e58f52c13e3dce9d4498241a8110cf8}{Set\+Friction}} (float friction)
-\begin{DoxyCompactList}\small\item\em Set the friction of the rigid\+Body. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline bool \mbox{\hyperlink{classRigidBody_a8e7776b3cbece7de6d9d747543b77ac9}{Get\+Collision\+Resolved}} () const
-\begin{DoxyCompactList}\small\item\em gets whether the collision between two Rigid\+Bodies has already been resolved; \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classRigidBody_aa2cf856039158d2d833f84c67eebd54f}{Set\+Collision\+Resolved}} (bool collision\+Resolved)
-\begin{DoxyCompactList}\small\item\em sets whether the collision between two Rigid\+Bodies has already been resolved; \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classRigidBody_a4783016ea152257cb416a41a633504d7}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} component data to a JSON file. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classRigidBody_affe7e505799efc05ad54db0abb3b2c53}\label{classRigidBody_affe7e505799efc05ad54db0abb3b2c53}} 
 void {\bfseries operator=} (const \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} \&)=delete
 \end{DoxyCompactItemize}
@@ -76,11 +86,73 @@ void {\bfseries operator=} (const \mbox{\hyperlink{classRigidBody}{Rigid\+Body}}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classRigidBody_a00ebfbf97ea46bcfc7921e5552cf7668}\label{classRigidBody_a00ebfbf97ea46bcfc7921e5552cf7668}} 
+\mbox{\Hypertarget{classRigidBody_a5dcf931625b7d23866bc76c729e98cf6}\label{classRigidBody_a5dcf931625b7d23866bc76c729e98cf6}} 
+\index{RigidBody@{RigidBody}!ApplyAcceleration@{ApplyAcceleration}}
+\index{ApplyAcceleration@{ApplyAcceleration}!RigidBody@{RigidBody}}
+\doxysubsubsection{\texorpdfstring{ApplyAcceleration()}{ApplyAcceleration()}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Apply\+Acceleration (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{acceleration }\end{DoxyParamCaption})}
+
+
+
+applies an acceleration to this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} this frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em acceleration} & the acceleration to apply \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRigidBody_a8b8b085207f6557c3bbe8371c9c929aa}\label{classRigidBody_a8b8b085207f6557c3bbe8371c9c929aa}} 
+\index{RigidBody@{RigidBody}!ApplyForce@{ApplyForce}}
+\index{ApplyForce@{ApplyForce}!RigidBody@{RigidBody}}
+\doxysubsubsection{\texorpdfstring{ApplyForce()}{ApplyForce()}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Apply\+Force (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{force }\end{DoxyParamCaption})}
+
+
+
+applies a force to this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} this frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force} & the force to apply \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRigidBody_aec7978bffa11d23f0ec2d16a4678e52d}\label{classRigidBody_aec7978bffa11d23f0ec2d16a4678e52d}} 
+\index{RigidBody@{RigidBody}!ApplyImpulse@{ApplyImpulse}}
+\index{ApplyImpulse@{ApplyImpulse}!RigidBody@{RigidBody}}
+\doxysubsubsection{\texorpdfstring{ApplyImpulse()}{ApplyImpulse()}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Apply\+Impulse (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{impulse }\end{DoxyParamCaption})}
+
+
+
+applies an impulse to this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} 
+
+applies an impulse to this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} this frame
+
+
+\begin{DoxyParams}{Parameters}
+{\em impulse} & the impulse to apply \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRigidBody_ad3a900d2fc64341b4d073b1d120fc9ea}\label{classRigidBody_ad3a900d2fc64341b4d073b1d120fc9ea}} 
+\index{RigidBody@{RigidBody}!ApplyVelocity@{ApplyVelocity}}
+\index{ApplyVelocity@{ApplyVelocity}!RigidBody@{RigidBody}}
+\doxysubsubsection{\texorpdfstring{ApplyVelocity()}{ApplyVelocity()}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Apply\+Velocity (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{velocity }\end{DoxyParamCaption})}
+
+
+
+adds to the Velocity of this Rigidbody 
+
+
+\begin{DoxyParams}{Parameters}
+{\em velocity} & the velocity to apply \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRigidBody_a9b84d9e179c09127b2f2c04743ccd3b4}\label{classRigidBody_a9b84d9e179c09127b2f2c04743ccd3b4}} 
 \index{RigidBody@{RigidBody}!GetAcceleration@{GetAcceleration}}
 \index{GetAcceleration@{GetAcceleration}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{GetAcceleration()}{GetAcceleration()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::vec3 const\& Rigid\+Body\+::\+Get\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily glm\+::vec2 const\& Rigid\+Body\+::\+Get\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -89,11 +161,11 @@ Get the acceleration vector of the rigid\+Body.
 \begin{DoxyReturn}{Returns}
 the acceleration vector. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRigidBody_a8e7776b3cbece7de6d9d747543b77ac9}\label{classRigidBody_a8e7776b3cbece7de6d9d747543b77ac9}} 
+\mbox{\Hypertarget{classRigidBody_a2b51b3f82fe2b57e509ca16509b27451}\label{classRigidBody_a2b51b3f82fe2b57e509ca16509b27451}} 
 \index{RigidBody@{RigidBody}!GetCollisionResolved@{GetCollisionResolved}}
 \index{GetCollisionResolved@{GetCollisionResolved}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{GetCollisionResolved()}{GetCollisionResolved()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline bool Rigid\+Body\+::\+Get\+Collision\+Resolved (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool Rigid\+Body\+::\+Get\+Collision\+Resolved (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -103,13 +175,26 @@ gets whether the collision between two Rigid\+Bodies has already been resolved;
 whether the collision between two Rigid\+Bodies has already been resolved; 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-SHOULD ONLY BE CALLED BY \mbox{\hyperlink{classRigidBody_aa431ab44f687d1a7ca176c82fcb098a3}{Rigid\+Body\+::\+On\+Collision()}}; 
+SHOULD ONLY BE CALLED BY Rigid\+Body\+::\+On\+Collision(); 
 \end{DoxyNote}
-\mbox{\Hypertarget{classRigidBody_abce3923b43708abffd8a4bc1ce9a5b00}\label{classRigidBody_abce3923b43708abffd8a4bc1ce9a5b00}} 
+\mbox{\Hypertarget{classRigidBody_a474c69b3f29075a68724ed4ce283cbc6}\label{classRigidBody_a474c69b3f29075a68724ed4ce283cbc6}} 
+\index{RigidBody@{RigidBody}!GetDrag@{GetDrag}}
+\index{GetDrag@{GetDrag}!RigidBody@{RigidBody}}
+\doxysubsubsection{\texorpdfstring{GetDrag()}{GetDrag()}}
+{\footnotesize\ttfamily float Rigid\+Body\+::\+Get\+Drag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the drag of the rigid\+Body. 
+
+\begin{DoxyReturn}{Returns}
+The drag. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRigidBody_afa49d910fad4fdfbb47f4dc6711a8a68}\label{classRigidBody_afa49d910fad4fdfbb47f4dc6711a8a68}} 
 \index{RigidBody@{RigidBody}!GetFriction@{GetFriction}}
 \index{GetFriction@{GetFriction}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{GetFriction()}{GetFriction()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline float Rigid\+Body\+::\+Get\+Friction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily float Rigid\+Body\+::\+Get\+Friction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -118,11 +203,11 @@ Get the friction of the rigid\+Body.
 \begin{DoxyReturn}{Returns}
 The friction. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRigidBody_acec445231c7aaea91c0b556d51c1174b}\label{classRigidBody_acec445231c7aaea91c0b556d51c1174b}} 
+\mbox{\Hypertarget{classRigidBody_ae7ab62b3f1a76f870436094cfc7eab86}\label{classRigidBody_ae7ab62b3f1a76f870436094cfc7eab86}} 
 \index{RigidBody@{RigidBody}!GetMass@{GetMass}}
 \index{GetMass@{GetMass}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{GetMass()}{GetMass()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline float Rigid\+Body\+::\+Get\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily float Rigid\+Body\+::\+Get\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -131,11 +216,11 @@ Get the mass of the rigid\+Body.
 \begin{DoxyReturn}{Returns}
 The mass of the rigid\+Body 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRigidBody_a42fa69b21423cc31c40e1b2d5f49581d}\label{classRigidBody_a42fa69b21423cc31c40e1b2d5f49581d}} 
+\mbox{\Hypertarget{classRigidBody_ad25d91e23489af5c06806e9ea36888bc}\label{classRigidBody_ad25d91e23489af5c06806e9ea36888bc}} 
 \index{RigidBody@{RigidBody}!GetRestitution@{GetRestitution}}
 \index{GetRestitution@{GetRestitution}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{GetRestitution()}{GetRestitution()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline float Rigid\+Body\+::\+Get\+Restitution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily float Rigid\+Body\+::\+Get\+Restitution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -144,11 +229,11 @@ Get the restitution of the rigid\+Body.
 \begin{DoxyReturn}{Returns}
 The restitution. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRigidBody_a7387bf075f15e207cf71dbfc6cb95333}\label{classRigidBody_a7387bf075f15e207cf71dbfc6cb95333}} 
+\mbox{\Hypertarget{classRigidBody_ab5927dc17dfe7855c53b06277304e104}\label{classRigidBody_ab5927dc17dfe7855c53b06277304e104}} 
 \index{RigidBody@{RigidBody}!GetRotationalVelocity@{GetRotationalVelocity}}
 \index{GetRotationalVelocity@{GetRotationalVelocity}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{GetRotationalVelocity()}{GetRotationalVelocity()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline float Rigid\+Body\+::\+Get\+Rotational\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily float Rigid\+Body\+::\+Get\+Rotational\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -157,11 +242,11 @@ Get the rotational velocity of the rigid\+Body.
 \begin{DoxyReturn}{Returns}
 The rotational velocity. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRigidBody_add5f49e98d67cf5273018f06a4868be7}\label{classRigidBody_add5f49e98d67cf5273018f06a4868be7}} 
+\mbox{\Hypertarget{classRigidBody_a8a2524686509b92c0b220101a8764621}\label{classRigidBody_a8a2524686509b92c0b220101a8764621}} 
 \index{RigidBody@{RigidBody}!GetVelocity@{GetVelocity}}
 \index{GetVelocity@{GetVelocity}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{GetVelocity()}{GetVelocity()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::vec3 const\& Rigid\+Body\+::\+Get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily glm\+::vec2 const\& Rigid\+Body\+::\+Get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -170,32 +255,11 @@ Get the velocity vector of the rigid\+Body.
 \begin{DoxyReturn}{Returns}
 the velocity vector. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRigidBody_aa431ab44f687d1a7ca176c82fcb098a3}\label{classRigidBody_aa431ab44f687d1a7ca176c82fcb098a3}} 
-\index{RigidBody@{RigidBody}!OnCollision@{OnCollision}}
-\index{OnCollision@{OnCollision}!RigidBody@{RigidBody}}
-\doxysubsubsection{\texorpdfstring{OnCollision()}{OnCollision()}}
-{\footnotesize\ttfamily void Rigid\+Body\+::\+On\+Collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{other,  }\item[{\mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&}]{collision\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
-
-
-
-Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em other} & the entity that was collided with \\
-\hline
-{\em collision\+Data} & additional data about the collision \\
-\hline
-\end{DoxyParams}
-
-
-Reimplemented from \mbox{\hyperlink{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}{Behavior}}.
-
-\mbox{\Hypertarget{classRigidBody_a75c7258a2158796aff4a82732e38d80b}\label{classRigidBody_a75c7258a2158796aff4a82732e38d80b}} 
+\mbox{\Hypertarget{classRigidBody_a770d7ad3c7ce05ba7a1ea111b19f53af}\label{classRigidBody_a770d7ad3c7ce05ba7a1ea111b19f53af}} 
 \index{RigidBody@{RigidBody}!OnExit@{OnExit}}
 \index{OnExit@{OnExit}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{OnExit()}{OnExit()}}
-{\footnotesize\ttfamily void Rigid\+Body\+::\+On\+Exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+On\+Exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -227,11 +291,11 @@ Update method called per frame.
 
 Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
 
-\mbox{\Hypertarget{classRigidBody_abee028bfe311fe7ce4212a400ca0f8ba}\label{classRigidBody_abee028bfe311fe7ce4212a400ca0f8ba}} 
+\mbox{\Hypertarget{classRigidBody_adf57c69db1dd1d012b6bfbb3c1dd930b}\label{classRigidBody_adf57c69db1dd1d012b6bfbb3c1dd930b}} 
 \index{RigidBody@{RigidBody}!SetAcceleration@{SetAcceleration}}
 \index{SetAcceleration@{SetAcceleration}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{SetAcceleration()}{SetAcceleration()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Rigid\+Body\+::\+Set\+Acceleration (\begin{DoxyParamCaption}\item[{glm\+::vec3 const \&}]{acceleration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Set\+Acceleration (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{acceleration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -242,11 +306,11 @@ Set the acceleration vector of the rigid\+Body.
 {\em acceleration} & the new acceleration vector. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classRigidBody_aa2cf856039158d2d833f84c67eebd54f}\label{classRigidBody_aa2cf856039158d2d833f84c67eebd54f}} 
+\mbox{\Hypertarget{classRigidBody_a7b12c332f7a98e5af1f9f7e9d949dafa}\label{classRigidBody_a7b12c332f7a98e5af1f9f7e9d949dafa}} 
 \index{RigidBody@{RigidBody}!SetCollisionResolved@{SetCollisionResolved}}
 \index{SetCollisionResolved@{SetCollisionResolved}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{SetCollisionResolved()}{SetCollisionResolved()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Rigid\+Body\+::\+Set\+Collision\+Resolved (\begin{DoxyParamCaption}\item[{bool}]{collision\+Resolved }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Set\+Collision\+Resolved (\begin{DoxyParamCaption}\item[{bool}]{collision\+Resolved }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -258,13 +322,28 @@ sets whether the collision between two Rigid\+Bodies has already been resolved;
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-SHOULD ONLY BE CALLED BY \mbox{\hyperlink{classRigidBody_aa431ab44f687d1a7ca176c82fcb098a3}{Rigid\+Body\+::\+On\+Collision()}}; 
+SHOULD ONLY BE CALLED BY Rigid\+Body\+::\+On\+Collision(); 
 \end{DoxyNote}
-\mbox{\Hypertarget{classRigidBody_a5e58f52c13e3dce9d4498241a8110cf8}\label{classRigidBody_a5e58f52c13e3dce9d4498241a8110cf8}} 
+\mbox{\Hypertarget{classRigidBody_ae8d019f983ae66c938f8baabedcfc9a4}\label{classRigidBody_ae8d019f983ae66c938f8baabedcfc9a4}} 
+\index{RigidBody@{RigidBody}!SetDrag@{SetDrag}}
+\index{SetDrag@{SetDrag}!RigidBody@{RigidBody}}
+\doxysubsubsection{\texorpdfstring{SetDrag()}{SetDrag()}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Set\+Drag (\begin{DoxyParamCaption}\item[{float}]{drag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the drag of the rigid\+Body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em drag} & The new drag. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRigidBody_a954229b7fd37eb266ada3cbb95696dba}\label{classRigidBody_a954229b7fd37eb266ada3cbb95696dba}} 
 \index{RigidBody@{RigidBody}!SetFriction@{SetFriction}}
 \index{SetFriction@{SetFriction}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{SetFriction()}{SetFriction()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Rigid\+Body\+::\+Set\+Friction (\begin{DoxyParamCaption}\item[{float}]{friction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Set\+Friction (\begin{DoxyParamCaption}\item[{float}]{friction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -275,11 +354,11 @@ Set the friction of the rigid\+Body.
 {\em friction} & The new friction. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classRigidBody_a8712866c80900aff028bfa291fcbf4c2}\label{classRigidBody_a8712866c80900aff028bfa291fcbf4c2}} 
+\mbox{\Hypertarget{classRigidBody_a647ff00d3d31e01ce3a1bfa6e7a8f8ee}\label{classRigidBody_a647ff00d3d31e01ce3a1bfa6e7a8f8ee}} 
 \index{RigidBody@{RigidBody}!SetMass@{SetMass}}
 \index{SetMass@{SetMass}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{SetMass()}{SetMass()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Rigid\+Body\+::\+Set\+Mass (\begin{DoxyParamCaption}\item[{float}]{mass }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Set\+Mass (\begin{DoxyParamCaption}\item[{float}]{mass }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -290,11 +369,11 @@ Set the mass of the rigid\+Body.
 {\em mass} & The new mass. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classRigidBody_aff2089e3669bc1d1f8d22cd6a9d2366c}\label{classRigidBody_aff2089e3669bc1d1f8d22cd6a9d2366c}} 
+\mbox{\Hypertarget{classRigidBody_a8acf72f4913bd04919bc7fae3efa7ed1}\label{classRigidBody_a8acf72f4913bd04919bc7fae3efa7ed1}} 
 \index{RigidBody@{RigidBody}!SetRestitution@{SetRestitution}}
 \index{SetRestitution@{SetRestitution}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{SetRestitution()}{SetRestitution()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Rigid\+Body\+::\+Set\+Restitution (\begin{DoxyParamCaption}\item[{float}]{restitution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Set\+Restitution (\begin{DoxyParamCaption}\item[{float}]{restitution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -305,11 +384,11 @@ Set the restitution of the rigid\+Body.
 {\em restitution} & The new restitution. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classRigidBody_a3464079ef7741ca818ad91a8b5d44c14}\label{classRigidBody_a3464079ef7741ca818ad91a8b5d44c14}} 
+\mbox{\Hypertarget{classRigidBody_af00fdffbcde6e378860bb0151f714faa}\label{classRigidBody_af00fdffbcde6e378860bb0151f714faa}} 
 \index{RigidBody@{RigidBody}!SetRotationalVelocity@{SetRotationalVelocity}}
 \index{SetRotationalVelocity@{SetRotationalVelocity}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{SetRotationalVelocity()}{SetRotationalVelocity()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Rigid\+Body\+::\+Set\+Rotational\+Velocity (\begin{DoxyParamCaption}\item[{float}]{rotational\+Velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Set\+Rotational\+Velocity (\begin{DoxyParamCaption}\item[{float}]{rotational\+Velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -320,11 +399,11 @@ Set the rotational velocity of the rigid\+Body.
 {\em rotational\+Velocity} & The new rotational velocity. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classRigidBody_afe1c9bce84e8c08d11472a994bfd6b97}\label{classRigidBody_afe1c9bce84e8c08d11472a994bfd6b97}} 
+\mbox{\Hypertarget{classRigidBody_a15860b892dfd15d3d39c2d19b631bc43}\label{classRigidBody_a15860b892dfd15d3d39c2d19b631bc43}} 
 \index{RigidBody@{RigidBody}!SetVelocity@{SetVelocity}}
 \index{SetVelocity@{SetVelocity}!RigidBody@{RigidBody}}
 \doxysubsubsection{\texorpdfstring{SetVelocity()}{SetVelocity()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Rigid\+Body\+::\+Set\+Velocity (\begin{DoxyParamCaption}\item[{glm\+::vec3 const \&}]{velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Rigid\+Body\+::\+Set\+Velocity (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -335,6 +414,23 @@ Set the velocity vector of the rigid\+Body.
 {\em velocity} & the new velocity vector. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classRigidBody_a4783016ea152257cb416a41a633504d7}\label{classRigidBody_a4783016ea152257cb416a41a633504d7}} 
+\index{RigidBody@{RigidBody}!Write@{Write}}
+\index{Write@{Write}!RigidBody@{RigidBody}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Rigid\+Body\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} component data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} component data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

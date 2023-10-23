@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['markdirty_664',['MarkDirty',['../classCurve.html#a76e73bf6a64190014c311d16bf517dc9',1,'Curve::MarkDirty()'],['../classTransform.html#a9de96e7096e4aac63944402baf758670',1,'Transform::MarkDirty()']]],
-  ['mesh_665',['Mesh',['../classMesh.html#a5f6ef1000561a3b70ba31afec1a02500',1,'Mesh::Mesh(bool init_square=false, int rows=1, int columns=1)'],['../classMesh.html#a7e68ec6c32108ed7d4c4739af46b2561',1,'Mesh::Mesh(std::vector&lt; Vertex &gt; vertices)']]],
-  ['movementai_666',['MovementAI',['../classMovementAI.html#a30b27f5aa9e138a6ee3f0d4dd065be97',1,'MovementAI']]]
+  ['markdirty_767',['MarkDirty',['../classCurve.html#a76e73bf6a64190014c311d16bf517dc9',1,'Curve']]],
+  ['mesh_768',['Mesh',['../classMesh.html#ae1f6dba6fb7f837714fceafd671b75cc',1,'Mesh::Mesh(glm::vec2 scale={ 1.0f, 1.0f }, glm::ivec2 sheetDimensions={ 1, 1 }, glm::vec2 pivot={ 0.5f, 0.5f })'],['../classMesh.html#a7e68ec6c32108ed7d4c4739af46b2561',1,'Mesh::Mesh(std::vector&lt; Vertex &gt; vertices)']]],
+  ['movementai_769',['MovementAI',['../classMovementAI.html#a30b27f5aa9e138a6ee3f0d4dd065be97',1,'MovementAI']]]
 ];

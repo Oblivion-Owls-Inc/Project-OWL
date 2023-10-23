@@ -92,6 +92,7 @@ The invariants are checked by member function assert_invariant().
 @nosubgrouping
 */
 NLOHMANN_BASIC_JSON_TPL_DECLARATION
+#pragma warning(push, 0)
 class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-special-member-functions)
 {
   private:

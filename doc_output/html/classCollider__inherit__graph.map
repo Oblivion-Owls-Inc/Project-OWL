@@ -1,7 +1,8 @@
 <map id="Collider" name="Collider">
-<area shape="rect" id="node1" title="component which is used for detecting collisions and information about them" alt="" coords="88,155,160,181"/>
+<area shape="rect" id="node1" title="component which is used for detecting collisions and information about them" alt="" coords="152,155,224,181"/>
 <area shape="rect" id="node4" href="$classCircleCollider.html" title="Circle&#45;shaped Collider." alt="" coords="5,229,115,256"/>
 <area shape="rect" id="node5" href="$classLineCollider.html" title=" " alt="" coords="139,229,237,256"/>
-<area shape="rect" id="node2" href="$classComponent.html" title=" " alt="" coords="75,80,173,107"/>
-<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="73,5,175,32"/>
+<area shape="rect" id="node6" href="$classTilemapCollider.html" title="Circle&#45;shaped Collider." alt="" coords="261,229,387,256"/>
+<area shape="rect" id="node2" href="$classComponent.html" title=" " alt="" coords="139,80,237,107"/>
+<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="137,5,239,32"/>
 </map>

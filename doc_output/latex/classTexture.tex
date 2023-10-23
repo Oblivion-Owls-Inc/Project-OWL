@@ -11,8 +11,7 @@ Stores texture data, and allows to bind it for rendering.
 
 
 
-Inheritance diagram for Texture\+:
-\nopagebreak
+Inheritance diagram for Texture\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Texture\+:
 \end{figure}
 
 
-Collaboration diagram for Texture\+:
-\nopagebreak
+Collaboration diagram for Texture\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,7 +33,7 @@ Collaboration diagram for Texture\+:
 \mbox{\Hypertarget{classTexture_a6c275e3f186675ff6ed73ccf970e552f}\label{classTexture_a6c275e3f186675ff6ed73ccf970e552f}} 
 \mbox{\hyperlink{classTexture_a6c275e3f186675ff6ed73ccf970e552f}{Texture}} ()
 \begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classTexture_a4aa512788c343c7c73f7569bf2a72ac6}{Texture}} (std\+::string const \&filepath, glm\+::ivec2 const \&sheet\+Dimensions=\{ 1, 1 \})
+\mbox{\hyperlink{classTexture_af524f915a86db480a81170c08f4b0e50}{Texture}} (std\+::string const \&filepath, glm\+::ivec2 const \&sheet\+Dimensions=\{ 1, 1 \}, glm\+::vec2 const \&pivot=\{ 0.\+5f, 0.\+5f \})
 \begin{DoxyCompactList}\small\item\em Constructor\+: loads texture image from file upon initialization. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}\label{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}} 
 \mbox{\hyperlink{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}{$\sim$\+Texture}} ()
@@ -53,18 +51,20 @@ void \mbox{\hyperlink{classTexture_a8374f8cf2a8425a46e95ab2d1a0aebf5}{Inspect}} 
 \+\_\+\+\_\+inline \mbox{\hyperlink{classMesh}{Mesh}} const  $\ast$ \mbox{\hyperlink{classTexture_a735680df526bd8809aef3162f48024ca}{Get\+Mesh}} () const
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classTexture_a34824525978e7bc15067cd194bf6cfe2}{Set\+Mesh}} (\mbox{\hyperlink{classMesh}{Mesh}} const $\ast$mesh)
-\begin{DoxyCompactList}\small\item\em sets the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em sets the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classTexture_aad558ead96f52ead97b4f2b33ad8d778}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classTexture}{Texture}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Stores texture data, and allows to bind it for rendering. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classTexture_a4aa512788c343c7c73f7569bf2a72ac6}\label{classTexture_a4aa512788c343c7c73f7569bf2a72ac6}} 
+\mbox{\Hypertarget{classTexture_af524f915a86db480a81170c08f4b0e50}\label{classTexture_af524f915a86db480a81170c08f4b0e50}} 
 \index{Texture@{Texture}!Texture@{Texture}}
 \index{Texture@{Texture}!Texture@{Texture}}
 \doxysubsubsection{\texorpdfstring{Texture()}{Texture()}}
-{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{filepath,  }\item[{glm\+::ivec2 const \&}]{sheet\+Dimensions = {\ttfamily \{~1,~1~\}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{filepath,  }\item[{glm\+::ivec2 const \&}]{sheet\+Dimensions = {\ttfamily \{~1,~1~\}},  }\item[{glm\+::vec2 const \&}]{pivot = {\ttfamily \{~0.5f,~0.5f~\}} }\end{DoxyParamCaption})}
 
 
 
@@ -74,11 +74,11 @@ Convenience constructor\+: loads texture image from file upon initialization.
 
 
 \begin{DoxyParams}{Parameters}
-{\em filepath} & File to load\\
-\hline
 {\em filepath} & File to load \\
 \hline
 {\em sheet\+Dimensions} & x=columns, y=rows (of the spritesheet) \\
+\hline
+{\em pivot} & the pivot point of this \mbox{\hyperlink{classTexture}{Texture}} \\
 \hline
 \end{DoxyParams}
 
@@ -176,6 +176,23 @@ sets the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{S
 {\em mesh} & the \mbox{\hyperlink{classMesh}{Mesh}} to set this \mbox{\hyperlink{classSprite}{Sprite}} to use \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classTexture_aad558ead96f52ead97b4f2b33ad8d778}\label{classTexture_aad558ead96f52ead97b4f2b33ad8d778}} 
+\index{Texture@{Texture}!Write@{Write}}
+\index{Write@{Write}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Texture\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classTexture}{Texture}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classTexture}{Texture}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

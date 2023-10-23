@@ -1,8 +1,7 @@
 <map id="Source/Stream.h" name="Source/Stream.h">
-<area shape="rect" id="node1" title="JSON File reading/writing." alt="" coords="247,5,377,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,168,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="192,80,251,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="275,80,349,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="373,80,477,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="501,80,552,107"/>
+<area shape="rect" id="node1" title="JSON File reading/writing." alt="" coords="99,5,229,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,64,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="88,80,139,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="163,80,267,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="291,80,437,107"/>
 </map>

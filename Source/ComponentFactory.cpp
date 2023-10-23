@@ -19,7 +19,9 @@
 #include "MovementAI.h"
 #include "LineCollider.h"
 #include "CircleCollider.h"
+#include "EnemyBehavior.h"
 #include "AudioPlayer.h"
+#include "BulletBehavior.h"
 #include "Animation.h"
 #include "TurretBehavior.h"
 #include "PlayerController.h"
@@ -28,7 +30,6 @@
 #include "Tilemap.h"
 #include "Pathfinder.h"
 #include "TilemapCollider.h"
-#include "Pool.h"
 #include "StaticBody.h"
 #include "ConstructionBehavior.h"
 #include "Camera.h"
@@ -108,6 +109,8 @@
         { "Animation"           , ComponentInfo< Animation >()            },
         { "Text"                , ComponentInfo< Text >()                 },
         { "PlayerController"    , ComponentInfo< PlayerController >()     },
+		{ "EnemyBehavior"       , ComponentInfo< EnemyBehavior >()        },
+		{ "BulletBehavior"      , ComponentInfo< BulletBehavior >()       },
         { "TurretBehavior"      , ComponentInfo< TurretBehavior >()       },
         { "EffectAnimator"      , ComponentInfo< EffectAnimator >()       },
         { "Tilemap<int>"        , ComponentInfo< Tilemap<int> >()         },

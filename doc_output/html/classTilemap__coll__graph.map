@@ -1,5 +1,6 @@
-<map id="Tilemap" name="Tilemap">
-<area shape="rect" id="node1" title="Loads and manages a tilemap array." alt="" coords="19,155,94,181"/>
-<area shape="rect" id="node2" href="$classComponent.html" title=" " alt="" coords="8,80,105,107"/>
-<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="5,5,108,32"/>
+<map id="Tilemap&lt; TileType &gt;" name="Tilemap&lt; TileType &gt;">
+<area shape="rect" id="node1" title="Loads and manages a tilemap array." alt="" coords="5,229,164,256"/>
+<area shape="rect" id="node2" href="$classBehavior.html" title=" " alt="" coords="45,155,125,181"/>
+<area shape="rect" id="node3" href="$classComponent.html" title=" " alt="" coords="36,80,133,107"/>
+<area shape="rect" id="node4" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="33,5,136,32"/>
 </map>

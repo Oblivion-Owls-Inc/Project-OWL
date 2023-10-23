@@ -17,16 +17,16 @@ struct \mbox{\hyperlink{structMesh_1_1Vertex}{Vertex}}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classMesh_a5f6ef1000561a3b70ba31afec1a02500}{Mesh}} (bool init\+\_\+square=false, int rows=1, int columns=1)
-\begin{DoxyCompactList}\small\item\em Initializes mesh to square, or to nothing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMesh_ae1f6dba6fb7f837714fceafd671b75cc}{Mesh}} (glm\+::vec2 scale=\{ 1.\+0f, 1.\+0f \}, glm\+::ivec2 sheet\+Dimensions=\{ 1, 1 \}, glm\+::vec2 pivot=\{ 0.\+5f, 0.\+5f \})
+\begin{DoxyCompactList}\small\item\em Creates mesh as a quad. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classMesh_a7e68ec6c32108ed7d4c4739af46b2561}{Mesh}} (std\+::vector$<$ \mbox{\hyperlink{structMesh_1_1Vertex}{Vertex}} $>$ vertices)
 \begin{DoxyCompactList}\small\item\em Constructor\+: inits mesh with given vertices. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classMesh_a5efe4da1a4c0971cfb037bd70304c303}{$\sim$\+Mesh}} ()
 \begin{DoxyCompactList}\small\item\em Destructor\+: cleans up memory. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMesh_a72c6c70d0a5146317d0fa11d9dc33da0}{Load\+Vertices}} (std\+::vector$<$ \mbox{\hyperlink{structMesh_1_1Vertex}{Vertex}} $>$ vertices)
 \begin{DoxyCompactList}\small\item\em Loads provided vertices to initialize (or change) the mesh. Provide rows and columns if this is for a spritesheet. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classMesh_a0d3023d68fcf77eef8220379ff4c21c2}{Load\+Square}} (int rows=1, int columns=1)
-\begin{DoxyCompactList}\small\item\em Loads a list of vertices that make a centered unit square. Provide rows and columns if this is for a spritesheet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMesh_a83c363283500c6211baae5c531f5a4f8}{Load\+Quad}} (glm\+::vec2 scale=\{ 1.\+0f, 1.\+0f \}, glm\+::ivec2 sheet\+Dimensions=\{ 1, 1 \}, glm\+::vec2 pivot=\{ 0.\+5f, 0.\+5f \})
+\begin{DoxyCompactList}\small\item\em Initializes mesh as a quad. \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline glm\+::vec2 \mbox{\hyperlink{classMesh_aa7dfde4bc25999f25dd17bf010230832}{Get\+UVsize}} () const
 \begin{DoxyCompactList}\small\item\em Returns the UV size. \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline unsigned int \mbox{\hyperlink{classMesh_a3296d89ba3eafe6b740f31c3b81298c4}{Get\+VAO}} () const
@@ -41,27 +41,23 @@ void \mbox{\hyperlink{classMesh_a0d3023d68fcf77eef8220379ff4c21c2}{Load\+Square}
 Stores data needed to render a basic mesh. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classMesh_a5f6ef1000561a3b70ba31afec1a02500}\label{classMesh_a5f6ef1000561a3b70ba31afec1a02500}} 
+\mbox{\Hypertarget{classMesh_ae1f6dba6fb7f837714fceafd671b75cc}\label{classMesh_ae1f6dba6fb7f837714fceafd671b75cc}} 
 \index{Mesh@{Mesh}!Mesh@{Mesh}}
 \index{Mesh@{Mesh}!Mesh@{Mesh}}
 \doxysubsubsection{\texorpdfstring{Mesh()}{Mesh()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Mesh\+::\+Mesh (\begin{DoxyParamCaption}\item[{bool}]{init\+\_\+square = {\ttfamily false},  }\item[{int}]{columns = {\ttfamily 1},  }\item[{int}]{rows = {\ttfamily 1} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Mesh\+::\+Mesh (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{scale = {\ttfamily \{~1.0f,~1.0f~\}},  }\item[{glm\+::ivec2}]{sheet\+Dimensions = {\ttfamily \{~1,~1~\}},  }\item[{glm\+::vec2}]{pivot = {\ttfamily \{~0.5f,~0.5f~\}} }\end{DoxyParamCaption})}
 
 
 
-Initializes mesh to square, or to nothing. 
-
-Constructor\+: loads unit square vertices if needed.
+Creates mesh as a quad. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em init\+\_\+square} & (optional) init square or no? \\
+{\em scale} & (optional) the size of the mesh \\
 \hline
-{\em rows} & (optional) spritesheet rows \\
+{\em sheet\+Dimensions} & (optional) the dimensions of the sprite\+Sheet \\
 \hline
-{\em columns} & (optional) spritesheet columns\\
-\hline
-{\em init\+\_\+square} & true/false\+: should unit square be initialized \\
+{\em pivot} & (optional) the pivot point of the mesh \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classMesh_a7e68ec6c32108ed7d4c4739af46b2561}\label{classMesh_a7e68ec6c32108ed7d4c4739af46b2561}} 
@@ -142,17 +138,26 @@ Returns the amount of vertices in this mesh.
 \begin{DoxyReturn}{Returns}
 vertex count 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classMesh_a0d3023d68fcf77eef8220379ff4c21c2}\label{classMesh_a0d3023d68fcf77eef8220379ff4c21c2}} 
-\index{Mesh@{Mesh}!LoadSquare@{LoadSquare}}
-\index{LoadSquare@{LoadSquare}!Mesh@{Mesh}}
-\doxysubsubsection{\texorpdfstring{LoadSquare()}{LoadSquare()}}
-{\footnotesize\ttfamily void Mesh\+::\+Load\+Square (\begin{DoxyParamCaption}\item[{int}]{rows = {\ttfamily 1},  }\item[{int}]{columns = {\ttfamily 1} }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classMesh_a83c363283500c6211baae5c531f5a4f8}\label{classMesh_a83c363283500c6211baae5c531f5a4f8}} 
+\index{Mesh@{Mesh}!LoadQuad@{LoadQuad}}
+\index{LoadQuad@{LoadQuad}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{LoadQuad()}{LoadQuad()}}
+{\footnotesize\ttfamily void Mesh\+::\+Load\+Quad (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{scale = {\ttfamily \{~1.0f,~1.0f~\}},  }\item[{glm\+::ivec2}]{sheet\+Dimensions = {\ttfamily \{~1,~1~\}},  }\item[{glm\+::vec2}]{pivot = {\ttfamily \{~0.5f,~0.5f~\}} }\end{DoxyParamCaption})}
 
 
 
-Loads a list of vertices that make a centered unit square. Provide rows and columns if this is for a spritesheet. 
+Initializes mesh as a quad. 
 
-Loads a list of vertices that make a centered unit square. (rows/columns for spritesheet) \mbox{\Hypertarget{classMesh_a72c6c70d0a5146317d0fa11d9dc33da0}\label{classMesh_a72c6c70d0a5146317d0fa11d9dc33da0}} 
+
+\begin{DoxyParams}{Parameters}
+{\em scale} & (optional) the size of the mesh \\
+\hline
+{\em sheet\+Dimensions} & (optional) the dimensions of the sprite\+Sheet \\
+\hline
+{\em pivot} & (optional) the pivot point of the mesh \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMesh_a72c6c70d0a5146317d0fa11d9dc33da0}\label{classMesh_a72c6c70d0a5146317d0fa11d9dc33da0}} 
 \index{Mesh@{Mesh}!LoadVertices@{LoadVertices}}
 \index{LoadVertices@{LoadVertices}!Mesh@{Mesh}}
 \doxysubsubsection{\texorpdfstring{LoadVertices()}{LoadVertices()}}

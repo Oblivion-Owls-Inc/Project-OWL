@@ -1,8 +1,9 @@
 <map id="Source/CameraSystem.h" name="Source/CameraSystem.h">
-<area shape="rect" id="node1" title="System that handles the camera and coordinate systems / spaces." alt="" coords="390,5,573,32"/>
+<area shape="rect" id="node1" title="System that handles the camera and coordinate systems / spaces." alt="" coords="481,5,663,32"/>
 <area shape="rect" id="node2" href="$CameraSystem_8cpp.html" title="System that handles the camera and coordinate systems / spaces." alt="" coords="5,80,203,107"/>
 <area shape="rect" id="node3" href="$Engine_8cpp.html" title="Engine class." alt="" coords="227,80,368,107"/>
 <area shape="rect" id="node4" href="$InputSystem_8cpp.html" title="Input system, handles key and mouse inputs." alt="" coords="392,80,571,107"/>
 <area shape="rect" id="node5" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="595,80,730,107"/>
-<area shape="rect" id="node6" href="$XinoScene_8cpp.html" title=" " alt="" coords="755,80,920,107"/>
+<area shape="rect" id="node6" href="$TilemapSprite_8cpp.html" title="A version of Sprite specifically for rendering tiles." alt="" coords="754,80,942,107"/>
+<area shape="rect" id="node7" href="$XinoScene_8cpp.html" title=" " alt="" coords="967,80,1132,107"/>
 </map>

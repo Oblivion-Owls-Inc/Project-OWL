@@ -69,18 +69,120 @@ $(function() {
 <div class="title">Pool.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Behavior_8h.html">Behavior.h</a>&quot;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="classPool.html">    4</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPool.html">Pool</a> :</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keyword">public</span> <a class="code" href="classBehavior.html">Behavior</a></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;};</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="ttc" id="aBehavior_8h_html"><div class="ttname"><a href="Behavior_8h.html">Behavior.h</a></div><div class="ttdoc">Virtual behavior component header.</div></div>
-<div class="ttc" id="aclassBehavior_html"><div class="ttname"><a href="classBehavior.html">Behavior</a></div><div class="ttdef"><b>Definition:</b> Behavior.h:17</div></div>
-<div class="ttc" id="aclassPool_html"><div class="ttname"><a href="classPool.html">Pool</a></div><div class="ttdef"><b>Definition:</b> Pool.h:6</div></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define POOL_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Component_8h.html">Component.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Value&gt;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classPool.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPool.html">Pool</a> : <span class="keyword">public</span> <a class="code" href="classComponent.html">Component</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>: <span class="comment">// constructor / destructor</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classPool.html#ac1beb9c4ed6b44afe946f239ad84e552">Pool</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classPool.html#ac1beb9c4ed6b44afe946f239ad84e552">Pool</a>(<span class="keyword">const</span> <a class="code" href="classPool.html">Pool</a>&amp; other);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>: <span class="comment">// accessors</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    __inline std::string <span class="keyword">const</span>&amp; <a class="code" href="classPool.html#a311a2a1b6f4cc15ecb7f9af42b2d994e">GetName</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    __inline Value <span class="keyword">const</span>&amp; <a class="code" href="classPool.html#ac9c0d038d31e42594be7586eda31f608">GetCurrent</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    __inline Value <span class="keyword">const</span>&amp; <a class="code" href="classPool.html#af243533c8cf6262b8c52f58b8d029371">GetDefault</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    __inline <span class="keywordtype">bool</span> <span class="keyword">const</span>&amp; <a class="code" href="classPool.html#a970e1997e363b3fc5acbbb4ed3dbaae0">GetActive</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classPool.html#a4d2a42844ecab8f8e05af8f6e896797c">SetCurrent</a>(Value value);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classPool.html#a2eb501bce90c80eaca0434eeabebf729">SetDefault</a>(Value value);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    __inline <span class="keywordtype">void</span> DecreasePoolTime(Value value) { m_CurrentValue -= value;}</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classPool.html#a1e246d8e779b81e1ff4f54bd41e64315">SetActive</a>(<span class="keywordtype">bool</span> active);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classPool.html#aae40a3851233214aa138f7673b8efd16">SetName</a>(std::string name);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classPool.html#a41bda4c39fcde8794becac08d973886e">   63</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classPool.html#a41bda4c39fcde8794becac08d973886e">Reset</a>() { m_CurrentValue = m_DefaultValue; }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual methods</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classComponent.html">Component</a>* <a class="code" href="classPool.html#a4e0cfe7526b27681304eebcaa7b2b46b">Clone</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPool.html#ae085a0da1852c382beeaec59106db94b">Inspector</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classPool.html#a912e337700a07070657de8ee22caa1ff">   78</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPool.html#a912e337700a07070657de8ee22caa1ff">OnInit</a>() { <a class="code" href="classPool.html#a41bda4c39fcde8794becac08d973886e">Reset</a>(); }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>    std::string m_Name;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    Value m_CurrentValue;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    Value m_DefaultValue;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">bool</span> m_Active;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; Pool &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> readName(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">void</span> readBaseValue(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">void</span> readActive(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; GetReadMethods()<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">public</span>: <span class="comment">// writing</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment"></span>    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classPool.html#ae89156f6a4bbc6172387c99a9b761590">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;};</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#ifndef POOL_C</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Pool_8cpp.html">Pool.cpp</a>&quot;</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="ttc" id="aComponent_8h_html"><div class="ttname"><a href="Component_8h.html">Component.h</a></div><div class="ttdoc">Virtual component header.</div></div>
+<div class="ttc" id="aPool_8cpp_html"><div class="ttname"><a href="Pool_8cpp.html">Pool.cpp</a></div></div>
+<div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:20</div></div>
+<div class="ttc" id="aclassPool_html"><div class="ttname"><a href="classPool.html">Pool</a></div><div class="ttdef"><b>Definition:</b> Pool.h:15</div></div>
+<div class="ttc" id="aclassPool_html_a1e246d8e779b81e1ff4f54bd41e64315"><div class="ttname"><a href="classPool.html#a1e246d8e779b81e1ff4f54bd41e64315">Pool::SetActive</a></div><div class="ttdeci">__inline void SetActive(bool active)</div><div class="ttdoc">Changes if the pool is active.</div><div class="ttdef"><b>Definition:</b> Pool.cpp:78</div></div>
+<div class="ttc" id="aclassPool_html_a2eb501bce90c80eaca0434eeabebf729"><div class="ttname"><a href="classPool.html#a2eb501bce90c80eaca0434eeabebf729">Pool::SetDefault</a></div><div class="ttdeci">__inline void SetDefault(Value value)</div><div class="ttdoc">Changes the base value.</div><div class="ttdef"><b>Definition:</b> Pool.cpp:72</div></div>
+<div class="ttc" id="aclassPool_html_a311a2a1b6f4cc15ecb7f9af42b2d994e"><div class="ttname"><a href="classPool.html#a311a2a1b6f4cc15ecb7f9af42b2d994e">Pool::GetName</a></div><div class="ttdeci">__inline std::string const  &amp; GetName() const</div><div class="ttdoc">Gets the name of the pool.</div><div class="ttdef"><b>Definition:</b> Pool.cpp:42</div></div>
+<div class="ttc" id="aclassPool_html_a41bda4c39fcde8794becac08d973886e"><div class="ttname"><a href="classPool.html#a41bda4c39fcde8794becac08d973886e">Pool::Reset</a></div><div class="ttdeci">__inline void Reset()</div><div class="ttdoc">Resets the pool to its default value.</div><div class="ttdef"><b>Definition:</b> Pool.h:63</div></div>
+<div class="ttc" id="aclassPool_html_a4d2a42844ecab8f8e05af8f6e896797c"><div class="ttname"><a href="classPool.html#a4d2a42844ecab8f8e05af8f6e896797c">Pool::SetCurrent</a></div><div class="ttdeci">__inline void SetCurrent(Value value)</div><div class="ttdoc">set the current value</div><div class="ttdef"><b>Definition:</b> Pool.cpp:66</div></div>
+<div class="ttc" id="aclassPool_html_a4e0cfe7526b27681304eebcaa7b2b46b"><div class="ttname"><a href="classPool.html#a4e0cfe7526b27681304eebcaa7b2b46b">Pool::Clone</a></div><div class="ttdeci">virtual Component * Clone() const</div><div class="ttdoc">virtual component clone function</div><div class="ttdef"><b>Definition:</b> Pool.cpp:90</div></div>
+<div class="ttc" id="aclassPool_html_a912e337700a07070657de8ee22caa1ff"><div class="ttname"><a href="classPool.html#a912e337700a07070657de8ee22caa1ff">Pool::OnInit</a></div><div class="ttdeci">virtual void OnInit()</div><div class="ttdoc">called when this Component's Entity is added to the Scene</div><div class="ttdef"><b>Definition:</b> Pool.h:78</div></div>
+<div class="ttc" id="aclassPool_html_a970e1997e363b3fc5acbbb4ed3dbaae0"><div class="ttname"><a href="classPool.html#a970e1997e363b3fc5acbbb4ed3dbaae0">Pool::GetActive</a></div><div class="ttdeci">__inline bool const  &amp; GetActive() const</div><div class="ttdoc">get the active state</div><div class="ttdef"><b>Definition:</b> Pool.cpp:60</div></div>
+<div class="ttc" id="aclassPool_html_aae40a3851233214aa138f7673b8efd16"><div class="ttname"><a href="classPool.html#aae40a3851233214aa138f7673b8efd16">Pool::SetName</a></div><div class="ttdeci">__inline void SetName(std::string name)</div><div class="ttdoc">Changes the name of the pool.</div><div class="ttdef"><b>Definition:</b> Pool.cpp:84</div></div>
+<div class="ttc" id="aclassPool_html_ac1beb9c4ed6b44afe946f239ad84e552"><div class="ttname"><a href="classPool.html#ac1beb9c4ed6b44afe946f239ad84e552">Pool::Pool</a></div><div class="ttdeci">Pool()</div><div class="ttdoc">constructor</div><div class="ttdef"><b>Definition:</b> Pool.cpp:22</div></div>
+<div class="ttc" id="aclassPool_html_ac9c0d038d31e42594be7586eda31f608"><div class="ttname"><a href="classPool.html#ac9c0d038d31e42594be7586eda31f608">Pool::GetCurrent</a></div><div class="ttdeci">__inline Value const  &amp; GetCurrent() const</div><div class="ttdoc">get the current value</div><div class="ttdef"><b>Definition:</b> Pool.cpp:48</div></div>
+<div class="ttc" id="aclassPool_html_ae085a0da1852c382beeaec59106db94b"><div class="ttname"><a href="classPool.html#ae085a0da1852c382beeaec59106db94b">Pool::Inspector</a></div><div class="ttdeci">virtual void Inspector()</div><div class="ttdoc">Used by the Debug System to display information about this Component.</div><div class="ttdef"><b>Definition:</b> Pool.cpp:96</div></div>
+<div class="ttc" id="aclassPool_html_ae89156f6a4bbc6172387c99a9b761590"><div class="ttname"><a href="classPool.html#ae89156f6a4bbc6172387c99a9b761590">Pool::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">write the data to json</div><div class="ttdef"><b>Definition:</b> Pool.cpp:149</div></div>
+<div class="ttc" id="aclassPool_html_af243533c8cf6262b8c52f58b8d029371"><div class="ttname"><a href="classPool.html#af243533c8cf6262b8c52f58b8d029371">Pool::GetDefault</a></div><div class="ttdeci">__inline Value const  &amp; GetDefault() const</div><div class="ttdoc">get the default value</div><div class="ttdef"><b>Definition:</b> Pool.cpp:54</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

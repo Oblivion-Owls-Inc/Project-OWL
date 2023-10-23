@@ -38,7 +38,7 @@ using CollisionCheckFunction = bool (*)( Collider const* colliderA, Collider con
 using CollisionFunctionMap = std::map< std::pair< std::type_index, std::type_index >, CollisionCheckFunction >;
 
 /// @brief  bit flags of which layers a collider collides with
-using CollisionLayerFlags = unsigned;
+using CollisionLayerFlags = unsigned; 
 
 //-----------------------------------------------------------------------------
 // class

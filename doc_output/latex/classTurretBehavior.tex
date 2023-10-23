@@ -2,8 +2,7 @@
 \label{classTurretBehavior}\index{TurretBehavior@{TurretBehavior}}
 
 
-Inheritance diagram for Turret\+Behavior\+:
-\nopagebreak
+Inheritance diagram for Turret\+Behavior\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Turret\+Behavior\+:
 \end{figure}
 
 
-Collaboration diagram for Turret\+Behavior\+:
-\nopagebreak
+Collaboration diagram for Turret\+Behavior\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -38,8 +36,11 @@ virtual void \mbox{\hyperlink{classTurretBehavior_a54e1edadc9ce7f28c98e7fb6f2a66
 \begin{DoxyCompactList}\small\item\em Called Every Frame by the system. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTurretBehavior_a8878953527baa87319cd1ee21d344881}{On\+Fixed\+Update}} () override
 \begin{DoxyCompactList}\small\item\em Called Every Fixed Frame by the system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTurretBehavior_a82ce36309353ca73633c6452067473b4}\label{classTurretBehavior_a82ce36309353ca73633c6452067473b4}} 
 virtual void \mbox{\hyperlink{classTurretBehavior_a82ce36309353ca73633c6452067473b4}{Inspector}} () override
-\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classTurretBehavior_a429f24752ddbb82106d0d47d7bddc215}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classTurretBehavior}{Turret\+Behavior}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -61,20 +62,6 @@ new clone of component
 
 Implements \mbox{\hyperlink{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}{Behavior}}.
 
-\mbox{\Hypertarget{classTurretBehavior_a82ce36309353ca73633c6452067473b4}\label{classTurretBehavior_a82ce36309353ca73633c6452067473b4}} 
-\index{TurretBehavior@{TurretBehavior}!Inspector@{Inspector}}
-\index{Inspector@{Inspector}!TurretBehavior@{TurretBehavior}}
-\doxysubsubsection{\texorpdfstring{Inspector()}{Inspector()}}
-{\footnotesize\ttfamily void Turret\+Behavior\+::\+Inspector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
-
-
-
-Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. 
-
-Edit the \mbox{\hyperlink{classBehavior}{Behavior}} of the Turret
-
-Reimplemented from \mbox{\hyperlink{classComponent_a5bfbb00a07c361c4c8d7b1812b9937ff}{Component}}.
-
 \mbox{\Hypertarget{classTurretBehavior_a61cb0d08cb83b881c5e525b0928c9b30}\label{classTurretBehavior_a61cb0d08cb83b881c5e525b0928c9b30}} 
 \index{TurretBehavior@{TurretBehavior}!OnCollision@{OnCollision}}
 \index{OnCollision@{OnCollision}!TurretBehavior@{TurretBehavior}}
@@ -92,10 +79,6 @@ Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hype
 {\em collision\+Data} & additional data about the collision \\
 \hline
 \end{DoxyParams}
-
-
-Reimplemented from \mbox{\hyperlink{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}{Behavior}}.
-
 \mbox{\Hypertarget{classTurretBehavior_a7a548454358e1f727ff634286f533ae4}\label{classTurretBehavior_a7a548454358e1f727ff634286f533ae4}} 
 \index{TurretBehavior@{TurretBehavior}!OnExit@{OnExit}}
 \index{OnExit@{OnExit}!TurretBehavior@{TurretBehavior}}
@@ -123,13 +106,11 @@ Reimplemented from \mbox{\hyperlink{classComponent_a71b5ee92e9f8e65ab040a80e149f
 
 Called Every Fixed Frame by the system. 
 
-Check if any entities are in range
+Check for a target
 
-Caclulate the area of attack for the turret
+Fire a bullet
 
-Check if the entity is in range
-
-Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+Implements \mbox{\hyperlink{classBehavior}{Behavior}}.
 
 \mbox{\Hypertarget{classTurretBehavior_a6a9dd5b6698949d03b3db74fc29936af}\label{classTurretBehavior_a6a9dd5b6698949d03b3db74fc29936af}} 
 \index{TurretBehavior@{TurretBehavior}!OnInit@{OnInit}}
@@ -160,9 +141,26 @@ Called Every Frame by the system.
 {\em dt} & -\/ the time since the last frame \\
 \hline
 \end{DoxyParams}
-Do Turret Debug Stuff
+
 
 Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+\mbox{\Hypertarget{classTurretBehavior_a429f24752ddbb82106d0d47d7bddc215}\label{classTurretBehavior_a429f24752ddbb82106d0d47d7bddc215}} 
+\index{TurretBehavior@{TurretBehavior}!Write@{Write}}
+\index{Write@{Write}!TurretBehavior@{TurretBehavior}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Turret\+Behavior\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classTurretBehavior}{Turret\+Behavior}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classTurretBehavior}{Turret\+Behavior}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
 
 
 

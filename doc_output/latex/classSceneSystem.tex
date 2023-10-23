@@ -11,8 +11,7 @@ Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when cr
 
 
 
-Inheritance diagram for Scene\+System\+:
-\nopagebreak
+Inheritance diagram for Scene\+System\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Scene\+System\+:
 \end{figure}
 
 
-Collaboration diagram for Scene\+System\+:
-\nopagebreak
+Collaboration diagram for Scene\+System\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -32,10 +30,15 @@ Collaboration diagram for Scene\+System\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classSceneSystem_a8c233be42192b69eb340e175fa1805c1}{Set\+Next\+Scene}} (std\+::string next\+Scene\+Name)
+void \mbox{\hyperlink{classSceneSystem_a774dcc4eb271088c49653d2970085da0}{Set\+Next\+Scene}} (std\+::string const \&next\+Scene\+Name)
 \begin{DoxyCompactList}\small\item\em sets the next Scene to change to \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}{Save\+Scene}} (std\+::string const \&scene\+Name=\char`\"{}\char`\"{}) const
+\begin{DoxyCompactList}\small\item\em saves the current scene to a file \end{DoxyCompactList}\item 
 std\+::string const  \& \mbox{\hyperlink{classSceneSystem_a56528509c11e234c5522dbcd1b88df10}{Get\+Scene\+Name}} () const
 \begin{DoxyCompactList}\small\item\em gets the name of the current scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSceneSystem_ae602fb12e3522bd1dd99b7f29a6f6a0d}\label{classSceneSystem_ae602fb12e3522bd1dd99b7f29a6f6a0d}} 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classSceneSystem_ae602fb12e3522bd1dd99b7f29a6f6a0d}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classSystem}{System}} to json \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSceneSystem_aad36109a4208c2a8a419f4c88178eee4}\label{classSceneSystem_aad36109a4208c2a8a419f4c88178eee4}} 
 {\bfseries Scene\+System} (\mbox{\hyperlink{classSceneSystem}{Scene\+System}} \&other)=delete
 \item 
@@ -80,11 +83,26 @@ gets the name of the current scene
 \begin{DoxyReturn}{Returns}
 the name of the current scene 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSceneSystem_a8c233be42192b69eb340e175fa1805c1}\label{classSceneSystem_a8c233be42192b69eb340e175fa1805c1}} 
+\mbox{\Hypertarget{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}\label{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}} 
+\index{SceneSystem@{SceneSystem}!SaveScene@{SaveScene}}
+\index{SaveScene@{SaveScene}!SceneSystem@{SceneSystem}}
+\doxysubsubsection{\texorpdfstring{SaveScene()}{SaveScene()}}
+{\footnotesize\ttfamily void Scene\+System\+::\+Save\+Scene (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{scene\+Name = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption}) const}
+
+
+
+saves the current scene to a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene\+Name} & the file to save the scene to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSceneSystem_a774dcc4eb271088c49653d2970085da0}\label{classSceneSystem_a774dcc4eb271088c49653d2970085da0}} 
 \index{SceneSystem@{SceneSystem}!SetNextScene@{SetNextScene}}
 \index{SetNextScene@{SetNextScene}!SceneSystem@{SceneSystem}}
 \doxysubsubsection{\texorpdfstring{SetNextScene()}{SetNextScene()}}
-{\footnotesize\ttfamily void Scene\+System\+::\+Set\+Next\+Scene (\begin{DoxyParamCaption}\item[{std\+::string}]{next\+Scene\+Name\+\_\+ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Scene\+System\+::\+Set\+Next\+Scene (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{next\+Scene\+Name\+\_\+ }\end{DoxyParamCaption})}
 
 
 

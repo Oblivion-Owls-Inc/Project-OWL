@@ -9,18 +9,18 @@
 
 
 #define POOL_H
+#include "ISerializable.h"
 
-#include "Component.h"
 
 template <typename Value>
-class Pool : public Component
+class Pool : public ISerializable
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructor
 //-----------------------------------------------------------------------------
 
 	///@brief constructor
-	Pool();
+	Pool(std::string name = std::string("Pool"), Value value = 0, bool active = 0);
 
 	Pool(const Pool& other);
 
@@ -51,7 +51,8 @@ public: // accessors
 	/// @brief Changes the base value
 	/// @param value - the new base value
 	__inline void SetDefault(Value value);
-
+	
+	__inline void DecreasePoolTime(Value value);
 	/// @brief Changes if the pool is active
 	/// @param active - the new active state
 	__inline void SetActive(bool active);
@@ -66,12 +67,6 @@ public: // accessors
 //-----------------------------------------------------------------------------
 public: // virtual methods
 //-----------------------------------------------------------------------------
-
-
-	/// @brief virtual component clone function
-	/// @return new clone of component
-	virtual Component* Clone() const;
-	
 	/// @brief Used by the Debug System to display information about this Component
 	virtual void Inspector();
 
@@ -94,7 +89,7 @@ private: // member variables
 	bool m_Active;
 
 //-----------------------------------------------------------------------------
-private: // reading
+public: // reading
 //-----------------------------------------------------------------------------
 
 	/// @brief  map of the read methods
@@ -118,6 +113,31 @@ private: // reading
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
+
+//-----------------------------------------------------------------------------
+public: // Operators
+//-----------------------------------------------------------------------------
+
+	friend Pool operator+(const Pool& lhs, const Pool& rhs);
+	friend Pool operator-(const Pool& lhs, const Pool& rhs);
+	friend Pool operator*(const Pool& lhs, const Pool& rhs);
+	friend Pool operator/(const Pool& lhs, const Pool& rhs);
+
+	friend bool operator==(const Pool& lhs, const Pool& rhs);
+	friend bool operator!=(const Pool& lhs, const Pool& rhs);
+
+	Pool& operator+=(const Value& value);
+	Pool& operator-=(const Value& value);
+	Pool& operator*=(const Value& value);
+	Pool& operator/=(const Value& value);
+
+
+	friend bool operator>(const Pool& lhs, const Pool& rhs);
+	friend bool operator<(const Pool& lhs, const Pool& rhs);
+	friend bool operator>=(const Pool& lhs, const Pool& rhs);
+	friend bool operator<=(const Pool& lhs, const Pool& rhs);
+
+	operator bool() const { return m_Active; }
 
 //-----------------------------------------------------------------------------
 public: // writing

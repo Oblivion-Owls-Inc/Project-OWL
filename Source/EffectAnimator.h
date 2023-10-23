@@ -128,6 +128,8 @@ private: // virtual override methods
     /// @param  dt  the amount of time since the previous frame
     virtual void OnUpdate( float dt ) override;
 
+    virtual void OnFixedUpdate() {};
+
     /// @brief  displays this EffectAnimator in the Inspector
     virtual void Inspector() override;
 

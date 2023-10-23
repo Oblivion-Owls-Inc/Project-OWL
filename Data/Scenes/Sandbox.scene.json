@@ -1,6 +1,10 @@
 {
   "Assets": {
     "Textures": {
+      "Turret": {
+        "Filepath": "Data/Textures/Turret.png",
+        "SheetDimensions": [ 19, 1 ]
+      },
       "FontSheet": {
         "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
         "SheetDimensions": [ 16, 8 ]
@@ -12,8 +16,12 @@
       },
       "Ball": {
         "Filepath": "Data/Textures/Balls/Ball.png"
+      },
+      "Ball1": {
+        "Filepath": "Data/Textures/Balls/Ball2.png"
       }
     },
+
     "Archetypes": {
       "Enemy": {
         "Name": "Enemy",
@@ -31,21 +39,81 @@
           },
           "CircleCollider": {
             "Radius": 0.1,
-            "CollisionLayer": "physics",
-            "CollisionLayerFlags": [ "physics" ]
+            "CollisionLayer": "Enemies",
+            "CollisionLayerFlags": [ "Player", "Enemies", "Terrain" ]
           },
-          "Pool<int>": {
-            "name": "Health",
-            "Active": true,
-            "BaseValue": 100
+          "EnemyBehavior": {
+            "Health": {
+              "Active": true,
+              "BaseValue": 40
+            }
           }
-
+        }
+      },
+      "Bullet": {
+        "Name": "Bullet",
+        "Components": {
+          "Sprite": {
+            "Texture": "Ball1",
+            "Layer": 2
+          },
+          "Transform": {
+            "Scale": [ 0.3, 0.3 ]
+          },
+          "BulletBehavior": {
+            "Pool": {
+              "name": "LifeTime",
+              "Active": true,
+              "BaseValue": 3
+            }
+          },
+          "CircleCollider": {
+            "Radius": 0.1,
+            "CollisionLayer": "Player",
+            "CollisionLayerFlags": [ "Enemies", "Terrain" ]
+          },
+          "RigidBody": {
+            "Acceleration": [ 0.0, 0.0 ],
+            "Restitution": 1
+          }
+        }
+      },
+      "Turret": {
+        "Name": "Turret",
+        "Components": {
+          "Sprite": {
+            "Texture": "Turret",
+            "Layer": 1
+          },
+          "Transform": {
+            "Translation": [ -4, 1 ]
+          },
+          "CircleCollider": {
+            "Radius": 0.1,
+            "CollisionLayer": "Player",
+            "CollisionLayerFlags": [ "Enemies" ]
+          },
+          "TurretBehavior": {
+            "range": 5,
+            "bulletdamage": 20,
+            "Target": "Enemy",
+            "bulletName": "Bullet",
+            "bulletsize":  0.3
+          }
         }
       }
-
     }
   },
     "Entities": [
+        {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 10
+                },
+                "Transform": {}
+            }
+        },
         {
             "Name": "Tiles",
             "Components": {
@@ -68,19 +136,19 @@
                         1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
                         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
                     ],
-                    "RowWidth" :  16,
+                    "Dimensions": [ 16, 13 ],
                     "TileScale": [0.6,0.6]
                 },
                 "Transform": {
-                    "Translation": [ -4.8, 3.8, 0 ],
-                    "Scale": [ 0.6, 0.6, 1 ]
+                    "Translation": [ -4.8, 3.8 ],
+                    "Scale": [ 0.6, 0.6 ]
                 },
                 "Pathfinder": {
                     "Destination": [ 4, 0 ],
                     "Walkables": [ 0 ]
                 },
                 "TilemapCollider": {
-                    "CollisionLayer": "physics",
+                    "CollisionLayer": "Terrain",
                     "CollisionLayerFlags": []
                 },
                 "StaticBody": {}
@@ -97,8 +165,8 @@
                     "String": "Right click (hold): delete tiles         D: set destination         S: spawn enemySpace (hold): enemies move to destination"
                 },
                 "Tilemap<int>":  {
-                    "RowWidth" :  41,
-                    "TileScale": [0.12, 0.34]
+                    "Dimensions": [ 41, 0 ],
+                    "TileScale": [ 0.12, 0.34 ]
                 },
                 "Transform": {
                     "Translation": [ -2.5, 3.6 ],

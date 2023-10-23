@@ -2,8 +2,7 @@
 \label{classPlayerController}\index{PlayerController@{PlayerController}}
 
 
-Inheritance diagram for Player\+Controller\+:
-\nopagebreak
+Inheritance diagram for Player\+Controller\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Player\+Controller\+:
 \end{figure}
 
 
-Collaboration diagram for Player\+Controller\+:
-\nopagebreak
+Collaboration diagram for Player\+Controller\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -33,7 +31,8 @@ Collaboration diagram for Player\+Controller\+:
 \begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classPlayerController}{Player\+Controller}} class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classPlayerController_a86207931cea38bd757c147cda67b7e0a}{Clone}} () const override
 \begin{DoxyCompactList}\small\item\em Clone method for the \mbox{\hyperlink{classPlayerController}{Player\+Controller}} class. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classPlayerController_a6993c83e8c260d514ad3abfd1f64e2cf}{On\+Update}} (float dt) override
+\mbox{\Hypertarget{classPlayerController_a5b49e8f3593b09af5f8883ee3250ae77}\label{classPlayerController_a5b49e8f3593b09af5f8883ee3250ae77}} 
+virtual void \mbox{\hyperlink{classPlayerController_a5b49e8f3593b09af5f8883ee3250ae77}{On\+Fixed\+Update}} () override
 \begin{DoxyCompactList}\small\item\em Update method called per frame. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classPlayerController_af787342977e54cf19862af0d14808ba9}\label{classPlayerController_af787342977e54cf19862af0d14808ba9}} 
 virtual void \mbox{\hyperlink{classPlayerController_af787342977e54cf19862af0d14808ba9}{On\+Init}} ()
@@ -95,25 +94,6 @@ NOT CALLED WHEN THE SCENE IS EXITED -\/ that should be handled by this \mbox{\hy
 
 
 Reimplemented from \mbox{\hyperlink{classComponent_a71b5ee92e9f8e65ab040a80e149fc596}{Component}}.
-
-\mbox{\Hypertarget{classPlayerController_a6993c83e8c260d514ad3abfd1f64e2cf}\label{classPlayerController_a6993c83e8c260d514ad3abfd1f64e2cf}} 
-\index{PlayerController@{PlayerController}!OnUpdate@{OnUpdate}}
-\index{OnUpdate@{OnUpdate}!PlayerController@{PlayerController}}
-\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
-{\footnotesize\ttfamily void Player\+Controller\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
-
-
-
-Update method called per frame. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em dt} & The time elapsed since the last frame. \\
-\hline
-\end{DoxyParams}
-
-
-Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
 
 
 

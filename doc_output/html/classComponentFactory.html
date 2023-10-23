@@ -71,19 +71,19 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:acf3f687f031d3c16d860d17af7a58647"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classComponent.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponentFactory.html#acf3f687f031d3c16d860d17af7a58647">Create</a> (std::string const &amp;key)</td></tr>
-<tr class="memdesc:acf3f687f031d3c16d860d17af7a58647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a component of a specified type.  <a href="classComponentFactory.html#acf3f687f031d3c16d860d17af7a58647">More...</a><br /></td></tr>
-<tr class="separator:acf3f687f031d3c16d860d17af7a58647"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1e8726be6a2b23eb6935f5e834cede5"><td class="memItemLeft" align="right" valign="top"><a id="aa1e8726be6a2b23eb6935f5e834cede5"></a>
-static std::type_index&#160;</td><td class="memItemRight" valign="bottom"><b>GetTypeId</b> (std::string const &amp;typeName)</td></tr>
+<tr class="memitem:a21deb8a2432611a0209140cd05e5c926"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classComponent.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponentFactory.html#a21deb8a2432611a0209140cd05e5c926">Create</a> (std::string const &amp;typeName)</td></tr>
+<tr class="memdesc:a21deb8a2432611a0209140cd05e5c926"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a new <a class="el" href="classComponent.html">Component</a> with the specified type  <a href="classComponentFactory.html#a21deb8a2432611a0209140cd05e5c926">More...</a><br /></td></tr>
+<tr class="separator:a21deb8a2432611a0209140cd05e5c926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1e8726be6a2b23eb6935f5e834cede5"><td class="memItemLeft" align="right" valign="top">static std::type_index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponentFactory.html#aa1e8726be6a2b23eb6935f5e834cede5">GetTypeId</a> (std::string const &amp;typeName)</td></tr>
+<tr class="memdesc:aa1e8726be6a2b23eb6935f5e834cede5"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the std::type_index of the <a class="el" href="classComponent.html">Component</a> type with the specified name  <a href="classComponentFactory.html#aa1e8726be6a2b23eb6935f5e834cede5">More...</a><br /></td></tr>
 <tr class="separator:aa1e8726be6a2b23eb6935f5e834cede5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d54d148a5dee184ede407a8915535d6"><td class="memItemLeft" align="right" valign="top"><a id="a9d54d148a5dee184ede407a8915535d6"></a>
-static std::map&lt; std::string, std::pair&lt; std::type_index, <a class="el" href="classComponent.html">Component</a> *(*)() &gt; &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetComponentTypes</b> ()</td></tr>
+<tr class="memitem:a9d54d148a5dee184ede407a8915535d6"><td class="memItemLeft" align="right" valign="top">static std::map&lt; std::string, std::pair&lt; std::type_index, <a class="el" href="classComponent.html">Component</a> *(*)() &gt; &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponentFactory.html#a9d54d148a5dee184ede407a8915535d6">GetComponentTypes</a> ()</td></tr>
+<tr class="memdesc:a9d54d148a5dee184ede407a8915535d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the map of <a class="el" href="classComponent.html">Component</a> types be name  <a href="classComponentFactory.html#a9d54d148a5dee184ede407a8915535d6">More...</a><br /></td></tr>
 <tr class="separator:a9d54d148a5dee184ede407a8915535d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="acf3f687f031d3c16d860d17af7a58647"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf3f687f031d3c16d860d17af7a58647">&#9670;&nbsp;</a></span>Create()</h2>
+<a id="a21deb8a2432611a0209140cd05e5c926"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21deb8a2432611a0209140cd05e5c926">&#9670;&nbsp;</a></span>Create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -95,7 +95,7 @@ static std::map&lt; std::string, std::pair&lt; std::type_index, <a class="el" hr
           <td class="memname"><a class="el" href="classComponent.html">Component</a> * ComponentFactory::Create </td>
           <td>(</td>
           <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
+          <td class="paramname"><em>typeName</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -106,14 +106,77 @@ static std::map&lt; std::string, std::pair&lt; std::type_index, <a class="el" hr
 </table>
 </div><div class="memdoc">
 
-<p>Creates a component of a specified type. </p>
+<p>creates a new <a class="el" href="classComponent.html">Component</a> with the specified type </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td>The type of component being created. </td></tr>
+    <tr><td class="paramname">typeName</td><td>the type name of <a class="el" href="classComponent.html">Component</a> to create </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to the new component. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the created component </dd></dl>
+
+</div>
+</div>
+<a id="a9d54d148a5dee184ede407a8915535d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d54d148a5dee184ede407a8915535d6">&#9670;&nbsp;</a></span>GetComponentTypes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::map&lt; std::string, std::pair&lt; std::type_index, <a class="el" href="classComponent.html">Component</a>* (*)() &gt; &gt; const&amp; ComponentFactory::GetComponentTypes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets the map of <a class="el" href="classComponent.html">Component</a> types be name </p>
+<dl class="section return"><dt>Returns</dt><dd>the map of <a class="el" href="classComponent.html">Component</a> types by name </dd></dl>
+
+</div>
+</div>
+<a id="aa1e8726be6a2b23eb6935f5e834cede5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1e8726be6a2b23eb6935f5e834cede5">&#9670;&nbsp;</a></span>GetTypeId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::type_index ComponentFactory::GetTypeId </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>typeName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets the std::type_index of the <a class="el" href="classComponent.html">Component</a> type with the specified name </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">typeName</td><td>the type name of the <a class="el" href="classComponent.html">Component</a> type to get </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the std::type_index of the <a class="el" href="classComponent.html">Component</a> type </dd></dl>
 
 </div>
 </div>

@@ -62,7 +62,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classStream-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -70,558 +69,334 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:aabbff76a86f734b48c1ce48665653a7b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#aabbff76a86f734b48c1ce48665653a7b">Stream</a> (rapidjson::Document const &amp;document)</td></tr>
-<tr class="memdesc:aabbff76a86f734b48c1ce48665653a7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classStream.html">Stream</a> wrapper of the root object in a json document.  <a href="classStream.html#aabbff76a86f734b48c1ce48665653a7b">More...</a><br /></td></tr>
-<tr class="separator:aabbff76a86f734b48c1ce48665653a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80136a797390bbf026d27ffec0133c20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#a80136a797390bbf026d27ffec0133c20">Stream</a> (rapidjson::Value const &amp;value)</td></tr>
-<tr class="memdesc:a80136a797390bbf026d27ffec0133c20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a stream wrapper from a json value.  <a href="classStream.html#a80136a797390bbf026d27ffec0133c20">More...</a><br /></td></tr>
-<tr class="separator:a80136a797390bbf026d27ffec0133c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e72898690b20a6b46978c85d957d7fd"><td class="memItemLeft" align="right" valign="top">rapidjson::GenericObject&lt; true, rapidjson::Value &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#a6e72898690b20a6b46978c85d957d7fd">GetObject</a> () const</td></tr>
-<tr class="memdesc:a6e72898690b20a6b46978c85d957d7fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the rapidjson value as an object.  <a href="classStream.html#a6e72898690b20a6b46978c85d957d7fd">More...</a><br /></td></tr>
-<tr class="separator:a6e72898690b20a6b46978c85d957d7fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52971f253843f4f872a64033bfa9a601"><td class="memItemLeft" align="right" valign="top">rapidjson::GenericArray&lt; true, rapidjson::Value &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#a52971f253843f4f872a64033bfa9a601">GetArray</a> () const</td></tr>
-<tr class="memdesc:a52971f253843f4f872a64033bfa9a601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the rapidjson value as an object.  <a href="classStream.html#a52971f253843f4f872a64033bfa9a601">More...</a><br /></td></tr>
-<tr class="separator:a52971f253843f4f872a64033bfa9a601"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a237e8a4a539b9db2242062f1b5d1511e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a237e8a4a539b9db2242062f1b5d1511e"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">Read</a> () const</td></tr>
-<tr class="memdesc:a237e8a4a539b9db2242062f1b5d1511e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a basic type from a json value.  <a href="classStream.html#a237e8a4a539b9db2242062f1b5d1511e">More...</a><br /></td></tr>
-<tr class="separator:a237e8a4a539b9db2242062f1b5d1511e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acefca0c1a5b0bb0fbc4749e62d3418b6"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:acefca0c1a5b0bb0fbc4749e62d3418b6"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#acefca0c1a5b0bb0fbc4749e62d3418b6">Read</a> () const</td></tr>
-<tr class="memdesc:acefca0c1a5b0bb0fbc4749e62d3418b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads an int from a json value.  <a href="classStream.html#acefca0c1a5b0bb0fbc4749e62d3418b6">More...</a><br /></td></tr>
-<tr class="separator:acefca0c1a5b0bb0fbc4749e62d3418b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a979ccd4ef77a8d67aed4378af84c9440"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a979ccd4ef77a8d67aed4378af84c9440"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a979ccd4ef77a8d67aed4378af84c9440">Read</a> () const</td></tr>
-<tr class="memdesc:a979ccd4ef77a8d67aed4378af84c9440"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads an int from a json value.  <a href="classStream.html#a979ccd4ef77a8d67aed4378af84c9440">More...</a><br /></td></tr>
-<tr class="separator:a979ccd4ef77a8d67aed4378af84c9440"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adad89873f469c0003077bb15ee10f167"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:adad89873f469c0003077bb15ee10f167"><td class="memTemplItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#adad89873f469c0003077bb15ee10f167">Read</a> () const</td></tr>
-<tr class="memdesc:adad89873f469c0003077bb15ee10f167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a basic type from a json value.  <a href="classStream.html#adad89873f469c0003077bb15ee10f167">More...</a><br /></td></tr>
-<tr class="separator:adad89873f469c0003077bb15ee10f167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dd919619a27281151f27b3d56d00feb"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a0dd919619a27281151f27b3d56d00feb"><td class="memTemplItemLeft" align="right" valign="top">float&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a0dd919619a27281151f27b3d56d00feb">Read</a> () const</td></tr>
-<tr class="memdesc:a0dd919619a27281151f27b3d56d00feb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a float from a json value.  <a href="classStream.html#a0dd919619a27281151f27b3d56d00feb">More...</a><br /></td></tr>
-<tr class="separator:a0dd919619a27281151f27b3d56d00feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad85cdc230455bbf03d87db9b18aea457"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:ad85cdc230455bbf03d87db9b18aea457"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#ad85cdc230455bbf03d87db9b18aea457">Read</a> () const</td></tr>
-<tr class="memdesc:ad85cdc230455bbf03d87db9b18aea457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a string from a json value.  <a href="classStream.html#ad85cdc230455bbf03d87db9b18aea457">More...</a><br /></td></tr>
-<tr class="separator:ad85cdc230455bbf03d87db9b18aea457"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bd33986ff455faebf145bde4f641a29"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a0bd33986ff455faebf145bde4f641a29"><td class="memTemplItemLeft" align="right" valign="top">glm::vec1&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a0bd33986ff455faebf145bde4f641a29">Read</a> () const</td></tr>
-<tr class="memdesc:a0bd33986ff455faebf145bde4f641a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a vec1 from a json value.  <a href="classStream.html#a0bd33986ff455faebf145bde4f641a29">More...</a><br /></td></tr>
-<tr class="separator:a0bd33986ff455faebf145bde4f641a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a161a23c9112bd845a9b389a22bdfd9f6"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a161a23c9112bd845a9b389a22bdfd9f6"><td class="memTemplItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a161a23c9112bd845a9b389a22bdfd9f6">Read</a> () const</td></tr>
-<tr class="memdesc:a161a23c9112bd845a9b389a22bdfd9f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a vec2 from a json value.  <a href="classStream.html#a161a23c9112bd845a9b389a22bdfd9f6">More...</a><br /></td></tr>
-<tr class="separator:a161a23c9112bd845a9b389a22bdfd9f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7bb6376c254598deab834edc540e433"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:ad7bb6376c254598deab834edc540e433"><td class="memTemplItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#ad7bb6376c254598deab834edc540e433">Read</a> () const</td></tr>
-<tr class="memdesc:ad7bb6376c254598deab834edc540e433"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a vec3 from a json value.  <a href="classStream.html#ad7bb6376c254598deab834edc540e433">More...</a><br /></td></tr>
-<tr class="separator:ad7bb6376c254598deab834edc540e433"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a4e8bd442ced97a7db6f0bb5fe27fdc"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a4a4e8bd442ced97a7db6f0bb5fe27fdc"><td class="memTemplItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a4a4e8bd442ced97a7db6f0bb5fe27fdc">Read</a> () const</td></tr>
-<tr class="memdesc:a4a4e8bd442ced97a7db6f0bb5fe27fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a vec4 from a json value.  <a href="classStream.html#a4a4e8bd442ced97a7db6f0bb5fe27fdc">More...</a><br /></td></tr>
-<tr class="separator:a4a4e8bd442ced97a7db6f0bb5fe27fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f5f05a82ae8902ff57bffde8436c736"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a0f5f05a82ae8902ff57bffde8436c736"><td class="memTemplItemLeft" align="right" valign="top">glm::ivec2&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a0f5f05a82ae8902ff57bffde8436c736">Read</a> () const</td></tr>
-<tr class="memdesc:a0f5f05a82ae8902ff57bffde8436c736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads an ivec2 from a json value.  <a href="classStream.html#a0f5f05a82ae8902ff57bffde8436c736">More...</a><br /></td></tr>
-<tr class="separator:a0f5f05a82ae8902ff57bffde8436c736"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa318946e46cd5cb2b463ba7b2b08256a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#aa318946e46cd5cb2b463ba7b2b08256a">Read</a> (<a class="el" href="classISerializable.html">ISerializable</a> *object)</td></tr>
-<tr class="memdesc:aa318946e46cd5cb2b463ba7b2b08256a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data into an existing complex type.  <a href="classStream.html#aa318946e46cd5cb2b463ba7b2b08256a">More...</a><br /></td></tr>
-<tr class="separator:aa318946e46cd5cb2b463ba7b2b08256a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acefca0c1a5b0bb0fbc4749e62d3418b6"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:acefca0c1a5b0bb0fbc4749e62d3418b6"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#acefca0c1a5b0bb0fbc4749e62d3418b6">Read</a> () const</td></tr>
-<tr class="memdesc:acefca0c1a5b0bb0fbc4749e62d3418b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a basic type from a json value.  <a href="classStream.html#acefca0c1a5b0bb0fbc4749e62d3418b6">More...</a><br /></td></tr>
-<tr class="separator:acefca0c1a5b0bb0fbc4749e62d3418b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a979ccd4ef77a8d67aed4378af84c9440"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a979ccd4ef77a8d67aed4378af84c9440"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a979ccd4ef77a8d67aed4378af84c9440">Read</a> () const</td></tr>
-<tr class="memdesc:a979ccd4ef77a8d67aed4378af84c9440"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a boolean value from a json value.  <a href="classStream.html#a979ccd4ef77a8d67aed4378af84c9440">More...</a><br /></td></tr>
-<tr class="separator:a979ccd4ef77a8d67aed4378af84c9440"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adad89873f469c0003077bb15ee10f167"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:adad89873f469c0003077bb15ee10f167"><td class="memTemplItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#adad89873f469c0003077bb15ee10f167">Read</a> () const</td></tr>
-<tr class="memdesc:adad89873f469c0003077bb15ee10f167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads an unsigned int value from a json value.  <a href="classStream.html#adad89873f469c0003077bb15ee10f167">More...</a><br /></td></tr>
-<tr class="separator:adad89873f469c0003077bb15ee10f167"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dd919619a27281151f27b3d56d00feb"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a0dd919619a27281151f27b3d56d00feb"><td class="memTemplItemLeft" align="right" valign="top">float&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a0dd919619a27281151f27b3d56d00feb">Read</a> () const</td></tr>
-<tr class="memdesc:a0dd919619a27281151f27b3d56d00feb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a float value from a json value.  <a href="classStream.html#a0dd919619a27281151f27b3d56d00feb">More...</a><br /></td></tr>
-<tr class="separator:a0dd919619a27281151f27b3d56d00feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a5e4819e5460e7e3712c2a4859bce9b9d"><td class="memItemLeft" align="right" valign="top">static rapidjson::Document&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#a5e4819e5460e7e3712c2a4859bce9b9d">ReadFromJSON</a> (const std::string &amp;name)</td></tr>
-<tr class="memdesc:a5e4819e5460e7e3712c2a4859bce9b9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens and parses a json document.  <a href="classStream.html#a5e4819e5460e7e3712c2a4859bce9b9d">More...</a><br /></td></tr>
-<tr class="separator:a5e4819e5460e7e3712c2a4859bce9b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b110dc392d60535c03c658398dcaea3"><td class="memItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#a2b110dc392d60535c03c658398dcaea3">ReadFromFile</a> (std::string const &amp;filepath)</td></tr>
+<tr class="memdesc:a2b110dc392d60535c03c658398dcaea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens and parses a json document.  <a href="classStream.html#a2b110dc392d60535c03c658398dcaea3">More...</a><br /></td></tr>
+<tr class="separator:a2b110dc392d60535c03c658398dcaea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbc7ecc866c78d9a29b12d1d5ae4d91d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#adbc7ecc866c78d9a29b12d1d5ae4d91d">WriteToFile</a> (std::string const &amp;filepath, nlohmann::ordered_json const &amp;json)</td></tr>
+<tr class="memdesc:adbc7ecc866c78d9a29b12d1d5ae4d91d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes json data to a file.  <a href="classStream.html#adbc7ecc866c78d9a29b12d1d5ae4d91d">More...</a><br /></td></tr>
+<tr class="separator:adbc7ecc866c78d9a29b12d1d5ae4d91d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeec4f3553be629121e45da6a0ed56e2b"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
+<tr class="memitem:aeec4f3553be629121e45da6a0ed56e2b"><td class="memTemplItemLeft" align="right" valign="top">static ValueType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#aeec4f3553be629121e45da6a0ed56e2b">Read</a> (nlohmann::ordered_json const &amp;json)</td></tr>
+<tr class="memdesc:aeec4f3553be629121e45da6a0ed56e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">reads a basic type from json  <a href="classStream.html#aeec4f3553be629121e45da6a0ed56e2b">More...</a><br /></td></tr>
+<tr class="separator:aeec4f3553be629121e45da6a0ed56e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af45fea53933bdbf047d52376bfebabec"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
+<tr class="memitem:af45fea53933bdbf047d52376bfebabec"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#af45fea53933bdbf047d52376bfebabec">Read</a> (ValueType *value, nlohmann::ordered_json const &amp;json)</td></tr>
+<tr class="memdesc:af45fea53933bdbf047d52376bfebabec"><td class="mdescLeft">&#160;</td><td class="mdescRight">reads a basic type from json  <a href="classStream.html#af45fea53933bdbf047d52376bfebabec">More...</a><br /></td></tr>
+<tr class="separator:af45fea53933bdbf047d52376bfebabec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed3bc15538161b1996177856dfb874f2"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
+<tr class="memitem:aed3bc15538161b1996177856dfb874f2"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#aed3bc15538161b1996177856dfb874f2">Read</a> (<a class="el" href="classISerializable.html">ISerializable</a> *object, nlohmann::ordered_json const &amp;json)</td></tr>
+<tr class="memdesc:aed3bc15538161b1996177856dfb874f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">reads a serializable object from json  <a href="classStream.html#aed3bc15538161b1996177856dfb874f2">More...</a><br /></td></tr>
+<tr class="separator:aed3bc15538161b1996177856dfb874f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7516793d7d71650c25efdae5acbe1ffd"><td class="memTemplParams" colspan="2">template&lt;int size, typename ValueType &gt; </td></tr>
+<tr class="memitem:a7516793d7d71650c25efdae5acbe1ffd"><td class="memTemplItemLeft" align="right" valign="top">static glm::vec&lt; size, ValueType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a7516793d7d71650c25efdae5acbe1ffd">Read</a> (nlohmann::ordered_json const &amp;json)</td></tr>
+<tr class="memdesc:a7516793d7d71650c25efdae5acbe1ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">reads a glm vector from json  <a href="classStream.html#a7516793d7d71650c25efdae5acbe1ffd">More...</a><br /></td></tr>
+<tr class="separator:a7516793d7d71650c25efdae5acbe1ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af30a18678dd30b2d682d55c4e29fb1e0"><td class="memTemplParams" colspan="2">template&lt;int size, typename ValueType &gt; </td></tr>
+<tr class="memitem:af30a18678dd30b2d682d55c4e29fb1e0"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#af30a18678dd30b2d682d55c4e29fb1e0">Read</a> (glm::vec&lt; size, ValueType &gt; *value, nlohmann::ordered_json const &amp;json)</td></tr>
+<tr class="memdesc:af30a18678dd30b2d682d55c4e29fb1e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">reads a glm vector from json  <a href="classStream.html#af30a18678dd30b2d682d55c4e29fb1e0">More...</a><br /></td></tr>
+<tr class="separator:af30a18678dd30b2d682d55c4e29fb1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5969fddc4fbc4d9f6f4d918d67b7398f"><td class="memTemplParams" colspan="2">template&lt;int size, typename ValueType &gt; </td></tr>
+<tr class="memitem:a5969fddc4fbc4d9f6f4d918d67b7398f"><td class="memTemplItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a5969fddc4fbc4d9f6f4d918d67b7398f">Write</a> (glm::vec&lt; size, ValueType &gt; const &amp;value)</td></tr>
+<tr class="memdesc:a5969fddc4fbc4d9f6f4d918d67b7398f"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes a glm vector to json  <a href="classStream.html#a5969fddc4fbc4d9f6f4d918d67b7398f">More...</a><br /></td></tr>
+<tr class="separator:a5969fddc4fbc4d9f6f4d918d67b7398f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add4ae70e8f41504e1bf64efee2fbdbec"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
+<tr class="memitem:add4ae70e8f41504e1bf64efee2fbdbec"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#add4ae70e8f41504e1bf64efee2fbdbec">Read</a> (<a class="el" href="classISerializable.html">ISerializable</a> *object, nlohmann::ordered_json const &amp;json)</td></tr>
+<tr class="memdesc:add4ae70e8f41504e1bf64efee2fbdbec"><td class="mdescLeft">&#160;</td><td class="mdescRight">reads a serializable object from json  <a href="classStream.html#add4ae70e8f41504e1bf64efee2fbdbec">More...</a><br /></td></tr>
+<tr class="separator:add4ae70e8f41504e1bf64efee2fbdbec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aabbff76a86f734b48c1ce48665653a7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabbff76a86f734b48c1ce48665653a7b">&#9670;&nbsp;</a></span>Stream() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Stream </td>
-          <td>(</td>
-          <td class="paramtype">rapidjson::Document const &amp;&#160;</td>
-          <td class="paramname"><em>document</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates a <a class="el" href="classStream.html">Stream</a> wrapper of the root object in a json document. </p>
-<p>creates a <a class="el" href="classStream.html">Stream</a> wrapper of the root object in a json document</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">document</td><td>The json document.</td></tr>
-    <tr><td class="paramname">document</td><td>the json document. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a80136a797390bbf026d27ffec0133c20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80136a797390bbf026d27ffec0133c20">&#9670;&nbsp;</a></span>Stream() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Stream </td>
-          <td>(</td>
-          <td class="paramtype">rapidjson::Value const &amp;&#160;</td>
-          <td class="paramname"><em>value_</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates a stream wrapper from a json value. </p>
-<p>creates a stream wrapper from a json value.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>The json value</td></tr>
-    <tr><td class="paramname">value</td><td>the json value </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a52971f253843f4f872a64033bfa9a601"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52971f253843f4f872a64033bfa9a601">&#9670;&nbsp;</a></span>GetArray()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">rapidjson::GenericArray&lt; true, rapidjson::Value &gt; const  &amp; Stream::GetArray </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the rapidjson value as an object. </p>
-<p>gets the rapidjson value as an object</p>
-<dl class="section return"><dt>Returns</dt><dd>The rapidjson value</dd>
-<dd>
-the rapidjson value </dd></dl>
-
-</div>
-</div>
-<a id="a6e72898690b20a6b46978c85d957d7fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e72898690b20a6b46978c85d957d7fd">&#9670;&nbsp;</a></span>GetObject()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">rapidjson::GenericObject&lt; true, rapidjson::Value &gt; const  &amp; Stream::GetObject </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the rapidjson value as an object. </p>
-<p>gets the rapidjson value as an object</p>
-<dl class="section return"><dt>Returns</dt><dd>The rapidjson value</dd>
-<dd>
-the rapidjson value </dd></dl>
-
-</div>
-</div>
-<a id="acefca0c1a5b0bb0fbc4749e62d3418b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acefca0c1a5b0bb0fbc4749e62d3418b6">&#9670;&nbsp;</a></span>Read() <span class="overload">[1/16]</span></h2>
+<a id="af30a18678dd30b2d682d55c4e29fb1e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af30a18678dd30b2d682d55c4e29fb1e0">&#9670;&nbsp;</a></span>Read() <span class="overload">[1/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;&gt; </div>
+template&lt;int size, typename ValueType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Stream::Read </td>
+          <td class="memname">void Stream::Read </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">glm::vec&lt; size, ValueType &gt; *&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a basic type from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a979ccd4ef77a8d67aed4378af84c9440"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a979ccd4ef77a8d67aed4378af84c9440">&#9670;&nbsp;</a></span>Read() <span class="overload">[2/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
         <tr>
-          <td class="memname">bool Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a boolean value from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="adad89873f469c0003077bb15ee10f167"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adad89873f469c0003077bb15ee10f167">&#9670;&nbsp;</a></span>Read() <span class="overload">[3/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
         <tr>
-          <td class="memname">unsigned int Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Reads an unsigned int value from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a0dd919619a27281151f27b3d56d00feb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0dd919619a27281151f27b3d56d00feb">&#9670;&nbsp;</a></span>Read() <span class="overload">[4/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">float Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a float value from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a237e8a4a539b9db2242062f1b5d1511e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a237e8a4a539b9db2242062f1b5d1511e">&#9670;&nbsp;</a></span>Read() <span class="overload">[5/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">T Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a basic type from a json value. </p>
+<p>reads a glm vector from json </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type to read </td></tr>
+    <tr><td class="paramname">size</td><td>the size of the vector </td></tr>
+    <tr><td class="paramname">ValueType</td><td>the value type of the vector </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>the vector to read into </td></tr>
+    <tr><td class="paramname">json</td><td>the json data to read from </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="acefca0c1a5b0bb0fbc4749e62d3418b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acefca0c1a5b0bb0fbc4749e62d3418b6">&#9670;&nbsp;</a></span>Read() <span class="overload">[6/16]</span></h2>
+<a id="add4ae70e8f41504e1bf64efee2fbdbec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add4ae70e8f41504e1bf64efee2fbdbec">&#9670;&nbsp;</a></span>Read() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">int Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads an int from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a979ccd4ef77a8d67aed4378af84c9440"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a979ccd4ef77a8d67aed4378af84c9440">&#9670;&nbsp;</a></span>Read() <span class="overload">[7/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads an int from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="adad89873f469c0003077bb15ee10f167"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adad89873f469c0003077bb15ee10f167">&#9670;&nbsp;</a></span>Read() <span class="overload">[8/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a basic type from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a0dd919619a27281151f27b3d56d00feb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0dd919619a27281151f27b3d56d00feb">&#9670;&nbsp;</a></span>Read() <span class="overload">[9/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">float Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a float from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="ad85cdc230455bbf03d87db9b18aea457"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad85cdc230455bbf03d87db9b18aea457">&#9670;&nbsp;</a></span>Read() <span class="overload">[10/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a string from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a0bd33986ff455faebf145bde4f641a29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bd33986ff455faebf145bde4f641a29">&#9670;&nbsp;</a></span>Read() <span class="overload">[11/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::vec1 Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a vec1 from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a161a23c9112bd845a9b389a22bdfd9f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a161a23c9112bd845a9b389a22bdfd9f6">&#9670;&nbsp;</a></span>Read() <span class="overload">[12/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::vec2 Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a vec2 from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="ad7bb6376c254598deab834edc540e433"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7bb6376c254598deab834edc540e433">&#9670;&nbsp;</a></span>Read() <span class="overload">[13/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::vec3 Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a vec3 from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a4a4e8bd442ced97a7db6f0bb5fe27fdc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a4e8bd442ced97a7db6f0bb5fe27fdc">&#9670;&nbsp;</a></span>Read() <span class="overload">[14/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::vec4 Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads a vec4 from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="a0f5f05a82ae8902ff57bffde8436c736"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f5f05a82ae8902ff57bffde8436c736">&#9670;&nbsp;</a></span>Read() <span class="overload">[15/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::ivec2 Stream::Read </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads an ivec2 from a json value. </p>
-<dl class="section return"><dt>Returns</dt><dd>The value from the json </dd></dl>
-
-</div>
-</div>
-<a id="aa318946e46cd5cb2b463ba7b2b08256a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa318946e46cd5cb2b463ba7b2b08256a">&#9670;&nbsp;</a></span>Read() <span class="overload">[16/16]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Stream::Read </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classISerializable.html">ISerializable</a> *&#160;</td>
-          <td class="paramname"><em>object</em></td><td>)</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Reads data into an existing complex type. </p>
+<p>reads a serializable object from json </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">object</td><td>the oject to read data into </td></tr>
+    <tr><td class="paramname">object</td><td>the object to read from json </td></tr>
+    <tr><td class="paramname">json</td><td>the json data to read from </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a5e4819e5460e7e3712c2a4859bce9b9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e4819e5460e7e3712c2a4859bce9b9d">&#9670;&nbsp;</a></span>ReadFromJSON()</h2>
+<a id="aed3bc15538161b1996177856dfb874f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed3bc15538161b1996177856dfb874f2">&#9670;&nbsp;</a></span>Read() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Stream::Read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classISerializable.html">ISerializable</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>reads a serializable object from json </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>the object to read from json </td></tr>
+    <tr><td class="paramname">json</td><td>the json data to read from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aeec4f3553be629121e45da6a0ed56e2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeec4f3553be629121e45da6a0ed56e2b">&#9670;&nbsp;</a></span>Read() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ValueType Stream::Read </td>
+          <td>(</td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>reads a basic type from json </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>the type to read </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json</td><td>the json data to read from </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the read data </dd></dl>
+
+</div>
+</div>
+<a id="a7516793d7d71650c25efdae5acbe1ffd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7516793d7d71650c25efdae5acbe1ffd">&#9670;&nbsp;</a></span>Read() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int size, typename ValueType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec&lt; size, ValueType &gt; Stream::Read </td>
+          <td>(</td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>reads a glm vector from json </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">size</td><td>the size of the vector </td></tr>
+    <tr><td class="paramname">ValueType</td><td>the value type of the vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json</td><td>the json data to read from </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the read vector </dd></dl>
+
+</div>
+</div>
+<a id="af45fea53933bdbf047d52376bfebabec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af45fea53933bdbf047d52376bfebabec">&#9670;&nbsp;</a></span>Read() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Stream::Read </td>
+          <td>(</td>
+          <td class="paramtype">ValueType *&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>reads a basic type from json </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>the type to read </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>pointer to where to store the read data </td></tr>
+    <tr><td class="paramname">json</td><td>the json data to read from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2b110dc392d60535c03c658398dcaea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b110dc392d60535c03c658398dcaea3">&#9670;&nbsp;</a></span>ReadFromFile()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -630,9 +405,9 @@ template&lt;&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">rapidjson::Document Stream::ReadFromJSON </td>
+          <td class="memname">nlohmann::ordered_json Stream::ReadFromFile </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
           <td class="paramname"><em>filepath</em></td><td>)</td>
           <td></td>
         </tr>
@@ -645,21 +420,102 @@ template&lt;&gt; </div>
 </div><div class="memdoc">
 
 <p>Opens and parses a json document. </p>
-<p>Open and parse a json file.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Name of the file to read from. </td></tr>
+    <tr><td class="paramname">filepath</td><td>name of the file to read from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>rapidjson document.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">filepath</td><td>Name of the json file. </td></tr>
+<dl class="section return"><dt>Returns</dt><dd>the parsed json data </dd></dl>
+
+</div>
+</div>
+<a id="a5969fddc4fbc4d9f6f4d918d67b7398f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5969fddc4fbc4d9f6f4d918d67b7398f">&#9670;&nbsp;</a></span>Write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int size, typename ValueType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json Stream::Write </td>
+          <td>(</td>
+          <td class="paramtype">glm::vec&lt; size, ValueType &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>writes a glm vector to json </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>the type of value of the vector </td></tr>
+    <tr><td class="paramname">size</td><td>the size of the vector </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>rapid::json document parsed from the specified file. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>the vector to write </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the json data of the vector </dd></dl>
+
+</div>
+</div>
+<a id="adbc7ecc866c78d9a29b12d1d5ae4d91d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbc7ecc866c78d9a29b12d1d5ae4d91d">&#9670;&nbsp;</a></span>WriteToFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Stream::WriteToFile </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>filepath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Writes json data to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>the path of the file to write to </td></tr>
+    <tr><td class="paramname">json</td><td>the json data to write to the file </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

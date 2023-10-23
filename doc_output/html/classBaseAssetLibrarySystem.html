@@ -93,9 +93,12 @@ Collaboration diagram for BaseAssetLibrarySystem:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3a509262d82579058aef11d79936e249"><td class="memItemLeft" align="right" valign="top"><a id="a3a509262d82579058aef11d79936e249"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>LoadAssets</b> (<a class="el" href="classStream.html">Stream</a> data)=0</td></tr>
-<tr class="separator:a3a509262d82579058aef11d79936e249"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a946631feca3f201ea4c9df18e75fb6f7"><td class="memItemLeft" align="right" valign="top"><a id="a946631feca3f201ea4c9df18e75fb6f7"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>LoadAssets</b> (nlohmann::ordered_json const &amp;data)=0</td></tr>
+<tr class="separator:a946631feca3f201ea4c9df18e75fb6f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67b394756c151f8b89f08cb4c050378a"><td class="memItemLeft" align="right" valign="top"><a id="a67b394756c151f8b89f08cb4c050378a"></a>
+virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><b>SaveAssets</b> () const =0</td></tr>
+<tr class="separator:a67b394756c151f8b89f08cb4c050378a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4ad97bff1a61a4ae43302fbc6cc16c8"><td class="memItemLeft" align="right" valign="top"><a id="ac4ad97bff1a61a4ae43302fbc6cc16c8"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BaseAssetLibrarySystem</b> (<a class="el" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a> &amp;other)=delete</td></tr>
 <tr class="separator:ac4ad97bff1a61a4ae43302fbc6cc16c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,9 +151,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
 <tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa16420df0e7bb8f2c51adc9b920655 inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">Write</a> () const</td></tr>
+<tr class="memdesc:a9fa16420df0e7bb8f2c51adc9b920655 inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">More...</a><br /></td></tr>
+<tr class="separator:a9fa16420df0e7bb8f2c51adc9b920655 inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>

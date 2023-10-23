@@ -1,28 +1,230 @@
-\hypertarget{classPool}{}\doxysection{Pool Class Reference}
-\label{classPool}\index{Pool@{Pool}}
+\hypertarget{classPool}{}\doxysection{Pool$<$ Value $>$ Class Template Reference}
+\label{classPool}\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}}
 
 
-Inheritance diagram for Pool\+:
+Inheritance diagram for Pool$<$ Value $>$\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=157pt]{classPool__inherit__graph}
+\includegraphics[width=167pt]{classPool__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Pool\+:
+Collaboration diagram for Pool$<$ Value $>$\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=157pt]{classPool__coll__graph}
+\includegraphics[width=167pt]{classPool__coll__graph}
 \end{center}
 \end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPool_ac1beb9c4ed6b44afe946f239ad84e552}\label{classPool_ac1beb9c4ed6b44afe946f239ad84e552}} 
+\mbox{\hyperlink{classPool_ac1beb9c4ed6b44afe946f239ad84e552}{Pool}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPool_a7f3f3e1d44270e57a02b6454ec255bfe}\label{classPool_a7f3f3e1d44270e57a02b6454ec255bfe}} 
+{\bfseries Pool} (const \mbox{\hyperlink{classPool}{Pool}} \&other)
+\item 
+\+\_\+\+\_\+inline std\+::string const  \& \mbox{\hyperlink{classPool_a311a2a1b6f4cc15ecb7f9af42b2d994e}{Get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the pool. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline Value const  \& \mbox{\hyperlink{classPool_ac9c0d038d31e42594be7586eda31f608}{Get\+Current}} () const
+\begin{DoxyCompactList}\small\item\em get the current value \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline Value const  \& \mbox{\hyperlink{classPool_af243533c8cf6262b8c52f58b8d029371}{Get\+Default}} () const
+\begin{DoxyCompactList}\small\item\em get the default value \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline bool const  \& \mbox{\hyperlink{classPool_a970e1997e363b3fc5acbbb4ed3dbaae0}{Get\+Active}} () const
+\begin{DoxyCompactList}\small\item\em get the active state \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classPool_a4d2a42844ecab8f8e05af8f6e896797c}{Set\+Current}} (Value value)
+\begin{DoxyCompactList}\small\item\em set the current value \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classPool_a2eb501bce90c80eaca0434eeabebf729}{Set\+Default}} (Value value)
+\begin{DoxyCompactList}\small\item\em Changes the base value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPool_abcf571e75fab60ffeb585b4051612c77}\label{classPool_abcf571e75fab60ffeb585b4051612c77}} 
+\+\_\+\+\_\+inline void {\bfseries Decrease\+Pool\+Time} (Value value)
+\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classPool_a1e246d8e779b81e1ff4f54bd41e64315}{Set\+Active}} (bool active)
+\begin{DoxyCompactList}\small\item\em Changes if the pool is active. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classPool_aae40a3851233214aa138f7673b8efd16}{Set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Changes the name of the pool. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPool_a41bda4c39fcde8794becac08d973886e}\label{classPool_a41bda4c39fcde8794becac08d973886e}} 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classPool_a41bda4c39fcde8794becac08d973886e}{Reset}} ()
+\begin{DoxyCompactList}\small\item\em Resets the pool to its default value. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classPool_a4e0cfe7526b27681304eebcaa7b2b46b}{Clone}} () const
+\begin{DoxyCompactList}\small\item\em virtual component clone function \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPool_ae085a0da1852c382beeaec59106db94b}\label{classPool_ae085a0da1852c382beeaec59106db94b}} 
+virtual void \mbox{\hyperlink{classPool_ae085a0da1852c382beeaec59106db94b}{Inspector}} ()
+\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPool_a912e337700a07070657de8ee22caa1ff}\label{classPool_a912e337700a07070657de8ee22caa1ff}} 
+virtual void \mbox{\hyperlink{classPool_a912e337700a07070657de8ee22caa1ff}{On\+Init}} ()
+\begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is added to the Scene \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPool_ae89156f6a4bbc6172387c99a9b761590}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em write the data to json \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPool_a4e0cfe7526b27681304eebcaa7b2b46b}\label{classPool_a4e0cfe7526b27681304eebcaa7b2b46b}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!Clone@{Clone}}
+\index{Clone@{Clone}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Clone\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+virtual component clone function 
+
+\begin{DoxyReturn}{Returns}
+new clone of component 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classPool_a970e1997e363b3fc5acbbb4ed3dbaae0}\label{classPool_a970e1997e363b3fc5acbbb4ed3dbaae0}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!GetActive@{GetActive}}
+\index{GetActive@{GetActive}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{GetActive()}{GetActive()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool const  \& \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Get\+Active}
+
+
+
+get the active state 
+
+\begin{DoxyReturn}{Returns}
+the active state 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_ac9c0d038d31e42594be7586eda31f608}\label{classPool_ac9c0d038d31e42594be7586eda31f608}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!GetCurrent@{GetCurrent}}
+\index{GetCurrent@{GetCurrent}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{GetCurrent()}{GetCurrent()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+Value const  \& \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Get\+Current}
+
+
+
+get the current value 
+
+///\begin{DoxyReturn}{Returns}
+the current value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_af243533c8cf6262b8c52f58b8d029371}\label{classPool_af243533c8cf6262b8c52f58b8d029371}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!GetDefault@{GetDefault}}
+\index{GetDefault@{GetDefault}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{GetDefault()}{GetDefault()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+Value const  \& \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Get\+Default}
+
+
+
+get the default value 
+
+\begin{DoxyReturn}{Returns}
+the default value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_a311a2a1b6f4cc15ecb7f9af42b2d994e}\label{classPool_a311a2a1b6f4cc15ecb7f9af42b2d994e}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!GetName@{GetName}}
+\index{GetName@{GetName}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+std\+::string const  \& \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Get\+Name}
+
+
+
+Gets the name of the pool. 
+
+\begin{DoxyReturn}{Returns}
+Name of the \mbox{\hyperlink{classPool}{Pool}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_a1e246d8e779b81e1ff4f54bd41e64315}\label{classPool_a1e246d8e779b81e1ff4f54bd41e64315}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!SetActive@{SetActive}}
+\index{SetActive@{SetActive}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{SetActive()}{SetActive()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+void \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Set\+Active (\begin{DoxyParamCaption}\item[{bool}]{active }\end{DoxyParamCaption})}
+
+
+
+Changes if the pool is active. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em active} & -\/ the new active state \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPool_a4d2a42844ecab8f8e05af8f6e896797c}\label{classPool_a4d2a42844ecab8f8e05af8f6e896797c}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!SetCurrent@{SetCurrent}}
+\index{SetCurrent@{SetCurrent}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{SetCurrent()}{SetCurrent()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+void \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Set\+Current (\begin{DoxyParamCaption}\item[{Value}]{value }\end{DoxyParamCaption})}
+
+
+
+set the current value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & -\/ the new current value ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPool_a2eb501bce90c80eaca0434eeabebf729}\label{classPool_a2eb501bce90c80eaca0434eeabebf729}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!SetDefault@{SetDefault}}
+\index{SetDefault@{SetDefault}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{SetDefault()}{SetDefault()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+void \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Set\+Default (\begin{DoxyParamCaption}\item[{Value}]{value }\end{DoxyParamCaption})}
+
+
+
+Changes the base value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & -\/ the new base value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPool_aae40a3851233214aa138f7673b8efd16}\label{classPool_aae40a3851233214aa138f7673b8efd16}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!SetName@{SetName}}
+\index{SetName@{SetName}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{SetName()}{SetName()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+void \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Set\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Changes the name of the pool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ The New Name of the pool \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPool_ae89156f6a4bbc6172387c99a9b761590}\label{classPool_ae89156f6a4bbc6172387c99a9b761590}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!Write@{Write}}
+\index{Write@{Write}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Write\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+write the data to json 
+
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Source/Pool.\+h\end{DoxyCompactItemize}
+Source/Pool.\+h\item 
+Source/\mbox{\hyperlink{Pool_8cpp}{Pool.\+cpp}}\end{DoxyCompactItemize}

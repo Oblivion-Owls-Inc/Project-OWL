@@ -23,6 +23,7 @@
 #include <nlohmann/detail/macro_scope.hpp>
 
 NLOHMANN_JSON_NAMESPACE_BEGIN
+#pragma warning(push, 0)
 namespace detail
 {
 
@@ -1629,4 +1630,5 @@ scan_number_done:
 };
 
 }  // namespace detail
+#pragma warning(pop)
 NLOHMANN_JSON_NAMESPACE_END

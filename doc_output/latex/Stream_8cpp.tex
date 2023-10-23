@@ -5,11 +5,8 @@
 JSON File reading/writing.  
 
 
-{\ttfamily \#include \char`\"{}Stream.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}ISerializable.\+h\char`\"{}}\newline
-{\ttfamily \#include $<$iostream$>$}\newline
-{\ttfamily \#include $<$map$>$}\newline
-{\ttfamily \#include $<$rapidjson/istreamwrapper.\+h$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
 Include dependency graph for Stream.\+cpp\+:
 \nopagebreak
 \begin{figure}[H]
@@ -18,21 +15,6 @@ Include dependency graph for Stream.\+cpp\+:
 \includegraphics[width=350pt]{Stream_8cpp__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-template$<$$>$ std\+::string \mbox{\hyperlink{Stream_8cpp_a9d2e32dc4bed9dddbb2f0b7cff7e9868}{Stream\+::\+Read$<$ std\+::string $>$}} () const
-\begin{DoxyCompactList}\small\item\em Reads a string from a json value. \end{DoxyCompactList}\item 
-template$<$$>$ glm\+::vec1 \mbox{\hyperlink{Stream_8cpp_afaf45052ed753f92e117296582143cfc}{Stream\+::\+Read$<$ glm\+::vec1 $>$}} () const
-\begin{DoxyCompactList}\small\item\em Reads a glm\+::vec1 from a json value. \end{DoxyCompactList}\item 
-template$<$$>$ glm\+::vec2 \mbox{\hyperlink{Stream_8cpp_aff92d165207be913165f9bb8575cd7ad}{Stream\+::\+Read$<$ glm\+::vec2 $>$}} () const
-\begin{DoxyCompactList}\small\item\em Reads a glm\+::vec2 from a json value. \end{DoxyCompactList}\item 
-template$<$$>$ glm\+::vec3 \mbox{\hyperlink{Stream_8cpp_a7d6f43b555b102e9144e05a781aa3c81}{Stream\+::\+Read$<$ glm\+::vec3 $>$}} () const
-\begin{DoxyCompactList}\small\item\em Reads a glm\+::vec3 from a json value. \end{DoxyCompactList}\item 
-template$<$$>$ glm\+::vec4 \mbox{\hyperlink{Stream_8cpp_ab41b6951b51e85423e5be6eea4ef5d47}{Stream\+::\+Read$<$ glm\+::vec4 $>$}} () const
-\begin{DoxyCompactList}\small\item\em Reads a glm\+::vec4 from a json value. \end{DoxyCompactList}\item 
-template$<$$>$ glm\+::ivec2 \mbox{\hyperlink{Stream_8cpp_a30c690aefdb8d5de3f2de3867ca3af53}{Stream\+::\+Read$<$ glm\+::ivec2 $>$}} () const
-\begin{DoxyCompactList}\small\item\em Reads an ivec2 from a json value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -47,93 +29,4 @@ Aidan Straker (\href{mailto:aidan.straker@digipen.edu}{\texttt{ aidan.\+straker@
 \begin{DoxyDate}{Date}
 2023-\/09-\/10
 \end{DoxyDate}
-\begin{DoxyCopyright}{Copyright}
-© 2023 Digi\+Pen (USA) Corporation. 
-\end{DoxyCopyright}
-
-
-\doxysubsection{Function Documentation}
-\mbox{\Hypertarget{Stream_8cpp_a30c690aefdb8d5de3f2de3867ca3af53}\label{Stream_8cpp_a30c690aefdb8d5de3f2de3867ca3af53}} 
-\index{Stream.cpp@{Stream.cpp}!Stream::Read$<$ glm::ivec2 $>$@{Stream::Read$<$ glm::ivec2 $>$}}
-\index{Stream::Read$<$ glm::ivec2 $>$@{Stream::Read$<$ glm::ivec2 $>$}!Stream.cpp@{Stream.cpp}}
-\doxysubsubsection{\texorpdfstring{Stream::Read$<$ glm::ivec2 $>$()}{Stream::Read< glm::ivec2 >()}}
-{\footnotesize\ttfamily template$<$$>$ \\
-glm\+::ivec2 \mbox{\hyperlink{classStream_a237e8a4a539b9db2242062f1b5d1511e}{Stream\+::\+Read}}$<$ glm\+::ivec2 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Reads an ivec2 from a json value. 
-
-\begin{DoxyReturn}{Returns}
-The value from the json 
-\end{DoxyReturn}
-\mbox{\Hypertarget{Stream_8cpp_afaf45052ed753f92e117296582143cfc}\label{Stream_8cpp_afaf45052ed753f92e117296582143cfc}} 
-\index{Stream.cpp@{Stream.cpp}!Stream::Read$<$ glm::vec1 $>$@{Stream::Read$<$ glm::vec1 $>$}}
-\index{Stream::Read$<$ glm::vec1 $>$@{Stream::Read$<$ glm::vec1 $>$}!Stream.cpp@{Stream.cpp}}
-\doxysubsubsection{\texorpdfstring{Stream::Read$<$ glm::vec1 $>$()}{Stream::Read< glm::vec1 >()}}
-{\footnotesize\ttfamily template$<$$>$ \\
-glm\+::vec1 \mbox{\hyperlink{classStream_a237e8a4a539b9db2242062f1b5d1511e}{Stream\+::\+Read}}$<$ glm\+::vec1 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Reads a glm\+::vec1 from a json value. 
-
-\begin{DoxyReturn}{Returns}
-The value from the json 
-\end{DoxyReturn}
-\mbox{\Hypertarget{Stream_8cpp_aff92d165207be913165f9bb8575cd7ad}\label{Stream_8cpp_aff92d165207be913165f9bb8575cd7ad}} 
-\index{Stream.cpp@{Stream.cpp}!Stream::Read$<$ glm::vec2 $>$@{Stream::Read$<$ glm::vec2 $>$}}
-\index{Stream::Read$<$ glm::vec2 $>$@{Stream::Read$<$ glm::vec2 $>$}!Stream.cpp@{Stream.cpp}}
-\doxysubsubsection{\texorpdfstring{Stream::Read$<$ glm::vec2 $>$()}{Stream::Read< glm::vec2 >()}}
-{\footnotesize\ttfamily template$<$$>$ \\
-glm\+::vec2 \mbox{\hyperlink{classStream_a237e8a4a539b9db2242062f1b5d1511e}{Stream\+::\+Read}}$<$ glm\+::vec2 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Reads a glm\+::vec2 from a json value. 
-
-\begin{DoxyReturn}{Returns}
-The value from the json 
-\end{DoxyReturn}
-\mbox{\Hypertarget{Stream_8cpp_a7d6f43b555b102e9144e05a781aa3c81}\label{Stream_8cpp_a7d6f43b555b102e9144e05a781aa3c81}} 
-\index{Stream.cpp@{Stream.cpp}!Stream::Read$<$ glm::vec3 $>$@{Stream::Read$<$ glm::vec3 $>$}}
-\index{Stream::Read$<$ glm::vec3 $>$@{Stream::Read$<$ glm::vec3 $>$}!Stream.cpp@{Stream.cpp}}
-\doxysubsubsection{\texorpdfstring{Stream::Read$<$ glm::vec3 $>$()}{Stream::Read< glm::vec3 >()}}
-{\footnotesize\ttfamily template$<$$>$ \\
-glm\+::vec3 \mbox{\hyperlink{classStream_a237e8a4a539b9db2242062f1b5d1511e}{Stream\+::\+Read}}$<$ glm\+::vec3 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Reads a glm\+::vec3 from a json value. 
-
-\begin{DoxyReturn}{Returns}
-The value from the json 
-\end{DoxyReturn}
-\mbox{\Hypertarget{Stream_8cpp_ab41b6951b51e85423e5be6eea4ef5d47}\label{Stream_8cpp_ab41b6951b51e85423e5be6eea4ef5d47}} 
-\index{Stream.cpp@{Stream.cpp}!Stream::Read$<$ glm::vec4 $>$@{Stream::Read$<$ glm::vec4 $>$}}
-\index{Stream::Read$<$ glm::vec4 $>$@{Stream::Read$<$ glm::vec4 $>$}!Stream.cpp@{Stream.cpp}}
-\doxysubsubsection{\texorpdfstring{Stream::Read$<$ glm::vec4 $>$()}{Stream::Read< glm::vec4 >()}}
-{\footnotesize\ttfamily template$<$$>$ \\
-glm\+::vec4 \mbox{\hyperlink{classStream_a237e8a4a539b9db2242062f1b5d1511e}{Stream\+::\+Read}}$<$ glm\+::vec4 $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Reads a glm\+::vec4 from a json value. 
-
-\begin{DoxyReturn}{Returns}
-The value from the json 
-\end{DoxyReturn}
-\mbox{\Hypertarget{Stream_8cpp_a9d2e32dc4bed9dddbb2f0b7cff7e9868}\label{Stream_8cpp_a9d2e32dc4bed9dddbb2f0b7cff7e9868}} 
-\index{Stream.cpp@{Stream.cpp}!Stream::Read$<$ std::string $>$@{Stream::Read$<$ std::string $>$}}
-\index{Stream::Read$<$ std::string $>$@{Stream::Read$<$ std::string $>$}!Stream.cpp@{Stream.cpp}}
-\doxysubsubsection{\texorpdfstring{Stream::Read$<$ std::string $>$()}{Stream::Read< std::string >()}}
-{\footnotesize\ttfamily template$<$$>$ \\
-std\+::string \mbox{\hyperlink{classStream_a237e8a4a539b9db2242062f1b5d1511e}{Stream\+::\+Read}}$<$ std\+::string $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Reads a string from a json value. 
-
-\begin{DoxyReturn}{Returns}
-The value from the json 
-\end{DoxyReturn}
+\hypertarget{Stream_8cpp_autotoc_md7}{}\doxysubsubsection{@copyright  © 2023 Digi\+Pen (\+USA) Corporation.}\label{Stream_8cpp_autotoc_md7}

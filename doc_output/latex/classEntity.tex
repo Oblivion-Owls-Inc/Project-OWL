@@ -2,8 +2,7 @@
 \label{classEntity}\index{Entity@{Entity}}
 
 
-Inheritance diagram for Entity\+:
-\nopagebreak
+Inheritance diagram for Entity\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Entity\+:
 \end{figure}
 
 
-Collaboration diagram for Entity\+:
-\nopagebreak
+Collaboration diagram for Entity\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -50,8 +48,12 @@ void \mbox{\hyperlink{classEntity_a9fe3ed2aea0d62baa3482903da5c4a32}{Add\+Compon
 \+\_\+\+\_\+inline std\+::string const  \& \mbox{\hyperlink{classEntity_acaafccffe6773a8c7d14c912b99153fc}{Get\+Name}} () const
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s name \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classEntity_a1fc31d7ba1031dbf6792de15a46321cd}\label{classEntity_a1fc31d7ba1031dbf6792de15a46321cd}} 
-void {\bfseries Inspect} ()
-\item 
+void \mbox{\hyperlink{classEntity_a1fc31d7ba1031dbf6792de15a46321cd}{Inspect}} ()
+\begin{DoxyCompactList}\small\item\em used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{classEntity_a2f5f57edd21a3880debf6db30bd20d52}{Get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em gets the Id of this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEntity_a200205e7648a0ed28b46c3b76d393fdf}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classEntity}{Entity}} data to a JSON file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEntity_a7af42f3ae673e43f2c48bd2402985dce}{operator=}} (\mbox{\hyperlink{classEntity}{Entity}} const \&other)
 \begin{DoxyCompactList}\small\item\em copies all of another \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s data and Components into this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classEntity_a6d2e6788f8c2be303ebc2d67764f4127}\label{classEntity_a6d2e6788f8c2be303ebc2d67764f4127}} 
@@ -158,6 +160,19 @@ gets all of the components derived from the specified type from this \mbox{\hype
 \begin{DoxyReturn}{Returns}
 a vector of all components of the specified type 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_a2f5f57edd21a3880debf6db30bd20d52}\label{classEntity_a2f5f57edd21a3880debf6db30bd20d52}} 
+\index{Entity@{Entity}!GetId@{GetId}}
+\index{GetId@{GetId}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{GetId()}{GetId()}}
+{\footnotesize\ttfamily unsigned Entity\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the Id of this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the Id of this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classEntity_acaafccffe6773a8c7d14c912b99153fc}\label{classEntity_acaafccffe6773a8c7d14c912b99153fc}} 
 \index{Entity@{Entity}!GetName@{GetName}}
 \index{GetName@{GetName}!Entity@{Entity}}
@@ -227,6 +242,23 @@ sets this \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s name
 {\em name} & the new name for this \mbox{\hyperlink{classEntity}{Entity}} \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classEntity_a200205e7648a0ed28b46c3b76d393fdf}\label{classEntity_a200205e7648a0ed28b46c3b76d393fdf}} 
+\index{Entity@{Entity}!Write@{Write}}
+\index{Write@{Write}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Entity\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classEntity}{Entity}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classEntity}{Entity}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

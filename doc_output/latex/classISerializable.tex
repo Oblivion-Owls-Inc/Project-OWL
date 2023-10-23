@@ -27,7 +27,7 @@ virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}
 \mbox{\Hypertarget{classISerializable_a7b60e4aca93fb97f18c9ff41ee53bc3a}\label{classISerializable_a7b60e4aca93fb97f18c9ff41ee53bc3a}} 
 virtual void \mbox{\hyperlink{classISerializable_a7b60e4aca93fb97f18c9ff41ee53bc3a}{After\+Load}} ()
 \begin{DoxyCompactList}\small\item\em function which gets called after all data is read into this object on deserialization \end{DoxyCompactList}\item 
-virtual rapidjson\+::\+Value \mbox{\hyperlink{classISerializable_a45dc972744561d6ace6fc0d54017a14d}{Write}} () const
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{Write}} () const
 \begin{DoxyCompactList}\small\item\em writes this object to json \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -48,11 +48,11 @@ Gets the map of read methods for this object.
 \begin{DoxyReturn}{Returns}
 the map of read methods for htis object 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classISerializable_a45dc972744561d6ace6fc0d54017a14d}\label{classISerializable_a45dc972744561d6ace6fc0d54017a14d}} 
+\mbox{\Hypertarget{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}\label{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}} 
 \index{ISerializable@{ISerializable}!Write@{Write}}
 \index{Write@{Write}!ISerializable@{ISerializable}}
 \doxysubsubsection{\texorpdfstring{Write()}{Write()}}
-{\footnotesize\ttfamily virtual rapidjson\+::\+Value ISerializable\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual nlohmann\+::ordered\+\_\+json ISerializable\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -61,6 +61,10 @@ writes this object to json
 \begin{DoxyReturn}{Returns}
 the json data of this object 
 \end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classTurretBehavior_a429f24752ddbb82106d0d47d7bddc215}{Turret\+Behavior}}, \mbox{\hyperlink{classTransformAnimation_a7d74bdfc1962d0ce2aeaa656e50b364a}{Transform\+Animation}}, \mbox{\hyperlink{classTransform_a216e58bd1b07384a78e08b0ba806260f}{Transform}}, \mbox{\hyperlink{classTilemapCollider_a67671c334f23373ab2dbfe62c5f59247}{Tilemap\+Collider}}, \mbox{\hyperlink{classTilemap_af207096e5653313d7d46b86957a865ae}{Tilemap$<$ Tile\+Type $>$}}, \mbox{\hyperlink{classTilemap_af207096e5653313d7d46b86957a865ae}{Tilemap$<$ int $>$}}, \mbox{\hyperlink{classTexture_aad558ead96f52ead97b4f2b33ad8d778}{Texture}}, \mbox{\hyperlink{classText_a47029e0070e938c6af896bf827a99f9d}{Text}}, \mbox{\hyperlink{classStaticBody_a0fde52c141c4d1d14a5d80f6b15a944c}{Static\+Body}}, \mbox{\hyperlink{classSprite_a7f236ad7df686bd5bc9a21bed0eb7e4b}{Sprite}}, \mbox{\hyperlink{classSound_a2f18bf280c094d8b0e2d6ac6a37539be}{Sound}}, \mbox{\hyperlink{classSceneSystem_ae602fb12e3522bd1dd99b7f29a6f6a0d}{Scene\+System}}, \mbox{\hyperlink{classRigidBody_a4783016ea152257cb416a41a633504d7}{Rigid\+Body}}, \mbox{\hyperlink{classPool_ae89156f6a4bbc6172387c99a9b761590}{Pool$<$ Value $>$}}, \mbox{\hyperlink{classPlatformSystem_a8fded9fb1c1602acd76c771e38fc6a7c}{Platform\+System}}, \mbox{\hyperlink{classLineCollider_a9203913c346474ae6126f2b4b1abe434}{Line\+Collider}}, \mbox{\hyperlink{classEntity_a200205e7648a0ed28b46c3b76d393fdf}{Entity}}, \mbox{\hyperlink{classEngine_a2b35c45e93492eb6d52f004c05fdcf54}{Engine}}, \mbox{\hyperlink{classEffectAnimator_a5c75b8578d61e29bc3c83bad2d08258a}{Effect\+Animator}}, \mbox{\hyperlink{classDebugSystem_aae994854f516187647c79c65db6abb8e}{Debug\+System}}, \mbox{\hyperlink{classCurve_a5f48c58fbbd4b0cdf97f244138ae5132}{Curve$<$ dimensionality $>$}}, \mbox{\hyperlink{classCurve_a5f48c58fbbd4b0cdf97f244138ae5132}{Curve$<$ 1 $>$}}, \mbox{\hyperlink{classCurve_a5f48c58fbbd4b0cdf97f244138ae5132}{Curve$<$ 2 $>$}}, \mbox{\hyperlink{classControlPoint_a252a623a13c8dec86c29438e023640b7}{Control\+Point$<$ dimensionality $>$}}, \mbox{\hyperlink{classCircleCollider_a6c39df7b80e132f10eafe90f3652dd63}{Circle\+Collider}}, \mbox{\hyperlink{classAnimationAsset_a72391566c61d80704ccd2ebe08427670}{Animation\+Asset}}, and \mbox{\hyperlink{classAnimation_a562de7e80ea741b8d9a892514fa6094a}{Animation}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

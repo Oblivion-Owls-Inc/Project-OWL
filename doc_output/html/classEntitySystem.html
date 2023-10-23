@@ -109,9 +109,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a86f324f2d492e696283f08a10a6f2ac0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#a86f324f2d492e696283f08a10a6f2ac0">HasEntity</a> (<a class="el" href="classEntity.html">Entity</a> *entity)</td></tr>
 <tr class="memdesc:a86f324f2d492e696283f08a10a6f2ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the <a class="el" href="classEntitySystem.html" title="Example System meant to be copy-pasted when creating new Systems.">EntitySystem</a> contains the given <a class="el" href="classEntity.html">Entity</a> (for debugging)  <a href="classEntitySystem.html#a86f324f2d492e696283f08a10a6f2ac0">More...</a><br /></td></tr>
 <tr class="separator:a86f324f2d492e696283f08a10a6f2ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abab96c75248c3ce796b19689b85e189a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#abab96c75248c3ce796b19689b85e189a">LoadEntities</a> (<a class="el" href="classStream.html">Stream</a> entityArray)</td></tr>
-<tr class="memdesc:abab96c75248c3ce796b19689b85e189a"><td class="mdescLeft">&#160;</td><td class="mdescRight">loads all of the entities in a scene  <a href="classEntitySystem.html#abab96c75248c3ce796b19689b85e189a">More...</a><br /></td></tr>
-<tr class="separator:abab96c75248c3ce796b19689b85e189a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1413b1ebe7d025a06da369297b7c8b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#aa1413b1ebe7d025a06da369297b7c8b8">LoadEntities</a> (nlohmann::ordered_json const &amp;data)</td></tr>
+<tr class="memdesc:aa1413b1ebe7d025a06da369297b7c8b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">loads all of the entities in a scene  <a href="classEntitySystem.html#aa1413b1ebe7d025a06da369297b7c8b8">More...</a><br /></td></tr>
+<tr class="separator:aa1413b1ebe7d025a06da369297b7c8b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abee09afc33e2dddda270d3e4bacb247c"><td class="memItemLeft" align="right" valign="top">nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#abee09afc33e2dddda270d3e4bacb247c">SaveEntities</a> () const</td></tr>
+<tr class="memdesc:abee09afc33e2dddda270d3e4bacb247c"><td class="mdescLeft">&#160;</td><td class="mdescRight">saves all of the entities in a scene  <a href="classEntitySystem.html#abee09afc33e2dddda270d3e4bacb247c">More...</a><br /></td></tr>
+<tr class="separator:abee09afc33e2dddda270d3e4bacb247c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa527daa36c0689122424d88acc2d8476"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classEntity.html">Entity</a> * &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#aa527daa36c0689122424d88acc2d8476">GetEntities</a> () const</td></tr>
 <tr class="memdesc:aa527daa36c0689122424d88acc2d8476"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the container of all Entities in the Scene  <a href="classEntitySystem.html#aa527daa36c0689122424d88acc2d8476">More...</a><br /></td></tr>
 <tr class="separator:aa527daa36c0689122424d88acc2d8476"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,9 +158,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">function which gets called after all data is read into this object on deserialization <br /></td></tr>
 <tr class="separator:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual rapidjson::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">Write</a> () const</td></tr>
-<tr class="memdesc:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a45dc972744561d6ace6fc0d54017a14d">More...</a><br /></td></tr>
-<tr class="separator:a45dc972744561d6ace6fc0d54017a14d inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa16420df0e7bb8f2c51adc9b920655 inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">Write</a> () const</td></tr>
+<tr class="memdesc:a9fa16420df0e7bb8f2c51adc9b920655 inherit pub_methods_classISerializable"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this object to json  <a href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">More...</a><br /></td></tr>
+<tr class="separator:a9fa16420df0e7bb8f2c51adc9b920655 inherit pub_methods_classISerializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -321,8 +324,8 @@ Set Static Variables</h2>
 
 </div>
 </div>
-<a id="abab96c75248c3ce796b19689b85e189a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abab96c75248c3ce796b19689b85e189a">&#9670;&nbsp;</a></span>LoadEntities()</h2>
+<a id="aa1413b1ebe7d025a06da369297b7c8b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1413b1ebe7d025a06da369297b7c8b8">&#9670;&nbsp;</a></span>LoadEntities()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -330,8 +333,8 @@ Set Static Variables</h2>
         <tr>
           <td class="memname">void EntitySystem::LoadEntities </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classStream.html">Stream</a>&#160;</td>
-          <td class="paramname"><em>entityArray</em></td><td>)</td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -371,6 +374,26 @@ Set Static Variables</h2>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="abee09afc33e2dddda270d3e4bacb247c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abee09afc33e2dddda270d3e4bacb247c">&#9670;&nbsp;</a></span>SaveEntities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json EntitySystem::SaveEntities </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>saves all of the entities in a scene </p>
+<dl class="section return"><dt>Returns</dt><dd>the written json data </dd></dl>
 
 </div>
 </div>

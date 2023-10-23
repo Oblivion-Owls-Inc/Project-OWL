@@ -11,8 +11,7 @@ Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when cr
 
 
 
-Inheritance diagram for Sound\+:
-\nopagebreak
+Inheritance diagram for Sound\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Sound\+:
 \end{figure}
 
 
-Collaboration diagram for Sound\+:
-\nopagebreak
+Collaboration diagram for Sound\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -49,7 +47,9 @@ float \mbox{\hyperlink{classSound_a53409029f147921fe18d255394e971eb}{Get\+Length
 \+\_\+\+\_\+inline std\+::string const  \& \mbox{\hyperlink{classSound_ab8328222f7f3070212b948bf2d814f7f}{Get\+Filepath}} () const
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSound}{Sound}}\textquotesingle{}s filepath \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSound_a7b62427aac8703c909ac96045ae46170}{Inspect}} ()
-\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classSound}{Sound}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classSound}{Sound}}. \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classSound_a2f18bf280c094d8b0e2d6ac6a37539be}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classSound}{Sound}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -147,6 +147,23 @@ Plays this sound.
 \begin{DoxyReturn}{Returns}
 The channel that this sound is being played on 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classSound_a2f18bf280c094d8b0e2d6ac6a37539be}\label{classSound_a2f18bf280c094d8b0e2d6ac6a37539be}} 
+\index{Sound@{Sound}!Write@{Write}}
+\index{Write@{Write}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Sound\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classSound}{Sound}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON data containing the \mbox{\hyperlink{classSound}{Sound}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

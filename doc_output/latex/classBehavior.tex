@@ -12,8 +12,7 @@ Inheritance diagram for Behavior\+:
 \end{figure}
 
 
-Collaboration diagram for Behavior\+:
-\nopagebreak
+Collaboration diagram for Behavior\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,13 +24,11 @@ Collaboration diagram for Behavior\+:
 \item 
 virtual \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}{Clone}} () const =0
 \begin{DoxyCompactList}\small\item\em virtual component clone function \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}{On\+Collision}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$other, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&collision\+Data)
-\begin{DoxyCompactList}\small\item\em Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classBehavior_a2ed3e697d147e7cd41ed5afe573234a6}\label{classBehavior_a2ed3e697d147e7cd41ed5afe573234a6}} 
 virtual void {\bfseries On\+Update} (float dt)
 \item 
-\mbox{\Hypertarget{classBehavior_a6416957ece445d094b45b13c02c16f98}\label{classBehavior_a6416957ece445d094b45b13c02c16f98}} 
-virtual void {\bfseries On\+Fixed\+Update} ()
+\mbox{\Hypertarget{classBehavior_adcdc18ec17aea61594908c2eaf5d79ab}\label{classBehavior_adcdc18ec17aea61594908c2eaf5d79ab}} 
+virtual void {\bfseries On\+Fixed\+Update} ()=0
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -61,28 +58,7 @@ Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Co
 
 
 
-Implemented in \mbox{\hyperlink{classTurretBehavior_a44ea8cc9c629e688d46abe776bc11bd0}{Turret\+Behavior}}, and \mbox{\hyperlink{classPlayerController_a86207931cea38bd757c147cda67b7e0a}{Player\+Controller}}.
-
-\mbox{\Hypertarget{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}\label{classBehavior_a6cbaf9cec40b0e918df7b2cdda43108b}} 
-\index{Behavior@{Behavior}!OnCollision@{OnCollision}}
-\index{OnCollision@{OnCollision}!Behavior@{Behavior}}
-\doxysubsubsection{\texorpdfstring{OnCollision()}{OnCollision()}}
-{\footnotesize\ttfamily virtual void Behavior\+::\+On\+Collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{other,  }\item[{\mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&}]{collision\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
-
-
-
-Called whenever a \mbox{\hyperlink{classCollider}{Collider}} on this \mbox{\hyperlink{classBehavior}{Behavior}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} collides. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em other} & the entity that was collided with \\
-\hline
-{\em collision\+Data} & additional data about the collision \\
-\hline
-\end{DoxyParams}
-
-
-Reimplemented in \mbox{\hyperlink{classRigidBody_aa431ab44f687d1a7ca176c82fcb098a3}{Rigid\+Body}}, and \mbox{\hyperlink{classTurretBehavior_a61cb0d08cb83b881c5e525b0928c9b30}{Turret\+Behavior}}.
+Implemented in \mbox{\hyperlink{classTurretBehavior_a44ea8cc9c629e688d46abe776bc11bd0}{Turret\+Behavior}}, \mbox{\hyperlink{classTilemap_a3a15bf3e418406b1f2008b50880c68cd}{Tilemap$<$ Tile\+Type $>$}}, \mbox{\hyperlink{classTilemap_a3a15bf3e418406b1f2008b50880c68cd}{Tilemap$<$ int $>$}}, and \mbox{\hyperlink{classPlayerController_a86207931cea38bd757c147cda67b7e0a}{Player\+Controller}}.
 
 
 
