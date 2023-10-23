@@ -16,8 +16,6 @@
     "AssetLibrarySystem<TransformAnimation>": {},
     "AssetLibrarySystem<AnimationAsset>": {},
     "BehaviorSystem<Behavior>": {},
-    "BehaviorSystem<MovementAI>": {},
-    "BehaviorSystem<PlayerController>": {},
     "BehaviorSystem<BulletBehavior>": {},
     "BehaviorSystem<TilemapBase>": {},
     "BehaviorSystem<RigidBody>": {},

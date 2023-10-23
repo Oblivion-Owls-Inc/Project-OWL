@@ -69,7 +69,7 @@ void BulletBehavior::Inspector()
 
 void BulletBehavior::readPool(nlohmann::ordered_json const& data)
 {
-	Stream::Read<ISerializable>(&m_BulletLifeTime, data);
+	Stream::Read(m_BulletLifeTime, data);
 }
 
 Component* BulletBehavior::Clone() const

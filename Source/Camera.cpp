@@ -9,7 +9,7 @@
 #pragma once
 
 #include "Camera.h"
-#include "Transform.h";
+#include "Transform.h"
 
 #include "CameraSystem.h"
 #include "PlatformSystem.h"

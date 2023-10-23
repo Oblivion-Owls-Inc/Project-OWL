@@ -89,7 +89,7 @@ private: // member variables
 	bool m_Active;
 
 //-----------------------------------------------------------------------------
-private: // reading
+public: // reading
 //-----------------------------------------------------------------------------
 
 	/// @brief  map of the read methods

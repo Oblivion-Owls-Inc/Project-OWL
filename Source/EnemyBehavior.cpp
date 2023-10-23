@@ -56,7 +56,7 @@ nlohmann::ordered_json EnemyBehavior::Write() const
 
 void EnemyBehavior::readHealth(nlohmann::ordered_json const& data)
 {
-    Stream::Read<ISerializable>(&m_Health, data);
+    Stream::Read(m_Health, data);
 }
 
 void EnemyBehavior::ChaseTarget(Pathfinder* pathfinder, float dt)
