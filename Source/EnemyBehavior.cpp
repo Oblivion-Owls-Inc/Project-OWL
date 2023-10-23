@@ -22,6 +22,18 @@ void EnemyBehavior::TakeDamage(int damage)
 	}
 }
 
+void EnemyBehavior::TakeDamage(float damage)
+{
+    
+    m_Health -= damage;
+
+    ///if the pool is empty, destroy the enemy
+    if (!m_Health)
+    {
+        GetParent()->Destroy();
+    }
+}
+
 void EnemyBehavior::OnInit()
 {
     Behaviors<Behavior>()->AddBehavior(this);
@@ -44,7 +56,6 @@ ReadMethodMap< EnemyBehavior > const EnemyBehavior::s_ReadMethods = {
 
 void EnemyBehavior::OnFixedUpdate()
 {
-
 }
 
 nlohmann::ordered_json EnemyBehavior::Write() const
@@ -57,36 +68,6 @@ nlohmann::ordered_json EnemyBehavior::Write() const
 void EnemyBehavior::readHealth(nlohmann::ordered_json const& data)
 {
     Stream::Read(m_Health, data);
-}
-
-void EnemyBehavior::ChaseTarget(Pathfinder* pathfinder, float dt)
-{
-    for (auto& enemy : Entities()->GetEntities())
-    {
-        if (enemy->GetName() != std::string("Enemy"))
-            continue;
-
-        Transform* transform = enemy->GetComponent<Transform>();
-
-        if (!transform)
-        {
-            continue;
-        }
-
-        glm::vec2 pos = transform->GetTranslation();
-
-
-        RigidBody* rigidBody = enemy->GetComponent<RigidBody>();
-
-        // accelerate along path
-        glm::vec3 moveDir = glm::vec3(pathfinder->GetDirectionAt(pos), 0);
-        rigidBody->SetAcceleration(moveDir * 12.0f);
-
-        // air friction or something
-        float af = 5.5f;
-        glm::vec2 vel = rigidBody->GetVelocity();
-        rigidBody->SetVelocity(vel * (1.0f - af * dt));
-    }
 }
 
 Component* EnemyBehavior::Clone() const

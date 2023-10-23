@@ -22,10 +22,8 @@
 #include "Pool.h"
 #include "DebugSystem.h"
 
-#pragma warning(push, 0)
 TurretBehavior::TurretBehavior(): 
 	Behavior(typeid(TurretBehavior)),
-	m_CollisionLayerFlags(0),
 	m_FireRate(1.0f), 
 	m_Range(5.0f), 
 	m_BulletDamage(1.0f), 
@@ -37,8 +35,7 @@ TurretBehavior::TurretBehavior():
 }
 
 TurretBehavior::TurretBehavior(const TurretBehavior& other)
-	             : Behavior( other ), 
-					m_CollisionLayerFlags(0),
+	             : Behavior(typeid(TurretBehavior)), 
 					m_FireRate(other.m_FireRate), 
 					m_Range(other.m_Range), 
 					m_BulletDamage(other.m_BulletDamage), 
@@ -109,24 +106,25 @@ void TurretBehavior::Inspector()
 
 void TurretBehavior::FireBullet(RayCastHit Target, float dt)
 {
-	m_LastFireTime += dt;  // Increment the time since the last bullet was fired.
+	m_LastFireTime += dt;  /// Increment the time since the last bullet was fired.
 
 	if (m_LastFireTime < 1.0f / m_FireRate)
 		return;
 
-	m_LastFireTime = 0.0f;  // Reset the timer since we're firing a bullet.
+	m_LastFireTime = 0.0f;  /// Reset the timer since we're firing a bullet.
 
-	Entity* bullet = new Entity;
+	Entity* bullet = new Entity; /// Create a new bullet entity
 
-	if (!bullet)
+	if (!bullet) 
 		return;
 
-	*bullet = *m_BulletPrefab;
+	*bullet = *m_BulletPrefab; /// Copy the bullet prefab
 	
 	bullet->SetName("Bullet");
 
 	glm::vec2 turretPos = GetParent()->GetComponent<Transform>()->GetTranslation();
 
+	/// Add a callback to the bullet's collider for the bullet's behavior
 	bullet->GetComponent<CircleCollider>()->AddOnCollisionCallback(
 		GetParent()->GetId(),
 		[bulletBehavior = bullet->GetComponent<BulletBehavior>()](Collider* collider, CollisionData const& collisionData) {
@@ -136,19 +134,24 @@ void TurretBehavior::FireBullet(RayCastHit Target, float dt)
 
 	bullet->GetComponent<Transform>()->SetTranslation(turretPos );
 
+	 /// Sets the data within the bullet
 	bullet->GetComponent<BulletBehavior>()->SetTarget(Target);
 	bullet->GetComponent<BulletBehavior>()->SetBulletDamage(m_BulletDamage);
 	bullet->GetComponent<BulletBehavior>()->SetBulletSpeed(m_BulletSpeed);
 	
+	/// Sets the scale of the bullet
 	bullet->GetComponent<Transform>()->SetScale(glm::vec2(m_BulletSize));
 
+	/// Add the bullet to the entity system
 	Entities()->AddEntity(bullet);
 
 }
 
 RayCastHit TurretBehavior::CheckForTarget()
 {
+	/// Create a raycast hit default to false
 	RayCastHit hit;
+
     for (auto& entity : Entities()->GetEntities())
     {
 		/// Skip the entities that don't match the target name		
@@ -166,16 +169,23 @@ RayCastHit TurretBehavior::CheckForTarget()
 		/// Calculate the direction from the turret to the entity
         glm::vec2 directionToEntity = enemyPosition - turretPosition;
 
+		/// Normalize the direction
 		directionToEntity = glm::normalize(directionToEntity);
 
-		CircleCollider* collider = (CircleCollider *)GetParent()->GetComponent<Collider>();
-        // Cast a ray from the turret towards the entity
+		///Grabs the collider from the turret
+		CircleCollider* collider = GetParent()->GetComponent<CircleCollider>();
+
+        /// Cast a ray from the turret towards the entity
+        /// Uses the Collider on the Turret to determine which layers to check
         hit = CollisionSystem::GetInstance()->RayCast(
 			turretPosition, directionToEntity, m_Range, collider->GetCollisionLayerFlags()
 		);
 
+		/// Return the raycast hit
 		return hit;
     }
+
+	/// Return the raycast hit
 	return hit;
 }
 
@@ -194,7 +204,10 @@ void TurretBehavior::CheckIfBulletChanged()
 
 void TurretBehavior::readBulletName(nlohmann::ordered_json const& data)
 {
+	/// Get the bullet prefab name
 	m_BulletName = Stream::Read<std::string>(data);
+
+	/// Get the bullet prefab
 	m_BulletPrefab = AssetLibrarySystem<Entity>::GetInstance()->GetAsset(m_BulletName);
 }
 
@@ -253,6 +266,5 @@ ReadMethodMap<TurretBehavior> const TurretBehavior::s_ReadMethods =
 	{ "bulletdamage",	  &readBulletDamage },
 	{ "bulletspeed",	   &readBulletSpeed },
 	{ "bulletsize",		    &readBulletSize },
-	{ "Target",				&readTargetName }
+	{ "Target",				&readTargetName },
 };
-#pragma	warning(pop)

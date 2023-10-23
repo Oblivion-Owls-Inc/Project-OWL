@@ -24,8 +24,16 @@ public: // constructor / destructors
 public: // methods
 //-----------------------------------------------------------------------------
 
+    /// @brief Set the target the bullet is aiming at
+    /// @param target - the target to aim at
     void SetTarget(RayCastHit target);
+
+    /// @brief Set the damage the bullet will do
+    /// @param damage - the damage the bullet will do
     __inline void SetBulletDamage(float damage) { m_BulletDamage = damage; }
+
+    /// @brief Sets the speed of the bullet
+    /// @param speed - the speed of the bullet
     __inline void SetBulletSpeed(float speed) { m_BulletSpeed = speed; }
 
 
