@@ -9,7 +9,11 @@
 #pragma once
 
 #include "CircleCollider.h"
+
 #include "DebugSystem.h"
+#include "RenderSystem.h"
+
+#include "Transform.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor
@@ -29,6 +33,8 @@
     void CircleCollider::Inspector()
     {
         ImGui::DragFloat( ( std::string( "Radius##" ) + std::to_string( GetId() ) ).c_str(), &m_Radius, 0.05f, 0.0f );
+
+        Renderer()->DrawCircle( GetTransform()->GetTranslation(), m_Radius, glm::vec4( 1.0f, 0.5f, 0.0f, 0.0f ) );
 
         Collider::Inspector();
     }
