@@ -177,6 +177,9 @@
     <Filter Include="Engine\Entity\Component\Camera">
       <UniqueIdentifier>{3b8f4986-5f51-4a7a-a2e4-15aa9b2b6fcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Behaviors\EnemyBehavior">
+      <UniqueIdentifier>{bb34ab4a-2538-417f-b914-506c28fefb5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -347,9 +350,6 @@
     <ClCompile Include="Source\EffectAnimator.cpp">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Pool.cpp">
-      <Filter>Engine\Entity\Component\Pools</Filter>
-    </ClCompile>
     <ClCompile Include="Source\TransformAnimation.cpp">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
     </ClCompile>
@@ -382,6 +382,12 @@
     </ClCompile>
     <ClCompile Include="Source\Camera.cpp">
       <Filter>Engine\Entity\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BulletBehavior.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Pool.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\EnemyBehavior.cpp">
       <Filter>Game\Behaviors\EnemyBehavior</Filter>
@@ -559,9 +565,6 @@
     <ClInclude Include="Source\EffectAnimator.h">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Pool.h">
-      <Filter>Engine\Entity\Component\Pools</Filter>
-    </ClInclude>
     <ClInclude Include="Source\TransformAnimation.h">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
     </ClInclude>
@@ -597,6 +600,12 @@
     </ClInclude>
     <ClInclude Include="Source\Camera.h">
       <Filter>Engine\Entity\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BulletBehavior.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Pool.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\EnemyBehavior.h">
       <Filter>Game\Behaviors\EnemyBehavior</Filter>
