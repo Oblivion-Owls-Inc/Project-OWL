@@ -109,24 +109,25 @@ void TurretBehavior::Inspector()
 
 void TurretBehavior::FireBullet(RayCastHit Target, float dt)
 {
-	m_LastFireTime += dt;  // Increment the time since the last bullet was fired.
+	m_LastFireTime += dt;  /// Increment the time since the last bullet was fired.
 
 	if (m_LastFireTime < 1.0f / m_FireRate)
 		return;
 
-	m_LastFireTime = 0.0f;  // Reset the timer since we're firing a bullet.
+	m_LastFireTime = 0.0f;  /// Reset the timer since we're firing a bullet.
 
-	Entity* bullet = new Entity;
+	Entity* bullet = new Entity; /// Create a new bullet entity
 
-	if (!bullet)
+	if (!bullet) 
 		return;
 
-	*bullet = *m_BulletPrefab;
+	*bullet = *m_BulletPrefab; /// Copy the bullet prefab
 	
 	bullet->SetName("Bullet");
 
 	glm::vec2 turretPos = GetParent()->GetComponent<Transform>()->GetTranslation();
 
+	/// Add a callback to the bullet's collider for the bullet's behavior
 	bullet->GetComponent<CircleCollider>()->AddOnCollisionCallback(
 		GetParent()->GetId(),
 		[bulletBehavior = bullet->GetComponent<BulletBehavior>()](Collider* collider, CollisionData const& collisionData) {
@@ -136,19 +137,24 @@ void TurretBehavior::FireBullet(RayCastHit Target, float dt)
 
 	bullet->GetComponent<Transform>()->SetTranslation(turretPos );
 
+	 /// Sets the data within the bullet
 	bullet->GetComponent<BulletBehavior>()->SetTarget(Target);
 	bullet->GetComponent<BulletBehavior>()->SetBulletDamage(m_BulletDamage);
 	bullet->GetComponent<BulletBehavior>()->SetBulletSpeed(m_BulletSpeed);
 	
+	/// Sets the scale of the bullet
 	bullet->GetComponent<Transform>()->SetScale(glm::vec2(m_BulletSize));
 
+	/// Add the bullet to the entity system
 	Entities()->AddEntity(bullet);
 
 }
 
 RayCastHit TurretBehavior::CheckForTarget()
 {
+	/// Create a raycast hit default to false
 	RayCastHit hit;
+
     for (auto& entity : Entities()->GetEntities())
     {
 		/// Skip the entities that don't match the target name		
@@ -169,13 +175,17 @@ RayCastHit TurretBehavior::CheckForTarget()
 		directionToEntity = glm::normalize(directionToEntity);
 
 		CircleCollider* collider = (CircleCollider *)GetParent()->GetComponent<Collider>();
-        // Cast a ray from the turret towards the entity
+
+        /// Cast a ray from the turret towards the entity
         hit = CollisionSystem::GetInstance()->RayCast(
 			turretPosition, directionToEntity, m_Range, collider->GetCollisionLayerFlags()
 		);
 
+		/// Return the raycast hit
 		return hit;
     }
+
+	/// Return the raycast hit
 	return hit;
 }
 

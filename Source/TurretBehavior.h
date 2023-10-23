@@ -54,26 +54,43 @@ class TurretBehavior :
 		/// @brief Used by the Debug System to display information about this Component
 		virtual void Inspector() override;
 
-	private:
-
+///-------------------------------------------------------------------------------------------
+private: /// Members
+///-------------------------------------------------------------------------------------------
+		/// @brief The collision layer flags for this component
 		CollisionLayerFlags m_CollisionLayerFlags;
+		/// @brief The fire rate of the turret
 		float m_FireRate = 1.0f;
+		/// @brief The range of the turret
 		float m_Range = 5.0f;
+		/// @brief The damage of the turret
 		float m_BulletDamage = 1.0f;
+		/// @brief The speed of the bullet
 		float m_BulletSpeed = 1.0f;
+		/// @brief The size of the bullet
 		float m_BulletSize = 1.0f;
+		/// @brief The last time the turret fired
 		float m_LastFireTime = 0.0f;
+		/// @brief Name of The entity the turret is targeting
 		std::string m_TargetName;
+		/// @brief Name of the bullet prefab to spawn
 		std::string m_BulletName;
-		const Entity* m_BulletPrefab = nullptr; /// Todo: Make this a prefab actually work
+		/// @brief The bullet prefab to spawn
+		const Entity* m_BulletPrefab = nullptr; 
 
 	private:
-
+		/// @brief Creates a bullet and fires it at the target
+		/// @param target - the target to fire at
+		/// @param dt - the time since the last frame
 		void FireBullet(RayCastHit target, float dt);
+		/// @brief Uses Raycasting to check for a target on the same Collision Layer
+		/// @return - the target that was hit
 		RayCastHit CheckForTarget();
+		/// @brief Checks if the bullet prefab has changed
 		void CheckIfBulletChanged();
-
-	private: ///Reading 
+///-------------------------------------------------------------------------------------------
+private: ///Reading 
+///-------------------------------------------------------------------------------------------
 
 		/// @brief Reads the name of the bullet prefab to grab from AssetLib
 		/// @param data - the json data to read from

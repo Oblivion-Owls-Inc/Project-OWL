@@ -27,9 +27,11 @@ void BulletBehavior::OnExit()
 
 void BulletBehavior::OnCollision(Collider* other, CollisionData const& collisionData)
 {
+	///If the bullet hits an enemy, deal damage to it
 	if (other->GetParent()->GetName() == std::string("Enemy"))
 		other->GetParent()->GetComponent<EnemyBehavior>()->TakeDamage(m_BulletDamage);
 
+	///The bullet is destroyed on collision
 	GetParent()->Destroy();
 }
 
@@ -42,18 +44,21 @@ void BulletBehavior::OnFixedUpdate()
 {
 	float dt = Engine::GetInstance()->GetFixedFrameDuration();
 
+	///Update the bullet's life time
 	m_BulletLifeTime -= dt;
-	std::cout << m_BulletLifeTime.GetCurrent() << std::endl;
+
+	///If the bullet has a target, update it's position towards the target
 	if (m_Target)
 	{
 		glm::vec2 bulletPos = GetParent()->GetComponent<Transform>()->GetTranslation();
 
-		// Update the bullet's position
+		/// Update the bullet's position using the normal of the raycast hit
 		glm::vec2 newPos = bulletPos - m_Target.normal * m_BulletSpeed * dt;
 
 		GetParent()->GetComponent<Transform>()->SetTranslation(newPos);
 	}
 
+	///Destroy the bullet if it's life time is over
 	if (m_BulletLifeTime <= 0.0f)
 	{
 		GetParent()->Destroy();

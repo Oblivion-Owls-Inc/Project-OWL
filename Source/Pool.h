@@ -118,25 +118,87 @@ public: // reading
 public: // Operators
 //-----------------------------------------------------------------------------
 
+	/// @brief - adds two pools together
+	/// @param lhs - the left hand side of the addition
+	/// @param rhs - the right hand side of the addition
+	/// @return - the new pool value
 	friend Pool operator+(const Pool& lhs, const Pool& rhs);
+
+	/// @brief - subtracts two pools together
+	/// @param lhs - the left hand side of the subtraction
+	/// @param rhs - the right hand side of the subtraction
+	/// @return - the new pool value
 	friend Pool operator-(const Pool& lhs, const Pool& rhs);
+
+	/// @brief - multiplies two pools together
+	/// @param lhs - the left hand side of the multiplication
+	/// @param rhs - the right hand side of the multiplication
+	/// @return - the new pool value
 	friend Pool operator*(const Pool& lhs, const Pool& rhs);
+
+	/// @brief - divides two pools together
+	/// @param lhs - the left hand side of the division
+	/// @param rhs - the right hand side of the division
+	/// @return - the new pool value
 	friend Pool operator/(const Pool& lhs, const Pool& rhs);
 
+	/// @brief - compares two pools for equality
+	/// @param lhs -  the left hand side of the comparison
+	/// @param rhs - the right hand side of the comparison
+	/// @return - true if the pools are equal
 	friend bool operator==(const Pool& lhs, const Pool& rhs);
+
+	/// @brief - compares two pools for inequality
+	/// @param lhs - the left hand side of the comparison
+	/// @param rhs - the right hand side of the comparison
+	/// @return - true if the pools are not equal
 	friend bool operator!=(const Pool& lhs, const Pool& rhs);
 
+	/// @brief - adds a value to the pool
+	/// @param value - the value to add
+	/// @return - the new pool value
 	Pool& operator+=(const Value& value);
+
+	/// @brief - subtracts a value from the pool
+	/// @param value - the value to subtract
+	/// @return - the new pool value
 	Pool& operator-=(const Value& value);
+
+	/// @brief - multiplies the pool by a value
+	/// @param value - the value to multiply by
+	/// @return - the new pool value
 	Pool& operator*=(const Value& value);
+
+	/// @brief - divides the pool by a value
+	/// @param value - the value to divide by
+	/// @return - the new pool value
 	Pool& operator/=(const Value& value);
 
-
+	/// @brief - compares two pools
+	/// @param lhs - the left hand side of the comparison
+	/// @param rhs - the right hand side of the comparison
+	/// @return - true if the left hand side is greater than the right hand side
 	friend bool operator>(const Pool& lhs, const Pool& rhs);
+
+	/// @brief - compares two pools
+	/// @param lhs - the left hand side of the comparison
+	/// @param rhs - the right hand side of the comparison
+	/// @return - true if the left hand side is less than the right hand side
 	friend bool operator<(const Pool& lhs, const Pool& rhs);
+
+	/// @brief - compares two pools
+	/// @param lhs - the left hand side of the comparison
+	/// @param rhs - the right hand side of the comparison
+	/// @return - true if the left hand side is greater than or equal to the right hand side
 	friend bool operator>=(const Pool& lhs, const Pool& rhs);
+
+	/// @brief - compares two pools
+	/// @param lhs - the left hand side of the comparison
+	/// @param rhs - the right hand side of the comparison
+	/// @return - true if the left hand side is less than or equal to the right hand side
 	friend bool operator<=(const Pool& lhs, const Pool& rhs);
 
+	/// @brief converts the pool to a bool
 	operator bool() const { return m_Active; }
 
 //-----------------------------------------------------------------------------
