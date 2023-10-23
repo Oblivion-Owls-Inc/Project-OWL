@@ -101,14 +101,19 @@ private: // members
     /// @brief  the name of the tilemap entity
     std::string m_TilemapName;
 
-    /// @brief  the tilemap to build on
+    /// @brief  the tilemap of the terrain
     Tilemap<int> const* m_Tilemap = nullptr;
+
+    /// @brief  tilemap of the placed buildings
+    Tilemap< Entity* >* m_Buildings = nullptr;
+
 
     /// @brief  the transform of the preview sprite
     Transform* m_Transform = nullptr;
 
     /// @brief  the preview sprite
     Sprite* m_Sprite = nullptr;
+
 
 
 //-----------------------------------------------------------------------------

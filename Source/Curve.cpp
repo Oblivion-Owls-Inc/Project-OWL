@@ -25,6 +25,8 @@
 
 #include <sstream>
 
+#include "Stream.h"
+
 //-----------------------------------------------------------------------------
 // Class ControlPoint
 //-----------------------------------------------------------------------------
@@ -548,7 +550,7 @@
         for ( int i = 0; i < data.size(); ++i )
         {
             ControlPoint< dimensionality > point;
-            Stream::Read< ISerializable >( &point, data[ i ] );
+            Stream::Read< ISerializable* const >( &point, data[ i ] );
             AddControlPoint( point );
         }
     }

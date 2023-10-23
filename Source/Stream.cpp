@@ -11,7 +11,7 @@
 // Include Files
 //------------------------------------------------------------------------------
 
-#include "ISerializable.h"
+#include "Stream.h"
 
 #include <fstream> // std::ifstream
 
@@ -68,34 +68,4 @@
     }
 
 
-    /// @brief  reads a serializable object from json
-    /// @param  object  the object to read from json
-    /// @param  json    the json data to read from
-    template<>
-    void Stream::Read< ISerializable >( ISerializable* object, nlohmann::ordered_json const& json )
-    {
-        if ( json.is_object() == false )
-        {
-            throw std::runtime_error(
-                "Error: json is not an object"
-            );
-        }
-
-        ReadMethodMap< ISerializable > const& readMethods = object->GetReadMethods();
-        for ( auto& [ key, value ] : json.items() )
-        {
-            auto it = readMethods.find( key );
-            if ( it == readMethods.end() )
-            {
-                throw std::runtime_error(
-                    std::string() + "Error: unrecognized token \"" + key + "\" encountered"
-                );
-            }
-
-            ReadMethod< ISerializable > const& readMethod = it->second;
-            (object->*it->second)( value );
-        }
-
-        object->AfterLoad();
-    }
 //-----------------------------------------------------------------------------

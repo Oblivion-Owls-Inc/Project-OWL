@@ -43,7 +43,7 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
         {
             // create and read the asset
             AssetType* asset = new AssetType();
-            Stream::Read< ISerializable >( asset, value );
+            Stream::Read( asset, value );
 
             // insert the asset into the map
             AddAsset( key, asset );

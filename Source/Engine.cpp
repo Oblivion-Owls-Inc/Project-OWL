@@ -127,7 +127,7 @@
             }
            
             System* system = ( this->*addSystemMethod->second )(); // create and add the System to the Engine
-            Stream::Read< ISerializable >( system, value ); // have the System load itself
+            Stream::Read( system, value ); // have the System load itself
         }
     }
 
@@ -167,7 +167,7 @@
         { "BehaviorSystem<RigidBody>",          &addSystem< BehaviorSystem< RigidBody > >           },
         { "BehaviorSystem<Animation>",          &addSystem< BehaviorSystem< Animation > >           },
         { "BehaviorSystem<EffectAnimator>",     &addSystem< BehaviorSystem< EffectAnimator > >      },
-        { "BehaviorSystem<Tilemap<int>>",       &addSystem< BehaviorSystem< Tilemap<int> > >        },
+        { "BehaviorSystem<TilemapBase>",        &addSystem< BehaviorSystem< TilemapBase > >         },
         { "AssetLibrarySystem<Entity>",         &addSystem< AssetLibrarySystem< Entity > >          },
         { "AssetLibrarySystem<Sound>",          &addSystem< AssetLibrarySystem< Sound > >           },
         { "AssetLibrarySystem<Texture>",        &addSystem< AssetLibrarySystem< Texture > >         },
@@ -204,7 +204,8 @@
 
         try
         {
-            Stream::Read< ISerializable >( this, json );
+            Engine* self = this; // convert from rvalue into lvalue
+            Stream::Read( self, json );
         }
         catch ( std::runtime_error error )
         {

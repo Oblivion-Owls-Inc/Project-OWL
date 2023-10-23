@@ -69,11 +69,6 @@
                         "Radius": 0.1,
                         "CollisionLayer": "Enemies",
                         "CollisionLayerFlags": [ "Terrain", "Player" ]
-                    },
-                    "Pool<int>": {
-                        "name": "Health",
-                        "Active": true,
-                        "BaseValue": 100
                     }
                 }
             },
@@ -110,8 +105,11 @@
                         1,0,0,0,0,0,0,0,0,1,
                         1,1,1,1,1,1,1,1,1,1
                     ],
-                    "RowWidth" :  10,
+                    "Dimensions": [ 10, 8 ],
                     "TileScale": [ 1, 1 ]
+                },
+                "Tilemap<Entity*>": {
+                    "Dimensions": [ 10, 8 ]
                 },
                 "TilemapSprite": {
                     "Texture": "4pxSheet",
@@ -175,7 +173,7 @@
                 },
                 "Sprite": {
                     "Opacity": 0,
-                    "Layer": 1
+                    "Layer": 100
                 }
             }
         }

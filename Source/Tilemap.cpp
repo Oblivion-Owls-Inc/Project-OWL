@@ -23,7 +23,7 @@
 /// @brief    Default constructor
 template < typename TileType >
 Tilemap<TileType>::Tilemap() :
-    Behavior( typeid( Tilemap ) )
+    TilemapBase( typeid( Tilemap ) )
 {}
 
 
@@ -38,8 +38,8 @@ Component * Tilemap<TileType>::Clone() const
 /// @brief    Copy constructor: don't copy the callbacks
 template < typename TileType >
 Tilemap<TileType>::Tilemap(Tilemap const& other) :
-    Behavior( typeid(Tilemap) ),
-    m_RowWidth(other.m_RowWidth),
+    TilemapBase( typeid(Tilemap) ),
+    m_Dimensions(other.m_Dimensions),
     m_InvMat(other.m_InvMat),
     m_Mat(other.m_Mat),
     m_TileScale(other.m_TileScale),
@@ -57,9 +57,13 @@ Tilemap<TileType>::Tilemap(Tilemap const& other) :
 template < typename TileType >
 void Tilemap<TileType>::SetTilemap( std::vector<TileType> const& tiles ) 
 {
+    if ( tiles.size() )
+
     m_Tilemap = tiles;
+    m_Dimensions.y = (int)tiles.size() / m_Dimensions.x;
 
     m_Modified = true;
+
 } 
 
 
@@ -73,7 +77,7 @@ void Tilemap<TileType>::SetTile(glm::ivec2 coord, TileType const& tile)
     if (coord.x == -1)
         return;
 
-    m_Tilemap[coord.y*m_RowWidth + coord.x] = tile;
+    m_Tilemap[coord.y*m_Dimensions.x + coord.x] = tile;
 
     m_Modified = true;
 }
@@ -94,9 +98,9 @@ glm::ivec2 Tilemap<TileType>::WorldPosToTileCoord(glm::vec2 pos)
     glm::ivec2 coord = glm::vec2(m_InvMat * pos4);
 
     // return it if it's within the tilemap, or (-1,-1) otherwise
-    int i = coord.y*m_RowWidth + coord.x;
+    int i = coord.y*m_Dimensions.x + coord.x;
 
-    if (coord.x >= 0 && i >= 0 && coord.x < m_RowWidth && i < (int)m_Tilemap.size())
+    if (coord.x >= 0 && i >= 0 && coord.x < m_Dimensions.x && i < (int)m_Tilemap.size())
         return coord;
     else
         return {-1,-1};
@@ -148,7 +152,7 @@ void Tilemap<TileType>::OnInit()
     if (!GetParent())
         return;
 
-    Behaviors< Tilemap<int> >()->AddBehavior(this);
+    Behaviors< TilemapBase >()->AddBehavior(this);
     m_PTransform = GetParent()->GetComponent<Transform>();
 
 #ifndef NDEBUG
@@ -179,14 +183,14 @@ void Tilemap<TileType>::OnUpdate(float dt)
 template < typename TileType >
 void Tilemap<TileType>::OnExit()
 {
-    Behaviors< Tilemap<int> >()->RemoveBehavior(this);
+    Behaviors< TilemapBase >()->RemoveBehavior(this);
 }
 
 template<typename TileType>
 void Tilemap<TileType>::Inspector()
 {
-    int width = GetTilemapWidth();
-    int totalTiles = GetTilemapWidth() * GetTilemapHeight();
+    int width = GetDimensions().x;
+    int totalTiles = GetDimensions().x * GetDimensions().y;
 
     for (int i = 0; i < totalTiles; ++i)
     {
@@ -234,10 +238,16 @@ void Tilemap<TileType>::updateMat()
 template < typename TileType >
 void Tilemap<TileType>::readTilemap( nlohmann::ordered_json const& data )
 {
-    for (int i = 0; i < data.size(); ++i)
+    if ( std::is_pointer_v< TileType > )
+    { // don't read data if data is pointers
+        return;
+    }
+
+    m_Tilemap.resize( data.size() );
+    m_Dimensions.y = (int)data.size() / m_Dimensions.x;
+    for ( int i = 0; i < data.size(); ++i )
     {
-        int ID = Stream::Read<int>(data[i]);
-        m_Tilemap.push_back(ID);
+        Stream::Read( m_Tilemap[ i ], data[ i ] );
     }
 }
 
@@ -245,9 +255,10 @@ void Tilemap<TileType>::readTilemap( nlohmann::ordered_json const& data )
 /// @brief          Read in the row width of the tilemap
 /// @param stream   The json to read from
 template < typename TileType >
-void Tilemap<TileType>::readRowWidth( nlohmann::ordered_json const& data )
+void Tilemap<TileType>::readDimensions( nlohmann::ordered_json const& data )
 {
-    m_RowWidth = Stream::Read<int>(data);
+    m_Dimensions = Stream::Read< 2, int >( data );
+    m_Tilemap.resize( m_Dimensions.x * m_Dimensions.y );
 }
 
 
@@ -256,7 +267,7 @@ void Tilemap<TileType>::readRowWidth( nlohmann::ordered_json const& data )
 template < typename TileType >
 void Tilemap<TileType>::readTileScale( nlohmann::ordered_json const& data )
 {
-    m_TileScale = Stream::Read< 2,float >(data);
+    m_TileScale = Stream::Read< 2, float >( data );
 }
 
 
@@ -265,7 +276,7 @@ void Tilemap<TileType>::readTileScale( nlohmann::ordered_json const& data )
 template < typename TileType >
 ReadMethodMap< Tilemap<TileType> > const Tilemap<TileType>::s_ReadMethods = {
     { "TileData", &readTilemap  },
-    { "RowWidth", &readRowWidth },
+    { "Dimensions", &readDimensions },
     { "TileScale", &readTileScale }
 };
 
@@ -273,13 +284,26 @@ ReadMethodMap< Tilemap<TileType> > const Tilemap<TileType>::s_ReadMethods = {
 
 
 /// @brief Write all Tilemap component data to a JSON file.
+/// @tparam TileType    the data type of each tile in the tilemap
 /// @return The JSON file containing the Tilemap component data.
 template < typename TileType >
 nlohmann::ordered_json Tilemap<TileType>::Write() const
 {
     nlohmann::ordered_json data;
 
-    data["TileData"] = m_Tilemap;
+    data[ "Dimensions" ] = Stream::Write( m_Dimensions );
+    data[ "TileScale" ] = Stream::Write( m_TileScale );
+
+    if ( std::is_pointer_v< TileType > )
+    {
+        return data;
+    }
+
+    nlohmann::ordered_json& tileData = data[ "TileData" ];
+    for ( TileType const& tile : m_Tilemap )
+    {
+        tileData.push_back( Stream::Write( tile ) );
+    }
 
     return data;
 }

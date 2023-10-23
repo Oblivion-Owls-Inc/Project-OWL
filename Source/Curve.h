@@ -85,6 +85,11 @@ private: // reading
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< ControlPoint< dimensionality > > const s_ReadMethods;
 
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+    
     /// @brief  gets the Curve read method map
     /// @return the read method map
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
@@ -92,10 +97,6 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-//-----------------------------------------------------------------------------
-public: // writing
-//-----------------------------------------------------------------------------
-    
     /// @brief  writes this ControlPoint to json
     /// @return the written json data
     virtual nlohmann::ordered_json Write() const override;
@@ -286,16 +287,17 @@ private: // reading
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< Curve > const s_ReadMethods;
 
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
     /// @brief  gets the Curve read method map
     /// @return the read method map
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
-
-//-----------------------------------------------------------------------------
-public: // writing
-//-----------------------------------------------------------------------------
 
     /// @brief  writes this Curve to json
     /// @return the written json data

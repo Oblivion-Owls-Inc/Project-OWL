@@ -174,6 +174,9 @@
     <Filter Include="Game\Behaviors\ConstructionBehavior">
       <UniqueIdentifier>{278dd904-bde9-4181-bd98-8a632d0db159}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\StaticBody">
+      <UniqueIdentifier>{cb22a236-e348-4362-b443-aa70c5bc5671}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -371,11 +374,11 @@
     <ClCompile Include="Source\TilemapCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StaticBody.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ConstructionBehavior.cpp">
       <Filter>Game\Behaviors\ConstructionBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StaticBody.cpp">
+      <Filter>Engine\Entity\Component\StaticBody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -580,11 +583,11 @@
     <ClInclude Include="Source\TilemapCollider.h">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StaticBody.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ConstructionBehavior.h">
       <Filter>Game\Behaviors\ConstructionBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StaticBody.h">
+      <Filter>Engine\Entity\Component\StaticBody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -93,7 +93,7 @@ glm::vec2 Pathfinder::GetDirectionAt(glm::vec2 pos) const
     if (coord.x == -1)
         return {0,0};
 
-    return m_Nodes[coord.y * m_Tilemap->GetTilemapWidth() + coord.x].direction;
+    return m_Nodes[coord.y * m_Tilemap->GetDimensions().x + coord.x].direction;
 }
 
 
@@ -108,7 +108,7 @@ int Pathfinder::GetTravelDistanceAt(glm::vec2 pos)
     if (coord.x == -1)
         return -1;
 
-    return m_Nodes[coord.y * m_Tilemap->GetTilemapWidth() + coord.x].cost;
+    return m_Nodes[coord.y * m_Tilemap->GetDimensions().x + coord.x].cost;
 }
 
 
@@ -117,7 +117,7 @@ int Pathfinder::GetTravelDistanceAt(glm::vec2 pos)
 /// @return      Walkable or not
 bool Pathfinder::IsWalkable(glm::vec2 pos) const
 {
-    int width = m_Tilemap->GetTilemapWidth();
+    int width = m_Tilemap->GetDimensions().x;
     glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
 
     if (coord.x != -1)
@@ -157,7 +157,7 @@ void Pathfinder::explore()
     // tile directions to pick from: counter clockwise, starting from left. (it's y-down)
     glm::ivec2 dir[8] = { {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}, {-1,-1} };
 
-    int width = m_Tilemap->GetTilemapWidth();
+    int width = m_Tilemap->GetDimensions().x;
     int height = size / width;
 
     // init first node

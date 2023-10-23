@@ -104,14 +104,14 @@ private: // reading
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< AnimationAsset > const s_ReadMethods;
 
+public:
+
     /// @brief  gets the AnimationAsset read method map
     /// @return the read method map
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
-
-public:
 
 	/// @brief  Write all data for the AnimationAsset to a JSON file.
 	/// @return The file containing all the AnimationAsset data.

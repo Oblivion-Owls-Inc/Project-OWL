@@ -87,7 +87,7 @@
         for ( auto& [ key, value ] : data.items() )
         {
             Entity * entity = new Entity();
-            Stream::Read< ISerializable >( entity, value );
+            Stream::Read( entity, value );
             m_Entities.push_back( entity );
         }
 
