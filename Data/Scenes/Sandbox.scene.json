@@ -1,109 +1,103 @@
 {
-  "Assets": {
-    "Textures": {
-      "Turret": {
-        "Filepath": "Data/Textures/Turret.png",
-        "SheetDimensions": [ 19, 1 ]
-      },
-      "FontSheet": {
-        "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
-        "SheetDimensions": [ 16, 8 ]
-      },
-      "4pxSheet": {
-        "Filepath": "Data/Textures/4px.png",
-        "SheetDimensions": [ 4, 1 ],
-        "Pivot": [ 0, 1 ]
-      },
-      "Ball": {
-        "Filepath": "Data/Textures/Balls/Ball.png"
-      },
-      "Ball1": {
-        "Filepath": "Data/Textures/Balls/Ball2.png"
-      }
+    "Assets": {
+        "Textures": {
+            "Turret": {
+                "Filepath": "Data/Textures/Turret.png",
+                "SheetDimensions": [ 19, 1 ]
+            },
+            "FontSheet": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [ 16, 8 ]
+            },
+            "4pxSheet": {
+                "Filepath": "Data/Textures/4px.png",
+                "SheetDimensions": [ 4, 1 ],
+                "Pivot": [ 0, 1 ]
+            },
+            "Ball": {
+                "Filepath": "Data/Textures/Balls/Ball.png"
+            },
+            "Ball1": {
+                "Filepath": "Data/Textures/Balls/Ball2.png"
+            }
+        },
+        "Archetypes": {
+            "Enemy": {
+                "Name": "Enemy",
+                "Components": {
+                    "Sprite": {
+                        "Texture": "Ball",
+                        "Layer": 3
+                    },
+                    "Transform": {
+                        "Scale": [ 0.2, 0.2 ]
+                    },
+                    "RigidBody": {
+                        "Acceleration": [ 0.0, 0.0 ],
+                        "Restitution": 1
+                    },
+                    "CircleCollider": {
+                        "Radius": 0.1,
+                        "CollisionLayer": "Enemies",
+                        "CollisionLayerFlags": [ "Terrain" ]
+                    },
+                    "EnemyBehavior": {
+                        "Health": {
+                            "Active": true,
+                            "BaseValue": 40
+                        }
+                    }
+                }
+            },
+            "Bullet": {
+                "Name": "Bullet",
+                "Components": {
+                    "Sprite": {
+                        "Texture": "Ball1",
+                        "Layer": 2
+                    },
+                    "Transform": {
+                        "Scale": [ 0.3, 0.3 ]
+                    },
+                    "BulletBehavior": {
+                        "Pool": {
+                            "name": "LifeTime",
+                            "Active": true,
+                            "BaseValue": 3
+                        }
+                    },
+                    "CircleCollider": {
+                        "Radius": 0.1,
+                        "CollisionLayer": "Projectiles",
+                        "CollisionLayerFlags": [ "Enemies", "Terrain" ]
+                    },
+                    "RigidBody": {
+                        "Acceleration": [ 0.0, 0.0 ],
+                        "Restitution": 1
+                    }
+                }
+            },
+            "Turret": {
+                "Name": "Turret",
+                "Components": {
+                    "Sprite": {
+                        "Texture": "Turret",
+                        "Layer": 1
+                    },
+                    "Transform": {
+                        "Translation": [ -4, 1 ]
+                    },
+                    "TurretBehavior": {
+                        "range": 5,
+                        "bulletdamage": 20,
+                        "Target": "Enemy",
+                        "bulletName": "Bullet",
+                        "bulletsize":  0.3
+                    }
+                }
+            }
+        }
     },
-
-    "Archetypes": {
-      "Enemy": {
-        "Name": "Enemy",
-        "Components": {
-          "Sprite": {
-            "Texture": "Ball",
-            "Layer": 3
-          },
-          "Transform": {
-            "Scale": [ 0.2, 0.2 ]
-          },
-          "RigidBody": {
-            "Acceleration": [ 0.0, 0.0 ],
-            "Restitution": 1
-          },
-          "CircleCollider": {
-            "Radius": 0.1,
-            "CollisionLayer": "Enemies",
-            "CollisionLayerFlags": [ "Player", "Enemies", "Terrain" ]
-          },
-          "EnemyBehavior": {
-            "Health": {
-              "Active": true,
-              "BaseValue": 40
-            }
-          }
-        }
-      },
-      "Bullet": {
-        "Name": "Bullet",
-        "Components": {
-          "Sprite": {
-            "Texture": "Ball1",
-            "Layer": 2
-          },
-          "Transform": {
-            "Scale": [ 0.3, 0.3 ]
-          },
-          "BulletBehavior": {
-            "Pool": {
-              "name": "LifeTime",
-              "Active": true,
-              "BaseValue": 3
-            }
-          },
-          "CircleCollider": {
-            "Radius": 0.1,
-            "CollisionLayer": "Player",
-            "CollisionLayerFlags": [ "Enemies", "Terrain" ]
-          },
-          "RigidBody": {
-            "Acceleration": [ 0.0, 0.0 ],
-            "Restitution": 1
-          }
-        }
-      },
-      "Turret": {
-        "Name": "Turret",
-        "Components": {
-          "Sprite": {
-            "Texture": "Turret",
-            "Layer": 1
-          },
-          "Transform": {
-            "Translation": [ -4, 1 ]
-          },
-          "CircleCollider": {
-            "Radius": 0.1,
-            "CollisionLayer": "Player",
-            "CollisionLayerFlags": [ "Enemies" ]
-          },
-          "TurretBehavior": {
-            "range": 5,
-            "bulletdamage": 20,
-            "Target": "Enemy",
-            "bulletName": "Bullet",
-            "bulletsize":  0.3
-          }
-        }
-      }
-    }
-  },
     "Entities": [
         {
             "Name": "Camera",

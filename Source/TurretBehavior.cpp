@@ -37,7 +37,7 @@ TurretBehavior::TurretBehavior():
 }
 
 TurretBehavior::TurretBehavior(const TurretBehavior& other)
-	             : Behavior(typeid(TurretBehavior)), 
+	             : Behavior( other ), 
 					m_CollisionLayerFlags(0),
 					m_FireRate(other.m_FireRate), 
 					m_Range(other.m_Range), 

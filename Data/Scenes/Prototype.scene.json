@@ -4,7 +4,7 @@
             "Turret": {
                 "Filepath": "Data/Textures/Turret.png",
                 "SheetDimensions": [ 19, 1 ],
-                "Pivot": [ 0.7, 0.8 ]
+                "Pivot": [ 0.7, 0.6 ]
             },
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
@@ -18,10 +18,13 @@
             "Ball": {
                 "Filepath": "Data/Textures/Balls/Ball.png"
             },
+            "Ball1": {
+                "Filepath": "Data/Textures/Balls/Ball2.png"
+            },
             "PlayerSheet": {
                 "Filepath": "Data/Textures/Full Spritesheet.png",
                 "SheetDimensions": [ 12, 15 ],
-                "Pivot": [ 0.5, 0.32 ]
+                "Pivot": [ 0.5, 0.38 ]
             }
         },
         "Animations": {
@@ -56,7 +59,7 @@
                 "Components": {
                     "Sprite": {
                         "Texture": "Ball",
-                        "Layer": 2
+                        "Layer": 3
                     },
                     "Transform": {
                         "Scale": [ 0.2, 0.2 ]
@@ -68,7 +71,41 @@
                     "CircleCollider": {
                         "Radius": 0.1,
                         "CollisionLayer": "Enemies",
-                        "CollisionLayerFlags": [ "Terrain", "Player" ]
+                        "CollisionLayerFlags": [ "Terrain" ]
+                    },
+                    "EnemyBehavior": {
+                        "Health": {
+                            "Active": true,
+                            "BaseValue": 40
+                        }
+                    }
+                }
+            },
+            "Bullet": {
+                "Name": "Bullet",
+                "Components": {
+                    "Sprite": {
+                        "Texture": "Ball1",
+                        "Layer": 2
+                    },
+                    "Transform": {
+                        "Scale": [ 0.3, 0.3 ]
+                    },
+                    "BulletBehavior": {
+                        "Pool": {
+                            "name": "LifeTime",
+                            "Active": true,
+                            "BaseValue": 3
+                        }
+                    },
+                    "CircleCollider": {
+                        "Radius": 0.1,
+                        "CollisionLayer": "Projectiles",
+                        "CollisionLayerFlags": [ "Enemies", "Terrain" ]
+                    },
+                    "RigidBody": {
+                        "Acceleration": [ 0.0, 0.0 ],
+                        "Restitution": 1
                     }
                 }
             },
@@ -80,7 +117,14 @@
                         "Layer": 1
                     },
                     "Transform": {
-                        "Scale": [ 2, 2 ]
+                        "Translation": [ -4, 1 ]
+                    },
+                    "TurretBehavior": {
+                        "range": 5,
+                        "bulletdamage": 20,
+                        "Target": "Enemy",
+                        "bulletName": "Bullet",
+                        "bulletsize": 0.3
                     }
                 }
             }
@@ -134,8 +178,7 @@
             "Name": "Player",
             "Components": {
                 "Transform": {
-                    "Translation": [ -4, -1 ],
-                    "Scale": [ 2, 2 ]
+                    "Translation": [ -4, -1 ]
                 },
                 "Sprite": {
                     "Texture": "PlayerSheet"
@@ -143,7 +186,7 @@
                 "CircleCollider": {
                     "CollisionLayer": "Player",
                     "CollisionLayerFlags": [ "Terrain", "Enemies" ],
-                    "Radius": 0.5
+                    "Radius": 0.3
                 },
                 "RigidBody": {
                     "Acceleration": [ 0, 0 ],
@@ -177,9 +220,7 @@
                     "TilemapName": "Tiles",
                     "PlayerName": "Player"
                 },
-                "Transform": {
-                    "Scale": [ 2, 2 ]
-                },
+                "Transform": {},
                 "Sprite": {
                     "Opacity": 0,
                     "Layer": 100
