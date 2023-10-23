@@ -22,10 +22,8 @@
 #include "Pool.h"
 #include "DebugSystem.h"
 
-#pragma warning(push, 0)
 TurretBehavior::TurretBehavior(): 
 	Behavior(typeid(TurretBehavior)),
-	m_CollisionLayerFlags(0),
 	m_FireRate(1.0f), 
 	m_Range(5.0f), 
 	m_BulletDamage(1.0f), 
@@ -38,7 +36,6 @@ TurretBehavior::TurretBehavior():
 
 TurretBehavior::TurretBehavior(const TurretBehavior& other)
 	             : Behavior(typeid(TurretBehavior)), 
-					m_CollisionLayerFlags(0),
 					m_FireRate(other.m_FireRate), 
 					m_Range(other.m_Range), 
 					m_BulletDamage(other.m_BulletDamage), 
@@ -172,11 +169,14 @@ RayCastHit TurretBehavior::CheckForTarget()
 		/// Calculate the direction from the turret to the entity
         glm::vec2 directionToEntity = enemyPosition - turretPosition;
 
+		/// Normalize the direction
 		directionToEntity = glm::normalize(directionToEntity);
 
-		CircleCollider* collider = (CircleCollider *)GetParent()->GetComponent<Collider>();
+		///Grabs the collider from the turret
+		CircleCollider* collider = GetParent()->GetComponent<CircleCollider>();
 
         /// Cast a ray from the turret towards the entity
+        /// Uses the Collider on the Turret to determine which layers to check
         hit = CollisionSystem::GetInstance()->RayCast(
 			turretPosition, directionToEntity, m_Range, collider->GetCollisionLayerFlags()
 		);
@@ -204,7 +204,10 @@ void TurretBehavior::CheckIfBulletChanged()
 
 void TurretBehavior::readBulletName(nlohmann::ordered_json const& data)
 {
+	/// Get the bullet prefab name
 	m_BulletName = Stream::Read<std::string>(data);
+
+	/// Get the bullet prefab
 	m_BulletPrefab = AssetLibrarySystem<Entity>::GetInstance()->GetAsset(m_BulletName);
 }
 
@@ -265,4 +268,3 @@ ReadMethodMap<TurretBehavior> const TurretBehavior::s_ReadMethods =
 	{ "bulletsize",		    &readBulletSize },
 	{ "Target",				&readTargetName },
 };
-#pragma	warning(pop)
