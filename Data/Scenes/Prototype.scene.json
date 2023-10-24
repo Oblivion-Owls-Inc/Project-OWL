@@ -62,22 +62,24 @@
                         "Layer": 3
                     },
                     "Transform": {
-                        "Scale": [ 0.2, 0.2 ]
+                        "Scale": [ 0.6, 0.6 ]
                     },
                     "RigidBody": {
                         "Acceleration": [ 0.0, 0.0 ],
+                        "Drag": 4,
                         "Restitution": 1
                     },
                     "CircleCollider": {
-                        "Radius": 0.1,
+                        "Radius": 0.3,
                         "CollisionLayer": "Enemies",
-                        "CollisionLayerFlags": [ "Terrain" ]
+                        "CollisionLayerFlags": [ "Terrain", "Player", "Enemies" ]
                     },
                     "EnemyBehavior": {
                         "Health": {
                             "Active": true,
                             "BaseValue": 40
-                        }
+                        },
+                        "PathfinderName": "Tiles"
                     }
                 }
             },
@@ -92,8 +94,8 @@
                         "Scale": [ 0.3, 0.3 ]
                     },
                     "BulletBehavior": {
-                        "Pool": {
-                            "name": "LifeTime",
+                        "Lifetime": {
+                            "name": "Lifetime",
                             "Active": true,
                             "BaseValue": 3
                         }
@@ -105,7 +107,8 @@
                     },
                     "RigidBody": {
                         "Acceleration": [ 0.0, 0.0 ],
-                        "Restitution": 1
+                        "Restitution": 0,
+                        "Mass": 0.25
                     }
                 }
             },
@@ -116,15 +119,14 @@
                         "Texture": "Turret",
                         "Layer": 1
                     },
-                    "Transform": {
-                        "Translation": [ -4, 1 ]
-                    },
+                    "Transform": {},
                     "TurretBehavior": {
-                        "range": 5,
-                        "bulletdamage": 20,
-                        "Target": "Enemy",
-                        "bulletName": "Bullet",
-                        "bulletsize": 0.3
+                        "Range": 5,
+                        "BulletName": "Bullet",
+                        "BulletDamage": 10,
+                        "BulletSize": 0.3,
+                        "BulletSpeed": 10,
+                        "Target": "Enemy"
                     }
                 }
             }
@@ -209,14 +211,20 @@
                 "TilemapCollider": {
                     "CollisionLayer": "Terrain"
                 },
-                "StaticBody": {}
+                "StaticBody": {
+                    "Restitution": 0
+                },
+                "Pathfinder": {
+                    "Destination": [ 15, 2 ],
+                    "Walkables": [ 0 ]
+                }
             }
         },
         {
             "Name": "Player",
             "Components": {
                 "Transform": {
-                    "Translation": [ -4, -1 ]
+                    "Translation": [ 0.5, 4.5 ]
                 },
                 "Sprite": {
                     "Texture": "PlayerSheet"
@@ -228,7 +236,8 @@
                 },
                 "RigidBody": {
                     "Acceleration": [ 0, 0 ],
-                    "Drag": 15
+                    "Drag": 12,
+                    "Restitution": 0
                 },
                 "PlayerController": {
                     "left": [ -1, 0 ],
@@ -262,6 +271,46 @@
                 "Sprite": {
                     "Opacity": 0,
                     "Layer": 100
+                }
+            }
+        },
+        {
+            "Archetype": "Enemy",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 3.4, -7.6 ]
+                }
+            }
+        },
+        {
+            "Archetype": "Enemy",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 3.4, -7.5 ]
+                }
+            }
+        },
+        {
+            "Archetype": "Enemy",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 3.5, -7.6 ]
+                }
+            }
+        },
+        {
+            "Archetype": "Enemy",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 3.5, -7.5 ]
+                }
+            }
+        },
+        {
+            "Archetype": "Enemy",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 3.5, -7.5 ]
                 }
             }
         }

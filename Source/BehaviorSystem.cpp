@@ -27,14 +27,10 @@ bool BehaviorSystem<BehaviorType>::s_ShowBehaviorSystemList = false;
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 {
-	for (auto behavior : m_BehaviorList)
+	for ( int i = 0; i < m_BehaviorList.size(); ++i )
 	{
-        if (!behavior)
-        {
-            continue;
-        }
 
-        behavior->OnFixedUpdate();
+        m_BehaviorList[ i ]->OnFixedUpdate();
         
 	}
 }
@@ -42,15 +38,12 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
-	for (auto behavior : m_BehaviorList)
-	{
-        if (!behavior)
-        {
-            continue;
-        }
+    for ( int i = 0; i < m_BehaviorList.size(); ++i )
+    {
 
-		behavior->OnUpdate(dt);
-	}
+        m_BehaviorList[ i ]->OnUpdate( dt );
+
+    }
 }
 
 template<typename BehaviorType>

@@ -24,11 +24,9 @@ class Behavior : public Component
 
 	public:
 		virtual ~Behavior() = default;
-		
-		virtual Component* Clone() const = 0;
 
 		virtual void OnUpdate(float dt) {};
 
-                                                                               		virtual void OnFixedUpdate() = 0;
+        virtual void OnFixedUpdate() {};
 
 };

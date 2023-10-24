@@ -1,96 +1,141 @@
+///*****************************************************************/
+/// @file	 BulletBehavior.cpp
+/// @author  Jax Clayton (jax.clayton@digipen.edu)
+/// @date	 9/15/2021
+/// @brief   Bullet behavior class 
+/// @details Game Behavior that handles bullet movement and collision
+///*****************************************************************/
+
 #include "BulletBehavior.h"
 #include "BehaviorSystem.h"
 #include "Transform.h"
 #include "EnemyBehavior.h"
-#include "StaticBody.h"
 #include "Engine.h"
 #include "Entity.h"
+#include "CollisionSystem.h"
+#include "CircleCollider.h"
 
-BulletBehavior::BulletBehavior() : Behavior(typeid(BulletBehavior)), m_BulletDamage(1.0f), m_BulletSpeed(1.0f), m_BulletLifeTime(std::string("BulletLifeTime"))
-{
-}
+//-----------------------------------------------------------------------------
+// public: constructor / destructors
+//-----------------------------------------------------------------------------
 
-void BulletBehavior::SetTarget(RayCastHit target)
-{
-	m_Target = target;
-}
+    /// @brief  constructor
+    BulletBehavior::BulletBehavior() :
+        Behavior( typeid( BulletBehavior ) ),
+        m_LifeTime( std::string( "BulletLifeTime" ) )
+    {}
 
-void BulletBehavior::OnInit()
-{
-	Behaviors<BulletBehavior>()->AddBehavior(this);
-}
+//-----------------------------------------------------------------------------
+// public: virtual override methods
+//-----------------------------------------------------------------------------
 
-void BulletBehavior::OnExit()
-{
-	Behaviors<BulletBehavior>()->RemoveBehavior(this);
-}
+    /// @brief Default constructor for the BulletBehavior class.
+    void BulletBehavior::OnInit()
+    {
+	    Behaviors< Behavior >()->AddBehavior(this);
+        GetParent()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
+            GetId(),
+            std::bind( &BulletBehavior::onCollision, this, std::placeholders::_1, std::placeholders::_2 )
+        );
+    }
 
-void BulletBehavior::OnCollision(Collider* other, CollisionData const& collisionData)
-{
-	///If the bullet hits an enemy, deal damage to it
-	if (other->GetParent()->GetName() == std::string("Enemy"))
-		other->GetParent()->GetComponent<EnemyBehavior>()->TakeDamage(m_BulletDamage);
+    /// @brief  called when this Component's Entity is removed from the Scene
+    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
+    void BulletBehavior::OnExit()
+    {
+	    Behaviors< Behavior >()->RemoveBehavior(this);
+    }
 
-	///The bullet is destroyed on collision
-	GetParent()->Destroy();
-}
+    /// @brief Fixed update method called at a fixed time step.
+    void BulletBehavior::OnFixedUpdate()
+    {
+	    float dt = Engine::GetInstance()->GetFixedFrameDuration();
 
-void BulletBehavior::OnUpdate(float dt)
-{
-	
-}
+	    // Update the bullet's life time
+	    m_LifeTime -= dt;
 
-void BulletBehavior::OnFixedUpdate()
-{
-	float dt = Engine::GetInstance()->GetFixedFrameDuration();
+	    // Destroy the bullet if it's life time is over
+	    if ( m_LifeTime <= 0.0f )
+	    {
+		    GetParent()->Destroy();
+	    }
+    }
 
-	///Update the bullet's life time
-	m_BulletLifeTime -= dt;
+    /// @brief Used by the Debug System to display information about this Component
+    void BulletBehavior::Inspector()
+    {
+	    m_LifeTime.Inspector();
+	    ImGui::InputInt( "Bullet Damage", &m_Damage, 1, 5 );
+    }
 
-	///If the bullet has a target, update it's position towards the target
-	if (m_Target)
-	{
-		glm::vec2 bulletPos = GetParent()->GetComponent<Transform>()->GetTranslation();
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
 
-		/// Update the bullet's position using the normal of the raycast hit
-		glm::vec2 newPos = bulletPos - m_Target.normal * m_BulletSpeed * dt;
+    /// @brief  Called whenever a Collider on this Behavior's Entity collides
+    /// @param  other           the entity that was collided with
+    /// @param  collisionData   additional data about the collision
+    void BulletBehavior::onCollision( Collider* other, CollisionData const& collisionData )
+    {
+        // If the bullet hits an enemy, deal damage to it
+        if ( other->GetCollisionLayerId() == Collisions()->GetCollisionLayerId( "Enemies" ) )
+        {
+            other->GetParent()->GetComponent< EnemyBehavior >()->TakeDamage( m_Damage );
+        }
 
-		GetParent()->GetComponent<Transform>()->SetTranslation(newPos);
-	}
+        // The bullet is destroyed on collision
+        GetParent()->Destroy();
+    }
 
-	///Destroy the bullet if it's life time is over
-	if (m_BulletLifeTime <= 0.0f)
-	{
-		GetParent()->Destroy();
-	}
-}
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
 
-void BulletBehavior::Inspector()
-{
-	m_BulletLifeTime.Inspector();
-	ImGui::InputFloat("Bullet Damage", &m_BulletDamage, 1.0f, 1.0f);
-	ImGui::InputFloat("Bullet Speed", &m_BulletSpeed, 1.0f, 1.0f);
-}
+    /// @brief  reads how long this Bullet will last
+    /// @param  data    the json data to read from
+    void BulletBehavior::readLifetime( nlohmann::ordered_json const& data )
+    {
+	    Stream::Read( m_LifeTime, data );
+    }
 
-void BulletBehavior::readPool(nlohmann::ordered_json const& data)
-{
-	Stream::Read(m_BulletLifeTime, data);
-}
+    /// @brief  reads this Bullet's damage
+    /// @param  data    the json data to read from
+    void BulletBehavior::readDamage( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_Damage, data );
+    }
 
-Component* BulletBehavior::Clone() const
-{
-	return new BulletBehavior(*this);
-}
+    ReadMethodMap<BulletBehavior> const BulletBehavior::s_ReadMethods = {
+        { "Lifetime", &readLifetime },
+        { "Damage"  , &readDamage   }
+    };
 
+//-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
 
-ReadMethodMap<BulletBehavior> const BulletBehavior::s_ReadMethods =
-{
-	{ "Pool", &BulletBehavior::readPool }
-};
+    /// @brief  writes this BulletBehavior to json
+    /// @return the written json data
+    nlohmann::ordered_json BulletBehavior::Write() const
+    {
+        nlohmann::ordered_json json;
 
+        json[ "Lifetime" ] = Stream::Write( m_LifeTime );
+        json[ "Damage" ] = Stream::Write( m_Damage );
 
+        return json;
+    }
 
-BulletBehavior::BulletBehavior(const BulletBehavior& other)
-	: Behavior(typeid(BulletBehavior)), m_Target(other.m_Target), m_BulletDamage(other.m_BulletDamage), m_BulletSpeed(other.m_BulletSpeed), m_BulletLifeTime(other.m_BulletLifeTime)
-{
-}
+//-----------------------------------------------------------------------------
+// private: copying
+//-----------------------------------------------------------------------------
+
+    /// @brief  copy-constructor for the RigidBody
+    /// @param  other   the other RigidBody to copy
+    BulletBehavior::BulletBehavior(const BulletBehavior& other) :
+        Behavior( other ),
+        m_Damage( other.m_Damage ),
+        m_LifeTime( other.m_LifeTime )
+    {}
+
+//-----------------------------------------------------------------------------
