@@ -84,12 +84,12 @@ void TurretBehavior::OnFixedUpdate()
 	CheckIfBulletChanged();
 
 	/// Check for a target
-	RayCastHit Target = CheckForTarget();
+	RayCastHit target = CheckForTarget();
 
-	if (Target)
+	if ( target && target.colliderHit->GetCollisionLayerId() == Collisions()->GetCollisionLayerId( "Enemies" ) )
 	{
 		/// Fire a bullet at the target
-		FireBullet(Target, dt);
+		FireBullet( target, dt );
 	}
 
 }
@@ -168,10 +168,9 @@ RayCastHit TurretBehavior::CheckForTarget()
 
 		directionToEntity = glm::normalize(directionToEntity);
 
-		CircleCollider* collider = (CircleCollider *)GetParent()->GetComponent<Collider>();
         // Cast a ray from the turret towards the entity
         hit = CollisionSystem::GetInstance()->RayCast(
-			turretPosition, directionToEntity, m_Range, collider->GetCollisionLayerFlags()
+			turretPosition, directionToEntity, m_Range, Collisions()->GetLayerFlags( { "Enemies", "Terrain" } )
 		);
 
 		return hit;

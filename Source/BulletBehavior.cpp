@@ -5,15 +5,14 @@
 #include "StaticBody.h"
 #include "Engine.h"
 #include "Entity.h"
+#include "CollisionSystem.h"
 
-BulletBehavior::BulletBehavior() : Behavior(typeid(BulletBehavior)), m_BulletDamage(1.0f), m_BulletSpeed(1.0f), m_BulletLifeTime(std::string("BulletLifeTime"))
-{
-}
-
-void BulletBehavior::SetTarget(RayCastHit target)
-{
-	m_Target = target;
-}
+BulletBehavior::BulletBehavior() :
+    Behavior( typeid( BulletBehavior ) ),
+    m_BulletDamage( 1.0f ),
+    m_BulletSpeed( 1.0f ),
+    m_BulletLifeTime( std::string( "BulletLifeTime" ) )
+{}
 
 void BulletBehavior::OnInit()
 {
@@ -27,7 +26,7 @@ void BulletBehavior::OnExit()
 
 void BulletBehavior::OnCollision(Collider* other, CollisionData const& collisionData)
 {
-	if (other->GetParent()->GetName() == std::string("Enemy"))
+	if ( other->GetCollisionLayerId() == Collisions()-> )
 		other->GetParent()->GetComponent<EnemyBehavior>()->TakeDamage(m_BulletDamage);
 
 	GetParent()->Destroy();
@@ -44,15 +43,6 @@ void BulletBehavior::OnFixedUpdate()
 
 	m_BulletLifeTime -= dt;
 	std::cout << m_BulletLifeTime.GetCurrent() << std::endl;
-	if (m_Target)
-	{
-		glm::vec2 bulletPos = GetParent()->GetComponent<Transform>()->GetTranslation();
-
-		// Update the bullet's position
-		glm::vec2 newPos = bulletPos - m_Target.normal * m_BulletSpeed * dt;
-
-		GetParent()->GetComponent<Transform>()->SetTranslation(newPos);
-	}
 
 	if (m_BulletLifeTime <= 0.0f)
 	{

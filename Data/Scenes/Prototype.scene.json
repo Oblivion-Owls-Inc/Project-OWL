@@ -66,7 +66,7 @@
                     },
                     "RigidBody": {
                         "Acceleration": [ 0.0, 0.0 ],
-                        "Drag": 1,
+                        "Drag": 4,
                         "Restitution": 1
                     },
                     "CircleCollider": {
@@ -78,7 +78,8 @@
                         "Health": {
                             "Active": true,
                             "BaseValue": 40
-                        }
+                        },
+                        "PathfinderName": "Tiles"
                     }
                 }
             },
@@ -181,7 +182,7 @@
                     "CollisionLayer": "Terrain"
                 },
                 "StaticBody": {
-                    "Restitution": 1
+                    "Restitution": 0
                 },
                 "Pathfinder": {
                     "Destination": [ 15, 2 ],
