@@ -21,13 +21,23 @@
 class WavesBehavior :
     public Behavior
 {
-	public:
 
+//-----------------------------------------------------------------------------
+public: // constructor / destructor
+//-----------------------------------------------------------------------------
+		
+		/// @brief default constructor
 		WavesBehavior();
+		/// @brief cpy ctor
 		WavesBehavior(const WavesBehavior& other);
+		/// @brief dtor
 		~WavesBehavior();
+		/// @brief wave default constructor
 		Component* Clone() const override;
 
+//-----------------------------------------------------------------------------
+private: // virtual override methods
+//-----------------------------------------------------------------------------
 		/// @brief  Called whenever a Collider on this Behavior's Entity collides
 		/// @param  other           the entity that was collided with
 		/// @param  collisionData   additional data about the collision
@@ -41,8 +51,6 @@ class WavesBehavior :
 		/// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
 		virtual void OnExit();
 
-
-	public:
 		/// @brief Called Every Frame by the system
 		/// @param dt - the time since the last frame
 		virtual void OnUpdate(float dt) override;
@@ -50,10 +58,35 @@ class WavesBehavior :
 		/// @brief Called Every Fixed Frame by the system
 		void OnFixedUpdate() override;
 
+//-----------------------------------------------------------------------------
+private: // inspector methods
+//-----------------------------------------------------------------------------
+
 		/// @brief Used by the Debug System to display information about this Component
 		virtual void Inspector() override;
 
-	private:
+		/// @brief displays wave data to edit
+		void GuiWaves();
+
+		/// @brief displays group data to edit
+		void GuiGroups();
+
+		/// @brief displays the currently active wave data
+		void GuiCurrentWave();
+
+		/// @brief displays the currently active enemy groups data
+		void GuiCurrentGroups();
+
+		/// @brief calls the current gui handlers
+		void GuiCurrent();
+
+		/// @brief lists all spawners and locations
+		void GuiSpawners();
+
+//-----------------------------------------------------------------------------
+private: // data
+//-----------------------------------------------------------------------------
+		
 		int numWaves;
 		int currentWave;
 		int inspectorWave;
@@ -61,6 +94,7 @@ class WavesBehavior :
 
 		struct enemyGroup
 		{
+			/// @brief enemyGroup default constructor
 			enemyGroup();
 			std::string name;
 			int enemyAmount;
@@ -72,6 +106,7 @@ class WavesBehavior :
 
 		struct Wave
 		{
+			/// @brief wave default constructor
 			Wave();
 			std::vector<enemyGroup*> groups;
 			float remainingTime;
@@ -83,34 +118,37 @@ class WavesBehavior :
 
 		std::vector<Transform*> spawners;
 
-	public:
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
 
+		/// @brief get the timer for a UI element
+		/// @brief this should probably be fancier
 		float getTimer();
 
-	private:
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
 
+		/// @brief spawn an enemy with given name from given entity group
+		/// @param name  - the name of the enemy to spawn
+		/// @param group - enemyGroup to spawn from
 		void Spawn(std::string name, int group);
 
-		void GuiWaves();
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
 
-		void GuiGroups();
-
-		void GuiCurrentWave();
-
-		void GuiCurrentGroups();
-
-		void GuiCurrent();
-
-		void GuiSpawners();
-
-	private: ///Reading 
-
-		/// @brief reads the wave data from the json file
-		/// @param jsonValue  the json data
+		/// @brief read the waves data
+		/// @param data the data to read from.
 		void readWaveData(nlohmann::ordered_json const& data);
 
+		/// @brief read the alternate spawners data
+		/// @param data the data to read from.
 		void readSpawners(nlohmann::ordered_json const& data);
 
+		/// @brief read the enemy groups data
+		/// @param data the data to read from.
 		void readEData(nlohmann::ordered_json const& data);
 
 		/// @brief the map of read methods for this Component

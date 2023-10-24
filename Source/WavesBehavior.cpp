@@ -1,3 +1,13 @@
+///--------------------------------------------------------------------------//
+/// @file   WavesBehavior.cpp
+/// @brief  Definitions for wave and spawning behavior
+/// 
+/// @author Tyler Birdsall (tyler.birdsall)
+/// @date   10/24/23
+///
+/// @copyright (c) 2023 DigiPen (USA) Corporation.
+///--------------------------------------------------------------------------//
+
 #include "WavesBehavior.h"
 #include "BehaviorSystem.h"
 #include "EntitySystem.h"
@@ -8,6 +18,11 @@
 #include "Engine.h"
 #include "Tilemap.h"
 
+//-----------------------------------------------------------------------------
+// public: constructor / destructor
+//-----------------------------------------------------------------------------
+
+/// @brief default constructor
 WavesBehavior::WavesBehavior() :
 	Behavior(typeid(WavesBehavior)),
 	numWaves(0),
@@ -18,6 +33,7 @@ WavesBehavior::WavesBehavior() :
 	waves.clear();
 }
 
+/// @brief cpy ctor
 WavesBehavior::WavesBehavior(const WavesBehavior& other)
 	             : Behavior(typeid(WavesBehavior)), 
 					numWaves(other.numWaves),
@@ -28,16 +44,19 @@ WavesBehavior::WavesBehavior(const WavesBehavior& other)
 	waves = other.waves;
 }
 
+/// @brief dtor
 WavesBehavior::~WavesBehavior()
 {
 }
 
+/// @brief wave default constructor
 WavesBehavior::Wave::Wave() :
 	remainingTime(0),
 	timeToNextWave(0),
 	numGroups(0)
 {}
 
+/// @brief enemyGroup default constructor
 WavesBehavior::enemyGroup::enemyGroup() :
 	enemyAmount(0),
 	spawnInterval(0),
@@ -46,28 +65,40 @@ WavesBehavior::enemyGroup::enemyGroup() :
 	spawner(0)
 {}
 
+//-----------------------------------------------------------------------------
+// private: copying
+//-----------------------------------------------------------------------------
+
 Component* WavesBehavior::Clone() const
 {
 	return (Component*)new WavesBehavior(*this);
 }
 
+//-----------------------------------------------------------------------------
+// private: virtual override methods
+//-----------------------------------------------------------------------------
+
+/// @brief initialize WavesBehavior
 void WavesBehavior::OnInit()
 {
 	/// Add this behavior to the behavior system
 	BehaviorSystem<WavesBehavior>::GetInstance()->AddBehavior(this);
 }
 
+/// @brief cleanup WavesBehavior
 void WavesBehavior::OnExit()
 {
 	/// Remove this behavior from the behavior system
 	BehaviorSystem<WavesBehavior>::GetInstance()->RemoveBehavior(this);
 }
 
+/// @brief update, currently not used
 void WavesBehavior::OnUpdate(float dt)
 {
  /// Do Waves Debug Stuff
 }
 
+/// @brief update waves behavior and handle when things should spawn
 void WavesBehavior::OnFixedUpdate()
 {
 	if (currentWave < numWaves)
@@ -105,6 +136,11 @@ void WavesBehavior::OnFixedUpdate()
 	}
 }
 
+//-----------------------------------------------------------------------------
+// private: inspector methods
+//-----------------------------------------------------------------------------
+
+/// @brief displays wave data to edit
 void WavesBehavior::GuiWaves()
 {
 	ImGui::Text("Total Waves: %i", numWaves);
@@ -127,11 +163,16 @@ void WavesBehavior::GuiWaves()
 	ImGui::Text("");
 }
 
+/// @brief displays group data to edit
 void WavesBehavior::GuiGroups()
 {
 	ImGui::Text("Groups in Wave: %i", waves[inspectorWave]->numGroups);
 	if (waves[inspectorWave]->numGroups > 0)
 	{
+		if (inspectorGroup >= waves[inspectorWave]->numGroups)
+		{
+			inspectorGroup = waves[inspectorWave]->numGroups - 1;
+		}
 		ImGui::Text("Group: %i", inspectorGroup + 1);
 		ImGui::Text("Enemy Type: %s", waves[inspectorWave]->groups[inspectorGroup]->name.c_str());
 		ImGui::InputInt("Group", &inspectorGroup);
@@ -160,6 +201,7 @@ void WavesBehavior::GuiGroups()
 	ImGui::Text("");
 }
 
+/// @brief displays the currently active wave data
 void WavesBehavior::GuiCurrentWave()
 {
 	
@@ -175,6 +217,7 @@ void WavesBehavior::GuiCurrentWave()
 	}
 }
 
+/// @brief displays the currently active enemy groups data
 void WavesBehavior::GuiCurrentGroups()
 {
 	if (currentWave < numWaves)
@@ -191,6 +234,7 @@ void WavesBehavior::GuiCurrentGroups()
 	}
 }
 
+/// @brief calls the current gui handlers
 void WavesBehavior::GuiCurrent()
 {
 	char title[20];
@@ -204,6 +248,7 @@ void WavesBehavior::GuiCurrent()
 	}
 }
 
+/// @brief lists all spawners and locations
 void WavesBehavior::GuiSpawners()
 {
 	char title[20];
@@ -220,6 +265,7 @@ void WavesBehavior::GuiSpawners()
 	}
 }
 
+/// @brief handles displaying ImGui inspectors
 void WavesBehavior::Inspector()
 {
 	///Edit the Behavior of the Waves 
@@ -236,6 +282,12 @@ void WavesBehavior::Inspector()
 	ImGui::End();
 }
 
+//-----------------------------------------------------------------------------
+// public: accessors
+//-----------------------------------------------------------------------------
+
+/// @brief get the timer for a UI element
+/// @brief this should probably be fancier
 float WavesBehavior::getTimer()
 {
 	if (waves[currentWave]->remainingTime > 0.0f)
@@ -248,6 +300,13 @@ float WavesBehavior::getTimer()
 	}
 }
 
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+/// @brief spawn an enemy with given name from given entity group
+/// @param name  - the name of the enemy to spawn
+/// @param group - enemyGroup to spawn from
 void WavesBehavior::Spawn(std::string name, int group)
 {
 	const Entity* entity = AssetLibrary<Entity>()->GetAsset(name);
@@ -261,6 +320,12 @@ void WavesBehavior::Spawn(std::string name, int group)
 	Entities()->AddEntity(copy);
 }
 
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+/// @brief read the waves data
+/// @param data the data to read from.
 void WavesBehavior::readWaveData(nlohmann::ordered_json const& data)
 {
 	for (nlohmann::ordered_json const& items : data)
@@ -277,6 +342,8 @@ void WavesBehavior::readWaveData(nlohmann::ordered_json const& data)
 	inspectorWave = 0;
 }
 
+/// @brief read the alternate spawners data
+/// @param data the data to read from.
 void WavesBehavior::readSpawners(nlohmann::ordered_json const& data)
 {
 	Transform* home = GetParent()->GetComponent<Transform>();
@@ -293,6 +360,8 @@ void WavesBehavior::readSpawners(nlohmann::ordered_json const& data)
 	}
 }
 
+/// @brief read the enemy groups data
+/// @param data the data to read from.
 void WavesBehavior::readEData(nlohmann::ordered_json const& data)
 {
 	for (int i = 0; i < data.size(); i++)
@@ -326,11 +395,10 @@ nlohmann::ordered_json WavesBehavior::Write() const
 	return data;
 }
 
+/// @brief read method map
 ReadMethodMap<WavesBehavior> const WavesBehavior::s_ReadMethods =
 {
 	{ "WaveData",			  &readWaveData},
 	{ "AlternateSpawners",	  &readSpawners},
 	{ "EnemyData",				&readEData},
-	
-	/*{ "bulletsize",		    &readBulletSize }*/
 };
