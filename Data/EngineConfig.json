@@ -19,6 +19,7 @@
     "BehaviorSystem<BulletBehavior>": {},
     "BehaviorSystem<TilemapBase>": {},
     "BehaviorSystem<RigidBody>": {},
+    "BehaviorSystem<WavesBehavior>": {},
     "CollisionSystem": {
       "CollisionLayerNames": [ "Terrain", "Enemies", "Player", "Base", "Projectiles" ],
       "CollisionSteps": 2

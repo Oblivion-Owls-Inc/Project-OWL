@@ -183,6 +183,39 @@
             }
         },
         {
+                "Name": "Waves",
+                "Components": {
+
+                  "Transform": {
+                    "Translation": [ 0, 0 ]
+                  },
+                  "WavesBehavior": {
+                    "WaveData": [
+                      [ 20, 30 ],
+                      [ 30, 40 ],
+                      [ 40, 50 ],
+                      [ 50, 60 ]
+                    ],
+                    "AlternateSpawners": [
+                      [ 1, 1 ],
+                      [ 2, 2 ],
+                      [ -1, -1 ],
+                      [ -2, -2 ],
+                      [ -3, -3 ]
+                    ],
+                    "EnemyData": [
+                      [1, "enemy", 10, 5.0, 5.0, 0],
+                      [1, "enemy", 10, 5.0, 5.0, 0],
+                      [1, "enemy", 10, 5.0, 5.0, 0],
+                      [2, "enemy", 10, 5.0, 5.0, 0],
+                      [3, "enemy", 10, 5.0, 5.0, 0],
+                      [3, "enemy", 10, 5.0, 5.0, 0],
+                      [4, "enemy", 10, 5.0, 5.0, 0]
+                    ]
+                  }
+                }
+            },
+        {
             "Name": "Player",
             "Components": {
                 "Transform": {

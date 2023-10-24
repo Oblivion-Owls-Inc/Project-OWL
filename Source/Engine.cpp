@@ -35,6 +35,7 @@
 #include "TurretBehavior.h"
 #include "BulletBehavior.h"
 #include "EffectAnimator.h"
+#include "WavesBehavior.h"
 #include "Animation.h"
 #include "Tilemap.h"
 
@@ -168,7 +169,8 @@
         { "BehaviorSystem<Animation>",             &addSystem< BehaviorSystem< Animation > >              },
         { "BehaviorSystem<EffectAnimator>",        &addSystem< BehaviorSystem< EffectAnimator > >         },
         { "BehaviorSystem<Tilemap<int>>",          &addSystem< BehaviorSystem< Tilemap<int> > >           },
-        { "BehaviorSystem<TilemapBase>",        &addSystem< BehaviorSystem< TilemapBase > >               },
+        { "BehaviorSystem<TilemapBase>",           &addSystem< BehaviorSystem< TilemapBase > >            },
+        { "BehaviorSystem<WavesBehavior>",         &addSystem< BehaviorSystem< WavesBehavior > >          },
                                                                                                           
         { "AssetLibrarySystem<Entity>",            &addSystem< AssetLibrarySystem< Entity > >             },
         { "AssetLibrarySystem<Sound>",             &addSystem< AssetLibrarySystem< Sound > >              },

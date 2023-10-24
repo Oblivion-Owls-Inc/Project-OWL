@@ -330,7 +330,7 @@ ReadMethodMap<WavesBehavior> const WavesBehavior::s_ReadMethods =
 {
 	{ "WaveData",			  &readWaveData},
 	{ "AlternateSpawners",	  &readSpawners},
-	{ "EnemyData",				&readEData},
+	{ "EnemyData",				&readEData}
 	
 	/*{ "bulletsize",		    &readBulletSize }*/
 };
