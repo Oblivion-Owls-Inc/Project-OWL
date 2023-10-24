@@ -79,22 +79,27 @@
             },
             "Turret": {
                 "Name": "Turret",
-                "Components": {
-                    "Sprite": {
-                        "Texture": "Turret",
-                        "Layer": 1
-                    },
-                    "Transform": {
-                        "Translation": [ -4, 1 ]
-                    },
-                    "TurretBehavior": {
-                        "range": 5,
-                        "bulletdamage": 20,
-                        "Target": "Enemy",
-                        "bulletName": "Bullet",
-                        "bulletsize":  0.3
-                    }
+              "Components": {
+                "Sprite": {
+                  "Texture": "Turret",
+                  "Layer": 1
+                },
+                "Transform": {
+                  "Translation": [ -4, 1 ]
+                },
+                "CircleCollider": {
+                  "Radius": 0,
+                  "CollisionLayer": "Player",
+                  "CollisionLayerFlags": [ "Enemies" ]
+                },
+                "TurretBehavior": {
+                  "range": 5,
+                  "bulletdamage": 20,
+                  "Target": "Enemy",
+                  "bulletName": "Bullet",
+                  "bulletsize": 0.3
                 }
+              }
             }
         }
     },

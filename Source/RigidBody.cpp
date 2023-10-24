@@ -291,7 +291,7 @@
         data["Velocity"] = Stream::Write(m_Velocity);
         data["Acceleration"] = Stream::Write(m_Acceleration);
         data["RotationalVelocity"] = m_RotationalVelocity;
-        data["InverseMass"] = m_Mass;
+        data["Mass"] = m_Mass;
         data["Restitution"] = m_Restitution;
         data["Friction"] = m_Friction;
         data["Drag"] = m_Drag;
@@ -301,13 +301,13 @@
 
     /// @brief the map of read methods for RigidBodys
     ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
-        { "Velocity"            , &readVelocity             },
-        { "Acceleration"        , &readAcceleration         },
-        { "RotationalVelocity"  , &readRotationalVelocity   },
-        { "InverseMass"         , &readMass                 },
-        { "Restitution"         , &readRestitution          },
-        { "Friction"            , &readFriction             },
-        { "Drag"                , &readDrag                 }
+        { "Velocity"           , &readVelocity           },
+        { "Acceleration"       , &readAcceleration       },
+        { "RotationalVelocity" , &readRotationalVelocity },
+        { "Mass"               , &readMass               },
+        { "Restitution"        , &readRestitution        },
+        { "Friction"           , &readFriction           },
+        { "Drag"               , &readDrag               }
     };
 
 //-----------------------------------------------------------------------------

@@ -19,105 +19,146 @@
 
 using CollisionLayerFlags = unsigned;
 
-class TurretBehavior :
-    public Behavior
+class Transform;
+
+class TurretBehavior : public Behavior
 {
-	public:
+//-------------------------------------------------------------------------------------------
+public: // constructor
+//-------------------------------------------------------------------------------------------
 
-		TurretBehavior();
-		TurretBehavior(const TurretBehavior& other);
-		~TurretBehavior();
-		Component* Clone() const override;
+	/// @brief  constructor
+	TurretBehavior();
 
-		/// @brief  Called whenever a Collider on this Behavior's Entity collides
-		/// @param  other           the entity that was collided with
-		/// @param  collisionData   additional data about the collision
-		virtual void OnCollision( Entity* other, CollisionData const& collisionData ) {};
+//-------------------------------------------------------------------------------------------
+private: // virtual override methods
+//-------------------------------------------------------------------------------------------
 
-		/// @brief Default constructor for the RigidBody class.
-		virtual void OnInit();
+    /// @brief  called once when entering the scene
+    virtual void OnInit();
 
-		/// @brief  called when this Component's Entity is removed from the Scene
-		/// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
-		virtual void OnExit();
+    /// @brief  called when this Component's Entity is removed from the Scene
+    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
+    virtual void OnExit();
 
+    /// @brief Called Every Fixed Frame by the system
+    void OnFixedUpdate() override;
 
-	public:
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector() override;
 
-		/// @brief Called Every Frame by the system
-		/// @param dt - the time since the last frame
-		virtual void OnUpdate(float dt) override;
+///-------------------------------------------------------------------------------------------
+private: /// Members
+///-------------------------------------------------------------------------------------------
 
-		/// @brief Called Every Fixed Frame by the system
-		void OnFixedUpdate() override;
+	/// @brief The fire rate of the turret
+	float m_FireRate = 1.0f;
 
-		/// @brief Used by the Debug System to display information about this Component
-		virtual void Inspector() override;
+	/// @brief The range of the turret
+	float m_Range = 5.0f;
 
-	private:
+	/// @brief The damage of the turret
+	int m_BulletDamage = 1;
 
-		CollisionLayerFlags m_CollisionLayerFlags;
-		float m_FireRate = 1.0f;
-		float m_Range = 5.0f;
-		float m_BulletDamage = 1.0f;
-		float m_BulletSpeed = 1.0f;
-		float m_BulletSize = 1.0f;
-		float m_LastFireTime = 0.0f;
-		std::string m_TargetName;
-		std::string m_BulletName;
-		const Entity* m_BulletPrefab = nullptr; /// Todo: Make this a prefab actually work
+	/// @brief The speed of the bullet
+	float m_BulletSpeed = 1.0f;
 
-	private:
+	/// @brief The size of the bullet
+	float m_BulletSize = 1.0f;
 
-		void FireBullet(RayCastHit target, float dt);
-		RayCastHit CheckForTarget();
-		void CheckIfBulletChanged();
+	/// @brief  the time until the turret can fire again
+	float m_FireCooldown = 0.0f;
 
-	private: ///Reading 
+	/// @brief Name of The entity the turret is targeting
+	std::string m_TargetName;
 
-		/// @brief Reads the name of the bullet prefab to grab from AssetLib
-		/// @param data - the json data to read from
-		void readBulletName(nlohmann::ordered_json const& data);
+	/// @brief The bullet prefab to spawn
+	Entity const* m_BulletPrefab = nullptr;
 
-		/// @brief reads in the name of the target
-		/// @param data - the json data to read from
-		void readTargetName(nlohmann::ordered_json const& data);
+    /// @brief  the Transform of this Turret
+    Transform* m_Transform = nullptr;
 
-		/// @brief reads the fire rate from the json file
-		/// @param jsonValue  the json data
-		void readFireRate( nlohmann::ordered_json const& data );
+///-------------------------------------------------------------------------------------------
+private: // methods
+///-------------------------------------------------------------------------------------------
 
-		/// @brief reads the range from the json file
-		/// @param jsonValue the json data
-		void readRange( nlohmann::ordered_json const& data );
+	/// @brief  creates a bullet and fires it at the target
+    /// @param  direction the direction to fire the bullet in
+	void FireBullet( glm::vec2 const& direction );
 
-		/// @brief reads the bullet damage from the json file
-		/// @param jsonValue the json data
-		void readBulletDamage( nlohmann::ordered_json const& data );
+	/// @brief  Uses Raycasting to check for a target on the same Collision Layer
+	/// @return the direction towards the target, or (0, 0) if no valid target found
+	glm::vec2 CheckForTarget();
+
+///-------------------------------------------------------------------------------------------
+private: // reading 
+///-------------------------------------------------------------------------------------------
+
+	/// @brief Reads the name of the bullet prefab to grab from AssetLib
+	/// @param data - the json data to read from
+	void readBulletName(nlohmann::ordered_json const& data);
+
+	/// @brief reads in the name of the target
+	/// @param data - the json data to read from
+	void readTargetName(nlohmann::ordered_json const& data);
+
+	/// @brief reads the fire rate from the json file
+	/// @param jsonValue  the json data
+	void readFireRate( nlohmann::ordered_json const& data );
+
+	/// @brief reads the range from the json file
+	/// @param jsonValue the json data
+	void readRange( nlohmann::ordered_json const& data );
+
+	/// @brief reads the bullet damage from the json file
+	/// @param jsonValue the json data
+	void readBulletDamage( nlohmann::ordered_json const& data );
 		
-		/// @brief reads the Bullet Speed from the json file
-		/// @param jsonValue the json data
-		void readBulletSpeed( nlohmann::ordered_json const& data );
+	/// @brief reads the Bullet Speed from the json file
+	/// @param jsonValue the json data
+	void readBulletSpeed( nlohmann::ordered_json const& data );
 
-		/// @brief reads the bullet size from the json file
-		/// @param jsonValue the json data
-		void readBulletSize( nlohmann::ordered_json const& data );
+	/// @brief reads the bullet size from the json file
+	/// @param jsonValue the json data
+	void readBulletSize( nlohmann::ordered_json const& data );
 
-		/// @brief the map of read methods for this Component
-		static ReadMethodMap< TurretBehavior > const s_ReadMethods;
+	/// @brief the map of read methods for this Component
+	static ReadMethodMap< TurretBehavior > const s_ReadMethods;
 
-		/// @brief gets the map of read methods for this Component
-		/// @return the map of read methods for this Component
-        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-        {
-            return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-        }
 
-public:
+///-------------------------------------------------------------------------------------------
+public: // reading / writing
+///-------------------------------------------------------------------------------------------
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
 
 	/// @brief Write all TurretBehavior data to a JSON file.
 	/// @return The JSON file containing the TurretBehavior data.
 	virtual nlohmann::ordered_json Write() const override;
 
-};
+///-------------------------------------------------------------------------------------------
+public: // copying
+///-------------------------------------------------------------------------------------------
 
+    /// @brief  creates a new clone of this Component
+    /// @return the newly created clone
+    virtual TurretBehavior* Clone() const override
+    {
+        return new TurretBehavior( *this );
+    }
+
+///-------------------------------------------------------------------------------------------
+private: // copying
+///-------------------------------------------------------------------------------------------
+    
+    /// @brief  copy constructor
+    /// @param  other   the TurretBehavior to copy
+    TurretBehavior(TurretBehavior const& other);
+
+///-------------------------------------------------------------------------------------------
+};

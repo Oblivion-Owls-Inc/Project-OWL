@@ -29,16 +29,20 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 {
 	for ( int i = 0; i < m_BehaviorList.size(); ++i )
 	{
-        m_BehaviorList[i]->OnFixedUpdate();
+
+        m_BehaviorList[ i ]->OnFixedUpdate();
+        
 	}
 }
 
 template<typename BehaviorType>
-void BehaviorSystem<BehaviorType>::OnUpdate( float dt )
+void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
     for ( int i = 0; i < m_BehaviorList.size(); ++i )
     {
-        m_BehaviorList[i]->OnUpdate( dt );
+
+        m_BehaviorList[ i ]->OnUpdate( dt );
+
     }
 }
 

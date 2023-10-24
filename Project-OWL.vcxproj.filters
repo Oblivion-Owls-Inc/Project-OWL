@@ -178,7 +178,13 @@
       <UniqueIdentifier>{3b8f4986-5f51-4a7a-a2e4-15aa9b2b6fcb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Behaviors\EnemyBehavior">
-      <UniqueIdentifier>{bb34ab4a-2538-417f-b914-506c28fefb5a}</UniqueIdentifier>
+      <UniqueIdentifier>{2f24013c-89a2-4584-ad87-757e4e412532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Behaviors\BulletBehavior">
+      <UniqueIdentifier>{42316e6c-49e4-4c2f-a9b0-0ef8aaa91507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\Pool">
+      <UniqueIdentifier>{a531bfc4-81f5-4864-9385-b9a1d92b2729}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -383,14 +389,14 @@
     <ClCompile Include="Source\Camera.cpp">
       <Filter>Engine\Entity\Component\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BulletBehavior.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Pool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EnemyBehavior.cpp">
       <Filter>Game\Behaviors\EnemyBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BulletBehavior.cpp">
+      <Filter>Game\Behaviors\BulletBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Pool.cpp">
+      <Filter>Engine\Framework\Pool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -601,14 +607,14 @@
     <ClInclude Include="Source\Camera.h">
       <Filter>Engine\Entity\Component\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BulletBehavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Pool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\EnemyBehavior.h">
       <Filter>Game\Behaviors\EnemyBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BulletBehavior.h">
+      <Filter>Game\Behaviors\BulletBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Pool.h">
+      <Filter>Engine\Framework\Pool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

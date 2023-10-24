@@ -271,7 +271,7 @@
         CollisionData collisionData;
         if ( (*checkFuncIt->second)( colliderA, colliderB, &collisionData ) )
         {
-            collisionData.depth += 0.001;
+            collisionData.depth += 0.001f;
 
             // call callbacks 
             if ( aCollidesB )

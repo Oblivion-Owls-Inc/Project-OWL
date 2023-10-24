@@ -37,7 +37,7 @@ public: // methods
     
     /// @brief Apply damage to the enemy 
     /// @param damage - the amount of damage to enemy
-    void TakeDamage(int damage);
+    void TakeDamage( int damage );
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods

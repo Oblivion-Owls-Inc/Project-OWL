@@ -94,8 +94,8 @@
                         "Scale": [ 0.3, 0.3 ]
                     },
                     "BulletBehavior": {
-                        "Pool": {
-                            "name": "LifeTime",
+                        "Lifetime": {
+                            "name": "Lifetime",
                             "Active": true,
                             "BaseValue": 3
                         }
@@ -107,7 +107,8 @@
                     },
                     "RigidBody": {
                         "Acceleration": [ 0.0, 0.0 ],
-                        "Restitution": 1
+                        "Restitution": 0,
+                        "Mass": 0.25
                     }
                 }
             },
@@ -118,15 +119,14 @@
                         "Texture": "Turret",
                         "Layer": 1
                     },
-                    "Transform": {
-                        "Translation": [ -4, 1 ]
-                    },
+                    "Transform": {},
                     "TurretBehavior": {
-                        "range": 5,
-                        "bulletdamage": 20,
-                        "Target": "Enemy",
-                        "bulletName": "Bullet",
-                        "bulletsize": 0.3
+                        "Range": 5,
+                        "BulletName": "Bullet",
+                        "BulletDamage": 10,
+                        "BulletSize": 0.3,
+                        "BulletSpeed": 10,
+                        "Target": "Enemy"
                     }
                 }
             }
@@ -241,6 +241,38 @@
                 "Sprite": {
                     "Opacity": 0,
                     "Layer": 100
+                }
+            }
+        },
+        {
+            "Archetype": "Enemy",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 3.4, -7.6 ]
+                }
+            }
+        },
+        {
+            "Archetype": "Enemy",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 3.4, -7.5 ]
+                }
+            }
+        },
+        {
+            "Archetype": "Enemy",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 3.5, -7.6 ]
+                }
+            }
+        },
+        {
+            "Archetype": "Enemy",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 3.5, -7.5 ]
                 }
             }
         },

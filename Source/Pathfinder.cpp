@@ -93,7 +93,7 @@ glm::vec2 Pathfinder::GetDirectionAt(glm::vec2 pos) const
     if (coord.x == -1)
         return {0,0};
 
-    return m_Nodes[coord.y * m_Tilemap->GetDimensions().x + coord.x].direction;
+    return glm::normalize( (glm::vec2)m_Nodes[coord.y * m_Tilemap->GetDimensions().x + coord.x].direction );
 }
 
 
