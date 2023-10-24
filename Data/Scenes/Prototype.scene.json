@@ -131,6 +131,36 @@
         }
     },
     "Entities": [
+      {
+      "Name": "Wave",
+      "Components": {
+
+        "Transform": {
+          "Translation": [ -4, -1 ]
+        },
+        "WavesBehavior": {
+          "WaveData": [
+            [ 20.0, 50.0 ],
+            [ 30.0, 60.0 ],
+            [ 40.0, 70.0 ]
+          ],
+          "AlternateSpawners": [
+            [ 0, 0 ],
+            [ 1, 1 ],
+            [ 2, 2 ],
+            [ -1, -1 ],
+            [ -2, -2 ]
+          ],
+          "EnemyData": [
+            [ 0, "Enemy", 15, 5.0, 7.0, 0 ],
+            [ 0, "Enemy", 7, 3.0, 5.0, 1 ],
+            [ 1, "Enemy", 5, 2.0, 2.0, 2 ],
+            [ 2, "Enemy", 2, 6.0, 10.0, 3 ]
+          ]
+
+        }
+      }
+    },
         {
             "Name": "Camera",
             "Components": {
@@ -182,39 +212,6 @@
                 "StaticBody": {}
             }
         },
-        {
-                "Name": "Waves",
-                "Components": {
-
-                  "Transform": {
-                    "Translation": [ 0, 0 ]
-                  },
-                  "WavesBehavior": {
-                    "WaveData": [
-                      [ 20, 30 ],
-                      [ 30, 40 ],
-                      [ 40, 50 ],
-                      [ 50, 60 ]
-                    ],
-                    "AlternateSpawners": [
-                      [ 1, 1 ],
-                      [ 2, 2 ],
-                      [ -1, -1 ],
-                      [ -2, -2 ],
-                      [ -3, -3 ]
-                    ],
-                    "EnemyData": [
-                      [1, "enemy", 10, 5.0, 5.0, 0],
-                      [1, "enemy", 10, 5.0, 5.0, 0],
-                      [1, "enemy", 10, 5.0, 5.0, 0],
-                      [2, "enemy", 10, 5.0, 5.0, 0],
-                      [3, "enemy", 10, 5.0, 5.0, 0],
-                      [3, "enemy", 10, 5.0, 5.0, 0],
-                      [4, "enemy", 10, 5.0, 5.0, 0]
-                    ]
-                  }
-                }
-            },
         {
             "Name": "Player",
             "Components": {
