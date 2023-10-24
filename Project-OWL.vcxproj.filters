@@ -186,6 +186,9 @@
     <Filter Include="Engine\Framework\Pool">
       <UniqueIdentifier>{a531bfc4-81f5-4864-9385-b9a1d92b2729}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Behaviors\WavesBehavior">
+      <UniqueIdentifier>{90ac62ba-a1a3-4ca9-8797-8d0f816804f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -397,6 +400,9 @@
     </ClCompile>
     <ClCompile Include="Source\Pool.cpp">
       <Filter>Engine\Framework\Pool</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WavesBehavior.cpp">
+      <Filter>Game\Behaviors\WavesBehavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -615,6 +621,9 @@
     </ClInclude>
     <ClInclude Include="Source\Pool.h">
       <Filter>Engine\Framework\Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WavesBehavior.h">
+      <Filter>Game\Behaviors\WavesBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
