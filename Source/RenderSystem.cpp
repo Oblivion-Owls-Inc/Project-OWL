@@ -80,21 +80,31 @@ void RenderSystem::OnExit()
 /// @param angle        (optional) Angle
 /// @param color        (optional) Color
 /// @param alpha        (optional) transparency
-void RenderSystem::DrawRect(glm::vec2 const& position, glm::vec2 const& scale,
-                            float angle, glm::vec4 const& color, float alpha )
+void RenderSystem::DrawRect(
+    glm::vec2 const& position, glm::vec2 const& scale, float angle,
+    glm::vec4 const& color, float alpha
+)
 {
-    static Texture debugTexture = Texture( "Data/Textures/DebugRectangle.png" );
+    static Texture debugRectTexture = Texture( "Data/Textures/DebugRectangle.png" );
 
-    shapes.push_back(new Entity);
-    Transform* t = new Transform();
-    t->SetTranslation( position );
-    t->SetScale( scale );
-    t->SetRotation(angle);
-    shapes.back()->AddComponent( t );
-    Sprite* s = new Sprite( &debugTexture );
-    s->SetColor( color );
-    s->SetOpacity( alpha );
-    shapes.back()->AddComponent( s );
+    DrawTexture( &debugRectTexture, position, scale, 0.0f, color, alpha );
+}
+
+/// @brief              Draws a line between 2 points.
+/// @param P1           Point 1
+/// @param P2           Point 2
+/// @param thickness    (optional) How thicc the line is
+/// @param color        (optional) Color of the line
+/// @param alpha        (optional) transparency
+void RenderSystem::DrawLine( glm::vec2 const& P1, glm::vec2 const& P2, float thickness, glm::vec4 const& color, float alpha )
+{
+    // Position a rectangle between the 2 points, angle it and stretch it
+    glm::vec2 midpoint = (P1 + P2) * 0.5f;
+    glm::vec2 direction = P2 - P1;
+    float angle = glm::atan( direction.y, direction.x );
+    float length = glm::length( direction );
+
+    DrawRect( midpoint, { length, thickness }, angle, color, alpha );
 }
 
 /// @brief              Draws a circle.
@@ -104,36 +114,38 @@ void RenderSystem::DrawRect(glm::vec2 const& position, glm::vec2 const& scale,
 /// @param alpha        (optional) transparency
 void RenderSystem::DrawCircle( glm::vec2 const& position, float radius, glm::vec4 const& color, float alpha )
 {
-    static Texture debugTexture = Texture( "Data/Textures/DebugCircle.png" );
+    static Texture debugCircleTexture = Texture( "Data/Textures/DebugCircle.png" );
 
-    shapes.push_back(new Entity);
-    Transform* t = new Transform();
-    t->SetTranslation( position );
-    t->SetScale( glm::vec2( radius, radius ) * 2.0f );
-    shapes.back()->AddComponent( t );
-    Sprite* s = new Sprite( &debugTexture );
-    s->SetColor( color );
-    s->SetOpacity( alpha );
-    shapes.back()->AddComponent( s );
+    DrawTexture( &debugCircleTexture, position, glm::vec2( radius ), 0.0f, color, alpha );
 }
 
-
-/// @brief              Draws a line between 2 points.
-/// @param P1           Point 1
-/// @param P2           Point 2
-/// @param thickness    (optional) How thicc the line is
-/// @param color        (optional) Color of the line
+/// @brief              Draws a texture
+/// @param texture      the texture to draw
+/// @param position     Position
+/// @param scale        (optional) Scale
+/// @param angle        (optional) Angle
+/// @param color        (optional) Color
 /// @param alpha        (optional) transparency
-void RenderSystem::DrawLine(const glm::vec2& P1, const glm::vec2& P2, float thickness, const glm::vec4& color, float alpha )
+void RenderSystem::DrawTexture(
+    Texture const* texture,
+    glm::vec2 const& position, glm::vec2 const& scale, float angle,
+    glm::vec4 const& color, float alpha
+)
 {
-    // Position a rectangle between the 2 points, angle it and stretch it
-    glm::vec2 midpoint = (P1 + P2) * 0.5f;
-    glm::vec2 direction = P2 - P1;
-    float angle = glm::atan(direction.y, direction.x);
-    float length = glm::sqrt(glm::dot(direction, direction));
+    shapes.push_back( new Entity() );
 
-    DrawRect(midpoint, { length, thickness }, angle, color, alpha );
+    Transform* transform = new Transform();
+    transform->SetTranslation( position );
+    transform->SetScale( scale );
+    transform->SetRotation(angle);
+    shapes.back()->AddComponent( transform );
+
+    Sprite* sprite = new Sprite( texture );
+    sprite->SetColor( color );
+    sprite->SetOpacity( alpha );
+    shapes.back()->AddComponent( sprite );
 }
+
 
 
 /// @brief          Add sprite so it can be rendered during update. To be used by Sprite constructor.
