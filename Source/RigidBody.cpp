@@ -168,11 +168,11 @@
 
         // calculate new positions
         glm::vec2 position = m_Transform->GetTranslation();
-        position += collisionData.normal * collisionData.depth * 0.5f;
+        position += collisionData.normal * (collisionData.depth + 0.001f) * 0.5f;
         m_Transform->SetTranslation( position );
 
         position = transformB->GetTranslation();
-        position -= collisionData.normal * collisionData.depth * 0.5f;
+        position -= collisionData.normal * (collisionData.depth + 0.001f) * 0.5f;
         transformB->SetTranslation( position );
 
         // get the appropriate variables from each body
@@ -219,7 +219,7 @@
     {
         // move out of collision
         glm::vec2 pos = m_Transform->GetTranslation();
-        pos += collisionData.normal * collisionData.depth;
+        pos += collisionData.normal * (collisionData.depth + 0.001f);
         m_Transform->SetTranslation( pos );
 
         float speed = glm::dot( m_Velocity, collisionData.normal );
@@ -291,7 +291,7 @@
         data["Velocity"] = Stream::Write(m_Velocity);
         data["Acceleration"] = Stream::Write(m_Acceleration);
         data["RotationalVelocity"] = m_RotationalVelocity;
-        data["InverseMass"] = m_Mass;
+        data["Mass"] = m_Mass;
         data["Restitution"] = m_Restitution;
         data["Friction"] = m_Friction;
         data["Drag"] = m_Drag;
@@ -301,13 +301,13 @@
 
     /// @brief the map of read methods for RigidBodys
     ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
-        { "Velocity"            , &readVelocity             },
-        { "Acceleration"        , &readAcceleration         },
-        { "RotationalVelocity"  , &readRotationalVelocity   },
-        { "InverseMass"         , &readMass                 },
-        { "Restitution"         , &readRestitution          },
-        { "Friction"            , &readFriction             },
-        { "Drag"                , &readDrag                 }
+        { "Velocity"           , &readVelocity           },
+        { "Acceleration"       , &readAcceleration       },
+        { "RotationalVelocity" , &readRotationalVelocity },
+        { "Mass"               , &readMass               },
+        { "Restitution"        , &readRestitution        },
+        { "Friction"           , &readFriction           },
+        { "Drag"               , &readDrag               }
     };
 
 //-----------------------------------------------------------------------------
