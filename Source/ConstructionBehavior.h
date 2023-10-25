@@ -22,9 +22,9 @@ class Tilemap;
 /// @brief  Component that handles the construction of towers and modification of terrain
 class ConstructionBehavior : public Behavior
 {
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 public: // constructor / Destructor
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 
     /// @brief  constructor
     ConstructionBehavior();
@@ -32,14 +32,14 @@ public: // constructor / Destructor
     /// @brief  destructor
     ~ConstructionBehavior() = default;
 
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 public: // methods
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 
 
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 public: // accessors
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 
     /// @brief  gets the placement range
     /// @return the placement range
@@ -58,9 +58,9 @@ public: // accessors
     /// @param  range   the building index
     void SetBuildingIndex( int range ) { m_BuildingIndex = range; }
 
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 private: // virtual override methods
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 
     /// @brief  called once when entering the scene
     virtual void OnInit() override;
@@ -74,13 +74,13 @@ private: // virtual override methods
     /// @brief  displays this ConstructionBehavior in the Inspector
     virtual void Inspector() override;
 
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 private: // members
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 
     /// @brief  the archetypes of each buidling type
     std::vector< Entity const* > m_BuildingArchetypes = {};
-    
+
     /// @brief  the costs of each building type
     std::vector< int > m_BuildingCosts = {};
 
@@ -89,6 +89,12 @@ private: // members
 
     /// @brief  the index of the selected building to build
     int m_BuildingIndex = -1;
+
+
+    /// @brief  how long it takes to mine a tile
+    float m_MiningTime = 1.0f;
+    /// @brief  how long remaining to mine the current tile
+    float m_MiningDelay = 0.0f;
 
 
     /// @brief  the name of the player entity
@@ -102,7 +108,7 @@ private: // members
     std::string m_TilemapName;
 
     /// @brief  the tilemap of the terrain
-    Tilemap<int> const* m_Tilemap = nullptr;
+    Tilemap<int>* m_Tilemap = nullptr;
 
     /// @brief  tilemap of the placed buildings
     Tilemap< Entity* >* m_Buildings = nullptr;
@@ -116,9 +122,9 @@ private: // members
 
 
 
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 private: // reading
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 
     /// @brief  read the buildings
     /// @param  data    the json data to read from
@@ -140,6 +146,10 @@ private: // reading
     /// @param  data    the json data to read from
     void readBuildingIndex( nlohmann::ordered_json const& data );
 
+    /// @brief  reads the mining time
+    /// @param  data    the json data to read from
+    void readMiningTime( nlohmann::ordered_json const& data );
+
     /// @brief  map of the read methods for this Component
     static ReadMethodMap< ConstructionBehavior > s_ReadMethods;
 
@@ -150,18 +160,18 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 public: // writing
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 
     /// @brief  Write all ConstructionBehavior data to a JSON file.
     /// @return The JSON file containing the ConstructionBehavior data.
     virtual nlohmann::ordered_json Write() const override;
 
 
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 private: // copying
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 
     /// @brief  copy-constructor for the ConstructionBehavior
     /// @param  other   the other ConstructionBehavior to copy
@@ -171,12 +181,12 @@ private: // copying
     /// @return the newly created clone of this ConstructionBehavior
     __inline virtual Component* Clone() const override { return new ConstructionBehavior( *this ); }
 
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 public: // copying
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 
     // diable = operator
     void operator =( const ConstructionBehavior& ) = delete;
 
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
 };
