@@ -1,10 +1,10 @@
 /*****************************************************************//**
- * \file   Pathfinder.cpp
- * \brief  Implementation of Pathfinder component. Runs vector field
- *         pathfinding algo whenever parent's Tilemap updates.
- * 
- * \author Eli Tsereteli
- *********************************************************************/
+                                                                   * \file   Pathfinder.cpp
+                                                                   * \brief  Implementation of Pathfinder component. Runs vector field
+                                                                   *         pathfinding algo whenever parent's Tilemap updates.
+                                                                   * 
+                                                                   * \author Eli Tsereteli
+                                                                   *********************************************************************/
 #include "Pathfinder.h"
 #include "Entity.h"     // parent
 
@@ -13,11 +13,11 @@
 #endif
 
 
-/// @brief      Default constructor
+                                                                   /// @brief      Default constructor
 Pathfinder::Pathfinder() : Component(typeid(Pathfinder)) 
 {
     m_Walkables.push_back(0);   // by default, 0 is considered empty space
-                                // (hence walkable)
+    // (hence walkable)
 }
 
 /// @return     A copy of this component
@@ -32,15 +32,12 @@ Component * Pathfinder::Clone() const { return new Pathfinder(*this); }
 /// @brief  called when entering a scene - syncs with Tilemap
 void Pathfinder::OnInit()
 {
-    if (!GetParent() || !GetParent()->GetComponent< Tilemap<int> >())
-        return;
-
     m_Tilemap = GetParent()->GetComponent< Tilemap<int> >();
 
 #ifndef NDEBUG
-    if (!m_Tilemap)
+    if ( m_Tilemap == nullptr )
     {
-        std::cout << "Pathfinder: parent does not have Tilemap component." << std::endl;
+        std::cout << "Warning: Pathfinder parent does not have Tilemap component." << std::endl;
         return;
     }
 #endif
@@ -48,16 +45,12 @@ void Pathfinder::OnInit()
     m_Tilemap->AddOnTilemapChangedCallback( GetId(), std::bind(&Pathfinder::explore, this));
     m_Nodes.resize( m_Tilemap->GetTilemap().size() );
     SetDestination(m_DestPos);
-    explore();
 }
 
 
 /// @brief  called when exiting a scene - un-syncs (removes callback)
 void Pathfinder::OnExit()
 {
-    if (!m_Tilemap)
-        return;
-
     m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
 }
 
@@ -72,8 +65,11 @@ void Pathfinder::SetDestination(glm::vec2 pos)
 {
     // get coord (2D index), check bounds (and walkability of given tile)
     glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
-    if (coord.x == -1)
+    if ( coord.x == -1 )
+    {
+        std::cerr << "Warning: Pathfinder destination ( " << pos.x << ", " << pos.y << " ) is not within the Tilemap" << std::endl;
         return;
+    }
 
     m_DestPos = pos;
     m_DestTile = coord;
@@ -91,9 +87,12 @@ glm::vec2 Pathfinder::GetDirectionAt(glm::vec2 pos) const
     // get coord (2D index), check bounds
     glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
     if (coord.x == -1)
-        return {0,0};
+    {
+        return { 0,0 };
+    }
 
-    return glm::normalize( (glm::vec2)m_Nodes[coord.y * m_Tilemap->GetDimensions().x + coord.x].direction );
+    glm::vec2 direction = m_Nodes[coord.y * m_Tilemap->GetDimensions().x + coord.x].direction;
+    return direction == glm::vec2( 0 ) ? direction : glm::normalize( direction );
 }
 
 
@@ -198,7 +197,7 @@ void Pathfinder::explore()
 
                     // check bounds
                     if (i < 0 || j < 0 || i >= width || j >= height
-                              || m_Nodes[j*width + i].type == Unwalkable)
+                        || m_Nodes[j*width + i].type == Unwalkable)
                         this_seen = false;
                     else
                     {
@@ -223,7 +222,7 @@ void Pathfinder::explore()
 
                     // The following is to ensure nodes don't point at corners (diagonally).
                     // Diagonal neighbor will be seen only if both non-diagonals around it were seen.
-                    
+
                     // even: non-diagonal neighbors.
                     if (~k&1)
                     {
@@ -246,7 +245,7 @@ void Pathfinder::explore()
 
                     // after all that skipping around, backtrack to get the last node too
                     if (k == 8 && previous_seen &&  x-1 >= 0 
-                                                &&  m_Nodes[y*width + x-1].type == Seen)
+                        &&  m_Nodes[y*width + x-1].type == Seen)
                         k = 7;
 
                 } // while k<8  (assessing nodes around current one)
