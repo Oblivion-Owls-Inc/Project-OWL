@@ -95,7 +95,7 @@
                     },
                     "BulletBehavior": {
                         "Lifetime": {
-                            "name": "Lifetime",
+                            "Name": "Lifetime",
                             "Active": true,
                             "BaseValue": 3
                         }
