@@ -91,6 +91,16 @@
     void Entity::Inspect()
     {
 
+        if ( ImGui::Button( "Copy to Clipboard" ) )
+        {
+            Stream::CopyToClipboard( *this );
+        }
+        if ( ImGui::Button( "Paste from Clipboard" ) )
+        {
+            Stream::PasteFromClipboard( *this );
+        }
+        ImGui::NewLine();
+
         if ( ImGui::BeginCombo( "Add Component", "Select Component" ) )
         {
             for ( auto& [ name, info ] : ComponentFactory::GetComponentTypes() )
@@ -133,7 +143,7 @@
             const std::string componentName = componentPair.second->GetType().name() + 5; // Skip "class "
             if (ImGui::TreeNode(componentName.c_str()))
             {
-                componentPair.second->Inspector();
+                componentPair.second->BaseComponentInspector();
                 ImGui::TreePop();
             }
         }
