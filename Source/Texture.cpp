@@ -162,7 +162,7 @@ void Texture::LoadImage()
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
         // attach mesh
-        if (m_SheetDimensions.x == 1 && m_SheetDimensions.y == 1)
+        if (m_SheetDimensions == glm::ivec2( 1 ) && m_Pivot == glm::vec2( 0.5f ) )
             m_Mesh = Renderer()->GetDefaultMesh();
         else
             m_Mesh = new Mesh( glm::vec2( GetAspectRatio(), 1 ), m_SheetDimensions, m_Pivot );
