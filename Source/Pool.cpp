@@ -132,7 +132,13 @@ template<typename Value>
 void Pool<Value>::readBaseValue(nlohmann::ordered_json const& data)
 {
 	m_DefaultValue = Stream::Read<Value>(data);
-	Reset();
+}
+
+
+template<typename Value>
+void Pool<Value>::readCurrentValue(nlohmann::ordered_json const& data)
+{
+	m_CurrentValue = Stream::Read<Value>(data);
 }
 
 template<typename Value>
@@ -143,9 +149,10 @@ void Pool<Value>::readActive(nlohmann::ordered_json const& data)
 
 template<typename Value>
 ReadMethodMap< Pool < Value > > const Pool<Value>::s_ReadMethods = {
-	{ "name",      &Pool<Value>::readName      },	
-	{ "BaseValue", &Pool<Value>::readBaseValue },
-	{ "Active",    &Pool<Value>::readActive    }
+	{ "Name"         , &Pool<Value>::readName         },	
+	{ "BaseValue"    , &Pool<Value>::readBaseValue    },
+	{ "CurrentValue" , &Pool<Value>::readCurrentValue },
+	{ "Active"       , &Pool<Value>::readActive       }
 };
 
 template<typename Value>
@@ -153,6 +160,7 @@ nlohmann::ordered_json Pool<Value>::Write() const
 {
 	nlohmann::ordered_json data;
 
+	data["Name"] = m_Name;
 	data["BaseValue"] = m_DefaultValue;
 	data["CurrentValue"] = m_CurrentValue;
 	data["Active"] = m_Active;

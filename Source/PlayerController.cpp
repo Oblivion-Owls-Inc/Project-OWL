@@ -8,12 +8,13 @@
 /// @copyright © 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 #include "PlayerController.h" 
-#include "BehaviorSystem.h" // GetInstance, AddBehavior, RemoveBehavior
-#include "InputSystem.h"    // GetInstance, GetKeyDown
-#include "RigidBody.h"      // ApplyVelocity
-#include "Animation.h"      // SetAsset
+#include "BehaviorSystem.h"     // GetInstance, AddBehavior, RemoveBehavior
+#include "InputSystem.h"        // GetInstance, GetKeyDown
+#include "RigidBody.h"          // ApplyVelocity
+#include "Animation.h"          // SetAsset
 #include "AnimationAsset.h"
-#include "AssetLibrarySystem.h"
+#include "AssetLibrarySystem.h" // GetAssest
+#include "DebugSystem.h"
 
 ///----------------------------------------------------------------------------
 /// Static Variables
@@ -21,7 +22,7 @@
 
 // Get an instance of the input system.
 static InputSystem * input = InputSystem::GetInstance();
-
+// The amount of animations for the player character.
 #define NUM_ANIMATIONS 4
 
 ///----------------------------------------------------------------------------
@@ -31,11 +32,11 @@ static InputSystem * input = InputSystem::GetInstance();
 /// @brief Default Constructor.
 PlayerController::PlayerController() : 
     Behavior(typeid(PlayerController)),
+    m_maxSpeed(0.0f),
     m_leftDirection(0.0f, 0.0f),
     m_rightDirection(0.0f, 0.0f),
     m_upwardDirection(0.0f, 0.0f),
     m_downwardDirection(0.0f, 0.0f),
-    m_maxSpeed(0.0f),
     m_RigidBody(nullptr),
     m_Animation(nullptr),
     m_animationNames(),
@@ -44,8 +45,7 @@ PlayerController::PlayerController() :
 
 /// @brief Destructor
 PlayerController::~PlayerController()
-{
-}
+{}
 
 ///----------------------------------------------------------------------------
 /// Public: methods
@@ -73,10 +73,16 @@ void PlayerController::OnExit()
     Behaviors<Behavior>()->RemoveBehavior(this);
 }
 
+/// @brief Used by the Debug System to display information about this Component.
+void PlayerController::Inspector()
+{
+    
+}
+
 /// @brief on fixed update check which input is being pressed.
 void PlayerController::OnFixedUpdate()
 {
-    // The normlaised direction vector.
+    // The normalised direction vector.
     glm::vec2 direction = { 0.0f, 0.0f };
 
     if (MoveRight())
@@ -211,9 +217,9 @@ nlohmann::ordered_json PlayerController::Write() const
 // Map of all the read methods for the PlayerController component.
 ReadMethodMap< PlayerController > PlayerController::s_ReadMethods = {
     { "left"          , &readLeftDirection  },
-    { "right"	      , &readRightDirection },
-    { "up"		      , &readUpDirection    },
-    { "down"	      , &readDownDirection  },
+    { "right"         , &readRightDirection },
+    { "up"            , &readUpDirection    },
+    { "down"          , &readDownDirection  },
     { "maxSpeed"      , &readMaxSpeed       },
     { "animationName" , &readAnimationNames }
 };
@@ -226,11 +232,11 @@ ReadMethodMap< PlayerController > PlayerController::s_ReadMethods = {
 /// @param other A PlayerController to copy.
 PlayerController::PlayerController(PlayerController const& other):
     Behavior(typeid(PlayerController)),
+    m_maxSpeed(other.m_maxSpeed),
     m_leftDirection(other.m_leftDirection),
     m_rightDirection(other.m_rightDirection),
     m_upwardDirection(other.m_upwardDirection),
     m_downwardDirection(other.m_downwardDirection),
-    m_maxSpeed(other.m_maxSpeed),
     m_RigidBody(nullptr),
     m_Animation(nullptr)
 {

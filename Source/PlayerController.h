@@ -1,20 +1,23 @@
-///*****************************************************************/
-/// @file	 PlayerController.h
-/// @Author  Jax Clayton (jax.clayton@digipen.edu)
-/// @date	 9/15/2021
-/// @brief   PlayerController class header
-/// @details This class contains the PlayerController component
+///--------------------------------------------------------------------------//
+/// @file   PlayerController.h
+/// @brief  PlayerController Behaviour Class
 /// 
-/// @copyright  © 2023 DigiPen (USA) Corporation.
-///*****************************************************************/
+/// @author Aidan Straker (aidan.straker)
+/// @date   October 2023
+///
+/// @copyright © 2023 DigiPen (USA) Corporation.
+///--------------------------------------------------------------------------//
 
 #pragma once
-///*****************************************************************/
-/// Includes
-///*****************************************************************/
+//------------------------------------------------------------------------------
+// Includes:
+//------------------------------------------------------------------------------
 #include "Behavior.h"
 #include <glm/glm.hpp> // glm::vec2
 
+//------------------------------------------------------------------------------
+// Forward References:
+//------------------------------------------------------------------------------
 class RigidBody;
 class Animation;
 class AnimationAsset;
@@ -44,6 +47,9 @@ public: // methods
     /// @brief  called when this Component's Entity is removed from the Scene
     /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
     virtual void OnExit();
+
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 private: // player movement
@@ -115,7 +121,6 @@ private: // reading
     /// @brief Read in the animation names for the player.
     /// @param data The JSON file to read from.
     void readAnimationNames(nlohmann::ordered_json const& data);
-
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap < PlayerController >  s_ReadMethods;
