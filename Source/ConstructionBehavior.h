@@ -22,9 +22,9 @@ class Tilemap;
 /// @brief  Component that handles the construction of towers and modification of terrain
 class ConstructionBehavior : public Behavior
 {
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 public: // constructor / Destructor
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     /// @brief  constructor
     ConstructionBehavior();
@@ -32,14 +32,14 @@ public: // constructor / Destructor
     /// @brief  destructor
     ~ConstructionBehavior() = default;
 
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 public: // methods
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 public: // accessors
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     /// @brief  gets the placement range
     /// @return the placement range
@@ -50,6 +50,15 @@ public: // accessors
     void SetPlacementRange( float range ) { m_PlacementRange = range; }
 
 
+    /// @brief  gets the current resources
+    /// @return the current resources
+    int GetCurrentResources() const { return m_CurrentResources; }
+
+    /// @brief  sets the current resources
+    /// @param  range   the current resources
+    void SetCurrentResources( int range ) { m_CurrentResources = range; }
+
+
     /// @brief  gets the building index
     /// @return the building index
     int GetBuildingIndex() const { return m_BuildingIndex; }
@@ -58,9 +67,9 @@ public: // accessors
     /// @param  range   the building index
     void SetBuildingIndex( int range ) { m_BuildingIndex = range; }
 
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 private: // virtual override methods
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     /// @brief  called once when entering the scene
     virtual void OnInit() override;
@@ -74,9 +83,9 @@ private: // virtual override methods
     /// @brief  displays this ConstructionBehavior in the Inspector
     virtual void Inspector() override;
 
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 private: // members
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     /// @brief  the archetypes of each buidling type
     std::vector< Entity const* > m_BuildingArchetypes = {};
@@ -95,6 +104,15 @@ private: // members
     float m_MiningTime = 1.0f;
     /// @brief  how long remaining to mine the current tile
     float m_MiningDelay = 0.0f;
+
+    /// @brief  the current tile being mined
+    glm::ivec2 m_CurrentMiningTarget;
+
+
+    /// @brief  how many resources the player currently has available
+    int m_CurrentResources = 0;
+    /// @brief  how many resources are gained when mining a block
+    int m_MiningResourceGain = 1;
 
 
     /// @brief  the name of the player entity
@@ -121,10 +139,22 @@ private: // members
     Sprite* m_Sprite = nullptr;
 
 
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
 
-    //-----------------------------------------------------------------------------
+    /// @brief  inspector for the building list
+    void inspectBuildingList();
+
+    /// @brief  inspector for basic variables
+    void inspectVariables();
+
+    /// @brief  inspects the references to other entities
+    void inspectEntityReferences();
+
+//-----------------------------------------------------------------------------
 private: // reading
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     /// @brief  read the buildings
     /// @param  data    the json data to read from
@@ -150,6 +180,11 @@ private: // reading
     /// @param  data    the json data to read from
     void readMiningTime( nlohmann::ordered_json const& data );
 
+    /// @brief  reads the current resources
+    /// @param  data    the json data to read from
+    void readCurrentResources( nlohmann::ordered_json const& data );
+
+
     /// @brief  map of the read methods for this Component
     static ReadMethodMap< ConstructionBehavior > s_ReadMethods;
 
@@ -160,18 +195,18 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 public: // writing
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     /// @brief  Write all ConstructionBehavior data to a JSON file.
     /// @return The JSON file containing the ConstructionBehavior data.
     virtual nlohmann::ordered_json Write() const override;
 
 
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 private: // copying
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     /// @brief  copy-constructor for the ConstructionBehavior
     /// @param  other   the other ConstructionBehavior to copy
@@ -181,12 +216,12 @@ private: // copying
     /// @return the newly created clone of this ConstructionBehavior
     __inline virtual Component* Clone() const override { return new ConstructionBehavior( *this ); }
 
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 public: // copying
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     // diable = operator
     void operator =( const ConstructionBehavior& ) = delete;
 
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 };
