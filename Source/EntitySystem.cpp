@@ -163,15 +163,18 @@
         ImGui::Begin("Entity List");
 
 
-        if (ImGui::Button("Create Entity"))
-        {
-            m_ShowEntityCreate = !m_ShowEntityCreate;
-        }
+        // Input text for entity name
+        static char buffer[ 128 ] = ""; // Buffer to hold the input, you can save this
+        ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.45f );
+        ImGui::InputText( "##Entity Name", buffer, IM_ARRAYSIZE(buffer) );
 
-        if (!ImGui::TreeNode("Entities"))
+        // add entity button
+        ImGui::SameLine();
+        if ( ImGui::Button( "Add Entity", ImVec2( 100, 0 ) ) )
         {
-            ImGui::End();
-            return;
+            {
+                AddEntity( new Entity() );
+            }
         }
 
         for (const auto& entity : EntitySystem::GetInstance()->GetEntities())
@@ -186,9 +189,6 @@
 
             ImGui::TreePop();
         }
-
-        ImGui::TreePop();
-        ImGui::End();
     }
 
 //-----------------------------------------------------------------------------
