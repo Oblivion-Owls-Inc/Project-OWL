@@ -7,8 +7,13 @@
 ///
 /// @copyright (c) 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
+
 #include "Transform.h"
+
 #include "DebugSystem.h"
+#include "RenderSystem.h"
+#include "Texture.h"
+#include "InputSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructor
@@ -101,39 +106,36 @@
 
     void Transform::Inspector()
     {
-        Transform* transform = this;
-
-        if (transform)
+        // Edit Translation
+        glm::vec2 translation = GetTranslation();
+        if ( ImGui::DragFloat2( "Translation", &translation[0], 0.05f ) )
         {
-            // Edit Translation
-            glm::vec2 translation = transform->GetTranslation();
-            if ( ImGui::DragFloat2( "Translation", &translation[0], 0.05f ) )
-            {
-                transform->SetTranslation(translation);
-            }
-
-            // Edit Rotation
-            float rotation = transform->GetRotation();
-            if ( ImGui::DragFloat( "Rotation", &rotation, 0.05f ) )
-            {
-                transform->SetRotation(rotation);
-            }
-
-            // Edit Scale
-            glm::vec2 scale = transform->GetScale();
-            if ( ImGui::DragFloat2( "Scale", &scale[0], 0.05f ) )
-            {
-                transform->SetScale(scale);
-            }
-
-            // Toggle Diegetic
-            bool isDiegetic = transform->GetIsDiegetic();
-            if (ImGui::Checkbox("Is Diegetic", &isDiegetic))
-            {
-                transform->SetIsDiegetic(isDiegetic);
-            }
-
+            SetTranslation(translation);
         }
+
+        // Edit Rotation
+        float rotation = GetRotation();
+        if ( ImGui::DragFloat( "Rotation", &rotation, 0.05f ) )
+        {
+            SetRotation(rotation);
+        }
+
+        // Edit Scale
+        glm::vec2 scale = GetScale();
+        if ( ImGui::DragFloat2( "Scale", &scale[0], 0.05f ) )
+        {
+            SetScale(scale);
+        }
+
+        // Toggle Diegetic
+        bool isDiegetic = GetIsDiegetic();
+        if (ImGui::Checkbox("Is Diegetic", &isDiegetic))
+        {
+            SetIsDiegetic(isDiegetic);
+        }
+
+        DrawDebugWidget();
+        DebugDrag();
     }
 
 
@@ -149,6 +151,40 @@
         for ( auto callback : m_OnTransformChangedCallbacks )
         {
             callback.second();
+        }
+    }
+
+    /// @brief  draws this Transform's debug widget
+    void Transform::DrawDebugWidget() const
+    {
+        static Texture texture = Texture( "Data/Textures/DebugTransform.png", glm::ivec2( 1 ), glm::vec2( 0.0625f ) );
+        Renderer()->DrawTexture( &texture, m_Translation, m_Scale, m_Rotation );
+    }
+
+    /// @brief  allows dragging of Transforms with the mouse
+    void Transform::DebugDrag()
+    {
+        static unsigned DraggedTransformId = 0;
+        
+        float const debugDragRange = 1.0f;
+
+        glm::vec2 mousePos = Input()->GetMousePosWorld();
+
+        if ( Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_1 ) )
+        {
+            if ( glm::distance( m_Translation, mousePos ) <= debugDragRange )
+            {
+                DraggedTransformId = GetId();
+            }
+        }
+
+        if ( Input()->GetMouseDown( GLFW_MOUSE_BUTTON_1 ) && DraggedTransformId == GetId() )
+        {
+            m_Translation = mousePos;
+        }
+        else if ( Input()->GetMouseReleased( GLFW_MOUSE_BUTTON_1 ) )
+        {
+            DraggedTransformId = 0;
         }
     }
 
