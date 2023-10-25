@@ -67,5 +67,11 @@
         file << std::setw( 4 ) << json << std::endl;
     }
 
+//-----------------------------------------------------------------------------
+// private: static variables
+//-----------------------------------------------------------------------------
+
+    /// @brief  clipboard used for copy and pasting data around the editor
+    nlohmann::ordered_json Stream::m_Clipboard = nlohmann::ordered_json();
 
 //-----------------------------------------------------------------------------

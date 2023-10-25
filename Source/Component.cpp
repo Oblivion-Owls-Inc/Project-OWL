@@ -9,6 +9,8 @@
 #include "Component.h"
 #include "basics.h"
 
+#include <imgui.h>
+
 //-----------------------------------------------------------------------------
 // protected: constructors
 //-----------------------------------------------------------------------------
@@ -28,5 +30,26 @@
         m_Parent( nullptr ),
         m_Id( GetUniqueId() )
     {}
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+    /// @brief Used by the Debug System to display information about this Component
+    void Component::BaseComponentInspector()
+    {
+        if ( ImGui::Button( "Copy to Clipboard" ) )
+        {
+            Stream::CopyToClipboard( *this );
+        }
+        if ( ImGui::Button( "Paste from Clipboard" ) )
+        {
+            Stream::PasteFromClipboard( *this );
+        }
+
+        ImGui::NewLine();
+
+        Inspector();
+    }
 
 //-----------------------------------------------------------------------------
