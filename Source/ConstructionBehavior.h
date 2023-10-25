@@ -50,6 +50,15 @@ public: // accessors
     void SetPlacementRange( float range ) { m_PlacementRange = range; }
 
 
+    /// @brief  gets the current resources
+    /// @return the current resources
+    int GetCurrentResources() const { return m_CurrentResources; }
+
+    /// @brief  sets the current resources
+    /// @param  range   the current resources
+    void SetCurrentResources( int range ) { m_CurrentResources = range; }
+
+
     /// @brief  gets the building index
     /// @return the building index
     int GetBuildingIndex() const { return m_BuildingIndex; }
@@ -80,7 +89,7 @@ private: // members
 
     /// @brief  the archetypes of each buidling type
     std::vector< Entity const* > m_BuildingArchetypes = {};
-    
+
     /// @brief  the costs of each building type
     std::vector< int > m_BuildingCosts = {};
 
@@ -89,6 +98,21 @@ private: // members
 
     /// @brief  the index of the selected building to build
     int m_BuildingIndex = -1;
+
+
+    /// @brief  how long it takes to mine a tile
+    float m_MiningTime = 1.0f;
+    /// @brief  how long remaining to mine the current tile
+    float m_MiningDelay = 0.0f;
+
+    /// @brief  the current tile being mined
+    glm::ivec2 m_CurrentMiningTarget;
+
+
+    /// @brief  how many resources the player currently has available
+    int m_CurrentResources = 0;
+    /// @brief  how many resources are gained when mining a block
+    int m_MiningResourceGain = 1;
 
 
     /// @brief  the name of the player entity
@@ -102,7 +126,7 @@ private: // members
     std::string m_TilemapName;
 
     /// @brief  the tilemap of the terrain
-    Tilemap<int> const* m_Tilemap = nullptr;
+    Tilemap<int>* m_Tilemap = nullptr;
 
     /// @brief  tilemap of the placed buildings
     Tilemap< Entity* >* m_Buildings = nullptr;
@@ -115,6 +139,18 @@ private: // members
     Sprite* m_Sprite = nullptr;
 
 
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  inspector for the building list
+    void inspectBuildingList();
+
+    /// @brief  inspector for basic variables
+    void inspectVariables();
+
+    /// @brief  inspects the references to other entities
+    void inspectEntityReferences();
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -139,6 +175,15 @@ private: // reading
     /// @brief  read the building index
     /// @param  data    the json data to read from
     void readBuildingIndex( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the mining time
+    /// @param  data    the json data to read from
+    void readMiningTime( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the current resources
+    /// @param  data    the json data to read from
+    void readCurrentResources( nlohmann::ordered_json const& data );
+
 
     /// @brief  map of the read methods for this Component
     static ReadMethodMap< ConstructionBehavior > s_ReadMethods;

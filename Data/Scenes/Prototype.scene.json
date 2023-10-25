@@ -136,7 +136,6 @@
         {
             "Name": "Wave",
             "Components": {
-
                 "Transform": {
                     "Translation": [ 0, 0 ]
                 },
