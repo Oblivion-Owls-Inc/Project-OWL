@@ -91,6 +91,9 @@ void ConstructionBehavior::OnFixedUpdate()
         )
     {
 
+        // TODO: visuals for digging
+        // TODO: make it so changing tiles will reset the timer
+
         if (
             tilePos.x >= 0 && tilePos.x < m_Tilemap->GetDimensions().x &&
             tilePos.y >= 0 && tilePos.y < m_Tilemap->GetDimensions().y &&
