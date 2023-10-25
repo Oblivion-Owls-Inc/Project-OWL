@@ -47,6 +47,15 @@ public: // accessors
     /// @brief Gets the unique name of this System
     std::string const& GetName() const { return m_Name; }
 
+
+    /// @brief  gets whether this System is enabled
+    /// @return whether this System is enabled
+    bool GetEnabled() const { return m_Enabled; }
+
+    /// @brief  sets whether this System is enabled
+    /// @param  enabled whether this System is enabled
+    void SetEnabled( bool enabled ) { m_Enabled = enabled; }
+
 //-----------------------------------------------------------------------------
 protected: // constructor
 //-----------------------------------------------------------------------------
@@ -70,6 +79,9 @@ private: // member variables
 
     /// @brief The Unique Name of this System to be used for Debug Window
     std::string m_Name;
+
+    /// @brief  whether this System will update
+    bool m_Enabled = true;
 
 //-----------------------------------------------------------------------------
 };

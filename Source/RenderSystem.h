@@ -12,6 +12,7 @@
 // fwd references
 class Sprite;
 class Mesh;
+class Texture;
 
 
 /// @brief      Renders all of the Sprite components, keeps track of shaders.
@@ -48,6 +49,19 @@ public:
     void DrawLine(
         glm::vec2 const& P1, glm::vec2 const& P2, float thickness = 1.0f,
         glm::vec4 const& color = { 0.0f, 0.2f, 0.5f, 0.0f }, float alpha = 0.5f
+    );
+
+    /// @brief              Draws a texture.
+    /// @param texture      the texture to draw
+    /// @param position     Position
+    /// @param scale        (optional) Scale
+    /// @param angle        (optional) Angle
+    /// @param color        (optional) Color
+    /// @param alpha        (optional) transparency
+    void DrawTexture(
+        Texture const* texture,
+        glm::vec2 const& position, glm::vec2 const& scale = { 1.0f, 1.0f }, float angle = 0.0f,
+        glm::vec4 const& color = { 0.0f, 0.0f, 0.0f, 0.0f }, float alpha = 1.0f
     );
 
 

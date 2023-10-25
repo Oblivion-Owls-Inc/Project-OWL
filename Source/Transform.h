@@ -147,6 +147,12 @@ private: // methods
     /// @brief  marks this Transform as dirty and calls the OnTransformChanged callbacks
     void MarkChanged();
 
+    /// @brief  draws this Transform's debug widget
+    void DrawDebugWidget() const;
+
+    /// @brief  allows dragging of Transforms with the mouse
+    void DebugDrag();
+
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------

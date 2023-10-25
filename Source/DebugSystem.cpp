@@ -117,6 +117,13 @@ void DebugSystem::DebugWindow()
     {
         return;
     }
+
+    static bool gameplayRunning = true;
+    if ( ImGui::Button( gameplayRunning ? "Disable gameplay (editor only)" : "Enable gameplay" ) )
+    {
+        gameplayRunning = !gameplayRunning;
+        SetNonEditorSystemsEnabled( gameplayRunning );
+    }
     
     for ( auto& system : Engine::GetInstance()->GetSystems() )
     {
@@ -176,6 +183,20 @@ void DebugSystem::ScreenPrint(const char* format, ...)
     va_start(args, format);
     logBuffer.appendfv(format, args);
     va_end(args);
+}
+
+
+/// @brief  sets whether the non-editor systems are enabled
+/// @param  enabled wether to enable or disable the systems
+void DebugSystem::SetNonEditorSystemsEnabled( bool enabled )
+{
+    for ( System* system : Engine::GetInstance()->GetSystems() )
+    {
+        if ( m_EditorSystemNames.contains( system->GetName() ) == false )
+        {
+            system->SetEnabled( enabled );
+        }
+    }
 }
 
 

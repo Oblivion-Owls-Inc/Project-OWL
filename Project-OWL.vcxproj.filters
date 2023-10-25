@@ -105,9 +105,6 @@
     <Filter Include="Engine\Systems\AssetLibrarySystem">
       <UniqueIdentifier>{4d891ce7-a202-4957-aaa5-fbc0908075eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Collider\LineCollider">
-      <UniqueIdentifier>{65fb5e3e-f000-41f3-b5de-e4e439e2ad94}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Systems\CameraSystem">
       <UniqueIdentifier>{c3898b05-9c97-4cac-a92e-a1120297dd69}</UniqueIdentifier>
     </Filter>
@@ -185,6 +182,9 @@
     </Filter>
     <Filter Include="Engine\Framework\Pool">
       <UniqueIdentifier>{a531bfc4-81f5-4864-9385-b9a1d92b2729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Behaviors\WavesBehavior">
+      <UniqueIdentifier>{90ac62ba-a1a3-4ca9-8797-8d0f816804f5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -320,9 +320,6 @@
     <ClCompile Include="Source\EntitySystem.cpp">
       <Filter>Engine\Systems\EntitySystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LineCollider.cpp">
-      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
-    </ClCompile>
     <ClCompile Include="Source\CameraSystem.cpp">
       <Filter>Engine\Systems\CameraSystem</Filter>
     </ClCompile>
@@ -397,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="Source\Pool.cpp">
       <Filter>Engine\Framework\Pool</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WavesBehavior.cpp">
+      <Filter>Game\Behaviors\WavesBehavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -544,9 +544,6 @@
     <ClInclude Include="Source\basics.h">
       <Filter>Engine\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LineCollider.h">
-      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
-    </ClInclude>
     <ClInclude Include="Source\CameraSystem.h">
       <Filter>Engine\Systems\CameraSystem</Filter>
     </ClInclude>
@@ -615,6 +612,9 @@
     </ClInclude>
     <ClInclude Include="Source\Pool.h">
       <Filter>Engine\Framework\Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WavesBehavior.h">
+      <Filter>Game\Behaviors\WavesBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
