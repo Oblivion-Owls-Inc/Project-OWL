@@ -144,15 +144,14 @@
     void EntitySystem::DebugWindow()
     {
         if (ImGui::Button(m_ShowEntityList ? "Hide Entity List" : "Show Entity List"))
+        {
             m_ShowEntityList = !m_ShowEntityList;
+        }
 
-       if (ImGui::Button("Create Entity"))
-		   m_ShowEntityCreate = !m_ShowEntityCreate;
-
-       if (m_ShowEntityList)
+        if (m_ShowEntityList)
+        {
 		   EntityListWindow();
-
-
+        }
     }
 
 //-----------------------------------------------------------------------------
@@ -162,6 +161,12 @@
     void EntitySystem::EntityListWindow()
     {
         ImGui::Begin("Entity List");
+
+
+        if (ImGui::Button("Create Entity"))
+        {
+            m_ShowEntityCreate = !m_ShowEntityCreate;
+        }
 
         if (!ImGui::TreeNode("Entities"))
         {

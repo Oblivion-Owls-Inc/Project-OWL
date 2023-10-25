@@ -69,14 +69,16 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     template<class AssetType>
     void AssetLibrarySystem<AssetType>::DebugWindow()
     {
-        std::string AssetName(typeid(AssetType).name() + 5); // Move over the "class" part of the name
+        std::string AssetName(typeid(AssetType).name() + 5); // skip over the "class" part of the name
 
         char buttonLabel[128];
         snprintf(buttonLabel, sizeof(buttonLabel), s_ShowAssetLibraryList ?
             "Hide%s List" : "Show%s List", AssetName.c_str());
 
         if (ImGui::Button(buttonLabel))
+        {
             s_ShowAssetLibraryList = !s_ShowAssetLibraryList;
+        }
 
         if (s_ShowAssetLibraryList)
         {
@@ -171,6 +173,26 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     void AssetLibrarySystem<AssetType>::ListAssets()
     {
 
+        // Input text for asset name
+        static char buffer[ 128 ] = ""; // Buffer to hold the input, you can save this
+        ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.45f );
+        ImGui::InputText( "##Asset Name", buffer, IM_ARRAYSIZE(buffer) );
+
+        // add asset button
+        ImGui::SameLine();
+        if ( ImGui::Button( "Add Asset", ImVec2( 100, 0 ) ) )
+        {
+            if ( buffer[0] == '\0' )
+            {
+                std::cerr << "Error: Asset must have a name" << std::endl;
+            }
+            else
+            {
+                AddAsset( buffer, new AssetType() );
+            }
+        }
+
+        // list assets
         for (auto& key : m_Assets)
         {
             if ( !ImGui::TreeNode( key.first.c_str() ) )
