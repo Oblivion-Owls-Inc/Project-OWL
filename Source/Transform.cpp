@@ -138,7 +138,6 @@
         DebugDrag();
     }
 
-
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
@@ -180,7 +179,7 @@
 
         if ( Input()->GetMouseDown( GLFW_MOUSE_BUTTON_1 ) && DraggedTransformId == GetId() )
         {
-            m_Translation = mousePos;
+            SetTranslation( mousePos );
         }
         else if ( Input()->GetMouseReleased( GLFW_MOUSE_BUTTON_1 ) )
         {

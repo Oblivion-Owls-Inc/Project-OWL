@@ -217,7 +217,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\AudioSystem.cpp" />
-    <ClCompile Include="Source\LineCollider.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
     <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\StaticBody.cpp" />
@@ -272,7 +271,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Behavior.h" />
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\EntitySystem.h" />
-    <ClInclude Include="Source\LineCollider.h" />
     <ClInclude Include="Source\RigidBody.h" />
     <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\StaticBody.h" />
