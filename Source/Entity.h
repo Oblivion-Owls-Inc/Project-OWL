@@ -160,12 +160,6 @@ private: // member variables
 	/// @brief containter of components attached to this Entity
 	std::map<std::type_index, Component*> m_Components;
 
-    bool m_AddComponent = false;
-
-    bool m_RemoveComponent = false;
-
-    bool m_RenameEntity = false;
-
     /// @brief  the ID of this Component
     unsigned m_Id;
 //-----------------------------------------------------------------------------

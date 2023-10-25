@@ -91,24 +91,39 @@
     void Entity::Inspect()
     {
 
-        if (ImGui::Button("Add Component", ImVec2(-1, 0)))
+
+        if ( ImGui::BeginCombo( "Add Component", "Select Component" ) )
         {
-            m_AddComponent = !m_AddComponent;
+            for ( auto& [ name, info ] : ComponentFactory::GetComponentTypes() )
+            {
+                if ( m_Components.contains( info.first ) )
+                {
+                    continue;
+                }
+
+                if ( ImGui::Selectable( name.c_str(), false ) )
+                {
+                    AddComponent( info.second() );
+                }
+            }
+            ImGui::EndCombo();
         }
 
-        if (ImGui::Button("Remove Component", ImVec2(-1, 0)))
+        if ( ImGui::BeginCombo( "Remove Component", "Select Component" ) )
         {
-			m_RemoveComponent = !m_RemoveComponent;
-		}
+            for ( auto& iterator : m_Components )
+            {
+                if ( ImGui::Selectable( PrefixlessName( iterator,first ).c_str(), false ) )
+                {
+                    
+                }
+            }
+            ImGui::EndCombo();
+        }
 
         if(ImGui::Button("Rename Entity", ImVec2(-1,0)))
         {
 			m_RenameEntity = !m_RenameEntity;
-        }
-
-        if (m_AddComponent)
-        {
-            AddComponent();
         }
 
         if (m_RemoveComponent)

@@ -106,7 +106,7 @@ private: // members
     float m_MiningDelay = 0.0f;
 
     /// @brief  the current tile being mined
-    glm::ivec2 m_CurrentMiningTarget;
+    glm::ivec2 m_CurrentMiningTarget = { -1, -1 };
 
 
     /// @brief  how many resources the player currently has available
