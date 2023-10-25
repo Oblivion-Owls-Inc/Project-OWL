@@ -17,6 +17,7 @@
 #include "imgui_impl_glfw.h"
 #include <iostream>
 #include <sstream>
+#include <set>
 
 /// @brief Forward declaration of the Entity class
 class Entity;
@@ -50,26 +51,54 @@ public:
     /// @brief Exit and clean up the DebugSystem
     void OnExit() override;
 
+
+    /// @brief Gets Called by the Debug system to display debug information
+    virtual void DebugWindow() override;
+
     /// @brief Print a formatted message to the screen
     /// @param format The format string, similar to printf
     /// @details This function allows you to print a formatted message to the screen using ImGui.
     void ScreenPrint(const char* format, ...);
 
-    /// @brief Gets Called by the Debug system to display debug information
-    virtual void DebugWindow() override;
-
 private:
-    GLFWwindow* _window; /// @brief The GLFW window handle
-    bool m_ShowFpsWindow; /// @brief Flag to control FPS display
-    bool m_ShowDebugWindow; /// @brief Flag to control dev display
-    ImGuiIO* io; /// @brief Pointer to the ImGui Input/Output structure
 
-private:
-        void ShowFPSWindow();
+    /// @brief The GLFW window handle
+    GLFWwindow* _window;
+
+    /// @brief Flag to control FPS display
+    bool m_ShowFpsWindow;
+
+    /// @brief Flag to control dev display
+    bool m_ShowDebugWindow;
+
+    /// @brief Pointer to the ImGui Input/Output structure
+    ImGuiIO* io;
+
+    /// @brief  the names of all Systems that are enabled in the Editor
+    std::set< std::string > const m_EditorSystemNames = {
+        "PlatformSystem",
+        "InputSystem",
+        "SceneSystem",
+        "EntitySystem",
+        "CameraSystem",
+        "RenderSystem",
+        "AudioSystem",
+        "DebugSystem"
+    };
+
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  sets whether the non-editor systems are enabled
+    /// @param  enabled wether to enable 
+    void SetNonEditorSystemsEnabled( bool enabled );
+
+    void ShowFPSWindow();
     
-        void ImguiStartFrame();
+    void ImguiStartFrame();
 
-        void OnFixedUpdate() override;
+    void OnFixedUpdate() override;
     
 //-----------------------------------------------------------------------------
 private: // reading

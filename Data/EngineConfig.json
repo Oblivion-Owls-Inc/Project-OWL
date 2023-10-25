@@ -1,39 +1,39 @@
 {
     "FixedFrameDuration": 0.0167,
-  "Systems": {
-    "PlatformSystem": {
-      "WindowSize": [ 800, 600 ],
-      "WindowName": "Dig Deeper"
-    },
-    "InputSystem": {},
-    "SceneSystem": {
-      "BaseScenePath": "Data/Scenes/",
-      "NextSceneName": "Prototype"
-    },
-    "AssetLibrarySystem<Entity>": {},
-    "AssetLibrarySystem<Sound>": {},
-    "AssetLibrarySystem<Texture>": {},
-    "AssetLibrarySystem<TransformAnimation>": {},
-    "AssetLibrarySystem<AnimationAsset>": {},
-    "BehaviorSystem<Behavior>": {},
-    "BehaviorSystem<BulletBehavior>": {},
-    "BehaviorSystem<TilemapBase>": {},
-    "BehaviorSystem<RigidBody>": {},
-    "BehaviorSystem<WavesBehavior>": {},
-    "CollisionSystem": {
-      "CollisionLayerNames": [ "Terrain", "Enemies", "Player", "Base", "Projectiles" ],
-      "CollisionSteps": 2
-    },
-    "BehaviorSystem<Animation>": {},
-    "BehaviorSystem<EffectAnimator>": {},
-    "EntitySystem": {},
-    "CameraSystem": {},
-    "RenderSystem": {},
-    "AudioSystem": {},
-    "DebugSystem": {
-      "ShowFpsWindow": true,
-      "ShowDebugWindow": false
-    },
-    "SandboxSystem": {}
-  }
+    "Systems": {
+        "PlatformSystem": {
+            "WindowSize": [ 800, 600 ],
+            "WindowName": "Dig Deeper"
+        },
+        "InputSystem": {},
+        "SceneSystem": {
+            "BaseScenePath": "Data/Scenes/",
+            "NextSceneName": "Prototype"
+        },
+        "AssetLibrarySystem<Entity>": {},
+        "AssetLibrarySystem<Sound>": {},
+        "AssetLibrarySystem<Texture>": {},
+        "AssetLibrarySystem<TransformAnimation>": {},
+        "AssetLibrarySystem<AnimationAsset>": {},
+        "BehaviorSystem<Behavior>": {},
+        "BehaviorSystem<BulletBehavior>": {},
+        "BehaviorSystem<TilemapBase>": {},
+        "BehaviorSystem<RigidBody>": {},
+        "BehaviorSystem<WavesBehavior>": {},
+        "CollisionSystem": {
+            "CollisionLayerNames": [ "Terrain", "Enemies", "Player", "Base", "Projectiles" ],
+            "CollisionSteps": 2
+        },
+        "BehaviorSystem<Animation>": {},
+        "BehaviorSystem<EffectAnimator>": {},
+        "EntitySystem": {},
+        "CameraSystem": {},
+        "RenderSystem": {},
+        "AudioSystem": {},
+        "DebugSystem": {
+            "ShowFpsWindow": true,
+            "ShowDebugWindow": false
+        },
+        "SandboxSystem": {}
+    }
 }

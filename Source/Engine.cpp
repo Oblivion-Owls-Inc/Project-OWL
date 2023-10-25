@@ -289,7 +289,10 @@
     {
         for ( System * system : m_Systems )
         {
-            system->OnUpdate(dt);
+            if ( system->GetEnabled() )
+            {
+                system->OnUpdate( dt );
+            }
         }
     }
 
@@ -298,8 +301,10 @@
     {
         for ( System * system : m_Systems )
         {
-           std::string nameDebug = system->GetName();
-           system->OnFixedUpdate();
+            if ( system->GetEnabled() )
+            {
+                system->OnFixedUpdate();
+            }
         }
     }
 

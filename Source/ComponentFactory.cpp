@@ -17,7 +17,6 @@
 #include "TilemapSprite.h"
 #include "RigidBody.h"
 #include "MovementAI.h"
-#include "LineCollider.h"
 #include "CircleCollider.h"
 #include "EnemyBehavior.h"
 #include "AudioPlayer.h"
@@ -104,7 +103,6 @@
         { "Sprite"              , ComponentInfo< Sprite >()               },
         { "RigidBody"           , ComponentInfo< RigidBody >()            },
         { "MovementAI"          , ComponentInfo< MovementAI >()           },
-        { "LineCollider"        , ComponentInfo< LineCollider >()         },
         { "CircleCollider"      , ComponentInfo< CircleCollider >()       },
         { "AudioPlayer"         , ComponentInfo< AudioPlayer >()          },
         { "Animation"           , ComponentInfo< Animation >()            },

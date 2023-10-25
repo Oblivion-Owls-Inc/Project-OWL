@@ -105,9 +105,6 @@
     <Filter Include="Engine\Systems\AssetLibrarySystem">
       <UniqueIdentifier>{4d891ce7-a202-4957-aaa5-fbc0908075eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Collider\LineCollider">
-      <UniqueIdentifier>{65fb5e3e-f000-41f3-b5de-e4e439e2ad94}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Systems\CameraSystem">
       <UniqueIdentifier>{c3898b05-9c97-4cac-a92e-a1120297dd69}</UniqueIdentifier>
     </Filter>
@@ -322,9 +319,6 @@
     </ClCompile>
     <ClCompile Include="Source\EntitySystem.cpp">
       <Filter>Engine\Systems\EntitySystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LineCollider.cpp">
-      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
     </ClCompile>
     <ClCompile Include="Source\CameraSystem.cpp">
       <Filter>Engine\Systems\CameraSystem</Filter>
@@ -549,9 +543,6 @@
     </ClInclude>
     <ClInclude Include="Source\basics.h">
       <Filter>Engine\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LineCollider.h">
-      <Filter>Engine\Entity\Component\Collider\LineCollider</Filter>
     </ClInclude>
     <ClInclude Include="Source\CameraSystem.h">
       <Filter>Engine\Systems\CameraSystem</Filter>
