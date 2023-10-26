@@ -92,10 +92,10 @@ private: // data
 		int inspectorWave;
 		int inspectorGroup;
 
-		struct enemyGroup
+		struct EnemyGroup
 		{
 			/// @brief enemyGroup default constructor
-			enemyGroup();
+			EnemyGroup();
 			std::string name;
 			int enemyAmount;
 			float spawnInterval;
@@ -108,15 +108,15 @@ private: // data
 		{
 			/// @brief wave default constructor
 			Wave();
-			std::vector<enemyGroup*> groups;
+			std::vector<enemyGroup> groups;
 			float remainingTime;
 			float timeToNextWave;
 			int numGroups;
 		};
 
-		std::vector<Wave*> waves;
+		std::vector<Wave> waves;
 
-		std::vector<Transform*> spawners;
+		std::vector<glm::vec2> spawners;
 
 //-----------------------------------------------------------------------------
 public: // accessors
