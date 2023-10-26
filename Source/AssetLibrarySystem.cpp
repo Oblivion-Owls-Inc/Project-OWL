@@ -72,8 +72,11 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
         std::string AssetName(typeid(AssetType).name() + 5); // skip over the "class" part of the name
 
         char buttonLabel[128];
-        snprintf(buttonLabel, sizeof(buttonLabel), s_ShowAssetLibraryList ?
-            "Hide%s List" : "Show%s List", AssetName.c_str());
+        snprintf(
+            buttonLabel, sizeof( buttonLabel ),
+            s_ShowAssetLibraryList ? "Hide %s Asset List" : "Show %s Asset List",
+            PrefixlessName( typeid( AssetType ) ).c_str()
+        );
 
         if (ImGui::Button(buttonLabel))
         {

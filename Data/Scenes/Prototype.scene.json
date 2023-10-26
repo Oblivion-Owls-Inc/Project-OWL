@@ -95,9 +95,10 @@
                     },
                     "BulletBehavior": {
                         "Lifetime": {
-                            "name": "Lifetime",
+                            "Name": "Lifetime",
                             "Active": true,
-                            "BaseValue": 3
+                            "BaseValue": 3,
+                            "CurrentValue": 3
                         }
                     },
                     "CircleCollider": {

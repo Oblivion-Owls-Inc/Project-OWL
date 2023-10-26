@@ -225,7 +225,7 @@
         auto& components = data["Components"];
         for ( auto& [ key, value ] : m_Components )
         {
-            components[PrefixlessName(key)] = value->Write();
+            components[ ComponentFactory::GetTypeName( key ) ] = value->Write();
         }
 
         return data;

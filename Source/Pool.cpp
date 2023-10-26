@@ -141,21 +141,32 @@ void Pool<Value>::readActive(nlohmann::ordered_json const& data)
 	m_Active = Stream::Read<bool>(data);
 }
 
+/// @brief  Reads the Current Value from the json data
+/// @tparam Value   the type of Value in this Pool
+/// @param  data    the json data to read from
+template<typename Value>
+void Pool<Value>::readCurrentValue( nlohmann::ordered_json const& data )
+{
+    Stream::Read( m_CurrentValue, data );
+}
+
 template<typename Value>
 ReadMethodMap< Pool < Value > > const Pool<Value>::s_ReadMethods = {
-	{ "name",      &Pool<Value>::readName      },	
-	{ "BaseValue", &Pool<Value>::readBaseValue },
-	{ "Active",    &Pool<Value>::readActive    }
+	{ "Name"        , &Pool<Value>::readName         },	
+	{ "BaseValue"   , &Pool<Value>::readBaseValue    },
+	{ "Active"      , &Pool<Value>::readActive       },
+    { "CurrentValue", &Pool<Value>::readCurrentValue }
 };
 
 template<typename Value>
 nlohmann::ordered_json Pool<Value>::Write() const
 {
 	nlohmann::ordered_json data;
-
-	data["BaseValue"] = m_DefaultValue;
-	data["CurrentValue"] = m_CurrentValue;
-	data["Active"] = m_Active;
+    
+    data[ "Name" ] = Stream::Write( m_Name );
+	data[ "BaseValue" ] = Stream::Write( m_DefaultValue );
+	data[ "CurrentValue" ] = Stream::Write( m_CurrentValue );
+	data[ "Active" ] = Stream::Write( m_Active );
 
 	return data;
 }

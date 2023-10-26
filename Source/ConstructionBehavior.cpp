@@ -362,12 +362,13 @@ void ConstructionBehavior::readCurrentResources( nlohmann::ordered_json const& d
 
 /// @brief  map of the read methods for this Component
 ReadMethodMap< ConstructionBehavior > ConstructionBehavior::s_ReadMethods = {
-    { "Buildings"     , &readBuildings      },
-    { "TilemapName"   , &readTilemapName    },
-    { "PlayerName"    , &readPlayerName     },
-    { "PlacementRange", &readPlacementRange },
-    { "BuildingIndex" , &readBuildingIndex  },
-    { "MiningTime"    , &readMiningTime     }
+    { "Buildings"       , &readBuildings         },
+    { "TilemapName"     , &readTilemapName       },
+    { "PlayerName"      , &readPlayerName        },
+    { "PlacementRange"  , &readPlacementRange    },
+    { "BuildingIndex"   , &readBuildingIndex     },
+    { "MiningTime"      , &readMiningTime        },
+    { "CurrentResources", &readCurrentResources  }
 };
 
 //-----------------------------------------------------------------------------
