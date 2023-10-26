@@ -91,42 +91,59 @@
     void Entity::Inspect()
     {
 
-        if (ImGui::Button("Add Component", ImVec2(-1, 0)))
+        if ( ImGui::Button( "Copy to Clipboard" ) )
         {
-            m_AddComponent = !m_AddComponent;
+            Stream::CopyToClipboard( *this );
+        }
+        if ( ImGui::Button( "Paste from Clipboard" ) )
+        {
+            Stream::PasteFromClipboard( *this );
+        }
+        ImGui::NewLine();
+
+        if ( ImGui::BeginCombo( "Add Component", "Select Component" ) )
+        {
+            for ( auto& [ name, info ] : ComponentFactory::GetComponentTypes() )
+            {
+                if ( m_Components.contains( info.first ) )
+                {
+                    continue;
+                }
+
+                if ( ImGui::Selectable( name.c_str(), false ) )
+                {
+                    AddComponent( info.second() );
+                }
+            }
+            ImGui::EndCombo();
         }
 
-        if (ImGui::Button("Remove Component", ImVec2(-1, 0)))
+        if ( ImGui::BeginCombo( "Remove Component", "Select Component" ) )
         {
-			m_RemoveComponent = !m_RemoveComponent;
-		}
-
-        if(ImGui::Button("Rename Entity", ImVec2(-1,0)))
-        {
-			m_RenameEntity = !m_RenameEntity;
+            for ( auto& [ key, component ] : m_Components )
+            {
+                if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
+                {
+                    component->OnExit();
+                    delete component;
+                    m_Components.erase( key );
+                    break;
+                }
+            }
+            ImGui::EndCombo();
         }
 
-        if (m_AddComponent)
-        {
-            AddComponent();
-        }
-
-        if (m_RemoveComponent)
-        {
-			RemoveComponent();
-		}
-
-        if (m_RenameEntity)
-        {
-            RenameEntity();
-        }
+        static char name[ 128 ];
+        strcpy_s( name, 128, m_Name.c_str() );
+        ImGui::InputText( "Entity Name", name, 128 );
+        m_Name = name;
 
         for (const auto& componentPair : this->getComponents())
         {
             const std::string componentName = componentPair.second->GetType().name() + 5; // Skip "class "
             if (ImGui::TreeNode(componentName.c_str()))
             {
-                componentPair.second->Inspector();
+                componentPair.second->BaseComponentInspector();
                 ImGui::TreePop();
             }
         }
@@ -147,88 +164,6 @@
         }
         // Clear the component list.
         m_Components.clear();
-    }
-
-    void Entity::AddComponent()
-    {
-        std::string windowName = "Add Component to " + this->GetName();
-        ImGui::Begin(windowName.c_str(), &m_AddComponent);
-
-        for (auto& component : ComponentFactory::GetComponentTypes())
-        {
-            // Skip the component if it's already attached to this entity
-            if (m_Components.find(component.second.first) != m_Components.end())
-            {
-                continue; // Skip to the next iteration
-            }
-
-            if (ImGui::Button(component.first.c_str(), ImVec2(-1, 0)))
-            {
-                ///Create a new component and add it to the entity.
-                Component* newComponent = ComponentFactory::Create(component.first);
-
-                ///Initialize the component.
-                if (newComponent) 
-                {
-                    newComponent->SetParent(this);
-                    newComponent->OnInit();
-                }
-                ///Add the component to the entity.
-                AddComponent(newComponent);
-                ///Close the window
-                m_AddComponent = false;
-            }
-        }
-
-        ImGui::End();
-    }
-
-
-    void Entity::RemoveComponent()
-    {
-        std::string windowName = "Remove Component from " + this->GetName();
-        ImGui::Begin(windowName.c_str(), &m_RemoveComponent);
-
-        for (auto& component : ComponentFactory::GetComponentTypes())
-        {
-            /// Skip the component if it's not already attached to this entity
-            if (!(m_Components.find(component.second.first) != m_Components.end()))
-            {
-                continue; /// Skip to the next iteration
-            }
-
-
-            if (ImGui::Button(component.first.c_str(), ImVec2(-1, 0)))
-            {
-                m_Components.find(component.second.first)->second->OnExit();
-                m_Components.erase(component.second.first);
-                m_RemoveComponent = false; ///Close the window
-            }
-        }
-
-            ImGui::End();
-    }
-
-    void Entity::RenameEntity()
-    {
-		std::string windowName = "Rename " + this->GetName();
-
-		ImGui::Begin(windowName.c_str(),&m_RenameEntity);
-
-        static char buffer[256] = "";
-
-        ImGui::InputText("Name", buffer, sizeof(buffer));
-
-        if(ImGui::Button("Rename"))
-		{
-
-            SetName(std::string(buffer));
-
-            buffer[0] = '\0';
-
-            m_RenameEntity = false;
-		}
-		ImGui::End();
     }
 
 //------------------------------------------------------------------------------

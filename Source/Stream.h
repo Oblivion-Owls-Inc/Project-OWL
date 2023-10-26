@@ -37,7 +37,7 @@ class ISerializable;
 class Stream
 {
 //------------------------------------------------------------------------------
-public: // file io
+public: // methods
 //------------------------------------------------------------------------------
 
 	/// @brief	Opens and parses a json document.
@@ -53,6 +53,19 @@ public: // file io
     /// @brief Write a message to the trace log.
     /// @param traceMessage The message to write.
     static void WriteToTraceLog(std::string const& traceMessage);
+
+
+    /// @brief  copies a value to the clipbaord
+    /// @tparam ValueType   the type of value to copy to the clipboard
+    /// @param  value       the value to copy to the clipboard
+    template< typename ValueType >
+    static void CopyToClipboard( ValueType const& value );
+
+    /// @brief  pastes the clipboard into a value
+    /// @tparam ValueType   the type of value to paste the clipboard into
+    /// @param  value       the value to paste the clipboard into
+    template< typename ValueType >
+    static void PasteFromClipboard( ValueType& value );
 
 //-----------------------------------------------------------------------------
 public: // reading
@@ -106,6 +119,13 @@ public: // writing
     /// @return the json data of the vector
     template< int size, typename ValueType >
     static nlohmann::ordered_json Write( glm::vec< size, ValueType > const& value );
+
+//-----------------------------------------------------------------------------
+private: // static variables
+//-----------------------------------------------------------------------------
+    
+    /// @brief  clipboard used for copy and pasting data around the editor
+    static nlohmann::ordered_json m_Clipboard;
 
 //-----------------------------------------------------------------------------
 private: // pointer-aware methods
