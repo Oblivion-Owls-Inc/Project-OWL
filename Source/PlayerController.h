@@ -5,7 +5,7 @@
 /// @author Aidan Straker (aidan.straker)
 /// @date   October 2023
 ///
-/// @copyright © 2023 DigiPen (USA) Corporation.
+/// @copyright (c) 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 
 #pragma once
@@ -42,11 +42,11 @@ public: // methods
 	virtual void OnFixedUpdate() override;
 
     /// @brief called when this Component's Entity is added to the Scene
-    virtual void OnInit();
+    virtual void OnInit() override;
 
     /// @brief  called when this Component's Entity is removed from the Scene
     /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
-    virtual void OnExit();
+    virtual void OnExit() override;
 
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() override;
@@ -57,19 +57,19 @@ private: // player movement
 
     /// @brief private helper function to move the player
     /// @return if the player moved Right or not
-    bool MoveRight();
+    bool moveRight();
 
     /// @brief protected helper function to move the player
     /// @return if the player moved Left or not
-    bool MoveLeft();
+    bool moveLeft();
 
     /// @brief protected helper function to move the player
     /// @return if the player Jumped or not
-    bool MoveUp();
+    bool moveUp();
 
     /// @brief protected helper function to move the player
     /// @return if the player moved Down or not
-    bool MoveDown();
+    bool moveDown();
 
 //-----------------------------------------------------------------------------
 private: // member variables
@@ -87,7 +87,7 @@ private: // member variables
     glm::vec2 m_downwardDirection;
     // All the names of the animations for the player.
     std::string m_animationNames[4];
-    // A cached instance of the parent's rigidbody.
+    // A cached instance of the parent's Rigidbody.
     RigidBody* m_RigidBody;
     // A cached instance of the parent's animation.
     Animation* m_Animation;
@@ -150,4 +150,15 @@ private: // copying
 
     /// @brief Copy constructor.
     PlayerController(PlayerController const& other);
+
+
+//-----------------------------------------------------------------------------
+private: // Helper Functions
+//-----------------------------------------------------------------------------
+
+    /// @brief Allows all vector attributes to be accessed by the editor.
+    void vectorInspector();
+    /// @brief Allows all animation attributes to be accessed by the editor.
+    void animationInspector();
+
 };

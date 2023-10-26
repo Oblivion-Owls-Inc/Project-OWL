@@ -5,7 +5,7 @@
 /// @author Aidan Straker (aidan.straker)
 /// @date   October 2023
 ///
-/// @copyright © 2023 DigiPen (USA) Corporation.
+/// @copyright (c) 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 #include "PlayerController.h" 
 #include "BehaviorSystem.h"     // GetInstance, AddBehavior, RemoveBehavior
@@ -37,15 +37,16 @@ PlayerController::PlayerController() :
     m_rightDirection(0.0f, 0.0f),
     m_upwardDirection(0.0f, 0.0f),
     m_downwardDirection(0.0f, 0.0f),
+    m_animationNames(),
     m_RigidBody(nullptr),
     m_Animation(nullptr),
-    m_animationNames(),
     m_playerAnimations()
 {}
 
 /// @brief Destructor
 PlayerController::~PlayerController()
 {}
+
 
 ///----------------------------------------------------------------------------
 /// Public: methods
@@ -55,9 +56,9 @@ PlayerController::~PlayerController()
 void PlayerController::OnInit()
 {
 	BehaviorSystem<Behavior>::GetInstance()->AddBehavior(this);
-    // Get the parent's rigidbody component.
+    // Get the parent's RigidBody component.
     m_RigidBody = GetParent()->GetComponent<RigidBody>();
-    // Get the parent' animation component.
+    // Get the parent's Animation component.
     m_Animation = GetParent()->GetComponent<Animation>();
 
     // Get all the player's animations
@@ -76,7 +77,7 @@ void PlayerController::OnExit()
 /// @brief Used by the Debug System to display information about this Component.
 void PlayerController::Inspector()
 {
-    
+    vectorInspector();
 }
 
 /// @brief on fixed update check which input is being pressed.
@@ -85,25 +86,25 @@ void PlayerController::OnFixedUpdate()
     // The normalised direction vector.
     glm::vec2 direction = { 0.0f, 0.0f };
 
-    if (MoveRight())
+    if (moveRight())
     {
         // 0 is right.
         m_Animation->SetAsset(m_playerAnimations[0]);
         direction += m_rightDirection;
     }
-    if (MoveLeft())
+    if (moveLeft())
     {
         // 1 is left
         m_Animation->SetAsset(m_playerAnimations[1]);
         direction += m_leftDirection;
     }
-    if (MoveUp())
+    if (moveUp())
     {
         // 2 is up.
         m_Animation->SetAsset(m_playerAnimations[2]);
         direction += m_upwardDirection;
     }
-	if (MoveDown())
+	if (moveDown())
 	{
         // 3 is down.
         m_Animation->SetAsset(m_playerAnimations[3]);
@@ -124,28 +125,28 @@ void PlayerController::OnFixedUpdate()
 
 /// @brief  Check if the 'D' key is being pressed.
 /// @return Is the 'D' key being pressed?
-bool PlayerController::MoveRight()
+bool PlayerController::moveRight()
 {
 	return input->GetKeyDown(GLFW_KEY_D);
 }
 
 /// @brief  Check if the 'A' key is being pressed.
 /// @return Is the 'A' key being pressed?
-bool PlayerController::MoveLeft()
+bool PlayerController::moveLeft()
 {
 	return input->GetKeyDown(GLFW_KEY_A);
 }
 
 /// @brief  Check if the 'W' key is being pressed.
 /// @return Is the 'W' key being pressed?
-bool PlayerController::MoveUp()
+bool PlayerController::moveUp()
 {
 	return input->GetKeyDown(GLFW_KEY_W);
 }
 
 /// @brief  Check if the 'S' key is being pressed.
 /// @return Is the 'S' key being pressed?
-bool PlayerController::MoveDown()
+bool PlayerController::moveDown()
 {
 	return input->GetKeyDown(GLFW_KEY_S);
 }
@@ -224,9 +225,9 @@ ReadMethodMap< PlayerController > PlayerController::s_ReadMethods = {
     { "animationName" , &readAnimationNames }
 };
 
-//-----------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 //  Copying/Cloning
-//-----------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 
 /// @brief Copy Constructor
 /// @param other A PlayerController to copy.
@@ -244,6 +245,7 @@ PlayerController::PlayerController(PlayerController const& other):
     for (int i = 0; i < NUM_ANIMATIONS; i++)
     {
         m_animationNames[i] = other.m_animationNames[i];
+        m_playerAnimations[i] = other.m_playerAnimations[i];
     }
 }
 
@@ -252,4 +254,21 @@ PlayerController::PlayerController(PlayerController const& other):
 Component* PlayerController::Clone() const
 {
     return (Component*) new PlayerController(*this);
+}
+//--------------------------------------------------------------------------------
+
+/// @brief Helper function for inspector.
+void PlayerController::vectorInspector()
+{
+    ImGui::InputFloat("Max Speed", &m_maxSpeed, 0.0f, 10.0f);
+    ImGui::InputFloat("Move Left", &m_leftDirection.x, -5.0f, 0.0f);
+    ImGui::InputFloat("Move Right", &m_rightDirection.x, 0.0f, 5.0f);
+    ImGui::InputFloat("Move Up", &m_upwardDirection.y, 0.0f, 10.0f);
+    ImGui::InputFloat("Move Down", &m_downwardDirection.y, -10.0f, 0.0f);
+}
+
+/// @brief Helper function for inspector.
+void PlayerController::animationInspector()
+{
+    ImGui::Text("Current Animation: %s", AssetLibrary<AnimationAsset>()->GetAssetName(m_Animation->GetAsset()));
 }
