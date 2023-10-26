@@ -2,7 +2,7 @@
     "FixedFrameDuration": 0.0167,
     "Systems": {
         "PlatformSystem": {
-            "WindowSize": [ 800, 600 ],
+            "WindowSize": [ 1280, 720 ],
             "WindowName": "Dig Deeper"
         },
         "InputSystem": {},
@@ -34,6 +34,8 @@
             "ShowFpsWindow": true,
             "ShowDebugWindow": false
         },
-        "SandboxSystem": {}
+        "SandboxSystem": {},
+        "ParticleSystem": {}
+
     }
 }

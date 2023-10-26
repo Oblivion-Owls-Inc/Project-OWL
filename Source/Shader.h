@@ -17,6 +17,13 @@ public:
     /// @param fragment_filepath    Fragment Shader file
     Shader(const char* vertex_filepath, const char* fragment_filepath);
 
+
+    /// @brief                      Constructor: compiles new shader from given 
+    ///                             compute shader's source code.
+    /// 
+    /// @param compute_filepath     Compute Shader file
+    Shader(const char* compute_filepath);
+
     /// @brief      Cleans up memory (deletes shader program)
     ~Shader();
 

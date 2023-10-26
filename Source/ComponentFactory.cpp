@@ -33,6 +33,8 @@
 #include "ConstructionBehavior.h"
 #include "Camera.h"
 #include "WavesBehavior.h"
+#include "ParticleSprite.h"
+#include "Emitter.h"
 
 
 //-----------------------------------------------------------------------------
@@ -137,7 +139,9 @@
         { "StaticBody"          , ComponentInfo< StaticBody >()           },
         { "ConstructionBehavior", ComponentInfo< ConstructionBehavior >() },
         { "Camera"              , ComponentInfo< Camera >()               },
-        { "WavesBehavior"       , ComponentInfo< WavesBehavior >()        }
+        { "WavesBehavior"       , ComponentInfo< WavesBehavior >()        },
+        { "Emitter"             , ComponentInfo< Emitter >()              },
+        { "ParticleSprite"      , ComponentInfo< ParticleSprite >()       }
     };
 
 //-----------------------------------------------------------------------------

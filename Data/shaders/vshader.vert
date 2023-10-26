@@ -11,9 +11,11 @@ uniform mat4 mvp = mat4(1,0,0,0,
                         0,0,1,0, 
                         0,0,0,1); // (it's transposed btw)
 
+uniform vec2 UV_offset = vec2(0,0);
+
 void main()
 {
     gl_Position = mvp * position;
 
-    v_UV = UV;
+    v_UV = UV + UV_offset;
 }
