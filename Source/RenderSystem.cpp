@@ -24,7 +24,6 @@ void RenderSystem::OnInit()
     m_DefaultMesh = new Mesh();
 
     // These 2 will be used to render basic colored and textured sprites.
-    m_Shaders["color"] = new Shader("Data/shaders/vshader.vert", "Data/shaders/color.frag");
     m_Shaders["texture"] = new Shader("Data/shaders/vshader.vert", "Data/shaders/texture.frag");
 
     // Enable transparency
