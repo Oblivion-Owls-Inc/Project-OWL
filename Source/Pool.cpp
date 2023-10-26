@@ -132,7 +132,6 @@ template<typename Value>
 void Pool<Value>::readBaseValue(nlohmann::ordered_json const& data)
 {
 	m_DefaultValue = Stream::Read<Value>(data);
-	Reset();
 }
 
 template<typename Value>

@@ -1,20 +1,23 @@
-///*****************************************************************/
-/// @file	 PlayerController.h
-/// @Author  Jax Clayton (jax.clayton@digipen.edu)
-/// @date	 9/15/2021
-/// @brief   PlayerController class header
-/// @details This class contains the PlayerController component
+///--------------------------------------------------------------------------//
+/// @file   PlayerController.h
+/// @brief  PlayerController Behaviour Class
 /// 
-/// @copyright  © 2023 DigiPen (USA) Corporation.
-///*****************************************************************/
+/// @author Aidan Straker (aidan.straker)
+/// @date   October 2023
+///
+/// @copyright (c) 2023 DigiPen (USA) Corporation.
+///--------------------------------------------------------------------------//
 
 #pragma once
-///*****************************************************************/
-/// Includes
-///*****************************************************************/
+//------------------------------------------------------------------------------
+// Includes:
+//------------------------------------------------------------------------------
 #include "Behavior.h"
 #include <glm/glm.hpp> // glm::vec2
 
+//------------------------------------------------------------------------------
+// Forward References:
+//------------------------------------------------------------------------------
 class RigidBody;
 class Animation;
 class AnimationAsset;
@@ -39,11 +42,14 @@ public: // methods
 	virtual void OnFixedUpdate() override;
 
     /// @brief called when this Component's Entity is added to the Scene
-    virtual void OnInit();
+    virtual void OnInit() override;
 
     /// @brief  called when this Component's Entity is removed from the Scene
     /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
-    virtual void OnExit();
+    virtual void OnExit() override;
+
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 private: // player movement
@@ -51,19 +57,19 @@ private: // player movement
 
     /// @brief private helper function to move the player
     /// @return if the player moved Right or not
-    bool MoveRight();
+    bool moveRight();
 
     /// @brief protected helper function to move the player
     /// @return if the player moved Left or not
-    bool MoveLeft();
+    bool moveLeft();
 
     /// @brief protected helper function to move the player
     /// @return if the player Jumped or not
-    bool MoveUp();
+    bool moveUp();
 
     /// @brief protected helper function to move the player
     /// @return if the player moved Down or not
-    bool MoveDown();
+    bool moveDown();
 
 //-----------------------------------------------------------------------------
 private: // member variables
@@ -81,7 +87,7 @@ private: // member variables
     glm::vec2 m_downwardDirection;
     // All the names of the animations for the player.
     std::string m_animationNames[4];
-    // A cached instance of the parent's rigidbody.
+    // A cached instance of the parent's Rigidbody.
     RigidBody* m_RigidBody;
     // A cached instance of the parent's animation.
     Animation* m_Animation;
@@ -116,7 +122,6 @@ private: // reading
     /// @param data The JSON file to read from.
     void readAnimationNames(nlohmann::ordered_json const& data);
 
-
     /// @brief the map of read methods for this Component
     static ReadMethodMap < PlayerController >  s_ReadMethods;
 
@@ -145,4 +150,15 @@ private: // copying
 
     /// @brief Copy constructor.
     PlayerController(PlayerController const& other);
+
+
+//-----------------------------------------------------------------------------
+private: // Helper Functions
+//-----------------------------------------------------------------------------
+
+    /// @brief Allows all vector attributes to be accessed by the editor.
+    void vectorInspector();
+    /// @brief Allows all animation attributes to be accessed by the editor.
+    void animationInspector();
+
 };

@@ -398,6 +398,9 @@
     <ClCompile Include="Source\WavesBehavior.cpp">
       <Filter>Game\Behaviors\WavesBehavior</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Stream.t.cpp">
+      <Filter>Engine\Framework\Serialization</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
