@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   ParticleSprite.h
+ * \brief  Renders particles using data from SSBO.
+ * 
+ * \author Eli Tsereteli
+ * \date   October 2023
+ *********************************************************************/
 #pragma once
 #include "Sprite.h"
 
@@ -31,6 +38,7 @@ private:
     /// @brief  called when entering a scene
     virtual void OnInit() override;
 
+    /// @brief  called when exiting a scene
     virtual void OnExit() override;
 
 

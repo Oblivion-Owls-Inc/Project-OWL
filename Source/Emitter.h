@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   Emitter.h
+ * \brief  Controls timing of particle emissions, and their init data.
+ * 
+ * \author Eli
+ * \date   October 2023
+ *********************************************************************/
 #pragma once
 #include "Behavior.h"
 #include "ParticleSystem.h"

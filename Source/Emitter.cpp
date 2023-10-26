@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   Emitter.cpp
+ * \brief  Controls timing of particle emissions, and their init data.
+ * 
+ * \author Eli
+ * \date   October 2023
+ *********************************************************************/
 #include "Emitter.h"
 #include "imgui.h"
 #include "BehaviorSystem.h"

@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   ParticleSprite.cpp
+ * \brief  Renders particles using data from SSBO.
+ * 
+ * \author Eli Tsereteli
+ * \date   October 2023
+ *********************************************************************/
 #include "glew.h"
 #include "ParticleSprite.h"
 #include "ParticleSystem.h" // SSBO

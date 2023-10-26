@@ -1,3 +1,11 @@
+/*****************************************************************//**
+ * \file   ParticleSystem.cpp
+ * \brief  Updates all particles using compute shader, spawns new ones
+ *         in accordance with emitters' timing.
+ * 
+ * \author Eli Tsereteli
+ * \date   October 2023
+ *********************************************************************/
 #include "glew.h"
 #include "ParticleSystem.h"
 #include "RenderSystem.h"
@@ -63,16 +71,6 @@ void ParticleSystem::OnUpdate(float dt)
 
     static float time = 0.0f;
     time += dt;
-
-
-    float pi = 3.14f;
-    if (Input()->GetKeyDown(GLFW_KEY_F))      // dir  spd   size   rot
-        SpawnParticles({ 30, Input()->GetMousePosWorld(),  pi/2, 2.5f, 0.2f, 0.0f,    // center
-                                                       {}, 2.0f, 2.5f, 0.0f, 1.0f});  // spread
-
-    if (Input()->GetMouseTriggered(GLFW_MOUSE_BUTTON_2))
-        ClearParticles();
-
 
     int size;
     if (m_Clear)
