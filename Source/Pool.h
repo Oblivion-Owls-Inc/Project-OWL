@@ -111,6 +111,10 @@ public: // reading
 	/// @param data - the json data to read from
 	void readActive(nlohmann::ordered_json const& data);
 
+    /// @brief Reads the Current Value from the json data
+    /// @param data - the json data to read from
+    void readCurrentValue(nlohmann::ordered_json const& data);
+
 	/// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override

@@ -48,6 +48,11 @@ public: // methods
     /// @return the std::type_index of the Component type
     static std::type_index GetTypeId( std::string const& typeName );
 
+    /// @brief  gets the name of the Component type with the specified type_index
+    /// @param  typeIndex    the type index of the Component type to get
+    /// @return the name of the Component type
+    static std::string GetTypeName( std::type_index const& typeINdex );
+
     /// @brief  gets the map of Component types be name
     /// @return the map of Component types by name
     static std::map< std::string, std::pair< std::type_index, Component* (*)() > > const& GetComponentTypes() { return s_ComponentTypes; }
