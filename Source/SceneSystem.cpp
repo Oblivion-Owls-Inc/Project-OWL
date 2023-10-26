@@ -21,6 +21,7 @@
 #include "Stream.h"
 
 #include <filesystem>
+#include <algorithm>
 
 //-----------------------------------------------------------------------------
 // public methods
@@ -303,28 +304,22 @@
 
     unsigned SceneSystem::listScenes()
     {
-        static int selectedScene = 0; // Default index for dropdown, you can save this
+        static int selectedScene = -1; // Default index for dropdown, you can save this
+        if ( selectedScene == -1 )
+        {
+            selectedScene = std::find( m_SceneNames.begin(), m_SceneNames.end(), m_CurrentSceneName ) - m_SceneNames.begin();
+        }
+
         if ( m_SceneNames.size() > 0 )
         {
-            if (ImGui::BeginCombo("Scenes", m_SceneNames[selectedScene].c_str())) // Display the selected scene name
+            if (ImGui::BeginCombo( "Scenes", m_SceneNames[ selectedScene ].c_str()) ) // Display the selected scene name
             {
                 getSceneNames();
                 for (int i = 0; i < m_SceneNames.size(); i++)
                 {
-                    if (m_SceneNames[i] == m_CurrentSceneName)
-                    {
-						continue;
-					}
-
-                    bool isSelected = (selectedScene == i);
-                    if (ImGui::Selectable(m_SceneNames[i].c_str(), isSelected))
+                    if ( ImGui::Selectable( m_SceneNames[i].c_str(), selectedScene == i ) )
                     {
                         selectedScene = i; // Change the selected scene
-                    }
-
-                    if (isSelected)
-                    {
-                        ImGui::SetItemDefaultFocus(); // Automatically focus on the selected item
                     }
                 }
                 ImGui::EndCombo();

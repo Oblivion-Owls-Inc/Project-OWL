@@ -272,11 +272,13 @@ nlohmann::ordered_json Sprite::Write() const
     data["Color"] = Stream::Write(m_Color);
     data["Opacity"] = m_Opacity;
     data["FrameIndex"] = m_FrameIndex;
-
-    std::string const& name = AssetLibrary<Texture>()->GetAssetName(m_Texture);
-    if (!name.empty())
+    if ( m_Texture != nullptr )
     {
-        data["Texture"] = name;
+        std::string const& name = AssetLibrary<Texture>()->GetAssetName(m_Texture);
+        if (!name.empty())
+        {
+            data["Texture"] = name;
+        }
     }
 
     return data;
