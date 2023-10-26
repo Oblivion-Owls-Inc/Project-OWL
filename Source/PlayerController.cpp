@@ -78,6 +78,7 @@ void PlayerController::OnExit()
 void PlayerController::Inspector()
 {
     vectorInspector();
+    animationInspector();
 }
 
 /// @brief on fixed update check which input is being pressed.
@@ -270,5 +271,20 @@ void PlayerController::vectorInspector()
 /// @brief Helper function for inspector.
 void PlayerController::animationInspector()
 {
-    ImGui::Text("Current Animation: %s", AssetLibrary<AnimationAsset>()->GetAssetName(m_Animation->GetAsset()));
+    std::string animNames[NUM_ANIMATIONS] = { "Right Animation", "Left Animation", "Up Animation", "Down Animation" };
+
+    for(int i = 0; i < NUM_ANIMATIONS; i++)
+    {
+        if(ImGui::BeginCombo(animNames[i].c_str(), AssetLibrary<AnimationAsset>()->GetAssetName(m_playerAnimations[i])))
+        {
+            for ( auto& [ name, animation ] : AssetLibrary<AnimationAsset>()->GetAssets() )
+            {
+                if (ImGui::Selectable(name.c_str(), m_playerAnimations[i] == animation))
+                {
+                    m_playerAnimations[i] = animation;
+                }
+            }
+            ImGui::EndCombo();
+        }
+    }
 }
