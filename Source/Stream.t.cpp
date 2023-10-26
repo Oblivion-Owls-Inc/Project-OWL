@@ -19,6 +19,29 @@
 #endif
 
 
+
+//------------------------------------------------------------------------------
+// template clipboard method definitions
+//------------------------------------------------------------------------------
+
+    /// @brief  copies a value to the clipbaord
+    /// @tparam ValueType   the type of value to copy to the clipboard
+    /// @param  value       the value to copy to the clipboard
+template< typename ValueType >
+void Stream::CopyToClipboard(ValueType const& value)
+{
+    m_Clipboard = Write(value);
+}
+
+/// @brief  pastes the clipboard into a value
+/// @tparam ValueType   the type of value to paste the clipboard into
+/// @param  value       the value to paste the clipboard into
+template< typename ValueType >
+void Stream::PasteFromClipboard(ValueType& value)
+{
+    Read(value, m_Clipboard);
+}
+
 //------------------------------------------------------------------------------
 // template read method definitions
 //------------------------------------------------------------------------------
