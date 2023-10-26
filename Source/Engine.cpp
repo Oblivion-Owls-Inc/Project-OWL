@@ -40,6 +40,7 @@
 #include "Tilemap.h"
 
 #include "SandboxSystem.h"
+#include "ParticleSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -178,7 +179,8 @@
         { "AssetLibrarySystem<TransformAnimation>",&addSystem< AssetLibrarySystem< TransformAnimation > > },
         { "AssetLibrarySystem<AnimationAsset>",    &addSystem< AssetLibrarySystem< AnimationAsset > >     },
 
-        { "SandboxSystem",                         &addSystem< SandboxSystem >                            }
+        { "SandboxSystem",                         &addSystem< SandboxSystem >                            },
+        { "ParticleSystem",                        &addSystem< ParticleSystem >                           }
        // { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >    },
        //{ "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >           },
        //{ "BehaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >       },

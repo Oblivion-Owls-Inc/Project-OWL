@@ -21,6 +21,9 @@
             "Ball1": {
                 "Filepath": "Data/Textures/Balls/Ball2.png"
             },
+            "Ball3": {
+                "Filepath": "Data/Textures/Balls/Ball3.png"
+            },
             "PlayerSheet": {
                 "Filepath": "Data/Textures/Full Spritesheet.png",
                 "SheetDimensions": [ 12, 15 ],
@@ -617,6 +620,15 @@
                     "Translation": [ 3.5, -7.5 ]
                 }
             }
+        },
+        {
+          "Name": "Emitter",
+          "Components": {
+            "Emitter": {},
+            "ParticleSprite": {
+              "Texture": "Ball3"
+            }
+          }
         }
     ]
 }

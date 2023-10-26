@@ -74,6 +74,26 @@ Shader::Shader(const char* vertex_filepath, const char* fragment_filepath)
     if (fragID)     glDeleteShader(fragID);
 }
 
+
+/// @brief                      Constructor: compiles new shader from given 
+///                             compute shader's source code.
+/// 
+/// @param compute_filepath     Compute Shader file
+Shader::Shader(const char* compute_filepath)
+{
+    unsigned int cmpID = CompileShader(compute_filepath, GL_COMPUTE_SHADER);
+    if (!cmpID)
+        return;
+
+    m_ShaderID = glCreateProgram();
+    glAttachShader(m_ShaderID, cmpID);
+    glLinkProgram(m_ShaderID);
+    glValidateProgram(m_ShaderID);
+
+    glDeleteShader(cmpID);
+}
+
+
 /// @brief      Cleans up memory (deletes shader program)
 Shader::~Shader()
 {
@@ -86,8 +106,10 @@ Shader::~Shader()
 /// @brief      Sets this shader as active.
 void Shader::use() { glUseProgram(m_ShaderID); }
 
+
 /// @brief      Gets this shader's ID  
 unsigned int Shader::GetID() { return m_ShaderID; }
+
 
 /// @brief      Gets the location of a uniform declared in the shader. Obtains it from the shader
 ///             on first request, then stores it locally for faster subsequent retrieval.
