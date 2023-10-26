@@ -262,10 +262,6 @@ Component* PlayerController::Clone() const
 void PlayerController::vectorInspector()
 {
     ImGui::InputFloat("Max Speed", &m_maxSpeed, 0.0f, 10.0f);
-    ImGui::InputFloat("Move Left", &m_leftDirection.x, -5.0f, 0.0f);
-    ImGui::InputFloat("Move Right", &m_rightDirection.x, 0.0f, 5.0f);
-    ImGui::InputFloat("Move Up", &m_upwardDirection.y, 0.0f, 10.0f);
-    ImGui::InputFloat("Move Down", &m_downwardDirection.y, -10.0f, 0.0f);
 }
 
 /// @brief Helper function for inspector.
