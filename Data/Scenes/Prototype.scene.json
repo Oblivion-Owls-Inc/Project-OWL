@@ -8,7 +8,8 @@
             },
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
-                "SheetDimensions": [ 16, 8 ]
+                "SheetDimensions": [ 16, 8 ],
+                "Pivot": [ 0, 1 ]
             },
             "4pxSheet": {
                 "Filepath": "Data/Textures/4px.png",
@@ -567,12 +568,13 @@
                     "Buildings": [
                         {
                             "Name": "Turret",
-                            "Cost": 10
+                            "Cost": 2
                         }
                     ],
                     "PlacementRange": 2.0,
                     "TilemapName": "Tiles",
-                    "PlayerName": "Player"
+                    "PlayerName": "Player",
+                    "ResourcesTextName": "ResourcesText"
                 },
                 "Transform": {},
                 "Sprite": {
@@ -582,42 +584,23 @@
             }
         },
         {
-            "Archetype": "Enemy",
+            "Name": "ResourcesText",
             "Components": {
                 "Transform": {
-                    "Translation": [ 3.4, -7.6 ]
-                }
-            }
-        },
-        {
-            "Archetype": "Enemy",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 3.4, -7.5 ]
-                }
-            }
-        },
-        {
-            "Archetype": "Enemy",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 3.5, -7.6 ]
-                }
-            }
-        },
-        {
-            "Archetype": "Enemy",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 3.5, -7.5 ]
-                }
-            }
-        },
-        {
-            "Archetype": "Enemy",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 3.5, -7.5 ]
+                    "Translation": [ -5, 3.6 ],
+                    "Scale": [ 0.2, 0.2 ],
+                    "IsDiegetic": false
+                },
+                "Text": {
+                    "String": "Resources: 0"
+                },
+                "TilemapSprite": {
+                    "Texture": "FontSheet",
+                    "Layer": 4
+                },
+                "Tilemap<int>": {
+                    "Dimensions": [ 41, 0 ],
+                    "TileScale": [ 0.12, 0.34 ]
                 }
             }
         },
