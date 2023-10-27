@@ -19,6 +19,12 @@ void BaseEntityBehavior::TakeDamage(int damage)
     }
 }
 
+BaseEntityBehavior::BaseEntityBehavior(BaseEntityBehavior const& other):
+	Behavior(other),
+	m_Health(other.m_Health)
+{
+}
+
 ///-----------------------------------------------------------------------------
 /// private: virtual override methods
 ///-----------------------------------------------------------------------------
