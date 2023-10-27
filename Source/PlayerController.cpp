@@ -41,6 +41,7 @@ PlayerController::PlayerController() :
     m_animationNames(),
     m_RigidBody(nullptr),
     m_Animation(nullptr),
+    m_AudioPlayer(nullptr),
     m_playerAnimations()
 {}
 
@@ -251,7 +252,8 @@ PlayerController::PlayerController(PlayerController const& other):
     m_upwardDirection(other.m_upwardDirection),
     m_downwardDirection(other.m_downwardDirection),
     m_RigidBody(nullptr),
-    m_Animation(nullptr)
+    m_Animation(nullptr),
+    m_AudioPlayer(nullptr)
 {
     // Copy the animations
     for (int i = 0; i < NUM_ANIMATIONS; i++)
