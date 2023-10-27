@@ -46,14 +46,21 @@ public: // accessors
 
     /// @brief  gets whether this AudioPlayer is currently playing anything
     /// @return whether this AudioPlayer is currently playing anything
-    bool IsPlaying() const;
+    bool GetIsPlaying() const;
+
+    /// @brief  gets the current time of the currently playing sound
+    /// @return the current time of the currently playing sound
+    float GetTime() const;
+    /// @brief  sets the current time of the currently playing sound
+    /// @param  time    the current time of the currently playing sound
+    void SetTime( float time );
 
     /// @brief  gets whether this AudioPlayer is paused
     /// @return whether this AudioPlayer is paused
-    bool IsPaused() const;
+    bool GetIsPaused() const;
     /// @brief  Sets whether or not this AudioPlayer is paused
     /// @param  paused   whether to pause or unpause the AudioPlayer
-    void SetPaused( bool paused );
+    void SetIsPaused( bool paused );
 
     /// @brief  gets the volume of this AudioPlayer
     /// @return the volume of this AudioPlayer
@@ -89,14 +96,34 @@ private: // members
     /// @brief  the maxumum variation of the pitch
     float m_PitchVariance = 0.0f;
 
+    /// @brief  whether this AudioPlayer is currently playing a sound
+    bool m_IsPlaying = false;
+
     /// @brief  The sound that this AudioPlayer will play
     Sound const* m_Sound = nullptr;
+    /// @brief  The channelGroup to play sounds in
+    FMOD::ChannelGroup* m_ChannelGroup = nullptr;
 
     /// @brief  The channel currently being used by this AudioPlayer
     FMOD::Channel* m_Channel = nullptr;
 
-    /// @brief  The channelGroup to play sounds in
-    FMOD::ChannelGroup* m_ChannelGroup = nullptr;
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+    
+    /// @brief  callback called when an fmod channel finishes playing
+    /// @param  channelControl  the channel the callback is from
+    /// @param  controlType     identifier to distinguish between channel and channelgroup
+    /// @param  callbackType    the type of callback
+    /// @param  commandData1    first callback parameter
+    /// @param  commandData2    second callback parameter
+    void onFmodChannelCallback(
+        FMOD_CHANNELCONTROL* channelControl,
+        FMOD_CHANNELCONTROL_TYPE controlType,
+        FMOD_CHANNELCONTROL_CALLBACK_TYPE callbackType,
+        void* commandData1,
+        void* commandData2
+    );
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -125,14 +152,16 @@ private: // reading
     /// @brief  map of the read methods for this Component
     static ReadMethodMap< AudioPlayer > s_ReadMethods;
 
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
     /// @brief  gets the map of read methods for this Component
     /// @return the map of read methods for this Component
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
-
-private:
 
     /// @brief  Writes all AudioPlayr data to a JSON file.
     /// @return The JSON file containing the data.
@@ -146,13 +175,13 @@ private: // copying
     /// @param  other   the other AudioPlayer to copy
     AudioPlayer( const AudioPlayer& other );
 
-    /// @brief  clones this AudioPlayer
-    /// @return the newly created clone of this AudioPlayer
-    virtual Component* Clone() const override;
-
 //-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------
+
+    /// @brief  clones this AudioPlayer
+    /// @return the newly created clone of this AudioPlayer
+    virtual AudioPlayer* Clone() const override;
 
     // diable = operator
     void operator=( const AudioPlayer& ) = delete;

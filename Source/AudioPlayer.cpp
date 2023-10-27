@@ -17,14 +17,7 @@
 
     /// @brief  constructs a new AudioPlayer
     AudioPlayer::AudioPlayer() :
-        Component( typeid( AudioPlayer ) ),
-        m_Sound( nullptr ),
-        m_Channel( nullptr ),
-        m_ChannelGroup( nullptr ),
-        m_Volume( 1.0f ),
-        m_Pitch( 1.0f ),
-        m_VolumeVariance( 0.0f ),
-        m_PitchVariance( 0.0f )
+        Component( typeid( AudioPlayer ) )
     {}
 
 //-----------------------------------------------------------------------------
@@ -45,6 +38,7 @@
 // public: accessors
 //-----------------------------------------------------------------------------
 
+
     /// @brief  gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
     Sound const* AudioPlayer::GetSound()
@@ -60,16 +54,29 @@
 
     /// @brief  gets whether this AudioPlayer is currently playing anything
     /// @return whether this AudioPlayer is currently playing anything
-    bool AudioPlayer::IsPlaying() const
+    bool AudioPlayer::GetIsPlaying() const
     {
-        bool isPlaying;
-        m_Channel->isPlaying( &isPlaying );
-        return isPlaying;
+        // TODO:
+    }
+
+    /// @brief  gets the current time of the currently playing sound
+    /// @return the current time of the currently playing sound
+    float AudioPlayer::GetTime() const
+    {
+        unsigned int time;
+        m_Channel->getPosition( &time, FMOD_TIMEUNIT_MS );
+        return (float)time / 1000;
+    }
+    /// @brief  sets the current time of the currently playing sound
+    /// @param  time    the current time of the currently playing sound
+    void AudioPlayer::SetTime( float time )
+    {
+        m_Channel->setPosition( (unsigned int)(time * 1000), FMOD_TIMEUNIT_MS );
     }
 
     /// @brief  gets whether this AudioPlayer is paused
     /// @return whether this AudioPlayer is paused
-    bool AudioPlayer::IsPaused() const
+    bool AudioPlayer::GetIsPaused() const
     {
         bool paused;
         m_Channel->getPaused( &paused );
@@ -77,7 +84,7 @@
     }
     /// @brief  Sets whether or not this AudioPlayer is paused
     /// @param  paused   whether to pause or unpause the AudioPlayer
-    void AudioPlayer::SetPaused( bool paused )
+    void AudioPlayer::SetIsPaused( bool paused )
     {
         m_Channel->setPaused( paused );
     }
@@ -119,6 +126,27 @@
     void AudioPlayer::SetVolumeVariance( float _volumeVariance )
     {
         m_VolumeVariance = _volumeVariance;
+    }
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  callback called when an fmod channel finishes playing
+    /// @param  channelControl  the channel the callback is from
+    /// @param  controlType     identifier to distinguish between channel and channelgroup
+    /// @param  callbackType    the type of callback
+    /// @param  commandData1    first callback parameter
+    /// @param  commandData2    second callback parameter
+    void onFmodChannelCallback(
+        FMOD_CHANNELCONTROL* channelControl,
+        FMOD_CHANNELCONTROL_TYPE controlType,
+        FMOD_CHANNELCONTROL_CALLBACK_TYPE callbackType,
+        void* commandData1,
+        void* commandData2
+    )
+    {
+        // TODO
     }
 
 //-----------------------------------------------------------------------------
