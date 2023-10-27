@@ -62,12 +62,3 @@ void BasicEntityBehavior::readHealth(nlohmann::ordered_json const& data)
 ///----------------------------------------------------------------------------
 /// Public: Writing
 ///----------------------------------------------------------------------------
-
-/// @brief  write all component data to a JSON object
-nlohmann::ordered_json BasicEntityBehavior::Write() const
-{
-    nlohmann::ordered_json data;
-    data["Health"] = m_Health.Write();
-    return data;
-}
-

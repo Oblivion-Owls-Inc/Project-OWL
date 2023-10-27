@@ -93,7 +93,7 @@
     {
         nlohmann::ordered_json data;
 
-        data["Health"] = BasicEntityBehavior::Write();
+        data["Health"] = m_Health.Write();
         data["PathfinderName"] = m_PathfinderName;
         data["Speed"] = m_Speed;
 
