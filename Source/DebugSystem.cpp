@@ -113,10 +113,7 @@ void DebugSystem::DebugWindow()
 {
     //ImGui::ShowDemoWindow();
 
-    if ( !ImGui::Begin( "Debug Window" ) )
-    {
-        return;
-    }
+    ImGui::Begin( "DebugWindow" );
 
     static bool gameplayRunning = true;
     if ( ImGui::Button( gameplayRunning ? "Disable gameplay (editor only)" : "Enable gameplay" ) )
@@ -140,6 +137,7 @@ void DebugSystem::DebugWindow()
     
     if ( ImGui::Button( m_ShowFpsWindow ? "Show FPS" : "Hide FPS" ) )
     {
+        m_ShowFpsWindow = !m_ShowFpsWindow;
         m_ShowFpsWindow = !m_ShowFpsWindow;
     }
     
