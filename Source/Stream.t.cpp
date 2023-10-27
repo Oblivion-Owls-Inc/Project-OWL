@@ -256,7 +256,7 @@ void Stream::Read(ValueType& value, nlohmann::ordered_json const& json, IsISeria
         auto it = readMethods.find(name);
         if (it == readMethods.end())
         {
-            std::cerr << "JSON Error: unrecognized token " << name << " encountered while trying to read " <<
+            std::cerr << "JSON Warning: unrecognized token " << name << " encountered while trying to read " <<
                 typeid(ValueType).name() << std::endl;
             continue;
         }

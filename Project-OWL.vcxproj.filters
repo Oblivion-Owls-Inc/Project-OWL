@@ -195,6 +195,9 @@
     <Filter Include="Engine\Entity\Component\Sprite\ParticleSprite">
       <UniqueIdentifier>{b31df122-b6ac-40e0-894e-9df749af7fa2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\CheatSystem">
+      <UniqueIdentifier>{1dbe9dbc-86de-434f-8fd4-19d968e00052}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -418,6 +421,9 @@
     </ClCompile>
     <ClCompile Include="Source\ParticleSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\ParticleSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CheatSystem.cpp">
+      <Filter>Engine\Systems\CheatSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -645,6 +651,9 @@
     </ClInclude>
     <ClInclude Include="Source\ParticleSprite.h">
       <Filter>Engine\Entity\Component\Sprite\ParticleSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CheatSystem.h">
+      <Filter>Engine\Systems\CheatSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

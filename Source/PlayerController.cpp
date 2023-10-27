@@ -1,12 +1,12 @@
-///--------------------------------------------------------------------------//
+///-----------------------------------------------------------------------------//
 /// @file   PlayerController.cpp
-/// @brief  PlayerController Bheaviour Class
+/// @brief  PlayerController Behaviour Class
 /// 
 /// @author Aidan Straker (aidan.straker)
 /// @date   October 2023
 ///
 /// @copyright (c) 2023 DigiPen (USA) Corporation.
-///--------------------------------------------------------------------------//
+///-----------------------------------------------------------------------------//
 #include "PlayerController.h" 
 #include "BehaviorSystem.h"     // GetInstance, AddBehavior, RemoveBehavior
 #include "InputSystem.h"        // GetInstance, GetKeyDown
@@ -14,7 +14,7 @@
 #include "Animation.h"          // SetAsset
 #include "AudioPlayer.h"
 #include "AnimationAsset.h"
-#include "AssetLibrarySystem.h" // GetAssest
+#include "AssetLibrarySystem.h" // GetAsset
 #include "DebugSystem.h"
 
 ///----------------------------------------------------------------------------
