@@ -421,7 +421,7 @@
         json[ "BuildingIndex" ] = Stream::Write( m_BuildingIndex );
         json[ "MiningTime" ] = Stream::Write( m_MiningTime );
         json[ "CurrentResources" ] = Stream::Write( m_CurrentResources );
-        json[ "ResourcesTextName" ] = Stream::Write( m_CurrentResources );
+        json[ "ResourcesTextName" ] = Stream::Write( m_ResourcesTextName );
 
         return json;
     }
