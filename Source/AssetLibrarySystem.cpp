@@ -135,7 +135,7 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
             }
         }
 
-        return nullptr;
+        return "";
     }
 
 
