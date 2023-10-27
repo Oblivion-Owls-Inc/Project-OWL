@@ -1,5 +1,10 @@
 {
     "Assets": {
+        "Sounds": {
+            "Music": {
+                "Filepath": "Data/Sounds/test.mp3"
+            }
+        },
         "Textures": {
             "Turret": {
                 "Filepath": "Data/Textures/Turret.png",
@@ -138,6 +143,16 @@
         }
     },
     "Entities": [
+        {
+            "Name": "Music",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": "Music",
+                    "PlayOnInit": true,
+                    "DefaultLoopCount": 0
+                }
+            }
+        },
         {
             "Name": "Wave",
             "Components": {
@@ -605,13 +620,13 @@
             }
         },
         {
-          "Name": "Emitter",
-          "Components": {
-            "Emitter": {},
-            "ParticleSprite": {
-              "Texture": "Ball3"
+            "Name": "Emitter",
+            "Components": {
+                "Emitter": {},
+                "ParticleSprite": {
+                    "Texture": "Ball3"
+                }
             }
-          }
         }
     ]
 }

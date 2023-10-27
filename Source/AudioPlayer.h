@@ -20,110 +20,200 @@ class AudioPlayer : public Component
 public: // constructor / Destructor
 //-----------------------------------------------------------------------------
 
+
     /// @brief  constructs a new AudioPlayer
     AudioPlayer();
 
-    /// @brief  destroys this AudioPlayer
-    ~AudioPlayer() = default;
 
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  Starts playing this AudioPlayer's sound
     void Play();
+
+
+    /// @brief  Stops the currently playing channel
+    /// @note   FULLY STOPS the channel, doesn't just pause it
+    void Stop();
+
+
+    /// @brief  adds a callback function to be called when the sound completes
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @param  callback    the function to be called when the sound completes
+    /// @note   YOU MUST REMOVE THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
+    void AddOnSoundCompleteCallback( unsigned ownerId, std::function< void() > callback );
+
+    /// @brief  removes a callback function to be called when the sound completes
+    /// @param  ownerId the ID of the owner of the callback to remove
+    void RemoveOnSoundCompleteCallback( unsigned ownerId );
+
 
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
 
+
     /// @brief  gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
     Sound const* GetSound();
+
     /// @brief  sets the SOund that this AudioPlayer plays
     /// @param  sound   the sound that this AudioPlayer will play
     void SetSound( Sound const* sound );
+
 
     /// @brief  gets whether this AudioPlayer is currently playing anything
     /// @return whether this AudioPlayer is currently playing anything
     bool GetIsPlaying() const;
 
+
     /// @brief  gets the current time of the currently playing sound
     /// @return the current time of the currently playing sound
     float GetTime() const;
+
     /// @brief  sets the current time of the currently playing sound
     /// @param  time    the current time of the currently playing sound
     void SetTime( float time );
 
+
     /// @brief  gets whether this AudioPlayer is paused
     /// @return whether this AudioPlayer is paused
     bool GetIsPaused() const;
+
     /// @brief  Sets whether or not this AudioPlayer is paused
     /// @param  paused   whether to pause or unpause the AudioPlayer
     void SetIsPaused( bool paused );
 
+
     /// @brief  gets the volume of this AudioPlayer
     /// @return the volume of this AudioPlayer
     float GetVolume() const;
+
     /// @brief  sets the volume of this AudioPlayer
     /// @param  volume  the volume for this AudioPlayer
     void SetVolume( float volume );
 
+
+    /// @brief  gets the pitch of this AudioPlayer
+    /// @return the pitch of this AudioPlayer
+    float GetPitch() const;
+
+    /// @brief  sets the pitch of this AudioPlayer
+    /// @param  pitch  the pitch for this AudioPlayer
+    void SetPitch( float pitch );
+
+
     /// @brief  sets the pitch variance of this AudioPlayer
     /// @return the pitch variance of this AudioPlayer
     float GetPitchVariance() const;
+
     /// @brief  gets the pitch varaince of this AudioPlayer
     /// @param  pitchVariance   the pitch varaince for this AudioPlayer
     void SetPitchVariance( float pitchVariance );
 
+
     /// @brief  sets the volume variance of this AudioPlayer
     /// @return the volume variance of this AudioPlayer
     float GetVolumeVariance() const;
+
     /// @brief  gets the volume varaince of this AudioPlayer
     /// @param  volumeVariance  the volume varaince for this AudioPlayer
     void SetVolumeVariance( float volumeVariance );
+
+
+    /// @brief  gets the default loop count of this AudioPlayer
+    /// @return the default loop count of this AudioPlayer
+    int GetDefaultLoopCount() const;
+
+    /// @brief  sets the default loop count of this AudioPlayer
+    /// @param  defaultLoopCount    the default loop count of this AudioPlayer
+    void SetDefaultLoopCount( int defaultLoopCount );
+
+
+    /// @brief  gets the current loop count
+    /// @return the current loop count
+    int GetLoopCount() const;
+
+    /// @brief  sets the current loop count
+    /// @param  loopCount   the current loop count
+    void SetLoopCount( int loopCount );
+
+
+//-----------------------------------------------------------------------------
+private: // virtual override methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  called once when entering the scene
+    virtual void OnInit() override;
+
+
+    /// @brief  shows the inspector for AudioPlayer
+    virtual void Inspector() override;
+
 
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
+
     /// @brief  the relative volume this AudioPlayer will play at
     float m_Volume = 1.0f;
+
     /// @brief  the pitch this AudioPlayer will play at
     float m_Pitch = 1.0f;
+
     /// @brief  the maximum variation of the volume
     float m_VolumeVariance = 0.0f;
+
     /// @brief  the maxumum variation of the pitch
     float m_PitchVariance = 0.0f;
 
-    /// @brief  whether this AudioPlayer is currently playing a sound
-    bool m_IsPlaying = false;
+
+    /// @brief  whether the AudioPlayer should start playing on init
+    bool m_PlayOnInit = false;
+
+
+    /// @brief  the number of loops to play
+    int m_DefaultLoopCount = 0;
+
 
     /// @brief  The sound that this AudioPlayer will play
     Sound const* m_Sound = nullptr;
+
     /// @brief  The channelGroup to play sounds in
     FMOD::ChannelGroup* m_ChannelGroup = nullptr;
 
+
     /// @brief  The channel currently being used by this AudioPlayer
     FMOD::Channel* m_Channel = nullptr;
+
+
+    /// @brief  callbacks to call whenever a sound finishes playing
+    std::map< unsigned, std::function< void() > > m_OnSoundCompleteCallbacks = {};
+
 
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
     
+
     /// @brief  callback called when an fmod channel finishes playing
     /// @param  channelControl  the channel the callback is from
     /// @param  controlType     identifier to distinguish between channel and channelgroup
     /// @param  callbackType    the type of callback
     /// @param  commandData1    first callback parameter
     /// @param  commandData2    second callback parameter
-    void onFmodChannelCallback(
+    static FMOD_RESULT F_CALLBACK onFmodChannelCallback(
         FMOD_CHANNELCONTROL* channelControl,
         FMOD_CHANNELCONTROL_TYPE controlType,
         FMOD_CHANNELCONTROL_CALLBACK_TYPE callbackType,
         void* commandData1,
         void* commandData2
     );
+
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -149,12 +239,21 @@ private: // reading
     /// @param  data    the json data
     void readPitchVariance( nlohmann::ordered_json const& data );
 
+    /// @brief  read DefaultLoopCount of this component from json
+    /// @param  data    the json data
+    void readDefaultLoopCount( nlohmann::ordered_json const& data );
+
+    /// @brief  read PlayOnInit of this component from json
+    /// @param  data    the json data
+    void readPlayOnInit( nlohmann::ordered_json const& data );
+
     /// @brief  map of the read methods for this Component
     static ReadMethodMap< AudioPlayer > s_ReadMethods;
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
 //-----------------------------------------------------------------------------
+
 
     /// @brief  gets the map of read methods for this Component
     /// @return the map of read methods for this Component
@@ -163,28 +262,37 @@ public: // reading / writing
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+
     /// @brief  Writes all AudioPlayr data to a JSON file.
     /// @return The JSON file containing the data.
     virtual nlohmann::ordered_json Write() const override;
+
 
 //-----------------------------------------------------------------------------
 private: // copying
 //-----------------------------------------------------------------------------
 
+
     /// @brief  copy-constructor for the AudioPlayer
     /// @param  other   the other AudioPlayer to copy
     AudioPlayer( const AudioPlayer& other );
+
 
 //-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------
 
+
     /// @brief  clones this AudioPlayer
     /// @return the newly created clone of this AudioPlayer
-    virtual AudioPlayer* Clone() const override;
+    virtual AudioPlayer* Clone() const override
+    {
+        return new AudioPlayer( *this );
+    }
 
     // diable = operator
     void operator=( const AudioPlayer& ) = delete;
+
 
 //-----------------------------------------------------------------------------
 
