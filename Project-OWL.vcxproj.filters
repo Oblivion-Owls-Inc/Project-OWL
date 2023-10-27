@@ -195,6 +195,9 @@
     <Filter Include="Engine\Entity\Component\Sprite\ParticleSprite">
       <UniqueIdentifier>{b31df122-b6ac-40e0-894e-9df749af7fa2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\BaseEntityBehavior">
+      <UniqueIdentifier>{5821ef37-47bc-4d79-a76b-4e247b51bed3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -418,6 +421,12 @@
     </ClCompile>
     <ClCompile Include="Source\ParticleSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\ParticleSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BaseBehavior.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BaseEntityBehavior.cpp">
+      <Filter>Game\BaseEntityBehavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -645,6 +654,12 @@
     </ClInclude>
     <ClInclude Include="Source\ParticleSprite.h">
       <Filter>Engine\Entity\Component\Sprite\ParticleSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BaseBehavior.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BaseEntityBehavior.h">
+      <Filter>Game\BaseEntityBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
