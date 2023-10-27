@@ -1,5 +1,11 @@
 {
     "Assets": {
+        "Sounds": {
+            "PlayerFootSteps": {
+                "IsLooping": true,
+                "Filepath":  "Data/Sounds/test.mp3"
+            }
+        },
         "Textures": {
             "Turret": {
                 "Filepath": "Data/Textures/Turret.png",
@@ -529,6 +535,9 @@
             "Components": {
                 "Transform": {
                     "Translation": [ 0.5, 4.5 ]
+                },
+                "AudioPlayer": {
+                    "Sound": "PlayerFootSteps"
                 },
                 "Sprite": {
                     "Texture": "PlayerSheet"

@@ -12,6 +12,7 @@
 #include "InputSystem.h"        // GetInstance, GetKeyDown
 #include "RigidBody.h"          // ApplyVelocity
 #include "Animation.h"          // SetAsset
+#include "AudioPlayer.h"
 #include "AnimationAsset.h"
 #include "AssetLibrarySystem.h" // GetAssest
 #include "DebugSystem.h"
@@ -60,6 +61,8 @@ void PlayerController::OnInit()
     m_RigidBody = GetParent()->GetComponent<RigidBody>();
     // Get the parent's Animation component.
     m_Animation = GetParent()->GetComponent<Animation>();
+    // Get the parent's AudioPlayer component.
+    m_AudioPlayer = GetParent()->GetComponent<AudioPlayer>();
 
     // Get all the player's animations
     for (int i = 0; i < NUM_ANIMATIONS; i++)
@@ -86,6 +89,14 @@ void PlayerController::OnFixedUpdate()
 {
     // The normalised direction vector.
     glm::vec2 direction = { 0.0f, 0.0f };
+
+    // if((input->GetKeyTriggered(GLFW_KEY_D)) ||
+    //    (input->GetKeyTriggered(GLFW_KEY_A)) ||
+    //    (input->GetKeyTriggered(GLFW_KEY_W)) ||
+    //    (input->GetKeyTriggered(GLFW_KEY_S)))
+    // {
+    //     m_AudioPlayer->Play();
+    // }
 
     if (moveRight())
     {

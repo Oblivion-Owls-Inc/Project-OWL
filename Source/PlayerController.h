@@ -21,6 +21,7 @@
 class RigidBody;
 class Animation;
 class AnimationAsset;
+class AudioPlayer;
 
 class PlayerController : public Behavior
 {
@@ -91,6 +92,7 @@ private: // member variables
     RigidBody* m_RigidBody;
     // A cached instance of the parent's animation.
     Animation* m_Animation;
+    AudioPlayer* m_AudioPlayer;
     // All the animations for the player.
     AnimationAsset const* m_playerAnimations[4];
 
