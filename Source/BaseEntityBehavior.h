@@ -79,6 +79,24 @@ private: // Member Variables
     /// @brief  the Health of the Enemy
     Pool<int> m_Health;
 
+///-------------------------------------------------------------------------------------------
+public: // copying
+///-------------------------------------------------------------------------------------------
+
+    /// @brief  creates a new clone of this Component
+    /// @return the newly created clone
+    virtual BaseEntityBehavior* Clone() const override
+    {
+        return new BaseEntityBehavior( *this );
+    }
+
+///-------------------------------------------------------------------------------------------
+private: // copying
+///-------------------------------------------------------------------------------------------
+    
+    /// @brief  copy constructor
+    /// @param  other   the BaseEntityBehavior to copy
+    BaseEntityBehavior(BaseEntityBehavior const& other);
 
 };
 
