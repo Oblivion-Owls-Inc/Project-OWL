@@ -43,14 +43,6 @@ protected: // Reading
     void readHealth(nlohmann::ordered_json const& data);
 
 ///-----------------------------------------------------------------------------
-public: // reading / writing
-///-----------------------------------------------------------------------------
-
-    /// @brief  write all component data to a JSON object
-    /// @return the JSON object containing the component data
-    nlohmann::ordered_json Write() const;   
-
-///-----------------------------------------------------------------------------
 public: // methods
 ///-----------------------------------------------------------------------------
     
@@ -60,7 +52,7 @@ public: // methods
 
 
 ///-----------------------------------------------------------------------------
-private: // Member Variables
+protected: // Member Variables
 ///-----------------------------------------------------------------------------
 
     /// @brief  the Health of the Enemy
