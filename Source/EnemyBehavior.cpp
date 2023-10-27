@@ -23,7 +23,7 @@
 //-----------------------------------------------------------------------------
 
     EnemyBehavior::EnemyBehavior() :
-        BaseEntityBehavior( typeid( EnemyBehavior ) )
+        BasicEntityBehavior( typeid( EnemyBehavior ) )
     {}
 
 //-----------------------------------------------------------------------------
@@ -33,8 +33,7 @@
     /// @brief initializes the component
     void EnemyBehavior::OnInit()
     {
-        Behaviors<Behavior>()->AddBehavior(this);
-        GetHealth()->OnInit();
+        BasicEntityBehavior::OnInit();
 
         m_Pathfinder = Entities()->GetEntity( m_PathfinderName )->GetComponent< Pathfinder >();
         m_RigidBody = GetParent()->GetComponent< RigidBody >();
@@ -79,7 +78,7 @@
 
     /// @brief  map of read methods
     ReadMethodMap< EnemyBehavior > const EnemyBehavior::s_ReadMethods = {
-	    { "Health"        , &BaseEntityBehavior::readHealth    },
+	    { "Health"        , &BasicEntityBehavior::readHealth    },
         { "PathfinderName", &EnemyBehavior::readPathfinderName },
         { "Speed"         , &EnemyBehavior::readSpeed          }
     };
@@ -89,6 +88,18 @@
 /// public: writing
 ///----------------------------------------------------------------------------
 
+    /// @brief  write all component data to a JSON object
+    nlohmann::ordered_json EnemyBehavior::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["Health"] = BasicEntityBehavior::Write();
+        data["PathfinderName"] = m_PathfinderName;
+        data["Speed"] = m_Speed;
+
+        return data;
+    }
+
 
 ///----------------------------------------------------------------------------
 /// private: copying
@@ -97,7 +108,7 @@
     /// @brief  copy constructor
     /// @param  other   the other EnemyBehavior to copy
     EnemyBehavior::EnemyBehavior( EnemyBehavior const& other ) :
-        BaseEntityBehavior( other ),
+        BasicEntityBehavior( other ),
         m_PathfinderName( other.m_PathfinderName ),
         m_Speed( other.m_Speed )
     {}

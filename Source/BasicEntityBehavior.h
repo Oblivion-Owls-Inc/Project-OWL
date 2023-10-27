@@ -1,15 +1,15 @@
-#pragma once
 #include "Behavior.h"
 #include "Pool.h"
 
+#pragma once
 
-class BaseEntityBehavior :
+class BasicEntityBehavior :
     public Behavior
 {
 
 protected:
 
-    BaseEntityBehavior(std::type_index m_Type) :
+    BasicEntityBehavior(std::type_index m_Type) :
         Behavior(m_Type), m_Health("Health")
     {}
 
@@ -22,7 +22,7 @@ public: // accessors
     Pool<int>* GetHealth() { return &m_Health; }
 
 //-----------------------------------------------------------------------------
-private: // virtual override methods
+protected: // virtual override methods
 //-----------------------------------------------------------------------------
 
     /// @brief initializes the component
@@ -30,9 +30,6 @@ private: // virtual override methods
 
     /// @brief Called when the component is destroyed
     virtual void OnExit() override;
-
-    /// @brief Called at a fixed interval
-    virtual void OnFixedUpdate() override {};
 
     /// @brief  inspector for this component
     virtual void Inspector() override;
@@ -45,19 +42,9 @@ protected: // Reading
     /// @param  data    the json data to read from
     void readHealth(nlohmann::ordered_json const& data);
 
-    /// @brief  map of read methods
-    static ReadMethodMap< BaseEntityBehavior > const s_ReadMethods;
-
 ///-----------------------------------------------------------------------------
 public: // reading / writing
 ///-----------------------------------------------------------------------------
-
-    /// @brief  gets the map of read methods
-    /// @return the map of read methods
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
 
     /// @brief  write all component data to a JSON object
     /// @return the JSON object containing the component data
@@ -85,9 +72,9 @@ public: // copying
 
     /// @brief  creates a new clone of this Component
     /// @return the newly created clone
-    virtual BaseEntityBehavior* Clone() const override
+    virtual BasicEntityBehavior* Clone() const override
     {
-        return new BaseEntityBehavior( *this );
+        return new BasicEntityBehavior( *this );
     }
 
 ///-------------------------------------------------------------------------------------------
@@ -95,8 +82,8 @@ protected: // copying
 ///-------------------------------------------------------------------------------------------
     
     /// @brief  copy constructor
-    /// @param  other   the BaseEntityBehavior to copy
-    BaseEntityBehavior(BaseEntityBehavior const& other);
+    /// @param  other   the BasicEntityBehavior to copy
+    BasicEntityBehavior(BasicEntityBehavior const& other);
 
 };
 

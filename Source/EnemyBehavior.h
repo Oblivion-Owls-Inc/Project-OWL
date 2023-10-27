@@ -8,14 +8,14 @@
 
 
 #pragma once
-#include "BaseEntityBehavior.h"
+#include "BasicEntityBehavior.h"
 #include "Pool.h"
 
 class Pathfinder;
 class Transform;
 class RigidBody;
 
-class EnemyBehavior : public BaseEntityBehavior
+class EnemyBehavior : public BasicEntityBehavior
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructor
@@ -75,6 +75,9 @@ private: // Reading
 ///-----------------------------------------------------------------------------
 public: // reading / writing
 ///-----------------------------------------------------------------------------
+
+    /// @brief  write all component data to a JSON object
+    nlohmann::ordered_json Write() const;
 
     /// @brief  gets the map of read methods
     /// @return the map of read methods

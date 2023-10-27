@@ -183,7 +183,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\BaseEntityBehavior.cpp" />
+    <ClCompile Include="Source\BasicEntityBehavior.cpp" />
     <ClCompile Include="Source\BaseBehavior.cpp" />
     <ClCompile Include="Source\BulletBehavior.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
@@ -252,7 +252,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Stream.t.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\BaseEntityBehavior.h" />
+    <ClInclude Include="Source\BasicEntityBehavior.h" />
     <ClInclude Include="Source\BaseBehavior.h" />
     <ClInclude Include="Source\BulletBehavior.h" />
     <ClInclude Include="Source\Camera.h" />
