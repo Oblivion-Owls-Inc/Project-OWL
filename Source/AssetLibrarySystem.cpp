@@ -116,6 +116,7 @@ AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& n
             "Error: Asset of type \"" << typeid( AssetType ).name() <<
             "\" with name \"" << name <<
             "\" could not be found" << std::endl;
+        return nullptr;
     }
 }
 
