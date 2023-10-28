@@ -1,621 +1,421 @@
 {
-    "Assets": {
-        "Textures": {
-            "Turret": {
-                "Filepath": "Data/Textures/Turret.png",
-                "SheetDimensions": [ 19, 1 ],
-                "Pivot": [ 0.7, 0.6 ]
-            },
-            "FontSheet": {
-                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
-                "SheetDimensions": [ 16, 8 ]
-            },
-            "4pxSheet": {
-                "Filepath": "Data/Textures/4px.png",
-                "SheetDimensions": [ 4, 1 ],
-                "Pivot": [ 0, 1 ]
-            },
-            "Ball": {
-                "Filepath": "Data/Textures/Balls/Ball.png"
-            },
-            "Ball1": {
-                "Filepath": "Data/Textures/Balls/Ball2.png"
-            },
-            "PlayerSheet": {
-                "Filepath": "Data/Textures/Full Spritesheet.png",
-                "SheetDimensions": [ 12, 15 ],
-                "Pivot": [ 0.5, 0.38 ]
-            }
-        },
-        "Animations": {
-            "PlayerMoveDown": {
-                "Start": 0,
-                "End": 12,
-                "FrameRate": 12,
-                "IsLooping": true
-            },
-            "PlayerMoveUp": {
-                "Start": 12,
-                "End": 24,
-                "FrameRate": 12,
-                "IsLooping": true
-            },
-            "PlayerMoveRight": {
-                "Start": 24,
-                "End": 36,
-                "FrameRate": 12,
-                "IsLooping": true
-            },
-            "PlayerMoveLeft": {
-                "Start": 36,
-                "End": 48,
-                "FrameRate": 12,
-                "IsLooping": true
-            }
-        },
-        "Archetypes": {
-            "Enemy": {
-                "Name": "Enemy",
-                "Components": {
-                    "Sprite": {
-                        "Texture": "Ball",
-                        "Layer": 3
-                    },
-                    "Transform": {
-                        "Scale": [ 0.6, 0.6 ]
-                    },
-                    "RigidBody": {
-                        "Acceleration": [ 0.0, 0.0 ],
-                        "Drag": 4,
-                        "Restitution": 1
-                    },
-                    "CircleCollider": {
-                        "Radius": 0.3,
-                        "CollisionLayer": "Enemies",
-                        "CollisionLayerFlags": [ "Terrain", "Player", "Enemies" ]
-                    },
-                    "EnemyBehavior": {
-                        "Health": {
-                            "Active": true,
-                            "BaseValue": 40
-                        },
-                        "PathfinderName": "Tiles"
-                    }
-                }
-            },
-            "Bullet": {
-                "Name": "Bullet",
-                "Components": {
-                    "Sprite": {
-                        "Texture": "Ball1",
-                        "Layer": 2
-                    },
-                    "Transform": {
-                        "Scale": [ 0.3, 0.3 ]
-                    },
-                    "BulletBehavior": {
-                        "Lifetime": {
-                            "name": "Lifetime",
-                            "Active": true,
-                            "BaseValue": 3
-                        }
-                    },
-                    "CircleCollider": {
-                        "Radius": 0.1,
-                        "CollisionLayer": "Projectiles",
-                        "CollisionLayerFlags": [ "Enemies", "Terrain" ]
-                    },
-                    "RigidBody": {
-                        "Acceleration": [ 0.0, 0.0 ],
-                        "Restitution": 0,
-                        "Mass": 0.25
-                    }
-                }
-            },
-            "Turret": {
-                "Name": "Turret",
-                "Components": {
-                    "Sprite": {
-                        "Texture": "Turret",
-                        "Layer": 1
-                    },
-                    "Transform": {},
-                    "TurretBehavior": {
-                        "Range": 5,
-                        "BulletName": "Bullet",
-                        "BulletDamage": 10,
-                        "BulletSize": 0.3,
-                        "BulletSpeed": 10,
-                        "Target": "Enemy"
-                    }
-                }
-            }
-        }
+  "Assets": {
+    "Textures": {
+      "Background": {
+        "Filepath": "Data/Textures/Background.png",
+        "SheetDimensions": [ 1, 1 ]
+      },
+      "Turret": {
+        "Filepath": "Data/Textures/Turret.png",
+        "SheetDimensions": [ 19, 1 ],
+        "Pivot": [ 0.7, 0.6 ]
+      },
+      "FontSheet": {
+        "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+        "SheetDimensions": [ 16, 8 ]
+      },
+      "4pxSheet": {
+        "Filepath": "Data/Textures/4px.png",
+        "SheetDimensions": [ 4, 1 ],
+        "Pivot": [ 0, 1 ]
+      },
+      "Level Assets": {
+        "Filepath": "Data/Textures/Level_Assets.png",
+        "SheetDimensions": [ 16, 29 ],
+        "Pivot": [ 0, 1 ]
+      },
+      "Ball": {
+        "Filepath": "Data/Textures/Balls/Ball.png"
+      },
+      "Ball1": {
+        "Filepath": "Data/Textures/Balls/Ball2.png"
+      },
+      "PlayerSheet": {
+        "Filepath": "Data/Textures/Full Spritesheet.png",
+        "SheetDimensions": [ 12, 15 ],
+        "Pivot": [ 0.5, 0.38 ]
+      }
     },
-    "Entities": [
-        {
-            "Name": "Wave",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 0, 0 ]
-                },
-                "WavesBehavior": {
-                    "WaveData": [
-                        [ 20.0, 50.0 ],
-                        [ 30.0, 60.0 ],
-                        [ 40.0, 70.0 ]
-                    ],
-                    "AlternateSpawners": [
-                        [ 0, 0 ],
-                        [ 1, 1 ],
-                        [ 2, 2 ],
-                        [ -1, -1 ],
-                        [ -2, -2 ]
-                    ],
-                    "EnemyData": [
-                        [ 0, "Enemy", 15, 5.0, 7.0, 0 ],
-                        [ 0, "Enemy", 7, 3.0, 5.0, 0 ],
-                        [ 1, "Enemy", 5, 2.0, 2.0, 0 ],
-                        [ 2, "Enemy", 2, 6.0, 10.0, 0 ]
-                    ]
-
-                }
-            }
-        },
-        {
-            "Name": "Camera",
-            "Components": {
-                "Transform": {},
-                "Camera": {
-                    "Width": 20
-                }
-            }
-        },
-        {
-            "Name": "Tiles",
-            "Components": {
-                "Transform": {
-                    "Translation": [ -10, 8 ],
-                    "Scale": [ 1, 1 ]
-                },
-                "Tilemap<int>": {
-                    "TileData": [
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        1,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        1,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        0,
-                        0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    "Dimensions": [ 20, 16 ],
-                    "TileScale": [ 1, 1 ]
-                },
-                "Tilemap<Entity*>": {
-                    "Dimensions": [ 20, 16 ]
-                },
-                "TilemapSprite": {
-                    "Texture": "4pxSheet",
-                    "Layer": 0
-                },
-                "TilemapCollider": {
-                    "CollisionLayer": "Terrain"
-                },
-                "StaticBody": {
-                    "Restitution": 0
-                },
-                "Pathfinder": {
-                    "Destination": [ 0, 5 ],
-                    "Walkables": [ 0 ]
-                }
-            }
-        },
-        {
-            "Name": "Player",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 0.5, 4.5 ]
-                },
-                "Sprite": {
-                    "Texture": "PlayerSheet"
-                },
-                "CircleCollider": {
-                    "CollisionLayer": "Player",
-                    "CollisionLayerFlags": [ "Terrain", "Enemies" ],
-                    "Radius": 0.3
-                },
-                "RigidBody": {
-                    "Acceleration": [ 0, 0 ],
-                    "Drag": 12,
-                    "Restitution": 0
-                },
-                "PlayerController": {
-                    "left": [ -1, 0 ],
-                    "right": [ 1, 0 ],
-                    "up": [ 0, 1 ],
-                    "down": [ 0, -1 ],
-                    "maxSpeed": 1,
-                    "animationName": [ "PlayerMoveRight", "PlayerMoveLeft", "PlayerMoveUp", "PlayerMoveDown" ]
-                },
-                "Animation": {
-                    "Animation": "PlayerMoveRight",
-                    "IsRunning": true
-                }
-            }
-        },
-        {
-            "Name": "ConstructionManager",
-            "Components": {
-                "ConstructionBehavior": {
-                    "Buildings": [
-                        {
-                            "Name": "Turret",
-                            "Cost": 10
-                        }
-                    ],
-                    "PlacementRange": 2.0,
-                    "TilemapName": "Tiles",
-                    "PlayerName": "Player"
-                },
-                "Transform": {},
-                "Sprite": {
-                    "Opacity": 0,
-                    "Layer": 100
-                }
-            }
-        },
-        {
-            "Archetype": "Enemy",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 3.4, -7.6 ]
-                }
-            }
-        },
-        {
-            "Archetype": "Enemy",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 3.4, -7.5 ]
-                }
-            }
-        },
-        {
-            "Archetype": "Enemy",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 3.5, -7.6 ]
-                }
-            }
-        },
-        {
-            "Archetype": "Enemy",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 3.5, -7.5 ]
-                }
-            }
-        },
-        {
-            "Archetype": "Enemy",
-            "Components": {
-                "Transform": {
-                    "Translation": [ 3.5, -7.5 ]
-                }
-            }
+    "Animations": {
+      "PlayerMoveDown": {
+        "Start": 0,
+        "End": 12,
+        "FrameRate": 12,
+        "IsLooping": true
+      },
+      "PlayerMoveUp": {
+        "Start": 12,
+        "End": 24,
+        "FrameRate": 12,
+        "IsLooping": true
+      },
+      "PlayerMoveRight": {
+        "Start": 24,
+        "End": 36,
+        "FrameRate": 12,
+        "IsLooping": true
+      },
+      "PlayerMoveLeft": {
+        "Start": 36,
+        "End": 48,
+        "FrameRate": 12,
+        "IsLooping": true
+      }
+    },
+    "Archetypes": {
+      "Enemy": {
+        "Name": "Enemy",
+        "Components": {
+          "Sprite": {
+            "Texture": "Ball",
+            "Layer": 3
+          },
+          "Transform": {
+            "Scale": [ 0.6, 0.6 ]
+          },
+          "RigidBody": {
+            "Acceleration": [ 0.0, 0.0 ],
+            "Drag": 4,
+            "Restitution": 1
+          },
+          "CircleCollider": {
+            "Radius": 0.3,
+            "CollisionLayer": "Enemies",
+            "CollisionLayerFlags": [ "Terrain", "Player", "Enemies" ]
+          },
+          "EnemyBehavior": {
+            "Health": {
+              "Active": true,
+              "BaseValue": 40
+            },
+            "PathfinderName": "Tiles"
+          }
         }
-    ]
+      },
+      "Bullet": {
+        "Name": "Bullet",
+        "Components": {
+          "Sprite": {
+            "Texture": "Ball1",
+            "Layer": 2
+          },
+          "Transform": {
+            "Scale": [ 0.3, 0.3 ]
+          },
+          "BulletBehavior": {
+            "Lifetime": {
+              "name": "Lifetime",
+              "Active": true,
+              "BaseValue": 3
+            }
+          },
+          "CircleCollider": {
+            "Radius": 0.1,
+            "CollisionLayer": "Projectiles",
+            "CollisionLayerFlags": [ "Enemies", "Terrain" ]
+          },
+          "RigidBody": {
+            "Acceleration": [ 0.0, 0.0 ],
+            "Restitution": 0,
+            "Mass": 0.25
+          }
+        }
+      },
+      "Turret": {
+        "Name": "Turret",
+        "Components": {
+          "Sprite": {
+            "Texture": "Turret",
+            "Layer": 1
+          },
+          "Transform": {},
+          "TurretBehavior": {
+            "Range": 5,
+            "BulletName": "Bullet",
+            "BulletDamage": 10,
+            "BulletSize": 0.3,
+            "BulletSpeed": 10,
+            "Target": "Enemy"
+          }
+        }
+      }
+    }
+  },
+  "Entities": [
+    {
+      "Name": "Wave",
+      "Components": {
+        "Transform": {
+          "Translation": [ 0, 0 ]
+        },
+        "WavesBehavior": {
+          "WaveData": [
+            [ 20.0, 50.0 ],
+            [ 30.0, 60.0 ],
+            [ 40.0, 70.0 ]
+          ],
+          "AlternateSpawners": [
+            [ 0, 0 ],
+            [ 1, 1 ],
+            [ 2, 2 ],
+            [ -1, -1 ],
+            [ -2, -2 ]
+          ],
+          "EnemyData": [
+            [ 0, "Enemy", 15, 5.0, 7.0, 0 ],
+            [ 0, "Enemy", 7, 3.0, 5.0, 0 ],
+            [ 1, "Enemy", 5, 2.0, 2.0, 0 ],
+            [ 2, "Enemy", 2, 6.0, 10.0, 0 ]
+          ]
+
+        }
+      }
+    },
+    {
+      "Name": "Camera",
+      "Components": {
+        "Transform": {},
+        "Camera": {
+          "Width": 30
+        }
+      }
+    },
+    {
+      "Name": "Tiles",
+      "Components": {
+        "Transform": {
+          "Translation": [ -15, 8.5 ],
+          "Scale": [ 1, 1 ]
+        },
+        "Tilemap<int>": {
+          "TileData": [
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            19,19,19,19,19,19,0,0,0,19,25,26,26,26,26,25,25,26,25,27,18,19,19,19,20,20,20,124,118,118,
+            20,51,82,36,36,83,21,0,18,37,56,57,57,57,57,59,59,42,56,43,34,82,36,36,50,20,20,21,42,42,
+            53,20,51,51,51,51,37,0,34,37,0,0,0,0,0,40,59,59,56,43,19,50,50,50,50,53,53,20,20,21,
+            36,53,20,20,52,90,37,0,34,37,0,24,25,27,0,40,42,35,56,59,50,52,52,52,50,50,50,82,53,20,
+            36,36,53,53,20,52,37,0,34,37,0,40,42,43,0,40,42,42,43,0,0,0,0,0,0,34,50,50,42,20,
+            82,36,36,53,53,20,37,0,34,37,0,40,88,43,0,40,41,36,43,0,24,25,25,27,0,34,42,50,50,50,
+            36,36,90,36,36,36,37,0,34,37,0,40,90,43,0,40,42,36,43,0,40,42,42,43,0,34,83,42,42,50,
+            36,36,36,36,83,36,37,0,50,53,0,40,42,43,0,40,42,90,43,0,40,42,42,43,0,34,42,42,42,50,
+            83,36,36,36,36,36,37,0,0,0,0,40,90,43,0,40,90,42,43,0,40,42,41,43,0,34,42,42,89,50,
+            36,36,90,36,26,26,56,19,19,25,25,59,42,43,0,56,57,57,59,0,40,42,42,43,0,34,42,42,42,50,
+            24,26,26,26,59,90,56,57,57,57,41,90,42,43,0,0,0,0,0,0,40,42,42,43,0,34,42,35,42,50,
+            40,82,42,42,42,42,42,56,59,59,42,42,83,43,24,25,25,25,25,25,59,42,42,43,0,34,84,51,51,53,
+            56,42,42,42,42,83,42,59,59,59,42,42,42,43,56,58,58,58,58,58,58,58,58,59,0,34,51,53,89,53,
+            56,56,90,57,42,42,57,59,59,42,42,41,42,43,0,0,0,0,0,0,0,0,0,0,0,34,89,42,53,53,
+            56,56,56,56,56,56,59,59,42,42,42,42,42,43,0,18,18,18,18,18,18,18,18,18,18,53,53,53,53,53
+          ],
+          "Dimensions": [ 30, 20 ],
+          "TileScale": [ 1, 1 ]
+        },
+        "Tilemap<Entity*>": {
+          "Dimensions": [ 30, 20 ]
+        },
+        "TilemapSprite": {
+          "Texture": "Level Assets",
+          "Layer": 1
+        },
+        "TilemapCollider": {
+          "CollisionLayer": "Terrain"
+        },
+        "StaticBody": {
+          "Restitution": 0
+        },
+        "Pathfinder": {
+          "Destination": [ 0, 5 ],
+          "Walkables": [ 0 ]
+        }
+      }
+    },
+     {
+      "Name": "Tiles Background1 Layer",
+      "Components": {
+        "Transform": {
+          "Translation": [ -15, 8.5 ],
+          "Scale": [ 1, 1 ]
+        },
+        "Tilemap<int>": {
+          "TileData": [
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+              0,347,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,347,0,0,0,0,347,0,0,0,
+              362,363,364,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,362,363,364,0,0,362,363,364,0,0,
+              378,379,380,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,378,379,380,0,0,378,379,380,372,373,
+              0,395,0,0,0,248,0,0,0,247,0,0,0,0,0,0,0,0,0,0,0,395,0,354,355,353,395,355,388,389,
+              0,0,0,0,0,0,260,0,261,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,265,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+              0,0,0,0,0,0,0,257,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,257,0,0,0,0,0,0,0,0,0,265,0,356,216,0,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,244,0,0,0,0,0,0,0,0,0,261,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,241,0,0,0,0,225,0,0,0,0,0,0,0,0,0,0,
+              0,0,0,0,0,0,0,257,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,216,0,0,0,0,244,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,241,0,0,0,0,245,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,353,0,0,0,0,0,0,0,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,265,265,0,0,0,247,248,0,0,248,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+          ],
+          "Dimensions": [ 30, 20 ],
+          "TileScale": [ 1, 1 ]
+        },
+        "TilemapSprite": {
+          "Texture": "Level Assets",
+          "Layer": 2
+        }
+      }
+    },
+          {
+      "Name": "Tiles Background2 Layer",
+      "Components": {
+        "Transform": {
+          "Translation": [ -15, 8.5 ],
+          "Scale": [ 1, 1 ]
+        },
+        "Tilemap<int>": {
+          "TileData": [
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,411,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,426,427,428,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,442,443,444,0,0,0,0,0,0,
+0,0,0,0,0,210,0,0,0,214,0,0,0,0,0,0,0,0,0,0,0,0,459,0,0,0,354,355,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,354,355,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+          ],
+          "Dimensions": [ 30, 20 ],
+          "TileScale": [ 1, 1 ]
+        },
+        "TilemapSprite": {
+          "Texture": "Level Assets",
+          "Layer": 2
+        }
+      }
+    },
+    {
+      "Name": "Player",
+      "Components": {
+        "Transform": {
+          "Translation": [ 0.5, 4.5 ]
+        },
+        "Sprite": {
+          "Texture": "PlayerSheet"
+        },
+        "CircleCollider": {
+          "CollisionLayer": "Player",
+          "CollisionLayerFlags": [ "Terrain", "Enemies" ],
+          "Radius": 0.3
+        },
+        "RigidBody": {
+          "Acceleration": [ 0, 0 ],
+          "Drag": 12,
+          "Restitution": 0
+        },
+        "PlayerController": {
+          "left": [ -1, 0 ],
+          "right": [ 1, 0 ],
+          "up": [ 0, 1 ],
+          "down": [ 0, -1 ],
+          "maxSpeed": 1,
+          "animationName": [ "PlayerMoveRight", "PlayerMoveLeft", "PlayerMoveUp", "PlayerMoveDown" ]
+        },
+        "Animation": {
+          "Animation": "PlayerMoveRight",
+          "IsRunning": true
+        }
+      }
+    },
+    {
+      "Name": "Background",
+      "Components": {
+        "Transform": {
+          "Translation": [ 0, 13.6 ], 
+          "Scale": [50,50]
+        },
+        "Sprite": {
+          "Texture": "Background",
+          "Layer": 0
+        }
+      }
+    },
+    {
+      "Name": "ConstructionManager",
+      "Components": {
+        "ConstructionBehavior": {
+          "Buildings": [
+            {
+              "Name": "Turret",
+              "Cost": 10
+            }
+          ],
+          "PlacementRange": 2.0,
+          "TilemapName": "Tiles",
+          "PlayerName": "Player"
+        },
+        "Transform": {},
+        "Sprite": {
+          "Opacity": 0,
+          "Layer": 100
+        }
+      }
+    },
+    {
+      "Archetype": "Enemy",
+      "Components": {
+        "Transform": {
+          "Translation": [ 0, 0 ]
+        }
+      }
+    },
+    {
+      "Archetype": "Enemy",
+      "Components": {
+        "Transform": {
+          "Translation": [ 0, 0 ]
+        }
+      }
+    },
+    {
+      "Archetype": "Enemy",
+      "Components": {
+        "Transform": {
+          "Translation": [ 0, -1 ]
+        }
+      }
+    },
+    {
+      "Archetype": "Enemy",
+      "Components": {
+        "Transform": {
+          "Translation": [ 0, -2 ]
+        }
+      }
+    },
+    {
+      "Archetype": "Enemy",
+      "Components": {
+        "Transform": {
+          "Translation": [ 0, -3 ]
+        }
+      }
+    }
+  ]
 }
