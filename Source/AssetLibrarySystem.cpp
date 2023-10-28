@@ -112,18 +112,10 @@ AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& n
     }
     else
     {
-        std::ostringstream errorMessage;
-        errorMessage <<
+        Debug() <<
             "Error: Asset of type \"" << typeid( AssetType ).name() <<
             "\" with name \"" << name <<
-            "\" could not be found";
-
-        #ifndef NDEBUG  // If not in release mode 
-            throw std::runtime_error( errorMessage.str() );
-        #else  // In release mode
-            Debug() << errorMessage.str() << std::endl;
-            exit(EXIT_FAILURE);  // Exit 
-        #endif
+            "\" could not be found" << std::endl;
     }
 }
 
