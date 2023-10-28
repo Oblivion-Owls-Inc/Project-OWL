@@ -16,9 +16,6 @@
 /// @brief This class contains the TurretBehavior component which is used
 ///			
 ///*****************************************************************/
-
-using CollisionLayerFlags = unsigned;
-
 class Transform;
 
 class TurretBehavior : public Behavior
