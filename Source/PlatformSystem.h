@@ -36,6 +36,10 @@ private:
     // Window data - dimensions and pointer
 	glm::ivec2 m_WindowSize = { 800, 600 };
     std::string m_WindowName = "Default Window";
+
+    /// @brief  Used to Toggle Fullscreen
+    static bool s_IsFullscreen;
+    
 	GLFWwindow* m_Window = nullptr;
 
     /// @brief Constructor
@@ -46,6 +50,15 @@ private:
 
     /// @brief Shuts down window / GLFW.
 	virtual void OnExit() override;
+
+    /// @brief Debug window for PlatformSystem
+    virtual void DebugWindow() override;
+
+//-----------------------------------------------------------------------------
+private: // Private functions
+//-----------------------------------------------------------------------------\
+
+    void ToggleFullscreen();
 
 //-----------------------------------------------------------------------------
 private: // reading

@@ -37,7 +37,7 @@ void Pathfinder::OnInit()
 #ifndef NDEBUG
     if ( m_Tilemap == nullptr )
     {
-        std::cout << "Warning: Pathfinder parent does not have Tilemap component." << std::endl;
+        Debug() << "Warning: Pathfinder parent does not have Tilemap component." << std::endl;
         return;
     }
 #endif

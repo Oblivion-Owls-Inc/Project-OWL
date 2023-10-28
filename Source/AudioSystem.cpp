@@ -8,7 +8,7 @@
 
 #include "AudioSystem.h"
 #include "basics.h"
-
+#include "DebugSystem.h"
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
@@ -32,21 +32,21 @@
         result = FMOD::System_Create( &m_System );
         if ( result != FMOD_OK )
         {
-            std::cerr << "Failed to initialize FMOD" << std::endl;
+            Debug() << "Failed to initialize FMOD" << std::endl << std::endl;
             return;
         }
 
         result = m_System->init( m_MaxChannels, FMOD_INIT_NORMAL, 0 );
         if ( result != FMOD_OK )
         {
-            std::cerr << "Failed to initialize FMOD" << std::endl;
+            Debug() << "Failed to initialize FMOD" << std::endl << std::endl;
             return;
         }
 
         result = m_System->setCallback( fmodCallback, FMOD_SYSTEM_CALLBACK_ERROR );
         if ( result != FMOD_OK )
         {
-            std::cerr << "Failed to set FMOD callback" << std::endl;
+            Debug() << "Failed to set FMOD callback" << std::endl << std::endl;
             return;
         }
     }
@@ -103,11 +103,11 @@
         {
             FMOD_ERRORCALLBACK_INFO* info = (FMOD_ERRORCALLBACK_INFO*)commandData1;
 
-            std::cerr << "There was an FMOD error:\n" <<
+            Debug() << "There was an FMOD error:\n" <<
                 "\tError Code:              " << info->result << '\n' <<
                 "\tInstance Type:           " << info->instancetype << '\n' <<
                 "\tFunction Name:           " << info->functionname << '\n' <<
-                "\tFunction Parameters :    " << info->functionparams << '\n' << std::endl;
+                "\tFunction Parameters :    " << info->functionparams << '\n' << std::endl << std::endl;
 
             return info->result;
         }
@@ -124,7 +124,8 @@
         System( "AudioSystem" ),
         m_System( nullptr ),
         m_MaxChannels( 1024 )
-    {}
+    {
+    }
 
     /// @brief  The singleton instance of AudioSystem
     AudioSystem * AudioSystem::s_Instance = nullptr;

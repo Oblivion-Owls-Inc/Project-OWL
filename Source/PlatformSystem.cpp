@@ -6,11 +6,24 @@
 /// @version      0.1
 /// @copyright    Copyright (c) 2023
 #include "PlatformSystem.h"
+#include "DebugSystem.h"
 #include "glew.h"       // initialize, error callback
 #include "glfw3.h"      // initialize / shutdown
 #include "glm/vec2.hpp" // for returning window dimensions
 #include <iostream>     // cout
 #include <cassert>
+
+
+
+///-----------------------------------------------------------------------------
+// Static variables
+///-----------------------------------------------------------------------------
+
+    /// @brief  Used to Toggle Fullscreen
+    bool PlatformSystem::s_IsFullscreen = false;
+
+
+
 
 /// @brief            (callback) Gets called when there's some OpenGL error. Prints error message
 ///                   to console, asserts for high severity errors.
@@ -26,7 +39,7 @@ static void GLAPIENTRY ErrorHandler(GLenum source, GLenum m_Type, GLuint id, GLe
     #ifndef NDEBUG
     if (severity == GL_DEBUG_SEVERITY_HIGH)
     {
-        std::cout << message << '\n';
+        Debug() << message << '\n';
         assert(x);  // Keep a breakpoint here: when it's triggered, change the x to true to skip assert,
         // and step outside this function to see where the error ocurred.
     }
@@ -61,9 +74,15 @@ void PlatformSystem::OnInit()
 
     if (!m_Window)
     {
-        glfwTerminate();
-        std::cerr << "Failed to create GLFW window" << std::endl;
-        assert(false);
+        #ifndef NDEBUG
+                glfwTerminate();
+                Debug() << "Failed to create GLFW window" << std::endl;
+                assert(false);
+        #else
+                glfwTerminate();
+		        Debug() << "Failed to create GLFW window" << std::endl;
+		        exit(EXIT_FAILURE);  // Exit 
+        #endif // !NDEBUG
     }
     glfwMakeContextCurrent(m_Window);
     glfwSwapInterval(1); // enable vsync
@@ -71,13 +90,20 @@ void PlatformSystem::OnInit()
     // GLEW
     if (glewInit() != GLEW_OK)
     {
-        glfwTerminate();
-        glfwDestroyWindow(m_Window);
-        std::cerr << "Failed to initialize GLEW" << std::endl;
-        assert(false);
+        #ifndef NDEBUG
+                glfwTerminate();
+                glfwDestroyWindow(m_Window);
+                std::cerr << "Failed to initialize GLEW" << std::endl;
+                assert(false);
+        #else
+                glfwTerminate();
+                glfwDestroyWindow(m_Window);
+                std::cerr << "Failed to initialize GLEW" << std::endl;
+                exit(EXIT_FAILURE);  // Exit 
+        #endif // !NDEBUG
     }
 
-    std::cout << "\nRunning OpenGL " << glGetString(GL_VERSION) << std::endl; // display OpenGL version
+    Debug() << "\nRunning OpenGL " << glGetString(GL_VERSION) << std::endl << std::endl; // display OpenGL version
     glDebugMessageCallback(ErrorHandler, NULL);                             // set error callback func
 }
 
@@ -86,7 +112,57 @@ void PlatformSystem::OnExit()
 {
     glfwDestroyWindow( m_Window );
     glfwTerminate();
-    std::cout << "\nShutdown complete." << std::endl;
+}
+
+/// @brief Debug window for PlatformSystem
+void PlatformSystem::DebugWindow()
+{
+	ImGui::Text( "Window Size: %d x %d", m_WindowSize.x, m_WindowSize.y );
+	ImGui::Text( "Window Name: %s", m_WindowName.c_str() );
+    
+    char buttonLabel[128];
+    snprintf(buttonLabel, sizeof(buttonLabel), s_IsFullscreen ?
+        "Fullscreen Mode" : "Windowed Mode");
+    if (ImGui::Button(buttonLabel))
+    {
+		ToggleFullscreen();
+    }
+
+}
+
+void PlatformSystem::ToggleFullscreen()
+{
+    static int savedWidth = m_WindowSize.x;
+    static int savedHeight = m_WindowSize.y;
+    static int savedPosX, savedPosY;
+
+    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+
+
+    if (!s_IsFullscreen)
+    {
+        // Save the current window size and position before going fullscreen
+        glfwGetWindowPos(m_Window, &savedPosX, &savedPosY);
+        savedWidth = m_WindowSize.x;
+        savedHeight = m_WindowSize.y;
+
+        // Set the window to fullscreen
+        glfwSetWindowMonitor(m_Window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
+
+        // Update m_WindowSize to the new dimensions
+        m_WindowSize = glm::ivec2(mode->width, mode->height);
+    }
+    else
+    {
+         // Update m_WindowSize to the new dimensions
+         m_WindowSize = glm::ivec2(savedWidth, savedHeight);
+
+        // Restore the window's previous size and position
+        glfwSetWindowMonitor(m_Window, nullptr, savedPosX, savedPosY, savedWidth, savedHeight, 0);
+    }
+
+    s_IsFullscreen = !s_IsFullscreen;  // Toggle the fullscreen flag
 }
 
 /// @brief    Returns the window handle.

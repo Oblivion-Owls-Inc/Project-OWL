@@ -126,7 +126,8 @@ void BehaviorSystem<BehaviorType>::DebugWindow()
     template < typename BehaviorType >
     BehaviorSystem< BehaviorType >::BehaviorSystem() :
         System( std::string( "BehaviorSystem<" ) + (typeid( BehaviorType ).name() + 6) + ">" )
-    {}
+    {
+    }
 
 
 //-----------------------------------------------------------------------------
