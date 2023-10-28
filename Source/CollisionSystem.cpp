@@ -73,7 +73,7 @@
         auto it = std::find( m_CollisionLayerNames.begin(), m_CollisionLayerNames.end(), layerName );
         if ( it == m_CollisionLayerNames.end() )
         {
-            std::cerr << "Warning: \"" << layerName << "\" is not a recognized collision layer name";
+            Debug() << "Warning: \"" << layerName << "\" is not a recognized collision layer name";
         }
 
         return (int)(it - m_CollisionLayerNames.begin());
@@ -218,13 +218,19 @@
             return;
         }
 
-        // ensure that both colliders have Transforms
-        if ( colliderA->GetTransform() == nullptr || colliderB->GetTransform() == nullptr )
-		{
-            throw std::runtime_error(
-                "Error: Collider component must always be accompanied by a Transform component"
-            );
-		}
+            // ensure that both colliders have Transforms
+            if ( colliderA->GetTransform() == nullptr || colliderB->GetTransform() == nullptr )
+            {
+            #ifndef NDEBUG  // If not in release mode 
+                throw std::runtime_error(
+                    "Error: Collider component must always be accompanied by a Transform component"
+                    );
+            #else  // In release mode
+                Debug() << "Error: Collider component must always be accompanied by a Transform component" << std::endl;
+                exit(EXIT_FAILURE);  // Exit 
+            #endif
+            }
+
 
         // check type of each collider
         std::pair< std::type_index, std::type_index > colliderTypes = {

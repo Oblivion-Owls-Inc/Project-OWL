@@ -228,6 +228,7 @@
     /// @brief  Initializes the engine and all Systems in the Engine
     void Engine::init()
     {
+        Debug() << "Starting up..." << std::endl;
         // initialize the time values
         m_PreviousTime = glfwGetTime();
         m_PreviousFixedTime =  m_PreviousTime;
@@ -236,6 +237,7 @@
         for (System * system :  m_Systems)
         {
             system->OnInit();
+            Debug() << "Starting " << system->GetName() << std::endl << std::endl;
         }
 
         // TODO: move the below code out of the engine into its own systems
@@ -313,10 +315,18 @@
     /// @brief  Calls all Systems' OnExit function
     void Engine::exit()
     {
+        Debug() << std::endl << std::endl << "Exiting..."
+            << std::endl << std::endl;
         for ( System * system : m_Systems )
         {
             system->OnExit();
+
+            Debug() << "Exiting " << system->GetName() 
+                << std::endl << std::endl;
         }
+
+        Debug() << "\nShutdown complete." << std::endl;
+
     }
 
 
