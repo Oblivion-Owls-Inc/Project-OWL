@@ -144,64 +144,73 @@
     },
     "Entities": [
         {
-      "Name": "Wave",
-        "Components": {
-          "Transform": {
-            "Translation": [ 0, 0 ]
-          },
-          "WavesBehavior": {
-            "AlternateSpawners": [
-              [ 0, 0 ],
-              [ 1, 1 ],
-              [ 2, 2 ],
-              [ -1, -1 ],
-              [ -2, -2 ]
-            ],
-            "Waves": [
-              {
-                "WaveTime": 20,
-                "WaveNextTime": 40,
-                "EnemyGroups": [
-                  {
-                    "EnemyName": "Enemy",
-                    "Amount": 6,
-                    "SpawnInterval": 2.0,
-                    "InitialOffset": 5.0,
-                    "Spawner": 0
-                  },
-                  {
-                    "EnemyName": "Enemy",
-                    "Amount": 5,
-                    "SpawnInterval": 4.0,
-                    "InitialOffset": 2.0,
-                    "Spawner": 1
-                  }
-                ]
-              },
-              {
-                "WaveTime": 30,
-                "WaveNextTime": 60,
-                "EnemyGroups": [
-                  {
-                    "EnemyName": "Enemy",
-                    "Amount": 5,
-                    "SpawnInterval": 4.0,
-                    "InitialOffset": 2.0,
-                    "Spawner": 1
-                  },
-                  {
-                    "EnemyName": "Enemy",
-                    "Amount": 10,
-                    "SpawnInterval": 2.0,
-                    "InitialOffset": 5.0,
-                    "Spawner": 0
-                  }
-                ]
-              }
-            ]
-          }
-        }
-    },
+            "Name": "Music",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": "Music",
+                    "PlayOnInit": true
+                }
+            }
+        },
+        {
+            "Name": "Wave",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 0, 0 ]
+                },
+                "WavesBehavior": {
+                    "AlternateSpawners": [
+                        [ 0, 0 ],
+                        [ 1, 1 ],
+                        [ 2, 2 ],
+                        [ -1, -1 ],
+                        [ -2, -2 ]
+                    ],
+                    "Waves": [
+                        {
+                            "WaveTime": 20,
+                            "WaveNextTime": 40,
+                            "EnemyGroups": [
+                                {
+                                    "EnemyName": "Enemy",
+                                    "Amount": 6,
+                                    "SpawnInterval": 2.0,
+                                    "InitialOffset": 5.0,
+                                    "Spawner": 0
+                                },
+                                {
+                                    "EnemyName": "Enemy",
+                                    "Amount": 5,
+                                    "SpawnInterval": 4.0,
+                                    "InitialOffset": 2.0,
+                                    "Spawner": 1
+                                }
+                            ]
+                        },
+                        {
+                            "WaveTime": 30,
+                            "WaveNextTime": 60,
+                            "EnemyGroups": [
+                                {
+                                    "EnemyName": "Enemy",
+                                    "Amount": 5,
+                                    "SpawnInterval": 4.0,
+                                    "InitialOffset": 2.0,
+                                    "Spawner": 1
+                                },
+                                {
+                                    "EnemyName": "Enemy",
+                                    "Amount": 10,
+                                    "SpawnInterval": 2.0,
+                                    "InitialOffset": 5.0,
+                                    "Spawner": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
         {
             "Name": "Camera",
             "Components": {
