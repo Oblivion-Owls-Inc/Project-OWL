@@ -80,8 +80,17 @@ public: // accessors
 public: // inspector
 //-----------------------------------------------------------------------------
 
+
     /// @brief Used by the Debug System to display information about this Sound
     void Inspect();
+
+
+//-----------------------------------------------------------------------------
+private: // inspector
+//-----------------------------------------------------------------------------
+
+    /// @brief  selects a filepath from a directory
+    void inspectorSelectFilepathFromDirectory( char const* directoryPath );
 
 //-----------------------------------------------------------------------------
 private: // member variables

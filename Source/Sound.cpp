@@ -9,6 +9,9 @@
 #include "Sound.h"
 #include "AudioSystem.h"
 
+#include <filesystem>
+#include <imgui.h>
+
 //-----------------------------------------------------------------------------
 // constructor / destructor
 //-----------------------------------------------------------------------------
@@ -68,6 +71,7 @@
         if ( m_Sound != nullptr )
         {
             m_Sound->release();
+            m_Sound = nullptr;
         }
 
         AudioSystem::GetInstance()->GetFMOD()->createSound(
@@ -92,10 +96,57 @@
         return length / 1000.0f;
     }
 
+//-----------------------------------------------------------------------------
+// inspector
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Used by the Debug System to display information about this Sound
     void Sound::Inspect()
     {
-        
+        char const* soundDirectory = "Data/Sounds";
+
+
+        if ( ImGui::BeginCombo( "Filepath", m_Filepath.c_str() + strlen( soundDirectory ) + 1) )
+        {
+            inspectorSelectFilepathFromDirectory( soundDirectory );
+            ImGui::EndCombo();
+        }
+
+        ImGui::Checkbox( "Loopable", &m_IsLooping );
+
+        if ( ImGui::Button( "Reload Sound" ) )
+        {
+            Reload();
+        }
+
     }
+
+
+    /// @brief  selects a filepath from a directory
+    void Sound::inspectorSelectFilepathFromDirectory( char const* directoryPath )
+    {
+        for ( auto const& file : std::filesystem::directory_iterator( directoryPath ) )
+        {
+            std::string filepath = file.path().filename().string();
+            if ( file.is_directory() )
+            {
+                if ( ImGui::TreeNode( filepath.c_str() ) )
+                {
+                    inspectorSelectFilepathFromDirectory( (directoryPath + ("/" + filepath)).c_str() );
+                    ImGui::TreePop();
+                }
+            }
+            else
+            {
+                if ( ImGui::Selectable( filepath.c_str(), filepath == m_Filepath ) )
+                {
+                    m_Filepath = directoryPath + ("/" + filepath);
+                }
+            }
+        }
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: reading

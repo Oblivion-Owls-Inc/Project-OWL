@@ -2,7 +2,7 @@
     "Assets": {
         "Sounds": {
             "Music": {
-                "Filepath": "Data/Sounds/test.mp3"
+                "Filepath": "Data/Sounds/Music/test.mp3"
             }
         },
         "Textures": {
