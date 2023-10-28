@@ -33,6 +33,8 @@
 #include "ConstructionBehavior.h"
 #include "Camera.h"
 #include "WavesBehavior.h"
+#include "ParticleSprite.h"
+#include "Emitter.h"
 
 
 //-----------------------------------------------------------------------------
@@ -53,6 +55,23 @@
     std::type_index ComponentFactory::GetTypeId( std::string const& typeName )
     {
         return GetComponentInfo( typeName ).first;
+    }
+
+    /// @brief  gets the name of the Component type with the specified type_index
+    /// @param  typeIndex    the type index of the Component type to get
+    /// @return the name of the Component type
+    std::string ComponentFactory::GetTypeName( std::type_index const& typeIndex )
+    {
+        for ( auto& [key, typeInfo] : s_ComponentTypes )
+        {
+            if ( typeInfo.first == typeIndex )
+            {
+                return key;
+            }
+        }
+
+        std::cerr << "Error: could not find proper name of type \"" << typeIndex.name() << "\"" << std::endl;
+        return "";
     }
 
 //-----------------------------------------------------------------------------
@@ -120,7 +139,9 @@
         { "StaticBody"          , ComponentInfo< StaticBody >()           },
         { "ConstructionBehavior", ComponentInfo< ConstructionBehavior >() },
         { "Camera"              , ComponentInfo< Camera >()               },
-        { "WavesBehavior"       , ComponentInfo< WavesBehavior >()        }
+        { "WavesBehavior"       , ComponentInfo< WavesBehavior >()        },
+        { "Emitter"             , ComponentInfo< Emitter >()              },
+        { "ParticleSprite"      , ComponentInfo< ParticleSprite >()       }
     };
 
 //-----------------------------------------------------------------------------

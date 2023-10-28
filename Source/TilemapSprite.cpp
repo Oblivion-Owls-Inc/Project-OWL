@@ -84,7 +84,7 @@ void TilemapSprite::OnInit()
     if (!Renderer()->GetShader("tile"))
     {
         Renderer()->AddShader("tile", new Shader("Data/shaders/tile_instancing.vert", 
-                                                 "Data/shaders/tile_instancing.frag"));
+                                                 "Data/shaders/texture.frag"));
     }
 
     // Set up callback for when Tilemap array changes

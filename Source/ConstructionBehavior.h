@@ -15,6 +15,7 @@
 
 class Transform;
 class Sprite;
+class Text;
 
 template< typename T >
 class Tilemap;
@@ -132,6 +133,13 @@ private: // members
     Tilemap< Entity* >* m_Buildings = nullptr;
 
 
+    /// @brief  the name of the ResourcesText entity
+    std::string m_ResourcesTextName;
+
+    /// @brief  the resources ui text
+    Text* m_ResourcesText;
+
+
     /// @brief  the transform of the preview sprite
     Transform* m_Transform = nullptr;
 
@@ -183,6 +191,10 @@ private: // reading
     /// @brief  reads the current resources
     /// @param  data    the json data to read from
     void readCurrentResources( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the resources text entity name
+    /// @param  data    the json data to read from
+    void readResourcesTextName( nlohmann::ordered_json const& data );
 
 
     /// @brief  map of the read methods for this Component

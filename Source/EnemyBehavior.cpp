@@ -23,24 +23,8 @@
 //-----------------------------------------------------------------------------
 
     EnemyBehavior::EnemyBehavior() :
-        Behavior( typeid( EnemyBehavior ) ),
-        m_Health("Health")
+        BasicEntityBehavior( typeid( EnemyBehavior ) )
     {}
-
-///-----------------------------------------------------------------------------
-// public: methods
-///-----------------------------------------------------------------------------
-
-    /// @brief Apply damage to the enemy 
-    /// @param damage - the amount of damage to enemy
-    void EnemyBehavior::TakeDamage(int damage)
-    {
-        m_Health -= damage;
-        if ( !m_Health )
-        {
-		    GetParent()->Destroy();
-	    }
-    }
 
 //-----------------------------------------------------------------------------
 // private: virtual override methods
@@ -49,30 +33,17 @@
     /// @brief initializes the component
     void EnemyBehavior::OnInit()
     {
-        Behaviors<Behavior>()->AddBehavior(this);
-        m_Health.OnInit();
+        BasicEntityBehavior::OnInit();
 
         m_Pathfinder = Entities()->GetEntity( m_PathfinderName )->GetComponent< Pathfinder >();
         m_RigidBody = GetParent()->GetComponent< RigidBody >();
         m_Transform = GetParent()->GetComponent< Transform >();
     }
 
-    /// @brief Called when the component is destroyed
-    void EnemyBehavior::OnExit()
-    {
-        Behaviors<Behavior>()->RemoveBehavior(this);
-    }
-
     /// @brief Called at a fixed interval
     void EnemyBehavior::OnFixedUpdate()
     {
         ChaseTarget();
-    }
-
-    /// @brief  inspector for this component
-    void EnemyBehavior::Inspector()
-    {
-        m_Health.Inspector();
     }
 
 //-----------------------------------------------------------------------------
@@ -91,13 +62,6 @@
 // private: Reading
 ///-----------------------------------------------------------------------------
 
-    /// @brief  reads the health of the enemy from json
-    /// @param  data    the json data to read from
-    void EnemyBehavior::readHealth(nlohmann::ordered_json const& data)
-    {
-        Stream::Read( m_Health, data );
-    }
-
     /// @brief  reads the name of the pathfinder entity
     /// @param  data    the json data to read from
     void EnemyBehavior::readPathfinderName( nlohmann::ordered_json const& data )
@@ -114,34 +78,37 @@
 
     /// @brief  map of read methods
     ReadMethodMap< EnemyBehavior > const EnemyBehavior::s_ReadMethods = {
-	    { "Health"        , &EnemyBehavior::readHealth         },
+	    { "Health"        , &BasicEntityBehavior::readHealth    },
         { "PathfinderName", &EnemyBehavior::readPathfinderName },
         { "Speed"         , &EnemyBehavior::readSpeed          }
     };
 
 
 ///----------------------------------------------------------------------------
-// public: writing
+/// public: writing
 ///----------------------------------------------------------------------------
 
     /// @brief  write all component data to a JSON object
-    /// @return the JSON object containing the component data
     nlohmann::ordered_json EnemyBehavior::Write() const
     {
-	    nlohmann::ordered_json data;
+        nlohmann::ordered_json data;
+
         data["Health"] = m_Health.Write();
-	    return data;
+        data["PathfinderName"] = m_PathfinderName;
+        data["Speed"] = m_Speed;
+
+        return data;
     }
 
+
 ///----------------------------------------------------------------------------
-// private: copying
+/// private: copying
 ///----------------------------------------------------------------------------
 
     /// @brief  copy constructor
     /// @param  other   the other EnemyBehavior to copy
     EnemyBehavior::EnemyBehavior( EnemyBehavior const& other ) :
-        Behavior( other ),
-        m_Health( other.m_Health ),
+        BasicEntityBehavior( other ),
         m_PathfinderName( other.m_PathfinderName ),
         m_Speed( other.m_Speed )
     {}
