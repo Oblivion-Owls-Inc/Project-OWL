@@ -206,7 +206,7 @@
     {
 
         ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.6f );
-        if ( !ImGui::BeginListBox( "Buildings", ImVec2( 0, 25 * m_BuildingArchetypes.size() + 5 ) ) )
+        if ( !ImGui::BeginListBox( "Buildings", ImVec2( 0, 25 * (float)m_BuildingArchetypes.size() + 5 ) ) )
         {
             return;
         }
@@ -268,7 +268,7 @@
     {
         ImGui::DragFloat( "Placement Range", &m_PlacementRange, 0.05f, 0.0f, INFINITY );
 
-        ImGui::DragInt( "Building Index", &m_BuildingIndex, 0.05f, 0, m_BuildingArchetypes.size() - 1, "%i", m_BuildingArchetypes.size() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput );
+        ImGui::DragInt( "Building Index", &m_BuildingIndex, 0.05f, 0, (int)m_BuildingArchetypes.size() - 1, "%i", m_BuildingArchetypes.size() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput );
 
         ImGui::DragFloat( "Mining Time", &m_MiningTime, 0.05f, 0.0f, INFINITY );
 

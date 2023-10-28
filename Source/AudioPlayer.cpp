@@ -17,33 +17,70 @@
 
     /// @brief  constructs a new AudioPlayer
     AudioPlayer::AudioPlayer() :
-        Component( typeid( AudioPlayer ) ),
-        m_Sound( nullptr ),
-        m_Channel( nullptr ),
-        m_ChannelGroup( nullptr ),
-        m_Volume( 1.0f ),
-        m_Pitch( 1.0f ),
-        m_VolumeVariance( 0.0f ),
-        m_PitchVariance( 0.0f )
+        Component( typeid( AudioPlayer ) )
     {}
 
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  Starts playing this AudioPlayer's sound
     void AudioPlayer::Play()
     {
+        // if this Audio player is already playing a sound, unpuase it
+        if ( GetIsPlaying() )
+        {
+            SetIsPaused( false );
+            return;
+        }
+
+        // if not already playing a sound, start playing a new sound
         m_Channel = m_Sound->Play(
             m_ChannelGroup,
-            random( m_Volume - m_VolumeVariance, m_Volume + m_VolumeVariance ),
-            random( m_Pitch - m_PitchVariance, m_Pitch + m_PitchVariance )
+            random( m_Volume - m_Volume * m_VolumeVariance, m_Volume + m_Volume * m_VolumeVariance ),
+            random( m_Pitch - m_Pitch * m_PitchVariance, m_Pitch + m_Pitch * m_PitchVariance ),
+            m_DefaultLoopCount
         );
+
+        // tell the channel which Audioplayer it belongs to
+        m_Channel->setUserData( this );
+
+        // have the channel call the callback
+        m_Channel->setCallback( onFmodChannelCallback );
     }
+
+
+    /// @brief  Stops the currently playing channel
+    /// @note   FULLY STOPS the channel, doesn't just pause it
+    void AudioPlayer::Stop()
+    {
+        m_Channel->stop();
+        m_Channel = nullptr;
+    }
+
+
+    /// @brief  adds a callback function to be called when the sound completes
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @param  callback    the function to be called when the sound completes
+    /// @note   YOU MUST REMOVE THE CALLBACK USING THE CALLBACK HANDLE WHEN YOU ARE DONE WITH IT
+    void AudioPlayer::AddOnSoundCompleteCallback( unsigned ownerId, std::function< void() > callback )
+    {
+        m_OnSoundCompleteCallbacks.emplace( ownerId, callback );
+    }
+
+    /// @brief  removes a callback function to be called when the sound completes
+    /// @param  ownerId the ID of the owner of the callback to remove
+    void AudioPlayer::RemoveOnSoundCompleteCallback( unsigned ownerId )
+    {
+        m_OnSoundCompleteCallbacks.erase( ownerId );
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
+
 
     /// @brief  gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
@@ -51,6 +88,7 @@
     {
         return m_Sound;
     }
+
     /// @brief  sets the SOund that this AudioPlayer plays
     /// @param  sound   the sound that this AudioPlayer will play
     void AudioPlayer::SetSound( Sound const* _sound )
@@ -58,29 +96,68 @@
         m_Sound = _sound;
     }
 
+
     /// @brief  gets whether this AudioPlayer is currently playing anything
     /// @return whether this AudioPlayer is currently playing anything
-    bool AudioPlayer::IsPlaying() const
+    bool AudioPlayer::GetIsPlaying() const
     {
-        bool isPlaying;
-        m_Channel->isPlaying( &isPlaying );
-        return isPlaying;
+        return m_Channel != nullptr;
     }
+
+
+    /// @brief  gets the current time of the currently playing sound
+    /// @return the current time of the currently playing sound
+    float AudioPlayer::GetTime() const
+    {
+        if ( m_Channel == nullptr )
+        {
+            return 0.0f;
+        }
+
+        unsigned int time;
+        m_Channel->getPosition( &time, FMOD_TIMEUNIT_MS );
+        return (float)time / 1000;
+    }
+
+    /// @brief  sets the current time of the currently playing sound
+    /// @param  time    the current time of the currently playing sound
+    void AudioPlayer::SetTime( float time )
+    {
+        if ( m_Channel == nullptr )
+        {
+            return;
+        }
+
+        m_Channel->setPosition( (unsigned int)(time * 1000), FMOD_TIMEUNIT_MS );
+    }
+
 
     /// @brief  gets whether this AudioPlayer is paused
     /// @return whether this AudioPlayer is paused
-    bool AudioPlayer::IsPaused() const
+    bool AudioPlayer::GetIsPaused() const
     {
+
+        if ( m_Channel == nullptr )
+        {
+            return true;
+        }
+
         bool paused;
         m_Channel->getPaused( &paused );
         return paused;
     }
+
     /// @brief  Sets whether or not this AudioPlayer is paused
     /// @param  paused   whether to pause or unpause the AudioPlayer
-    void AudioPlayer::SetPaused( bool paused )
+    void AudioPlayer::SetIsPaused( bool paused )
     {
+        if ( m_Channel == nullptr )
+        {
+            return;
+        }
         m_Channel->setPaused( paused );
     }
+
 
     /// @brief  gets the volume of this AudioPlayer
     /// @return the volume of this AudioPlayer
@@ -88,12 +165,39 @@
     {
         return m_Volume;
     }
+
     /// @brief  sets the volume of this AudioPlayer
     /// @param  volume  the volume for this AudioPlayer
     void AudioPlayer::SetVolume( float _volume )
     {
         m_Volume = _volume;
+
+        if ( m_Channel != nullptr )
+        {
+            m_Channel->setVolume( m_Volume );
+        }
     }
+
+
+    /// @brief  gets the pitch of this AudioPlayer
+    /// @return the pitch of this AudioPlayer
+    float AudioPlayer::GetPitch() const
+    {
+        return m_Pitch;
+    }
+
+    /// @brief  sets the pitch of this AudioPlayer
+    /// @param  pitch  the pitch for this AudioPlayer
+    void AudioPlayer::SetPitch( float pitch )
+    {
+        m_Pitch = pitch;
+
+        if ( m_Channel != nullptr )
+        {
+            m_Channel->setPitch( m_Pitch );
+        }
+    }
+
 
     /// @brief  sets the pitch variance of this AudioPlayer
     /// @return the pitch variance of this AudioPlayer
@@ -101,6 +205,7 @@
     {
         return m_PitchVariance;
     }
+
     /// @brief  gets the pitch varaince of this AudioPlayer
     /// @param  pitchVariance   the pitch varaince for this AudioPlayer
     void AudioPlayer::SetPitchVariance( float _pitchVariance )
@@ -108,12 +213,14 @@
         m_PitchVariance = _pitchVariance;
     }
 
+
     /// @brief  sets the volume variance of this AudioPlayer
     /// @return the volume variance of this AudioPlayer
     float AudioPlayer::GetVolumeVariance() const
     {
         return m_VolumeVariance;
     }
+
     /// @brief  gets the volume varaince of this AudioPlayer
     /// @param  volumeVariance  the volume varaince for this AudioPlayer
     void AudioPlayer::SetVolumeVariance( float _volumeVariance )
@@ -121,9 +228,166 @@
         m_VolumeVariance = _volumeVariance;
     }
 
+
+    /// @brief  gets the default loop count of this AudioPlayer
+    /// @return the default loop count of this AudioPlayer
+    int AudioPlayer::GetDefaultLoopCount() const
+    {
+        return m_DefaultLoopCount;
+    }
+
+    /// @brief  sets the default loop count of this AudioPlayer
+    /// @param  defaultLoopCount    the default loop count of this AudioPlayer
+    void AudioPlayer::SetDefaultLoopCount( int defaultLoopCount )
+    {
+        m_DefaultLoopCount = defaultLoopCount;
+    }
+
+
+    /// @brief  gets the current loop count
+    /// @return the current loop count
+    int AudioPlayer::GetLoopCount() const
+    {
+        if ( m_Channel == nullptr )
+        {
+            return 0;
+        }
+        int loopCount;
+        m_Channel->getLoopCount( &loopCount );
+        return loopCount;
+    }
+
+    /// @brief  sets the current loop count
+    /// @param  loopCount   the current loop count
+    void AudioPlayer::SetLoopCount( int loopCount )
+    {
+        if ( m_Channel == nullptr )
+        {
+            return;
+        }
+        m_Channel->setLoopCount( loopCount );
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: virtual override methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  called once when entering the scene
+    void AudioPlayer::OnInit()
+    {
+        if ( m_PlayOnInit )
+        {
+            Play();
+        }
+    }
+
+
+    /// @brief  shows the inspector for AudioPlayer
+    void AudioPlayer::Inspector()
+    {
+
+        if ( ImGui::BeginCombo( "Sound", AssetLibrary< Sound >()->GetAssetName( m_Sound ) ) )
+        {
+            for ( auto& [ name, sound ] : AssetLibrary< Sound >()->GetAssets() )
+            {
+                if ( ImGui::Selectable( name.c_str(), sound == m_Sound ) )
+                {
+                    m_Sound = sound;
+                }
+            }
+
+            ImGui::EndCombo();
+        }
+
+        bool paused = GetIsPaused();
+        if ( ImGui::Checkbox( "Paused", &paused ) )
+        {
+            SetIsPaused( paused );
+        }
+
+        ImGui::InputInt( "Default Loop Count", &m_DefaultLoopCount, 1, 5 );
+
+        int currentLoopCount = GetLoopCount();
+        if ( ImGui::InputInt( "Current Loop Count", &currentLoopCount, 1, 5 ) )
+        {
+            SetLoopCount( currentLoopCount );
+        }
+
+        if ( ImGui::DragFloat( "Volume", &m_Volume, 0.1f, 0.0f, 100.0f, "%.3f", ImGuiSliderFlags_Logarithmic ) )
+        {
+            SetVolume( m_Volume );
+        }
+
+        ImGui::DragFloat( "Volume Variance", &m_VolumeVariance, 0.01f, 0.0f, 1.0f );
+
+        if ( ImGui::DragFloat( "Pitch", &m_Pitch, 0.1f, 0.0f, 100.0f, "%.3f", ImGuiSliderFlags_Logarithmic ) )
+        {
+            SetPitch( m_Pitch );
+        }
+
+        ImGui::DragFloat( "Pitch Variance", &m_PitchVariance, 0.01f, 0.0f, 1.0f );
+
+        if ( ImGui::Button( "Play" ) )
+        {
+            Play();
+        }
+
+        if ( ImGui::Button( "Stop" ) )
+        {
+            Stop();
+        }
+
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  callback called when an fmod channel finishes playing
+    /// @param  channelControl  the channel the callback is from
+    /// @param  controlType     identifier to distinguish between channel and channelgroup
+    /// @param  callbackType    the type of callback
+    /// @param  commandData1    first callback parameter
+    /// @param  commandData2    second callback parameter
+    FMOD_RESULT F_CALLBACK AudioPlayer::onFmodChannelCallback(
+        FMOD_CHANNELCONTROL* channelControl,
+        FMOD_CHANNELCONTROL_TYPE controlType,
+        FMOD_CHANNELCONTROL_CALLBACK_TYPE callbackType,
+        void* commandData1,
+        void* commandData2
+    )
+    {
+        if (
+            controlType != FMOD_CHANNELCONTROL_CHANNEL ||
+            callbackType != FMOD_CHANNELCONTROL_CALLBACK_END
+        ) // only handle callbacks for channels ending
+        {
+            return FMOD_OK;
+        }
+
+        // get the AudioPlayer that this channel started
+        AudioPlayer* self;
+        ((FMOD::Channel*)channelControl)->getUserData( (void**)&self );
+
+        for ( auto& [ key, callback ] : self->m_OnSoundCompleteCallbacks )
+        {
+            callback();
+        }
+
+        self->m_Channel = nullptr;
+
+        return FMOD_OK;
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
+
 
     /// @brief  read the sound of this component from json
     /// @param  data    the json data
@@ -160,38 +424,65 @@
         m_PitchVariance = Stream::Read<float>(data);
     }
 
+    /// @brief  read DefaultLoopCount of this component from json
+    /// @param  data    the json data
+    void AudioPlayer::readDefaultLoopCount( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_DefaultLoopCount, data );
+    }
+
+    /// @brief  read PlayOnInit of this component from json
+    /// @param  data    the json data
+    void AudioPlayer::readPlayOnInit( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_PlayOnInit, data );
+    }
+
+
+    /// @brief  map of the read methods for this Component
+    ReadMethodMap< AudioPlayer > AudioPlayer::s_ReadMethods = {
+        { "Sound"           , &readSound            },
+        { "Volume"          , &readVolume           },
+        { "Pitch"           , &readPitch            },
+        { "VolumeVariance"  , &readVolumeVariance   },
+        { "PitchVariance"   , &readPitchVariance    },
+        { "DefaultLoopCount", &readDefaultLoopCount },
+        { "PlayOnInit"       , &readPlayOnInit        }
+    };
+
+
+//-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
+
+
     /// @brief  Writes all AudioPlayr data to a JSON file.
     /// @return The JSON file containing the data.
     nlohmann::ordered_json AudioPlayer::Write() const
     {
         nlohmann::ordered_json data;
-    
-        data["Volume"] = m_Volume;
-        data["Pitch"] = m_Pitch;
-        data["VolumeVariance"] = m_VolumeVariance;
-        data["PitchVariance"] = m_PitchVariance;
+
+        data[ "Volume" ] = Stream::Write( m_Volume );
+        data[ "Pitch" ] = Stream::Write( m_Pitch );
+        data[ "VolumeVariance" ] = Stream::Write( m_VolumeVariance );
+        data[ "PitchVariance" ] = Stream::Write( m_PitchVariance );
+        data[ "DefaultLoopCount" ] = Stream::Write( m_DefaultLoopCount );
+        data[ "PlayOnInit" ] = Stream::Write( m_PlayOnInit );
 
         std::string const& name = AssetLibrary<Sound>()->GetAssetName( m_Sound );
-        if (!name.empty())
+        if ( name.empty() == false )
         {
-            data["Sound"] = name;
+            data["Sound"] = Stream::Write( name );
         }
 
         return data;
     }
 
-    /// @brief  map of the read methods for this Component
-    ReadMethodMap< AudioPlayer > AudioPlayer::s_ReadMethods = {
-        { "Sound",          &readSound          },
-        { "Volume",         &readVolume         },
-        { "Pitch",          &readPitch          },
-        { "VolumeVariance", &readVolumeVariance },
-        { "PitchVariance",  &readPitchVariance  }
-    };
 
 //-----------------------------------------------------------------------------
 // private: cloning
 //-----------------------------------------------------------------------------
+
 
     /// @brief  copy-constructor for the AudioPlayer
     /// @param  other   the other AudioPlayer to copy
@@ -205,11 +496,5 @@
         m_PitchVariance( other.m_PitchVariance )
     {}
 
-    /// @brief  clones this AudioPlayer
-    /// @return the newly created clone of this AudioPlayer
-    Component* AudioPlayer::Clone() const
-    {
-        return new AudioPlayer( *this );
-    }
 
 //-----------------------------------------------------------------------------

@@ -20,20 +20,25 @@ class Sound : public ISerializable
 public: // constructor / destructor
 //-----------------------------------------------------------------------------
 
+
     /// @brief default constructor
-    Sound();
+    Sound() = default;
+
 
     /// @brief  Constructs a new Sound
     /// @param  filepath    the filepath of the sound to load
     /// @param  looping     whether or not the sound should loop
     Sound( char const* filepath, bool looping );
 
+
     /// @brief Destroys this Sound
     ~Sound();
+
 
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  Plays this sound
     /// @param  volume  the relative volume to play this sound at
@@ -42,32 +47,68 @@ public: // methods
     FMOD::Channel* Play(
         FMOD::ChannelGroup* group = nullptr,
         float volume = 1.0f,
-        float pitch = 1.0f
+        float pitch = 1.0f,
+        int loopCount = 0
     ) const;
+
+
+    /// @brief  reloads this Sound using current settings
+    void Reload();
+
 
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
 
+
     /// @brief  gets the length of this sound
     /// @return the length of this sound in seconds
     float GetLength() const;
+
 
     /// @brief  gets whether this Sound is looping
     /// @return whether this Sound is looping
     __inline bool GetLooping() const { return m_IsLooping; }
 
+
     /// @brief  gets this Sound's filepath
     /// @return this Sound's filepath
     __inline std::string const& GetFilepath() const { return m_Filepath; }
+
+
+//-----------------------------------------------------------------------------
+public: // inspector
+//-----------------------------------------------------------------------------
+
 
     /// @brief Used by the Debug System to display information about this Sound
     void Inspect();
 
 
 //-----------------------------------------------------------------------------
+private: // inspector
+//-----------------------------------------------------------------------------
+
+    /// @brief  selects a filepath from a directory
+    void inspectorSelectFilepathFromDirectory( char const* directoryPath );
+
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
+
+    /// @brief  the actual FMOD::Sound
+    FMOD::Sound* m_Sound = nullptr;
+
+    /// @brief  whether this Sound is looping
+    bool m_IsLooping = true;
+
+    /// @brief  The filepath of this Sound
+    std::string m_Filepath = "";
+
+//-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
+
 
     /// @brief  reads filepath
     /// @param  data    the JSON data to read from
@@ -82,10 +123,14 @@ private: // reading
     static ReadMethodMap< Sound > const s_ReadMethods;
 
 
-public:
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief  runs after Sound has been loaded 
     void AfterLoad();
+
 
     /// @brief  gets the Sound read method map
     /// @return the read method map
@@ -94,22 +139,10 @@ public:
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+
     /// @brief Write all Sound data to a JSON file.
     /// @return The JSON data containing the Sound data.
     virtual nlohmann::ordered_json Write() const override;
-
-//-----------------------------------------------------------------------------
-private: // member variables
-//-----------------------------------------------------------------------------
-
-    /// @brief  the actual FMOD::Sound
-    FMOD::Sound* m_Sound;
-
-    /// @brief  whether this Sound is looping
-    bool m_IsLooping;
-
-    /// @brief  The filepath of this Sound
-    std::string m_Filepath;
 
 //-----------------------------------------------------------------------------
 };

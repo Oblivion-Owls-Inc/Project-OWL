@@ -307,7 +307,7 @@
         static int selectedScene = -1; // Default index for dropdown, you can save this
         if ( selectedScene == -1 )
         {
-            selectedScene = std::find( m_SceneNames.begin(), m_SceneNames.end(), m_CurrentSceneName ) - m_SceneNames.begin();
+            selectedScene = (int)(std::find(m_SceneNames.begin(), m_SceneNames.end(), m_CurrentSceneName) - m_SceneNames.begin());
         }
 
         if ( m_SceneNames.size() > 0 )

@@ -100,26 +100,24 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  Finds and returns an asset, builds if doesnt yet exist
-    /// @return the constructed or found asset
-    template< class AssetType >
-    AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& name ) const
+/// @brief  Finds and returns an asset, builds if doesn't yet exist
+/// @return the constructed or found asset
+template< class AssetType >
+AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& name ) const
+{
+    auto itr = m_Assets.find(name);
+    if (itr != m_Assets.end())
     {
-        auto itr = m_Assets.find(name);
-        if (itr != m_Assets.end())
-        {
-            return itr->second;
-        }
-        else
-        {
-            std::ostringstream errorMessage;
-            errorMessage <<
-                "Error: Asset of type \"" << typeid( AssetType ).name() <<
-                "\" with name \"" << name <<
-                "\" could not be found";
-            throw std::runtime_error( errorMessage.str() );
-        }
+        return itr->second;
     }
+    else
+    {
+        Debug() <<
+            "Error: Asset of type \"" << typeid( AssetType ).name() <<
+            "\" with name \"" << name <<
+            "\" could not be found" << std::endl;
+    }
+}
 
     /// @brief Finds an returns the name of the specified asset.
     /// @param asset The asset to search for.
@@ -145,7 +143,9 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     template< class AssetType >
     void AssetLibrarySystem< AssetType >::AddAsset( std::string const& name, AssetType* asset )
     {
-        assert( m_Assets.find( name ) == m_Assets.end() );
+        if (m_Assets.find(name) != m_Assets.end()) {
+            Debug() << "Error: Asset with name '" << name << "' already exists." << std::endl;
+        }
         m_Assets.insert( { name, asset } );
     }
 
@@ -220,7 +220,8 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     template< class AssetType >
     AssetLibrarySystem< AssetType >::AssetLibrarySystem() :
         BaseAssetLibrarySystem( std::string( "AssetLibrary<" ) + (typeid( AssetType ).name() + 6) + ">" )
-    {}
+    {
+    }
 
     /// @brief the singleton instance of AssetLibrarySystem
     template< class AssetType >

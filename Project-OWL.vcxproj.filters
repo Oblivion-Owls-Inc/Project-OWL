@@ -694,4 +694,7 @@
       <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\SVN\Design Assets\Art Assets\Background.png" />
+  </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 #include "CameraSystem.h"
 #include "PlatformSystem.h"
 #include "glm/gtc/matrix_transform.hpp"
-
+#include "DebugSystem.h"
 
 //-------------------------------------------------------------------------
 // public: accessors
@@ -17,6 +17,7 @@
     {
         return m_ActiveCamera;
     }
+
     /// @brief  gets the active Camera
     /// @param  camera  the active Camera to set to
     void CameraSystem::SetActiveCamera( Camera* camera )
@@ -94,7 +95,8 @@
 
     CameraSystem::CameraSystem() :
         System( "CameraSystem" )
-    {}
+    {
+    }
 
     CameraSystem* CameraSystem::GetInstance()
     {
