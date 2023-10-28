@@ -27,8 +27,8 @@ public: // constructor / destructor
 
     /// @brief  Constructs a new Sound
     /// @param  filepath    the filepath of the sound to load
-    /// @param  looping     whether or not the sound should loop
-    Sound( char const* filepath, bool looping );
+    /// @param  isLoopable  whether or not the sound should loop
+    Sound( char const* filepath, bool isLoopable );
 
 
     /// @brief Destroys this Sound
@@ -68,7 +68,7 @@ public: // accessors
 
     /// @brief  gets whether this Sound is looping
     /// @return whether this Sound is looping
-    __inline bool GetLooping() const { return m_IsLooping; }
+    __inline bool GetIsLoopable() const { return m_IsLoopabe; }
 
 
     /// @brief  gets this Sound's filepath
@@ -89,21 +89,25 @@ public: // inspector
 private: // inspector
 //-----------------------------------------------------------------------------
 
+
     /// @brief  selects a filepath from a directory
     void inspectorSelectFilepathFromDirectory( char const* directoryPath );
+
 
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
+
     /// @brief  the actual FMOD::Sound
     FMOD::Sound* m_Sound = nullptr;
 
     /// @brief  whether this Sound is looping
-    bool m_IsLooping = true;
+    bool m_IsLoopabe = true;
 
     /// @brief  The filepath of this Sound
     std::string m_Filepath = "";
+
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -114,9 +118,9 @@ private: // reading
     /// @param  data    the JSON data to read from
     void readFilepath( nlohmann::ordered_json const& data );
 
-    /// @brief  reads isLooping
+    /// @brief  reads IsLoopabe
     /// @param  data    the JSON data to read from
-    void readIsLooping( nlohmann::ordered_json const& data );
+    void readIsLoopabe( nlohmann::ordered_json const& data );
 
 
     /// @brief  map of the SceneSystem read methods
@@ -143,6 +147,7 @@ public: // reading / writing
     /// @brief Write all Sound data to a JSON file.
     /// @return The JSON data containing the Sound data.
     virtual nlohmann::ordered_json Write() const override;
+
 
 //-----------------------------------------------------------------------------
 };

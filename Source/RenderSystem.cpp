@@ -115,7 +115,7 @@ void RenderSystem::DrawCircle( glm::vec2 const& position, float radius, glm::vec
 {
     static Texture debugCircleTexture = Texture( "Data/Textures/DebugCircle.png" );
 
-    DrawTexture( &debugCircleTexture, position, glm::vec2( radius ), 0.0f, color, alpha );
+    DrawTexture( &debugCircleTexture, position, glm::vec2( radius * 2.0f ), 0.0f, color, alpha );
 }
 
 /// @brief              Draws a texture

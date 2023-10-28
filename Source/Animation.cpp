@@ -18,16 +18,12 @@
 // public: constructor
 //-----------------------------------------------------------------------------
 
+
     /// @brief	Defualt constructor
     Animation::Animation() : 
-	    Behavior( typeid( Animation ) ),
-	    m_FrameIndex( 0 ),
-	    m_FrameDelay( 0.0 ),
-	    m_IsRunning( false ),
-        m_OnAnimationCompleteCallbacks(),
-	    m_Asset( nullptr ),
-        m_Sprite( nullptr )
+	    Behavior( typeid( Animation ) )
     {}
+
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -93,7 +89,7 @@
     /// @brief	Gets the frame index of the animation
     /// @param  relative    if true, return the index relative to the start of the current animation
     /// @return	Frame index of the animation
-    unsigned Animation::GetIndex( bool relative ) const
+    unsigned Animation::GetFrameIndex( bool relative ) const
     {
 	    return m_FrameIndex - (relative ? m_Asset->GetStart() : 0);
     }
@@ -101,10 +97,12 @@
     /// @brief	Sets a new frame index
     /// @param  relative    if true, set the index relative to the start of the current animation
     /// @param	index       frame index to set
-    void Animation::SetIndex( unsigned index, bool relative )
+    void Animation::SetFrameIndex( unsigned index, bool relative )
     {
 	    m_FrameIndex = index + (relative ? m_Asset->GetStart() : 0);
+        m_Sprite->SetFrameIndex( m_FrameIndex );
     }
+
 
     /// @brief	Gets the frame delay of the animation
     /// @return	Frame delay of the animation
@@ -120,18 +118,36 @@
 	    m_FrameDelay = newDelay;
     }
 
+
     /// @brief	Gets the running status of the animation
     /// @return	Running status of the animation
-    bool Animation::GetRunning() const
+    bool Animation::GetIsRunning() const
     {
 	    return m_IsRunning;
     }
+
     /// @brief	Sets a new running status
     /// @param	New running status to set
-    void Animation::SetRunning(bool newRunning)
+    void Animation::SetIsRunning(bool newRunning)
     {
 	    m_IsRunning = newRunning;
     }
+
+
+    /// @brief  gets the remaining loop count of this Animation
+    /// @return the loop count of this Animation
+    int Animation::GetLoopCount() const
+    {
+        return m_LoopCount;
+    }
+
+    /// @brief  gets the remaining loop count of this Animation
+    /// @param  loopCount   the loop count of this Animation
+    void Animation::SetLoopCount( int loopCount )
+    {
+        m_LoopCount = loopCount;
+    }
+
 
     /// @brief	Gets the current animation asset
     /// @return	The asset currently connected
@@ -139,22 +155,21 @@
     {
 	    return m_Asset;
     }
-    /// @brief	Sets a new animation asset
-    /// @brief	this and animation play can change
-    /// @brief	the current animation without
-    ///	@brief	having to swap the sprite sheet
-    /// @brief	or other information
-    /// @param	New animation asset to set
+
+    /// @brief	Sets the animation asset this Animation will use
+    /// @param	newAsset    animation asset to set
     void Animation::SetAsset( AnimationAsset const* newAsset )
     {
-        int index = GetIndex(true);
+        int index = GetFrameIndex(true);
 	    m_Asset = newAsset;
-        SetIndex(index, true);
+        SetFrameIndex(index, true);
     }
+
 
 //-----------------------------------------------------------------------------
 // private: virtual override methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  gets called once when entering the scene
     void Animation::OnInit()
@@ -168,6 +183,7 @@
     {
         Behaviors<Animation>()->RemoveBehavior(this);
     }
+
 
     /// @brief	updates animation
     /// @param	dt
@@ -185,6 +201,7 @@
         }
     }
 
+
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
@@ -195,13 +212,14 @@
 	    m_FrameIndex += 1;
 	    if ( m_FrameIndex >= m_Asset->GetEnd() )
 	    {
-		    if ( m_Asset->GetIsLooping() )
+            m_FrameIndex = m_Asset->GetStart();
+
+		    if ( m_LoopCount != 0 )
 		    {
-			    m_FrameIndex = m_Asset->GetStart();
+                m_LoopCount -= ( m_LoopCount != -1 );
 		    }
 		    else
 		    {
-			    m_FrameIndex = m_Asset->GetEnd() - 1;
 			    m_IsRunning = false;
                 
                 for ( auto callback : m_OnAnimationCompleteCallbacks )
@@ -213,13 +231,15 @@
 	
 	    if ( m_IsRunning )
 	    {
-		    m_Sprite->SetFrameIndex( m_FrameIndex );
-		    m_FrameDelay = m_FrameDelay + m_Asset->GetFrameDuration();
+		    m_FrameDelay += m_Asset->GetFrameDuration();
 	    }
 	    else
 	    {
 		    m_FrameDelay = 0;
 	    }
+
+
+        m_Sprite->SetFrameIndex( m_FrameIndex );
     }
 
 //-----------------------------------------------------------------------------
@@ -273,6 +293,7 @@
         return data;
     }
 
+
     /// @brief  map of read methods
     ReadMethodMap< Animation > const Animation::s_ReadMethods = {
 	    {"FrameIndex", &readFrameIndex },
@@ -281,16 +302,11 @@
         {"Animation" , &readAnimation  }
     };
 
+
 //-----------------------------------------------------------------------------
 // private: copying
 //-----------------------------------------------------------------------------
 
-    /// @brief	Clones an animation
-    /// @return New animation copy
-    Component* Animation::Clone() const
-    {
-        return new Animation(*this);
-    }
 
     /// @brief	Copy constructor
     /// @param	Other animation to copy
@@ -300,8 +316,8 @@
         m_FrameDelay( other.m_FrameDelay ),
         m_IsRunning( other.m_IsRunning ),
         m_Asset( other.m_Asset ),
-        m_OnAnimationCompleteCallbacks(),
-        m_Sprite( nullptr )
+        m_LoopCount( other.m_LoopCount )
     {}
+
 
 //-----------------------------------------------------------------------------

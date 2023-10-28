@@ -22,11 +22,13 @@ class Animation : public Behavior
 public: // constructor / destructor
 //-----------------------------------------------------------------------------
 	
+
 	/// @brief	Defualt constructor
 	Animation();
 
 	/// @brief	Default Destructor
 	~Animation() = default;
+
 
 //-----------------------------------------------------------------------------
 public: // methods
@@ -44,12 +46,15 @@ public: // methods
     /// @brief  starts playing this Animation
     void Play();
 
+
     /// @brief  pauses the current animation
     void Pause() { m_IsRunning = false; }
+
 
     /// @brief  how much longer until the current animation is done playing
     /// @return the amount of remaining time
     float GetRemainingTime() const;
+
 
     /// @brief  adds a callback function to be called when the animation completes
     /// @param  ownerId     the ID of the owner of the callback
@@ -61,43 +66,63 @@ public: // methods
     /// @param  ownerId the ID of the owner of the callback to remove
     void RemoveOnAnimationCompleteCallback( unsigned ownerId );
 
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
 
+
 	/// @brief	Gets the frame index of the animation
     /// @param  relative    if true, return the index relative to the start of the current animation
 	/// @return	Frame index of the animation
-    unsigned GetIndex( bool relative = true ) const;
+    unsigned GetFrameIndex( bool relative = true ) const;
+
 	/// @brief	Sets a new frame index
     /// @param  relative    if true, set the index relative to the start of the current animation
 	/// @param	index       frame index to set
-	void SetIndex( unsigned index, bool relative = true );
+	void SetFrameIndex( unsigned index, bool relative = true );
+
 
 	/// @brief	Gets the amount of time until the frame changes
 	/// @return	the amount of time until the frame next changes
     float GetDelay() const;
+
 	/// @brief	Sets a new frame delay
 	/// @param	delay   frame delay to set
 	void SetDelay( float delay );
 
+
 	/// @brief	Gets the running status of the animation
 	/// @return	Running status of the animation
-    bool GetRunning() const;
+    bool GetIsRunning() const;
+
 	/// @brief	Sets a new running status
 	/// @param	running running status to set
-	void SetRunning( bool running );
+	void SetIsRunning( bool running );
+
+
+    /// @brief  gets the remaining loop count of this Animation
+    /// @return the loop count of this Animation
+    int GetLoopCount() const;
+
+    /// @brief  gets the remaining loop count of this Animation
+    /// @param  loopCount   the loop count of this Animation
+    void SetLoopCount( int loopCount );
+
 
 	/// @brief	Gets the current animation asset
 	/// @return	The asset currently connected
 	AnimationAsset const* GetAsset() const;
+
 	/// @brief	Sets the animation asset this Animation Component is using
 	/// @param	asset   animation asset to set
 	void SetAsset( AnimationAsset const* asset );
 
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  gets called once when entering the scene
     virtual void OnInit() override;
@@ -105,44 +130,56 @@ private: // virtual override methods
     /// @brief  gets called once when exiting the scene
     virtual void OnExit() override;
 
+
 	/// @brief	updates animation
 	/// @param	dt  the time since the last graphics frame
 	virtual void OnUpdate(float dt) override;
 
-    virtual void OnFixedUpdate() override {};
 
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
+
     /// @brief  the sprite that this Animation Component is animating
-    Sprite* m_Sprite;
+    Sprite* m_Sprite = nullptr;
+
 
     /// @brief  the animation asset this Animation Component is using
-    AnimationAsset const* m_Asset;
+    AnimationAsset const* m_Asset = nullptr;
+
 
     /// @brief  the current frame index
-    unsigned m_FrameIndex;
+    unsigned m_FrameIndex = 0;
     
     /// @brief  how long until the next frame
-    float m_FrameDelay;
+    float m_FrameDelay = 0.0f;
 
     /// @brief  whether the animation is currenty running
-    bool m_IsRunning;
+    bool m_IsRunning = false;
+
+    /// @brief  the number of times this Animation will loop before stopping
+    /// @note   -1 will loop infinitely
+    int m_LoopCount = 0;
+
 
     /// @brief  callbacks which gets called when the current animation finishes playing
-    std::map< unsigned,  std::function< void() > > m_OnAnimationCompleteCallbacks;
+    std::map< unsigned, std::function< void() > > m_OnAnimationCompleteCallbacks = {};
+
 
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  advances the frame of this Animation
     void AdvanceFrame();
+
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
+
 
 	/// @brief  reads the current frame of this Animation (non-relative)
 	/// @param  stream  the json data to read from
@@ -160,8 +197,15 @@ private: // reading
     /// @param  stream  the json data to read from
     void readAnimation( nlohmann::ordered_json const& data );
 
+
 	/// @brief  map of read methods
 	static ReadMethodMap< Animation > const s_ReadMethods;
+
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief  gets the map of read methods
     /// @return the map of read methods
@@ -170,7 +214,6 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
- public:
 
      /// @brief  Write all Animation component data to a JSON file.
      /// @return The JSON file containing the Animation component data.
@@ -178,16 +221,27 @@ private: // reading
 
 
 //-----------------------------------------------------------------------------
-private: // copying
+public: // copying
 //-----------------------------------------------------------------------------
+
 
     /// @brief	Clones an animation
     /// @return New animation copy
-    virtual Component* Behavior::Clone() const override;
+    virtual Animation* Clone() const override
+    {
+        return new Animation( *this );
+    }
+
+
+//-----------------------------------------------------------------------------
+private: // copying
+//-----------------------------------------------------------------------------
+
 
     /// @brief  copy constructor
     /// @param  other the Animation to copy
     Animation( Animation const& other );
+
 
 //-----------------------------------------------------------------------------
 };

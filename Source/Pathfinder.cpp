@@ -259,33 +259,53 @@ void Pathfinder::explore()
 
 
 //-----------------------------------------------------------------------------
-//              Reading
+// private: reading
 //-----------------------------------------------------------------------------
 
-/// @brief          Read in the destination position
-/// @param stream   The json to read from.
-void Pathfinder::readDestination( nlohmann::ordered_json const& data )
-{
-    m_DestPos = Stream::Read< 2, float>(data);
-}
-
-/// @brief          Read in the array of walkable tiles
-/// @param stream   The json to read from.
-void Pathfinder::readWalkables( nlohmann::ordered_json const& data )
-{
-    m_Walkables.clear();
-
-    for (int i = 0; i < data.size(); ++i)
+    /// @brief          Read in the destination position
+    /// @param stream   The json to read from.
+    void Pathfinder::readDestination( nlohmann::ordered_json const& data )
     {
-        int x = Stream::Read<int>(data[i]);
-        m_Walkables.push_back(x);
+        m_DestPos = Stream::Read< 2, float>(data);
     }
-}
+
+    /// @brief          Read in the array of walkable tiles
+    /// @param stream   The json to read from.
+    void Pathfinder::readWalkables( nlohmann::ordered_json const& data )
+    {
+        m_Walkables.clear();
+
+        for (int i = 0; i < data.size(); ++i)
+        {
+            int x = Stream::Read<int>(data[i]);
+            m_Walkables.push_back(x);
+        }
+    }
 
 
-/// @brief          The map of read methods for this Component
-ReadMethodMap< Pathfinder > const Pathfinder::s_ReadMethods = {
-    { "Destination", &readDestination  },
-    { "Walkables",   &readWalkables  }
-};
+    /// @brief          The map of read methods for this Component
+    ReadMethodMap< Pathfinder > const Pathfinder::s_ReadMethods = {
+        { "Destination", &readDestination  },
+        { "Walkables",   &readWalkables  }
+    };
 
+
+//-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Write all Sprite component data to a JSON file.
+    /// @return The JSON file containing the Sprite component data.
+    nlohmann::ordered_json Pathfinder::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        json[ "Destination" ] = Stream::Write( m_DestPos );
+        json[ "Walkables" ] = Stream::Write( m_Walkables );
+
+        return json;
+    }
+
+
+//-----------------------------------------------------------------------------

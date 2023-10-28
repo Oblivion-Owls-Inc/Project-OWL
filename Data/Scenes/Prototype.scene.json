@@ -49,26 +49,22 @@
       "PlayerMoveDown": {
         "Start": 0,
         "End": 12,
-        "FrameRate": 12,
-        "IsLooping": true
+        "FrameRate": 12
       },
       "PlayerMoveUp": {
         "Start": 12,
         "End": 24,
-        "FrameRate": 12,
-        "IsLooping": true
+        "FrameRate": 12
       },
       "PlayerMoveRight": {
         "Start": 24,
         "End": 36,
-        "FrameRate": 12,
-        "IsLooping": true
+        "FrameRate": 12
       },
       "PlayerMoveLeft": {
         "Start": 36,
         "End": 48,
-        "FrameRate": 12,
-        "IsLooping": true
+        "FrameRate": 12
       }
     },
     "Archetypes": {
@@ -2106,7 +2102,8 @@
           "Translation": [ 0.5, 4.5 ]
         },
         "Sprite": {
-          "Texture": "PlayerSheet"
+          "Texture": "PlayerSheet",
+          "FrameIndex": 24
         },
         "CircleCollider": {
           "CollisionLayer": "Player",
@@ -2119,16 +2116,11 @@
           "Restitution": 0
         },
         "PlayerController": {
-          "left": [ -1, 0 ],
-          "right": [ 1, 0 ],
-          "up": [ 0, 1 ],
-          "down": [ 0, -1 ],
-          "maxSpeed": 1,
-          "animationName": [ "PlayerMoveRight", "PlayerMoveLeft", "PlayerMoveUp", "PlayerMoveDown" ]
+          "MaxSpeed": 1,
+          "AnimationNames": [ "PlayerMoveRight", "PlayerMoveLeft", "PlayerMoveUp", "PlayerMoveDown" ]
         },
         "Animation": {
-          "Animation": "PlayerMoveRight",
-          "IsRunning": true
+          "Animation": "PlayerMoveRight"
         }
       }
     },
