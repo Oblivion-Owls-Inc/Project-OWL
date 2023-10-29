@@ -32,41 +32,44 @@
 // public: accessors
 //-------------------------------------------------------------------------
 
+
     /// @brief  gets the width of the Camera
     /// @return the width of the camera
     float Camera::GetWidth() const
     {
-        glm::vec2 windowSize = PlatformSystem::GetInstance()->GetWindowDimensions();
-
-        return m_Scale * windowSize.x / windowSize.y;
+        return m_Scale;
     }
+
     /// @brief  sets the width of the camera
     /// @param  width   the width of the camera
     /// @note   also overrides height based on viewport aspect ratio
     void Camera::SetWidth( float width )
     {
-
-        glm::vec2 windowSize = PlatformSystem::GetInstance()->GetWindowDimensions();
-
-        m_Scale = width * windowSize.y / windowSize.x;
+        m_Scale = width;
 
         calculateCameraToClip();
         m_WorldToClipDirty = true;
         m_ClipToWorldDirty = true;
     }
 
+
     /// @brief  gets the height of the Camera
     /// @return the height of the camera
     float Camera::GetHeight() const
     {
-        return m_Scale;
+        glm::vec2 windowSize = PlatformSystem::GetInstance()->GetWindowDimensions();
+
+        return m_Scale * windowSize.y / windowSize.x;
     }
+
     /// @brief  sets the height of the camera
     /// @param  height  the height of the camera
     /// @note   also overrides width based on viewport aspect ratio
     void Camera::SetHeight( float height )
     {
-        m_Scale = height;
+        glm::vec2 windowSize = PlatformSystem::GetInstance()->GetWindowDimensions();
+
+        m_Scale = height * windowSize.x / windowSize.y;
 
         calculateCameraToClip();
         m_WorldToClipDirty = true;
@@ -264,7 +267,8 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "Height" ] = m_Scale;
+        json[ "Width" ] = Stream::Write( m_Scale );
+        json[ "IsActive" ] = Stream::Write( m_Scale );
 
         return json;
     }
