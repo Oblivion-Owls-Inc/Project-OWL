@@ -98,6 +98,138 @@
     }
 
 //-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  Loads the engine config from "Data/EngineConfig.json"
+    void Engine::load()
+    {
+        nlohmann::ordered_json json = Stream::ReadFromFile( "Data/EngineConfig.json" );
+
+        try
+        {
+            Engine* self = this; // convert from rvalue into lvalue
+            Stream::Read( self, json );
+        }
+        catch ( std::runtime_error error )
+        {
+            std::cerr << error.what();
+        }
+    }
+
+    /// @brief  Initializes the engine and all Systems in the Engine
+    void Engine::init()
+    {
+        Debug() << "Starting up..." << std::endl;
+        // initialize the time values
+        m_PreviousTime = glfwGetTime();
+        m_PreviousFixedTime =  m_PreviousTime;
+
+        // initialize all the systems
+        for (System * system :  m_Systems)
+        {
+            system->OnInit();
+            Debug() << "Starting " << system->GetName() << std::endl << std::endl;
+        }
+
+        // TODO: move the below code out of the engine into its own systems
+
+        // this will go in GraphicsSystem
+        // Set the clear color (background color)
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    }
+
+    /// @brief  Updates the engine each frame
+    void Engine::update()
+    {
+
+        double currentTime = glfwGetTime();
+
+        updateSystems( static_cast<float>(currentTime - m_PreviousTime) );
+
+        if (currentTime - m_PreviousFixedTime > m_FixedFrameDuration)
+        {
+            fixedUpdateSystems();
+
+            if ( currentTime - m_PreviousFixedTime <= -m_FixedFrameDuration )
+            {
+                m_PreviousFixedTime = currentTime;
+            }
+            else
+            {
+                m_PreviousFixedTime += m_FixedFrameDuration;
+            }
+        }
+
+        m_PreviousTime = currentTime;
+
+
+        // TODO: move the below code out of Engine and into its own Systems
+
+        // this goes to GraphicsSystem
+
+        GLFWwindow* window = PlatformSystem::GetInstance()->GetWindowHandle();
+
+        // ensure viewport size matches window size
+        int display_w, display_h;
+        glfwGetFramebufferSize(window, &display_w, &display_h);
+        glViewport(0, 0, display_w, display_h);
+
+        // Swap front and back buffers
+        glfwSwapBuffers(window);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // this goes to InputSystem
+
+        // Poll for and process events
+        glfwPollEvents();
+
+        // TODO: move the above code out of Engine and into its own System
+    }
+
+    /// @brief  Calls all Systems' OnUpdate function
+    /// @param  dt  the amount of time the frame lasted
+    void Engine::updateSystems( float dt )
+    {
+        for ( System * system : m_Systems )
+        {
+            if ( system->GetEnabled() )
+            {
+                system->OnUpdate( dt );
+            }
+        }
+    }
+
+    /// @brief  Calls all Systems' OnFixedUpdate function
+    void Engine::fixedUpdateSystems()
+    {
+        for ( System * system : m_Systems )
+        {
+            if ( system->GetEnabled() )
+            {
+                system->OnFixedUpdate();
+            }
+        }
+    }
+
+    /// @brief  Calls all Systems' OnExit function
+    void Engine::exit()
+    {
+        Debug() << std::endl << std::endl << "Exiting..."
+            << std::endl << std::endl;
+        for ( System * system : m_Systems )
+        {
+            system->OnExit();
+
+            Debug() << "Exiting " << system->GetName() 
+                << std::endl << std::endl;
+        }
+
+        Debug() << "\nShutdown complete." << std::endl;
+
+    }
+
+//-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
 
@@ -203,130 +335,6 @@
         }
 
         return json;
-    }
-
-//-----------------------------------------------------------------------------
-// private: methods
-//-----------------------------------------------------------------------------
-
-    /// @brief  Loads the engine config from "Data/EngineConfig.json"
-    void Engine::load()
-    {
-        nlohmann::ordered_json json = Stream::ReadFromFile( "Data/EngineConfig.json" );
-
-        try
-        {
-            Engine* self = this; // convert from rvalue into lvalue
-            Stream::Read( self, json );
-        }
-        catch ( std::runtime_error error )
-        {
-            std::cerr << error.what();
-        }
-    }
-
-    /// @brief  Initializes the engine and all Systems in the Engine
-    void Engine::init()
-    {
-        Debug() << "Starting up..." << std::endl;
-        // initialize the time values
-        m_PreviousTime = glfwGetTime();
-        m_PreviousFixedTime =  m_PreviousTime;
-
-        // initialize all the systems
-        for (System * system :  m_Systems)
-        {
-            system->OnInit();
-            Debug() << "Starting " << system->GetName() << std::endl << std::endl;
-        }
-
-        // TODO: move the below code out of the engine into its own systems
-
-        // this will go in GraphicsSystem
-            // Set the clear color (background color)
-            glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    }
-
-    /// @brief  Updates the engine each frame
-    void Engine::update()
-    {
-
-        double currentTime = glfwGetTime();
-
-        updateSystems( static_cast<float>(currentTime - m_PreviousTime) );
-
-        if (currentTime - m_PreviousFixedTime > m_FixedFrameDuration)
-        {
-            fixedUpdateSystems();
-            m_PreviousFixedTime += m_FixedFrameDuration;
-        }
-    
-        m_PreviousTime = currentTime;
-
-
-        // TODO: move the below code out of Engine and into its own Systems
-        
-        // this goes to GraphicsSystem
-            
-            GLFWwindow* window = PlatformSystem::GetInstance()->GetWindowHandle();
-
-            // ensure viewport size matches window size
-            int display_w, display_h;
-            glfwGetFramebufferSize(window, &display_w, &display_h);
-            glViewport(0, 0, display_w, display_h);
-
-            // Swap front and back buffers
-            glfwSwapBuffers(window);
-            glClear(GL_COLOR_BUFFER_BIT);
-
-        // this goes to InputSystem
-            
-            // Poll for and process events
-            glfwPollEvents();
-
-        // TODO: move the above code out of Engine and into its own System
-    }
-
-    /// @brief  Calls all Systems' OnUpdate function
-    /// @param  dt  the amount of time the frame lasted
-    void Engine::updateSystems( float dt )
-    {
-        for ( System * system : m_Systems )
-        {
-            if ( system->GetEnabled() )
-            {
-                system->OnUpdate( dt );
-            }
-        }
-    }
-
-    /// @brief  Calls all Systems' OnFixedUpdate function
-    void Engine::fixedUpdateSystems()
-    {
-        for ( System * system : m_Systems )
-        {
-            if ( system->GetEnabled() )
-            {
-                system->OnFixedUpdate();
-            }
-        }
-    }
-
-    /// @brief  Calls all Systems' OnExit function
-    void Engine::exit()
-    {
-        Debug() << std::endl << std::endl << "Exiting..."
-            << std::endl << std::endl;
-        for ( System * system : m_Systems )
-        {
-            system->OnExit();
-
-            Debug() << "Exiting " << system->GetName() 
-                << std::endl << std::endl;
-        }
-
-        Debug() << "\nShutdown complete." << std::endl;
-
     }
 
 
