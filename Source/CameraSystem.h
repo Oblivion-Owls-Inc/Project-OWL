@@ -16,24 +16,26 @@ class CameraSystem : public System
 public: // accessors
 //-------------------------------------------------------------------------
 
+
     /// @brief  sets the active Camera
     /// @return the active camera
     Camera* GetActiveCamera();
+
     /// @brief  gets the active Camera
     /// @param  camera  the active Camera to set to
     void SetActiveCamera( Camera* camera );
 
 
-    /// @return     UI space to clip space matrix
+    /// @return UI space to clip space matrix
     glm::mat4 const& GetMat_UItoClip() const;
 
-    /// @return     World space to clip space matrix
+    /// @return World space to clip space matrix
     glm::mat4 const& GetMat_WorldToClip() const;
 
-    /// @return     Screen to UI space matrix
+    /// @return Screen to UI space matrix
     glm::mat4 const& GetMat_ScreenToUI() const;
 
-    /// @return     Screen to world space matrix
+    /// @return Screen to world space matrix
     glm::mat4 GetMat_ScreenToWorld() const;
 
 
@@ -41,12 +43,15 @@ public: // accessors
 private: // virtual override methods
 //-------------------------------------------------------------------------
     
+
     /// @brief  called once when the engine starts
     virtual void OnInit() override;
+
 
 //-------------------------------------------------------------------------
 private: // member variables
 //-------------------------------------------------------------------------
+
 
     /// @brief  Matrix for converting screen position to clip space
     glm::mat4 m_ScreenToClip = glm::mat4( 0 );
@@ -58,14 +63,23 @@ private: // member variables
     glm::mat4 m_UiToClip = glm::mat4( 0 );
 
 
+    /// @brief  the current active camera in the scene
     Camera* m_ActiveCamera = nullptr;
+
 
 //-------------------------------------------------------------------------
 private: // methods
 //-------------------------------------------------------------------------
 
+
     /// @brief  Calculates all the CameraSystem Matrices
     void calculateMatrices();
+
+
+    /// @brief  callback to call whenever the window resizes
+    /// @param  size    the new size of the window
+    void onWindowResizeCallback( glm::ivec2 const& size );
+
 
 //-------------------------------------------------------------------------
 private: // singleton stuff

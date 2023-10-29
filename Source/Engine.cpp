@@ -55,8 +55,9 @@
         init();
 
         while (
-            Input()->GetKeyTriggered(GLFW_KEY_ESCAPE) == false &&
-            PlatformSystem::GetInstance()->WindowClosing() == false
+            // PlatformSystem::GetInstance()->WindowClosing() == false
+            m_ShouldExit == false &&
+            Input()->GetKeyTriggered(GLFW_KEY_ESCAPE) == false
         )
         {
             update();
@@ -166,23 +167,23 @@
 
         // TODO: move the below code out of Engine and into its own Systems
 
-        // this goes to GraphicsSystem
+            // this goes to GraphicsSystem
 
-        GLFWwindow* window = PlatformSystem::GetInstance()->GetWindowHandle();
+                GLFWwindow* window = PlatformSystem::GetInstance()->GetWindowHandle();
 
-        // ensure viewport size matches window size
-        int display_w, display_h;
-        glfwGetFramebufferSize(window, &display_w, &display_h);
-        glViewport(0, 0, display_w, display_h);
+                // ensure viewport size matches window size
+                int display_w, display_h;
+                glfwGetFramebufferSize(window, &display_w, &display_h);
+                glViewport(0, 0, display_w, display_h);
 
-        // Swap front and back buffers
-        glfwSwapBuffers(window);
-        glClear(GL_COLOR_BUFFER_BIT);
+                // Swap front and back buffers
+                glfwSwapBuffers(window);
+                glClear(GL_COLOR_BUFFER_BIT);
 
-        // this goes to InputSystem
+            // this goes to InputSystem
 
-        // Poll for and process events
-        glfwPollEvents();
+                // Poll for and process events
+                glfwPollEvents();
 
         // TODO: move the above code out of Engine and into its own System
     }
