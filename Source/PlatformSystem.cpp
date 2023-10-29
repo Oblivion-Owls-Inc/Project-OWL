@@ -174,9 +174,14 @@
 
             // Update m_WindowSize to the new dimensions
             m_WindowSize = glm::ivec2( mode->width, mode->height );
+
+            glfwSwapInterval(1); // enable vsync
         }
         else
         {
+
+            glfwSwapInterval(1); // enable vsync
+
             // Update m_WindowSize to the new dimensions
             m_WindowSize = glm::ivec2( savedWidth, savedHeight );
 
