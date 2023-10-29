@@ -25,9 +25,11 @@ public:
     /// @param angle        (optional) Angle
     /// @param color        (optional) Color
     /// @param alpha        (optional) transparency
+    /// @param isDiegetic   (optional) whether the shape is diegetic
     void DrawRect(
         glm::vec2 const& position, glm::vec2 const& scale = { 1.0f, 1.0f }, float angle = 0.0f,
-        glm::vec4 const& color = { 0.1f, 0.6f, 0.1f, 0.0f }, float alpha = 0.5f
+        glm::vec4 const& color = { 0.1f, 0.6f, 0.1f, 0.0f }, float alpha = 0.5f,
+        bool isDiegetic = true
     );
 
     /// @brief              Draws a circle.
@@ -35,9 +37,11 @@ public:
     /// @param radius       (optional) Radius
     /// @param color        (optional) Color
     /// @param alpha        (optional) transparency
+    /// @param isDiegetic   (optional) whether the shape is diegetic
     void DrawCircle(
         const glm::vec2& position, float radius = 1.0f, 
-        const glm::vec4& color = { 0.1f, 0.6f, 0.1f, 0.0f }, float alpha = 0.5f
+        const glm::vec4& color = { 0.1f, 0.6f, 0.1f, 0.0f }, float alpha = 0.5f,
+        bool isDiegetic = true
     );
 
     /// @brief              Draws a line between 2 points.
@@ -46,9 +50,11 @@ public:
     /// @param thickness    (optional) How thicc the line is
     /// @param color        (optional) Color of the line
     /// @param alpha        (optional) transparency
+    /// @param isDiegetic   (optional) whether the shape is diegetic
     void DrawLine(
         glm::vec2 const& P1, glm::vec2 const& P2, float thickness = 1.0f,
-        glm::vec4 const& color = { 0.0f, 0.2f, 0.5f, 0.0f }, float alpha = 0.5f
+        glm::vec4 const& color = { 0.0f, 0.2f, 0.5f, 0.0f }, float alpha = 0.5f,
+        bool isDiegetic = true
     );
 
     /// @brief              Draws a texture.
@@ -58,10 +64,12 @@ public:
     /// @param angle        (optional) Angle
     /// @param color        (optional) Color
     /// @param alpha        (optional) transparency
+    /// @param isDiegetic   (optional) whether the shape is diegetic
     void DrawTexture(
         Texture const* texture,
         glm::vec2 const& position, glm::vec2 const& scale = { 1.0f, 1.0f }, float angle = 0.0f,
-        glm::vec4 const& color = { 0.0f, 0.0f, 0.0f, 0.0f }, float alpha = 1.0f
+        glm::vec4 const& color = { 0.0f, 0.0f, 0.0f, 0.0f }, float alpha = 1.0f,
+        bool isDiegetic = true
     );
 
 
