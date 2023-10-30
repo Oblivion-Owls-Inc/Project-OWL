@@ -9,6 +9,8 @@
 #include <iostream>         // error msg
 #include "RenderSystem.h"   // default mesh
 
+#include "Inspection.h"
+#include <imgui.h>
 
 //-----------------------------------------------------------------------------
 // public: constructors/destructors
@@ -49,20 +51,30 @@ Texture::~Texture()
 //-----------------------------------------------------------------------------
 
 
-/// @brief       Sets this texture as active, so it can be used by texture shader
-/// @param slot  (optional) texture slot - for drawing multiple at once ig?
-void Texture::Bind(unsigned int slot) const
-{
-    glActiveTexture(GL_TEXTURE0 + slot);
-    glBindTexture(GL_TEXTURE_2D, m_TextureID);
-}
+    /// @brief       Sets this texture as active, so it can be used by texture shader
+    /// @param slot  (optional) texture slot - for drawing multiple at once ig?
+    void Texture::Bind(unsigned int slot) const
+    {
+        glActiveTexture(GL_TEXTURE0 + slot);
+        glBindTexture(GL_TEXTURE_2D, m_TextureID);
+    }
 
 
-
+    /// @brief Used by the Debug to display information about this Texture
     void Texture::Inspect()
     {
-        /// TODO: add inspector
+        Inspection::SelectFileFromDirectory( "Filepath", &m_Filepath, "Data/Textures" );
+
+        ImGui::InputInt2( "Sheet Dimensions", &m_SheetDimensions[0] );
+
+        ImGui::DragFloat2( "Pivot", &m_Pivot[0], 0.01f, 0.0f, 1.0f );
+
+        if ( ImGui::Button( "Reload Texture" ) )
+        {
+            LoadImage();
+        }
     }
+
 
 //-----------------------------------------------------------------------------
 // private: reading
