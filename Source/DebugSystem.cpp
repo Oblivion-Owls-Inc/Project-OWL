@@ -193,7 +193,7 @@ void DebugSystem::DebugWindow()
             if (ImGui::MenuItem(m_Fullscreen ? "Windowed" : "Fullscreen"))
             {
 				m_Fullscreen = !m_Fullscreen;
-				PlatformSystem::GetInstance()->ToggleFullscreen();
+				PlatformSystem::GetInstance()->setFullscreen(m_Fullscreen);
 			}
 
             /// Shows the ImGui Demo Window
@@ -298,6 +298,10 @@ void DebugSystem::DebugWindow()
 /// @brief Opens the Different Windows for the Editor Window
 void DebugSystem::MenuWindows()
 {
+    ///----------------------------------------------///
+    /// Open Entity | Debug | Asset System Windows  ///
+    ///--------------------------------------------///
+
     /// Opens the Entity Create Window
     if (m_ShowEntityCreateWindow)
     {
@@ -326,6 +330,10 @@ void DebugSystem::MenuWindows()
 		ShowSystemList("BehaviorSystem");
 	}
 
+    ///-------------------------------------------///
+    /// Save Scene and Engine Config Windows      ///
+    ///-------------------------------------------///
+
     /// Opens the Save Scene Window
     if (m_ShowSceneLoadWindow)
     {
@@ -346,6 +354,10 @@ void DebugSystem::MenuWindows()
         /// if the Save Engine Window is closed, then close the window
         m_ShowEngineSaveWindow = GameEngine()->SaveEngineConfig();
 	}
+
+    ///-------------------------------------------///
+    /// Asset Prefab Creation Windows             ///
+    ///-------------------------------------------///
 
     /// Opens the New Asset Prefab Windows for Sound
     if (m_CreationWindows[(int)MenuItemType::NewSound])
