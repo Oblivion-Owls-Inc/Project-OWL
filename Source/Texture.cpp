@@ -61,7 +61,7 @@ void Texture::Bind(unsigned int slot) const
 
     void Texture::Inspect()
     {
-        ///todo: add inspector
+        /// TODO: add inspector
     }
 
 //-----------------------------------------------------------------------------
