@@ -27,6 +27,7 @@ bool BehaviorSystem<BehaviorType>::s_ShowBehaviorSystemList = false;
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 {
+
 	for ( int i = 0; i < m_BehaviorList.size(); ++i )
 	{
 
@@ -38,6 +39,11 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
+    if (GetDebugEnabled())
+    {
+        DebugWindow();
+    }
+
     for ( int i = 0; i < m_BehaviorList.size(); ++i )
     {
 
@@ -76,17 +82,13 @@ std::vector<BehaviorType*>& BehaviorSystem<BehaviorType>::GetBehaviors() const
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::DebugWindow()
 {
+    s_ShowBehaviorSystemList = GetDebugEnabled();
     std::string behaviorName(typeid(BehaviorType).name() + 5); // Move over the "class" part of the name
 
-    char buttonLabel[128];
-    snprintf(buttonLabel, sizeof(buttonLabel), s_ShowBehaviorSystemList ?
-        "Hide%s List" : "Show%s List", behaviorName.c_str());
 
-    if (ImGui::Button(buttonLabel))
-        s_ShowBehaviorSystemList = !s_ShowBehaviorSystemList;
-
-    if (s_ShowBehaviorSystemList)
+    if (ImGui::Begin(behaviorName.c_str(), &s_ShowBehaviorSystemList))
     {
+        ImGui::SetWindowSize(ImVec2(500, 500), ImGuiCond_FirstUseEver);
         for (auto behavior : m_BehaviorList)
         {
             std::string parentName = behavior->GetParent()->GetName();
@@ -100,7 +102,9 @@ void BehaviorSystem<BehaviorType>::DebugWindow()
             }
         }
     }
+    ImGui::End();
 
+    SetDebugEnable(s_ShowBehaviorSystemList);
 }
 
 //-----------------------------------------------------------------------------

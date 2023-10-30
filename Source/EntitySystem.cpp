@@ -111,6 +111,41 @@
         return json;
     }
 
+    bool EntitySystem::EntityCreateWindow()
+    {
+        ImGui::Begin("Add New Entity", NULL, ImGuiWindowFlags_AlwaysAutoResize);
+        ImGui::SetWindowSize(ImVec2(500, 500), ImGuiCond_FirstUseEver);
+
+        // Input text for entity name
+        static char buffer[128] = ""; // Buffer to hold the input, you can save this
+        ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.45f);
+        ImGui::InputText("##Entity Name", buffer, IM_ARRAYSIZE(buffer));
+
+        // add entity button
+        ImGui::SameLine();
+        if (ImGui::Button("Add Entity", ImVec2(100, 0)))
+        {
+            {
+                Entity* entity = new Entity(); /// Create a new entity
+                entity->SetName(std::string(buffer)); /// Set the name of the entity
+                AddEntity(entity); /// Add the entity to the EntitySystem
+
+                ImGui::End();
+                return false; // close the window
+            }
+        }
+
+        ImGui::SameLine();
+        if (ImGui::Button("Cancel", ImVec2(100, 0)))
+        {
+            ImGui::End();
+			return false; // close the window
+		}
+
+        ImGui::End();
+        return true; // keep the window open
+    }
+
 //-----------------------------------------------------------------------------
 // virtual override methods
 //-----------------------------------------------------------------------------
@@ -143,15 +178,12 @@
 
     void EntitySystem::DebugWindow()
     {
-        if (ImGui::Button(m_ShowEntityList ? "Hide Entity List" : "Show Entity List"))
+        if (ImGui::Button(m_PopOut ? "Pop In" : "Pop Out"))
         {
-            m_ShowEntityList = !m_ShowEntityList;
+            m_PopOut = !m_PopOut;
         }
 
-        if (m_ShowEntityList)
-        {
-		   EntityListWindow();
-        }
+	    EntityListWindow();
     }
 
 //-----------------------------------------------------------------------------
@@ -160,37 +192,103 @@
 
     void EntitySystem::EntityListWindow()
     {
-        ImGui::Begin("Entity List");
-
-
-        // Input text for entity name
-        static char buffer[ 128 ] = ""; // Buffer to hold the input, you can save this
-        ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.45f );
-        ImGui::InputText( "##Entity Name", buffer, IM_ARRAYSIZE(buffer) );
-
-        // add entity button
-        ImGui::SameLine();
-        if ( ImGui::Button( "Add Entity", ImVec2( 100, 0 ) ) )
+        /// used make this a pop out window
+        if(m_PopOut)
         {
-            {
-                AddEntity( new Entity() );
-            }
+            ImGui::Begin("Entity List");
         }
-
-        for (const auto& entity : EntitySystem::GetInstance()->GetEntities())
+        
+        ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(2, 2));
+        if (ImGui::BeginTable("##split", 2, ImGuiTableFlags_BordersOuter | ImGuiTableFlags_Resizable | ImGuiTableFlags_ScrollY))
         {
-            std::string Name = entity->GetName() + std::string("##");
-            if (!ImGui::TreeNodeEx( ( Name + std::to_string( entity->GetId() ) ).c_str() ) )
+            ImGui::TableSetupScrollFreeze(0, 1);
+            ImGui::TableSetupColumn("Entities");
+            ImGui::TableSetupColumn("Contents");
+            ImGui::TableHeadersRow();
+
+            for (const auto& entity : m_Entities)
             {
-                continue;
+                EntityPropertiesWindow(entity);
             }
 
-            entity->Inspect();
+            ImGui::EndTable();
+        }
+        ImGui::PopStyleVar();
 
-            ImGui::TreePop();
+        if (m_PopOut)
+        {
+            ImGui::End();
+        }
+    }
+
+    void EntitySystem::EntityPropertiesWindow(Entity* entity)
+    {
+        ImGui::TableNextRow();  // Move to the next row
+
+        ImGui::TableSetColumnIndex(0);  // Set focus to the first column
+
+        std::string label = entity->GetName() + "##" + std::to_string(entity->GetId());
+
+        bool node_open = ImGui::TreeNodeEx(label.c_str());  // Create a tree node for the entity
+
+        /// Create a unique identifier for the popup menu based on the entity's ID
+        std::string popup_id = "EntityContextMenu" + std::to_string(entity->GetId());
+        /// Create a unique identifier for the delete popup menu based on the entity's ID
+        std::string delete_id = "Confirm Deletion##" + std::to_string(entity->GetId());
+
+        // Check for right-click on the tree node
+        if (ImGui::BeginPopupContextItem(popup_id.c_str()))
+        {
+            if (ImGui::MenuItem("Copy")) 
+            {
+               Stream::CopyToClipboard(entity);
+            }
+            if (ImGui::MenuItem("Paste"))
+            {
+                Stream::PasteFromClipboard(entity);
+            }
+            if (ImGui::MenuItem("Delete"))
+            {
+                /// @todo   Fix the confirmation popup
+                entity->Destroy();
+                //ImGui::OpenPopup(delete_id.c_str(), ImGuiPopupFlags_NoOpenOverExistingPopup);
+            }
+ 
+            ImGui::EndPopup();
         }
 
-        ImGui::End();
+        // Always center this window when appearing
+        ImVec2 center = ImGui::GetMainViewport()->GetCenter();
+        ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+
+        if (ImGui::BeginPopupModal(delete_id.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            
+            ImGui::Text("Are you sure you want to delete this entity?");
+            ImGui::Separator();
+
+            if (ImGui::Button("OK", ImVec2(120, 0)))
+            {
+                entity->Destroy();
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::SetItemDefaultFocus();
+            ImGui::SameLine();
+            if (ImGui::Button("Cancel", ImVec2(120, 0)))
+            {
+                ImGui::CloseCurrentPopup();
+            }
+            ImGui::EndPopup();
+        }
+
+        if (node_open)
+        {
+            ImGui::TableSetColumnIndex(1);  // Set focus to the second column
+            entity->Inspect();  // Display entity properties
+
+            ImGui::TreePop();  // Pop the tree node
+        }
+
     }
 
 //-----------------------------------------------------------------------------

@@ -15,12 +15,18 @@
 #include "DebugSystem.h"
 #include "PlatformSystem.h"
 #include "InputSystem.h"
+#include "AssetLibrarySystem.h"
+#include "BehaviorSystem.h"
+#include "Sound.h"
+#include "Texture.h"
+#include "Animation.h"
+#include "TransformAnimation.h"
+#include "BulletBehavior.h"
 #include "implot.h"
 #include "Transform.h"
 #include "Engine.h"
 #include "EntitySystem.h"
 #include <chrono>
-
 
 
 ///*****************************************************************/
@@ -34,11 +40,10 @@ struct ScrollingBuffer
     {
     }
 
-    T Values[size] = {};
+    T Values[size + 1] = {};
 
-    void push(T element) {
-        //for (int i = size - 2; i >= 0; i--)
-        //	Values[i] = Values[i + 1];
+    void push(T element) 
+    {
         for (int i = 0; i < size; i++)
             Values[i] = Values[i + 1];
 
@@ -95,13 +100,23 @@ void DebugSystem::OnUpdate(float dt)
         }
         fps = 1.0f / dt;
         fpses[0] = fps;
+
     }
 
-    if (m_ShowFpsWindow)
-        ShowFPSWindow();
+    #ifndef NDEBUG  
+
+        if (m_ShowFpsWindow)
+        {
+            ShowFPSWindow();
+        }
     
-    if (m_ShowDebugWindow)
-        DebugWindow();
+        if (m_ShowDebugWindow)
+        {
+            DebugWindow();
+        }
+
+    #endif
+
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -111,47 +126,223 @@ void DebugSystem::OnUpdate(float dt)
 
 void DebugSystem::DebugWindow()
 {
-    //ImGui::ShowDemoWindow();
-
-    ImGui::Begin( "DebugWindow" );
-
     static bool gameplayRunning = true;
-    if ( ImGui::Button( gameplayRunning ? "Disable gameplay (editor only)" : "Enable gameplay" ) )
+
+    ImGui::Begin("Editor Window", &m_ShowDebugWindow, ImGuiWindowFlags_MenuBar);
+    ImGui::SetWindowSize(ImVec2(700, 700), ImGuiCond_FirstUseEver);
+    ImGui::SetWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
+
+    if (ImGui::BeginMenuBar())
     {
-        gameplayRunning = !gameplayRunning;
-        SetNonEditorSystemsEnabled( gameplayRunning );
+        // File menu
+        if (ImGui::BeginMenu("File"))
+        {
+            if (ImGui::MenuItem("New Scene", "Ctrl+N"))
+            {
+
+            }
+
+            if (ImGui::BeginMenu("Save.."))
+            {
+                if (ImGui::MenuItem("Save All"))
+                {
+
+				}
+
+                if (ImGui::MenuItem("Save Scene"))
+                {
+
+				}
+
+                if (ImGui::MenuItem("Save Engine Config"))
+                {
+
+                }
+
+                ImGui::EndMenu();
+            }
+
+
+            if (ImGui::MenuItem("Close"))
+            {
+              
+            }
+            ImGui::EndMenu();
+        }
+
+        // JSON menu
+        if (ImGui::BeginMenu("Settings"))
+        {
+            if (ImGui::MenuItem(m_ShowFpsWindow ? "Hide FPS" : "Show FPS"))
+            {
+               m_ShowFpsWindow = !m_ShowFpsWindow;
+            }
+            if (ImGui::MenuItem(m_Fullscreen ? "Windowed" : "Fullscreen"))
+            {
+				m_Fullscreen = !m_Fullscreen;
+				PlatformSystem::GetInstance()->ToggleFullscreen();
+			}
+            if (ImGui::MenuItem(m_ShowDemoWindow ? "Hide DEMO" : "Show DEMO"))
+            {
+				m_ShowDemoWindow = !m_ShowDemoWindow;
+            }
+
+            if (ImGui::MenuItem(gameplayRunning ? "Pause Gameplay" : "Resume Gameplay"))
+            {
+				gameplayRunning = !gameplayRunning;
+				SetNonEditorSystemsEnabled(gameplayRunning);
+			}
+
+            ImGui::EndMenu();
+        }
+
+        // Insert menu
+        if (ImGui::BeginMenu("Insert"))
+        {
+            if (ImGui::MenuItem("New Entity"))
+            {
+                m_ShowEntityCreateWindow = true;
+            }
+
+            if (ImGui::BeginMenu("New Asset Prefab"))
+            {
+                if (ImGui::MenuItem("New Sound")) 
+                {
+                    m_CreationWindows[(int)MenuItemType::NewSound] = true;
+                }
+
+                if (ImGui::MenuItem("New Texture")) 
+                {
+                    m_CreationWindows[(int)MenuItemType::NewTexture] = true;
+                }
+
+                if (ImGui::MenuItem("New Transform Animation")) 
+                {
+                    m_CreationWindows[(int)MenuItemType::NewTransformAnimation] = true;
+                }
+
+                if (ImGui::MenuItem("New Sprite Animation")) 
+                {
+                    m_CreationWindows[(int)MenuItemType::NewSpriteAnimation] = true;
+                }
+
+                ImGui::EndMenu();
+            }
+
+            ImGui::EndMenu();
+        }
+
+        // Systems menu
+        if (ImGui::BeginMenu("Systems"))
+        {
+
+            if (ImGui::BeginMenu("Asset Prefabs"))
+            {
+                ShowSystemList("AssetLibrary");
+                ImGui::EndMenu();
+            }
+
+            if (ImGui::BeginMenu("Behavior Systems"))
+            {
+                ShowSystemList("BehaviorSystem");
+                ImGui::EndMenu();
+            }
+
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMenuBar();
     }
-    
-    for ( auto& system : Engine::GetInstance()->GetSystems() )
-    {
-        // Skip the debug system and the platform system
-        if (system == GetInstance())
-	 	    continue;
-    
-       if (ImGui::TreeNodeEx(system->GetName().c_str()))
-	   {
-	 	    system->DebugWindow();
-            ImGui::TreePop();
-	   }
-    }
-    
-    if ( ImGui::Button( m_ShowFpsWindow ? "Show FPS" : "Hide FPS" ) )
-    {
-        m_ShowFpsWindow = !m_ShowFpsWindow;
-    }
-    
-    // engine config saving
-    static char buffer[ 128 ] = "Data/EngineConfig.json"; // Buffer to hold the input, you can save this
-    ImGui::InputText( "Engine config filepath", buffer, IM_ARRAYSIZE( buffer ) );
-    
-    if ( ImGui::Button( "Save Engine Config" ) )
-    {
-        Stream::WriteToFile( buffer, Engine::GetInstance()->Write() );
-    }
-    
+
+    MenuWindows();
+
+    Entities()->DebugWindow();
+
     ImGui::End();
 }
 
+
+void DebugSystem::MenuWindows()
+{
+    if (m_ShowEntityCreateWindow)
+    {
+        if (!Entities()->EntityCreateWindow())
+        {
+			m_ShowEntityCreateWindow = false;
+		}
+    }
+
+    if (m_ShowDemoWindow)
+    {
+		ImGui::ShowDemoWindow(&m_ShowDemoWindow);
+	}
+
+    if (m_ShowAssetSystemList)
+    {
+        ShowSystemList("AssetLibrary");
+    }
+
+    if (m_ShowBehaviorSystemList)
+    {
+		ShowSystemList("BehaviorSystem");
+	}
+
+    if (m_CreationWindows[(int)MenuItemType::NewSound])
+    {
+        if (!AssetLibrary<Sound>()->DebugCreateAssetWindow())
+        {
+            m_CreationWindows[(int)MenuItemType::NewSound] = false;
+        }
+    }
+    if (m_CreationWindows[(int)MenuItemType::NewTexture])
+    {
+        if (!AssetLibrary<Texture>()->DebugCreateAssetWindow())
+        {
+			m_CreationWindows[(int)MenuItemType::NewTexture] = false;
+		}
+	}
+    if (m_CreationWindows[(int)MenuItemType::NewTransformAnimation])
+    {
+        if (!AssetLibrary<TransformAnimation>()->DebugCreateAssetWindow())
+        {
+            m_CreationWindows[(int)MenuItemType::NewTransformAnimation] = false;
+        }
+    }
+    if (m_CreationWindows[(int)MenuItemType::NewSpriteAnimation])
+    {
+        if (!AssetLibrary<Animation>()->DebugCreateAssetWindow())
+        {
+			m_CreationWindows[(int)MenuItemType::NewSpriteAnimation] = false;
+		}
+	}
+}
+
+void DebugSystem::ShowSystemList(const std::string& prefix)
+{
+    std::vector<System*> filteredSystems;
+
+    for (auto& system : Engine::GetInstance()->GetSystems())
+    {
+        // Skip the debug system
+        if (system == GetInstance())
+            continue;
+
+        // Check if the system's name begins with the specified prefix
+        if (system->GetName().compare(0, prefix.length(), prefix) == 0)
+        {
+            filteredSystems.push_back(system);
+        }
+    }
+
+    for (auto& system : filteredSystems)
+    {
+        // Create a menu item for each system
+        if (ImGui::MenuItem(system->GetName().c_str()))
+        {
+            system->SetDebugEnable(!system->GetDebugEnabled());
+        }
+    }
+}
 
 /// @brief PerDorm updates at a fixed time step.
 void DebugSystem::OnFixedUpdate()
@@ -161,6 +352,7 @@ void DebugSystem::OnFixedUpdate()
             m_ShowDebugWindow = !m_ShowDebugWindow;
     #endif
 }
+
 
 /// @brief Perform cleanup and shutdown.
 void DebugSystem::OnExit()
@@ -212,7 +404,6 @@ void DebugSystem::ShowFPSWindow()
             Adder += Samples[i];
         }
         auto newSample = Adder / SampleSize;
-        //std::cerr << newSample << std::endl;
         FPS_Values.push(newSample);
         CurrentSample = 0;
     }
@@ -223,15 +414,14 @@ void DebugSystem::ShowFPSWindow()
         | ImPlotAxisFlags_Lock;
 
     static ImPlotFlags PlotFlags = ImPlotFlags_NoLegend;
-    if (ImPlot::BeginPlot("FPS", ImVec2(-1, 150), PlotFlags)) {
+    if (ImPlot::BeginPlot("FPS", ImVec2(-1, 150), PlotFlags)) 
+    {
         ImPlot::SetupAxes(nullptr, nullptr, axis_flags);
         ImPlot::SetupAxisLimits(ImAxis_X1, 0, 100, ImGuiCond_None);
         ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 200.0f, ImGuiCond_None);
         ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
 
         ImPlot::PlotLine("FPS", FPS_Values.Data(), ScrollingBufferSize, 1);
-        //ImPlot::PlotShaded("FPS", FPS_Values.Data(), nullptr, ScrollingBufferSize, 0, 0, sizeof(float));
-        //ImPlot::PlotLine("Mouse Y", &sdata2.Data[0].x, &sdata2.Data[0].y, sdata2.Data.size(), 0, sdata2.Offset, 2 * sizeof(float));
         ImPlot::EndPlot();
     }
 }

@@ -29,6 +29,15 @@
 /// @brief Forward declaration of the Entity class
 class Entity;
 
+enum class MenuItemType {
+    None = -1,
+    NewEntity,
+    NewSound,
+    NewTexture,
+    NewTransformAnimation,
+    NewSpriteAnimation,
+};
+
 /// @class DebugSystem
 /// @brief Debug System Class For Debugging
 /// @details This class provides functionality for debugging within your application.
@@ -73,7 +82,11 @@ public: // DebugStream
     {
 		std::ostringstream oss;
 		oss << value;
+
+        #ifndef NDEBUG  // only write to the Console in Debug mode
         std::cout << oss.str();
+        #endif
+
 		Stream::WriteToTraceLog(oss.str());
 	}
 
@@ -89,6 +102,22 @@ private: // Members
 
     /// @brief Flag to control dev display
     bool m_ShowDebugWindow;
+
+    /// @brief Flag to control dev display
+    bool m_ShowEntityCreateWindow = false;
+
+    /// @brief Flag to control display of the ImGui demo window
+    bool m_ShowDemoWindow = false;
+
+    bool m_Fullscreen = false;
+
+    /// @brief Flag to show the Asset System List
+    bool m_ShowAssetSystemList = false;
+
+    /// @brief Flag to show the Behavior System List
+    bool m_ShowBehaviorSystemList = false;
+    
+    bool m_CreationWindows[12] = { 0 };
 
     /// @brief Pointer to the ImGui Input/Output structure
     ImGuiIO* io;
@@ -121,7 +150,10 @@ private: // methods
     void ImguiStartFrame();
 
     void OnFixedUpdate() override;
+
+    void MenuWindows();
     
+    void ShowSystemList(const std::string& prefix);
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------

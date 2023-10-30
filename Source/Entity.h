@@ -101,6 +101,9 @@ public: // accessors
      /// @return the Id of this Component
      unsigned GetId() const { return m_Id; }
 
+     /// @brief used by the Debug System to Rename this Entity
+     void RenameEntity(const char* popup_id);
+
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
@@ -112,7 +115,6 @@ private: // methods
 
     void RemoveComponent();
 
-    void RenameEntity();
 
 //-----------------------------------------------------------------------------
 private: // reading

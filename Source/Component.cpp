@@ -38,15 +38,6 @@
     /// @brief Used by the Debug System to display information about this Component
     void Component::BaseComponentInspector()
     {
-        if ( ImGui::Button( "Copy to Clipboard" ) )
-        {
-            Stream::CopyToClipboard( *this );
-        }
-        if ( ImGui::Button( "Paste from Clipboard" ) )
-        {
-            Stream::PasteFromClipboard( *this );
-        }
-
         ImGui::NewLine();
 
         Inspector();

@@ -26,8 +26,16 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
 // virtual override methods
 //-----------------------------------------------------------------------------
 
+template<class AssetType>
+void AssetLibrarySystem<AssetType>::OnUpdate(float)
+{
+    if (GetDebugEnabled())
+    {
+		DebugWindow();
+	}
+}
 
-    /// @brief  Gets called whenever a scene is exited
+/// @brief  Gets called whenever a scene is exited
     template< class AssetType >
     void AssetLibrarySystem< AssetType >::OnSceneExit()
     {
@@ -69,30 +77,19 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     template<class AssetType>
     void AssetLibrarySystem<AssetType>::DebugWindow()
     {
+        s_ShowAssetLibraryList = GetDebugEnabled();
         std::string AssetName(typeid(AssetType).name() + 5); // skip over the "class" part of the name
 
-        char buttonLabel[128];
-        snprintf(
-            buttonLabel, sizeof( buttonLabel ),
-            s_ShowAssetLibraryList ? "Hide %s Asset List" : "Show %s Asset List",
-            PrefixlessName( typeid( AssetType ) ).c_str()
-        );
-
-        if (ImGui::Button(buttonLabel))
+        if (ImGui::Begin( AssetName.c_str(), &s_ShowAssetLibraryList ))
         {
-            s_ShowAssetLibraryList = !s_ShowAssetLibraryList;
+            ImGui::SetWindowSize(ImVec2(500, 500), ImGuiCond_FirstUseEver);
+
+                ListAssets();
         }
 
-        if (s_ShowAssetLibraryList)
-        {
-            ImGui::Begin( AssetName.c_str(), &s_ShowAssetLibraryList );
+        ImGui::End();
 
-            ListAssets();
-
-            ImGui::End();
-        }               
-
-
+        SetDebugEnable(s_ShowAssetLibraryList);
     }
 
 //-----------------------------------------------------------------------------
@@ -156,6 +153,54 @@ AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& n
         return m_Assets;
     }
 
+    template<class AssetType>
+    bool AssetLibrarySystem<AssetType>::DebugCreateAssetWindow()
+    {
+        bool show = true;
+        std::string assetName(typeid(AssetType).name() + 5); // skip over the "class" part of the name
+
+        std::string windowName = "Create New " + assetName;
+
+        ImGui::Begin(windowName.c_str(),&show, ImGuiWindowFlags_AlwaysAutoResize);
+        ImGui::SetNextWindowSize(ImVec2(500, 100), ImGuiCond_FirstUseEver);
+        // Input text for asset name
+        static char buffer[128] = ""; // Buffer to hold the input, you can save this
+        ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.45f);
+        ImGui::InputText("##Asset Name", buffer, IM_ARRAYSIZE(buffer));
+
+        // add asset button
+        ImGui::SameLine();
+        if (ImGui::Button("Add Asset", ImVec2(100, 0)))
+        {
+            if (buffer[0] == '\0')
+            {
+                Debug() << "Warning: Asset must have a name" << std::endl;
+            }
+            else
+            {
+                AddAsset(buffer, new AssetType());
+                ImGui::End();
+                return false; //close window
+            }
+        }
+        ImGui::SameLine();
+
+        if (ImGui::Button("Cancel", ImVec2(100, 0)))
+        {
+            ImGui::End();
+			return false; //close window
+        }
+
+        if (!show)
+        {
+			ImGui::End();
+			return false; //close window
+		}
+
+        ImGui::End();
+        return true; // keep window open
+    }
+
 //-----------------------------------------------------------------------------
 // private: private functions
 //-----------------------------------------------------------------------------
@@ -176,26 +221,6 @@ AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& n
     template<class AssetType>
     void AssetLibrarySystem<AssetType>::ListAssets()
     {
-
-        // Input text for asset name
-        static char buffer[ 128 ] = ""; // Buffer to hold the input, you can save this
-        ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.45f );
-        ImGui::InputText( "##Asset Name", buffer, IM_ARRAYSIZE(buffer) );
-
-        // add asset button
-        ImGui::SameLine();
-        if ( ImGui::Button( "Add Asset", ImVec2( 100, 0 ) ) )
-        {
-            if ( buffer[0] == '\0' )
-            {
-                std::cerr << "Error: Asset must have a name" << std::endl;
-            }
-            else
-            {
-                AddAsset( buffer, new AssetType() );
-            }
-        }
-
         // list assets
         for (auto& key : m_Assets)
         {

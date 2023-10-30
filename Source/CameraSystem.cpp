@@ -57,6 +57,14 @@
         calculateMatrices();
     }
 
+    void CameraSystem::OnFixedUpdate()
+    {
+        if (GetDebugEnabled())
+        {
+            DebugWindow();
+        }
+    }
+
 //-------------------------------------------------------------------------
 // private: methods
 //-------------------------------------------------------------------------

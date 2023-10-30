@@ -44,6 +44,8 @@ private: // virtual override methods
     /// @brief  called once when the engine starts
     virtual void OnInit() override;
 
+    virtual void OnFixedUpdate() override;
+
 //-------------------------------------------------------------------------
 private: // member variables
 //-------------------------------------------------------------------------

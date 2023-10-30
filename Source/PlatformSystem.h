@@ -31,6 +31,8 @@ public:
     /// @return   glm ivec2: x = width, y = height.
 	glm::ivec2 GetWindowDimensions() const;
 
+    /// @brief Toggles fullscreen mode
+    void ToggleFullscreen();
 private:
 
     // Window data - dimensions and pointer
@@ -58,7 +60,6 @@ private:
 private: // Private functions
 //-----------------------------------------------------------------------------\
 
-    void ToggleFullscreen();
 
 //-----------------------------------------------------------------------------
 private: // reading

@@ -98,7 +98,7 @@ void PlatformSystem::OnInit()
         #else
                 glfwTerminate();
                 glfwDestroyWindow(m_Window);
-                std::cerr << "Failed to initialize GLEW" << std::endl;
+                Debug() << "Failed to initialize GLEW" << std::endl;
                 exit(EXIT_FAILURE);  // Exit 
         #endif // !NDEBUG
     }
@@ -152,6 +152,9 @@ void PlatformSystem::ToggleFullscreen()
 
         // Update m_WindowSize to the new dimensions
         m_WindowSize = glm::ivec2(mode->width, mode->height);
+
+        glfwSwapInterval(1); // enable vsync
+
     }
     else
     {
@@ -160,6 +163,8 @@ void PlatformSystem::ToggleFullscreen()
 
         // Restore the window's previous size and position
         glfwSetWindowMonitor(m_Window, nullptr, savedPosX, savedPosY, savedWidth, savedHeight, 0);
+
+        glfwSwapInterval(1); // enable vsync
     }
 
     s_IsFullscreen = !s_IsFullscreen;  // Toggle the fullscreen flag
