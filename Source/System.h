@@ -9,6 +9,8 @@
 #pragma once
 
 #include "ISerializable.h"
+
+#include "basics.h"
 #include "Stream.h"
 
 /// @brief  Base class for all Systems
@@ -44,6 +46,7 @@ public: // virtual methods
 public: // accessors
 //-----------------------------------------------------------------------------
 
+
     /// @brief Gets the unique name of this System
     std::string const& GetName() const { return m_Name; }
 
@@ -56,6 +59,12 @@ public: // accessors
     /// @param  enabled whether this System is enabled
     void SetEnabled( bool enabled ) { m_Enabled = enabled; }
 
+
+    /// @brief  gets this System's ID
+    /// @return this System's ID
+    unsigned GetId() const { return m_Id; }
+
+
 //-----------------------------------------------------------------------------
 protected: // constructor
 //-----------------------------------------------------------------------------
@@ -63,7 +72,9 @@ protected: // constructor
     /// @brief  Constructs a System
     System( std::string const& name ) :
         m_Name( name )
-    {}
+    {
+        m_Id = GetUniqueId();
+    }
 
 //-----------------------------------------------------------------------------
 public: // singleton stuff
@@ -78,7 +89,10 @@ private: // member variables
 //-----------------------------------------------------------------------------
 
     /// @brief The Unique Name of this System to be used for Debug Window
-    std::string m_Name;
+    std::string m_Name = "";
+
+    /// @brief  the Id of this System
+    unsigned m_Id = 0;
 
     /// @brief  whether this System will update
     bool m_Enabled = true;

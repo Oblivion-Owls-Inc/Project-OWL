@@ -330,7 +330,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\AidanScene.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
     <None Include="Data\Scenes\Sandbox.scene.json" />
-    <None Include="Data\Scenes\TestScene.scene.json" />
     <None Include="Data\Scenes\TurretScene.scene.json" />
     <None Include="Data\Scenes\XinoScene.scene.json" />
   </ItemGroup>

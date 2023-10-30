@@ -428,8 +428,8 @@
     <ClCompile Include="Source\BaseBehavior.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BaseEntityBehavior.cpp">
-      <Filter>Game\BaseEntityBehavior</Filter>
+    <ClCompile Include="Source\BasicEntityBehavior.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\CheatSystem.cpp">
       <Filter>Engine\Systems\CheatSystem</Filter>
@@ -664,8 +664,8 @@
     <ClInclude Include="Source\BaseBehavior.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BaseEntityBehavior.h">
-      <Filter>Game\BaseEntityBehavior</Filter>
+    <ClInclude Include="Source\BasicEntityBehavior.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\CheatSystem.h">
       <Filter>Engine\Systems\CheatSystem</Filter>
@@ -684,17 +684,11 @@
     <None Include="Data\Scenes\AidanScene.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\TestScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
     <None Include="Data\Scenes\XinoScene.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\SVN\Design Assets\Art Assets\Background.png" />
   </ItemGroup>
 </Project>

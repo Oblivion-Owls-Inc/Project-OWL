@@ -30,24 +30,11 @@ static InputSystem * input = InputSystem::GetInstance();
 /// Public: constructor / destructor
 ///----------------------------------------------------------------------------
 
-/// @brief Default Constructor.
-PlayerController::PlayerController() : 
-    Behavior(typeid(PlayerController)),
-    m_maxSpeed(0.0f),
-    m_leftDirection(0.0f, 0.0f),
-    m_rightDirection(0.0f, 0.0f),
-    m_upwardDirection(0.0f, 0.0f),
-    m_downwardDirection(0.0f, 0.0f),
-    m_animationNames(),
-    m_RigidBody(nullptr),
-    m_Animation(nullptr),
-    m_AudioPlayer(nullptr),
-    m_playerAnimations()
-{}
 
-/// @brief Destructor
-PlayerController::~PlayerController()
-{}
+    /// @brief Default Constructor.
+    PlayerController::PlayerController() : 
+        Behavior( typeid( PlayerController ) )
+    {}
 
 
 ///----------------------------------------------------------------------------
@@ -66,9 +53,9 @@ void PlayerController::OnInit()
     m_AudioPlayer = GetParent()->GetComponent<AudioPlayer>();
 
     // Get all the player's animations
-    for (int i = 0; i < NUM_ANIMATIONS; i++)
+    for ( int i = 0; i < NUM_ANIMATIONS; ++i )
     {
-        m_playerAnimations[i] = AssetLibrary<AnimationAsset>()->GetAsset(m_animationNames[i]);
+        m_PlayerAnimations[ i ] = AssetLibrary< AnimationAsset >()->GetAsset( m_AnimationNames[ i ] );
     }
 }
 
@@ -91,45 +78,46 @@ void PlayerController::OnFixedUpdate()
     // The normalised direction vector.
     glm::vec2 direction = { 0.0f, 0.0f };
 
-    // if((input->GetKeyTriggered(GLFW_KEY_D)) ||
-    //    (input->GetKeyTriggered(GLFW_KEY_A)) ||
-    //    (input->GetKeyTriggered(GLFW_KEY_W)) ||
-    //    (input->GetKeyTriggered(GLFW_KEY_S)))
-    // {
-    //     m_AudioPlayer->Play();
-    // }
-
-    if (moveRight())
+    if ( moveRight() )
     {
         // 0 is right.
-        m_Animation->SetAsset(m_playerAnimations[0]);
-        direction += m_rightDirection;
+        m_Animation->SetAsset( m_PlayerAnimations[ 0 ] );
+        m_Animation->SetIsRunning( true );
+        direction.x += 1.0f;
     }
-    if (moveLeft())
+    if ( moveLeft() )
     {
         // 1 is left
-        m_Animation->SetAsset(m_playerAnimations[1]);
-        direction += m_leftDirection;
+        m_Animation->SetAsset( m_PlayerAnimations[ 1 ] );
+        m_Animation->SetIsRunning( true );
+        direction.x -= 1.0f;
     }
-    if (moveUp())
+    if ( moveUp() )
     {
         // 2 is up.
-        m_Animation->SetAsset(m_playerAnimations[2]);
-        direction += m_upwardDirection;
+        m_Animation->SetAsset( m_PlayerAnimations[ 2 ] );
+        m_Animation->SetIsRunning( true );
+        direction.y += 1.0f;
     }
-	if (moveDown())
-	{
+    if ( moveDown() )
+    {
         // 3 is down.
-        m_Animation->SetAsset(m_playerAnimations[3]);
-        direction += m_downwardDirection;
+        m_Animation->SetAsset( m_PlayerAnimations[ 3 ] );
+        m_Animation->SetIsRunning( true );
+        direction.y -= 1.0f;
 	}
 
     if ( direction != glm::vec2( 0 ) )
     {
         direction = glm::normalize( direction );
     }
+    else
+    {
+        m_Animation->SetIsRunning( false );
+        m_Animation->SetFrameIndex( 0, true );
+    }
 
-    m_RigidBody->ApplyVelocity(direction * m_maxSpeed);
+    m_RigidBody->ApplyVelocity( direction * m_MaxSpeed );
 }
 
 //-----------------------------------------------------------------------------
@@ -165,78 +153,55 @@ bool PlayerController::moveDown()
 }
 
 //-----------------------------------------------------------------------------
-//  reading/writing
+// private: reading
 //-----------------------------------------------------------------------------
 
-/// @brief Read in a glm::vec2 for the player's left movement.
-/// @param data The JSON file to read from.
-void PlayerController::readLeftDirection(nlohmann::ordered_json const& data)
-{
-    m_leftDirection = Stream::Read < 2, float >(data);
-}
 
-/// @brief Read in a glm::vec2 for the player's right movement.
-/// @param data The JSON file to read from.
-void PlayerController::readRightDirection(nlohmann::ordered_json const& data)
-{
-    m_rightDirection = Stream::Read < 2, float >(data);
-}
-
-/// @brief Read in a glm::vec2 for the player's upward movement.
-/// @param data The JSON file to read from.
-void PlayerController::readUpDirection(nlohmann::ordered_json const& data)
-{
-    m_upwardDirection = Stream::Read < 2, float >(data);
-}
-
-/// @brief Read in a glm::vec2 for the player's downward movement.
-/// @param data The JSON file to read from.
-void PlayerController::readDownDirection(nlohmann::ordered_json const& data)
-{
-    m_downwardDirection = Stream::Read < 2, float >(data);
-}
-
-/// @brief Read in the max speed for the player.
-/// @param data The JSON file to read from.
-void PlayerController::readMaxSpeed(nlohmann::ordered_json const& data)
-{
-    m_maxSpeed = Stream::Read <float>(data);
-}
-
-/// @brief Read in the names of the player animations.
-/// @param data The JSON file to read from.
-void PlayerController::readAnimationNames(nlohmann::ordered_json const& data)
-{
-    for (int i = 0; i < NUM_ANIMATIONS; i++)
+    /// @brief Read in the max speed for the player.
+    /// @param data The JSON file to read from.
+    void PlayerController::readMaxSpeed(nlohmann::ordered_json const& data)
     {
-        m_animationNames[i] = data[i];
+        Stream::Read( m_MaxSpeed, data );
     }
-}
 
-/// @brief  Write all PlayerController data to a JSON file.
-/// @return The JSON file containing the TurretBehavior data.
-nlohmann::ordered_json PlayerController::Write() const
-{
-    nlohmann::ordered_json data;
+    /// @brief Read in the names of the player animations.
+    /// @param data The JSON file to read from.
+    void PlayerController::readAnimationNames(nlohmann::ordered_json const& data)
+    {
+        for (int i = 0; i < NUM_ANIMATIONS; i++)
+        {
+            Stream::Read( m_AnimationNames[i], data[i] );
+        }
+    }
 
-    data["left"] = Stream::Write(m_leftDirection);
-    data["right"] = Stream::Write(m_rightDirection);
-    data["up"] = Stream::Write(m_upwardDirection);
-    data["down"] = Stream::Write(m_downwardDirection);
-    data["maxSpeed"] = m_maxSpeed;
 
-    return data;
-}
+    // Map of all the read methods for the PlayerController component.
+    ReadMethodMap< PlayerController > const PlayerController::s_ReadMethods = {
+        { "MaxSpeed"      , &readMaxSpeed       },
+        { "AnimationNames", &readAnimationNames }
+    };
 
-// Map of all the read methods for the PlayerController component.
-ReadMethodMap< PlayerController > PlayerController::s_ReadMethods = {
-    { "left"          , &readLeftDirection  },
-    { "right"         , &readRightDirection },
-    { "up"            , &readUpDirection    },
-    { "down"          , &readDownDirection  },
-    { "maxSpeed"      , &readMaxSpeed       },
-    { "animationName" , &readAnimationNames }
-};
+//-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  Write all PlayerController data to a JSON file.
+    /// @return The JSON file containing the TurretBehavior data.
+    nlohmann::ordered_json PlayerController::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        nlohmann::ordered_json& animationNames = data[ "AnimationNames" ];
+        for ( std::string const& animationName : m_AnimationNames )
+        {
+            animationNames.push_back( Stream::Write( animationName ) );
+        }
+
+        data[ "MaxSpeed" ] = m_MaxSpeed;
+
+        return data;
+    }
+
 
 //--------------------------------------------------------------------------------
 //  Copying/Cloning
@@ -245,21 +210,16 @@ ReadMethodMap< PlayerController > PlayerController::s_ReadMethods = {
 /// @brief Copy Constructor
 /// @param other A PlayerController to copy.
 PlayerController::PlayerController(PlayerController const& other):
-    Behavior(typeid(PlayerController)),
-    m_maxSpeed(other.m_maxSpeed),
-    m_leftDirection(other.m_leftDirection),
-    m_rightDirection(other.m_rightDirection),
-    m_upwardDirection(other.m_upwardDirection),
-    m_downwardDirection(other.m_downwardDirection),
-    m_RigidBody(nullptr),
-    m_Animation(nullptr),
-    m_AudioPlayer(nullptr)
+    Behavior( other ),
+    m_MaxSpeed( other.m_MaxSpeed ),
+    m_RigidBody( nullptr ),
+    m_Animation( nullptr )
 {
     // Copy the animations
     for (int i = 0; i < NUM_ANIMATIONS; i++)
     {
-        m_animationNames[i] = other.m_animationNames[i];
-        m_playerAnimations[i] = other.m_playerAnimations[i];
+        m_AnimationNames[i] = other.m_AnimationNames[i];
+        m_PlayerAnimations[i] = other.m_PlayerAnimations[i];
     }
 }
 
@@ -274,7 +234,7 @@ Component* PlayerController::Clone() const
 /// @brief Helper function for inspector.
 void PlayerController::vectorInspector()
 {
-    ImGui::InputFloat("Max Speed", &m_maxSpeed, 0.0f, 10.0f);
+    ImGui::InputFloat("Max Speed", &m_MaxSpeed, 0.1f, 1.0f);
 }
 
 /// @brief Helper function for inspector.

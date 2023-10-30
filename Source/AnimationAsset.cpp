@@ -14,13 +14,6 @@
 // public: constructor
 //-----------------------------------------------------------------------------
 
-     /// @brief	Default constructor
-    AnimationAsset::AnimationAsset() :
-	    m_Start( 0 ),
-	    m_End( 1 ),
-	    m_FrameDuration( 1.0f / 12.0f ),
-	    m_IsLooping( false )
-    {}
 
 //-----------------------------------------------------------------------------
 // private: reading
@@ -54,12 +47,20 @@
         m_FrameDuration = 1.0f / Stream::Read<float>(data);
     }
 
-    /// @brief  reads the whether this Animation is looping
-    /// @param  stream  the json data to read from
-    void AnimationAsset::readIsLooping( nlohmann::ordered_json const& data )
-    {
-        m_IsLooping = Stream::Read<bool>(data);
-    }
+
+    /// @brief  map of the SceneSystem read methods
+    ReadMethodMap< AnimationAsset > const AnimationAsset::s_ReadMethods = {
+        { "Start"        , &readStart         },
+        { "End"          , &readEnd           },
+        { "FrameDuration", &readFrameDuration },
+        { "FrameRate"    , &readFrameRate     }
+    };
+
+
+//-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief  Write all data for the AnimationAsset to a JSON file.
     /// @return The file containing all the AnimationAsset data.
@@ -67,21 +68,12 @@
     {
         nlohmann::ordered_json data;
 
-        data["Start"] = m_Start;
-        data["End"] = m_End;
-        data["FrameDuration"] = m_FrameDuration;
-        data["IsLooping"] = m_IsLooping;
+        data[ "Start" ] = Stream::Write( m_Start );
+        data[ "End" ] = Stream::Write( m_End );
+        data[ "FrameDuration" ] = Stream::Write( m_FrameDuration );
 
         return data;
     }
 
-    /// @brief  map of the SceneSystem read methods
-    ReadMethodMap< AnimationAsset > const AnimationAsset::s_ReadMethods = {
-        { "Start"        , &readStart         },
-        { "End"          , &readEnd           },
-        { "FrameDuration", &readFrameDuration },
-        { "FrameRate"    , &readFrameRate     },
-        { "IsLooping"    , &readIsLooping     }
-    };
 
 //-----------------------------------------------------------------------------

@@ -33,7 +33,7 @@ public: // constructor / destructor
     PlayerController();
 
     /// @brief Destructor for the PlayerController class.
-    ~PlayerController();
+    ~PlayerController() = default;
 
 //-----------------------------------------------------------------------------
 public: // methods
@@ -76,45 +76,29 @@ private: // player movement
 private: // member variables
 //-----------------------------------------------------------------------------
    
+
     // Define the maximum speed for smooth movement.
-    float m_maxSpeed;
-    // Vector responsible for left direction movement.
-    glm::vec2 m_leftDirection;
-    // Vector responsible for right direction movement.
-    glm::vec2 m_rightDirection;
-    // Vector responsible for upward direction movement.
-    glm::vec2 m_upwardDirection;
-    // Vector responsible for downward direction movement.
-    glm::vec2 m_downwardDirection;
+    float m_MaxSpeed = 1.0f;
+
+
     // All the names of the animations for the player.
-    std::string m_animationNames[4];
-    // A cached instance of the parent's Rigidbody.
-    RigidBody* m_RigidBody;
-    // A cached instance of the parent's animation.
-    Animation* m_Animation;
-    AudioPlayer* m_AudioPlayer;
+    std::string m_AnimationNames[4] = { "", "", "", "" };
+
     // All the animations for the player.
-    AnimationAsset const* m_playerAnimations[4];
+    AnimationAsset const* m_PlayerAnimations[4] = { nullptr, nullptr, nullptr, nullptr };
+
+
+    // A cached instance of the parent's Rigidbody.
+    RigidBody* m_RigidBody = nullptr;
+
+    // A cached instance of the parent's animation.
+    Animation* m_Animation = nullptr;
+
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
-    
-    /// @brief Read in a glm::vec2 for the player's left movement.
-    /// @param data The JSON file to read from.
-    void readLeftDirection(nlohmann::ordered_json const& data);
 
-    /// @brief Read in a glm::vec2 for the player's right movement.
-    /// @param data The JSON file to read from.
-    void readRightDirection(nlohmann::ordered_json const& data);
-
-    /// @brief Read in a glm::vec2 for the player's upward movement.
-    /// @param data The JSON file to read from.
-    void readUpDirection(nlohmann::ordered_json const& data);
-
-    /// @brief Read in a glm::vec2 for the player's downward movement.
-    /// @param data The JSON file to read from.
-    void readDownDirection(nlohmann::ordered_json const& data);
 
     /// @brief Read in the max speed for the player.
     /// @param data The JSON file to read from.
@@ -124,23 +108,28 @@ private: // reading
     /// @param data The JSON file to read from.
     void readAnimationNames(nlohmann::ordered_json const& data);
 
+
     /// @brief the map of read methods for this Component
-    static ReadMethodMap < PlayerController >  s_ReadMethods;
+    static ReadMethodMap< PlayerController > const  s_ReadMethods;
+
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap < ISerializable > const& GetReadMethods() const override
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
     {
-        return (ReadMethodMap < ISerializable > const&)s_ReadMethods;
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-//-----------------------------------------------------------------------------
-public: // writing
-//-----------------------------------------------------------------------------
 
     /// @brief  Write all PlayerController data to a JSON file.
     /// @return The JSON file containing the PlayerController data.
     virtual nlohmann::ordered_json Write() const override;
+
 
 //-----------------------------------------------------------------------------
 private: // copying

@@ -18,10 +18,10 @@
 
     /// @brief  constructs a new Sound
     /// @param  filepath    the filepath of the sound to load
-    /// @param  looping     whether or not the sound should loop
-    Sound::Sound( char const* filepath, bool looping ) :
+    /// @param  isLoopable  whether or not the sound should loop
+    Sound::Sound( char const* filepath, bool isLoopable ) :
         m_Filepath( filepath ),
-        m_IsLooping( looping )
+        m_IsLoopabe( isLoopable )
     {
         Reload();
     }
@@ -76,7 +76,7 @@
 
         AudioSystem::GetInstance()->GetFMOD()->createSound(
             m_Filepath.c_str(),
-            m_IsLooping ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
+            m_IsLoopabe ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
             nullptr,
             &m_Sound
         );
@@ -113,7 +113,7 @@
             ImGui::EndCombo();
         }
 
-        ImGui::Checkbox( "Loopable", &m_IsLooping );
+        ImGui::Checkbox( "Loopable", &m_IsLoopabe );
 
         if ( ImGui::Button( "Reload Sound" ) )
         {
@@ -159,11 +159,11 @@
         m_Filepath = Stream::Read<std::string>( data );
     }
 
-    /// @brief  reads isLooping
+    /// @brief  reads IsLoopabe
     /// @param  data    the JSON data to read from
-    void Sound::readIsLooping( nlohmann::ordered_json const& data )
+    void Sound::readIsLoopabe( nlohmann::ordered_json const& data )
     {
-        m_IsLooping = Stream::Read<bool>( data );
+        m_IsLoopabe = Stream::Read<bool>( data );
     }
 
     /// @brief  runs after Sound has been loaded 
@@ -178,15 +178,15 @@
     {
         nlohmann::ordered_json data;
 
-        data["IsLooping"] = m_IsLooping;
-        data["FilePath"] = m_Filepath;
+        data["IsLoopabe"] = m_IsLoopabe;
+        data["Filepath"] = m_Filepath;
 
         return data;
     }
 
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< Sound > const Sound::s_ReadMethods = {
-        { "IsLooping", &readIsLooping },
+        { "IsLoopabe", &readIsLoopabe },
         { "Filepath" , &readFilepath  }
     };
 
