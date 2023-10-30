@@ -67,6 +67,8 @@ public: // methods
     void RemoveOnAnimationCompleteCallback( unsigned ownerId );
 
 
+    void Inspect() {};
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------

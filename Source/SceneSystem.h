@@ -31,6 +31,14 @@ public: // methods
     /// @param  sceneName   the file to save the scene to
     void SaveScene( std::string const& sceneName = "" ) const;
 
+    bool SaveScene();
+
+    /// @brief Used to reset the current scene
+    void ResetScene();
+
+    /// @brief Used by the DebugSystem to load a scene
+    bool LoadScene();
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------

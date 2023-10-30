@@ -91,16 +91,6 @@
     void Entity::Inspect()
     {
 
-        if ( ImGui::Button( "Copy to Clipboard" ) )
-        {
-            Stream::CopyToClipboard( *this );
-        }
-        if ( ImGui::Button( "Paste from Clipboard" ) )
-        {
-            Stream::PasteFromClipboard( *this );
-        }
-        ImGui::NewLine();
-
         if ( ImGui::BeginCombo( "Add Component", "Select Component" ) )
         {
             for ( auto& [ name, info ] : ComponentFactory::GetComponentTypes() )
@@ -141,10 +131,42 @@
         for (const auto& componentPair : this->getComponents())
         {
             const std::string componentName = componentPair.second->GetType().name() + 5; // Skip "class "
+            /// Create a unique identifier for the popup menu based on the entity's ID
+            std::string popup_id = "ComponentContextMenu##" + std::to_string(GetId());
+
+
             if (ImGui::TreeNode(componentName.c_str()))
             {
+                // Check for right-click on the tree node while open
+                if (ImGui::BeginPopupContextItem(popup_id.c_str()))
+                {
+                    if (ImGui::MenuItem("Copy"))
+                    {
+                        Stream::CopyToClipboard(*this);
+                    }
+                    if (ImGui::MenuItem("Paste"))
+                    {
+                        Stream::PasteFromClipboard(*this);
+                    }
+                    ImGui::EndPopup();
+                }
+
                 componentPair.second->BaseComponentInspector();
                 ImGui::TreePop();
+            }
+
+            // Check for right-click on the tree node while closed
+            if (ImGui::BeginPopupContextItem(popup_id.c_str()))
+            {
+                if (ImGui::MenuItem("Copy"))
+                {
+                    Stream::CopyToClipboard(*this);
+                }
+                if (ImGui::MenuItem("Paste"))
+                {
+                    Stream::PasteFromClipboard(*this);
+                }
+                ImGui::EndPopup();
             }
         }
 
@@ -165,6 +187,28 @@
         // Clear the component list.
         m_Components.clear();
     }
+
+    void Entity::RenameEntity(const char* popup_id)
+    {
+		// Open a popup window to rename the entity
+        if (ImGui::BeginPopupModal(popup_id, NULL, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            static char buffer[128] = "";  // Buffer to hold the input, you can save this
+            ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.45f);
+            ImGui::InputText("##Entity Name", buffer, IM_ARRAYSIZE(buffer));
+
+            // add entity button
+            ImGui::SameLine();
+            if (ImGui::Button("Enter", ImVec2(100, 0)))
+            {
+                SetName(buffer);  // Set the new name
+                ImGui::CloseCurrentPopup();  // Close the popup
+            }
+
+            ImGui::EndPopup();
+        }
+    }
+
 
 //------------------------------------------------------------------------------
 // private: reading

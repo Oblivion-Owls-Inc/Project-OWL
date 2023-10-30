@@ -45,6 +45,7 @@ public: // accessors
     /// @return the array of all Systems in the engine
     std::vector< System * > const& GetSystems() const;
 
+    bool SaveEngineConfig();
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -69,6 +70,7 @@ private: // reading
 
     /// @brief  contains the function for adding each System type to the Engine. Used for Loading systems from config.
     static std::map< std::string, System* (Engine::*)() > const s_AddSystemMethods;
+
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
@@ -150,3 +152,8 @@ public: // singleton stuff
 
 //-----------------------------------------------------------------------------
 };
+
+__inline Engine* GameEngine()
+{
+	return Engine::GetInstance();
+}

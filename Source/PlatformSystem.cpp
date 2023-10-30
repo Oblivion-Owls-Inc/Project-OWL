@@ -110,7 +110,7 @@
             #else
                 glfwTerminate();
                 glfwDestroyWindow(m_Window);
-                std::cerr << "Failed to initialize GLEW" << std::endl;
+                Debug() << "Failed to initialize GLEW" << std::endl;
                 exit(EXIT_FAILURE);  // Exit 
             #endif // !NDEBUG
         }
