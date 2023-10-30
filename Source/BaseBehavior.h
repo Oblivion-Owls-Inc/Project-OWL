@@ -30,12 +30,16 @@ public: // constructor / destructors
 public: // virtual override methods
 //-----------------------------------------------------------------------------
 
-    
+    /// @brief called when base initializes
     virtual void OnInit() override;
 
+    /// @brief called when base exits
     virtual void OnExit() override;
     
-private:
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
     void onCollision(Collider* other, CollisionData const& collisionData);
 
     /// @brief the map of read methods for this Component
@@ -48,7 +52,9 @@ private:
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-public:
+//-----------------------------------------------------------------------------
+public: // writing
+//-----------------------------------------------------------------------------
 
     /// @brief Write all BaseBehavior data to a JSON file.
     /// @return The JSON file containing the WavesBehavior data.

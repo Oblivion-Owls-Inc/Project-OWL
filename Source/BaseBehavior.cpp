@@ -12,23 +12,36 @@
 #include "CollisionSystem.h"
 #include "EnemyBehavior.h"
 
+//-----------------------------------------------------------------------------
+// constructor / destructor 
+//-----------------------------------------------------------------------------
+
+/// @brief  constructor
 BaseBehavior::BaseBehavior() : BasicEntityBehavior(typeid(BaseBehavior))
 {
 }
 
+/// @brief  copy ctor
 BaseBehavior::BaseBehavior(const BaseBehavior& other) : BasicEntityBehavior(other)
 {
 }
 
+/// @brief  dtor
 BaseBehavior::~BaseBehavior()
 {
 }
 
+/// @brief  clone
 Component* BaseBehavior::Clone() const
 {
 	return new BaseBehavior(*this);
 }
 
+//-----------------------------------------------------------------------------
+// virtual override methods
+//-----------------------------------------------------------------------------
+
+/// @brief	initialize base
 void BaseBehavior::OnInit()
 {
 	BasicEntityBehavior::OnInit();
@@ -39,11 +52,13 @@ void BaseBehavior::OnInit()
 	);
 }
 
+/// @brief	called on exit, handles loss state
 void BaseBehavior::OnExit()
 {
 	BasicEntityBehavior::OnExit();
 	std::cout << "we died!";
 }
+
 
 void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionData)
 {
@@ -57,6 +72,10 @@ void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionDa
 	enemy->GetParent()->Destroy();
 }
 
+//-----------------------------------------------------------------------------
+// reading
+//-----------------------------------------------------------------------------
+
 /// @brief read method map
 ReadMethodMap<BaseBehavior> const BaseBehavior::s_ReadMethods =
 {
@@ -64,6 +83,11 @@ ReadMethodMap<BaseBehavior> const BaseBehavior::s_ReadMethods =
 	
 };
 
+//-----------------------------------------------------------------------------
+// writing
+//-----------------------------------------------------------------------------
+
+/// @brief	write to json
 nlohmann::ordered_json BaseBehavior::Write() const
 {
 	nlohmann::ordered_json data;

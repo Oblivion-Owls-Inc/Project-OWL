@@ -158,6 +158,25 @@
       }
     },
     {
+      "Name": "Base",
+      "Components": {
+        "Transform": {
+          "Translation": [ 2, 4 ]
+        },
+        "Sprite": {
+          "Texture": "PlayerSheet"
+        },
+        "CircleCollider": {
+          "CollisionLayer": "Base",
+          "CollisionLayerFlags": [ "Enemies" ],
+          "Radius": 2
+        },
+        "BaseBehavior": {
+          "Health": 1000
+        }
+      }
+    },
+    {
       "Name": "Wave",
       "Components": {
         "Transform": {
