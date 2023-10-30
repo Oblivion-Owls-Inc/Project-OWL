@@ -48,6 +48,106 @@
         Stream::WriteToFile( scenePath( *name ), Scene().Write() );
     }
 
+    /// @brief Used To create the Save Scene Window
+    /// @return - true if the window is open, false if the window is closed
+    bool SceneSystem::SaveScene()
+    {
+        /// Used to keep the window open
+        bool _show = true;
+        
+        //// Creates the window and Auto resizes it
+        if (ImGui::Begin("Save Scene", &_show, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            /// if at any point the window is closed, return false
+            if (!_show)
+            {
+				ImGui::End();
+				return false; // close window
+			}
+
+            // Input text for typing scene name
+            static char buffer[128] = ""; // Buffer to hold the input, you can save this
+            ImGui::InputText("Type Scene Name", buffer, IM_ARRAYSIZE(buffer));
+
+            /// A button to save the scene
+            if (ImGui::Button("Save Scene"))
+            {
+                /// Save the scene using the name typed into the buffer
+                SaveScene(buffer);
+
+                ImGui::End();
+                return false; // close window
+            }
+            ImGui::SameLine();
+            /// Creates a button to cancel the save
+            if (ImGui::Button("Cancel"))
+            {
+                /// Close the window
+				ImGui::End();
+				return false; // close window
+			}
+        }
+
+        ImGui::End();
+        return true;
+    }
+
+    /// @brief  Used to reset the current scene
+    void SceneSystem::ResetScene()
+    {
+		SetNextScene( m_CurrentSceneName );
+    }
+
+    /// @brief Creates the Load Scene Window
+    /// @return - true if the window is open, false if the window is closed
+    bool SceneSystem::LoadScene()
+    {
+        /// Used to keep the window open
+        bool _show = true;
+        
+        /// Creates the window and Auto resizes it
+        if (ImGui::Begin("Load Scene", &_show, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            /// if at any point the window is closed, return false
+            if (!_show)
+            {
+                ImGui::End();
+                return false; // close window
+            }
+
+            /// Creates a dropdown menu of all the scenes in the scenes directory
+            unsigned selectedScene = listScenes();
+            
+            /// Input text for typing scene name
+            static char buffer[128] = ""; // Buffer to hold the input, you can save this
+            ImGui::InputText("Type Scene Name", buffer, IM_ARRAYSIZE(buffer));
+
+            /// A button to load the scene, either from the dropdown or the input text
+            if (ImGui::Button("Load Scene"))
+            {
+                if (strlen(buffer) > 0)
+                {
+                    std::string sceneName(buffer);
+                    SetNextScene(sceneName); // Load scene using name typed into buffer
+                    buffer[0] = '\0'; // Clear the buffer
+
+                    /// Close the window
+                    ImGui::End();
+                    return false; // close window
+                }
+                else
+                {
+                    SetNextScene(m_SceneNames[selectedScene]); // Load scene using selected scene
+                    ImGui::End();
+                    return false; // close window
+                }
+            }
+        }
+
+		ImGui::End();
+        return true; // keep window open
+    }
+
 //-----------------------------------------------------------------------------
 // public accessors
 //-----------------------------------------------------------------------------
@@ -133,10 +233,6 @@
             SaveScene( buffer );
         }
 
-        if (ImGui::Button("Restart Scene"))
-        {
-            SetNextScene(m_CurrentSceneName);
-        }
     }
 
 //-----------------------------------------------------------------------------
@@ -302,6 +398,8 @@
         }
     }
 
+    /// @brief Creates the Load Scene Window and returns the selected scene index
+    /// @return - the selected scene index
     unsigned SceneSystem::listScenes()
     {
         static int selectedScene = -1; // Default index for dropdown, you can save this

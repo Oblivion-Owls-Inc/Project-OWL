@@ -45,6 +45,8 @@ public: // accessors
     /// @return the array of all Systems in the engine
     std::vector< System * > const& GetSystems() const;
 
+    bool SaveEngineConfig();
+
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
@@ -150,3 +152,8 @@ public: // singleton stuff
 
 //-----------------------------------------------------------------------------
 };
+
+__inline Engine* GameEngine()
+{
+	return Engine::GetInstance();
+}

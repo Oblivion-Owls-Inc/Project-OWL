@@ -153,6 +153,9 @@ AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& n
         return m_Assets;
     }
 
+    /// @brief Used to create a new asset of the specified type.
+    /// @tparam AssetType - the type of asset to create
+    /// @return - If the window is open or not.
     template<class AssetType>
     bool AssetLibrarySystem<AssetType>::DebugCreateAssetWindow()
     {

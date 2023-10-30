@@ -29,6 +29,8 @@
 /// @brief Forward declaration of the Entity class
 class Entity;
 
+/// @brief Creates a Enum for the MenuItemType that 
+/// 	  is used to differentiate between the different Asset types to Create
 enum class MenuItemType {
     None = -1,
     NewEntity,
@@ -116,8 +118,18 @@ private: // Members
 
     /// @brief Flag to show the Behavior System List
     bool m_ShowBehaviorSystemList = false;
+
+    /// @brief Flag to show the Save Scene Window
+    bool m_ShowSceneSaveWindow = false;
+
+    /// @brief Flag to show the Save Engine Window
+    bool m_ShowEngineSaveWindow = false;
+
+    /// @brief Flag to show the Load Scene Window
+    bool m_ShowSceneLoadWindow = false;
     
-    bool m_CreationWindows[12] = { 0 };
+    /// @brief Flag to Show the various Asset Prefab Windows
+    bool m_CreationWindows[5] = { 0 };
 
     /// @brief Pointer to the ImGui Input/Output structure
     ImGuiIO* io;
@@ -145,14 +157,20 @@ private: // methods
     /// @param  enabled wether to enable 
     void SetNonEditorSystemsEnabled( bool enabled );
 
+    /// @brief Shows the FPS window
     void ShowFPSWindow();
     
+    /// @brief Shows the Debug window
     void ImguiStartFrame();
 
+    /// @brief  Shows at a fixed framerate
     void OnFixedUpdate() override;
 
+    /// @brief Shows the Debug window
     void MenuWindows();
     
+    /// @brief Shows the List of Systems that begin with the given prefix
+    /// @param prefix - the prefix to filter the list of Systems by
     void ShowSystemList(const std::string& prefix);
 //-----------------------------------------------------------------------------
 private: // reading
