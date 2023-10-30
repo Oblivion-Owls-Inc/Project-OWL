@@ -69,6 +69,35 @@ public: // acccessors
 #endif
 
 //-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
+
+    /// @brief  the filepath to the texture
+    std::string m_Filepath = "";
+
+    /// @brief  ID that texture is tracked with on GPU
+    unsigned int m_TextureID = 0;
+
+    /// @brief  Width and height of the original image
+    glm::ivec2 m_PixelDimensions = { 0, 0 };
+
+    /// @brief  How many tiles/frames are in the texture
+    glm::ivec2 m_SheetDimensions = { 1.0f, 1.0f };
+
+    /// @brief  The pivot of the mesh this Texture uses
+    glm::vec2 m_Pivot = { 0.5f, 0.5f };
+
+    /// @brief   Mesh to render texture onto
+    Mesh const* m_Mesh = nullptr;
+
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  Loads texture image from file (deletes old one if present)
+    void LoadImage();
+
+//-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
@@ -89,7 +118,10 @@ private: // reading
     static ReadMethodMap< Texture > const s_ReadMethods;
 
 
-public:
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief  gets called after reading all arugments 
     void AfterLoad();
@@ -104,34 +136,6 @@ public:
     /// @return The JSON file containing the Texture data.
     virtual nlohmann::ordered_json Write() const override;
 
-//-----------------------------------------------------------------------------
-private: // methods
-//-----------------------------------------------------------------------------
-
-    /// @brief  Loads texture image from file (deletes old one if present)
-    void LoadImage();
- 
-//-----------------------------------------------------------------------------
-private: // member variables
-//-----------------------------------------------------------------------------
-    
-    /// @brief  the filepath to the texture
-    std::string m_Filepath = "";
-
-    /// @brief  ID that texture is tracked with on GPU
-    unsigned int m_TextureID = 0;
-
-    /// @brief  Width and height of the original image
-    glm::ivec2 m_PixelDimensions = { 0, 0 };
-
-    /// @brief  How many tiles/frames are in the texture
-    glm::ivec2 m_SheetDimensions = { 1.0f, 1.0f };
-
-    /// @brief  The pivot of the mesh this Texture uses
-    glm::vec2 m_Pivot = { 0.5f, 0.5f };
-
-    /// @brief   Mesh to render texture onto
-    Mesh const* m_Mesh = nullptr;
 
 //-----------------------------------------------------------------------------
 };
