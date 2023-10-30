@@ -172,7 +172,10 @@
           "Radius": 2
         },
         "BaseBehavior": {
-          "Health": 1000
+          "Health": {
+            "BaseValue": 5,
+            "Active":  true
+          }
         }
       }
     },
