@@ -11,6 +11,7 @@
 // public: accessors
 //-------------------------------------------------------------------------
 
+
     /// @brief  sets the active Camera
     /// @return the active camera
     Camera* CameraSystem::GetActiveCamera()
@@ -28,6 +29,9 @@
         }
         m_ActiveCamera = camera;
         camera->SetIsActive( true );
+
+        // recalculate height from width, in case aspect ratio changed
+        m_ActiveCamera->SetWidth( m_ActiveCamera->GetWidth() );
     }
 
 
@@ -55,6 +59,7 @@
     void CameraSystem::OnInit()
     {
         calculateMatrices();
+        Platform()->AddOnWindowResizeCallback( GetId(), std::bind( &CameraSystem::onWindowResizeCallback, this, std::placeholders::_1 ) );
     }
 
     void CameraSystem::OnFixedUpdate()
@@ -68,6 +73,7 @@
 //-------------------------------------------------------------------------
 // private: methods
 //-------------------------------------------------------------------------
+
 
     /// @brief  Calculates all the CameraSystem Matrices
     void CameraSystem::calculateMatrices()
@@ -94,6 +100,17 @@
         // UI to clip (-1 to 1)
         m_UiToClip = glm::scale( glm::mat4( 1 ), glm::vec3( 1.0f / 5, 1.0f / (screen_ratio * 5), 0 ) );
     }
+
+
+    /// @brief  callback to call whenever the window resizes
+    /// @param  size    the new size of the window
+    void CameraSystem::onWindowResizeCallback( glm::ivec2 const& size )
+    {
+        calculateMatrices();
+        // recalculate the active camera's height from it's width
+        m_ActiveCamera->SetWidth( m_ActiveCamera->GetWidth() );
+    }
+
 
 //-----------------------------------------------------------------------------
 // singleton stuff
