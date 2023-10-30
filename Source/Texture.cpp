@@ -65,7 +65,7 @@ Texture::~Texture()
     {
         Inspection::SelectFileFromDirectory( "Filepath", &m_Filepath, "Data/Textures" );
 
-        ImGui::InputInt2( "Sheet Dimensions", &m_SheetDimensions[0] );
+        ImGui::DragInt2( "Sheet Dimensions", &m_SheetDimensions[0], 0.02f, 1, INT_MAX );
 
         ImGui::DragFloat2( "Pivot", &m_Pivot[0], 0.01f, 0.0f, 1.0f );
 
