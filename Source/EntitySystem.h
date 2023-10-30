@@ -64,8 +64,8 @@ private: // virtual override methods
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
-    /// @brief Gets Called on a Fixed Time Step
-    virtual void OnFixedUpdate() override;
+    /// @brief Gets Called each frame
+    virtual void OnUpdate(float) override;
 
 //-----------------------------------------------------------------------------
 public: // virtual override methods

@@ -171,7 +171,7 @@
         m_Entities.clear();
     }
 
-    void EntitySystem::OnFixedUpdate()
+    void EntitySystem::OnUpdate(float)
     {
         for ( int i = 0; i < m_Entities.size(); ++i )
         {
