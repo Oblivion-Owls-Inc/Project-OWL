@@ -49,8 +49,6 @@ void PlayerController::OnInit()
     m_RigidBody = GetParent()->GetComponent<RigidBody>();
     // Get the parent's Animation component.
     m_Animation = GetParent()->GetComponent<Animation>();
-    // Get the parent's AudioPlayer component.
-    m_AudioPlayer = GetParent()->GetComponent<AudioPlayer>();
 
     // Get all the player's animations
     for ( int i = 0; i < NUM_ANIMATIONS; ++i )
@@ -244,13 +242,13 @@ void PlayerController::animationInspector()
 
     for(int i = 0; i < NUM_ANIMATIONS; i++)
     {
-        if(ImGui::BeginCombo(animNames[i].c_str(), AssetLibrary<AnimationAsset>()->GetAssetName(m_playerAnimations[i])))
+        if(ImGui::BeginCombo(animNames[i].c_str(), AssetLibrary<AnimationAsset>()->GetAssetName(m_PlayerAnimations[i])))
         {
             for ( auto& [ name, animation ] : AssetLibrary<AnimationAsset>()->GetAssets() )
             {
-                if (ImGui::Selectable(name.c_str(), m_playerAnimations[i] == animation))
+                if (ImGui::Selectable(name.c_str(), m_PlayerAnimations[i] == animation))
                 {
-                    m_playerAnimations[i] = animation;
+                    m_PlayerAnimations[i] = animation;
                 }
             }
             ImGui::EndCombo();
