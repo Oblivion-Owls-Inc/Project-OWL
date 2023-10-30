@@ -98,6 +98,50 @@
         return m_Systems;
     }
 
+    /// @brief Used To Create a Window to Save the Engine Config
+    /// @return - true if the window is still open, false if the window is closed
+    bool Engine::SaveEngineConfig()
+    {
+        /// A bool to keep the window open
+        bool showSaveEngineConfig = true;
+
+        ///Creates a window to save the engine config
+        if (ImGui::Begin("Save Engine Config", &showSaveEngineConfig, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            /// If at any point the window is closed, return false
+            if (!showSaveEngineConfig)
+            {
+                ImGui::End();
+                return false; //close window
+            }
+
+            // engine config saving
+            static char buffer[128] = "Data/EngineConfig.json"; // Buffer to hold the input, you can save this
+            ImGui::InputText("Engine config filepath", buffer, IM_ARRAYSIZE(buffer));
+
+            /// Save engine config button
+            if (ImGui::Button("Save Engine Config"))
+            {
+                /// Save the engine config to the filepath
+                Stream::WriteToFile(buffer, Engine::GetInstance()->Write());
+                ImGui::End();
+                return false; //close window
+            }
+            
+            ImGui::SameLine();
+
+            /// Create a cancel button
+            if (ImGui::Button("Cancel"))
+            {
+				ImGui::End();
+				return false; //close window
+            }
+        }
+
+        ImGui::End();
+        return true; // Keep showing the window
+    }
+
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------

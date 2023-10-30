@@ -53,6 +53,10 @@ public: // methods
     /// @return the container of all Entities in the Scene
     std::vector< Entity* > const& GetEntities() const { return m_Entities; }
 
+    /// @brief Shows the Entity Create Window
+    bool EntityCreateWindow();
+
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -63,23 +67,28 @@ private: // virtual override methods
     /// @brief Gets Called each frame
     virtual void OnUpdate(float) override;
 
+//-----------------------------------------------------------------------------
+public: // virtual override methods
+//-----------------------------------------------------------------------------
     virtual void DebugWindow() override;
-
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
     /// @brief  Container for all Entities in the Scene
     std::vector< Entity* > m_Entities;
-    bool m_ShowEntityList = false;
-    bool m_ShowEntityCreate = false;
+    bool m_PopOut = false;
+    bool m_ShowEntityCreate = true;
 
 //-----------------------------------------------------------------------------
 private: // Private Methods
 //-----------------------------------------------------------------------------
 
+    /// @brief Shows the Entity List Window
     void EntityListWindow();
 
+    /// @brief Shows the Properites of the Selected Entity
+    void EntityPropertiesWindow(Entity* entity);
 //-----------------------------------------------------------------------------
 private: // singleton stuff
 //-----------------------------------------------------------------------------

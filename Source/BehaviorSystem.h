@@ -40,6 +40,7 @@ private:
 
     virtual void DebugWindow() override;
 
+
 public:
 
     /// @brief      Adds a new Behavior to the system

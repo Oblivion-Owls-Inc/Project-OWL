@@ -29,6 +29,17 @@
 /// @brief Forward declaration of the Entity class
 class Entity;
 
+/// @brief Creates a Enum for the MenuItemType that 
+/// 	  is used to differentiate between the different Asset types to Create
+enum class MenuItemType {
+    None = -1,
+    NewEntity,
+    NewSound,
+    NewTexture,
+    NewTransformAnimation,
+    NewSpriteAnimation,
+};
+
 /// @class DebugSystem
 /// @brief Debug System Class For Debugging
 /// @details This class provides functionality for debugging within your application.
@@ -73,7 +84,11 @@ public: // DebugStream
     {
 		std::ostringstream oss;
 		oss << value;
+
+        #ifndef NDEBUG  // only write to the Console in Debug mode
         std::cout << oss.str();
+        #endif
+
 		Stream::WriteToTraceLog(oss.str());
 	}
 
@@ -89,6 +104,32 @@ private: // Members
 
     /// @brief Flag to control dev display
     bool m_ShowDebugWindow;
+
+    /// @brief Flag to control dev display
+    bool m_ShowEntityCreateWindow = false;
+
+    /// @brief Flag to control display of the ImGui demo window
+    bool m_ShowDemoWindow = false;
+
+    bool m_Fullscreen = false;
+
+    /// @brief Flag to show the Asset System List
+    bool m_ShowAssetSystemList = false;
+
+    /// @brief Flag to show the Behavior System List
+    bool m_ShowBehaviorSystemList = false;
+
+    /// @brief Flag to show the Save Scene Window
+    bool m_ShowSceneSaveWindow = false;
+
+    /// @brief Flag to show the Save Engine Window
+    bool m_ShowEngineSaveWindow = false;
+
+    /// @brief Flag to show the Load Scene Window
+    bool m_ShowSceneLoadWindow = false;
+    
+    /// @brief Flag to Show the various Asset Prefab Windows
+    bool m_CreationWindows[5] = { 0 };
 
     /// @brief Pointer to the ImGui Input/Output structure
     ImGuiIO* io;
@@ -116,12 +157,21 @@ private: // methods
     /// @param  enabled wether to enable 
     void SetNonEditorSystemsEnabled( bool enabled );
 
+    /// @brief Shows the FPS window
     void ShowFPSWindow();
     
+    /// @brief Shows the Debug window
     void ImguiStartFrame();
 
+    /// @brief  Shows at a fixed framerate
     void OnFixedUpdate() override;
+
+    /// @brief Shows the Debug window
+    void MenuWindows();
     
+    /// @brief Shows the List of Systems that begin with the given prefix
+    /// @param prefix - the prefix to filter the list of Systems by
+    void ShowSystemList(const std::string& prefix);
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------

@@ -55,6 +55,11 @@
     /// @param  dt  the elapsed time in seconds since the previous frame
     void AudioSystem::OnUpdate( float dt )
     {
+        if (GetDebugEnabled())
+        {
+            DebugWindow();
+        }
+
         m_System->update();
     }
 

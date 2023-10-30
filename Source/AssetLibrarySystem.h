@@ -40,6 +40,9 @@ class AssetLibrarySystem : public BaseAssetLibrarySystem
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
+
+    virtual void OnUpdate(float) override;
+
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
@@ -73,6 +76,10 @@ public: // public functions
 
     /// @brief  Gets All the assets in the AssetLibrary
     std::map< std::string, AssetType* > const& GetAssets() const;
+
+
+    /// @brief Asset Creation Window for Dev Console
+    bool DebugCreateAssetWindow();
 
 //-----------------------------------------------------------------------------
 private: // private variables
