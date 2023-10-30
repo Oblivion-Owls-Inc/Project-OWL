@@ -156,34 +156,41 @@
     /// @brief  draws this Transform's debug widget
     void Transform::DrawDebugWidget() const
     {
-        static Texture texture = Texture( "Data/Textures/DebugTransform.png", glm::ivec2( 1 ), glm::vec2( 0.0625f ) );
-        Renderer()->DrawTexture( &texture, m_Translation, m_Scale, m_Rotation );
+        static Texture const texture = Texture( "Data/Textures/DebugTransform.png", glm::ivec2( 1 ), glm::vec2( 0.0625f ) );
+        Renderer()->DrawTexture( &texture, m_Translation, glm::vec2( 1 ), m_Rotation, glm::vec4( 0 ), 1.0f, m_IsDiegetic );
     }
 
     /// @brief  allows dragging of Transforms with the mouse
     void Transform::DebugDrag()
     {
-        static unsigned DraggedTransformId = 0;
-        
-        float const debugDragRange = 1.0f;
+        float constexpr maxDragRange = 1.0f;
 
-        glm::vec2 mousePos = Input()->GetMousePosWorld();
+        static unsigned draggedTransformId = 0;
+        static float closestDistanceSquared = maxDragRange * maxDragRange;
 
         if ( Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_1 ) )
         {
-            if ( glm::distance( m_Translation, mousePos ) <= debugDragRange )
+            glm::vec2 mousePos = m_IsDiegetic ? Input()->GetMousePosWorld() : Input()->GetMousePosUI();
+            glm::vec2 offset = m_Translation - mousePos;
+            float distanceSquared = glm::dot( offset, offset );
+            if ( distanceSquared <= closestDistanceSquared )
             {
-                DraggedTransformId = GetId();
+                closestDistanceSquared = distanceSquared;
+                draggedTransformId = GetId();
             }
         }
-
-        if ( Input()->GetMouseDown( GLFW_MOUSE_BUTTON_1 ) && DraggedTransformId == GetId() )
+        else if (
+            draggedTransformId == GetId() &&
+            Input()->GetMouseDown( GLFW_MOUSE_BUTTON_1 )
+        )
         {
+            glm::vec2 mousePos = m_IsDiegetic ? Input()->GetMousePosWorld() : Input()->GetMousePosUI();
             SetTranslation( mousePos );
         }
         else if ( Input()->GetMouseReleased( GLFW_MOUSE_BUTTON_1 ) )
         {
-            DraggedTransformId = 0;
+            draggedTransformId = 0;
+            closestDistanceSquared = maxDragRange * maxDragRange;
         }
     }
 

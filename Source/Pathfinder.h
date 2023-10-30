@@ -107,21 +107,27 @@ private:
 
 
 //-----------------------------------------------------------------------------
-//              Reading
+private: // reading
 //-----------------------------------------------------------------------------
-private:
+
 
     /// @brief          Read in the destination position
-    /// @param stream   The json to read from.
+    /// @param  stream  The json to read from.
     void readDestination( nlohmann::ordered_json const& data );
 
     /// @brief          Read in the array of walkable tiles
-    /// @param stream   The json to read from.
+    /// @param  stream  The json to read from.
     void readWalkables( nlohmann::ordered_json const& data );
 
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Pathfinder > const s_ReadMethods;
+
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
@@ -131,18 +137,10 @@ private:
     }
 
 
-
-//-----------------------------------------------------------------------------
-//              Writing
-//-----------------------------------------------------------------------------
-#if 0
-public:
-
     /// @brief Write all Sprite component data to a JSON file.
     /// @return The JSON file containing the Sprite component data.
     virtual nlohmann::ordered_json Write() const override;
-#endif
+
+
+//-----------------------------------------------------------------------------
 };
-
-
-

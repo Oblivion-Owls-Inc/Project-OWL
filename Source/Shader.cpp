@@ -6,6 +6,7 @@
 #include <fstream>      // reading shader source code from files
 #include "glew.h"
 #include "Shader.h"
+#include "DebugSystem.h"
 
 
 /// @brief              (helper) Reads shader source code from a file.
@@ -34,7 +35,7 @@ static unsigned int CompileShader(const char* filepath, unsigned int GL_type_SHA
     // If code got read, get its c-style string version
     if (code.empty())
     {
-        std::cout << "SHADER ERROR: Can't open or read shader file: " << filepath << std::endl;
+        Debug() << "SHADER ERROR: Can't open or read shader file: " << filepath << std::endl;
         return 0;
     }
     const char* ccode = code.c_str();
@@ -125,7 +126,7 @@ unsigned int Shader::GetUniformID(const char* uniform_name)
         // (returns -1 for undeclared uniforms)
         
         if (u != -1)    m_UniformIDs[uniform_name] = u;
-        else            std::cout << "SHADER ERROR: this uniform does not exist." << std::endl;
+        else            Debug() << "SHADER ERROR: this uniform does not exist." << std::endl;
         
         return u;
     }

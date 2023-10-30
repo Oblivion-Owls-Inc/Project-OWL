@@ -9,28 +9,21 @@
 #include "Sound.h"
 #include "AudioSystem.h"
 
+#include <filesystem>
+#include <imgui.h>
+
 //-----------------------------------------------------------------------------
 // constructor / destructor
 //-----------------------------------------------------------------------------
 
-    /// @brief default constructor
-    Sound::Sound() :
-        m_Filepath(),
-        m_IsLooping( false ),
-        m_Sound( nullptr )
-    {}
-
     /// @brief  constructs a new Sound
     /// @param  filepath    the filepath of the sound to load
-    /// @param  looping     whether or not the sound should loop
-    Sound::Sound( char const* filepath, bool looping )
+    /// @param  isLoopable  whether or not the sound should loop
+    Sound::Sound( char const* filepath, bool isLoopable ) :
+        m_Filepath( filepath ),
+        m_IsLoopabe( isLoopable )
     {
-        AudioSystem::GetInstance()->GetFMOD()->createSound(
-            filepath,
-            looping ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
-            nullptr,
-            &m_Sound
-        );
+        Reload();
     }
 
     /// @brief  Destroys this Sound
@@ -50,7 +43,8 @@
     FMOD::Channel* Sound::Play(
         FMOD::ChannelGroup* group,
         float volume,
-        float pitch
+        float pitch,
+        int loopCount
     ) const
     {
         FMOD::Channel* channel;
@@ -63,11 +57,31 @@
 
         channel->setVolume( volume );
         channel->setPitch( pitch );
+        channel->setLoopCount( loopCount );
 
         channel->setPaused( false );
 
         return channel;
     }
+
+
+    /// @brief  reloads this Sound using current settings
+    void Sound::Reload()
+    {
+        if ( m_Sound != nullptr )
+        {
+            m_Sound->release();
+            m_Sound = nullptr;
+        }
+
+        AudioSystem::GetInstance()->GetFMOD()->createSound(
+            m_Filepath.c_str(),
+            m_IsLoopabe ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
+            nullptr,
+            &m_Sound
+        );
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: accessors
@@ -82,10 +96,57 @@
         return length / 1000.0f;
     }
 
+//-----------------------------------------------------------------------------
+// inspector
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Used by the Debug System to display information about this Sound
     void Sound::Inspect()
     {
-        ///todo: add inspector
+        char const* soundDirectory = "Data/Sounds";
+
+
+        if ( ImGui::BeginCombo( "Filepath", m_Filepath.c_str() + strlen( soundDirectory ) + 1) )
+        {
+            inspectorSelectFilepathFromDirectory( soundDirectory );
+            ImGui::EndCombo();
+        }
+
+        ImGui::Checkbox( "Loopable", &m_IsLoopabe );
+
+        if ( ImGui::Button( "Reload Sound" ) )
+        {
+            Reload();
+        }
+
     }
+
+
+    /// @brief  selects a filepath from a directory
+    void Sound::inspectorSelectFilepathFromDirectory( char const* directoryPath )
+    {
+        for ( auto const& file : std::filesystem::directory_iterator( directoryPath ) )
+        {
+            std::string filepath = file.path().filename().string();
+            if ( file.is_directory() )
+            {
+                if ( ImGui::TreeNode( filepath.c_str() ) )
+                {
+                    inspectorSelectFilepathFromDirectory( (directoryPath + ("/" + filepath)).c_str() );
+                    ImGui::TreePop();
+                }
+            }
+            else
+            {
+                if ( ImGui::Selectable( filepath.c_str(), filepath == m_Filepath ) )
+                {
+                    m_Filepath = directoryPath + ("/" + filepath);
+                }
+            }
+        }
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: reading
@@ -98,28 +159,17 @@
         m_Filepath = Stream::Read<std::string>( data );
     }
 
-    /// @brief  reads isLooping
+    /// @brief  reads IsLoopabe
     /// @param  data    the JSON data to read from
-    void Sound::readIsLooping( nlohmann::ordered_json const& data )
+    void Sound::readIsLoopabe( nlohmann::ordered_json const& data )
     {
-        m_IsLooping = Stream::Read<bool>( data );
+        m_IsLoopabe = Stream::Read<bool>( data );
     }
 
     /// @brief  runs after Sound has been loaded 
     void Sound::AfterLoad()
     {
-        if ( m_Sound != nullptr )
-        {
-            m_Sound->release();
-            m_Sound = nullptr;
-        }
-
-        AudioSystem::GetInstance()->GetFMOD()->createSound(
-            m_Filepath.c_str(),
-            m_IsLooping ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
-            nullptr,
-            &m_Sound
-        );
+        Reload();
     }
 
     /// @brief Write all Sound data to a JSON file.
@@ -128,15 +178,15 @@
     {
         nlohmann::ordered_json data;
 
-        data["IsLooping"] = m_IsLooping;
-        data["FilePath"] = m_Filepath;
+        data["IsLoopabe"] = m_IsLoopabe;
+        data["Filepath"] = m_Filepath;
 
         return data;
     }
 
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< Sound > const Sound::s_ReadMethods = {
-        { "IsLooping", &readIsLooping },
+        { "IsLoopabe", &readIsLoopabe },
         { "Filepath" , &readFilepath  }
     };
 

@@ -681,9 +681,6 @@
     <None Include="Data\Scenes\AidanScene.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\TestScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
     <None Include="Data\Scenes\XinoScene.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>

@@ -79,14 +79,16 @@ void RenderSystem::OnExit()
 /// @param angle        (optional) Angle
 /// @param color        (optional) Color
 /// @param alpha        (optional) transparency
+    /// @param isDiegetic   (optional) whether the shape is diegetic
 void RenderSystem::DrawRect(
     glm::vec2 const& position, glm::vec2 const& scale, float angle,
-    glm::vec4 const& color, float alpha
+    glm::vec4 const& color, float alpha,
+    bool isDiegetic
 )
 {
     static Texture debugRectTexture = Texture( "Data/Textures/DebugRectangle.png" );
 
-    DrawTexture( &debugRectTexture, position, scale, 0.0f, color, alpha );
+    DrawTexture( &debugRectTexture, position, scale, 0.0f, color, alpha, isDiegetic );
 }
 
 /// @brief              Draws a line between 2 points.
@@ -95,7 +97,12 @@ void RenderSystem::DrawRect(
 /// @param thickness    (optional) How thicc the line is
 /// @param color        (optional) Color of the line
 /// @param alpha        (optional) transparency
-void RenderSystem::DrawLine( glm::vec2 const& P1, glm::vec2 const& P2, float thickness, glm::vec4 const& color, float alpha )
+/// @param isDiegetic   (optional) whether the shape is diegetic
+void RenderSystem::DrawLine(
+    glm::vec2 const& P1, glm::vec2 const& P2, float thickness,
+    glm::vec4 const& color, float alpha,
+    bool isDiegetic
+)
 {
     // Position a rectangle between the 2 points, angle it and stretch it
     glm::vec2 midpoint = (P1 + P2) * 0.5f;
@@ -103,7 +110,7 @@ void RenderSystem::DrawLine( glm::vec2 const& P1, glm::vec2 const& P2, float thi
     float angle = glm::atan( direction.y, direction.x );
     float length = glm::length( direction );
 
-    DrawRect( midpoint, { length, thickness }, angle, color, alpha );
+    DrawRect( midpoint, { length, thickness }, angle, color, alpha, isDiegetic );
 }
 
 /// @brief              Draws a circle.
@@ -111,11 +118,16 @@ void RenderSystem::DrawLine( glm::vec2 const& P1, glm::vec2 const& P2, float thi
 /// @param radius       (optional) Radius
 /// @param color        (optional) Color
 /// @param alpha        (optional) transparency
-void RenderSystem::DrawCircle( glm::vec2 const& position, float radius, glm::vec4 const& color, float alpha )
+/// @param isDiegetic   (optional) whether the shape is diegetic
+void RenderSystem::DrawCircle(
+    glm::vec2 const& position, float radius,
+    glm::vec4 const& color, float alpha,
+    bool isDiegetic
+)
 {
     static Texture debugCircleTexture = Texture( "Data/Textures/DebugCircle.png" );
 
-    DrawTexture( &debugCircleTexture, position, glm::vec2( radius ), 0.0f, color, alpha );
+    DrawTexture( &debugCircleTexture, position, glm::vec2( radius * 2.0f ), 0.0f, color, alpha, isDiegetic );
 }
 
 /// @brief              Draws a texture
@@ -125,10 +137,12 @@ void RenderSystem::DrawCircle( glm::vec2 const& position, float radius, glm::vec
 /// @param angle        (optional) Angle
 /// @param color        (optional) Color
 /// @param alpha        (optional) transparency
+/// @param isDiegetic   (optional) whether the shape is diegetic
 void RenderSystem::DrawTexture(
     Texture const* texture,
     glm::vec2 const& position, glm::vec2 const& scale, float angle,
-    glm::vec4 const& color, float alpha
+    glm::vec4 const& color, float alpha,
+    bool isDiegetic
 )
 {
     shapes.push_back( new Entity() );
@@ -137,6 +151,7 @@ void RenderSystem::DrawTexture(
     transform->SetTranslation( position );
     transform->SetScale( scale );
     transform->SetRotation(angle);
+    transform->SetIsDiegetic( isDiegetic );
     shapes.back()->AddComponent( transform );
 
     Sprite* sprite = new Sprite( texture );

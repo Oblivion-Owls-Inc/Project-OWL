@@ -138,7 +138,6 @@ void DebugSystem::DebugWindow()
     if ( ImGui::Button( m_ShowFpsWindow ? "Show FPS" : "Hide FPS" ) )
     {
         m_ShowFpsWindow = !m_ShowFpsWindow;
-        m_ShowFpsWindow = !m_ShowFpsWindow;
     }
     
     // engine config saving
@@ -150,7 +149,6 @@ void DebugSystem::DebugWindow()
         Stream::WriteToFile( buffer, Engine::GetInstance()->Write() );
     }
     
-    
     ImGui::End();
 }
 
@@ -158,10 +156,10 @@ void DebugSystem::DebugWindow()
 /// @brief PerDorm updates at a fixed time step.
 void DebugSystem::OnFixedUpdate()
 {
-
-    if (InputSystem::GetInstance()->GetKeyTriggered(GLFW_KEY_F1))
-        m_ShowDebugWindow = !m_ShowDebugWindow;
-
+    #ifndef NDEBUG  
+        if (InputSystem::GetInstance()->GetKeyTriggered(GLFW_KEY_GRAVE_ACCENT))
+            m_ShowDebugWindow = !m_ShowDebugWindow;
+    #endif
 }
 
 /// @brief Perform cleanup and shutdown.
@@ -171,16 +169,6 @@ void DebugSystem::OnExit()
     ImGui_ImplGlfw_Shutdown();
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
-}
-
-/// @brief Print a formatted message to the screen.
-/// @param format The format string, similar to printf.
-void DebugSystem::ScreenPrint(const char* format, ...)
-{
-    va_list args;
-    va_start(args, format);
-    logBuffer.appendfv(format, args);
-    va_end(args);
 }
 
 
