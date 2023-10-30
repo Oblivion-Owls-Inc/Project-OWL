@@ -14,9 +14,9 @@
 
 class CheatSystem :public System
 {
-//-----------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 private: // virtual override methods
-//-----------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 
     /// @brief  Gets called once when this System is added to the Engine
     virtual void OnInit() override;
@@ -28,9 +28,30 @@ private: // virtual override methods
     /// @brief  Gets called once before the Engine closes
     virtual void OnExit() override;
 
-//-----------------------------------------------------------------------------
-private: // singleton stuff
-//-----------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+public: // virtual override methods
+//--------------------------------------------------------------------------------
+
+    /// @brief The cheat/console window.
+    virtual void DebugWindow() override;
+
+//--------------------------------------------------------------------------------
+private: // methods
+//--------------------------------------------------------------------------------
+    /// @brief Opens the console.
+    /// @return Whether or not the key to open the console was pressed
+    bool OpenCheatMenu();
+
+//--------------------------------------------------------------------------------
+private: // members
+//--------------------------------------------------------------------------------
+
+    // Whether or not the console is open.
+    bool m_CheatMenuIsOpen;
+
+//--------------------------------------------------------------------------------
+private: // singleton 
+//--------------------------------------------------------------------------------
 
     /// @brief  Constructs the CheatSystem
     CheatSystem();
@@ -38,9 +59,9 @@ private: // singleton stuff
     /// @brief  The singleton instance of CheatSystem
     static CheatSystem* s_Instance;
 
-//-----------------------------------------------------------------------------
-public: // singleton stuff
-//-----------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+public: // singleton 
+//--------------------------------------------------------------------------------
 
     /// @brief  gets the instance of AudioSystem
     /// @return the instance of the AudioSystem
