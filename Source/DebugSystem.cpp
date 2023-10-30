@@ -147,6 +147,12 @@ void DebugSystem::DebugWindow()
                 m_ShowSceneLoadWindow = true;
             }
 
+            /// Reloads the Scene
+            if (ImGui::MenuItem("Reload Scene"))
+            {
+                SceneSystem::GetInstance()->ResetScene();
+			}
+
             /// Opens the Save Menu which holds [Save All, Save Scene, Save Engine Config]
             if (ImGui::BeginMenu("Save.."))
             {
