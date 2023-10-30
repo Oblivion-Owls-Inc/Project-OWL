@@ -39,6 +39,8 @@ private: // Member Variables
     /// @brief  how fast this Enemy moves
     float m_Speed = 10.0f;
 
+    int m_Damage = 1;
+
     /// @brief  the name of the Entity with the Pathfinder to follow
     std::string m_PathfinderName = "";
 
@@ -69,8 +71,18 @@ private: // Reading
     /// @param  data    the json data to read from
     void readSpeed( nlohmann::ordered_json const& data );
 
+    /// @brief  reads the damage
+    /// @param  data    the json data to read from
+    void readDamage(nlohmann::ordered_json const& data);
+
     /// @brief  map of read methods
     static ReadMethodMap< EnemyBehavior > const s_ReadMethods;
+
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
+    int GetDamage();
 
 ///-----------------------------------------------------------------------------
 public: // reading / writing

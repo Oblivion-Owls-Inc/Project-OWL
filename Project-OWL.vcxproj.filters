@@ -198,6 +198,12 @@
     <Filter Include="Game\BaseEntityBehavior">
       <UniqueIdentifier>{5821ef37-47bc-4d79-a76b-4e247b51bed3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Behaviors\BaseBehavior">
+      <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Behaviors\BasicEntityBehavior">
+      <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -423,10 +429,10 @@
       <Filter>Engine\Entity\Component\Sprite\ParticleSprite</Filter>
     </ClCompile>
     <ClCompile Include="Source\BaseBehavior.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Behaviors\BaseBehavior</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BaseEntityBehavior.cpp">
-      <Filter>Game\BaseEntityBehavior</Filter>
+    <ClCompile Include="Source\BasicEntityBehavior.cpp">
+      <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -656,10 +662,10 @@
       <Filter>Engine\Entity\Component\Sprite\ParticleSprite</Filter>
     </ClInclude>
     <ClInclude Include="Source\BaseBehavior.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Behaviors\BaseBehavior</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BaseEntityBehavior.h">
-      <Filter>Game\BaseEntityBehavior</Filter>
+    <ClInclude Include="Source\BasicEntityBehavior.h">
+      <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

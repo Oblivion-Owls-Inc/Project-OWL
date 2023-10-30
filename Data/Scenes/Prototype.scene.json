@@ -196,7 +196,7 @@
             ]
           }
         }
-    },
+        },
         {
             "Name": "Camera",
             "Components": {
@@ -205,6 +205,25 @@
                     "Width": 20
                 }
             }
+        },
+        {
+            "Name": "Base",
+          "Components": {
+            "Transform": {
+              "Translation": [ 2, 4 ]
+            },
+            "Sprite": {
+              "Texture": "PlayerSheet"
+            },
+            "CircleCollider": {
+              "CollisionLayer": "Base",
+              "CollisionLayerFlags": [ "Enemies" ],
+              "Radius": 2
+            },
+            "BaseBehavior": {
+              "Health": 3
+            }
+          }
         },
         {
             "Name": "Tiles",
