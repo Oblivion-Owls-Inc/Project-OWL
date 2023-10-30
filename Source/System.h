@@ -50,15 +50,19 @@ public: // accessors
     /// @brief Gets the unique name of this System
     std::string const& GetName() const { return m_Name; }
 
-
     /// @brief  gets whether this System is enabled
     /// @return whether this System is enabled
     bool GetEnabled() const { return m_Enabled; }
+
+    bool GetDebugEnabled() const { return m_ShowDebugWindow; }
 
     /// @brief  sets whether this System is enabled
     /// @param  enabled whether this System is enabled
     void SetEnabled( bool enabled ) { m_Enabled = enabled; }
 
+    /// @brief Sets if the Debug Window should be shown
+    /// @param enable - whether the debug window should be shown
+    virtual void SetDebugEnable(bool enable) { m_ShowDebugWindow = enable; }
 
     /// @brief  gets this System's ID
     /// @return this System's ID
@@ -96,6 +100,8 @@ private: // member variables
 
     /// @brief  whether this System will update
     bool m_Enabled = true;
+
+    bool m_ShowDebugWindow = false;
 
 //-----------------------------------------------------------------------------
 };

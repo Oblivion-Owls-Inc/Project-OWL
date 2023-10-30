@@ -64,7 +64,7 @@ public: // copying
 
     /// @brief  creates a new clone of this Component
     /// @return the newly created clone
-    virtual BasicEntityBehavior* Clone() const override
+    virtual Component* Clone() const override
     {
         return new BasicEntityBehavior( *this );
     }

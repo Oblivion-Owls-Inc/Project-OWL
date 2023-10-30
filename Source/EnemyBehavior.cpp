@@ -76,17 +76,28 @@
         Stream::Read( m_Speed, data );
     }
 
+    void EnemyBehavior::readDamage(nlohmann::ordered_json const& data)
+    {
+        Stream::Read( m_Damage, data );
+    }
+
     /// @brief  map of read methods
     ReadMethodMap< EnemyBehavior > const EnemyBehavior::s_ReadMethods = {
 	    { "Health"        , &BasicEntityBehavior::readHealth    },
-        { "PathfinderName", &EnemyBehavior::readPathfinderName },
-        { "Speed"         , &EnemyBehavior::readSpeed          }
+        { "PathfinderName", &EnemyBehavior::readPathfinderName  },
+        { "Speed"         , &EnemyBehavior::readSpeed           },
+        { "Damage"         ,&EnemyBehavior::readDamage          }
     };
 
 
 ///----------------------------------------------------------------------------
 /// public: writing
 ///----------------------------------------------------------------------------
+
+    int EnemyBehavior::GetDamage()
+    {
+        return m_Damage;
+    }
 
     /// @brief  write all component data to a JSON object
     nlohmann::ordered_json EnemyBehavior::Write() const
@@ -96,6 +107,7 @@
         data["Health"] = m_Health.Write();
         data["PathfinderName"] = m_PathfinderName;
         data["Speed"] = m_Speed;
+        data["Damage"] = m_Damage;
 
         return data;
     }

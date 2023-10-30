@@ -198,6 +198,15 @@
     <Filter Include="Game\BaseEntityBehavior">
       <UniqueIdentifier>{5821ef37-47bc-4d79-a76b-4e247b51bed3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Behaviors\BaseBehavior">
+      <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Behaviors\BasicEntityBehavior">
+      <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\Inspection">
+      <UniqueIdentifier>{973c8ce7-ba72-4cdf-8b08-0b9b9404380f}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Engine\Systems\CheatSystem">
       <UniqueIdentifier>{1dbe9dbc-86de-434f-8fd4-19d968e00052}</UniqueIdentifier>
     </Filter>
@@ -426,10 +435,13 @@
       <Filter>Engine\Entity\Component\Sprite\ParticleSprite</Filter>
     </ClCompile>
     <ClCompile Include="Source\BaseBehavior.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Behaviors\BaseBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\BasicEntityBehavior.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Inspection.cpp">
+      <Filter>Engine\Framework\Inspection</Filter>
     </ClCompile>
     <ClCompile Include="Source\CheatSystem.cpp">
       <Filter>Engine\Systems\CheatSystem</Filter>
@@ -662,10 +674,13 @@
       <Filter>Engine\Entity\Component\Sprite\ParticleSprite</Filter>
     </ClInclude>
     <ClInclude Include="Source\BaseBehavior.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Behaviors\BaseBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\BasicEntityBehavior.h">
-      <Filter>Header Files</Filter>
+      <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Inspection.h">
+      <Filter>Engine\Framework\Inspection</Filter>
     </ClInclude>
     <ClInclude Include="Source\CheatSystem.h">
       <Filter>Engine\Systems\CheatSystem</Filter>

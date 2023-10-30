@@ -66,6 +66,10 @@ void ParticleSystem::OnInit()
 ///         consistent buffer sync.
 void ParticleSystem::OnUpdate(float dt)
 {
+    if (GetDebugEnabled())
+    {
+		DebugWindow();
+	}
     if (!Cameras()->GetActiveCamera())
         return;
 
