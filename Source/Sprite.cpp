@@ -13,6 +13,7 @@
 #include <iostream>         // error msg
 
 #include "AssetLibrarySystem.h"
+#include "Inspection.h"
 
 
 //-----------------------------------------------------------------------------
@@ -151,18 +152,26 @@ void Sprite::OnExit()
 
     void Sprite::Inspector()
     {
-        if (ImGui::DragInt("Layer", &m_Layer, 1, 0, 4))
+        if ( ImGui::DragInt( "Layer", &m_Layer, 0.05f ) )
         {
             SetLayer(m_Layer);
         }
-        if (ImGui::DragFloat("Opacity", &m_Opacity, 0.01f, 0.0f, 1.0f))
+        if ( ImGui::ColorEdit3( "Color", &m_Color[ 0 ] ) )
         {
-			SetOpacity(m_Opacity);
-		}
+            SetColor(m_Color);
+        }
+        if ( ImGui::DragFloat( "Opacity", &m_Opacity, 0.01f, 0.0f, 1.0f ) )
+        {
+            SetOpacity(m_Opacity);
+        }
+
         if (!m_Texture)
         {
             return;
         }
+
+        Inspection::SelectAssetFromLibrary( "Texture", &m_Texture );
+
         if ( ImGui::DragInt(
             "Frame Index", &m_FrameIndex, 1, 0, 
             m_Texture->GetSheetDimensions().x * m_Texture->GetSheetDimensions().y
@@ -170,10 +179,6 @@ void Sprite::OnExit()
         {
 			SetFrameIndex(m_FrameIndex);
 		}
-        if (ImGui::ColorEdit4("Color", &m_Color.x))
-        {
-            SetColor(m_Color);
-        }
 
         // Texture selection
         std::vector<std::string> textureNames;
