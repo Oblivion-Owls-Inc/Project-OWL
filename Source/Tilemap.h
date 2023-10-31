@@ -2,13 +2,17 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    Tilemap component - loads and manages a tilemap array.
+
 #pragma once
+
 #define TILEMAP_H
 
 #include "Behavior.h"
 #include "Transform.h"
 #include <functional>   // callbacks
 #include <map>
+
+#include <iostream>
 
 /// @brief  untemplatized base Tilemap class
 class TilemapBase : public Behavior
@@ -44,10 +48,11 @@ public:
     /// @return   A copy of this component
     virtual Component * Clone() const override;
 
+private:
+
     /// @brief        Copy constructor
     /// @param other  Tilemap to copy
     Tilemap(Tilemap const& other);
-
 
 
 //-----------------------------------------------------------------------------
@@ -143,8 +148,6 @@ private:
     /// @brief  called when component is removed
     virtual void OnExit() override;
 
-    virtual void OnFixedUpdate() {};
-
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector();
 
@@ -222,7 +225,10 @@ public:
 
 };
 
+/// @brief  specialization of int tilemap inspector
+template<>
+void Tilemap<int>::Inspector();
 
 #ifndef TILEMAP_C
-#include "Tilemap.cpp"
+#include "Tilemap.t.cpp"
 #endif

@@ -1,17 +1,13 @@
-/*****************************************************************//**
-                                                                   * \file   Pathfinder.cpp
-                                                                   * \brief  Implementation of Pathfinder component. Runs vector field
-                                                                   *         pathfinding algo whenever parent's Tilemap updates.
-                                                                   * 
-                                                                   * \author Eli Tsereteli
-                                                                   *********************************************************************/
+/*********************************************************************
+* \file   Pathfinder.cpp
+* \brief  Implementation of Pathfinder component. Runs vector field
+*         pathfinding algo whenever parent's Tilemap updates.
+* 
+* \author Eli Tsereteli
+*********************************************************************/
 #include "Pathfinder.h"
 #include "Entity.h"     // parent
-
-#ifndef NDEBUG
-#include <iostream>
-#endif
-
+#include "DebugSystem.h"
 
                                                                    /// @brief      Default constructor
 Pathfinder::Pathfinder() : Component(typeid(Pathfinder)) 
