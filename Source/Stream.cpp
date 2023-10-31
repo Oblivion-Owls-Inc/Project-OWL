@@ -13,6 +13,8 @@
 
 #include "Stream.h"
 
+#include "DebugSystem.h"
+
 #include <fstream> // std::ifstream
 
 //------------------------------------------------------------------------------
@@ -27,9 +29,8 @@
         std::ifstream file( filepath );
         if ( file.is_open() == false )
         {
-            throw std::runtime_error(
-                std::string() + "Error: unable to open file \"" + filepath + "\""
-            );
+            Debug() << "Warning: unable to open file \"" << filepath << "\"" << std::endl;
+            return nlohmann::ordered_json();
         }
         // TODO: error handling?
         return nlohmann::ordered_json::parse( file );
@@ -43,9 +44,8 @@
         static std::ofstream traceFile("trace.log");
         if (!traceFile.is_open())
         {
-            throw std::runtime_error(
-                std::string() + "Error: unable to open trace log"
-            );
+            Debug() << "Warning: unable to open file \"trace.log\"" << std::endl;
+            return;
         }
 
         // Write the trace message to the log.
@@ -60,9 +60,8 @@
         std::ofstream file( filepath );
         if ( file.is_open() == false )
         {
-            throw std::runtime_error(
-                std::string() + "Error: unable to open file \"" + filepath + "\""
-            );
+            Debug() << "Warning: unable to open file \"" << filepath << "\"" << std::endl;
+            return;
         }
         file << std::setw( 4 ) << json << std::endl;
     }
