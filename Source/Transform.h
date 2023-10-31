@@ -15,6 +15,8 @@
 #include <functional>
 #include <map>
 
+class Texture;
+
 class Transform : public Component
 {
 //-----------------------------------------------------------------------------
@@ -105,12 +107,20 @@ public: // accessors
     /// @param  matrix  the new matrix
     void SetMatrix( glm::mat4 const& matrix );
 
+
+    /// @brief  gets the Transform debug widget texture
+    /// @return the Transform debug widget texture
+    static Texture const* GetWidgetTexture();
+
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  inspector for this component
     virtual void Inspector() override;
+
 
 //-----------------------------------------------------------------------------
 private: // member variables
@@ -139,6 +149,11 @@ private: // member variables
 
     /// @brief  callbacks to be called whenever this Transform changes
     std::map< unsigned, std::function< void () > > m_OnTransformChangedCallbacks = {};
+
+
+    /// @brief  texture of the Transform debug widget
+    static Texture const* s_WidgetTexture;
+
 
 //-----------------------------------------------------------------------------
 private: // methods
