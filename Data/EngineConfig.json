@@ -35,7 +35,8 @@
             "ShowDebugWindow": false
         },
         "SandboxSystem": {},
-        "ParticleSystem": {}
+        "ParticleSystem": {},
+        "CheatSystem": {}
 
     }
 }

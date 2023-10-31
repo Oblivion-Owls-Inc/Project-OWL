@@ -40,7 +40,10 @@ private: // methods
 //--------------------------------------------------------------------------------
     /// @brief Opens the console.
     /// @return Whether or not the key to open the console was pressed
-    bool OpenCheatMenu();
+    void OpenCheatMenu();
+
+    /// @brief Run the cheats.
+    void RunCheats();
 
 //--------------------------------------------------------------------------------
 private: // members
@@ -48,6 +51,9 @@ private: // members
 
     // Whether or not the console is open.
     bool m_CheatMenuIsOpen;
+    bool m_ResourceSwitch;
+    bool m_BaseGodMode;
+    bool m_KillAllEnemies;
 
 //--------------------------------------------------------------------------------
 private: // singleton 
