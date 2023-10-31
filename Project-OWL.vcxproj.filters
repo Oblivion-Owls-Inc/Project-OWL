@@ -377,7 +377,7 @@
     <ClCompile Include="Source\TransformAnimation.cpp">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Tilemap.cpp">
+    <ClCompile Include="Source\Tilemap.t.cpp">
       <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapSprite.cpp">
@@ -439,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="Source\Inspection.cpp">
       <Filter>Engine\Framework\Inspection</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tilemap.cpp">
+      <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
