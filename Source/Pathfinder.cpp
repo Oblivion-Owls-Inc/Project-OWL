@@ -8,6 +8,8 @@
 #include "Pathfinder.h"
 #include "Entity.h"     // parent
 #include "DebugSystem.h"
+#include "InputSystem.h"
+#include "RenderSystem.h"
 
                                                                    /// @brief      Default constructor
 Pathfinder::Pathfinder() : Component(typeid(Pathfinder)) 
@@ -25,30 +27,66 @@ Component * Pathfinder::Clone() const { return new Pathfinder(*this); }
 //          Virtual overrides
 //-----------------------------------------------------------------------------
 
-/// @brief  called when entering a scene - syncs with Tilemap
-void Pathfinder::OnInit()
-{
-    m_Tilemap = GetParent()->GetComponent< Tilemap<int> >();
-
-#ifndef NDEBUG
-    if ( m_Tilemap == nullptr )
+    /// @brief  called when entering a scene - syncs with Tilemap
+    void Pathfinder::OnInit()
     {
-        Debug() << "Warning: Pathfinder parent does not have Tilemap component." << std::endl;
-        return;
+        m_Tilemap = GetParent()->GetComponent< Tilemap<int> >();
+
+    #ifndef NDEBUG
+        if ( m_Tilemap == nullptr )
+        {
+            Debug() << "Warning: Pathfinder parent does not have Tilemap component." << std::endl;
+            return;
+        }
+    #endif
+
+        m_Tilemap->AddOnTilemapChangedCallback( GetId(), std::bind(&Pathfinder::explore, this));
+        m_Nodes.resize( m_Tilemap->GetTilemap().size() );
+        SetDestination(m_DestPos);
     }
-#endif
-
-    m_Tilemap->AddOnTilemapChangedCallback( GetId(), std::bind(&Pathfinder::explore, this));
-    m_Nodes.resize( m_Tilemap->GetTilemap().size() );
-    SetDestination(m_DestPos);
-}
 
 
-/// @brief  called when exiting a scene - un-syncs (removes callback)
-void Pathfinder::OnExit()
-{
-    m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
-}
+    /// @brief  called when exiting a scene - un-syncs (removes callback)
+    void Pathfinder::OnExit()
+    {
+        m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
+    }
+
+
+    /// @brief  displays this Pathfinder's inspector
+    void Pathfinder::Inspector()
+    {
+        if ( ImGui::DragFloat2( "Destination", &m_DestPos[0], 0.05f ) )
+        {
+            SetDestination( m_DestPos );
+        }
+
+        static bool selectTargetMode = false;
+
+        if ( ImGui::Button( selectTargetMode ? "click in the scene" : "Select Destination" ) )
+        {
+            selectTargetMode = !selectTargetMode;
+        }
+
+        if ( selectTargetMode && Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_1 ) )
+        {
+            SetDestination( Input()->GetMousePosWorld() );
+            selectTargetMode = false;
+        }
+
+        if ( m_Tilemap == nullptr )
+        {
+            return;
+        }
+
+        glm::mat4 tileToWorld = m_Tilemap->GetTilemapToWorldMatrix();
+        Renderer()->DrawRect(
+            (glm::vec2)( tileToWorld * glm::vec4( (glm::vec2)m_DestTile + glm::vec2( 0.5f ), 0, 1 ) ),
+            m_Tilemap->GetTileScale(),
+            GetParent()->GetComponent< Transform >()->GetRotation(),
+            glm::vec4( -1.0f, 0.0f, -1.0f, 0.0f )
+        );
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -59,6 +97,11 @@ void Pathfinder::OnExit()
 /// @param pos   World position
 void Pathfinder::SetDestination(glm::vec2 pos)
 {
+    if ( m_Tilemap == nullptr )
+    {
+        return;
+    }
+
     // get coord (2D index), check bounds (and walkability of given tile)
     glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
     if ( coord.x == -1 )
@@ -132,6 +175,12 @@ bool Pathfinder::IsWalkable(glm::vec2 pos) const
 ///             but it doens't need to be
 void Pathfinder::explore()
 {
+    // skip if Tilemap is null (such as if this is an archetype in the inspector)
+    // if ( m_Tilemap == nullptr )
+    // {
+    //     return;
+    // }
+
     // update walkability of tiles
     int size = (int) m_Nodes.size();
     for (int i=0; i<size; i++)
