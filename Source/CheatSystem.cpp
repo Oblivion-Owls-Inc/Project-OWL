@@ -79,7 +79,7 @@ void CheatSystem::DebugWindow()
         ImGui::SameLine();
         ImGui::Text("Infinite Base Health");
 
-        if (ImGui::Button("Kill All Enemies"))
+        if (ImGui::Button(m_KillAllEnemies ? "All enemies killed" : "Kill all enemies"))
         {
             m_KillAllEnemies = !m_KillAllEnemies;
         }
@@ -113,9 +113,12 @@ void CheatSystem::RunCheats()
     if(m_BaseGodMode)
     {
        Entity* base = Entities()->GetEntity("Base");
-       BaseBehavior* baseBehavior = base->GetComponent<BaseBehavior>();
-       Pool<int>* health = baseBehavior->GetHealth();
-       health->SetCurrent(9999);
+       if(base)
+       {
+           BaseBehavior* baseBehavior = base->GetComponent<BaseBehavior>();
+           Pool<int>* health = baseBehavior->GetHealth();
+           health->SetCurrent(9999);
+       }
     }
 
     // The infinite resources cheat.
@@ -149,7 +152,8 @@ CheatSystem::CheatSystem():
     System("CheatSystem"),
     m_CheatMenuIsOpen(false),
     m_BaseGodMode(false),
-    m_ResourceSwitch(false)
+    m_ResourceSwitch(false),
+    m_KillAllEnemies(false)
 {}
 
 /// @brief The singleton instance of CheatSystem.
