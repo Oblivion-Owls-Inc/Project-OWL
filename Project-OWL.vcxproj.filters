@@ -204,6 +204,9 @@
     <Filter Include="Game\Behaviors\BasicEntityBehavior">
       <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Framework\Inspection">
+      <UniqueIdentifier>{973c8ce7-ba72-4cdf-8b08-0b9b9404380f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -374,7 +377,7 @@
     <ClCompile Include="Source\TransformAnimation.cpp">
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Tilemap.cpp">
+    <ClCompile Include="Source\Tilemap.t.cpp">
       <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapSprite.cpp">
@@ -433,6 +436,12 @@
     </ClCompile>
     <ClCompile Include="Source\BasicEntityBehavior.cpp">
       <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Inspection.cpp">
+      <Filter>Engine\Framework\Inspection</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tilemap.cpp">
+      <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="Source\WavesInspector.cpp">
       <Filter>Game\Behaviors\WavesBehavior</Filter>
@@ -669,6 +678,9 @@
     </ClInclude>
     <ClInclude Include="Source\BasicEntityBehavior.h">
       <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Inspection.h">
+      <Filter>Engine\Framework\Inspection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

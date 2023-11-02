@@ -14,6 +14,7 @@
 #include "RenderSystem.h"
 
 #include "Transform.h"
+#include "Entity.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor
@@ -34,7 +35,10 @@
     {
         ImGui::DragFloat( ( std::string( "Radius##" ) + std::to_string( GetId() ) ).c_str(), &m_Radius, 0.05f, 0.0f );
 
-        Renderer()->DrawCircle( GetTransform()->GetTranslation(), m_Radius, glm::vec4( 1.0f, 0.5f, 0.0f, 0.0f ) );
+        if ( GetTransform() != nullptr )
+        {
+            Renderer()->DrawCircle( GetTransform()->GetTranslation(), m_Radius, glm::vec4(1.0f, 0.5f, 0.0f, 0.0f));
+        }
 
         Collider::Inspector();
     }

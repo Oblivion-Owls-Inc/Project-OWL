@@ -9,7 +9,8 @@
 #include "Sound.h"
 #include "AudioSystem.h"
 
-#include <filesystem>
+#include "Inspection.h"
+
 #include <imgui.h>
 
 //-----------------------------------------------------------------------------
@@ -104,14 +105,10 @@
     /// @brief Used by the Debug System to display information about this Sound
     void Sound::Inspect()
     {
-        char const* soundDirectory = "Data/Sounds";
+        std::string const soundDirectory = "Data/Sounds";
 
 
-        if ( ImGui::BeginCombo( "Filepath", m_Filepath.c_str() + strlen( soundDirectory ) + 1) )
-        {
-            inspectorSelectFilepathFromDirectory( soundDirectory );
-            ImGui::EndCombo();
-        }
+        Inspection::SelectFileFromDirectory( "Filepath", &m_Filepath, soundDirectory );
 
         ImGui::Checkbox( "Loopable", &m_IsLoopabe );
 
@@ -123,29 +120,29 @@
     }
 
 
-    /// @brief  selects a filepath from a directory
-    void Sound::inspectorSelectFilepathFromDirectory( char const* directoryPath )
-    {
-        for ( auto const& file : std::filesystem::directory_iterator( directoryPath ) )
-        {
-            std::string filepath = file.path().filename().string();
-            if ( file.is_directory() )
-            {
-                if ( ImGui::TreeNode( filepath.c_str() ) )
-                {
-                    inspectorSelectFilepathFromDirectory( (directoryPath + ("/" + filepath)).c_str() );
-                    ImGui::TreePop();
-                }
-            }
-            else
-            {
-                if ( ImGui::Selectable( filepath.c_str(), filepath == m_Filepath ) )
-                {
-                    m_Filepath = directoryPath + ("/" + filepath);
-                }
-            }
-        }
-    }
+    // /// @brief  selects a filepath from a directory
+    // void Sound::inspectorSelectFilepathFromDirectory( char const* directoryPath )
+    // {
+    //     for ( auto const& file : std::filesystem::directory_iterator( directoryPath ) )
+    //     {
+    //         std::string filepath = file.path().filename().string();
+    //         if ( file.is_directory() )
+    //         {
+    //             if ( ImGui::TreeNode( filepath.c_str() ) )
+    //             {
+    //                 inspectorSelectFilepathFromDirectory( (directoryPath + ("/" + filepath)).c_str() );
+    //                 ImGui::TreePop();
+    //             }
+    //         }
+    //         else
+    //         {
+    //             if ( ImGui::Selectable( filepath.c_str(), filepath == m_Filepath ) )
+    //             {
+    //                 m_Filepath = directoryPath + ("/" + filepath);
+    //             }
+    //         }
+    //     }
+    // }
 
 
 //-----------------------------------------------------------------------------
