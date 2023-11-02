@@ -83,6 +83,16 @@ private: // inspector methods
 	/// @brief lists all spawners and locations
 	void GuiSpawners();
 
+
+	void DebugDrag(int number);
+
+	void GuiAddWave();
+	void GuiRemoveWave();
+	void GuiAddGroup();
+	void GuiRemoveGroup();
+	void GuiAddSpawner();
+	void GuiRemoveSpawner();
+
 	//-----------------------------------------------------------------------------
 private: // data
 	//-----------------------------------------------------------------------------

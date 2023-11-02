@@ -17,6 +17,9 @@
 #include "AssetLibrarySystem.h"
 #include "Engine.h"
 #include "Tilemap.h"
+#include "RenderSystem.h"
+#include "Texture.h"
+#include "InputSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructor
@@ -116,6 +119,15 @@ void WavesBehavior::OnFixedUpdate()
 						waves[currentWave].groups[i].timer +=
 							waves[currentWave].groups[i].spawnInterval;
 						waves[currentWave].groups[i].enemyAmount--;
+						int size = (int)spawners.size();
+						if (waves[currentWave].groups[i].spawner >= size)
+						{
+							waves[currentWave].groups[i].spawner = size - 1;
+						}
+						if (waves[currentWave].groups[i].spawner < 0)
+						{
+							waves[currentWave].groups[i].spawner = 0;
+						}
 						Spawn(waves[currentWave].groups[i].name, i);
 					}
 				}
@@ -132,152 +144,6 @@ void WavesBehavior::OnFixedUpdate()
 			currentWave++;
 		}
 	}
-}
-
-//-----------------------------------------------------------------------------
-// private: inspector methods
-//-----------------------------------------------------------------------------
-
-/// @brief displays wave data to edit
-void WavesBehavior::GuiWaves()
-{
-	ImGui::Text("Total Waves: %i", numWaves);
-
-	ImGui::Text("Wave: %i", inspectorWave + 1);
-	ImGui::InputInt("Wave", &inspectorWave);
-	if (inspectorWave >= numWaves)
-	{
-		inspectorWave = numWaves - 1;
-	}
-	else if (inspectorWave < 0)
-	{
-		inspectorWave = 0;
-	}
-	ImGui::InputFloat("Remaining Time",
-		&waves[inspectorWave].remainingTime);
-	ImGui::InputFloat("Time to Next Wave",
-		&waves[inspectorWave].timeToNextWave);
-
-	ImGui::Text("");
-}
-
-/// @brief displays group data to edit
-void WavesBehavior::GuiGroups()
-{
-	ImGui::Text("Groups in Wave: %i", waves[inspectorWave].groups.size());
-	if (waves[inspectorWave].groups.size() > 0)
-	{
-		if (inspectorGroup >= waves[inspectorWave].groups.size())
-		{
-			inspectorGroup = (int)waves[inspectorWave].groups.size() - 1;
-		}
-		ImGui::Text("Group: %i", inspectorGroup + 1);
-		ImGui::Text("Enemy Type: %s", waves[inspectorWave].groups[inspectorGroup].name.c_str());
-		ImGui::InputInt("Group", &inspectorGroup);
-		if (inspectorGroup >= waves[inspectorWave].groups.size())
-		{
-			inspectorGroup = (int)waves[inspectorWave].groups.size() - 1;
-		}
-		else if (inspectorGroup < 0)
-		{
-			inspectorGroup = 0;
-		}
-		ImGui::InputInt("Enemies", &waves[inspectorWave].groups[inspectorGroup].enemyAmount);
-		ImGui::InputInt("Spawner", &waves[inspectorWave].groups[inspectorGroup].spawner);
-		int size = (int)spawners.size();
-		if (waves[inspectorWave].groups[inspectorGroup].spawner >= size)
-		{
-			waves[inspectorWave].groups[inspectorGroup].spawner = size - 1;
-		}
-		else if (waves[inspectorWave].groups[inspectorGroup].spawner < 0)
-		{
-			waves[inspectorWave].groups[inspectorGroup].spawner = 0;
-		}
-		ImGui::InputFloat("Timer", &waves[inspectorWave].groups[inspectorGroup].timer);
-
-	}
-	ImGui::Text("");
-}
-
-/// @brief displays the currently active wave data
-void WavesBehavior::GuiCurrentWave()
-{
-
-	if (currentWave < numWaves)
-	{
-		ImGui::Text("Wave: %i", currentWave + 1);
-		ImGui::Text("Remaining Time: %f", waves[currentWave].remainingTime);
-		ImGui::Text("Time to Next Wave: %f", waves[currentWave].timeToNextWave);
-	}
-	else
-	{
-		ImGui::Text("No Current Wave");
-	}
-}
-
-/// @brief displays the currently active enemy groups data
-void WavesBehavior::GuiCurrentGroups()
-{
-	if (currentWave < numWaves)
-	{
-		for (int i = 0; i < waves[currentWave].groups.size(); i++)
-		{
-			ImGui::Text("Group: %i", i + 1);
-			ImGui::Text("Enemy Type: %s", waves[currentWave].groups[i].name.c_str());
-			ImGui::Text("Amount: %i", waves[currentWave].groups[i].enemyAmount);
-			ImGui::Text("Spawner: %i", waves[currentWave].groups[i].spawner);
-			ImGui::Text("Timer: %f", waves[currentWave].groups[i].timer);
-			ImGui::Text("");
-		}
-	}
-}
-
-/// @brief calls the current gui handlers
-void WavesBehavior::GuiCurrent()
-{
-	char title[20];
-	snprintf(title, sizeof(title), "Current Wave Data:");
-	if (ImGui::TreeNode(title))
-	{
-		GuiCurrentWave();
-		ImGui::Text("");
-		GuiCurrentGroups();
-		ImGui::TreePop();
-	}
-}
-
-/// @brief lists all spawners and locations
-void WavesBehavior::GuiSpawners()
-{
-	char title[20];
-	snprintf(title, sizeof(title), "Spawners:");
-	if (ImGui::TreeNode(title))
-	{
-		for (int i = 0; i < spawners.size(); i++)
-		{
-			//glm::vec2 location = spawners[i]GetTranslation();
-			//ImGui::Text("Spawner: %i", i);
-			//ImGui::Text("Location: [ %f %f ]", location.x, location.y);
-		}
-		ImGui::TreePop();
-	}
-}
-
-/// @brief handles displaying ImGui inspectors
-void WavesBehavior::Inspector()
-{
-	///Edit the Behavior of the Waves 
-	ImGui::Begin("WaveData");
-
-	GuiWaves();
-
-	GuiGroups();
-
-	GuiCurrent();
-
-	GuiSpawners();
-
-	ImGui::End();
 }
 
 //-----------------------------------------------------------------------------
@@ -307,11 +173,22 @@ float WavesBehavior::getTimer()
 /// @param group - enemyGroup to spawn from
 void WavesBehavior::Spawn(std::string name, int group)
 {
-	Entity* copy = AssetLibrary<Entity>()->GetAsset(name)->Clone();
-	Transform* copyTransform = copy->GetComponent<Transform>();
-
-	copyTransform->SetTranslation(spawners[waves[currentWave].groups[group].spawner]);
-	Entities()->AddEntity(copy);
+	const Entity* entity = AssetLibrary<Entity>()->GetAsset(name);
+	if (entity)
+	{
+		Entity* copy = entity->Clone();
+		Transform* copyTransform = copy->GetComponent<Transform>();
+		if (spawners.size() == 0)
+		{
+			glm::vec2 vec(0, 0);
+			copyTransform->SetTranslation(vec);
+		}
+		else
+		{
+			copyTransform->SetTranslation(spawners[waves[currentWave].groups[group].spawner]);
+		}
+		Entities()->AddEntity(copy);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -391,14 +268,14 @@ nlohmann::ordered_json WavesBehavior::Write() const
 {
 	nlohmann::ordered_json data;
 
-	nlohmann::ordered_json& altSpawn = data["AlternateSpawners"];
+	nlohmann::ordered_json& altSpawn = data["Spawners"];
 	for (int i = 0; i < spawners.size(); i++)
 	{
 		altSpawn.push_back(Stream::Write(spawners[i]));
 	}
 
 	nlohmann::ordered_json& writeWaves = data["Waves"];
-	for (int i = 0; i < waves.size(); i++)
+	for (int i = 0; i < numWaves; i++)
 	{
 		writeWaves.push_back(waves[i].Write());
 	}
@@ -438,7 +315,7 @@ nlohmann::ordered_json WavesBehavior::EnemyGroup::Write() const
 /// @brief read method map
 ReadMethodMap<WavesBehavior> const WavesBehavior::s_ReadMethods =
 {
-	{ "AlternateSpawners",	  &readSpawners},
+	{ "Spawners",		   &readSpawners},
 	{ "Waves",				  &readWaves},
 };
 

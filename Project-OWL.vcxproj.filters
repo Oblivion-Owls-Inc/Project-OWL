@@ -434,6 +434,9 @@
     <ClCompile Include="Source\BasicEntityBehavior.cpp">
       <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
     </ClCompile>
+    <ClCompile Include="Source\WavesInspector.cpp">
+      <Filter>Game\Behaviors\WavesBehavior</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
