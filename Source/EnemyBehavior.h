@@ -14,6 +14,8 @@
 class Pathfinder;
 class Transform;
 class RigidBody;
+class Animation;
+class AnimationAsset;
 
 class EnemyBehavior : public BasicEntityBehavior
 {
