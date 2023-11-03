@@ -1,9 +1,12 @@
 {
   "Assets": {
     "Sounds": {
-      "Music": {
-        "Filepath": "Data/Sounds/Music/test.mp3"
-      }
+        "Music": {
+            "Filepath": "Data/Sounds/Music/test.mp3"
+        },
+        "PlayerFootSteps": {
+            "Filepath": "Data/Sounds/Effects/FoleyFootsteps-Footsteps&_1.wav"
+        }
     },
     "Textures": {
       "Background": {
@@ -2142,7 +2145,10 @@
           "AnimationNames": [ "PlayerMoveRight", "PlayerMoveLeft", "PlayerMoveUp", "PlayerMoveDown" ]
         },
         "Animation": {
-          "Animation": "PlayerMoveRight"
+            "Animation": "PlayerMoveRight"
+        },
+        "AudioPlayer": {
+            "Sound": "PlayerFootSteps"
         }
       }
     },

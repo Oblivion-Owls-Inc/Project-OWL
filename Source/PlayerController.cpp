@@ -49,6 +49,8 @@ void PlayerController::OnInit()
     m_RigidBody = GetParent()->GetComponent<RigidBody>();
     // Get the parent's Animation component.
     m_Animation = GetParent()->GetComponent<Animation>();
+    // Get the parent's AudioPlayer component.
+    m_AudioPlayer = GetParent()->GetComponent<AudioPlayer>();
 
     // Get all the player's animations
     for ( int i = 0; i < NUM_ANIMATIONS; ++i )
@@ -82,6 +84,7 @@ void PlayerController::OnFixedUpdate()
         m_Animation->SetAsset( m_PlayerAnimations[ 0 ] );
         m_Animation->SetIsRunning( true );
         direction.x += 1.0f;
+        m_AudioPlayer->Play();
     }
     if ( moveLeft() )
     {
@@ -89,6 +92,7 @@ void PlayerController::OnFixedUpdate()
         m_Animation->SetAsset( m_PlayerAnimations[ 1 ] );
         m_Animation->SetIsRunning( true );
         direction.x -= 1.0f;
+        m_AudioPlayer->Play();
     }
     if ( moveUp() )
     {
@@ -96,6 +100,7 @@ void PlayerController::OnFixedUpdate()
         m_Animation->SetAsset( m_PlayerAnimations[ 2 ] );
         m_Animation->SetIsRunning( true );
         direction.y += 1.0f;
+        m_AudioPlayer->Play();
     }
     if ( moveDown() )
     {
@@ -103,7 +108,10 @@ void PlayerController::OnFixedUpdate()
         m_Animation->SetAsset( m_PlayerAnimations[ 3 ] );
         m_Animation->SetIsRunning( true );
         direction.y -= 1.0f;
+        m_AudioPlayer->Play();
 	}
+
+    
 
     if ( direction != glm::vec2( 0 ) )
     {
@@ -113,6 +121,7 @@ void PlayerController::OnFixedUpdate()
     {
         m_Animation->SetIsRunning( false );
         m_Animation->SetFrameIndex( 0, true );
+        m_AudioPlayer->Stop();
     }
 
     m_RigidBody->ApplyVelocity( direction * m_MaxSpeed );

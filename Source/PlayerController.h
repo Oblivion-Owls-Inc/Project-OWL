@@ -94,6 +94,9 @@ private: // member variables
     // A cached instance of the parent's animation.
     Animation* m_Animation = nullptr;
 
+    // A cached instance of the parent's AudioPlayer.
+    AudioPlayer* m_AudioPlayer = nullptr;
+
 
 //-----------------------------------------------------------------------------
 private: // reading
