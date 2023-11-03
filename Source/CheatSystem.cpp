@@ -79,9 +79,15 @@ void CheatSystem::DebugWindow()
         ImGui::SameLine();
         ImGui::Text("Infinite Base Health");
 
-        if (ImGui::Button(m_KillAllEnemies ? "All enemies killed" : "Kill all enemies"))
+        if (ImGui::Button("Kill all enemies"))
         {
-            m_KillAllEnemies = !m_KillAllEnemies;
+            for (auto i : Entities()->GetEntities())
+            {
+                if (i->GetName() == "Enemy")
+                {
+                    i->Destroy();
+                }
+            }
         }
         ImGui::SameLine();
         ImGui::Text("Kill All Enemies");
@@ -128,18 +134,6 @@ void CheatSystem::RunCheats()
         ConstructionBehavior* construction = resource->GetComponent<ConstructionBehavior>();
         construction->SetCurrentResources(1000);
     }
-
-    // Kill all enemies cheat.
-    if(m_KillAllEnemies)
-    {
-        for (auto i : Entities()->GetEntities())
-        {
-            if (i->GetName() == "Enemy")
-            {
-                i->Destroy();
-            }
-        }
-    }
     
 }
 
@@ -152,8 +146,7 @@ CheatSystem::CheatSystem():
     System("CheatSystem"),
     m_CheatMenuIsOpen(false),
     m_BaseGodMode(false),
-    m_ResourceSwitch(false),
-    m_KillAllEnemies(false)
+    m_ResourceSwitch(false)
 {}
 
 /// @brief The singleton instance of CheatSystem.

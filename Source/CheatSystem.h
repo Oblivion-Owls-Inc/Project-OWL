@@ -53,7 +53,6 @@ private: // members
     bool m_CheatMenuIsOpen;
     bool m_ResourceSwitch;
     bool m_BaseGodMode;
-    bool m_KillAllEnemies;
 
 //--------------------------------------------------------------------------------
 private: // singleton 
