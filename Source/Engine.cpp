@@ -41,6 +41,7 @@
 
 #include "SandboxSystem.h"
 #include "ParticleSystem.h"
+#include "CheatSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -357,7 +358,8 @@
         { "AssetLibrarySystem<AnimationAsset>",    &addSystem< AssetLibrarySystem< AnimationAsset > >     },
 
         { "SandboxSystem",                         &addSystem< SandboxSystem >                            },
-        { "ParticleSystem",                        &addSystem< ParticleSystem >                           }
+        { "ParticleSystem",                        &addSystem< ParticleSystem >                           },
+           { "CheatSystem",                           &addSystem< CheatSystem >                              }
        // { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >    },
        //{ "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >           },
        //{ "BehaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >       },

@@ -207,6 +207,9 @@
     <Filter Include="Engine\Framework\Inspection">
       <UniqueIdentifier>{973c8ce7-ba72-4cdf-8b08-0b9b9404380f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\CheatSystem">
+      <UniqueIdentifier>{1dbe9dbc-86de-434f-8fd4-19d968e00052}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -443,6 +446,9 @@
     <ClCompile Include="Source\Tilemap.cpp">
       <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CheatSystem.cpp">
+      <Filter>Engine\Systems\CheatSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -678,6 +684,9 @@
     </ClInclude>
     <ClInclude Include="Source\Inspection.h">
       <Filter>Engine\Framework\Inspection</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CheatSystem.h">
+      <Filter>Engine\Systems\CheatSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

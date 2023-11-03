@@ -185,6 +185,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   <ItemGroup>
     <ClCompile Include="Source\BasicEntityBehavior.cpp" />
     <ClCompile Include="Source\BaseBehavior.cpp" />
+    <ClCompile Include="Source\CheatSystem.cpp" />
     <ClCompile Include="Source\BulletBehavior.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\ConstructionBehavior.cpp" />
@@ -257,6 +258,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Inspection.h" />
     <ClInclude Include="Source\BasicEntityBehavior.h" />
     <ClInclude Include="Source\BaseBehavior.h" />
+    <ClInclude Include="Source\CheatSystem.h" />
     <ClInclude Include="Source\BulletBehavior.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\ConstructionBehavior.h" />

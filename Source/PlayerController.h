@@ -21,6 +21,7 @@
 class RigidBody;
 class Animation;
 class AnimationAsset;
+class AudioPlayer;
 
 class PlayerController : public Behavior
 {
