@@ -282,6 +282,12 @@ void DebugSystem::DebugWindow()
                 ImGui::EndMenu();
             }
 
+            if (ImGui::BeginMenu("Other Systems"))
+            {
+                ShowSystemList("Other");
+                ImGui::EndMenu();
+            }
+
             /// Close the Menu for the Systems Menu
             ImGui::EndMenu();
         }
@@ -415,18 +421,37 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
 {
     std::vector<System*> filteredSystems; /// Vector of Systems to be filtered
 
-    /// Loops through all the Systems in the Engine
-    for (auto& system : Engine::GetInstance()->GetSystems())
+    if (prefix == "Other")
     {
-        // Skip the debug system
-        if (system == GetInstance())
-            continue;
-
-        // Check if the system's name begins with the specified prefix
-        if (system->GetName().compare(0, prefix.length(), prefix) == 0)
+        for (auto& system : Engine::GetInstance()->GetSystems())
         {
-            /// Adds the System to the filteredSystems vector
-            filteredSystems.push_back(system);
+            if (system->GetName().compare(0, std::string("AssetLibrary").length(), std::string("AssetLibrary")) != 0 &&
+                system->GetName().compare(0, std::string("BehaviorSystem").length(), std::string("BehaviorSystem")) != 0)
+            {
+                // Skip the debug system
+                if (system == GetInstance())
+                    continue;
+            
+				filteredSystems.push_back(system);
+			}
+		}
+	}
+    else
+    {
+
+        /// Loops through all the Systems in the Engine
+        for (auto& system : Engine::GetInstance()->GetSystems())
+        {
+            // Skip the debug system
+            if (system == GetInstance())
+                continue;
+
+            // Check if the system's name begins with the specified prefix
+            if (system->GetName().compare(0, prefix.length(), prefix) == 0)
+            {
+                /// Adds the System to the filteredSystems vector
+                filteredSystems.push_back(system);
+            }
         }
     }
 
