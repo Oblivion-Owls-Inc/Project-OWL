@@ -6,6 +6,10 @@
       }
     },
     "Textures": {
+      "Enemy": {
+        "Filepath": "Data/Textures/Enemy.png",
+        "SheetDimensions": [ 12, 1 ]
+      },
       "Background": {
         "Filepath": "Data/Textures/Background.png",
         "SheetDimensions": [ 1, 1 ]
@@ -72,11 +76,11 @@
         "Name": "Enemy",
         "Components": {
           "Sprite": {
-            "Texture": "Ball",
+            "Texture": "Enemy",
             "Layer": 3
           },
           "Transform": {
-            "Scale": [ 0.6, 0.6 ]
+            "Scale": [ 2, 2 ]
           },
           "RigidBody": {
             "Acceleration": [ 0.0, 0.0 ],
