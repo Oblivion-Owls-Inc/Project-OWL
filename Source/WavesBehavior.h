@@ -93,14 +93,15 @@ private: // inspector methods
 	void GuiAddSpawner();
 	void GuiRemoveSpawner();
 
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 private: // data
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 	int numWaves;
 	int currentWave;
 	int inspectorWave;
 	int inspectorGroup;
+	const Entity* base;
 
 	class EnemyGroup : public ISerializable
 	{
@@ -109,6 +110,7 @@ private: // data
 		/// @brief enemyGroup default constructor
 		EnemyGroup();
 		std::string name;
+		const Entity* enemy = nullptr;
 		int enemyAmount;
 		float spawnInterval;
 		float timer;

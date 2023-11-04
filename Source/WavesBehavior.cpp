@@ -31,7 +31,8 @@ WavesBehavior::WavesBehavior() :
 	numWaves(0),
 	currentWave(0),
 	inspectorWave(0),
-	inspectorGroup(0)
+	inspectorGroup(0),
+	base(0)
 {
 	waves.clear();
 }
@@ -42,7 +43,8 @@ WavesBehavior::WavesBehavior(const WavesBehavior& other)
 	numWaves(other.numWaves),
 	currentWave(other.currentWave),
 	inspectorWave(other.inspectorWave),
-	inspectorGroup(other.inspectorGroup)
+	inspectorGroup(other.inspectorGroup),
+	base(other.base)
 {
 	waves = other.waves;
 }
@@ -205,6 +207,10 @@ void WavesBehavior::readWaves(nlohmann::ordered_json const& data)
 	{
 		Stream::Read(waves[i], data[i]);
 	}
+	if (numWaves > 0 && waves[0].groups.size() > 0)
+	{
+		base = waves[0].groups[0].enemy;
+	}
 }
 
 /// @brief read the alternate spawners data
@@ -239,6 +245,7 @@ void WavesBehavior::Wave::readGroups(nlohmann::ordered_json const& json)
 void WavesBehavior::EnemyGroup::readName(nlohmann::ordered_json const& json)
 {
 	name = Stream::Read<std::string>(json);
+	enemy = AssetLibrarySystem<Entity>::GetInstance()->GetAsset(name);
 }
 
 void WavesBehavior::EnemyGroup::readAmount(nlohmann::ordered_json const& json)

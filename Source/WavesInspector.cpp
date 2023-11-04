@@ -1,6 +1,6 @@
 ///--------------------------------------------------------------------------//
 /// @file   WavesBehavior.cpp
-/// @brief  Definitions for wave and spawning behavior
+/// @brief  Definitions for wave and spawning editing in game
 /// 
 /// @author Tyler Birdsall (tyler.birdsall)
 /// @date   10/24/23
@@ -20,6 +20,7 @@
 #include "RenderSystem.h"
 #include "Texture.h"
 #include "InputSystem.h"
+#include "Inspection.h"
 
 
 
@@ -57,6 +58,44 @@ void WavesBehavior::GuiWaves()
 		{
 			inspectorWave = 0;
 		}
+
+		ImGui::PushID(4);
+		if (ImGui::BeginCombo("Move Wave", "Move Wave in View to Wave X:"))
+		{
+			for (int i = 0; i < numWaves; i++)
+			{
+				char text[32] = { 0 };
+				snprintf(text, sizeof(text), "Wave %i", i);
+				if (ImGui::Selectable(text, false))
+				{
+					int offset = inspectorWave - i;
+					if (offset == 0)
+					{
+						break;
+					}
+					else if (offset < 0)
+					{
+						for (int j = 0; j > offset; j--)
+						{
+							std::swap(waves[inspectorWave - j], 
+								waves[inspectorWave - j + 1]);
+						}
+					}
+					else if (offset > 0)
+					{
+						for (int j = 0; j < offset; j++)
+						{
+							std::swap(waves[inspectorWave - j],
+								waves[inspectorWave - j - 1]);
+						}
+					}
+					break;
+				}
+			}
+			ImGui::EndCombo();
+		}
+		ImGui::PopID();
+
 		ImGui::InputFloat("Remaining Time",
 			&waves[inspectorWave].remainingTime);
 		ImGui::InputFloat("Time to Next Wave",
@@ -93,11 +132,6 @@ void WavesBehavior::GuiGroups()
 		}
 		ImGui::Text("Group: %i", inspectorGroup + 1);
 		ImGui::InputInt("Group", &inspectorGroup);
-		char input[128] = { 0 };
-		strncpy_s(input, waves[inspectorWave].groups[inspectorGroup].name.c_str(), 128);
-		ImGui::InputText("Name", input, 128);
-		std::string str = input;
-		waves[inspectorWave].groups[inspectorGroup].name = str;
 		if (inspectorGroup >= waves[inspectorWave].groups.size())
 		{
 			inspectorGroup = (int)waves[inspectorWave].groups.size() - 1;
@@ -106,7 +140,55 @@ void WavesBehavior::GuiGroups()
 		{
 			inspectorGroup = 0;
 		}
+
+		ImGui::PushID(4);
+		if (ImGui::BeginCombo("Move Group", "Move Group in View to Group X:"))
+		{
+			for (int i = 0; i < waves[inspectorWave].groups.size(); i++)
+			{
+				char text[32] = { 0 };
+				snprintf(text, sizeof(text), "Group %i", i);
+				if (ImGui::Selectable(text, false))
+				{
+					int offset = inspectorGroup - i;
+					if (offset == 0)
+					{
+						break;
+					}
+					else if (offset < 0)
+					{
+						for (int j = 0; j > offset; j--)
+						{
+							std::swap(waves[inspectorWave].groups[inspectorGroup - j],
+								waves[inspectorWave].groups[inspectorGroup - j + 1]);
+						}
+					}
+					else if (offset > 0)
+					{
+						for (int j = 0; j < offset; j++)
+						{
+							std::swap(waves[inspectorWave].groups[inspectorGroup - j],
+								waves[inspectorWave].groups[inspectorGroup - j - 1]);
+						}
+					}
+					break;
+				}
+			}
+			ImGui::EndCombo();
+		}
+		ImGui::PopID();
+
+		ImGui::PushID(3);
+		Inspection::SelectAssetFromLibrary("Name", &waves[inspectorWave].groups[inspectorGroup].enemy);
+		ImGui::PopID();
+		if (base)
+		{
+			waves[inspectorWave].groups[inspectorGroup].name =
+				waves[inspectorWave].groups[inspectorGroup].enemy->GetName();
+		}
+
 		ImGui::InputInt("Enemies", &waves[inspectorWave].groups[inspectorGroup].enemyAmount);
+
 		ImGui::InputInt("Spawner", &waves[inspectorWave].groups[inspectorGroup].spawner);
 		int size = (int)spawners.size();
 		if (waves[inspectorWave].groups[inspectorGroup].spawner >= size)
@@ -117,7 +199,10 @@ void WavesBehavior::GuiGroups()
 		{
 			waves[inspectorWave].groups[inspectorGroup].spawner = 0;
 		}
+
 		ImGui::InputFloat("Timer", &waves[inspectorWave].groups[inspectorGroup].timer);
+		ImGui::InputFloat("Interval", &waves[inspectorWave].groups[inspectorGroup].spawnInterval);
+		ImGui::InputFloat("Offset", &waves[inspectorWave].groups[inspectorGroup].offset);
 
 	}
 	ImGui::Text("");
@@ -236,6 +321,7 @@ void WavesBehavior::GuiAddGroup()
 	EnemyGroup newGroup = EnemyGroup();
 	waves[inspectorWave].groups.push_back(newGroup);
 	inspectorGroup = (int)waves[inspectorWave].groups.size() - 1;
+	waves[inspectorWave].groups[inspectorGroup].enemy = base;
 }
 
 void WavesBehavior::GuiRemoveGroup()
@@ -272,7 +358,7 @@ void WavesBehavior::GuiSpawners()
 			ImGui::Text("Spawner: %i", i);
 			char location[20] = {0};
 			snprintf(location, sizeof(location), "Location %i:", i);
-			ImGui::DragFloat2(location, &spawners[i][0], 0.05f);
+			ImGui::DragFloat2("", &spawners[i][0], 0.05f);
 			int size = (int)spawners.size();
 			ImGui::PushID(i);
 			if (size > 1)
@@ -284,12 +370,22 @@ void WavesBehavior::GuiSpawners()
 					{
 						std::swap(spawners[0], spawners[1]);
 					}
+					ImGui::SameLine();
+					if (ImGui::ArrowButton("U", 2))
+					{
+						std::swap(spawners[0], spawners[spawners.size() - 1]);
+					}
 				}
 				else if (i + 1 == size)
 				{
+					if (ImGui::ArrowButton("D", 3))
+					{
+						std::swap(spawners[i], spawners[0]);
+					}
+					ImGui::SameLine();
 					if (ImGui::ArrowButton("U", 2))
 					{
-						std::swap(spawners[i], spawners[i-1]);
+						std::swap(spawners[i], spawners[i - 1]);
 					}
 				}
 				else
