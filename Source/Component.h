@@ -70,7 +70,7 @@ public: // Accessors
 
     /// @brief returns the components parent entity
     /// @return the parent entity of the component
-    Entity* GetParent() const { return m_Parent; }
+    Entity* GetEntity() const { return m_Parent; }
 
     /// @brief  gets the Id of this Component
     /// @return the Id of this Component

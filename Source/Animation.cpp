@@ -175,7 +175,7 @@
     void Animation::OnInit()
     {
         Behaviors<Animation>()->AddBehavior(this);
-        m_Sprite = GetParent()->GetComponent<Sprite>();
+        m_Sprite = GetEntity()->GetComponent<Sprite>();
     }
 
     /// @brief  gets called once when exiting the scene

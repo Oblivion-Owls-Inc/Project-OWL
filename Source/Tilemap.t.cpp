@@ -150,11 +150,11 @@ void Tilemap<TileType>::RemoveOnTilemapChangedCallback(int componentID)
 template < typename TileType >
 void Tilemap<TileType>::OnInit()
 {
-    if (!GetParent())
+    if (!GetEntity())
         return;
 
     Behaviors< TilemapBase >()->AddBehavior(this);
-    m_PTransform = GetParent()->GetComponent<Transform>();
+    m_PTransform = GetEntity()->GetComponent<Transform>();
 
 #ifndef NDEBUG
     if (!m_PTransform)

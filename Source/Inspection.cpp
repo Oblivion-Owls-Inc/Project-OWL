@@ -8,6 +8,9 @@
 
 #include "Inspection.h"
 
+#include "Entity.h"
+#include "EntitySystem.h"
+
 #include <filesystem>
 #include <imgui.h>
 
@@ -35,6 +38,27 @@
         return false;
     }
 
+
+    /// @brief  selects an Entity from the Scene
+    /// @param  label           the ImGui label of the dropdown selector
+    /// @param  selectedEntity  pointer to the currently selected Entity
+    /// @return whether an Entity was selected
+    bool Inspection::SelectEntityFromScene( char const* label, Entity** selectedEntity )
+    {
+        if ( ImGui::BeginCombo( label, *selectedEntity == nullptr ? "" : (*selectedEntity)->GetName().c_str() ) )
+        {
+            for ( Entity* entity : Entities()->GetEntities() )
+            {
+                if ( ImGui::Selectable( entity->GetName().c_str(), entity == *selectedEntity) )
+                {
+                    *selectedEntity = entity;
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
 //-----------------------------------------------------------------------------
 // private: helper methods

@@ -46,9 +46,9 @@ void MovementAI::OnUpdate(float dt)
 void MovementAI::OnFixedUpdate()
 {
     glm::vec2 WindowSize = glm::vec2(10.0f, 8.0f);
-    Transform* ballTransform = GetParent()->GetComponent<Transform>();
-    RigidBody* ballRigidBody = GetParent()->GetComponent<RigidBody>();
-    CircleCollider* ballCollider = (CircleCollider*)GetParent()->GetComponent<CircleCollider>();
+    Transform* ballTransform = GetEntity()->GetComponent<Transform>();
+    RigidBody* ballRigidBody = GetEntity()->GetComponent<RigidBody>();
+    CircleCollider* ballCollider = (CircleCollider*)GetEntity()->GetComponent<CircleCollider>();
 
     if (ballTransform == nullptr || ballRigidBody == nullptr || ballCollider == nullptr)
 	{

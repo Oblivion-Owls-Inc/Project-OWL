@@ -36,8 +36,8 @@
         BasicEntityBehavior::OnInit();
 
         m_Pathfinder = Entities()->GetEntity( m_PathfinderName )->GetComponent< Pathfinder >();
-        m_RigidBody = GetParent()->GetComponent< RigidBody >();
-        m_Transform = GetParent()->GetComponent< Transform >();
+        m_RigidBody = GetEntity()->GetComponent< RigidBody >();
+        m_Transform = GetEntity()->GetComponent< Transform >();
     }
 
     /// @brief Called at a fixed interval

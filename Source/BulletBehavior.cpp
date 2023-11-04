@@ -33,7 +33,7 @@
     void BulletBehavior::OnInit()
     {
 	    Behaviors< Behavior >()->AddBehavior(this);
-        GetParent()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
+        GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
             GetId(),
             std::bind( &BulletBehavior::onCollision, this, std::placeholders::_1, std::placeholders::_2 )
         );
@@ -57,7 +57,7 @@
 	    // Destroy the bullet if it's life time is over
 	    if ( m_LifeTime <= 0.0f )
 	    {
-		    GetParent()->Destroy();
+		    GetEntity()->Destroy();
 	    }
     }
 
@@ -80,11 +80,11 @@
         // If the bullet hits an enemy, deal damage to it
         if ( other->GetCollisionLayerId() == Collisions()->GetCollisionLayerId( "Enemies" ) )
         {
-            other->GetParent()->GetComponent< EnemyBehavior >()->TakeDamage( m_Damage );
+            other->GetEntity()->GetComponent< EnemyBehavior >()->TakeDamage( m_Damage );
         }
 
         // The bullet is destroyed on collision
-        GetParent()->Destroy();
+        GetEntity()->Destroy();
     }
 
 //-----------------------------------------------------------------------------

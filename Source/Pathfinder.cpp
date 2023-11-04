@@ -28,7 +28,7 @@ Component * Pathfinder::Clone() const { return new Pathfinder(*this); }
 /// @brief  called when entering a scene - syncs with Tilemap
 void Pathfinder::OnInit()
 {
-    m_Tilemap = GetParent()->GetComponent< Tilemap<int> >();
+    m_Tilemap = GetEntity()->GetComponent< Tilemap<int> >();
 
 #ifndef NDEBUG
     if ( m_Tilemap == nullptr )

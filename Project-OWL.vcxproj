@@ -251,6 +251,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\Stream.cpp" />
     <ClCompile Include="Source\CircleCollider.cpp" />
+    <ClCompile Include="Source\UiElement.cpp" />
     <ClCompile Include="Source\WavesBehavior.cpp" />
     <ClCompile Include="Source\Stream.t.cpp" />
   </ItemGroup>
@@ -326,6 +327,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Transform.h" />
     <ClInclude Include="Source\Stream.h" />
     <ClInclude Include="Source\CircleCollider.h" />
+    <ClInclude Include="Source\UiElement.h" />
     <ClInclude Include="Source\WavesBehavior.h" />
   </ItemGroup>
   <ItemGroup>
