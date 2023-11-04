@@ -200,6 +200,10 @@ private: // members
     void callOnClickedCallbacks();
 
 
+    /// @brief  callback for whenever the window resizes
+    void onWindowResizedCallback( glm::ivec2 const& );
+
+
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------

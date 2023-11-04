@@ -16,6 +16,7 @@
 #include "DebugSystem.h"
 #include "CameraSystem.h"
 #include "RenderSystem.h"
+#include "PlatformSystem.h"
 
 #include "Inspection.h"
 
@@ -93,6 +94,8 @@
     /// @brief  called once when entering the scene
     void UiElement::OnInit()
     {
+        Platform()->AddOnWindowResizeCallback( GetId(), std::bind( &UiElement::onWindowResizedCallback, this, std::placeholders::_1 ) );
+
         if ( m_ParentName.empty() == false )
         {
             Entities()->GetEntity( m_ParentName )->GetComponent< UiElement >()->AddChild( this );
@@ -140,6 +143,45 @@
             updateTransform();
         }
 
+        if ( ImGui::DragFloat2( "Size", &m_FrameSize[0], 0.01f ) )
+        {
+            updateTransform();
+        }
+
+        char const* SizeTypeNames[ 2 ] = { "", "" };
+        float width = ImGui::GetColumnWidth() / 3.0f;
+        for ( int i = 0; i < 2; ++i )
+        {
+            for ( auto const& [ name, sizeType ] : s_SizeTypes )
+            {
+                if ( sizeType == m_SizeTypes[ i ] )
+                {
+                    SizeTypeNames[ i ] = name.c_str();
+                    break;
+                }
+            }
+
+            ImGui::PushID( i );
+            ImGui::PushItemWidth( width );
+            if ( ImGui::BeginCombo( "", SizeTypeNames[ i ] ) )
+            {
+                for ( auto const& [ name, sizeType ] : s_SizeTypes )
+                {
+                    if ( ImGui::Selectable( name.c_str(), m_SizeTypes[ i ] == sizeType ) )
+                    {
+                        m_SizeTypes[ i ] = sizeType;
+                        updateTransform();
+                    }
+                }
+                ImGui::EndCombo();
+            }
+            ImGui::PopID();
+
+            ImGui::SameLine();
+        }
+        ImGui::Text( "Size Types" );
+
+
         Entity* parentEntity = m_Parent ? m_Parent->GetEntity() : nullptr;
         if ( Inspection::SelectEntityFromScene( "Parent", &parentEntity ) )
         {
@@ -166,8 +208,20 @@
     /// @brief  updates the Transform and all children transforms
     void UiElement::updateTransform()
     {
+
+        glm::vec2 parentScale;
+        if ( m_Parent == nullptr )
+        {
+            glm::mat4 clipToUi = glm::inverse( Cameras()->GetMat_UItoClip() );
+            parentScale = clipToUi * glm::vec4( 1, 1, 0, 0 ) * 2.0f;
+        }
+        else
+        {
+            parentScale = m_Parent->GetScale();
+        }
+
         // TODO: UiElement::updateTransform
-        glm::vec2 worldAnchor = (m_Parent ? m_Parent->GetTranslation() : glm::vec2( 0 )) + 0.5f * m_Anchor * (m_Parent ? m_Parent->GetScale() : glm::vec2( 2 ));
+        glm::vec2 worldAnchor = (m_Parent ? m_Parent->GetTranslation() : glm::vec2( 0 )) + 0.5f * m_Anchor * parentScale;
 
         glm::vec2 worldScale;
         for ( int i = 0; i < worldScale.length(); ++i )
@@ -178,16 +232,6 @@
             }
             else
             {
-                glm::vec2 parentScale;
-                if ( m_Parent == nullptr )
-                {
-                    glm::mat4 clipToUi = glm::inverse( Cameras()->GetMat_UItoClip() );
-                    parentScale = clipToUi * glm::vec4( 1, 1, 0, 0 );
-                }
-                else
-                {
-                    parentScale = m_Parent->GetScale();
-                }
 
                 if ( m_SizeTypes[ i ] == SizeType::RelativeToWidth )
                 {
@@ -208,6 +252,13 @@
         {
             child->updateTransform();
         }
+    }
+
+
+    /// @brief  callback for whenever the window resizes
+    void UiElement::onWindowResizedCallback( glm::ivec2 const& )
+    {
+        updateTransform();
     }
 
 

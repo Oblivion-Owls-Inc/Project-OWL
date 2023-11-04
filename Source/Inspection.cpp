@@ -52,6 +52,7 @@
                 if ( ImGui::Selectable( entity->GetName().c_str(), entity == *selectedEntity) )
                 {
                     *selectedEntity = entity;
+                    ImGui::EndCombo();
                     return true;
                 }
             }
