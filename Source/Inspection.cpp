@@ -55,6 +55,7 @@
                     return true;
                 }
             }
+            ImGui::EndCombo();
         }
 
         return false;

@@ -135,12 +135,12 @@
             updateTransform();
         }
         
-        if ( ImGui::DragFloat2( "Anchor", &m_Anchor[0], 0.01f, -1.0f, 1.0f ) )
+        if ( ImGui::DragFloat2( "Offset", &m_Offset[0], 0.05f ) )
         {
             updateTransform();
         }
 
-        Entity* parentEntity = m_Parent->GetEntity();
+        Entity* parentEntity = m_Parent ? m_Parent->GetEntity() : nullptr;
         if ( Inspection::SelectEntityFromScene( "Parent", &parentEntity ) )
         {
             UiElement* parentUiElement = parentEntity->GetComponent< UiElement >();
@@ -167,7 +167,7 @@
     void UiElement::updateTransform()
     {
         // TODO: UiElement::updateTransform
-        glm::vec2 worldAnchor = m_Parent->GetTranslation() + 0.5f * m_Anchor * m_Parent->GetScale();
+        glm::vec2 worldAnchor = (m_Parent ? m_Parent->GetTranslation() : glm::vec2( 0 )) + 0.5f * m_Anchor * (m_Parent ? m_Parent->GetScale() : glm::vec2( 2 ));
 
         glm::vec2 worldScale;
         for ( int i = 0; i < worldScale.length(); ++i )

@@ -83,7 +83,7 @@ void Pathfinder::OnInit()
         Renderer()->DrawRect(
             (glm::vec2)( tileToWorld * glm::vec4( (glm::vec2)m_DestTile + glm::vec2( 0.5f ), 0, 1 ) ),
             m_Tilemap->GetTileScale(),
-            GetParent()->GetComponent< Transform >()->GetRotation(),
+            GetEntity()->GetComponent< Transform >()->GetRotation(),
             glm::vec4( -1.0f, 0.0f, -1.0f, 0.0f )
         );
     }
