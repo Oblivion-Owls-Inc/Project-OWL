@@ -160,6 +160,8 @@
     /// @brief  creates the debug window for the CollisionSystem
     void CollisionSystem::DebugWindow()
     {
+        static bool _open = true;
+        if (ImGui::Begin("Collision System", &_open))
         if ( !ImGui::BeginListBox("Collision Layers") )
         {
             return;

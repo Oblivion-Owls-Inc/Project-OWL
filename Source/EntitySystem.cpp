@@ -128,7 +128,8 @@
 
         // add entity button
         ImGui::SameLine();
-        if (ImGui::Button("Add Entity", ImVec2(100, 0)))
+
+        if (ImGui::Button("Add Entity", ImVec2(100, 0)) || ImGui::IsKeyPressed(ImGuiKey_Enter))
         {
             
             Entity* entity = new Entity(); /// Create a new entity
@@ -189,10 +190,25 @@
     /// @brief Called by the DebugSystem to display the debug window
     void EntitySystem::DebugWindow()
     {
+        static bool createEntity = false; 
+
         /// Used to make the Entity List a pop out window
         if (ImGui::Button(m_PopOut ? "Pop In" : "Pop Out"))
         {
             m_PopOut = !m_PopOut;
+        }
+        ImGui::SameLine();
+        if (ImGui::Button("Create Entity"))
+        {
+            createEntity = true;
+        }
+
+        if (createEntity)
+        {
+            Entity* entity = new Entity(); /// Create a new entity
+            entity->SetName(std::string("New Entity")); /// Set the name of the entity
+            AddEntity(entity); /// Add the entity to the EntitySystem
+            createEntity = false;
         }
 
         /// Display the Entity List
@@ -227,6 +243,7 @@
             /// Lists all the entities in the EntitySystem
             for (const auto& entity : m_Entities)
             {
+                /// Shows the Right C
                 EntityPropertiesWindow(entity);
             }
 
@@ -255,6 +272,7 @@
         std::string label = entity->GetName() + "##" + std::to_string(entity->GetId());
 
         bool node_open = ImGui::TreeNodeEx(label.c_str());  // Create a tree node for the entity
+        static bool open_popup = false ;  // Flag to check if the popup menu should be open
 
         /// Create a unique identifier for the popup menu based on the entity's ID
         std::string popup_id = "EntityContextMenu" + std::to_string(entity->GetId());
@@ -275,43 +293,46 @@
             }
             if (ImGui::MenuItem("Delete"))
             {
-                /// @todo   Fix the confirmation popup
-                entity->Destroy();
-                //ImGui::OpenPopup(delete_id.c_str(), ImGuiPopupFlags_NoOpenOverExistingPopup);
+                open_popup = true;
             }
  
             ImGui::EndPopup();
         }
 
-        /// This section needs to be fixed so the Modal popup works
-        /// Always center this window when appearing
-        ImVec2 center = ImGui::GetMainViewport()->GetCenter();
-        ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
-        /// Create a modal popup to confirm deletion
-        if (ImGui::BeginPopupModal(delete_id.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize))
+        if (open_popup)
         {
-            
-            ImGui::Text("Are you sure you want to delete this entity?");
-            ImGui::Separator();
-            /// Creates the buttons to confirm or cancel the deletion
-            if (ImGui::Button("OK", ImVec2(120, 0)))
+            ImGui::OpenPopup(delete_id.c_str(), ImGuiPopupFlags_NoOpenOverExistingPopup);
+            /// This section needs to be fixed so the Modal popup works
+            /// Always center this window when appearing
+            ImVec2 center = ImGui::GetMainViewport()->GetCenter();
+            ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f)); 
+            /// Create a modal popup to confirm deletion
+            if (ImGui::BeginPopupModal(delete_id.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize))
             {
-                entity->Destroy();
-                ImGui::CloseCurrentPopup();
-            }
-            /// Set the focus on the cancel button
-            ImGui::SetItemDefaultFocus();
-            /// Aligns the cancel button with the OK button
-            ImGui::SameLine();
-            /// Creates the cancel button
-            if (ImGui::Button("Cancel", ImVec2(120, 0)))
-            {
-                /// Closes the popup
-                ImGui::CloseCurrentPopup();
-            }
 
-            /// Ends the popup to match with the BeginPopupModal
-            ImGui::EndPopup();
+                ImGui::Text("Are you sure you want to delete this entity?");
+                ImGui::Separator();
+                /// Creates the buttons to confirm or cancel the deletion
+                if (ImGui::Button("OK", ImVec2(120, 0)))
+                {
+                    entity->Destroy();
+                    open_popup = false;
+                }
+                /// Set the focus on the cancel button
+                ImGui::SetItemDefaultFocus();
+                /// Aligns the cancel button with the OK button
+                ImGui::SameLine();
+                /// Creates the cancel button
+                if (ImGui::Button("Cancel", ImVec2(120, 0)))
+                {
+                    /// Closes the popup
+                    ImGui::CloseCurrentPopup();
+                    open_popup = false;
+                }
+
+                /// Ends the popup to match with the BeginPopupModal
+                ImGui::EndPopup();
+            }
         }
 
         /// if the tree node is open, display the entity's properties

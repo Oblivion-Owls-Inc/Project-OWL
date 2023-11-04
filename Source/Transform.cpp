@@ -112,6 +112,19 @@
         m_Matrix = newMatrix;
     }
 
+
+    /// @brief  gets the Transform debug widget texture
+    /// @return the Transform debug widget texture
+    Texture const* Transform::GetWidgetTexture()
+    {
+        if ( s_WidgetTexture == nullptr )
+        {
+            s_WidgetTexture = new Texture( "Data/Textures/DebugTransform.png", glm::ivec2( 1 ), glm::vec2( 0.5f / 8.0f ) );
+        }
+        return s_WidgetTexture;
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: virtual override methods
 //-----------------------------------------------------------------------------
@@ -151,6 +164,15 @@
     }
 
 //-----------------------------------------------------------------------------
+// private: static variables
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  texture of the Transform debug widget
+    Texture const* Transform::s_WidgetTexture = nullptr;
+
+
+//-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
 
@@ -168,8 +190,7 @@
     /// @brief  draws this Transform's debug widget
     void Transform::DrawDebugWidget() const
     {
-        static Texture const texture = Texture( "Data/Textures/DebugTransform.png", glm::ivec2( 1 ), glm::vec2( 0.0625f ) );
-        Renderer()->DrawTexture( &texture, m_Translation, glm::vec2( 1 ), m_Rotation, glm::vec4( 0 ), 1.0f, m_IsDiegetic );
+        Renderer()->DrawTexture( GetWidgetTexture(), m_Translation, glm::vec2( 1 ), m_Rotation, glm::vec4( 0 ), 1.0f, m_IsDiegetic );
     }
 
     /// @brief  allows dragging of Transforms with the mouse
