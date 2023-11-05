@@ -2205,6 +2205,7 @@
     {
       "Name": "Emitter",
       "Components": {
+        "Transform": {},
         "Emitter": {
           "Continuous": true,
           "PPS": 100.453,

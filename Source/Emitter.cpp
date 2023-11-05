@@ -6,9 +6,10 @@
  * \date   October 2023
  *********************************************************************/
 #include "Emitter.h"
-#include "imgui.h"    // inspector
-#include "Entity.h"   // parent transform (TODO)
-
+#include "imgui.h"          // inspector
+#include "RenderSystem.h"   // shader uniform locations
+#include "Entity.h"         // parent transform
+#include "Transform.h"
 
 /// @brief	    Defualt constructor
 Emitter::Emitter() : Component( typeid( Emitter ) ) {}
@@ -48,6 +49,15 @@ void Emitter::OnInit()
                                            m_BufferSize, NULL, GL_STREAM_DRAW);
     // allow it to be read by vertex shader
     glMemoryBarrier(GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT);
+
+    // uniform locations
+    Shader* cs = Renderer()->GetShader("pCompute");
+    m_Urange = cs->GetUniformID("range");
+    m_Uoldest = cs->GetUniformID("oldest");
+    m_UparentPos = cs->GetUniformID("parentPos");
+
+    // parent transform
+    m_Transform = GetParent()->GetComponent<Transform>();
 }
 
 
@@ -55,9 +65,7 @@ void Emitter::OnInit()
 ///                 some locations of uniforms on compute shader, dispatches
 ///                 the compute shader to update its particles.
 /// @param dt       Deltatime
-/// @param urange   Uniform location of 'range' ivec2
-/// @param uoldest  Uniform location of 'oldest' int
-void Emitter::Update(float dt, unsigned int urange, unsigned int uoldest)
+void Emitter::Update(float dt)
 {
     // manage timing if set to continuous
     if (m_Continuous)
@@ -74,7 +82,7 @@ void Emitter::Update(float dt, unsigned int urange, unsigned int uoldest)
             else
             {
                 // delay time not reached: return (but compute first, too)
-                // TODO: better logic ordering for this mess?
+                // TODO: better logic ordering for this?
                 glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, m_DataSSBO);
                 glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, m_OpacitySSBO);
                 glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, m_MatSSBO);
@@ -94,13 +102,16 @@ void Emitter::Update(float dt, unsigned int urange, unsigned int uoldest)
         if (m_CurrentIndex + count > m_BufferSize)
             m_CurrentIndex = 0;
 
-        // TODO: parent position
-        glUniform2i(urange, m_CurrentIndex, m_CurrentIndex+count);
+        glUniform2i(m_Urange, m_CurrentIndex, m_CurrentIndex+count);
         m_CurrentIndex += count;
-        glUniform1i(uoldest, m_CurrentIndex);
+
+        // other uniforms: oldest particle and parent position
+        glUniform1i(m_Uoldest, m_CurrentIndex);
+        if (m_Transform)
+            glUniform2fv(m_UparentPos, 1, &m_Transform->GetTranslation().x);
     }
     else
-        glUniform2i(urange, -1, -1); // (not emitting this time)
+        glUniform2i(m_Urange, -1, -1); // (not emitting this time)
 
 
     // bind this emitter's buffers and COMPUTE!

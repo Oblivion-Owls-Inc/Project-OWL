@@ -39,9 +39,7 @@ void ParticleSystem::OnInit()
     m_Ut = m_CShader->GetUniformID("t");
     m_Udt = m_CShader->GetUniformID("dt");
     m_Uproj = m_CShader->GetUniformID("proj");
-    m_Urange = m_CShader->GetUniformID("range");
     m_UinitIndex = m_CShader->GetUniformID("initIndex");
-    m_Uoldest = m_CShader->GetUniformID("oldest");
 }
 
 
@@ -84,7 +82,7 @@ void ParticleSystem::OnUpdate(float dt)
     for (auto& emitter : m_Emitters)
     {
         glUniform1i(m_UinitIndex, index++);
-        emitter.second->Update(dt, m_Urange, m_Uoldest);
+        emitter.second->Update(dt);
     }
 
     // This makes computations of particles little slower compared to doing it

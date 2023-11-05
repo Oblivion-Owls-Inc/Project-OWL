@@ -9,7 +9,9 @@
 #include "Component.h"
 #include "ParticleSystem.h"
 
+class Transform; // fwd ref
 
+/// @brief  Emitter component - controls timing and behavior of particles
 class Emitter : public Component
 {
 public:
@@ -51,9 +53,7 @@ public:
     ///                 some locations of uniforms on compute shader, dispatches
     ///                 the compute shader to update its particles.
     /// @param dt       Deltatime
-    /// @param urange   Uniform location of 'range' ivec2
-    /// @param uoldest  Uniform location of 'oldest' int
-    void Update(float dt, unsigned int urange, unsigned int uoldest);
+    void Update(float dt);
 
 
 //-----------------------------------------------------------------------------
@@ -81,6 +81,13 @@ private:
     float m_Delay = 0.0f;       /// @brief  Delay between emissions.
     float m_DelayTimer = 0.0f;  /// @brief  Timer for the delay
     int m_CurrentIndex = 0;     /// @brief  Index to emit new particles at
+    
+    /// @brief   Parent entity's transform
+    Transform* m_Transform = nullptr;
+
+    /// @brief   Data to initialize particles with on each emission
+    ParticleSystem::EmitData m_Init = {};
+
 
     /// @brief  Maximum amount of rendered particles for this emitter
     int m_BufferSize = 2048;
@@ -92,14 +99,16 @@ private:
     ///          integer part of this number is used as amt of particles to emit
     float m_ParticleCount = 0.0f;
 
-    /// @brief   Data to initialize particles with on each emission
-    ParticleSystem::EmitData m_Init = {};
-
     /// @brief   Shader storage buffers for particle data. Raw data, matrices,
     ///          and opacities.
     unsigned int m_DataSSBO = 0, 
                  m_MatSSBO = 0, 
                  m_OpacitySSBO = 0;
+
+    /// @brief   Cached uniform locations
+    unsigned int m_Urange = -1,
+                 m_Uoldest = -1,
+                 m_UparentPos = -1;
 
 
 //-----------------------------------------------------------------------------

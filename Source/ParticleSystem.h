@@ -1,7 +1,6 @@
 /*****************************************************************//**
  * \file   ParticleSystem.h
- * \brief  Updates all particles using compute shader, spawns new ones
- *         in accordance with emitters' timing.
+ * \brief  System in charge of managing compute shader and emitters.
  * 
  * \author Eli Tsereteli
  * \date   October 2023
@@ -14,8 +13,7 @@
 class Shader;
 class Emitter;
 
-/// @brief Example System meant to be copy-pasted when creating new Systems
-using namespace std;
+/// @brief  System in charge of managing compute shader and emitters.
 class ParticleSystem : public System
 {
 public:
@@ -93,9 +91,7 @@ private:
     unsigned int m_Udt = -1, 
                  m_Ut = -1,
                  m_Uproj = -1,
-                 m_Urange = -1,
-                 m_UinitIndex = -1,
-                 m_Uoldest = -1;
+                 m_UinitIndex = -1;
 
 
     /// @brief  Size of each work group. This is also minimum amount of particles

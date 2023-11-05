@@ -60,11 +60,8 @@ uniform float dt;       // deltaTime
 uniform ivec2 range;    // init start and end
 uniform int initIndex;  // which init data to use this time
 uniform int oldest;     // oldest particle index
-
-// parent transform data (has to be raw data, cuz Particle needs those separate values)
-uniform vec2 parentPos;
-uniform vec2 parentScale;
-uniform float parentRotation;
+uniform vec2 parentPos; // emit from parent entity's position. scale and rotation should be independent, I think...
+                        //  TODO:? flag to stay within entity's local space? (as in, move with it instead of independently?)
 
 // positive unit random (0 to 1)
 float prand(float seed) { return fract( sin((float(gl_GlobalInvocationID.x) + 242.9 + seed) * fract(t)) * 43758.5453); }
@@ -89,7 +86,7 @@ void main()
         float speed = init[initIndex].speed + init[initIndex].speed_spread * urand(4.0);
 
         // initialize
-        particles[idx].pos = init[initIndex].offset + pos_spread; // TODO: + parent pos
+        particles[idx].pos = parentPos + init[initIndex].offset + pos_spread; // TODO: + parent pos
         particles[idx].vel = vec2( cos(direction), sin(direction) ) * speed;
         particles[idx].pos += particles[idx].vel * init[initIndex].startAhead;
         particles[idx].size = init[initIndex].size - init[initIndex].size_spread * prand(5.0);
