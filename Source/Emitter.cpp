@@ -57,7 +57,7 @@ void Emitter::OnInit()
     m_UparentPos = cs->GetUniformID("parentPos");
 
     // parent transform
-    m_Transform = GetParent()->GetComponent<Transform>();
+    m_Transform = GetEntity()->GetComponent<Transform>();
 }
 
 

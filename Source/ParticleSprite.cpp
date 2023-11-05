@@ -30,7 +30,7 @@ void ParticleSprite::OnInit()
 {
     Sprite::OnInit();
 
-    m_Emitter = GetParent()->GetComponent<Emitter>();
+    m_Emitter = GetEntity()->GetComponent<Emitter>();
     if (!m_Emitter)
         return;
 
