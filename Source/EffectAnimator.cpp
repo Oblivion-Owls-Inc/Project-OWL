@@ -101,7 +101,7 @@
     void EffectAnimator::OnInit()
     {
         Behaviors<EffectAnimator>()->AddBehavior(this);
-        m_Transform = GetParent()->GetComponent<Transform>();
+        m_Transform = GetEntity()->GetComponent<Transform>();
     }
 
     /// @brief  called once when exiting the scene

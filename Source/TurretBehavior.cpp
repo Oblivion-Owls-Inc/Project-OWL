@@ -41,7 +41,7 @@
     {
         /// Add this behavior to the behavior system
         Behaviors<Behavior>()->AddBehavior(this);
-        m_Transform = GetParent()->GetComponent< Transform >();
+        m_Transform = GetEntity()->GetComponent< Transform >();
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene

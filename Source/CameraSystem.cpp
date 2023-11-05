@@ -98,7 +98,7 @@
         m_ScreenToUi[ 3 ] = glm::vec4( offset, 0, 1 );
     
         // UI to clip (-1 to 1)
-        m_UiToClip = glm::scale( glm::mat4( 1 ), glm::vec3( 1.0f / 5, 1.0f / (screen_ratio * 5), 0 ) );
+        m_UiToClip = glm::scale( glm::mat4( 1 ), glm::vec3( 1.0f / 5, 1.0f / (screen_ratio * 5), 1 ) );
     }
 
 

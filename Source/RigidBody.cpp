@@ -67,8 +67,8 @@
     void RigidBody::OnInit()
     {
         BehaviorSystem<RigidBody>::GetInstance()->AddBehavior(this);
-        m_Transform = GetParent()->GetComponent<Transform>();
-        m_Collider = GetParent()->GetComponent<Collider>();
+        m_Transform = GetEntity()->GetComponent<Transform>();
+        m_Collider = GetEntity()->GetComponent<Collider>();
         
         if ( m_Collider != nullptr )
         {
@@ -144,7 +144,7 @@
     void RigidBody::OnCollision( Collider* other, CollisionData const& collisionData )
     {
         // detect if colliding with StaticBody
-        StaticBody const* staticBody = other->GetParent()->GetComponent<StaticBody>();
+        StaticBody const* staticBody = other->GetEntity()->GetComponent<StaticBody>();
         if ( staticBody != nullptr )
         {
             CollideWithStatic( staticBody, collisionData );
@@ -152,7 +152,7 @@
         }
 
         // only handle collisions with other rigidBodies
-        RigidBody* rigidBodyB = other->GetParent()->GetComponent<RigidBody>();
+        RigidBody* rigidBodyB = other->GetEntity()->GetComponent<RigidBody>();
         if ( rigidBodyB == nullptr )
         {
             return;

@@ -46,7 +46,7 @@ void BaseBehavior::OnInit()
 {
 	BasicEntityBehavior::OnInit();
 
-	GetParent()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
+	GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
 		GetId(),
 		std::bind(&BaseBehavior::onCollision, this, std::placeholders::_1, std::placeholders::_2)
 	);
@@ -62,14 +62,14 @@ void BaseBehavior::OnExit()
 
 void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionData)
 {
-	EnemyBehavior* enemy = other->GetParent()->GetComponent<EnemyBehavior>();
+	EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
 	if (!enemy)
 	{
 		return;
 	}
 	
 	BasicEntityBehavior::TakeDamage(enemy->GetDamage());
-	enemy->GetParent()->Destroy();
+	enemy->GetEntity()->Destroy();
 }
 
 //-----------------------------------------------------------------------------

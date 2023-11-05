@@ -87,7 +87,7 @@
     void Collider::OnInit()
     {
         CollisionSystem::GetInstance()->addCollider(this);
-        m_Transform = GetParent()->GetComponent<Transform>();
+        m_Transform = GetEntity()->GetComponent<Transform>();
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
