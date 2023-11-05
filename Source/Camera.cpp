@@ -119,7 +119,7 @@
     /// @brief  called once when entering the scene
     void Camera::OnInit()
     {
-        m_Transform = GetParent()->GetComponent< Transform >();
+        m_Transform = GetEntity()->GetComponent< Transform >();
 
         m_Transform->AddOnTransformChangedCallback( GetId(), std::bind( &Camera::onTransformChangedCallback, this ) );
 

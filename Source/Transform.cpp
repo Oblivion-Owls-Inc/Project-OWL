@@ -16,13 +16,25 @@
 #include "InputSystem.h"
 
 //-----------------------------------------------------------------------------
-// public: constructor / destructor
+// public: constructor
 //-----------------------------------------------------------------------------
 
 
     /// @brief Default constructor for the transform component.
     Transform::Transform() :
         Component( typeid( Transform ) )
+    {}
+
+
+//-----------------------------------------------------------------------------
+// protected: constructor
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  inherited constructor
+    /// @param  type    the type of the derived class
+    Transform::Transform( std::type_index const& type ) :
+        Component( type )
     {}
 
 //-----------------------------------------------------------------------------
@@ -279,15 +291,8 @@
 
 
 //-----------------------------------------------------------------------------
-// private: copying
+// protected: copying
 //-----------------------------------------------------------------------------
-
-    /// @brief  Clones a transform component.
-    /// @return A new transform component.
-    Component* Transform::Clone() const
-    {
-        return (Component*)new Transform( *this );
-    }
 
 
     /// @brief		 Copy constructor for the transform component.
@@ -300,7 +305,6 @@
         m_IsDirty(     other.m_IsDirty     ),
         m_Matrix(      other.m_Matrix      ),
         m_IsDiegetic(  other.m_IsDiegetic  ),
-        m_Parent(      other.m_Parent      ),
         m_OnTransformChangedCallbacks()
     {}
 

@@ -88,9 +88,9 @@ void TilemapSprite::OnInit()
     }
 
     // Set up callback for when Tilemap array changes
-    if (GetParent())
+    if (GetEntity())
     {
-        m_Tilemap = GetParent()->GetComponent< Tilemap<int> >();
+        m_Tilemap = GetEntity()->GetComponent< Tilemap<int> >();
         if (m_Tilemap)
             m_Tilemap->AddOnTilemapChangedCallback( GetId(), 
                             std::bind(&TilemapSprite::onTilemapChanged, this) );
@@ -124,7 +124,7 @@ void TilemapSprite::Draw()
         return;
 
     Mesh const* mesh = m_Texture->GetMesh();
-    Entity* parent = GetParent();
+    Entity* parent = GetEntity();
     glm::mat4 trm(1);                       // transform matrix - identity by default
     glm::vec2 uvsize = mesh->GetUVsize();   // UV size (for the frames of spritesheet)
     

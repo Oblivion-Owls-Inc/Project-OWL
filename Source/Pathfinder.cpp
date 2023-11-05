@@ -27,10 +27,10 @@ Component * Pathfinder::Clone() const { return new Pathfinder(*this); }
 //          Virtual overrides
 //-----------------------------------------------------------------------------
 
-    /// @brief  called when entering a scene - syncs with Tilemap
-    void Pathfinder::OnInit()
-    {
-        m_Tilemap = GetParent()->GetComponent< Tilemap<int> >();
+/// @brief  called when entering a scene - syncs with Tilemap
+void Pathfinder::OnInit()
+{
+    m_Tilemap = GetEntity()->GetComponent< Tilemap<int> >();
 
     #ifndef NDEBUG
         if ( m_Tilemap == nullptr )
@@ -83,7 +83,7 @@ Component * Pathfinder::Clone() const { return new Pathfinder(*this); }
         Renderer()->DrawRect(
             (glm::vec2)( tileToWorld * glm::vec4( (glm::vec2)m_DestTile + glm::vec2( 0.5f ), 0, 1 ) ),
             m_Tilemap->GetTileScale(),
-            GetParent()->GetComponent< Transform >()->GetRotation(),
+            GetEntity()->GetComponent< Transform >()->GetRotation(),
             glm::vec4( -1.0f, 0.0f, -1.0f, 0.0f )
         );
     }

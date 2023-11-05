@@ -103,7 +103,9 @@
 
                 if ( ImGui::Selectable( name.c_str(), false ) )
                 {
-                    AddComponent( info.second() );
+                    Component* component = info.second();
+                    AddComponent( component );
+                    component->OnInit();
                 }
             }
             ImGui::EndCombo();
