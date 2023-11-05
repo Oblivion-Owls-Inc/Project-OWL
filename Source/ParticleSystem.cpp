@@ -10,6 +10,7 @@
 #include "ParticleSystem.h"
 #include "RenderSystem.h"
 #include "CameraSystem.h"
+#include "Emitter.h"
 
 // for debugging
 #include "InputSystem.h"
@@ -28,36 +29,19 @@ void ParticleSystem::OnInit()
     m_CShader = new Shader("Data/shaders/particles_compute.glsl");
     Renderer()->AddShader("pCompute", m_CShader);
 
-    // raw data buffer (binding 0)
-    glGenBuffers(1, &m_DataSSBO);
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_DataSSBO);
-    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Particle) * m_WGsize * m_WGcount, 
-                                                              NULL, GL_STREAM_DRAW);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, m_DataSSBO);
-
-
-    // transform matrices buffer (binding 1)
-    glGenBuffers(1, &m_MatSSBO);
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_MatSSBO);
-    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(glm::mat4) * m_WGsize * m_WGcount, 
-                                                               NULL, GL_STREAM_DRAW);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, m_MatSSBO);
-    // allow it to be read by vertex shader
-    glMemoryBarrier(GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT);
-
-
-    // uniform block for init data (binding 2)
+    // uniform block for init data (binding 2, first 2 are taken by emitters' buffers)
     glGenBuffers(1, &m_UBO);
     glBindBuffer(GL_UNIFORM_BUFFER, m_UBO);
-    glBufferData(GL_UNIFORM_BUFFER, sizeof(ShaderInitData)*m_MaxInitCount, NULL, GL_STREAM_DRAW);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, m_UBO);
-
+    glBufferData(GL_UNIFORM_BUFFER, sizeof(EmitData), NULL, GL_STREAM_DRAW);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 3, m_UBO);
 
     // cache the uniform locations
-    m_UinitCount = m_CShader->GetUniformID("initCount");
     m_Ut = m_CShader->GetUniformID("t");
     m_Udt = m_CShader->GetUniformID("dt");
     m_Uproj = m_CShader->GetUniformID("proj");
+    m_Urange = m_CShader->GetUniformID("range");
+    m_UinitIndex = m_CShader->GetUniformID("initIndex");
+    m_Uoldest = m_CShader->GetUniformID("oldest");
 }
 
 
@@ -66,81 +50,69 @@ void ParticleSystem::OnInit()
 ///         consistent buffer sync.
 void ParticleSystem::OnUpdate(float dt)
 {
-    if (GetDebugEnabled())
-    {
-		DebugWindow();
-	}
     if (!Cameras()->GetActiveCamera())
         return;
 
     static float time = 0.0f;
     time += dt;
 
-    int size;
-    if (m_Clear)
-    {
-        size = 1;
-        m_Spawns.clear();
-        m_Spawns.push_back({GetMaxParticleCount()}); // init everything to 0
-        m_Clear = false;
-    }
-    else
-    {
-        // excess inits just get cut off
-        size = (int) m_Spawns.size();
-        if (size > m_MaxInitCount) 
-            size = m_MaxInitCount;
-    }
-
-    // set uniforms : dt, time, projection matrix, init count
     m_CShader->use();
+
+    // set common uniforms : dt, time, projection matrix
     glUniform1f(m_Udt, dt);
     glUniform1f(m_Ut, time);
     glUniformMatrix4fv(m_Uproj, 1, 0, &Cameras()->GetMat_WorldToClip()[0][0]);
-    glUniform1i(m_UinitCount, size);
 
-
-    // prep and load init data, if particles need to be spawned (or cleared)
-    if (size)
+    // Put all of the emitters' init data together and send it to GPU.
+    // If each emitter was to load its own data instead, executions would not be
+    // parallelized.    (bindings and basic uniforms are ok)
+    if (m_InitDataDirty)
     {
-        // this preserves all the data except range. (range is garbage, set manually)
-        ShaderInitData* init = reinterpret_cast<ShaderInitData*>(&m_Spawns[0]);
+        m_InitDataDirty = false;
+        
+        std::vector<EmitData> inits;
+        for (auto& emitter : m_Emitters)
+            inits.push_back(emitter.second->GetEmitData());
 
-        // set range for each group.
-        for (int i=0; i<size; ++i)
-        {
-            int amount = (int)m_Spawns[i].amount;
-
-            // end index overflow: loop back to start
-            if (m_NextIndex + amount > GetMaxParticleCount())
-                m_NextIndex = 0;
-
-            // ivec2 'range' overwrites long 'amount'
-            int end = m_NextIndex + amount;
-            init[i].range = {m_NextIndex, end};
-            m_NextIndex = end;
-        }
-
-        // now that amounts have been replaced with ranges, load it all in.
         glBindBuffer(GL_UNIFORM_BUFFER, m_UBO);
-        glBufferData(GL_UNIFORM_BUFFER, sizeof(ShaderInitData)*size, init, GL_STREAM_DRAW);
+        glBufferData(GL_UNIFORM_BUFFER, sizeof(EmitData) * (int)inits.size(), 
+                     &inits[0], GL_DYNAMIC_DRAW);
+    }
+    
+    // let each emitter execute compute shader for its buffers
+    int index = 0;
+    for (auto& emitter : m_Emitters)
+    {
+        glUniform1i(m_UinitIndex, index++);
+        emitter.second->Update(dt, m_Urange, m_Uoldest);
     }
 
-
-    // let compute shader do its thing
-    glDispatchCompute(m_WGcount, 1, 1);
-    m_Spawns.clear();
+    // This makes computations of particles little slower compared to doing it
+    // all in one go with single buffer. But, it's more manageable this way.
+    // The other version was too OP anyway.
 }
 
 
 /// @brief  Called when system exits
 void ParticleSystem::OnExit()
 {
-    glDeleteBuffers(1, &m_DataSSBO);
-    glDeleteBuffers(1, &m_MatSSBO);
     glDeleteBuffers(1, &m_UBO);
 }
 
+
+
+void ParticleSystem::AddEmitter(Emitter* emitter)
+{
+    m_Emitters[emitter->GetId()] = emitter;
+    SetEmitDataDirty();
+}
+
+
+void ParticleSystem::RemoveEmitter(Emitter* emitter)
+{
+    m_Emitters.erase(emitter->GetId());
+    SetEmitDataDirty();
+}
 
 
 
@@ -165,3 +137,6 @@ ParticleSystem * ParticleSystem::GetInstance()
     }
     return s_Instance;
 }
+
+
+

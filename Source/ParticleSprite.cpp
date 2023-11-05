@@ -7,9 +7,11 @@
  *********************************************************************/
 #include "glew.h"
 #include "ParticleSprite.h"
+#include "Texture.h"
+#include "Emitter.h"
 #include "ParticleSystem.h" // SSBO
 #include "RenderSystem.h"   // shader
-#include "Texture.h"
+#include "Entity.h"         // parent
 
 
 /// @brief              Default constructor
@@ -17,46 +19,35 @@ ParticleSprite::ParticleSprite() :
     Sprite( typeid(ParticleSprite) )
 {}
 
-// for testing
-ParticleSprite::ParticleSprite(Texture const* texture, int first, int afterLast, int layer) : 
-    Sprite(texture, layer,  typeid(ParticleSprite) ), m_Range{first, afterLast}
-{
-    OnInit();
-}
-
 
 
 //-----------------------------------------------------------------------------
 //          Virtual overrides
 //-----------------------------------------------------------------------------
 
-/// @brief  called when entering the scene
+/// @brief  Inits VAO and shader when entering scene
 void ParticleSprite::OnInit()
 {
     Sprite::OnInit();
-    initInstancingStuff();
 
-    m_Range = {0, Particles()->GetMaxParticleCount()};  // TODO: deserialize
+    m_Emitter = GetParent()->GetComponent<Emitter>();
+    if (!m_Emitter)
+        return;
+
+    initInstancingStuff();
 
     if (!Renderer()->GetShader("particles"))
         Renderer()->AddShader("particles", new Shader("Data/Shaders/particles.vert",
-                                                        "Data/Shaders/texture.frag"));
+                                                        "Data/Shaders/particles.frag"));
 }
 
-
+/// @brief   Deletes VAO when exiting
 void ParticleSprite::OnExit()
 {
     Sprite::OnExit();
     if (m_VAO)
         glDeleteVertexArrays(1, &m_VAO);
-    m_VAO = 0;
-}
 
-// for testing
-ParticleSprite::~ParticleSprite()
-{
-    if (m_VAO)
-        glDeleteVertexArrays(1, &m_VAO);
     m_VAO = 0;
 }
 
@@ -76,8 +67,8 @@ void ParticleSprite::Draw()
     glBindVertexArray(m_VAO);
     m_Texture->Bind();
     const Mesh* mesh = m_Texture->GetMesh();
-    glDrawArraysInstanced(GL_TRIANGLE_STRIP, m_Range.x, mesh->GetVertexCount(), 
-                                                          m_Range.y - m_Range.x);
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, mesh->GetVertexCount(), 
+                                                m_Emitter->GetBufferSize());
     glBindVertexArray(0);
 }
 
@@ -93,7 +84,7 @@ void ParticleSprite::initInstancingStuff()
     glGenVertexArrays(1, &m_VAO);
     glBindVertexArray(m_VAO);
 
-    // Set the usual attributes linked to mesh buffer:
+    // Attributes linked to mesh buffer (per vertex):
     // Vertex position    (attribute 0, 2 floats)
     // Vertex UV          (attribute 1, 2 floats)
     glBindBuffer(GL_ARRAY_BUFFER, m_Texture->GetMesh()->GetBuffer());
@@ -102,21 +93,26 @@ void ParticleSprite::initInstancingStuff()
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
 
-    // Now, link the buffer of matrices calculated by compute shader
-    // Transform matrix   (occupies 4 attribute spaces, vec4 each)
-    glBindBuffer(GL_ARRAY_BUFFER, ParticleSystem::GetInstance()->GetMatSSBO());
-    glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), 0);
-    glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*) sizeof(glm::vec4));
-    glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(sizeof(glm::vec4)*2));
-    glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(sizeof(glm::vec4)*3));
+    // Attributes linked to SSBO (per instance):
+    // Mesh opacity       (attribute 2, 1 float)
+    glBindBuffer(GL_ARRAY_BUFFER, m_Emitter->GetOpacitySSBO());
+    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, sizeof(float), 0);
     glVertexAttribDivisor(2, 1);
+    glEnableVertexAttribArray(2);
+    // Transform matrix   (attribute 3, occupies 4 attribute spaces - vec4 each)
+    glBindBuffer(GL_ARRAY_BUFFER, m_Emitter->GetMatSSBO());
+    glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), 0);
+    glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*) sizeof(glm::vec4));
+    glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(sizeof(glm::vec4)*2));
+    glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void*)(sizeof(glm::vec4)*3));
     glVertexAttribDivisor(3, 1);
     glVertexAttribDivisor(4, 1);
     glVertexAttribDivisor(5, 1);
-    glEnableVertexAttribArray(2);
+    glVertexAttribDivisor(6, 1);
     glEnableVertexAttribArray(3);
     glEnableVertexAttribArray(4);
     glEnableVertexAttribArray(5);
+    glEnableVertexAttribArray(6);
 
     // It's still declared as regular mat4 on the shader. Go figure.
 
