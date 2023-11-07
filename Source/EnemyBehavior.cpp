@@ -39,9 +39,9 @@
         BasicEntityBehavior::OnInit();
 
         m_Pathfinder = Entities()->GetEntity( m_PathfinderName )->GetComponent< Pathfinder >();
-        m_RigidBody = GetParent()->GetComponent< RigidBody >();
-        m_Transform = GetParent()->GetComponent< Transform >();
-        m_Animation = GetParent()->GetComponent< Animation >();
+        m_RigidBody = GetEntity()->GetComponent< RigidBody >();
+        m_Transform = GetEntity()->GetComponent< Transform >();
+        m_Animation = GetEntity()->GetComponent< Animation >();
 
         // Get all the enemy's animations
         for (int i = 0; i < 2; ++i)
