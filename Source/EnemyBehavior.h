@@ -41,10 +41,14 @@ private: // Member Variables
     /// @brief  how fast this Enemy moves
     float m_Speed = 10.0f;
 
+    /// @brief how much damage the enemy does.
     int m_Damage = 1;
 
     /// @brief  the name of the Entity with the Pathfinder to follow
     std::string m_PathfinderName = "";
+
+    /// @brief the name of this enemy's aniamtions in the asset library
+    std::string m_AnimationNames[2] = {"", ""};
 
     /// @brief  the Pathfinder this Enemy follows
     Pathfinder* m_Pathfinder = nullptr;
@@ -54,6 +58,12 @@ private: // Member Variables
 
     /// @brief  the RigidBody attached to this Enemy
     RigidBody* m_RigidBody = nullptr;
+
+    /// @brief the Aniamtion attached to this Enemy
+    Animation* m_Animation = nullptr;
+
+    /// @brief the animations of the enemy
+    AnimationAsset const* m_EnemyAnimations[2] = { nullptr, nullptr };
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -68,6 +78,10 @@ private: // Reading
     /// @brief  reads the name of the pathfinder entity
     /// @param  data    the json data to read from
     void readPathfinderName( nlohmann::ordered_json const& data );
+
+    /// @brief Read in the animation names for the player.
+    /// @param data The JSON file to read from.
+    void readAnimationNames(nlohmann::ordered_json const& data);
 
     /// @brief  reads the speed
     /// @param  data    the json data to read from
