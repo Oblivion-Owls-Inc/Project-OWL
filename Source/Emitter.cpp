@@ -196,12 +196,17 @@ void Emitter::Inspector()
         // raw data buffer
         glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_DataSSBO);
         glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(ParticleSystem::Particle) * 
-                        m_BufferSize, NULL, GL_STREAM_DRAW);
+                     m_BufferSize, NULL, GL_STREAM_DRAW);
+
+        // opacities buffer
+        glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_OpacitySSBO);
+        glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(float) * 
+                     m_BufferSize, NULL, GL_STREAM_DRAW);
 
         // transform matrices buffer
         glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_MatSSBO);
-        glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(glm::mat4) * m_BufferSize,
-                        NULL, GL_STREAM_DRAW);
+        glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(glm::mat4) * 
+                     m_BufferSize, NULL, GL_STREAM_DRAW);
 
 
         m_WGcount = m_BufferSize / Particles()->GetWorkGroupSize();
