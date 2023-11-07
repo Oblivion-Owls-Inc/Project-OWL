@@ -20,7 +20,7 @@ class Texture;
 class Transform : public Component
 {
 //-----------------------------------------------------------------------------
-public: // constructor / destructor / inspector
+public: // constructor / destructor
 //-----------------------------------------------------------------------------
 
     /// @brief  constructor
@@ -28,6 +28,16 @@ public: // constructor / destructor / inspector
 
     /// @brief destructor
     ~Transform() = default;
+
+//-----------------------------------------------------------------------------
+protected: // constructor
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  inherited constructor
+    /// @param  type    the type of the derived class
+    Transform( std::type_index const& type );
+
 
 //-----------------------------------------------------------------------------
 public: // methods
@@ -144,9 +154,6 @@ private: // member variables
 	/// @brief  whether this Transform exists in world or screen space
 	bool m_IsDiegetic = true;
 
-	/// @brief  the Transform that this Transform descends from
-	Transform* m_Parent = nullptr;
-
     /// @brief  callbacks to be called whenever this Transform changes
     std::map< unsigned, std::function< void () > > m_OnTransformChangedCallbacks = {};
 
@@ -210,16 +217,25 @@ public:
     virtual nlohmann::ordered_json Write() const override;
 
 //-----------------------------------------------------------------------------
-private: // copying
+public: // copying
 //-----------------------------------------------------------------------------
 
     /// @brief  creates a new copy of this Component
     /// @return the newly created component
-    virtual Component* Clone() const override;
+    virtual Transform* Clone() const override
+    {
+        return new Transform( *this );
+    }
+
+//-----------------------------------------------------------------------------
+protected: // copying
+//-----------------------------------------------------------------------------
+
 
     /// @brief  copy constructor
     /// @param  other   the other Transform to copy
     Transform( Transform const& other );
+
 
 //-----------------------------------------------------------------------------
 };

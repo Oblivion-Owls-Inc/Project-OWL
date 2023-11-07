@@ -36,6 +36,7 @@
 #include "ParticleSprite.h"
 #include "Emitter.h"
 #include "BaseBehavior.h"
+#include "UiElement.h"
 
 
 //-----------------------------------------------------------------------------
@@ -143,7 +144,8 @@
         { "WavesBehavior"       , ComponentInfo< WavesBehavior >()        },
         { "Emitter"             , ComponentInfo< Emitter >()              },
         { "ParticleSprite"      , ComponentInfo< ParticleSprite >()       },
-        { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         }
+        { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         },
+        { "UiElement"           , ComponentInfo< UiElement >()            }
     };
 
 //-----------------------------------------------------------------------------

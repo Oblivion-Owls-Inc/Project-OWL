@@ -15,7 +15,7 @@ void BasicEntityBehavior::TakeDamage(int damage)
     m_Health -= damage;
     if (!m_Health)
     {
-        GetParent()->Destroy();
+        GetEntity()->Destroy();
     }
 }
 
