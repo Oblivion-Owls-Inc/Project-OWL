@@ -8,6 +8,8 @@
 #pragma once
 #include "Sprite.h"
 
+class Emitter;
+
 /// @brief      A version of Sprite for rendering tilemaps using GPU instancing.
 class ParticleSprite : public Sprite
 {
@@ -15,18 +17,6 @@ public:
 
     /// @brief              Default constructor
     ParticleSprite();
-
-    // for testing
-    ParticleSprite(Texture const* texture, int first, int afterLast, int layer);
-    ~ParticleSprite();
-
-
-//-----------------------------------------------------------------------------
-//          Public methods
-//-----------------------------------------------------------------------------
-public:
-
-
 
 
 //-----------------------------------------------------------------------------
@@ -49,13 +39,14 @@ public:
     virtual void Draw() override;
 
 
-
 //-----------------------------------------------------------------------------
 //              Data
 //-----------------------------------------------------------------------------
 private:
-    glm::ivec2 m_Range = {0,0}; /// @brief   Range of particle indices to render
-    unsigned int m_VAO = 0;     /// @brief   VAO that links mesh and SSBO buffers
+    glm::ivec2 m_Range = {0,0};   /// @brief   Range of particle indices to render
+    unsigned int m_VAO = 0;       /// @brief   VAO that links mesh and SSBO buffers
+    Emitter* m_Emitter = nullptr; /// @brief   Parent's emitter component
+
 
 
 //-----------------------------------------------------------------------------
