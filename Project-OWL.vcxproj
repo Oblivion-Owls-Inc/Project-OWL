@@ -254,6 +254,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\UiElement.cpp" />
     <ClCompile Include="Source\WavesBehavior.cpp" />
     <ClCompile Include="Source\Stream.t.cpp" />
+    <ClCompile Include="Source\WavesInspector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Inspection.h" />
@@ -345,7 +346,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties />
+      <UserProperties Data_4Scenes_4Prototype_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

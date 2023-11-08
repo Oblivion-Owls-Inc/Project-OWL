@@ -446,6 +446,9 @@
     <ClCompile Include="Source\Tilemap.cpp">
       <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
     </ClCompile>
+    <ClCompile Include="Source\WavesInspector.cpp">
+      <Filter>Game\Behaviors\WavesBehavior</Filter>
+    </ClCompile>
     <ClCompile Include="Source\CheatSystem.cpp">
       <Filter>Engine\Systems\CheatSystem</Filter>
     </ClCompile>

@@ -30,8 +30,22 @@ public: // methods
     void Close();
 
 //-----------------------------------------------------------------------------
+public: // update enum
+//-----------------------------------------------------------------------------
+
+    enum class UpdateMode
+    {
+        fixedUpdate,
+        update
+    };
+
+//-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
+
+    /// @brief  gets the current update status
+    /// @return the current status
+    UpdateMode GetCurrentUpdate() const;
 
     /// @brief  gets the duration of each fixed frame
     /// @return the amount of time in seconds that each fixed frame lasts
@@ -105,6 +119,9 @@ private: // member variables
 
     /// @brief  The duration of each fixed frame
     float m_FixedFrameDuration;
+
+    /// @brief  The current update we're in
+    UpdateMode m_currentMode;
 
 //-----------------------------------------------------------------------------
 private: // methods

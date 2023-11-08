@@ -204,7 +204,7 @@
           "Translation": [ 0, 0 ]
         },
         "WavesBehavior": {
-          "AlternateSpawners": [
+          "Spawners": [
             [ 0, 0 ],
             [ 1, 1 ],
             [ 2, 2 ],
