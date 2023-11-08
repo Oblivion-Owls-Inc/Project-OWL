@@ -2225,23 +2225,6 @@
           "TileScale": [ 0.12, 0.34 ]
         }
       }
-    },
-    {
-      "Name": "Emitter",
-      "Components": {
-        "Transform": {},
-        "Emitter": {
-          "Continuous": true,
-          "PPS": 100.453,
-          "Delay": 0.0,
-          "Max": 2048,
-          "EmitData": [[-1.0,11.0],[15.31,0.54],[0.0,0.0],4.937,2.19,0.2,0.0,0.0,0.963,0.165,0.0,0.0,0.25,3.0,0.0]
-        },
-        "ParticleSprite": {
-          "Texture": "Ball3",
-          "Layer": 0
-        }
-      }
     }
   ]
 }

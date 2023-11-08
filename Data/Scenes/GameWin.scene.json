@@ -17,6 +17,15 @@
     },
     "Entities": [
         {
+            "Name": "Camera",
+            "Components": {
+                "Transform": {},
+                "Camera": {
+                    "Width": 30
+                }
+            }
+        },
+        {
             "Name": "Background",
             "Components": {
                 "Transform": {

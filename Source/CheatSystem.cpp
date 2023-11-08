@@ -34,8 +34,7 @@ static SceneSystem* scene = SceneSystem::GetInstance();
 /// @brief Gets called when this system is added to the entity.
 void CheatSystem::OnInit()
 {
-    // Get the player's circle collider.
-    m_CircleCollider = Entities()->GetEntity("Player")->GetComponent<CircleCollider>();
+
 }
 
 /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.

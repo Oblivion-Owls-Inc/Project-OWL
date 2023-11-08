@@ -61,7 +61,7 @@ private: // members
     bool m_ResourceSwitch;
     bool m_BaseGodMode;
     // The player's collider.
-    CircleCollider* m_CircleCollider;
+    //CircleCollider* m_CircleCollider;
 
 //--------------------------------------------------------------------------------
 private: // singleton 
