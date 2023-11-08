@@ -165,12 +165,12 @@ void Sprite::OnExit()
             SetOpacity(m_Opacity);
         }
 
+        Inspection::SelectAssetFromLibrary( "Texture", &m_Texture );
+
         if (!m_Texture)
         {
             return;
         }
-
-        Inspection::SelectAssetFromLibrary( "Texture", &m_Texture );
 
         if ( ImGui::DragInt(
             "Frame Index", &m_FrameIndex, 1, 0, 
@@ -180,33 +180,33 @@ void Sprite::OnExit()
 			SetFrameIndex(m_FrameIndex);
 		}
 
-        // Texture selection
-        std::vector<std::string> textureNames;
-        for (const auto& pair : AssetLibrary<Texture>()->GetAssets())
-        {
-            textureNames.push_back(pair.first);
-        }
-
-        static int currentTextureIdx = 0;  // you can set this according to the current texture of the sprite if needed
-
-        if (ImGui::BeginCombo("Textures", textureNames[currentTextureIdx].c_str())) // Default displayed
-        {
-            for (int n = 0; n < textureNames.size(); ++n)
-            {
-                bool isSelected = (currentTextureIdx == n);
-                if (ImGui::Selectable(textureNames[n].c_str(), isSelected))
-                {
-                    currentTextureIdx = n;
-                    // Set the texture here
-                    SetTexture(AssetLibrary<Texture>()->GetAsset(textureNames[currentTextureIdx]));
-                }
-                if (isSelected)
-                {
-                    ImGui::SetItemDefaultFocus();
-                }
-            }
-            ImGui::EndCombo();
-        }
+        // // Texture selection
+        // std::vector<std::string> textureNames;
+        // for (const auto& pair : AssetLibrary<Texture>()->GetAssets())
+        // {
+        //     textureNames.push_back(pair.first);
+        // }
+        // 
+        // static int currentTextureIdx = 0;  // you can set this according to the current texture of the sprite if needed
+        // 
+        // if (ImGui::BeginCombo("Textures", textureNames[currentTextureIdx].c_str())) // Default displayed
+        // {
+        //     for (int n = 0; n < textureNames.size(); ++n)
+        //     {
+        //         bool isSelected = (currentTextureIdx == n);
+        //         if (ImGui::Selectable(textureNames[n].c_str(), isSelected))
+        //         {
+        //             currentTextureIdx = n;
+        //             // Set the texture here
+        //             SetTexture(AssetLibrary<Texture>()->GetAsset(textureNames[currentTextureIdx]));
+        //         }
+        //         if (isSelected)
+        //         {
+        //             ImGui::SetItemDefaultFocus();
+        //         }
+        //     }
+        //     ImGui::EndCombo();
+        // }
 
     }
 
