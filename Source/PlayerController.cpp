@@ -49,6 +49,8 @@ void PlayerController::OnInit()
     m_RigidBody = GetEntity()->GetComponent<RigidBody>();
     // Get the parent's Animation component.
     m_Animation = GetEntity()->GetComponent<Animation>();
+    // Get the parent's AudioPlayer component.
+    m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
 
     // Get all the player's animations
     for ( int i = 0; i < NUM_ANIMATIONS; ++i )
@@ -218,7 +220,8 @@ PlayerController::PlayerController(PlayerController const& other):
     Behavior( other ),
     m_MaxSpeed( other.m_MaxSpeed ),
     m_RigidBody( nullptr ),
-    m_Animation( nullptr )
+    m_Animation( nullptr ),
+    m_AudioPlayer(nullptr)
 {
     // Copy the animations
     for (int i = 0; i < NUM_ANIMATIONS; i++)
