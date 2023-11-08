@@ -26,7 +26,7 @@ class WavesBehavior :
 public: // constructor / destructor
 //-----------------------------------------------------------------------------
 
-		/// @brief default constructor
+	/// @brief default constructor
 	WavesBehavior();
 	/// @brief cpy ctor
 	WavesBehavior(const WavesBehavior& other);
@@ -84,14 +84,25 @@ private: // inspector methods
 	/// @brief lists all spawners and locations
 	void GuiSpawners();
 
-
+	/// @brief	allows dragging the spawner to change location
 	void DebugDrag(int number);
 
+	/// @brief	adds a wave to the behavior
 	void GuiAddWave();
+
+	/// @brief	removes a wave from the behavior
 	void GuiRemoveWave();
+
+	/// @brief	adds a group to the behavior
 	void GuiAddGroup();
+
+	/// @brief	removes a group from the behavior
 	void GuiRemoveGroup();
+
+	/// @brief	adds a spawner to the behavior
 	void GuiAddSpawner();
+
+	/// @brief	removes a spawner from the behavior
 	void GuiRemoveSpawner();
 
 //-----------------------------------------------------------------------------
@@ -120,18 +131,19 @@ private: // data
 
 	private:
 
+		/// @brief read the name of an enemy group
 		void readName(nlohmann::ordered_json const& json);
 
-
+		/// @brief read the enemy amount of an enemy group
 		void readAmount(nlohmann::ordered_json const& json);
 
-
+		/// @brief read the spawn interval of an enemy group
 		void readInterval(nlohmann::ordered_json const& json);
 
-
+		/// @brief read the time offset of an enemy group
 		void readOffset(nlohmann::ordered_json const& json);
 
-
+		/// @brief read the spawner number of an enemy group
 		void readSpawner(nlohmann::ordered_json const& json);
 
 		/// @brief the map of read methods for this Component
@@ -139,32 +151,37 @@ private: // data
 
 	public:
 
+		/// @brief read method map for an enemy group
 		virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
 		{
 			return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
 		}
 
+		/// @brief	write an enemy group to json
 		virtual nlohmann::ordered_json Write() const override;
 
 	};
 
+	// wave class
 	class Wave : public ISerializable
 	{
 	public:
 		/// @brief wave default constructor
 		Wave();
+		// container of attached groups
 		std::vector<EnemyGroup> groups;
 		float remainingTime;
 		float timeToNextWave;
 
 	private:
 
+		/// @brief read the time in a wave	
 		void readWaveTime(nlohmann::ordered_json const& json);
 
-
+		/// @brief read the time to next wave
 		void readNextTime(nlohmann::ordered_json const& json);
 
-
+		/// @brief read groups in a wave
 		void readGroups(nlohmann::ordered_json const& json);
 
 		/// @brief the map of read methods for this Component
@@ -172,16 +189,20 @@ private: // data
 
 	public:
 
+		/// @brief read method map for a wave
 		virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
 		{
 			return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
 		}
 
+		/// @brief	write a wave to json
 		virtual nlohmann::ordered_json Write() const override;
 	};
 
+	// container for the waves
 	std::vector<Wave> waves;
 
+	// container for the spawner locations
 	std::vector< glm::vec2 > spawners;
 
 //-----------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 /// @brief  Definitions for wave and spawning behavior
 /// 
 /// @author Tyler Birdsall (tyler.birdsall)
-/// @date   10/24/23
+/// @date   10/16/23
 ///
 /// @copyright (c) 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
@@ -73,6 +73,7 @@ WavesBehavior::EnemyGroup::EnemyGroup() :
 // private: copying
 //-----------------------------------------------------------------------------
 
+/// @brief	copy and return a new wave behavior
 Component* WavesBehavior::Clone() const
 {
 	return (Component*)new WavesBehavior(*this);
