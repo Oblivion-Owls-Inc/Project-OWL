@@ -34,7 +34,6 @@ static SceneSystem* scene = SceneSystem::GetInstance();
 /// @brief Gets called when this system is added to the entity.
 void CheatSystem::OnInit()
 {
-
 }
 
 /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
@@ -94,6 +93,15 @@ void CheatSystem::DebugWindow()
         }
         ImGui::SameLine();
         ImGui::Text("Kill All Enemies");
+
+        // The No Clip Button
+        if (ImGui::Button(m_NoClip ? "Turn Off No Clip" : "Turn On No Clip"))
+        {
+            m_NoClip = !m_NoClip;
+            noClip();
+        }
+        ImGui::SameLine();
+        ImGui::Text("Disable Player Collisions");
 
         // The instant win button
         if (ImGui::Button("Instant Win"))
@@ -161,7 +169,29 @@ void CheatSystem::RunCheats()
         ConstructionBehavior* construction = resource->GetComponent<ConstructionBehavior>();
         construction->SetCurrentResources(1000);
     }
-    
+}
+
+/// @brief Turns off player collisions
+void CheatSystem::noClip()
+{
+    // Get the player's circle collider.
+    m_CircleCollider = Entities()->GetEntity("Player")->GetComponent<CircleCollider>();
+
+    static int flag;
+    static int ID;
+
+    if (m_NoClip)
+    {
+        flag = m_CircleCollider->GetCollisionLayerFlags();
+        ID = m_CircleCollider->GetCollisionLayerId();
+        m_CircleCollider->SetCollisionLayerFlags(0);
+        m_CircleCollider->SetCollisionLayerId(INT_MAX);
+    }
+    else
+    {
+        m_CircleCollider->SetCollisionLayerFlags(flag);
+        m_CircleCollider->SetCollisionLayerId(ID);
+    }
 }
 
 //--------------------------------------------------------------------------------
@@ -173,7 +203,9 @@ CheatSystem::CheatSystem():
     System("CheatSystem"),
     m_CheatMenuIsOpen(false),
     m_BaseGodMode(false),
-    m_ResourceSwitch(false)
+    m_ResourceSwitch(false),
+    m_NoClip(false),
+    m_CircleCollider(nullptr)
 {}
 
 /// @brief The singleton instance of CheatSystem.
