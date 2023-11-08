@@ -40,10 +40,6 @@ void CheatSystem::OnInit(){}
 void CheatSystem::OnUpdate(float dt)
 {
     OpenCheatMenu();
-    if (m_CheatMenuIsOpen)
-    {
-        DebugWindow();
-    }
 }
 
 /// @brief Gets called once before the engine closes.
