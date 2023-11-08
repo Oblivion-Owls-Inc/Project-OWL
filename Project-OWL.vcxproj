@@ -334,6 +334,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
     <None Include="Data\Scenes\AidanScene.scene.json" />
+    <None Include="Data\Scenes\GameOver.scene.json" />
+    <None Include="Data\Scenes\GameWin.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
     <None Include="Data\Scenes\Sandbox.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />
@@ -346,7 +348,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties Data_4Scenes_4Prototype_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" />
+      <UserProperties Data_4Scenes_4Gameover_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" Data_4Scenes_4GameWin_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" Data_4Scenes_4Prototype_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

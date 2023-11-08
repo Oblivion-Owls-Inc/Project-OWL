@@ -34,8 +34,6 @@
             "ShowFpsWindow": true,
             "ShowDebugWindow": false
         },
-        "SandboxSystem": {},
-        "ParticleSystem": {},
         "CheatSystem": {}
 
     }
