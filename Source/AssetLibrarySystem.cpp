@@ -26,16 +26,7 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
 // virtual override methods
 //-----------------------------------------------------------------------------
 
-template<class AssetType>
-void AssetLibrarySystem<AssetType>::OnUpdate(float)
-{
-    if (GetDebugEnabled())
-    {
-		DebugWindow();
-	}
-}
-
-/// @brief  Gets called whenever a scene is exited
+    /// @brief  Gets called whenever a scene is exited
     template< class AssetType >
     void AssetLibrarySystem< AssetType >::OnSceneExit()
     {

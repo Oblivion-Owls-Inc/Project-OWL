@@ -6,6 +6,10 @@
       }
     },
     "Textures": {
+      "Enemy": {
+        "Filepath": "Data/Textures/enemy.png",
+        "SheetDimensions": [ 12, 2 ]
+      },
       "Background": {
         "Filepath": "Data/Textures/Background.png",
         "SheetDimensions": [ 1, 1 ]
@@ -61,22 +65,32 @@
         "End": 36,
         "FrameRate": 12
       },
-      "PlayerMoveLeft": {
-        "Start": 36,
-        "End": 48,
-        "FrameRate": 12
-      }
+        "PlayerMoveLeft": {
+            "Start": 36,
+            "End": 48,
+            "FrameRate": 12
+        },
+        "EnemyMoveRight": {
+            "Start": 0,
+            "End": 12,
+            "FrameRate": 12
+        },
+        "EnemyMoveLeft": {
+            "Start": 12,
+            "End": 24,
+            "FrameRate": 12
+        }
     },
     "Archetypes": {
       "Enemy": {
         "Name": "Enemy",
         "Components": {
           "Sprite": {
-            "Texture": "Ball",
+            "Texture": "Enemy",
             "Layer": 3
           },
           "Transform": {
-            "Scale": [ 0.6, 0.6 ]
+            "Scale": [ 2, 2 ]
           },
           "RigidBody": {
             "Acceleration": [ 0.0, 0.0 ],
@@ -88,13 +102,17 @@
             "CollisionLayer": "Enemies",
             "CollisionLayerFlags": [ "Terrain", "Player", "Enemies" ]
           },
-          "EnemyBehavior": {
-            "Health": {
-              "Active": true,
-              "BaseValue": 40
+            "EnemyBehavior": {
+                "Health": {
+                    "Active": true,
+                    "BaseValue": 40
+                },
+                "PathfinderName": "Tiles",
+                "AnimationNames": [ "EnemyMoveRight", "EnemyMoveLeft" ]
             },
-            "PathfinderName": "Tiles"
-          }
+            "Animation": {
+                "Animation": "EnemyMoveRight"
+            }
         }
       },
       "Bullet": {
@@ -2205,9 +2223,17 @@
     {
       "Name": "Emitter",
       "Components": {
-        "Emitter": {},
+        "Transform": {},
+        "Emitter": {
+          "Continuous": true,
+          "PPS": 100.453,
+          "Delay": 0.0,
+          "Max": 2048,
+          "EmitData": [[-1.0,11.0],[15.31,0.54],[0.0,0.0],4.937,2.19,0.2,0.0,0.0,0.963,0.165,0.0,0.0,0.25,3.0,0.0]
+        },
         "ParticleSprite": {
-          "Texture": "Ball3"
+          "Texture": "Ball3",
+          "Layer": 0
         }
       }
     }

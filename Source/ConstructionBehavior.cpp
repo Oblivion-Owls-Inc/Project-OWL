@@ -53,8 +53,8 @@
         m_Tilemap = tilemapEntity->GetComponent< Tilemap< int > >();
         m_Buildings = tilemapEntity->GetComponent< Tilemap< Entity* > >();
 
-        m_Transform = GetParent()->GetComponent<Transform>();
-        m_Sprite = GetParent()->GetComponent<Sprite>();
+        m_Transform = GetEntity()->GetComponent<Transform>();
+        m_Sprite = GetEntity()->GetComponent<Sprite>();
 
         m_ResourcesText = Entities()->GetEntity( m_ResourcesTextName )->GetComponent< Text >();
     }

@@ -76,6 +76,8 @@ void DebugSystem::OnInit()
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
     // Stays at the Top
+
+    SetDebugEnable( true );
 }
 
 /// @brief Perform updates.
@@ -83,40 +85,39 @@ void DebugSystem::OnInit()
 void DebugSystem::OnUpdate(float dt)
 {
 
-    static const int count = 128;
-    static float fpses[count] = {};
-    static float elapsed = 0.0f;
-    static float min = 0, max = 0;
-    static float fps = 0.0f;
-    elapsed += dt;
-    if (elapsed > 0.05f)
-    {
-        min = 1000.0f; max = 0.0f;
-        elapsed -= 0.05f;
-        for (int i = count - 1; i > 0; i--)
-        {
-            fpses[i] = fpses[i - 1];
-            if (fpses[i] < min)     min = fpses[i];
-            if (fpses[i] > max)     max = fpses[i];
-        }
-        fps = 1.0f / dt;
-        fpses[0] = fps;
+    // static const int count = 128;
+    // static float fpses[count] = {};
+    // static float elapsed = 0.0f;
+    // static float min = 0, max = 0;
+    // static float fps = 0.0f;
+    // elapsed += dt;
+    // if (elapsed > 0.05f)
+    // {
+    //     min = 1000.0f; max = 0.0f;
+    //     elapsed -= 0.05f;
+    //     for (int i = count - 1; i > 0; i--)
+    //     {
+    //         fpses[i] = fpses[i - 1];
+    //         if (fpses[i] < min)     min = fpses[i];
+    //         if (fpses[i] > max)     max = fpses[i];
+    //     }
+    //     fps = 1.0f / dt;
+    //     fpses[0] = fps;
+    // 
+    // }
 
+    for ( System* system : Engine::GetInstance()->GetSystems() )
+    {
+        if ( system->GetDebugEnabled() )
+        {
+            system->DebugWindow();
+        }
     }
 
-    #ifndef NDEBUG  
-
-        if (m_ShowFpsWindow)
-        {
-            ShowFPSWindow();
-        }
-    
-        if (m_ShowDebugWindow)
-        {
-            DebugWindow();
-        }
-
-    #endif
+    if (m_ShowFpsWindow)
+    {
+        ShowFPSWindow();
+    }
 
 
     ImGui::Render();
@@ -130,7 +131,10 @@ void DebugSystem::DebugWindow()
 {
     static bool gameplayRunning = true;
 
-    ImGui::Begin("Editor Window", &m_ShowDebugWindow, ImGuiWindowFlags_MenuBar);
+    bool debugWindowShown = GetDebugEnabled();
+    ImGui::Begin("Editor Window", &debugWindowShown, ImGuiWindowFlags_MenuBar);
+    SetDebugEnable( debugWindowShown );
+
     ImGui::SetWindowSize(ImVec2(700, 700), ImGuiCond_FirstUseEver);
     ImGui::SetWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
 
@@ -181,7 +185,7 @@ void DebugSystem::DebugWindow()
             /// Closes the Debug Window
             if (ImGui::MenuItem("Close"))
             {
-                m_ShowDebugWindow = false; /// Closes the Debug Window for now
+                SetDebugEnable( false ); /// Closes the Debug Window for now
             }
             ImGui::EndMenu();
         }
@@ -279,6 +283,12 @@ void DebugSystem::DebugWindow()
             {
                 /// Shows the Behavior System List
                 ShowSystemList("BehaviorSystem");
+                ImGui::EndMenu();
+            }
+
+            if (ImGui::BeginMenu("Other Systems"))
+            {
+                ShowSystemList("Other");
                 ImGui::EndMenu();
             }
 
@@ -415,18 +425,37 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
 {
     std::vector<System*> filteredSystems; /// Vector of Systems to be filtered
 
-    /// Loops through all the Systems in the Engine
-    for (auto& system : Engine::GetInstance()->GetSystems())
+    if (prefix == "Other")
     {
-        // Skip the debug system
-        if (system == GetInstance())
-            continue;
-
-        // Check if the system's name begins with the specified prefix
-        if (system->GetName().compare(0, prefix.length(), prefix) == 0)
+        for (auto& system : Engine::GetInstance()->GetSystems())
         {
-            /// Adds the System to the filteredSystems vector
-            filteredSystems.push_back(system);
+            if (system->GetName().compare(0, std::string("AssetLibrary").length(), std::string("AssetLibrary")) != 0 &&
+                system->GetName().compare(0, std::string("BehaviorSystem").length(), std::string("BehaviorSystem")) != 0)
+            {
+                // Skip the debug system
+                if (system == GetInstance())
+                    continue;
+            
+				filteredSystems.push_back(system);
+			}
+		}
+	}
+    else
+    {
+
+        /// Loops through all the Systems in the Engine
+        for (auto& system : Engine::GetInstance()->GetSystems())
+        {
+            // Skip the debug system
+            if (system == GetInstance())
+                continue;
+
+            // Check if the system's name begins with the specified prefix
+            if (system->GetName().compare(0, prefix.length(), prefix) == 0)
+            {
+                /// Adds the System to the filteredSystems vector
+                filteredSystems.push_back(system);
+            }
         }
     }
 
@@ -446,8 +475,10 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
 void DebugSystem::OnFixedUpdate()
 {
     #ifndef NDEBUG  
-        if (InputSystem::GetInstance()->GetKeyTriggered(GLFW_KEY_GRAVE_ACCENT))
-            m_ShowDebugWindow = !m_ShowDebugWindow;
+    if ( InputSystem::GetInstance()->GetKeyTriggered( GLFW_KEY_GRAVE_ACCENT ) )
+    {
+        SetDebugEnable( !GetDebugEnabled() );
+    }
     #endif
 }
 
@@ -556,7 +587,7 @@ void DebugSystem::ImguiStartFrame()
     /// @param  data    the data to read from
     void DebugSystem::readShowDebugWindow( nlohmann::ordered_json const& data )
     {
-		m_ShowDebugWindow = Stream::Read<bool>( data );
+		SetDebugEnable( Stream::Read<bool>( data ) );
     }
 
     /// @brief map containing read methods
@@ -576,7 +607,7 @@ void DebugSystem::ImguiStartFrame()
         nlohmann::ordered_json json;
         
         json[ "ShowFpsWindow" ] = m_ShowFpsWindow;
-        json[ "ShowDebugWindow" ] = m_ShowDebugWindow;
+        json[ "ShowDebugWindow" ] = GetDebugEnabled();
 
         return json;
     }
@@ -591,8 +622,7 @@ void DebugSystem::ImguiStartFrame()
         System( "DebugSystem" ),
         _window(nullptr),
         io(nullptr),
-        m_ShowFpsWindow(false),
-        m_ShowDebugWindow(false)
+        m_ShowFpsWindow(false)
     {}
 
     DebugSystem* DebugSystem::instance = nullptr;

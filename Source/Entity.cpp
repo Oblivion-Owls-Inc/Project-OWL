@@ -13,6 +13,7 @@
 #include "Component.h"		  // Type
 #include <cassert>			  // assert
 #include "ComponentFactory.h" // Create.
+#include "InputSystem.h"
 #include "AssetLibrarySystem.h"
 #include "DebugSystem.h"
 #include "basics.h"
@@ -102,7 +103,9 @@
 
                 if ( ImGui::Selectable( name.c_str(), false ) )
                 {
-                    AddComponent( info.second() );
+                    Component* component = info.second();
+                    AddComponent( component );
+                    component->OnInit();
                 }
             }
             ImGui::EndCombo();
@@ -124,9 +127,18 @@
         }
 
         static char name[ 128 ];
-        strcpy_s( name, 128, m_Name.c_str() );
-        ImGui::InputText( "Entity Name", name, 128 );
-        m_Name = name;
+        //strcpy_s( name, 128, m_Name.c_str() )
+        ImGui::InputText("Entity Name", name, 128);
+
+        if (ImGui::Button("Rename Entity") || 
+            Input()->GetKeyTriggered(GLFW_KEY_ENTER))
+        {
+            if (strlen(name) > 0)
+            {
+                Debug() << "Renamed Entity " << m_Name << " to " << name << "\n";
+                m_Name = name;
+            }
+        }
 
         for (const auto& componentPair : this->getComponents())
         {

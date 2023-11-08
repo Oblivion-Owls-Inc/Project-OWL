@@ -8,8 +8,11 @@
 
 #pragma once
 
-#include <string>
 #include "AssetLibrarySystem.h"
+
+#include <string>
+
+class Entity;
 
 class Inspection
 {
@@ -25,6 +28,7 @@ public: // public methods
     /// @return whether a file was selected
     static bool SelectFileFromDirectory( char const* label, std::string* selectedFile, std::string const& directoryPath );
 
+
     /// @brief  selects an Asset from an AssetLibrary
     /// @tparam AssetType       the type of asset to select
     /// @param  label           the ImGui label of the dropdown selector
@@ -32,6 +36,13 @@ public: // public methods
     /// @return Whether an asset was selected
     template< class AssetType >
     static bool SelectAssetFromLibrary( char const* label, AssetType const** selectedAsset );
+
+
+    /// @brief  selects an Entity from the Scene
+    /// @param  label           the ImGui label of the dropdown selector
+    /// @param  selectedEntity  pointer to the currently selected Entity
+    /// @return whether an Entity was selected
+    static bool SelectEntityFromScene( char const* label, Entity** selectedEntity );
 
 
 //-----------------------------------------------------------------------------

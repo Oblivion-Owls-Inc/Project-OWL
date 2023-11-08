@@ -71,6 +71,8 @@ private:
     /// @brief  called when exiting a scene - un-syncs (removes callback)
     virtual void OnExit() override;
 
+    /// @brief  displays this Pathfinder's inspector
+    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 //              Data

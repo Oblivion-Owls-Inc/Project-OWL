@@ -103,9 +103,6 @@ private: // Members
     bool m_ShowFpsWindow;
 
     /// @brief Flag to control dev display
-    bool m_ShowDebugWindow;
-
-    /// @brief Flag to control dev display
     bool m_ShowEntityCreateWindow = false;
 
     /// @brief Flag to control display of the ImGui demo window

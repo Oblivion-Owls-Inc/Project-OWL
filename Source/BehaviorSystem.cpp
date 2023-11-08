@@ -39,11 +39,6 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
-    if (GetDebugEnabled())
-    {
-        DebugWindow();
-    }
-
     for ( int i = 0; i < m_BehaviorList.size(); ++i )
     {
 
@@ -91,7 +86,7 @@ void BehaviorSystem<BehaviorType>::DebugWindow()
         ImGui::SetWindowSize(ImVec2(500, 500), ImGuiCond_FirstUseEver);
         for (auto behavior : m_BehaviorList)
         {
-            std::string parentName = behavior->GetParent()->GetName();
+            std::string parentName = behavior->GetEntity()->GetName();
             int nodeId = (int)behavior->GetId();
             std::string label = parentName + "'s Behavior";
 

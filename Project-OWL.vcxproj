@@ -185,6 +185,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   <ItemGroup>
     <ClCompile Include="Source\BasicEntityBehavior.cpp" />
     <ClCompile Include="Source\BaseBehavior.cpp" />
+    <ClCompile Include="Source\CheatSystem.cpp" />
     <ClCompile Include="Source\BulletBehavior.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\ConstructionBehavior.cpp" />
@@ -250,6 +251,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\Stream.cpp" />
     <ClCompile Include="Source\CircleCollider.cpp" />
+    <ClCompile Include="Source\UiElement.cpp" />
     <ClCompile Include="Source\WavesBehavior.cpp" />
     <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\WavesInspector.cpp" />
@@ -258,6 +260,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Inspection.h" />
     <ClInclude Include="Source\BasicEntityBehavior.h" />
     <ClInclude Include="Source\BaseBehavior.h" />
+    <ClInclude Include="Source\CheatSystem.h" />
     <ClInclude Include="Source\BulletBehavior.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\ConstructionBehavior.h" />
@@ -325,6 +328,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Transform.h" />
     <ClInclude Include="Source\Stream.h" />
     <ClInclude Include="Source\CircleCollider.h" />
+    <ClInclude Include="Source\UiElement.h" />
     <ClInclude Include="Source\WavesBehavior.h" />
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +336,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\AidanScene.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
     <None Include="Data\Scenes\Sandbox.scene.json" />
+    <None Include="Data\Scenes\Template.scene.json" />
     <None Include="Data\Scenes\TurretScene.scene.json" />
     <None Include="Data\Scenes\XinoScene.scene.json" />
   </ItemGroup>

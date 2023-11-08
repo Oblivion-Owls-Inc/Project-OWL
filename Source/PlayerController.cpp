@@ -1,19 +1,20 @@
-///--------------------------------------------------------------------------//
+///-----------------------------------------------------------------------------//
 /// @file   PlayerController.cpp
-/// @brief  PlayerController Bheaviour Class
+/// @brief  PlayerController Behaviour Class
 /// 
 /// @author Aidan Straker (aidan.straker)
 /// @date   October 2023
 ///
 /// @copyright (c) 2023 DigiPen (USA) Corporation.
-///--------------------------------------------------------------------------//
+///-----------------------------------------------------------------------------//
 #include "PlayerController.h" 
 #include "BehaviorSystem.h"     // GetInstance, AddBehavior, RemoveBehavior
 #include "InputSystem.h"        // GetInstance, GetKeyDown
 #include "RigidBody.h"          // ApplyVelocity
 #include "Animation.h"          // SetAsset
+#include "AudioPlayer.h"
 #include "AnimationAsset.h"
-#include "AssetLibrarySystem.h" // GetAssest
+#include "AssetLibrarySystem.h" // GetAsset
 #include "DebugSystem.h"
 
 ///----------------------------------------------------------------------------
@@ -45,9 +46,9 @@ void PlayerController::OnInit()
 {
 	BehaviorSystem<Behavior>::GetInstance()->AddBehavior(this);
     // Get the parent's RigidBody component.
-    m_RigidBody = GetParent()->GetComponent<RigidBody>();
+    m_RigidBody = GetEntity()->GetComponent<RigidBody>();
     // Get the parent's Animation component.
-    m_Animation = GetParent()->GetComponent<Animation>();
+    m_Animation = GetEntity()->GetComponent<Animation>();
 
     // Get all the player's animations
     for ( int i = 0; i < NUM_ANIMATIONS; ++i )
@@ -66,6 +67,7 @@ void PlayerController::OnExit()
 void PlayerController::Inspector()
 {
     vectorInspector();
+    animationInspector();
 }
 
 /// @brief on fixed update check which input is being pressed.
@@ -236,5 +238,20 @@ void PlayerController::vectorInspector()
 /// @brief Helper function for inspector.
 void PlayerController::animationInspector()
 {
-    ImGui::Text("Current Animation: %s", AssetLibrary<AnimationAsset>()->GetAssetName(m_Animation->GetAsset()));
+    std::string animNames[NUM_ANIMATIONS] = { "Right Animation", "Left Animation", "Up Animation", "Down Animation" };
+
+    for(int i = 0; i < NUM_ANIMATIONS; i++)
+    {
+        if(ImGui::BeginCombo(animNames[i].c_str(), AssetLibrary<AnimationAsset>()->GetAssetName(m_PlayerAnimations[i])))
+        {
+            for ( auto& [ name, animation ] : AssetLibrary<AnimationAsset>()->GetAssets() )
+            {
+                if (ImGui::Selectable(name.c_str(), m_PlayerAnimations[i] == animation))
+                {
+                    m_PlayerAnimations[i] = animation;
+                }
+            }
+            ImGui::EndCombo();
+        }
+    }
 }
