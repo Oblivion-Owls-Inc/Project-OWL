@@ -48,7 +48,7 @@ public: // copying
     virtual Component* Clone() const override;
 
 //-----------------------------------------------------------------------------
-private: // copying
+protected: // copying
 //-----------------------------------------------------------------------------
 
     /// @brief  Copy constructor

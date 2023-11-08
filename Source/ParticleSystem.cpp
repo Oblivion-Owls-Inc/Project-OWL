@@ -48,7 +48,7 @@ void ParticleSystem::OnInit()
 ///         consistent buffer sync.
 void ParticleSystem::OnUpdate(float dt)
 {
-    if (!Cameras()->GetActiveCamera())
+    if (m_Emitters.empty() || !Cameras()->GetActiveCamera())
         return;
 
     static float time = 0.0f;
@@ -84,7 +84,6 @@ void ParticleSystem::OnUpdate(float dt)
         glUniform1i(m_UinitIndex, index++);
         emitter.second->Update(dt);
     }
-
     // This makes computations of particles little slower compared to doing it
     // all in one go with single buffer. But, it's more manageable this way.
     // The other version was too OP anyway.
@@ -98,7 +97,12 @@ void ParticleSystem::OnExit()
 }
 
 
+//-----------------------------------------------------------------------------
+//              Public methods
+//-----------------------------------------------------------------------------
 
+/// @brief          Adds new emitter to the system
+/// @param emitter  Pointer to new emitter
 void ParticleSystem::AddEmitter(Emitter* emitter)
 {
     m_Emitters[emitter->GetId()] = emitter;
@@ -106,6 +110,8 @@ void ParticleSystem::AddEmitter(Emitter* emitter)
 }
 
 
+/// @brief          Removes emitter from system
+/// @param emitter  Pointer to emitter
 void ParticleSystem::RemoveEmitter(Emitter* emitter)
 {
     m_Emitters.erase(emitter->GetId());
