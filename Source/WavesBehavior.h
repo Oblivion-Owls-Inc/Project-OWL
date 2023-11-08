@@ -22,11 +22,11 @@ class WavesBehavior :
 	public Behavior
 {
 
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 public: // constructor / destructor
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
-			/// @brief default constructor
+		/// @brief default constructor
 	WavesBehavior();
 	/// @brief cpy ctor
 	WavesBehavior(const WavesBehavior& other);
@@ -35,12 +35,13 @@ public: // constructor / destructor
 	/// @brief wave default constructor
 	Component* Clone() const override;
 
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 private: // virtual override methods
-	//-----------------------------------------------------------------------------
-			/// @brief  Called whenever a Collider on this Behavior's Entity collides
-			/// @param  other           the entity that was collided with
-			/// @param  collisionData   additional data about the collision
+//-----------------------------------------------------------------------------
+
+	/// @brief  Called whenever a Collider on this Behavior's Entity collides
+	/// @param  other           the entity that was collided with
+	/// @param  collisionData   additional data about the collision
 	virtual void OnCollision(Entity* other, CollisionData const& collisionData) {};
 
 
@@ -58,11 +59,11 @@ private: // virtual override methods
 	/// @brief Called Every Fixed Frame by the system
 	void OnFixedUpdate() override;
 
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 private: // inspector methods
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
-			/// @brief Used by the Debug System to display information about this Component
+	/// @brief Used by the Debug System to display information about this Component
 	virtual void Inspector() override;
 
 	/// @brief displays wave data to edit
@@ -120,9 +121,17 @@ private: // data
 	private:
 
 		void readName(nlohmann::ordered_json const& json);
+
+
 		void readAmount(nlohmann::ordered_json const& json);
+
+
 		void readInterval(nlohmann::ordered_json const& json);
+
+
 		void readOffset(nlohmann::ordered_json const& json);
+
+
 		void readSpawner(nlohmann::ordered_json const& json);
 
 		/// @brief the map of read methods for this Component
@@ -151,7 +160,11 @@ private: // data
 	private:
 
 		void readWaveTime(nlohmann::ordered_json const& json);
+
+
 		void readNextTime(nlohmann::ordered_json const& json);
+
+
 		void readGroups(nlohmann::ordered_json const& json);
 
 		/// @brief the map of read methods for this Component
@@ -171,29 +184,29 @@ private: // data
 
 	std::vector< glm::vec2 > spawners;
 
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 public: // accessors
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
-			/// @brief get the timer for a UI element
-			/// @brief this should probably be fancier
+	/// @brief get the timer for a UI element
+	/// @brief this should probably be fancier
 	float getTimer();
 
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 private: // methods
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
-			/// @brief spawn an enemy with given name from given entity group
-			/// @param name  - the name of the enemy to spawn
-			/// @param group - enemyGroup to spawn from
+	/// @brief spawn an enemy with given name from given entity group
+	/// @param name  - the name of the enemy to spawn
+	/// @param group - enemyGroup to spawn from
 	void Spawn(std::string name, int group);
 
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 private: // reading
-	//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
-			/// @brief read the waves data
-			/// @param data the data to read from.
+	/// @brief read the waves data
+	/// @param data the data to read from.
 	void readWaves(nlohmann::ordered_json const& data);
 
 	/// @brief read the alternate spawners data

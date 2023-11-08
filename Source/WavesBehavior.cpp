@@ -223,16 +223,19 @@ void WavesBehavior::readSpawners(nlohmann::ordered_json const& data)
 	}
 }
 
+/// @brief read the time in a wave
 void WavesBehavior::Wave::readWaveTime(nlohmann::ordered_json const& json)
 {
 	remainingTime = Stream::Read<float>(json);
 }
 
+/// @brief read the time to next wave
 void WavesBehavior::Wave::readNextTime(nlohmann::ordered_json const& json)
 {
 	timeToNextWave = Stream::Read<float>(json);
 }
 
+/// @brief read groups in a wave
 void WavesBehavior::Wave::readGroups(nlohmann::ordered_json const& json)
 {
 	groups.resize(json.size());
@@ -242,28 +245,33 @@ void WavesBehavior::Wave::readGroups(nlohmann::ordered_json const& json)
 	}
 }
 
+/// @brief read the name of an enemy group
 void WavesBehavior::EnemyGroup::readName(nlohmann::ordered_json const& json)
 {
 	name = Stream::Read<std::string>(json);
 	enemy = AssetLibrarySystem<Entity>::GetInstance()->GetAsset(name);
 }
 
+/// @brief read the enemy amount of an enemy group
 void WavesBehavior::EnemyGroup::readAmount(nlohmann::ordered_json const& json)
 {
 	enemyAmount = Stream::Read<int>(json);
 }
 
+/// @brief read the spawn interval of an enemy group
 void WavesBehavior::EnemyGroup::readInterval(nlohmann::ordered_json const& json)
 {
 	spawnInterval = Stream::Read<float>(json);
 }
 
+/// @brief read the time offset of an enemy group
 void WavesBehavior::EnemyGroup::readOffset(nlohmann::ordered_json const& json)
 {
 	offset = Stream::Read<float>(json);
 	timer = offset;
 }
 
+/// @brief read the spawner number of an enemy group
 void WavesBehavior::EnemyGroup::readSpawner(nlohmann::ordered_json const& json)
 {
 	spawner = Stream::Read<int>(json);
@@ -290,6 +298,7 @@ nlohmann::ordered_json WavesBehavior::Write() const
 	return data;
 }
 
+/// @brief	write a wave to json
 nlohmann::ordered_json WavesBehavior::Wave::Write() const
 {
 	nlohmann::ordered_json data;
@@ -305,6 +314,7 @@ nlohmann::ordered_json WavesBehavior::Wave::Write() const
 	return data;
 }
 
+/// @brief	write an enemy group to json
 nlohmann::ordered_json WavesBehavior::EnemyGroup::Write() const
 {
 	nlohmann::ordered_json data;
@@ -326,6 +336,7 @@ ReadMethodMap<WavesBehavior> const WavesBehavior::s_ReadMethods =
 	{ "Waves",				  &readWaves},
 };
 
+/// @brief read method map for a wave
 ReadMethodMap<WavesBehavior::Wave> const WavesBehavior::Wave::s_ReadMethods =
 {
 	{ "WaveTime",			  &readWaveTime},
@@ -333,6 +344,7 @@ ReadMethodMap<WavesBehavior::Wave> const WavesBehavior::Wave::s_ReadMethods =
 	{ "EnemyGroups",		  &readGroups},
 };
 
+/// @brief read method map for an enemy group
 ReadMethodMap<WavesBehavior::EnemyGroup> const WavesBehavior::EnemyGroup::s_ReadMethods =
 {
 	{ "EnemyName",			  &readName},
