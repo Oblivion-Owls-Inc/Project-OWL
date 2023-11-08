@@ -9,12 +9,14 @@
 ///-----------------------------------------------------------------------------//
 #include "CheatSystem.h"
 #include "basics.h"
-#include "InputSystem.h" // GetInstance
-#include "EntitySystem.h"
+#include "InputSystem.h"  // GetInstance, GetKeyTriggered
+#include "EntitySystem.h" // Entities, Destroy, GetComponent, GetEntities
 #include "AssetLibrarySystem.h"
-#include "BaseBehavior.h"
-#include "Pool.h"
+#include "BaseBehavior.h" // GetHealth
+#include "Pool.h"         // SetCurrent
 #include "ConstructionBehavior.h"
+#include "SceneSystem.h"  // GetInstance
+#include "CircleCollider.h"
 
 ///-------------------------------------------------------------------------------
 /// Static Variables
@@ -22,24 +24,27 @@
 
 // Get an instance of the input system.
 static InputSystem* input = InputSystem::GetInstance();
-
-//--------------------------------------------------------------------------------
-// public: accessors
-//--------------------------------------------------------------------------------
-
+// Get an instance of the scene system.
+static SceneSystem* scene = SceneSystem::GetInstance();
 
 //--------------------------------------------------------------------------------
 // private: virtual overrides
 //--------------------------------------------------------------------------------
 
 /// @brief Gets called when this system is added to the entity.
-void CheatSystem::OnInit(){}
+void CheatSystem::OnInit()
+{
+}
 
 /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
 /// @param dt The elapsed time in seconds since the previous frame.
 void CheatSystem::OnUpdate(float dt)
 {
     OpenCheatMenu();
+    if (m_CheatMenuIsOpen)
+    {
+        DebugWindow();
+    }
 }
 
 /// @brief Gets called once before the engine closes.
@@ -75,6 +80,7 @@ void CheatSystem::DebugWindow()
         ImGui::SameLine();
         ImGui::Text("Infinite Base Health");
 
+        // The kill all enemies button.
         if (ImGui::Button("Kill all enemies"))
         {
             for (auto i : Entities()->GetEntities())
@@ -87,6 +93,39 @@ void CheatSystem::DebugWindow()
         }
         ImGui::SameLine();
         ImGui::Text("Kill All Enemies");
+
+        // The No Clip Button
+        if (ImGui::Button(m_NoClip ? "Turn Off No Clip" : "Turn On No Clip"))
+        {
+            m_NoClip = !m_NoClip;
+            noClip();
+        }
+        ImGui::SameLine();
+        ImGui::Text("Disable Player Collisions");
+
+        // The instant win button
+        if (ImGui::Button("Instant Win"))
+        {
+            scene->SetNextScene("GameWin");
+        }
+        ImGui::SameLine();
+        ImGui::Text("Instantly wins the game");
+
+        // The instant lose button
+        if (ImGui::Button("Instant Lose"))
+        {
+            scene->SetNextScene("GameOver");
+        }
+        ImGui::SameLine();
+        ImGui::Text("Instantly loses the game");
+
+        // Returns to the game scene.
+        if (ImGui::Button("Return to Game"))
+        {
+            scene->SetNextScene("Prototype");
+        }
+        ImGui::SameLine();
+        ImGui::Text("Returns to the game");
     }
     
     ImGui::End();
@@ -130,7 +169,29 @@ void CheatSystem::RunCheats()
         ConstructionBehavior* construction = resource->GetComponent<ConstructionBehavior>();
         construction->SetCurrentResources(1000);
     }
-    
+}
+
+/// @brief Turns off player collisions
+void CheatSystem::noClip()
+{
+    // Get the player's circle collider.
+    m_CircleCollider = Entities()->GetEntity("Player")->GetComponent<CircleCollider>();
+
+    static int flag;
+    static int ID;
+
+    if (m_NoClip)
+    {
+        flag = m_CircleCollider->GetCollisionLayerFlags();
+        ID = m_CircleCollider->GetCollisionLayerId();
+        m_CircleCollider->SetCollisionLayerFlags(0);
+        m_CircleCollider->SetCollisionLayerId(INT_MAX);
+    }
+    else
+    {
+        m_CircleCollider->SetCollisionLayerFlags(flag);
+        m_CircleCollider->SetCollisionLayerId(ID);
+    }
 }
 
 //--------------------------------------------------------------------------------
@@ -142,7 +203,9 @@ CheatSystem::CheatSystem():
     System("CheatSystem"),
     m_CheatMenuIsOpen(false),
     m_BaseGodMode(false),
-    m_ResourceSwitch(false)
+    m_ResourceSwitch(false),
+    m_NoClip(false),
+    m_CircleCollider(nullptr)
 {}
 
 /// @brief The singleton instance of CheatSystem.

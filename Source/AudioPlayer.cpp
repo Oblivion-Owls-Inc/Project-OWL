@@ -55,6 +55,10 @@
     /// @note   FULLY STOPS the channel, doesn't just pause it
     void AudioPlayer::Stop()
     {
+        if (m_Channel == nullptr)
+        {
+            return;
+        }
         m_Channel->stop();
         m_Channel = nullptr;
     }
