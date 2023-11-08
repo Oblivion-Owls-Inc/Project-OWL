@@ -186,9 +186,6 @@
     <Filter Include="Game\Behaviors\WavesBehavior">
       <UniqueIdentifier>{90ac62ba-a1a3-4ca9-8797-8d0f816804f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Behavior\Emitter">
-      <UniqueIdentifier>{5fd7a429-be0c-4281-9acc-8f2a59ded737}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Systems\ParticleSystem">
       <UniqueIdentifier>{82d6010a-5f55-4d06-bf33-4e48aa03a03b}</UniqueIdentifier>
     </Filter>
@@ -209,6 +206,9 @@
     </Filter>
     <Filter Include="Engine\Systems\CheatSystem">
       <UniqueIdentifier>{1dbe9dbc-86de-434f-8fd4-19d968e00052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Emitter">
+      <UniqueIdentifier>{5fd7a429-be0c-4281-9acc-8f2a59ded737}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -426,7 +426,7 @@
       <Filter>Engine\Framework\Serialization</Filter>
     </ClCompile>
     <ClCompile Include="Source\Emitter.cpp">
-      <Filter>Engine\Entity\Component\Behavior\Emitter</Filter>
+      <Filter>Engine\Entity\Component\Emitter</Filter>
     </ClCompile>
     <ClCompile Include="Source\ParticleSystem.cpp">
       <Filter>Engine\Systems\ParticleSystem</Filter>
@@ -445,6 +445,9 @@
     </ClCompile>
     <ClCompile Include="Source\Tilemap.cpp">
       <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WavesInspector.cpp">
+      <Filter>Game\Behaviors\WavesBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\CheatSystem.cpp">
       <Filter>Engine\Systems\CheatSystem</Filter>
@@ -668,7 +671,7 @@
       <Filter>Game\Behaviors\WavesBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\Emitter.h">
-      <Filter>Engine\Entity\Component\Behavior\Emitter</Filter>
+      <Filter>Engine\Entity\Component\Emitter</Filter>
     </ClInclude>
     <ClInclude Include="Source\ParticleSystem.h">
       <Filter>Engine\Systems\ParticleSystem</Filter>
@@ -708,5 +711,6 @@
     <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
+    <None Include="Data\Scenes\Template.scene.json" />
   </ItemGroup>
 </Project>

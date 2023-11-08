@@ -30,7 +30,7 @@
     {
         Collider::OnInit();
 
-        m_Tilemap = GetParent()->GetComponent< Tilemap< int > >();
+        m_Tilemap = GetEntity()->GetComponent< Tilemap< int > >();
     }
 
 //-----------------------------------------------------------------------------

@@ -46,11 +46,9 @@ void PlayerController::OnInit()
 {
 	BehaviorSystem<Behavior>::GetInstance()->AddBehavior(this);
     // Get the parent's RigidBody component.
-    m_RigidBody = GetParent()->GetComponent<RigidBody>();
+    m_RigidBody = GetEntity()->GetComponent<RigidBody>();
     // Get the parent's Animation component.
-    m_Animation = GetParent()->GetComponent<Animation>();
-    // Get the parent's AudioPlayer component.
-    m_AudioPlayer = GetParent()->GetComponent<AudioPlayer>();
+    m_Animation = GetEntity()->GetComponent<Animation>();
 
     // Get all the player's animations
     for ( int i = 0; i < NUM_ANIMATIONS; ++i )
