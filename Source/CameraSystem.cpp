@@ -62,14 +62,6 @@
         Platform()->AddOnWindowResizeCallback( GetId(), std::bind( &CameraSystem::onWindowResizeCallback, this, std::placeholders::_1 ) );
     }
 
-    void CameraSystem::OnFixedUpdate()
-    {
-        if (GetDebugEnabled())
-        {
-            DebugWindow();
-        }
-    }
-
 //-------------------------------------------------------------------------
 // private: methods
 //-------------------------------------------------------------------------

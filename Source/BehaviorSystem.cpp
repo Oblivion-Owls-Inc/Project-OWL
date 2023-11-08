@@ -39,11 +39,6 @@ void BehaviorSystem<BehaviorType>::OnFixedUpdate()
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
 {
-    if (GetDebugEnabled())
-    {
-        DebugWindow();
-    }
-
     for ( int i = 0; i < m_BehaviorList.size(); ++i )
     {
 
