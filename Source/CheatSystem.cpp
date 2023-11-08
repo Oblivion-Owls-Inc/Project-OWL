@@ -9,12 +9,13 @@
 ///-----------------------------------------------------------------------------//
 #include "CheatSystem.h"
 #include "basics.h"
-#include "InputSystem.h" // GetInstance
-#include "EntitySystem.h"
+#include "InputSystem.h"  // GetInstance, GetKeyTriggered
+#include "EntitySystem.h" // Entities, Destroy, GetComponent, GetEntities
 #include "AssetLibrarySystem.h"
-#include "BaseBehavior.h"
-#include "Pool.h"
+#include "BaseBehavior.h" // GetHealth
+#include "Pool.h"         // SetCurrent
 #include "ConstructionBehavior.h"
+#include "SceneSystem.h"  // GetInstance
 
 ///-------------------------------------------------------------------------------
 /// Static Variables
@@ -22,11 +23,8 @@
 
 // Get an instance of the input system.
 static InputSystem* input = InputSystem::GetInstance();
-
-//--------------------------------------------------------------------------------
-// public: accessors
-//--------------------------------------------------------------------------------
-
+// Get an instance of the scene system.
+static SceneSystem* scene = SceneSystem::GetInstance();
 
 //--------------------------------------------------------------------------------
 // private: virtual overrides
@@ -79,6 +77,7 @@ void CheatSystem::DebugWindow()
         ImGui::SameLine();
         ImGui::Text("Infinite Base Health");
 
+        // The kill all enemies button.
         if (ImGui::Button("Kill all enemies"))
         {
             for (auto i : Entities()->GetEntities())
@@ -91,6 +90,30 @@ void CheatSystem::DebugWindow()
         }
         ImGui::SameLine();
         ImGui::Text("Kill All Enemies");
+
+        // The instant win button
+        if (ImGui::Button("Instant Win"))
+        {
+            scene->SetNextScene("GameWin");
+        }
+        ImGui::SameLine();
+        ImGui::Text("Instantly wins the game");
+
+        // The instant lose button
+        if (ImGui::Button("Instant Lose"))
+        {
+            scene->SetNextScene("GameOver");
+        }
+        ImGui::SameLine();
+        ImGui::Text("Instantly loses the game");
+
+        // Returns to the game scene.
+        if (ImGui::Button("Return to Game"))
+        {
+            scene->SetNextScene("Prototype");
+        }
+        ImGui::SameLine();
+        ImGui::Text("Returns to the game");
     }
     
     ImGui::End();

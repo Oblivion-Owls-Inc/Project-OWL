@@ -717,7 +717,7 @@
     <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\Gameover.scene.json">
+    <None Include="Data\Scenes\GameOver.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\GameWin.scene.json">

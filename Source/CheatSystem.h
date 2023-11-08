@@ -51,9 +51,9 @@ private: // members
 
     // Whether or not the console is open.
     bool m_CheatMenuIsOpen;
+    // The different cheats
     bool m_ResourceSwitch;
     bool m_BaseGodMode;
-    bool m_KillAllEnemies;
 
 //--------------------------------------------------------------------------------
 private: // singleton 

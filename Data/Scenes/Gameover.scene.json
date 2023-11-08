@@ -1,9 +1,54 @@
 {
     "Assets": {
         "Sounds": {},
-        "Textures": {},
+        "Textures": {
+            "Background": {
+                "Filepath": "Data/Textures/Background.png",
+                "SheetDimensions": [ 1, 1 ]
+            },
+            "FontSheet": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [ 16, 8 ],
+                "Pivot": [ 0, 1 ]
+            }
+        },
         "Animations": {},
         "Archetypes": {}
     },
-    "Entities": []
+    "Entities": [
+        {
+            "Name": "Background",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 0, 13.6 ],
+                    "Scale": [ 50, 50 ]
+                },
+                "Sprite": {
+                    "Texture": "Background",
+                    "Layer": 0
+                }
+            }
+        },
+        {
+            "Name": "YouWin",
+            "Components": {
+                "Transform": {
+                    "Translation": [ 0, 0 ],
+                    "Scale": [ 1.0, 1.0 ],
+                    "IsDiegetic": false
+                },
+                "Text": {
+                    "String": "You Lose"
+                },
+                "TilemapSprite": {
+                    "Texture": "FontSheet",
+                    "Layer": 4
+                },
+                "Tilemap<int>": {
+                    "Dimensions": [ 41, 0 ],
+                    "TileScale": [ 0.12, 0.34 ]
+                }
+            }
+        }
+    ]
 }
