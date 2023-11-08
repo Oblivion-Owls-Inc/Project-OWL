@@ -10,6 +10,7 @@
 #include "PlatformSystem.h"
 #include <map>
 #include "CameraSystem.h"
+#include "Engine.h"
 #include "glfw3.h"
 
 /// @brief fixed update for input, must be called

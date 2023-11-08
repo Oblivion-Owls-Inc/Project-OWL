@@ -77,6 +77,13 @@
 // public: accessors
 //-----------------------------------------------------------------------------
 
+    /// @brief  gets the current update status
+    /// @return the current status
+    Engine::UpdateMode Engine::GetCurrentUpdate() const
+    {
+        return m_currentMode;
+    }
+
     /// @brief  gets the duration of each fixed frame
     /// @return the amount of time in seconds that each fixed frame lasts
     float Engine::GetFixedFrameDuration() const
@@ -169,6 +176,7 @@
         // initialize the time values
         m_PreviousTime = glfwGetTime();
         m_PreviousFixedTime =  m_PreviousTime;
+        m_currentMode = UpdateMode::fixedUpdate;
 
         // initialize all the systems
         for (System * system :  m_Systems)
@@ -236,6 +244,7 @@
     /// @param  dt  the amount of time the frame lasted
     void Engine::updateSystems( float dt )
     {
+        m_currentMode = UpdateMode::update;
         for ( System * system : m_Systems )
         {
             if ( system->GetEnabled() )
@@ -248,6 +257,7 @@
     /// @brief  Calls all Systems' OnFixedUpdate function
     void Engine::fixedUpdateSystems()
     {
+        m_currentMode = UpdateMode::fixedUpdate;
         for ( System * system : m_Systems )
         {
             if ( system->GetEnabled() )
