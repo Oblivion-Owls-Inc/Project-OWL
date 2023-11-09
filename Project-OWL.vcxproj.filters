@@ -452,6 +452,9 @@
     <ClCompile Include="Source\CheatSystem.cpp">
       <Filter>Engine\Systems\CheatSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Source\UiElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -691,6 +694,9 @@
     <ClInclude Include="Source\CheatSystem.h">
       <Filter>Engine\Systems\CheatSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Source\UiElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -711,6 +717,14 @@
     <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\Template.scene.json" />
+    <None Include="Data\Scenes\GameOver.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\GameWin.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\Template.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>

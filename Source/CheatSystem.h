@@ -12,6 +12,12 @@
 #include "System.h"
 #include "DebugSystem.h"
 
+//------------------------------------------------------------------------------
+// Forward References:
+//------------------------------------------------------------------------------
+
+class CircleCollider;
+
 class CheatSystem :public System
 {
 //--------------------------------------------------------------------------------
@@ -45,14 +51,21 @@ private: // methods
     /// @brief Run the cheats.
     void RunCheats();
 
+    /// @brief Turns off player collisions.
+    void noClip();
+
 //--------------------------------------------------------------------------------
 private: // members
 //--------------------------------------------------------------------------------
 
     // Whether or not the console is open.
     bool m_CheatMenuIsOpen;
+    // The different cheats
     bool m_ResourceSwitch;
     bool m_BaseGodMode;
+    bool m_NoClip;
+    // The player's collider.
+    CircleCollider* m_CircleCollider;
 
 //--------------------------------------------------------------------------------
 private: // singleton 
