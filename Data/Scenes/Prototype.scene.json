@@ -65,21 +65,16 @@
         "End": 36,
         "FrameRate": 12
       },
-        "PlayerMoveLeft": {
-            "Start": 36,
-            "End": 48,
-            "FrameRate": 12
-        },
-        "EnemyMoveRight": {
-            "Start": 0,
-            "End": 12,
-            "FrameRate": 12
-        },
-        "EnemyMoveLeft": {
-            "Start": 12,
-            "End": 24,
-            "FrameRate": 12
-        }
+      "PlayerMoveLeft": {
+          "Start": 36,
+          "End": 48,
+          "FrameRate": 12
+      },
+      "EnemyMove": {
+          "Start": 0,
+          "End": 12,
+          "FrameRate": 12
+      }
     },
     "Archetypes": {
       "Enemy": {

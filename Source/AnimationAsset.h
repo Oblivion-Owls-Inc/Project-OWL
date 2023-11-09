@@ -57,6 +57,11 @@ public: // accessors
 	void SetFrameDuration( float frameDuration ) { m_FrameDuration = frameDuration; }
 
 
+    /// @brief  gets the number of frames in this animation
+    /// @return the number of frames in this animation
+    int GetFrameCount() const { return m_End - m_Start; }
+
+
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
