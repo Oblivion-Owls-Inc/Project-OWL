@@ -412,7 +412,7 @@ void DebugSystem::MenuWindows()
     if (m_CreationWindows[(int)MenuItemType::NewSpriteAnimation])
     {
         /// if the New Sprite Animation Window is closed, then close the window
-        if (!AssetLibrary<Animation>()->DebugCreateAssetWindow())
+        if (!AssetLibrary<AnimationAsset>()->DebugCreateAssetWindow())
         {
 			m_CreationWindows[(int)MenuItemType::NewSpriteAnimation] = false;
 		}

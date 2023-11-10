@@ -17,9 +17,6 @@
 #include "basics.h"
 #include "Pool.h"
 #include "Entity.h"
-#include "AssetLibrarySystem.h"
-#include "Animation.h"
-#include "AnimationAsset.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructor
@@ -41,13 +38,6 @@
         m_Pathfinder = Entities()->GetEntity( m_PathfinderName )->GetComponent< Pathfinder >();
         m_RigidBody = GetEntity()->GetComponent< RigidBody >();
         m_Transform = GetEntity()->GetComponent< Transform >();
-        m_Animation = GetEntity()->GetComponent< Animation >();
-
-        // Get all the enemy's animations
-        for (int i = 0; i < 2; ++i)
-        {
-            m_EnemyAnimations[i] = AssetLibrary< AnimationAsset >()->GetInstance()->GetAsset(m_AnimationNames[i]);
-        }
     }
 
     /// @brief Called at a fixed interval
@@ -68,15 +58,11 @@
         m_RigidBody->ApplyAcceleration( moveDir * m_Speed );
 
         // Changes the animation based on the direction
-        if (moveDir.x > 0.0f)
+        glm::vec2 scale = m_Transform->GetScale();
+        if ( (scale.x > 0) != (moveDir.x > 0) )
         {
-            m_Animation->SetAsset(m_EnemyAnimations[0]);
-            m_Animation->SetIsRunning(true);
-        }
-        else
-        {
-            m_Animation->SetAsset(m_EnemyAnimations[1]);
-            m_Animation->SetIsRunning(true);
+            scale.x *= -1;
+            m_Transform->SetScale( scale );
         }
     }
 
@@ -89,16 +75,6 @@
     void EnemyBehavior::readPathfinderName( nlohmann::ordered_json const& data )
     {
         Stream::Read( m_PathfinderName, data );
-    }
-
-    /// @brief Read in the names of the player animations.
-    /// @param data The JSON file to read from.
-    void EnemyBehavior::readAnimationNames(nlohmann::ordered_json const& data)
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            Stream::Read(m_AnimationNames[i], data[i]);
-        }
     }
 
     /// @brief  reads the speed
@@ -118,8 +94,7 @@
 	    { "Health"        , &BasicEntityBehavior::readHealth    },
         { "PathfinderName", &EnemyBehavior::readPathfinderName  },
         { "Speed"         , &EnemyBehavior::readSpeed           },
-        { "Damage"        , &EnemyBehavior::readDamage          },
-        { "AnimationNames", &EnemyBehavior::readAnimationNames  }
+        { "Damage"        , &EnemyBehavior::readDamage          }
     };
 
 
@@ -142,13 +117,6 @@
         data["Speed"] = m_Speed;
         data["Damage"] = m_Damage;
 
-        // Write the names of the current enemy animations to a JSON
-        nlohmann::ordered_json& animationNames = data["AnimationNames"];
-        for (std::string const& animationName : m_AnimationNames)
-        {
-            animationNames.push_back(Stream::Write(animationName));
-        }
-
         return data;
     }
 
@@ -163,15 +131,7 @@
         BasicEntityBehavior( other ),
         m_PathfinderName( other.m_PathfinderName ),
         m_Speed( other.m_Speed ),
-        m_RigidBody(nullptr),
-        m_Animation(nullptr)
-    {
-        // Copy the animations
-        for (int i = 0; i < 2; i++)
-        {
-            m_AnimationNames[i] = other.m_AnimationNames[i];
-            m_EnemyAnimations[i] = other.m_EnemyAnimations[i];
-        }
-    }
+        m_RigidBody(nullptr)
+    {}
 
 ///----------------------------------------------------------------------------

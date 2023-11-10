@@ -24,20 +24,39 @@ private: // virtual override methods
     /// @brief fixed update for input, must be called for input to function
     virtual void OnFixedUpdate() override;
 
+    /// @brief update for input, must be called for input to function
+    virtual void OnUpdate(float dt) override;
+
 //-----------------------------------------------------------------------------
 
-     /// @brief Constructs the InputSystem
+    /// @brief Constructs the InputSystem
     InputSystem();
 
 
-     /// @brief The singleton instance of InputSystem
+    /// @brief The singleton instance of InputSystem
     static InputSystem * instance;
+
+
+
 protected:
     
+    map<int, bool[3]>* m_KeyStatesHold;
+    map<int, bool[3]>* m_MouseStatesHold;
     map<int, bool[3]> m_KeyStates;
+    map<int, bool[3]> m_FixedKeyStates;
     map<int, bool[3]> m_MouseStates;
+    map<int, bool[3]> m_FixedMouseStates;
 
-public:
+//-----------------------------------------------------------------------------
+private: // private methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  updates map realted to fixed or standard update
+    void mapUpdate();
+
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
 
     /// @brief gets the instance of InputSystem
     /// @return the instance of the InputSystem
