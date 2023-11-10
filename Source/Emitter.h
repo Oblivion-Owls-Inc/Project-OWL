@@ -16,11 +16,18 @@ class Emitter : public Component
 {
 public:
 
-	/// @brief	  Defualt constructor
+	/// @brief	      Defualt constructor
 	Emitter();
+
+    /// @brief        Copy constructor
+    /// @param other  Component to copy
+    Emitter(const Emitter& other);
 
     /// @return   A copy of this emitter
     virtual Component* Clone() const override;
+
+    /// @brief    Destructor: calls OnExit if needed
+    ~Emitter();
 
 
 
@@ -56,6 +63,7 @@ public:
     void Update(float dt);
 
 
+
 //-----------------------------------------------------------------------------
 //              Overrides
 //-----------------------------------------------------------------------------
@@ -81,6 +89,7 @@ private:
     float m_Delay = 0.0f;       /// @brief  Delay between emissions.
     float m_DelayTimer = 0.0f;  /// @brief  Timer for the delay
     int m_CurrentIndex = 0;     /// @brief  Index to emit new particles at
+    bool m_Zinit = true;        /// @brief  Init buffer to 0 when this is true
     
     /// @brief   Parent entity's transform
     Transform* m_Transform = nullptr;
@@ -109,6 +118,16 @@ private:
     unsigned int m_Urange = -1,
                  m_Uoldest = -1,
                  m_UparentPos = -1;
+
+
+//-----------------------------------------------------------------------------
+//              Helpers
+//-----------------------------------------------------------------------------
+private:
+    
+    /// @brief   (re)allocates buffers based on m_BufferSize.
+    void resizeBuffers();
+
 
 
 //-----------------------------------------------------------------------------

@@ -2,8 +2,9 @@
     "FixedFrameDuration": 0.0167,
     "Systems": {
         "PlatformSystem": {
-            "WindowSize": [ 800, 600 ],
-            "WindowName": "Dig Deeper"
+            "WindowSize": [ 1200, 800 ],
+            "WindowName": "Dig Deeper",
+            "VSync": false
         },
         "InputSystem": {},
         "SceneSystem": {
@@ -20,6 +21,7 @@
         "BehaviorSystem<TilemapBase>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
+        "ParticleSystem": {},
         "CollisionSystem": {
             "CollisionLayerNames": [ "Terrain", "Enemies", "Player", "Base", "Projectiles" ],
             "CollisionSteps": 2

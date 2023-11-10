@@ -21,27 +21,31 @@ public:
     ///         Particle struct declared on the compute shader.
     struct Particle
     {
-        glm::vec2 pos; float size,    rotation;
-        glm::vec2 vel; float size_d,  rotation_d;  // (d's are currently not used)
-        glm::vec2 acc; float dirAcc,  drag;   // dirAcc - magnitude of accelerating
-        float lifetime, time;                 //          in the initial direction
-        float fadeIn, fadeOut;
+        glm::vec2 pos, vel, acc, vec2padding; 
+        float size, rotation,
+              dirAcc,  drag,   // dirAcc - magnitude of accelerating in the initial direction
+              lifetime, time,
+              fadeIn, fadeOut;
     };
 
     /// @brief  Mirrors the struct on the shader. Used for spawning new particles.
     ///         This one is for internal use, allows proper UBO allocation/loading.
     struct EmitData
     {
-        glm::vec2 offset;
-        glm::vec2 pos_spread;
-        glm::vec2 acceleration;
-        float direction,  speed,        size,         rotation;
-        float dir_spread, speed_spread, size_spread,  rotation_spread;
-        float fadeInDuration, fadeOutDuration;
-        float lifetime, startAhead;
-        int bufferSize, placeholder;
+        glm::vec2 offset, pos_spread;
+        glm::vec2 acceleration; float direction,  speed;
+        float size, rotation,  dir_spread, speed_spread; 
+        float size_spread, rotation_spread,  fadeInDuration, fadeOutDuration;
+        float lifetime, startAhead, dirAcc, padding;
+        int bufferSize, p1, p2, p3;
     };
 
+
+
+//-----------------------------------------------------------------------------
+//              Public methods
+//-----------------------------------------------------------------------------
+public:
 
     /// @return  Thread size of each work group. 
     __inline int GetWorkGroupSize() { return m_WGsize; }

@@ -99,6 +99,8 @@ private: // members
 
     /// @brief  whether the window is fullscreen
     bool m_IsFullscreen = false;
+
+    bool m_VSync = true;
     
 	/// @brief  handle to the GLFW window
 	GLFWwindow* m_Window = nullptr;
@@ -146,6 +148,10 @@ private: // reading
     /// @brief reads the window name
     /// @param stream the data to read from
     void readWindowName( nlohmann::ordered_json const& data );
+
+    /// @brief reads the vsync option
+    /// @param stream the data to read from
+    void readVSync( nlohmann::ordered_json const& data );
 
 
     /// @brief map of the PlatformSystem read methods

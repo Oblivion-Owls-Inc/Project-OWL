@@ -55,6 +55,9 @@
                     0.5
                 ]
             },
+            "Fireball": {
+              "Filepath": "Data/Textures/Balls/Ball4.png"
+            },
             "Ball3": {
                 "Filepath": "Data/Textures/Balls/Ball3.png",
                 "SheetDimensions": [
@@ -258,7 +261,7 @@
                             0.0,
                             0.0
                         ],
-                        "Opacity": 1.0,
+                        "Opacity": 0.0,
                         "FrameIndex": 0,
                         "Texture": "Enemy"
                     },
@@ -273,7 +276,22 @@
                             2.0
                         ],
                         "IsDiegetic": true
-                    }
+                    },
+                    "Emitter": {
+                      "Continuous": true,
+                      "PPS": 680.474,
+                      "Delay": 0.0,
+                      "Max": 2048,
+                      "EmitData": [[0.0,0.0],[0.0,0.0],[0.0,0.0],4.937,2.2,0.574,0.0,3.14,0.51,
+                                      0.37,0.0,0.04,0.14,0.79,0.0,-2.6]
+                      },
+                      "ParticleSprite": {
+                          "Layer": 3,
+                          "Color": [0.0,0.0,0.0,0.0],
+                          "Opacity": 1.0,
+                          "FrameIndex": 0,
+                          "Texture": "Fireball"
+                      }
                 }
             },
             "Turret": {
@@ -392,23 +410,7 @@
                     "Spawners": [
                         [
                             0.0,
-                            0.0
-                        ],
-                        [
-                            1.0,
-                            1.0
-                        ],
-                        [
-                            2.0,
-                            2.0
-                        ],
-                        [
-                            -1.0,
-                            -1.0
-                        ],
-                        [
-                            -2.0,
-                            -2.0
+                            -10.0
                         ]
                     ],
                     "Waves": [
@@ -422,13 +424,6 @@
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
                                     "Spawner": 0
-                                },
-                                {
-                                    "EnemyName": "Enemy",
-                                    "Amount": 5,
-                                    "SpawnInterval": 4.0,
-                                    "InitialOffset": 2.0,
-                                    "Spawner": 1
                                 }
                             ]
                         },
@@ -439,13 +434,6 @@
                                 {
                                     "EnemyName": "Enemy",
                                     "Amount": 5,
-                                    "SpawnInterval": 4.0,
-                                    "InitialOffset": 2.0,
-                                    "Spawner": 1
-                                },
-                                {
-                                    "EnemyName": "Enemy",
-                                    "Amount": 10,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
                                     "Spawner": 0
@@ -2426,6 +2414,23 @@
                     "IsDiegetic": true
                 }
             }
+        },
+        "Snow": {
+          "Name": "Snow",
+          "Components": {
+            "Transform": {},
+            "Emitter": {
+              "Continuous": true,
+              "PPS": 100.453,
+              "Delay": 0.0,
+              "Max": 2048,
+              "EmitData": [[-1.0,11.0],[15.31,0.54],[0.0,0.0],4.937,2.19,0.2,0.0,0.0,0.963,0.165,0.0,0.0,0.25,3.0,0.0,0.0]
+            },
+            "ParticleSprite": {
+              "Texture": "Ball3",
+              "Layer": 1
+            }
+          }
         },
         "Player": {
             "Name": "Player",
