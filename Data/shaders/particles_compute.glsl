@@ -7,24 +7,22 @@ layout(local_size_x = 128, local_size_y = 1, local_size_z = 1) in;
 // raw particle data
 struct Particle
 {
-    vec2 pos; float size,    rotation;
-    vec2 vel; float size_d,  rotation_d;
-    vec2 acc; float dirAcc,  drag;   // dirAcc - magnitude of accelerating in the initial direction
-    float lifetime, time;
-    float fadeIn, fadeOut;
+    vec2 pos, vel, acc, vec2padding; 
+    float size, rotation,
+          dirAcc,  drag,   // dirAcc - magnitude of accelerating in the initial direction
+          lifetime, time,
+          fadeIn, fadeOut;
 };
 
 // how to initialize particles (including randomness and change over time)
 struct InitData
 {
-    vec2 offset;
-    vec2 pos_spread;
-    vec2 acceleration;
-    float direction,  speed,        size,         rotation;
-    float dir_spread, speed_spread, size_spread,  rotation_spread;
-    float fadeInDuration, fadeOutDuration;
-    float lifetime, startAhead;
-    int bufferSize, placeholder;
+    vec2 offset, pos_spread;
+    vec2 acceleration; float direction,  speed;
+    float size, rotation,  dir_spread, speed_spread; 
+    float size_spread, rotation_spread,  fadeInDuration, fadeOutDuration;
+    float lifetime, startAhead, dirAcc, padding;
+    int bufferSize, p1, p2, p3;
 };
 
 // Particle data buffer
@@ -85,25 +83,34 @@ void main()
         float direction = init[initIndex].direction + init[initIndex].dir_spread * urand(3.0);
         float speed = init[initIndex].speed + init[initIndex].speed_spread * urand(4.0);
 
-        // initialize
-        particles[idx].pos = parentPos + init[initIndex].offset + pos_spread; // TODO: + parent pos
-        particles[idx].vel = vec2( cos(direction), sin(direction) ) * speed;
-        particles[idx].pos += particles[idx].vel * init[initIndex].startAhead;
-        particles[idx].size = init[initIndex].size - init[initIndex].size_spread * prand(5.0);
-        particles[idx].rotation = init[initIndex].rotation + init[initIndex].rotation_spread * urand(6.0);
-        particles[idx].lifetime = init[initIndex].lifetime;
-        particles[idx].acc = init[initIndex].acceleration;
-        particles[idx].fadeIn = init[initIndex].fadeInDuration;
-        particles[idx].fadeOut = particles[idx].lifetime - init[initIndex].fadeOutDuration;
+        // 'zinit' will be 0 if range covers the entire buffer.
+        // (I zero-init everything by setting range to the whole buffer size)
+        float zinit = step(range.y - range.x, init[initIndex].bufferSize-1);
+
+        // initialize   (to 0 or to initial values)
+        particles[idx].vel = zinit *  (vec2( cos(direction), sin(direction) ) * speed);
+        particles[idx].pos = zinit *  (parentPos + init[initIndex].offset + pos_spread +
+                                       init[initIndex].startAhead * particles[idx].vel);
+        particles[idx].size = zinit *  (init[initIndex].size - 
+                                        init[initIndex].size_spread * prand(5.0));
+        particles[idx].rotation = zinit *  (init[initIndex].rotation + 
+                                            init[initIndex].rotation_spread * urand(6.0));
+        particles[idx].acc = zinit * (init[initIndex].acceleration +
+                                      init[initIndex].dirAcc * particles[idx].vel);
+        particles[idx].lifetime = zinit * init[initIndex].lifetime;
+        particles[idx].fadeIn =   zinit * init[initIndex].fadeInDuration;
+        particles[idx].fadeOut =  zinit * particles[idx].lifetime - init[initIndex].fadeOutDuration;
         particles[idx].time = 0.0;
+
+        particles[idx].drag = 0.0; // TODO:?
     }
 
     // apply the uh.. derivatives
     particles[idx].vel *= (1.0 - particles[idx].drag*dt);
     particles[idx].vel += particles[idx].acc * dt;
     particles[idx].pos += particles[idx].vel * dt;
-    particles[idx].size += particles[idx].size_d * dt;
-    particles[idx].rotation += particles[idx].rotation_d * dt;
+    //particles[idx].size += particles[idx].size_d * dt;
+    //particles[idx].rotation += particles[idx].rotation_d * dt;
 
     // "destroy" (just set size to 0) when time runs out
     particles[idx].time += dt;
@@ -117,11 +124,13 @@ void main()
     mat4 T = mat4(1.0);  T[3] = vec4(particles[idx].pos, 0, 1);
 
     // arrange them from oldest to newest for rendering. inverse deque, wooo
-    // TODO: option to choose render ordering? forward vs backward
     int renderIndex = (int(idx) + (init[initIndex].bufferSize - oldest)) % init[initIndex].bufferSize;
-    transforms[renderIndex] = proj * T * R * S;
+    transforms[renderIndex] = proj * T * R * S; // TODO: change back to renderIndex
 
     // fade in and out
     opacities[renderIndex] = lerpOpacity(0,                      particles[idx].fadeIn,   particles[idx].time) *
                           (1-lerpOpacity(particles[idx].fadeOut, particles[idx].lifetime, particles[idx].time));
 }
+
+// debugging: matrices order is not the issue. in fact, matrices are great.
+// wrong values are actually getting assigned.

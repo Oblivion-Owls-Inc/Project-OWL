@@ -8,16 +8,22 @@
 #pragma once
 #include "Sprite.h"
 
-class Emitter;
+class Emitter;  // fwd ref
 
 /// @brief      A version of Sprite for rendering tilemaps using GPU instancing.
 class ParticleSprite : public Sprite
 {
 public:
 
-    /// @brief              Default constructor
+    /// @brief        Default constructor
     ParticleSprite();
 
+    /// @brief        Copy constructor
+    /// @param other  Component to copy
+    ParticleSprite(const ParticleSprite& other);
+
+    /// @brief        Destructor: calls OnExit if needed
+    ~ParticleSprite();
 
 //-----------------------------------------------------------------------------
 //          Virtual overrides
@@ -31,11 +37,14 @@ private:
     /// @brief  called when exiting a scene
     virtual void OnExit() override;
 
+    /// @return  Copy of this component
+    virtual Component* Clone() const override;
+
 
 public:
     // from Sprite
 
-    /// @brief     Draws tilemap using currently loaded array.
+    /// @brief     Draws particles using gpu instancing.
     virtual void Draw() override;
 
 
@@ -43,7 +52,6 @@ public:
 //              Data
 //-----------------------------------------------------------------------------
 private:
-    glm::ivec2 m_Range = {0,0};   /// @brief   Range of particle indices to render
     unsigned int m_VAO = 0;       /// @brief   VAO that links mesh and SSBO buffers
     Emitter* m_Emitter = nullptr; /// @brief   Parent's emitter component
 

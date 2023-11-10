@@ -29,6 +29,8 @@ public:
                   std::type_index type = typeid(TilemapSprite));;
 
 
+    ~TilemapSprite();
+
 
 //-----------------------------------------------------------------------------
 //          Public methods

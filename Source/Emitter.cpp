@@ -11,44 +11,50 @@
 #include "Entity.h"         // parent transform
 #include "Transform.h"
 
+
 /// @brief	    Defualt constructor
 Emitter::Emitter() : Component( typeid( Emitter ) ) {}
+
+
+/// @brief        Copy constructor
+/// @param other  Component to copy
+Emitter::Emitter(const Emitter& other) : Component(other),
+    m_Init(other.m_Init),
+    m_PPS(other.m_PPS),
+    m_Continuous(other.m_Continuous),
+    m_Delay(other.m_Delay),
+    m_BufferSize(other.m_BufferSize)
+{}
 
 
 /// @return     A copy of this emitter
 Component* Emitter::Clone() const { return new Emitter(*this); }
 
 
+/// @brief    Destructor: calls OnExit if needed
+Emitter::~Emitter()
+{
+    if (m_DataSSBO)
+        OnExit();
+}
+
+
+
+
+//-----------------------------------------------------------------------------
+//              Overrides
+//-----------------------------------------------------------------------------
+
 /// @brief  Initialization: add this emitter to particle system, init buffers
 void Emitter::OnInit()
 {
     Particles()->AddEmitter(this);
 
+    // create/init buffers
     glGenBuffers(1, &m_MatSSBO);
     glGenBuffers(1, &m_DataSSBO);
     glGenBuffers(1, &m_OpacitySSBO);
-
-    m_Init.bufferSize = m_BufferSize;
-    m_WGcount = m_BufferSize / Particles()->GetWorkGroupSize();
-
-    // raw data buffer
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_DataSSBO);
-    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(ParticleSystem::Particle) * 
-                                           m_BufferSize, NULL, GL_STREAM_DRAW);
-
-    // opacities buffer
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_OpacitySSBO);
-    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(float) * 
-                                           m_BufferSize, NULL, GL_STREAM_DRAW);
-    // allow it to be read by vertex shader
-    glMemoryBarrier(GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT);
-
-    // transform matrices buffer
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_MatSSBO);
-    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(glm::mat4) * 
-                                           m_BufferSize, NULL, GL_STREAM_DRAW);
-    // allow it to be read by vertex shader
-    glMemoryBarrier(GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT);
+    resizeBuffers();
 
     // uniform locations
     Shader* cs = Renderer()->GetShader("pCompute");
@@ -61,13 +67,47 @@ void Emitter::OnInit()
 }
 
 
+/// @brief  Exit: emitter removes itself from behavior system; free GPU memory
+void Emitter::OnExit()
+{
+    Particles()->RemoveEmitter(this);
+    glDeleteBuffers(1, &m_DataSSBO);
+    glDeleteBuffers(1, &m_MatSSBO);
+    glDeleteBuffers(1, &m_OpacitySSBO);
+
+    m_DataSSBO = 0;  // for destructor
+}
+
+
+
+
+//-----------------------------------------------------------------------------
+//              Public methods
+//-----------------------------------------------------------------------------
+
 /// @brief          Called by particle system after loading emit data. Accepts
 ///                 some locations of uniforms on compute shader, dispatches
 ///                 the compute shader to update its particles.
 /// @param dt       Deltatime
 void Emitter::Update(float dt)
 {
-    // manage timing if set to continuous
+    // bind individual buffers
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, m_DataSSBO);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, m_OpacitySSBO);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, m_MatSSBO);
+
+    // zero-init the buffer (by setting range to whole size)
+    if (m_Zinit)
+    {
+        m_Zinit = false;
+        glUniform2i(m_Urange, 0, m_BufferSize);
+        glDispatchCompute(m_WGcount, 1, 1);
+
+        return;
+    }
+
+    // --------------- TIMING -------------- //
+    
     if (m_Continuous)
     {
         m_ParticleCount += m_PPS * dt;
@@ -81,16 +121,15 @@ void Emitter::Update(float dt)
                 m_DelayTimer -= m_Delay;
             else
             {
-                // delay time not reached: return (but compute first, too)
-                // TODO: better logic ordering for this?
-                glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, m_DataSSBO);
-                glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, m_OpacitySSBO);
-                glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, m_MatSSBO);
+                // delay time not reached: no emitting. Just update
                 glDispatchCompute(m_WGcount, 1, 1);
+
                 return;
             }
         }
     }
+
+    // -------------- EMITTING ------------- //
 
     // emit the integer part, keep the fractional part
     int count = (int)m_ParticleCount;
@@ -107,29 +146,17 @@ void Emitter::Update(float dt)
 
         // other uniforms: oldest particle and parent position
         glUniform1i(m_Uoldest, m_CurrentIndex);
+
         if (m_Transform)
             glUniform2fv(m_UparentPos, 1, &m_Transform->GetTranslation().x);
     }
     else
-        glUniform2i(m_Urange, -1, -1); // (not emitting this time)
+        glUniform2i(m_Urange, -1, -1); // (nothing to emit this time)
 
-
-    // bind this emitter's buffers and COMPUTE!
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, m_DataSSBO);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, m_OpacitySSBO);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, m_MatSSBO);
+    
     glDispatchCompute(m_WGcount, 1, 1);
 }
 
-
-/// @brief  Exit: emitter removes itself from behavior system
-void Emitter::OnExit()
-{
-    Particles()->RemoveEmitter(this);
-    glDeleteBuffers(1, &m_DataSSBO);
-    glDeleteBuffers(1, &m_MatSSBO);
-    glDeleteBuffers(1, &m_OpacitySSBO);
-}
 
 
 
@@ -185,32 +212,15 @@ void Emitter::Inspector()
     ImGui::Spacing();
     ImGui::Text("Acceleration");
     initChanged |= ImGui::DragFloat2("###acc", &m_Init.acceleration.x, 0.1f);
+    ImGui::Text("Initial direction accel factor");
+    initChanged |= ImGui::DragFloat("###diracc", &m_Init.dirAcc, 0.1f);
 
     ImGui::Spacing();
     ImGui::Spacing();
     ImGui::Text("Maximum rendered particles");
     if (ImGui::DragInt("###maxp", &m_BufferSize, 128, 128, 32768))
     {
-        m_BufferSize = int(std::ceil(m_BufferSize / 128.0f) * 128);
-
-        // raw data buffer
-        glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_DataSSBO);
-        glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(ParticleSystem::Particle) * 
-                     m_BufferSize, NULL, GL_STREAM_DRAW);
-
-        // opacities buffer
-        glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_OpacitySSBO);
-        glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(float) * 
-                     m_BufferSize, NULL, GL_STREAM_DRAW);
-
-        // transform matrices buffer
-        glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_MatSSBO);
-        glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(glm::mat4) * 
-                     m_BufferSize, NULL, GL_STREAM_DRAW);
-
-
-        m_WGcount = m_BufferSize / Particles()->GetWorkGroupSize();
-        m_Init.bufferSize = m_BufferSize;
+        resizeBuffers();
         initChanged = true;
     }
     ImGui::TextWrapped("Note: if it starts acting up when adjusting this number, "\
@@ -220,6 +230,42 @@ void Emitter::Inspector()
     if (initChanged)
         Particles()->SetEmitDataDirty();
 }
+
+
+
+
+//-----------------------------------------------------------------------------
+//              Helpers
+//-----------------------------------------------------------------------------
+
+/// @brief   (re)allocates buffers based on m_BufferSize.
+void Emitter::resizeBuffers()
+{
+    // ensure buffer size is multiple of 128
+    m_BufferSize = int(std::ceil(m_BufferSize / 128.0f) * 128);
+    m_Init.bufferSize = m_BufferSize;
+    m_WGcount = m_BufferSize / Particles()->GetWorkGroupSize();
+
+    // raw data buffer
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_DataSSBO);
+    glBufferData(GL_SHADER_STORAGE_BUFFER, (sizeof(ParticleSystem::Particle)) * 
+                                            m_BufferSize, NULL, GL_STREAM_DRAW);
+
+    // opacities buffer
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_OpacitySSBO);
+    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(float) * 
+                    m_BufferSize, NULL, GL_STREAM_DRAW);
+    // allow it to be read by vertex shader
+
+    // transform matrices buffer
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_MatSSBO);
+    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(glm::mat4) * 
+                    m_BufferSize, NULL, GL_STREAM_DRAW);
+    // allow it to be read by vertex shader
+
+    m_Zinit = true;
+}
+
 
 
 
@@ -278,6 +324,7 @@ void Emitter::readData(nlohmann::ordered_json const& data)
     m_Init.fadeOutDuration = Stream::Read< float >(data[i++]);
     m_Init.lifetime = Stream::Read< float >(data[i++]);
     m_Init.startAhead = Stream::Read< float >(data[i++]);
+    m_Init.dirAcc = Stream::Read< float >(data[i++]);
 }
 
 
@@ -302,6 +349,7 @@ nlohmann::ordered_json Emitter::Write() const
     data["PPS"] = m_PPS;
     data["Delay"] = m_Delay;
     data["Max"] = m_BufferSize;
+    data["Continuous"] = m_Continuous;
 
     // ordered consistently with ParticleSystem::EmitData
     nlohmann::ordered_json& emitData = data[ "EmitData" ];
@@ -320,6 +368,7 @@ nlohmann::ordered_json Emitter::Write() const
     emitData.push_back( Stream::Write( m_Init.fadeOutDuration ) );
     emitData.push_back( Stream::Write( m_Init.lifetime ) );
     emitData.push_back( Stream::Write( m_Init.startAhead ) );
+    emitData.push_back( Stream::Write( m_Init.dirAcc ) );
 
     return data;
 }

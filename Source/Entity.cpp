@@ -195,6 +195,9 @@
 
             // Delete the component.
             delete component.second;
+
+            // No dangling ptr
+            component.second = nullptr;
         }
         // Clear the component list.
         m_Components.clear();

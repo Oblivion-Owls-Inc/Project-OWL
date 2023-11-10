@@ -14,10 +14,26 @@
 #include "Entity.h"         // parent
 
 
-/// @brief              Default constructor
+/// @brief          Default constructor
 ParticleSprite::ParticleSprite() : 
     Sprite( typeid(ParticleSprite) )
 {}
+
+/// @brief          Copy constructor
+/// @param other    Component to copy
+ParticleSprite::ParticleSprite(const ParticleSprite& other) :
+    Sprite ( other )
+{}
+
+/// @return  Copy of this component
+Component* ParticleSprite::Clone() const { return new ParticleSprite(*this); }
+
+/// @brief      Destructor: calls OnExit if needed
+ParticleSprite::~ParticleSprite()
+{
+    if (m_VAO)
+        OnExit();
+}
 
 
 
@@ -25,7 +41,7 @@ ParticleSprite::ParticleSprite() :
 //          Virtual overrides
 //-----------------------------------------------------------------------------
 
-/// @brief  Inits VAO and shader when entering scene
+/// @brief   Inits VAO and shader when entering scene
 void ParticleSprite::OnInit()
 {
     Sprite::OnInit();
@@ -41,21 +57,17 @@ void ParticleSprite::OnInit()
                                                         "Data/Shaders/particles.frag"));
 }
 
+
 /// @brief   Deletes VAO when exiting
 void ParticleSprite::OnExit()
 {
     Sprite::OnExit();
-    if (m_VAO)
-        glDeleteVertexArrays(1, &m_VAO);
-
+    glDeleteVertexArrays(1, &m_VAO);
     m_VAO = 0;
 }
 
 
-
-/// @brief          Draws tilemap using currently loaded array.
-///                 Note: currently, it draws with or without transform. Should I
-///                       just NOT allow transform-less rendering?...
+/// @brief     Draws particles using gpu instancing.
 void ParticleSprite::Draw()
 {
     Shader* sh = Renderer()->GetShader("particles");
