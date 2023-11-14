@@ -2,8 +2,8 @@
     "Assets": {
         "Sounds": {
             "Music": {
-                "IsLoopabe": true,
-                "Filepath": "Data/Sounds/Music/test.mp3"
+              "IsLoopabe": true,
+                "Filepath": "Data/Sounds/Music/background.ogg"
             },
             "PlayerFootSteps": {
                 "IsLoopabe": true,
@@ -344,7 +344,7 @@
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
+                    "PlayOnInit": true,
                     "Sound": "Music"
                 }
             }
