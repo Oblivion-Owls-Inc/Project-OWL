@@ -72,18 +72,103 @@ $(function() {
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;behavior.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;BasicEntityBehavior.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Pool_8h.html">Pool.h</a>&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classEnemyBehavior.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="classEnemyBehavior.html">EnemyBehavior</a> :</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">public</span> <a class="code" href="classBehavior.html">Behavior</a> </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
-<div class="ttc" id="aclassBehavior_html"><div class="ttname"><a href="classBehavior.html">Behavior</a></div><div class="ttdef"><b>Definition:</b> Behavior.h:17</div></div>
-<div class="ttc" id="aclassEnemyBehavior_html"><div class="ttname"><a href="classEnemyBehavior.html">EnemyBehavior</a></div><div class="ttdef"><b>Definition:</b> EnemyBehavior.h:17</div></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="classPathfinder.html">Pathfinder</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="classTransform.html">Transform</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="classRigidBody.html">RigidBody</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classEnemyBehavior.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classEnemyBehavior.html">EnemyBehavior</a> : <span class="keyword">public</span> <a class="code" href="classBasicEntityBehavior.html">BasicEntityBehavior</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>: <span class="comment">// constructor / destructor</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classEnemyBehavior.html">EnemyBehavior</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">private</span>: <span class="comment">// virtual override methods</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnInit() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnFixedUpdate() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">private</span>: <span class="comment">// Member Variables</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">float</span> m_Speed = 10.0f;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">int</span> m_Damage = 1;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::string m_PathfinderName = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classPathfinder.html">Pathfinder</a>* m_Pathfinder = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classTransform.html">Transform</a>* m_Transform = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classRigidBody.html">RigidBody</a>* m_RigidBody = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> ChaseTarget();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">private</span>: <span class="comment">// Reading</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> readPathfinderName( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> readSpeed( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> readDamage(nlohmann::ordered_json <span class="keyword">const</span>&amp; data);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; EnemyBehavior &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">public</span>: <span class="comment">// accessors</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classEnemyBehavior.html#aae7023bcc571e96354ec1ca6f2f5c565">GetDamage</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    nlohmann::ordered_json <a class="code" href="classEnemyBehavior.html#acca8ce2fd912d5f88610ff5dcb3261b5">Write</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classEnemyBehavior.html#a67bfafad0cd82158dedf8095402b4fd1">   99</a></span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classEnemyBehavior.html#a67bfafad0cd82158dedf8095402b4fd1">GetReadMethods</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">public</span>: <span class="comment">// copying</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classEnemyBehavior.html#a7ddc797439742166c3cd9f38c293aa2c">  110</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classEnemyBehavior.html">EnemyBehavior</a>* <a class="code" href="classEnemyBehavior.html#a7ddc797439742166c3cd9f38c293aa2c">Clone</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classEnemyBehavior.html">EnemyBehavior</a>( *<span class="keyword">this</span> );</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">private</span>: <span class="comment">// copying</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="classEnemyBehavior.html">EnemyBehavior</a>( <a class="code" href="classEnemyBehavior.html">EnemyBehavior</a> <span class="keyword">const</span>&amp; other );</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;};</div>
+<div class="ttc" id="aPool_8h_html"><div class="ttname"><a href="Pool_8h.html">Pool.h</a></div><div class="ttdoc">Used for Pools like Time or Health.</div></div>
+<div class="ttc" id="aclassBasicEntityBehavior_html"><div class="ttname"><a href="classBasicEntityBehavior.html">BasicEntityBehavior</a></div><div class="ttdef"><b>Definition:</b> BasicEntityBehavior.h:8</div></div>
+<div class="ttc" id="aclassEnemyBehavior_html"><div class="ttname"><a href="classEnemyBehavior.html">EnemyBehavior</a></div><div class="ttdef"><b>Definition:</b> EnemyBehavior.h:19</div></div>
+<div class="ttc" id="aclassEnemyBehavior_html_a67bfafad0cd82158dedf8095402b4fd1"><div class="ttname"><a href="classEnemyBehavior.html#a67bfafad0cd82158dedf8095402b4fd1">EnemyBehavior::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">gets the map of read methods</div><div class="ttdef"><b>Definition:</b> EnemyBehavior.h:99</div></div>
+<div class="ttc" id="aclassEnemyBehavior_html_a7ddc797439742166c3cd9f38c293aa2c"><div class="ttname"><a href="classEnemyBehavior.html#a7ddc797439742166c3cd9f38c293aa2c">EnemyBehavior::Clone</a></div><div class="ttdeci">virtual EnemyBehavior * Clone() const override</div><div class="ttdoc">creates a new copy of this Component</div><div class="ttdef"><b>Definition:</b> EnemyBehavior.h:110</div></div>
+<div class="ttc" id="aclassEnemyBehavior_html_aae7023bcc571e96354ec1ca6f2f5c565"><div class="ttname"><a href="classEnemyBehavior.html#aae7023bcc571e96354ec1ca6f2f5c565">EnemyBehavior::GetDamage</a></div><div class="ttdeci">int GetDamage()</div><div class="ttdef"><b>Definition:</b> EnemyBehavior.cpp:105</div></div>
+<div class="ttc" id="aclassEnemyBehavior_html_acca8ce2fd912d5f88610ff5dcb3261b5"><div class="ttname"><a href="classEnemyBehavior.html#acca8ce2fd912d5f88610ff5dcb3261b5">EnemyBehavior::Write</a></div><div class="ttdeci">nlohmann::ordered_json Write() const</div><div class="ttdoc">write all component data to a JSON object</div><div class="ttdef"><b>Definition:</b> EnemyBehavior.cpp:111</div></div>
+<div class="ttc" id="aclassPathfinder_html"><div class="ttname"><a href="classPathfinder.html">Pathfinder</a></div><div class="ttdef"><b>Definition:</b> Pathfinder.h:12</div></div>
+<div class="ttc" id="aclassRigidBody_html"><div class="ttname"><a href="classRigidBody.html">RigidBody</a></div><div class="ttdef"><b>Definition:</b> RigidBody.h:29</div></div>
+<div class="ttc" id="aclassTransform_html"><div class="ttname"><a href="classTransform.html">Transform</a></div><div class="ttdef"><b>Definition:</b> Transform.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -21,12 +21,18 @@ Collaboration diagram for Platform\+System\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-GLFWwindow $\ast$ \mbox{\hyperlink{classPlatformSystem_a31290a935b15d34058ca8f127e329e7e}{Get\+Window\+Handle}} () const
+void \mbox{\hyperlink{classPlatformSystem_a48d1c8fb51bba89e3386ac04626bcc4b}{Add\+On\+Window\+Resize\+Callback}} (unsigned owner\+Id, std\+::function$<$ void(glm\+::ivec2 const \&size) $>$ callback)
+\begin{DoxyCompactList}\small\item\em adds a callback to get called whenever the window resizes \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlatformSystem_a761878f6076e03f60246aea3044950f7}{Remove\+On\+Window\+Resize\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em removes an On\+Window\+Resize callback \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlatformSystem_a7b7d488277ebfc3295176ef3223bf08b}{set\+Fullscreen}} (bool fullscreen)
+\begin{DoxyCompactList}\small\item\em sets whether the window is fullscreen \end{DoxyCompactList}\item 
+GLFWwindow $\ast$ \mbox{\hyperlink{classPlatformSystem_a7d73cfdf13c05bef48a7e03c9ce0783d}{Get\+Window\+Handle}} ()
 \begin{DoxyCompactList}\small\item\em Returns the window handle. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classPlatformSystem_a584ec85c50d98f503a727de4b75a18f6}{Window\+Closing}} () const
-\begin{DoxyCompactList}\small\item\em Checks if the window is closing. \end{DoxyCompactList}\item 
 glm\+::ivec2 \mbox{\hyperlink{classPlatformSystem_a065f3bce34c50288f3c7fea6fe97e70c}{Get\+Window\+Dimensions}} () const
-\begin{DoxyCompactList}\small\item\em Returns window dimensions as a vec2. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns window dimensions in pixels. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classPlatformSystem_a344964fb6aa36a9d64349cbfaa716a42}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPlatformSystem_a8fded9fb1c1602acd76c771e38fc6a7c}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classSystem}{System}} config \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classPlatformSystem_a3917de7d7e255d5678c4a8eb8f07ece3}\label{classPlatformSystem_a3917de7d7e255d5678c4a8eb8f07ece3}} 
@@ -44,6 +50,23 @@ static \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} $\ast$ \mbox{\hy
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPlatformSystem_a48d1c8fb51bba89e3386ac04626bcc4b}\label{classPlatformSystem_a48d1c8fb51bba89e3386ac04626bcc4b}} 
+\index{PlatformSystem@{PlatformSystem}!AddOnWindowResizeCallback@{AddOnWindowResizeCallback}}
+\index{AddOnWindowResizeCallback@{AddOnWindowResizeCallback}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{AddOnWindowResizeCallback()}{AddOnWindowResizeCallback()}}
+{\footnotesize\ttfamily void Platform\+System\+::\+Add\+On\+Window\+Resize\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{std\+::function$<$ void(glm\+::ivec2 const \&size) $>$}]{callback }\end{DoxyParamCaption})}
+
+
+
+adds a callback to get called whenever the window resizes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & ID of the owner of the callback (used for removing the callback later) \\
+\hline
+{\em callback} & the to callback to add \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classPlatformSystem_a01ebae6f4d5422d5494e55c3ed629488}\label{classPlatformSystem_a01ebae6f4d5422d5494e55c3ed629488}} 
 \index{PlatformSystem@{PlatformSystem}!GetInstance@{GetInstance}}
 \index{GetInstance@{GetInstance}!PlatformSystem@{PlatformSystem}}
@@ -61,6 +84,23 @@ a pointer to the \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} instan
 
 \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} pointer\+: new or existing instance of this system. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classPlatformSystem_a344964fb6aa36a9d64349cbfaa716a42}\label{classPlatformSystem_a344964fb6aa36a9d64349cbfaa716a42}} 
+\index{PlatformSystem@{PlatformSystem}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Platform\+System\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
 \mbox{\Hypertarget{classPlatformSystem_a065f3bce34c50288f3c7fea6fe97e70c}\label{classPlatformSystem_a065f3bce34c50288f3c7fea6fe97e70c}} 
 \index{PlatformSystem@{PlatformSystem}!GetWindowDimensions@{GetWindowDimensions}}
 \index{GetWindowDimensions@{GetWindowDimensions}!PlatformSystem@{PlatformSystem}}
@@ -69,16 +109,18 @@ a pointer to the \mbox{\hyperlink{classPlatformSystem}{Platform\+System}} instan
 
 
 
-Returns window dimensions as a vec2. 
+Returns window dimensions in pixels. 
+
+Returns window dimensions as a vec2.
 
 \begin{DoxyReturn}{Returns}
 glm ivec2\+: x = width, y = height. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classPlatformSystem_a31290a935b15d34058ca8f127e329e7e}\label{classPlatformSystem_a31290a935b15d34058ca8f127e329e7e}} 
+\mbox{\Hypertarget{classPlatformSystem_a7d73cfdf13c05bef48a7e03c9ce0783d}\label{classPlatformSystem_a7d73cfdf13c05bef48a7e03c9ce0783d}} 
 \index{PlatformSystem@{PlatformSystem}!GetWindowHandle@{GetWindowHandle}}
 \index{GetWindowHandle@{GetWindowHandle}!PlatformSystem@{PlatformSystem}}
 \doxysubsubsection{\texorpdfstring{GetWindowHandle()}{GetWindowHandle()}}
-{\footnotesize\ttfamily GLFWwindow $\ast$ Platform\+System\+::\+Get\+Window\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily GLFWwindow $\ast$ Platform\+System\+::\+Get\+Window\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -87,19 +129,36 @@ Returns the window handle.
 \begin{DoxyReturn}{Returns}
 GLFWwindow pointer\+: Current window handle. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classPlatformSystem_a584ec85c50d98f503a727de4b75a18f6}\label{classPlatformSystem_a584ec85c50d98f503a727de4b75a18f6}} 
-\index{PlatformSystem@{PlatformSystem}!WindowClosing@{WindowClosing}}
-\index{WindowClosing@{WindowClosing}!PlatformSystem@{PlatformSystem}}
-\doxysubsubsection{\texorpdfstring{WindowClosing()}{WindowClosing()}}
-{\footnotesize\ttfamily bool Platform\+System\+::\+Window\+Closing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+\mbox{\Hypertarget{classPlatformSystem_a761878f6076e03f60246aea3044950f7}\label{classPlatformSystem_a761878f6076e03f60246aea3044950f7}} 
+\index{PlatformSystem@{PlatformSystem}!RemoveOnWindowResizeCallback@{RemoveOnWindowResizeCallback}}
+\index{RemoveOnWindowResizeCallback@{RemoveOnWindowResizeCallback}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{RemoveOnWindowResizeCallback()}{RemoveOnWindowResizeCallback()}}
+{\footnotesize\ttfamily void Platform\+System\+::\+Remove\+On\+Window\+Resize\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
 
 
 
-Checks if the window is closing. 
+removes an On\+Window\+Resize callback 
 
-\begin{DoxyReturn}{Returns}
-bool\+: true if the window is closing. 
-\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPlatformSystem_a7b7d488277ebfc3295176ef3223bf08b}\label{classPlatformSystem_a7b7d488277ebfc3295176ef3223bf08b}} 
+\index{PlatformSystem@{PlatformSystem}!setFullscreen@{setFullscreen}}
+\index{setFullscreen@{setFullscreen}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{setFullscreen()}{setFullscreen()}}
+{\footnotesize\ttfamily void Platform\+System\+::set\+Fullscreen (\begin{DoxyParamCaption}\item[{bool}]{fullscreen }\end{DoxyParamCaption})}
+
+
+
+sets whether the window is fullscreen 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullscreen} & whether to set the window to fullscreen or windowed \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classPlatformSystem_a8fded9fb1c1602acd76c771e38fc6a7c}\label{classPlatformSystem_a8fded9fb1c1602acd76c771e38fc6a7c}} 
 \index{PlatformSystem@{PlatformSystem}!Write@{Write}}
 \index{Write@{Write}!PlatformSystem@{PlatformSystem}}

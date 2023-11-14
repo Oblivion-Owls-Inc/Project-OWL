@@ -75,7 +75,7 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Stream_8h.html">Stream.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">using</span> ReadMethod = void (T::*)( nlohmann::ordered_json <span class="keyword">const</span>&amp; json );</div>
@@ -101,7 +101,6 @@ $(function() {
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
-<div class="ttc" id="aStream_8h_html"><div class="ttname"><a href="Stream_8h.html">Stream.h</a></div><div class="ttdoc">JSON File reading/writing.</div></div>
 <div class="ttc" id="aclassISerializable_html"><div class="ttname"><a href="classISerializable.html">ISerializable</a></div><div class="ttdoc">interface for all serializable objects</div><div class="ttdef"><b>Definition:</b> ISerializable.h:24</div></div>
 <div class="ttc" id="aclassISerializable_html_a28ebd6e1c108281c986f97d36f3bbfd1"><div class="ttname"><a href="classISerializable.html#a28ebd6e1c108281c986f97d36f3bbfd1">ISerializable::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const</div><div class="ttdoc">Gets the map of read methods for this object.</div><div class="ttdef"><b>Definition:</b> ISerializable.h:31</div></div>
 <div class="ttc" id="aclassISerializable_html_a7b60e4aca93fb97f18c9ff41ee53bc3a"><div class="ttname"><a href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">ISerializable::AfterLoad</a></div><div class="ttdeci">virtual void AfterLoad()</div><div class="ttdoc">function which gets called after all data is read into this object on deserialization</div><div class="ttdef"><b>Definition:</b> ISerializable.h:38</div></div>

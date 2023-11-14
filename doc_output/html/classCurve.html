@@ -156,6 +156,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a2aeb0f8a21a21444498ea5db3a7cad88"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCurve.html#a2aeb0f8a21a21444498ea5db3a7cad88">SetIsLooping</a> (bool isLooping)</td></tr>
 <tr class="memdesc:a2aeb0f8a21a21444498ea5db3a7cad88"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether this curve loops  <a href="classCurve.html#a2aeb0f8a21a21444498ea5db3a7cad88">More...</a><br /></td></tr>
 <tr class="separator:a2aeb0f8a21a21444498ea5db3a7cad88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e087f31889f8870af6913e09b049f34"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCurve.html#a6e087f31889f8870af6913e09b049f34">GetReadMethods</a> () const override</td></tr>
+<tr class="memdesc:a6e087f31889f8870af6913e09b049f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classCurve.html">Curve</a> read method map  <a href="classCurve.html#a6e087f31889f8870af6913e09b049f34">More...</a><br /></td></tr>
+<tr class="separator:a6e087f31889f8870af6913e09b049f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f48c58fbbd4b0cdf97f244138ae5132"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCurve.html#a5f48c58fbbd4b0cdf97f244138ae5132">Write</a> () const override</td></tr>
 <tr class="memdesc:a5f48c58fbbd4b0cdf97f244138ae5132"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this <a class="el" href="classCurve.html">Curve</a> to json  <a href="classCurve.html#a5f48c58fbbd4b0cdf97f244138ae5132">More...</a><br /></td></tr>
 <tr class="separator:a5f48c58fbbd4b0cdf97f244138ae5132"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -414,6 +417,38 @@ template&lt;int dimensionality&gt; </div>
 
 <p>gets the smallest values of each axis among all ControlPoints </p>
 <dl class="section return"><dt>Returns</dt><dd>the smallest values of each axis among all ControlPoints </dd></dl>
+
+</div>
+</div>
+<a id="a6e087f31889f8870af6913e09b049f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e087f31889f8870af6913e09b049f34">&#9670;&nbsp;</a></span>GetReadMethods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dimensionality&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const&amp; <a class="el" href="classCurve.html">Curve</a>&lt; dimensionality &gt;::GetReadMethods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets the <a class="el" href="classCurve.html">Curve</a> read method map </p>
+<dl class="section return"><dt>Returns</dt><dd>the read method map </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a28ebd6e1c108281c986f97d36f3bbfd1">ISerializable</a>.</p>
 
 </div>
 </div>

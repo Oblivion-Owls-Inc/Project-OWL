@@ -34,6 +34,13 @@ void \mbox{\hyperlink{classSceneSystem_a774dcc4eb271088c49653d2970085da0}{Set\+N
 \begin{DoxyCompactList}\small\item\em sets the next Scene to change to \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}{Save\+Scene}} (std\+::string const \&scene\+Name=\char`\"{}\char`\"{}) const
 \begin{DoxyCompactList}\small\item\em saves the current scene to a file \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSceneSystem_a2b6b8eb1527d9d5e72a1375ddacdec76}{Save\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Used To create the Save Scene Window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSceneSystem_a84375eb6354d0e910bc14e992160cf5f}\label{classSceneSystem_a84375eb6354d0e910bc14e992160cf5f}} 
+void \mbox{\hyperlink{classSceneSystem_a84375eb6354d0e910bc14e992160cf5f}{Reset\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Used to reset the current scene. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSceneSystem_ac8ffeb5134c162b1f0c118519a61aeaf}{Load\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Used by the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} to load a scene. \end{DoxyCompactList}\item 
 std\+::string const  \& \mbox{\hyperlink{classSceneSystem_a56528509c11e234c5522dbcd1b88df10}{Get\+Scene\+Name}} () const
 \begin{DoxyCompactList}\small\item\em gets the name of the current scene \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSceneSystem_ae602fb12e3522bd1dd99b7f29a6f6a0d}\label{classSceneSystem_ae602fb12e3522bd1dd99b7f29a6f6a0d}} 
@@ -83,10 +90,60 @@ gets the name of the current scene
 \begin{DoxyReturn}{Returns}
 the name of the current scene 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}\label{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}} 
+\mbox{\Hypertarget{classSceneSystem_ac8ffeb5134c162b1f0c118519a61aeaf}\label{classSceneSystem_ac8ffeb5134c162b1f0c118519a61aeaf}} 
+\index{SceneSystem@{SceneSystem}!LoadScene@{LoadScene}}
+\index{LoadScene@{LoadScene}!SceneSystem@{SceneSystem}}
+\doxysubsubsection{\texorpdfstring{LoadScene()}{LoadScene()}}
+{\footnotesize\ttfamily bool Scene\+System\+::\+Load\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Used by the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} to load a scene. 
+
+Creates the Load Scene Window.
+
+\begin{DoxyReturn}{Returns}
+-\/ true if the window is open, false if the window is closed 
+\end{DoxyReturn}
+Used to keep the window open
+
+Creates the window and Auto resizes it
+
+if at any point the window is closed, return false
+
+Creates a dropdown menu of all the scenes in the scenes directory
+
+Input text for typing scene name
+
+A button to load the scene, either from the dropdown or the input text
+
+Close the window\mbox{\Hypertarget{classSceneSystem_a2b6b8eb1527d9d5e72a1375ddacdec76}\label{classSceneSystem_a2b6b8eb1527d9d5e72a1375ddacdec76}} 
 \index{SceneSystem@{SceneSystem}!SaveScene@{SaveScene}}
 \index{SaveScene@{SaveScene}!SceneSystem@{SceneSystem}}
-\doxysubsubsection{\texorpdfstring{SaveScene()}{SaveScene()}}
+\doxysubsubsection{\texorpdfstring{SaveScene()}{SaveScene()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Scene\+System\+::\+Save\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Used To create the Save Scene Window. 
+
+\begin{DoxyReturn}{Returns}
+-\/ true if the window is open, false if the window is closed 
+\end{DoxyReturn}
+Used to keep the window open
+
+if at any point the window is closed, return false
+
+A button to save the scene
+
+Save the scene using the name typed into the buffer
+
+Creates a button to cancel the save
+
+Close the window\mbox{\Hypertarget{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}\label{classSceneSystem_a76d5ccab1bf7faf94a6b189540db3e5c}} 
+\index{SceneSystem@{SceneSystem}!SaveScene@{SaveScene}}
+\index{SaveScene@{SaveScene}!SceneSystem@{SceneSystem}}
+\doxysubsubsection{\texorpdfstring{SaveScene()}{SaveScene()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily void Scene\+System\+::\+Save\+Scene (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{scene\+Name = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption}) const}
 
 

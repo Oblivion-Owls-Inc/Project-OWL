@@ -64,7 +64,6 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classDebugSystem-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -114,13 +113,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a78f423fc5d74b31b09ce8490355d5eff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a78f423fc5d74b31b09ce8490355d5eff">OnExit</a> () override</td></tr>
 <tr class="memdesc:a78f423fc5d74b31b09ce8490355d5eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit and clean up the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a>.  <a href="classDebugSystem.html#a78f423fc5d74b31b09ce8490355d5eff">More...</a><br /></td></tr>
 <tr class="separator:a78f423fc5d74b31b09ce8490355d5eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a90310ccd94c0303b5594e9b94bc2a3dd">ScreenPrint</a> (const char *format,...)</td></tr>
-<tr class="memdesc:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a formatted message to the screen.  <a href="classDebugSystem.html#a90310ccd94c0303b5594e9b94bc2a3dd">More...</a><br /></td></tr>
-<tr class="separator:a90310ccd94c0303b5594e9b94bc2a3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c641267002ad60b29e2d9704bb5f79b"><td class="memItemLeft" align="right" valign="top"><a id="a2c641267002ad60b29e2d9704bb5f79b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a2c641267002ad60b29e2d9704bb5f79b">DebugWindow</a> () override</td></tr>
-<tr class="memdesc:a2c641267002ad60b29e2d9704bb5f79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Called by the Debug system to display debug information. <br /></td></tr>
+<tr class="memitem:a2c641267002ad60b29e2d9704bb5f79b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a2c641267002ad60b29e2d9704bb5f79b">DebugWindow</a> () override</td></tr>
+<tr class="memdesc:a2c641267002ad60b29e2d9704bb5f79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Called by the Debug system to display debug information.  <a href="classDebugSystem.html#a2c641267002ad60b29e2d9704bb5f79b">More...</a><br /></td></tr>
 <tr class="separator:a2c641267002ad60b29e2d9704bb5f79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fd8d26c421f240359aa2f553175cf47"><td class="memTemplParams" colspan="2">template&lt;typename Type &gt; </td></tr>
+<tr class="memitem:a7fd8d26c421f240359aa2f553175cf47"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#a7fd8d26c421f240359aa2f553175cf47">Write</a> (const Type &amp;value)</td></tr>
+<tr class="memdesc:a7fd8d26c421f240359aa2f553175cf47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper to write to the DebugStream.  <a href="classDebugSystem.html#a7fd8d26c421f240359aa2f553175cf47">More...</a><br /></td></tr>
+<tr class="separator:a7fd8d26c421f240359aa2f553175cf47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae994854f516187647c79c65db6abb8e"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDebugSystem.html#aae994854f516187647c79c65db6abb8e">Write</a> () const override</td></tr>
 <tr class="memdesc:aae994854f516187647c79c65db6abb8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> config  <a href="classDebugSystem.html#aae994854f516187647c79c65db6abb8e">More...</a><br /></td></tr>
 <tr class="separator:aae994854f516187647c79c65db6abb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,6 +136,21 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a804bac94c6ffee7f7369c6c3928a5574">GetName</a> () const</td></tr>
 <tr class="memdesc:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unique name of this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
 <tr class="separator:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a523cfae3fb1f5b2d20ba604b3344faa5">GetEnabled</a> () const</td></tr>
+<tr class="memdesc:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is enabled  <a href="classSystem.html#a523cfae3fb1f5b2d20ba604b3344faa5">More...</a><br /></td></tr>
+<tr class="separator:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7260844b1e1057f706ca25948fa63db3 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a7260844b1e1057f706ca25948fa63db3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetDebugEnabled</b> () const</td></tr>
+<tr class="separator:a7260844b1e1057f706ca25948fa63db3 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#aee0c04e1a79fbb2343edddaf319da646">SetEnabled</a> (bool enabled)</td></tr>
+<tr class="memdesc:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is enabled  <a href="classSystem.html#aee0c04e1a79fbb2343edddaf319da646">More...</a><br /></td></tr>
+<tr class="separator:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af8b62b082956e0dd473031e6f3598828">SetDebugEnable</a> (bool enable)</td></tr>
+<tr class="memdesc:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if the Debug Window should be shown.  <a href="classSystem.html#af8b62b082956e0dd473031e6f3598828">More...</a><br /></td></tr>
+<tr class="separator:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ade5a3addecec59fbc386c1d49fccaa1e">GetId</a> () const</td></tr>
+<tr class="memdesc:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s ID  <a href="classSystem.html#ade5a3addecec59fbc386c1d49fccaa1e">More...</a><br /></td></tr>
+<tr class="separator:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a6b75872f421f9ae9a720502d37223d49"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>System</b> (<a class="el" href="classSystem.html">System</a> &amp;other)=delete</td></tr>
 <tr class="separator:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,12 +168,6 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a43cb8abec1d0af08dc6fc5c219690a68"><td class="memItemLeft" align="right" valign="top"><a id="a43cb8abec1d0af08dc6fc5c219690a68"></a>
 static <a class="el" href="classDebugSystem.html">DebugSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetInstance</b> ()</td></tr>
 <tr class="separator:a43cb8abec1d0af08dc6fc5c219690a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a0c8288bc7aeca4c89d99cb2014880218"><td class="memItemLeft" align="right" valign="top"><a id="a0c8288bc7aeca4c89d99cb2014880218"></a>
-ImGuiTextBuffer&#160;</td><td class="memItemRight" valign="bottom"><b>logBuffer</b></td></tr>
-<tr class="separator:a0c8288bc7aeca4c89d99cb2014880218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -207,6 +215,70 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2c641267002ad60b29e2d9704bb5f79b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c641267002ad60b29e2d9704bb5f79b">&#9670;&nbsp;</a></span>DebugWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugSystem::DebugWindow </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets Called by the Debug system to display debug information. </p>
+<p>Displays and Creates the Editor Window. </p>
+<p>This Creates the Menu Bar to hold the Menu Items [File, Settings, Insert, Systems]</p>
+<p>File menu which holds [Load Scene, Save Scene, Save <a class="el" href="classEngine.html">Engine</a> Config, Close]</p>
+<p>Loads the Scene</p>
+<p>Reloads the Scene</p>
+<p>Opens the Save Menu which holds [Save All, Save Scene, Save <a class="el" href="classEngine.html">Engine</a> Config]</p>
+<p>Saves the Scene and <a class="el" href="classEngine.html">Engine</a> Config</p>
+<p>Saves the Scene</p>
+<p>Saves the <a class="el" href="classEngine.html">Engine</a> Config</p>
+<p>Closes the Debug Window</p>
+<p>Closes the Debug Window for now</p>
+<p>Settings menu which holds [Show FPS, Fullscreen, Show Demo]</p>
+<p>Shows the FPS Window</p>
+<p>Toggles Fullscreen</p>
+<p>Shows the ImGui Demo Window</p>
+<p>Pauses the Gameplay</p>
+<p>Insert menu which holds [New <a class="el" href="classEntity.html">Entity</a>, New Asset Prefab]</p>
+<p>Creates a new <a class="el" href="classEntity.html">Entity</a></p>
+<p>Starts the Asset Prefab Menu which holds [New <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a>, New <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a>, New <a class="el" href="classTransform.html">Transform</a> <a class="el" href="classAnimation.html">Animation</a>, New <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> <a class="el" href="classAnimation.html">Animation</a>]</p>
+<p>Opens the New <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> Window</p>
+<p>Opens the New <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> Window</p>
+<p>Opens the New <a class="el" href="classTransform.html">Transform</a> <a class="el" href="classAnimation.html">Animation</a> Window</p>
+<p>Opens the New <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> <a class="el" href="classAnimation.html">Animation</a> Window</p>
+<p>Close the Menu for the Asset Prefabs</p>
+<p>Close the Menu for the Insert Menu</p>
+<p>Creates the Systems Menu which holds [Asset Prefabs, <a class="el" href="classBehavior.html">Behavior</a> Systems]</p>
+<p>Creates the Asset Prefabs Menu which holds [AssetLibrary]</p>
+<p>Shows the AssetLibrary <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> List</p>
+<p>Creates the <a class="el" href="classBehavior.html">Behavior</a> Systems Menu which holds [<a class="el" href="classBehaviorSystem.html">BehaviorSystem</a>]</p>
+<p>Shows the <a class="el" href="classBehavior.html">Behavior</a> <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> List</p>
+<p>Close the Menu for the Systems Menu</p>
+<p>Close the Menu Bar</p>
+<p>Opens the Different Windows for the Editor Window</p>
+<p>Creates a Spit Window for the EntityList and their components in the main editor window</p>
+<p>Ends the Editor Window</p>
+
+<p>Reimplemented from <a class="el" href="classSystem.html#ac37b07a2ad20e2d2fe1f77766902af5d">System</a>.</p>
+
+</div>
+</div>
 <a id="a78f423fc5d74b31b09ce8490355d5eff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a78f423fc5d74b31b09ce8490355d5eff">&#9670;&nbsp;</a></span>OnExit()</h2>
 
@@ -305,49 +377,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a90310ccd94c0303b5594e9b94bc2a3dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90310ccd94c0303b5594e9b94bc2a3dd">&#9670;&nbsp;</a></span>ScreenPrint()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DebugSystem::ScreenPrint </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>format</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Print a formatted message to the screen. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">format</td><td>The format string, similar to printf</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>This function allows you to print a formatted message to the screen using ImGui.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">format</td><td>The format string, similar to printf. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a1f04a27b70187956bf31a268ca12054f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1f04a27b70187956bf31a268ca12054f">&#9670;&nbsp;</a></span>SetWindowHandle()</h2>
 
@@ -383,7 +412,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <a id="aae994854f516187647c79c65db6abb8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae994854f516187647c79c65db6abb8e">&#9670;&nbsp;</a></span>Write()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aae994854f516187647c79c65db6abb8e">&#9670;&nbsp;</a></span>Write() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -409,6 +438,44 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>the writting <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> config </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
+
+</div>
+</div>
+<a id="a7fd8d26c421f240359aa2f553175cf47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fd8d26c421f240359aa2f553175cf47">&#9670;&nbsp;</a></span>Write() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugSystem::Write </td>
+          <td>(</td>
+          <td class="paramtype">const Type &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wrapper to write to the DebugStream. </p>
+<hr  />
+<hr  />
+ <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>- the message to write to the DebugStream </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

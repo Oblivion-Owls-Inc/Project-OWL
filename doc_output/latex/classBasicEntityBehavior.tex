@@ -1,0 +1,210 @@
+\hypertarget{classBasicEntityBehavior}{}\doxysection{Basic\+Entity\+Behavior Class Reference}
+\label{classBasicEntityBehavior}\index{BasicEntityBehavior@{BasicEntityBehavior}}
+
+
+Inheritance diagram for Basic\+Entity\+Behavior\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{classBasicEntityBehavior__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Basic\+Entity\+Behavior\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{classBasicEntityBehavior__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPool}{Pool}}$<$ int $>$ $\ast$ \mbox{\hyperlink{classBasicEntityBehavior_a3ee2ebc0c2e95d87102f7586eb3c1f2c}{Get\+Health}} ()
+\begin{DoxyCompactList}\small\item\em Returns the health of the enemy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBasicEntityBehavior_adfbfff3cd7582ae2d0e3031c70ab8f64}{Take\+Damage}} (int damage)
+\begin{DoxyCompactList}\small\item\em Apply damage to the \mbox{\hyperlink{classEntity}{Entity}}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classBasicEntityBehavior_ad3f269a9c099ca950b3a1241d44279f8}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em creates a new clone of this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBasicEntityBehavior_afdebeabf5fb4e6a9f6e46fdfec992d77}\label{classBasicEntityBehavior_afdebeabf5fb4e6a9f6e46fdfec992d77}} 
+{\bfseries Basic\+Entity\+Behavior} (std\+::type\+\_\+index m\+\_\+\+Type)
+\item 
+virtual void \mbox{\hyperlink{classBasicEntityBehavior_ad24ec07643064f7fc5e2ed0035f6572c}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em initializes the component \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBasicEntityBehavior_aa7112825d32eacb601f8a7f77fb742c5}\label{classBasicEntityBehavior_aa7112825d32eacb601f8a7f77fb742c5}} 
+virtual void \mbox{\hyperlink{classBasicEntityBehavior_aa7112825d32eacb601f8a7f77fb742c5}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em Called when the component is destroyed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBasicEntityBehavior_a9be8dfd63e497136b4a191aafd6a7f28}\label{classBasicEntityBehavior_a9be8dfd63e497136b4a191aafd6a7f28}} 
+virtual void \mbox{\hyperlink{classBasicEntityBehavior_a9be8dfd63e497136b4a191aafd6a7f28}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em inspector for this component \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBasicEntityBehavior_a45cbd08680a6278e923b96346b9ca8e2}{read\+Health}} (nlohmann\+::ordered\+\_\+json const \&data)
+\begin{DoxyCompactList}\small\item\em reads the health of the enemy from json \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBasicEntityBehavior_adf950bc8acd5f7aee6495658aa6da32d}{Basic\+Entity\+Behavior}} (\mbox{\hyperlink{classBasicEntityBehavior}{Basic\+Entity\+Behavior}} const \&other)
+\begin{DoxyCompactList}\small\item\em copy constructor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPool}{Pool}}$<$ int $>$ \mbox{\hyperlink{classBasicEntityBehavior_aa3e4adacaea2fd9f84f9c3ddfd77f9e1}{m\+\_\+\+Health}}
+\begin{DoxyCompactList}\small\item\em the Health of the Enemy \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBasicEntityBehavior_adf950bc8acd5f7aee6495658aa6da32d}\label{classBasicEntityBehavior_adf950bc8acd5f7aee6495658aa6da32d}} 
+\index{BasicEntityBehavior@{BasicEntityBehavior}!BasicEntityBehavior@{BasicEntityBehavior}}
+\index{BasicEntityBehavior@{BasicEntityBehavior}!BasicEntityBehavior@{BasicEntityBehavior}}
+\doxysubsubsection{\texorpdfstring{BasicEntityBehavior()}{BasicEntityBehavior()}}
+{\footnotesize\ttfamily Basic\+Entity\+Behavior\+::\+Basic\+Entity\+Behavior (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBasicEntityBehavior}{Basic\+Entity\+Behavior}} const \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+copy constructor 
+
+\DoxyHorRuler{0}
+\DoxyHorRuler{0}
+ 
+\begin{DoxyParams}{Parameters}
+{\em other} & the \mbox{\hyperlink{classBasicEntityBehavior}{Basic\+Entity\+Behavior}} to copy \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBasicEntityBehavior_ad3f269a9c099ca950b3a1241d44279f8}\label{classBasicEntityBehavior_ad3f269a9c099ca950b3a1241d44279f8}} 
+\index{BasicEntityBehavior@{BasicEntityBehavior}!Clone@{Clone}}
+\index{Clone@{Clone}!BasicEntityBehavior@{BasicEntityBehavior}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classComponent}{Component}}$\ast$ Basic\+Entity\+Behavior\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+creates a new clone of this \mbox{\hyperlink{classComponent}{Component}} 
+
+\DoxyHorRuler{0}
+\DoxyHorRuler{0}
+ \begin{DoxyReturn}{Returns}
+the newly created clone 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classEnemyBehavior_a7ddc797439742166c3cd9f38c293aa2c}{Enemy\+Behavior}}, and \mbox{\hyperlink{classBaseBehavior_a2e2e69bdb480e974db1c6cc1d45296e5}{Base\+Behavior}}.
+
+\mbox{\Hypertarget{classBasicEntityBehavior_a3ee2ebc0c2e95d87102f7586eb3c1f2c}\label{classBasicEntityBehavior_a3ee2ebc0c2e95d87102f7586eb3c1f2c}} 
+\index{BasicEntityBehavior@{BasicEntityBehavior}!GetHealth@{GetHealth}}
+\index{GetHealth@{GetHealth}!BasicEntityBehavior@{BasicEntityBehavior}}
+\doxysubsubsection{\texorpdfstring{GetHealth()}{GetHealth()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPool}{Pool}}$<$int$>$$\ast$ Basic\+Entity\+Behavior\+::\+Get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the health of the enemy. 
+
+\DoxyHorRuler{0}
+\DoxyHorRuler{0}
+ \begin{DoxyReturn}{Returns}
+-\/ the health of the enemy 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBasicEntityBehavior_ad24ec07643064f7fc5e2ed0035f6572c}\label{classBasicEntityBehavior_ad24ec07643064f7fc5e2ed0035f6572c}} 
+\index{BasicEntityBehavior@{BasicEntityBehavior}!OnInit@{OnInit}}
+\index{OnInit@{OnInit}!BasicEntityBehavior@{BasicEntityBehavior}}
+\doxysubsubsection{\texorpdfstring{OnInit()}{OnInit()}}
+{\footnotesize\ttfamily void Basic\+Entity\+Behavior\+::\+On\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+initializes the component 
+
+initializes the component and the health pool
+
+\DoxyHorRuler{0}
+ \hypertarget{classBasicEntityBehavior_autotoc_md2}{}\doxysubsubsection{private\+: virtual override methods}\label{classBasicEntityBehavior_autotoc_md2}
+
+
+Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classBaseBehavior_a3e3daa0509308ea1e6c4e11d175bffe4}{Base\+Behavior}}.
+
+\mbox{\Hypertarget{classBasicEntityBehavior_a45cbd08680a6278e923b96346b9ca8e2}\label{classBasicEntityBehavior_a45cbd08680a6278e923b96346b9ca8e2}} 
+\index{BasicEntityBehavior@{BasicEntityBehavior}!readHealth@{readHealth}}
+\index{readHealth@{readHealth}!BasicEntityBehavior@{BasicEntityBehavior}}
+\doxysubsubsection{\texorpdfstring{readHealth()}{readHealth()}}
+{\footnotesize\ttfamily void Basic\+Entity\+Behavior\+::read\+Health (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+reads the health of the enemy from json 
+
+Reads the health of the enemy from json.
+
+\DoxyHorRuler{0}
+\DoxyHorRuler{0}
+ 
+\begin{DoxyParams}{Parameters}
+{\em data} & the json data to read from\\
+\hline
+\end{DoxyParams}
+\DoxyHorRuler{0}
+ \hypertarget{classBasicEntityBehavior_autotoc_md3}{}\doxysubsubsection{Protected\+: reading}\label{classBasicEntityBehavior_autotoc_md3}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & -\/ the json data to read from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBasicEntityBehavior_adfbfff3cd7582ae2d0e3031c70ab8f64}\label{classBasicEntityBehavior_adfbfff3cd7582ae2d0e3031c70ab8f64}} 
+\index{BasicEntityBehavior@{BasicEntityBehavior}!TakeDamage@{TakeDamage}}
+\index{TakeDamage@{TakeDamage}!BasicEntityBehavior@{BasicEntityBehavior}}
+\doxysubsubsection{\texorpdfstring{TakeDamage()}{TakeDamage()}}
+{\footnotesize\ttfamily void Basic\+Entity\+Behavior\+::\+Take\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage }\end{DoxyParamCaption})}
+
+
+
+Apply damage to the \mbox{\hyperlink{classEntity}{Entity}}. 
+
+Applies damage to the Enitity.
+
+\DoxyHorRuler{0}
+\DoxyHorRuler{0}
+ 
+\begin{DoxyParams}{Parameters}
+{\em damage} & -\/ the amount of damage to \mbox{\hyperlink{classEntity}{Entity}}\\
+\hline
+\end{DoxyParams}
+\DoxyHorRuler{0}
+ \hypertarget{classBasicEntityBehavior_autotoc_md1}{}\doxysubsubsection{public\+: methods}\label{classBasicEntityBehavior_autotoc_md1}
+
+\begin{DoxyParams}{Parameters}
+{\em damage} & -\/ the amount of damage to apply \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classBasicEntityBehavior_aa3e4adacaea2fd9f84f9c3ddfd77f9e1}\label{classBasicEntityBehavior_aa3e4adacaea2fd9f84f9c3ddfd77f9e1}} 
+\index{BasicEntityBehavior@{BasicEntityBehavior}!m\_Health@{m\_Health}}
+\index{m\_Health@{m\_Health}!BasicEntityBehavior@{BasicEntityBehavior}}
+\doxysubsubsection{\texorpdfstring{m\_Health}{m\_Health}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPool}{Pool}}$<$int$>$ Basic\+Entity\+Behavior\+::m\+\_\+\+Health\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+the Health of the Enemy 
+
+\DoxyHorRuler{0}
+\DoxyHorRuler{0}
+ 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Basic\+Entity\+Behavior.\+h\item 
+Source/Basic\+Entity\+Behavior.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,113 @@
+\hypertarget{classBaseBehavior}{}\doxysection{Base\+Behavior Class Reference}
+\label{classBaseBehavior}\index{BaseBehavior@{BaseBehavior}}
+
+
+Inheritance diagram for Base\+Behavior\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{classBaseBehavior__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Base\+Behavior\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{classBaseBehavior__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBaseBehavior_a9b52c07c327fbc3a411c7101d9f2eee2}\label{classBaseBehavior_a9b52c07c327fbc3a411c7101d9f2eee2}} 
+\mbox{\hyperlink{classBaseBehavior_a9b52c07c327fbc3a411c7101d9f2eee2}{Base\+Behavior}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseBehavior_a8fbf1ce59a8721a4a759a05bdc3dc5e2}\label{classBaseBehavior_a8fbf1ce59a8721a4a759a05bdc3dc5e2}} 
+\mbox{\hyperlink{classBaseBehavior_a8fbf1ce59a8721a4a759a05bdc3dc5e2}{Base\+Behavior}} (const \mbox{\hyperlink{classBaseBehavior}{Base\+Behavior}} \&other)
+\begin{DoxyCompactList}\small\item\em copy ctor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBaseBehavior_a6391997e481ba3b17351d3ade05f3b8e}\label{classBaseBehavior_a6391997e481ba3b17351d3ade05f3b8e}} 
+\mbox{\hyperlink{classBaseBehavior_a6391997e481ba3b17351d3ade05f3b8e}{$\sim$\+Base\+Behavior}} ()
+\begin{DoxyCompactList}\small\item\em dtor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classBaseBehavior_a2e2e69bdb480e974db1c6cc1d45296e5}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em Base clone. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBaseBehavior_a3e3daa0509308ea1e6c4e11d175bffe4}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called when base initializes \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classBaseBehavior_a77e6fd01a56a7c392220f99ba3855e68}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called when base exits \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classBaseBehavior_a13380a20a22e37b0e8497210d54378f9}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classBaseBehavior}{Base\+Behavior}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBaseBehavior_a2e2e69bdb480e974db1c6cc1d45296e5}\label{classBaseBehavior_a2e2e69bdb480e974db1c6cc1d45296e5}} 
+\index{BaseBehavior@{BaseBehavior}!Clone@{Clone}}
+\index{Clone@{Clone}!BaseBehavior@{BaseBehavior}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Base\+Behavior\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Base clone. 
+
+clone 
+
+Reimplemented from \mbox{\hyperlink{classBasicEntityBehavior_ad3f269a9c099ca950b3a1241d44279f8}{Basic\+Entity\+Behavior}}.
+
+\mbox{\Hypertarget{classBaseBehavior_a77e6fd01a56a7c392220f99ba3855e68}\label{classBaseBehavior_a77e6fd01a56a7c392220f99ba3855e68}} 
+\index{BaseBehavior@{BaseBehavior}!OnExit@{OnExit}}
+\index{OnExit@{OnExit}!BaseBehavior@{BaseBehavior}}
+\doxysubsubsection{\texorpdfstring{OnExit()}{OnExit()}}
+{\footnotesize\ttfamily void Base\+Behavior\+::\+On\+Exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called when base exits 
+
+called on exit, handles loss state 
+
+Reimplemented from \mbox{\hyperlink{classBasicEntityBehavior_aa7112825d32eacb601f8a7f77fb742c5}{Basic\+Entity\+Behavior}}.
+
+\mbox{\Hypertarget{classBaseBehavior_a3e3daa0509308ea1e6c4e11d175bffe4}\label{classBaseBehavior_a3e3daa0509308ea1e6c4e11d175bffe4}} 
+\index{BaseBehavior@{BaseBehavior}!OnInit@{OnInit}}
+\index{OnInit@{OnInit}!BaseBehavior@{BaseBehavior}}
+\doxysubsubsection{\texorpdfstring{OnInit()}{OnInit()}}
+{\footnotesize\ttfamily void Base\+Behavior\+::\+On\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called when base initializes 
+
+initialize base 
+
+Reimplemented from \mbox{\hyperlink{classBasicEntityBehavior_ad24ec07643064f7fc5e2ed0035f6572c}{Basic\+Entity\+Behavior}}.
+
+\mbox{\Hypertarget{classBaseBehavior_a13380a20a22e37b0e8497210d54378f9}\label{classBaseBehavior_a13380a20a22e37b0e8497210d54378f9}} 
+\index{BaseBehavior@{BaseBehavior}!Write@{Write}}
+\index{Write@{Write}!BaseBehavior@{BaseBehavior}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Base\+Behavior\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classBaseBehavior}{Base\+Behavior}} data to a JSON file. 
+
+write to json
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classWavesBehavior}{Waves\+Behavior}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Base\+Behavior.\+h\item 
+Source/Base\+Behavior.\+cpp\end{DoxyCompactItemize}

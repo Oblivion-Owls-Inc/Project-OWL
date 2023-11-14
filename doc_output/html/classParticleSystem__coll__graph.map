@@ -1,0 +1,5 @@
+<map id="ParticleSystem" name="ParticleSystem">
+<area shape="rect" id="node1" title="System in charge of managing compute shader and emitters." alt="" coords="5,155,124,181"/>
+<area shape="rect" id="node2" href="$classSystem.html" title="Base class for all Systems." alt="" coords="29,80,100,107"/>
+<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="13,5,116,32"/>
+</map>

@@ -79,6 +79,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acb5e82a8dbf4f954e3231d93e997aee9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classShader.html#acb5e82a8dbf4f954e3231d93e997aee9">Shader</a> (const char *vertex_filepath, const char *fragment_filepath)</td></tr>
 <tr class="memdesc:acb5e82a8dbf4f954e3231d93e997aee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: compiles new shader from given vertex+fragment shaders' source code.  <a href="classShader.html#acb5e82a8dbf4f954e3231d93e997aee9">More...</a><br /></td></tr>
 <tr class="separator:acb5e82a8dbf4f954e3231d93e997aee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae46ac9ec721411ca48c0df8e0c835122"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classShader.html#ae46ac9ec721411ca48c0df8e0c835122">Shader</a> (const char *compute_filepath)</td></tr>
+<tr class="memdesc:ae46ac9ec721411ca48c0df8e0c835122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: compiles new shader from given compute shader's source code.  <a href="classShader.html#ae46ac9ec721411ca48c0df8e0c835122">More...</a><br /></td></tr>
+<tr class="separator:ae46ac9ec721411ca48c0df8e0c835122"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff01df87e8a102f270b5b135a295e59d"><td class="memItemLeft" align="right" valign="top"><a id="aff01df87e8a102f270b5b135a295e59d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classShader.html#aff01df87e8a102f270b5b135a295e59d">~Shader</a> ()</td></tr>
 <tr class="memdesc:aff01df87e8a102f270b5b135a295e59d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans up memory (deletes shader program) <br /></td></tr>
@@ -98,7 +101,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Compiles a shader program, and stores information for managing it. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acb5e82a8dbf4f954e3231d93e997aee9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb5e82a8dbf4f954e3231d93e997aee9">&#9670;&nbsp;</a></span>Shader()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acb5e82a8dbf4f954e3231d93e997aee9">&#9670;&nbsp;</a></span>Shader() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -128,6 +131,32 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">vertex_filepath</td><td>Vertex <a class="el" href="classShader.html" title="Compiles a shader program, and stores information for managing it.">Shader</a> file </td></tr>
     <tr><td class="paramname">fragment_filepath</td><td>Fragment <a class="el" href="classShader.html" title="Compiles a shader program, and stores information for managing it.">Shader</a> file </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae46ac9ec721411ca48c0df8e0c835122"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae46ac9ec721411ca48c0df8e0c835122">&#9670;&nbsp;</a></span>Shader() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Shader::Shader </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>compute_filepath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor: compiles new shader from given compute shader's source code. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">compute_filepath</td><td>Compute <a class="el" href="classShader.html" title="Compiles a shader program, and stores information for managing it.">Shader</a> file </td></tr>
   </table>
   </dd>
 </dl>

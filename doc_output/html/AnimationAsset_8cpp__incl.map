@@ -1,10 +1,12 @@
 <map id="Source/AnimationAsset.cpp" name="Source/AnimationAsset.cpp">
-<area shape="rect" id="node1" title="Asset that contains information about a spritesheet animation." alt="" coords="5,5,205,32"/>
-<area shape="rect" id="node2" href="$AnimationAsset_8h.html" title="Asset that contains information about a spritesheet animation." alt="" coords="37,80,174,107"/>
-<area shape="rect" id="node3" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="48,155,163,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="9,304,60,331"/>
-<area shape="rect" id="node5" title=" " alt="" coords="84,304,143,331"/>
-<area shape="rect" id="node6" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="143,229,225,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="167,304,271,331"/>
-<area shape="rect" id="node8" title=" " alt="" coords="295,304,441,331"/>
+<area shape="rect" id="node1" title="Asset that contains information about a spritesheet animation." alt="" coords="296,5,496,32"/>
+<area shape="rect" id="node2" href="$AnimationAsset_8h.html" title="Asset that contains information about a spritesheet animation." alt="" coords="403,80,540,107"/>
+<area shape="rect" id="node7" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="288,80,370,107"/>
+<area shape="rect" id="node3" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="425,155,540,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="117,229,168,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="532,229,590,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="330,229,477,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="25,155,129,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="154,155,246,181"/>
+<area shape="rect" id="node10" title=" " alt="" coords="270,155,350,181"/>
 </map>

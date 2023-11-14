@@ -78,7 +78,8 @@ Inheritance diagram for Tilemap&lt; TileType &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTilemap__inherit__graph.png" border="0" usemap="#aTilemap_3_01TileType_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="aTilemap_3_01TileType_01_4_inherit__map" id="aTilemap_3_01TileType_01_4_inherit__map">
-<area shape="rect" title="Loads and manages a tilemap array." alt="" coords="5,229,164,256"/>
+<area shape="rect" title="Loads and manages a tilemap array." alt="" coords="5,304,164,331"/>
+<area shape="rect" href="classTilemapBase.html" title="untemplatized base Tilemap class" alt="" coords="31,229,138,256"/>
 <area shape="rect" href="classBehavior.html" title=" " alt="" coords="45,155,125,181"/>
 <area shape="rect" href="classComponent.html" title=" " alt="" coords="36,80,133,107"/>
 <area shape="rect" href="classISerializable.html" title="interface for all serializable objects" alt="" coords="33,5,136,32"/>
@@ -89,7 +90,8 @@ Collaboration diagram for Tilemap&lt; TileType &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTilemap__coll__graph.png" border="0" usemap="#aTilemap_3_01TileType_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aTilemap_3_01TileType_01_4_coll__map" id="aTilemap_3_01TileType_01_4_coll__map">
-<area shape="rect" title="Loads and manages a tilemap array." alt="" coords="5,229,164,256"/>
+<area shape="rect" title="Loads and manages a tilemap array." alt="" coords="5,304,164,331"/>
+<area shape="rect" href="classTilemapBase.html" title="untemplatized base Tilemap class" alt="" coords="31,229,138,256"/>
 <area shape="rect" href="classBehavior.html" title=" " alt="" coords="45,155,125,181"/>
 <area shape="rect" href="classComponent.html" title=" " alt="" coords="36,80,133,107"/>
 <area shape="rect" href="classISerializable.html" title="interface for all serializable objects" alt="" coords="33,5,136,32"/>
@@ -104,18 +106,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae9d45182485cdcf270ff31aaae499195"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a15bf3e418406b1f2008b50880c68cd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classComponent.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a3a15bf3e418406b1f2008b50880c68cd">Clone</a> () const override</td></tr>
 <tr class="separator:a3a15bf3e418406b1f2008b50880c68cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae699940e7fc8112d0ca973e59c8e6f09"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#ae699940e7fc8112d0ca973e59c8e6f09">Tilemap</a> (<a class="el" href="classTilemap.html">Tilemap</a> const &amp;other)</td></tr>
-<tr class="memdesc:ae699940e7fc8112d0ca973e59c8e6f09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="classTilemap.html#ae699940e7fc8112d0ca973e59c8e6f09">More...</a><br /></td></tr>
-<tr class="separator:ae699940e7fc8112d0ca973e59c8e6f09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02a7eeff934f468a3fa8f9a8c045b9f6"><td class="memItemLeft" align="right" valign="top">__inline std::vector&lt; TileType &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a02a7eeff934f468a3fa8f9a8c045b9f6">GetTilemap</a> () const</td></tr>
-<tr class="memdesc:a02a7eeff934f468a3fa8f9a8c045b9f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve entire tilemap.  <a href="classTilemap.html#a02a7eeff934f468a3fa8f9a8c045b9f6">More...</a><br /></td></tr>
-<tr class="separator:a02a7eeff934f468a3fa8f9a8c045b9f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d7f05dd578a162f03666d7c88ef0dbd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; TileType &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a4d7f05dd578a162f03666d7c88ef0dbd">GetTilemap</a> () const</td></tr>
+<tr class="memdesc:a4d7f05dd578a162f03666d7c88ef0dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve entire tilemap.  <a href="classTilemap.html#a4d7f05dd578a162f03666d7c88ef0dbd">More...</a><br /></td></tr>
+<tr class="separator:a4d7f05dd578a162f03666d7c88ef0dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e605f11fa4c9ee52a3c05e2fbbec6bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a5e605f11fa4c9ee52a3c05e2fbbec6bd">SetTilemap</a> (std::vector&lt; TileType &gt; const &amp;tiles)</td></tr>
 <tr class="memdesc:a5e605f11fa4c9ee52a3c05e2fbbec6bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the whole tilemap to a given array (vector)  <a href="classTilemap.html#a5e605f11fa4c9ee52a3c05e2fbbec6bd">More...</a><br /></td></tr>
 <tr class="separator:a5e605f11fa4c9ee52a3c05e2fbbec6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a744ea9a0ce6243383f9de072c92ae44d"><td class="memItemLeft" align="right" valign="top">__inline TileType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a744ea9a0ce6243383f9de072c92ae44d">GetTile</a> (glm::ivec2 coord) const</td></tr>
-<tr class="memdesc:a744ea9a0ce6243383f9de072c92ae44d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the index of the tile at given coordinate.  <a href="classTilemap.html#a744ea9a0ce6243383f9de072c92ae44d">More...</a><br /></td></tr>
-<tr class="separator:a744ea9a0ce6243383f9de072c92ae44d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9a9459864a2aeacbda8ae88381817d3"><td class="memItemLeft" align="right" valign="top">TileType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#af9a9459864a2aeacbda8ae88381817d3">GetTile</a> (glm::ivec2 coord) const</td></tr>
+<tr class="memdesc:af9a9459864a2aeacbda8ae88381817d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the index of the tile at given coordinate.  <a href="classTilemap.html#af9a9459864a2aeacbda8ae88381817d3">More...</a><br /></td></tr>
+<tr class="separator:af9a9459864a2aeacbda8ae88381817d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed09b128aecb725cdb4ab7c6eafacd76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#aed09b128aecb725cdb4ab7c6eafacd76">SetTile</a> (glm::ivec2 coord, TileType const &amp;tile)</td></tr>
 <tr class="memdesc:aed09b128aecb725cdb4ab7c6eafacd76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the tile at given coordinate to given index.  <a href="classTilemap.html#aed09b128aecb725cdb4ab7c6eafacd76">More...</a><br /></td></tr>
 <tr class="separator:aed09b128aecb725cdb4ab7c6eafacd76"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,19 +130,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a358d57d93304cf2878533cb331a9051b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a358d57d93304cf2878533cb331a9051b">RemoveOnTilemapChangedCallback</a> (int componentID)</td></tr>
 <tr class="memdesc:a358d57d93304cf2878533cb331a9051b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a function from the list of callbacks.  <a href="classTilemap.html#a358d57d93304cf2878533cb331a9051b">More...</a><br /></td></tr>
 <tr class="separator:a358d57d93304cf2878533cb331a9051b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef4742b84208945a68bb2b0330b2e682"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#aef4742b84208945a68bb2b0330b2e682">SetTileScale</a> (glm::vec2 mults)</td></tr>
-<tr class="memdesc:aef4742b84208945a68bb2b0330b2e682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the tile scale. Default scale (1,1) is the full width/height of single tile.  <a href="classTilemap.html#aef4742b84208945a68bb2b0330b2e682">More...</a><br /></td></tr>
-<tr class="separator:aef4742b84208945a68bb2b0330b2e682"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a198557f5fdcf1dbc3879fb5ff7204af6"><td class="memItemLeft" align="right" valign="top">__inline glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a198557f5fdcf1dbc3879fb5ff7204af6">GetTileScale</a> () const</td></tr>
-<tr class="memdesc:a198557f5fdcf1dbc3879fb5ff7204af6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreives the tile scale.  <a href="classTilemap.html#a198557f5fdcf1dbc3879fb5ff7204af6">More...</a><br /></td></tr>
-<tr class="separator:a198557f5fdcf1dbc3879fb5ff7204af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f67330687985171e816a73547638b9a"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a8f67330687985171e816a73547638b9a">SetRowWidth</a> (int width)</td></tr>
-<tr class="memdesc:a8f67330687985171e816a73547638b9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the width of a single row (amount of columns)  <a href="classTilemap.html#a8f67330687985171e816a73547638b9a">More...</a><br /></td></tr>
-<tr class="separator:a8f67330687985171e816a73547638b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a711e38c6c6e306048fe4c34c8fdc2920"><td class="memItemLeft" align="right" valign="top">__inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a711e38c6c6e306048fe4c34c8fdc2920">GetTilemapWidth</a> () const</td></tr>
-<tr class="separator:a711e38c6c6e306048fe4c34c8fdc2920"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87e820220086f41fcdf96e2fa05e6966"><td class="memItemLeft" align="right" valign="top">__inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a87e820220086f41fcdf96e2fa05e6966">GetTilemapHeight</a> () const</td></tr>
-<tr class="separator:a87e820220086f41fcdf96e2fa05e6966"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a668de1386c521a3e0c87d80d356262b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a668de1386c521a3e0c87d80d356262b0">SetTileScale</a> (glm::vec2 mults)</td></tr>
+<tr class="memdesc:a668de1386c521a3e0c87d80d356262b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the tile scale. Default scale (1,1) is the full width/height of single tile.  <a href="classTilemap.html#a668de1386c521a3e0c87d80d356262b0">More...</a><br /></td></tr>
+<tr class="separator:a668de1386c521a3e0c87d80d356262b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d48df9e9ed9f7fccc29d1103ab1b9f6"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a6d48df9e9ed9f7fccc29d1103ab1b9f6">GetTileScale</a> () const</td></tr>
+<tr class="memdesc:a6d48df9e9ed9f7fccc29d1103ab1b9f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreives the tile scale.  <a href="classTilemap.html#a6d48df9e9ed9f7fccc29d1103ab1b9f6">More...</a><br /></td></tr>
+<tr class="separator:a6d48df9e9ed9f7fccc29d1103ab1b9f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3233fb6b4ebd24ad4aca4e1194542282"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a3233fb6b4ebd24ad4aca4e1194542282">SetDimensions</a> (glm::ivec2 const &amp;dimensions)</td></tr>
+<tr class="memdesc:a3233fb6b4ebd24ad4aca4e1194542282"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the size of the tilemap in tiles  <a href="classTilemap.html#a3233fb6b4ebd24ad4aca4e1194542282">More...</a><br /></td></tr>
+<tr class="separator:a3233fb6b4ebd24ad4aca4e1194542282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71323c2c8dbd4bc2be4e4e1a3938b05e"><td class="memItemLeft" align="right" valign="top">glm::ivec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#a71323c2c8dbd4bc2be4e4e1a3938b05e">GetDimensions</a> () const</td></tr>
+<tr class="separator:a71323c2c8dbd4bc2be4e4e1a3938b05e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5f9d5fc93d83d7db629052b7eacdf3e"><td class="memItemLeft" align="right" valign="top">glm::mat4 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#ad5f9d5fc93d83d7db629052b7eacdf3e">GetTilemapToWorldMatrix</a> () const</td></tr>
 <tr class="memdesc:ad5f9d5fc93d83d7db629052b7eacdf3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classTilemap.html" title="Loads and manages a tilemap array.">Tilemap</a> to word matrix  <a href="classTilemap.html#ad5f9d5fc93d83d7db629052b7eacdf3e">More...</a><br /></td></tr>
 <tr class="separator:ad5f9d5fc93d83d7db629052b7eacdf3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,6 +150,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af207096e5653313d7d46b86957a865ae"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemap.html#af207096e5653313d7d46b86957a865ae">Write</a> () const override</td></tr>
 <tr class="memdesc:af207096e5653313d7d46b86957a865ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classTilemap.html" title="Loads and manages a tilemap array.">Tilemap</a> component data to a JSON file.  <a href="classTilemap.html#af207096e5653313d7d46b86957a865ae">More...</a><br /></td></tr>
 <tr class="separator:af207096e5653313d7d46b86957a865ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classBehavior"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classBehavior')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classBehavior.html">Behavior</a></td></tr>
+<tr class="memitem:a6416957ece445d094b45b13c02c16f98 inherit pub_methods_classBehavior"><td class="memItemLeft" align="right" valign="top"><a id="a6416957ece445d094b45b13c02c16f98"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnFixedUpdate</b> ()</td></tr>
+<tr class="separator:a6416957ece445d094b45b13c02c16f98 inherit pub_methods_classBehavior"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classComponent"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classComponent')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classComponent.html">Component</a></td></tr>
 <tr class="memitem:a2e9aa4348314d981f05f67397ad2f872 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a id="a2e9aa4348314d981f05f67397ad2f872"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">~Component</a> ()</td></tr>
@@ -164,12 +165,15 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">SetParent</a> (<a class="el" href="classEntity.html">Entity</a> *parent)</td></tr>
 <tr class="memdesc:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the parent entity of the component  <a href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">More...</a><br /></td></tr>
 <tr class="separator:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a1c2eb7952e1a90a45ba7672cf7307504">GetParent</a> () const</td></tr>
-<tr class="memdesc:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the components parent entity  <a href="classComponent.html#a1c2eb7952e1a90a45ba7672cf7307504">More...</a><br /></td></tr>
-<tr class="separator:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bac0f3387cfd9163ca61445ceb0b6b9 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a0bac0f3387cfd9163ca61445ceb0b6b9">GetEntity</a> () const</td></tr>
+<tr class="memdesc:a0bac0f3387cfd9163ca61445ceb0b6b9 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the components parent entity  <a href="classComponent.html#a0bac0f3387cfd9163ca61445ceb0b6b9">More...</a><br /></td></tr>
+<tr class="separator:a0bac0f3387cfd9163ca61445ceb0b6b9 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">GetId</a> () const</td></tr>
 <tr class="memdesc:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the Id of this <a class="el" href="classComponent.html">Component</a>  <a href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">More...</a><br /></td></tr>
 <tr class="separator:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab013472b21ba197a25143ab1e1e9272e inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ab013472b21ba197a25143ab1e1e9272e">BaseComponentInspector</a> ()</td></tr>
+<tr class="memdesc:ab013472b21ba197a25143ab1e1e9272e inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">base Inspector for Components  <a href="classComponent.html#ab013472b21ba197a25143ab1e1e9272e">More...</a><br /></td></tr>
+<tr class="separator:ab013472b21ba197a25143ab1e1e9272e inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classISerializable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classISerializable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classISerializable.html">ISerializable</a></td></tr>
 <tr class="memitem:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top"><a id="a7b60e4aca93fb97f18c9ff41ee53bc3a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classISerializable.html#a7b60e4aca93fb97f18c9ff41ee53bc3a">AfterLoad</a> ()</td></tr>
@@ -178,6 +182,14 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classTilemapBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classTilemapBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classTilemapBase.html">TilemapBase</a></td></tr>
+<tr class="memitem:a143d10fc63244dee2e96ad6a685b5fdd inherit pro_methods_classTilemapBase"><td class="memItemLeft" align="right" valign="top"><a id="a143d10fc63244dee2e96ad6a685b5fdd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemapBase.html#a143d10fc63244dee2e96ad6a685b5fdd">TilemapBase</a> (std::type_index type)</td></tr>
+<tr class="memdesc:a143d10fc63244dee2e96ad6a685b5fdd inherit pro_methods_classTilemapBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a143d10fc63244dee2e96ad6a685b5fdd inherit pro_methods_classTilemapBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42b1d1991da0f3379d4fb475a52e7946 inherit pro_methods_classTilemapBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemapBase.html#a42b1d1991da0f3379d4fb475a52e7946">TilemapBase</a> (<a class="el" href="classTilemapBase.html">TilemapBase</a> const &amp;other)</td></tr>
+<tr class="memdesc:a42b1d1991da0f3379d4fb475a52e7946 inherit pro_methods_classTilemapBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="classTilemapBase.html#a42b1d1991da0f3379d4fb475a52e7946">More...</a><br /></td></tr>
+<tr class="separator:a42b1d1991da0f3379d4fb475a52e7946 inherit pro_methods_classTilemapBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classBehavior"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classBehavior')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classBehavior.html">Behavior</a></td></tr>
 <tr class="memitem:aad1c5d2f143b5d6d175c01da2941d2ac inherit pro_methods_classBehavior"><td class="memItemLeft" align="right" valign="top"><a id="aad1c5d2f143b5d6d175c01da2941d2ac"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Behavior</b> (std::type_index m_Type)</td></tr>
@@ -195,37 +207,7 @@ Additional Inherited Members</h2></td></tr>
 class Tilemap&lt; TileType &gt;</h3>
 
 <p>Loads and manages a tilemap array. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae699940e7fc8112d0ca973e59c8e6f09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae699940e7fc8112d0ca973e59c8e6f09">&#9670;&nbsp;</a></span>Tilemap()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename TileType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::<a class="el" href="classTilemap.html">Tilemap</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt; const &amp;&#160;</td>
-          <td class="paramname"><em>other</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Copy constructor. </p>
-<p>Copy constructor: don't copy the callbacks.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classTilemap.html" title="Loads and manages a tilemap array.">Tilemap</a> to copy </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a5987a7c6d820fdaf27adeec31b3407a9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5987a7c6d820fdaf27adeec31b3407a9">&#9670;&nbsp;</a></span>AddOnTilemapChangedCallback()</h2>
 
@@ -289,12 +271,12 @@ template&lt;typename TileType &gt; </div>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>A copy of this component </dd></dl>
 
-<p>Implements <a class="el" href="classBehavior.html#ad509b7deafa59db2f94a231e7bd6b68f">Behavior</a>.</p>
+<p>Implements <a class="el" href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">Component</a>.</p>
 
 </div>
 </div>
-<a id="a744ea9a0ce6243383f9de072c92ae44d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a744ea9a0ce6243383f9de072c92ae44d">&#9670;&nbsp;</a></span>GetTile()</h2>
+<a id="a71323c2c8dbd4bc2be4e4e1a3938b05e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71323c2c8dbd4bc2be4e4e1a3938b05e">&#9670;&nbsp;</a></span>GetDimensions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -305,7 +287,35 @@ template&lt;typename TileType &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline TileType <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::GetTile </td>
+          <td class="memname">glm::ivec2 <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::GetDimensions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>size of the tilemap in tiles </dd></dl>
+
+</div>
+</div>
+<a id="af9a9459864a2aeacbda8ae88381817d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9a9459864a2aeacbda8ae88381817d3">&#9670;&nbsp;</a></span>GetTile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TileType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TileType <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::GetTile </td>
           <td>(</td>
           <td class="paramtype">glm::ivec2&#160;</td>
           <td class="paramname"><em>coord</em></td><td>)</td>
@@ -330,8 +340,8 @@ template&lt;typename TileType &gt; </div>
 
 </div>
 </div>
-<a id="a02a7eeff934f468a3fa8f9a8c045b9f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02a7eeff934f468a3fa8f9a8c045b9f6">&#9670;&nbsp;</a></span>GetTilemap()</h2>
+<a id="a4d7f05dd578a162f03666d7c88ef0dbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d7f05dd578a162f03666d7c88ef0dbd">&#9670;&nbsp;</a></span>GetTilemap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -342,7 +352,7 @@ template&lt;typename TileType &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline std::vector&lt;TileType&gt; const&amp; <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::GetTilemap </td>
+          <td class="memname">std::vector&lt;TileType&gt; const&amp; <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::GetTilemap </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -357,34 +367,6 @@ template&lt;typename TileType &gt; </div>
 
 <p>Retrieve entire tilemap. </p>
 <dl class="section return"><dt>Returns</dt><dd>array (vector) of tile IDs </dd></dl>
-
-</div>
-</div>
-<a id="a87e820220086f41fcdf96e2fa05e6966"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87e820220086f41fcdf96e2fa05e6966">&#9670;&nbsp;</a></span>GetTilemapHeight()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename TileType &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">__inline int <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::GetTilemapHeight </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Tiles per column </dd></dl>
 
 </div>
 </div>
@@ -418,8 +400,8 @@ template&lt;typename TileType &gt; </div>
 
 </div>
 </div>
-<a id="a711e38c6c6e306048fe4c34c8fdc2920"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a711e38c6c6e306048fe4c34c8fdc2920">&#9670;&nbsp;</a></span>GetTilemapWidth()</h2>
+<a id="a6d48df9e9ed9f7fccc29d1103ab1b9f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d48df9e9ed9f7fccc29d1103ab1b9f6">&#9670;&nbsp;</a></span>GetTileScale()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -430,35 +412,7 @@ template&lt;typename TileType &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline int <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::GetTilemapWidth </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Tiles per row </dd></dl>
-
-</div>
-</div>
-<a id="a198557f5fdcf1dbc3879fb5ff7204af6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a198557f5fdcf1dbc3879fb5ff7204af6">&#9670;&nbsp;</a></span>GetTileScale()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename TileType &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">__inline glm::vec2 <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::GetTileScale </td>
+          <td class="memname">glm::vec2 <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::GetTileScale </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -534,8 +488,8 @@ template&lt;typename TileType &gt; </div>
 
 </div>
 </div>
-<a id="a8f67330687985171e816a73547638b9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f67330687985171e816a73547638b9a">&#9670;&nbsp;</a></span>SetRowWidth()</h2>
+<a id="a3233fb6b4ebd24ad4aca4e1194542282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3233fb6b4ebd24ad4aca4e1194542282">&#9670;&nbsp;</a></span>SetDimensions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -546,10 +500,10 @@ template&lt;typename TileType &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline void <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::SetRowWidth </td>
+          <td class="memname">void <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::SetDimensions </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>width</em></td><td>)</td>
+          <td class="paramtype">glm::ivec2 const &amp;&#160;</td>
+          <td class="paramname"><em>dimensions</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -560,10 +514,10 @@ template&lt;typename TileType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Sets the width of a single row (amount of columns) </p>
+<p>sets the size of the tilemap in tiles </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">columns</td><td>(tiles per row) </td></tr>
+    <tr><td class="paramname">dimensions</td><td>the size of the tilemap </td></tr>
   </table>
   </dd>
 </dl>
@@ -640,8 +594,8 @@ template&lt;typename TileType &gt; </div>
 
 </div>
 </div>
-<a id="aef4742b84208945a68bb2b0330b2e682"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef4742b84208945a68bb2b0330b2e682">&#9670;&nbsp;</a></span>SetTileScale()</h2>
+<a id="a668de1386c521a3e0c87d80d356262b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a668de1386c521a3e0c87d80d356262b0">&#9670;&nbsp;</a></span>SetTileScale()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -652,7 +606,7 @@ template&lt;typename TileType &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline void <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::SetTileScale </td>
+          <td class="memname">void <a class="el" href="classTilemap.html">Tilemap</a>&lt; TileType &gt;::SetTileScale </td>
           <td>(</td>
           <td class="paramtype">glm::vec2&#160;</td>
           <td class="paramname"><em>mults</em></td><td>)</td>
@@ -759,6 +713,13 @@ template&lt;typename TileType &gt; </div>
 </div><div class="memdoc">
 
 <p>Write all <a class="el" href="classTilemap.html" title="Loads and manages a tilemap array.">Tilemap</a> component data to a JSON file. </p>
+<dl class="section return"><dt>Returns</dt><dd>The JSON file containing the <a class="el" href="classTilemap.html" title="Loads and manages a tilemap array.">Tilemap</a> component data.</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TileType</td><td>the data type of each tile in the tilemap </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>The JSON file containing the <a class="el" href="classTilemap.html" title="Loads and manages a tilemap array.">Tilemap</a> component data. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
@@ -766,8 +727,9 @@ template&lt;typename TileType &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
+<li>Source/<a class="el" href="ConstructionBehavior_8h_source.html">ConstructionBehavior.h</a></li>
 <li>Source/<a class="el" href="Tilemap_8h_source.html">Tilemap.h</a></li>
-<li>Source/<a class="el" href="Tilemap_8cpp.html">Tilemap.cpp</a></li>
+<li>Source/<a class="el" href="Tilemap_8t_8cpp.html">Tilemap.t.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

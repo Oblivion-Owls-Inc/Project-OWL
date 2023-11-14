@@ -63,6 +63,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classTransform-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Transform Class Reference</div>  </div>
@@ -74,6 +76,7 @@ Inheritance diagram for Transform:</div>
 <div class="center"><img src="classTransform__inherit__graph.png" border="0" usemap="#aTransform_inherit__map" alt="Inheritance graph"/></div>
 <map name="aTransform_inherit__map" id="aTransform_inherit__map">
 <area shape="rect" title=" " alt="" coords="13,155,100,181"/>
+<area shape="rect" href="classUiElement.html" title=" " alt="" coords="11,229,102,256"/>
 <area shape="rect" href="classComponent.html" title=" " alt="" coords="8,80,105,107"/>
 <area shape="rect" href="classISerializable.html" title="interface for all serializable objects" alt="" coords="5,5,108,32"/>
 </map>
@@ -131,9 +134,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a68ce4ffc5f317995c2c917bc4bd61c62"><td class="memItemLeft" align="right" valign="top">bool const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransform.html#a68ce4ffc5f317995c2c917bc4bd61c62">GetIsDiegetic</a> () const</td></tr>
 <tr class="memdesc:a68ce4ffc5f317995c2c917bc4bd61c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the isDiagetic flag  <a href="classTransform.html#a68ce4ffc5f317995c2c917bc4bd61c62">More...</a><br /></td></tr>
 <tr class="separator:a68ce4ffc5f317995c2c917bc4bd61c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4904a1fff5d70afd6ea14bba22a33ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransform.html#af4904a1fff5d70afd6ea14bba22a33ea">SetIsDiegetic</a> (bool const &amp;isDiagetic)</td></tr>
-<tr class="memdesc:af4904a1fff5d70afd6ea14bba22a33ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the isDiagetic flag  <a href="classTransform.html#af4904a1fff5d70afd6ea14bba22a33ea">More...</a><br /></td></tr>
-<tr class="separator:af4904a1fff5d70afd6ea14bba22a33ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4c0aef8ac27ad4ce6d40ad77233ce00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransform.html#ad4c0aef8ac27ad4ce6d40ad77233ce00">SetIsDiegetic</a> (bool isDiagetic)</td></tr>
+<tr class="memdesc:ad4c0aef8ac27ad4ce6d40ad77233ce00"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the isDiagetic flag  <a href="classTransform.html#ad4c0aef8ac27ad4ce6d40ad77233ce00">More...</a><br /></td></tr>
+<tr class="separator:ad4c0aef8ac27ad4ce6d40ad77233ce00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba1f0c01903eb9ccac5a8eb7c7feb7f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransform.html#aba1f0c01903eb9ccac5a8eb7c7feb7f3">SetIsDirty</a> (bool dirty)</td></tr>
 <tr class="memdesc:aba1f0c01903eb9ccac5a8eb7c7feb7f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the dirty flag of this <a class="el" href="classTransform.html">Transform</a>  <a href="classTransform.html#aba1f0c01903eb9ccac5a8eb7c7feb7f3">More...</a><br /></td></tr>
 <tr class="separator:aba1f0c01903eb9ccac5a8eb7c7feb7f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,6 +149,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a216e58bd1b07384a78e08b0ba806260f"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransform.html#a216e58bd1b07384a78e08b0ba806260f">Write</a> () const override</td></tr>
 <tr class="memdesc:a216e58bd1b07384a78e08b0ba806260f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classTransform.html">Transform</a> component data to a JSON file.  <a href="classTransform.html#a216e58bd1b07384a78e08b0ba806260f">More...</a><br /></td></tr>
 <tr class="separator:a216e58bd1b07384a78e08b0ba806260f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49130d0a3f94a70eec11a67979ce693c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classTransform.html">Transform</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransform.html#a49130d0a3f94a70eec11a67979ce693c">Clone</a> () const override</td></tr>
+<tr class="memdesc:a49130d0a3f94a70eec11a67979ce693c"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a new copy of this <a class="el" href="classComponent.html">Component</a>  <a href="classTransform.html#a49130d0a3f94a70eec11a67979ce693c">More...</a><br /></td></tr>
+<tr class="separator:a49130d0a3f94a70eec11a67979ce693c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classComponent"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classComponent')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classComponent.html">Component</a></td></tr>
 <tr class="memitem:a2e9aa4348314d981f05f67397ad2f872 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a id="a2e9aa4348314d981f05f67397ad2f872"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">~Component</a> ()</td></tr>
@@ -164,15 +170,30 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">SetParent</a> (<a class="el" href="classEntity.html">Entity</a> *parent)</td></tr>
 <tr class="memdesc:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the parent entity of the component  <a href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">More...</a><br /></td></tr>
 <tr class="separator:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a1c2eb7952e1a90a45ba7672cf7307504">GetParent</a> () const</td></tr>
-<tr class="memdesc:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the components parent entity  <a href="classComponent.html#a1c2eb7952e1a90a45ba7672cf7307504">More...</a><br /></td></tr>
-<tr class="separator:a1c2eb7952e1a90a45ba7672cf7307504 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bac0f3387cfd9163ca61445ceb0b6b9 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a0bac0f3387cfd9163ca61445ceb0b6b9">GetEntity</a> () const</td></tr>
+<tr class="memdesc:a0bac0f3387cfd9163ca61445ceb0b6b9 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the components parent entity  <a href="classComponent.html#a0bac0f3387cfd9163ca61445ceb0b6b9">More...</a><br /></td></tr>
+<tr class="separator:a0bac0f3387cfd9163ca61445ceb0b6b9 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">GetId</a> () const</td></tr>
 <tr class="memdesc:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the Id of this <a class="el" href="classComponent.html">Component</a>  <a href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">More...</a><br /></td></tr>
 <tr class="separator:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab013472b21ba197a25143ab1e1e9272e inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ab013472b21ba197a25143ab1e1e9272e">BaseComponentInspector</a> ()</td></tr>
+<tr class="memdesc:ab013472b21ba197a25143ab1e1e9272e inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">base Inspector for Components  <a href="classComponent.html#ab013472b21ba197a25143ab1e1e9272e">More...</a><br /></td></tr>
+<tr class="separator:ab013472b21ba197a25143ab1e1e9272e inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ad0d0d970712d62378c404ea8e6aadafb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classTexture.html">Texture</a> const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransform.html#ad0d0d970712d62378c404ea8e6aadafb">GetWidgetTexture</a> ()</td></tr>
+<tr class="memdesc:ad0d0d970712d62378c404ea8e6aadafb"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classTransform.html">Transform</a> debug widget texture  <a href="classTransform.html#ad0d0d970712d62378c404ea8e6aadafb">More...</a><br /></td></tr>
+<tr class="separator:ad0d0d970712d62378c404ea8e6aadafb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a70f815df7fad0b3e9f623ec7762fdb52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransform.html#a70f815df7fad0b3e9f623ec7762fdb52">Transform</a> (std::type_index const &amp;type)</td></tr>
+<tr class="memdesc:a70f815df7fad0b3e9f623ec7762fdb52"><td class="mdescLeft">&#160;</td><td class="mdescRight">inherited constructor  <a href="classTransform.html#a70f815df7fad0b3e9f623ec7762fdb52">More...</a><br /></td></tr>
+<tr class="separator:a70f815df7fad0b3e9f623ec7762fdb52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a490c316d5b993d865d1e7fb2477284"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransform.html#a5a490c316d5b993d865d1e7fb2477284">Transform</a> (<a class="el" href="classTransform.html">Transform</a> const &amp;other)</td></tr>
+<tr class="memdesc:a5a490c316d5b993d865d1e7fb2477284"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy constructor  <a href="classTransform.html#a5a490c316d5b993d865d1e7fb2477284">More...</a><br /></td></tr>
+<tr class="separator:a5a490c316d5b993d865d1e7fb2477284"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classComponent"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classComponent')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classComponent.html">Component</a></td></tr>
 <tr class="memitem:ac70649aafa6c287ce26ed3237896d512 inherit pro_methods_classComponent"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ac70649aafa6c287ce26ed3237896d512">Component</a> (std::type_index m_Type)</td></tr>
 <tr class="memdesc:ac70649aafa6c287ce26ed3237896d512 inherit pro_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">default component constructor  <a href="classComponent.html#ac70649aafa6c287ce26ed3237896d512">More...</a><br /></td></tr>
@@ -183,7 +204,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa08ca4266efabc768973cdeea51945ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa08ca4266efabc768973cdeea51945ab">&#9670;&nbsp;</a></span>Transform()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa08ca4266efabc768973cdeea51945ab">&#9670;&nbsp;</a></span>Transform() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,6 +220,76 @@ Additional Inherited Members</h2></td></tr>
 
 <p>constructor </p>
 <p>Default constructor for the transform component. </p>
+
+</div>
+</div>
+<a id="a70f815df7fad0b3e9f623ec7762fdb52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70f815df7fad0b3e9f623ec7762fdb52">&#9670;&nbsp;</a></span>Transform() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transform::Transform </td>
+          <td>(</td>
+          <td class="paramtype">std::type_index const &amp;&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>inherited constructor </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>the type of the derived class </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5a490c316d5b993d865d1e7fb2477284"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a490c316d5b993d865d1e7fb2477284">&#9670;&nbsp;</a></span>Transform() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Transform::Transform </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classTransform.html">Transform</a> const &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>copy constructor </p>
+<p>Copy constructor for the transform component.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other <a class="el" href="classTransform.html">Transform</a> to copy</td></tr>
+    <tr><td class="paramname">other</td><td>Reference to another transform component. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -237,6 +328,38 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a49130d0a3f94a70eec11a67979ce693c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49130d0a3f94a70eec11a67979ce693c">&#9670;&nbsp;</a></span>Clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classTransform.html">Transform</a>* Transform::Clone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>creates a new copy of this <a class="el" href="classComponent.html">Component</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>the newly created component </dd></dl>
+
+<p>Implements <a class="el" href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">Component</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classUiElement.html#a406854ff27a7b1b185a22816d834f81a">UiElement</a>.</p>
 
 </div>
 </div>
@@ -375,6 +498,34 @@ The translation matrix of the transform component. </dd></dl>
 
 </div>
 </div>
+<a id="ad0d0d970712d62378c404ea8e6aadafb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0d0d970712d62378c404ea8e6aadafb">&#9670;&nbsp;</a></span>GetWidgetTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTexture.html">Texture</a> const  * Transform::GetWidgetTexture </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets the <a class="el" href="classTransform.html">Transform</a> debug widget texture </p>
+<dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="classTransform.html">Transform</a> debug widget texture </dd></dl>
+
+</div>
+</div>
 <a id="a7ebd0a78b54328c2d6eb0aa1452eeb88"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7ebd0a78b54328c2d6eb0aa1452eeb88">&#9670;&nbsp;</a></span>RemoveOnTransformChangedCallback()</h2>
 
@@ -482,8 +633,8 @@ The translation matrix of the transform component. </dd></dl>
 
 </div>
 </div>
-<a id="af4904a1fff5d70afd6ea14bba22a33ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4904a1fff5d70afd6ea14bba22a33ea">&#9670;&nbsp;</a></span>SetIsDiegetic()</h2>
+<a id="ad4c0aef8ac27ad4ce6d40ad77233ce00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4c0aef8ac27ad4ce6d40ad77233ce00">&#9670;&nbsp;</a></span>SetIsDiegetic()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -494,7 +645,7 @@ The translation matrix of the transform component. </dd></dl>
         <tr>
           <td class="memname">void Transform::SetIsDiegetic </td>
           <td>(</td>
-          <td class="paramtype">bool const &amp;&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>isDiagetic</em></td><td>)</td>
           <td></td>
         </tr>
@@ -707,6 +858,8 @@ The translation matrix of the transform component. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The JSON file containing the <a class="el" href="classTransform.html">Transform</a> component data. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classUiElement.html#aa4523b7509db41f8be442d77a411a9a7">UiElement</a>.</p>
 
 </div>
 </div>
