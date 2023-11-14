@@ -23,8 +23,8 @@ Collaboration diagram for Pool$<$ Value $>$\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classPool_ac1beb9c4ed6b44afe946f239ad84e552}\label{classPool_ac1beb9c4ed6b44afe946f239ad84e552}} 
-\mbox{\hyperlink{classPool_ac1beb9c4ed6b44afe946f239ad84e552}{Pool}} ()
+\mbox{\Hypertarget{classPool_a70918e5f5da422cfcc09288106ce19be}\label{classPool_a70918e5f5da422cfcc09288106ce19be}} 
+\mbox{\hyperlink{classPool_a70918e5f5da422cfcc09288106ce19be}{Pool}} (std\+::string name=std\+::string(\char`\"{}Pool\char`\"{}), Value value=0, bool active=0)
 \begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classPool_a7f3f3e1d44270e57a02b6454ec255bfe}\label{classPool_a7f3f3e1d44270e57a02b6454ec255bfe}} 
 {\bfseries Pool} (const \mbox{\hyperlink{classPool}{Pool}} \&other)
@@ -41,7 +41,7 @@ Collaboration diagram for Pool$<$ Value $>$\+:
 \begin{DoxyCompactList}\small\item\em set the current value \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classPool_a2eb501bce90c80eaca0434eeabebf729}{Set\+Default}} (Value value)
 \begin{DoxyCompactList}\small\item\em Changes the base value. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classPool_abcf571e75fab60ffeb585b4051612c77}\label{classPool_abcf571e75fab60ffeb585b4051612c77}} 
+\mbox{\Hypertarget{classPool_a02c29d60b64896813d0ce8c2d529467b}\label{classPool_a02c29d60b64896813d0ce8c2d529467b}} 
 \+\_\+\+\_\+inline void {\bfseries Decrease\+Pool\+Time} (Value value)
 \item 
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classPool_a1e246d8e779b81e1ff4f54bd41e64315}{Set\+Active}} (bool active)
@@ -51,38 +51,108 @@ Collaboration diagram for Pool$<$ Value $>$\+:
 \mbox{\Hypertarget{classPool_a41bda4c39fcde8794becac08d973886e}\label{classPool_a41bda4c39fcde8794becac08d973886e}} 
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classPool_a41bda4c39fcde8794becac08d973886e}{Reset}} ()
 \begin{DoxyCompactList}\small\item\em Resets the pool to its default value. \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classPool_a4e0cfe7526b27681304eebcaa7b2b46b}{Clone}} () const
-\begin{DoxyCompactList}\small\item\em virtual component clone function \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classPool_ae085a0da1852c382beeaec59106db94b}\label{classPool_ae085a0da1852c382beeaec59106db94b}} 
 virtual void \mbox{\hyperlink{classPool_ae085a0da1852c382beeaec59106db94b}{Inspector}} ()
 \begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classPool_a912e337700a07070657de8ee22caa1ff}\label{classPool_a912e337700a07070657de8ee22caa1ff}} 
 virtual void \mbox{\hyperlink{classPool_a912e337700a07070657de8ee22caa1ff}{On\+Init}} ()
 \begin{DoxyCompactList}\small\item\em called when this \mbox{\hyperlink{classComponent}{Component}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} is added to the Scene \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPool_ae36e7ca806d58297189605a865dbd0ac}{read\+Name}} (nlohmann\+::ordered\+\_\+json const \&data)
+\begin{DoxyCompactList}\small\item\em Reads the Name of the pool from the json data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPool_a0205596cb44aeaacdb7dd02bef7a8a8b}{read\+Base\+Value}} (nlohmann\+::ordered\+\_\+json const \&data)
+\begin{DoxyCompactList}\small\item\em Reads the Base Value from the json data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPool_af7733deb5eb93cf422885c8083d33b38}{read\+Current\+Value}} (nlohmann\+::ordered\+\_\+json const \&data)
+\begin{DoxyCompactList}\small\item\em Reads the Current Value from the json data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPool_a871e555d3200e5b4ebade7a43098de01}{read\+Active}} (nlohmann\+::ordered\+\_\+json const \&data)
+\begin{DoxyCompactList}\small\item\em Reads the Active State from the json data. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classPool_aa6210bb44722bdc6bac03dc81a20b05c}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPool}{Pool}} \& \mbox{\hyperlink{classPool_a5f7f34bf1f12c92ce8c17daf189e546b}{operator+=}} (const Value \&value)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item adds a value to the pool 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPool}{Pool}} \& \mbox{\hyperlink{classPool_acfc5331c09bbcccd0c35da13d16d2d3b}{operator-\/=}} (const Value \&value)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item subtracts a value from the pool 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPool}{Pool}} \& \mbox{\hyperlink{classPool_a0dc128a1ebc75cec3cc685e53e749436}{operator$\ast$=}} (const Value \&value)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item multiplies the pool by a value 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPool}{Pool}} \& \mbox{\hyperlink{classPool_a63e24740dc0d711628a358ae6f0f709c}{operator/=}} (const Value \&value)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item divides the pool by a value 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPool_a111cb134cb46f9848d0f86dd02689680}\label{classPool_a111cb134cb46f9848d0f86dd02689680}} 
+\mbox{\hyperlink{classPool_a111cb134cb46f9848d0f86dd02689680}{operator bool}} () const
+\begin{DoxyCompactList}\small\item\em converts the pool to a bool \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPool_ae89156f6a4bbc6172387c99a9b761590}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em write the data to json \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Read\+Method\+Map$<$ \mbox{\hyperlink{classPool}{Pool}} $>$ const \mbox{\hyperlink{classPool_a6b8d48287864d62578ce1e5a43414f9b}{s\+\_\+\+Read\+Methods}}
+\begin{DoxyCompactList}\small\item\em map of the read methods \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPool}{Pool}} \mbox{\hyperlink{classPool_af1194d70a030e56b03c882c167d7ad51}{operator+}} (const \mbox{\hyperlink{classPool}{Pool}} \&lhs, const \mbox{\hyperlink{classPool}{Pool}} \&rhs)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item adds two pools together 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPool}{Pool}} \mbox{\hyperlink{classPool_a4fdd4aa952ee3d8b87ca9d370704c33e}{operator-\/}} (const \mbox{\hyperlink{classPool}{Pool}} \&lhs, const \mbox{\hyperlink{classPool}{Pool}} \&rhs)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item subtracts two pools together 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPool}{Pool}} \mbox{\hyperlink{classPool_a08174fc51706a9908f8df281624a79bf}{operator$\ast$}} (const \mbox{\hyperlink{classPool}{Pool}} \&lhs, const \mbox{\hyperlink{classPool}{Pool}} \&rhs)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item multiplies two pools together 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPool}{Pool}} \mbox{\hyperlink{classPool_a7c7fd2fbdb0571bff1017d4796eabe63}{operator/}} (const \mbox{\hyperlink{classPool}{Pool}} \&lhs, const \mbox{\hyperlink{classPool}{Pool}} \&rhs)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item divides two pools together 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPool_ac223f42d84730e06c9e1e33499d27635}{operator==}} (const \mbox{\hyperlink{classPool}{Pool}} \&lhs, const \mbox{\hyperlink{classPool}{Pool}} \&rhs)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item compares two pools for equality 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPool_af1a93f27bc6104d37ae49aee12dfbc90}{operator!=}} (const \mbox{\hyperlink{classPool}{Pool}} \&lhs, const \mbox{\hyperlink{classPool}{Pool}} \&rhs)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item compares two pools for inequality 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPool_a26ab9577d7a44ca053fd7515b03c40cd}{operator$>$}} (const \mbox{\hyperlink{classPool}{Pool}} \&lhs, const \mbox{\hyperlink{classPool}{Pool}} \&rhs)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item compares two pools 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPool_ace01f7b4deafddd7e37f5161db0e67e8}{operator$<$}} (const \mbox{\hyperlink{classPool}{Pool}} \&lhs, const \mbox{\hyperlink{classPool}{Pool}} \&rhs)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item compares two pools 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPool_ab72995de09d7a8b522c6ed979cd9f7c1}{operator$>$=}} (const \mbox{\hyperlink{classPool}{Pool}} \&lhs, const \mbox{\hyperlink{classPool}{Pool}} \&rhs)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item compares two pools 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPool_a723a3d39149ca305b80f7e4cb51f3b39}{operator$<$=}} (const \mbox{\hyperlink{classPool}{Pool}} \&lhs, const \mbox{\hyperlink{classPool}{Pool}} \&rhs)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item compares two pools 
+\end{DoxyItemize}\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classPool_a4e0cfe7526b27681304eebcaa7b2b46b}\label{classPool_a4e0cfe7526b27681304eebcaa7b2b46b}} 
-\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!Clone@{Clone}}
-\index{Clone@{Clone}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
-\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
-{\footnotesize\ttfamily template$<$typename Value $>$ \\
-\mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Clone\hspace{0.3cm}{\ttfamily [virtual]}}
-
-
-
-virtual component clone function 
-
-\begin{DoxyReturn}{Returns}
-new clone of component 
-\end{DoxyReturn}
-
-
-Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
-
 \mbox{\Hypertarget{classPool_a970e1997e363b3fc5acbbb4ed3dbaae0}\label{classPool_a970e1997e363b3fc5acbbb4ed3dbaae0}} 
 \index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!GetActive@{GetActive}}
 \index{GetActive@{GetActive}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
@@ -139,6 +209,186 @@ Gets the name of the pool.
 \begin{DoxyReturn}{Returns}
 Name of the \mbox{\hyperlink{classPool}{Pool}} 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classPool_aa6210bb44722bdc6bac03dc81a20b05c}\label{classPool_aa6210bb44722bdc6bac03dc81a20b05c}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classPool_a0dc128a1ebc75cec3cc685e53e749436}\label{classPool_a0dc128a1ebc75cec3cc685e53e749436}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \& \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const Value \&}]{value }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item multiplies the pool by a value 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & -\/ the value to multiply by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ the new pool value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_a5f7f34bf1f12c92ce8c17daf189e546b}\label{classPool_a5f7f34bf1f12c92ce8c17daf189e546b}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \& \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const Value \&}]{value }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item adds a value to the pool 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & -\/ the value to add \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ the new pool value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_acfc5331c09bbcccd0c35da13d16d2d3b}\label{classPool_acfc5331c09bbcccd0c35da13d16d2d3b}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \& \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const Value \&}]{value }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item subtracts a value from the pool 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & -\/ the value to subtract \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ the new pool value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_a63e24740dc0d711628a358ae6f0f709c}\label{classPool_a63e24740dc0d711628a358ae6f0f709c}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \& \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::operator/= (\begin{DoxyParamCaption}\item[{const Value \&}]{value }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item divides the pool by a value 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & -\/ the value to divide by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ the new pool value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_a871e555d3200e5b4ebade7a43098de01}\label{classPool_a871e555d3200e5b4ebade7a43098de01}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!readActive@{readActive}}
+\index{readActive@{readActive}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{readActive()}{readActive()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+void \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::read\+Active (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})}
+
+
+
+Reads the Active State from the json data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & -\/ the json data to read from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPool_a0205596cb44aeaacdb7dd02bef7a8a8b}\label{classPool_a0205596cb44aeaacdb7dd02bef7a8a8b}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!readBaseValue@{readBaseValue}}
+\index{readBaseValue@{readBaseValue}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{readBaseValue()}{readBaseValue()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+void \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::read\+Base\+Value (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})}
+
+
+
+Reads the Base Value from the json data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & -\/ the json data to read from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPool_af7733deb5eb93cf422885c8083d33b38}\label{classPool_af7733deb5eb93cf422885c8083d33b38}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!readCurrentValue@{readCurrentValue}}
+\index{readCurrentValue@{readCurrentValue}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{readCurrentValue()}{readCurrentValue()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+void \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::read\+Current\+Value (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})}
+
+
+
+Reads the Current Value from the json data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & -\/ the json data to read from\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & the type of Value in this \mbox{\hyperlink{classPool}{Pool}} \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the json data to read from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPool_ae36e7ca806d58297189605a865dbd0ac}\label{classPool_ae36e7ca806d58297189605a865dbd0ac}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!readName@{readName}}
+\index{readName@{readName}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{readName()}{readName()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+void \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::read\+Name (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})}
+
+
+
+Reads the Name of the pool from the json data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & -\/ the json data to read from \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classPool_a1e246d8e779b81e1ff4f54bd41e64315}\label{classPool_a1e246d8e779b81e1ff4f54bd41e64315}} 
 \index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!SetActive@{SetActive}}
 \index{SetActive@{SetActive}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
@@ -224,7 +474,274 @@ Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc
 
 
 
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classPool_af1a93f27bc6104d37ae49aee12dfbc90}\label{classPool_af1a93f27bc6104d37ae49aee12dfbc90}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=}{operator!=}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+
+\begin{DoxyItemize}
+\item compares two pools for inequality 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the left hand side of the comparison \\
+\hline
+{\em rhs} & -\/ the right hand side of the comparison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ true if the pools are not equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_a08174fc51706a9908f8df281624a79bf}\label{classPool_a08174fc51706a9908f8df281624a79bf}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$}{operator*}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}} operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+
+\begin{DoxyItemize}
+\item multiplies two pools together 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the left hand side of the multiplication \\
+\hline
+{\em rhs} & -\/ the right hand side of the multiplication \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ the new pool value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_af1194d70a030e56b03c882c167d7ad51}\label{classPool_af1194d70a030e56b03c882c167d7ad51}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator+}{operator+}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}} operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+
+\begin{DoxyItemize}
+\item adds two pools together 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the left hand side of the addition \\
+\hline
+{\em rhs} & -\/ the right hand side of the addition \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ the new pool value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_a4fdd4aa952ee3d8b87ca9d370704c33e}\label{classPool_a4fdd4aa952ee3d8b87ca9d370704c33e}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/}{operator-}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}} operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+
+\begin{DoxyItemize}
+\item subtracts two pools together 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the left hand side of the subtraction \\
+\hline
+{\em rhs} & -\/ the right hand side of the subtraction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ the new pool value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_a7c7fd2fbdb0571bff1017d4796eabe63}\label{classPool_a7c7fd2fbdb0571bff1017d4796eabe63}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator/}{operator/}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}} operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+
+\begin{DoxyItemize}
+\item divides two pools together 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the left hand side of the division \\
+\hline
+{\em rhs} & -\/ the right hand side of the division \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ the new pool value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_ace01f7b4deafddd7e37f5161db0e67e8}\label{classPool_ace01f7b4deafddd7e37f5161db0e67e8}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$}{operator<}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+
+\begin{DoxyItemize}
+\item compares two pools 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the left hand side of the comparison \\
+\hline
+{\em rhs} & -\/ the right hand side of the comparison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ true if the left hand side is less than the right hand side 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_a723a3d39149ca305b80f7e4cb51f3b39}\label{classPool_a723a3d39149ca305b80f7e4cb51f3b39}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$=}{operator<=}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+
+\begin{DoxyItemize}
+\item compares two pools 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the left hand side of the comparison \\
+\hline
+{\em rhs} & -\/ the right hand side of the comparison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ true if the left hand side is less than or equal to the right hand side 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_ac223f42d84730e06c9e1e33499d27635}\label{classPool_ac223f42d84730e06c9e1e33499d27635}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator==}{operator==}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+
+\begin{DoxyItemize}
+\item compares two pools for equality 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the left hand side of the comparison \\
+\hline
+{\em rhs} & -\/ the right hand side of the comparison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ true if the pools are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_a26ab9577d7a44ca053fd7515b03c40cd}\label{classPool_a26ab9577d7a44ca053fd7515b03c40cd}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$}{operator>}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+
+\begin{DoxyItemize}
+\item compares two pools 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the left hand side of the comparison \\
+\hline
+{\em rhs} & -\/ the right hand side of the comparison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ true if the left hand side is greater than the right hand side 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPool_ab72995de09d7a8b522c6ed979cd9f7c1}\label{classPool_ab72995de09d7a8b522c6ed979cd9f7c1}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{operator$>$=}{operator>=}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+
+\begin{DoxyItemize}
+\item compares two pools 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the left hand side of the comparison \\
+\hline
+{\em rhs} & -\/ the right hand side of the comparison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ true if the left hand side is greater than or equal to the right hand side 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classPool_a6b8d48287864d62578ce1e5a43414f9b}\label{classPool_a6b8d48287864d62578ce1e5a43414f9b}} 
+\index{Pool$<$ Value $>$@{Pool$<$ Value $>$}!s\_ReadMethods@{s\_ReadMethods}}
+\index{s\_ReadMethods@{s\_ReadMethods}!Pool$<$ Value $>$@{Pool$<$ Value $>$}}
+\doxysubsubsection{\texorpdfstring{s\_ReadMethods}{s\_ReadMethods}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+Read\+Method\+Map$<$ \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ $>$ const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$\+::s\+\_\+\+Read\+Methods\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Name"{}}        , \&\mbox{\hyperlink{classPool}{Pool<Value>::readName}}         \},    }
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}BaseValue"{}}   , \&\mbox{\hyperlink{classPool}{Pool<Value>::readBaseValue}}    \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Active"{}}      , \&\mbox{\hyperlink{classPool}{Pool<Value>::readActive}}       \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}CurrentValue"{}}, \&\mbox{\hyperlink{classPool}{Pool<Value>::readCurrentValue}} \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+map of the read methods 
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Source/Pool.\+h\item 
+Source/\mbox{\hyperlink{Pool_8h}{Pool.\+h}}\item 
 Source/\mbox{\hyperlink{Pool_8cpp}{Pool.\+cpp}}\end{DoxyCompactItemize}

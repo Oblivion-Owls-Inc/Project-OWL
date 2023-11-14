@@ -114,6 +114,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6e8ef17440ddbb5d6f6fde0b096ec454"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classControlPoint.html#a6e8ef17440ddbb5d6f6fde0b096ec454">operator&lt;</a> (<a class="el" href="classControlPoint.html">ControlPoint</a> const &amp;other) const</td></tr>
 <tr class="memdesc:a6e8ef17440ddbb5d6f6fde0b096ec454"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if one <a class="el" href="classControlPoint.html" title="control points used by this Curve">ControlPoint</a> is before another (for sorting)  <a href="classControlPoint.html#a6e8ef17440ddbb5d6f6fde0b096ec454">More...</a><br /></td></tr>
 <tr class="separator:a6e8ef17440ddbb5d6f6fde0b096ec454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bea51f225dfff11bb2313580e6809b8"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classControlPoint.html#a9bea51f225dfff11bb2313580e6809b8">GetReadMethods</a> () const override</td></tr>
+<tr class="memdesc:a9bea51f225dfff11bb2313580e6809b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classCurve.html">Curve</a> read method map  <a href="classControlPoint.html#a9bea51f225dfff11bb2313580e6809b8">More...</a><br /></td></tr>
+<tr class="separator:a9bea51f225dfff11bb2313580e6809b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a252a623a13c8dec86c29438e023640b7"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classControlPoint.html#a252a623a13c8dec86c29438e023640b7">Write</a> () const override</td></tr>
 <tr class="memdesc:a252a623a13c8dec86c29438e023640b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this <a class="el" href="classControlPoint.html" title="control points used by this Curve">ControlPoint</a> to json  <a href="classControlPoint.html#a252a623a13c8dec86c29438e023640b7">More...</a><br /></td></tr>
 <tr class="separator:a252a623a13c8dec86c29438e023640b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,6 +228,38 @@ template&lt;int dimensionality&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9bea51f225dfff11bb2313580e6809b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bea51f225dfff11bb2313580e6809b8">&#9670;&nbsp;</a></span>GetReadMethods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int dimensionality&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const&amp; <a class="el" href="classControlPoint.html">ControlPoint</a>&lt; dimensionality &gt;::GetReadMethods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets the <a class="el" href="classCurve.html">Curve</a> read method map </p>
+<dl class="section return"><dt>Returns</dt><dd>the read method map </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a28ebd6e1c108281c986f97d36f3bbfd1">ISerializable</a>.</p>
+
+</div>
+</div>
 <a id="afb49f19ebb4bb3df8afa1182dc1d1e66"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afb49f19ebb4bb3df8afa1182dc1d1e66">&#9670;&nbsp;</a></span>GetTime()</h2>
 

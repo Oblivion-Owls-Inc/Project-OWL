@@ -2,8 +2,7 @@
 \label{classPathfinder}\index{Pathfinder@{Pathfinder}}
 
 
-Inheritance diagram for Pathfinder\+:
-\nopagebreak
+Inheritance diagram for Pathfinder\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Pathfinder\+:
 \end{figure}
 
 
-Collaboration diagram for Pathfinder\+:
-\nopagebreak
+Collaboration diagram for Pathfinder\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -39,7 +37,11 @@ bool \mbox{\hyperlink{classPathfinder_a678639bbc8bbed133598656210c4b927}{Is\+Wal
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classPathfinder_a5767826b3cbe445692920e25b3615314}{Set\+Walkables}} (std\+::vector$<$ int $>$ const \&walkables)
 \begin{DoxyCompactList}\small\item\em Sets which tile IDs should be considered walkable. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classPathfinder_a08230584ed031550ede930ee77be4b32}{Get\+Travel\+Distance\+At}} (glm\+::vec2 pos)
-\begin{DoxyCompactList}\small\item\em Gets the travel distance (in tiles) to the destination. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets the travel distance (in tiles) to the destination. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classPathfinder_a446ecc5602362b86a58d8ff78add6731}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPathfinder_a95fc5a8f90fffe2b8e56acad88fe6e88}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classSprite}{Sprite}} component data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -92,6 +94,23 @@ Gets normalized direction vector at given world position. The vector points to n
 \begin{DoxyReturn}{Returns}
 Direction vector towards destination. If out of bounds, returns $<$0,0$>$ 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classPathfinder_a446ecc5602362b86a58d8ff78add6731}\label{classPathfinder_a446ecc5602362b86a58d8ff78add6731}} 
+\index{Pathfinder@{Pathfinder}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Pathfinder@{Pathfinder}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Pathfinder\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
 \mbox{\Hypertarget{classPathfinder_a08230584ed031550ede930ee77be4b32}\label{classPathfinder_a08230584ed031550ede930ee77be4b32}} 
 \index{Pathfinder@{Pathfinder}!GetTravelDistanceAt@{GetTravelDistanceAt}}
 \index{GetTravelDistanceAt@{GetTravelDistanceAt}!Pathfinder@{Pathfinder}}
@@ -158,9 +177,26 @@ Sets which tile IDs should be considered walkable.
 {\em walkables} & Vector of tiles \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classPathfinder_a95fc5a8f90fffe2b8e56acad88fe6e88}\label{classPathfinder_a95fc5a8f90fffe2b8e56acad88fe6e88}} 
+\index{Pathfinder@{Pathfinder}!Write@{Write}}
+\index{Write@{Write}!Pathfinder@{Pathfinder}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Pathfinder\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classSprite}{Sprite}} component data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classSprite}{Sprite}} component data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
 Source/\mbox{\hyperlink{Pathfinder_8h}{Pathfinder.\+h}}\item 
-Source/\mbox{\hyperlink{Pathfinder_8cpp}{Pathfinder.\+cpp}}\end{DoxyCompactItemize}
+Source/Pathfinder.\+cpp\end{DoxyCompactItemize}

@@ -118,6 +118,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa527daa36c0689122424d88acc2d8476"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classEntity.html">Entity</a> * &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#aa527daa36c0689122424d88acc2d8476">GetEntities</a> () const</td></tr>
 <tr class="memdesc:aa527daa36c0689122424d88acc2d8476"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the container of all Entities in the Scene  <a href="classEntitySystem.html#aa527daa36c0689122424d88acc2d8476">More...</a><br /></td></tr>
 <tr class="separator:aa527daa36c0689122424d88acc2d8476"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a409d4956a21b58cc77b086e405c171a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#a409d4956a21b58cc77b086e405c171a6">EntityCreateWindow</a> ()</td></tr>
+<tr class="memdesc:a409d4956a21b58cc77b086e405c171a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows the <a class="el" href="classEntity.html">Entity</a> Create Window.  <a href="classEntitySystem.html#a409d4956a21b58cc77b086e405c171a6">More...</a><br /></td></tr>
+<tr class="separator:a409d4956a21b58cc77b086e405c171a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a024540cf9bdf470e1a2c691e0bb4fdb6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#a024540cf9bdf470e1a2c691e0bb4fdb6">DebugWindow</a> () override</td></tr>
+<tr class="memdesc:a024540cf9bdf470e1a2c691e0bb4fdb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a> to display the debug window.  <a href="classEntitySystem.html#a024540cf9bdf470e1a2c691e0bb4fdb6">More...</a><br /></td></tr>
+<tr class="separator:a024540cf9bdf470e1a2c691e0bb4fdb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a5373dc2163f8de05f07ec49c8afb9d"><td class="memItemLeft" align="right" valign="top"><a id="a2a5373dc2163f8de05f07ec49c8afb9d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>EntitySystem</b> (<a class="el" href="classEntitySystem.html">EntitySystem</a> &amp;other)=delete</td></tr>
 <tr class="separator:a2a5373dc2163f8de05f07ec49c8afb9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,9 +135,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ab2599efd39c3969bf4da3ded49574f28">OnInit</a> ()</td></tr>
 <tr class="memdesc:ab2599efd39c3969bf4da3ded49574f28 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once when this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is added to the <a class="el" href="classEngine.html">Engine</a>. <br /></td></tr>
 <tr class="separator:ab2599efd39c3969bf4da3ded49574f28 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">OnUpdate</a> (float dt)</td></tr>
-<tr class="memdesc:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every graphics frame. Do not use this function for anything that affects the simulation.  <a href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">More...</a><br /></td></tr>
-<tr class="separator:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a024e9a831c897c60edb310224be27da8"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a024e9a831c897c60edb310224be27da8">OnFixedUpdate</a> ()</td></tr>
+<tr class="memdesc:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every simulation frame. Use this function for anything that affects the simulation. <br /></td></tr>
+<tr class="separator:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaebe51536352d44fea4c0e44f449eb5 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="abaebe51536352d44fea4c0e44f449eb5"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#abaebe51536352d44fea4c0e44f449eb5">OnExit</a> ()</td></tr>
 <tr class="memdesc:abaebe51536352d44fea4c0e44f449eb5 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once before the <a class="el" href="classEngine.html">Engine</a> closes. <br /></td></tr>
@@ -144,6 +151,21 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a804bac94c6ffee7f7369c6c3928a5574">GetName</a> () const</td></tr>
 <tr class="memdesc:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unique name of this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
 <tr class="separator:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a523cfae3fb1f5b2d20ba604b3344faa5">GetEnabled</a> () const</td></tr>
+<tr class="memdesc:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is enabled  <a href="classSystem.html#a523cfae3fb1f5b2d20ba604b3344faa5">More...</a><br /></td></tr>
+<tr class="separator:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7260844b1e1057f706ca25948fa63db3 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a7260844b1e1057f706ca25948fa63db3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetDebugEnabled</b> () const</td></tr>
+<tr class="separator:a7260844b1e1057f706ca25948fa63db3 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#aee0c04e1a79fbb2343edddaf319da646">SetEnabled</a> (bool enabled)</td></tr>
+<tr class="memdesc:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is enabled  <a href="classSystem.html#aee0c04e1a79fbb2343edddaf319da646">More...</a><br /></td></tr>
+<tr class="separator:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af8b62b082956e0dd473031e6f3598828">SetDebugEnable</a> (bool enable)</td></tr>
+<tr class="memdesc:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if the Debug Window should be shown.  <a href="classSystem.html#af8b62b082956e0dd473031e6f3598828">More...</a><br /></td></tr>
+<tr class="separator:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ade5a3addecec59fbc386c1d49fccaa1e">GetId</a> () const</td></tr>
+<tr class="memdesc:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s ID  <a href="classSystem.html#ade5a3addecec59fbc386c1d49fccaa1e">More...</a><br /></td></tr>
+<tr class="separator:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a6b75872f421f9ae9a720502d37223d49"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>System</b> (<a class="el" href="classSystem.html">System</a> &amp;other)=delete</td></tr>
 <tr class="separator:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,7 +225,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <hr  />
- <h2><a class="anchor" id="autotoc_md4"></a>
+ <h2><a class="anchor" id="autotoc_md12"></a>
 Set Static Variables</h2>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -211,6 +233,73 @@ Set Static Variables</h2>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a024540cf9bdf470e1a2c691e0bb4fdb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a024540cf9bdf470e1a2c691e0bb4fdb6">&#9670;&nbsp;</a></span>DebugWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EntitySystem::DebugWindow </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called by the <a class="el" href="classDebugSystem.html" title="Debug System Class For Debugging.">DebugSystem</a> to display the debug window. </p>
+<p>Used to make the <a class="el" href="classEntity.html">Entity</a> List a pop out window</p>
+<p>Create a new entity</p>
+<p>Set the name of the entity</p>
+<p>Add the entity to the <a class="el" href="classEntitySystem.html" title="Example System meant to be copy-pasted when creating new Systems.">EntitySystem</a></p>
+<p>Display the <a class="el" href="classEntity.html">Entity</a> List</p>
+
+<p>Reimplemented from <a class="el" href="classSystem.html#ac37b07a2ad20e2d2fe1f77766902af5d">System</a>.</p>
+
+</div>
+</div>
+<a id="a409d4956a21b58cc77b086e405c171a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a409d4956a21b58cc77b086e405c171a6">&#9670;&nbsp;</a></span>EntityCreateWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool EntitySystem::EntityCreateWindow </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Shows the <a class="el" href="classEntity.html">Entity</a> Create Window. </p>
+<p>Opens a window to create a new entity.</p>
+<dl class="section return"><dt>Returns</dt><dd>- true if the window is open </dd></dl>
+<p>Creates the window and auto resizes it</p>
+<p>Sets the size of the window if it is the first time it is opened</p>
+<p>Input text for entity name</p>
+<p>Buffer to hold the input, you can save this</p>
+<p>Create a new entity</p>
+<p>Set the name of the entity</p>
+<p>Add the entity to the <a class="el" href="classEntitySystem.html" title="Example System meant to be copy-pasted when creating new Systems.">EntitySystem</a></p>
+<p>if the entity is added, close the window</p>
+<p>Aligns the cancel button with the add entity button</p>
+<p>Creates the cancel button</p>
+<p>If the cancel button is pressed, close the window</p>
+<p>The Matching End to the Begin to create the window</p>
 
 </div>
 </div>

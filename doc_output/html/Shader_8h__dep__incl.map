@@ -1,13 +1,21 @@
 <map id="Source/Shader.h" name="Source/Shader.h">
-<area shape="rect" id="node1" title="Shader class declaration/interface." alt="" coords="770,5,897,32"/>
-<area shape="rect" id="node2" href="$RenderSystem_8h.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="653,80,830,107"/>
-<area shape="rect" id="node11" href="$Shader_8cpp.html" title="Shader class implementation." alt="" coords="855,80,996,107"/>
-<area shape="rect" id="node3" href="$Engine_8cpp.html" title="Engine class." alt="" coords="5,155,147,181"/>
-<area shape="rect" id="node4" href="$Mesh_8cpp.html" title="Implementation of Mesh class." alt="" coords="171,155,303,181"/>
-<area shape="rect" id="node5" href="$RenderSystem_8cpp.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="328,155,520,181"/>
-<area shape="rect" id="node6" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="544,155,747,181"/>
-<area shape="rect" id="node7" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="771,155,906,181"/>
-<area shape="rect" id="node8" href="$Texture_8cpp.html" title="Wrapper/manager for OpenGL texture." alt="" coords="930,155,1075,181"/>
-<area shape="rect" id="node9" href="$TilemapSprite_8cpp.html" title="A version of Sprite specifically for rendering tiles." alt="" coords="1099,155,1287,181"/>
-<area shape="rect" id="node10" href="$XinoScene_8cpp.html" title=" " alt="" coords="1312,155,1477,181"/>
+<area shape="rect" id="node1" title="Shader class declaration/interface." alt="" coords="1571,5,1697,32"/>
+<area shape="rect" id="node2" href="$RenderSystem_8h.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="1453,80,1631,107"/>
+<area shape="rect" id="node19" href="$Shader_8cpp.html" title="Shader class implementation." alt="" coords="1655,80,1797,107"/>
+<area shape="rect" id="node3" href="$CircleCollider_8cpp.html" title="Circle&#45;shaped collider." alt="" coords="5,155,188,181"/>
+<area shape="rect" id="node4" href="$Emitter_8cpp.html" title="Controls timing of particle emissions, and their init data." alt="" coords="213,155,357,181"/>
+<area shape="rect" id="node5" href="$Engine_8cpp.html" title="Engine class." alt="" coords="381,155,522,181"/>
+<area shape="rect" id="node6" href="$Mesh_8cpp.html" title="Implementation of Mesh class." alt="" coords="547,155,679,181"/>
+<area shape="rect" id="node7" href="$ParticleSprite_8cpp.html" title="Renders particles using data from SSBO." alt="" coords="703,155,885,181"/>
+<area shape="rect" id="node8" href="$ParticleSystem_8cpp.html" title="Updates all particles using compute shader, spawns new ones in accordance with emitters&#39; timing." alt="" coords="910,155,1105,181"/>
+<area shape="rect" id="node9" href="$RenderSystem_8cpp.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="1129,155,1321,181"/>
+<area shape="rect" id="node10" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="1345,155,1547,181"/>
+<area shape="rect" id="node11" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="1572,155,1707,181"/>
+<area shape="rect" id="node12" href="$Texture_8cpp.html" title="Wrapper/manager for OpenGL texture." alt="" coords="1731,155,1876,181"/>
+<area shape="rect" id="node13" href="$TilemapSprite_8cpp.html" title="A version of Sprite specifically for rendering tiles." alt="" coords="1900,155,2088,181"/>
+<area shape="rect" id="node14" href="$Transform_8cpp.html" title="Function definitions for the Transform class." alt="" coords="2113,155,2275,181"/>
+<area shape="rect" id="node15" href="$UiElement_8cpp.html" title="Ui element component." alt="" coords="2299,155,2465,181"/>
+<area shape="rect" id="node16" href="$WavesBehavior_8cpp.html" title="Definitions for wave and spawning behavior." alt="" coords="2489,155,2686,181"/>
+<area shape="rect" id="node17" href="$WavesInspector_8cpp.html" title="Definitions for wave and spawning editing in game." alt="" coords="2711,155,2909,181"/>
+<area shape="rect" id="node18" href="$XinoScene_8cpp.html" title=" " alt="" coords="2933,155,3098,181"/>
 </map>

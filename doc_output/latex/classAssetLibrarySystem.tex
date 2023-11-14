@@ -39,6 +39,8 @@ void \mbox{\hyperlink{classAssetLibrarySystem_a55746d2800bec315d38aea402c26dd1d}
 \mbox{\Hypertarget{classAssetLibrarySystem_ae87d5039fa55b29c883a1508d8e9ed70}\label{classAssetLibrarySystem_ae87d5039fa55b29c883a1508d8e9ed70}} 
 std\+::map$<$ std\+::string, Asset\+Type $\ast$ $>$ const  \& \mbox{\hyperlink{classAssetLibrarySystem_ae87d5039fa55b29c883a1508d8e9ed70}{Get\+Assets}} () const
 \begin{DoxyCompactList}\small\item\em Gets All the assets in the Asset\+Library. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAssetLibrarySystem_ae0dcdc8020c390d0ae422c2b5a434e8f}{Debug\+Create\+Asset\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Asset Creation Window for Dev Console. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classAssetLibrarySystem_a9f01a7b0b624beb7af68ba8e1174baaf}\label{classAssetLibrarySystem_a9f01a7b0b624beb7af68ba8e1174baaf}} 
 {\bfseries Asset\+Library\+System} (\mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}} \&other)=delete
 \item 
@@ -78,6 +80,27 @@ Adds an asset to the Asset\+Library.
 {\em asset} & the asset to add \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classAssetLibrarySystem_ae0dcdc8020c390d0ae422c2b5a434e8f}\label{classAssetLibrarySystem_ae0dcdc8020c390d0ae422c2b5a434e8f}} 
+\index{AssetLibrarySystem$<$ AssetType $>$@{AssetLibrarySystem$<$ AssetType $>$}!DebugCreateAssetWindow@{DebugCreateAssetWindow}}
+\index{DebugCreateAssetWindow@{DebugCreateAssetWindow}!AssetLibrarySystem$<$ AssetType $>$@{AssetLibrarySystem$<$ AssetType $>$}}
+\doxysubsubsection{\texorpdfstring{DebugCreateAssetWindow()}{DebugCreateAssetWindow()}}
+{\footnotesize\ttfamily template$<$class Asset\+Type $>$ \\
+bool \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Library\+System}}$<$ Asset\+Type $>$\+::Debug\+Create\+Asset\+Window}
+
+
+
+Asset Creation Window for Dev Console. 
+
+Used to create a new asset of the specified type.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Asset\+Type} & -\/ the type of asset to create \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+-\/ If the window is open or not. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classAssetLibrarySystem_afa2464ba44daf6d7e70baccc5fe50d02}\label{classAssetLibrarySystem_afa2464ba44daf6d7e70baccc5fe50d02}} 
 \index{AssetLibrarySystem$<$ AssetType $>$@{AssetLibrarySystem$<$ AssetType $>$}!GetAsset@{GetAsset}}
 \index{GetAsset@{GetAsset}!AssetLibrarySystem$<$ AssetType $>$@{AssetLibrarySystem$<$ AssetType $>$}}
@@ -88,6 +111,8 @@ Asset\+Type const  $\ast$ \mbox{\hyperlink{classAssetLibrarySystem}{Asset\+Libra
 
 
 Finds and returns an asset, builds if doesnt yet exist. 
+
+Finds and returns an asset, builds if doesn\textquotesingle{}t yet exist.
 
 \begin{DoxyReturn}{Returns}
 the constructed or found asset 

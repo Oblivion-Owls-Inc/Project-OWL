@@ -1,6 +1,8 @@
 <map id="EnemyBehavior" name="EnemyBehavior">
-<area shape="rect" id="node1" title=" " alt="" coords="5,229,131,256"/>
-<area shape="rect" id="node2" href="$classBehavior.html" title=" " alt="" coords="28,155,108,181"/>
-<area shape="rect" id="node3" href="$classComponent.html" title=" " alt="" coords="19,80,117,107"/>
-<area shape="rect" id="node4" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="17,5,119,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="35,335,161,361"/>
+<area shape="rect" id="node2" href="$classBasicEntityBehavior.html" title=" " alt="" coords="21,259,175,285"/>
+<area shape="rect" id="node3" href="$classBehavior.html" title=" " alt="" coords="14,183,94,209"/>
+<area shape="rect" id="node4" href="$classComponent.html" title=" " alt="" coords="5,81,103,108"/>
+<area shape="rect" id="node5" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="45,5,148,32"/>
+<area shape="rect" id="node6" href="$classPool.html" title=" " alt="" coords="92,132,189,159"/>
 </map>

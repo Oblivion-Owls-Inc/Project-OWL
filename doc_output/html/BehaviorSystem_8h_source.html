@@ -91,46 +91,47 @@ $(function() {
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> DebugWindow() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBehaviorSystem.html#aa6d9536bc1a699ef246cc2ec01404728">AddBehavior</a>(BehaviorType* behavior);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBehaviorSystem.html#a224361fcf4111d4e70f132d4a1ec7832">RemoveBehavior</a>(BehaviorType* behavior);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::vector&lt; BehaviorType* &gt;&amp; GetBehaviors() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">static</span> <a class="code" href="classBehaviorSystem.html">BehaviorSystem&lt; BehaviorType &gt;</a>* <a class="code" href="classBehaviorSystem.html#a61f07a517530933ec83a2af9109ac873">GetInstance</a>();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    std::vector&lt; Behavior* &gt; m_BehaviorList;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="classBehaviorSystem.html">BehaviorSystem</a>();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">static</span> <a class="code" href="classBehaviorSystem.html">BehaviorSystem&lt; BehaviorType &gt;</a>* s_Instance;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// Prevent copying</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classBehaviorSystem.html">BehaviorSystem</a>(<a class="code" href="classBehaviorSystem.html">BehaviorSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classBehaviorSystem.html">BehaviorSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> s_ShowBehaviorSystemList;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">typename</span> BehaviorType &gt;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;__inline <a class="code" href="classBehaviorSystem.html">BehaviorSystem&lt; BehaviorType &gt;</a>* Behaviors()</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classBehaviorSystem.html#a61f07a517530933ec83a2af9109ac873">BehaviorSystem&lt;BehaviorType&gt;::GetInstance</a>();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#ifndef BEHAVIORSYSTEM_C</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#include &quot;BehaviorSystem.cpp&quot;</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBehaviorSystem.html#aa6d9536bc1a699ef246cc2ec01404728">AddBehavior</a>(BehaviorType* behavior);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBehaviorSystem.html#a224361fcf4111d4e70f132d4a1ec7832">RemoveBehavior</a>(BehaviorType* behavior);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::vector&lt; BehaviorType* &gt;&amp; GetBehaviors() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">static</span> <a class="code" href="classBehaviorSystem.html">BehaviorSystem&lt; BehaviorType &gt;</a>* <a class="code" href="classBehaviorSystem.html#a61f07a517530933ec83a2af9109ac873">GetInstance</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::vector&lt; Behavior* &gt; m_BehaviorList;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="classBehaviorSystem.html">BehaviorSystem</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">static</span> <a class="code" href="classBehaviorSystem.html">BehaviorSystem&lt; BehaviorType &gt;</a>* s_Instance;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Prevent copying</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classBehaviorSystem.html">BehaviorSystem</a>(<a class="code" href="classBehaviorSystem.html">BehaviorSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classBehaviorSystem.html">BehaviorSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> s_ShowBehaviorSystemList;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">typename</span> BehaviorType &gt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;__inline <a class="code" href="classBehaviorSystem.html">BehaviorSystem&lt; BehaviorType &gt;</a>* Behaviors()</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classBehaviorSystem.html#a61f07a517530933ec83a2af9109ac873">BehaviorSystem&lt;BehaviorType&gt;::GetInstance</a>();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#ifndef BEHAVIORSYSTEM_C</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#include &quot;BehaviorSystem.cpp&quot;</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aBehavior_8h_html"><div class="ttname"><a href="Behavior_8h.html">Behavior.h</a></div><div class="ttdoc">Virtual behavior component header.</div></div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
 <div class="ttc" id="aclassBehaviorSystem_html"><div class="ttname"><a href="classBehaviorSystem.html">BehaviorSystem</a></div><div class="ttdef"><b>Definition:</b> BehaviorSystem.h:26</div></div>
-<div class="ttc" id="aclassBehaviorSystem_html_a224361fcf4111d4e70f132d4a1ec7832"><div class="ttname"><a href="classBehaviorSystem.html#a224361fcf4111d4e70f132d4a1ec7832">BehaviorSystem::RemoveBehavior</a></div><div class="ttdeci">void RemoveBehavior(BehaviorType *behavior)</div><div class="ttdoc">Removes a Behavior from the system.</div><div class="ttdef"><b>Definition:</b> BehaviorSystem.cpp:59</div></div>
-<div class="ttc" id="aclassBehaviorSystem_html_a61f07a517530933ec83a2af9109ac873"><div class="ttname"><a href="classBehaviorSystem.html#a61f07a517530933ec83a2af9109ac873">BehaviorSystem::GetInstance</a></div><div class="ttdeci">static BehaviorSystem&lt; BehaviorType &gt; * GetInstance()</div><div class="ttdoc">Gets the instance of BehaviorSystem.</div><div class="ttdef"><b>Definition:</b> BehaviorSystem.cpp:92</div></div>
-<div class="ttc" id="aclassBehaviorSystem_html_aa6d9536bc1a699ef246cc2ec01404728"><div class="ttname"><a href="classBehaviorSystem.html#aa6d9536bc1a699ef246cc2ec01404728">BehaviorSystem::AddBehavior</a></div><div class="ttdeci">void AddBehavior(BehaviorType *behavior)</div><div class="ttdoc">Adds a new Behavior to the system.</div><div class="ttdef"><b>Definition:</b> BehaviorSystem.cpp:53</div></div>
-<div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:15</div></div>
+<div class="ttc" id="aclassBehaviorSystem_html_a224361fcf4111d4e70f132d4a1ec7832"><div class="ttname"><a href="classBehaviorSystem.html#a224361fcf4111d4e70f132d4a1ec7832">BehaviorSystem::RemoveBehavior</a></div><div class="ttdeci">void RemoveBehavior(BehaviorType *behavior)</div><div class="ttdoc">Removes a Behavior from the system.</div><div class="ttdef"><b>Definition:</b> BehaviorSystem.cpp:64</div></div>
+<div class="ttc" id="aclassBehaviorSystem_html_a61f07a517530933ec83a2af9109ac873"><div class="ttname"><a href="classBehaviorSystem.html#a61f07a517530933ec83a2af9109ac873">BehaviorSystem::GetInstance</a></div><div class="ttdeci">static BehaviorSystem&lt; BehaviorType &gt; * GetInstance()</div><div class="ttdoc">Gets the instance of BehaviorSystem.</div><div class="ttdef"><b>Definition:</b> BehaviorSystem.cpp:111</div></div>
+<div class="ttc" id="aclassBehaviorSystem_html_aa6d9536bc1a699ef246cc2ec01404728"><div class="ttname"><a href="classBehaviorSystem.html#aa6d9536bc1a699ef246cc2ec01404728">BehaviorSystem::AddBehavior</a></div><div class="ttdeci">void AddBehavior(BehaviorType *behavior)</div><div class="ttdoc">Adds a new Behavior to the system.</div><div class="ttdef"><b>Definition:</b> BehaviorSystem.cpp:58</div></div>
+<div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:18</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

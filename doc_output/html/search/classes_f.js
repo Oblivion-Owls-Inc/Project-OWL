@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xinoscene_362',['XinoScene',['../classXinoScene.html',1,'']]]
+  ['wavesbehavior_654',['WavesBehavior',['../classWavesBehavior.html',1,'']]]
 ];

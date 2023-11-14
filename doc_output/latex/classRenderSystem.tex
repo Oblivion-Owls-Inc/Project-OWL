@@ -30,10 +30,14 @@ Collaboration diagram for Render\+System\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classRenderSystem_af7e26a57c60828d8acb7c6337d3962cb}{Draw\+Rect}} (const glm\+::vec2 \&position, const glm\+::vec2 \&scale=\{100, 100\}, float angle=0.\+0f, const glm\+::vec4 \&color=\{0.\+1, 0.\+6, 0.\+1, 1.\+0\})
+void \mbox{\hyperlink{classRenderSystem_a765509f8084f56e75e8f3cf0ca58aed2}{Draw\+Rect}} (glm\+::vec2 const \&position, glm\+::vec2 const \&scale=\{ 1.\+0f, 1.\+0f \}, float angle=0.\+0f, glm\+::vec4 const \&color=\{ 0.\+1f, 0.\+6f, 0.\+1f, 0.\+0f \}, float alpha=0.\+5f, bool is\+Diegetic=true)
 \begin{DoxyCompactList}\small\item\em Draws a rectangle. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classRenderSystem_a1f9b534f381ac0f5eb0bf889f49cc805}{Draw\+Line}} (const glm\+::vec2 \&P1, const glm\+::vec2 \&P2, float thickness=8, const glm\+::vec4 \&color=\{ 0, 0.\+2, 0.\+5, 1 \})
+void \mbox{\hyperlink{classRenderSystem_a72d8675feca0d75abbac87664677bf56}{Draw\+Circle}} (const glm\+::vec2 \&position, float radius=1.\+0f, const glm\+::vec4 \&color=\{ 0.\+1f, 0.\+6f, 0.\+1f, 0.\+0f \}, float alpha=0.\+5f, bool is\+Diegetic=true)
+\begin{DoxyCompactList}\small\item\em Draws a circle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRenderSystem_aa77f91067057166ca86b69c584c6e815}{Draw\+Line}} (glm\+::vec2 const \&P1, glm\+::vec2 const \&P2, float thickness=1.\+0f, glm\+::vec4 const \&color=\{ 0.\+0f, 0.\+2f, 0.\+5f, 0.\+0f \}, float alpha=0.\+5f, bool is\+Diegetic=true)
 \begin{DoxyCompactList}\small\item\em Draws a line between 2 points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRenderSystem_aa9e52679be69def55d96dc88fbd052eb}{Draw\+Texture}} (\mbox{\hyperlink{classTexture}{Texture}} const $\ast$texture, glm\+::vec2 const \&position, glm\+::vec2 const \&scale=\{ 1.\+0f, 1.\+0f \}, float angle=0.\+0f, glm\+::vec4 const \&color=\{ 0.\+0f, 0.\+0f, 0.\+0f, 0.\+0f \}, float alpha=1.\+0f, bool is\+Diegetic=true)
+\begin{DoxyCompactList}\small\item\em Draws a texture. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classRenderSystem_aa568ccaf7a44b88dd7acccd37f7ab54a}{Add\+Sprite}} (\mbox{\hyperlink{classSprite}{Sprite}} $\ast$sprite)
 \begin{DoxyCompactList}\small\item\em Add a sprite so it can be rendered during update. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classRenderSystem_a22427a72cf0570e5288b8dbd05761314}{Remove\+Sprite}} (\mbox{\hyperlink{classSprite}{Sprite}} $\ast$sprite)
@@ -82,11 +86,34 @@ Add sprite so it can be rendered during update. To be used by \mbox{\hyperlink{c
 {\em sprite} & \mbox{\hyperlink{classSprite}{Sprite}} pointer to add and keep track of \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classRenderSystem_a1f9b534f381ac0f5eb0bf889f49cc805}\label{classRenderSystem_a1f9b534f381ac0f5eb0bf889f49cc805}} 
+\mbox{\Hypertarget{classRenderSystem_a72d8675feca0d75abbac87664677bf56}\label{classRenderSystem_a72d8675feca0d75abbac87664677bf56}} 
+\index{RenderSystem@{RenderSystem}!DrawCircle@{DrawCircle}}
+\index{DrawCircle@{DrawCircle}!RenderSystem@{RenderSystem}}
+\doxysubsubsection{\texorpdfstring{DrawCircle()}{DrawCircle()}}
+{\footnotesize\ttfamily void Render\+System\+::\+Draw\+Circle (\begin{DoxyParamCaption}\item[{const glm\+::vec2 \&}]{position,  }\item[{float}]{radius = {\ttfamily 1.0f},  }\item[{const glm\+::vec4 \&}]{color = {\ttfamily \{~0.1f,~0.6f,~0.1f,~0.0f~\}},  }\item[{float}]{alpha = {\ttfamily 0.5f},  }\item[{bool}]{is\+Diegetic = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Draws a circle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Position \\
+\hline
+{\em radius} & (optional) Radius \\
+\hline
+{\em color} & (optional) Color \\
+\hline
+{\em alpha} & (optional) transparency \\
+\hline
+{\em is\+Diegetic} & (optional) whether the shape is diegetic \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRenderSystem_aa77f91067057166ca86b69c584c6e815}\label{classRenderSystem_aa77f91067057166ca86b69c584c6e815}} 
 \index{RenderSystem@{RenderSystem}!DrawLine@{DrawLine}}
 \index{DrawLine@{DrawLine}!RenderSystem@{RenderSystem}}
 \doxysubsubsection{\texorpdfstring{DrawLine()}{DrawLine()}}
-{\footnotesize\ttfamily void Render\+System\+::\+Draw\+Line (\begin{DoxyParamCaption}\item[{const glm\+::vec2 \&}]{P1,  }\item[{const glm\+::vec2 \&}]{P2,  }\item[{float}]{thickness = {\ttfamily 8},  }\item[{const glm\+::vec4 \&}]{color = {\ttfamily \{~0,0.2,0.5,1~\}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Render\+System\+::\+Draw\+Line (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{P1,  }\item[{glm\+::vec2 const \&}]{P2,  }\item[{float}]{thickness = {\ttfamily 1.0f},  }\item[{glm\+::vec4 const \&}]{color = {\ttfamily \{~0.0f,~0.2f,~0.5f,~0.0f~\}},  }\item[{float}]{alpha = {\ttfamily 0.5f},  }\item[{bool}]{is\+Diegetic = {\ttfamily true} }\end{DoxyParamCaption})}
 
 
 
@@ -102,12 +129,16 @@ Draws a line between 2 points.
 \hline
 {\em color} & (optional) Color of the line \\
 \hline
+{\em alpha} & (optional) transparency \\
+\hline
+{\em is\+Diegetic} & (optional) whether the shape is diegetic \\
+\hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classRenderSystem_af7e26a57c60828d8acb7c6337d3962cb}\label{classRenderSystem_af7e26a57c60828d8acb7c6337d3962cb}} 
+\mbox{\Hypertarget{classRenderSystem_a765509f8084f56e75e8f3cf0ca58aed2}\label{classRenderSystem_a765509f8084f56e75e8f3cf0ca58aed2}} 
 \index{RenderSystem@{RenderSystem}!DrawRect@{DrawRect}}
 \index{DrawRect@{DrawRect}!RenderSystem@{RenderSystem}}
 \doxysubsubsection{\texorpdfstring{DrawRect()}{DrawRect()}}
-{\footnotesize\ttfamily void Render\+System\+::\+Draw\+Rect (\begin{DoxyParamCaption}\item[{const glm\+::vec2 \&}]{position,  }\item[{const glm\+::vec2 \&}]{scale = {\ttfamily \{100,100\}},  }\item[{float}]{angle = {\ttfamily 0.0f},  }\item[{const glm\+::vec4 \&}]{color = {\ttfamily \{0.1,0.6,0.1,1.0\}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Render\+System\+::\+Draw\+Rect (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{position,  }\item[{glm\+::vec2 const \&}]{scale = {\ttfamily \{~1.0f,~1.0f~\}},  }\item[{float}]{angle = {\ttfamily 0.0f},  }\item[{glm\+::vec4 const \&}]{color = {\ttfamily \{~0.1f,~0.6f,~0.1f,~0.0f~\}},  }\item[{float}]{alpha = {\ttfamily 0.5f},  }\item[{bool}]{is\+Diegetic = {\ttfamily true} }\end{DoxyParamCaption})}
 
 
 
@@ -122,6 +153,37 @@ Draws a rectangle.
 {\em angle} & (optional) Angle \\
 \hline
 {\em color} & (optional) Color \\
+\hline
+{\em alpha} & (optional) transparency \\
+\hline
+{\em is\+Diegetic} & (optional) whether the shape is diegetic \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRenderSystem_aa9e52679be69def55d96dc88fbd052eb}\label{classRenderSystem_aa9e52679be69def55d96dc88fbd052eb}} 
+\index{RenderSystem@{RenderSystem}!DrawTexture@{DrawTexture}}
+\index{DrawTexture@{DrawTexture}!RenderSystem@{RenderSystem}}
+\doxysubsubsection{\texorpdfstring{DrawTexture()}{DrawTexture()}}
+{\footnotesize\ttfamily void Render\+System\+::\+Draw\+Texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTexture}{Texture}} const $\ast$}]{texture,  }\item[{glm\+::vec2 const \&}]{position,  }\item[{glm\+::vec2 const \&}]{scale = {\ttfamily \{~1.0f,~1.0f~\}},  }\item[{float}]{angle = {\ttfamily 0.0f},  }\item[{glm\+::vec4 const \&}]{color = {\ttfamily \{~0.0f,~0.0f,~0.0f,~0.0f~\}},  }\item[{float}]{alpha = {\ttfamily 1.0f},  }\item[{bool}]{is\+Diegetic = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Draws a texture. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & the texture to draw \\
+\hline
+{\em position} & Position \\
+\hline
+{\em scale} & (optional) Scale \\
+\hline
+{\em angle} & (optional) Angle \\
+\hline
+{\em color} & (optional) Color \\
+\hline
+{\em alpha} & (optional) transparency \\
+\hline
+{\em is\+Diegetic} & (optional) whether the shape is diegetic \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classRenderSystem_a8d2fbbd8eecb7149e10e74921d72d3ec}\label{classRenderSystem_a8d2fbbd8eecb7149e10e74921d72d3ec}} 

@@ -51,6 +51,8 @@ void \mbox{\hyperlink{classTransformAnimation_ade41f6cce3964d6ff239d69aadef071b}
 \begin{DoxyCompactList}\small\item\em gets the Rotation\+Curve \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline \mbox{\hyperlink{classCurve}{Curve}}$<$ 2 $>$ \& \mbox{\hyperlink{classTransformAnimation_a78d77c13f9c18a45b75561516e34e7c3}{Get\+Skew\+Curve}} ()
 \begin{DoxyCompactList}\small\item\em gets the Skew\+Curve \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classTransformAnimation_afd2bc010a23ed6532af6589edf9f06d4}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} read method map \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classTransformAnimation_a7d74bdfc1962d0ce2aeaa656e50b364a}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -72,6 +74,23 @@ gets the Offset\+Curve
 \begin{DoxyReturn}{Returns}
 the Offset\+Curve 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classTransformAnimation_afd2bc010a23ed6532af6589edf9f06d4}\label{classTransformAnimation_afd2bc010a23ed6532af6589edf9f06d4}} 
+\index{TransformAnimation@{TransformAnimation}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!TransformAnimation@{TransformAnimation}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Transform\+Animation\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the \mbox{\hyperlink{classTransformAnimation}{Transform\+Animation}} read method map 
+
+\begin{DoxyReturn}{Returns}
+the read method map 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
 \mbox{\Hypertarget{classTransformAnimation_a1fd2e153db8dc54fe1f92bf6a2009d03}\label{classTransformAnimation_a1fd2e153db8dc54fe1f92bf6a2009d03}} 
 \index{TransformAnimation@{TransformAnimation}!GetRotationCurve@{GetRotationCurve}}
 \index{GetRotationCurve@{GetRotationCurve}!TransformAnimation@{TransformAnimation}}

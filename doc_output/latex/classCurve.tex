@@ -68,6 +68,8 @@ void \mbox{\hyperlink{classCurve_a20079e7143c4b878cd7750e83a9d864f}{Inspect}} ()
 \begin{DoxyCompactList}\small\item\em gets whether this curve loops \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classCurve_a2aeb0f8a21a21444498ea5db3a7cad88}{Set\+Is\+Looping}} (bool is\+Looping)
 \begin{DoxyCompactList}\small\item\em sets whether this curve loops \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classCurve_a6e087f31889f8870af6913e09b049f34}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classCurve}{Curve}} read method map \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCurve_a5f48c58fbbd4b0cdf97f244138ae5132}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classCurve}{Curve}} to json \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -204,6 +206,24 @@ gets the smallest values of each axis among all Control\+Points
 \begin{DoxyReturn}{Returns}
 the smallest values of each axis among all Control\+Points 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classCurve_a6e087f31889f8870af6913e09b049f34}\label{classCurve_a6e087f31889f8870af6913e09b049f34}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the \mbox{\hyperlink{classCurve}{Curve}} read method map 
+
+\begin{DoxyReturn}{Returns}
+the read method map 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
 \mbox{\Hypertarget{classCurve_a70e37d1edf6fc07d5e71e3593289e879}\label{classCurve_a70e37d1edf6fc07d5e71e3593289e879}} 
 \index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!GetTotalTime@{GetTotalTime}}
 \index{GetTotalTime@{GetTotalTime}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}

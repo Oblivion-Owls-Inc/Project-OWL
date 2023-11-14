@@ -1,0 +1,122 @@
+\hypertarget{classParticleSystem}{}\doxysection{Particle\+System Class Reference}
+\label{classParticleSystem}\index{ParticleSystem@{ParticleSystem}}
+
+
+\mbox{\hyperlink{classSystem}{System}} in charge of managing compute shader and emitters.  
+
+
+
+
+{\ttfamily \#include $<$Particle\+System.\+h$>$}
+
+
+
+Inheritance diagram for Particle\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classParticleSystem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Particle\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classParticleSystem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structParticleSystem_1_1EmitData}{Emit\+Data}}
+\begin{DoxyCompactList}\small\item\em Mirrors the struct on the shader. Used for spawning new particles. This one is for internal use, allows proper UBO allocation/loading. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structParticleSystem_1_1Particle}{Particle}}
+\begin{DoxyCompactList}\small\item\em Not really utilized CPU-\/side, but useful for reference. Mirrors the \mbox{\hyperlink{structParticleSystem_1_1Particle}{Particle}} struct declared on the compute shader. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+inline int \mbox{\hyperlink{classParticleSystem_ae49ca59a2d393fc023a904a64cbbaaf7}{Get\+Work\+Group\+Size}} ()
+\item 
+void \mbox{\hyperlink{classParticleSystem_a3942deb8cd0f46cd6e97b9dcc1815ad7}{Add\+Emitter}} (\mbox{\hyperlink{classEmitter}{Emitter}} $\ast$emitter)
+\begin{DoxyCompactList}\small\item\em Adds new emitter to the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParticleSystem_a09fd3f53d76f61a8fe6f7331249c444f}{Remove\+Emitter}} (\mbox{\hyperlink{classEmitter}{Emitter}} $\ast$emitter)
+\begin{DoxyCompactList}\small\item\em Removes emitter from system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classParticleSystem_afeab736bf930e36ed1827310562e7508}\label{classParticleSystem_afeab736bf930e36ed1827310562e7508}} 
+void \mbox{\hyperlink{classParticleSystem_afeab736bf930e36ed1827310562e7508}{Set\+Emit\+Data\+Dirty}} ()
+\begin{DoxyCompactList}\small\item\em Sets emit data dirty flag (uniform block array will be re-\/loaded) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classParticleSystem_a509dc1fc666b5af350c727a1ee67c46a}\label{classParticleSystem_a509dc1fc666b5af350c727a1ee67c46a}} 
+{\bfseries Particle\+System} (\mbox{\hyperlink{classParticleSystem}{Particle\+System}} \&other)=delete
+\item 
+\mbox{\Hypertarget{classParticleSystem_a53bfedd6489228c762644c9a3a577142}\label{classParticleSystem_a53bfedd6489228c762644c9a3a577142}} 
+void {\bfseries operator=} (const \mbox{\hyperlink{classParticleSystem}{Particle\+System}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classParticleSystem}{Particle\+System}} $\ast$ \mbox{\hyperlink{classParticleSystem_acaa01188cffe80dbe86c104b6e8f0ba9}{Get\+Instance}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classSystem}{System}} in charge of managing compute shader and emitters. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classParticleSystem_a3942deb8cd0f46cd6e97b9dcc1815ad7}\label{classParticleSystem_a3942deb8cd0f46cd6e97b9dcc1815ad7}} 
+\index{ParticleSystem@{ParticleSystem}!AddEmitter@{AddEmitter}}
+\index{AddEmitter@{AddEmitter}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{AddEmitter()}{AddEmitter()}}
+{\footnotesize\ttfamily void Particle\+System\+::\+Add\+Emitter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEmitter}{Emitter}} $\ast$}]{emitter }\end{DoxyParamCaption})}
+
+
+
+Adds new emitter to the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em emitter} & Pointer to new emitter \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classParticleSystem_acaa01188cffe80dbe86c104b6e8f0ba9}\label{classParticleSystem_acaa01188cffe80dbe86c104b6e8f0ba9}} 
+\index{ParticleSystem@{ParticleSystem}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classParticleSystem}{Particle\+System}} $\ast$ Particle\+System\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyReturn}{Returns}
+The singleton instance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classParticleSystem_ae49ca59a2d393fc023a904a64cbbaaf7}\label{classParticleSystem_ae49ca59a2d393fc023a904a64cbbaaf7}} 
+\index{ParticleSystem@{ParticleSystem}!GetWorkGroupSize@{GetWorkGroupSize}}
+\index{GetWorkGroupSize@{GetWorkGroupSize}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{GetWorkGroupSize()}{GetWorkGroupSize()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline int Particle\+System\+::\+Get\+Work\+Group\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Thread size of each work group. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classParticleSystem_a09fd3f53d76f61a8fe6f7331249c444f}\label{classParticleSystem_a09fd3f53d76f61a8fe6f7331249c444f}} 
+\index{ParticleSystem@{ParticleSystem}!RemoveEmitter@{RemoveEmitter}}
+\index{RemoveEmitter@{RemoveEmitter}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{RemoveEmitter()}{RemoveEmitter()}}
+{\footnotesize\ttfamily void Particle\+System\+::\+Remove\+Emitter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEmitter}{Emitter}} $\ast$}]{emitter }\end{DoxyParamCaption})}
+
+
+
+Removes emitter from system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em emitter} & Pointer to emitter \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{ParticleSystem_8h}{Particle\+System.\+h}}\item 
+Source/\mbox{\hyperlink{ParticleSystem_8cpp}{Particle\+System.\+cpp}}\end{DoxyCompactItemize}

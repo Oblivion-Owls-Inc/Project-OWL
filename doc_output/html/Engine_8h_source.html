@@ -92,104 +92,129 @@ $(function() {
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEngine.html#ac7dc8c00262aee2a11183e4080fa5faf">Close</a>();</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>: <span class="comment">// accessors</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>: <span class="comment">// update enum</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classEngine.html#a8b5b5213266b2be7fe2c1c94b43946aa">GetFixedFrameDuration</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEngine.html#a0e98f1b1054e492ba78731b1a8e800d1">SetFixedFrameDuration</a>( <span class="keywordtype">float</span> fixedFrameDuration );</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    std::vector&lt; System * &gt; <span class="keyword">const</span>&amp; <a class="code" href="classEngine.html#a0b12e00c76c381b58c44ee4e468cfd3a">GetSystems</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> readFixedFrameDuration( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> readSystems( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; Engine &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">enum class</span> UpdateMode</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        fixedUpdate,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        update</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    };</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>: <span class="comment">// accessors</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    UpdateMode <a class="code" href="classEngine.html#a2f6f4831c70172dcc71a995d7e0ad488">GetCurrentUpdate</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classEngine.html#a8b5b5213266b2be7fe2c1c94b43946aa">GetFixedFrameDuration</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classEngine.html#a0e98f1b1054e492ba78731b1a8e800d1">SetFixedFrameDuration</a>( <span class="keywordtype">float</span> fixedFrameDuration );</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::vector&lt; System * &gt; <span class="keyword">const</span>&amp; <a class="code" href="classEngine.html#a0b12e00c76c381b58c44ee4e468cfd3a">GetSystems</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classEngine.html#acff67dbd8e2736e407852768d1fbd509">SaveEngineConfig</a>();</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; GetReadMethods()<span class="keyword"> const override</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">class</span> SystemType &gt;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="classSystem.html">System</a>* addSystem();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> readFixedFrameDuration( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> readSystems( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">static</span> std::map&lt; std::string, <a class="code" href="classSystem.html">System</a>* (<a class="code" href="classEngine.html">Engine</a>::*)() &gt; <span class="keyword">const</span> s_AddSystemMethods;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; Engine &gt; <span class="keyword">const</span> s_ReadMethods;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">public</span>: <span class="comment">// writing</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classEngine.html#a2b35c45e93492eb6d52f004c05fdcf54">Write</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">template</span> &lt; <span class="keyword">class</span> SystemType &gt;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="classSystem.html">System</a>* addSystem();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">static</span> std::map&lt; std::string, <a class="code" href="classSystem.html">System</a>* (<a class="code" href="classEngine.html">Engine</a>::*)() &gt; <span class="keyword">const</span> s_AddSystemMethods;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    std::vector&lt; System * &gt; m_Systems;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">bool</span> m_ShouldExit;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">double</span> m_PreviousTime;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classEngine.html#abc01dc48e09185a4e093d67904cfef6d">   95</a></span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classEngine.html#abc01dc48e09185a4e093d67904cfef6d">GetReadMethods</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">double</span> m_PreviousFixedTime;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">float</span> m_FixedFrameDuration;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classEngine.html#a2b35c45e93492eb6d52f004c05fdcf54">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">void</span> load();</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">void</span> init();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">void</span> update();</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">void</span> updateSystems( <span class="keywordtype">float</span> dt );</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">void</span> fixedUpdateSystems();</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">void</span> exit();</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    std::vector&lt; System * &gt; m_Systems;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">bool</span> m_ShouldExit;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">double</span> m_PreviousTime;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">double</span> m_PreviousFixedTime;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">float</span> m_FixedFrameDuration;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    UpdateMode m_currentMode;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton stuff</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keyword">static</span> <a class="code" href="classEngine.html">Engine</a> * s_Instance;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <a class="code" href="classEngine.html">Engine</a>();</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">void</span> load();</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordtype">void</span> init();</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordtype">void</span> update();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordtype">void</span> updateSystems( <span class="keywordtype">float</span> dt );</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">static</span> <a class="code" href="classEngine.html">Engine</a> * <a class="code" href="classEngine.html#aab953f155f37bc03fe78de7cb4dbf721">GetInstance</a>();</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="comment">// Prevent Engine from being copied</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <a class="code" href="classEngine.html">Engine</a>( <a class="code" href="classEngine.html">Engine</a>&amp; other ) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">void</span> operator=( <span class="keyword">const</span> <a class="code" href="classEngine.html">Engine</a>&amp; ) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">void</span> fixedUpdateSystems();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordtype">void</span> exit();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton stuff</span></div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;};</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keyword">static</span> <a class="code" href="classEngine.html">Engine</a> * s_Instance;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="classEngine.html">Engine</a>();</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keyword">static</span> <a class="code" href="classEngine.html">Engine</a> * <a class="code" href="classEngine.html#aab953f155f37bc03fe78de7cb4dbf721">GetInstance</a>();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="comment">// Prevent Engine from being copied</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="classEngine.html">Engine</a>( <a class="code" href="classEngine.html">Engine</a>&amp; other ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordtype">void</span> operator=( <span class="keyword">const</span> <a class="code" href="classEngine.html">Engine</a>&amp; ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;};</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;__inline <a class="code" href="classEngine.html">Engine</a>* GameEngine()</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;{</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classEngine.html#aab953f155f37bc03fe78de7cb4dbf721">Engine::GetInstance</a>();</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
 <div class="ttc" id="aISerializable_8h_html"><div class="ttname"><a href="ISerializable_8h.html">ISerializable.h</a></div><div class="ttdoc">interface for all serializable objects</div></div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
 <div class="ttc" id="aclassEngine_html"><div class="ttname"><a href="classEngine.html">Engine</a></div><div class="ttdef"><b>Definition:</b> Engine.h:20</div></div>
-<div class="ttc" id="aclassEngine_html_a0b12e00c76c381b58c44ee4e468cfd3a"><div class="ttname"><a href="classEngine.html#a0b12e00c76c381b58c44ee4e468cfd3a">Engine::GetSystems</a></div><div class="ttdeci">std::vector&lt; System * &gt; const  &amp; GetSystems() const</div><div class="ttdoc">gets the array of all Systems in the engine.</div><div class="ttdef"><b>Definition:</b> Engine.cpp:91</div></div>
-<div class="ttc" id="aclassEngine_html_a0e98f1b1054e492ba78731b1a8e800d1"><div class="ttname"><a href="classEngine.html#a0e98f1b1054e492ba78731b1a8e800d1">Engine::SetFixedFrameDuration</a></div><div class="ttdeci">void SetFixedFrameDuration(float fixedFrameDuration)</div><div class="ttdoc">sets the duration of each fixed frame</div><div class="ttdef"><b>Definition:</b> Engine.cpp:84</div></div>
-<div class="ttc" id="aclassEngine_html_a2b35c45e93492eb6d52f004c05fdcf54"><div class="ttname"><a href="classEngine.html#a2b35c45e93492eb6d52f004c05fdcf54">Engine::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">writes the Engine config to json</div><div class="ttdef"><b>Definition:</b> Engine.cpp:180</div></div>
-<div class="ttc" id="aclassEngine_html_a8b5b5213266b2be7fe2c1c94b43946aa"><div class="ttname"><a href="classEngine.html#a8b5b5213266b2be7fe2c1c94b43946aa">Engine::GetFixedFrameDuration</a></div><div class="ttdeci">float GetFixedFrameDuration() const</div><div class="ttdoc">gets the duration of each fixed frame</div><div class="ttdef"><b>Definition:</b> Engine.cpp:77</div></div>
-<div class="ttc" id="aclassEngine_html_aab953f155f37bc03fe78de7cb4dbf721"><div class="ttname"><a href="classEngine.html#aab953f155f37bc03fe78de7cb4dbf721">Engine::GetInstance</a></div><div class="ttdeci">static Engine * GetInstance()</div><div class="ttdoc">gets the singleton instance of the Engine</div><div class="ttdef"><b>Definition:</b> Engine.cpp:321</div></div>
-<div class="ttc" id="aclassEngine_html_ac7dc8c00262aee2a11183e4080fa5faf"><div class="ttname"><a href="classEngine.html#ac7dc8c00262aee2a11183e4080fa5faf">Engine::Close</a></div><div class="ttdeci">void Close()</div><div class="ttdoc">Flags the engine to close once it finishes this loop.</div><div class="ttdef"><b>Definition:</b> Engine.cpp:65</div></div>
-<div class="ttc" id="aclassEngine_html_af4c789fb939a0870426c698a5124a0ee"><div class="ttname"><a href="classEngine.html#af4c789fb939a0870426c698a5124a0ee">Engine::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Starts running the engine. Code will not advance past this point until the engine stops running.</div><div class="ttdef"><b>Definition:</b> Engine.cpp:46</div></div>
+<div class="ttc" id="aclassEngine_html_a0b12e00c76c381b58c44ee4e468cfd3a"><div class="ttname"><a href="classEngine.html#a0b12e00c76c381b58c44ee4e468cfd3a">Engine::GetSystems</a></div><div class="ttdeci">std::vector&lt; System * &gt; const  &amp; GetSystems() const</div><div class="ttdoc">gets the array of all Systems in the engine.</div><div class="ttdef"><b>Definition:</b> Engine.cpp:104</div></div>
+<div class="ttc" id="aclassEngine_html_a0e98f1b1054e492ba78731b1a8e800d1"><div class="ttname"><a href="classEngine.html#a0e98f1b1054e492ba78731b1a8e800d1">Engine::SetFixedFrameDuration</a></div><div class="ttdeci">void SetFixedFrameDuration(float fixedFrameDuration)</div><div class="ttdoc">sets the duration of each fixed frame</div><div class="ttdef"><b>Definition:</b> Engine.cpp:97</div></div>
+<div class="ttc" id="aclassEngine_html_a2b35c45e93492eb6d52f004c05fdcf54"><div class="ttname"><a href="classEngine.html#a2b35c45e93492eb6d52f004c05fdcf54">Engine::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">writes the Engine config to json</div><div class="ttdef"><b>Definition:</b> Engine.cpp:382</div></div>
+<div class="ttc" id="aclassEngine_html_a2f6f4831c70172dcc71a995d7e0ad488"><div class="ttname"><a href="classEngine.html#a2f6f4831c70172dcc71a995d7e0ad488">Engine::GetCurrentUpdate</a></div><div class="ttdeci">UpdateMode GetCurrentUpdate() const</div><div class="ttdoc">gets the current update status</div><div class="ttdef"><b>Definition:</b> Engine.cpp:83</div></div>
+<div class="ttc" id="aclassEngine_html_a8b5b5213266b2be7fe2c1c94b43946aa"><div class="ttname"><a href="classEngine.html#a8b5b5213266b2be7fe2c1c94b43946aa">Engine::GetFixedFrameDuration</a></div><div class="ttdeci">float GetFixedFrameDuration() const</div><div class="ttdoc">gets the duration of each fixed frame</div><div class="ttdef"><b>Definition:</b> Engine.cpp:90</div></div>
+<div class="ttc" id="aclassEngine_html_aab953f155f37bc03fe78de7cb4dbf721"><div class="ttname"><a href="classEngine.html#aab953f155f37bc03fe78de7cb4dbf721">Engine::GetInstance</a></div><div class="ttdeci">static Engine * GetInstance()</div><div class="ttdoc">gets the singleton instance of the Engine</div><div class="ttdef"><b>Definition:</b> Engine.cpp:415</div></div>
+<div class="ttc" id="aclassEngine_html_abc01dc48e09185a4e093d67904cfef6d"><div class="ttname"><a href="classEngine.html#abc01dc48e09185a4e093d67904cfef6d">Engine::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">gets the map of Engine read methods</div><div class="ttdef"><b>Definition:</b> Engine.h:95</div></div>
+<div class="ttc" id="aclassEngine_html_ac7dc8c00262aee2a11183e4080fa5faf"><div class="ttname"><a href="classEngine.html#ac7dc8c00262aee2a11183e4080fa5faf">Engine::Close</a></div><div class="ttdeci">void Close()</div><div class="ttdoc">Flags the engine to close once it finishes this loop.</div><div class="ttdef"><b>Definition:</b> Engine.cpp:71</div></div>
+<div class="ttc" id="aclassEngine_html_acff67dbd8e2736e407852768d1fbd509"><div class="ttname"><a href="classEngine.html#acff67dbd8e2736e407852768d1fbd509">Engine::SaveEngineConfig</a></div><div class="ttdeci">bool SaveEngineConfig()</div><div class="ttdoc">Used To Create a Window to Save the Engine Config.</div><div class="ttdef"><b>Definition:</b> Engine.cpp:111</div></div>
+<div class="ttc" id="aclassEngine_html_af4c789fb939a0870426c698a5124a0ee"><div class="ttname"><a href="classEngine.html#af4c789fb939a0870426c698a5124a0ee">Engine::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Starts running the engine. Code will not advance past this point until the engine stops running.</div><div class="ttdef"><b>Definition:</b> Engine.cpp:51</div></div>
 <div class="ttc" id="aclassISerializable_html"><div class="ttname"><a href="classISerializable.html">ISerializable</a></div><div class="ttdoc">interface for all serializable objects</div><div class="ttdef"><b>Definition:</b> ISerializable.h:24</div></div>
-<div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:15</div></div>
+<div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:18</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

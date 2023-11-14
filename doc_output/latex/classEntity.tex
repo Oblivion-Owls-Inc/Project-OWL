@@ -37,6 +37,8 @@ void \mbox{\hyperlink{classEntity_a9fe3ed2aea0d62baa3482903da5c4a32}{Add\+Compon
 \begin{DoxyCompactList}\small\item\em attaches a component to this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Component\+Type $>$ }\\Component\+Type $\ast$ \mbox{\hyperlink{classEntity_a780ba6bc0697e9d747f140ab30a42b5b}{Get\+Component}} ()
 \begin{DoxyCompactList}\small\item\em gets the component of the specified type from this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Component\+Type $>$ }\\Component\+Type const  $\ast$ \mbox{\hyperlink{classEntity_ad607562bff9363ad526d3d7a47dc5a32}{Get\+Component}} () const
+\begin{DoxyCompactList}\small\item\em gets the component of the specified type from this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Component\+Type $>$ }\\std\+::vector$<$ Component\+Type $\ast$ $>$ \mbox{\hyperlink{classEntity_acdf8e107f7ff4e37d4cad5086cbdbb7e}{Get\+Components\+Of\+Type}} ()
 \begin{DoxyCompactList}\small\item\em gets all of the components derived from the specified type from this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline std\+::map$<$ std\+::type\+\_\+index, \mbox{\hyperlink{classComponent}{Component}} $\ast$ $>$ \& \mbox{\hyperlink{classEntity_a260216eb3dc321ae2064a1e2241ef1b3}{get\+Components}} ()
@@ -47,15 +49,21 @@ void \mbox{\hyperlink{classEntity_a9fe3ed2aea0d62baa3482903da5c4a32}{Add\+Compon
 \begin{DoxyCompactList}\small\item\em sets this \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s name \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline std\+::string const  \& \mbox{\hyperlink{classEntity_acaafccffe6773a8c7d14c912b99153fc}{Get\+Name}} () const
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s name \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classEntity_a1fc31d7ba1031dbf6792de15a46321cd}\label{classEntity_a1fc31d7ba1031dbf6792de15a46321cd}} 
 void \mbox{\hyperlink{classEntity_a1fc31d7ba1031dbf6792de15a46321cd}{Inspect}} ()
 \begin{DoxyCompactList}\small\item\em used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classEntity_a2f5f57edd21a3880debf6db30bd20d52}{Get\+Id}} () const
 \begin{DoxyCompactList}\small\item\em gets the Id of this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntity_a7729b1fb5ce1655d8534f7253be671a5}\label{classEntity_a7729b1fb5ce1655d8534f7253be671a5}} 
+void \mbox{\hyperlink{classEntity_a7729b1fb5ce1655d8534f7253be671a5}{Rename\+Entity}} (const char $\ast$popup\+\_\+id)
+\begin{DoxyCompactList}\small\item\em used by the Debug \mbox{\hyperlink{classSystem}{System}} to Rename this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classEntity_abe40c2b482c0e5f402e4aa65f16d1b5e}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for Entities \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEntity_a200205e7648a0ed28b46c3b76d393fdf}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classEntity}{Entity}} data to a JSON file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEntity_a7af42f3ae673e43f2c48bd2402985dce}{operator=}} (\mbox{\hyperlink{classEntity}{Entity}} const \&other)
 \begin{DoxyCompactList}\small\item\em copies all of another \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s data and Components into this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} $\ast$ \mbox{\hyperlink{classEntity_a35b919f09909e665236a47a38b9aef20}{Clone}} () const
+\begin{DoxyCompactList}\small\item\em makes a copy of this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classEntity_a6d2e6788f8c2be303ebc2d67764f4127}\label{classEntity_a6d2e6788f8c2be303ebc2d67764f4127}} 
 {\bfseries Entity} (\mbox{\hyperlink{classEntity}{Entity}} const \&other)=delete
 \end{DoxyCompactItemize}
@@ -75,9 +83,9 @@ default constructor
 default constrcutor
 
 \DoxyHorRuler{0}
- \hypertarget{classEntity_autotoc_md2}{}\doxysubsubsection{Static Variables}\label{classEntity_autotoc_md2}
+ \hypertarget{classEntity_autotoc_md10}{}\doxysubsubsection{Static Variables}\label{classEntity_autotoc_md10}
 \DoxyHorRuler{0}
- \hypertarget{classEntity_autotoc_md3}{}\doxysubsubsection{Public\+: constructor / destructor}\label{classEntity_autotoc_md3}
+ \hypertarget{classEntity_autotoc_md11}{}\doxysubsubsection{Public\+: constructor / destructor}\label{classEntity_autotoc_md11}
 
 
 \doxysubsection{Member Function Documentation}
@@ -96,7 +104,20 @@ attaches a component to this \mbox{\hyperlink{classEntity}{Entity}}
 {\em component} & the component to attach to this \mbox{\hyperlink{classEntity}{Entity}} \\
 \hline
 \end{DoxyParams}
-You tried to add a component that already exists on this entity.\mbox{\Hypertarget{classEntity_abbe6b9eea9f1c5bab82b3e1c90cc6c2c}\label{classEntity_abbe6b9eea9f1c5bab82b3e1c90cc6c2c}} 
+You tried to add a component that already exists on this entity.\mbox{\Hypertarget{classEntity_a35b919f09909e665236a47a38b9aef20}\label{classEntity_a35b919f09909e665236a47a38b9aef20}} 
+\index{Entity@{Entity}!Clone@{Clone}}
+\index{Clone@{Clone}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}}$\ast$ Entity\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+makes a copy of this \mbox{\hyperlink{classEntity}{Entity}} 
+
+\begin{DoxyReturn}{Returns}
+the new copy of this \mbox{\hyperlink{classEntity}{Entity}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_abbe6b9eea9f1c5bab82b3e1c90cc6c2c}\label{classEntity_abbe6b9eea9f1c5bab82b3e1c90cc6c2c}} 
 \index{Entity@{Entity}!ExitComponents@{ExitComponents}}
 \index{ExitComponents@{ExitComponents}!Entity@{Entity}}
 \doxysubsubsection{\texorpdfstring{ExitComponents()}{ExitComponents()}}
@@ -112,9 +133,28 @@ ONLY CALL THIS IF YOU KNOW WHAT YOU\textquotesingle{}RE DOING
 \mbox{\Hypertarget{classEntity_a780ba6bc0697e9d747f140ab30a42b5b}\label{classEntity_a780ba6bc0697e9d747f140ab30a42b5b}} 
 \index{Entity@{Entity}!GetComponent@{GetComponent}}
 \index{GetComponent@{GetComponent}!Entity@{Entity}}
-\doxysubsubsection{\texorpdfstring{GetComponent()}{GetComponent()}}
+\doxysubsubsection{\texorpdfstring{GetComponent()}{GetComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
 Component\+Type $\ast$ Entity\+::\+Get\+Component}
+
+
+
+gets the component of the specified type from this \mbox{\hyperlink{classEntity}{Entity}} 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Component\+Type} & the type of component to get \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+the component of the specified type (nullptr if component doesn\textquotesingle{}t exist) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_ad607562bff9363ad526d3d7a47dc5a32}\label{classEntity_ad607562bff9363ad526d3d7a47dc5a32}} 
+\index{Entity@{Entity}!GetComponent@{GetComponent}}
+\index{GetComponent@{GetComponent}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{GetComponent()}{GetComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Component\+Type $>$ \\
+Component\+Type const  $\ast$ Entity\+::\+Get\+Component}
 
 
 
@@ -186,6 +226,23 @@ gets this \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s name
 \begin{DoxyReturn}{Returns}
 this \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s name 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_abe40c2b482c0e5f402e4aa65f16d1b5e}\label{classEntity_abe40c2b482c0e5f402e4aa65f16d1b5e}} 
+\index{Entity@{Entity}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Entity\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for Entities 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for Entities 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
 \mbox{\Hypertarget{classEntity_ac270d5e306449e1e54fd8d99ff768d23}\label{classEntity_ac270d5e306449e1e54fd8d99ff768d23}} 
 \index{Entity@{Entity}!InitComponents@{InitComponents}}
 \index{InitComponents@{InitComponents}!Entity@{Entity}}
@@ -199,7 +256,17 @@ Initializes all components of this \mbox{\hyperlink{classEntity}{Entity}}.
 \begin{DoxyNote}{Note}
 ONLY CALL THIS IF YOU KNOW WHAT YOU\textquotesingle{}RE DOING 
 \end{DoxyNote}
-\mbox{\Hypertarget{classEntity_a0c9f186b3d98559b54da682857f2a447}\label{classEntity_a0c9f186b3d98559b54da682857f2a447}} 
+\mbox{\Hypertarget{classEntity_a1fc31d7ba1031dbf6792de15a46321cd}\label{classEntity_a1fc31d7ba1031dbf6792de15a46321cd}} 
+\index{Entity@{Entity}!Inspect@{Inspect}}
+\index{Inspect@{Inspect}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
+{\footnotesize\ttfamily void Entity\+::\+Inspect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classEntity}{Entity}} 
+
+Create a unique identifier for the popup menu based on the entity\textquotesingle{}s ID\mbox{\Hypertarget{classEntity_a0c9f186b3d98559b54da682857f2a447}\label{classEntity_a0c9f186b3d98559b54da682857f2a447}} 
 \index{Entity@{Entity}!IsDestroyed@{IsDestroyed}}
 \index{IsDestroyed@{IsDestroyed}!Entity@{Entity}}
 \doxysubsubsection{\texorpdfstring{IsDestroyed()}{IsDestroyed()}}

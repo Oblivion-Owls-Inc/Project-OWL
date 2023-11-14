@@ -39,10 +39,12 @@ std\+::type\+\_\+index \mbox{\hyperlink{classComponent_ab75652d7b0af6b7c604cc67e
 \begin{DoxyCompactList}\small\item\em gets the components type \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classComponent_a7cbb92a522d77dc8ce22098dd277f84b}{Set\+Parent}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em sets the parent entity of the component \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classEntity}{Entity}} $\ast$ \mbox{\hyperlink{classComponent_a1c2eb7952e1a90a45ba7672cf7307504}{Get\+Parent}} () const
+\mbox{\hyperlink{classEntity}{Entity}} $\ast$ \mbox{\hyperlink{classComponent_a0bac0f3387cfd9163ca61445ceb0b6b9}{Get\+Entity}} () const
 \begin{DoxyCompactList}\small\item\em returns the components parent entity \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classComponent_a767bfcc0db2ef4632db94b1c7a23f663}{Get\+Id}} () const
-\begin{DoxyCompactList}\small\item\em gets the Id of this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em gets the Id of this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classComponent_ab013472b21ba197a25143ab1e1e9272e}{Base\+Component\+Inspector}} ()
+\begin{DoxyCompactList}\small\item\em base Inspector for Components \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -94,7 +96,17 @@ Copy-\/constructor for \mbox{\hyperlink{classComponent}{Component}} base class.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classComponent_a84ffb31637b6208fc8114114fb60dc4a}\label{classComponent_a84ffb31637b6208fc8114114fb60dc4a}} 
+\mbox{\Hypertarget{classComponent_ab013472b21ba197a25143ab1e1e9272e}\label{classComponent_ab013472b21ba197a25143ab1e1e9272e}} 
+\index{Component@{Component}!BaseComponentInspector@{BaseComponentInspector}}
+\index{BaseComponentInspector@{BaseComponentInspector}!Component@{Component}}
+\doxysubsubsection{\texorpdfstring{BaseComponentInspector()}{BaseComponentInspector()}}
+{\footnotesize\ttfamily void Component\+::\+Base\+Component\+Inspector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+base Inspector for Components 
+
+Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \mbox{\Hypertarget{classComponent_a84ffb31637b6208fc8114114fb60dc4a}\label{classComponent_a84ffb31637b6208fc8114114fb60dc4a}} 
 \index{Component@{Component}!Clone@{Clone}}
 \index{Clone@{Clone}!Component@{Component}}
 \doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
@@ -109,8 +121,21 @@ new clone of component
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{classTurretBehavior_a44ea8cc9c629e688d46abe776bc11bd0}{Turret\+Behavior}}, \mbox{\hyperlink{classTilemapCollider_a6f19edbc75cf29184524b4a51df23869}{Tilemap\+Collider}}, \mbox{\hyperlink{classTilemap_a3a15bf3e418406b1f2008b50880c68cd}{Tilemap$<$ Tile\+Type $>$}}, \mbox{\hyperlink{classTilemap_a3a15bf3e418406b1f2008b50880c68cd}{Tilemap$<$ int $>$}}, \mbox{\hyperlink{classText_ac971ea4d6d43c1635ffd078f1c0e7e95}{Text}}, \mbox{\hyperlink{classSprite_ac4f77c982a39659c389f00b9d395b0db}{Sprite}}, \mbox{\hyperlink{classPlayerController_a86207931cea38bd757c147cda67b7e0a}{Player\+Controller}}, \mbox{\hyperlink{classPathfinder_ab8111e36fe8bf49e8222c0773e7e6d05}{Pathfinder}}, \mbox{\hyperlink{classCircleCollider_a31fae47f8e77ce5e37a3fc4bcd20a84f}{Circle\+Collider}}, \mbox{\hyperlink{classBehavior_ad509b7deafa59db2f94a231e7bd6b68f}{Behavior}}, \mbox{\hyperlink{classPool_a4e0cfe7526b27681304eebcaa7b2b46b}{Pool$<$ Value $>$}}, and \mbox{\hyperlink{classLineCollider_a81c679f3f85f0c43ed4ebec18eeec1fa}{Line\+Collider}}.
+Implemented in \mbox{\hyperlink{classWavesBehavior_a7bdf2beb6eeedcdaa48a257e9589d346}{Waves\+Behavior}}, \mbox{\hyperlink{classUiElement_a406854ff27a7b1b185a22816d834f81a}{Ui\+Element}}, \mbox{\hyperlink{classTurretBehavior_a1b8536cf1e5f5aff5281fb54fcc55125}{Turret\+Behavior}}, \mbox{\hyperlink{classTransform_a49130d0a3f94a70eec11a67979ce693c}{Transform}}, \mbox{\hyperlink{classTilemapCollider_a6f19edbc75cf29184524b4a51df23869}{Tilemap\+Collider}}, \mbox{\hyperlink{classTilemap_a3a15bf3e418406b1f2008b50880c68cd}{Tilemap$<$ Tile\+Type $>$}}, \mbox{\hyperlink{classTilemap_a3a15bf3e418406b1f2008b50880c68cd}{Tilemap$<$ int $>$}}, \mbox{\hyperlink{classTilemap_a3a15bf3e418406b1f2008b50880c68cd}{Tilemap$<$ Entity $\ast$ $>$}}, \mbox{\hyperlink{classText_ac971ea4d6d43c1635ffd078f1c0e7e95}{Text}}, \mbox{\hyperlink{classSprite_ac4f77c982a39659c389f00b9d395b0db}{Sprite}}, \mbox{\hyperlink{classPathfinder_ab8111e36fe8bf49e8222c0773e7e6d05}{Pathfinder}}, \mbox{\hyperlink{classEnemyBehavior_a7ddc797439742166c3cd9f38c293aa2c}{Enemy\+Behavior}}, \mbox{\hyperlink{classEmitter_a00a50f4e55a246b70c45a01f3cdb28b1}{Emitter}}, \mbox{\hyperlink{classCircleCollider_a31fae47f8e77ce5e37a3fc4bcd20a84f}{Circle\+Collider}}, \mbox{\hyperlink{classBulletBehavior_a433416cdb18e02f28ca77cea9349c1f1}{Bullet\+Behavior}}, \mbox{\hyperlink{classBasicEntityBehavior_ad3f269a9c099ca950b3a1241d44279f8}{Basic\+Entity\+Behavior}}, \mbox{\hyperlink{classBaseBehavior_a2e2e69bdb480e974db1c6cc1d45296e5}{Base\+Behavior}}, \mbox{\hyperlink{classAudioPlayer_a203b4eacecae024e66a0016d2484c87c}{Audio\+Player}}, \mbox{\hyperlink{classAnimation_a490b465c9eef5c3e54c4ad1a382179c1}{Animation}}, \mbox{\hyperlink{classLineCollider_a81c679f3f85f0c43ed4ebec18eeec1fa}{Line\+Collider}}, and \mbox{\hyperlink{classCamera_aae79f318d0ee116b40785c50078d8ce7}{Camera}}.
 
+\mbox{\Hypertarget{classComponent_a0bac0f3387cfd9163ca61445ceb0b6b9}\label{classComponent_a0bac0f3387cfd9163ca61445ceb0b6b9}} 
+\index{Component@{Component}!GetEntity@{GetEntity}}
+\index{GetEntity@{GetEntity}!Component@{Component}}
+\doxysubsubsection{\texorpdfstring{GetEntity()}{GetEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}}$\ast$ Component\+::\+Get\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+returns the components parent entity 
+
+\begin{DoxyReturn}{Returns}
+the parent entity of the component 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classComponent_a767bfcc0db2ef4632db94b1c7a23f663}\label{classComponent_a767bfcc0db2ef4632db94b1c7a23f663}} 
 \index{Component@{Component}!GetId@{GetId}}
 \index{GetId@{GetId}!Component@{Component}}
@@ -123,19 +148,6 @@ gets the Id of this \mbox{\hyperlink{classComponent}{Component}}
 
 \begin{DoxyReturn}{Returns}
 the Id of this \mbox{\hyperlink{classComponent}{Component}} 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classComponent_a1c2eb7952e1a90a45ba7672cf7307504}\label{classComponent_a1c2eb7952e1a90a45ba7672cf7307504}} 
-\index{Component@{Component}!GetParent@{GetParent}}
-\index{GetParent@{GetParent}!Component@{Component}}
-\doxysubsubsection{\texorpdfstring{GetParent()}{GetParent()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}}$\ast$ Component\+::\+Get\+Parent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-returns the components parent entity 
-
-\begin{DoxyReturn}{Returns}
-the parent entity of the component 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classComponent_ab75652d7b0af6b7c604cc67efb34cfeb}\label{classComponent_ab75652d7b0af6b7c604cc67efb34cfeb}} 
 \index{Component@{Component}!GetType@{GetType}}
@@ -165,7 +177,7 @@ NOT CALLED WHEN THE SCENE IS EXITED -\/ that should be handled by this \mbox{\hy
 \end{DoxyNote}
 
 
-Reimplemented in \mbox{\hyperlink{classSprite_a5c74462e3560a9a46a7d7af03f7519fd}{Sprite}}, \mbox{\hyperlink{classRigidBody_a770d7ad3c7ce05ba7a1ea111b19f53af}{Rigid\+Body}}, \mbox{\hyperlink{classCollider_acbc7a995612010a0c08e980fad647fc9}{Collider}}, \mbox{\hyperlink{classTurretBehavior_a7a548454358e1f727ff634286f533ae4}{Turret\+Behavior}}, and \mbox{\hyperlink{classPlayerController_a02eab77eb12d134a457427c5bfea6289}{Player\+Controller}}.
+Reimplemented in \mbox{\hyperlink{classUiElement_a744b29d45238fb1dce09f10c2ce6f38a}{Ui\+Element}}, \mbox{\hyperlink{classSprite_a5c74462e3560a9a46a7d7af03f7519fd}{Sprite}}, \mbox{\hyperlink{classRigidBody_a770d7ad3c7ce05ba7a1ea111b19f53af}{Rigid\+Body}}, \mbox{\hyperlink{classPlayerController_aa9ec38dc404388d57ebabea4b8e6802c}{Player\+Controller}}, \mbox{\hyperlink{classCollider_acbc7a995612010a0c08e980fad647fc9}{Collider}}, \mbox{\hyperlink{classBulletBehavior_ad6be49c95c1a766b177a7b78a53ad798}{Bullet\+Behavior}}, \mbox{\hyperlink{classBasicEntityBehavior_aa7112825d32eacb601f8a7f77fb742c5}{Basic\+Entity\+Behavior}}, and \mbox{\hyperlink{classBaseBehavior_a77e6fd01a56a7c392220f99ba3855e68}{Base\+Behavior}}.
 
 \mbox{\Hypertarget{classComponent_a7cbb92a522d77dc8ce22098dd277f84b}\label{classComponent_a7cbb92a522d77dc8ce22098dd277f84b}} 
 \index{Component@{Component}!SetParent@{SetParent}}

@@ -30,24 +30,33 @@ Collaboration diagram for Sound\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSound_a539c205cdf06fe2c621fd77c37bcfac9}\label{classSound_a539c205cdf06fe2c621fd77c37bcfac9}} 
-\mbox{\hyperlink{classSound_a539c205cdf06fe2c621fd77c37bcfac9}{Sound}} ()
+\mbox{\Hypertarget{classSound_ac35edfc6f2ddbb2bf27d8d3c1deac415}\label{classSound_ac35edfc6f2ddbb2bf27d8d3c1deac415}} 
+\mbox{\hyperlink{classSound_ac35edfc6f2ddbb2bf27d8d3c1deac415}{Sound}} ()=default
 \begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classSound_aa21a20c69fe6b61a50c385e70595a531}{Sound}} (char const $\ast$filepath, bool looping)
+\mbox{\hyperlink{classSound_a2ccc393a8cd5c0894ebb78b3bdf580fb}{Sound}} (char const $\ast$filepath, bool is\+Loopable)
 \begin{DoxyCompactList}\small\item\em Constructs a new \mbox{\hyperlink{classSound}{Sound}}. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSound_a0907389078bf740be2a5763366ad3376}\label{classSound_a0907389078bf740be2a5763366ad3376}} 
 \mbox{\hyperlink{classSound_a0907389078bf740be2a5763366ad3376}{$\sim$\+Sound}} ()
 \begin{DoxyCompactList}\small\item\em Destroys this \mbox{\hyperlink{classSound}{Sound}}. \end{DoxyCompactList}\item 
-FMOD\+::\+Channel $\ast$ \mbox{\hyperlink{classSound_a7c2a6c5297ff3df5940386523d0ef438}{Play}} (FMOD\+::\+Channel\+Group $\ast$group=nullptr, float volume=1.\+0f, float pitch=1.\+0f) const
+FMOD\+::\+Channel $\ast$ \mbox{\hyperlink{classSound_a32de458ab414d65c3121445213dba68d}{Play}} (FMOD\+::\+Channel\+Group $\ast$group=nullptr, float volume=1.\+0f, float pitch=1.\+0f, int loop\+Count=0) const
 \begin{DoxyCompactList}\small\item\em Plays this sound. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSound_a67df5e5a9320f6cf66480de9cae4c758}\label{classSound_a67df5e5a9320f6cf66480de9cae4c758}} 
+void \mbox{\hyperlink{classSound_a67df5e5a9320f6cf66480de9cae4c758}{Reload}} ()
+\begin{DoxyCompactList}\small\item\em reloads this \mbox{\hyperlink{classSound}{Sound}} using current settings \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classSound_a53409029f147921fe18d255394e971eb}{Get\+Length}} () const
 \begin{DoxyCompactList}\small\item\em gets the length of this sound \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline bool \mbox{\hyperlink{classSound_a77113b04eebdea69290e4e49a6477b77}{Get\+Looping}} () const
+\+\_\+\+\_\+inline bool \mbox{\hyperlink{classSound_a966584c1b6061ecf05a23dd87f4b9411}{Get\+Is\+Loopable}} () const
 \begin{DoxyCompactList}\small\item\em gets whether this \mbox{\hyperlink{classSound}{Sound}} is looping \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline std\+::string const  \& \mbox{\hyperlink{classSound_ab8328222f7f3070212b948bf2d814f7f}{Get\+Filepath}} () const
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSound}{Sound}}\textquotesingle{}s filepath \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSound_a7b62427aac8703c909ac96045ae46170}\label{classSound_a7b62427aac8703c909ac96045ae46170}} 
 void \mbox{\hyperlink{classSound_a7b62427aac8703c909ac96045ae46170}{Inspect}} ()
 \begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classSound}{Sound}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSound_a2050651667a529ea21430b1a0d73d87b}\label{classSound_a2050651667a529ea21430b1a0d73d87b}} 
+void \mbox{\hyperlink{classSound_a2050651667a529ea21430b1a0d73d87b}{After\+Load}} ()
+\begin{DoxyCompactList}\small\item\em runs after \mbox{\hyperlink{classSound}{Sound}} has been loaded \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classSound_a44ed455ea27c7752f88fad15185b2678}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classSound}{Sound}} read method map \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classSound_a2f18bf280c094d8b0e2d6ac6a37539be}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classSound}{Sound}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -56,11 +65,11 @@ virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classSound_a2f18bf280c094
 Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when creating new Systems. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classSound_aa21a20c69fe6b61a50c385e70595a531}\label{classSound_aa21a20c69fe6b61a50c385e70595a531}} 
+\mbox{\Hypertarget{classSound_a2ccc393a8cd5c0894ebb78b3bdf580fb}\label{classSound_a2ccc393a8cd5c0894ebb78b3bdf580fb}} 
 \index{Sound@{Sound}!Sound@{Sound}}
 \index{Sound@{Sound}!Sound@{Sound}}
 \doxysubsubsection{\texorpdfstring{Sound()}{Sound()}}
-{\footnotesize\ttfamily Sound\+::\+Sound (\begin{DoxyParamCaption}\item[{char const $\ast$}]{filepath,  }\item[{bool}]{looping }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Sound\+::\+Sound (\begin{DoxyParamCaption}\item[{char const $\ast$}]{filepath,  }\item[{bool}]{is\+Loopable }\end{DoxyParamCaption})}
 
 
 
@@ -72,7 +81,7 @@ constructs a new \mbox{\hyperlink{classSound}{Sound}}
 \begin{DoxyParams}{Parameters}
 {\em filepath} & the filepath of the sound to load \\
 \hline
-{\em looping} & whether or not the sound should loop \\
+{\em is\+Loopable} & whether or not the sound should loop \\
 \hline
 \end{DoxyParams}
 
@@ -91,6 +100,19 @@ gets this \mbox{\hyperlink{classSound}{Sound}}\textquotesingle{}s filepath
 \begin{DoxyReturn}{Returns}
 this \mbox{\hyperlink{classSound}{Sound}}\textquotesingle{}s filepath 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classSound_a966584c1b6061ecf05a23dd87f4b9411}\label{classSound_a966584c1b6061ecf05a23dd87f4b9411}} 
+\index{Sound@{Sound}!GetIsLoopable@{GetIsLoopable}}
+\index{GetIsLoopable@{GetIsLoopable}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{GetIsLoopable()}{GetIsLoopable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+inline bool Sound\+::\+Get\+Is\+Loopable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets whether this \mbox{\hyperlink{classSound}{Sound}} is looping 
+
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classSound}{Sound}} is looping 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classSound_a53409029f147921fe18d255394e971eb}\label{classSound_a53409029f147921fe18d255394e971eb}} 
 \index{Sound@{Sound}!GetLength@{GetLength}}
 \index{GetLength@{GetLength}!Sound@{Sound}}
@@ -104,34 +126,28 @@ gets the length of this sound
 \begin{DoxyReturn}{Returns}
 the length of this sound in seconds 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSound_a77113b04eebdea69290e4e49a6477b77}\label{classSound_a77113b04eebdea69290e4e49a6477b77}} 
-\index{Sound@{Sound}!GetLooping@{GetLooping}}
-\index{GetLooping@{GetLooping}!Sound@{Sound}}
-\doxysubsubsection{\texorpdfstring{GetLooping()}{GetLooping()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline bool Sound\+::\+Get\+Looping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\Hypertarget{classSound_a44ed455ea27c7752f88fad15185b2678}\label{classSound_a44ed455ea27c7752f88fad15185b2678}} 
+\index{Sound@{Sound}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Sound@{Sound}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Sound\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
-gets whether this \mbox{\hyperlink{classSound}{Sound}} is looping 
+gets the \mbox{\hyperlink{classSound}{Sound}} read method map 
 
 \begin{DoxyReturn}{Returns}
-whether this \mbox{\hyperlink{classSound}{Sound}} is looping 
+the read method map 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSound_a7b62427aac8703c909ac96045ae46170}\label{classSound_a7b62427aac8703c909ac96045ae46170}} 
-\index{Sound@{Sound}!Inspect@{Inspect}}
-\index{Inspect@{Inspect}!Sound@{Sound}}
-\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
-{\footnotesize\ttfamily void Sound\+::\+Inspect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
-Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classSound}{Sound}}. 
-
-todo\+: add inspector\mbox{\Hypertarget{classSound_a7c2a6c5297ff3df5940386523d0ef438}\label{classSound_a7c2a6c5297ff3df5940386523d0ef438}} 
+\mbox{\Hypertarget{classSound_a32de458ab414d65c3121445213dba68d}\label{classSound_a32de458ab414d65c3121445213dba68d}} 
 \index{Sound@{Sound}!Play@{Play}}
 \index{Play@{Play}!Sound@{Sound}}
 \doxysubsubsection{\texorpdfstring{Play()}{Play()}}
-{\footnotesize\ttfamily FMOD\+::\+Channel $\ast$ Sound\+::\+Play (\begin{DoxyParamCaption}\item[{FMOD\+::\+Channel\+Group $\ast$}]{group = {\ttfamily nullptr},  }\item[{float}]{volume = {\ttfamily 1.0f},  }\item[{float}]{pitch = {\ttfamily 1.0f} }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily FMOD\+::\+Channel $\ast$ Sound\+::\+Play (\begin{DoxyParamCaption}\item[{FMOD\+::\+Channel\+Group $\ast$}]{group = {\ttfamily nullptr},  }\item[{float}]{volume = {\ttfamily 1.0f},  }\item[{float}]{pitch = {\ttfamily 1.0f},  }\item[{int}]{loop\+Count = {\ttfamily 0} }\end{DoxyParamCaption}) const}
 
 
 

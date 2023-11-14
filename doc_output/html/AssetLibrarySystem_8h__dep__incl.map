@@ -1,14 +1,25 @@
 <map id="Source/AssetLibrarySystem.h" name="Source/AssetLibrarySystem.h">
-<area shape="rect" id="node1" title="Asset System." alt="" coords="795,5,1007,32"/>
-<area shape="rect" id="node2" href="$Animation_8cpp.html" title="animation component implimentation" alt="" coords="5,80,169,107"/>
-<area shape="rect" id="node3" href="$AssetLibrarySystem_8cpp.html" title="AssetLibrarySystem." alt="" coords="194,80,421,107"/>
-<area shape="rect" id="node4" href="$AudioPlayer_8cpp.html" title="Component that plays audio." alt="" coords="445,80,620,107"/>
-<area shape="rect" id="node5" href="$EffectAnimator_8cpp.html" title="Component that animates a Transform&#39;s matrix." alt="" coords="644,80,837,107"/>
-<area shape="rect" id="node6" href="$Engine_8cpp.html" title="Engine class." alt="" coords="734,155,875,181"/>
-<area shape="rect" id="node7" href="$Entity_8cpp.html" title="Function definitions for the Entity class." alt="" coords="1209,80,1342,107"/>
-<area shape="rect" id="node8" href="$RenderSystem_8cpp.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="1366,80,1558,107"/>
-<area shape="rect" id="node9" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="899,155,1102,181"/>
-<area shape="rect" id="node10" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="1127,155,1312,181"/>
-<area shape="rect" id="node11" href="$SceneSystem_8h.html" title="handles the process of resetting and changing scenes" alt="" coords="963,80,1134,107"/>
-<area shape="rect" id="node12" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="1583,80,1717,107"/>
+<area shape="rect" id="node1" title="Asset System." alt="" coords="1575,5,1787,32"/>
+<area shape="rect" id="node2" href="$Animation_8cpp.html" title="animation component implimentation" alt="" coords="5,155,169,181"/>
+<area shape="rect" id="node3" href="$AssetLibrarySystem_8cpp.html" title="AssetLibrarySystem." alt="" coords="1043,80,1270,107"/>
+<area shape="rect" id="node4" href="$AudioPlayer_8cpp.html" title="Component that plays audio." alt="" coords="1295,80,1469,107"/>
+<area shape="rect" id="node5" href="$CheatSystem_8cpp.html" title="CheatSystem Class definition." alt="" coords="1314,155,1498,181"/>
+<area shape="rect" id="node6" href="$ConstructionBehavior_8cpp.html" title="handles the construction of towers and modification of terrain" alt="" coords="1891,80,2127,107"/>
+<area shape="rect" id="node7" href="$EffectAnimator_8cpp.html" title="Component that animates a Transform&#39;s matrix." alt="" coords="2151,80,2344,107"/>
+<area shape="rect" id="node8" href="$Engine_8cpp.html" title="Engine class." alt="" coords="1522,155,1663,181"/>
+<area shape="rect" id="node9" href="$Entity_8cpp.html" title="Function definitions for the Entity class." alt="" coords="2369,80,2502,107"/>
+<area shape="rect" id="node10" href="$Inspection_8h.html" title="Helper methods for inspecting things." alt="" coords="627,80,777,107"/>
+<area shape="rect" id="node13" href="$Sprite_8cpp.html" title="Implementation of Sprite component." alt="" coords="903,155,1037,181"/>
+<area shape="rect" id="node16" href="$WavesInspector_8cpp.html" title="Definitions for wave and spawning editing in game." alt="" coords="1061,155,1260,181"/>
+<area shape="rect" id="node17" href="$PlayerController_8cpp.html" title="PlayerController Behaviour Class." alt="" coords="2527,80,2728,107"/>
+<area shape="rect" id="node18" href="$RenderSystem_8cpp.html" title="System responsible for drawing sprites and basic shapes." alt="" coords="2753,80,2945,107"/>
+<area shape="rect" id="node19" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="1687,155,1890,181"/>
+<area shape="rect" id="node20" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="1915,155,2100,181"/>
+<area shape="rect" id="node21" href="$SceneSystem_8h.html" title="handles the process of resetting and changing scenes" alt="" coords="1595,80,1766,107"/>
+<area shape="rect" id="node22" href="$TurretBehavior_8cpp.html" title="Behavior Compenent for Basic Turret" alt="" coords="2969,80,3160,107"/>
+<area shape="rect" id="node23" href="$WavesBehavior_8cpp.html" title="Definitions for wave and spawning behavior." alt="" coords="3185,80,3382,107"/>
+<area shape="rect" id="node11" href="$Inspection_8cpp.html" title="Helper methods for inspecting things." alt="" coords="715,155,879,181"/>
+<area shape="rect" id="node12" href="$Sound_8cpp.html" title="Wrapper class for FMOD sounds." alt="" coords="193,155,331,181"/>
+<area shape="rect" id="node14" href="$Texture_8cpp.html" title="Wrapper/manager for OpenGL texture." alt="" coords="355,155,500,181"/>
+<area shape="rect" id="node15" href="$UiElement_8cpp.html" title="Ui element component." alt="" coords="525,155,690,181"/>
 </map>

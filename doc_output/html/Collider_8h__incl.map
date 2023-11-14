@@ -1,12 +1,14 @@
 <map id="Source/Collider.h" name="Source/Collider.h">
-<area shape="rect" id="node1" title="Base component for detecting collisions." alt="" coords="391,5,521,32"/>
-<area shape="rect" id="node2" href="$Component_8h.html" title="Virtual component header." alt="" coords="239,80,348,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="387,304,437,331"/>
-<area shape="rect" id="node10" title=" " alt="" coords="494,80,581,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="331,155,418,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,304,64,331"/>
-<area shape="rect" id="node6" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="124,155,239,181"/>
-<area shape="rect" id="node7" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="123,229,205,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="88,304,192,331"/>
-<area shape="rect" id="node9" title=" " alt="" coords="216,304,363,331"/>
+<area shape="rect" id="node1" title="Base component for detecting collisions." alt="" coords="120,5,251,32"/>
+<area shape="rect" id="node2" href="$Component_8h.html" title="Virtual component header." alt="" coords="131,80,240,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,304,56,331"/>
+<area shape="rect" id="node12" title=" " alt="" coords="265,80,351,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="183,155,270,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="611,304,669,331"/>
+<area shape="rect" id="node6" href="$ISerializable_8h.html" title="interface for all serializable objects" alt="" coords="88,229,203,256"/>
+<area shape="rect" id="node8" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="318,155,399,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="91,304,237,331"/>
+<area shape="rect" id="node9" title=" " alt="" coords="331,229,435,256"/>
+<area shape="rect" id="node10" title=" " alt="" coords="459,229,551,256"/>
+<area shape="rect" id="node11" title=" " alt="" coords="227,229,307,256"/>
 </map>

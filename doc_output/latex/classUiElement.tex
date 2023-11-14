@@ -1,0 +1,376 @@
+\hypertarget{classUiElement}{}\doxysection{Ui\+Element Class Reference}
+\label{classUiElement}\index{UiElement@{UiElement}}
+
+
+Inheritance diagram for Ui\+Element\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classUiElement__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Ui\+Element\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classUiElement__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classUiElement_a7ec81b3507bd2677cae66b211d2dba1b}\label{classUiElement_a7ec81b3507bd2677cae66b211d2dba1b}} 
+enum class \mbox{\hyperlink{classUiElement_a7ec81b3507bd2677cae66b211d2dba1b}{Size\+Type}} \{ {\bfseries Absolute}
+, {\bfseries Relative\+To\+Width}
+, {\bfseries Relative\+To\+Height}
+ \}
+\begin{DoxyCompactList}\small\item\em enum to specify what (if anything) the size is relative to) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classUiElement_ad23ef4fb917c17c7f6afd1e8046c62a2}\label{classUiElement_ad23ef4fb917c17c7f6afd1e8046c62a2}} 
+typedef glm\+::vec$<$ 2, \mbox{\hyperlink{classUiElement_a7ec81b3507bd2677cae66b211d2dba1b}{Size\+Type}} $>$ \mbox{\hyperlink{classUiElement_ad23ef4fb917c17c7f6afd1e8046c62a2}{Size\+Type\+Vec}}
+\begin{DoxyCompactList}\small\item\em used to specify what (if anything) each axis of the size is relative to \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classUiElement_a40ea5d2dc2339f44d1ddc7117129ac6f}\label{classUiElement_a40ea5d2dc2339f44d1ddc7117129ac6f}} 
+\mbox{\hyperlink{classUiElement_a40ea5d2dc2339f44d1ddc7117129ac6f}{Ui\+Element}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiElement_acf32347d4f72d7c5fba6062272cc7bbd}{Add\+Child}} (\mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$child)
+\begin{DoxyCompactList}\small\item\em adds a child to this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiElement_a49ba7e2405c83878fc81544ee6b43d1c}{Remove\+Child}} (\mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$child)
+\begin{DoxyCompactList}\small\item\em removes a child from this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiElement_acc981196034722d83d24480fb50bae8b}{Add\+On\+Clicked\+Callback}} (unsigned owner\+Id, std\+::function$<$ void() $>$ callback)
+\begin{DoxyCompactList}\small\item\em adds a callback for whenever this \mbox{\hyperlink{classUiElement}{Ui\+Element}} gets clicked \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiElement_aa872687bf648aec170347158364fe1a6}{Remove\+On\+Clicked\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em removes a callback for whenever this \mbox{\hyperlink{classUiElement}{Ui\+Element}} gets clicked \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classUiElement_adb3de0e436b90fa7991451017f4b7edc}\label{classUiElement_adb3de0e436b90fa7991451017f4b7edc}} 
+virtual void \mbox{\hyperlink{classUiElement_adb3de0e436b90fa7991451017f4b7edc}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classUiElement_a744b29d45238fb1dce09f10c2ce6f38a}\label{classUiElement_a744b29d45238fb1dce09f10c2ce6f38a}} 
+virtual void \mbox{\hyperlink{classUiElement_a744b29d45238fb1dce09f10c2ce6f38a}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when leaving the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classUiElement_a21f550a12d828bfebefad8685daf6747}\label{classUiElement_a21f550a12d828bfebefad8685daf6747}} 
+virtual void \mbox{\hyperlink{classUiElement_a21f550a12d828bfebefad8685daf6747}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em displays the Inspector \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$ \mbox{\hyperlink{classUiElement_a0dd806f5b10acd7cfe89c84914be3c2c}{Get\+Parent}} () const
+\begin{DoxyCompactList}\small\item\em gets the parent \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$ $>$ const  \& \mbox{\hyperlink{classUiElement_a246a3aeadcebe998e9beedef3d1fb64d}{Get\+Children}} () const
+\begin{DoxyCompactList}\small\item\em gets the children Ui\+Elements \end{DoxyCompactList}\item 
+glm\+::vec2 const  \& \mbox{\hyperlink{classUiElement_a10b95316a0ea2d846f5e2c1805277ae7}{Get\+Anchor}} () const
+\begin{DoxyCompactList}\small\item\em gets the anchor position of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiElement_a1acd71ebf85664a1f480d6ac5848b4c6}{Set\+Anchor}} (glm\+::vec2 const \&anchor)
+\begin{DoxyCompactList}\small\item\em sets the anchor position of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+glm\+::vec2 const  \& \mbox{\hyperlink{classUiElement_ac7f2d82b589d024c372dd5e1c0180b4d}{Get\+Pivot}} () const
+\begin{DoxyCompactList}\small\item\em gets the pivot position of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiElement_a1f3f912709aad8c5fa6eabb424fdc6ec}{Set\+Pivot}} (glm\+::vec2 const \&pivot)
+\begin{DoxyCompactList}\small\item\em sets the pivot position of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+glm\+::vec2 const  \& \mbox{\hyperlink{classUiElement_a15f9106c536912ed1e186b70de76c368}{Get\+Offset}} () const
+\begin{DoxyCompactList}\small\item\em gets the offset of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiElement_a51c0ab4264274a693dabc8f8cb48c525}{Set\+Offset}} (glm\+::vec2 const \&offset)
+\begin{DoxyCompactList}\small\item\em sets the offset of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+glm\+::vec2 const  \& \mbox{\hyperlink{classUiElement_a8eb02fad9c941e170e20d542ac15f01d}{Get\+Frame\+Size}} () const
+\begin{DoxyCompactList}\small\item\em gets the frame size of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiElement_aca38ec85823cb5142a81d97c98e3341f}{Set\+Frame\+Size}} (glm\+::vec2 const \&frame\+Size)
+\begin{DoxyCompactList}\small\item\em sets the frame size of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classUiElement_ad23ef4fb917c17c7f6afd1e8046c62a2}{Size\+Type\+Vec}} const  \& \mbox{\hyperlink{classUiElement_a9c18bb35966bc1dc4da6bb7d709cf2ad}{Get\+Size\+Types}} () const
+\begin{DoxyCompactList}\small\item\em gets the size types of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiElement_a7c8d707802bc76072bb97b187e97f24e}{Set\+Size\+Types}} (\mbox{\hyperlink{classUiElement_ad23ef4fb917c17c7f6afd1e8046c62a2}{Size\+Type\+Vec}} const \&size\+Types)
+\begin{DoxyCompactList}\small\item\em sets the size types of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classUiElement_a48284b728ae435b549b78e06397922f1}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classUiElement_aa4523b7509db41f8be442d77a411a9a7}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classUiElement}{Ui\+Element}} to json \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$ \mbox{\hyperlink{classUiElement_a406854ff27a7b1b185a22816d834f81a}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em creates a new copy of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classUiElement_acf32347d4f72d7c5fba6062272cc7bbd}\label{classUiElement_acf32347d4f72d7c5fba6062272cc7bbd}} 
+\index{UiElement@{UiElement}!AddChild@{AddChild}}
+\index{AddChild@{AddChild}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{AddChild()}{AddChild()}}
+{\footnotesize\ttfamily void Ui\+Element\+::\+Add\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$}]{child }\end{DoxyParamCaption})}
+
+
+
+adds a child to this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & the child to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiElement_acc981196034722d83d24480fb50bae8b}\label{classUiElement_acc981196034722d83d24480fb50bae8b}} 
+\index{UiElement@{UiElement}!AddOnClickedCallback@{AddOnClickedCallback}}
+\index{AddOnClickedCallback@{AddOnClickedCallback}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{AddOnClickedCallback()}{AddOnClickedCallback()}}
+{\footnotesize\ttfamily void Ui\+Element\+::\+Add\+On\+Clicked\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{std\+::function$<$ void() $>$}]{callback }\end{DoxyParamCaption})}
+
+
+
+adds a callback for whenever this \mbox{\hyperlink{classUiElement}{Ui\+Element}} gets clicked 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+{\em callback} & the callback to call \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiElement_a406854ff27a7b1b185a22816d834f81a}\label{classUiElement_a406854ff27a7b1b185a22816d834f81a}} 
+\index{UiElement@{UiElement}!Clone@{Clone}}
+\index{Clone@{Clone}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classUiElement}{Ui\+Element}}$\ast$ Ui\+Element\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+creates a new copy of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classTransform_a49130d0a3f94a70eec11a67979ce693c}{Transform}}.
+
+\mbox{\Hypertarget{classUiElement_a10b95316a0ea2d846f5e2c1805277ae7}\label{classUiElement_a10b95316a0ea2d846f5e2c1805277ae7}} 
+\index{UiElement@{UiElement}!GetAnchor@{GetAnchor}}
+\index{GetAnchor@{GetAnchor}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{GetAnchor()}{GetAnchor()}}
+{\footnotesize\ttfamily glm\+::vec2 const\& Ui\+Element\+::\+Get\+Anchor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the anchor position of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+\begin{DoxyReturn}{Returns}
+the anchor position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUiElement_a246a3aeadcebe998e9beedef3d1fb64d}\label{classUiElement_a246a3aeadcebe998e9beedef3d1fb64d}} 
+\index{UiElement@{UiElement}!GetChildren@{GetChildren}}
+\index{GetChildren@{GetChildren}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{GetChildren()}{GetChildren()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classUiElement}{Ui\+Element}}$\ast$ $>$ const\& Ui\+Element\+::\+Get\+Children (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the children Ui\+Elements 
+
+\begin{DoxyReturn}{Returns}
+the chilfren Ui\+Elements 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUiElement_a8eb02fad9c941e170e20d542ac15f01d}\label{classUiElement_a8eb02fad9c941e170e20d542ac15f01d}} 
+\index{UiElement@{UiElement}!GetFrameSize@{GetFrameSize}}
+\index{GetFrameSize@{GetFrameSize}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{GetFrameSize()}{GetFrameSize()}}
+{\footnotesize\ttfamily glm\+::vec2 const\& Ui\+Element\+::\+Get\+Frame\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the frame size of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+\begin{DoxyReturn}{Returns}
+the frame size 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUiElement_a15f9106c536912ed1e186b70de76c368}\label{classUiElement_a15f9106c536912ed1e186b70de76c368}} 
+\index{UiElement@{UiElement}!GetOffset@{GetOffset}}
+\index{GetOffset@{GetOffset}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{GetOffset()}{GetOffset()}}
+{\footnotesize\ttfamily glm\+::vec2 const\& Ui\+Element\+::\+Get\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the offset of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+\begin{DoxyReturn}{Returns}
+the offset 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUiElement_a0dd806f5b10acd7cfe89c84914be3c2c}\label{classUiElement_a0dd806f5b10acd7cfe89c84914be3c2c}} 
+\index{UiElement@{UiElement}!GetParent@{GetParent}}
+\index{GetParent@{GetParent}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{GetParent()}{GetParent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUiElement}{Ui\+Element}}$\ast$ Ui\+Element\+::\+Get\+Parent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the parent \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+\begin{DoxyReturn}{Returns}
+the parent \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUiElement_ac7f2d82b589d024c372dd5e1c0180b4d}\label{classUiElement_ac7f2d82b589d024c372dd5e1c0180b4d}} 
+\index{UiElement@{UiElement}!GetPivot@{GetPivot}}
+\index{GetPivot@{GetPivot}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{GetPivot()}{GetPivot()}}
+{\footnotesize\ttfamily glm\+::vec2 const\& Ui\+Element\+::\+Get\+Pivot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the pivot position of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+\begin{DoxyReturn}{Returns}
+the pivot position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUiElement_a48284b728ae435b549b78e06397922f1}\label{classUiElement_a48284b728ae435b549b78e06397922f1}} 
+\index{UiElement@{UiElement}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Ui\+Element\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classTransform}{Transform}}.
+
+\mbox{\Hypertarget{classUiElement_a9c18bb35966bc1dc4da6bb7d709cf2ad}\label{classUiElement_a9c18bb35966bc1dc4da6bb7d709cf2ad}} 
+\index{UiElement@{UiElement}!GetSizeTypes@{GetSizeTypes}}
+\index{GetSizeTypes@{GetSizeTypes}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{GetSizeTypes()}{GetSizeTypes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUiElement_ad23ef4fb917c17c7f6afd1e8046c62a2}{Size\+Type\+Vec}} const\& Ui\+Element\+::\+Get\+Size\+Types (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the size types of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+\begin{DoxyReturn}{Returns}
+the size types 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classUiElement_a49ba7e2405c83878fc81544ee6b43d1c}\label{classUiElement_a49ba7e2405c83878fc81544ee6b43d1c}} 
+\index{UiElement@{UiElement}!RemoveChild@{RemoveChild}}
+\index{RemoveChild@{RemoveChild}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{RemoveChild()}{RemoveChild()}}
+{\footnotesize\ttfamily void Ui\+Element\+::\+Remove\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$}]{child }\end{DoxyParamCaption})}
+
+
+
+removes a child from this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & the child to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiElement_aa872687bf648aec170347158364fe1a6}\label{classUiElement_aa872687bf648aec170347158364fe1a6}} 
+\index{UiElement@{UiElement}!RemoveOnClickedCallback@{RemoveOnClickedCallback}}
+\index{RemoveOnClickedCallback@{RemoveOnClickedCallback}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{RemoveOnClickedCallback()}{RemoveOnClickedCallback()}}
+{\footnotesize\ttfamily void Ui\+Element\+::\+Remove\+On\+Clicked\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+removes a callback for whenever this \mbox{\hyperlink{classUiElement}{Ui\+Element}} gets clicked 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiElement_a1acd71ebf85664a1f480d6ac5848b4c6}\label{classUiElement_a1acd71ebf85664a1f480d6ac5848b4c6}} 
+\index{UiElement@{UiElement}!SetAnchor@{SetAnchor}}
+\index{SetAnchor@{SetAnchor}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{SetAnchor()}{SetAnchor()}}
+{\footnotesize\ttfamily void Ui\+Element\+::\+Set\+Anchor (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{anchor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the anchor position of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em anchor} & the anchor position \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiElement_aca38ec85823cb5142a81d97c98e3341f}\label{classUiElement_aca38ec85823cb5142a81d97c98e3341f}} 
+\index{UiElement@{UiElement}!SetFrameSize@{SetFrameSize}}
+\index{SetFrameSize@{SetFrameSize}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{SetFrameSize()}{SetFrameSize()}}
+{\footnotesize\ttfamily void Ui\+Element\+::\+Set\+Frame\+Size (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{frame\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the frame size of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame\+Size} & the frame size \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiElement_a51c0ab4264274a693dabc8f8cb48c525}\label{classUiElement_a51c0ab4264274a693dabc8f8cb48c525}} 
+\index{UiElement@{UiElement}!SetOffset@{SetOffset}}
+\index{SetOffset@{SetOffset}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{SetOffset()}{SetOffset()}}
+{\footnotesize\ttfamily void Ui\+Element\+::\+Set\+Offset (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the offset of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & the offset \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiElement_a1f3f912709aad8c5fa6eabb424fdc6ec}\label{classUiElement_a1f3f912709aad8c5fa6eabb424fdc6ec}} 
+\index{UiElement@{UiElement}!SetPivot@{SetPivot}}
+\index{SetPivot@{SetPivot}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{SetPivot()}{SetPivot()}}
+{\footnotesize\ttfamily void Ui\+Element\+::\+Set\+Pivot (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{pivot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the pivot position of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pivot} & the pivot position \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiElement_a7c8d707802bc76072bb97b187e97f24e}\label{classUiElement_a7c8d707802bc76072bb97b187e97f24e}} 
+\index{UiElement@{UiElement}!SetSizeTypes@{SetSizeTypes}}
+\index{SetSizeTypes@{SetSizeTypes}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{SetSizeTypes()}{SetSizeTypes()}}
+{\footnotesize\ttfamily void Ui\+Element\+::\+Set\+Size\+Types (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classUiElement_ad23ef4fb917c17c7f6afd1e8046c62a2}{Size\+Type\+Vec}} const \&}]{size\+Types }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the size types of this \mbox{\hyperlink{classUiElement}{Ui\+Element}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size\+Types} & the size types \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiElement_aa4523b7509db41f8be442d77a411a9a7}\label{classUiElement_aa4523b7509db41f8be442d77a411a9a7}} 
+\index{UiElement@{UiElement}!Write@{Write}}
+\index{Write@{Write}!UiElement@{UiElement}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Ui\+Element\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classUiElement}{Ui\+Element}} to json 
+
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classTransform_a216e58bd1b07384a78e08b0ba806260f}{Transform}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{UiElement_8h}{Ui\+Element.\+h}}\item 
+Source/\mbox{\hyperlink{UiElement_8cpp}{Ui\+Element.\+cpp}}\end{DoxyCompactItemize}
