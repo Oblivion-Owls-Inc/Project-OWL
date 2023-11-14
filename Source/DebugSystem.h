@@ -18,6 +18,7 @@
 #include "System.h"
 #include <vector>
 #include "imgui.h"
+#include "imgui_stdlib.h"
 #include "imgui_impl_opengl3.h"
 #include "imgui_impl_glfw.h"
 #include <iostream>
@@ -124,6 +125,8 @@ private: // Members
 
     /// @brief Flag to show the Load Scene Window
     bool m_ShowSceneLoadWindow = false;
+
+    bool m_LoadDataFile = false;
     
     /// @brief Flag to Show the various Asset Prefab Windows
     bool m_CreationWindows[5] = { 0 };
@@ -165,7 +168,7 @@ private: // methods
 
     /// @brief Shows the Debug window
     void MenuWindows();
-    
+
     /// @brief Shows the List of Systems that begin with the given prefix
     /// @param prefix - the prefix to filter the list of Systems by
     void ShowSystemList(const std::string& prefix);

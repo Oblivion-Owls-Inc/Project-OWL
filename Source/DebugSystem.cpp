@@ -15,6 +15,7 @@
 #include "DebugSystem.h"
 #include "PlatformSystem.h"
 #include "InputSystem.h"
+#include "FileExplorer.h"
 #include "AssetLibrarySystem.h"
 #include "SceneSystem.h"
 #include "BehaviorSystem.h"
@@ -28,7 +29,7 @@
 #include "Engine.h"
 #include "EntitySystem.h"
 #include <chrono>
-
+#include <string>
 
 ///*****************************************************************/
 /// @struct ScrollingBuffer
@@ -150,6 +151,11 @@ void DebugSystem::DebugWindow()
             {
                 m_ShowSceneLoadWindow = true;
             }
+
+            if (ImGui::MenuItem("Load File"))
+            {
+                m_LoadDataFile = true;
+			}
 
             /// Reloads the Scene
             if (ImGui::MenuItem("Reload Scene"))
@@ -344,6 +350,11 @@ void DebugSystem::MenuWindows()
     {
         /// Shows the Behavior System List
 		ShowSystemList("BehaviorSystem");
+	}
+
+    if (m_LoadDataFile)
+    {
+        FileExplorer::Explore(&m_LoadDataFile);
 	}
 
     ///-------------------------------------------///

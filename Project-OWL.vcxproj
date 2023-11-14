@@ -183,6 +183,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\FileExplorer.cpp" />
+    <ClCompile Include="imgui\imgui_stdlib.cpp" />
     <ClCompile Include="Source\BasicEntityBehavior.cpp" />
     <ClCompile Include="Source\BaseBehavior.cpp" />
     <ClCompile Include="Source\CheatSystem.cpp" />
@@ -257,6 +259,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WavesInspector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\FileExplorer.h" />
+    <ClInclude Include="imgui\imgui_stdlib.h" />
     <ClInclude Include="Source\Inspection.h" />
     <ClInclude Include="Source\BasicEntityBehavior.h" />
     <ClInclude Include="Source\BaseBehavior.h" />
