@@ -134,9 +134,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ab2599efd39c3969bf4da3ded49574f28">OnInit</a> ()</td></tr>
 <tr class="memdesc:ab2599efd39c3969bf4da3ded49574f28 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once when this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is added to the <a class="el" href="classEngine.html">Engine</a>. <br /></td></tr>
 <tr class="separator:ab2599efd39c3969bf4da3ded49574f28 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">OnUpdate</a> (float dt)</td></tr>
-<tr class="memdesc:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every graphics frame. Do not use this function for anything that affects the simulation.  <a href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">More...</a><br /></td></tr>
-<tr class="separator:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaebe51536352d44fea4c0e44f449eb5 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="abaebe51536352d44fea4c0e44f449eb5"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#abaebe51536352d44fea4c0e44f449eb5">OnExit</a> ()</td></tr>
 <tr class="memdesc:abaebe51536352d44fea4c0e44f449eb5 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once before the <a class="el" href="classEngine.html">Engine</a> closes. <br /></td></tr>
@@ -157,6 +154,21 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a804bac94c6ffee7f7369c6c3928a5574">GetName</a> () const</td></tr>
 <tr class="memdesc:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unique name of this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
 <tr class="separator:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a523cfae3fb1f5b2d20ba604b3344faa5">GetEnabled</a> () const</td></tr>
+<tr class="memdesc:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is enabled  <a href="classSystem.html#a523cfae3fb1f5b2d20ba604b3344faa5">More...</a><br /></td></tr>
+<tr class="separator:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7260844b1e1057f706ca25948fa63db3 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a7260844b1e1057f706ca25948fa63db3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetDebugEnabled</b> () const</td></tr>
+<tr class="separator:a7260844b1e1057f706ca25948fa63db3 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#aee0c04e1a79fbb2343edddaf319da646">SetEnabled</a> (bool enabled)</td></tr>
+<tr class="memdesc:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is enabled  <a href="classSystem.html#aee0c04e1a79fbb2343edddaf319da646">More...</a><br /></td></tr>
+<tr class="separator:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af8b62b082956e0dd473031e6f3598828">SetDebugEnable</a> (bool enable)</td></tr>
+<tr class="memdesc:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if the Debug Window should be shown.  <a href="classSystem.html#af8b62b082956e0dd473031e6f3598828">More...</a><br /></td></tr>
+<tr class="separator:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ade5a3addecec59fbc386c1d49fccaa1e">GetId</a> () const</td></tr>
+<tr class="memdesc:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s ID  <a href="classSystem.html#ade5a3addecec59fbc386c1d49fccaa1e">More...</a><br /></td></tr>
+<tr class="separator:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a6b75872f421f9ae9a720502d37223d49"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>System</b> (<a class="el" href="classSystem.html">System</a> &amp;other)=delete</td></tr>
 <tr class="separator:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,12 +195,24 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a06e6a4f2a090251417efcb0c49a9efa2"><td class="memItemLeft" align="right" valign="top"><a id="a06e6a4f2a090251417efcb0c49a9efa2"></a>
+map&lt; int, bool[3]&gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>m_KeyStatesHold</b></td></tr>
+<tr class="separator:a06e6a4f2a090251417efcb0c49a9efa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fe5f67e01538a23ce3e2947441ca8f5"><td class="memItemLeft" align="right" valign="top"><a id="a3fe5f67e01538a23ce3e2947441ca8f5"></a>
+map&lt; int, bool[3]&gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>m_MouseStatesHold</b></td></tr>
+<tr class="separator:a3fe5f67e01538a23ce3e2947441ca8f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b9aa4d1dbe8693f89f305198aa83fc4"><td class="memItemLeft" align="right" valign="top"><a id="a2b9aa4d1dbe8693f89f305198aa83fc4"></a>
 map&lt; int, bool[3]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_KeyStates</b></td></tr>
 <tr class="separator:a2b9aa4d1dbe8693f89f305198aa83fc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2033d90f27fef1d08e1441ac199aeda5"><td class="memItemLeft" align="right" valign="top"><a id="a2033d90f27fef1d08e1441ac199aeda5"></a>
+map&lt; int, bool[3]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_FixedKeyStates</b></td></tr>
+<tr class="separator:a2033d90f27fef1d08e1441ac199aeda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98df56265d9e034fa160981ebd056a12"><td class="memItemLeft" align="right" valign="top"><a id="a98df56265d9e034fa160981ebd056a12"></a>
 map&lt; int, bool[3]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_MouseStates</b></td></tr>
 <tr class="separator:a98df56265d9e034fa160981ebd056a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4679f7d717904ab198f332a48c555502"><td class="memItemLeft" align="right" valign="top"><a id="a4679f7d717904ab198f332a48c555502"></a>
+map&lt; int, bool[3]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_FixedMouseStates</b></td></tr>
+<tr class="separator:a4679f7d717904ab198f332a48c555502"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>

@@ -2,13 +2,18 @@
 \label{PlayerController_8cpp}\index{Source/PlayerController.cpp@{Source/PlayerController.cpp}}
 
 
-\mbox{\hyperlink{classPlayerController}{Player\+Controller}} Bheaviour Class.  
+\mbox{\hyperlink{classPlayerController}{Player\+Controller}} Behaviour Class.  
 
 
 {\ttfamily \#include \char`\"{}Player\+Controller.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Behavior\+System.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Input\+System.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Rigid\+Body.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Animation.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Audio\+Player.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Animation\+Asset.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Asset\+Library\+System.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Debug\+System.\+h\char`\"{}}\newline
 Include dependency graph for Player\+Controller.\+cpp\+:
 \nopagebreak
 \begin{figure}[H]
@@ -17,12 +22,18 @@ Include dependency graph for Player\+Controller.\+cpp\+:
 \includegraphics[width=350pt]{PlayerController_8cpp__incl}
 \end{center}
 \end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{PlayerController_8cpp_acf8d84d60cc8c69c2627ff642fdbee18}\label{PlayerController_8cpp_acf8d84d60cc8c69c2627ff642fdbee18}} 
+\#define {\bfseries NUM\+\_\+\+ANIMATIONS}~4
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\mbox{\hyperlink{classPlayerController}{Player\+Controller}} Bheaviour Class. 
+\mbox{\hyperlink{classPlayerController}{Player\+Controller}} Behaviour Class. 
 
--\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---//
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---//
 
 \begin{DoxyAuthor}{Author}
 Aidan Straker (aidan.\+straker) 
@@ -31,5 +42,5 @@ Aidan Straker (aidan.\+straker)
 October 2023
 \end{DoxyDate}
 \begin{DoxyCopyright}{Copyright}
-© 2023 Digi\+Pen (USA) Corporation. -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---// 
+(c) 2023 Digi\+Pen (USA) Corporation. -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---// 
 \end{DoxyCopyright}

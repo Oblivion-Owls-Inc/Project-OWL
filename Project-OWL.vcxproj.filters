@@ -210,6 +210,9 @@
     <Filter Include="Engine\Entity\Component\Emitter">
       <UniqueIdentifier>{5fd7a429-be0c-4281-9acc-8f2a59ded737}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\DebugSystem\FileExplorer">
+      <UniqueIdentifier>{427d5f5a-9fc5-4bf5-b7f5-9934e8ece453}</UniqueIdentifier>
+   </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">

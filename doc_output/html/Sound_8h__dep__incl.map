@@ -1,11 +1,12 @@
 <map id="Source/Sound.h" name="Source/Sound.h">
-<area shape="rect" id="node1" title="Wrapper class for FMOD sounds." alt="" coords="637,5,759,32"/>
-<area shape="rect" id="node2" href="$AudioPlayer_8h.html" title="Component that plays audio." alt="" coords="351,80,509,107"/>
-<area shape="rect" id="node7" href="$Engine_8cpp.html" title="Engine class." alt="" coords="534,80,675,107"/>
-<area shape="rect" id="node8" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="700,80,885,107"/>
-<area shape="rect" id="node9" href="$Sound_8cpp.html" title="Wrapper class for FMOD sounds." alt="" coords="909,80,1047,107"/>
+<area shape="rect" id="node1" title="Wrapper class for FMOD sounds." alt="" coords="753,5,875,32"/>
+<area shape="rect" id="node2" href="$AudioPlayer_8h.html" title="Component that plays audio." alt="" coords="467,80,625,107"/>
+<area shape="rect" id="node8" href="$Engine_8cpp.html" title="Engine class." alt="" coords="650,80,791,107"/>
+<area shape="rect" id="node9" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="816,80,1001,107"/>
+<area shape="rect" id="node10" href="$Sound_8cpp.html" title="Wrapper class for FMOD sounds." alt="" coords="1025,80,1163,107"/>
 <area shape="rect" id="node3" href="$AudioPlayer_8cpp.html" title="Component that plays audio." alt="" coords="5,155,180,181"/>
 <area shape="rect" id="node4" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="204,155,421,181"/>
-<area shape="rect" id="node5" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="446,155,649,181"/>
-<area shape="rect" id="node6" href="$XinoScene_8cpp.html" title=" " alt="" coords="673,155,838,181"/>
+<area shape="rect" id="node5" href="$PlayerController_8cpp.html" title="PlayerController Behaviour Class." alt="" coords="445,155,647,181"/>
+<area shape="rect" id="node6" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="671,155,874,181"/>
+<area shape="rect" id="node7" href="$XinoScene_8cpp.html" title=" " alt="" coords="898,155,1063,181"/>
 </map>

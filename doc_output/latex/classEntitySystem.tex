@@ -44,6 +44,10 @@ nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEntitySystem_abee09afc33e2dd
 \begin{DoxyCompactList}\small\item\em saves all of the entities in a scene \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $\ast$ $>$ const  \& \mbox{\hyperlink{classEntitySystem_aa527daa36c0689122424d88acc2d8476}{Get\+Entities}} () const
 \begin{DoxyCompactList}\small\item\em returns the container of all Entities in the Scene \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntitySystem_a409d4956a21b58cc77b086e405c171a6}{Entity\+Create\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Shows the \mbox{\hyperlink{classEntity}{Entity}} Create Window. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classEntitySystem_a024540cf9bdf470e1a2c691e0bb4fdb6}{Debug\+Window}} () override
+\begin{DoxyCompactList}\small\item\em Called by the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} to display the debug window. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classEntitySystem_a2a5373dc2163f8de05f07ec49c8afb9d}\label{classEntitySystem_a2a5373dc2163f8de05f07ec49c8afb9d}} 
 {\bfseries Entity\+System} (\mbox{\hyperlink{classEntitySystem}{Entity\+System}} \&other)=delete
 \item 
@@ -78,13 +82,72 @@ Adds an \mbox{\hyperlink{classEntity}{Entity}} to the \mbox{\hyperlink{classEnti
 \hline
 \end{DoxyParams}
 \DoxyHorRuler{0}
- \hypertarget{classEntitySystem_autotoc_md4}{}\doxysubsubsection{Set Static Variables}\label{classEntitySystem_autotoc_md4}
+ \hypertarget{classEntitySystem_autotoc_md12}{}\doxysubsubsection{Set Static Variables}\label{classEntitySystem_autotoc_md12}
 
 \begin{DoxyParams}{Parameters}
 {\em entity} & the entity to add the the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classEntitySystem_aa527daa36c0689122424d88acc2d8476}\label{classEntitySystem_aa527daa36c0689122424d88acc2d8476}} 
+\mbox{\Hypertarget{classEntitySystem_a024540cf9bdf470e1a2c691e0bb4fdb6}\label{classEntitySystem_a024540cf9bdf470e1a2c691e0bb4fdb6}} 
+\index{EntitySystem@{EntitySystem}!DebugWindow@{DebugWindow}}
+\index{DebugWindow@{DebugWindow}!EntitySystem@{EntitySystem}}
+\doxysubsubsection{\texorpdfstring{DebugWindow()}{DebugWindow()}}
+{\footnotesize\ttfamily void Entity\+System\+::\+Debug\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Called by the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} to display the debug window. 
+
+Used to make the \mbox{\hyperlink{classEntity}{Entity}} List a pop out window
+
+Create a new entity
+
+Set the name of the entity
+
+Add the entity to the \mbox{\hyperlink{classEntitySystem}{Entity\+System}}
+
+Display the \mbox{\hyperlink{classEntity}{Entity}} List
+
+Reimplemented from \mbox{\hyperlink{classSystem_ac37b07a2ad20e2d2fe1f77766902af5d}{System}}.
+
+\mbox{\Hypertarget{classEntitySystem_a409d4956a21b58cc77b086e405c171a6}\label{classEntitySystem_a409d4956a21b58cc77b086e405c171a6}} 
+\index{EntitySystem@{EntitySystem}!EntityCreateWindow@{EntityCreateWindow}}
+\index{EntityCreateWindow@{EntityCreateWindow}!EntitySystem@{EntitySystem}}
+\doxysubsubsection{\texorpdfstring{EntityCreateWindow()}{EntityCreateWindow()}}
+{\footnotesize\ttfamily bool Entity\+System\+::\+Entity\+Create\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Shows the \mbox{\hyperlink{classEntity}{Entity}} Create Window. 
+
+Opens a window to create a new entity.
+
+\begin{DoxyReturn}{Returns}
+-\/ true if the window is open 
+\end{DoxyReturn}
+Creates the window and auto resizes it
+
+Sets the size of the window if it is the first time it is opened
+
+Input text for entity name
+
+Buffer to hold the input, you can save this
+
+Create a new entity
+
+Set the name of the entity
+
+Add the entity to the \mbox{\hyperlink{classEntitySystem}{Entity\+System}}
+
+if the entity is added, close the window
+
+Aligns the cancel button with the add entity button
+
+Creates the cancel button
+
+If the cancel button is pressed, close the window
+
+The Matching End to the Begin to create the window\mbox{\Hypertarget{classEntitySystem_aa527daa36c0689122424d88acc2d8476}\label{classEntitySystem_aa527daa36c0689122424d88acc2d8476}} 
 \index{EntitySystem@{EntitySystem}!GetEntities@{GetEntities}}
 \index{GetEntities@{GetEntities}!EntitySystem@{EntitySystem}}
 \doxysubsubsection{\texorpdfstring{GetEntities()}{GetEntities()}}

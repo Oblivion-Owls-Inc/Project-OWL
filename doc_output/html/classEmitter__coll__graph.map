@@ -1,0 +1,5 @@
+<map id="Emitter" name="Emitter">
+<area shape="rect" id="node1" title="Emitter component &#45; controls timing and behavior of particles." alt="" coords="21,155,92,181"/>
+<area shape="rect" id="node2" href="$classComponent.html" title=" " alt="" coords="8,80,105,107"/>
+<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="5,5,108,32"/>
+</map>

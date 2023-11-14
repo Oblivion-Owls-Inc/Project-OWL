@@ -2,8 +2,8 @@
     "Assets": {
         "Sounds": {
             "Music": {
-                "IsLoopabe": true,
-                "Filepath": "Data/Sounds/Music/test.mp3"
+              "IsLoopabe": true,
+                "Filepath": "Data/Sounds/Music/background.ogg"
             },
             "PlayerFootSteps": {
                 "IsLoopabe": true,
@@ -344,7 +344,7 @@
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
+                    "PlayOnInit": true,
                     "Sound": "Music"
                 }
             }
@@ -408,10 +408,7 @@
                 },
                 "WavesBehavior": {
                     "Spawners": [
-                        [
-                            0.0,
-                            -10.0
-                        ]
+                        [0.0,-10.0]
                     ],
                     "Waves": [
                         {
@@ -436,6 +433,26 @@
                                     "Amount": 5,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
+                                    "Spawner": 0
+                                }
+                            ]
+                        },
+                        {
+                            "WaveTime": 999.0,
+                            "WaveNextTime": 999.0,
+                            "EnemyGroups": [
+                                {
+                                    "EnemyName": "Enemy",
+                                    "Amount": 999,
+                                    "SpawnInterval": 2.0,
+                                    "InitialOffset": 5.0,
+                                    "Spawner": 0
+                                },
+                                {
+                                    "EnemyName": "Enemy",
+                                    "Amount": 999,
+                                    "SpawnInterval": 10.0,
+                                    "InitialOffset": 10.0,
                                     "Spawner": 0
                                 }
                             ]

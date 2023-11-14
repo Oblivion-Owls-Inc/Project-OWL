@@ -94,32 +94,44 @@ Collaboration diagram for Sound:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a539c205cdf06fe2c621fd77c37bcfac9"><td class="memItemLeft" align="right" valign="top"><a id="a539c205cdf06fe2c621fd77c37bcfac9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a539c205cdf06fe2c621fd77c37bcfac9">Sound</a> ()</td></tr>
-<tr class="memdesc:a539c205cdf06fe2c621fd77c37bcfac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor <br /></td></tr>
-<tr class="separator:a539c205cdf06fe2c621fd77c37bcfac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa21a20c69fe6b61a50c385e70595a531"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#aa21a20c69fe6b61a50c385e70595a531">Sound</a> (char const *filepath, bool looping)</td></tr>
-<tr class="memdesc:aa21a20c69fe6b61a50c385e70595a531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a>.  <a href="classSound.html#aa21a20c69fe6b61a50c385e70595a531">More...</a><br /></td></tr>
-<tr class="separator:aa21a20c69fe6b61a50c385e70595a531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac35edfc6f2ddbb2bf27d8d3c1deac415"><td class="memItemLeft" align="right" valign="top"><a id="ac35edfc6f2ddbb2bf27d8d3c1deac415"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#ac35edfc6f2ddbb2bf27d8d3c1deac415">Sound</a> ()=default</td></tr>
+<tr class="memdesc:ac35edfc6f2ddbb2bf27d8d3c1deac415"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor <br /></td></tr>
+<tr class="separator:ac35edfc6f2ddbb2bf27d8d3c1deac415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ccc393a8cd5c0894ebb78b3bdf580fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a2ccc393a8cd5c0894ebb78b3bdf580fb">Sound</a> (char const *filepath, bool isLoopable)</td></tr>
+<tr class="memdesc:a2ccc393a8cd5c0894ebb78b3bdf580fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a>.  <a href="classSound.html#a2ccc393a8cd5c0894ebb78b3bdf580fb">More...</a><br /></td></tr>
+<tr class="separator:a2ccc393a8cd5c0894ebb78b3bdf580fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0907389078bf740be2a5763366ad3376"><td class="memItemLeft" align="right" valign="top"><a id="a0907389078bf740be2a5763366ad3376"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a0907389078bf740be2a5763366ad3376">~Sound</a> ()</td></tr>
 <tr class="memdesc:a0907389078bf740be2a5763366ad3376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a>. <br /></td></tr>
 <tr class="separator:a0907389078bf740be2a5763366ad3376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c2a6c5297ff3df5940386523d0ef438"><td class="memItemLeft" align="right" valign="top">FMOD::Channel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a7c2a6c5297ff3df5940386523d0ef438">Play</a> (FMOD::ChannelGroup *group=nullptr, float volume=1.0f, float pitch=1.0f) const</td></tr>
-<tr class="memdesc:a7c2a6c5297ff3df5940386523d0ef438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays this sound.  <a href="classSound.html#a7c2a6c5297ff3df5940386523d0ef438">More...</a><br /></td></tr>
-<tr class="separator:a7c2a6c5297ff3df5940386523d0ef438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32de458ab414d65c3121445213dba68d"><td class="memItemLeft" align="right" valign="top">FMOD::Channel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a32de458ab414d65c3121445213dba68d">Play</a> (FMOD::ChannelGroup *group=nullptr, float volume=1.0f, float pitch=1.0f, int loopCount=0) const</td></tr>
+<tr class="memdesc:a32de458ab414d65c3121445213dba68d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plays this sound.  <a href="classSound.html#a32de458ab414d65c3121445213dba68d">More...</a><br /></td></tr>
+<tr class="separator:a32de458ab414d65c3121445213dba68d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67df5e5a9320f6cf66480de9cae4c758"><td class="memItemLeft" align="right" valign="top"><a id="a67df5e5a9320f6cf66480de9cae4c758"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a67df5e5a9320f6cf66480de9cae4c758">Reload</a> ()</td></tr>
+<tr class="memdesc:a67df5e5a9320f6cf66480de9cae4c758"><td class="mdescLeft">&#160;</td><td class="mdescRight">reloads this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> using current settings <br /></td></tr>
+<tr class="separator:a67df5e5a9320f6cf66480de9cae4c758"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53409029f147921fe18d255394e971eb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a53409029f147921fe18d255394e971eb">GetLength</a> () const</td></tr>
 <tr class="memdesc:a53409029f147921fe18d255394e971eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the length of this sound  <a href="classSound.html#a53409029f147921fe18d255394e971eb">More...</a><br /></td></tr>
 <tr class="separator:a53409029f147921fe18d255394e971eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77113b04eebdea69290e4e49a6477b77"><td class="memItemLeft" align="right" valign="top">__inline bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a77113b04eebdea69290e4e49a6477b77">GetLooping</a> () const</td></tr>
-<tr class="memdesc:a77113b04eebdea69290e4e49a6477b77"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> is looping  <a href="classSound.html#a77113b04eebdea69290e4e49a6477b77">More...</a><br /></td></tr>
-<tr class="separator:a77113b04eebdea69290e4e49a6477b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a966584c1b6061ecf05a23dd87f4b9411"><td class="memItemLeft" align="right" valign="top">__inline bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a966584c1b6061ecf05a23dd87f4b9411">GetIsLoopable</a> () const</td></tr>
+<tr class="memdesc:a966584c1b6061ecf05a23dd87f4b9411"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> is looping  <a href="classSound.html#a966584c1b6061ecf05a23dd87f4b9411">More...</a><br /></td></tr>
+<tr class="separator:a966584c1b6061ecf05a23dd87f4b9411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8328222f7f3070212b948bf2d814f7f"><td class="memItemLeft" align="right" valign="top">__inline std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#ab8328222f7f3070212b948bf2d814f7f">GetFilepath</a> () const</td></tr>
 <tr class="memdesc:ab8328222f7f3070212b948bf2d814f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a>'s filepath  <a href="classSound.html#ab8328222f7f3070212b948bf2d814f7f">More...</a><br /></td></tr>
 <tr class="separator:ab8328222f7f3070212b948bf2d814f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b62427aac8703c909ac96045ae46170"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a7b62427aac8703c909ac96045ae46170">Inspect</a> ()</td></tr>
-<tr class="memdesc:a7b62427aac8703c909ac96045ae46170"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a>.  <a href="classSound.html#a7b62427aac8703c909ac96045ae46170">More...</a><br /></td></tr>
+<tr class="memitem:a7b62427aac8703c909ac96045ae46170"><td class="memItemLeft" align="right" valign="top"><a id="a7b62427aac8703c909ac96045ae46170"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a7b62427aac8703c909ac96045ae46170">Inspect</a> ()</td></tr>
+<tr class="memdesc:a7b62427aac8703c909ac96045ae46170"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a>. <br /></td></tr>
 <tr class="separator:a7b62427aac8703c909ac96045ae46170"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2050651667a529ea21430b1a0d73d87b"><td class="memItemLeft" align="right" valign="top"><a id="a2050651667a529ea21430b1a0d73d87b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a2050651667a529ea21430b1a0d73d87b">AfterLoad</a> ()</td></tr>
+<tr class="memdesc:a2050651667a529ea21430b1a0d73d87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">runs after <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> has been loaded <br /></td></tr>
+<tr class="separator:a2050651667a529ea21430b1a0d73d87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44ed455ea27c7752f88fad15185b2678"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a44ed455ea27c7752f88fad15185b2678">GetReadMethods</a> () const override</td></tr>
+<tr class="memdesc:a44ed455ea27c7752f88fad15185b2678"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> read method map  <a href="classSound.html#a44ed455ea27c7752f88fad15185b2678">More...</a><br /></td></tr>
+<tr class="separator:a44ed455ea27c7752f88fad15185b2678"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f18bf280c094d8b0e2d6ac6a37539be"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSound.html#a2f18bf280c094d8b0e2d6ac6a37539be">Write</a> () const override</td></tr>
 <tr class="memdesc:a2f18bf280c094d8b0e2d6ac6a37539be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> data to a JSON file.  <a href="classSound.html#a2f18bf280c094d8b0e2d6ac6a37539be">More...</a><br /></td></tr>
 <tr class="separator:a2f18bf280c094d8b0e2d6ac6a37539be"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,8 +139,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Example <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> meant to be copy-pasted when creating new Systems. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa21a20c69fe6b61a50c385e70595a531"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa21a20c69fe6b61a50c385e70595a531">&#9670;&nbsp;</a></span>Sound()</h2>
+<a id="a2ccc393a8cd5c0894ebb78b3bdf580fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ccc393a8cd5c0894ebb78b3bdf580fb">&#9670;&nbsp;</a></span>Sound()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,7 +155,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>looping</em>&#160;</td>
+          <td class="paramname"><em>isLoopable</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -158,7 +170,7 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">filepath</td><td>the filepath of the sound to load </td></tr>
-    <tr><td class="paramname">looping</td><td>whether or not the sound should loop </td></tr>
+    <tr><td class="paramname">isLoopable</td><td>whether or not the sound should loop </td></tr>
   </table>
   </dd>
 </dl>
@@ -194,6 +206,34 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a966584c1b6061ecf05a23dd87f4b9411"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a966584c1b6061ecf05a23dd87f4b9411">&#9670;&nbsp;</a></span>GetIsLoopable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">__inline bool Sound::GetIsLoopable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets whether this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> is looping </p>
+<dl class="section return"><dt>Returns</dt><dd>whether this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> is looping </dd></dl>
+
+</div>
+</div>
 <a id="a53409029f147921fe18d255394e971eb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a53409029f147921fe18d255394e971eb">&#9670;&nbsp;</a></span>GetLength()</h2>
 
@@ -214,8 +254,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a77113b04eebdea69290e4e49a6477b77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77113b04eebdea69290e4e49a6477b77">&#9670;&nbsp;</a></span>GetLooping()</h2>
+<a id="a44ed455ea27c7752f88fad15185b2678"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44ed455ea27c7752f88fad15185b2678">&#9670;&nbsp;</a></span>GetReadMethods()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +264,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">__inline bool Sound::GetLooping </td>
+          <td class="memname">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const&amp; Sound::GetReadMethods </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -232,38 +272,20 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>gets whether this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> is looping </p>
-<dl class="section return"><dt>Returns</dt><dd>whether this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> is looping </dd></dl>
+<p>gets the <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a> read method map </p>
+<dl class="section return"><dt>Returns</dt><dd>the read method map </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a28ebd6e1c108281c986f97d36f3bbfd1">ISerializable</a>.</p>
 
 </div>
 </div>
-<a id="a7b62427aac8703c909ac96045ae46170"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b62427aac8703c909ac96045ae46170">&#9670;&nbsp;</a></span>Inspect()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Sound::Inspect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classSound.html" title="Example System meant to be copy-pasted when creating new Systems.">Sound</a>. </p>
-<p>todo: add inspector</p>
-
-</div>
-</div>
-<a id="a7c2a6c5297ff3df5940386523d0ef438"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c2a6c5297ff3df5940386523d0ef438">&#9670;&nbsp;</a></span>Play()</h2>
+<a id="a32de458ab414d65c3121445213dba68d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32de458ab414d65c3121445213dba68d">&#9670;&nbsp;</a></span>Play()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -284,7 +306,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>pitch</em> = <code>1.0f</code>&#160;</td>
+          <td class="paramname"><em>pitch</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>loopCount</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

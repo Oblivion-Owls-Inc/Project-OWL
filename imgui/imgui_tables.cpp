@@ -1749,6 +1749,19 @@ int ImGui::TableGetRowIndex()
     return table->CurrentRow;
 }
 
+IMGUI_API int ImGui::TableSetRowIndex(int row)
+{
+    ImGuiContext& g = *GImGui;
+    ImGuiTable* table = g.CurrentTable;
+    if (!table)
+		return 0;
+    if(table->CurrentRow == -1)
+        return 0;
+	table->CurrentRow = row;
+
+    return table->CurrentRow;
+}
+
 // [Public] Starts into the first cell of a new row
 void ImGui::TableNextRow(ImGuiTableRowFlags row_flags, float row_min_height)
 {

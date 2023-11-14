@@ -43,6 +43,8 @@ void \mbox{\hyperlink{classControlPoint_a3a19e267bba3338c0b0cf981120fd26c}{Set\+
 \begin{DoxyCompactList}\small\item\em sets the time of this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classControlPoint_a6e8ef17440ddbb5d6f6fde0b096ec454}{operator$<$}} (\mbox{\hyperlink{classControlPoint}{Control\+Point}} const \&other) const
 \begin{DoxyCompactList}\small\item\em checks if one \mbox{\hyperlink{classControlPoint}{Control\+Point}} is before another (for sorting) \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classControlPoint_a9bea51f225dfff11bb2313580e6809b8}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classCurve}{Curve}} read method map \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classControlPoint_a252a623a13c8dec86c29438e023640b7}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classControlPoint}{Control\+Point}} to json \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
@@ -116,6 +118,24 @@ value constructor
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classControlPoint_a9bea51f225dfff11bb2313580e6809b8}\label{classControlPoint_a9bea51f225dfff11bb2313580e6809b8}} 
+\index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$\+::Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the \mbox{\hyperlink{classCurve}{Curve}} read method map 
+
+\begin{DoxyReturn}{Returns}
+the read method map 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
 \mbox{\Hypertarget{classControlPoint_afb49f19ebb4bb3df8afa1182dc1d1e66}\label{classControlPoint_afb49f19ebb4bb3df8afa1182dc1d1e66}} 
 \index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}!GetTime@{GetTime}}
 \index{GetTime@{GetTime}!ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}

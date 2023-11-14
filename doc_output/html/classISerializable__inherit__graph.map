@@ -1,47 +1,47 @@
 <map id="ISerializable" name="ISerializable">
-<area shape="rect" id="node1" title="interface for all serializable objects" alt="" coords="5,613,108,640"/>
-<area shape="rect" id="node2" href="$classCurve.html" title=" " alt="" coords="221,335,320,361"/>
-<area shape="rect" id="node3" href="$classCurve.html" title=" " alt="" coords="221,385,320,412"/>
-<area shape="rect" id="node4" href="$classAnimationAsset.html" title=" " alt="" coords="208,436,333,463"/>
-<area shape="rect" id="node5" href="$classComponent.html" title=" " alt="" coords="222,487,319,513"/>
-<area shape="rect" id="node26" href="$classControlPoint.html" title="control points used by this Curve" alt="" coords="156,537,385,564"/>
-<area shape="rect" id="node27" href="$classCurve.html" title=" " alt="" coords="177,588,364,615"/>
-<area shape="rect" id="node28" href="$classEngine.html" title=" " alt="" coords="237,639,304,665"/>
-<area shape="rect" id="node29" href="$classEntity.html" title=" " alt="" coords="241,689,301,716"/>
-<area shape="rect" id="node30" href="$classSound.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="239,740,302,767"/>
-<area shape="rect" id="node31" href="$classSystem.html" title="Base class for all Systems." alt="" coords="235,984,306,1011"/>
-<area shape="rect" id="node48" href="$classTexture.html" title="Stores texture data, and allows to bind it for rendering." alt="" coords="235,1035,306,1061"/>
-<area shape="rect" id="node49" href="$classTransformAnimation.html" title="Asset that animates a Transform with Curves." alt="" coords="193,1085,348,1112"/>
-<area shape="rect" id="node6" href="$classAudioPlayer.html" title="Component that can play audio." alt="" coords="485,208,585,235"/>
-<area shape="rect" id="node7" href="$classBehavior.html" title=" " alt="" coords="495,259,575,285"/>
-<area shape="rect" id="node18" href="$classCollider.html" title="component which is used for detecting collisions and information about them" alt="" coords="499,309,571,336"/>
-<area shape="rect" id="node20" href="$classPathfinder.html" title=" " alt="" coords="491,360,578,387"/>
-<area shape="rect" id="node21" href="$classPool.html" title=" " alt="" coords="477,411,593,437"/>
-<area shape="rect" id="node22" href="$classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite." alt="" coords="505,461,565,488"/>
-<area shape="rect" id="node23" href="$classStaticBody.html" title=" " alt="" coords="489,512,581,539"/>
-<area shape="rect" id="node24" href="$classText.html" title="Uses TilemapSprite attached to parent entity to draw text." alt="" coords="510,563,559,589"/>
-<area shape="rect" id="node25" href="$classTransform.html" title=" " alt="" coords="491,613,578,640"/>
-<area shape="rect" id="node8" href="$classTilemap.html" title=" " alt="" coords="702,5,825,32"/>
-<area shape="rect" id="node9" href="$classAnimation.html" title=" " alt="" coords="719,56,808,83"/>
-<area shape="rect" id="node10" href="$classEffectAnimator.html" title="Component that can play audio." alt="" coords="704,107,823,133"/>
-<area shape="rect" id="node11" href="$classEnemyBehavior.html" title=" " alt="" coords="701,157,826,184"/>
-<area shape="rect" id="node12" href="$classFollowingBehavior.html" title=" " alt="" coords="692,208,835,235"/>
-<area shape="rect" id="node13" href="$classMovementAI.html" title=" " alt="" coords="711,259,816,285"/>
-<area shape="rect" id="node14" href="$classPlayerController.html" title=" " alt="" coords="700,309,827,336"/>
-<area shape="rect" id="node15" href="$classRigidBody.html" title=" " alt="" coords="719,360,807,387"/>
-<area shape="rect" id="node16" href="$classTilemap.html" title="Loads and manages a tilemap array." alt="" coords="684,411,843,437"/>
-<area shape="rect" id="node17" href="$classTurretBehavior.html" title=" " alt="" coords="705,461,822,488"/>
-<area shape="rect" id="node19" href="$classCircleCollider.html" title="Circle&#45;shaped Collider." alt="" coords="709,512,818,539"/>
-<area shape="rect" id="node32" href="$classAidanScene.html" title=" " alt="" coords="485,664,584,691"/>
-<area shape="rect" id="node33" href="$classAudioSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="481,715,589,741"/>
-<area shape="rect" id="node34" href="$classBaseAssetLibrarySystem.html" title=" " alt="" coords="443,765,627,792"/>
-<area shape="rect" id="node35" href="$classBehaviorSystem.html" title=" " alt="" coords="433,817,636,858"/>
-<area shape="rect" id="node36" href="$classCameraSystem.html" title="Handles camera and coordinate systems / spaces." alt="" coords="473,883,596,909"/>
-<area shape="rect" id="node37" href="$classCollisionSystem.html" title="responsible for checking collsisions between all Colliders" alt="" coords="471,933,598,960"/>
-<area shape="rect" id="node38" href="$classDebugSystem.html" title="Debug System Class For Debugging." alt="" coords="478,984,591,1011"/>
-<area shape="rect" id="node39" href="$classEntitySystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="480,1035,589,1061"/>
-<area shape="rect" id="node40" href="$classExampleSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="471,1085,599,1112"/>
-<area shape="rect" id="node41" href="$classInputSystem.html" title=" " alt="" coords="483,1136,587,1163"/>
+<area shape="rect" id="node1" title="interface for all serializable objects" alt="" coords="5,461,108,488"/>
+<area shape="rect" id="node2" href="$classCurve.html" title=" " alt="" coords="221,107,320,133"/>
+<area shape="rect" id="node3" href="$classCurve.html" title=" " alt="" coords="221,157,320,184"/>
+<area shape="rect" id="node4" href="$classPool.html" title=" " alt="" coords="216,208,325,235"/>
+<area shape="rect" id="node5" href="$classPool.html" title=" " alt="" coords="222,259,319,285"/>
+<area shape="rect" id="node6" href="$classAnimationAsset.html" title=" " alt="" coords="208,309,333,336"/>
+<area shape="rect" id="node7" href="$classComponent.html" title=" " alt="" coords="222,360,319,387"/>
+<area shape="rect" id="node23" href="$classControlPoint.html" title="control points used by this Curve" alt="" coords="156,411,385,437"/>
+<area shape="rect" id="node24" href="$classCurve.html" title=" " alt="" coords="177,461,364,488"/>
+<area shape="rect" id="node25" href="$classEngine.html" title=" " alt="" coords="237,512,304,539"/>
+<area shape="rect" id="node26" href="$classEntity.html" title=" " alt="" coords="241,563,301,589"/>
+<area shape="rect" id="node27" href="$classPool.html" title=" " alt="" coords="213,613,329,640"/>
+<area shape="rect" id="node28" href="$classSound.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="239,664,302,691"/>
+<area shape="rect" id="node29" href="$classSystem.html" title="Base class for all Systems." alt="" coords="235,933,306,960"/>
+<area shape="rect" id="node48" href="$classTexture.html" title="Stores texture data, and allows to bind it for rendering." alt="" coords="235,984,306,1011"/>
+<area shape="rect" id="node49" href="$classTransformAnimation.html" title="Asset that animates a Transform with Curves." alt="" coords="193,1035,348,1061"/>
+<area shape="rect" id="node8" href="$classAudioPlayer.html" title="Component that can play audio." alt="" coords="485,56,585,83"/>
+<area shape="rect" id="node9" href="$classBehavior.html" title=" " alt="" coords="495,107,575,133"/>
+<area shape="rect" id="node15" href="$classCamera.html" title="Handles camera and coordinate systems / spaces." alt="" coords="498,157,571,184"/>
+<area shape="rect" id="node16" href="$classCollider.html" title="component which is used for detecting collisions and information about them" alt="" coords="499,208,571,235"/>
+<area shape="rect" id="node17" href="$classEmitter.html" title="Emitter component &#45; controls timing and behavior of particles." alt="" coords="499,259,570,285"/>
+<area shape="rect" id="node18" href="$classPathfinder.html" title=" " alt="" coords="491,309,578,336"/>
+<area shape="rect" id="node19" href="$classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite." alt="" coords="505,360,565,387"/>
+<area shape="rect" id="node20" href="$classStaticBody.html" title=" " alt="" coords="489,411,581,437"/>
+<area shape="rect" id="node21" href="$classText.html" title="Uses TilemapSprite attached to parent entity to draw text." alt="" coords="510,461,559,488"/>
+<area shape="rect" id="node22" href="$classTransform.html" title=" " alt="" coords="491,512,578,539"/>
+<area shape="rect" id="node10" href="$classAnimation.html" title=" " alt="" coords="721,5,810,32"/>
+<area shape="rect" id="node11" href="$classBasicEntityBehavior.html" title=" " alt="" coords="689,56,842,83"/>
+<area shape="rect" id="node12" href="$classBulletBehavior.html" title=" " alt="" coords="706,107,825,133"/>
+<area shape="rect" id="node13" href="$classConstructionBehavior.html" title="Component that handles the construction of towers and modification of terrain." alt="" coords="684,157,847,184"/>
+<area shape="rect" id="node14" href="$classEffectAnimator.html" title="Component that can play audio." alt="" coords="706,208,825,235"/>
+<area shape="rect" id="node30" href="$classAidanScene.html" title=" " alt="" coords="485,563,584,589"/>
+<area shape="rect" id="node31" href="$classAudioSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="481,613,589,640"/>
+<area shape="rect" id="node32" href="$classBaseAssetLibrarySystem.html" title=" " alt="" coords="443,664,627,691"/>
+<area shape="rect" id="node33" href="$classBehaviorSystem.html" title=" " alt="" coords="433,715,636,757"/>
+<area shape="rect" id="node34" href="$classCameraSystem.html" title="Handles camera and coordinate systems / spaces." alt="" coords="473,781,596,808"/>
+<area shape="rect" id="node35" href="$classCheatSystem.html" title=" " alt="" coords="480,832,589,859"/>
+<area shape="rect" id="node36" href="$classCollisionSystem.html" title="responsible for checking collsisions between all Colliders" alt="" coords="471,883,598,909"/>
+<area shape="rect" id="node37" href="$classDebugSystem.html" title="Debug System Class For Debugging." alt="" coords="478,933,591,960"/>
+<area shape="rect" id="node38" href="$classEntitySystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="480,984,589,1011"/>
+<area shape="rect" id="node39" href="$classExampleSystem.html" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="471,1035,599,1061"/>
+<area shape="rect" id="node40" href="$classInputSystem.html" title=" " alt="" coords="483,1085,587,1112"/>
+<area shape="rect" id="node41" href="$classParticleSystem.html" title="System in charge of managing compute shader and emitters." alt="" coords="475,1136,594,1163"/>
 <area shape="rect" id="node42" href="$classPlatformSystem.html" title=" " alt="" coords="471,1187,598,1213"/>
 <area shape="rect" id="node43" href="$classRenderSystem.html" title="Renders all of the Sprite components, keeps track of shaders." alt="" coords="476,1237,593,1264"/>
 <area shape="rect" id="node44" href="$classSandboxSystem.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="471,1288,598,1315"/>

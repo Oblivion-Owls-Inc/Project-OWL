@@ -40,11 +40,10 @@ void \mbox{\hyperlink{classDebugSystem_a2e42eb16bc553dcaf7fd3dc8feb764ea}{On\+Up
 \begin{DoxyCompactList}\small\item\em Update the \mbox{\hyperlink{classDebugSystem}{Debug\+System}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}{On\+Exit}} () override
 \begin{DoxyCompactList}\small\item\em Exit and clean up the \mbox{\hyperlink{classDebugSystem}{Debug\+System}}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classDebugSystem_a90310ccd94c0303b5594e9b94bc2a3dd}{Screen\+Print}} (const char $\ast$format,...)
-\begin{DoxyCompactList}\small\item\em Print a formatted message to the screen. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classDebugSystem_a2c641267002ad60b29e2d9704bb5f79b}\label{classDebugSystem_a2c641267002ad60b29e2d9704bb5f79b}} 
 virtual void \mbox{\hyperlink{classDebugSystem_a2c641267002ad60b29e2d9704bb5f79b}{Debug\+Window}} () override
 \begin{DoxyCompactList}\small\item\em Gets Called by the Debug system to display debug information. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Type $>$ }\\void \mbox{\hyperlink{classDebugSystem_a7fd8d26c421f240359aa2f553175cf47}{Write}} (const Type \&value)
+\begin{DoxyCompactList}\small\item\em Wrapper to write to the Debug\+Stream. \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classDebugSystem_aae994854f516187647c79c65db6abb8e}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classSystem}{System}} config \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
@@ -52,12 +51,6 @@ virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classDebugSystem_aae99485
 \item 
 \mbox{\Hypertarget{classDebugSystem_a43cb8abec1d0af08dc6fc5c219690a68}\label{classDebugSystem_a43cb8abec1d0af08dc6fc5c219690a68}} 
 static \mbox{\hyperlink{classDebugSystem}{Debug\+System}} $\ast$ {\bfseries Get\+Instance} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classDebugSystem_a0c8288bc7aeca4c89d99cb2014880218}\label{classDebugSystem_a0c8288bc7aeca4c89d99cb2014880218}} 
-Im\+Gui\+Text\+Buffer {\bfseries log\+Buffer}
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
@@ -96,6 +89,86 @@ Initialize the \mbox{\hyperlink{classDebugSystem}{Debug\+System}}.
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDebugSystem_a2c641267002ad60b29e2d9704bb5f79b}\label{classDebugSystem_a2c641267002ad60b29e2d9704bb5f79b}} 
+\index{DebugSystem@{DebugSystem}!DebugWindow@{DebugWindow}}
+\index{DebugWindow@{DebugWindow}!DebugSystem@{DebugSystem}}
+\doxysubsubsection{\texorpdfstring{DebugWindow()}{DebugWindow()}}
+{\footnotesize\ttfamily void Debug\+System\+::\+Debug\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets Called by the Debug system to display debug information. 
+
+Displays and Creates the Editor Window. This Creates the Menu Bar to hold the Menu Items \mbox{[}File, Settings, Insert, Systems\mbox{]}
+
+File menu which holds \mbox{[}Load Scene, Save Scene, Save \mbox{\hyperlink{classEngine}{Engine}} Config, Close\mbox{]}
+
+Loads the Scene
+
+Reloads the Scene
+
+Opens the Save Menu which holds \mbox{[}Save All, Save Scene, Save \mbox{\hyperlink{classEngine}{Engine}} Config\mbox{]}
+
+Saves the Scene and \mbox{\hyperlink{classEngine}{Engine}} Config
+
+Saves the Scene
+
+Saves the \mbox{\hyperlink{classEngine}{Engine}} Config
+
+Closes the Debug Window
+
+Closes the Debug Window for now
+
+Settings menu which holds \mbox{[}Show FPS, Fullscreen, Show Demo\mbox{]}
+
+Shows the FPS Window
+
+Toggles Fullscreen
+
+Shows the Im\+Gui Demo Window
+
+Pauses the Gameplay
+
+Insert menu which holds \mbox{[}New \mbox{\hyperlink{classEntity}{Entity}}, New Asset Prefab\mbox{]}
+
+Creates a new \mbox{\hyperlink{classEntity}{Entity}}
+
+Starts the Asset Prefab Menu which holds \mbox{[}New \mbox{\hyperlink{classSound}{Sound}}, New \mbox{\hyperlink{classTexture}{Texture}}, New \mbox{\hyperlink{classTransform}{Transform}} \mbox{\hyperlink{classAnimation}{Animation}}, New \mbox{\hyperlink{classSprite}{Sprite}} \mbox{\hyperlink{classAnimation}{Animation}}\mbox{]}
+
+Opens the New \mbox{\hyperlink{classSound}{Sound}} Window
+
+Opens the New \mbox{\hyperlink{classTexture}{Texture}} Window
+
+Opens the New \mbox{\hyperlink{classTransform}{Transform}} \mbox{\hyperlink{classAnimation}{Animation}} Window
+
+Opens the New \mbox{\hyperlink{classSprite}{Sprite}} \mbox{\hyperlink{classAnimation}{Animation}} Window
+
+Close the Menu for the Asset Prefabs
+
+Close the Menu for the Insert Menu
+
+Creates the Systems Menu which holds \mbox{[}Asset Prefabs, \mbox{\hyperlink{classBehavior}{Behavior}} Systems\mbox{]}
+
+Creates the Asset Prefabs Menu which holds \mbox{[}Asset\+Library\mbox{]}
+
+Shows the Asset\+Library \mbox{\hyperlink{classSystem}{System}} List
+
+Creates the \mbox{\hyperlink{classBehavior}{Behavior}} Systems Menu which holds \mbox{[}\mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}}\mbox{]}
+
+Shows the \mbox{\hyperlink{classBehavior}{Behavior}} \mbox{\hyperlink{classSystem}{System}} List
+
+Close the Menu for the Systems Menu
+
+Close the Menu Bar
+
+Opens the Different Windows for the Editor Window
+
+Creates a Spit Window for the Entity\+List and their components in the main editor window
+
+Ends the Editor Window
+
+Reimplemented from \mbox{\hyperlink{classSystem_ac37b07a2ad20e2d2fe1f77766902af5d}{System}}.
+
 \mbox{\Hypertarget{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}\label{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}} 
 \index{DebugSystem@{DebugSystem}!OnExit@{OnExit}}
 \index{OnExit@{OnExit}!DebugSystem@{DebugSystem}}
@@ -147,28 +220,6 @@ Perform updates.
 
 Reimplemented from \mbox{\hyperlink{classSystem_ac80e6b0f679fe9befb8d45014ee389cb}{System}}.
 
-\mbox{\Hypertarget{classDebugSystem_a90310ccd94c0303b5594e9b94bc2a3dd}\label{classDebugSystem_a90310ccd94c0303b5594e9b94bc2a3dd}} 
-\index{DebugSystem@{DebugSystem}!ScreenPrint@{ScreenPrint}}
-\index{ScreenPrint@{ScreenPrint}!DebugSystem@{DebugSystem}}
-\doxysubsubsection{\texorpdfstring{ScreenPrint()}{ScreenPrint()}}
-{\footnotesize\ttfamily void Debug\+System\+::\+Screen\+Print (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
-
-
-
-Print a formatted message to the screen. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em format} & The format string, similar to printf\\
-\hline
-\end{DoxyParams}
-This function allows you to print a formatted message to the screen using Im\+Gui.
-
-
-\begin{DoxyParams}{Parameters}
-{\em format} & The format string, similar to printf. \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{classDebugSystem_a1f04a27b70187956bf31a268ca12054f}\label{classDebugSystem_a1f04a27b70187956bf31a268ca12054f}} 
 \index{DebugSystem@{DebugSystem}!SetWindowHandle@{SetWindowHandle}}
 \index{SetWindowHandle@{SetWindowHandle}!DebugSystem@{DebugSystem}}
@@ -187,7 +238,7 @@ Set the GLFW window handle.
 \mbox{\Hypertarget{classDebugSystem_aae994854f516187647c79c65db6abb8e}\label{classDebugSystem_aae994854f516187647c79c65db6abb8e}} 
 \index{DebugSystem@{DebugSystem}!Write@{Write}}
 \index{Write@{Write}!DebugSystem@{DebugSystem}}
-\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Debug\+System\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
@@ -201,6 +252,24 @@ the writting \mbox{\hyperlink{classSystem}{System}} config
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
 
+\mbox{\Hypertarget{classDebugSystem_a7fd8d26c421f240359aa2f553175cf47}\label{classDebugSystem_a7fd8d26c421f240359aa2f553175cf47}} 
+\index{DebugSystem@{DebugSystem}!Write@{Write}}
+\index{Write@{Write}!DebugSystem@{DebugSystem}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Type $>$ \\
+void Debug\+System\+::\+Write (\begin{DoxyParamCaption}\item[{const Type \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Wrapper to write to the Debug\+Stream. 
+
+\DoxyHorRuler{0}
+\DoxyHorRuler{0}
+ 
+\begin{DoxyParams}{Parameters}
+{\em message} & -\/ the message to write to the Debug\+Stream \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

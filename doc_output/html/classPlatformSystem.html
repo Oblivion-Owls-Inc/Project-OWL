@@ -92,15 +92,24 @@ Collaboration diagram for PlatformSystem:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a31290a935b15d34058ca8f127e329e7e"><td class="memItemLeft" align="right" valign="top">GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a31290a935b15d34058ca8f127e329e7e">GetWindowHandle</a> () const</td></tr>
-<tr class="memdesc:a31290a935b15d34058ca8f127e329e7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the window handle.  <a href="classPlatformSystem.html#a31290a935b15d34058ca8f127e329e7e">More...</a><br /></td></tr>
-<tr class="separator:a31290a935b15d34058ca8f127e329e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a584ec85c50d98f503a727de4b75a18f6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a584ec85c50d98f503a727de4b75a18f6">WindowClosing</a> () const</td></tr>
-<tr class="memdesc:a584ec85c50d98f503a727de4b75a18f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the window is closing.  <a href="classPlatformSystem.html#a584ec85c50d98f503a727de4b75a18f6">More...</a><br /></td></tr>
-<tr class="separator:a584ec85c50d98f503a727de4b75a18f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48d1c8fb51bba89e3386ac04626bcc4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a48d1c8fb51bba89e3386ac04626bcc4b">AddOnWindowResizeCallback</a> (unsigned ownerId, std::function&lt; void(glm::ivec2 const &amp;size) &gt; callback)</td></tr>
+<tr class="memdesc:a48d1c8fb51bba89e3386ac04626bcc4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds a callback to get called whenever the window resizes  <a href="classPlatformSystem.html#a48d1c8fb51bba89e3386ac04626bcc4b">More...</a><br /></td></tr>
+<tr class="separator:a48d1c8fb51bba89e3386ac04626bcc4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a761878f6076e03f60246aea3044950f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a761878f6076e03f60246aea3044950f7">RemoveOnWindowResizeCallback</a> (unsigned ownerId)</td></tr>
+<tr class="memdesc:a761878f6076e03f60246aea3044950f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes an OnWindowResize callback  <a href="classPlatformSystem.html#a761878f6076e03f60246aea3044950f7">More...</a><br /></td></tr>
+<tr class="separator:a761878f6076e03f60246aea3044950f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b7d488277ebfc3295176ef3223bf08b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a7b7d488277ebfc3295176ef3223bf08b">setFullscreen</a> (bool fullscreen)</td></tr>
+<tr class="memdesc:a7b7d488277ebfc3295176ef3223bf08b"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether the window is fullscreen  <a href="classPlatformSystem.html#a7b7d488277ebfc3295176ef3223bf08b">More...</a><br /></td></tr>
+<tr class="separator:a7b7d488277ebfc3295176ef3223bf08b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d73cfdf13c05bef48a7e03c9ce0783d"><td class="memItemLeft" align="right" valign="top">GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a7d73cfdf13c05bef48a7e03c9ce0783d">GetWindowHandle</a> ()</td></tr>
+<tr class="memdesc:a7d73cfdf13c05bef48a7e03c9ce0783d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the window handle.  <a href="classPlatformSystem.html#a7d73cfdf13c05bef48a7e03c9ce0783d">More...</a><br /></td></tr>
+<tr class="separator:a7d73cfdf13c05bef48a7e03c9ce0783d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a065f3bce34c50288f3c7fea6fe97e70c"><td class="memItemLeft" align="right" valign="top">glm::ivec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a065f3bce34c50288f3c7fea6fe97e70c">GetWindowDimensions</a> () const</td></tr>
-<tr class="memdesc:a065f3bce34c50288f3c7fea6fe97e70c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns window dimensions as a vec2.  <a href="classPlatformSystem.html#a065f3bce34c50288f3c7fea6fe97e70c">More...</a><br /></td></tr>
+<tr class="memdesc:a065f3bce34c50288f3c7fea6fe97e70c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns window dimensions in pixels.  <a href="classPlatformSystem.html#a065f3bce34c50288f3c7fea6fe97e70c">More...</a><br /></td></tr>
 <tr class="separator:a065f3bce34c50288f3c7fea6fe97e70c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a344964fb6aa36a9d64349cbfaa716a42"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a344964fb6aa36a9d64349cbfaa716a42">GetReadMethods</a> () const override</td></tr>
+<tr class="memdesc:a344964fb6aa36a9d64349cbfaa716a42"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods  <a href="classPlatformSystem.html#a344964fb6aa36a9d64349cbfaa716a42">More...</a><br /></td></tr>
+<tr class="separator:a344964fb6aa36a9d64349cbfaa716a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fded9fb1c1602acd76c771e38fc6a7c"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlatformSystem.html#a8fded9fb1c1602acd76c771e38fc6a7c">Write</a> () const override</td></tr>
 <tr class="memdesc:a8fded9fb1c1602acd76c771e38fc6a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> config  <a href="classPlatformSystem.html#a8fded9fb1c1602acd76c771e38fc6a7c">More...</a><br /></td></tr>
 <tr class="separator:a8fded9fb1c1602acd76c771e38fc6a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,14 +135,25 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">OnSceneExit</a> ()</td></tr>
 <tr class="memdesc:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
 <tr class="separator:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="ac37b07a2ad20e2d2fe1f77766902af5d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac37b07a2ad20e2d2fe1f77766902af5d">DebugWindow</a> ()</td></tr>
-<tr class="memdesc:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Called by the Debug system to display debug information. <br /></td></tr>
-<tr class="separator:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a804bac94c6ffee7f7369c6c3928a5574"></a>
 std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a804bac94c6ffee7f7369c6c3928a5574">GetName</a> () const</td></tr>
 <tr class="memdesc:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the unique name of this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
 <tr class="separator:a804bac94c6ffee7f7369c6c3928a5574 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a523cfae3fb1f5b2d20ba604b3344faa5">GetEnabled</a> () const</td></tr>
+<tr class="memdesc:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets whether this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is enabled  <a href="classSystem.html#a523cfae3fb1f5b2d20ba604b3344faa5">More...</a><br /></td></tr>
+<tr class="separator:a523cfae3fb1f5b2d20ba604b3344faa5 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7260844b1e1057f706ca25948fa63db3 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a7260844b1e1057f706ca25948fa63db3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetDebugEnabled</b> () const</td></tr>
+<tr class="separator:a7260844b1e1057f706ca25948fa63db3 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#aee0c04e1a79fbb2343edddaf319da646">SetEnabled</a> (bool enabled)</td></tr>
+<tr class="memdesc:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is enabled  <a href="classSystem.html#aee0c04e1a79fbb2343edddaf319da646">More...</a><br /></td></tr>
+<tr class="separator:aee0c04e1a79fbb2343edddaf319da646 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af8b62b082956e0dd473031e6f3598828">SetDebugEnable</a> (bool enable)</td></tr>
+<tr class="memdesc:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if the Debug Window should be shown.  <a href="classSystem.html#af8b62b082956e0dd473031e6f3598828">More...</a><br /></td></tr>
+<tr class="separator:af8b62b082956e0dd473031e6f3598828 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ade5a3addecec59fbc386c1d49fccaa1e">GetId</a> () const</td></tr>
+<tr class="memdesc:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s ID  <a href="classSystem.html#ade5a3addecec59fbc386c1d49fccaa1e">More...</a><br /></td></tr>
+<tr class="separator:ade5a3addecec59fbc386c1d49fccaa1e inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a6b75872f421f9ae9a720502d37223d49"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>System</b> (<a class="el" href="classSystem.html">System</a> &amp;other)=delete</td></tr>
 <tr class="separator:a6b75872f421f9ae9a720502d37223d49 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,6 +181,43 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a9cd1cf06022ecbde6f0b27be372a0cf6 inherit pro_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a48d1c8fb51bba89e3386ac04626bcc4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48d1c8fb51bba89e3386ac04626bcc4b">&#9670;&nbsp;</a></span>AddOnWindowResizeCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlatformSystem::AddOnWindowResizeCallback </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>ownerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(glm::ivec2 const &amp;size) &gt;&#160;</td>
+          <td class="paramname"><em>callback</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>adds a callback to get called whenever the window resizes </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ownerId</td><td>ID of the owner of the callback (used for removing the callback later) </td></tr>
+    <tr><td class="paramname">callback</td><td>the to callback to add </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a01ebae6f4d5422d5494e55c3ed629488"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01ebae6f4d5422d5494e55c3ed629488">&#9670;&nbsp;</a></span>GetInstance()</h2>
 
@@ -192,6 +249,36 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a344964fb6aa36a9d64349cbfaa716a42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a344964fb6aa36a9d64349cbfaa716a42">&#9670;&nbsp;</a></span>GetReadMethods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const&amp; PlatformSystem::GetReadMethods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods </p>
+<dl class="section return"><dt>Returns</dt><dd>this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a28ebd6e1c108281c986f97d36f3bbfd1">ISerializable</a>.</p>
+
+</div>
+</div>
 <a id="a065f3bce34c50288f3c7fea6fe97e70c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a065f3bce34c50288f3c7fea6fe97e70c">&#9670;&nbsp;</a></span>GetWindowDimensions()</h2>
 
@@ -207,13 +294,14 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns window dimensions as a vec2. </p>
+<p>Returns window dimensions in pixels. </p>
+<p>Returns window dimensions as a vec2.</p>
 <dl class="section return"><dt>Returns</dt><dd>glm ivec2: x = width, y = height. </dd></dl>
 
 </div>
 </div>
-<a id="a31290a935b15d34058ca8f127e329e7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31290a935b15d34058ca8f127e329e7e">&#9670;&nbsp;</a></span>GetWindowHandle()</h2>
+<a id="a7d73cfdf13c05bef48a7e03c9ce0783d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d73cfdf13c05bef48a7e03c9ce0783d">&#9670;&nbsp;</a></span>GetWindowHandle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,7 +310,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">GLFWwindow * PlatformSystem::GetWindowHandle </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -232,23 +320,55 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a584ec85c50d98f503a727de4b75a18f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a584ec85c50d98f503a727de4b75a18f6">&#9670;&nbsp;</a></span>WindowClosing()</h2>
+<a id="a761878f6076e03f60246aea3044950f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a761878f6076e03f60246aea3044950f7">&#9670;&nbsp;</a></span>RemoveOnWindowResizeCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool PlatformSystem::WindowClosing </td>
+          <td class="memname">void PlatformSystem::RemoveOnWindowResizeCallback </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>ownerId</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if the window is closing. </p>
-<dl class="section return"><dt>Returns</dt><dd>bool: true if the window is closing. </dd></dl>
+<p>removes an OnWindowResize callback </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ownerId</td><td>the ID of the owner of the callback to remove </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7b7d488277ebfc3295176ef3223bf08b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b7d488277ebfc3295176ef3223bf08b">&#9670;&nbsp;</a></span>setFullscreen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlatformSystem::setFullscreen </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>fullscreen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets whether the window is fullscreen </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fullscreen</td><td>whether to set the window to fullscreen or windowed </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

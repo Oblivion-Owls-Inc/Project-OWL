@@ -1,8 +1,6 @@
 <map id="Source/ISerializable.h" name="Source/ISerializable.h">
-<area shape="rect" id="node1" title="interface for all serializable objects" alt="" coords="20,5,183,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,155,56,181"/>
-<area shape="rect" id="node3" title=" " alt="" coords="80,155,139,181"/>
-<area shape="rect" id="node4" href="$Stream_8h.html" title="JSON File reading/writing." alt="" coords="139,80,221,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="163,155,267,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="291,155,437,181"/>
+<area shape="rect" id="node1" title="interface for all serializable objects" alt="" coords="28,5,191,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,56,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="80,80,139,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="163,80,309,107"/>
 </map>

@@ -1,0 +1,6 @@
+<map id="ConstructionBehavior" name="ConstructionBehavior">
+<area shape="rect" id="node1" title="Component that handles the construction of towers and modification of terrain." alt="" coords="5,229,168,256"/>
+<area shape="rect" id="node2" href="$classBehavior.html" title=" " alt="" coords="47,155,127,181"/>
+<area shape="rect" id="node3" href="$classComponent.html" title=" " alt="" coords="38,80,135,107"/>
+<area shape="rect" id="node4" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="35,5,138,32"/>
+</map>
