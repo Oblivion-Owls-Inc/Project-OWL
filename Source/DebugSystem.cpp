@@ -28,7 +28,10 @@
 #include "Engine.h"
 #include "EntitySystem.h"
 #include <chrono>
-
+#include <filesystem>
+#include <fstream>
+#include <iterator>
+#include <string>
 
 ///*****************************************************************/
 /// @struct ScrollingBuffer
@@ -146,6 +149,11 @@ void DebugSystem::DebugWindow()
             {
                 m_ShowSceneLoadWindow = true;
             }
+
+            if (ImGui::MenuItem("Load File"))
+            {
+                m_LoadDataFile = true;
+			}
 
             /// Reloads the Scene
             if (ImGui::MenuItem("Reload Scene"))
@@ -342,6 +350,11 @@ void DebugSystem::MenuWindows()
 		ShowSystemList("BehaviorSystem");
 	}
 
+    if (m_LoadDataFile)
+    {
+        LoadFile();
+	}
+
     ///-------------------------------------------///
     /// Save Scene and Engine Config Windows      ///
     ///-------------------------------------------///
@@ -413,6 +426,139 @@ void DebugSystem::MenuWindows()
 			m_CreationWindows[(int)MenuItemType::NewSpriteAnimation] = false;
 		}
 	}
+}
+
+void DebugSystem::LoadFile()
+{
+    static std::string path = std::filesystem::current_path().string(); /// The current path
+    static std::string selectedFilePath;  /// path of the selected file
+    static std::string currentPath = std::filesystem::current_path().string(); /// The current path that is being displayed
+    static std::string fileContents; /// The contents of the file
+
+    ImGui::Begin("Load File", &m_LoadDataFile, ImGuiWindowFlags_MenuBar);
+    if (ImGui::Button("<"))
+    {
+        if (currentPath.ends_with("./"))
+        {
+            currentPath += "../";
+        }
+        else
+        {
+            for (auto i = currentPath.rbegin(); i != currentPath.rend(); ++i)
+            {
+                if (*i == '\\')
+                {
+					currentPath = std::string(&*currentPath.begin(), &*i);
+					break;
+				}
+			}
+        }
+
+        path = currentPath;
+    }
+    ImGui::SameLine();
+    
+    ImGui::InputText("##path", &currentPath);
+
+    ImGui::SameLine();
+
+    if (ImGui::Button("GO"))
+    {
+		path = currentPath;
+	}
+
+    ImGui::SameLine();
+
+    if (ImGui::Button("Root"))
+    {
+        currentPath = std::filesystem::current_path().string();
+        path = currentPath;
+    }
+
+    try
+    {
+        auto directory_iterator = std::filesystem::directory_iterator(path);
+        
+        if (ImGui::BeginTable("##FileSystemViewer", 3, ImGuiTableFlags_BordersOuter | ImGuiTableFlags_Resizable))
+        {
+            ImGui::TableSetupScrollFreeze(0, 1);
+            ImGui::TableSetupColumn("FileName", ImGuiTableColumnFlags_WidthFixed, 200.0f);
+            ImGui::TableSetupColumn("Actions", ImGuiTableColumnFlags_WidthFixed, 200.0f);
+            ImGui::TableSetupColumn("Contents", ImGuiTableColumnFlags_WidthStretch);
+            ImGui::TableHeadersRow();
+
+            int i = 0;
+            static unsigned ID = 0;
+
+            for (auto& directory : directory_iterator)
+            {
+                ImGui::PushID(i);
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+                ImGui::AlignTextToFramePadding();
+                // ImGui::TableSetColumnIndex(1);
+
+                std::string current_path = directory.path().string();
+
+                ImGui::TextUnformatted(current_path.substr(path.size() + 1).c_str());
+
+                ImGui::TableSetColumnIndex(1);
+
+                if (directory.is_directory())
+                {
+                    if (ImGui::Button(">"))
+                    {
+                        currentPath = current_path;
+                        path = current_path;
+
+                        ImGui::PopID();
+                        break;
+                    }
+                }
+                else
+                {
+                    std::string ext = directory.path().extension().string();
+                    if ((ext == ".csv") || (ext == ".json") || (ext == ".cpp") || (ext == ".txt") || (ext == ".h"))
+                    {
+                        if (ImGui::Button(("Open##" + std::to_string(i)).c_str()))
+                        {
+                            std::ifstream file(current_path);
+                            if (file.is_open())
+                            {
+                                ID = ImGui::TableGetRowIndex();
+                                fileContents.clear();
+                                fileContents.assign((std::istreambuf_iterator<char>(file)),
+                                    std::istreambuf_iterator<char>());
+                                file.close();
+                            }
+                        }
+                    }
+                }
+
+                ImGui::PopID();
+                ++i;
+                if (!fileContents.empty())
+                {
+                    ImGui::TableSetColumnIndex(2);  /// Set the column index to 2
+                    ///Set ImGui Row to ID
+                    ImGui::InputTextMultiline("##Contents", &fileContents[0], fileContents.size() + 1,
+                        ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 16),
+                        ImGuiInputTextFlags_AllowTabInput);
+                }
+
+            }
+
+            ImGui::EndTable();
+		}
+
+    }
+    catch (std::exception e)
+    {
+		Debug() << e.what() << std::endl;
+        path = std::filesystem::current_path().string();
+	}
+
+    ImGui::End();
 }
 
 /// @brief Shows the System List for the Editor Window
