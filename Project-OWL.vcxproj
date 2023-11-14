@@ -253,8 +253,10 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\Stream.cpp" />
     <ClCompile Include="Source\CircleCollider.cpp" />
+    <ClCompile Include="Source\UiElement.cpp" />
     <ClCompile Include="Source\WavesBehavior.cpp" />
     <ClCompile Include="Source\Stream.t.cpp" />
+    <ClCompile Include="Source\WavesInspector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\FileExplorer.h" />
@@ -330,11 +332,14 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Transform.h" />
     <ClInclude Include="Source\Stream.h" />
     <ClInclude Include="Source\CircleCollider.h" />
+    <ClInclude Include="Source\UiElement.h" />
     <ClInclude Include="Source\WavesBehavior.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
     <None Include="Data\Scenes\AidanScene.scene.json" />
+    <None Include="Data\Scenes\GameOver.scene.json" />
+    <None Include="Data\Scenes\GameWin.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
     <None Include="Data\Scenes\Sandbox.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />
@@ -347,7 +352,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties />
+      <UserProperties Data_4Scenes_4Gameover_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" Data_4Scenes_4GameWin_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" Data_4Scenes_4Prototype_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

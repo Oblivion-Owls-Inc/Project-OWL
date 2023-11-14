@@ -74,12 +74,11 @@
             std::cerr << "Failed to initialize GLFW" << std::endl;
             return;
         }
-        glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );      // OpenGL 4.3
+        glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );    // OpenGL 4.3
         glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 3 );
         glfwWindowHint( GLFW_OPENGL_DEBUG_CONTEXT, true ); // enable error callback
         glfwWindowHint( GLFW_RESIZABLE, true );            // allow window resizing
 
-        // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); TODO: needed or nah?
 
         // Window
         m_Window = glfwCreateWindow( m_WindowSize.x, m_WindowSize.y, m_WindowName.c_str(), NULL, NULL);
@@ -97,7 +96,7 @@
             #endif // !NDEBUG
         }
         glfwMakeContextCurrent(m_Window);
-        glfwSwapInterval(1); // enable vsync
+        glfwSwapInterval(m_VSync ? 1 : 0); // enable vsync
 
         // GLEW
         if (glewInit() != GLEW_OK)
@@ -175,12 +174,12 @@
             // Update m_WindowSize to the new dimensions
             m_WindowSize = glm::ivec2( mode->width, mode->height );
 
-            glfwSwapInterval(1); // enable vsync
+            glfwSwapInterval(m_VSync ? 1 : 0); // enable vsync
         }
         else
         {
 
-            glfwSwapInterval(1); // enable vsync
+            glfwSwapInterval(m_VSync ? 1 : 0); // enable vsync
 
             // Update m_WindowSize to the new dimensions
             m_WindowSize = glm::ivec2( savedWidth, savedHeight );
@@ -208,8 +207,8 @@
         if (severity == GL_DEBUG_SEVERITY_HIGH)
         {
             Debug() << message << std::endl;
-            assert(x);  // Keep a breakpoint here: when it's triggered, change the x to true to skip assert,
-            // and step outside this function to see where the error ocurred.
+            assert(x);  // Keep a breakpoint here: when it's triggered, drag to skip assert,
+                        // and step outside this function to see where the error ocurred.
         }
         #endif // !NDEBUG
         // unused
@@ -264,11 +263,19 @@
         m_WindowName = Stream::Read< std::string >( data );
     }
 
+    /// @brief reads the vsync option
+    /// @param stream the data to read from
+    void PlatformSystem::readVSync( nlohmann::ordered_json const& data )
+    {
+        m_VSync = Stream::Read< bool >( data );
+    }
+
 
     /// @brief map of the PlatformSystem read methods
     ReadMethodMap< PlatformSystem > const PlatformSystem::s_ReadMethods = {
         { "WindowSize", &readWindowSize },
-        { "WindowName", &readWindowName }
+        { "WindowName", &readWindowName },
+        { "VSync",      &readVSync }
     };
 
 
@@ -285,6 +292,7 @@
 
         json[ "WindowSize" ] = Stream::Write< 2, int >( m_WindowSize );
         json[ "WindowName" ] = m_WindowName;
+        json[ "VSync" ] = m_VSync;
 
         return json;
     }

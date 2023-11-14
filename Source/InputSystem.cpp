@@ -10,15 +10,28 @@
 #include "PlatformSystem.h"
 #include <map>
 #include "CameraSystem.h"
+#include "Engine.h"
 #include "glfw3.h"
 
-/// @brief fixed update for input, must be called
-void InputSystem::OnFixedUpdate()
+/// @brief  updates map realted to fixed or standard update
+void InputSystem::mapUpdate()
 {
-    for (auto& key : m_KeyStates) 
+    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    if (mode == Engine::UpdateMode::fixedUpdate)
+    {
+        m_KeyStatesHold = &m_FixedKeyStates;
+        m_MouseStatesHold = &m_FixedMouseStates;
+    }
+    if (mode == Engine::UpdateMode::update)
+    {
+        m_KeyStatesHold = &m_KeyStates;
+        m_MouseStatesHold = &m_MouseStates;
+    }
+
+    for (auto& key : *m_KeyStatesHold)
     {
         bool old = key.second[0];
-        key.second[0] = glfwGetKey(PlatformSystem::GetInstance()->GetWindowHandle(), 
+        key.second[0] = glfwGetKey(PlatformSystem::GetInstance()->GetWindowHandle(),
             key.first);
 
         if (key.second[0] == true && old == false)
@@ -39,7 +52,7 @@ void InputSystem::OnFixedUpdate()
         }
     }
 
-    for (auto& key : m_MouseStates) 
+    for (auto& key : *m_MouseStatesHold)
     {
         bool old = key.second[0];
         key.second[0] = glfwGetMouseButton(PlatformSystem::GetInstance()->GetWindowHandle(),
@@ -64,12 +77,34 @@ void InputSystem::OnFixedUpdate()
     }
 }
 
+/// @brief fixed update for input, must be called
+void InputSystem::OnFixedUpdate()
+{
+    mapUpdate();
+}
+
+void InputSystem::OnUpdate(float dt)
+{
+    mapUpdate();
+}
+
+
+
 /// @brief checks if a given key is down
 /// @param glfw key to check
 /// @return returns if key is down
 bool InputSystem::GetKeyDown(int glfw_key)
 {
-    return m_KeyStates[glfw_key][0];
+    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    if (mode == Engine::UpdateMode::fixedUpdate)
+    {
+        return m_FixedKeyStates[glfw_key][0];
+    }
+    if (mode == Engine::UpdateMode::update)
+    {
+        return m_KeyStates[glfw_key][0];
+    }
+    return NULL;
 }
 
 /// @brief checks if a given key is up
@@ -85,7 +120,16 @@ bool InputSystem::GetKeyUp(int glfw_key)
 /// @return returns if key is triggered
 bool InputSystem::GetKeyTriggered(int glfw_key)
 {
-    return m_KeyStates[glfw_key][1];
+    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    if (mode == Engine::UpdateMode::fixedUpdate)
+    {
+        return m_FixedKeyStates[glfw_key][1];
+    }
+    if (mode == Engine::UpdateMode::update)
+    {
+        return m_KeyStates[glfw_key][1];
+    }
+    return NULL;
 }
 
 /// @brief checks if a given key is released
@@ -93,7 +137,16 @@ bool InputSystem::GetKeyTriggered(int glfw_key)
 /// @return returns if key is released
 bool InputSystem::GetKeyReleased(int glfw_key)
 {
-    return m_KeyStates[glfw_key][2];
+    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    if (mode == Engine::UpdateMode::fixedUpdate)
+    {
+        return m_FixedKeyStates[glfw_key][2];
+    }
+    if (mode == Engine::UpdateMode::update)
+    {
+        return m_KeyStates[glfw_key][2];
+    }
+    return NULL;
 }
 
 
@@ -102,7 +155,16 @@ bool InputSystem::GetKeyReleased(int glfw_key)
 /// @return returns if mouse button is down
 bool InputSystem::GetMouseDown(int glfw_mouse_button)
 {
-    return m_MouseStates[glfw_mouse_button][0];
+    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    if (mode == Engine::UpdateMode::fixedUpdate)
+    {
+        return m_FixedMouseStates[glfw_mouse_button][0];
+    }
+    if (mode == Engine::UpdateMode::update)
+    {
+        return m_MouseStates[glfw_mouse_button][0];
+    }
+    return NULL;
 }
 
 /// @brief checks if a given mouse button is up
@@ -118,7 +180,16 @@ bool InputSystem::GetMouseUp(int glfw_mouse_button)
 /// @return returns if mouse button is triggered
 bool InputSystem::GetMouseTriggered(int glfw_mouse_button)
 {
-    return m_MouseStates[glfw_mouse_button][1];
+    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    if (mode == Engine::UpdateMode::fixedUpdate)
+    {
+        return m_FixedMouseStates[glfw_mouse_button][1];
+    }
+    if (mode == Engine::UpdateMode::update)
+    {
+        return m_MouseStates[glfw_mouse_button][1];
+    }
+    return NULL;
 }
 
 /// @brief checks if a given mouse button is released
@@ -126,7 +197,16 @@ bool InputSystem::GetMouseTriggered(int glfw_mouse_button)
 /// @return returns if mouse button is released
 bool InputSystem::GetMouseReleased(int glfw_mouse_button)
 {
-    return m_MouseStates[glfw_mouse_button][2];
+    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    if (mode == Engine::UpdateMode::fixedUpdate)
+    {
+        return m_FixedMouseStates[glfw_mouse_button][2];
+    }
+    if (mode == Engine::UpdateMode::update)
+    {
+        return m_MouseStates[glfw_mouse_button][2];
+    }
+    return NULL;
 }
 
 static glm::vec2 convert(glm::mat4 matrix)
@@ -167,7 +247,9 @@ glm::vec2 InputSystem::GetMousePosWorld()
 
     /// @brief Constructs the InputSystem
     InputSystem::InputSystem() :
-        System( "InputSystem" )
+        System( "InputSystem" ),
+        m_KeyStatesHold(&m_KeyStates),
+        m_MouseStatesHold(&m_MouseStates)
     {}
 
     /// @brief The singleton instance of InputSystem

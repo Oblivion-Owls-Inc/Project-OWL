@@ -141,11 +141,6 @@
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
     void CollisionSystem::OnFixedUpdate()
     {
-        if (GetDebugEnabled())
-        {
-			DebugWindow();
-		}
-        
         for ( unsigned i = 0; i < m_CollisionSteps; ++i )
         {
             checkCollisions();

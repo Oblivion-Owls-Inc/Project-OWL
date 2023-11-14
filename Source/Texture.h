@@ -58,7 +58,6 @@ public: // acccessors
     __inline glm::ivec2 const& GetSheetDimensions() const { return m_SheetDimensions; }
 
 
-#if 1
     /// @brief  gets the Mesh this Sprite is using
     /// @return the Mesh this Sprite is using
     __inline Mesh const* GetMesh() const { return m_Mesh; }
@@ -66,7 +65,6 @@ public: // acccessors
     /// @brief  sets the Mesh this Sprite is using
     /// @param  mesh    the Mesh to set this Sprite to use
     __inline void SetMesh( Mesh const* mesh ) { m_Mesh = mesh; }
-#endif
 
 //-----------------------------------------------------------------------------
 private: // member variables

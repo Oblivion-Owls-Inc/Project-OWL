@@ -40,9 +40,6 @@ class AssetLibrarySystem : public BaseAssetLibrarySystem
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
-
-    virtual void OnUpdate(float) override;
-
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 

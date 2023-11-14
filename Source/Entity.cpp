@@ -103,7 +103,9 @@
 
                 if ( ImGui::Selectable( name.c_str(), false ) )
                 {
-                    AddComponent( info.second() );
+                    Component* component = info.second();
+                    AddComponent( component );
+                    component->OnInit();
                 }
             }
             ImGui::EndCombo();
@@ -193,6 +195,9 @@
 
             // Delete the component.
             delete component.second;
+
+            // No dangling ptr
+            component.second = nullptr;
         }
         // Clear the component list.
         m_Components.clear();

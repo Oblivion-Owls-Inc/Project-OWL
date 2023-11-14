@@ -36,9 +36,11 @@ private: // virtual override methods
 //-----------------------------------------------------------------------------
 private: // Member Variables
 //-----------------------------------------------------------------------------
+
     /// @brief  how fast this Enemy moves
     float m_Speed = 10.0f;
 
+    /// @brief how much damage the enemy does.
     int m_Damage = 1;
 
     /// @brief  the name of the Entity with the Pathfinder to follow
@@ -63,6 +65,7 @@ private: // methods
 ///-----------------------------------------------------------------------------
 private: // Reading
 ///-----------------------------------------------------------------------------
+
     /// @brief  reads the name of the pathfinder entity
     /// @param  data    the json data to read from
     void readPathfinderName( nlohmann::ordered_json const& data );

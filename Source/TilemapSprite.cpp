@@ -35,6 +35,13 @@ TilemapSprite::TilemapSprite(Texture* texture, float stride_mult, int layer,
 {}
 
 
+TilemapSprite::~TilemapSprite()
+{
+    if (m_VAO)
+        OnExit();
+}
+
+
 /// @brief              Loads the tile array from a raw char array.
 /// @param tiles        tile IDs  (spritesheet frames)
 /// @param size         array size
@@ -88,9 +95,9 @@ void TilemapSprite::OnInit()
     }
 
     // Set up callback for when Tilemap array changes
-    if (GetParent())
+    if (GetEntity())
     {
-        m_Tilemap = GetParent()->GetComponent< Tilemap<int> >();
+        m_Tilemap = GetEntity()->GetComponent< Tilemap<int> >();
         if (m_Tilemap)
             m_Tilemap->AddOnTilemapChangedCallback( GetId(), 
                             std::bind(&TilemapSprite::onTilemapChanged, this) );
@@ -102,16 +109,18 @@ void TilemapSprite::OnInit()
 }
 
 
-/// @brief  called when exiting the scene
+/// @brief  Clears out memory
 void TilemapSprite::OnExit()
 {
     Sprite::OnExit();
 
     glDeleteBuffers( 1, &m_InstBufferID );
     glDeleteVertexArrays(1, &m_VAO);
+    m_VAO = 0;
 
-    if (m_Tilemap)
-        m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
+    // current m_Tilemap could be garbage. re-acquire.
+    if (GetEntity()->GetComponent<Tilemap<int>>())
+        GetEntity()->GetComponent<Tilemap<int>>()->RemoveOnTilemapChangedCallback( GetId() );
 }
 
 
@@ -124,7 +133,7 @@ void TilemapSprite::Draw()
         return;
 
     Mesh const* mesh = m_Texture->GetMesh();
-    Entity* parent = GetParent();
+    Entity* parent = GetEntity();
     glm::mat4 trm(1);                       // transform matrix - identity by default
     glm::vec2 uvsize = mesh->GetUVsize();   // UV size (for the frames of spritesheet)
     

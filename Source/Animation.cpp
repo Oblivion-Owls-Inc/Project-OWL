@@ -14,6 +14,8 @@
 #include "Sprite.h"
 #include "Entity.h"
 
+#include "Inspection.h"
+
 //-----------------------------------------------------------------------------
 // public: constructor
 //-----------------------------------------------------------------------------
@@ -100,7 +102,10 @@
     void Animation::SetFrameIndex( unsigned index, bool relative )
     {
 	    m_FrameIndex = index + (relative ? m_Asset->GetStart() : 0);
-        m_Sprite->SetFrameIndex( m_FrameIndex );
+        if ( m_Sprite != nullptr )
+        {
+            m_Sprite->SetFrameIndex( m_FrameIndex );
+        }
     }
 
 
@@ -175,7 +180,7 @@
     void Animation::OnInit()
     {
         Behaviors<Animation>()->AddBehavior(this);
-        m_Sprite = GetParent()->GetComponent<Sprite>();
+        m_Sprite = GetEntity()->GetComponent<Sprite>();
     }
 
     /// @brief  gets called once when exiting the scene
@@ -199,6 +204,35 @@
         {
             AdvanceFrame();
         }
+    }
+
+
+    /// @brief  shows the Inspector for this Animation
+    void Animation::Inspector()
+    {
+        Inspection::SelectAssetFromLibrary( "Animation Asset", &m_Asset );
+
+        if ( m_Asset == nullptr )
+        {
+            return;
+        }
+
+        ImGui::NewLine();
+
+        int relativeFrameIndex = GetFrameIndex( true );
+        if ( ImGui::DragInt(
+            "Frame Index", &relativeFrameIndex, 0.05f, 0, m_Asset->GetFrameCount() - 1, "%i", m_Asset->GetFrameCount() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput
+        ) )
+        {
+           SetFrameIndex( relativeFrameIndex );
+        }
+
+        ImGui::DragInt( "Loop Count", &m_LoopCount, 0.05f, -1, INT_MAX );
+
+        ImGui::DragFloat( "Frame Delay", &m_FrameDelay, 0.01f, 0.1f, INFINITY );
+
+        ImGui::Checkbox( "Is Running", &m_IsRunning );
+
     }
 
 
@@ -267,6 +301,13 @@
 	    m_IsRunning = Stream::Read<bool>(data);
     }
 
+    /// @brief  reads the loop count of this Animation
+    /// @param  data    the json data to read from
+    void Animation::readLoopCount( nlohmann::ordered_json const& data )
+    {
+        m_LoopCount = Stream::Read< int >( data );
+    }
+
     /// @brief  reads the animation asset this Animation is using
     /// @param  stream  the json data to read from
     void Animation::readAnimation( nlohmann::ordered_json const& data )
@@ -280,14 +321,15 @@
     {
         nlohmann::ordered_json data;
 
-        data["FrameIndex"] = m_FrameIndex;
-        data["FrameDelay"] = m_FrameDelay;
-        data["IsRunning"] = m_IsRunning;
+        data[ "FrameIndex" ] = Stream::Write( m_FrameIndex );
+        data[ "FrameDelay" ] = Stream::Write( m_FrameDelay );
+        data[ "IsRunning" ] = Stream::Write( m_IsRunning );
+        data[ "LoopCount" ] = Stream::Write( m_LoopCount );
         
-        std::string name = AssetLibrary<AnimationAsset>()->GetAssetName(m_Asset);
-        if (!name.empty())
+        std::string name = AssetLibrary< AnimationAsset >()->GetAssetName( m_Asset );
+        if ( !name.empty() )
         {
-            data["Animation"] = name;
+            data[ "Animation" ] = Stream::Write( name );
         }
 
         return data;
@@ -296,10 +338,11 @@
 
     /// @brief  map of read methods
     ReadMethodMap< Animation > const Animation::s_ReadMethods = {
-	    {"FrameIndex", &readFrameIndex },
-	    {"FrameDelay", &readFrameDelay },
-	    {"IsRunning" , &readIsRunning  },
-        {"Animation" , &readAnimation  }
+	    { "FrameIndex", &readFrameIndex },
+	    { "FrameDelay", &readFrameDelay },
+	    { "IsRunning" , &readIsRunning  },
+        { "LoopCount" , &readLoopCount  },
+        { "Animation" , &readAnimation  }
     };
 
 

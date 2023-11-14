@@ -1,23 +1,28 @@
 #version 430 core
-layout(local_size_x = 1024, local_size_y = 1, local_size_z = 1) in;
+layout(local_size_x = 128, local_size_y = 1, local_size_z = 1) in;
 
+// iirc as long as the sizes of structs are multiples of 8, they'll be aligned properly in the buffer.
+// so add ints/floats in pairs. use "placeholder" if not sure what elese is needed.
+
+// raw particle data
 struct Particle
 {
-    vec2 pos; float size,    rotation;        // 4
-    vec2 vel; float size_d,  rotation_d;      // 4
-    vec2 acc; float drag;                     // 3
-    float lifetime, fade_startTime, fade_rate; // 3
+    vec2 pos, vel, acc, vec2padding; 
+    float size, rotation,
+          dirAcc,  drag,   // dirAcc - magnitude of accelerating in the initial direction
+          lifetime, time,
+          fadeIn, fadeOut;
 };
 
-// how to initialize particles (including, how to randomize them)
+// how to initialize particles (including randomness and change over time)
 struct InitData
 {
-    ivec2 range;
-    vec2 position;
-    float direction,  speed,        size,         rotation;
-    vec2 pos_spread;
-    float dir_spread, speed_spread, size_spread,  rotation_spread;
-    float fade_startTime, fade_rate;
+    vec2 offset, pos_spread;
+    vec2 acceleration; float direction,  speed;
+    float size, rotation,  dir_spread, speed_spread; 
+    float size_spread, rotation_spread,  fadeInDuration, fadeOutDuration;
+    float lifetime, startAhead, dirAcc, padding;
+    int bufferSize, p1, p2, p3;
 };
 
 // Particle data buffer
@@ -26,67 +31,106 @@ layout(std430, binding = 0) buffer DataSSBO
     Particle particles[];
 };
 
+// Opacities buffer. Having it separate form matrices saves space (no padding)
+layout(std430, binding = 1) buffer OpacitiesSSBO
+{
+    float opacities[];
+};
+
 // Transform matrices buffer
-layout(std430, binding = 1) buffer MatrixSSBO
+layout(std430, binding = 2) buffer MatrixSSBO
 {
     mat4 transforms[];
 };
 
+
 // Uniform block - represents array of particle groups to emit during this frame
-layout(std430, binding = 2) buffer InitDataUBO
+layout(std430, binding = 3) buffer InitDataUBO
 {
     InitData init[];
 };
 
 uniform int initCount;  // amount of emissions to initialize
 
-uniform mat4 proj;  // projection matrix
-uniform float t;    // time
-uniform float dt;   // deltaTime
+uniform mat4 proj;      // projection matrix
+uniform float t;        // time
+uniform float dt;       // deltaTime
+uniform ivec2 range;    // init start and end
+uniform int initIndex;  // which init data to use this time
+uniform int oldest;     // oldest particle index
+uniform vec2 parentPos; // emit from parent entity's position. scale and rotation should be independent, I think...
+                        //  TODO:? flag to stay within entity's local space? (as in, move with it instead of independently?)
 
-float rand(float seed) { return 2*fract( sin((float(gl_GlobalInvocationID.x) + 242.9 + seed) * fract(t)) * 43758.5453) - 1.0; }
+// positive unit random (0 to 1)
+float prand(float seed) { return fract( sin((float(gl_GlobalInvocationID.x) + 242.9 + seed) * fract(t)) * 43758.5453); }
+
+// unit random (-1 to 1)
+float urand(float seed) { return 2 * prand(seed) - 1.0; }
+
+// returns "progress" (0 to 1) between start and end of 'time'
+float lerpOpacity(float start, float end, float time) { return clamp((time - start) / (end-start), 0.0, 1.0); }
 
 void main()
 {
-    // it's onde-dimensional. Only need the x.
+    // it's one-dimensional. Only need the x.
     const uint idx = gl_GlobalInvocationID.x;
 
     // If this particle's ID is within range, initialize it
-    for (int i=0; i<initCount; ++i)
+    if (range.x <= idx && idx < range.y)
     {
-        if (init[i].range.x <= idx && idx < init[i].range.y)
-        {
-            vec2 pos_spread = vec2( init[i].pos_spread.x * rand(1.0), init[i].pos_spread.y * rand(2.0) );
-            float direction = init[i].direction + init[i].dir_spread * rand(3.0);
-            float speed = init[i].speed + init[i].speed_spread * rand(4.0);
+        // pre-randomize
+        vec2 pos_spread = vec2( init[initIndex].pos_spread.x * urand(1.0), init[initIndex].pos_spread.y * urand(2.0) );
+        float direction = init[initIndex].direction + init[initIndex].dir_spread * urand(3.0);
+        float speed = init[initIndex].speed + init[initIndex].speed_spread * urand(4.0);
 
-            particles[idx].pos = init[i].position + pos_spread;
-            particles[idx].vel = vec2( cos(direction), sin(direction) ) * speed;
-            particles[idx].size = init[i].size + init[i].size_spread * rand(5.0);
-            particles[idx].rotation = init[i].rotation + init[i].rotation_spread * rand(6.0);
-            particles[idx].fade_startTime = init[i].fade_startTime;
+        // 'zinit' will be 0 if range covers the entire buffer.
+        // (I zero-init everything by setting range to the whole buffer size)
+        float zinit = step(range.y - range.x, init[initIndex].bufferSize-1);
 
-            particles[idx].lifetime = 0.0;
-        }
+        // initialize   (to 0 or to initial values)
+        particles[idx].vel = zinit *  (vec2( cos(direction), sin(direction) ) * speed);
+        particles[idx].pos = zinit *  (parentPos + init[initIndex].offset + pos_spread +
+                                       init[initIndex].startAhead * particles[idx].vel);
+        particles[idx].size = zinit *  (init[initIndex].size - 
+                                        init[initIndex].size_spread * prand(5.0));
+        particles[idx].rotation = zinit *  (init[initIndex].rotation + 
+                                            init[initIndex].rotation_spread * urand(6.0));
+        particles[idx].acc = zinit * (init[initIndex].acceleration +
+                                      init[initIndex].dirAcc * particles[idx].vel);
+        particles[idx].lifetime = zinit * init[initIndex].lifetime;
+        particles[idx].fadeIn =   zinit * init[initIndex].fadeInDuration;
+        particles[idx].fadeOut =  zinit * particles[idx].lifetime - init[initIndex].fadeOutDuration;
+        particles[idx].time = 0.0;
+
+        particles[idx].drag = 0.0; // TODO:?
     }
 
     // apply the uh.. derivatives
     particles[idx].vel *= (1.0 - particles[idx].drag*dt);
     particles[idx].vel += particles[idx].acc * dt;
     particles[idx].pos += particles[idx].vel * dt;
+    //particles[idx].size += particles[idx].size_d * dt;
+    //particles[idx].rotation += particles[idx].rotation_d * dt;
 
-    particles[idx].size += particles[idx].size_d * dt;
-    particles[idx].rotation += particles[idx].rotation_d * dt;
+    // "destroy" (just set size to 0) when time runs out
+    particles[idx].time += dt;
+    particles[idx].size *= step(particles[idx].time, particles[idx].lifetime);
 
-    // "destroy" when time runs out
-    particles[idx].lifetime += dt;
-    particles[idx].size *= step(particles[idx].lifetime, particles[idx].fade_startTime);
-
-    // pre-calculate mvp matrix here, make life easier for vertex shader
+    // pre-calculate mvp matrix here, to make life easier for vertex shader
     mat4 S = mat4( mat2(particles[idx].size) );
     float rcos = cos(particles[idx].rotation);
     float rsin = sin(particles[idx].rotation);
     mat4 R = mat4( mat2(rcos, rsin, -rsin, rcos) );
     mat4 T = mat4(1.0);  T[3] = vec4(particles[idx].pos, 0, 1);
-    transforms[idx] = proj * T * R * S;
+
+    // arrange them from oldest to newest for rendering. inverse deque, wooo
+    int renderIndex = (int(idx) + (init[initIndex].bufferSize - oldest)) % init[initIndex].bufferSize;
+    transforms[renderIndex] = proj * T * R * S; // TODO: change back to renderIndex
+
+    // fade in and out
+    opacities[renderIndex] = lerpOpacity(0,                      particles[idx].fadeIn,   particles[idx].time) *
+                          (1-lerpOpacity(particles[idx].fadeOut, particles[idx].lifetime, particles[idx].time));
 }
+
+// debugging: matrices order is not the issue. in fact, matrices are great.
+// wrong values are actually getting assigned.

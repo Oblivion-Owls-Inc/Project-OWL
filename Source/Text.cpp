@@ -24,7 +24,7 @@ Component * Text::Clone() const
 void Text::loadTextIntoTilemap()
 {
     // Make sure this Text has parent, and parent has Tilemap
-    Entity* parent = GetParent();
+    Entity* parent = GetEntity();
     if (!parent)
         return;
 

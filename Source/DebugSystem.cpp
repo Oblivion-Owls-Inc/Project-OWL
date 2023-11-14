@@ -77,6 +77,8 @@ void DebugSystem::OnInit()
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
     // Stays at the Top
+
+    SetDebugEnable( true );
 }
 
 /// @brief Perform updates.
@@ -84,40 +86,39 @@ void DebugSystem::OnInit()
 void DebugSystem::OnUpdate(float dt)
 {
 
-    static const int count = 128;
-    static float fpses[count] = {};
-    static float elapsed = 0.0f;
-    static float min = 0, max = 0;
-    static float fps = 0.0f;
-    elapsed += dt;
-    if (elapsed > 0.05f)
-    {
-        min = 1000.0f; max = 0.0f;
-        elapsed -= 0.05f;
-        for (int i = count - 1; i > 0; i--)
-        {
-            fpses[i] = fpses[i - 1];
-            if (fpses[i] < min)     min = fpses[i];
-            if (fpses[i] > max)     max = fpses[i];
-        }
-        fps = 1.0f / dt;
-        fpses[0] = fps;
+    // static const int count = 128;
+    // static float fpses[count] = {};
+    // static float elapsed = 0.0f;
+    // static float min = 0, max = 0;
+    // static float fps = 0.0f;
+    // elapsed += dt;
+    // if (elapsed > 0.05f)
+    // {
+    //     min = 1000.0f; max = 0.0f;
+    //     elapsed -= 0.05f;
+    //     for (int i = count - 1; i > 0; i--)
+    //     {
+    //         fpses[i] = fpses[i - 1];
+    //         if (fpses[i] < min)     min = fpses[i];
+    //         if (fpses[i] > max)     max = fpses[i];
+    //     }
+    //     fps = 1.0f / dt;
+    //     fpses[0] = fps;
+    // 
+    // }
 
+    for ( System* system : Engine::GetInstance()->GetSystems() )
+    {
+        if ( system->GetDebugEnabled() )
+        {
+            system->DebugWindow();
+        }
     }
 
-    #ifndef NDEBUG  
-
-        if (m_ShowFpsWindow)
-        {
-            ShowFPSWindow();
-        }
-    
-        if (m_ShowDebugWindow)
-        {
-            DebugWindow();
-        }
-
-    #endif
+    if (m_ShowFpsWindow)
+    {
+        ShowFPSWindow();
+    }
 
 
     ImGui::Render();
@@ -131,7 +132,10 @@ void DebugSystem::DebugWindow()
 {
     static bool gameplayRunning = true;
 
-    ImGui::Begin("Editor Window", &m_ShowDebugWindow, ImGuiWindowFlags_MenuBar);
+    bool debugWindowShown = GetDebugEnabled();
+    ImGui::Begin("Editor Window", &debugWindowShown, ImGuiWindowFlags_MenuBar);
+    SetDebugEnable( debugWindowShown );
+
     ImGui::SetWindowSize(ImVec2(700, 700), ImGuiCond_FirstUseEver);
     ImGui::SetWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
 
@@ -187,7 +191,7 @@ void DebugSystem::DebugWindow()
             /// Closes the Debug Window
             if (ImGui::MenuItem("Close"))
             {
-                m_ShowDebugWindow = false; /// Closes the Debug Window for now
+                SetDebugEnable( false ); /// Closes the Debug Window for now
             }
             ImGui::EndMenu();
         }
@@ -419,7 +423,7 @@ void DebugSystem::MenuWindows()
     if (m_CreationWindows[(int)MenuItemType::NewSpriteAnimation])
     {
         /// if the New Sprite Animation Window is closed, then close the window
-        if (!AssetLibrary<Animation>()->DebugCreateAssetWindow())
+        if (!AssetLibrary<AnimationAsset>()->DebugCreateAssetWindow())
         {
 			m_CreationWindows[(int)MenuItemType::NewSpriteAnimation] = false;
 		}
@@ -482,8 +486,10 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
 void DebugSystem::OnFixedUpdate()
 {
     #ifndef NDEBUG  
-        if (InputSystem::GetInstance()->GetKeyTriggered(GLFW_KEY_GRAVE_ACCENT))
-            m_ShowDebugWindow = !m_ShowDebugWindow;
+    if ( InputSystem::GetInstance()->GetKeyTriggered( GLFW_KEY_GRAVE_ACCENT ) )
+    {
+        SetDebugEnable( !GetDebugEnabled() );
+    }
     #endif
 }
 
@@ -592,7 +598,7 @@ void DebugSystem::ImguiStartFrame()
     /// @param  data    the data to read from
     void DebugSystem::readShowDebugWindow( nlohmann::ordered_json const& data )
     {
-		m_ShowDebugWindow = Stream::Read<bool>( data );
+		SetDebugEnable( Stream::Read<bool>( data ) );
     }
 
     /// @brief map containing read methods
@@ -612,7 +618,7 @@ void DebugSystem::ImguiStartFrame()
         nlohmann::ordered_json json;
         
         json[ "ShowFpsWindow" ] = m_ShowFpsWindow;
-        json[ "ShowDebugWindow" ] = m_ShowDebugWindow;
+        json[ "ShowDebugWindow" ] = GetDebugEnabled();
 
         return json;
     }
@@ -627,8 +633,7 @@ void DebugSystem::ImguiStartFrame()
         System( "DebugSystem" ),
         _window(nullptr),
         io(nullptr),
-        m_ShowFpsWindow(false),
-        m_ShowDebugWindow(false)
+        m_ShowFpsWindow(false)
     {}
 
     DebugSystem* DebugSystem::instance = nullptr;

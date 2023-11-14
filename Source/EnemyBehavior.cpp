@@ -36,8 +36,8 @@
         BasicEntityBehavior::OnInit();
 
         m_Pathfinder = Entities()->GetEntity( m_PathfinderName )->GetComponent< Pathfinder >();
-        m_RigidBody = GetParent()->GetComponent< RigidBody >();
-        m_Transform = GetParent()->GetComponent< Transform >();
+        m_RigidBody = GetEntity()->GetComponent< RigidBody >();
+        m_Transform = GetEntity()->GetComponent< Transform >();
     }
 
     /// @brief Called at a fixed interval
@@ -56,6 +56,14 @@
         // accelerate along path
         glm::vec2 moveDir = m_Pathfinder->GetDirectionAt( m_Transform->GetTranslation() );
         m_RigidBody->ApplyAcceleration( moveDir * m_Speed );
+
+        // Changes the animation based on the direction
+        glm::vec2 scale = m_Transform->GetScale();
+        if ( (scale.x > 0) != (moveDir.x > 0) )
+        {
+            scale.x *= -1;
+            m_Transform->SetScale( scale );
+        }
     }
 
 ///-----------------------------------------------------------------------------
@@ -86,7 +94,7 @@
 	    { "Health"        , &BasicEntityBehavior::readHealth    },
         { "PathfinderName", &EnemyBehavior::readPathfinderName  },
         { "Speed"         , &EnemyBehavior::readSpeed           },
-        { "Damage"         ,&EnemyBehavior::readDamage          }
+        { "Damage"        , &EnemyBehavior::readDamage          }
     };
 
 
@@ -122,7 +130,8 @@
     EnemyBehavior::EnemyBehavior( EnemyBehavior const& other ) :
         BasicEntityBehavior( other ),
         m_PathfinderName( other.m_PathfinderName ),
-        m_Speed( other.m_Speed )
+        m_Speed( other.m_Speed ),
+        m_RigidBody(nullptr)
     {}
 
 ///----------------------------------------------------------------------------
