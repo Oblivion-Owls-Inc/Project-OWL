@@ -117,7 +117,9 @@ void FileExplorer::Explore(bool* open)
                                 file.close();
                             }
                         }
-                        ImGui::Spacing();
+
+                        ImGui::SameLine();
+
                         if (ImGui::Button("Save"))
                         {
 							std::ofstream file(current_path);
