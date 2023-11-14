@@ -210,6 +210,9 @@
     <Filter Include="Engine\Systems\CheatSystem">
       <UniqueIdentifier>{1dbe9dbc-86de-434f-8fd4-19d968e00052}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\DebugSystem\FileExplorer">
+      <UniqueIdentifier>{427d5f5a-9fc5-4bf5-b7f5-9934e8ece453}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -452,6 +455,9 @@
     <ClCompile Include="imgui\imgui_stdlib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\FileExplorer.cpp">
+      <Filter>Engine\Systems\DebugSystem\FileExplorer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -693,6 +699,9 @@
     </ClInclude>
     <ClInclude Include="imgui\imgui_stdlib.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FileExplorer.h">
+      <Filter>Engine\Systems\DebugSystem\FileExplorer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -172,8 +172,6 @@ private: // methods
     /// @brief Shows the Debug window
     void MenuWindows();
 
-    void LoadFile();
-    
     /// @brief Shows the List of Systems that begin with the given prefix
     /// @param prefix - the prefix to filter the list of Systems by
     void ShowSystemList(const std::string& prefix);
