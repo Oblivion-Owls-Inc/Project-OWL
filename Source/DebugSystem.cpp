@@ -454,6 +454,7 @@ void DebugSystem::LoadFile()
 			}
         }
 
+        fileContents.clear();
         path = currentPath;
     }
     ImGui::SameLine();
@@ -479,16 +480,15 @@ void DebugSystem::LoadFile()
     {
         auto directory_iterator = std::filesystem::directory_iterator(path);
         
-        if (ImGui::BeginTable("##FileSystemViewer", 3, ImGuiTableFlags_BordersOuter | ImGuiTableFlags_Resizable))
+        if (ImGui::BeginTable("##FileSystemViewer", 2, ImGuiTableFlags_BordersOuter | ImGuiTableFlags_Resizable))
         {
             ImGui::TableSetupScrollFreeze(0, 1);
             ImGui::TableSetupColumn("FileName", ImGuiTableColumnFlags_WidthFixed, 200.0f);
             ImGui::TableSetupColumn("Actions", ImGuiTableColumnFlags_WidthFixed, 200.0f);
-            ImGui::TableSetupColumn("Contents", ImGuiTableColumnFlags_WidthStretch);
             ImGui::TableHeadersRow();
 
             int i = 0;
-            static unsigned ID = 0;
+            static int ID = 0;
 
             for (auto& directory : directory_iterator)
             {
@@ -537,19 +537,33 @@ void DebugSystem::LoadFile()
 
                 ImGui::PopID();
                 ++i;
-                if (!fileContents.empty())
-                {
-                    ImGui::TableSetColumnIndex(2);  /// Set the column index to 2
-                    ///Set ImGui Row to ID
-                    ImGui::InputTextMultiline("##Contents", &fileContents[0], fileContents.size() + 1,
-                        ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 16),
-                        ImGuiInputTextFlags_AllowTabInput);
-                }
+                //if (!fileContents.empty())
+                //{
+
+                //    ImGui::InputTextMultiline("##Contents", &fileContents[0], fileContents.size() + 1,
+                //        ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 16),
+                //        ImGuiInputTextFlags_AllowTabInput);
+                //}
 
             }
 
             ImGui::EndTable();
 		}
+
+        if (!fileContents.empty())
+        {
+            ImGui::Begin("File Contents");
+
+            // Calculate an estimated size for the text box
+            size_t lineCount = std::count(fileContents.begin(), fileContents.end(), '\n');
+            float lineHeight = ImGui::GetTextLineHeightWithSpacing();
+            ImVec2 textBoxSize = ImVec2(-FLT_MIN, lineHeight * (lineCount + 1)); // +1 for some extra space
+
+            ImGui::InputTextMultiline("##Contents", &fileContents[0], fileContents.size() + 1,
+                textBoxSize, ImGuiInputTextFlags_AllowTabInput);
+
+            ImGui::End();
+        }
 
     }
     catch (std::exception e)
