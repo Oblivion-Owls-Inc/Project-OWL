@@ -253,8 +253,9 @@
 
     /// @brief map of the CameraSystem read methods
     ReadMethodMap< Camera > const Camera::s_ReadMethods = {
-        { "Width",  &readWidth  },
-        { "Height", &readHeight }
+        { "Width",    &readWidth    },
+        { "Height",   &readHeight   },
+        { "IsActive", &readIsActive }
     };
 
 //-----------------------------------------------------------------------------
