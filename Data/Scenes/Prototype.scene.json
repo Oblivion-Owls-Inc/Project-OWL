@@ -517,8 +517,7 @@
             "Name": "Camera",
             "Components": {
                 "Camera": {
-                    "Width": 30.0,
-                    "IsActive": 30.0
+                    "Width": 30.0
                 },
                 "Transform": {
                     "Translation": [
