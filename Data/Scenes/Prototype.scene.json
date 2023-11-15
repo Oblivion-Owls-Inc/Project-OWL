@@ -2,7 +2,7 @@
     "Assets": {
         "Sounds": {
             "Music": {
-              "IsLoopabe": true,
+                "IsLoopabe": true,
                 "Filepath": "Data/Sounds/Music/background.ogg"
             },
             "PlayerFootSteps": {
@@ -55,9 +55,6 @@
                     0.5
                 ]
             },
-            "Fireball": {
-              "Filepath": "Data/Textures/Balls/Ball4.png"
-            },
             "Ball3": {
                 "Filepath": "Data/Textures/Balls/Ball3.png",
                 "SheetDimensions": [
@@ -73,6 +70,17 @@
                 "Filepath": "Data/Textures/enemy.png",
                 "SheetDimensions": [
                     12,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "Fireball": {
+                "Filepath": "Data/Textures/Balls/Ball4.png",
+                "SheetDimensions": [
+                    1,
                     1
                 ],
                 "Pivot": [
@@ -122,6 +130,17 @@
                 "Pivot": [
                     0.699999988079071,
                     0.6000000238418579
+                ]
+            },
+            "Van": {
+                "Filepath": "Data/Textures/van_large.png",
+                "SheetDimensions": [
+                    8,
+                    2
+                ],
+                "Pivot": [
+                    0.5,
+                    0.3799999952316284
                 ]
             }
         },
@@ -227,6 +246,39 @@
                         "CollisionLayer": 1,
                         "CollisionLayerFlags": 7
                     },
+                    "Emitter": {
+                        "PPS": 680.4739990234375,
+                        "Delay": 0.0,
+                        "Max": 2048,
+                        "Continuous": true,
+                        "EmitData": [
+                            [
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                0.0,
+                                0.0
+                            ],
+                            4.936999797821045,
+                            2.200000047683716,
+                            0.5740000009536743,
+                            0.0,
+                            3.140000104904175,
+                            0.5099999904632568,
+                            0.3700000047683716,
+                            0.0,
+                            0.03999999910593033,
+                            0.14000000059604645,
+                            0.7900000214576721,
+                            0.0,
+                            -2.5999999046325684
+                        ]
+                    },
                     "EnemyBehavior": {
                         "Health": {
                             "Name": "Health Pool",
@@ -237,6 +289,18 @@
                         "PathfinderName": "Tiles",
                         "Speed": 10.0,
                         "Damage": 1
+                    },
+                    "ParticleSprite": {
+                        "Layer": 3,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": "Fireball"
                     },
                     "RigidBody": {
                         "Velocity": [
@@ -276,22 +340,7 @@
                             2.0
                         ],
                         "IsDiegetic": true
-                    },
-                    "Emitter": {
-                      "Continuous": true,
-                      "PPS": 680.474,
-                      "Delay": 0.0,
-                      "Max": 2048,
-                      "EmitData": [[0.0,0.0],[0.0,0.0],[0.0,0.0],4.937,2.2,0.574,0.0,3.14,0.51,
-                                      0.37,0.0,0.04,0.14,0.79,0.0,-2.6]
-                      },
-                      "ParticleSprite": {
-                          "Layer": 3,
-                          "Color": [0.0,0.0,0.0,0.0],
-                          "Opacity": 1.0,
-                          "FrameIndex": 0,
-                          "Texture": "Fireball"
-                      }
+                    }
                 }
             },
             "Turret": {
@@ -375,12 +424,12 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "PlayerSheet"
+                    "Texture": "Van"
                 },
                 "Transform": {
                     "Translation": [
-                        2.0,
-                        4.0
+                        -2.25,
+                        3.8499999046325684
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -408,7 +457,10 @@
                 },
                 "WavesBehavior": {
                     "Spawners": [
-                        [0.0,-10.0]
+                        [
+                            0.0,
+                            -10.0
+                        ]
                     ],
                     "Waves": [
                         {
@@ -2433,21 +2485,66 @@
             }
         },
         "Snow": {
-          "Name": "Snow",
-          "Components": {
-            "Transform": {},
-            "Emitter": {
-              "Continuous": true,
-              "PPS": 100.453,
-              "Delay": 0.0,
-              "Max": 2048,
-              "EmitData": [[-1.0,11.0],[15.31,0.54],[0.0,0.0],4.937,2.19,0.2,0.0,0.0,0.963,0.165,0.0,0.0,0.25,3.0,0.0,0.0]
-            },
-            "ParticleSprite": {
-              "Texture": "Ball3",
-              "Layer": 1
+            "Name": "Snow",
+            "Components": {
+                "Emitter": {
+                    "PPS": 100.4530029296875,
+                    "Delay": 0.0,
+                    "Max": 2048,
+                    "Continuous": true,
+                    "EmitData": [
+                        [
+                            -1.0,
+                            11.0
+                        ],
+                        [
+                            15.3100004196167,
+                            0.5400000214576721
+                        ],
+                        [
+                            0.0,
+                            0.0
+                        ],
+                        4.936999797821045,
+                        2.190000057220459,
+                        0.20000000298023224,
+                        0.0,
+                        0.0,
+                        0.9629999995231628,
+                        0.16500000655651093,
+                        0.0,
+                        0.0,
+                        0.25,
+                        3.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "ParticleSprite": {
+                    "Layer": 1,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Ball3"
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
             }
-          }
         },
         "Player": {
             "Name": "Player",
