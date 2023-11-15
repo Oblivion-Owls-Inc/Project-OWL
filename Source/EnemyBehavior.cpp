@@ -46,6 +46,19 @@
         ChaseTarget();
     }
 
+    void EnemyBehavior::OnUpdate(float)
+    {
+    }
+
+    void EnemyBehavior::Inspector()
+    {
+        ImGui::VSliderFloat("Speed", ImVec2(18, 160), &m_Speed, 0, 100);
+        ImGui::SameLine();
+        ImGui::VSliderInt("Damage", ImVec2(18, 160), &m_Damage, 0, 100);
+
+        BasicEntityBehavior::Inspector();
+    }
+
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------

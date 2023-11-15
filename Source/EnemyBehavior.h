@@ -19,7 +19,7 @@ class EnemyBehavior : public BasicEntityBehavior
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructor
-//-----------------------------------------------------------------------------
+//-------------------------------------------------------s----------------------
 
 	EnemyBehavior();
 
@@ -32,6 +32,12 @@ private: // virtual override methods
 
     /// @brief Called at a fixed interval
     virtual void OnFixedUpdate() override;
+
+    /// @brief Called once per frame
+    virtual void OnUpdate(float) override;
+
+    /// @brief  inspector for this component
+    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 private: // Member Variables
