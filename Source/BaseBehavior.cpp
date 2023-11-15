@@ -11,6 +11,7 @@
 #include "CircleCollider.h"
 #include "CollisionSystem.h"
 #include "EnemyBehavior.h"
+#include "SceneSystem.h"
 
 //-----------------------------------------------------------------------------
 // constructor / destructor 
@@ -56,7 +57,7 @@ void BaseBehavior::OnInit()
 void BaseBehavior::OnExit()
 {
 	BasicEntityBehavior::OnExit();
-	std::cout << "we died!";
+	SceneSystem::GetInstance()->SetNextScene("GameOver");
 }
 
 
