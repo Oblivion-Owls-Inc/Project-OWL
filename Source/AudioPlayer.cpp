@@ -451,7 +451,7 @@
         { "VolumeVariance"  , &readVolumeVariance   },
         { "PitchVariance"   , &readPitchVariance    },
         { "DefaultLoopCount", &readDefaultLoopCount },
-        { "PlayOnInit"       , &readPlayOnInit        }
+        { "PlayOnInit"      , &readPlayOnInit       }
     };
 
 

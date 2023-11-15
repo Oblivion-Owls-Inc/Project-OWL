@@ -279,6 +279,15 @@
                             -2.5999999046325684
                         ]
                     },
+                    "AudioPlayer": {
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": true,
+                        "Sound": "PlayerFootSteps"
+                    },
                     "EnemyBehavior": {
                         "Health": {
                             "Name": "Health Pool",
