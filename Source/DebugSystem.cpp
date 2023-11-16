@@ -317,6 +317,21 @@ void DebugSystem::DebugWindow()
     ImGui::End();
 }
 
+void DebugSystem::ResetViewport()
+{
+    static bool dockspaceOpen = true;
+    if (dockspaceOpen)
+    {
+        io->ConfigFlags &= ~ImGuiConfigFlags_ViewportsEnable;
+        dockspaceOpen = false;
+    }
+    else
+    {
+        io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+        dockspaceOpen = true;
+    }
+}
+
 /// @brief Opens the Different Windows for the Editor Window
 void DebugSystem::MenuWindows()
 {
