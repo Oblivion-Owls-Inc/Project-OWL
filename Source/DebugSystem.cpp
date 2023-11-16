@@ -107,6 +107,8 @@ void DebugSystem::OnUpdate(float dt)
     // 
     // }
 
+#ifndef NDEBUG
+
     for ( System* system : Engine::GetInstance()->GetSystems() )
     {
         if ( system->GetDebugEnabled() )
@@ -120,6 +122,7 @@ void DebugSystem::OnUpdate(float dt)
         ShowFPSWindow();
     }
 
+#endif // !NDEBUG
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
