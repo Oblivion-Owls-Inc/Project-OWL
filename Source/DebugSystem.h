@@ -73,6 +73,7 @@ public:
     /// @brief Gets Called by the Debug system to display debug information
     virtual void DebugWindow() override;
 
+    void ResetViewport();
 
 ///----------------------------------------------------------------------------
 public: // DebugStream
