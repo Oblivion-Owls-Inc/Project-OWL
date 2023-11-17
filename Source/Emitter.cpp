@@ -13,7 +13,16 @@
 
 
 /// @brief	    Defualt constructor
-Emitter::Emitter() : Component( typeid( Emitter ) ) {}
+Emitter::Emitter() : Component( typeid( Emitter ) )
+{
+    // default (when added thru editor)
+    m_PPS = 200.0f;
+    m_Init.lifetime = 2.0f;
+    m_Init.size = 0.2f;
+    m_Init.dir_spread = 3.14f;
+    m_Init.speed = 1.0f;
+    m_Init.speed_spread = 0.5f;
+}
 
 
 /// @brief        Copy constructor
@@ -149,6 +158,8 @@ void Emitter::Update(float dt)
 
         if (m_Transform)
             glUniform2fv(m_UparentPos, 1, &m_Transform->GetTranslation().x);
+        else
+            m_Transform = GetEntity()->GetComponent<Transform>();
     }
     else
         glUniform2i(m_Urange, -1, -1); // (nothing to emit this time)

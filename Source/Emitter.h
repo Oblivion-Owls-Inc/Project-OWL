@@ -84,7 +84,7 @@ private:
 //              Data
 //-----------------------------------------------------------------------------
 private:
-    bool m_Continuous = false;  /// @brief  If true, emits automatically.
+    bool m_Continuous = true;   /// @brief  If true, emits automatically.
     float m_PPS = 0.0f;         /// @brief  Particles per second
     float m_Delay = 0.0f;       /// @brief  Delay between emissions.
     float m_DelayTimer = 0.0f;  /// @brief  Timer for the delay

@@ -9,102 +9,26 @@
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
                 "SheetDimensions": [ 16, 8 ]
             },
-            "4pxSheet": {
-                "Filepath": "Data/Textures/4px.png",
-                "SheetDimensions": [ 4, 1 ],
-                "Pivot": [ 0, 1 ]
-            },
             "Ball": {
                 "Filepath": "Data/Textures/Balls/Ball.png"
             },
-            "Ball1": {
+            "Ball2": {
                 "Filepath": "Data/Textures/Balls/Ball2.png"
-            }
-        },
-        "Archetypes": {
-            "Enemy": {
-                "Name": "Enemy",
-                "Components": {
-                    "Sprite": {
-                        "Texture": "Ball",
-                        "Layer": 3
-                    },
-                    "Transform": {
-                        "Scale": [ 0.2, 0.2 ]
-                    },
-                    "RigidBody": {
-                        "Acceleration": [ 0.0, 0.0 ],
-                        "Restitution": 1
-                    },
-                    "CircleCollider": {
-                        "Radius": 0.1,
-                        "CollisionLayer": "Enemies",
-                        "CollisionLayerFlags": [ "Terrain" ]
-                    },
-                    "EnemyBehavior": {
-                        "Health": {
-                            "Active": true,
-                            "BaseValue": 40
-                        }
-                    }
-                }
             },
-            "Bullet": {
-                "Name": "Bullet",
-                "Components": {
-                    "Sprite": {
-                        "Texture": "Ball1",
-                        "Layer": 2
-                    },
-                    "Transform": {
-                        "Scale": [ 0.3, 0.3 ]
-                    },
-                    "BulletBehavior": {
-                        "Pool": {
-                            "name": "LifeTime",
-                            "Active": true,
-                            "BaseValue": 3
-                        }
-                    },
-                    "CircleCollider": {
-                        "Radius": 0.1,
-                        "CollisionLayer": "Projectiles",
-                        "CollisionLayerFlags": [ "Enemies", "Terrain" ]
-                    },
-                    "RigidBody": {
-                        "Acceleration": [ 0.0, 0.0 ],
-                        "Restitution": 1
-                    }
-                }
+            "Ball3": {
+                "Filepath": "Data/Textures/Balls/Ball3.png"
             },
-            "Turret": {
-                "Name": "Turret",
-              "Components": {
-                "Sprite": {
-                  "Texture": "Turret",
-                  "Layer": 1
-                },
-                "Transform": {
-                  "Translation": [ -4, 1 ]
-                },
-                "CircleCollider": {
-                  "Radius": 0,
-                  "CollisionLayer": "Player",
-                  "CollisionLayerFlags": [ "Enemies" ]
-                },
-                "TurretBehavior": {
-                  "range": 5,
-                  "bulletdamage": 20,
-                  "Target": "Enemy",
-                  "bulletName": "Bullet",
-                  "bulletsize": 0.3
-                }
-              }
+            "Ball4": {
+                "Filepath": "Data/Textures/Balls/Ball4.png"
+            },
+            "Ball5": {
+                "Filepath": "Data/Textures/Balls/Ball5.png"
             }
         }
     },
-    "Entities": [
-        {
+    "Entities": {
+
+        "Camera": {
             "Name": "Camera",
             "Components": {
                 "Camera": {
@@ -112,66 +36,8 @@
                 },
                 "Transform": {}
             }
-        },
-        {
-            "Name": "Tiles",
-            "Components": {
-                "TilemapSprite": {
-                    "Texture": "4pxSheet"
-                },
-                "Tilemap<int>":  {
-                    "TileData": [
-                        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,
-                        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-                    ],
-                    "Dimensions": [ 16, 13 ],
-                    "TileScale": [0.6,0.6]
-                },
-                "Transform": {
-                    "Translation": [ -4.8, 3.8 ],
-                    "Scale": [ 0.6, 0.6 ]
-                },
-                "Pathfinder": {
-                    "Destination": [ 4, 0 ],
-                    "Walkables": [ 0 ]
-                },
-                "TilemapCollider": {
-                    "CollisionLayer": "Terrain",
-                    "CollisionLayerFlags": []
-                },
-                "StaticBody": {}
-            }
-        },
-        {
-            "Name": "Text",
-            "Components": {
-                "TilemapSprite": {
-                    "Texture": "FontSheet",
-                    "Layer": 4
-                },
-                "Text": {
-                    "String": "Right click (hold): delete tiles         D: set destination         S: spawn enemySpace (hold): enemies move to destination"
-                },
-                "Tilemap<int>":  {
-                    "Dimensions": [ 41, 0 ],
-                    "TileScale": [ 0.12, 0.34 ]
-                },
-                "Transform": {
-                    "Translation": [ -2.5, 3.6 ],
-                    "Scale": [ 0.2, 0.2 ]
-                }
-            }
         }
-    ]
+
+
+    }
 }

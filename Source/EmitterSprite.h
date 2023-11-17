@@ -1,5 +1,5 @@
 /*****************************************************************//**
- * \file   ParticleSprite.h
+ * \file   EmitterSprite.h
  * \brief  Renders particles using data from SSBO.
  * 
  * \author Eli Tsereteli
@@ -11,19 +11,19 @@
 class Emitter;  // fwd ref
 
 /// @brief      A version of Sprite for rendering tilemaps using GPU instancing.
-class ParticleSprite : public Sprite
+class EmitterSprite : public Sprite
 {
 public:
 
     /// @brief        Default constructor
-    ParticleSprite();
+    EmitterSprite();
 
     /// @brief        Copy constructor
     /// @param other  Component to copy
-    ParticleSprite(const ParticleSprite& other);
+    EmitterSprite(const EmitterSprite& other);
 
     /// @brief        Destructor: calls OnExit if needed
-    ~ParticleSprite();
+    ~EmitterSprite();
 
 //-----------------------------------------------------------------------------
 //          Virtual overrides

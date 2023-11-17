@@ -1,12 +1,12 @@
 /*****************************************************************//**
- * \file   ParticleSprite.cpp
+ * \file   EmitterSprite.cpp
  * \brief  Renders particles using data from SSBO.
  * 
  * \author Eli Tsereteli
  * \date   October 2023
  *********************************************************************/
 #include "glew.h"
-#include "ParticleSprite.h"
+#include "EmitterSprite.h"
 #include "Texture.h"
 #include "Emitter.h"
 #include "ParticleSystem.h" // SSBO
@@ -15,21 +15,21 @@
 
 
 /// @brief          Default constructor
-ParticleSprite::ParticleSprite() : 
-    Sprite( typeid(ParticleSprite) )
+EmitterSprite::EmitterSprite() : 
+    Sprite( typeid(EmitterSprite) )
 {}
 
 /// @brief          Copy constructor
 /// @param other    Component to copy
-ParticleSprite::ParticleSprite(const ParticleSprite& other) :
+EmitterSprite::EmitterSprite(const EmitterSprite& other) :
     Sprite ( other )
 {}
 
 /// @return  Copy of this component
-Component* ParticleSprite::Clone() const { return new ParticleSprite(*this); }
+Component* EmitterSprite::Clone() const { return new EmitterSprite(*this); }
 
 /// @brief      Destructor: calls OnExit if needed
-ParticleSprite::~ParticleSprite()
+EmitterSprite::~EmitterSprite()
 {
     if (m_VAO)
         OnExit();
@@ -42,24 +42,15 @@ ParticleSprite::~ParticleSprite()
 //-----------------------------------------------------------------------------
 
 /// @brief   Inits VAO and shader when entering scene
-void ParticleSprite::OnInit()
+void EmitterSprite::OnInit()
 {
     Sprite::OnInit();
-
-    m_Emitter = GetEntity()->GetComponent<Emitter>();
-    if (!m_Emitter)
-        return;
-
     initInstancingStuff();
-
-    if (!Renderer()->GetShader("particles"))
-        Renderer()->AddShader("particles", new Shader("Data/Shaders/particles.vert",
-                                                        "Data/Shaders/particles.frag"));
 }
 
 
 /// @brief   Deletes VAO when exiting
-void ParticleSprite::OnExit()
+void EmitterSprite::OnExit()
 {
     Sprite::OnExit();
     glDeleteVertexArrays(1, &m_VAO);
@@ -68,8 +59,16 @@ void ParticleSprite::OnExit()
 
 
 /// @brief     Draws particles using gpu instancing.
-void ParticleSprite::Draw()
+void EmitterSprite::Draw()
 {
+    if (!m_IsTextured || !m_VAO)
+    {
+        if (!m_VAO)
+            initInstancingStuff();
+
+        return;
+    }
+
     Shader* sh = Renderer()->GetShader("particles");
     sh->use();
 
@@ -91,8 +90,15 @@ void ParticleSprite::Draw()
 //-----------------------------------------------------------------------------
 
 /// @brief      Initializes VAO for using SSBO as a VBO  (what have I become...)
-void ParticleSprite::initInstancingStuff()
+void EmitterSprite::initInstancingStuff()
 {
+    if (m_VAO || !m_Texture)
+        return;
+
+    m_Emitter = GetEntity()->GetComponent<Emitter>();
+    if (!m_Emitter)
+        return;
+
     glGenVertexArrays(1, &m_VAO);
     glBindVertexArray(m_VAO);
 
@@ -129,4 +135,8 @@ void ParticleSprite::initInstancingStuff()
     // It's still declared as regular mat4 on the shader. Go figure.
 
     glBindVertexArray(0);
+
+    if (!Renderer()->GetShader("particles"))
+        Renderer()->AddShader("particles", new Shader("Data/Shaders/particles.vert",
+                              "Data/Shaders/particles.frag"));
 }

@@ -33,7 +33,7 @@
 #include "ConstructionBehavior.h"
 #include "Camera.h"
 #include "WavesBehavior.h"
-#include "ParticleSprite.h"
+#include "EmitterSprite.h"
 #include "Emitter.h"
 #include "BaseBehavior.h"
 #include "UiElement.h"
@@ -143,7 +143,7 @@
         { "Camera"              , ComponentInfo< Camera >()               },
         { "WavesBehavior"       , ComponentInfo< WavesBehavior >()        },
         { "Emitter"             , ComponentInfo< Emitter >()              },
-        { "ParticleSprite"      , ComponentInfo< ParticleSprite >()       },
+        { "EmitterSprite"      , ComponentInfo< EmitterSprite >()       },
         { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         },
         { "UiElement"           , ComponentInfo< UiElement >()            }
     };
