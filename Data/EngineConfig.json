@@ -4,7 +4,7 @@
         "PlatformSystem": {
             "WindowSize": [ 1200, 800 ],
             "WindowName": "Dig Deeper",
-            "VSync": false
+            "VSync": true
         },
         "InputSystem": {},
         "SceneSystem": {
