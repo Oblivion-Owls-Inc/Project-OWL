@@ -85,28 +85,6 @@ void DebugSystem::OnInit()
 /// @param dt The time elapsed since the last update.
 void DebugSystem::OnUpdate(float dt)
 {
-
-    // static const int count = 128;
-    // static float fpses[count] = {};
-    // static float elapsed = 0.0f;
-    // static float min = 0, max = 0;
-    // static float fps = 0.0f;
-    // elapsed += dt;
-    // if (elapsed > 0.05f)
-    // {
-    //     min = 1000.0f; max = 0.0f;
-    //     elapsed -= 0.05f;
-    //     for (int i = count - 1; i > 0; i--)
-    //     {
-    //         fpses[i] = fpses[i - 1];
-    //         if (fpses[i] < min)     min = fpses[i];
-    //         if (fpses[i] > max)     max = fpses[i];
-    //     }
-    //     fps = 1.0f / dt;
-    //     fpses[0] = fps;
-    // 
-    // }
-
 #ifndef NDEBUG
 
     for ( System* system : Engine::GetInstance()->GetSystems() )
@@ -123,6 +101,13 @@ void DebugSystem::OnUpdate(float dt)
     }
 
 #endif // !NDEBUG
+
+    if (Input()->GetKeyTriggered(GLFW_KEY_RIGHT_ALT), Input()->GetKeyTriggered(GLFW_KEY_ENTER))
+    {
+		m_Fullscreen = !m_Fullscreen;
+		PlatformSystem::GetInstance()->setFullscreen(m_Fullscreen);
+	}
+
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
