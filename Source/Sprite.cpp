@@ -138,8 +138,6 @@ void Sprite::Draw()
 /// @brief  called when entering the scene
 void Sprite::OnInit()
 {
-    glm::ivec2 sheetDimension = m_IsTextured ? m_Texture->GetSheetDimensions() : glm::ivec2( 1, 1 );
-
     Renderer()->AddSprite( this );
 }
 
@@ -169,8 +167,10 @@ void Sprite::OnExit()
 
         if (!m_Texture)
         {
+            m_IsTextured = false;
             return;
         }
+        m_IsTextured = true;
 
         if ( ImGui::DragInt(
             "Frame Index", &m_FrameIndex, 1, 0, 
@@ -179,35 +179,6 @@ void Sprite::OnExit()
         {
 			SetFrameIndex(m_FrameIndex);
 		}
-
-        // // Texture selection
-        // std::vector<std::string> textureNames;
-        // for (const auto& pair : AssetLibrary<Texture>()->GetAssets())
-        // {
-        //     textureNames.push_back(pair.first);
-        // }
-        // 
-        // static int currentTextureIdx = 0;  // you can set this according to the current texture of the sprite if needed
-        // 
-        // if (ImGui::BeginCombo("Textures", textureNames[currentTextureIdx].c_str())) // Default displayed
-        // {
-        //     for (int n = 0; n < textureNames.size(); ++n)
-        //     {
-        //         bool isSelected = (currentTextureIdx == n);
-        //         if (ImGui::Selectable(textureNames[n].c_str(), isSelected))
-        //         {
-        //             currentTextureIdx = n;
-        //             // Set the texture here
-        //             SetTexture(AssetLibrary<Texture>()->GetAsset(textureNames[currentTextureIdx]));
-        //         }
-        //         if (isSelected)
-        //         {
-        //             ImGui::SetItemDefaultFocus();
-        //         }
-        //     }
-        //     ImGui::EndCombo();
-        // }
-
     }
 
 //-----------------------------------------------------------------------------
