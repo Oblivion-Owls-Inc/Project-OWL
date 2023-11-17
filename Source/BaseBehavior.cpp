@@ -57,7 +57,6 @@ void BaseBehavior::OnInit()
 void BaseBehavior::OnExit()
 {
 	BasicEntityBehavior::OnExit();
-	SceneSystem::GetInstance()->SetNextScene("GameOver");
 }
 
 
@@ -71,6 +70,13 @@ void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionDa
 	
 	BasicEntityBehavior::TakeDamage(enemy->GetDamage());
 	enemy->GetEntity()->Destroy();
+
+	if (BasicEntityBehavior::GetHealth()->GetCurrent() <= 0)
+	{
+		SceneSystem::GetInstance()->SetNextScene("Gameover");
+	}
+
+	
 }
 
 //-----------------------------------------------------------------------------
