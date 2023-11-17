@@ -54,6 +54,30 @@ struct ScrollingBuffer
     T* Data() { return &Values[0]; }
 };
 
+void DebugSystem::SetupImGuiConfigPath()
+{
+    // Retrieve the APPDATA environment variable using _dupenv_s
+    char* appDataPath = nullptr;
+    size_t size;
+    errno_t err = _dupenv_s(&appDataPath, &size, "APPDATA");
+
+    if (err || appDataPath == nullptr)
+    {
+        std::cerr << "Error: Unable to retrieve APPDATA environment variable." << std::endl;
+        io->IniFilename = nullptr;  
+    }
+    else
+    {
+        // Construct the full path to the imgui.ini file
+        std::string iniDirectory = std::string(appDataPath) + "\\Dig_Deeper";
+        std::string iniFilePath = iniDirectory + "\\imgui.ini";
+
+        io->IniFilename = _strdup(iniFilePath.c_str());  // Allocate a copy of the string for ImGui
+
+        // Clean up
+        free(appDataPath); // Use free() to deallocate memory allocated by _dupenv_s
+    }
+}
 
 /// @brief Perform initialization.
 void DebugSystem::OnInit()
@@ -63,6 +87,11 @@ void DebugSystem::OnInit()
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     io = &ImGui::GetIO();
+
+#ifdef NDEBUG //if in release mode
+    SetupImGuiConfigPath(); //set up the imgui config path to the appdata folder
+#endif // NDEBUG
+
     ImFont* font = io->Fonts->AddFontDefault();
     if (font) {
         font->Scale = 1.3f;  // Increase the scale to make the font larger

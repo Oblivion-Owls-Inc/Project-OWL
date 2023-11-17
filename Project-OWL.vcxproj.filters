@@ -63,9 +63,6 @@
     <Filter Include="Engine\Framework">
       <UniqueIdentifier>{2a6e3717-c621-401c-a6a4-e90a03d3026e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Data">
-      <UniqueIdentifier>{93c4d7b5-a3df-4eb6-ae45-9a5eac6d1d02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Collider\CircleCollider">
       <UniqueIdentifier>{f3d76695-1d01-436d-a2f0-5d97be858aa8}</UniqueIdentifier>
     </Filter>
@@ -98,9 +95,6 @@
     </Filter>
     <Filter Include="Engine\Systems\AssetLibrarySystem">
       <UniqueIdentifier>{e11fbac1-b6ee-40d9-a175-8718ea4a895d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Data\Scenes">
-      <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Systems\AssetLibrarySystem">
       <UniqueIdentifier>{4d891ce7-a202-4957-aaa5-fbc0908075eb}</UniqueIdentifier>
@@ -212,7 +206,13 @@
     </Filter>
     <Filter Include="Engine\Systems\DebugSystem\FileExplorer">
       <UniqueIdentifier>{427d5f5a-9fc5-4bf5-b7f5-9934e8ece453}</UniqueIdentifier>
-   </Filter>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{93c4d7b5-a3df-4eb6-ae45-9a5eac6d1d02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Scenes">
+      <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -458,6 +458,12 @@
     <ClCompile Include="Source\UiElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\FileExplorer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_stdlib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -698,6 +704,12 @@
       <Filter>Engine\Systems\CheatSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\UiElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FileExplorer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_stdlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
