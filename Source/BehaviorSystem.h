@@ -34,10 +34,6 @@ private:
     /// @param dt   The elapsed time in seconds since the previous frame
     virtual void OnUpdate(float dt) override;
 
-
-    /// @brief   Clear the list of behaviors when the scene is exited
-    virtual void OnSceneExit() override;
-
     virtual void DebugWindow() override;
 
 

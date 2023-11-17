@@ -147,11 +147,6 @@
         }
     }
 
-    void CollisionSystem::OnSceneExit()
-    {
-        m_Colliders.clear();
-    }
-
     /// @brief  creates the debug window for the CollisionSystem
     void CollisionSystem::DebugWindow()
     {

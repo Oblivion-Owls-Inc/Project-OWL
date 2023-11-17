@@ -11,11 +11,6 @@
             "BaseScenePath": "Data/Scenes/",
             "NextSceneName": "Prototype"
         },
-        "AssetLibrarySystem<Entity>": {},
-        "AssetLibrarySystem<Sound>": {},
-        "AssetLibrarySystem<Texture>": {},
-        "AssetLibrarySystem<TransformAnimation>": {},
-        "AssetLibrarySystem<AnimationAsset>": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<BulletBehavior>": {},
         "BehaviorSystem<TilemapBase>": {},
@@ -32,11 +27,15 @@
         "CameraSystem": {},
         "RenderSystem": {},
         "AudioSystem": {},
+        "CheatSystem": {},
         "DebugSystem": {
             "ShowFpsWindow": true,
             "ShowDebugWindow": false
         },
-        "CheatSystem": {}
-
+        "AssetLibrarySystem<Entity>": {},
+        "AssetLibrarySystem<Sound>": {},
+        "AssetLibrarySystem<Texture>": {},
+        "AssetLibrarySystem<TransformAnimation>": {},
+        "AssetLibrarySystem<AnimationAsset>": {}
     }
 }

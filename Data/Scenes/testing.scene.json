@@ -279,26 +279,6 @@
                             -2.5999999046325684
                         ]
                     },
-                    "AudioPlayer": {
-                        "Volume": 1.0,
-                        "Pitch": 1.0,
-                        "VolumeVariance": 0.0,
-                        "PitchVariance": 0.0,
-                        "DefaultLoopCount": 0,
-                        "PlayOnInit": true,
-                        "Sound": "PlayerFootSteps"
-                    },
-                    "EnemyBehavior": {
-                        "Health": {
-                            "Name": "Health Pool",
-                            "BaseValue": 40,
-                            "CurrentValue": 0,
-                            "Active": true
-                        },
-                        "PathfinderName": "Tiles",
-                        "Speed": 10.0,
-                        "Damage": 1
-                    },
                     "EmitterSprite": {
                         "Layer": 3,
                         "Color": [
@@ -310,6 +290,17 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": "Fireball"
+                    },
+                    "EnemyBehavior": {
+                        "Health": {
+                            "Name": "Health Pool",
+                            "BaseValue": 40,
+                            "CurrentValue": 0,
+                            "Active": true
+                        },
+                        "PathfinderName": "Tiles",
+                        "Speed": 10.0,
+                        "Damage": 1
                     },
                     "RigidBody": {
                         "Velocity": [
@@ -526,7 +517,8 @@
             "Name": "Camera",
             "Components": {
                 "Camera": {
-                    "Width": 30.0
+                    "Width": 30.0,
+                    "IsActive": true
                 },
                 "Transform": {
                     "Translation": [
@@ -2680,17 +2672,27 @@
                     "FrameIndex": 0,
                     "Texture": "FontSheet"
                 },
-                "Transform": {
-                    "Translation": [
-                        -5.0,
-                        3.5999999046325684
+                "UiElement": {
+                    "Anchor": [
+                        -1.0,
+                        1.0
                     ],
-                    "Rotation": 0.0,
-                    "Scale": [
+                    "Pivot": [
+                        -1.0,
+                        1.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
                         0.20000000298023224,
                         0.20000000298023224
                     ],
-                    "IsDiegetic": false
+                    "SizeTypes": [
+                        "Absolute",
+                        "Absolute"
+                    ]
                 }
             }
         },

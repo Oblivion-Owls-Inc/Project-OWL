@@ -47,12 +47,6 @@ void BehaviorSystem<BehaviorType>::OnUpdate(float dt)
     }
 }
 
-template<typename BehaviorType>
-void BehaviorSystem<BehaviorType>::OnSceneExit()
-{
-    m_BehaviorList.clear();
-}
-
 
 template<typename BehaviorType>
 void BehaviorSystem<BehaviorType>::AddBehavior(BehaviorType* behavior)

@@ -105,9 +105,6 @@ private: // virtual override methods
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
     virtual void OnFixedUpdate() override;
 
-    /// @brief  gets called once whenever a scene exits
-    virtual void OnSceneExit() override;
-
     /// @brief  creates the debug window for the CollisionSystem
     virtual void DebugWindow() override;
 
