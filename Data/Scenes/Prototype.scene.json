@@ -299,7 +299,7 @@
                         "Speed": 10.0,
                         "Damage": 1
                     },
-                    "ParticleSprite": {
+                    "EmitterSprite": {
                         "Layer": 3,
                         "Color": [
                             0.0,
@@ -2492,68 +2492,6 @@
                 }
             }
         },
-        "Snow": {
-            "Name": "Snow",
-            "Components": {
-                "Emitter": {
-                    "PPS": 100.4530029296875,
-                    "Delay": 0.0,
-                    "Max": 2048,
-                    "Continuous": true,
-                    "EmitData": [
-                        [
-                            -1.0,
-                            11.0
-                        ],
-                        [
-                            15.3100004196167,
-                            0.5400000214576721
-                        ],
-                        [
-                            0.0,
-                            0.0
-                        ],
-                        4.936999797821045,
-                        2.190000057220459,
-                        0.20000000298023224,
-                        0.0,
-                        0.0,
-                        0.9629999995231628,
-                        0.16500000655651093,
-                        0.0,
-                        0.0,
-                        0.25,
-                        3.0,
-                        0.0,
-                        0.0
-                    ]
-                },
-                "ParticleSprite": {
-                    "Layer": 1,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": "Ball3"
-                },
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        0.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                }
-            }
-        },
         "Player": {
             "Name": "Player",
             "Components": {
@@ -2753,6 +2691,68 @@
                         0.20000000298023224
                     ],
                     "IsDiegetic": false
+                }
+            }
+        },
+        "Snow": {
+            "Name": "Snow",
+            "Components": {
+                "Emitter": {
+                    "PPS": 100.4530029296875,
+                    "Delay": 0.0,
+                    "Max": 2048,
+                    "Continuous": true,
+                    "EmitData": [
+                        [
+                            -1.0,
+                            11.0
+                        ],
+                        [
+                            15.3100004196167,
+                            0.5400000214576721
+                        ],
+                        [
+                            0.0,
+                            0.0
+                        ],
+                        4.936999797821045,
+                        2.190000057220459,
+                        0.20000000298023224,
+                        0.0,
+                        0.0,
+                        0.9629999995231628,
+                        0.16500000655651093,
+                        0.0,
+                        0.0,
+                        0.25,
+                        3.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "EmitterSprite": {
+                    "Layer": 0,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Ball3"
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
                 }
             }
         }

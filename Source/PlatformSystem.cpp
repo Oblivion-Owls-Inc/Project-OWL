@@ -175,9 +175,14 @@
             m_WindowSize = glm::ivec2( mode->width, mode->height );
 
             glfwSwapInterval(m_VSync ? 1 : 0); // enable vsync
+
+            Debug() << "Fullscreen Mode" << std::endl;
+
+            Debug().ResetViewport();
         }
         else
         {
+            Debug().ResetViewport();
 
             glfwSwapInterval(m_VSync ? 1 : 0); // enable vsync
 
@@ -186,6 +191,8 @@
 
             // Restore the window's previous size and position
             glfwSetWindowMonitor( m_Window, nullptr, savedPosX, savedPosY, savedWidth, savedHeight, 0 );
+
+            Debug() << "Windowed Mode" << std::endl;
         }
 
     }

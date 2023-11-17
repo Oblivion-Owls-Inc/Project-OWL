@@ -12,10 +12,10 @@
 //------------------------------------------------------------------------------
 
 #include "Stream.h"
-
 #include "DebugSystem.h"
-
 #include <fstream> // std::ifstream
+#include <shlobj_core.h>
+
 
 //------------------------------------------------------------------------------
 // public: static methods
@@ -40,11 +40,50 @@
     /// @param traceMessage The message to be written.
     void Stream::WriteToTraceLog(std::string const& traceMessage)
     {
+#ifdef NDEBUG //These are backwards for some reason but it works
+
+        char* appData = nullptr;
+        size_t size = 0;
+        errno_t err = _dupenv_s(&appData, &size, "APPDATA");
+
+        if (err || appData == nullptr) 
+        {
+            std::cerr << "Error: Unable to retrieve APPDATA environment variable." << std::endl;
+            return;
+        }
+
+        std::string gameDirectory = std::string(appData) + "\\Dig_Deeper"; // Create the game directory path
+        free(appData); // Free the memory allocated by _dupenv_s
+
+        // Check if the game directory exists
+        DWORD ftyp = GetFileAttributesA(gameDirectory.c_str());
+        if (ftyp == INVALID_FILE_ATTRIBUTES) 
+        {
+            // Directory doesn't exist, attempt to create it
+            if (!CreateDirectoryA(gameDirectory.c_str(), NULL)) 
+            {
+                std::cerr << "Error: Unable to create directory \"" << gameDirectory << "\"" << std::endl;
+                return;
+            }
+        }
+        else if (!(ftyp & FILE_ATTRIBUTE_DIRECTORY))  // Check if the path is a directory
+        {
+            // A file with the same name as the directory exists
+            std::cerr << "Error: Game directory path \"" << gameDirectory << "\" is a file!" << std::endl;
+            return;
+        }
+
+        std::string traceFilePath = gameDirectory + "\\trace.log";
+
+#else
+    		std::string traceFilePath = "trace.log";
+#endif
+
         // Attempt to open the trace log for writing.
-        static std::ofstream traceFile("trace.log");
+        static std::ofstream traceFile(traceFilePath.c_str());
         if (!traceFile.is_open())
         {
-            Debug() << "Warning: unable to open file \"trace.log\"" << std::endl;
+            std::cerr << "Warning: unable to open file \"" << traceFilePath << "\"" << std::endl;
             return;
         }
 

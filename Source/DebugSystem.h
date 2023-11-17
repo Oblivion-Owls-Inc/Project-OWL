@@ -59,6 +59,7 @@ public:
     /// @param window The GLFW window handle to set
     void SetWindowHandle(GLFWwindow* window) { _window = window; }
 
+
     /// @brief Initialize the DebugSystem
     void OnInit() override;
 
@@ -73,6 +74,7 @@ public:
     /// @brief Gets Called by the Debug system to display debug information
     virtual void DebugWindow() override;
 
+    void ResetViewport();
 
 ///----------------------------------------------------------------------------
 public: // DebugStream
@@ -172,6 +174,9 @@ private: // methods
     /// @brief Shows the List of Systems that begin with the given prefix
     /// @param prefix - the prefix to filter the list of Systems by
     void ShowSystemList(const std::string& prefix);
+
+    /// @brief Sets up the ImGui configuration path
+    void SetupImGuiConfigPath();
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
