@@ -269,7 +269,7 @@
         nlohmann::ordered_json json;
 
         json[ "Width" ] = Stream::Write( m_Scale );
-        json[ "IsActive" ] = Stream::Write( m_Scale );
+        json[ "IsActive" ] = Stream::Write( m_IsActive );
 
         return json;
     }

@@ -166,12 +166,18 @@
     {
         for ( Entity* entity : m_Entities )
         {
+            entity->ExitComponents();
+        }
+
+        for ( Entity* entity : m_Entities )
+        {
             delete entity;
         }
 
         m_Entities.clear();
     }
 
+    /// @brief Gets Called each frame
     void EntitySystem::OnUpdate(float)
     {
         for ( int i = 0; i < m_Entities.size(); ++i )

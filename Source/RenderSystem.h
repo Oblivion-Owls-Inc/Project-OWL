@@ -112,7 +112,6 @@ private:
     virtual void OnInit() override;
     virtual void OnExit() override;
     virtual void OnUpdate(float dt) override;
-    virtual void OnSceneExit() override;
 
     //-------------------------------------------------------------------------
     //          data

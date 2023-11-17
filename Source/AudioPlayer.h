@@ -149,6 +149,9 @@ private: // virtual override methods
     /// @brief  called once when entering the scene
     virtual void OnInit() override;
 
+    /// @brief  called once when exiting the scene
+    virtual void OnExit() override;
+
 
     /// @brief  shows the inspector for AudioPlayer
     virtual void Inspector() override;

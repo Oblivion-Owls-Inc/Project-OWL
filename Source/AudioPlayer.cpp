@@ -287,6 +287,12 @@
         }
     }
 
+    /// @brief  called once when exiting the scene
+    void AudioPlayer::OnExit()
+    {
+        Stop();
+    }
+
 
     /// @brief  shows the inspector for AudioPlayer
     void AudioPlayer::Inspector()
