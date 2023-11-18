@@ -1,3 +1,12 @@
+///*****************************************************************/
+/// @file	    BasicEntityBehavior.h
+/// @author     Jax Clayton (jax.clayton@digipen.edu)
+/// @date	    11/10/2023
+/// @brief      BasicEntityBehavior class header
+/// @copyright  Digipen LLC (c) 2023
+///*****************************************************************/
+
+
 #include "Behavior.h"
 #include "Pool.h"
 

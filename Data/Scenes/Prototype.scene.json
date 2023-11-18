@@ -7,7 +7,15 @@
             },
             "PlayerFootSteps": {
                 "IsLoopabe": true,
-                "Filepath": "Data/Sounds/Effects/FoleyFootsteps-Footsteps&_1.wav"
+                "Filepath": "Data/Sounds/Player/Footsteps, Human, Dirty Ground, Run SND62079 1.wav"
+            },
+            "TurretShoot": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Turret/TurretShoot.wav"
+            },
+            "EnemySound": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Enemy/FoleyFootsteps-Footsteps&_1.wav"
             }
         },
         "Textures": {
@@ -286,7 +294,7 @@
                         "PitchVariance": 0.0,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
-                        "Sound": "PlayerFootSteps"
+                        "Sound": "EnemySound"
                     },
                     "EnemyBehavior": {
                         "Health": {
@@ -378,6 +386,15 @@
                             1.0
                         ],
                         "IsDiegetic": true
+                    },
+                    "AudioPlayer": {
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": true,
+                        "Sound": "TurretShoot"
                     },
                     "TurretBehavior": {
                         "FireRate": 1.0,

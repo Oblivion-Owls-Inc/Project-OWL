@@ -1,3 +1,10 @@
+///*****************************************************************/
+/// @file	    BasicEntityBehavior.cpp
+/// @author     Jax Clayton (jax.clayton@digipen.edu)
+/// @date	    11/10/2023
+/// @brief      BasicEntityBehavior class header
+/// @copyright  Digipen LLC (c) 2023
+///*****************************************************************/
 #include "BasicEntityBehavior.h"
 #include "BehaviorSystem.h"
 #include "Entity.h"
