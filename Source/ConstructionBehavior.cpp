@@ -417,7 +417,7 @@
             ImGui::EndCombo();
         }
 
-        if ( ImGui::BeginCombo( "Resources Text Entity", m_TilemapName.c_str() ) )
+        if ( ImGui::BeginCombo( "Resources Text Entity", m_ResourcesTextName.c_str() ) )
         {
             for ( Entity* entity : Entities()->GetEntities() )
             {
@@ -482,14 +482,14 @@
     /// @param  data    the json data to read from
     void ConstructionBehavior::readPreviewColorPlaceable( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_PreviewColorPlaceable, data );
+        Stream::Read( &m_PreviewColorPlaceable, data );
     }
 
     /// @brief  reads the preview color - nonplaceable
     /// @param  data    the json data to read from
     void ConstructionBehavior::readPreviewColorNonPlaceable( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_PreviewColorNonPlaceable, data );
+        Stream::Read( &m_PreviewColorNonPlaceable, data );
     }
 
     /// @brief  reads the preview alpha
@@ -550,7 +550,7 @@
         { "Buildings"               , &readBuildings                },
         { "BuildingIndex"           , &readBuildingIndex            },
         { "PlacementRange"          , &readPlacementRange           },
-        { "PreviewFadeOutRadius"    , readPreviewFadeOutRadius      },
+        { "PreviewFadeOutRadius"    , &readPreviewFadeOutRadius     },
         { "MiningTime"              , &readMiningTime               },
         { "PreviewColorPlaceable"   , &readPreviewColorPlaceable    },
         { "PreviewColorNonPlaceable", &readPreviewColorNonPlaceable },
@@ -610,8 +610,18 @@
         m_BuildingArchetypes( other.m_BuildingArchetypes ),
         m_BuildingCosts( other.m_BuildingCosts ),
         m_BuildingIndex( other.m_BuildingIndex ),
+        m_PlacementRange( other.m_PlacementRange ),
+        m_PreviewFadeOutRadius( other.m_PreviewFadeOutRadius ),
+        m_MiningTime( other.m_MiningTime ),
+        m_PreviewColorPlaceable( other.m_PreviewColorPlaceable ),
+        m_PreviewColorNonPlaceable( other.m_PreviewColorNonPlaceable ),
+        m_PreviewAlpha( other.m_PreviewAlpha ),
+        m_CurrentResources( other.m_CurrentResources ),
+        m_MiningResourceGain( other.m_MiningResourceGain ),
+        m_ResourcesTextPrefix( other.m_ResourcesTextPrefix ),
+        m_TilemapName( other.m_TilemapName ),
         m_PlayerName( other.m_PlayerName ),
-        m_TilemapName( other.m_TilemapName )
+        m_ResourcesTextName( other.m_ResourcesTextName )
     {}
 
 //-----------------------------------------------------------------------------
