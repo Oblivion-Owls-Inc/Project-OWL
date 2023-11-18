@@ -164,9 +164,11 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
       <PreprocessorDefinitions>GLEW_STATIC;NDEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)rapidjson;$(SolutionDir)imgui;$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -174,7 +176,6 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)rapidjson;$(SolutionDir)libraries</AdditionalLibraryDirectories>
-      <AdditionalOptions>/NODEFAULTLIB:MSVCRT.lib /NODEFAULTLIB:LIBCMT.lib %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib; User32.lib; Gdi32.lib; Shell32.lib; fmod_vc.lib;</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -352,7 +353,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties Data_4Scenes_4Gameover_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" Data_4Scenes_4GameWin_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" Data_4Scenes_4Prototype_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" />
+      <UserProperties Data_4Scenes_4GameWin_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" Data_4Scenes_4Prototype_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
