@@ -1,9 +1,7 @@
 #include "Engine.h"
-#include <Windows.h>
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+int main()
 {
-
     // *** Initialize the window using glfw *******************************************************
 
     Engine* engine = Engine::GetInstance();
@@ -18,6 +16,4 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     return 0;
 }
-
-
 
