@@ -68,119 +68,14 @@
     /// @brief  called every simulation frame
     void ConstructionBehavior::OnFixedUpdate()
     {
-        m_ResourcesText->SetText( ( std::stringstream() << "Resources: " << m_CurrentResources ).str() );
+        updateTargetLocation();
+        updateSelectedBuilding();
 
-        for ( int i = 0; i <= m_BuildingArchetypes.size() ; ++i )
-        {
-            if ( Input()->GetKeyReleased( GLFW_KEY_0 + i ) )
-            {
-                m_BuildingIndex = i - 1;
-                if ( i != 0 )
-                {
-                    m_Sprite->SetTexture( m_BuildingArchetypes[ i - 1 ]->GetComponent<Sprite>()->GetTexture() );
-                    m_Transform->SetScale( m_BuildingArchetypes[ i - 1 ]->GetComponent<Transform>()->GetScale() );
-                }
-            }
-        }
+        tryPlaceBuilding();
+        tryBreakTile();
 
-
-        glm::mat4 const& worldToTile = m_Tilemap->GetWorldToTilemapMatrix();
-        glm::vec2 mousePos = Input()->GetMousePosWorld();
-        glm::ivec2 tilePos = worldToTile * glm::vec4( mousePos, 0, 1 );
-
-        glm::mat4 const& tileToWorld = m_Tilemap->GetTilemapToWorldMatrix();
-        glm::vec2 buildPos = tileToWorld * glm::vec4( (glm::vec2)tilePos + glm::vec2( 0.5f ), 0, 1 );
-
-        glm::vec2 offset = buildPos - m_PlayerTransform->GetTranslation();
-        float distanceSquared = glm::dot( offset, offset );
-
-        if (
-            distanceSquared <= m_PlacementRange * m_PlacementRange &&
-            Input()->GetMouseDown( GLFW_MOUSE_BUTTON_1 )
-            )
-        {
-
-            // TODO: visuals for digging
-            // TODO: make it so changing tiles will reset the timer
-
-            if (
-                tilePos.x >= 0 && tilePos.x < m_Tilemap->GetDimensions().x &&
-                tilePos.y >= 0 && tilePos.y < m_Tilemap->GetDimensions().y &&
-                m_Tilemap->GetTile( tilePos ) != 0
-                )
-            {
-                if (
-                    Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_1 ) ||
-                    tilePos != m_CurrentMiningTarget
-                )
-                {
-                    m_CurrentMiningTarget = tilePos;
-                    m_MiningDelay = m_MiningTime;
-                }
-
-                m_MiningDelay -= Engine::GetInstance()->GetFixedFrameDuration();
-
-                if ( m_MiningDelay <= 0 )
-                {
-                    m_Tilemap->SetTile( tilePos, 0 );
-
-                    // TEMP: gain resources whenever mining a block
-                    m_CurrentResources += m_MiningResourceGain;
-
-                }
-            }
-        }
-
-        if ( m_BuildingIndex == -1 )
-        {
-            m_Sprite->SetOpacity( 0.0f );
-            return;            
-        }
-
-
-        m_Transform->SetTranslation( buildPos );
-
-
-        if (
-            distanceSquared <= m_PlacementRange * m_PlacementRange &&
-            m_BuildingCosts[ m_BuildingIndex ] <= m_CurrentResources
-        )
-        {
-            m_Sprite->SetOpacity( 0.5f );
-
-            if (
-                tilePos.x < 0 || tilePos.x >= m_Tilemap->GetDimensions().x ||
-                tilePos.y < 0 || tilePos.y >= m_Tilemap->GetDimensions().y ||
-                m_Tilemap->GetTile( tilePos ) != 0 ||
-                m_Buildings->GetTile( tilePos ) != nullptr
-                )
-            {
-                m_Sprite->SetColor( { 0.5f, 0, 0.0f, 0 } );
-                return;
-            }
-
-            // TODO: pointcast to ensure ovarlapping turrets are prevented
-
-            m_Sprite->SetColor( { 0, 0.5f, 0, 0 } );
-
-            if ( Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_2 ) )
-            {
-                Entity* turret = m_BuildingArchetypes[ m_BuildingIndex ]->Clone();
-                turret->GetComponent<Transform>()->SetTranslation( buildPos );
-
-                Entities()->AddEntity( turret );
-                m_Buildings->SetTile( tilePos, turret );
-
-                m_CurrentResources -= m_BuildingCosts[ m_BuildingIndex ];
-            }
-        }
-        else
-        {
-            offset += mousePos - buildPos;
-            float distance = std::sqrt( glm::dot( offset, offset ) );
-            m_Sprite->SetColor( { 0.5f, 0, 0, 0 } );
-            m_Sprite->SetOpacity( std::lerp( 0.5f, 0.0f, std::clamp( distance - m_PlacementRange, 0.0f, 1.0f ) ) );
-        }
+        showBuildingPreview();
+        updateResourcesText();
     }
 
     /// @brief  displays this ConstructionBehavior in the Inspector
@@ -200,6 +95,222 @@
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  updates the targeted tile location
+    void ConstructionBehavior::updateTargetLocation()
+    {
+        glm::mat4 const& worldToTile = m_Tilemap->GetWorldToTilemapMatrix();
+        glm::mat4 const& tileToWorld = m_Tilemap->GetTilemapToWorldMatrix();
+
+        glm::vec2 mousePos = Input()->GetMousePosWorld();
+        m_TargetTilePos = worldToTile * glm::vec4( mousePos, 0, 1 );
+
+        glm::vec2 tileCenter = (glm::vec2)m_TargetTilePos + glm::vec2( 0.5f );
+        m_TargetPos = tileToWorld * glm::vec4( tileCenter, 0, 1 );
+    }
+
+    /// @brief  updates which building is currently selected
+    void ConstructionBehavior::updateSelectedBuilding()
+    {
+        for ( int i = 0; i <= m_BuildingArchetypes.size() ; ++i )
+        {
+            if ( Input()->GetKeyReleased( GLFW_KEY_0 + i ) == false )
+            {
+                continue;
+            }
+
+            m_BuildingIndex = i - 1;
+            if ( i != 0 )
+            {
+                // update preview sprite
+                m_Sprite->SetTexture( m_BuildingArchetypes[ i - 1 ]->GetComponent<Sprite>()->GetTexture() );
+                m_Transform->SetScale( m_BuildingArchetypes[ i - 1 ]->GetComponent<Transform>()->GetScale() );
+            }
+        }
+    }
+
+
+    /// @brief  tries to place the currently selected building
+    void ConstructionBehavior::tryPlaceBuilding()
+    {
+        // skip if build button not pressed
+        if ( Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_2 ) == false )
+        {
+            return;
+        }
+
+
+        if ( isCurrentlyPlaceable() )
+        {
+            placeBuilding();
+        }
+        else
+        {
+            // TODO: give audiovisual feedback that building couldn't be placed
+        }
+
+    }
+
+    /// @brief  checks if the currently selected building is placeable
+    bool ConstructionBehavior::isCurrentlyPlaceable() const
+    {
+        // no building selected
+        if ( m_BuildingIndex == -1 )
+        {
+            return false;
+        }
+
+        // not enough funds
+        if ( m_BuildingCosts[ m_BuildingIndex ] > m_CurrentResources )
+        {
+            return false;
+        }
+
+        // target outside of tilemap
+        if ( m_Tilemap->IsPositionWithinBounds( m_TargetTilePos ) == false )
+        {
+            return false;
+        }
+
+        // target overlaps a tile
+        if ( m_Tilemap->GetTile( m_TargetTilePos ) != 0 )
+        {
+            return false;
+        }
+
+        // target overlaps a building
+        if ( m_Buildings->GetTile( m_TargetTilePos ) != nullptr )
+        {
+            return false;
+        }
+
+        // target pos out of range
+        if ( glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos ) > m_PlacementRange )
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    /// @brief  palces the currently selected building
+    void ConstructionBehavior::placeBuilding()
+    {
+        // TODO: give feedback that the building was placed
+
+        Entity* building = m_BuildingArchetypes[ m_BuildingIndex ]->Clone();
+        building->GetComponent<Transform>()->SetTranslation( m_TargetPos );
+        
+        Entities()->AddEntity( building );
+        m_Buildings->SetTile( m_TargetTilePos, building );
+        
+        m_CurrentResources -= m_BuildingCosts[ m_BuildingIndex ];
+    }
+
+
+    /// @brief  tries to break the currently targeted tile
+    void ConstructionBehavior::tryBreakTile()
+    {
+        // skip if dig button not pressed
+        if ( Input()->GetMouseDown( GLFW_MOUSE_BUTTON_1 ) == false )
+        {
+            return;
+        }
+
+        if ( canBreakTile() )
+        {
+            breakTile();
+        }
+    }
+
+    /// @brief checks whether the currently targeted tile can be broken
+    bool ConstructionBehavior::canBreakTile() const
+    {
+        // target outside of tilemap
+        if ( m_Tilemap->IsPositionWithinBounds( m_TargetTilePos ) == false )
+        {
+            return false;
+        }
+
+        // no tile at target pos
+        if ( m_Tilemap->GetTile( m_TargetTilePos ) == 0 )
+        {
+            return false;
+        }
+
+        // target pos out of range
+        if ( glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos ) > m_PlacementRange )
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    /// @brief  breaks the currently targeted tile
+    void ConstructionBehavior::breakTile()
+    {
+        // reset timer when changing targets
+        if ( m_TargetTilePos != m_PreviousTargetTilePos )
+        {
+            m_MiningDelay = m_MiningTime;
+            m_PreviousTargetTilePos = m_TargetTilePos;
+        }
+        
+        // decrease timer
+        m_MiningDelay -= Engine::GetInstance()->GetFixedFrameDuration();
+        
+        // break tile
+        if ( m_MiningDelay <= 0.0f )
+        {
+            m_Tilemap->SetTile( m_TargetTilePos, 0 );
+        
+            // TEMP: gain resources whenever mining a block
+            m_CurrentResources += m_MiningResourceGain;
+        
+        }
+    }
+
+
+    /// @brief  displays the building preview
+    void ConstructionBehavior::showBuildingPreview()
+    {
+        float distance = glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos );
+
+        // no preview if out of range or no building selected
+        if ( m_BuildingIndex == -1 || distance >= m_PlacementRange + m_PreviewFadeOutRadius )
+        {
+            m_Sprite->SetOpacity( 0.0f );
+            return;
+        }
+
+        m_Transform->SetTranslation( m_TargetPos );
+
+        if ( isCurrentlyPlaceable() )
+        {
+            m_Sprite->SetColor( m_PreviewColorPlaceable );
+            m_Sprite->SetOpacity( m_PreviewAlpha );
+        }
+        else
+        {
+            m_Sprite->SetColor( m_PreviewColorNonPlaceable );
+            
+            // alpha fades away the further from the player it gets
+            float alpha = m_PreviewAlpha * ( 1.0f - ( distance - m_PlacementRange ) / m_PreviewFadeOutRadius );
+            alpha = std::min( alpha, m_PreviewAlpha );
+            m_Sprite->SetOpacity( alpha );
+        }
+
+    }
+
+    /// @brief  updates the resources text UI
+    void ConstructionBehavior::updateResourcesText()
+    {
+        m_ResourcesText->SetText( m_ResourcesTextPrefix + std::to_string( m_CurrentResources ) );
+    }
+
+
 
     /// @brief  inspector for the building list
     void ConstructionBehavior::inspectBuildingList()
@@ -336,39 +447,56 @@
         }
     }
 
-    /// @brief  read the tilemap name
+    /// @brief  read the building index
     /// @param  data    the json data to read from
-    void ConstructionBehavior::readTilemapName( nlohmann::ordered_json const& data )
+    void ConstructionBehavior::readBuildingIndex( nlohmann::ordered_json const& data )
     {
-        m_TilemapName = data;
+        Stream::Read( m_BuildingIndex, data );
     }
 
-    /// @brief  read the player name
-    /// @param  data    the json data to read from
-    void ConstructionBehavior::readPlayerName( nlohmann::ordered_json const& data )
-    {
-        m_PlayerName = data;
-    }
 
     /// @brief  read the player name
     /// @param  data    the json data to read from
     void ConstructionBehavior::readPlacementRange( nlohmann::ordered_json const& data )
     {
-        m_PlacementRange = data;
+        Stream::Read( m_PlacementRange, data );
     }
 
-    /// @brief  read the building index
+    /// @brief  read the preview fade out range
     /// @param  data    the json data to read from
-    void ConstructionBehavior::readBuildingIndex( nlohmann::ordered_json const& data )
+    void ConstructionBehavior::readPreviewFadeOutRadius( nlohmann::ordered_json const& data )
     {
-        m_BuildingIndex = data;
+        Stream::Read( m_PreviewFadeOutRadius, data );
     }
+
 
     /// @brief  reads the mining time
     /// @param  data    the json data to read from
     void ConstructionBehavior::readMiningTime( nlohmann::ordered_json const& data )
     {
         Stream::Read( m_MiningTime, data );
+    }
+
+
+    /// @brief  reads the preview color - placeable
+    /// @param  data    the json data to read from
+    void ConstructionBehavior::readPreviewColorPlaceable( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_PreviewColorPlaceable, data );
+    }
+
+    /// @brief  reads the preview color - nonplaceable
+    /// @param  data    the json data to read from
+    void ConstructionBehavior::readPreviewColorNonPlaceable( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_PreviewColorNonPlaceable, data );
+    }
+
+    /// @brief  reads the preview alpha
+    /// @param  data    the json data to read from
+    void ConstructionBehavior::readPreviewAlpha( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_PreviewAlpha, data );
     }
 
 
@@ -379,6 +507,36 @@
         Stream::Read( m_CurrentResources, data );
     }
 
+    /// @brief  reads the mining resources gain
+    /// @param  data    the json data to read from
+    void ConstructionBehavior::readMiningResourceGain( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MiningResourceGain, data );
+    }
+
+
+    /// @brief  reads the resources text prefix
+    /// @param  data    the json data to read from
+    void ConstructionBehavior::readResourcesTextPrefix( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_ResourcesTextPrefix, data );
+    }
+
+
+    /// @brief  read the tilemap name
+    /// @param  data    the json data to read from
+    void ConstructionBehavior::readTilemapName( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_TilemapName, data );
+    }
+
+    /// @brief  read the player name
+    /// @param  data    the json data to read from
+    void ConstructionBehavior::readPlayerName( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_PlayerName, data );
+    }
+
     /// @brief  reads the resources text entity name
     /// @param  data    the json data to read from
     void ConstructionBehavior::readResourcesTextName( nlohmann::ordered_json const& data )
@@ -386,17 +544,25 @@
         Stream::Read( m_ResourcesTextName, data );
     }
 
+
     /// @brief  map of the read methods for this Component
     ReadMethodMap< ConstructionBehavior > ConstructionBehavior::s_ReadMethods = {
-        { "Buildings"        , &readBuildings         },
-        { "TilemapName"      , &readTilemapName       },
-        { "PlayerName"       , &readPlayerName        },
-        { "PlacementRange"   , &readPlacementRange    },
-        { "BuildingIndex"    , &readBuildingIndex     },
-        { "MiningTime"       , &readMiningTime        },
-        { "CurrentResources" , &readCurrentResources  },
-        { "ResourcesTextName", &readResourcesTextName }
+        { "Buildings"               , &readBuildings                },
+        { "BuildingIndex"           , &readBuildingIndex            },
+        { "PlacementRange"          , &readPlacementRange           },
+        { "PreviewFadeOutRadius"    , readPreviewFadeOutRadius      },
+        { "MiningTime"              , &readMiningTime               },
+        { "PreviewColorPlaceable"   , &readPreviewColorPlaceable    },
+        { "PreviewColorNonPlaceable", &readPreviewColorNonPlaceable },
+        { "PreviewAlpha"            , &readPreviewAlpha             },
+        { "CurrentResources"        , &readCurrentResources         },
+        { "MiningResourceGain"      , &readMiningResourceGain       },
+        { "ResourcesTextPrefix"     , &readResourcesTextPrefix      },
+        { "TilemapName"             , &readTilemapName              },
+        { "PlayerName"              , &readPlayerName               },
+        { "ResourcesTextName"       , &readResourcesTextName        }
     };
+
 
 //-----------------------------------------------------------------------------
 // public: writing
@@ -415,13 +581,19 @@
             buildings[ i ][ "Cost" ] = m_BuildingCosts[ i ];
         }
 
-        json[ "PlayerName" ] = Stream::Write( m_PlayerName );
-        json[ "TilemapName" ] = Stream::Write( m_TilemapName );
-        json[ "PlacementRange" ] = Stream::Write( m_PlacementRange );
-        json[ "BuildingIndex" ] = Stream::Write( m_BuildingIndex );
-        json[ "MiningTime" ] = Stream::Write( m_MiningTime );
-        json[ "CurrentResources" ] = Stream::Write( m_CurrentResources );
-        json[ "ResourcesTextName" ] = Stream::Write( m_ResourcesTextName );
+        json[ "BuildingIndex"           ] = Stream::Write( m_BuildingIndex );
+        json[ "PlacementRange"          ] = Stream::Write( m_PlacementRange );
+        json[ "PreviewFadeOutRadius"    ] = Stream::Write( m_PreviewFadeOutRadius );
+        json[ "MiningTime"              ] = Stream::Write( m_MiningTime );
+        json[ "PreviewColorPlaceable"   ] = Stream::Write( m_PreviewColorPlaceable );
+        json[ "PreviewColorNonPlaceable"] = Stream::Write( m_PreviewColorNonPlaceable );
+        json[ "PreviewAlpha"            ] = Stream::Write( m_PreviewAlpha );
+        json[ "CurrentResources"        ] = Stream::Write( m_CurrentResources );
+        json[ "MiningResourceGain"      ] = Stream::Write( m_MiningResourceGain );
+        json[ "ResourcesTextPrefix"     ] = Stream::Write( m_ResourcesTextPrefix );
+        json[ "TilemapName"             ] = Stream::Write( m_TilemapName );
+        json[ "PlayerName"              ] = Stream::Write( m_PlayerName );
+        json[ "ResourcesTextName"       ] = Stream::Write( m_ResourcesTextName );
 
         return json;
     }
@@ -437,6 +609,7 @@
         Behavior( other ),
         m_BuildingArchetypes( other.m_BuildingArchetypes ),
         m_BuildingCosts( other.m_BuildingCosts ),
+        m_BuildingIndex( other.m_BuildingIndex ),
         m_PlayerName( other.m_PlayerName ),
         m_TilemapName( other.m_TilemapName )
     {}

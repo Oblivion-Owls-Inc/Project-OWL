@@ -134,6 +134,12 @@ public:
     glm::mat4 const& GetWorldToTilemapMatrix() const { return m_InvMat; }
 
 
+    /// @brief  gets whether a tile is within this Tilemap
+    /// @param  tilePos the tile position to check
+    /// @return whether the tile position is within this Tilemap
+    bool IsPositionWithinBounds( glm::ivec2 const& tilePos ) const;
+
+
 //-----------------------------------------------------------------------------
 //          Virtual overrides
 //-----------------------------------------------------------------------------

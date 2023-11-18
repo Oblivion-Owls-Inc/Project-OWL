@@ -94,26 +94,53 @@ private: // members
     /// @brief  the costs of each building type
     std::vector< int > m_BuildingCosts = {};
 
-    /// @brief  how far the player can reach to place things
-    float m_PlacementRange = 1;
-
     /// @brief  the index of the selected building to build
     int m_BuildingIndex = -1;
 
 
+    /// @brief  how far the player can reach to place things
+    float m_PlacementRange = 1.0f;
+
+    /// @brief  how far past the placement range until the preview is fully faded out
+    float m_PreviewFadeOutRadius = 2.0f;
+
+
     /// @brief  how long it takes to mine a tile
     float m_MiningTime = 1.0f;
+
     /// @brief  how long remaining to mine the current tile
     float m_MiningDelay = 0.0f;
 
-    /// @brief  the current tile being mined
-    glm::ivec2 m_CurrentMiningTarget = { -1, -1 };
+
+    /// @brief  the current tile being targeted
+    glm::ivec2 m_TargetTilePos = { -1, -1 };
+
+    /// @brief  the previous targetted tile pos
+    glm::ivec2 m_PreviousTargetTilePos = { -1, -1 };
+
+    /// @brief  the current position being targeted
+    glm::vec2 m_TargetPos = { 0, 0 };
+
+
+    /// @brief  color of the preview when the building is placeable
+    glm::vec4 m_PreviewColorPlaceable = { 0, 0.5f, 0, 0 };
+
+    /// @brief  color of the preview when the building is not placeable
+    glm::vec4 m_PreviewColorNonPlaceable = { 0.5f, 0, 0, 0 };
+
+    /// @brief  the default transparency the preview is shown with
+    float m_PreviewAlpha = 0.5f;
 
 
     /// @brief  how many resources the player currently has available
     int m_CurrentResources = 0;
+
     /// @brief  how many resources are gained when mining a block
     int m_MiningResourceGain = 1;
+
+
+    /// @brief  the prefix string of the resources text, which the amount of resources will be appended to
+    std::string m_ResourcesTextPrefix = "Resources: ";
 
 
     /// @brief  the name of the player entity
@@ -150,6 +177,42 @@ private: // members
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
+    
+
+    
+    /// @brief  updates the targeted tile location
+    void updateTargetLocation();
+
+    /// @brief  updates which building is currently selected
+    void updateSelectedBuilding();
+
+
+    /// @brief  tries to place the currently selected building
+    void tryPlaceBuilding();
+
+    /// @brief  checks if the currently selected building is placeable
+    bool isCurrentlyPlaceable() const;
+
+    /// @brief  palces the currently selected building
+    void placeBuilding();
+
+
+    /// @brief  tries to break the currently targeted tile
+    void tryBreakTile();
+
+    /// @brief checks whether the currently targeted tile can be broken
+    bool canBreakTile() const;
+
+    /// @brief  breaks the currently targeted tile
+    void breakTile();
+
+
+    /// @brief  displays the building preview
+    void showBuildingPreview();
+
+    /// @brief  updates the resources text UI
+    void updateResourcesText();
+
 
     /// @brief  inspector for the building list
     void inspectBuildingList();
@@ -168,33 +231,63 @@ private: // reading
     /// @param  data    the json data to read from
     void readBuildings( nlohmann::ordered_json const& data );
 
-    /// @brief  read the tilemap name
+    /// @brief  read the building index
     /// @param  data    the json data to read from
-    void readTilemapName( nlohmann::ordered_json const& data );
+    void readBuildingIndex( nlohmann::ordered_json const& data );
 
-    /// @brief  read the player name
-    /// @param  data    the json data to read from
-    void readPlayerName( nlohmann::ordered_json const& data );
 
     /// @brief  read the placement range
     /// @param  data    the json data to read from
     void readPlacementRange( nlohmann::ordered_json const& data );
 
-    /// @brief  read the building index
+    /// @brief  read the preview fade out range
     /// @param  data    the json data to read from
-    void readBuildingIndex( nlohmann::ordered_json const& data );
+    void readPreviewFadeOutRadius( nlohmann::ordered_json const& data );
+
 
     /// @brief  reads the mining time
     /// @param  data    the json data to read from
     void readMiningTime( nlohmann::ordered_json const& data );
 
+
+    /// @brief  reads the preview color - placeable
+    /// @param  data    the json data to read from
+    void readPreviewColorPlaceable( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the preview color - nonplaceable
+    /// @param  data    the json data to read from
+    void readPreviewColorNonPlaceable( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the preview alpha
+    /// @param  data    the json data to read from
+    void readPreviewAlpha( nlohmann::ordered_json const& data );
+
+
     /// @brief  reads the current resources
     /// @param  data    the json data to read from
     void readCurrentResources( nlohmann::ordered_json const& data );
 
+    /// @brief  reads the mining resources gain
+    /// @param  data    the json data to read from
+    void readMiningResourceGain( nlohmann::ordered_json const& data );
+
+
+    /// @brief  reads the resources text prefix
+    /// @param  data    the json data to read from
+    void readResourcesTextPrefix( nlohmann::ordered_json const& data );
+
+
+    /// @brief  read the tilemap name
+    /// @param  data    the json data to read from
+    void readTilemapName( nlohmann::ordered_json const& data );
+
     /// @brief  reads the resources text entity name
     /// @param  data    the json data to read from
     void readResourcesTextName( nlohmann::ordered_json const& data );
+
+    /// @brief  read the player name
+    /// @param  data    the json data to read from
+    void readPlayerName( nlohmann::ordered_json const& data );
 
 
     /// @brief  map of the read methods for this Component
