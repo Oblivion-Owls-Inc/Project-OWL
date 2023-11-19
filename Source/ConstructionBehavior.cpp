@@ -93,7 +93,7 @@
     }
 
 //-----------------------------------------------------------------------------
-// private: methods
+// private: helper methods
 //-----------------------------------------------------------------------------
 
 
@@ -252,10 +252,10 @@
     void ConstructionBehavior::breakTile()
     {
         // reset timer when changing targets
-        if ( m_TargetTilePos != m_PreviousTargetTilePos )
+        if ( m_TargetTilePos != m_CurrentMiningTilePos )
         {
             m_MiningDelay = m_MiningTime;
-            m_PreviousTargetTilePos = m_TargetTilePos;
+            m_CurrentMiningTilePos = m_TargetTilePos;
         }
         
         // decrease timer
@@ -310,6 +310,10 @@
         m_ResourcesText->SetText( m_ResourcesTextPrefix + std::to_string( m_CurrentResources ) );
     }
 
+
+//-----------------------------------------------------------------------------
+// private: inspector methods
+//-----------------------------------------------------------------------------
 
 
     /// @brief  inspector for the building list
@@ -377,13 +381,31 @@
     /// @brief  inspector for basic variables
     void ConstructionBehavior::inspectVariables()
     {
+        ImGui::DragInt( "Building Index", &m_BuildingIndex, 0.05f, 0, (int)m_BuildingArchetypes.size() - 1, "%i", m_BuildingArchetypes.size() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput );
+
         ImGui::DragFloat( "Placement Range", &m_PlacementRange, 0.05f, 0.0f, INFINITY );
 
-        ImGui::DragInt( "Building Index", &m_BuildingIndex, 0.05f, 0, (int)m_BuildingArchetypes.size() - 1, "%i", m_BuildingArchetypes.size() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput );
+        ImGui::DragFloat( "Preview Fade-Out Radius", &m_PreviewFadeOutRadius, 0.05f, 0.0f, INFINITY );
 
         ImGui::DragFloat( "Mining Time", &m_MiningTime, 0.05f, 0.0f, INFINITY );
 
-        ImGui::DragInt( "Current Resources", &m_CurrentResources, 0.25f );
+        ImGui::DragFloat( "Current Mining Delay", &m_MiningDelay, 0.5f, 0.0f, INFINITY );
+
+        ImGui::DragInt2( "Target Tile", &m_TargetTilePos[ 0 ], 0, 0, 0, "%i", ImGuiSliderFlags_NoInput );
+
+        ImGui::DragInt2( "Currently Mining Tile", &m_CurrentMiningTilePos[ 0 ], 0, 0, 0, "%i", ImGuiSliderFlags_NoInput );
+
+        ImGui::ColorEdit3( "Preview Color - Placeable", &m_PreviewColorPlaceable[ 0 ] );
+
+        ImGui::ColorEdit3( "Preview Color - NonPlaceable", &m_PreviewColorNonPlaceable[ 0 ] );
+
+        ImGui::DragFloat( "Preview Alpha", &m_PreviewAlpha, 0.05f, 0.0f, 1.0f );
+
+        ImGui::DragInt( "Current Resources", &m_CurrentResources, 0.25f, 0, INT_MAX );
+
+        ImGui::DragInt( "Mining Resource Gain", &m_MiningResourceGain, 0.05f, 0, INT_MAX );
+
+        ImGui::InputText( "Resources Text Prefix", &m_ResourcesTextPrefix );
     }
 
     /// @brief  inspects the references to other entities
@@ -581,19 +603,19 @@
             buildings[ i ][ "Cost" ] = m_BuildingCosts[ i ];
         }
 
-        json[ "BuildingIndex"           ] = Stream::Write( m_BuildingIndex );
-        json[ "PlacementRange"          ] = Stream::Write( m_PlacementRange );
-        json[ "PreviewFadeOutRadius"    ] = Stream::Write( m_PreviewFadeOutRadius );
-        json[ "MiningTime"              ] = Stream::Write( m_MiningTime );
-        json[ "PreviewColorPlaceable"   ] = Stream::Write( m_PreviewColorPlaceable );
-        json[ "PreviewColorNonPlaceable"] = Stream::Write( m_PreviewColorNonPlaceable );
-        json[ "PreviewAlpha"            ] = Stream::Write( m_PreviewAlpha );
-        json[ "CurrentResources"        ] = Stream::Write( m_CurrentResources );
-        json[ "MiningResourceGain"      ] = Stream::Write( m_MiningResourceGain );
-        json[ "ResourcesTextPrefix"     ] = Stream::Write( m_ResourcesTextPrefix );
-        json[ "TilemapName"             ] = Stream::Write( m_TilemapName );
-        json[ "PlayerName"              ] = Stream::Write( m_PlayerName );
-        json[ "ResourcesTextName"       ] = Stream::Write( m_ResourcesTextName );
+        json[ "BuildingIndex"            ] = Stream::Write( m_BuildingIndex            );
+        json[ "PlacementRange"           ] = Stream::Write( m_PlacementRange           );
+        json[ "PreviewFadeOutRadius"     ] = Stream::Write( m_PreviewFadeOutRadius     );
+        json[ "MiningTime"               ] = Stream::Write( m_MiningTime               );
+        json[ "PreviewColorPlaceable"    ] = Stream::Write( m_PreviewColorPlaceable    );
+        json[ "PreviewColorNonPlaceable" ] = Stream::Write( m_PreviewColorNonPlaceable );
+        json[ "PreviewAlpha"             ] = Stream::Write( m_PreviewAlpha             );
+        json[ "CurrentResources"         ] = Stream::Write( m_CurrentResources         );
+        json[ "MiningResourceGain"       ] = Stream::Write( m_MiningResourceGain       );
+        json[ "ResourcesTextPrefix"      ] = Stream::Write( m_ResourcesTextPrefix      );
+        json[ "TilemapName"              ] = Stream::Write( m_TilemapName              );
+        json[ "PlayerName"               ] = Stream::Write( m_PlayerName               );
+        json[ "ResourcesTextName"        ] = Stream::Write( m_ResourcesTextName        );
 
         return json;
     }
@@ -607,21 +629,21 @@
     /// @param  other   the other ConstructionBehavior to copy
     ConstructionBehavior::ConstructionBehavior( const ConstructionBehavior& other ) :
         Behavior( other ),
-        m_BuildingArchetypes( other.m_BuildingArchetypes ),
-        m_BuildingCosts( other.m_BuildingCosts ),
-        m_BuildingIndex( other.m_BuildingIndex ),
-        m_PlacementRange( other.m_PlacementRange ),
-        m_PreviewFadeOutRadius( other.m_PreviewFadeOutRadius ),
-        m_MiningTime( other.m_MiningTime ),
-        m_PreviewColorPlaceable( other.m_PreviewColorPlaceable ),
-        m_PreviewColorNonPlaceable( other.m_PreviewColorNonPlaceable ),
-        m_PreviewAlpha( other.m_PreviewAlpha ),
-        m_CurrentResources( other.m_CurrentResources ),
-        m_MiningResourceGain( other.m_MiningResourceGain ),
-        m_ResourcesTextPrefix( other.m_ResourcesTextPrefix ),
-        m_TilemapName( other.m_TilemapName ),
-        m_PlayerName( other.m_PlayerName ),
-        m_ResourcesTextName( other.m_ResourcesTextName )
+        m_BuildingArchetypes       ( other.m_BuildingArchetypes       ),
+        m_BuildingCosts            ( other.m_BuildingCosts            ),
+        m_BuildingIndex            ( other.m_BuildingIndex            ),
+        m_PlacementRange           ( other.m_PlacementRange           ),
+        m_PreviewFadeOutRadius     ( other.m_PreviewFadeOutRadius     ),
+        m_MiningTime               ( other.m_MiningTime               ),
+        m_PreviewColorPlaceable    ( other.m_PreviewColorPlaceable    ),
+        m_PreviewColorNonPlaceable ( other.m_PreviewColorNonPlaceable ),
+        m_PreviewAlpha             ( other.m_PreviewAlpha             ),
+        m_CurrentResources         ( other.m_CurrentResources         ),
+        m_MiningResourceGain       ( other.m_MiningResourceGain       ),
+        m_ResourcesTextPrefix      ( other.m_ResourcesTextPrefix      ),
+        m_TilemapName              ( other.m_TilemapName              ),
+        m_PlayerName               ( other.m_PlayerName               ),
+        m_ResourcesTextName        ( other.m_ResourcesTextName        )
     {}
 
 //-----------------------------------------------------------------------------

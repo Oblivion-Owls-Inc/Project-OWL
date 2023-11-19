@@ -115,8 +115,8 @@ private: // members
     /// @brief  the current tile being targeted
     glm::ivec2 m_TargetTilePos = { -1, -1 };
 
-    /// @brief  the previous targetted tile pos
-    glm::ivec2 m_PreviousTargetTilePos = { -1, -1 };
+    /// @brief  the current tile being mined
+    glm::ivec2 m_CurrentMiningTilePos = { -1, -1 };
 
     /// @brief  the current position being targeted
     glm::vec2 m_TargetPos = { 0, 0 };
@@ -175,10 +175,9 @@ private: // members
 
 
 //-----------------------------------------------------------------------------
-private: // methods
+private: // helper methods
 //-----------------------------------------------------------------------------
     
-
     
     /// @brief  updates the targeted tile location
     void updateTargetLocation();
@@ -214,6 +213,11 @@ private: // methods
     void updateResourcesText();
 
 
+//-----------------------------------------------------------------------------
+private: // inspector methods
+//-----------------------------------------------------------------------------
+
+
     /// @brief  inspector for the building list
     void inspectBuildingList();
 
@@ -223,9 +227,11 @@ private: // methods
     /// @brief  inspects the references to other entities
     void inspectEntityReferences();
 
+
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
+
 
     /// @brief  read the buildings
     /// @param  data    the json data to read from
@@ -293,6 +299,12 @@ private: // reading
     /// @brief  map of the read methods for this Component
     static ReadMethodMap< ConstructionBehavior > s_ReadMethods;
 
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
+
     /// @brief  gets the map of read methods for this Component
     /// @return the map of read methods for this Component
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
@@ -300,9 +312,6 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-//-----------------------------------------------------------------------------
-public: // writing
-//-----------------------------------------------------------------------------
 
     /// @brief  Write all ConstructionBehavior data to a JSON file.
     /// @return The JSON file containing the ConstructionBehavior data.
