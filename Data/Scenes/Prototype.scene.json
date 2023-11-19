@@ -1,27 +1,24 @@
 {
     "Assets": {
         "Sounds": {
+            "EnemySound": {
+                "IsLoopabe": true,
+                "Filepath": "Data/Sounds/Enemy/FoleyFootsteps-Footsteps&_1.wav"
+            },
             "Music": {
                 "IsLoopabe": true,
                 "Filepath": "Data/Sounds/Music/background.ogg"
             },
             "PlayerFootSteps": {
                 "IsLoopabe": true,
-                "Filepath": "Data/Sounds/Effects/FoleyFootsteps-Footsteps&_1.wav"
+                "Filepath": "Data/Sounds/Player/Footsteps, Human, Dirty Ground, Run SND62079 1.wav"
+            },
+            "TurretShoot": {
+                "IsLoopabe": true,
+                "Filepath": "Data/Sounds/Turret/TurretShoot.wav"
             }
         },
         "Textures": {
-            "4pxSheet": {
-                "Filepath": "Data/Textures/4px.png",
-                "SheetDimensions": [
-                    4,
-                    1
-                ],
-                "Pivot": [
-                    0.0,
-                    1.0
-                ]
-            },
             "Background": {
                 "Filepath": "Data/Textures/Background.png",
                 "SheetDimensions": [
@@ -248,7 +245,7 @@
                         "PitchVariance": 0.0,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
-                        "Sound": "PlayerFootSteps"
+                        "Sound": "EnemySound"
                     },
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
@@ -355,6 +352,15 @@
             "Turret": {
                 "Name": "Turret",
                 "Components": {
+                    "AudioPlayer": {
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": true,
+                        "Sound": "TurretShoot"
+                    },
                     "Sprite": {
                         "Layer": 1,
                         "Color": [

@@ -22,6 +22,7 @@
 #include "Pool.h"
 #include "DebugSystem.h"
 #include "RigidBody.h"
+#include "AudioPlayer.h"
 
 //-------------------------------------------------------------------------------------------
 // public: constructor
@@ -42,6 +43,7 @@
         /// Add this behavior to the behavior system
         Behaviors<Behavior>()->AddBehavior(this);
         m_Transform = GetEntity()->GetComponent< Transform >();
+        m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
@@ -111,6 +113,9 @@
 
         /// Add the bullet to the entity system
         Entities()->AddEntity(bullet);
+
+        /// Play turret shoot sound
+        m_AudioPlayer->Play();
 
         m_FireCooldown += 1.0f / m_FireRate;
     }

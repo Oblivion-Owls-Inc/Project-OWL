@@ -10,6 +10,7 @@
 #include "BasicEntityBehavior.h"
 #include "Pool.h"
 
+
 class BaseBehavior :
     public BasicEntityBehavior
 {
@@ -19,8 +20,6 @@ public: // constructor / destructors
 
     /// @brief  constructor
     BaseBehavior();
-    /// @brief copy ctor
-    BaseBehavior(const BaseBehavior& other);
     /// @brief dtor
     ~BaseBehavior();
     /// @brief Base clone
@@ -36,6 +35,13 @@ public: // virtual override methods
     /// @brief called when base exits
     virtual void OnExit() override;
     
+//-----------------------------------------------------------------------------
+private: // copying
+//-----------------------------------------------------------------------------
+    
+    /// @brief copy ctor
+    BaseBehavior(const BaseBehavior& other);
+
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
