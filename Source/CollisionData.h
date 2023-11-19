@@ -17,13 +17,13 @@ class Collider;
 struct CollisionData
 {
     /// @brief  The position of the collision
-    glm::vec2 position;
+    glm::vec2 position = { 0, 0 };
 
     /// @brief  The normal of the collision
-    glm::vec2 normal;
+    glm::vec2 normal = { 0, 0 };
 
     /// @brief How deep the collision penetrated
-    float depth;
+    float depth = 0;
 };
 
 /// @struct RayCastHit

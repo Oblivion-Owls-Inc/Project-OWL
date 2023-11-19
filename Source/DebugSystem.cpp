@@ -137,7 +137,6 @@ void DebugSystem::OnUpdate(float dt)
 		PlatformSystem::GetInstance()->setFullscreen(m_Fullscreen);
 	}
 
-
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
