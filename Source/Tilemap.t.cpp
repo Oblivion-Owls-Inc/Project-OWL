@@ -141,6 +141,18 @@ void Tilemap<TileType>::RemoveOnTilemapChangedCallback(int componentID)
 }
 
 
+/// @brief  gets whether a tile is within this Tilemap
+/// @param  tilePos     the tile position to check
+/// @tparam TileType    the data type of each tile
+/// @return whether the tile position is within this Tilemap
+template < typename TileType >
+bool Tilemap<TileType>::IsPositionWithinBounds( glm::ivec2 const& tilePos ) const
+{
+    return (
+        tilePos.x >= 0 && tilePos.x < m_Dimensions.x &&
+        tilePos.y >= 0 && tilePos.t < m_Dimensions.y
+    );
+}
 
 //-----------------------------------------------------------------------------
 //          Virtual overrides
