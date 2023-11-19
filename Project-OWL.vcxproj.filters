@@ -434,9 +434,6 @@
     <ClCompile Include="Source\ParticleSystem.cpp">
       <Filter>Engine\Systems\ParticleSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ParticleSprite.cpp">
-      <Filter>Engine\Entity\Component\Sprite\ParticleSprite</Filter>
-    </ClCompile>
     <ClCompile Include="Source\BaseBehavior.cpp">
       <Filter>Game\Behaviors\BaseBehavior</Filter>
     </ClCompile>
@@ -462,6 +459,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imgui\imgui_stdlib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EmitterSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -688,9 +688,6 @@
     <ClInclude Include="Source\ParticleSystem.h">
       <Filter>Engine\Systems\ParticleSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ParticleSprite.h">
-      <Filter>Engine\Entity\Component\Sprite\ParticleSprite</Filter>
-    </ClInclude>
     <ClInclude Include="Source\BaseBehavior.h">
       <Filter>Game\Behaviors\BaseBehavior</Filter>
     </ClInclude>
@@ -710,6 +707,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui_stdlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EmitterSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
