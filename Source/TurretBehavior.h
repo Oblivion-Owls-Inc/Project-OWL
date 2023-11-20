@@ -17,6 +17,7 @@
 ///			
 ///*****************************************************************/
 class Transform;
+class AudioPlayer;
 
 class TurretBehavior : public Behavior
 {
@@ -74,6 +75,9 @@ private: /// Members
 
     /// @brief  the Transform of this Turret
     Transform* m_Transform = nullptr;
+
+	/// @brief the AudioPlayer of this Turret
+	AudioPlayer* m_AudioPlayer = nullptr;
 
 ///-------------------------------------------------------------------------------------------
 private: // methods

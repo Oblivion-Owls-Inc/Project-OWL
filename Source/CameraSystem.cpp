@@ -28,6 +28,12 @@
             m_ActiveCamera->SetIsActive( false );
         }
         m_ActiveCamera = camera;
+
+        if ( camera == nullptr )
+        {
+            return;
+        }
+
         camera->SetIsActive( true );
 
         // recalculate height from width, in case aspect ratio changed

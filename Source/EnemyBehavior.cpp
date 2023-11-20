@@ -17,6 +17,7 @@
 #include "basics.h"
 #include "Pool.h"
 #include "Entity.h"
+#include "AudioPlayer.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructor
@@ -38,6 +39,7 @@
         m_Pathfinder = Entities()->GetEntity( m_PathfinderName )->GetComponent< Pathfinder >();
         m_RigidBody = GetEntity()->GetComponent< RigidBody >();
         m_Transform = GetEntity()->GetComponent< Transform >();
+        m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
     }
 
     /// @brief Called at a fixed interval
@@ -77,6 +79,7 @@
             scale.x *= -1;
             m_Transform->SetScale( scale );
         }
+        m_AudioPlayer->Play();
     }
 
 ///-----------------------------------------------------------------------------
@@ -144,7 +147,8 @@
         BasicEntityBehavior( other ),
         m_PathfinderName( other.m_PathfinderName ),
         m_Speed( other.m_Speed ),
-        m_RigidBody(nullptr)
+        m_RigidBody(nullptr),
+        m_AudioPlayer(nullptr)
     {}
 
 ///----------------------------------------------------------------------------

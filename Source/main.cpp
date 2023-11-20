@@ -1,6 +1,6 @@
 #include "Engine.h"
 
-int main ()
+int main()
 {
     // *** Initialize the window using glfw *******************************************************
 
@@ -13,9 +13,7 @@ int main ()
 
     engine->Run();
 
+
     return 0;
-
 }
-
-
 

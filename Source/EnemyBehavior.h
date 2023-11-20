@@ -14,6 +14,7 @@
 class Pathfinder;
 class Transform;
 class RigidBody;
+class AudioPlayer;
 
 class EnemyBehavior : public BasicEntityBehavior
 {
@@ -60,6 +61,8 @@ private: // Member Variables
 
     /// @brief  the RigidBody attached to this Enemy
     RigidBody* m_RigidBody = nullptr;
+
+    AudioPlayer* m_AudioPlayer = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // methods

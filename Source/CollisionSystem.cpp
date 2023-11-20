@@ -147,11 +147,6 @@
         }
     }
 
-    void CollisionSystem::OnSceneExit()
-    {
-        m_Colliders.clear();
-    }
-
     /// @brief  creates the debug window for the CollisionSystem
     void CollisionSystem::DebugWindow()
     {
@@ -302,6 +297,9 @@
     /// @return whether or not the two colliders are colliding
     bool CollisionSystem::checkCircleCircle( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData )
     {
+        if (collisionData)
+            *collisionData = {};
+            
         CircleCollider const* circleA = (CircleCollider const*)colliderA;
         CircleCollider const* circleB = (CircleCollider const*)colliderB;
 
@@ -339,6 +337,9 @@
     /// @return whether or not the two colliders are colliding
     bool CollisionSystem::checkCircleTilemap( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData )
     {
+        if (collisionData)
+            *collisionData = {};
+
         CircleCollider const* circle = (CircleCollider const*)colliderA;
         Tilemap< int > const* tilemap = ((TilemapCollider const*)colliderB)->GetTilemap();
 
