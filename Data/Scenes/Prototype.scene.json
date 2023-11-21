@@ -13,9 +13,17 @@
                 "IsLoopabe": true,
                 "Filepath": "Data/Sounds/Player/Footsteps, Human, Dirty Ground, Run SND62079 1.wav"
             },
+            "PlayerDigging": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Player/Digging3.wav"
+            },
             "TurretShoot": {
                 "IsLoopabe": true,
                 "Filepath": "Data/Sounds/Turret/TurretShoot.wav"
+            },
+            "TurretPlacement": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Turret/TurretPlace.wav"
             }
         },
         "Textures": {
@@ -410,6 +418,34 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": true,
                     "Sound": "Music"
+                }
+            }
+        },
+        "DiggingSound": {
+            "Name": "DiggingSound",
+            "Components": {
+                "AudioPlayer": {
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0,
+                    "PitchVariance": 0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "Sound": "PlayerDigging"
+                }
+            }
+        },
+        "TurretPlacementSound": {
+            "Name": "TurretPlacementSound",
+            "Components": {
+                "AudioPlayer": {
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0,
+                    "PitchVariance": 0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "Sound": "TurretPlacement"
                 }
             }
         },

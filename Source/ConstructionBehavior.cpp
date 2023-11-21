@@ -13,6 +13,7 @@
 #include "Transform.h"
 #include "Tilemap.h"
 #include "Sprite.h"
+#include "AudioPlayer.h"
 
 #include "AssetLibrarySystem.h"
 #include "Entity.h"
@@ -48,6 +49,10 @@
         Behaviors< Behavior >()->AddBehavior( this );
 
         m_PlayerTransform = Entities()->GetEntity( m_PlayerName )->GetComponent< Transform >();
+
+        m_DiggingSound = Entities()->GetEntity( "DiggingSound" )->GetComponent< AudioPlayer >();
+
+        m_TurretPlacementSound = Entities()->GetEntity( "TurretPlacementSound" )->GetComponent< AudioPlayer >();
 
         Entity* tilemapEntity = Entities()->GetEntity( m_TilemapName );
         m_Tilemap = tilemapEntity->GetComponent< Tilemap< int > >();
@@ -205,6 +210,8 @@
         Entities()->AddEntity( building );
         m_Buildings->SetTile( m_TargetTilePos, building );
         
+        m_TurretPlacementSound->Play();
+
         m_CurrentResources -= m_BuildingCosts[ m_BuildingIndex ];
     }
 
@@ -265,10 +272,11 @@
         if ( m_MiningDelay <= 0.0f )
         {
             m_Tilemap->SetTile( m_TargetTilePos, 0 );
-        
+            
+            m_DiggingSound->Play();
+
             // TEMP: gain resources whenever mining a block
             m_CurrentResources += m_MiningResourceGain;
-        
         }
     }
 
