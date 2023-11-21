@@ -16,6 +16,7 @@
 class Transform;
 class Sprite;
 class Text;
+class AudioPlayer;
 
 template< typename T >
 class Tilemap;
@@ -172,6 +173,12 @@ private: // members
 
     /// @brief  the preview sprite
     Sprite* m_Sprite = nullptr;
+
+    /// @brief  the sound played when mining.
+    AudioPlayer* m_DiggingSound = nullptr;
+
+    /// @brief  the sound played when placing a turret.
+    AudioPlayer* m_TurretPlacementSound = nullptr;
 
 
 //-----------------------------------------------------------------------------
