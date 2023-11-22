@@ -49,7 +49,7 @@ public:
 
     /// @brief            Sets which tile IDs should be considered walkable.
     /// @param walkables  Vector of tiles
-    __inline void SetWalkables(std::vector<int> const& walkables) { m_Walkables = walkables; }
+    __inline void SetWalkables( std::vector<int> const& walkables ) { m_Walkables = walkables; }
 
 
     /// @brief       Gets the travel distance (in tiles) to the destination
@@ -103,8 +103,19 @@ private:
 //              Helpers
 //-----------------------------------------------------------------------------
 private:
+
+    /// @brief  callback that gets called when the tilemap changes
+    void onTilemapChangedCallback( Tilemap< int >*, glm::ivec2 const&, int const& );
+
     /// @brief      Actual pathfinding. Updates all nodes.
     void explore();
+
+
+    /// @brief  inspector for choosing and displaying the destination of this Pathfinder
+    void inspectDestination();
+
+    /// @brief  inspector for choosing which tiles are walkable
+    void inspectWalkables();
 
 
 

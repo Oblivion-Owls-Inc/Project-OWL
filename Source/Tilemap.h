@@ -7,7 +7,7 @@
 
 #define TILEMAP_H
 
-#include "Behavior.h"
+#include "Component.h"
 #include "Transform.h"
 #include <functional>   // callbacks
 #include <map>
@@ -15,7 +15,7 @@
 #include <iostream>
 
 /// @brief  untemplatized base Tilemap class
-class TilemapBase : public Behavior
+class TilemapBase : public Component
 {
 //-----------------------------------------------------------------------------
 protected: // constructor
@@ -23,13 +23,13 @@ protected: // constructor
 
     /// @brief    Default constructor
     TilemapBase( std::type_index type ) :
-        Behavior( type )
+        Component( type )
     {}
 
     /// @brief        Copy constructor
     /// @param other  TilemapBase to copy
     TilemapBase( TilemapBase const& other ) :
-        Behavior( other )
+        Component( other )
     {}
 
 //-----------------------------------------------------------------------------    
@@ -40,29 +40,51 @@ protected: // constructor
 template < typename TileType >
 class Tilemap : public TilemapBase
 {
-public:
+//-----------------------------------------------------------------------------
+public: // constructors
+//-----------------------------------------------------------------------------
+
 
     /// @brief    Default constructor
     Tilemap();
 
     /// @return   A copy of this component
-    virtual Component * Clone() const override;
+    virtual Tilemap* Clone() const override;
 
-private:
+
+//-----------------------------------------------------------------------------
+private: // constructors
+//-----------------------------------------------------------------------------
+
 
     /// @brief        Copy constructor
     /// @param other  Tilemap to copy
-    Tilemap(Tilemap const& other);
+    Tilemap( Tilemap const& other );
+
+//-----------------------------------------------------------------------------
+public: // types
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  OnTilemapChanged callback type
+    /// @param  tilemap         the tilemap this callback was called from
+    /// @param  tilepos         the position of the tile that was changed - will be (-1, -1) if whole tilemap changed
+    /// @param  previousValue   the value of the tile before it was changed - garbage if whole tilemap changed
+    using OnTilemapChangedCallback = std::function< void (
+        Tilemap< TileType >* tilemap,
+        glm::ivec2 const& tilePos,
+        TileType const& previousValue
+    ) >;
 
 
 //-----------------------------------------------------------------------------
-//          Public methods
+public: // methods
 //-----------------------------------------------------------------------------
-public:
+
 
     /// @brief          Retrieve entire tilemap
     /// @return         array (vector) of tile IDs
-    std::vector<TileType> const& GetTilemap() const { return m_Tilemap; }
+    std::vector<TileType> const& GetTilemap() const { return m_Tiles; }
 
     /// @brief          Sets the whole tilemap to a given array (vector)
     /// @param  tiles   vector of tile IDs
@@ -72,7 +94,7 @@ public:
     /// @brief          Gets the index of the tile at given coordinate.
     /// @param coord    tile 2D coordinate (within the tilemap)
     /// @return         index of the tile
-    TileType GetTile(glm::ivec2 coord) const { return m_Tilemap[coord.y*m_Dimensions.x + coord.x]; }
+    TileType GetTile(glm::ivec2 coord) const { return m_Tiles[coord.y*m_Dimensions.x + coord.x]; }
 
     /// @brief          Sets the tile at given coordinate to given index.
     /// @param coord    Tile 2D coordinate (within the tilemap)
@@ -85,32 +107,29 @@ public:
     /// @param pos      Position in world space
     /// @return         Tilemap coordinate of the tile. If the provided location
     ///                 is outside the tilemap, returns (-1,-1)
-    glm::ivec2 WorldPosToTileCoord(glm::vec2 pos);
+    glm::ivec2 WorldPosToTileCoord( glm::vec2 pos ) const;
 
 
     /// @brief          Gets world position of the given tilemap coordinates.
     ///                 NOTE: this assumes the (0,0) tile is the top-left.
-    /// @param coord    Tilemap coordinate
+    /// @param  coord   Tilemap coordinate
     /// @return         World position of the tile at given tilemap coordinate
-    glm::vec2 TileCoordToWorldPos(glm::ivec2 coord);
+    glm::vec2 TileCoordToWorldPos( glm::ivec2 coord ) const;
 
 
-    /// @brief          Adds a function to the list of callbacks. The given
-    ///                 function will get called whenever the tilemap is updated.
-    /// @param objPtr   Pointer to object (this), used to keep track of function.
-    /// @param function Callback function
-    void AddOnTilemapChangedCallback( int componentID, std::function<void()> function );
+    /// @brief  Adds a function to the list of callbacks. The given function will get called whenever the tilemap is updated.
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @param  callback    the callback function
+    void AddOnTilemapChangedCallback( unsigned ownerId, OnTilemapChangedCallback callback );
 
     /// @brief          Removes a function from the list of callbacks
-    /// @param objPtr   Pointer to object (this)
-    void RemoveOnTilemapChangedCallback(int componentID);
+    /// @param  ownerId the ID of the owner of the callback
+    void RemoveOnTilemapChangedCallback( unsigned ownerId );
 
 
-    /// @brief          Sets the tile scale. Default scale (1,1) is the full
-    ///                 width/height of single tile.
+    /// @brief          Sets the tile scale. Default scale (1,1) is the full width/height of single tile.
     /// @param mults    x=horizontal, y=vertical
-    void SetTileScale(glm::vec2 mults) { m_TileScale = mults; m_Modified = true; }
-
+    void SetTileScale( glm::vec2 mults ) { m_TileScale = mults; callOnTilemapChangedCallbacks(); }
 
     /// @brief          Retreives the tile scale.
     /// @return         x=horizontal, y=vertical
@@ -119,7 +138,7 @@ public:
 
     /// @brief  sets the size of the tilemap in tiles
     /// @param  dimensions  the size of the tilemap
-    void SetDimensions( glm::ivec2 const& dimensions ) { m_Dimensions = dimensions; m_Tilemap.resize( dimensions.x * dimensions.y ); }
+    void SetDimensions( glm::ivec2 const& dimensions ) { m_Dimensions = dimensions; m_Tiles.resize( dimensions.x * dimensions.y ); }
 
     /// @return size of the tilemap in tiles
     glm::ivec2 GetDimensions() const { return m_Dimensions; }
@@ -141,29 +160,25 @@ public:
 
 
 //-----------------------------------------------------------------------------
-//          Virtual overrides
+private: // virtual overrides
 //-----------------------------------------------------------------------------
-private:
+
 
     /// @brief  called after component is added & read
     virtual void OnInit() override;
 
-    /// @brief  called every frame
-    virtual void OnUpdate( float dt );
-
-    /// @brief  called when component is removed
-    virtual void OnExit() override;
 
     /// @brief Used by the Debug System to display information about this Component
-    virtual void Inspector();
+    virtual void Inspector() override;
+
 
 //-----------------------------------------------------------------------------
-//              Data
+private: // data
 //-----------------------------------------------------------------------------
-private:
+
 
     /// @brief   Tilemap array
-    std::vector<TileType> m_Tilemap;
+    std::vector<TileType> m_Tiles;
 
     /// @brief   Size of the Tilemap in tiles
     glm::ivec2 m_Dimensions = { 10, 0 };
@@ -181,16 +196,19 @@ private:
     Transform* m_PTransform = nullptr;
 
     /// @brief   Callback functions - they get called whenever tilemap changes.
-    std::map< int, std::function<void()> > m_Callbacks;
-
-    /// @brief   Whether tilemap has been modified during this frame
-    bool m_Modified = false;
+    std::map< unsigned, OnTilemapChangedCallback > m_OnTilemapChangedCallbacks;
 
 
 //-----------------------------------------------------------------------------
-//              Helpers
+private: // methods
 //-----------------------------------------------------------------------------
-private:
+
+
+    /// @brief  calls all the OnTilemapChanged callbacks attached to this Tilemap
+    /// @param  tilepos         the position of the tile that was changed - will be (-1, -1) if whole tilemap changed
+    /// @param  previousValue   the value of the tile before it was changed - garbage if whole tilemap changed
+    void callOnTilemapChangedCallbacks( glm::ivec2 const& tilePos = { -1, -1 }, TileType const& previousValue = TileType() );
+
 
     /// @brief  Updates inverse transform matrix, if parent's transform has changed.
     void updateMat();

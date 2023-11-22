@@ -9,21 +9,21 @@
                 "IsLoopabe": true,
                 "Filepath": "Data/Sounds/Music/background.ogg"
             },
+            "PlayerDigging": {
+                "IsLoopabe": true,
+                "Filepath": "Data/Sounds/Player/Digging3.wav"
+            },
             "PlayerFootSteps": {
                 "IsLoopabe": true,
                 "Filepath": "Data/Sounds/Player/Footsteps, Human, Dirty Ground, Run SND62079 1.wav"
             },
-            "PlayerDigging": {
-                "IsLoopable": true,
-                "Filepath": "Data/Sounds/Player/Digging3.wav"
+            "TurretPlacement": {
+                "IsLoopabe": true,
+                "Filepath": "Data/Sounds/Turret/TurretPlace.wav"
             },
             "TurretShoot": {
                 "IsLoopabe": true,
                 "Filepath": "Data/Sounds/Turret/TurretShoot.wav"
-            },
-            "TurretPlacement": {
-                "IsLoopable": true,
-                "Filepath": "Data/Sounds/Turret/TurretPlace.wav"
             }
         },
         "Textures": {
@@ -427,8 +427,8 @@
                 "AudioPlayer": {
                     "Volume": 1.0,
                     "Pitch": 1.0,
-                    "VolumeVariance": 0,
-                    "PitchVariance": 0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "Sound": "PlayerDigging"
@@ -441,8 +441,8 @@
                 "AudioPlayer": {
                     "Volume": 1.0,
                     "Pitch": 1.0,
-                    "VolumeVariance": 0,
-                    "PitchVariance": 0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "Sound": "TurretPlacement"
@@ -1216,7 +1216,8 @@
                         5.0
                     ],
                     "Walkables": [
-                        0
+                        0,
+                        -1
                     ]
                 },
                 "StaticBody": {

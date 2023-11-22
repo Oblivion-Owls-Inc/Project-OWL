@@ -19,6 +19,7 @@
 #include "Entity.h"
 #include "EntitySystem.h"
 #include "InputSystem.h"
+#include "BehaviorSystem.h"
 
 #include "Engine.h"
 

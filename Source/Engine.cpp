@@ -360,20 +360,20 @@
         { "BehaviorSystem<Tilemap<int>>",          &addSystem< BehaviorSystem< Tilemap<int> > >           },
         { "BehaviorSystem<TilemapBase>",           &addSystem< BehaviorSystem< TilemapBase > >            },
         { "BehaviorSystem<WavesBehavior>",         &addSystem< BehaviorSystem< WavesBehavior > >          },
-                                                                                                          
-        { "AssetLibrarySystem<Entity>",            &addSystem< AssetLibrarySystem< Entity > >             },
-        { "AssetLibrarySystem<Sound>",             &addSystem< AssetLibrarySystem< Sound > >              },
-        { "AssetLibrarySystem<Texture>",           &addSystem< AssetLibrarySystem< Texture > >            },
-        { "AssetLibrarySystem<TransformAnimation>",&addSystem< AssetLibrarySystem< TransformAnimation > > },
-        { "AssetLibrarySystem<AnimationAsset>",    &addSystem< AssetLibrarySystem< AnimationAsset > >     },
 
-        { "SandboxSystem",                         &addSystem< SandboxSystem >                            },
+        { "AssetLibrary<Entity>",            &addSystem< AssetLibrarySystem< Entity > >                   },
+        { "AssetLibrary<Sound>",             &addSystem< AssetLibrarySystem< Sound > >                    },
+        { "AssetLibrary<Texture>",           &addSystem< AssetLibrarySystem< Texture > >                  },
+        { "AssetLibrary<TransformAnimation>",&addSystem< AssetLibrarySystem< TransformAnimation > >       },
+        { "AssetLibrary<AnimationAsset>",    &addSystem< AssetLibrarySystem< AnimationAsset > >           },
+
         { "ParticleSystem",                        &addSystem< ParticleSystem >                           },
-           { "CheatSystem",                           &addSystem< CheatSystem >                              }
-       // { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >    },
-       //{ "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >           },
-       //{ "BehaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >       },
-       // { "BehaviorSystem<EnemyBehavior>",      &addSystem< BehaviorSystem< EnemyBehavior> >        },
+        { "CheatSystem",                           &addSystem< CheatSystem >                              }
+
+        // { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >          },
+        // { "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >                },
+        // { "BehaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >            },
+        // { "BehaviorSystem<EnemyBehavior>",      &addSystem< BehaviorSystem< EnemyBehavior> >              },
 
     };
 
