@@ -91,4 +91,7 @@ public: // singleton
     void operator=(const CheatSystem&) = delete;
 };
 
+__inline CheatSystem* Cheats() {
+    return CheatSystem::GetInstance();
+}
 
