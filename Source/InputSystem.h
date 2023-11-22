@@ -11,6 +11,7 @@
 #include <map>
 #include "System.h"
 #include "glm/glm.hpp"
+#include "glfw3.h"
 
 
 /// @brief Example System meant to be copy-pasted when creating new Systems
@@ -20,6 +21,12 @@ class InputSystem : public System
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
+
+    /// @brief  Gets called when system initializes
+    virtual void OnInit() override;
+
+    /// @brief  Gets called when system initializes
+    virtual void OnExit() override;
 
     /// @brief fixed update for input, must be called for input to function
     virtual void OnFixedUpdate() override;
@@ -40,12 +47,16 @@ private: // virtual override methods
 
 protected:
     
+    GLFWwindow* handle;
     map<int, bool[3]>* m_KeyStatesHold;
     map<int, bool[3]>* m_MouseStatesHold;
     map<int, bool[3]> m_KeyStates;
     map<int, bool[3]> m_FixedKeyStates;
     map<int, bool[3]> m_MouseStates;
     map<int, bool[3]> m_FixedMouseStates;
+    std::vector<GLFWwindow*> altHandles;
+    std::vector<map<int, bool[3]>*> windows;
+    int amount = 0;
 
 //-----------------------------------------------------------------------------
 private: // private methods
@@ -53,6 +64,9 @@ private: // private methods
 
     /// @brief  updates map realted to fixed or standard update
     void mapUpdate();
+
+    /// @brief convert matrix to vec2
+    glm::vec2 convert(glm::mat4 matrix);
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -62,25 +76,30 @@ public: // accessors
     /// @return the instance of the InputSystem
     static InputSystem * GetInstance();
 
+    /// @brief  sets a new window handle
+    /// @param  handle of new window
+    /// @return int, pass this back to check window
+    int InitAlternateWindow(GLFWwindow* handle);
+
     /// @brief checks if a given key is down
     /// @param glfw key to check
     /// @return returns if key is down
-    bool GetKeyDown(int glfw_key);
+    bool GetKeyDown(int glfw_key, int altWindow = 0);
 
     /// @brief checks if a given key is up
     /// @param glfw key to check
     /// @return returns if key is up
-    bool GetKeyUp(int glfw_key);
+    bool GetKeyUp(int glfw_key, int altWindow = 0);
 
     /// @brief checks if a given key is triggered
     /// @param glfw key to check
     /// @return returns if key is triggered
-    bool GetKeyTriggered(int glfw_key);
+    bool GetKeyTriggered(int glfw_key, int altWindow = 0);
 
     /// @brief checks if a given key is released
     /// @param glfw key to check
     /// @return returns if key is released
-    bool GetKeyReleased(int glfw_key);
+    bool GetKeyReleased(int glfw_key, int altWindow = 0);
     
     /// @brief checks if a given mouse button is down
     /// @param glfw mouse button to check

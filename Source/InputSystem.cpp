@@ -11,7 +11,7 @@
 #include <map>
 #include "CameraSystem.h"
 #include "Engine.h"
-#include "glfw3.h"
+
 
 /// @brief  updates map realted to fixed or standard update
 void InputSystem::mapUpdate()
@@ -31,8 +31,7 @@ void InputSystem::mapUpdate()
     for (auto& key : *m_KeyStatesHold)
     {
         bool old = key.second[0];
-        key.second[0] = glfwGetKey(PlatformSystem::GetInstance()->GetWindowHandle(),
-            key.first);
+        key.second[0] = glfwGetKey(handle, key.first);
 
         if (key.second[0] == true && old == false)
         {
@@ -55,8 +54,7 @@ void InputSystem::mapUpdate()
     for (auto& key : *m_MouseStatesHold)
     {
         bool old = key.second[0];
-        key.second[0] = glfwGetMouseButton(PlatformSystem::GetInstance()->GetWindowHandle(),
-            key.first);
+        key.second[0] = glfwGetMouseButton(handle, key.first);
 
         if (key.second[0] == true && old == false)
         {
@@ -75,6 +73,47 @@ void InputSystem::mapUpdate()
             key.second[2] = false;
         }
     }
+
+    for (int i = 0; i < amount; i++)
+    {
+        for (auto& key : *windows[i])
+        {
+            bool old = key.second[0];
+            key.second[0] = glfwGetKey(altHandles[i], key.first);
+
+            if (key.second[0] == true && old == false)
+            {
+                key.second[1] = true;
+            }
+            else
+            {
+                key.second[1] = false;
+            }
+            if (key.second[0] == false && old == true)
+            {
+                key.second[2] = true;
+            }
+            else
+            {
+                key.second[2] = false;
+            }
+        }
+    }
+}
+
+/// @brief  initialize system
+void InputSystem::OnInit()
+{
+    handle = PlatformSystem::GetInstance()->GetWindowHandle();
+}
+
+/// @brief  exit system
+void InputSystem::OnExit()
+{
+    for (int i = 0; i < windows.size(); i++)
+    {
+        delete windows[i];
+    }
 }
 
 /// @brief fixed update for input, must be called
@@ -83,18 +122,28 @@ void InputSystem::OnFixedUpdate()
     mapUpdate();
 }
 
+/// @brief update system
 void InputSystem::OnUpdate(float dt)
 {
     mapUpdate();
 }
 
-
+int InputSystem::InitAlternateWindow(GLFWwindow* handle)
+{
+    altHandles.push_back(handle);
+    windows.push_back(new map<int, bool[3]>);
+    amount++;
+}
 
 /// @brief checks if a given key is down
 /// @param glfw key to check
 /// @return returns if key is down
-bool InputSystem::GetKeyDown(int glfw_key)
+bool InputSystem::GetKeyDown(int glfw_key, int altWindow)
 {
+    if (altWindow > 1)
+    {
+        return *(windows[altWindow - 1])[glfw_key][0];
+    }
     Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
@@ -110,16 +159,20 @@ bool InputSystem::GetKeyDown(int glfw_key)
 /// @brief checks if a given key is up
 /// @param glfw key to check
 /// @return returns if key is up
-bool InputSystem::GetKeyUp(int glfw_key)
+bool InputSystem::GetKeyUp(int glfw_key, int altWindow)
 {
-    return !GetKeyDown(glfw_key);
+    return !GetKeyDown(glfw_key, altWindow);
 }
 
 /// @brief checks if a given key is triggered
 /// @param glfw key to check
 /// @return returns if key is triggered
-bool InputSystem::GetKeyTriggered(int glfw_key)
+bool InputSystem::GetKeyTriggered(int glfw_key, int altWindow)
 {
+    if (altWindow > 1)
+    {
+        return *(windows[altWindow - 1])[glfw_key][1];
+    }
     Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
@@ -135,8 +188,12 @@ bool InputSystem::GetKeyTriggered(int glfw_key)
 /// @brief checks if a given key is released
 /// @param glfw key to check
 /// @return returns if key is released
-bool InputSystem::GetKeyReleased(int glfw_key)
+bool InputSystem::GetKeyReleased(int glfw_key, int altWindow)
 {
+    if (altWindow > 1)
+    {
+        return *(windows[altWindow - 1])[glfw_key][2];
+    }
     Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
@@ -209,13 +266,13 @@ bool InputSystem::GetMouseReleased(int glfw_mouse_button)
     return NULL;
 }
 
-static glm::vec2 convert(glm::mat4 matrix)
+glm::vec2 InputSystem::convert(glm::mat4 matrix)
 {
     glm::vec2 vec = { 0 , 0 };
     glm::vec4 vector = { 0 , 0 , 0, 1 };
     double x = 0;
     double y = 0;
-    glfwGetCursorPos(PlatformSystem::GetInstance()->GetWindowHandle(), &x, &y);
+    glfwGetCursorPos(handle, &x, &y);
     vector[0] = (float)x;
     vector[1] = (float)y;
     vector = matrix * vector;
@@ -249,7 +306,9 @@ glm::vec2 InputSystem::GetMousePosWorld()
     InputSystem::InputSystem() :
         System( "InputSystem" ),
         m_KeyStatesHold(&m_KeyStates),
-        m_MouseStatesHold(&m_MouseStates)
+        m_MouseStatesHold(&m_MouseStates),
+        handle(nullptr),
+        amount(0)
     {}
 
     /// @brief The singleton instance of InputSystem
