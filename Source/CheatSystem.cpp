@@ -119,13 +119,22 @@ void CheatSystem::DebugWindow()
         ImGui::SameLine();
         ImGui::Text("Instantly loses the game");
 
-        // Returns to the game scene.
-        if (ImGui::Button("Return to Game"))
+        // Resets the game scene.
+        if (ImGui::Button("Reset Game"))
         {
             scene->SetNextScene("Prototype");
         }
         ImGui::SameLine();
-        ImGui::Text("Returns to the game");
+        ImGui::Text("Resets the game");
+
+        // Pauses the game
+        if (ImGui::Button(m_Pause ? "Unpause the game" : "Pause the game"))
+        {
+            m_Pause = !m_Pause;
+            Debug().SetNonEditorSystemsEnabled(m_Pause);
+        }
+        ImGui::SameLine();
+        ImGui::Text("Pauses the game");
     }
     
     ImGui::End();
@@ -166,8 +175,11 @@ void CheatSystem::RunCheats()
     if (m_ResourceSwitch)
     {
         Entity* resource = Entities()->GetEntity("ConstructionManager");
-        ConstructionBehavior* construction = resource->GetComponent<ConstructionBehavior>();
-        construction->SetCurrentResources(1000);
+        if(resource)
+        {
+            ConstructionBehavior* construction = resource->GetComponent<ConstructionBehavior>();
+            construction->SetCurrentResources(1000);
+        }
     }
 }
 
@@ -205,6 +217,7 @@ CheatSystem::CheatSystem():
     m_BaseGodMode(false),
     m_ResourceSwitch(false),
     m_NoClip(false),
+    m_Pause(false),
     m_CircleCollider(nullptr)
 {}
 
