@@ -538,11 +538,11 @@ void DebugSystem::OnExit()
 
 /// @brief  sets whether the non-editor systems are enabled
 /// @param  enabled wether to enable or disable the systems
-void DebugSystem::SetNonEditorSystemsEnabled( bool enabled )
+bool DebugSystem::SetNonEditorSystemsEnabled( bool enabled )
 {
     for ( System* system : Engine::GetInstance()->GetSystems() )
     {
-        if (system == this || Cheats())
+        if (system == Cheats())
         {
 			continue;
 		}
@@ -552,6 +552,8 @@ void DebugSystem::SetNonEditorSystemsEnabled( bool enabled )
             system->SetEnabled( enabled );
         }
     }
+
+    return enabled;
 }
 
 

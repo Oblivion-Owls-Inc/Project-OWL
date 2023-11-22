@@ -131,7 +131,7 @@ void CheatSystem::DebugWindow()
         if (ImGui::Button(m_Pause ? "Unpause the game" : "Pause the game"))
         {
             m_Pause = !m_Pause;
-            Debug().SetNonEditorSystemsEnabled(m_Pause);
+            Debug().SetNonEditorSystemsEnabled(!m_Pause);
         }
         ImGui::SameLine();
         ImGui::Text("Pauses the game");

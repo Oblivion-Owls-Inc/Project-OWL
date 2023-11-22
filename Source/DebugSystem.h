@@ -78,7 +78,7 @@ public:
 
     /// @brief  sets whether the non-editor systems are enabled
     /// @param  enabled wether to enable 
-    void SetNonEditorSystemsEnabled(bool enabled);
+    bool SetNonEditorSystemsEnabled(bool enabled);
 
 ///----------------------------------------------------------------------------
 public: // DebugStream
