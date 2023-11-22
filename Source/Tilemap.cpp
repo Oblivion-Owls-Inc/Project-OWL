@@ -16,7 +16,7 @@ void Tilemap<int>::Inspector()
     int totalTiles = GetDimensions().x * GetDimensions().y;
 
     static std::string buffer;
-    ImGui::InputTextMultiline( "Tilemap Data CSV", &buffer[0], buffer.size() );
+    ImGui::InputText( "Tilemap Data CSV", &buffer );
 
     if ( ImGui::Button( "Tilemap to CSV" ) )
     {
