@@ -76,7 +76,7 @@ void InputSystem::mapUpdate()
 
     for (int i = 0; i < amount; i++)
     {
-        for (auto& key : *windows[i])
+        for (auto& key : windows[i])
         {
             bool old = key.second[0];
             key.second[0] = glfwGetKey(altHandles[i], key.first);
@@ -110,10 +110,7 @@ void InputSystem::OnInit()
 /// @brief  exit system
 void InputSystem::OnExit()
 {
-    for (int i = 0; i < windows.size(); i++)
-    {
-        delete windows[i];
-    }
+    
 }
 
 /// @brief fixed update for input, must be called
@@ -131,8 +128,10 @@ void InputSystem::OnUpdate(float dt)
 int InputSystem::InitAlternateWindow(GLFWwindow* handle)
 {
     altHandles.push_back(handle);
-    windows.push_back(new map<int, bool[3]>);
+    map<int, bool[3]> newMap;
+    windows.push_back(newMap);
     amount++;
+    return amount;
 }
 
 /// @brief checks if a given key is down
@@ -140,9 +139,9 @@ int InputSystem::InitAlternateWindow(GLFWwindow* handle)
 /// @return returns if key is down
 bool InputSystem::GetKeyDown(int glfw_key, int altWindow)
 {
-    if (altWindow > 1)
+    if (altWindow > 0)
     {
-        return *(windows[altWindow - 1])[glfw_key][0];
+        return windows[altWindow - 1][glfw_key][0];
     }
     Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
@@ -169,9 +168,9 @@ bool InputSystem::GetKeyUp(int glfw_key, int altWindow)
 /// @return returns if key is triggered
 bool InputSystem::GetKeyTriggered(int glfw_key, int altWindow)
 {
-    if (altWindow > 1)
+    if (altWindow > 0)
     {
-        return *(windows[altWindow - 1])[glfw_key][1];
+        return windows[altWindow - 1][glfw_key][1];
     }
     Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
@@ -190,9 +189,9 @@ bool InputSystem::GetKeyTriggered(int glfw_key, int altWindow)
 /// @return returns if key is released
 bool InputSystem::GetKeyReleased(int glfw_key, int altWindow)
 {
-    if (altWindow > 1)
+    if (altWindow > 0)
     {
-        return *(windows[altWindow - 1])[glfw_key][2];
+        return windows[altWindow - 1][glfw_key][2];
     }
     Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)

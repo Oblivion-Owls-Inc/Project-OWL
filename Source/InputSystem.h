@@ -55,7 +55,7 @@ protected:
     map<int, bool[3]> m_MouseStates;
     map<int, bool[3]> m_FixedMouseStates;
     std::vector<GLFWwindow*> altHandles;
-    std::vector<map<int, bool[3]>*> windows;
+    std::vector<map<int, bool[3]>> windows;
     int amount = 0;
 
 //-----------------------------------------------------------------------------
