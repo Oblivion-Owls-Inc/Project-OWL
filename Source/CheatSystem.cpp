@@ -187,22 +187,28 @@ void CheatSystem::RunCheats()
 void CheatSystem::noClip()
 {
     // Get the player's circle collider.
-    m_CircleCollider = Entities()->GetEntity("Player")->GetComponent<CircleCollider>();
-
-    static int flag;
-    static int ID;
-
-    if (m_NoClip)
+    Entity* player = Entities()->GetEntity("Player");
+    if(player)
     {
-        flag = m_CircleCollider->GetCollisionLayerFlags();
-        ID = m_CircleCollider->GetCollisionLayerId();
-        m_CircleCollider->SetCollisionLayerFlags(0);
-        m_CircleCollider->SetCollisionLayerId(INT_MAX);
-    }
-    else
-    {
-        m_CircleCollider->SetCollisionLayerFlags(flag);
-        m_CircleCollider->SetCollisionLayerId(ID);
+        m_CircleCollider = player->GetComponent<CircleCollider>();
+        if (m_CircleCollider)
+        {
+            static int flag;
+            static int ID;
+
+            if (m_NoClip)
+            {
+                flag = m_CircleCollider->GetCollisionLayerFlags();
+                ID = m_CircleCollider->GetCollisionLayerId();
+                m_CircleCollider->SetCollisionLayerFlags(0);
+                m_CircleCollider->SetCollisionLayerId(INT_MAX);
+            }
+            else
+            {
+                m_CircleCollider->SetCollisionLayerFlags(flag);
+                m_CircleCollider->SetCollisionLayerId(ID);
+            }
+        }
     }
 }
 
