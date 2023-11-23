@@ -32,6 +32,8 @@
 #include "DebugSystem.h"
 #include "RenderSystem.h"
 
+#include "Inspection.h"
+
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------
@@ -151,31 +153,21 @@
     void CollisionSystem::DebugWindow()
     {
         static bool _open = true;
-        if (ImGui::Begin("Collision System", &_open))
-        if ( !ImGui::BeginListBox("Collision Layers") )
+        if ( ImGui::Begin( "Collision System", &_open ) == false )
         {
             return;
         }
 
-        for (int i = 0; i < m_CollisionLayerNames.size(); ++i )
-        {
-            char buffer[ 64 ];
-            strncpy_s( buffer, IM_ARRAYSIZE( buffer ), m_CollisionLayerNames[i].c_str(), m_CollisionLayerNames[i].size());
-            ImGui::InputText( (std::string() + "Layer Name##" + std::to_string( i )).c_str(), buffer, IM_ARRAYSIZE(buffer));
-            m_CollisionLayerNames[ i ] = buffer;
-        }
+        Inspection::InspectArray< std::string >(
+            "Collision Layer Names",
+            &m_CollisionLayerNames,
+            []( std::string* name ) -> bool
+            {
+                return ImGui::InputText( "", name );
+            }
+        );
 
-        ImGui::EndListBox();
-
-        if ( ImGui::Button( "Add Layer" ) )
-        {
-            m_CollisionLayerNames.push_back( "new_layer" );
-        }
-
-        if ( ImGui::Button( "Remove Layer" ) )
-        {
-            m_CollisionLayerNames.pop_back();
-        }
+        ImGui::End();
     }
 
 //-----------------------------------------------------------------------------
