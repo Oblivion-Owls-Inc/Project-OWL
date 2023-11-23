@@ -88,22 +88,40 @@ void TilemapSprite::OnInit()
     initInstancingStuff();
 
     // Init text shader if it ain't.
-    if (!Renderer()->GetShader("tile"))
+    if ( Renderer()->GetShader( "tile" ) == nullptr )
     {
-        Renderer()->AddShader("tile", new Shader("Data/shaders/tile_instancing.vert", 
-                                                 "Data/shaders/texture.frag"));
+        Renderer()->AddShader(
+            "tile",
+            new Shader(
+                "Data/shaders/tile_instancing.vert", 
+                "Data/shaders/texture.frag"
+            )
+        );
     }
 
     // Set up callback for when Tilemap array changes
-    if (GetEntity())
+    if ( GetEntity() )
     {
         m_Tilemap = GetEntity()->GetComponent< Tilemap<int> >();
-        if (m_Tilemap)
-            m_Tilemap->AddOnTilemapChangedCallback( GetId(), 
-                            std::bind(&TilemapSprite::onTilemapChanged, this) );
+        if ( m_Tilemap != nullptr )
+        {
+            m_Tilemap->AddOnTilemapChangedCallback(
+                GetId(), 
+                std::bind(
+                    &TilemapSprite::onTilemapChanged,
+                    this,
+                    std::placeholders::_1,
+                    std::placeholders::_2,
+                    std::placeholders::_3
+                )
+            );
+        }
+
 #ifndef NDEBUG
         else
+        {
             std::cout << "TilemapSprite: Parent does not have Tilemap component." << std::endl;
+        }
 #endif
     }
 }

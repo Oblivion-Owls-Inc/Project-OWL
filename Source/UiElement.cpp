@@ -102,6 +102,7 @@
         }
         else
         {
+            m_Parent = nullptr;
             updateTransform();
         }
     }
@@ -109,6 +110,8 @@
     /// @brief  called once when leaving the scene
     void UiElement::OnExit()
     {
+        Platform()->RemoveOnWindowResizeCallback(GetId());
+
         for ( UiElement* child : m_Children )
         {
             child->m_Parent = nullptr;

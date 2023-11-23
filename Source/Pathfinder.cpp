@@ -27,10 +27,10 @@ Component * Pathfinder::Clone() const { return new Pathfinder(*this); }
 //          Virtual overrides
 //-----------------------------------------------------------------------------
 
-/// @brief  called when entering a scene - syncs with Tilemap
-void Pathfinder::OnInit()
-{
-    m_Tilemap = GetEntity()->GetComponent< Tilemap<int> >();
+    /// @brief  called when entering a scene - syncs with Tilemap
+    void Pathfinder::OnInit()
+    {
+        m_Tilemap = GetEntity()->GetComponent< Tilemap<int> >();
 
     #ifndef NDEBUG
         if ( m_Tilemap == nullptr )
@@ -40,7 +40,17 @@ void Pathfinder::OnInit()
         }
     #endif
 
-        m_Tilemap->AddOnTilemapChangedCallback( GetId(), std::bind(&Pathfinder::explore, this));
+        m_Tilemap->AddOnTilemapChangedCallback(
+            GetId(),
+            std::bind(
+                &Pathfinder::onTilemapChangedCallback,
+                this,
+                std::placeholders::_1,
+                std::placeholders::_2,
+                std::placeholders::_3
+            )
+        );
+
         m_Nodes.resize( m_Tilemap->GetTilemap().size() );
         SetDestination(m_DestPos);
     }
@@ -56,36 +66,9 @@ void Pathfinder::OnInit()
     /// @brief  displays this Pathfinder's inspector
     void Pathfinder::Inspector()
     {
-        if ( ImGui::DragFloat2( "Destination", &m_DestPos[0], 0.05f ) )
-        {
-            SetDestination( m_DestPos );
-        }
+        inspectDestination();
 
-        static bool selectTargetMode = false;
-
-        if ( ImGui::Button( selectTargetMode ? "click in the scene" : "Select Destination" ) )
-        {
-            selectTargetMode = !selectTargetMode;
-        }
-
-        if ( selectTargetMode && Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_1 ) )
-        {
-            SetDestination( Input()->GetMousePosWorld() );
-            selectTargetMode = false;
-        }
-
-        if ( m_Tilemap == nullptr )
-        {
-            return;
-        }
-
-        glm::mat4 tileToWorld = m_Tilemap->GetTilemapToWorldMatrix();
-        Renderer()->DrawRect(
-            (glm::vec2)( tileToWorld * glm::vec4( (glm::vec2)m_DestTile + glm::vec2( 0.5f ), 0, 1 ) ),
-            m_Tilemap->GetTileScale(),
-            GetEntity()->GetComponent< Transform >()->GetRotation(),
-            glm::vec4( -1.0f, 0.0f, -1.0f, 0.0f )
-        );
+        inspectWalkables();
     }
 
 
@@ -171,136 +154,215 @@ bool Pathfinder::IsWalkable(glm::vec2 pos) const
 //-----------------------------------------------------------------------------
 
 
-/// @brief      Actual pathfinding. Updates all nodes. It ain't super optimized,
-///             but it doens't need to be
-void Pathfinder::explore()
-{
-    // skip if Tilemap is null (such as if this is an archetype in the inspector)
-    // if ( m_Tilemap == nullptr )
-    // {
-    //     return;
-    // }
-
-    // update walkability of tiles
-    int size = (int) m_Nodes.size();
-    for (int i=0; i<size; i++)
+    /// @brief  callback that gets called when the tilemap changes
+    /// @param  tilemap the tilemap that was changed
+    void Pathfinder::onTilemapChangedCallback( Tilemap< int >*, glm::ivec2 const&, int const& )
     {
-        m_Nodes[i].type = Unwalkable;
-
-        for (int j : m_Walkables)
-        {
-            if (m_Tilemap->GetTilemap()[i] == j)
-            {
-                m_Nodes[i].type = Undiscovered;
-                break;
-            }
-        }
+        explore();
     }
 
 
-    // tile directions to pick from: counter clockwise, starting from left. (it's y-down)
-    glm::ivec2 dir[8] = { {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}, {-1,-1} };
-
-    int width = m_Tilemap->GetDimensions().x;
-    int height = size / width;
-
-    // init first node
-    m_Nodes[m_DestTile.y * width + m_DestTile.x].type = Seen;
-    m_Nodes[m_DestTile.y * width + m_DestTile.x].direction = {0,0};
-
-
-    // keep going as long as at least one seen node is found
-    bool found = true;
-
-    while (found)
+    /// @brief      Actual pathfinding. Updates all nodes. It ain't super optimized,
+    ///             but it doens't need to be
+    void Pathfinder::explore()
     {
-        found = false;
+        // skip if Tilemap is null (such as if this is an archetype in the inspector)
+        // if ( m_Tilemap == nullptr )
+        // {
+        //     return;
+        // }
 
-        for (int y=0; y<height; y++)
+        // update walkability of tiles
+        int size = (int) m_Nodes.size();
+        for (int i=0; i<size; i++)
         {
-            for (int x=0; x<width; x++)
+            m_Nodes[i].type = Unwalkable;
+            m_Nodes[i].direction = glm::ivec2( 0 );
+
+            for (int j : m_Walkables)
             {
-                // only explore seen nodes.
-                if (m_Nodes[y*width + x].type != Seen)
-                    continue;
-
-                m_Nodes[y*width + x].type = Explored;
-                found = true;
-
-
-                // and now the tough part: analyze nodes around the newly explored one.
-
-                int k = 0;                              // 8 nodes around current one
-                bool this_seen, previous_seen = false;  // for corner-checking (later)
-
-                // this looks at all neighbor nodes one at a time
-                while (k < 8)
+                if (m_Tilemap->GetTilemap()[i] == j)
                 {
-                    // i and j are x and y of this neighbor node
-                    int i = x + dir[k].x;
-                    int j = y + dir[k].y;
+                    m_Nodes[i].type = Undiscovered;
+                    break;
+                }
+            }
+        }
 
-                    // check bounds
-                    if (i < 0 || j < 0 || i >= width || j >= height
-                        || m_Nodes[j*width + i].type == Unwalkable)
-                        this_seen = false;
-                    else
+
+        // tile directions to pick from: counter clockwise, starting from left. (it's y-down)
+        glm::ivec2 dir[8] = { {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}, {-1,-1} };
+
+        int width = m_Tilemap->GetDimensions().x;
+        int height = size / width;
+
+        // init first node
+        m_Nodes[m_DestTile.y * width + m_DestTile.x].type = Seen;
+        m_Nodes[m_DestTile.y * width + m_DestTile.x].direction = {0,0};
+
+
+        // keep going as long as at least one seen node is found
+        bool found = true;
+
+        while (found)
+        {
+            found = false;
+
+            for (int y=0; y<height; y++)
+            {
+                for (int x=0; x<width; x++)
+                {
+                    // only explore seen nodes.
+                    if (m_Nodes[y*width + x].type != Seen)
+                        continue;
+
+                    m_Nodes[y*width + x].type = Explored;
+                    found = true;
+
+
+                    // and now the tough part: analyze nodes around the newly explored one.
+
+                    int k = 0;                              // 8 nodes around current one
+                    bool this_seen, previous_seen = false;  // for corner-checking (later)
+
+                    // this looks at all neighbor nodes one at a time
+                    while (k < 8)
                     {
-                        this_seen = true;
+                        // i and j are x and y of this neighbor node
+                        int i = x + dir[k].x;
+                        int j = y + dir[k].y;
 
-                        // cost for the node we're currently looking at:
-                        // 14 if it's diagonal from current, 10 if it's straight
-                        int new_cost = m_Nodes[y*width + x].cost + ((k&1) ? 14 : 10);
-
-                        // set new values if neighbor node isn't seen yet.
-                        // or update it if new cost is lower.
-                        Node & node = m_Nodes[j*width + i];
-
-                        if (node.type == Undiscovered || node.cost > new_cost)
-                        {
-                            node.type = Seen;
-                            node.cost = new_cost;
-                            // direction: pointing back at current node  (y-up orientation)
-                            node.direction = {-dir[k].x, dir[k].y};
-                        }
-                    }
-
-                    // The following is to ensure nodes don't point at corners (diagonally).
-                    // Diagonal neighbor will be seen only if both non-diagonals around it were seen.
-
-                    // even: non-diagonal neighbors.
-                    if (~k&1)
-                    {
-                        // if this and previous were seen, step back to the diagonal
-                        // between them. Otherwise proceed to next non-diagonal.
-                        if (this_seen && previous_seen)
-                            k -= 1;
+                        // check bounds
+                        if (i < 0 || j < 0 || i >= width || j >= height
+                            || m_Nodes[j*width + i].type == Unwalkable)
+                            this_seen = false;
                         else
-                            k += 2;
+                        {
+                            this_seen = true;
 
-                        previous_seen = this_seen;
-                    }
-                    else
-                    {
-                        // odd: diagonals. If this diagonal was seen just now, that means
-                        // the next non-diagonal is already seen too. Skip it, and skip
-                        // the diagonal after it.
-                        k += 3;
-                    }
+                            // cost for the node we're currently looking at:
+                            // 14 if it's diagonal from current, 10 if it's straight
+                            int new_cost = m_Nodes[y*width + x].cost + ((k&1) ? 14 : 10);
 
-                    // after all that skipping around, backtrack to get the last node too
-                    if (k == 8 && previous_seen &&  x-1 >= 0 
-                        &&  m_Nodes[y*width + x-1].type == Seen)
-                        k = 7;
+                            // set new values if neighbor node isn't seen yet.
+                            // or update it if new cost is lower.
+                            Node & node = m_Nodes[j*width + i];
 
-                } // while k<8  (assessing nodes around current one)
+                            if (node.type == Undiscovered || node.cost > new_cost)
+                            {
+                                node.type = Seen;
+                                node.cost = new_cost;
+                                // direction: pointing back at current node  (y-up orientation)
+                                node.direction = {-dir[k].x, dir[k].y};
+                            }
+                        }
 
-            } // for x
-        } // for y
-    } // while found
-}
+                        // The following is to ensure nodes don't point at corners (diagonally).
+                        // Diagonal neighbor will be seen only if both non-diagonals around it were seen.
+
+                        // even: non-diagonal neighbors.
+                        if (~k&1)
+                        {
+                            // if this and previous were seen, step back to the diagonal
+                            // between them. Otherwise proceed to next non-diagonal.
+                            if (this_seen && previous_seen)
+                                k -= 1;
+                            else
+                                k += 2;
+
+                            previous_seen = this_seen;
+                        }
+                        else
+                        {
+                            // odd: diagonals. If this diagonal was seen just now, that means
+                            // the next non-diagonal is already seen too. Skip it, and skip
+                            // the diagonal after it.
+                            k += 3;
+                        }
+
+                        // after all that skipping around, backtrack to get the last node too
+                        if (k == 8 && previous_seen &&  x-1 >= 0 
+                            &&  m_Nodes[y*width + x-1].type == Seen)
+                            k = 7;
+
+                    } // while k<8  (assessing nodes around current one)
+
+                } // for x
+            } // for y
+        } // while found
+    }
 
 
+
+    /// @brief  inspector for choosing and displaying the destination of this Pathfinder
+    void Pathfinder::inspectDestination()
+    {
+        if ( m_Tilemap == nullptr )
+        {
+            return;
+        }
+
+        // widget to set destination
+        if ( ImGui::DragFloat2( "Destination", &m_DestPos[0], 0.05f ) )
+        {
+            SetDestination( m_DestPos );
+        }
+
+        // button to click destination point in scene
+        static bool selectTargetMode = false;
+        if ( ImGui::Button( selectTargetMode ? "click in the scene" : "Select Destination" ) )
+        {
+            selectTargetMode = !selectTargetMode;
+        }
+
+        if ( selectTargetMode && Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_1 ) )
+        {
+            SetDestination( Input()->GetMousePosWorld() );
+            selectTargetMode = false;
+        }
+
+        // debug draw the destination tile
+        glm::mat4 tileToWorld = m_Tilemap->GetTilemapToWorldMatrix();
+        Renderer()->DrawRect(
+            (glm::vec2)( tileToWorld * glm::vec4( (glm::vec2)m_DestTile + glm::vec2( 0.5f ), 0, 1 ) ),
+            m_Tilemap->GetTileScale(),
+            GetEntity()->GetComponent< Transform >()->GetRotation(),
+            glm::vec4( -1.0f, 0.0f, -1.0f, 0.0f )
+        );
+    }
+
+    /// @brief  inspector for choosing which tiles are walkable
+    void Pathfinder::inspectWalkables()
+    {
+        if ( ImGui::BeginListBox( "walkable tiles", ImVec2( 82, m_Walkables.size() * 24 + 26 ) ) == false )
+        {
+            return;
+        }
+
+        for ( int i = 0; i < m_Walkables.size(); ++i )
+        {
+            ImGui::PushID( i );
+
+            ImGui::PushItemWidth( 50 );
+            ImGui::DragInt( "", &m_Walkables[ i ], 0.05f, -1, INT_MAX );
+
+            ImGui::SameLine();
+
+            if ( ImGui::Button( "X", ImVec2( 20, 20 ) ) )
+            {
+                m_Walkables.erase( m_Walkables.begin() + i );
+            }
+
+            ImGui::PopID();
+        }
+
+        if ( ImGui::Button( "+", ImVec2( 50, 20 ) ) )
+        {
+            m_Walkables.push_back( 0 );
+        }
+
+        ImGui::EndListBox();
+    }
 
 
 //-----------------------------------------------------------------------------

@@ -381,7 +381,7 @@
                     continue;
                 }
 
-                if ( tilemap->GetTile( tilePos ) == 0 )
+                if ( tilemap->GetTile( tilePos ) <= 0 )
                 {
                     continue;
                 }

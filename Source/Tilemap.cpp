@@ -8,6 +8,9 @@
 
 #include "Tilemap.h"
 
+#include <imgui.h>
+#include <imgui_stdlib.h>
+
 // @brief  inspector for int tilemaps
 template<>
 void Tilemap<int>::Inspector()
@@ -16,15 +19,15 @@ void Tilemap<int>::Inspector()
     int totalTiles = GetDimensions().x * GetDimensions().y;
 
     static std::string buffer;
-    ImGui::InputTextMultiline( "Tilemap Data CSV", &buffer[0], buffer.size() );
+    ImGui::InputTextMultiline( "Tilemap Data CSV", &buffer );
 
     if ( ImGui::Button( "Tilemap to CSV" ) )
     {
         buffer.clear();
-        for ( int i = 0; i < m_Tilemap.size(); ++i )
+        for ( int i = 0; i < m_Tiles.size(); ++i )
         {
-            buffer += std::to_string( m_Tilemap[ i ] );
-            buffer += ( i % m_Dimensions.x != m_Dimensions.x - 1 ) ? ',' : '\n';
+            buffer += std::to_string( m_Tiles[ i ] );
+            buffer += ( i % m_Dimensions.x == m_Dimensions.x - 1 ) ? '\n' : ',';
         }
 
         buffer.resize( buffer.size() * 2 );
@@ -33,21 +36,16 @@ void Tilemap<int>::Inspector()
     if ( ImGui::Button( "CSV to Tilemap" ) )
     {
         m_Dimensions = glm::ivec2( 0 );
-        m_Tilemap.clear();
+        m_Tiles.clear();
 
         std::istringstream csvData( buffer );
         csvData >> std::noskipws;
 
-        int i = 1;
         while ( true )
         {
             int tile;
             csvData >> tile;
-            if ( tile == -1 )
-            {
-                tile = 0;
-            }
-            m_Tilemap.push_back( tile );
+            m_Tiles.push_back( tile );
 
             char c;
             if ( !csvData.get( c ) )
@@ -57,17 +55,15 @@ void Tilemap<int>::Inspector()
 
             if ( c == '\n' && m_Dimensions.x == 0 )
             {
-                m_Dimensions.x = i;
+                m_Dimensions.x = m_Tiles.size();
             }
-
-            ++i;
         }
 
         if ( m_Dimensions.x != 0 )
         {
-            m_Dimensions.y = (int)m_Tilemap.size() / m_Dimensions.x;
+            m_Dimensions.y = (int)m_Tiles.size() / m_Dimensions.x;
         }
 
-        m_Modified = true;
+        callOnTilemapChangedCallbacks();
     }
 }
