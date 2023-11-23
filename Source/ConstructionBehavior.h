@@ -35,8 +35,16 @@ public: // constructor / Destructor
     ~ConstructionBehavior() = default;
 
 //-----------------------------------------------------------------------------
-public: // methods
+private: // types
 //-----------------------------------------------------------------------------
+
+    
+    /// @brief  struct of info needed to construct buildings
+    struct BuildingInfo
+    {
+        Entity const* archetype = nullptr;
+        int cost = 1;
+    };
 
 
 //-----------------------------------------------------------------------------
@@ -69,6 +77,7 @@ public: // accessors
     /// @param  range   the building index
     void SetBuildingIndex( int range ) { m_BuildingIndex = range; }
 
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -89,11 +98,9 @@ private: // virtual override methods
 private: // members
 //-----------------------------------------------------------------------------
 
-    /// @brief  the archetypes of each buidling type
-    std::vector< Entity const* > m_BuildingArchetypes = {};
 
-    /// @brief  the costs of each building type
-    std::vector< int > m_BuildingCosts = {};
+    /// @brief  info needed to construct each building type
+    std::vector< BuildingInfo > m_BuildingInfos = {};
 
     /// @brief  the index of the selected building to build
     int m_BuildingIndex = -1;
