@@ -11,6 +11,8 @@
 #include "Pool.h"
 
 
+class AudioPlayer;
+
 class BaseBehavior :
     public BasicEntityBehavior
 {
@@ -41,6 +43,12 @@ private: // copying
     
     /// @brief copy ctor
     BaseBehavior(const BaseBehavior& other);
+
+//-----------------------------------------------------------------------------
+private:
+//-----------------------------------------------------------------------------
+
+    AudioPlayer* m_AudioPlayer = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // reading
