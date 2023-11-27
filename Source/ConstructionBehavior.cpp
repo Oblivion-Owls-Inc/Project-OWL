@@ -19,12 +19,15 @@
 #include "Entity.h"
 #include "EntitySystem.h"
 #include "InputSystem.h"
+#include "BehaviorSystem.h"
 
 #include "Engine.h"
 
 #include <climits>
 
 #include "Text.h"
+
+#include "Inspection.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
@@ -118,20 +121,26 @@
     /// @brief  updates which building is currently selected
     void ConstructionBehavior::updateSelectedBuilding()
     {
-        for ( int i = 0; i <= m_BuildingArchetypes.size() ; ++i )
+        if ( Input()->GetKeyReleased( GLFW_KEY_0 ) )
         {
-            if ( Input()->GetKeyReleased( GLFW_KEY_0 + i ) == false )
+            m_BuildingIndex = -1;
+            return;
+        }
+
+        for ( int i = 0; i <= m_BuildingInfos.size() ; ++i )
+        {
+            if ( Input()->GetKeyReleased( GLFW_KEY_1 + i ) == false )
             {
                 continue;
             }
 
-            m_BuildingIndex = i - 1;
-            if ( i != 0 )
-            {
-                // update preview sprite
-                m_Sprite->SetTexture( m_BuildingArchetypes[ i - 1 ]->GetComponent<Sprite>()->GetTexture() );
-                m_Transform->SetScale( m_BuildingArchetypes[ i - 1 ]->GetComponent<Transform>()->GetScale() );
-            }
+            m_BuildingIndex = i;
+
+            // update preview sprite
+            m_Sprite->SetTexture( m_BuildingInfos[ i ].archetype->GetComponent<Sprite>()->GetTexture() );
+            m_Transform->SetScale( m_BuildingInfos[ i ].archetype->GetComponent<Transform>()->GetScale() );
+
+            return;
         }
     }
 
@@ -167,7 +176,7 @@
         }
 
         // not enough funds
-        if ( m_BuildingCosts[ m_BuildingIndex ] > m_CurrentResources )
+        if ( m_BuildingInfos[ m_BuildingIndex ].cost > m_CurrentResources )
         {
             return false;
         }
@@ -204,7 +213,7 @@
     {
         // TODO: give feedback that the building was placed
 
-        Entity* building = m_BuildingArchetypes[ m_BuildingIndex ]->Clone();
+        Entity* building = m_BuildingInfos[ m_BuildingIndex ].archetype->Clone();
         building->GetComponent<Transform>()->SetTranslation( m_TargetPos );
         
         Entities()->AddEntity( building );
@@ -212,7 +221,7 @@
         
         m_TurretPlacementSound->Play();
 
-        m_CurrentResources -= m_BuildingCosts[ m_BuildingIndex ];
+        m_CurrentResources -= m_BuildingInfos[ m_BuildingIndex ].cost;
     }
 
 
@@ -327,69 +336,35 @@
     /// @brief  inspector for the building list
     void ConstructionBehavior::inspectBuildingList()
     {
-
-        ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.6f );
-        if ( !ImGui::BeginListBox( "Buildings", ImVec2( 0, 25 * (float)m_BuildingArchetypes.size() + 5 ) ) )
-        {
-            return;
-        }
-
-        for ( int i = 0; i < m_BuildingArchetypes.size(); ++i )
-        {
-            ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.35f );
-            if ( ImGui::BeginCombo( ( std::stringstream() << "Building##" << i ).str().c_str(), m_BuildingArchetypes[i]->GetName().c_str()) )
+        Inspection::InspectArray< BuildingInfo >(
+            "Buildings",
+            &m_BuildingInfos,
+            []( BuildingInfo* buildingInfo ) -> bool
             {
-                for ( auto& [ name, archetype ] : AssetLibrary< Entity >()->GetAssets() )
+                bool changed = false;
+
+                ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.35f );
+                if ( Inspection::SelectAssetFromLibrary( "Archetype", &buildingInfo->archetype ) )
                 {
-                    if ( ImGui::Selectable( name.c_str(), archetype == m_BuildingArchetypes[ i ] ) )
-                    {
-                        m_BuildingArchetypes[ i ] = archetype;
-                    }
+                    changed = true;
                 }
-                ImGui::EndCombo();
-            }
 
-            ImGui::SameLine();
-            ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.1f );
-            ImGui::DragInt( (std::stringstream() << "Cost##" << i ).str().c_str(), &m_BuildingCosts[ i ], 0.05f, 0, INT_MAX );
-
-            ImGui::SameLine();
-            if ( ImGui::Button(
-                ( std::stringstream() << "X##" << i ).str().c_str(),
-                ImVec2( 25, 0 )
-            ) )
-            {
-                m_BuildingArchetypes.erase( m_BuildingArchetypes.begin() + i );
-                m_BuildingCosts.erase( m_BuildingCosts.begin() + i );
-                --i;
-                if ( m_BuildingIndex >= m_BuildingArchetypes.size() )
+                ImGui::SameLine();
+                ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.1f );
+                if ( ImGui::DragInt( "Cost", &buildingInfo->cost, 0.5f, 0, INT_MAX ) )
                 {
-                    m_BuildingIndex = -1;
+                    changed = true;
                 }
+
+                return changed;
             }
-
-        }
-
-        ImGui::EndListBox();
-
-        if ( ImGui::BeginCombo( "Add Building", "Select Archetype" ) )
-        {
-            for ( auto& [ name, archetype ] : AssetLibrary< Entity >()->GetAssets() )
-            {
-                if ( ImGui::Selectable( name.c_str(), false ) )
-                {
-                    m_BuildingArchetypes.push_back( archetype );
-                    m_BuildingCosts.push_back( 5 );
-                }
-            }
-            ImGui::EndCombo();
-        }
+        );
     }
 
     /// @brief  inspector for basic variables
     void ConstructionBehavior::inspectVariables()
     {
-        ImGui::DragInt( "Building Index", &m_BuildingIndex, 0.05f, 0, (int)m_BuildingArchetypes.size() - 1, "%i", m_BuildingArchetypes.size() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput );
+        ImGui::DragInt( "Building Index", &m_BuildingIndex, 0.05f, 0, (int)m_BuildingInfos.size() - 1, "%i", m_BuildingInfos.size() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput );
 
         ImGui::DragFloat( "Placement Range", &m_PlacementRange, 0.05f, 0.0f, INFINITY );
 
@@ -472,8 +447,10 @@
     {
         for ( nlohmann::json const& building : data )
         {
-            m_BuildingArchetypes.push_back( AssetLibrary< Entity >()->GetAsset( building[ "Name" ] ) );
-            m_BuildingCosts.push_back( building[ "Cost" ] );
+            m_BuildingInfos.push_back( {
+                AssetLibrary< Entity >()->GetAsset( building[ "Name" ] ),
+                building[ "Cost" ]
+            } );
         }
     }
 
@@ -605,10 +582,10 @@
         nlohmann::ordered_json json;
 
         nlohmann::ordered_json& buildings = json[ "Buildings" ];
-        for ( int i = 0; i < m_BuildingArchetypes.size(); ++i )
+        for ( int i = 0; i < m_BuildingInfos.size(); ++i )
         {
-            buildings[ i ][ "Name" ] = AssetLibrary< Entity >()->GetAssetName( m_BuildingArchetypes[ i ] );
-            buildings[ i ][ "Cost" ] = m_BuildingCosts[ i ];
+            buildings[ i ][ "Name" ] = AssetLibrary< Entity >()->GetAssetName( m_BuildingInfos[ i ].archetype );
+            buildings[ i ][ "Cost" ] = m_BuildingInfos[ i ].cost;
         }
 
         json[ "BuildingIndex"            ] = Stream::Write( m_BuildingIndex            );
@@ -637,8 +614,7 @@
     /// @param  other   the other ConstructionBehavior to copy
     ConstructionBehavior::ConstructionBehavior( const ConstructionBehavior& other ) :
         Behavior( other ),
-        m_BuildingArchetypes       ( other.m_BuildingArchetypes       ),
-        m_BuildingCosts            ( other.m_BuildingCosts            ),
+        m_BuildingInfos            ( other.m_BuildingInfos            ),
         m_BuildingIndex            ( other.m_BuildingIndex            ),
         m_PlacementRange           ( other.m_PlacementRange           ),
         m_PreviewFadeOutRadius     ( other.m_PreviewFadeOutRadius     ),

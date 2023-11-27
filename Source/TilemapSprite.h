@@ -93,6 +93,6 @@ private:
 
     /// @brief          Sets TilemapChanged flag to true. Used as callbeck for
     ///                 Tilemap component. The flag is reset when Draw() is called.
-    __inline void onTilemapChanged() { m_TilemapChanged = true; }
+    void onTilemapChanged( Tilemap< int >*, glm::ivec2 const&, int const& ) { m_TilemapChanged = true; }
 
 };

@@ -1216,8 +1216,7 @@
                         5.0
                     ],
                     "Walkables": [
-                        0,
-                        -1
+                        0
                     ]
                 },
                 "StaticBody": {
