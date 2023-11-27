@@ -72,7 +72,10 @@ void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionDa
 	}
 	
 	BasicEntityBehavior::TakeDamage(enemy->GetDamage());
-	m_AudioPlayer->Play();
+	if(m_AudioPlayer)
+	{
+		m_AudioPlayer->Play();
+	}
 	enemy->GetEntity()->Destroy();
 
 	if (BasicEntityBehavior::GetHealth()->GetCurrent() <= 0)
