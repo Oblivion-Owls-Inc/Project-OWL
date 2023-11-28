@@ -334,7 +334,7 @@ bool Pathfinder::IsWalkable(glm::vec2 pos) const
     /// @brief  inspector for choosing which tiles are walkable
     void Pathfinder::inspectWalkables()
     {
-        if ( ImGui::BeginListBox( "walkable tiles", ImVec2( 82, m_Walkables.size() * 24 + 26 ) ) == false )
+        if ( ImGui::BeginListBox( "walkable tiles", ImVec2( 82, (int)m_Walkables.size() * 24 + 26 ) ) == false )
         {
             return;
         }

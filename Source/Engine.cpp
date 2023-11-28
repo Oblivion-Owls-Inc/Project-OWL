@@ -39,7 +39,6 @@
 #include "Animation.h"
 #include "Tilemap.h"
 
-#include "SandboxSystem.h"
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
 

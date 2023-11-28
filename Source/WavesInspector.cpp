@@ -413,8 +413,7 @@ void WavesBehavior::GuiSpawners()
 
 			}
 			ImGui::PopID();
-			static Texture const texture = Texture("Data/Textures/DebugTransform.png");
-			Renderer()->DrawTexture(&texture, spawners[i], glm::vec2(1), 0, glm::vec4(0), 1.0f, true);
+			Renderer()->DrawTexture(Transform::GetWidgetTexture(), spawners[i], glm::vec2(1), 0, glm::vec4(0), 1.0f, true);
 			DebugDrag(i);
 		}
 		// buttons to add/remove spawners

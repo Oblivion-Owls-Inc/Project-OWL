@@ -75,17 +75,6 @@
                     0.5
                 ]
             },
-            "Enemy": {
-                "Filepath": "Data/Textures/enemy.png",
-                "SheetDimensions": [
-                    12,
-                    1
-                ],
-                "Pivot": [
-                    0.5,
-                    0.5
-                ]
-            },
             "Fireball": {
                 "Filepath": "Data/Textures/Balls/Ball4.png",
                 "SheetDimensions": [
@@ -243,13 +232,6 @@
             "Enemy": {
                 "Name": "Enemy",
                 "Components": {
-                    "Animation": {
-                        "FrameIndex": 0,
-                        "FrameDelay": 0.0,
-                        "IsRunning": true,
-                        "LoopCount": -1,
-                        "Animation": "EnemyMove"
-                    },
                     "AudioPlayer": {
                         "Volume": 1.0,
                         "Pitch": 1.0,
@@ -334,18 +316,6 @@
                         "Restitution": 1.0,
                         "Friction": 0.0,
                         "Drag": 4.0
-                    },
-                    "Sprite": {
-                        "Layer": 3,
-                        "Color": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "Opacity": 0.0,
-                        "FrameIndex": 0,
-                        "Texture": "Enemy"
                     },
                     "Transform": {
                         "Translation": [

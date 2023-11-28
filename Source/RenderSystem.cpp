@@ -81,7 +81,7 @@ void RenderSystem::DrawRect(
     bool isDiegetic
 )
 {
-    static Texture debugRectTexture = Texture( "Data/Textures/DebugRectangle.png" );
+    static Texture debugRectTexture = Texture( "Data/Textures/Debug/Rectangle.png" );
 
     DrawTexture( &debugRectTexture, position, scale, 0.0f, color, alpha, isDiegetic );
 }
@@ -120,7 +120,7 @@ void RenderSystem::DrawCircle(
     bool isDiegetic
 )
 {
-    static Texture debugCircleTexture = Texture( "Data/Textures/DebugCircle.png" );
+    static Texture debugCircleTexture = Texture( "Data/Textures/Debug/Circle.png" );
 
     DrawTexture( &debugCircleTexture, position, glm::vec2( radius * 2.0f ), 0.0f, color, alpha, isDiegetic );
 }
@@ -169,7 +169,11 @@ void RenderSystem::AddSprite( Sprite* sprite )
 /// @param sprite   Sprite pointer to remove
 void RenderSystem::RemoveSprite( Sprite* sprite )
 {
-    m_Sprites.erase( std::find( m_Sprites.begin(), m_Sprites.end(), sprite) );
+    auto it = std::find( m_Sprites.begin(), m_Sprites.end(), sprite);
+    if ( it != m_Sprites.end() )
+    {
+        m_Sprites.erase( it );
+    }
 }
 
 

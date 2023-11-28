@@ -227,7 +227,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\AudioSystem.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
-    <ClCompile Include="Source\SandboxSystem.cpp" />
     <ClCompile Include="Source\StaticBody.cpp" />
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
@@ -294,7 +293,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\EntitySystem.h" />
     <ClInclude Include="Source\RigidBody.h" />
-    <ClInclude Include="Source\SandboxSystem.h" />
     <ClInclude Include="Source\StaticBody.h" />
     <ClInclude Include="Source\Text.h" />
     <ClInclude Include="Source\TilemapCollider.h" />
@@ -337,14 +335,10 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
-    <None Include="Data\Scenes\AidanScene.scene.json" />
     <None Include="Data\Scenes\GameOver.scene.json" />
     <None Include="Data\Scenes\GameWin.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
-    <None Include="Data\Scenes\Sandbox.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />
-    <None Include="Data\Scenes\TurretScene.scene.json" />
-    <None Include="Data\Scenes\XinoScene.scene.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
