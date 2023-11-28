@@ -3,7 +3,7 @@
         "Sounds": {
             "EnemySound": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Enemy/footsteps.ogg"
+                "Filepath": "Data/Sounds/Effects/Enemy/footsteps.ogg"
             },
             "Music": {
                 "IsLoopable": true,
@@ -11,23 +11,23 @@
             },
             "PlayerDigging": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Player/digging.ogg"
+                "Filepath": "Data/Sounds/Effects/Player/digging.ogg"
             },
             "PlayerFootSteps": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Player/Human-Ground-FootSteps.ogg"
+                "Filepath": "Data/Sounds/Effects/Player/Human-Ground-FootSteps.ogg"
             },
             "TurretPlacement": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Turret/TurretPlace.ogg"
+                "Filepath": "Data/Sounds/Effects/Turret/TurretPlace.ogg"
             },
             "TurretShoot": {
                 "IsLoopable": true,
-                "Filepath": "Data/Sounds/Turret/TurretShoot.ogg"
+                "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg"
             },
             "BaseDamageSound": {
                 "IsLoopable": true,
-                "Filepath":  "Data/Sounds/Base/BaseDamage.ogg"
+                "Filepath":  "Data/Sounds/Effects/Base/BaseDamage.ogg"
             }
         },
         "Textures": {
