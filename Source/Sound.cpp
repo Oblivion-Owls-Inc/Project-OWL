@@ -22,7 +22,7 @@
     /// @param  isLoopable  whether or not the sound should loop
     Sound::Sound( char const* filepath, bool isLoopable ) :
         m_Filepath( filepath ),
-        m_IsLoopabe( isLoopable )
+        m_IsLoopable( isLoopable )
     {
         Reload();
     }
@@ -77,7 +77,7 @@
 
         AudioSystem::GetInstance()->GetFMOD()->createSound(
             m_Filepath.c_str(),
-            m_IsLoopabe ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
+            m_IsLoopable ? FMOD_LOOP_NORMAL : FMOD_DEFAULT,
             nullptr,
             &m_Sound
         );
@@ -110,7 +110,7 @@
 
         Inspection::SelectFileFromDirectory( "Filepath", &m_Filepath, soundDirectory );
 
-        ImGui::Checkbox( "Loopable", &m_IsLoopabe );
+        ImGui::Checkbox( "Loopable", &m_IsLoopable );
 
         if ( ImGui::Button( "Reload Sound" ) )
         {
@@ -158,9 +158,9 @@
 
     /// @brief  reads IsLoopabe
     /// @param  data    the JSON data to read from
-    void Sound::readIsLoopabe( nlohmann::ordered_json const& data )
+    void Sound::readIsLoopable( nlohmann::ordered_json const& data )
     {
-        m_IsLoopabe = Stream::Read<bool>( data );
+        m_IsLoopable = Stream::Read<bool>( data );
     }
 
     /// @brief  runs after Sound has been loaded 
@@ -175,7 +175,7 @@
     {
         nlohmann::ordered_json data;
 
-        data["IsLoopabe"] = m_IsLoopabe;
+        data["IsLoopable"] = m_IsLoopable;
         data["Filepath"] = m_Filepath;
 
         return data;
@@ -183,7 +183,7 @@
 
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< Sound > const Sound::s_ReadMethods = {
-        { "IsLoopabe", &readIsLoopabe },
+        { "IsLoopable", &readIsLoopable },
         { "Filepath" , &readFilepath  }
     };
 

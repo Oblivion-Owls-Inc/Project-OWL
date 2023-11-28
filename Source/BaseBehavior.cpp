@@ -12,6 +12,7 @@
 #include "CollisionSystem.h"
 #include "EnemyBehavior.h"
 #include "SceneSystem.h"
+#include "AudioPlayer.h"
 
 //-----------------------------------------------------------------------------
 // constructor / destructor 
@@ -51,6 +52,8 @@ void BaseBehavior::OnInit()
 		GetId(),
 		std::bind(&BaseBehavior::onCollision, this, std::placeholders::_1, std::placeholders::_2)
 	);
+
+	m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
 }
 
 /// @brief	called on exit, handles loss state
@@ -69,6 +72,10 @@ void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionDa
 	}
 	
 	BasicEntityBehavior::TakeDamage(enemy->GetDamage());
+	if(m_AudioPlayer)
+	{
+		m_AudioPlayer->Play();
+	}
 	enemy->GetEntity()->Destroy();
 
 	if (BasicEntityBehavior::GetHealth()->GetCurrent() <= 0)

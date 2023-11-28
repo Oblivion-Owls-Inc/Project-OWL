@@ -119,13 +119,22 @@ void CheatSystem::DebugWindow()
         ImGui::SameLine();
         ImGui::Text("Instantly loses the game");
 
-        // Returns to the game scene.
-        if (ImGui::Button("Return to Game"))
+        // Resets the game scene.
+        if (ImGui::Button("Reset Game"))
         {
             scene->SetNextScene("Prototype");
         }
         ImGui::SameLine();
-        ImGui::Text("Returns to the game");
+        ImGui::Text("Resets the game");
+
+        // Pauses the game
+        if (ImGui::Button(m_Pause ? "Unpause the game" : "Pause the game"))
+        {
+            m_Pause = !m_Pause;
+            Debug().SetNonEditorSystemsEnabled(!m_Pause);
+        }
+        ImGui::SameLine();
+        ImGui::Text("Pauses the game");
     }
     
     ImGui::End();
@@ -166,8 +175,11 @@ void CheatSystem::RunCheats()
     if (m_ResourceSwitch)
     {
         Entity* resource = Entities()->GetEntity("ConstructionManager");
-        ConstructionBehavior* construction = resource->GetComponent<ConstructionBehavior>();
-        construction->SetCurrentResources(1000);
+        if(resource)
+        {
+            ConstructionBehavior* construction = resource->GetComponent<ConstructionBehavior>();
+            construction->SetCurrentResources(1000);
+        }
     }
 }
 
@@ -175,22 +187,28 @@ void CheatSystem::RunCheats()
 void CheatSystem::noClip()
 {
     // Get the player's circle collider.
-    m_CircleCollider = Entities()->GetEntity("Player")->GetComponent<CircleCollider>();
-
-    static int flag;
-    static int ID;
-
-    if (m_NoClip)
+    Entity* player = Entities()->GetEntity("Player");
+    if(player)
     {
-        flag = m_CircleCollider->GetCollisionLayerFlags();
-        ID = m_CircleCollider->GetCollisionLayerId();
-        m_CircleCollider->SetCollisionLayerFlags(0);
-        m_CircleCollider->SetCollisionLayerId(INT_MAX);
-    }
-    else
-    {
-        m_CircleCollider->SetCollisionLayerFlags(flag);
-        m_CircleCollider->SetCollisionLayerId(ID);
+        m_CircleCollider = player->GetComponent<CircleCollider>();
+        if (m_CircleCollider)
+        {
+            static int flag;
+            static int ID;
+
+            if (m_NoClip)
+            {
+                flag = m_CircleCollider->GetCollisionLayerFlags();
+                ID = m_CircleCollider->GetCollisionLayerId();
+                m_CircleCollider->SetCollisionLayerFlags(0);
+                m_CircleCollider->SetCollisionLayerId(INT_MAX);
+            }
+            else
+            {
+                m_CircleCollider->SetCollisionLayerFlags(flag);
+                m_CircleCollider->SetCollisionLayerId(ID);
+            }
+        }
     }
 }
 
@@ -205,6 +223,7 @@ CheatSystem::CheatSystem():
     m_BaseGodMode(false),
     m_ResourceSwitch(false),
     m_NoClip(false),
+    m_Pause(false),
     m_CircleCollider(nullptr)
 {}
 

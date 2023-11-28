@@ -64,6 +64,7 @@ private: // members
     bool m_ResourceSwitch;
     bool m_BaseGodMode;
     bool m_NoClip;
+    bool m_Pause;
     // The player's collider.
     CircleCollider* m_CircleCollider;
 
@@ -90,4 +91,7 @@ public: // singleton
     void operator=(const CheatSystem&) = delete;
 };
 
+__inline CheatSystem* Cheats() {
+    return CheatSystem::GetInstance();
+}
 

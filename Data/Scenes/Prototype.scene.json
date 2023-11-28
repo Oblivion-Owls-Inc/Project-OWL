@@ -2,28 +2,32 @@
     "Assets": {
         "Sounds": {
             "EnemySound": {
-                "IsLoopabe": true,
-                "Filepath": "Data/Sounds/Enemy/FoleyFootsteps-Footsteps&_1.wav"
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Enemy/footsteps.ogg"
             },
             "Music": {
-                "IsLoopabe": true,
+                "IsLoopable": true,
                 "Filepath": "Data/Sounds/Music/background.ogg"
             },
             "PlayerDigging": {
-                "IsLoopabe": true,
-                "Filepath": "Data/Sounds/Player/Digging3.wav"
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Player/digging.ogg"
             },
             "PlayerFootSteps": {
-                "IsLoopabe": true,
-                "Filepath": "Data/Sounds/Player/Footsteps, Human, Dirty Ground, Run SND62079 1.wav"
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Player/Human-Ground-FootSteps.ogg"
             },
             "TurretPlacement": {
-                "IsLoopabe": true,
-                "Filepath": "Data/Sounds/Turret/TurretPlace.wav"
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Turret/TurretPlace.ogg"
             },
             "TurretShoot": {
-                "IsLoopabe": true,
-                "Filepath": "Data/Sounds/Turret/TurretShoot.wav"
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg"
+            },
+            "BaseDamageSound": {
+                "IsLoopable": true,
+                "Filepath":  "Data/Sounds/Effects/Base/BaseDamage.ogg"
             }
         },
         "Textures": {
@@ -464,6 +468,15 @@
                     "Radius": 2.0,
                     "CollisionLayer": 3,
                     "CollisionLayerFlags": 2
+                },
+                "AudioPlayer": {
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "Sound": "BaseDamageSound"
                 },
                 "Sprite": {
                     "Layer": 2,

@@ -76,6 +76,10 @@ public:
 
     void ResetViewport();
 
+    /// @brief  sets whether the non-editor systems are enabled
+    /// @param  enabled wether to enable 
+    bool SetNonEditorSystemsEnabled(bool enabled);
+
 ///----------------------------------------------------------------------------
 public: // DebugStream
 ///----------------------------------------------------------------------------
@@ -155,10 +159,6 @@ private: // Members
 private: // methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  sets whether the non-editor systems are enabled
-    /// @param  enabled wether to enable 
-    void SetNonEditorSystemsEnabled( bool enabled );
-
     /// @brief Shows the FPS window
     void ShowFPSWindow();
     
@@ -206,7 +206,6 @@ public: // writing
     /// @brief  writes this System config
     /// @return the writting System config
     virtual nlohmann::ordered_json Write() const override;
-
 };
 
 

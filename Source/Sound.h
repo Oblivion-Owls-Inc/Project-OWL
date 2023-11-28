@@ -68,7 +68,7 @@ public: // accessors
 
     /// @brief  gets whether this Sound is looping
     /// @return whether this Sound is looping
-    __inline bool GetIsLoopable() const { return m_IsLoopabe; }
+    __inline bool GetIsLoopable() const { return m_IsLoopable; }
 
 
     /// @brief  gets this Sound's filepath
@@ -84,16 +84,6 @@ public: // inspector
     /// @brief Used by the Debug System to display information about this Sound
     void Inspect();
 
-
-//-----------------------------------------------------------------------------
-private: // inspector
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  selects a filepath from a directory
-    void inspectorSelectFilepathFromDirectory( char const* directoryPath );
-
-
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
@@ -103,7 +93,7 @@ private: // member variables
     FMOD::Sound* m_Sound = nullptr;
 
     /// @brief  whether this Sound is looping
-    bool m_IsLoopabe = true;
+    bool m_IsLoopable = true;
 
     /// @brief  The filepath of this Sound
     std::string m_Filepath = "";
@@ -120,7 +110,7 @@ private: // reading
 
     /// @brief  reads IsLoopabe
     /// @param  data    the JSON data to read from
-    void readIsLoopabe( nlohmann::ordered_json const& data );
+    void readIsLoopable( nlohmann::ordered_json const& data );
 
 
     /// @brief  map of the SceneSystem read methods

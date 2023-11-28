@@ -16,6 +16,7 @@
 #include "PlatformSystem.h"
 #include "InputSystem.h"
 #include "FileExplorer.h"
+#include "CheatSystem.h"
 #include "AssetLibrarySystem.h"
 #include "SceneSystem.h"
 #include "BehaviorSystem.h"
@@ -537,15 +538,22 @@ void DebugSystem::OnExit()
 
 /// @brief  sets whether the non-editor systems are enabled
 /// @param  enabled wether to enable or disable the systems
-void DebugSystem::SetNonEditorSystemsEnabled( bool enabled )
+bool DebugSystem::SetNonEditorSystemsEnabled( bool enabled )
 {
     for ( System* system : Engine::GetInstance()->GetSystems() )
     {
+        if (system == Cheats())
+        {
+			continue;
+		}
+
         if ( m_EditorSystemNames.contains( system->GetName() ) == false )
         {
             system->SetEnabled( enabled );
         }
     }
+
+    return enabled;
 }
 
 
