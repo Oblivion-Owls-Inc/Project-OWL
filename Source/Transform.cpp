@@ -119,7 +119,7 @@
     {
         if ( s_WidgetTexture == nullptr )
         {
-            s_WidgetTexture = new Texture( "Data/Textures/DebugTransform.png", glm::ivec2( 1 ), glm::vec2( 0.5f / 8.0f ) );
+            s_WidgetTexture = new Texture( "Data/Textures/Debug/Transform.png", glm::ivec2( 1 ), glm::vec2( 0.5f / 8.0f ) );
         }
         return s_WidgetTexture;
     }
