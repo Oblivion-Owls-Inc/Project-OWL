@@ -13,8 +13,8 @@
 /// Includes:
 ///*****************************************************************/
 #include "System.h"
-#include <vector>
 #include "Behavior.h"
+#include <vector>
 
 ///*****************************************************************/
 /// BehaviorSystem class

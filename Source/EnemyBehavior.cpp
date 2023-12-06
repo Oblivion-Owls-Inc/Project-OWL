@@ -7,7 +7,6 @@
 ///*****************************************************************/
 
 #include "EnemyBehavior.h"
-
 #include "BehaviorSystem.h"
 #include "EntitySystem.h"
 #include "Transform.h"

@@ -1,4 +1,5 @@
 #include "Engine.h"
+#define SOL_ALL_SAFETIES_ON 1
 
 int main()
 {
@@ -6,14 +7,7 @@ int main()
 
     Engine* engine = Engine::GetInstance();
 
-    // engine->AddSystem( PlatformSystem::GetInstance() );
-    // engine->AddSystem( SceneSystem::GetInstance( "SceneName" ) );
-    // engine->AddSystem( RenderSystem::GetInstance() );
-    // engine->AddSystem( DebugSystem::GetInstance() );
-
     engine->Run();
-
-
     return 0;
 }
 

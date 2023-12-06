@@ -20,6 +20,7 @@
 #include "AudioSystem.h"
 #include "CollisionSystem.h"
 #include "InputSystem.h"
+#include "ScriptingSystem.h"
 #include "EntitySystem.h"
 #include "CameraSystem.h"
 
@@ -349,6 +350,7 @@
         { "RenderSystem",                          &addSystem< RenderSystem >                             },
         { "DebugSystem",                           &addSystem< DebugSystem >                              },
         { "AudioSystem",                           &addSystem< AudioSystem >                              },
+		{ "ScriptingSystem",                       &addSystem< ScriptingSystem >                          },
         { "EntitySystem",                          &addSystem< EntitySystem >                             },
                                                                                                           
         { "BehaviorSystem<RigidBody>",             &addSystem< BehaviorSystem< RigidBody > >              },

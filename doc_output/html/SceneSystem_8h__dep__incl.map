@@ -1,7 +1,0 @@
-<map id="Source/SceneSystem.h" name="Source/SceneSystem.h">
-<area shape="rect" id="node1" title="handles the process of resetting and changing scenes" alt="" coords="296,5,467,32"/>
-<area shape="rect" id="node2" href="$CheatSystem_8cpp.html" title="CheatSystem Class definition." alt="" coords="5,80,189,107"/>
-<area shape="rect" id="node3" href="$Engine_8cpp.html" title="Engine class." alt="" coords="213,80,355,107"/>
-<area shape="rect" id="node4" href="$SandboxSystem_8cpp.html" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="379,80,581,107"/>
-<area shape="rect" id="node5" href="$SceneSystem_8cpp.html" title="handles the process of resetting and changing scenes" alt="" coords="606,80,791,107"/>
-</map>

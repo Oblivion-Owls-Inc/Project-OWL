@@ -1,5 +1,0 @@
-<map id="Text" name="Text">
-<area shape="rect" id="node1" title="Uses TilemapSprite attached to parent entity to draw text." alt="" coords="32,155,81,181"/>
-<area shape="rect" id="node2" href="$classComponent.html" title=" " alt="" coords="8,80,105,107"/>
-<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="5,5,108,32"/>
-</map>

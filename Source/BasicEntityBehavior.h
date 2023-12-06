@@ -20,7 +20,8 @@ protected:
 
     BasicEntityBehavior(std::type_index m_Type) :
         Behavior(m_Type), m_Health("Health")
-    {}
+    {
+    }
 
 ///-----------------------------------------------------------------------------
 public: // accessors

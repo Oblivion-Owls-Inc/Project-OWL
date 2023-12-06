@@ -105,12 +105,6 @@
     <Filter Include="Header Files\imgui">
       <UniqueIdentifier>{7f9af033-81e2-44c9-af1e-a9a713ab2083}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scenes">
-      <UniqueIdentifier>{248a6873-a0bc-44fa-8202-3e54136060d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Scenes\SandboxSystem">
-      <UniqueIdentifier>{2e6eff95-6e99-4d15-bb46-87a201aa10e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Behaviors">
       <UniqueIdentifier>{845055ef-3dd8-4f1c-a1b1-807e4ac7410c}</UniqueIdentifier>
     </Filter>
@@ -180,9 +174,6 @@
     <Filter Include="Game\Behaviors\WavesBehavior">
       <UniqueIdentifier>{90ac62ba-a1a3-4ca9-8797-8d0f816804f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Systems\ParticleSystem">
-      <UniqueIdentifier>{82d6010a-5f55-4d06-bf33-4e48aa03a03b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Sprite\ParticleSprite">
       <UniqueIdentifier>{b31df122-b6ac-40e0-894e-9df749af7fa2}</UniqueIdentifier>
     </Filter>
@@ -212,6 +203,21 @@
     </Filter>
     <Filter Include="Data\Scenes">
       <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes">
+      <UniqueIdentifier>{248a6873-a0bc-44fa-8202-3e54136060d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scenes\SandboxSystem">
+      <UniqueIdentifier>{2e6eff95-6e99-4d15-bb46-87a201aa10e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\ScriptingSystem">
+      <UniqueIdentifier>{18d82099-9fe9-4a46-af5b-87af098fa207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\ParticleSystem">
+      <UniqueIdentifier>{82d6010a-5f55-4d06-bf33-4e48aa03a03b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripts">
+      <UniqueIdentifier>{4bef3c5c-d593-42d0-9858-1fdd1a4cef3d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -247,12 +253,6 @@
     </ClCompile>
     <ClCompile Include="Source\PlatformSystem.cpp">
       <Filter>Engine\Systems\PlatformSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Entity.cpp">
-      <Filter>Engine\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Entity.cpp">
-      <Filter>Engine\Systems\Entity</Filter>
     </ClCompile>
     <ClCompile Include="Source\ExampleSystem.cpp">
       <Filter>Engine\Systems\ExampleSystem</Filter>
@@ -323,9 +323,6 @@
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Animation.cpp">
-      <Filter>Engine\Entity\Component\Behavior\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
@@ -334,9 +331,6 @@
     </ClCompile>
     <ClCompile Include="Source\AssetLibrarySystem.cpp">
       <Filter>Engine\Systems\AssetLibrarySystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Animation.cpp">
-      <Filter>Engine\Entity\Component\Animation</Filter>
     </ClCompile>
     <ClCompile Include="Source\AnimationAsset.cpp">
       <Filter>Engine\Entity\Component\Behavior\Animation\Asset</Filter>
@@ -365,9 +359,6 @@
     <ClCompile Include="Source\CollisionSystem.cpp">
       <Filter>Engine\Systems\CollisonSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Lua.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\TurretBehavior.cpp">
       <Filter>Game\Behaviors\TurretBehavior</Filter>
     </ClCompile>
@@ -388,9 +379,6 @@
     </ClCompile>
     <ClCompile Include="Source\TilemapSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SandboxSystem.cpp">
-      <Filter>Game\Scenes\SandboxSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\FollowingBehavior.cpp">
       <Filter>Game\Behaviors\FollowingBehavior</Filter>
@@ -464,6 +452,24 @@
     <ClCompile Include="Source\EmitterSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>Engine\Entity\Component\Behavior\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity.cpp">
+      <Filter>Engine\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ScriptingSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Script.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -504,27 +510,6 @@
     </ClInclude>
     <ClInclude Include="Source\PlatformSystem.h">
       <Filter>Engine\Systems\PlatformSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Entity.h">
-      <Filter>Engine\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Component.h">
-      <Filter>Engine\Entity\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Component.h">
-      <Filter>Engine\Entities\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Entity.h">
-      <Filter>Engine\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Transform.h">
-      <Filter>Engine\Entity\Component\Transform</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Transform.h">
-      <Filter>Engine\Systems\Entity\Component\Transform</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Entity.h">
-      <Filter>Engine\Systems\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Source\ExampleSystem.h">
       <Filter>Engine\Systems\ExampleSystem</Filter>
@@ -643,9 +628,6 @@
     <ClInclude Include="Source\TilemapSprite.h">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SandboxSystem.h">
-      <Filter>Game\Scenes\SandboxSystem</Filter>
-    </ClInclude>
     <ClInclude Include="Source\FollowingBehavior.h">
       <Filter>Game\Behaviors\FollowingBehavior</Filter>
     </ClInclude>
@@ -712,22 +694,37 @@
     <ClInclude Include="Source\EmitterSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Component.h">
+      <Filter>Engine\Entity\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Entity.h">
+      <Filter>Engine\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transform.h">
+      <Filter>Engine\Entity\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ScriptingSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Script.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
       <Filter>Data</Filter>
-    </None>
-    <None Include="Data\Scenes\TurretScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\Sandbox.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\AidanScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\XinoScene.scene.json">
-      <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>
@@ -740,6 +737,15 @@
     </None>
     <None Include="Data\Scenes\Template.scene.json">
       <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\ScriptTesting.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="LuaScripts\BaseBehavior.lua">
+      <Filter>Game\Scripts</Filter>
+    </None>
+    <None Include="LuaScripts\main.lua">
+      <Filter>Game\Scripts</Filter>
     </None>
   </ItemGroup>
 </Project>

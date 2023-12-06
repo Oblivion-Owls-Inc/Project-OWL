@@ -62,7 +62,6 @@ void BaseBehavior::OnExit()
 	BasicEntityBehavior::OnExit();
 }
 
-
 void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionData)
 {
 	EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
@@ -82,8 +81,6 @@ void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionDa
 	{
 		SceneSystem::GetInstance()->SetNextScene("Gameover");
 	}
-
-	
 }
 
 //-----------------------------------------------------------------------------
@@ -93,8 +90,7 @@ void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionDa
 /// @brief read method map
 ReadMethodMap<BaseBehavior> const BaseBehavior::s_ReadMethods =
 {
-	{ "Health",	  &readHealth},
-	
+	{ "Health",	  &readHealth}
 };
 
 //-----------------------------------------------------------------------------

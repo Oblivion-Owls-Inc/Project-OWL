@@ -31,6 +31,7 @@
 #include "TilemapCollider.h"
 #include "StaticBody.h"
 #include "ConstructionBehavior.h"
+#include "Script.h"
 #include "Camera.h"
 #include "WavesBehavior.h"
 #include "EmitterSprite.h"
@@ -127,6 +128,7 @@
         { "CircleCollider"      , ComponentInfo< CircleCollider >()       },
         { "AudioPlayer"         , ComponentInfo< AudioPlayer >()          },
         { "Animation"           , ComponentInfo< Animation >()            },
+		{ "Script"              , ComponentInfo< Script >()               },
         { "Text"                , ComponentInfo< Text >()                 },
         { "PlayerController"    , ComponentInfo< PlayerController >()     },
 		{ "EnemyBehavior"       , ComponentInfo< EnemyBehavior >()        },

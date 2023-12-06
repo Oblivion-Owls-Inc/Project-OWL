@@ -5,11 +5,9 @@
 /// @brief      BasicEntityBehavior class header
 /// @copyright  Digipen LLC (c) 2023
 ///*****************************************************************/
+#include "Entity.h"
 #include "BasicEntityBehavior.h"
 #include "BehaviorSystem.h"
-#include "Entity.h"
-
-
 
 ///-----------------------------------------------------------------------------
 /// public: methods
@@ -19,6 +17,7 @@
 /// @param damage - the amount of damage to apply
 void BasicEntityBehavior::TakeDamage(int damage)
 {
+    Debug() << "Entity taking damage: " << damage << "\n";
     m_Health -= damage;
     if (!m_Health)
     {
@@ -27,7 +26,7 @@ void BasicEntityBehavior::TakeDamage(int damage)
 }
 
 BasicEntityBehavior::BasicEntityBehavior(BasicEntityBehavior const& other):
-	Behavior(other),
+    Behavior(other),
 	m_Health(other.m_Health)
 {
 }

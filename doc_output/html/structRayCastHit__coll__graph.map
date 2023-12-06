@@ -1,6 +1,0 @@
-<map id="RayCastHit" name="RayCastHit">
-<area shape="rect" id="node1" title="the result of a raycast" alt="" coords="9,247,104,273"/>
-<area shape="rect" id="node2" href="$classCollider.html" title="component which is used for detecting collisions and information about them" alt="" coords="21,157,93,184"/>
-<area shape="rect" id="node3" href="$classComponent.html" title=" " alt="" coords="8,81,105,108"/>
-<area shape="rect" id="node4" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="5,5,108,32"/>
-</map>

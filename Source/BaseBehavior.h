@@ -36,7 +36,7 @@ public: // virtual override methods
 
     /// @brief called when base exits
     virtual void OnExit() override;
-    
+
 //-----------------------------------------------------------------------------
 private: // copying
 //-----------------------------------------------------------------------------
