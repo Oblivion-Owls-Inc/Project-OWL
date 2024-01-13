@@ -350,8 +350,8 @@
         { "RenderSystem",                          &addSystem< RenderSystem >                             },
         { "DebugSystem",                           &addSystem< DebugSystem >                              },
         { "AudioSystem",                           &addSystem< AudioSystem >                              },
-		{ "ScriptingSystem",                       &addSystem< ScriptingSystem >                          },
         { "EntitySystem",                          &addSystem< EntitySystem >                             },
+		{ "ScriptingSystem",                       &addSystem< ScriptingSystem >                          },
                                                                                                           
         { "BehaviorSystem<RigidBody>",             &addSystem< BehaviorSystem< RigidBody > >              },
         { "BehaviorSystem<Behavior>",              &addSystem< BehaviorSystem< Behavior > >               },

@@ -219,6 +219,9 @@
     <Filter Include="Game\Scripts">
       <UniqueIdentifier>{4bef3c5c-d593-42d0-9858-1fdd1a4cef3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Script">
+      <UniqueIdentifier>{38fb0ff7-51bd-4fb2-a04b-9b5ccc058c0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -458,17 +461,17 @@
     <ClCompile Include="Source\Entity.cpp">
       <Filter>Engine\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ScriptingSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ScriptingSystem.cpp">
+      <Filter>Engine\Systems\ScriptingSystem</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Script.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine\Entity\Component\Script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -716,10 +719,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\ScriptingSystem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Engine\Systems\ScriptingSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\Script.h">
-      <Filter>Header Files</Filter>
+      <Filter>Engine\Entity\Component\Script</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

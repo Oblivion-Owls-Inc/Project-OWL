@@ -17,6 +17,7 @@
 #include "AssetLibrarySystem.h"
 #include "DebugSystem.h"
 #include "basics.h"
+#include "ScriptingSystem.h"
 
 
 ///-----------------------------------------------------------------------------
@@ -73,7 +74,6 @@
     /// @param  component   the component to attach to this Entity
     void Entity::AddComponent(Component* component)
     {
-
         ///You tried to add a component that already exists on this entity.
         // Check if the component already exists. 
         assert( m_Components.find( component->GetType() ) == m_Components.end() );
@@ -83,6 +83,11 @@
 
         // add it to the entity.
         m_Components[ component->GetType() ] = component;
+    }
+
+    void Entity::AddComponent(std::string component)
+    {
+    	AddComponent( ComponentFactory::Create( component ) );
     }
 
 //------------------------------------------------------------------------------
@@ -202,6 +207,7 @@
         // Clear the component list.
         m_Components.clear();
     }
+
 
     void Entity::RenameEntity(const char* popup_id)
     {

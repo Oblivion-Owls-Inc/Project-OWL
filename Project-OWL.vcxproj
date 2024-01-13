@@ -73,6 +73,7 @@
       <AdditionalOptions>/NODEFAULTLIB:MSVCRT.lib /NODEFAULTLIB:LIBCMT.lib %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;LuaLib.lib;User32.lib;Gdi32.lib;Shell32.lib;fmodL_vc.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent />
     <PostBuildEvent>
       <Command>copy /Y "$(SolutionDir)FMOD\lib\x64\fmodL.dll" "$(OutDir)fmodL.dll"</Command>
     </PostBuildEvent>

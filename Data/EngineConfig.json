@@ -10,7 +10,6 @@
       "VSync": true
     },
     "InputSystem": {},
-    "ScriptingSystem": {},
     "SceneSystem": {
       "BaseScenePath": "Data/Scenes/",
       "NextSceneName": "ScriptTesting"
@@ -34,6 +33,7 @@
     "BehaviorSystem<Animation>": {},
     "BehaviorSystem<EffectAnimator>": {},
     "EntitySystem": {},
+    "ScriptingSystem": {},
     "CameraSystem": {},
     "RenderSystem": {},
     "AudioSystem": {},

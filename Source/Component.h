@@ -32,7 +32,7 @@ protected: // constructors
 
     /// @brief default component constructor
     /// @param type what type of component this is
-    Component( std::type_index m_Type );
+    Component( std::type_index m_Type  = typeid(NULL) );
 
     /// @brief copy constructor
     /// @param the component to clone
@@ -63,6 +63,10 @@ public: // Accessors
     /// @brief gets the components type
     /// @return component type
     std::type_index GetType() const { return m_Type; }
+
+    /// @brief gets the components typename
+    /// @return component typename
+    std::string GetTypeName() const { return m_Type.name(); }
 
     /// @brief sets the parent entity of the component
     /// @param parent, the parent entity of the component

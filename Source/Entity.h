@@ -14,6 +14,7 @@
 //-----------------------------------------------------------------------------
 
 #include "Component.h"
+#include "ScriptingSystem.h"
 #include <map>        // std::map
 #include <string>	  // std::string
 #include <vector>	  // std::vector
@@ -59,6 +60,10 @@ public: // accessors
     /// @param  component   the component to attach to this Entity
     void AddComponent( Component* component );
 
+    /// @brief  attaches a component to this Entity
+    /// @param  component   the component to attach to this Entity
+    void AddComponent( std::string component );
+
     /// @brief  gets the component of the specified type from this Entity
     /// @tparam ComponentType   the type of component to get
     /// @return the component of the specified type (nullptr if component doesn't exist)
@@ -85,6 +90,10 @@ public: // accessors
     /// @return whether this Entity is flagged for destruction
     __inline bool IsDestroyed() const { return m_IsDestroyed; }
 
+    /// @brief gets if the entity was created from a Lua Script
+    /// @return - true if the entity was created from a Lua Script
+    __inline bool IsScript() const { return m_IsScript; }
+
     /// @brief  sets this Entity's name
     /// @param  name    the new name for this Entity
     __inline void SetName( std::string const& name ) { m_Name = name; }
@@ -104,17 +113,23 @@ public: // accessors
      /// @brief used by the Debug System to Rename this Entity
      void RenameEntity(const char* popup_id);
 
+     static void LuaInit()
+     {
+         Lua()->GetLuaInstance()->set_function(
+             "SetAsScript",
+             [](Entity* entity)
+             {
+                 entity->m_IsScript = true;
+             }
+         );
+     }
+
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
 	/// @brief  deletes all components used by this Entity
 	void free();
-
-    void AddComponent();
-
-    void RemoveComponent();
-
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -164,6 +179,9 @@ private: // member variables
 
     /// @brief  the ID of this Component
     unsigned m_Id;
+
+
+    bool m_IsScript = false;
 //-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------

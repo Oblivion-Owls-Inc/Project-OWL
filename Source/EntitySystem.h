@@ -61,6 +61,9 @@ public: // methods
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
+    virtual void OnSceneInit() override;
+
+
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
@@ -94,6 +97,8 @@ private: // Private Methods
 
     /// @brief Shows the Properites of the Selected Entity
     void EntityPropertiesWindow(Entity* entity);
+
+    void CreateLuaEntityBindings();
 //-----------------------------------------------------------------------------
 private: // singleton stuff
 //-----------------------------------------------------------------------------

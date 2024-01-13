@@ -25,14 +25,21 @@ public: // virtual methods
     /// @brief update for input, must be called for input to function
     virtual void OnUpdate(float dt) override;
 
+    /// @brief  Gets called whenever a scene is initialized
+    virtual void OnSceneInit() override;
+
+    virtual void OnSceneExit() override;
+
 //-----------------------------------------------------------------------------
 private: // Private methods
 //-----------------------------------------------------------------------------
 
-    void LoadMainScript();
+    void LoadScripts();
+    void LoadBehaviorsToLua();
     sol::function LoadInitFunction(sol::table MainTable);
     sol::function LoadUpdateFunction(sol::table MainTable);
     sol::function LoadExitFunction(sol::table MainTable);
+    void AddFunctionsToLua();
 
 //-----------------------------------------------------------------------------
 public: // Public methods

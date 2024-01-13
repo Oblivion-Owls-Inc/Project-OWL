@@ -1,5 +1,3 @@
-
-
 #pragma once
 
 #include <glew.h>
@@ -34,6 +32,7 @@ __inline T lerp( T const& a, T const& b, float time )
 {
     return b * time + a * (1 - time);
 }
+
 
 /// @brief  gets a unique ID value every time this function is called
 /// @return the unique ID

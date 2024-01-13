@@ -1,5 +1,6 @@
 #include "Script.h"
 #include "DebugSystem.h"
+#include "Entity.h"
 
 Script::Script() : Component(typeid(Script)), m_ScriptName("NULL"),
 m_OnInit(), m_OnUpdate(), m_OnExit()
@@ -10,12 +11,12 @@ Script::Script(std::string scriptName,
 	sol::protected_function onInit,
 	sol::protected_function onUpdate,
 	sol::protected_function onExit) :
-	Component(typeid(Script))
+	Component(typeid(Script)),
+	m_ScriptName(scriptName),
+	m_OnInit(onInit),
+	m_OnExit(onExit),
+	m_OnUpdate(onUpdate)
 {
-	m_ScriptName = scriptName;
-	m_OnInit = onInit;
-	m_OnUpdate = onUpdate;
-	m_OnExit = onExit;
 }
 
 Script::~Script()
@@ -24,16 +25,48 @@ Script::~Script()
 
 void Script::OnInit()
 {
-	Lua()->AddScript(this);
+	if(!m_OnInit.valid())
+		return;
+
+	auto err = m_OnInit();
+	if (!err.valid())
+	{
+		sol::error e = err;
+		Debug() << "Error calling Init function in " << m_ScriptName << std::endl;
+		Debug() << e.what() << std::endl;
+	}
 }
 
 void Script::OnExit()
 {
+
+	if(!m_OnExit.valid())
+		return;
+
+	auto err = m_OnExit();
+	if (!err.valid())
+	{
+		sol::error e = err;
+		Debug() << "Error calling Exit function in " << m_ScriptName << std::endl;
+		Debug() << e.what() << std::endl;
+	}
+
+	/// @note Add this in the Lua Side 
 	Lua()->RemoveScript(this);
 }
 
 void Script::OnFixedUpdate()
 {
+	if (!m_OnUpdate.valid())
+		return;
+
+	auto err = m_OnUpdate();
+	if (!err.valid())
+	{
+		sol::error e = err;
+		Debug() << "Error calling Update function in " << m_ScriptName << std::endl;
+		Debug() << e.what() << std::endl;
+	}
 }
 
 void Script::Inspector()

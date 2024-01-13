@@ -7,6 +7,7 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #include "EntitySystem.h"
+#include "ScriptingSystem.h"
 #include "DebugSystem.h"
 #include <algorithm>
 
@@ -149,8 +150,8 @@
         {
             /// If the cancel button is pressed, close the window
             ImGui::End();
-			return false; // close the window
-		}
+            return false; // close the window
+        }
 
         ///The Matching End to the Begin to create the window
         ImGui::End();
@@ -160,6 +161,11 @@
 //-----------------------------------------------------------------------------
 // virtual override methods
 //-----------------------------------------------------------------------------
+
+    void EntitySystem::OnSceneInit()
+    {
+        CreateLuaEntityBindings();
+    }
 
     /// @brief  Gets called whenever a scene is exited
     void EntitySystem::OnSceneExit()
@@ -171,7 +177,13 @@
 
         for ( Entity* entity : m_Entities )
         {
-            delete entity;
+            if (entity->IsScript())
+            {
+                continue; 
+            }
+
+            if (entity)
+                delete entity;
         }
 
         m_Entities.clear();
@@ -186,11 +198,11 @@
 
             if (entity->IsDestroyed())
             {
-				RemoveEntity(entity);
+                RemoveEntity(entity);
                 delete entity;
                 --i;
             }
-		}
+        }
     }
 
     /// @brief Called by the DebugSystem to display the debug window
@@ -218,7 +230,7 @@
         }
 
         /// Display the Entity List
-	    EntityListWindow();
+        EntityListWindow();
     }
 
 //-----------------------------------------------------------------------------
@@ -349,6 +361,51 @@
 
             ImGui::TreePop();  // Pop the tree node
         }
+
+    }
+
+    void EntitySystem::CreateLuaEntityBindings()
+    {
+
+        Entity::LuaInit();
+
+        Lua()->GetLuaInstance()->new_usertype<Entity>(
+            "Entity",  // Name of the Class to be used in Lua
+            sol::call_constructor, sol::constructors<Entity()>(),
+            "IsDestroyed", &Entity::IsDestroyed,
+            "Destroy", &Entity::Destroy,
+            "SetName", &Entity::SetName,
+            "Clone", &Entity::Clone,
+            "GetName", &Entity::GetName,
+            "AddComponent", sol::overload(
+				static_cast<void (Entity::*)(std::string)>(&Entity::AddComponent)
+			),
+            "GetId", &Entity::GetId
+        );
+
+        Lua()->GetLuaInstance()->set_function(
+            "GetEntityByName",
+            [this](std::string const& entityName) -> Entity*
+            {
+                return GetEntity( entityName );
+            }
+        );
+
+        Lua()->GetLuaInstance()->set_function(
+            "AddToEntitySystem",
+            [this](Entity* entity) {
+                AddEntity(entity);
+            }
+        );
+
+
+        Lua()->GetLuaInstance()->set_function(
+            "GetEntity", [this](std::string const& entityName) -> Entity*
+            {
+				return GetEntity(entityName);
+			}
+        );
+
 
     }
 
