@@ -41,6 +41,7 @@
 
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
+#include "LightingSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -367,7 +368,8 @@
         { "AssetLibrary<AnimationAsset>",    &addSystem< AssetLibrarySystem< AnimationAsset > >           },
 
         { "ParticleSystem",                        &addSystem< ParticleSystem >                           },
-        { "CheatSystem",                           &addSystem< CheatSystem >                              }
+        { "CheatSystem",                           &addSystem< CheatSystem >                              },
+        { "LightingSystem",                        &addSystem< LightingSystem >                           }
 
         // { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >          },
         // { "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >                },

@@ -2590,7 +2590,8 @@
                         1.0
                     ],
                     "IsDiegetic": true
-                }
+                },
+                "Light": {}
             }
         },
         "Background": {
