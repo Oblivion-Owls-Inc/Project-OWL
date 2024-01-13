@@ -8,6 +8,8 @@
 
 #include "MiningLaser.h"
 
+#include "BehaviorSystem.h"
+
 #include "Transform.h"
 #include "AudioPlayer.h"
 #include "Emitter.h"
@@ -18,6 +20,10 @@
 
 #include "EntitySystem.h"
 #include "Engine.h"
+
+#include "RenderSystem.h"
+
+#include "Inspection.h"
 
 // TODO: include health component
 
@@ -181,20 +187,35 @@
     /// @brief  called once when entering the scene
     void MiningLaser::OnInit()
     {
+        Behaviors< Behavior >()->AddBehavior( this );
+
         m_Transform = GetEntity()->GetComponent< Transform >();
-        m_Tilemap = Entities()->GetEntity( m_TilemapName )->GetComponent< Tilemap< int > >();
         m_AudioPlayer = GetEntity()->GetComponent< AudioPlayer >();
         m_ParticleEmitter = GetEntity()->GetComponent< Emitter >();
+
+        Entity* tilemapEntity = Entities()->GetEntity( m_TilemapName );
+        if ( tilemapEntity != nullptr )
+        {
+            m_Tilemap = tilemapEntity->GetComponent< Tilemap< int > >();
+        }
     }
 
     /// @brief  called once when exiting the scene
     void MiningLaser::OnExit()
-    {}
+    {
+        Behaviors< Behavior >()->RemoveBehavior( this );
+    }
 
     /// @brief  called every graohics frame
     void MiningLaser::OnUpdate( float dt )
     {
-        // TODO: render laser, do particle stuff
+        if ( m_IsFiring == false )
+        {
+            return;
+        }
+
+        glm::vec2 start = GetWorldEmissionPosition();
+        Renderer()->DrawLine( start, start + m_Direction * m_beamLength, m_BeamWidth, m_BeamColor );
     }
 
     /// @brief  called every simulation frame
@@ -207,6 +228,11 @@
 
         RayCastHit hit = Collisions()->RayCast( GetWorldEmissionPosition(), m_Direction, m_Range, m_CollideWithLayers );
         m_beamLength = hit.distance;
+
+        if ( hit.colliderHit == nullptr )
+        {
+            return;
+        }
 
         if (
             hit.colliderHit->GetType() == typeid( TilemapCollider ) &&
@@ -241,7 +267,7 @@
     /// @return the tile position of the raycast hit
     glm::ivec2 MiningLaser::getTargettedTile( RayCastHit const& hit ) const
     {
-        return m_Tilemap->WorldPosToTileCoord( m_SourceOffset + m_Direction * hit.distance );
+        return m_Tilemap->WorldPosToTileCoord( GetWorldEmissionPosition() + m_Direction * hit.distance);
     }
 
 
@@ -317,7 +343,38 @@
     /// @brief  displays this MiningLaser in the Inspector
     void MiningLaser::Inspector()
     {
-        // TODO
+        Entity* tilemapEntity = m_Tilemap != nullptr ? m_Tilemap->GetEntity() : nullptr;
+        if ( Inspection::SelectEntityFromScene( "Tilemap Entity", &tilemapEntity ) )
+        {
+            m_Tilemap = tilemapEntity->GetComponent< Tilemap< int > >();
+            m_TilemapName = tilemapEntity->GetName();
+        }
+
+
+        ImGui::DragFloat( "Max Range", &m_Range, 0.05f, 0.0f, INFINITY );
+
+
+        ImGui::DragFloat2( "Beam Offset", &m_SourceOffset[ 0 ], 0.05f);
+        
+        ImGui::DragFloat( "Mining Speed", &m_MiningSpeed, 0.05f, 0.0f, INFINITY );
+        
+        ImGui::DragInt( "Max In-Progress Tiles", &m_MaxInProgressTiles, 0.05f, 1, INT_MAX );
+        
+        ImGui::ColorEdit4( "Beam Color", &m_BeamColor[0] );
+        
+        ImGui::DragFloat( "Beam Width", &m_BeamWidth, 0.05f, 0.0f, INFINITY );
+        
+        ImGui::DragFloat( "Damage Per Second", &m_DamageRate, 0.05f );
+
+        Inspection::InspectCollisionLayerFlags( "Collsion Layers", &m_CollideWithLayers );
+
+        float angle = std::atan2( m_Direction.y, m_Direction.x );
+        if ( ImGui::SliderAngle( "Direction", &angle, -180.0f, 180.0f ) )
+        {
+            m_Direction = glm::vec2( std::cos( angle ), std::sin( angle ) );
+        }
+
+        ImGui::Checkbox( "Is Firing", &m_IsFiring );
     }
 
 
@@ -328,59 +385,111 @@
 
     /// @brief  reads the name of the Tilemap entity
     /// @param  data the json data to read from
-    void readTilemapName( nlohmann::ordered_json const& data );
+    void MiningLaser::readTilemapName( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_TilemapName, data );
+    }
 
 
     /// @brief  reads the range of the laser
     /// @param  data the json data to read from
-    void readRange( nlohmann::ordered_json const& data );
+    void MiningLaser::readRange( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_Range, data );
+    }
 
 
     /// @brief  reads offset of the laser source
     /// @param  data the json data to read from
-    void readSourceOffset( nlohmann::ordered_json const& data );
+    void MiningLaser::readSourceOffset( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( &m_SourceOffset, data );
+    }
 
     /// @brief  reads how quickly the mining laser breaks tiles
     /// @param  data the json data to read from
-    void readMiningSpeed( nlohmann::ordered_json const& data );
+    void MiningLaser::readMiningSpeed( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MiningSpeed, data );
+    }
 
 
     /// @brief  reads how many tiles the laser can damage at once
     /// @param  data the json data to read from
-    void readMaxInProgressTiles( nlohmann::ordered_json const& data );
+    void MiningLaser::readMaxInProgressTiles( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MaxInProgressTiles, data );
+    }
 
 
     /// @brief  reads the color of the beam
     /// @param  data the json data to read from
-    void readBeamColor( nlohmann::ordered_json const& data );
+    void MiningLaser::readBeamColor( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( &m_BeamColor, data );
+    }
 
     /// @brief  reads the width of the beam
     /// @param  data the json data to read from
-    void readBeamWidth( nlohmann::ordered_json const& data );
+    void MiningLaser::readBeamWidth( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_BeamWidth, data );
+    }
 
 
     /// @brief  reads the damage rate
     /// @param  data the json data to read from
-    void readDamageRate( nlohmann::ordered_json const& data );
+    void MiningLaser::readDamageRate( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_DamageRate, data );
+    }
 
 
     /// @brief  reads the collision layers the laser hits
     /// @param  data the json data to read from
-    void readCollideWithLayers( nlohmann::ordered_json const& data );
+    void MiningLaser::readCollideWithLayers( nlohmann::ordered_json const& data )
+    {
+        if ( data.is_string() )
+        {
+            m_CollideWithLayers = Collisions()->GetLayerFlags( data );
+        }
+        else if ( data.is_number_unsigned() )
+        {
+            Stream::Read( m_CollideWithLayers, data );
+        }
+    }
 
 
     /// @brief  reads the direction the laser fires in
     /// @param  data the json data to read from
-    void readDirection( nlohmann::ordered_json const& data );
+    void MiningLaser::readDirection( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( &m_Direction, data );
+    }
 
     /// @brief  reads whether the beam is firing
     /// @param  data the json data to read from
-    void readIsFiring( nlohmann::ordered_json const& data );
+    void MiningLaser::readIsFiring( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_IsFiring, data );
+    }
 
 
 
     /// @brief  map of the read methods for this Component
-    static ReadMethodMap< MiningLaser > s_ReadMethods;
+    ReadMethodMap< MiningLaser > MiningLaser::s_ReadMethods = {
+        { "TilemapName"         , &readTilemapName          },
+        { "Range"               , &readRange                },
+        { "SourceOffset"        , &readSourceOffset         },
+        { "MiningSpeed"         , &readMiningSpeed          },
+        { "MaxInProgressTiles"  , &readMaxInProgressTiles   },
+        { "BeamColor"           , &readBeamColor            },
+        { "BeamWidth"           , &readBeamWidth            },
+        { "DamageRate"          , &readDamageRate           },
+        { "CollideWithLayers"   , &readCollideWithLayers    },
+        { "Direction"           , &readDirection            },
+        { "IsFiring"            , &readIsFiring             }
+    };
 
 
 //-----------------------------------------------------------------------------
@@ -388,17 +497,26 @@
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
-
-
     /// @brief  Write all MiningLaser data to a JSON file.
     /// @return The JSON file containing the MiningLaser data.
-    virtual nlohmann::ordered_json Write() const override;
+    nlohmann::ordered_json MiningLaser::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        json[ "TilemapName"         ] = Stream::Write( m_TilemapName        );
+        json[ "Range"               ] = Stream::Write( m_Range              );
+        json[ "SourceOffset"        ] = Stream::Write( m_SourceOffset       );
+        json[ "MiningSpeed"         ] = Stream::Write( m_MiningSpeed        );
+        json[ "MaxInProgressTiles"  ] = Stream::Write( m_MaxInProgressTiles );
+        json[ "BeamColor"           ] = Stream::Write( m_BeamColor          );
+        json[ "BeamWidth"           ] = Stream::Write( m_BeamWidth          );
+        json[ "DamageRate"          ] = Stream::Write( m_DamageRate         );
+        json[ "CollideWithLayers"   ] = Stream::Write( m_CollideWithLayers  );
+        json[ "Direction"           ] = Stream::Write( m_Direction          );
+        json[ "IsFiring"            ] = Stream::Write( m_IsFiring           );
+
+        return json;
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -408,7 +526,16 @@
     /// @brief  copy-constructor for the MiningLaser
     /// @param  other   the other MiningLaser to copy
     MiningLaser::MiningLaser( const MiningLaser& other ) :
-        Behavior( typeid( MiningLaser ) )
-    {
-
-    }
+        Behavior( typeid( MiningLaser ) ),
+        m_TilemapName( other.m_TilemapName ),
+        m_Range( other.m_Range ),
+        m_SourceOffset( other.m_SourceOffset ),
+        m_MiningSpeed( other.m_MiningSpeed ),
+        m_MaxInProgressTiles( other.m_MaxInProgressTiles ),
+        m_BeamColor( other.m_BeamColor ),
+        m_BeamWidth( other.m_BeamWidth ),
+        m_DamageRate( other.m_DamageRate ),
+        m_CollideWithLayers( other.m_CollideWithLayers ),
+        m_Direction( other.m_Direction ),
+        m_IsFiring( other.m_IsFiring )
+    {}

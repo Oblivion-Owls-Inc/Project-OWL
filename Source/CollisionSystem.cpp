@@ -588,7 +588,10 @@
         glm::vec2 t = tilePos - (glm::vec2)tile;
         if ( stepDir.x == 1 ) { t.x = 1 - t.x; }
         if ( stepDir.y == 1 ) { t.y = 1 - t.y; }
-        t *= deltaT;
+
+        // can't just multiply because sometimes deltaT is infinity
+        t.x = t.x == 0 ? 0 : t.x * deltaT.x;
+        t.y = t.y == 0 ? 0 : t.y * deltaT.y;
 
         // loop until max distance reached
         while ( t.x < rayCastHit->distance || t.y < rayCastHit->distance )
@@ -614,11 +617,22 @@
                 tile.y < 0 || tile.y >= tilemap->GetDimensions().y
             )
             {
+                if (
+                    ( tile.x < 0 && stepDir.x <= 0 ) ||
+                    ( tile.y < 0 && stepDir.y <= 0 ) ||
+                    ( tile.x >= tilemap->GetDimensions().x && stepDir.x >= 0 ) ||
+                    ( tile.y >= tilemap->GetDimensions().y && stepDir.y >= 0 )
+                )
+                {
+                    // don't infinite infinite loop upon exiting tilemap bounds
+                    break;
+                }
+
                 continue;
             }
 
             // check tile at current position
-            if ( tilemap->GetTile( tile ) != 0 )
+            if ( tilemap->GetTile( tile ) > 0 )
             {
                 rayCastHit->distance = t[ stepAxis ] - deltaT[ stepAxis ];
                 rayCastHit->colliderHit = tilemapCollider;
