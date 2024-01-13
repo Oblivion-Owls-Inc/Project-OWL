@@ -1,19 +1,18 @@
 /*****************************************************************//**
  * \file   LightingSystem.cpp
- * \brief  Updates all Lightings using compute shader, spawns new ones
- *         in accordance with emitters' timing.
+ * \brief  Renders lights in the scene.
  * 
  * \author Eli Tsereteli
- * \date   November 2023
+ * \date   Jan 2024
  *********************************************************************/
 #include "glew.h"
 #include "LightingSystem.h"
-#include "RenderSystem.h"   // adding sprite
+#include "RenderSystem.h"   // sprite implementation
 #include "PlatformSystem.h" // screen size
 #include "Mesh.h"           // rendering
 #include "CameraSystem.h"   // world-to-screen matrix for frag shader uniforms
 #include "Entity.h"         // parent position
-#include "Transform.h"
+#include "Transform.h"      // parent position
 #include "imgui.h"
 
 
@@ -63,22 +62,30 @@ void LightingSystem::OnUpdate(float dt)
     // render spotlights. one per layer.
     for (size_t i=0; i<m_LightSources.size(); ++i)
     {
+        glm::vec4 pos = glm::vec4( m_LightSources[i]->GetOffset(), 0, 1 );
         Transform* pt = m_LightSources[i]->GetEntity()->GetComponent<Transform>();
-        if (!pt)
-            continue;
+        if (pt)
+            pos += glm::vec4(pt->GetTranslation(), 0, 0);
+
+        glUniform1f(spotShader->GetUniformID("light_strength"), m_LightSources[i]->GetStrength());
 
         // convert position and radius to screen dimensions, set them on the shader
-        glm::vec4 pos = m_W2S * glm::vec4(pt->GetTranslation() + m_LightSources[i]->GetOffset(), 0, 1);
+        pos = m_W2S * pos;
         glUniform2f(spotShader->GetUniformID("light_pos"), pos.x, pos.y);
+        glUniform1f(spotShader->GetUniformID("light_radius"), m_LightSources[i]->GetRadius() * 
+                                                              m_W2S[0][0]);
+            // this scaling of the radius won't work if the camera is rotated.
+            // then again, will we ever rotate it?
+            // sqrt of determinant would be more proper, but that's expensive...
 
-        // render this light source to its appropriate layer
+        // render this light source to its appropriate texture layer
         glFramebufferTextureLayer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_TextureArrayID, 0, (int)i);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
     glBindVertexArray(0);  // unbind VAO
 
-    // later: Bind compute shader, give it buffers to work with, dispatch
-    //        (render results later in sprite's draw call?)
+    // later: 1. Calculate shadows using compute shader
+    //        2. Render the shadows on top of spotlights
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0); // reset to default FBO (backbuffer)
 
@@ -172,6 +179,8 @@ void LightingSystem::reallocTexArray()
 //              Reading / Writing
 //-----------------------------------------------------------------------------
 
+/// @brief       Reads whether lighting system should be enabled on launch
+/// @param data  json data
 void LightingSystem::readEnabled(nlohmann::ordered_json const& data)
 {
     m_Enabled = Stream::Read< bool >(data);

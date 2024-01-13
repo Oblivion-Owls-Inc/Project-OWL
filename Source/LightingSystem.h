@@ -3,7 +3,7 @@
  * \brief  Lighting system interface.
  * 
  * \author Eli Tsereteli
- * \date   November 2023
+ * \date   Jan 2024
  *********************************************************************/
 #pragma once
 #include "System.h"

@@ -2591,7 +2591,9 @@
                     ],
                     "IsDiegetic": true
                 },
-                "Light": {}
+                "Light": {
+                    "Radius": 2.0
+                }
             }
         },
         "Background": {
