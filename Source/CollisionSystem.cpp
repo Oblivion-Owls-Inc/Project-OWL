@@ -49,9 +49,11 @@
     /// @param  collider    the collider to remove
     void CollisionSystem::removeCollider( Collider* collider )
     {
-        m_Colliders.erase(
-            std::remove( m_Colliders.begin(), m_Colliders.end(), collider )
-        );
+        auto it = std::remove( m_Colliders.begin(), m_Colliders.end(), collider );
+        if ( it != m_Colliders.end() )
+        {
+            m_Colliders.erase( it );
+        }
     }
 
 
