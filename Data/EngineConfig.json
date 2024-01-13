@@ -20,7 +20,10 @@
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "ParticleSystem": {},
-        "LightingSystem": {},
+        "LightingSystem": {
+            "Enabled": true,
+            "Layer": 5
+        },
         "CollisionSystem": {
             "CollisionLayerNames": [
                 "Terrain",

@@ -26,6 +26,7 @@
 void LightingSystem::OnInit()
 {
     m_Sprite = new LightingSprite;
+    m_Sprite->SetLayer(m_ShadowLayer);
 
     Renderer()->AddShader("lights", new Shader("Data/shaders/vshader.vert", "Data/shaders/lighting.frag"));
     Renderer()->AddShader("spotlight", new Shader("Data/shaders/vshader.vert", "Data/shaders/spotlight.frag"));
@@ -139,6 +140,7 @@ void LightingSystem::RemoveLightSource(int index)
 }
 
 
+
 //-----------------------------------------------------------------------------
 //              Helpers
 //-----------------------------------------------------------------------------
@@ -164,6 +166,42 @@ void LightingSystem::reallocTexArray()
     glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 }
 
+
+
+//-----------------------------------------------------------------------------
+//              Reading / Writing
+//-----------------------------------------------------------------------------
+
+void LightingSystem::readEnabled(nlohmann::ordered_json const& data)
+{
+    m_Enabled = Stream::Read< bool >(data);
+}
+
+/// @brief       Reads the rendering layer of shadows
+/// @param data  json data
+void LightingSystem::readLayer(nlohmann::ordered_json const& data)
+{
+    m_ShadowLayer = Stream::Read< int >(data);
+}
+
+
+/// @brief map of the LightingSystem read methods
+ReadMethodMap< LightingSystem > const LightingSystem::s_ReadMethods = {
+    { "Enabled", &readEnabled },
+    { "Layer",   &readLayer }
+};
+
+
+/// @brief   writes this System config
+/// @return  the writting System config
+nlohmann::ordered_json LightingSystem::Write() const
+{
+    nlohmann::ordered_json json;
+
+    json["Enabled"] = Stream::Write< bool >(m_Enabled);
+
+    return json;
+}
 
 
 //-----------------------------------------------------------------------------
@@ -199,16 +237,16 @@ LightingSystem * LightingSystem::GetInstance()
 // has already rendered all individual light sources to the texture array.
 // They are combined together by this sprite's shader.
 
-/// @brief   Constructor (temporary, just sets the layer)
-LightingSystem::LightingSprite::LightingSprite() :
-    Sprite(typeid(LightingSystem::LightingSprite)) 
-{   
-    m_Layer = 5; // TODO: serialize
-}
+/// @brief   Default constructor
+LightingSystem::LightingSprite::LightingSprite() : 
+    Sprite(typeid(LightingSystem::LightingSprite)) {}
 
 /// @brief   Called by RenderSystem in accordance with its layer.
 void LightingSystem::LightingSprite::Draw()
 {
+    if (!Lights()->GetLightingEnabled())
+        return;
+
     Shader* shdr = Renderer()->SetActiveShader("lights");
 
     // uniforms

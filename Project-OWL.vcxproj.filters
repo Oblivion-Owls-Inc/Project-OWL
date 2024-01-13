@@ -213,6 +213,12 @@
     <Filter Include="Data\Scenes">
       <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\LightingSystem">
+      <UniqueIdentifier>{2a933976-05d3-4638-9821-0f1885dda517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Light">
+      <UniqueIdentifier>{f38edf87-77f6-4949-a9ab-195d1662f1e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -389,9 +395,6 @@
     <ClCompile Include="Source\TilemapSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SandboxSystem.cpp">
-      <Filter>Game\Scenes\SandboxSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FollowingBehavior.cpp">
       <Filter>Game\Behaviors\FollowingBehavior</Filter>
     </ClCompile>
@@ -463,6 +466,12 @@
     </ClCompile>
     <ClCompile Include="Source\EmitterSprite.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LightingSystem.cpp">
+      <Filter>Engine\Systems\LightingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Light.cpp">
+      <Filter>Engine\Entity\Component\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -643,9 +652,6 @@
     <ClInclude Include="Source\TilemapSprite.h">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SandboxSystem.h">
-      <Filter>Game\Scenes\SandboxSystem</Filter>
-    </ClInclude>
     <ClInclude Include="Source\FollowingBehavior.h">
       <Filter>Game\Behaviors\FollowingBehavior</Filter>
     </ClInclude>
@@ -712,22 +718,16 @@
     <ClInclude Include="Source\EmitterSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LightingSystem.h">
+      <Filter>Engine\Systems\LightingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Light.h">
+      <Filter>Engine\Entity\Component\Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
       <Filter>Data</Filter>
-    </None>
-    <None Include="Data\Scenes\TurretScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\Sandbox.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\AidanScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\XinoScene.scene.json">
-      <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>

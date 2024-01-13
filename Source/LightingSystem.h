@@ -45,6 +45,9 @@ public:
 
     __inline int GetLightCount() const { return (int)m_LightSources.size(); }
 
+    __inline bool GetLightingEnabled() const { return m_Enabled; }
+
+
 //-----------------------------------------------------------------------------
 //              Virtual overrides
 //-----------------------------------------------------------------------------
@@ -79,6 +82,7 @@ private:
     GLuint m_FBO = -1;                    /// @brief   Framebuffer for rendering lights to texture 
     bool m_Enabled = true;                /// @brief   For debugging. Can disable all lights.
     glm::mat4 m_S2W = {}, m_W2S = {};     /// @brief   Screen-to-world matrix (and inverse)
+    int m_ShadowLayer = 5;                /// @brief   Rendering layer of the darkness
 
 
 //-----------------------------------------------------------------------------
@@ -88,6 +92,41 @@ private:
     /// @brief  Reallocates texture array - for when the amount of lights 
     ///         or the screen resolution changes.
     void reallocTexArray();
+
+
+
+//-----------------------------------------------------------------------------
+//              Reading / Writing
+//-----------------------------------------------------------------------------
+private:
+
+    /// @brief       Reads whether lighting system should be enabled on launch
+    /// @param data  json data
+    void readEnabled(nlohmann::ordered_json const& data);
+
+    /// @brief       Reads the rendering layer of shadows
+    /// @param data  json data
+    void readLayer(nlohmann::ordered_json const& data);
+
+    /// @brief map of the PlatformSystem read methods
+    static ReadMethodMap< LightingSystem > const s_ReadMethods;
+
+
+public:
+
+    /// @brief   gets this System's read methods
+    /// @return  this System's read methods
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
+
+
+    /// @brief   writes this System config
+    /// @return  the writting System config
+    virtual nlohmann::ordered_json Write() const override;
+
+
 
 //-----------------------------------------------------------------------------
 //              Singleton stuff
