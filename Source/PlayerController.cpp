@@ -16,6 +16,8 @@
 #include "AnimationAsset.h"
 #include "AssetLibrarySystem.h" // GetAsset
 #include "DebugSystem.h"
+#include "BasicEntityBehavior.h"
+#include "EnemyBehavior.h"
 
 ///----------------------------------------------------------------------------
 /// Static Variables

@@ -192,9 +192,6 @@
     <Filter Include="Game\Behaviors\BaseBehavior">
       <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Behaviors\BasicEntityBehavior">
-      <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Framework\Inspection">
       <UniqueIdentifier>{973c8ce7-ba72-4cdf-8b08-0b9b9404380f}</UniqueIdentifier>
     </Filter>
@@ -212,6 +209,9 @@
     </Filter>
     <Filter Include="Data\Scenes">
       <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\BasicEntityBehavior">
+      <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -389,9 +389,6 @@
     <ClCompile Include="Source\TilemapSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SandboxSystem.cpp">
-      <Filter>Game\Scenes\SandboxSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FollowingBehavior.cpp">
       <Filter>Game\Behaviors\FollowingBehavior</Filter>
     </ClCompile>
@@ -438,7 +435,7 @@
       <Filter>Game\Behaviors\BaseBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\BasicEntityBehavior.cpp">
-      <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
+      <Filter>Engine\Entity\Component\Behavior\BasicEntityBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\Inspection.cpp">
       <Filter>Engine\Framework\Inspection</Filter>
@@ -643,9 +640,6 @@
     <ClInclude Include="Source\TilemapSprite.h">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SandboxSystem.h">
-      <Filter>Game\Scenes\SandboxSystem</Filter>
-    </ClInclude>
     <ClInclude Include="Source\FollowingBehavior.h">
       <Filter>Game\Behaviors\FollowingBehavior</Filter>
     </ClInclude>
@@ -692,7 +686,7 @@
       <Filter>Game\Behaviors\BaseBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\BasicEntityBehavior.h">
-      <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
+      <Filter>Engine\Entity\Component\Behavior\BasicEntityBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\Inspection.h">
       <Filter>Engine\Framework\Inspection</Filter>
@@ -716,18 +710,6 @@
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
       <Filter>Data</Filter>
-    </None>
-    <None Include="Data\Scenes\TurretScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\Sandbox.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\AidanScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\XinoScene.scene.json">
-      <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>

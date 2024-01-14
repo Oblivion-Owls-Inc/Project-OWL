@@ -80,6 +80,8 @@ private: // member variables
     // Define the maximum speed for smooth movement.
     float m_MaxSpeed = 1.0f;
 
+    // Player respawn location
+    glm::vec2 const& m_PlayerRespawnLocation = { 0.5, 4.5 };
 
     // All the names of the animations for the player.
     std::string m_AnimationNames[4] = { "", "", "", "" };
