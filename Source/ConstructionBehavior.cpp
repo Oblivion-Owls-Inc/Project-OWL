@@ -124,7 +124,7 @@
             return;
         }
 
-        for ( int i = 0; i <= m_BuildingInfos.size() ; ++i )
+        for ( int i = 0; i < m_BuildingInfos.size() ; ++i )
         {
             if ( Input()->GetKeyReleased( GLFW_KEY_1 + i ) == false )
             {
