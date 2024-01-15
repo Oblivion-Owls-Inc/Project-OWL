@@ -186,9 +186,6 @@
     <Filter Include="Engine\Entity\Component\Sprite\ParticleSprite">
       <UniqueIdentifier>{b31df122-b6ac-40e0-894e-9df749af7fa2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\BaseEntityBehavior">
-      <UniqueIdentifier>{5821ef37-47bc-4d79-a76b-4e247b51bed3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Behaviors\BaseBehavior">
       <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
     </Filter>
@@ -210,8 +207,11 @@
     <Filter Include="Data\Scenes">
       <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Behavior\BasicEntityBehavior">
+    <Filter Include="Game\Behaviors\BasicEntityBehavior">
       <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Health">
+      <UniqueIdentifier>{e836e623-5921-472f-89b0-6e67007a2028}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -435,7 +435,7 @@
       <Filter>Game\Behaviors\BaseBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\BasicEntityBehavior.cpp">
-      <Filter>Engine\Entity\Component\Behavior\BasicEntityBehavior</Filter>
+      <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\Inspection.cpp">
       <Filter>Engine\Framework\Inspection</Filter>
@@ -460,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="Source\EmitterSprite.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Health.cpp">
+      <Filter>Engine\Entity\Component\Health</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -686,7 +689,7 @@
       <Filter>Game\Behaviors\BaseBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\BasicEntityBehavior.h">
-      <Filter>Engine\Entity\Component\Behavior\BasicEntityBehavior</Filter>
+      <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\Inspection.h">
       <Filter>Engine\Framework\Inspection</Filter>
@@ -705,6 +708,9 @@
     </ClInclude>
     <ClInclude Include="Source\EmitterSprite.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Health.h">
+      <Filter>Engine\Entity\Component\Health</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
