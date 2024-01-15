@@ -1,6 +1,10 @@
 {
     "Assets": {
         "Sounds": {
+            "BaseDamageSound": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Base/BaseDamage.ogg"
+            },
             "EnemySound": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Enemy/footsteps.ogg"
@@ -24,10 +28,6 @@
             "TurretShoot": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg"
-            },
-            "BaseDamageSound": {
-                "IsLoopable": true,
-                "Filepath":  "Data/Sounds/Effects/Base/BaseDamage.ogg"
             }
         },
         "Textures": {
@@ -426,19 +426,6 @@
         "Base": {
             "Name": "Base",
             "Components": {
-                "BaseBehavior": {
-                    "Health": {
-                        "Name": "Health Pool",
-                        "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
-                    }
-                },
-                "CircleCollider": {
-                    "Radius": 2.0,
-                    "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
-                },
                 "AudioPlayer": {
                     "Volume": 1.0,
                     "Pitch": 1.0,
@@ -447,6 +434,19 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "Sound": "BaseDamageSound"
+                },
+                "BaseBehavior": {
+                    "Health": {
+                        "Name": "Health Pool",
+                        "BaseValue": 5,
+                        "CurrentValue": 9999,
+                        "Active": true
+                    }
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -2550,7 +2550,8 @@
                         "PlayerMoveUp",
                         "PlayerMoveDown"
                     ],
-                    "MaxSpeed": 1.0
+                    "MaxSpeed": 1.0,
+                    "MiningLaserName": "MiningLaser"
                 },
                 "RigidBody": {
                     "Velocity": [
@@ -2635,7 +2636,6 @@
                     "BuildingIndex": -1,
                     "PlacementRange": 2.0,
                     "PreviewFadeOutRadius": 2.0,
-                    "MiningTime": 1.0,
                     "PreviewColorPlaceable": [
                         0.0,
                         0.5,
@@ -2650,7 +2650,6 @@
                     ],
                     "PreviewAlpha": 0.5,
                     "CurrentResources": 0,
-                    "MiningResourceGain": 1,
                     "ResourcesTextPrefix": "Resources: ",
                     "TilemapName": "Tiles",
                     "PlayerName": "Player",
@@ -2794,6 +2793,95 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": "Ball3"
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            }
+        },
+        "MiningLaser": {
+            "Name": "MiningLaser",
+            "Components": {
+                "AudioPlayer": {
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false
+                },
+                "Emitter": {
+                    "PPS": 200.0,
+                    "Delay": 0.0,
+                    "Max": 2048,
+                    "Continuous": false,
+                    "EmitData": [
+                        [
+                            0.0,
+                            0.0
+                        ],
+                        [
+                            0.0,
+                            0.0
+                        ],
+                        [
+                            0.0,
+                            0.0
+                        ],
+                        0.0,
+                        1.0,
+                        0.20000000298023224,
+                        0.0,
+                        3.140000104904175,
+                        0.5,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        2.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "EmitterSprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0
+                },
+                "MiningLaser": {
+                    "TilemapName": "Tiles",
+                    "Range": 4.0,
+                    "MiningSpeed": 4.0,
+                    "MaxInProgressTiles": 32,
+                    "BeamColor": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "BeamWidth": 0.10000000149011612,
+                    "DamageRate": 1.0,
+                    "CollideWithLayers": 3,
+                    "Direction": [
+                        1.0,
+                        0.0
+                    ],
+                    "IsFiring": false
                 },
                 "Transform": {
                     "Translation": [

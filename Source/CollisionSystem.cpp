@@ -552,6 +552,7 @@
             rayCastHit->distance = distance;
             rayCastHit->colliderHit = circle;
             rayCastHit->normal = glm::normalize( offset );
+            rayCastHit->position = rayOrigin + rayDirection * distance;
         }
     }
 
@@ -639,6 +640,9 @@
 
                 rayCastHit->normal = stepDir;
                 rayCastHit->normal[ (int)!stepAxis ] = 0;
+
+                rayCastHit->position = rayOrigin + rayDirection * rayCastHit->distance;
+                rayCastHit->tilePos = tile;
 
                 return;
             }

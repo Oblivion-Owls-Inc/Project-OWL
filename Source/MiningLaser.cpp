@@ -32,12 +32,11 @@
 // public: constructor / Destructor
 //-----------------------------------------------------------------------------
 
+
     /// @brief  constructor
     MiningLaser::MiningLaser() :
         Behavior( typeid( MiningLaser ) )
-    {
-        // TODO: constructor    
-    }
+    {}
 
 
 //-----------------------------------------------------------------------------
@@ -57,21 +56,6 @@
     void MiningLaser::SetRange( float range )
     {
         m_Range = range;
-    }
-
-
-    /// @brief  gets the laser source offset
-    /// @return the laser source offset
-    glm::vec2 const& MiningLaser::GetSourceOffset() const
-    {
-        return m_SourceOffset;
-    }
-
-    /// @brief  sets the laser source offset
-    /// @param  sourceOffset    the laser source offset
-    void MiningLaser::SetSourceOffset( glm::vec2 const& sourceOffset )
-    {
-        m_SourceOffset = sourceOffset;
     }
 
 
@@ -135,6 +119,36 @@
     }
 
 
+    /// @brief  gets how much damage per second the laser deals
+    /// @return how much damage per second the laser deals
+    float MiningLaser::GetDamageRate() const
+    {
+        return m_DamageRate;
+    }
+
+    /// @brief  sets how much damage per second the laser deals
+    /// @param  dps how much damage per second the laser deals
+    void MiningLaser::SetDamageRate( float dps )
+    {
+        m_DamageRate = dps;
+    }
+
+
+    /// @brief  gets which layers the laser collides with
+    /// @return which layers the laser collides with
+    CollisionLayerFlags MiningLaser::GetCollisionLayers() const
+    {
+        return m_CollisionLayers;
+    }
+
+    /// @brief  sets which layers the laser collides with
+    /// @param  collisionLayers which layers the laser collides with
+    void MiningLaser::SetCollisionLayers( CollisionLayerFlags collisionLayers )
+    {
+        m_CollisionLayers = collisionLayers;
+    }
+
+
     /// @brief  gets the direction that the beam is firing in
     /// @return the direction that the beam is firing in
     glm::vec2 const& MiningLaser::GetDirection() const
@@ -165,17 +179,66 @@
     }
 
 
+    /// @brief  gets the Transform attached to this MiningLaser
+    /// @return the Transform attached to this MiningLaser
+    Transform* MiningLaser::GetTransform() const
+    {
+        return m_Transform;
+    }
+
+    /// @brief  gets the AudioPlayer attached to this MiningLaser
+    /// @return the AudioPlayer attached to this MiningLaser
+    AudioPlayer* MiningLaser::GetAudioPlayer() const
+    {
+        return m_AudioPlayer;
+    }
+
+    /// @brief  gets the Emitter attached to this MiningLaser
+    /// @return the Emitter attached to this MiningLaser
+    Emitter* MiningLaser::GetEmitter() const
+    {
+        return m_ParticleEmitter;
+    }
+
+
+    /// @brief  gets the Tilemap this MiningLaser digs in
+    /// @return the Tilemap this MiningLaser digs in
+    Tilemap< int >* MiningLaser::GetTilemap() const
+    {
+        return m_Tilemap;
+    }
+
+    /// @brief  sets the Tilemap this MiningLaser digs in
+    /// @param  tilemap the Tilemap this MiningLaser digs in
+    void MiningLaser::SetTilemap( Tilemap< int >* tilemap )
+    {
+        m_Tilemap = tilemap;
+        m_TilemapName = tilemap->GetEntity()->GetName();
+    }
+
+
 //-----------------------------------------------------------------------------
 // public:  methods
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  gets the world emission position
-    /// @return the world emission position
-    glm::vec2 MiningLaser::GetWorldEmissionPosition() const
+    /// @brief  adds an OnBreakTile callback to this MiningLaser
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @param  callback    the callback to add
+    void MiningLaser::AddOnBreakTileCallback( unsigned ownerId, OnBreakTileCallback callback )
     {
-        glm::vec2 worldOffset = m_Transform->GetMatrix() * glm::vec4( m_SourceOffset, 0.0f, 0.0f );
-        return m_Transform->GetTranslation() + worldOffset;
+        m_OnBreakTileCallbacks.emplace( ownerId, callback );
+    }
+
+    /// @brief  removes an OnBreakTile callback from this MiningLaser
+    /// @param  ownerId     the ID of the owner of the callback to remove
+    void MiningLaser::RemoveOnBreakTileCallback( unsigned ownerId )
+    {
+        auto it = m_OnBreakTileCallbacks.find( ownerId );
+        if ( it != m_OnBreakTileCallbacks.end() )
+        {
+            m_OnBreakTileCallbacks.erase( it );
+        }
     }
 
 
@@ -214,7 +277,7 @@
             return;
         }
 
-        glm::vec2 start = GetWorldEmissionPosition();
+        glm::vec2 start = m_Transform->GetTranslation();
         Renderer()->DrawLine( start, start + m_Direction * m_beamLength, m_BeamWidth, m_BeamColor );
     }
 
@@ -226,7 +289,7 @@
             return;
         }
 
-        RayCastHit hit = Collisions()->RayCast( GetWorldEmissionPosition(), m_Direction, m_Range, m_CollideWithLayers );
+        RayCastHit hit = Collisions()->RayCast( m_Transform->GetTranslation(), m_Direction, m_Range, m_CollisionLayers );
         m_beamLength = hit.distance;
 
         if ( hit.colliderHit == nullptr )
@@ -239,7 +302,7 @@
             static_cast< TilemapCollider* >( hit.colliderHit )->GetTilemap() == m_Tilemap
         )
         {
-            damageTile( getTargettedTile( hit ) );
+            damageTile( hit.tilePos );
         }
         else
         {
@@ -259,15 +322,6 @@
     void MiningLaser::tryDamageEntity( Entity* entity ) const
     {
         // TODO: try damaging the entity
-    }
-
-
-    /// @brief  gets the tile position of a raycast hit
-    /// @param  hit the RayCastHit to get the tile position of
-    /// @return the tile position of the raycast hit
-    glm::ivec2 MiningLaser::getTargettedTile( RayCastHit const& hit ) const
-    {
-        return m_Tilemap->WorldPosToTileCoord( GetWorldEmissionPosition() + m_Direction * hit.distance);
     }
 
 
@@ -291,9 +345,14 @@
     /// @param  tilePos the tile to break
     void MiningLaser::breakTile( std::deque< MiningLaser::InProgressTile >::iterator const& ipt )
     {
-        // TODO: play delete tile effect
 
-        // TODO: gain resources
+        // call callbacks
+        for ( auto const& [ ownerId, callback ] : m_OnBreakTileCallbacks )
+        {
+            callback( m_Tilemap, ipt->M_TilePos, m_Tilemap->GetTile( ipt->M_TilePos ) );
+        }
+
+        // TODO: play delete tile effect
 
         m_Tilemap->SetTile( ipt->M_TilePos, -1 );
 
@@ -352,9 +411,6 @@
 
 
         ImGui::DragFloat( "Max Range", &m_Range, 0.05f, 0.0f, INFINITY );
-
-
-        ImGui::DragFloat2( "Beam Offset", &m_SourceOffset[ 0 ], 0.05f);
         
         ImGui::DragFloat( "Mining Speed", &m_MiningSpeed, 0.05f, 0.0f, INFINITY );
         
@@ -366,7 +422,7 @@
         
         ImGui::DragFloat( "Damage Per Second", &m_DamageRate, 0.05f );
 
-        Inspection::InspectCollisionLayerFlags( "Collsion Layers", &m_CollideWithLayers );
+        Inspection::InspectCollisionLayerFlags( "Collsion Layers", &m_CollisionLayers );
 
         float angle = std::atan2( m_Direction.y, m_Direction.x );
         if ( ImGui::SliderAngle( "Direction", &angle, -180.0f, 180.0f ) )
@@ -398,13 +454,6 @@
         Stream::Read( m_Range, data );
     }
 
-
-    /// @brief  reads offset of the laser source
-    /// @param  data the json data to read from
-    void MiningLaser::readSourceOffset( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( &m_SourceOffset, data );
-    }
 
     /// @brief  reads how quickly the mining laser breaks tiles
     /// @param  data the json data to read from
@@ -451,11 +500,11 @@
     {
         if ( data.is_string() )
         {
-            m_CollideWithLayers = Collisions()->GetLayerFlags( data );
+            m_CollisionLayers = Collisions()->GetLayerFlags( data );
         }
         else if ( data.is_number_unsigned() )
         {
-            Stream::Read( m_CollideWithLayers, data );
+            Stream::Read( m_CollisionLayers, data );
         }
     }
 
@@ -480,7 +529,6 @@
     ReadMethodMap< MiningLaser > MiningLaser::s_ReadMethods = {
         { "TilemapName"         , &readTilemapName          },
         { "Range"               , &readRange                },
-        { "SourceOffset"        , &readSourceOffset         },
         { "MiningSpeed"         , &readMiningSpeed          },
         { "MaxInProgressTiles"  , &readMaxInProgressTiles   },
         { "BeamColor"           , &readBeamColor            },
@@ -505,13 +553,12 @@
 
         json[ "TilemapName"         ] = Stream::Write( m_TilemapName        );
         json[ "Range"               ] = Stream::Write( m_Range              );
-        json[ "SourceOffset"        ] = Stream::Write( m_SourceOffset       );
         json[ "MiningSpeed"         ] = Stream::Write( m_MiningSpeed        );
         json[ "MaxInProgressTiles"  ] = Stream::Write( m_MaxInProgressTiles );
         json[ "BeamColor"           ] = Stream::Write( m_BeamColor          );
         json[ "BeamWidth"           ] = Stream::Write( m_BeamWidth          );
         json[ "DamageRate"          ] = Stream::Write( m_DamageRate         );
-        json[ "CollideWithLayers"   ] = Stream::Write( m_CollideWithLayers  );
+        json[ "CollideWithLayers"   ] = Stream::Write( m_CollisionLayers  );
         json[ "Direction"           ] = Stream::Write( m_Direction          );
         json[ "IsFiring"            ] = Stream::Write( m_IsFiring           );
 
@@ -529,13 +576,14 @@
         Behavior( typeid( MiningLaser ) ),
         m_TilemapName( other.m_TilemapName ),
         m_Range( other.m_Range ),
-        m_SourceOffset( other.m_SourceOffset ),
         m_MiningSpeed( other.m_MiningSpeed ),
         m_MaxInProgressTiles( other.m_MaxInProgressTiles ),
         m_BeamColor( other.m_BeamColor ),
         m_BeamWidth( other.m_BeamWidth ),
         m_DamageRate( other.m_DamageRate ),
-        m_CollideWithLayers( other.m_CollideWithLayers ),
+        m_CollisionLayers( other.m_CollisionLayers ),
         m_Direction( other.m_Direction ),
         m_IsFiring( other.m_IsFiring )
     {}
+
+//-----------------------------------------------------------------------------

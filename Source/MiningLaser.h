@@ -14,6 +14,8 @@
 #include "CollisionSystem.h"
 
 #include <deque>
+#include <functional>
+#include <map>
 
 class Transform;
 class AudioPlayer;
@@ -36,6 +38,18 @@ public: // constructor / Destructor
     /// @brief  destructor
     ~MiningLaser() = default;
 
+//-----------------------------------------------------------------------------
+public: // types
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  callback called when a MiningLaser breaks a tile
+    /// @param  tilemap - the tilemap that the tile was broken in
+    /// @param  tilePos - the position of the tile in the tilemap
+    /// @param  tileID  - the ID of the broken tile
+    using OnBreakTileCallback = std::function< void ( Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int tileId ) >;
+
+    
 //-----------------------------------------------------------------------------
 private: // types
 //-----------------------------------------------------------------------------
@@ -64,15 +78,6 @@ public: // accessors
     /// @brief  sets the range
     /// @param  range   the new range
     void SetRange( float range );
-
-
-    /// @brief  gets the laser source offset
-    /// @return the laser source offset
-    glm::vec2 const& GetSourceOffset() const;
-
-    /// @brief  sets the laser source offset
-    /// @param  sourceOffset    the laser source offset
-    void SetSourceOffset( glm::vec2 const& sourceOffset );
 
 
     /// @brief  gets how quickly the laser breaks blocks
@@ -111,6 +116,24 @@ public: // accessors
     void SetBeamWidth( float beamWidth );
 
 
+    /// @brief  gets how much damage per second the laser deals
+    /// @return how much damage per second the laser deals
+    float GetDamageRate() const;
+
+    /// @brief  sets how much damage per second the laser deals
+    /// @param  dps how much damage per second the laser deals
+    void SetDamageRate( float dps );
+
+
+    /// @brief  gets which layers the laser collides with
+    /// @return which layers the laser collides with
+    CollisionLayerFlags GetCollisionLayers() const;
+
+    /// @brief  sets which layers the laser collides with
+    /// @param  collisionLayers which layers the laser collides with
+    void SetCollisionLayers( CollisionLayerFlags collisionLayers );
+
+
     /// @brief  gets the direction that the beam is firing in
     /// @return the direction that the beam is firing in
     glm::vec2 const& GetDirection() const;
@@ -129,14 +152,42 @@ public: // accessors
     void SetIsFiring( bool isFiring );
 
 
+    /// @brief  gets the Transform attached to this MiningLaser
+    /// @return the Transform attached to this MiningLaser
+    Transform* GetTransform() const;
+
+    /// @brief  gets the AudioPlayer attached to this MiningLaser
+    /// @return the AudioPlayer attached to this MiningLaser
+    AudioPlayer* GetAudioPlayer() const;
+
+    /// @brief  gets the Emitter attached to this MiningLaser
+    /// @return the Emitter attached to this MiningLaser
+    Emitter* GetEmitter() const;
+
+
+    /// @brief  gets the Tilemap this MiningLaser digs in
+    /// @return the Tilemap this MiningLaser digs in
+    Tilemap< int >* GetTilemap() const;
+
+    /// @brief  sets the Tilemap this MiningLaser digs in
+    /// @param  tilemap the Tilemap this MiningLaser digs in
+    void SetTilemap( Tilemap< int >* tilemap );
+
+
+
 //-----------------------------------------------------------------------------
 public: //  methods
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  gets the world emission position
-    /// @return the world emission position
-    glm::vec2 GetWorldEmissionPosition() const;
+    /// @brief  adds an OnBreakTile callback to this MiningLaser
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @param  callback    the callback to add
+    void AddOnBreakTileCallback( unsigned ownerId, OnBreakTileCallback callback );
+
+    /// @brief  removes an OnBreakTile callback from this MiningLaser
+    /// @param  ownerId     the ID of the owner of the callback to remove
+    void RemoveOnBreakTileCallback( unsigned ownerId );
 
 
 //-----------------------------------------------------------------------------
@@ -186,9 +237,6 @@ private: // members
     float m_Range = 2.0f;
 
 
-    /// @brief  the offset from the center of the Transform that the laser starts from
-    glm::vec2 m_SourceOffset = { 0.0f, 0.0f };
-
     /// @brief  how quickly the laser breaks tiles
     float m_MiningSpeed = 1.0f;
 
@@ -213,7 +261,7 @@ private: // members
 
 
     /// @brief  which layers the laser collides with
-    CollisionLayerFlags m_CollideWithLayers = 0;
+    CollisionLayerFlags m_CollisionLayers = 0;
 
 
     /// @brief  the direction to aim the laser in
@@ -227,6 +275,10 @@ private: // members
     float m_beamLength = 0.0f;
 
 
+    /// @brief  callbacks called whenever the laser breaks a tile
+    std::map< unsigned, OnBreakTileCallback > m_OnBreakTileCallbacks;
+
+
 //-----------------------------------------------------------------------------
 private: // helper methods
 //-----------------------------------------------------------------------------
@@ -235,12 +287,6 @@ private: // helper methods
     /// @brief  tries to damages the specified entity
     /// @param  entity  the entity to damage
     void tryDamageEntity( Entity* entity ) const;
-
-
-    /// @brief  gets the tile position of a raycast hit
-    /// @param  hit the RayCastHit to get the tile position of
-    /// @return the tile position of the raycast hit
-    glm::ivec2 getTargettedTile( RayCastHit const& hit ) const;
 
 
     /// @brief  damages the specified tile
@@ -281,10 +327,6 @@ private: // reading
     /// @param  data the json data to read from
     void readRange( nlohmann::ordered_json const& data );
 
-
-    /// @brief  reads offset of the laser source
-    /// @param  data the json data to read from
-    void readSourceOffset( nlohmann::ordered_json const& data );
 
     /// @brief  reads how quickly the mining laser breaks tiles
     /// @param  data the json data to read from
