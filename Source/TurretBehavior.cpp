@@ -248,6 +248,11 @@ nlohmann::ordered_json TurretBehavior::Write() const
     return data;
 }
 
+void TurretBehavior::turretSetActive(bool state)
+{
+    m_IsActive = state;
+}
+
 TurretBehavior::TurretBehavior(const TurretBehavior& other) :
     Behavior( other ), 
     m_FireRate(other.m_FireRate), 

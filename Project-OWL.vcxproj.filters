@@ -213,6 +213,9 @@
     <Filter Include="Data\Scenes">
       <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Behaviors\Generator Behavior">
+      <UniqueIdentifier>{b624640b-a3cc-43c9-9372-8c95363574b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -389,9 +392,6 @@
     <ClCompile Include="Source\TilemapSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SandboxSystem.cpp">
-      <Filter>Game\Scenes\SandboxSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FollowingBehavior.cpp">
       <Filter>Game\Behaviors\FollowingBehavior</Filter>
     </ClCompile>
@@ -463,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="Source\EmitterSprite.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GeneratorBehavior.cpp">
+      <Filter>Game\Behaviors\Generator Behavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -643,9 +646,6 @@
     <ClInclude Include="Source\TilemapSprite.h">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SandboxSystem.h">
-      <Filter>Game\Scenes\SandboxSystem</Filter>
-    </ClInclude>
     <ClInclude Include="Source\FollowingBehavior.h">
       <Filter>Game\Behaviors\FollowingBehavior</Filter>
     </ClInclude>
@@ -712,22 +712,13 @@
     <ClInclude Include="Source\EmitterSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\GeneratorBehavior.h">
+      <Filter>Game\Behaviors\Generator Behavior</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
       <Filter>Data</Filter>
-    </None>
-    <None Include="Data\Scenes\TurretScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\Sandbox.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\AidanScene.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\XinoScene.scene.json">
-      <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>

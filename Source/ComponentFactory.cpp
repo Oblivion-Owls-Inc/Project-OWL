@@ -36,6 +36,7 @@
 #include "EmitterSprite.h"
 #include "Emitter.h"
 #include "BaseBehavior.h"
+#include "GeneratorBehavior.h"
 #include "UiElement.h"
 
 
@@ -143,8 +144,9 @@
         { "Camera"              , ComponentInfo< Camera >()               },
         { "WavesBehavior"       , ComponentInfo< WavesBehavior >()        },
         { "Emitter"             , ComponentInfo< Emitter >()              },
-        { "EmitterSprite"      , ComponentInfo< EmitterSprite >()       },
+        { "EmitterSprite"       , ComponentInfo< EmitterSprite >()        },
         { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         },
+        { "GeneratorBehavior"   , ComponentInfo< GeneratorBehavior >()    },
         { "UiElement"           , ComponentInfo< UiElement >()            }
     };
 

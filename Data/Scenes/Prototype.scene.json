@@ -1,6 +1,10 @@
 {
     "Assets": {
         "Sounds": {
+            "BaseDamageSound": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Base/BaseDamage.ogg"
+            },
             "EnemySound": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Enemy/footsteps.ogg"
@@ -24,10 +28,6 @@
             "TurretShoot": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg"
-            },
-            "BaseDamageSound": {
-                "IsLoopable": true,
-                "Filepath":  "Data/Sounds/Effects/Base/BaseDamage.ogg"
             }
         },
         "Textures": {
@@ -426,7 +426,24 @@
         "Base": {
             "Name": "Base",
             "Components": {
+                "AudioPlayer": {
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "Sound": "BaseDamageSound"
+                },
                 "BaseBehavior": {
+                    "Health": {
+                        "Name": "Health Pool",
+                        "BaseValue": 5,
+                        "CurrentValue": 5,
+                        "Active": true
+                    }
+                },
+                "GeneratorBehavior": {
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
@@ -438,15 +455,6 @@
                     "Radius": 2.0,
                     "CollisionLayer": 3,
                     "CollisionLayerFlags": 2
-                },
-                "AudioPlayer": {
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "Sound": "BaseDamageSound"
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -464,6 +472,57 @@
                     "Translation": [
                         -2.25,
                         3.8499999046325684
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            }
+        },
+        "Generator2": {
+            "Name": "Generator2",
+            "Components": {
+                "AudioPlayer": {
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "Sound": "BaseDamageSound"
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
+                },
+                "GeneratorBehavior": {
+                    "Health": {
+                        "Name": "Health Pool",
+                        "BaseValue": 5,
+                        "CurrentValue": 5,
+                        "Active": true
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Van"
+                },
+                "Transform": {
+                    "Translation": [
+                        4.52500057220459,
+                        -3.0249996185302734
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -2799,6 +2858,57 @@
                     "Translation": [
                         0.0,
                         0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            }
+        },
+        "Generator": {
+            "Name": "Generator",
+            "Components": {
+                "AudioPlayer": {
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "Sound": "BaseDamageSound"
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
+                },
+                "GeneratorBehavior": {
+                    "Health": {
+                        "Name": "Health Pool",
+                        "BaseValue": 5,
+                        "CurrentValue": 5,
+                        "Active": true
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Van"
+                },
+                "Transform": {
+                    "Translation": [
+                        -0.47500038146972656,
+                        -1.1749992370605469
                     ],
                     "Rotation": 0.0,
                     "Scale": [

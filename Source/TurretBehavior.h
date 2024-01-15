@@ -49,6 +49,8 @@ private: // virtual override methods
 private: /// Members
 ///-------------------------------------------------------------------------------------------
 
+	bool m_IsActive = false;
+
 	/// @brief The fire rate of the turret
 	float m_FireRate = 1.0f;
 
@@ -152,6 +154,8 @@ public: // copying
     {
         return new TurretBehavior( *this );
     }
+
+	void turretSetActive(bool state);
 
 ///-------------------------------------------------------------------------------------------
 private: // copying
