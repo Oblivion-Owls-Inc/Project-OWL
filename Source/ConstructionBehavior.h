@@ -113,13 +113,6 @@ private: // members
     float m_PreviewFadeOutRadius = 2.0f;
 
 
-    /// @brief  how long it takes to mine a tile
-    float m_MiningTime = 1.0f;
-
-    /// @brief  how long remaining to mine the current tile
-    float m_MiningDelay = 0.0f;
-
-
     /// @brief  the current tile being targeted
     glm::ivec2 m_TargetTilePos = { -1, -1 };
 
@@ -142,9 +135,6 @@ private: // members
 
     /// @brief  how many resources the player currently has available
     int m_CurrentResources = 0;
-
-    /// @brief  how many resources are gained when mining a block
-    int m_MiningResourceGain = 1;
 
 
     /// @brief  the prefix string of the resources text, which the amount of resources will be appended to
@@ -210,16 +200,6 @@ private: // helper methods
     void placeBuilding();
 
 
-    /// @brief  tries to break the currently targeted tile
-    void tryBreakTile();
-
-    /// @brief checks whether the currently targeted tile can be broken
-    bool canBreakTile() const;
-
-    /// @brief  breaks the currently targeted tile
-    void breakTile();
-
-
     /// @brief  displays the building preview
     void showBuildingPreview();
 
@@ -265,11 +245,6 @@ private: // reading
     void readPreviewFadeOutRadius( nlohmann::ordered_json const& data );
 
 
-    /// @brief  reads the mining time
-    /// @param  data    the json data to read from
-    void readMiningTime( nlohmann::ordered_json const& data );
-
-
     /// @brief  reads the preview color - placeable
     /// @param  data    the json data to read from
     void readPreviewColorPlaceable( nlohmann::ordered_json const& data );
@@ -286,10 +261,6 @@ private: // reading
     /// @brief  reads the current resources
     /// @param  data    the json data to read from
     void readCurrentResources( nlohmann::ordered_json const& data );
-
-    /// @brief  reads the mining resources gain
-    /// @param  data    the json data to read from
-    void readMiningResourceGain( nlohmann::ordered_json const& data );
 
 
     /// @brief  reads the resources text prefix

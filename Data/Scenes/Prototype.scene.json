@@ -450,7 +450,7 @@
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
-                        "CurrentValue": 5,
+                        "CurrentValue": 9999,
                         "Active": true
                     }
                 },
@@ -5557,7 +5557,8 @@
                         "PlayerMoveUp",
                         "PlayerMoveDown"
                     ],
-                    "MaxSpeed": 1.0
+                    "MaxSpeed": 1.0,
+                    "MiningLaserName": "MiningLaser"
                 },
                 "RigidBody": {
                     "Velocity": [
@@ -5642,7 +5643,6 @@
                     "BuildingIndex": -1,
                     "PlacementRange": 2.0,
                     "PreviewFadeOutRadius": 2.0,
-                    "MiningTime": 1.0,
                     "PreviewColorPlaceable": [
                         0.0,
                         0.5,
@@ -5657,7 +5657,6 @@
                     ],
                     "PreviewAlpha": 0.5,
                     "CurrentResources": 0,
-                    "MiningResourceGain": 1,
                     "ResourcesTextPrefix": "Resources: ",
                     "TilemapName": "Tiles",
                     "PlayerName": "Player",
@@ -5816,8 +5815,8 @@
                 }
             }
         },
-        "Enemy": {
-            "Name": "Enemy",
+        "MiningLaser": {
+            "Name": "MiningLaser",
             "Components": {
                 "AudioPlayer": {
                     "Volume": 1.0,
@@ -5825,19 +5824,13 @@
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "Sound": "EnemySound"
-                },
-                "CircleCollider": {
-                    "Radius": 0.30000001192092896,
-                    "CollisionLayer": 1,
-                    "CollisionLayerFlags": 7
+                    "PlayOnInit": false
                 },
                 "Emitter": {
-                    "PPS": 680.4739990234375,
+                    "PPS": 200.0,
                     "Delay": 0.0,
                     "Max": 2048,
-                    "Continuous": true,
+                    "Continuous": false,
                     "EmitData": [
                         [
                             0.0,
@@ -5851,23 +5844,23 @@
                             0.0,
                             0.0
                         ],
-                        4.936999797821045,
-                        2.200000047683716,
-                        0.5740000009536743,
+                        0.0,
+                        1.0,
+                        0.20000000298023224,
                         0.0,
                         3.140000104904175,
-                        0.5099999904632568,
-                        0.3700000047683716,
+                        0.5,
                         0.0,
-                        0.03999999910593033,
-                        0.14000000059604645,
-                        0.7900000214576721,
                         0.0,
-                        -2.5999999046325684
+                        0.0,
+                        0.0,
+                        2.0,
+                        0.0,
+                        0.0
                     ]
                 },
                 "EmitterSprite": {
-                    "Layer": 3,
+                    "Layer": 2,
                     "Color": [
                         0.0,
                         0.0,
@@ -5875,44 +5868,37 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": "Fireball"
+                    "FrameIndex": 0
                 },
-                "EnemyBehavior": {
-                    "Health": {
-                        "Name": "Health Pool",
-                        "BaseValue": 40,
-                        "CurrentValue": 40,
-                        "Active": true
-                    },
-                    "PathfinderName": "Tiles",
-                    "Speed": 10.0,
-                    "Damage": 1
-                },
-                "RigidBody": {
-                    "Velocity": [
+                "MiningLaser": {
+                    "TilemapName": "Tiles",
+                    "Range": 4.0,
+                    "MiningSpeed": 4.0,
+                    "MaxInProgressTiles": 32,
+                    "BeamColor": [
+                        1.0,
                         0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "BeamWidth": 0.10000000149011612,
+                    "DamageRate": 1.0,
+                    "CollideWithLayers": 3,
+                    "Direction": [
+                        1.0,
                         0.0
                     ],
-                    "Acceleration": [
-                        0.0,
-                        0.0
-                    ],
-                    "RotationalVelocity": 0.0,
-                    "Mass": 1.0,
-                    "Restitution": 1.0,
-                    "Friction": 0.0,
-                    "Drag": 4.0
+                    "IsFiring": false
                 },
                 "Transform": {
                     "Translation": [
-                        -12.0,
-                        -23.5
+                        0.0,
+                        0.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        -2.0,
-                        2.0
+                        1.0,
+                        1.0
                     ],
                     "IsDiegetic": true
                 }
