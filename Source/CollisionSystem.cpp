@@ -375,7 +375,7 @@
                     continue;
                 }
 
-                if ( tilemap->GetTile( tilePos ) <= 0 )
+                if ( tilemap->GetTile( tilePos ) < 0 )
                 {
                     continue;
                 }
@@ -635,7 +635,7 @@
             }
 
             // check tile at current position
-            if ( tilemap->GetTile( tile ) > 0 )
+            if ( tilemap->GetTile( tile ) >= 0 )
             {
                 rayCastHit->distance = t[ stepAxis ] - deltaT[ stepAxis ];
                 rayCastHit->colliderHit = tilemapCollider;
