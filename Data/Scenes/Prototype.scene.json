@@ -455,7 +455,7 @@
                     }
                 },
                 "CircleCollider": {
-                    "Radius": 2.0,
+                    "Radius": 1.0,
                     "CollisionLayer": 3,
                     "CollisionLayerFlags": 2
                 },
@@ -473,8 +473,8 @@
                 },
                 "Transform": {
                     "Translation": [
-                        -2.25,
-                        3.8499999046325684
+                        -9.0,
+                        5.5
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -503,8 +503,8 @@
                 "WavesBehavior": {
                     "Spawners": [
                         [
-                            0.0,
-                            -10.0
+                            -12.0,
+                            -23.5
                         ]
                     ],
                     "Waves": [
@@ -2205,11 +2205,10 @@
                 },
                 "Pathfinder": {
                     "Destination": [
-                        0.0,
-                        5.0
+                        -9.0,
+                        5.5
                     ],
                     "Walkables": [
-                        0,
                         -1
                     ]
                 },
@@ -2236,7 +2235,7 @@
                 "Transform": {
                     "Translation": [
                         -23.5,
-                        17.5
+                        10.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -3876,7 +3875,7 @@
                 "Transform": {
                     "Translation": [
                         -23.5,
-                        17.5
+                        10.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -5516,7 +5515,7 @@
                 "Transform": {
                     "Translation": [
                         -23.5,
-                        17.5
+                        10.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -5589,8 +5588,8 @@
                 },
                 "Transform": {
                     "Translation": [
-                        2.802000045776367,
-                        7.197999477386475
+                        -15.0,
+                        5.5
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -5619,7 +5618,7 @@
                 "Transform": {
                     "Translation": [
                         0.0,
-                        13.600000381469727
+                        20.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -5759,17 +5758,17 @@
             "Name": "Snow",
             "Components": {
                 "Emitter": {
-                    "PPS": 100.4530029296875,
+                    "PPS": 116.96399688720703,
                     "Delay": 0.0,
                     "Max": 2048,
                     "Continuous": true,
                     "EmitData": [
                         [
-                            -1.0,
-                            11.0
+                            0.0,
+                            0.0
                         ],
                         [
-                            15.3100004196167,
+                            25.0,
                             0.5400000214576721
                         ],
                         [
@@ -5785,8 +5784,8 @@
                         0.16500000655651093,
                         0.0,
                         0.0,
-                        0.25,
-                        3.0,
+                        1.0,
+                        5.0,
                         0.0,
                         0.0
                     ]
@@ -5806,7 +5805,7 @@
                 "Transform": {
                     "Translation": [
                         0.0,
-                        0.0
+                        16.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -5907,8 +5906,8 @@
                 },
                 "Transform": {
                     "Translation": [
-                        0.0,
-                        -10.0
+                        -12.0,
+                        -23.5
                     ],
                     "Rotation": 0.0,
                     "Scale": [
