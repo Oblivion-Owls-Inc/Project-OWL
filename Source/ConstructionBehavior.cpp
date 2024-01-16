@@ -53,8 +53,6 @@
 
         m_PlayerTransform = Entities()->GetEntity( m_PlayerName )->GetComponent< Transform >();
 
-        m_DiggingSound = Entities()->GetEntity( "DiggingSound" )->GetComponent< AudioPlayer >();
-
         m_TurretPlacementSound = Entities()->GetEntity( "TurretPlacementSound" )->GetComponent< AudioPlayer >();
 
         Entity* tilemapEntity = Entities()->GetEntity( m_TilemapName );
@@ -80,7 +78,6 @@
         updateSelectedBuilding();
 
         tryPlaceBuilding();
-        tryBreakTile();
 
         showBuildingPreview();
         updateResourcesText();
@@ -127,7 +124,7 @@
             return;
         }
 
-        for ( int i = 0; i <= m_BuildingInfos.size() ; ++i )
+        for ( int i = 0; i < m_BuildingInfos.size() ; ++i )
         {
             if ( Input()->GetKeyReleased( GLFW_KEY_1 + i ) == false )
             {
@@ -225,71 +222,6 @@
     }
 
 
-    /// @brief  tries to break the currently targeted tile
-    void ConstructionBehavior::tryBreakTile()
-    {
-        // skip if dig button not pressed
-        if ( Input()->GetMouseDown( GLFW_MOUSE_BUTTON_1 ) == false )
-        {
-            return;
-        }
-
-        if ( canBreakTile() )
-        {
-            breakTile();
-        }
-    }
-
-    /// @brief checks whether the currently targeted tile can be broken
-    bool ConstructionBehavior::canBreakTile() const
-    {
-        // target outside of tilemap
-        if ( m_Tilemap->IsPositionWithinBounds( m_TargetTilePos ) == false )
-        {
-            return false;
-        }
-
-        // no tile at target pos
-        if ( m_Tilemap->GetTile( m_TargetTilePos ) == 0 )
-        {
-            return false;
-        }
-
-        // target pos out of range
-        if ( glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos ) > m_PlacementRange )
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    /// @brief  breaks the currently targeted tile
-    void ConstructionBehavior::breakTile()
-    {
-        // reset timer when changing targets
-        if ( m_TargetTilePos != m_CurrentMiningTilePos )
-        {
-            m_MiningDelay = m_MiningTime;
-            m_CurrentMiningTilePos = m_TargetTilePos;
-        }
-        
-        // decrease timer
-        m_MiningDelay -= Engine::GetInstance()->GetFixedFrameDuration();
-        
-        // break tile
-        if ( m_MiningDelay <= 0.0f )
-        {
-            m_Tilemap->SetTile( m_TargetTilePos, 0 );
-            
-            m_DiggingSound->Play();
-
-            // TEMP: gain resources whenever mining a block
-            m_CurrentResources += m_MiningResourceGain;
-        }
-    }
-
-
     /// @brief  displays the building preview
     void ConstructionBehavior::showBuildingPreview()
     {
@@ -370,10 +302,6 @@
 
         ImGui::DragFloat( "Preview Fade-Out Radius", &m_PreviewFadeOutRadius, 0.05f, 0.0f, INFINITY );
 
-        ImGui::DragFloat( "Mining Time", &m_MiningTime, 0.05f, 0.0f, INFINITY );
-
-        ImGui::DragFloat( "Current Mining Delay", &m_MiningDelay, 0.5f, 0.0f, INFINITY );
-
         ImGui::DragInt2( "Target Tile", &m_TargetTilePos[ 0 ], 0, 0, 0, "%i", ImGuiSliderFlags_NoInput );
 
         ImGui::DragInt2( "Currently Mining Tile", &m_CurrentMiningTilePos[ 0 ], 0, 0, 0, "%i", ImGuiSliderFlags_NoInput );
@@ -385,8 +313,6 @@
         ImGui::DragFloat( "Preview Alpha", &m_PreviewAlpha, 0.05f, 0.0f, 1.0f );
 
         ImGui::DragInt( "Current Resources", &m_CurrentResources, 0.25f, 0, INT_MAX );
-
-        ImGui::DragInt( "Mining Resource Gain", &m_MiningResourceGain, 0.05f, 0, INT_MAX );
 
         ImGui::InputText( "Resources Text Prefix", &m_ResourcesTextPrefix );
     }
@@ -477,14 +403,6 @@
     }
 
 
-    /// @brief  reads the mining time
-    /// @param  data    the json data to read from
-    void ConstructionBehavior::readMiningTime( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_MiningTime, data );
-    }
-
-
     /// @brief  reads the preview color - placeable
     /// @param  data    the json data to read from
     void ConstructionBehavior::readPreviewColorPlaceable( nlohmann::ordered_json const& data )
@@ -512,13 +430,6 @@
     void ConstructionBehavior::readCurrentResources( nlohmann::ordered_json const& data )
     {
         Stream::Read( m_CurrentResources, data );
-    }
-
-    /// @brief  reads the mining resources gain
-    /// @param  data    the json data to read from
-    void ConstructionBehavior::readMiningResourceGain( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_MiningResourceGain, data );
     }
 
 
@@ -558,12 +469,10 @@
         { "BuildingIndex"           , &readBuildingIndex            },
         { "PlacementRange"          , &readPlacementRange           },
         { "PreviewFadeOutRadius"    , &readPreviewFadeOutRadius     },
-        { "MiningTime"              , &readMiningTime               },
         { "PreviewColorPlaceable"   , &readPreviewColorPlaceable    },
         { "PreviewColorNonPlaceable", &readPreviewColorNonPlaceable },
         { "PreviewAlpha"            , &readPreviewAlpha             },
         { "CurrentResources"        , &readCurrentResources         },
-        { "MiningResourceGain"      , &readMiningResourceGain       },
         { "ResourcesTextPrefix"     , &readResourcesTextPrefix      },
         { "TilemapName"             , &readTilemapName              },
         { "PlayerName"              , &readPlayerName               },
@@ -591,12 +500,10 @@
         json[ "BuildingIndex"            ] = Stream::Write( m_BuildingIndex            );
         json[ "PlacementRange"           ] = Stream::Write( m_PlacementRange           );
         json[ "PreviewFadeOutRadius"     ] = Stream::Write( m_PreviewFadeOutRadius     );
-        json[ "MiningTime"               ] = Stream::Write( m_MiningTime               );
         json[ "PreviewColorPlaceable"    ] = Stream::Write( m_PreviewColorPlaceable    );
         json[ "PreviewColorNonPlaceable" ] = Stream::Write( m_PreviewColorNonPlaceable );
         json[ "PreviewAlpha"             ] = Stream::Write( m_PreviewAlpha             );
         json[ "CurrentResources"         ] = Stream::Write( m_CurrentResources         );
-        json[ "MiningResourceGain"       ] = Stream::Write( m_MiningResourceGain       );
         json[ "ResourcesTextPrefix"      ] = Stream::Write( m_ResourcesTextPrefix      );
         json[ "TilemapName"              ] = Stream::Write( m_TilemapName              );
         json[ "PlayerName"               ] = Stream::Write( m_PlayerName               );
@@ -618,12 +525,10 @@
         m_BuildingIndex            ( other.m_BuildingIndex            ),
         m_PlacementRange           ( other.m_PlacementRange           ),
         m_PreviewFadeOutRadius     ( other.m_PreviewFadeOutRadius     ),
-        m_MiningTime               ( other.m_MiningTime               ),
         m_PreviewColorPlaceable    ( other.m_PreviewColorPlaceable    ),
         m_PreviewColorNonPlaceable ( other.m_PreviewColorNonPlaceable ),
         m_PreviewAlpha             ( other.m_PreviewAlpha             ),
         m_CurrentResources         ( other.m_CurrentResources         ),
-        m_MiningResourceGain       ( other.m_MiningResourceGain       ),
         m_ResourcesTextPrefix      ( other.m_ResourcesTextPrefix      ),
         m_TilemapName              ( other.m_TilemapName              ),
         m_PlayerName               ( other.m_PlayerName               ),

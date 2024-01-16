@@ -15,6 +15,8 @@
 #include "CollisionSystem.h"
 #include "DebugSystem.h"
 
+#include "Inspection.h"
+
 //-----------------------------------------------------------------------------
 // protected: constructor
 //-----------------------------------------------------------------------------
@@ -117,27 +119,7 @@
         }
 
         /// collision layer flags
-        std::vector flagNames = Collisions()->GetLayerNames( m_CollisionLayerFlags );
-        std::string flagNamesString = "";
-        if ( flagNames.size() > 0 )
-        {
-            flagNamesString = flagNames[ 0 ];
-            for ( int i = 1; i < flagNames.size(); ++i )
-            {
-                flagNamesString += ", " + flagNames[ i ];
-            }
-        }
-        if ( ImGui::BeginCombo( ( std::string( "Collision Layer Flags##" ) + std::to_string( GetId() ) ).c_str(), flagNamesString.c_str() ) ) // Default displayed
-        {
-            for (int i = 0; i < collisionLayerNames.size(); ++i)
-            {
-                if ( ImGui::Selectable( collisionLayerNames[ i ].c_str(), m_CollisionLayerFlags & (1 << i), ImGuiSelectableFlags_DontClosePopups ) )
-                {
-                    m_CollisionLayerFlags ^= 1 << i;
-                }
-            }
-            ImGui::EndCombo();
-        }
+        Inspection::InspectCollisionLayerFlags( ( std::string( "Collision Layer Flags##" ) + std::to_string( GetId() ) ).c_str(), &m_CollisionLayerFlags );
     }
 
 //-----------------------------------------------------------------------------
