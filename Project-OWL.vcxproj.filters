@@ -156,9 +156,6 @@
     <Filter Include="Engine\Entity\Component\Pathfinder">
       <UniqueIdentifier>{09f5ca7d-4323-4aac-b628-c6ed0790810d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Behavior\Tilemap">
-      <UniqueIdentifier>{7c0f06d8-341a-42ab-ad77-109c905fe568}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Behaviors\ConstructionBehavior">
       <UniqueIdentifier>{278dd904-bde9-4181-bd98-8a632d0db159}</UniqueIdentifier>
     </Filter>
@@ -215,6 +212,21 @@
     </Filter>
     <Filter Include="Game\Behaviors\MiningLaser">
       <UniqueIdentifier>{f6265677-427f-4a02-b8f0-f148023cb81f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Tilemap">
+      <UniqueIdentifier>{7c0f06d8-341a-42ab-ad77-109c905fe568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Systems">
+      <UniqueIdentifier>{652e782e-38dc-472a-9d70-b889714152ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Systems\TileInfoSystem">
+      <UniqueIdentifier>{25634f32-48ea-4015-9397-0bc080155399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Items">
+      <UniqueIdentifier>{7e91e06d-aaca-4ba7-903b-bee8a49b963d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Items\LootTable">
+      <UniqueIdentifier>{1e63c73f-ca76-42cb-a3f3-c435918e4c13}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -387,7 +399,7 @@
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tilemap.t.cpp">
-      <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
+      <Filter>Engine\Entity\Component\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
@@ -444,7 +456,7 @@
       <Filter>Engine\Framework\Inspection</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tilemap.cpp">
-      <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
+      <Filter>Engine\Entity\Component\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="Source\WavesInspector.cpp">
       <Filter>Game\Behaviors\WavesBehavior</Filter>
@@ -466,6 +478,12 @@
     </ClCompile>
     <ClCompile Include="Source\MiningLaser.cpp">
       <Filter>Game\Behaviors\MiningLaser</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LootTable.cpp">
+      <Filter>Game\Items\LootTable</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TileInfoSystem.cpp">
+      <Filter>Game\Systems\TileInfoSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -641,7 +659,7 @@
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
     </ClInclude>
     <ClInclude Include="Source\Tilemap.h">
-      <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
+      <Filter>Engine\Entity\Component\Tilemap</Filter>
     </ClInclude>
     <ClInclude Include="Source\TilemapSprite.h">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
@@ -714,6 +732,15 @@
     </ClInclude>
     <ClInclude Include="Source\MiningLaser.h">
       <Filter>Game\Behaviors\MiningLaser</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TileInfoSystem.h">
+      <Filter>Game\Systems\TileInfoSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LootTable.h">
+      <Filter>Game\Items\LootTable</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ItemStack.h">
+      <Filter>Game\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

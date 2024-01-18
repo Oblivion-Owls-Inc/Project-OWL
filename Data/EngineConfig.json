@@ -45,6 +45,7 @@
         "AssetLibrary<Sound>": {},
         "AssetLibrary<Texture>": {},
         "AssetLibrary<TransformAnimation>": {},
-        "AssetLibrary<AnimationAsset>": {}
+        "AssetLibrary<AnimationAsset>": {},
+        "TileInfoSystem": {}
     }
 }

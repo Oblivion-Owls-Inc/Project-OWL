@@ -132,7 +132,7 @@ void DebugSystem::OnUpdate(float dt)
 
 #endif // !NDEBUG
 
-    if (Input()->GetKeyTriggered(GLFW_KEY_RIGHT_ALT), Input()->GetKeyTriggered(GLFW_KEY_ENTER))
+    if ( Input()->GetKeyTriggered( GLFW_KEY_RIGHT_ALT ) && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
     {
 		m_Fullscreen = !m_Fullscreen;
 		PlatformSystem::GetInstance()->setFullscreen(m_Fullscreen);
