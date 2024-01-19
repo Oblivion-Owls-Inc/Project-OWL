@@ -1,8 +1,8 @@
-/// @file       MiningLaser.h
+/// @file       ItemBehavior.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      Digging laser controllable by an entity
+/// @brief      Items in the world that can be picked up
 /// @version    0.1
-/// @date       2024-01-14
+/// @date       2023-10-20
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 

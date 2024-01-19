@@ -87,14 +87,14 @@ Component* WavesBehavior::Clone() const
 void WavesBehavior::OnInit()
 {
 	/// Add this behavior to the behavior system
-	BehaviorSystem<WavesBehavior>::GetInstance()->AddBehavior(this);
+	Behaviors< WavesBehavior >()->AddComponent( this );
 }
 
 /// @brief cleanup WavesBehavior
 void WavesBehavior::OnExit()
 {
 	/// Remove this behavior from the behavior system
-	BehaviorSystem<WavesBehavior>::GetInstance()->RemoveBehavior(this);
+	Behaviors< WavesBehavior >()->RemoveComponent( this );
 }
 
 /// @brief update, currently not used

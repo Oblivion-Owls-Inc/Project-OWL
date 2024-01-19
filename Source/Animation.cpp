@@ -179,14 +179,14 @@
     /// @brief  gets called once when entering the scene
     void Animation::OnInit()
     {
-        Behaviors<Animation>()->AddBehavior(this);
+        Behaviors< Animation >()->AddComponent( this );
         m_Sprite = GetEntity()->GetComponent<Sprite>();
     }
 
     /// @brief  gets called once when exiting the scene
     void Animation::OnExit()
     {
-        Behaviors<Animation>()->RemoveBehavior(this);
+        Behaviors< Animation >()->RemoveComponent( this );
     }
 
 

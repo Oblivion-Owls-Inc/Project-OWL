@@ -39,14 +39,14 @@ BasicEntityBehavior::BasicEntityBehavior(BasicEntityBehavior const& other):
 /// @brief initializes the component and the health pool
 void BasicEntityBehavior::OnInit()
 {
-	Behaviors<Behavior>()->AddBehavior(this);
+	Behaviors< Behavior >()->AddComponent( this );
 	m_Health.OnInit();
 }
 
 /// @brief Called when the component is destroyed
 void BasicEntityBehavior::OnExit()
 {
-	Behaviors<Behavior>()->RemoveBehavior(this);
+	Behaviors< Behavior >()->RemoveComponent( this );
 }
 
 /// @brief inspector for this component

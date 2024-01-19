@@ -51,7 +51,7 @@
 /// @brief Adds this behavior to the behavior system on init.
 void PlayerController::OnInit()
 {
-	BehaviorSystem<Behavior>::GetInstance()->AddBehavior(this);
+	Behaviors< Behavior >()->AddComponent( this );
     // Get the parent's RigidBody component.
     m_RigidBody = GetEntity()->GetComponent<RigidBody>();
     // Get the parent's Animation component.
@@ -91,7 +91,7 @@ void PlayerController::OnInit()
 /// @brief Removes this behavior from the behavior system on exit
 void PlayerController::OnExit()
 {
-    Behaviors<Behavior>()->RemoveBehavior(this);
+    Behaviors< Behavior >()->RemoveComponent( this );
 
     if ( m_MiningLaser != nullptr )
     {

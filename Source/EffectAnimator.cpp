@@ -12,6 +12,7 @@
 
 #include "Transform.h"
 #include "TransformAnimation.h"
+#include "Entity.h"
 
 #include "AssetLibrarySystem.h"
 #include "BehaviorSystem.h"
@@ -100,14 +101,14 @@
     /// @brief  called once when entering the scene
     void EffectAnimator::OnInit()
     {
-        Behaviors<EffectAnimator>()->AddBehavior(this);
-        m_Transform = GetEntity()->GetComponent<Transform>();
+        Behaviors< EffectAnimator >()->AddComponent( this );
+        m_Transform = GetEntity()->GetComponent< Transform >();
     }
 
     /// @brief  called once when exiting the scene
     void EffectAnimator::OnExit()
     {
-        Behaviors<EffectAnimator>()->RemoveBehavior(this);
+        Behaviors<EffectAnimator>()->RemoveComponent(this);
     }
 
     /// @brief  called every frame

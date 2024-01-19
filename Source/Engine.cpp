@@ -357,8 +357,6 @@
         { "BehaviorSystem<BulletBehavior>"  , &addSystem< BehaviorSystem< BulletBehavior > >            },
         { "BehaviorSystem<Animation>"       , &addSystem< BehaviorSystem< Animation      > >            },
         { "BehaviorSystem<EffectAnimator>"  , &addSystem< BehaviorSystem< EffectAnimator > >            },
-        { "BehaviorSystem<Tilemap<int>>"    , &addSystem< BehaviorSystem< Tilemap< int > > >            },
-        { "BehaviorSystem<TilemapBase>"     , &addSystem< BehaviorSystem< TilemapBase    > >            },
         { "BehaviorSystem<WavesBehavior>"   , &addSystem< BehaviorSystem< WavesBehavior  > >            },
 
         { "AssetLibrary<Entity>"            , &addSystem< AssetLibrarySystem< Entity             > >    },

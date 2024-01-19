@@ -69,9 +69,6 @@
     <Filter Include="Engine\Systems\CollisonSystem">
       <UniqueIdentifier>{e4c1899c-1ddc-4929-bad9-280620c375f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Systems\BehaviorSystem">
-      <UniqueIdentifier>{9409e403-6435-4204-8018-078cfa5ac289}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Systems\DebugSystem">
       <UniqueIdentifier>{35a2fdc3-17cc-41a8-9530-6bd146dfe9e7}</UniqueIdentifier>
     </Filter>
@@ -228,6 +225,15 @@
     <Filter Include="Game\Items\LootTable">
       <UniqueIdentifier>{1e63c73f-ca76-42cb-a3f3-c435918e4c13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Behaviors\ItemBehavior">
+      <UniqueIdentifier>{fada79bd-b934-4b19-9d91-2fa90f20e3c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\ComponentSystem">
+      <UniqueIdentifier>{a7e2d2bc-ae9c-48a2-b9de-d8b83f5aec55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\ComponentSystem\BehaviorSystem">
+      <UniqueIdentifier>{9409e403-6435-4204-8018-078cfa5ac289}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -325,9 +331,6 @@
     </ClCompile>
     <ClCompile Include="Source\CircleCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\CircleCollider</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BehaviorSystem.cpp">
-      <Filter>Engine\Systems\BehaviorSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
@@ -584,7 +587,7 @@
       <Filter>Engine\Entity\Component\Collider</Filter>
     </ClInclude>
     <ClInclude Include="Source\BehaviorSystem.h">
-      <Filter>Engine\Systems\BehaviorSystem</Filter>
+      <Filter>Engine\Systems\ComponentSystem\BehaviorSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\ComponentFactory.h">
       <Filter>Engine\Entity\Component</Filter>
@@ -741,6 +744,12 @@
     </ClInclude>
     <ClInclude Include="Source\ItemStack.h">
       <Filter>Game\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ItemBehavior.h">
+      <Filter>Game\Behaviors\ItemBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ComponentSystem.h">
+      <Filter>Engine\Systems\ComponentSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

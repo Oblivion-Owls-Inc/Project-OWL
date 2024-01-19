@@ -16,7 +16,6 @@
         },
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<BulletBehavior>": {},
-        "BehaviorSystem<TilemapBase>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "ParticleSystem": {},

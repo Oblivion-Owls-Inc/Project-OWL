@@ -49,7 +49,7 @@
     /// @brief  called once when entering the scene
     void ConstructionBehavior::OnInit()
     {
-        Behaviors< Behavior >()->AddBehavior( this );
+        Behaviors< Behavior >()->AddComponent( this );
 
         m_PlayerTransform = Entities()->GetEntity( m_PlayerName )->GetComponent< Transform >();
 
@@ -68,7 +68,7 @@
     /// @brief  called once when exiting the scene
     void ConstructionBehavior::OnExit()
     {
-        Behaviors< Behavior >()->RemoveBehavior( this );
+        Behaviors< Behavior >()->RemoveComponent( this );
     }
 
     /// @brief  called every simulation frame

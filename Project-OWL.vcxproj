@@ -209,7 +209,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Lua.cpp" />
     <ClCompile Include="Source\PlayerController.cpp" />
     <ClCompile Include="Source\AssetLibrarySystem.cpp" />
-    <ClCompile Include="Source\BehaviorSystem.cpp" />
     <ClCompile Include="Source\CameraSystem.cpp" />
     <ClCompile Include="Source\CollisionSystem.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -261,6 +260,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\TileInfoSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\ComponentSystem.h" />
+    <ClInclude Include="Source\ItemBehavior.h" />
     <ClInclude Include="Source\ItemStack.h" />
     <ClInclude Include="Source\LootTable.h" />
     <ClInclude Include="Source\MiningLaser.h" />
