@@ -58,6 +58,7 @@ void LightingSystem::OnUpdate(float dt)
     glm::mat4 m( glm::mat2(2.0f) );
     glUniformMatrix4fv(spotShader->GetUniformID("mvp"), 1, false, &m[0][0]);
     glBindVertexArray(Renderer()->GetDefaultMesh()->GetVAO());
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
     // render spotlights. one per layer.
     for (size_t i=0; i<m_LightSources.size(); ++i)
@@ -80,6 +81,7 @@ void LightingSystem::OnUpdate(float dt)
 
         // render this light source to its appropriate texture layer
         glFramebufferTextureLayer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_TextureArrayID, 0, (int)i);
+        glClear(GL_COLOR_BUFFER_BIT);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
     glBindVertexArray(0);  // unbind VAO
@@ -109,7 +111,11 @@ void LightingSystem::OnSceneInit()
 }
 
 /// @brief  Called when exiting a scene
-void LightingSystem::OnSceneExit() { m_LightSources.clear(); }
+void LightingSystem::OnSceneExit() 
+{ 
+    m_LightSources.clear();
+    Renderer()->RemoveSprite(m_Sprite);
+}
 
 void LightingSystem::DebugWindow()
 {

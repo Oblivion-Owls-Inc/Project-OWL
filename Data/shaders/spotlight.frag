@@ -15,10 +15,10 @@ void main()
     vec2 l2p = gl_FragCoord.xy - light_pos;
 
     // calculate light strength at this pixel
-    float spot = min( (light_radius * light_radius) 
-                            / dot(l2p, l2p),            1.0);
+    float spot = (light_radius * light_radius) 
+                        / dot(l2p, l2p);
     spot *= light_strength;
 
     // use it as transparency
-    pixel_color = vec4( 0,0,0, max(1.0 - spot - ambient, 0.0) );
+    pixel_color = vec4( 0,0,0, clamp(1.0 - spot, 0.0, 1.0) );
 }

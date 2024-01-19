@@ -28,7 +28,7 @@ void Light::OnExit() { Lights()->RemoveLightSource(m_Index); }
 void Light::Inspector()
 {
     ImGui::DragFloat("Radius", &m_Radius, 0.01f, 0.0f, 20.0f);
-    ImGui::DragFloat("Strength", &m_Strength, 0.005f, 0.0f, 1.0f);
+    ImGui::DragFloat("Strength", &m_Strength, 0.005f, 0.0f, 10.0f);
     ImGui::DragFloat2("Offset", &m_Offset.x, 0.01f);
 }
 

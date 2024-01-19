@@ -13,7 +13,7 @@ void main()
     pixel_color = vec4(0,0,0,1);
 
     for (int i=0; i<light_count; ++i)
-        pixel_color *= texture( TextureArray, vec3(v_UV, i) );
+        pixel_color.w *= texture( TextureArray, vec3(v_UV, i) ).w;
 
     pixel_color.w *= opacity;
 }
