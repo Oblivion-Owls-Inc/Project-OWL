@@ -171,16 +171,16 @@ void CheatSystem::RunCheats()
        }
     }
 
-    // The infinite resources cheat.
-    if (m_ResourceSwitch)
-    {
-        Entity* resource = Entities()->GetEntity("ConstructionManager");
-        if(resource)
-        {
-            ConstructionBehavior* construction = resource->GetComponent<ConstructionBehavior>();
-            construction->SetCurrentResources(1000);
-        }
-    }
+    // // The infinite resources cheat.
+    // if (m_ResourceSwitch)
+    // {
+    //     Entity* resource = Entities()->GetEntity("ConstructionManager");
+    //     if(resource)
+    //     {
+    //         ConstructionBehavior* construction = resource->GetComponent<ConstructionBehavior>();
+    //         construction->SetCurrentResources(1000);
+    //     }
+    // }
 }
 
 /// @brief Turns off player collisions
