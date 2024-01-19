@@ -38,6 +38,7 @@
 #include "BaseBehavior.h"
 #include "GeneratorBehavior.h"
 #include "UiElement.h"
+#include "MiningLaser.h"
 
 
 //-----------------------------------------------------------------------------
@@ -146,6 +147,9 @@
         { "Emitter"             , ComponentInfo< Emitter >()              },
         { "EmitterSprite"       , ComponentInfo< EmitterSprite >()        },
         { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         },
+        { "UiElement"           , ComponentInfo< UiElement >()            },
+        { "MiningLaser"         , ComponentInfo< MiningLaser >()          },
+
         { "GeneratorBehavior"   , ComponentInfo< GeneratorBehavior >()    },
         { "UiElement"           , ComponentInfo< UiElement >()            }
     };

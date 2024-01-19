@@ -152,7 +152,8 @@ private: // Members
         "CameraSystem",
         "RenderSystem",
         "AudioSystem",
-        "DebugSystem"
+        "DebugSystem",
+        "ParticleSystem"
     };
 
 //-----------------------------------------------------------------------------

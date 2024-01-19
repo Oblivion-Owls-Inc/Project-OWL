@@ -72,11 +72,6 @@
     template < typename TileType >
     void Tilemap<TileType>::SetTile(glm::ivec2 coord, TileType const& tile)
     {
-        if ( coord.x == -1 )
-        {
-            return;
-        }
-
         int index = coord.y * m_Dimensions.x + coord.x;
 
         TileType previousValue = m_Tiles[ index ];
