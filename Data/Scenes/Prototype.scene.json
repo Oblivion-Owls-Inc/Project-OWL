@@ -108,6 +108,17 @@
                     1.0
                 ]
             },
+            "Items": {
+                "Filepath": "Data/Textures/Items/TestItemSheet.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
             "Level Assets": {
                 "Filepath": "Data/Textures/DigDeeper_Tileset_V1.png",
                 "SheetDimensions": [
@@ -342,6 +353,56 @@
                     }
                 }
             },
+            "Item": {
+                "Name": "Item",
+                "Components": {
+                    "ItemComponent": {
+                        "ItemStack": {
+                            "ItemId": 0,
+                            "Count": 1
+                        }
+                    },
+                    "RigidBody": {
+                        "Velocity": [
+                            0.0,
+                            0.0
+                        ],
+                        "Acceleration": [
+                            0.0,
+                            0.0
+                        ],
+                        "RotationalVelocity": 0.0,
+                        "Mass": 1.0,
+                        "Restitution": 1.0,
+                        "Friction": 0.0,
+                        "Drag": 10.0
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": "Items"
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            0.5,
+                            0.5
+                        ],
+                        "IsDiegetic": true
+                    }
+                }
+            },
             "Turret": {
                 "Name": "Turret",
                 "Components": {
@@ -450,7 +511,7 @@
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
-                        "CurrentValue": 9999,
+                        "CurrentValue": 5,
                         "Active": true
                     }
                 },
@@ -2219,6 +2280,11 @@
                 "TilemapCollider": {
                     "CollisionLayer": 0,
                     "CollisionLayerFlags": 0
+                },
+                "TilemapItemDropper": {
+                    "ItemArchetypeName": "Item",
+                    "MaxInitialVelocity": 1.0,
+                    "ItemSpawnRadius": 0.30000001192092896
                 },
                 "TilemapSprite": {
                     "Layer": 3,
@@ -5549,6 +5615,14 @@
                     "Radius": 0.30000001192092896,
                     "CollisionLayer": 2,
                     "CollisionLayerFlags": 3
+                },
+                "Inventory": {
+                    "Items": null
+                },
+                "ItemCollector": {
+                    "CollectionRadius": 0.5,
+                    "AttractionRadius": 3.0,
+                    "AttractionStrength": 50.0
                 },
                 "PlayerController": {
                     "AnimationNames": [

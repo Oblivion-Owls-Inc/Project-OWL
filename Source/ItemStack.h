@@ -31,7 +31,7 @@ public: // constructor
 
 
     /// @brief  constructor
-    ItemStack( int id, int count = 1 );
+    ItemStack( int id = 0, int count = 1 );
 
 
 //-----------------------------------------------------------------------------

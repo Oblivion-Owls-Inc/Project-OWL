@@ -1,6 +1,6 @@
-/// @file       ItemComponent.h
+/// @file       Inventory.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      Item in the world that can be picked up
+/// @brief      Inventory component that stores items
 /// @version    0.1
 /// @date       2023-10-20
 /// 
@@ -11,14 +11,11 @@
 #include "Component.h"
 
 #include "ItemStack.h"
-
-class Transform;
-class Sprite;
-class RigidBody;
+#include <vector>
 
 
-/// @brief      Item in the world that can be picked up
-class ItemComponent : public Component
+/// @brief  Inventory component that stores items
+class Inventory : public Component
 {
 //-----------------------------------------------------------------------------
 public: // types
@@ -35,27 +32,9 @@ public: // accessors
 //-----------------------------------------------------------------------------
 
 
-
-    /// @brief  gets the ItemStack that this ItemComponent holds
-    /// @return the ItemStack that this ItemComponent holds
-    ItemStack const& GetItemStack() const;
-
-    /// @brief  sets the ItemStack that this ItemComponent holds
-    /// @param  itemStack   the ID of the item this ItemComponent will hold
-    void SetItemStack( ItemStack const& itemStack );
-
-
-    /// @brief  gets the Transform attached to this ItemComponent
-    /// @return the Transform attached to this ItemComponent
-    Transform* GetTransform() const;
-
-    /// @brief  gets the RigidBody attached to this ItemComponent
-    /// @return the RigidBody attached to this ItemComponent
-    RigidBody* GetRigidBody() const;
-
-    /// @brief  gets the Sprite attached to this ItemComponent
-    /// @return the Sprite attached to this ItemComponent
-    Sprite* GetSprite() const;
+    /// @brief  gets the items in this inventory
+    /// @return the items in this inventory
+    std::vector< ItemStack > const& GetItems() const;
 
 
 //-----------------------------------------------------------------------------
@@ -63,16 +42,38 @@ public: //  methods
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  adds an itemStack to this Inventory
+    /// @param  itemStack   the itemStack to add to the inventory
+    void AddItemStack( ItemStack const& itemStack );
+
+    /// @brief  adds a collection of itemStack to this Inventory
+    /// @param  itemStacks  the itemStacks to add to the inventory
+    void AddItemStacks( std::vector< ItemStack > const& itemStacks );
+
+
+    /// @brief  removes the specified items from the Inventory
+    /// @param  itemStack   the type and number of items to remove
+    void RemoveItemStack( ItemStack const& itemStack );
+
+    /// @brief  removes a collection of itemStack to this Inventory
+    /// @param  itemStacks  the itemStacks to remove to the inventory
+    void RemoveItemStacks( std::vector< ItemStack > const& itemStacks );
+
+
+    /// @brief  checks if the Inventory contains the specified items
+    /// @param  itemStack   the itemStack to check if the Inventory contains
+    /// @return whether the inventory contains the items
+    bool ContainsItemStack( ItemStack const& itemStack ) const;
+
+    /// @brief  checks if the Inventory contains the specified item stacks
+    /// @param  itemStacks  the itemStacks to check if the Inventory contains
+    /// @return whether the inventory contains the item stacks
+    bool ContainsItemStacks(  std::vector< ItemStack > const& itemStacks ) const;
+
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
-
-
-    /// @brief  called once when entering the scene
-    virtual void OnInit() override;
-
-    /// @brief  called once when exiting the scene
-    virtual void OnExit() override;
 
 
 //-----------------------------------------------------------------------------
@@ -80,18 +81,8 @@ private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the ItemStack that this ItemComponent holds
-    ItemStack m_ItemStack = 0;
-
-
-    /// @brief  the Transform attached to this ItemComponent
-    Transform* m_Transform = nullptr;
-
-    /// @brief  the Sprite attached to this ItemComponent
-    Sprite* m_Sprite = nullptr;
-
-    /// @brief  the RigidBody attached to this ItemComponent
-    RigidBody* m_RigidBody = nullptr;
+    /// @brief  the items in this inventory
+    std::vector< ItemStack > m_Items;
 
 
 //-----------------------------------------------------------------------------
@@ -104,7 +95,7 @@ private: // inspection
 //-----------------------------------------------------------------------------
 
     
-    /// @brief  displays this ItemComponent in the Inspector
+    /// @brief  displays this Inventory in the Inspector
     virtual void Inspector() override;
 
 
@@ -113,9 +104,9 @@ private: // reading
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  reads the ItemStack that this ItemComponent holds
+    /// @brief  reads the ItemStack that this Inventory holds
     /// @param  data    the json data to read from
-    void readItemStack( nlohmann::ordered_json const& data );
+    void readItems( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------
@@ -128,8 +119,8 @@ public: // reading / writing
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
-    /// @brief  Write all ItemComponent data to a JSON file.
-    /// @return The JSON file containing the ItemComponent data.
+    /// @brief  Write all Inventory data to a JSON file.
+    /// @return The JSON file containing the Inventory data.
     virtual nlohmann::ordered_json Write() const override;
 
 
@@ -139,7 +130,7 @@ public: // constructor / Destructor
 
 
     /// @brief  constructor
-    ItemComponent();
+    Inventory();
 
 
 //-----------------------------------------------------------------------------
@@ -147,9 +138,9 @@ public: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  clones this ItemComponent
-    /// @return the newly created clone of this ItemComponent
-    virtual ItemComponent* Clone() const override;
+    /// @brief  clones this Inventory
+    /// @return the newly created clone of this Inventory
+    virtual Inventory* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -157,12 +148,12 @@ private: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  copy-constructor for the ItemComponent
-    /// @param  other   the other ItemComponent to copy
-    ItemComponent( const ItemComponent& other );
+    /// @brief  copy-constructor for the Inventory
+    /// @param  other   the other Inventory to copy
+    Inventory( const Inventory& other );
 
     // diable = operator
-    void operator =( ItemComponent const& ) = delete;
+    void operator =( Inventory const& ) = delete;
 
 //-----------------------------------------------------------------------------
 };

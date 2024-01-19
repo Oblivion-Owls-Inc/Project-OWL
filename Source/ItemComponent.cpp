@@ -13,6 +13,7 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "Sprite.h"
+#include "RigidBody.h"
 
 
 //-----------------------------------------------------------------------------
@@ -55,6 +56,13 @@
         return m_Transform;
     }
 
+    /// @brief  gets the RigidBody attached to this ItemComponent
+    /// @return the RigidBody attached to this ItemComponent
+    RigidBody* ItemComponent::GetRigidBody() const
+    {
+        return m_RigidBody;
+    }
+
     /// @brief  gets the Sprite attached to this ItemComponent
     /// @return the Sprite attached to this ItemComponent
     Sprite* ItemComponent::GetSprite() const
@@ -80,6 +88,7 @@
 
         m_Transform = GetEntity()->GetComponent< Transform >();
         m_Sprite = GetEntity()->GetComponent< Sprite >();
+        m_RigidBody = GetEntity()->GetComponent< RigidBody >();
     }
 
     /// @brief  called once when exiting the scene

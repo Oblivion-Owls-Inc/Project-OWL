@@ -12,7 +12,7 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "ItemDropTest"
+            "NextSceneName": "Prototype"
         },
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<BulletBehavior>": {},

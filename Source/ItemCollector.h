@@ -1,6 +1,6 @@
-/// @file       ItemComponent.h
+/// @file       ItemCollector.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      Item in the world that can be picked up
+/// @brief      Component that attracts and collects item entities in the world
 /// @version    0.1
 /// @date       2023-10-20
 /// 
@@ -8,17 +8,15 @@
 
 #pragma once
 
-#include "Component.h"
-
-#include "ItemStack.h"
+#include "Behavior.h"
 
 class Transform;
-class Sprite;
-class RigidBody;
+class Inventory;
+class ItemComponent;
 
 
-/// @brief      Item in the world that can be picked up
-class ItemComponent : public Component
+/// @brief      Component that attracts and collects item entities in the world
+class ItemCollector : public Behavior
 {
 //-----------------------------------------------------------------------------
 public: // types
@@ -35,27 +33,9 @@ public: // accessors
 //-----------------------------------------------------------------------------
 
 
-
-    /// @brief  gets the ItemStack that this ItemComponent holds
-    /// @return the ItemStack that this ItemComponent holds
-    ItemStack const& GetItemStack() const;
-
-    /// @brief  sets the ItemStack that this ItemComponent holds
-    /// @param  itemStack   the ID of the item this ItemComponent will hold
-    void SetItemStack( ItemStack const& itemStack );
-
-
-    /// @brief  gets the Transform attached to this ItemComponent
-    /// @return the Transform attached to this ItemComponent
+    /// @brief  gets the Transform attached to this ItemCollector
+    /// @return the Transform attached to this ItemCollector
     Transform* GetTransform() const;
-
-    /// @brief  gets the RigidBody attached to this ItemComponent
-    /// @return the RigidBody attached to this ItemComponent
-    RigidBody* GetRigidBody() const;
-
-    /// @brief  gets the Sprite attached to this ItemComponent
-    /// @return the Sprite attached to this ItemComponent
-    Sprite* GetSprite() const;
 
 
 //-----------------------------------------------------------------------------
@@ -75,23 +55,30 @@ private: // virtual override methods
     virtual void OnExit() override;
 
 
+    /// @brief  gets called once per simulation frame
+    virtual void OnFixedUpdate() override;
+
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the ItemStack that this ItemComponent holds
-    ItemStack m_ItemStack = 0;
+    /// @brief  the radius at which items will be instantly collected
+    float m_CollectionRadius = 1.0f;
+
+    /// @brief  the radius at which items will be attracted
+    float m_AttractionRadius = 2.0f;
+
+    /// @brief  the strength with which items will be attracted
+    float m_AttractionStrength = 10.0f;
 
 
-    /// @brief  the Transform attached to this ItemComponent
+    /// @brief  the Transform attached to this ItemCollector
     Transform* m_Transform = nullptr;
 
-    /// @brief  the Sprite attached to this ItemComponent
-    Sprite* m_Sprite = nullptr;
-
-    /// @brief  the RigidBody attached to this ItemComponent
-    RigidBody* m_RigidBody = nullptr;
+    /// @brief  the Inventory attached to this ItemCollector
+    Inventory* m_Inventory = nullptr;
 
 
 //-----------------------------------------------------------------------------
@@ -99,12 +86,22 @@ private: // helper methods
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  collects an item
+    /// @param  item    the item to collect
+    void collectItem( ItemComponent* item );
+
+    /// @brief  attracts an item
+    /// @param  item    the item to attract
+    /// @param  offfset the offset from the item to the collector
+    void attractItem( ItemComponent* item, glm::vec2 const& offset );
+
+
 //-----------------------------------------------------------------------------
 private: // inspection
 //-----------------------------------------------------------------------------
 
     
-    /// @brief  displays this ItemComponent in the Inspector
+    /// @brief  displays this ItemCollector in the Inspector
     virtual void Inspector() override;
 
 
@@ -113,9 +110,17 @@ private: // reading
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  reads the ItemStack that this ItemComponent holds
+    /// @brief  reads the radius at which items will be instantly collected
     /// @param  data    the json data to read from
-    void readItemStack( nlohmann::ordered_json const& data );
+    void readCollectionRadius( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the radius at which items will be attracted
+    /// @param  data    the json data to read from
+    void readAttractionRadius( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the strength with which items will be attracted
+    /// @param  data    the json data to read from
+    void readAttractionStrength( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------
@@ -128,8 +133,8 @@ public: // reading / writing
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
-    /// @brief  Write all ItemComponent data to a JSON file.
-    /// @return The JSON file containing the ItemComponent data.
+    /// @brief  Write all ItemCollector data to a JSON file.
+    /// @return The JSON file containing the ItemCollector data.
     virtual nlohmann::ordered_json Write() const override;
 
 
@@ -139,7 +144,7 @@ public: // constructor / Destructor
 
 
     /// @brief  constructor
-    ItemComponent();
+    ItemCollector();
 
 
 //-----------------------------------------------------------------------------
@@ -147,9 +152,9 @@ public: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  clones this ItemComponent
-    /// @return the newly created clone of this ItemComponent
-    virtual ItemComponent* Clone() const override;
+    /// @brief  clones this ItemCollector
+    /// @return the newly created clone of this ItemCollector
+    virtual ItemCollector* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -157,12 +162,12 @@ private: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  copy-constructor for the ItemComponent
-    /// @param  other   the other ItemComponent to copy
-    ItemComponent( const ItemComponent& other );
+    /// @brief  copy-constructor for the ItemCollector
+    /// @param  other   the other ItemCollector to copy
+    ItemCollector( const ItemCollector& other );
 
     // diable = operator
-    void operator =( ItemComponent const& ) = delete;
+    void operator =( ItemCollector const& ) = delete;
 
 //-----------------------------------------------------------------------------
 };

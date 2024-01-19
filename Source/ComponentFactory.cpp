@@ -40,6 +40,8 @@
 #include "MiningLaser.h"
 #include "ItemComponent.h"
 #include "TilemapItemDropper.h"
+#include "Inventory.h"
+#include "ItemCollector.h"
 
 
 //-----------------------------------------------------------------------------
@@ -152,6 +154,8 @@
         { "MiningLaser"         , ComponentInfo< MiningLaser >()          },
         { "ItemComponent"       , ComponentInfo< ItemComponent >()        },
         { "TilemapItemDropper"  , ComponentInfo< TilemapItemDropper >()   },
+        { "Inventory"           , ComponentInfo< Inventory >()            },
+        { "ItemCollector"       , ComponentInfo< ItemCollector >()        },
 
     };
 

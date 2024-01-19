@@ -243,6 +243,12 @@
     <Filter Include="Game\Item Handling\ItemStack">
       <UniqueIdentifier>{918c3560-ae25-48d0-a7dc-0de2c8568ec6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Inventory">
+      <UniqueIdentifier>{2a1550b3-c441-4158-b231-e07cb944055c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\ItemCollector">
+      <UniqueIdentifier>{4d1ec298-7749-4f83-8e8f-ee15a8eedd1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -502,6 +508,12 @@
     </ClCompile>
     <ClCompile Include="Source\TilemapItemDropper.cpp">
       <Filter>Game\Components\TilemapItemDropper</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Inventory.cpp">
+      <Filter>Game\Components\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ItemCollector.cpp">
+      <Filter>Game\Components\Behaviors\ItemCollector</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -769,13 +781,16 @@
     <ClInclude Include="Source\ItemStack.h">
       <Filter>Game\Item Handling\ItemStack</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Inventory.h">
+      <Filter>Game\Components\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ItemCollector.h">
+      <Filter>Game\Components\Behaviors\ItemCollector</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
       <Filter>Data</Filter>
-    </None>
-    <None Include="Data\Scenes\Prototype.scene.json">
-      <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\GameOver.scene.json">
       <Filter>Data\Scenes</Filter>
@@ -786,5 +801,6 @@
     <None Include="Data\Scenes\Template.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
+    <None Include="Data\Scenes\Prototype.scene.json" />
   </ItemGroup>
 </Project>

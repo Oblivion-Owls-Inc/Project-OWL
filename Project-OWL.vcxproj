@@ -201,6 +201,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="imgui\implot_items.cpp" />
     <ClCompile Include="Source\Inspection.cpp" />
     <ClCompile Include="Source\EmitterSprite.cpp" />
+    <ClCompile Include="Source\Inventory.cpp" />
+    <ClCompile Include="Source\ItemCollector.cpp" />
     <ClCompile Include="Source\ItemComponent.cpp" />
     <ClCompile Include="Source\ItemStack.cpp" />
     <ClCompile Include="Source\LootTable.cpp" />
@@ -263,7 +265,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\TileInfoSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Inventory.h" />
     <ClInclude Include="Source\ComponentSystem.h" />
+    <ClInclude Include="Source\ItemCollector.h" />
     <ClInclude Include="Source\ItemComponent.h" />
     <ClInclude Include="Source\ItemStack.h" />
     <ClInclude Include="Source\LootTable.h" />
