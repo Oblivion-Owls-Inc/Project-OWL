@@ -122,8 +122,13 @@ void LightingSystem::DebugWindow()
     bool showWindow = GetDebugEnabled();
 
     ImGui::Begin("Lighting System", &showWindow);
+
     if ( ImGui::Checkbox("Enable", &m_Enabled) )
         m_Sprite->SetOpacity( m_Enabled ? 1.0f : 0.0f );
+
+    if ( ImGui::InputInt("Layer", &m_ShadowLayer))
+        m_Sprite->SetLayer(m_ShadowLayer);
+
     ImGui::End();
 
     SetDebugEnable(showWindow);
@@ -214,6 +219,7 @@ nlohmann::ordered_json LightingSystem::Write() const
     nlohmann::ordered_json json;
 
     json["Enabled"] = Stream::Write< bool >(m_Enabled);
+    json["Layer"] = Stream::Write< int >(m_ShadowLayer);
 
     return json;
 }

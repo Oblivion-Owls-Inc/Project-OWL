@@ -37,6 +37,7 @@
 #include "Emitter.h"
 #include "BaseBehavior.h"
 #include "UiElement.h"
+#include "MiningLaser.h"
 #include "Light.h"
 
 
@@ -144,9 +145,10 @@
         { "Camera"              , ComponentInfo< Camera >()               },
         { "WavesBehavior"       , ComponentInfo< WavesBehavior >()        },
         { "Emitter"             , ComponentInfo< Emitter >()              },
-        { "EmitterSprite"      , ComponentInfo< EmitterSprite >()         },
+        { "EmitterSprite"       , ComponentInfo< EmitterSprite >()        },
         { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         },
         { "UiElement"           , ComponentInfo< UiElement >()            },
+        { "MiningLaser"         , ComponentInfo< MiningLaser >()          },
         { "Light"               , ComponentInfo< Light >()                }
     };
 

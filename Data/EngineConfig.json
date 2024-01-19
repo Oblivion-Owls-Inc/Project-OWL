@@ -22,7 +22,7 @@
         "ParticleSystem": {},
         "LightingSystem": {
             "Enabled": false,
-            "Layer": 5
+            "Layer": 3
         },
         "CollisionSystem": {
             "CollisionLayerNames": [

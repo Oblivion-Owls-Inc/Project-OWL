@@ -83,7 +83,7 @@ void RenderSystem::DrawRect(
 {
     static Texture debugRectTexture = Texture( "Data/Textures/Debug/Rectangle.png" );
 
-    DrawTexture( &debugRectTexture, position, scale, 0.0f, color, alpha, isDiegetic );
+    DrawTexture( &debugRectTexture, position, scale, angle, color, alpha, isDiegetic );
 }
 
 /// @brief              Draws a line between 2 points.

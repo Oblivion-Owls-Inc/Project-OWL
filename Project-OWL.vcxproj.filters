@@ -213,11 +213,14 @@
     <Filter Include="Data\Scenes">
       <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Systems\LightingSystem">
-      <UniqueIdentifier>{2a933976-05d3-4638-9821-0f1885dda517}</UniqueIdentifier>
+    <Filter Include="Game\Behaviors\MiningLaser">
+      <UniqueIdentifier>{f6265677-427f-4a02-b8f0-f148023cb81f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Entity\Component\Light">
-      <UniqueIdentifier>{f38edf87-77f6-4949-a9ab-195d1662f1e6}</UniqueIdentifier>
+      <UniqueIdentifier>{366ef2c8-f768-4d24-ac1a-b4e689e84f67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\LightingSystem">
+      <UniqueIdentifier>{e4aacf16-a18f-4cad-bc1c-df9cba9718c0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -467,11 +470,14 @@
     <ClCompile Include="Source\EmitterSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LightingSystem.cpp">
-      <Filter>Engine\Systems\LightingSystem</Filter>
+    <ClCompile Include="Source\MiningLaser.cpp">
+      <Filter>Game\Behaviors\MiningLaser</Filter>
     </ClCompile>
     <ClCompile Include="Source\Light.cpp">
       <Filter>Engine\Entity\Component\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LightingSystem.cpp">
+      <Filter>Engine\Systems\LightingSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -718,11 +724,14 @@
     <ClInclude Include="Source\EmitterSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LightingSystem.h">
-      <Filter>Engine\Systems\LightingSystem</Filter>
+    <ClInclude Include="Source\MiningLaser.h">
+      <Filter>Game\Behaviors\MiningLaser</Filter>
     </ClInclude>
     <ClInclude Include="Source\Light.h">
       <Filter>Engine\Entity\Component\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LightingSystem.h">
+      <Filter>Engine\Systems\LightingSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -22,6 +22,11 @@ class RigidBody;
 class Animation;
 class AnimationAsset;
 class AudioPlayer;
+class MiningLaser;
+class Transform;
+
+template < typename T >
+class Tilemap;
 
 class PlayerController : public Behavior
 {
@@ -53,7 +58,7 @@ public: // methods
     virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
-private: // player movement
+private: // methods
 //-----------------------------------------------------------------------------
 
     /// @brief private helper function to move the player
@@ -71,6 +76,17 @@ private: // player movement
     /// @brief protected helper function to move the player
     /// @return if the player moved Down or not
     bool moveDown();
+
+
+    /// @brief  updates the mining laser
+    void updateMiningLaser();
+
+    /// @brief  callback called when the MiningLaser breaks a tile
+    /// @param  tilemap - the tilemap that the tile was broken in
+    /// @param  tilePos - the position of the tile in the tilemap
+    /// @param  tileID  - the ID of the broken tile
+    void onMiningLaserBreakTile( Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int tileId );
+
 
 //-----------------------------------------------------------------------------
 private: // member variables
@@ -97,6 +113,15 @@ private: // member variables
     // A cached instance of the parent's AudioPlayer.
     AudioPlayer* m_AudioPlayer = nullptr;
 
+    /// @brief  the Transform attached to this PlayerController
+    Transform* m_Transform = nullptr;
+
+
+    /// @brief  the name of the MiningLaser entity this PlayerController uses
+    std::string m_MiningLaserName = "";
+    /// @brief  the miningLaser this PlayerController uses
+    MiningLaser* m_MiningLaser = nullptr;
+
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -110,6 +135,10 @@ private: // reading
     /// @brief Read in the animation names for the player.
     /// @param data The JSON file to read from.
     void readAnimationNames(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the name of the MiningLaser entity this PlayerController uses
+    /// @param  data    the JSON data to read from
+    void readMiningLaserName( nlohmann::ordered_json const& data );
 
 
     /// @brief the map of read methods for this Component
@@ -147,12 +176,14 @@ private: // copying
 
 
 //-----------------------------------------------------------------------------
-private: // Helper Functions
+private: // inspector helpers
 //-----------------------------------------------------------------------------
 
     /// @brief Allows all vector attributes to be accessed by the editor.
     void vectorInspector();
     /// @brief Allows all animation attributes to be accessed by the editor.
     void animationInspector();
+
+//-----------------------------------------------------------------------------
 
 };
