@@ -38,6 +38,7 @@
 #include "BaseBehavior.h"
 #include "Health.h"
 #include "UiElement.h"
+#include "MiningLaser.h"
 
 
 //-----------------------------------------------------------------------------
@@ -147,7 +148,9 @@
         { "EmitterSprite"       , ComponentInfo< EmitterSprite >()        },
         { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         },
         { "Health"              , ComponentInfo< Health >()               },
-        { "UiElement"           , ComponentInfo< UiElement >()            }
+        { "UiElement"           , ComponentInfo< UiElement >()            },
+        { "MiningLaser"         , ComponentInfo< MiningLaser >()          },
+
     };
 
 //-----------------------------------------------------------------------------

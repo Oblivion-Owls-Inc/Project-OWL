@@ -213,6 +213,9 @@
     <Filter Include="Engine\Entity\Component\Health">
       <UniqueIdentifier>{e836e623-5921-472f-89b0-6e67007a2028}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Behaviors\MiningLaser">
+      <UniqueIdentifier>{f6265677-427f-4a02-b8f0-f148023cb81f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -461,6 +464,9 @@
     <ClCompile Include="Source\EmitterSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MiningLaser.cpp">
+      <Filter>Game\Behaviors\MiningLaser</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Health.cpp">
       <Filter>Engine\Entity\Component\Health</Filter>
     </ClCompile>
@@ -708,6 +714,9 @@
     </ClInclude>
     <ClInclude Include="Source\EmitterSprite.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MiningLaser.h">
+      <Filter>Game\Behaviors\MiningLaser</Filter>
     </ClInclude>
     <ClInclude Include="Source\Health.h">
       <Filter>Engine\Entity\Component\Health</Filter>

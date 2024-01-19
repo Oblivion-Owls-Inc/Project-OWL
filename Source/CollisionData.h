@@ -39,6 +39,13 @@ struct RayCastHit
     /// @brief  the distance the ray travelled
     float distance = 100.0f;
 
+    /// @brief  the position where the raycast hit
+    glm::vec2 position = { 0.0f, 0.0f };
+
+    /// @brief  the tilepos where the raycast hit
+    /// @note   ONLY USED WHEN THE COLLIDER HIT IS A TILEMAP COLLIDER
+    glm::ivec2 tilePos = { 0, 0 };
+
     /// @brief  implicit conversion to bool
     operator bool() const { return colliderHit != nullptr; }
 };
