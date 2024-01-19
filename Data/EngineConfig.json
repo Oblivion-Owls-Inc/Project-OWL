@@ -21,8 +21,8 @@
         "BehaviorSystem<WavesBehavior>": {},
         "ParticleSystem": {},
         "LightingSystem": {
-            "Enabled": false,
-            "Layer": 3
+            "Enabled": true,
+            "Layer": 5
         },
         "CollisionSystem": {
             "CollisionLayerNames": [

@@ -234,8 +234,7 @@ void Sprite::readOpacity( nlohmann::ordered_json const& data )
 /// @param data The json to read from.
 void Sprite::readLayer( nlohmann::ordered_json const& data )
 {
-    int layer = Stream::Read<int>( data );
-    m_Layer = std::max( 0, std::min( layer, 4 ) );
+    m_Layer = Stream::Read<int>( data );
 }
 
 /// @brief Write all Sprite component data to a JSON file.
