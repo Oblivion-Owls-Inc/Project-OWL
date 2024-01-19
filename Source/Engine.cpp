@@ -40,6 +40,8 @@
 #include "Animation.h"
 #include "Tilemap.h"
 
+#include "ItemComponent.h"
+
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
 
@@ -351,6 +353,8 @@
         { "DebugSystem"                     , &addSystem< DebugSystem     >                             },
         { "AudioSystem"                     , &addSystem< AudioSystem     >                             },
         { "EntitySystem"                    , &addSystem< EntitySystem    >                             },
+        { "ParticleSystem",                   &addSystem< ParticleSystem  >                             },
+        { "CheatSystem"                     , &addSystem< CheatSystem     >                             },
 
         { "BehaviorSystem<RigidBody>"       , &addSystem< BehaviorSystem< RigidBody      > >            },
         { "BehaviorSystem<Behavior>"        , &addSystem< BehaviorSystem< Behavior       > >            },
@@ -365,8 +369,7 @@
         { "AssetLibrary<TransformAnimation>", &addSystem< AssetLibrarySystem< TransformAnimation > >    },
         { "AssetLibrary<AnimationAsset>"    , &addSystem< AssetLibrarySystem< AnimationAsset     > >    },
                                                                                                      
-        { "ParticleSystem",                   &addSystem< ParticleSystem >                              },
-        { "CheatSystem"                     , &addSystem< CheatSystem    >                              },
+        { "ComponentSystem<ItemComponent>"  , &addSystem< ComponentSystem< ItemComponent > >            },
 
         { "TileInfoSystem"                  , &addSystem< TileInfoSystem >                              }
 

@@ -97,6 +97,19 @@
         }
 
 
+        /// @brief  Write all TileInfo data to JSON.
+        /// @return The JSON containing the TileInfo data.
+        nlohmann::ordered_json TileInfoSystem::TileInfo::Write() const
+        {
+            nlohmann::ordered_json json;
+
+            json[ "LootTable" ] = Stream::Write( m_LootTable );
+            json[ "Toughness" ] = Stream::Write( m_Toughness );
+
+            return json;
+        }
+
+
     //-----------------------------------------------------------------------------
     
 
@@ -108,10 +121,15 @@
     /// @brief  gets the info about the specified tile type
     /// @param  tileId  - the ID of the tile type to get the info of
     /// @return the tile info of the specified tile type
-    TileInfoSystem::TileInfo const& TileInfoSystem::GetInfo( int tileId ) const
+    TileInfoSystem::TileInfo const* TileInfoSystem::GetInfo( int tileId ) const
     {
         
-        return m_TileInfo[ tileId ];
+        if ( tileId < 0 || tileId >= m_TileInfo.size() )
+        {
+            return nullptr;
+        }
+
+        return &m_TileInfo[ tileId ];
 
     }
 
@@ -191,6 +209,21 @@
         return (ReadMethodMap< ISerializable > const&)readMethods;
     }
 
+
+    /// @brief  Write all TileInfoSystem data to JSON.
+    /// @return The JSON containing the TileInfoSystem data.
+    nlohmann::ordered_json TileInfoSystem::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        nlohmann::ordered_json& tileInfoData = json[ "TileInfo" ];
+        for ( TileInfo const& tileInfo : m_TileInfo )
+        {
+            tileInfoData.push_back( tileInfo.Write() );
+        }
+
+        return json;
+    }
 
 //-----------------------------------------------------------------------------
 // private: singleton stuff

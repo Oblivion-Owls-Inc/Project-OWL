@@ -74,13 +74,17 @@ public: // TileInfo class
 
 
     //-----------------------------------------------------------------------------
-    public: // reading
+    public: // reading / writing
     //-----------------------------------------------------------------------------
 
 
         /// @brief  gets this System's read methods
         /// @return this System's read methods
         virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+
+        /// @brief  Write all TileInfo data to JSON.
+        /// @return The JSON containing the TileInfo data.
+        virtual nlohmann::ordered_json Write() const override;
 
 
     //-----------------------------------------------------------------------------
@@ -94,7 +98,7 @@ public: // methods
     /// @brief  gets the info about the specified tile type
     /// @param  tileId  - the ID of the tile type to get the info of
     /// @return the tile info
-    TileInfo const& GetInfo( int tileId ) const;
+    TileInfo const* GetInfo( int tileId ) const;
 
 
 //-----------------------------------------------------------------------------
@@ -130,13 +134,18 @@ private: // reading
 
     
 //-----------------------------------------------------------------------------
-public: // reading
+public: // reading / writing
 //-----------------------------------------------------------------------------
 
 
     /// @brief  gets this System's read methods
     /// @return this System's read methods
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+
+
+    /// @brief  Write all TileInfoSystem data to JSON.
+    /// @return The JSON containing the TileInfoSystem data.
+    virtual nlohmann::ordered_json Write() const override;
 
 
 //-----------------------------------------------------------------------------

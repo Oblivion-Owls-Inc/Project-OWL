@@ -201,6 +201,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="imgui\implot_items.cpp" />
     <ClCompile Include="Source\Inspection.cpp" />
     <ClCompile Include="Source\EmitterSprite.cpp" />
+    <ClCompile Include="Source\ItemComponent.cpp" />
+    <ClCompile Include="Source\ItemStack.cpp" />
     <ClCompile Include="Source\LootTable.cpp" />
     <ClCompile Include="Source\MiningLaser.cpp" />
     <ClCompile Include="Source\ParticleSystem.cpp" />
@@ -232,6 +234,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
     <ClCompile Include="Source\TilemapCollider.cpp" />
+    <ClCompile Include="Source\TilemapItemDropper.cpp" />
     <ClCompile Include="Source\TilemapSprite.cpp" />
     <ClCompile Include="Source\Tilemap.t.cpp" />
     <ClCompile Include="Source\TransformAnimation.cpp" />
@@ -261,7 +264,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ComponentSystem.h" />
-    <ClInclude Include="Source\ItemBehavior.h" />
+    <ClInclude Include="Source\ItemComponent.h" />
     <ClInclude Include="Source\ItemStack.h" />
     <ClInclude Include="Source\LootTable.h" />
     <ClInclude Include="Source\MiningLaser.h" />
@@ -304,6 +307,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Text.h" />
     <ClInclude Include="Source\TileInfoSystem.h" />
     <ClInclude Include="Source\TilemapCollider.h" />
+    <ClInclude Include="Source\TilemapItemDropper.h" />
     <ClInclude Include="Source\TilemapSprite.h" />
     <ClInclude Include="Source\Tilemap.h" />
     <ClInclude Include="Source\TransformAnimation.h" />

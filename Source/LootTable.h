@@ -112,13 +112,18 @@ private: // TableEntry type
         
 
     //-------------------------------------------------------------------------
-    public: // reading
+    public: // reading / writing
     //-------------------------------------------------------------------------
 
 
         /// @brief  Gets the map of read methods for this object
         /// @return the map of read methods for htis object
         virtual ReadMethodMap< ISerializable > const& GetReadMethods() const;
+
+
+        /// @brief  Write all LootTableEntry data to JSON.
+        /// @return The JSON containing the LootTableEntry data.
+        virtual nlohmann::ordered_json Write() const override;
 
 
     //-------------------------------------------------------------------------
@@ -253,13 +258,18 @@ private: // reading
 
 
 //-----------------------------------------------------------------------------
-public: // reading
+public: // reading / writing
 //-----------------------------------------------------------------------------
 
     
     /// @brief  Gets the map of read methods for this object
     /// @return the map of read methods for htis object
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const;
+
+
+    /// @brief  Write all LootTable data to JSON.
+    /// @return The JSON containing the LootTable data.
+    virtual nlohmann::ordered_json Write() const override;
 
 
 //-----------------------------------------------------------------------------

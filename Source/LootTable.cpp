@@ -153,7 +153,7 @@
         
 
     //-------------------------------------------------------------------------
-    // public: reading
+    // public: reading / writing
     //-------------------------------------------------------------------------
 
 
@@ -171,6 +171,23 @@
             };
 
             return (ReadMethodMap< ISerializable > const&)readMethods;
+        }
+
+
+        /// @brief  Write all LootTableEntry data to JSON.
+        /// @return The JSON containing the LootTableEntry data.
+        nlohmann::ordered_json LootTable::TableEntry::Write() const
+        {
+            nlohmann::ordered_json json;
+
+            json[ "ItemIds"            ] = Stream::Write( m_ItemIds            );
+            json[ "MinCount"           ] = Stream::Write( m_MinCount           );
+            json[ "MaxCount"           ] = Stream::Write( m_MaxCount           );
+            json[ "Probability"        ] = Stream::Write( m_Probability        );
+            json[ "Weight"             ] = Stream::Write( m_Weight             );
+            json[ "AllowMultipleRolls" ] = Stream::Write( m_AllowMultipleRolls );
+
+            return json;
         }
 
 
@@ -462,6 +479,26 @@
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
+
+    /// @brief  Write all LootTable data to JSON.
+    /// @return The JSON containing the LootTable data.
+    nlohmann::ordered_json LootTable::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        nlohmann::ordered_json& entriesData = json[ "Entries" ];
+        for ( TableEntry const& entry : m_Entries )
+        {
+            entriesData.push_back( Stream::Write( entry ) );
+        }
+
+        json[ "RandomRollsEnabled" ] = Stream::Write( m_RandomRollsEnabled );
+        json[ "MinRolls"           ] = Stream::Write( m_MinRolls           );
+        json[ "MaxRolls"           ] = Stream::Write( m_MaxRolls           );
+
+        return json;
     }
 
 
