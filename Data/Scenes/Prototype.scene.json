@@ -1,6 +1,10 @@
 {
     "Assets": {
         "Sounds": {
+            "BaseDamageSound": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Base/BaseDamage.ogg"
+            },
             "EnemySound": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Enemy/footsteps.ogg"
@@ -24,10 +28,6 @@
             "TurretShoot": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg"
-            },
-            "BaseDamageSound": {
-                "IsLoopable": true,
-                "Filepath":  "Data/Sounds/Effects/Base/BaseDamage.ogg"
             }
         },
         "Textures": {
@@ -426,6 +426,15 @@
         "Base": {
             "Name": "Base",
             "Components": {
+                "AudioPlayer": {
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "Sound": "BaseDamageSound"
+                },
                 "BaseBehavior": {
                     "Health": {
                         "Name": "Health Pool",
@@ -438,15 +447,6 @@
                     "Radius": 2.0,
                     "CollisionLayer": 3,
                     "CollisionLayerFlags": 2
-                },
-                "AudioPlayer": {
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "Sound": "BaseDamageSound"
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -2542,6 +2542,14 @@
                     "Radius": 0.30000001192092896,
                     "CollisionLayer": 2,
                     "CollisionLayerFlags": 3
+                },
+                "Health": {
+                    "Health": {
+                        "Name": "PlayerHealth",
+                        "BaseValue": 100,
+                        "CurrentValue": 100,
+                        "Active": false
+                    }
                 },
                 "PlayerController": {
                     "AnimationNames": [

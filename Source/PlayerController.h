@@ -22,6 +22,8 @@ class RigidBody;
 class Animation;
 class AnimationAsset;
 class AudioPlayer;
+class Health;
+class Transform;
 
 class PlayerController : public Behavior
 {
@@ -53,7 +55,7 @@ public: // methods
     virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
-private: // player movement
+private: // player movement/respawn
 //-----------------------------------------------------------------------------
 
     /// @brief private helper function to move the player
@@ -72,6 +74,9 @@ private: // player movement
     /// @return if the player moved Down or not
     bool moveDown();
 
+    /// @brief Check if player heal is 0, then respawn them.
+    void playerRespawn();
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
@@ -81,7 +86,7 @@ private: // member variables
     float m_MaxSpeed = 1.0f;
 
     // Player respawn location
-    glm::vec2 const& m_PlayerRespawnLocation = { 0.5, 4.5 };
+    glm::vec2 m_PlayerRespawnLocation = { 0.5, 4.5 };
 
     // All the names of the animations for the player.
     std::string m_AnimationNames[4] = { "", "", "", "" };
@@ -99,6 +104,10 @@ private: // member variables
     // A cached instance of the parent's AudioPlayer.
     AudioPlayer* m_AudioPlayer = nullptr;
 
+    // A cached instance of the parent's Health.
+    Health* m_PlayerHealth = nullptr;
+
+    Transform* m_PlayerTransform = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -156,5 +165,10 @@ private: // Helper Functions
     void vectorInspector();
     /// @brief Allows all animation attributes to be accessed by the editor.
     void animationInspector();
+
+    /// @brief What to do when the player has been hit.
+    /// @param other         - the collider of the other entity.
+    /// @param collisionData - Holds details of the collision.
+    void onCollision(Collider* other, CollisionData const& collisionData);
 
 };

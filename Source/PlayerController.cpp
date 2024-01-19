@@ -16,8 +16,10 @@
 #include "AnimationAsset.h"
 #include "AssetLibrarySystem.h" // GetAsset
 #include "DebugSystem.h"
-#include "BasicEntityBehavior.h"
 #include "EnemyBehavior.h"
+#include "Health.h"              // TakeDamage
+#include "Transform.h"
+#include "CircleCollider.h"
 
 ///----------------------------------------------------------------------------
 /// Static Variables
@@ -53,12 +55,30 @@ void PlayerController::OnInit()
     m_Animation = GetEntity()->GetComponent<Animation>();
     // Get the parent's AudioPlayer component.
     m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
+    // Get the parent's Health component.
+    m_PlayerHealth = GetEntity()->GetComponent<Health>();
+    // Get the parent's Transform component.
+    m_PlayerTransform = GetEntity()->GetComponent<Transform>();
+
+    GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
+        GetId(),
+        std::bind(&PlayerController::onCollision, this, std::placeholders::_1, std::placeholders::_2)
+    );
 
     // Get all the player's animations
     for ( int i = 0; i < NUM_ANIMATIONS; ++i )
     {
         m_PlayerAnimations[ i ] = AssetLibrary< AnimationAsset >()->GetAsset( m_AnimationNames[ i ] );
     }
+
+    // Set the callback for when the layer takes damage.
+    m_PlayerHealth->AddOnHealthChangedCallback(
+        GetId(),
+        std::bind(
+            &PlayerController::playerRespawn,
+            this
+        )
+    );
 }
 
 /// @brief Removes this behavior from the behavior system on exit
@@ -161,6 +181,16 @@ bool PlayerController::moveDown()
 	return input->GetKeyDown(GLFW_KEY_S);
 }
 
+/// @brief Check if player heal is 0, then respawn them. 
+void PlayerController::playerRespawn()
+{
+    // If the player is dead
+    if (m_PlayerHealth->GetHealth()->GetCurrent() <= 0)
+    {
+        m_PlayerTransform->SetTranslation(m_PlayerRespawnLocation);
+    }
+}
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
@@ -223,7 +253,9 @@ PlayerController::PlayerController(PlayerController const& other):
     m_MaxSpeed( other.m_MaxSpeed ),
     m_RigidBody( nullptr ),
     m_Animation( nullptr ),
-    m_AudioPlayer(nullptr)
+    m_AudioPlayer(nullptr),
+    m_PlayerHealth(nullptr),
+    m_PlayerTransform(nullptr)
 {
     // Copy the animations
     for (int i = 0; i < NUM_ANIMATIONS; i++)
@@ -266,4 +298,22 @@ void PlayerController::animationInspector()
             ImGui::EndCombo();
         }
     }
+}
+
+/// @brief What to do when the player has been hit.
+/// @param other         - the collider of the other entity.
+/// @param collisionData - Holds details of the collision.
+void PlayerController::onCollision(Collider* other, CollisionData const& collisionData)
+{
+    // Get the enemy behaviour component.
+    EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
+    if (!enemy)
+    {
+        return;
+    }
+
+    // If the enemy collides with player, damage the player
+    m_PlayerHealth->TakeDamage(enemy->GetDamage());
+
+    // Add physical reaction to enemy.
 }
