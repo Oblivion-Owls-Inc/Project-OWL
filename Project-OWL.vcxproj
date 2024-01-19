@@ -348,7 +348,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties Data_4Scenes_4GameWin_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" Data_4Scenes_4Prototype_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" />
+      <UserProperties Data_4Scenes_4GameWin_1scene_1json__JsonSchema="https://developer.1password.com/schema/ssh-agent-config.json" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

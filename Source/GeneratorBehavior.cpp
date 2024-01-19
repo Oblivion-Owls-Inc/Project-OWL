@@ -21,11 +21,13 @@
 /// @brief  constructor
 GeneratorBehavior::GeneratorBehavior() : BasicEntityBehavior(typeid(GeneratorBehavior))
 {
+	m_isActive = false;
 }
 
 /// @brief  copy ctor
 GeneratorBehavior::GeneratorBehavior(const GeneratorBehavior& other) : BasicEntityBehavior(other)
 {
+	m_isActive = other.m_isActive;
 }
 
 /// @brief  dtor
