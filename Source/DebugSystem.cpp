@@ -132,7 +132,7 @@ void DebugSystem::OnUpdate(float dt)
 
 #endif // !NDEBUG
 
-    if (Input()->GetKeyTriggered(GLFW_KEY_RIGHT_ALT), Input()->GetKeyTriggered(GLFW_KEY_ENTER))
+    if ( Input()->GetKeyTriggered( GLFW_KEY_RIGHT_ALT ) && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
     {
 		m_Fullscreen = !m_Fullscreen;
 		PlatformSystem::GetInstance()->setFullscreen(m_Fullscreen);
@@ -258,6 +258,12 @@ void DebugSystem::DebugWindow()
             /// [New Sound, New Texture, New Transform Animation, New Sprite Animation]
             if (ImGui::BeginMenu("New Asset Prefab"))
             {
+                /// Opens the New Archetype Window
+                if (ImGui::MenuItem("New Archetype")) 
+                {
+                    m_CreationWindows[(int)MenuItemType::NewArchetype] = true;
+                }
+
                 /// Opens the New Sound Window
                 if (ImGui::MenuItem("New Sound")) 
                 {
@@ -417,6 +423,17 @@ void DebugSystem::MenuWindows()
     ///-------------------------------------------///
     /// Asset Prefab Creation Windows             ///
     ///-------------------------------------------///
+
+    /// Opens the New Asset Prefab Windows for Archetype
+    if (m_CreationWindows[(int)MenuItemType::NewArchetype])
+    {
+        /// if the New Archetype Window is closed, then close the window
+        if (!AssetLibrary<Entity>()->DebugCreateAssetWindow())
+        {
+            /// Closes the New Archetype Window
+            m_CreationWindows[(int)MenuItemType::NewArchetype] = false;
+        }
+    }
 
     /// Opens the New Asset Prefab Windows for Sound
     if (m_CreationWindows[(int)MenuItemType::NewSound])

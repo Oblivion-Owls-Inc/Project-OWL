@@ -51,7 +51,7 @@
 /// @brief Adds this behavior to the behavior system on init.
 void PlayerController::OnInit()
 {
-	BehaviorSystem<Behavior>::GetInstance()->AddBehavior(this);
+	Behaviors< Behavior >()->AddComponent( this );
     // Get the parent's RigidBody component.
     m_RigidBody = GetEntity()->GetComponent<RigidBody>();
     // Get the parent's Animation component.
@@ -72,17 +72,6 @@ void PlayerController::OnInit()
     if ( miningLaserEntity != nullptr )
     {
         m_MiningLaser = miningLaserEntity->GetComponent< MiningLaser >();
-
-        m_MiningLaser->AddOnBreakTileCallback(
-            GetId(),
-            std::bind(
-                &PlayerController::onMiningLaserBreakTile,
-                this,
-                std::placeholders::_1,
-                std::placeholders::_2,
-                std::placeholders::_3
-            )
-        );
     }
 
 
@@ -91,12 +80,7 @@ void PlayerController::OnInit()
 /// @brief Removes this behavior from the behavior system on exit
 void PlayerController::OnExit()
 {
-    Behaviors<Behavior>()->RemoveBehavior(this);
-
-    if ( m_MiningLaser != nullptr )
-    {
-        m_MiningLaser->RemoveOnBreakTileCallback( GetId() );
-    }
+    Behaviors< Behavior >()->RemoveComponent( this );
 }
 
 /// @brief Used by the Debug System to display information about this Component.
@@ -108,24 +92,8 @@ void PlayerController::Inspector()
     Entity* miningLaserEntity = m_MiningLaser != nullptr ? m_MiningLaser->GetEntity() : nullptr;
     if ( Inspection::SelectEntityFromScene( "Mining Laser", &miningLaserEntity ) )
     {
-        if ( m_MiningLaser != nullptr )
-        {
-            m_MiningLaser->RemoveOnBreakTileCallback( GetId() );
-        }
-
-        m_MiningLaser = miningLaserEntity->GetComponent< MiningLaser >();
         m_MiningLaserName = miningLaserEntity->GetName();
-
-        m_MiningLaser->AddOnBreakTileCallback(
-            GetId(),
-            std::bind(
-                &PlayerController::onMiningLaserBreakTile,
-                this,
-                std::placeholders::_1,
-                std::placeholders::_2,
-                std::placeholders::_3
-            )
-        );
+        m_MiningLaser = miningLaserEntity->GetComponent< MiningLaser >();
     }
 }
 
@@ -240,19 +208,6 @@ void PlayerController::OnFixedUpdate()
         {
             m_MiningLaser->SetIsFiring( false );
         }
-
-    }
-
-    /// @brief  callback called when the MiningLaser breaks a tile
-    /// @param  tilemap - the tilemap that the tile was broken in
-    /// @param  tilePos - the position of the tile in the tilemap
-    /// @param  tileID  - the ID of the broken tile
-    void PlayerController::onMiningLaserBreakTile( Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int tileId )
-    {
-
-        // TEMP replace this with tile-specific resources
-        ConstructionBehavior* cb =  Entities()->GetEntity( "ConstructionManager" )->GetComponent< ConstructionBehavior >();
-        cb->SetCurrentResources( cb->GetCurrentResources() + 1 );
 
     }
 

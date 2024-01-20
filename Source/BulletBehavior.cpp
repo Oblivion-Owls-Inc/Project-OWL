@@ -32,7 +32,7 @@
     /// @brief Default constructor for the BulletBehavior class.
     void BulletBehavior::OnInit()
     {
-	    Behaviors< Behavior >()->AddBehavior(this);
+	    Behaviors< Behavior >()->AddComponent( this );
         GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
             GetId(),
             std::bind( &BulletBehavior::onCollision, this, std::placeholders::_1, std::placeholders::_2 )
@@ -43,7 +43,7 @@
     /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
     void BulletBehavior::OnExit()
     {
-	    Behaviors< Behavior >()->RemoveBehavior(this);
+	    Behaviors< Behavior >()->RemoveComponent( this );
     }
 
     /// @brief Fixed update method called at a fixed time step.

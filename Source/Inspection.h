@@ -57,7 +57,11 @@ public: // public methods
     /// @param  elementInspector    the function to use to inspect each element of the array
     /// @return (bool)              whether the array was modified
     template< typename DataType >
-    static bool InspectArray( char const* label, std::vector< DataType >* array, std::function< bool ( DataType* ) > elementInspector, float elementHeight = 23 );
+    static bool InspectArray(
+        char const* label,
+        std::vector< DataType >* array,
+        std::function< bool ( DataType* ) > elementInspector
+    );
 
 
     /// @brief  inspects a CollisionLayerFlags
@@ -126,12 +130,12 @@ private: // helper methods
     /// @param  elementInspector    the function to use to inspect each element of the array
     /// @return (bool)              whether the array was modified
     template< typename DataType >
-    bool Inspection::InspectArray( char const* label, std::vector< DataType >* array, std::function< bool ( DataType* ) > elementInspector, float elementHeight )
+    bool Inspection::InspectArray(
+        char const* label,
+        std::vector< DataType >* array,
+        std::function< bool ( DataType* ) > elementInspector
+    )
     {
-        if ( ImGui::BeginListBox( label, ImVec2( 0, array->size() * ( elementHeight + 4 ) + 30 ) ) == false )
-        {
-            return false;
-        }
 
         bool modified = false;
 
@@ -139,9 +143,19 @@ private: // helper methods
         std::string fullId = label;
         fullId += std::to_string( ImGui::GetItemID() );
 
+        ImGui::BeginTable( label, 3, ImGuiTableFlags_Borders );
+
+        ImGui::TableSetupColumn( "index", ImGuiTableColumnFlags_WidthFixed, 45.0f );
+        ImGui::TableSetupColumn( label );
+        ImGui::TableSetupColumn( "remove", ImGuiTableColumnFlags_WidthFixed, 30.0f );
+        ImGui::TableHeadersRow();
+
         for ( int i = 0; i < array->size(); ++i )
         {
             ImGui::PushID( i );
+
+            ImGui::TableNextRow();
+            ImGui::TableNextColumn();
 
             // allow dragging and dropping of the indices to reorder the array
             ImGui::Text( "%3i", i );
@@ -176,15 +190,15 @@ private: // helper methods
             }
 
             // inspect the element
-            ImGui::SameLine();
+            ImGui::TableNextColumn();
             if ( elementInspector( &(*array)[ i ] ) )
             {
                 modified = true;
             }
 
             // button to delete the element
-            ImGui::SameLine();
-            if ( ImGui::Button( "X", ImVec2( 23, elementHeight ) ) )
+            ImGui::TableNextColumn();
+            if ( ImGui::Button( "X", ImVec2( 23, 23 ) ) )
             {
                 array->erase( array->begin() + i );
                 modified = true;
@@ -193,13 +207,17 @@ private: // helper methods
             ImGui::PopID();
         }
 
+        ImGui::TableNextRow();
+        ImGui::TableNextColumn();
+
         // button to add element
         if ( ImGui::Button( "+", ImVec2( 40, 23 ) ) )
         {
             array->push_back( DataType() );
+            modified = true;
         }
 
-        ImGui::EndListBox();
+        ImGui::EndTable();
 
         return modified;
     }

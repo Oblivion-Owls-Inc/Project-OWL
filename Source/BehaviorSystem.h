@@ -1,79 +1,91 @@
-///*****************************************************************/
-/// @file	 BehaviorSystem.h
-/// @Author  Jax Clayton (jax.clayton@digipen.edu)
-/// @date	 9/15/2021
-/// @brief   RigidBody class header
-/// @details This class contains the RigidBody component
-///*****************************************************************/
+/// @file       BehaviorSystem.h
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      System that keeps track of and updates a specific kind of Behavior
+/// @version    0.1
+/// @date       2024-01-18
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+
 #pragma once
-#define BEHAVIORSYSTEM_H
 
-
-///*****************************************************************/
-/// Includes:
-///*****************************************************************/
-#include "System.h"
-#include <vector>
+#include "ComponentSystem.h"
 #include "Behavior.h"
 
-///*****************************************************************/
-/// BehaviorSystem class
-/// @brief This is a Templated BehaviorSystem Class that inherits 
-///        from System
-///*****************************************************************/
-template < typename BehaviorType >
-class BehaviorSystem : public System
+/// @brief  System that keeps track of and updates a specific kind of Behavior
+/// @tparam BehaviorType    the type of Behavior this BehaviorSystem keeps track of
+template < class BehaviorType >
+class BehaviorSystem : public ComponentSystem< BehaviorType >
 {
-private:
 
-    /// @brief      Gets called once every simulation frame. Use this function for anything that affects the simulation.
-    virtual void OnFixedUpdate() override;
+//-----------------------------------------------------------------------------
+private: // virtual override methods
+//-----------------------------------------------------------------------------
+    
 
-    /// @brief      Gets called once every graphics frame. Do not use this function for anything 
-    ///             that affects the simulation.
-    /// @param dt   The elapsed time in seconds since the previous frame
-    virtual void OnUpdate(float dt) override;
+    /// @brief  updates each Behavior every graphics frame
+    /// @param  dt  the length in seconds the frame lasts
+    virtual void OnUpdate( float dt ) override
+    {
+        for ( BehaviorType* behavior : ComponentSystem< BehaviorType >::GetComponents() )
+        {
+            static_cast< Behavior* >( behavior )->OnUpdate( dt );
+        }
+    }
 
-    virtual void DebugWindow() override;
+    /// @brief  updates each Behavior every simulation frame
+    virtual void OnFixedUpdate() override
+    {
+        for ( BehaviorType* behavior : ComponentSystem< BehaviorType >::GetComponents() )
+        {
+            static_cast< Behavior* >( behavior )->OnFixedUpdate();
+        }
+    }
 
 
-public:
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
 
-    /// @brief      Adds a new Behavior to the system
-    void AddBehavior(BehaviorType* behavior);
-    ///@brief       Removes a Behavior from the system
-    void RemoveBehavior(BehaviorType* behavior);
 
-    std::vector< BehaviorType* >& GetBehaviors() const;
+    /// @brief  Constructs the BehaviorSystem
+    BehaviorSystem() :
+        ComponentSystem< BehaviorType >( "BehaviorSystem<" + PrefixlessName( typeid( BehaviorType ) ) + ">" )
+    {}
 
-    ///
 
-    /// @brief      Gets the instance of BehaviorSystem
-    /// @return     BehaviorSystem pointer: new or existing instance of this system
-    static BehaviorSystem< BehaviorType >* GetInstance();
+//-----------------------------------------------------------------------------
+public: // singleton stuff
+//-----------------------------------------------------------------------------
 
-private:
-    std::vector< Behavior* > m_BehaviorList;
 
-    /// @brief      Constructs the BehaviorSystem 
-    BehaviorSystem();
+    /// @brief  gets the instance of BehaviorSystem
+    /// @return the instance of the BehaviorSystem
+    static BehaviorSystem< BehaviorType >* GetInstance()
+    {
+        static BehaviorSystem< BehaviorType >* instance = nullptr;
 
-    /// @brief      The singleton instance of BehaviorSystem  
-    static BehaviorSystem< BehaviorType >* s_Instance;
+        if ( instance == nullptr )
+        {
+            instance = new BehaviorSystem();
+        }
+
+        return instance;
+    }
 
     // Prevent copying
-    BehaviorSystem(BehaviorSystem& other) = delete;
-    void operator=(const BehaviorSystem&) = delete;
+    BehaviorSystem( BehaviorSystem const& ) = delete;
+    void operator =( BehaviorSystem const& ) = delete;
 
-    static bool s_ShowBehaviorSystemList;
+
+//-----------------------------------------------------------------------------
 };
 
-template < typename BehaviorType >
+
+/// @brief  shorthand method for getting a BehaviorSystem instance
+/// @tparam BehaviorType    the BehaviorType of the BehaviorSystem to get
+/// @return the BehaviorSystem instance
+template< class BehaviorType >
 __inline BehaviorSystem< BehaviorType >* Behaviors()
 {
-    return BehaviorSystem<BehaviorType>::GetInstance();
+    return BehaviorSystem< BehaviorType >::GetInstance();
 }
-
-#ifndef BEHAVIORSYSTEM_C
-#include "BehaviorSystem.cpp"
-#endif

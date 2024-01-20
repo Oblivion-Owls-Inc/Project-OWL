@@ -11,12 +11,14 @@
 #include "Behavior.h"
 #include "basics.h"
 
+#include "ItemStack.h"
+
 #include <vector>
 
 class Transform;
 class Sprite;
-class Text;
 class AudioPlayer;
+class Inventory;
 
 template< typename T >
 class Tilemap;
@@ -25,31 +27,90 @@ class Tilemap;
 class ConstructionBehavior : public Behavior
 {
 //-----------------------------------------------------------------------------
-public: // constructor / Destructor
-//-----------------------------------------------------------------------------
-
-    /// @brief  constructor
-    ConstructionBehavior();
-
-    /// @brief  destructor
-    ~ConstructionBehavior() = default;
-
-//-----------------------------------------------------------------------------
-private: // types
+private: // class BuildingInfo
 //-----------------------------------------------------------------------------
 
     
     /// @brief  struct of info needed to construct buildings
-    struct BuildingInfo
+    class BuildingInfo : public ISerializable
     {
-        Entity const* archetype = nullptr;
-        int cost = 1;
+    //-------------------------------------------------------------------------
+    public: // members
+    //-------------------------------------------------------------------------
+
+
+        /// @brief  the archetype of the Building
+        Entity const* M_Archetype = nullptr;
+        
+        /// @brief  the cost of the building
+        std::vector< ItemStack > M_Cost = {};
+
+
+    //-------------------------------------------------------------------------
+    private: // members
+    //-------------------------------------------------------------------------
+
+
+        /// @brief  the name of the archetype
+        std::string m_ArchetypeName;
+        
+
+    //-------------------------------------------------------------------------
+    public: // methods
+    //-------------------------------------------------------------------------
+
+
+        /// @brief  initializes this BuildingInfo
+        void Init();
+
+
+    //-------------------------------------------------------------------------
+    public: // inspection
+    //-------------------------------------------------------------------------
+
+
+        /// @brief  inspects this BuildingInfo
+        /// @return whether this BuildingInfo changed
+        bool Inspect();
+    
+    
+    //-------------------------------------------------------------------------
+    private: // reading
+    //-------------------------------------------------------------------------
+
+        
+        /// @brief  reads the name of the archetype
+        /// @param  data    the json data to read from
+        void readArchetypeName( nlohmann::ordered_json const& data );
+
+        /// @brief  reads the cost of the building
+        /// @param  data    the json data to read from
+        void readCost( nlohmann::ordered_json const& data );
+
+
+    //-------------------------------------------------------------------------
+    public: // reading / writing
+    //-------------------------------------------------------------------------
+
+
+        /// @brief  gets the map of read methods for this ConstructionBehavior
+        /// @return the map of read methods for this ConstructionBehavior
+        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+
+
+        /// @brief  Write all ConstructionBehavior data to a JSON file.
+        /// @return The JSON file containing the ConstructionBehavior data.
+        virtual nlohmann::ordered_json Write() const override;
+
+
+    //-------------------------------------------------------------------------
     };
 
 
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
+
 
     /// @brief  gets the placement range
     /// @return the placement range
@@ -58,15 +119,6 @@ public: // accessors
     /// @brief  sets the placement range
     /// @param  range   the placement range
     void SetPlacementRange( float range ) { m_PlacementRange = range; }
-
-
-    /// @brief  gets the current resources
-    /// @return the current resources
-    int GetCurrentResources() const { return m_CurrentResources; }
-
-    /// @brief  sets the current resources
-    /// @param  range   the current resources
-    void SetCurrentResources( int range ) { m_CurrentResources = range; }
 
 
     /// @brief  gets the building index
@@ -82,6 +134,7 @@ public: // accessors
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  called once when entering the scene
     virtual void OnInit() override;
 
@@ -91,8 +144,6 @@ private: // virtual override methods
     /// @brief  called every simulation frame
     virtual void OnFixedUpdate() override;
 
-    /// @brief  displays this ConstructionBehavior in the Inspector
-    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 private: // members
@@ -133,19 +184,14 @@ private: // members
     float m_PreviewAlpha = 0.5f;
 
 
-    /// @brief  how many resources the player currently has available
-    int m_CurrentResources = 0;
-
-
-    /// @brief  the prefix string of the resources text, which the amount of resources will be appended to
-    std::string m_ResourcesTextPrefix = "Resources: ";
-
-
     /// @brief  the name of the player entity
     std::string m_PlayerName;
 
     /// @brief  the transform of the player
     Transform const* m_PlayerTransform = nullptr;
+
+    /// @brief  the Inventory of the player
+    Inventory* m_PlayerInventory = nullptr;
 
 
     /// @brief  the name of the tilemap entity
@@ -156,13 +202,6 @@ private: // members
 
     /// @brief  tilemap of the placed buildings
     Tilemap< Entity* >* m_Buildings = nullptr;
-
-
-    /// @brief  the name of the ResourcesText entity
-    std::string m_ResourcesTextName;
-
-    /// @brief  the resources ui text
-    Text* m_ResourcesText;
 
 
     /// @brief  the transform of the preview sprite
@@ -203,12 +242,18 @@ private: // helper methods
     /// @brief  displays the building preview
     void showBuildingPreview();
 
-    /// @brief  updates the resources text UI
-    void updateResourcesText();
+
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  displays this ConstructionBehavior in the Inspector
+    virtual void Inspector() override;
 
 
 //-----------------------------------------------------------------------------
-private: // inspector methods
+private: // inspection
 //-----------------------------------------------------------------------------
 
 
@@ -258,31 +303,13 @@ private: // reading
     void readPreviewAlpha( nlohmann::ordered_json const& data );
 
 
-    /// @brief  reads the current resources
-    /// @param  data    the json data to read from
-    void readCurrentResources( nlohmann::ordered_json const& data );
-
-
-    /// @brief  reads the resources text prefix
-    /// @param  data    the json data to read from
-    void readResourcesTextPrefix( nlohmann::ordered_json const& data );
-
-
     /// @brief  read the tilemap name
     /// @param  data    the json data to read from
     void readTilemapName( nlohmann::ordered_json const& data );
 
-    /// @brief  reads the resources text entity name
-    /// @param  data    the json data to read from
-    void readResourcesTextName( nlohmann::ordered_json const& data );
-
     /// @brief  read the player name
     /// @param  data    the json data to read from
     void readPlayerName( nlohmann::ordered_json const& data );
-
-
-    /// @brief  map of the read methods for this Component
-    static ReadMethodMap< ConstructionBehavior > s_ReadMethods;
 
 
 //-----------------------------------------------------------------------------
@@ -292,10 +319,7 @@ public: // reading / writing
 
     /// @brief  gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
     /// @brief  Write all ConstructionBehavior data to a JSON file.
@@ -304,23 +328,37 @@ public: // reading / writing
 
 
 //-----------------------------------------------------------------------------
-private: // copying
+public: // constructor
 //-----------------------------------------------------------------------------
 
-    /// @brief  copy-constructor for the ConstructionBehavior
-    /// @param  other   the other ConstructionBehavior to copy
-    ConstructionBehavior( const ConstructionBehavior& other );
 
-    /// @brief  clones this ConstructionBehavior
-    /// @return the newly created clone of this ConstructionBehavior
-    __inline virtual Component* Clone() const override { return new ConstructionBehavior( *this ); }
+    /// @brief  constructor
+    ConstructionBehavior();
+
 
 //-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------
 
+
+    /// @brief  clones this ConstructionBehavior
+    /// @return the newly created clone of this ConstructionBehavior
+    virtual ConstructionBehavior* Clone() const override;
+
+
+//-----------------------------------------------------------------------------
+private: // copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  copy-constructor for the ConstructionBehavior
+    /// @param  other   the other ConstructionBehavior to copy
+    ConstructionBehavior( const ConstructionBehavior& other );
+
+
     // diable = operator
     void operator =( const ConstructionBehavior& ) = delete;
+
 
 //-----------------------------------------------------------------------------
 };
