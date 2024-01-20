@@ -87,20 +87,23 @@ void PlayerController::OnInit()
     }
 
     // Set the callback for when the layer takes damage.
-    m_Health->AddOnHealthChangedCallback(
-        GetId(),
-        std::bind(
-            &PlayerController::playerRespawn,
-            this
-        )
-    );
+    if(m_Health)
+    {
+        m_Health->AddOnHealthChangedCallback(
+            GetId(),
+            std::bind(
+                &PlayerController::playerRespawn,
+                this
+            )
+        );
+    }
 }
 
 
 /// @brief Removes this behavior from the behavior system on exit
 void PlayerController::OnExit()
 {
-    Behaviors<Behavior>()->RemoveBehavior(this);
+    Behaviors<Behavior>()->RemoveComponent(this);
 
     if ( m_MiningLaser != nullptr )
     {
@@ -381,8 +384,11 @@ void PlayerController::onCollision(Collider* other, CollisionData const& collisi
         return;
     }
 
-    // If the enemy collides with player, damage the player
-    m_Health->TakeDamage(enemy->GetDamage());
+    if(m_Health)
+    {
+        // If the enemy collides with player, damage the player
+        m_Health->TakeDamage(enemy->GetDamage());
+    }
 
     // Add physical reaction to enemy.
 }
