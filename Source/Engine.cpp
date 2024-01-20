@@ -364,6 +364,7 @@
         { "BehaviorSystem<Animation>"       , &addSystem< BehaviorSystem< Animation      > >            },
         { "BehaviorSystem<EffectAnimator>"  , &addSystem< BehaviorSystem< EffectAnimator > >            },
         { "BehaviorSystem<WavesBehavior>"   , &addSystem< BehaviorSystem< WavesBehavior  > >            },
+        {"BehaviorSystem<GeneratorBehavior>", &addSystem< BehaviorSystem< GeneratorBehavior  > >       },
 
         { "AssetLibrary<Entity>"            , &addSystem< AssetLibrarySystem< Entity             > >    },
         { "AssetLibrary<Sound>"             , &addSystem< AssetLibrarySystem< Sound              > >    },

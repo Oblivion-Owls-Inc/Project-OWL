@@ -33,6 +33,7 @@ GeneratorBehavior::GeneratorBehavior(const GeneratorBehavior& other) : BasicEnti
 	m_isActive = other.m_isActive;
 	m_radius = other.m_radius;
 	m_depth = other.m_depth;
+	//Behaviors<GeneratorBehavior>()->GetComponents();
 }
 
 /// @brief  dtor
@@ -53,7 +54,7 @@ Component* GeneratorBehavior::Clone() const
 /// @brief	initialize Generator
 void GeneratorBehavior::OnInit()
 {
-	BehaviorSystem<GeneratorBehavior>::GetInstance()->AddBehavior(this);
+	BehaviorSystem<GeneratorBehavior>::GetInstance()->AddComponent(this);
 	//BasicEntityBehavior::OnInit();
 
 	GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
@@ -77,7 +78,7 @@ void GeneratorBehavior::OnInit()
 /// @brief	called on exit, handles loss state
 void GeneratorBehavior::OnExit()
 {
-	BehaviorSystem<GeneratorBehavior>::GetInstance()->RemoveBehavior(this);
+	BehaviorSystem<GeneratorBehavior>::GetInstance()->RemoveComponent(this);
 	//BasicEntityBehavior::OnExit();
 }
 

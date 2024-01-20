@@ -18,6 +18,7 @@
         "BehaviorSystem<BulletBehavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
+        "BehaviorSystem<GeneratorBehavior>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
         "CollisionSystem": {
