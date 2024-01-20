@@ -66,7 +66,7 @@
     /// @brief Default constructor for the RigidBody class.
     void RigidBody::OnInit()
     {
-        BehaviorSystem<RigidBody>::GetInstance()->AddBehavior(this);
+        BehaviorSystem< RigidBody >::GetInstance()->AddComponent( this );
         m_Transform = GetEntity()->GetComponent<Transform>();
         m_Collider = GetEntity()->GetComponent<Collider>();
         
@@ -83,7 +83,7 @@
     /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
     void RigidBody::OnExit()
     {
-        BehaviorSystem<RigidBody>::GetInstance()->RemoveBehavior(this);
+        BehaviorSystem< RigidBody >::GetInstance()->RemoveComponent( this );
 
         if ( m_Collider != nullptr )
         {

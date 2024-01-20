@@ -2,7 +2,7 @@
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
 /// @brief      Digging laser controllable by an entity
 /// @version    0.1
-/// @date       2023-10-20
+/// @date       2024-01-14
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
@@ -250,7 +250,7 @@
     /// @brief  called once when entering the scene
     void MiningLaser::OnInit()
     {
-        Behaviors< Behavior >()->AddBehavior( this );
+        Behaviors< Behavior >()->AddComponent( this );
 
         m_Transform = GetEntity()->GetComponent< Transform >();
         m_AudioPlayer = GetEntity()->GetComponent< AudioPlayer >();
@@ -266,7 +266,7 @@
     /// @brief  called once when exiting the scene
     void MiningLaser::OnExit()
     {
-        Behaviors< Behavior >()->RemoveBehavior( this );
+        Behaviors< Behavior >()->RemoveComponent( this );
     }
 
     /// @brief  called every graohics frame

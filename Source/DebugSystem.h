@@ -35,10 +35,12 @@ class Entity;
 enum class MenuItemType {
     None = -1,
     NewEntity,
+    NewArchetype,
     NewSound,
     NewTexture,
     NewTransformAnimation,
     NewSpriteAnimation,
+    _Count
 };
 
 /// @class DebugSystem
@@ -135,7 +137,7 @@ private: // Members
     bool m_LoadDataFile = false;
     
     /// @brief Flag to Show the various Asset Prefab Windows
-    bool m_CreationWindows[5] = { 0 };
+    bool m_CreationWindows[ (int)MenuItemType::_Count ] = { 0 };
 
     /// @brief Pointer to the ImGui Input/Output structure
     ImGuiIO* io;

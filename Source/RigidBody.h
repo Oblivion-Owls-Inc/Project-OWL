@@ -174,7 +174,7 @@ private: // member variables
     glm::vec2 m_Velocity = { 0.0f, 0.0f };
 
     /// @brief The acceleration vector of the rigidBody.
-    glm::vec2 m_Acceleration = { 0.0f, -9.81f };
+    glm::vec2 m_Acceleration = { 0.0f, 0.0f };
 
     /// @brief The rotational velocity of the rigidBody.
     float m_RotationalVelocity = 0.0f;

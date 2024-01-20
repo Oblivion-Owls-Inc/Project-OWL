@@ -2256,8 +2256,8 @@
                 },
                 "Tilemap<Entity*>": {
                     "Dimensions": [
-                        30,
-                        20
+                        47,
+                        34
                     ],
                     "TileScale": [
                         1.0,
@@ -5624,14 +5624,6 @@
                     "AttractionRadius": 3.0,
                     "AttractionStrength": 50.0
                 },
-                "Health": {
-                    "Health": {
-                        "Name": "PlayerHealth",
-                        "BaseValue": 100,
-                        "CurrentValue": 100,
-                        "Active": false
-                    }
-                },
                 "PlayerController": {
                     "AnimationNames": [
                         "PlayerMoveRight",
@@ -5718,8 +5710,13 @@
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
-                            "Name": "Turret",
-                            "Cost": 2
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 3
+                                }
+                            ],
+                            "ArchetypeName": "Turret"
                         }
                     ],
                     "BuildingIndex": -1,
@@ -5738,11 +5735,8 @@
                         0.0
                     ],
                     "PreviewAlpha": 0.5,
-                    "CurrentResources": 0,
-                    "ResourcesTextPrefix": "Resources: ",
                     "TilemapName": "Tiles",
-                    "PlayerName": "Player",
-                    "ResourcesTextName": "ResourcesText"
+                    "PlayerName": "Player"
                 },
                 "Sprite": {
                     "Layer": 4,

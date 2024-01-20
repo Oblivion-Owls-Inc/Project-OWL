@@ -84,12 +84,6 @@ private: // methods
     /// @brief  updates the mining laser
     void updateMiningLaser();
 
-    /// @brief  callback called when the MiningLaser breaks a tile
-    /// @param  tilemap - the tilemap that the tile was broken in
-    /// @param  tilePos - the position of the tile in the tilemap
-    /// @param  tileID  - the ID of the broken tile
-    void onMiningLaserBreakTile( Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int tileId );
-
 
     /// @brief Check if player heal is 0, then respawn them.
     void playerRespawn();

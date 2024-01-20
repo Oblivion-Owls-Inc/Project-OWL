@@ -202,6 +202,11 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="imgui\implot_items.cpp" />
     <ClCompile Include="Source\Inspection.cpp" />
     <ClCompile Include="Source\EmitterSprite.cpp" />
+    <ClCompile Include="Source\Inventory.cpp" />
+    <ClCompile Include="Source\ItemCollector.cpp" />
+    <ClCompile Include="Source\ItemComponent.cpp" />
+    <ClCompile Include="Source\ItemStack.cpp" />
+    <ClCompile Include="Source\LootTable.cpp" />
     <ClCompile Include="Source\MiningLaser.cpp" />
     <ClCompile Include="Source\ParticleSystem.cpp" />
     <ClCompile Include="Source\Pathfinder.cpp" />
@@ -209,7 +214,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Lua.cpp" />
     <ClCompile Include="Source\PlayerController.cpp" />
     <ClCompile Include="Source\AssetLibrarySystem.cpp" />
-    <ClCompile Include="Source\BehaviorSystem.cpp" />
     <ClCompile Include="Source\CameraSystem.cpp" />
     <ClCompile Include="Source\CollisionSystem.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -233,6 +237,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
     <ClCompile Include="Source\TilemapCollider.cpp" />
+    <ClCompile Include="Source\TilemapItemDropper.cpp" />
     <ClCompile Include="Source\TilemapSprite.cpp" />
     <ClCompile Include="Source\Tilemap.t.cpp" />
     <ClCompile Include="Source\TransformAnimation.cpp" />
@@ -258,8 +263,15 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WavesBehavior.cpp" />
     <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\WavesInspector.cpp" />
+    <ClCompile Include="Source\TileInfoSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Inventory.h" />
+    <ClInclude Include="Source\ComponentSystem.h" />
+    <ClInclude Include="Source\ItemCollector.h" />
+    <ClInclude Include="Source\ItemComponent.h" />
+    <ClInclude Include="Source\ItemStack.h" />
+    <ClInclude Include="Source\LootTable.h" />
     <ClInclude Include="Source\MiningLaser.h" />
     <ClInclude Include="Source\Health.h" />
     <ClInclude Include="Source\FileExplorer.h" />
@@ -299,7 +311,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\RigidBody.h" />
     <ClInclude Include="Source\StaticBody.h" />
     <ClInclude Include="Source\Text.h" />
+    <ClInclude Include="Source\TileInfoSystem.h" />
     <ClInclude Include="Source\TilemapCollider.h" />
+    <ClInclude Include="Source\TilemapItemDropper.h" />
     <ClInclude Include="Source\TilemapSprite.h" />
     <ClInclude Include="Source\Tilemap.h" />
     <ClInclude Include="Source\TransformAnimation.h" />
@@ -339,6 +353,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
+    <None Include="Data\Scenes\ConstructionTest.scene.json" />
     <None Include="Data\Scenes\GameOver.scene.json" />
     <None Include="Data\Scenes\GameWin.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
