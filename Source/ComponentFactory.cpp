@@ -39,6 +39,10 @@
 #include "GeneratorBehavior.h"
 #include "UiElement.h"
 #include "MiningLaser.h"
+#include "ItemComponent.h"
+#include "TilemapItemDropper.h"
+#include "Inventory.h"
+#include "ItemCollector.h"
 
 
 //-----------------------------------------------------------------------------
@@ -135,8 +139,8 @@
 		{ "BulletBehavior"      , ComponentInfo< BulletBehavior >()       },
         { "TurretBehavior"      , ComponentInfo< TurretBehavior >()       },
         { "EffectAnimator"      , ComponentInfo< EffectAnimator >()       },
-        { "Tilemap<int>"        , ComponentInfo< Tilemap<int> >()         },
-        { "Tilemap<Entity*>"    , ComponentInfo< Tilemap<Entity*> >()     },
+        { "Tilemap<int>"        , ComponentInfo< Tilemap< int > >()       },
+        { "Tilemap<Entity*>"    , ComponentInfo< Tilemap< Entity* > >()   },
         { "TilemapSprite"       , ComponentInfo< TilemapSprite >()        },
         { "Pathfinder"          , ComponentInfo< Pathfinder >()           },
         { "TilemapCollider"     , ComponentInfo< TilemapCollider >()      },
@@ -149,6 +153,11 @@
         { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         },
         { "UiElement"           , ComponentInfo< UiElement >()            },
         { "MiningLaser"         , ComponentInfo< MiningLaser >()          },
+        { "ItemComponent"       , ComponentInfo< ItemComponent >()        },
+        { "TilemapItemDropper"  , ComponentInfo< TilemapItemDropper >()   },
+        { "Inventory"           , ComponentInfo< Inventory >()            },
+        { "ItemCollector"       , ComponentInfo< ItemCollector >()        },
+
         { "GeneratorBehavior"   , ComponentInfo< GeneratorBehavior >()    }
     };
 

@@ -15,6 +15,8 @@
 #include "Entity.h"  // parent
 #include "Transform.h"
 
+#include <imgui.h>
+
 
 //-----------------------------------------------------------------------------
 // constructors
@@ -180,7 +182,14 @@
     /// @brief  inspector for non-int tilemaps
     /// @tparam TileType    the type of data in the Tilemap
     template< typename TileType >
-    void Tilemap< TileType >::Inspector() {}
+    void Tilemap< TileType >::Inspector()
+    {
+        glm::ivec2 dimensions = GetDimensions();
+        if ( ImGui::DragInt2( "Tilemap Size", &dimensions[0], 0.05f, 1, INT_MAX ) )
+        {
+            SetDimensions( dimensions );
+        }
+    }
 
 
 //-----------------------------------------------------------------------------

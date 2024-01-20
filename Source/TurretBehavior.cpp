@@ -41,7 +41,7 @@
     void TurretBehavior::OnInit()
     {
         /// Add this behavior to the behavior system
-        Behaviors<Behavior>()->AddBehavior(this);
+        Behaviors< Behavior >()->AddComponent( this );
         m_Transform = GetEntity()->GetComponent< Transform >();
         m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
     }
@@ -51,7 +51,7 @@
     void TurretBehavior::OnExit()
     {
         /// Remove this behavior from the behavior system
-        Behaviors<Behavior>()->RemoveBehavior(this);
+        Behaviors< Behavior >()->RemoveComponent( this );
     }
 
     /// @brief Called Every Fixed Frame by the system

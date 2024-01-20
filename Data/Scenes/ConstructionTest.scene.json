@@ -515,71 +515,10 @@
                         "Active": true
                     }
                 },
-                "GeneratorBehavior": {
-                    "Radius": 5.0,
-                    "Health": {
-                        "Name": "Health Pool",
-                        "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
-                    }
-                },
                 "CircleCollider": {
                     "Radius": 1.0,
                     "CollisionLayer": 3,
                     "CollisionLayerFlags": 2
-                },
-                "Sprite": {
-                    "Layer": 2,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": "Van"
-                },
-                "Transform": {
-                    "Translation": [
-                        -2.25,
-                        3.8499999046325684
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                }
-            }
-        },
-        "Generator2": {
-            "Name": "Generator2",
-            "Components": {
-                "AudioPlayer": {
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "Sound": "BaseDamageSound"
-                },
-                "CircleCollider": {
-                    "Radius": 2.0,
-                    "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
-                },
-                "GeneratorBehavior": {
-                    "Radius": 5.0,
-                    "Health": {
-                        "Name": "Health Pool",
-                        "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
-                    }
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -2317,8 +2256,8 @@
                 },
                 "Tilemap<Entity*>": {
                     "Dimensions": [
-                        30,
-                        20
+                        47,
+                        34
                     ],
                     "TileScale": [
                         1.0,
@@ -5771,8 +5710,13 @@
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
-                            "Name": "Turret",
-                            "Cost": 2
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 3
+                                }
+                            ],
+                            "ArchetypeName": "Turret"
                         }
                     ],
                     "BuildingIndex": -1,
@@ -5791,11 +5735,8 @@
                         0.0
                     ],
                     "PreviewAlpha": 0.5,
-                    "CurrentResources": 0,
-                    "ResourcesTextPrefix": "Resources: ",
                     "TilemapName": "Tiles",
-                    "PlayerName": "Player",
-                    "ResourcesTextName": "ResourcesText"
+                    "PlayerName": "Player"
                 },
                 "Sprite": {
                     "Layer": 4,
@@ -6029,58 +5970,6 @@
                     "Translation": [
                         0.0,
                         0.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                }
-            }
-        },
-        "Generator": {
-            "Name": "Generator",
-            "Components": {
-                "AudioPlayer": {
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "Sound": "BaseDamageSound"
-                },
-                "CircleCollider": {
-                    "Radius": 2.0,
-                    "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
-                },
-                "GeneratorBehavior": {
-                    "Radius": 5.0,
-                    "Health": {
-                        "Name": "Health Pool",
-                        "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
-                    }
-                },
-                "Sprite": {
-                    "Layer": 2,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": "Van"
-                },
-                "Transform": {
-                    "Translation": [
-                        -0.47500038146972656,
-                        -1.1749992370605469
                     ],
                     "Rotation": 0.0,
                     "Scale": [

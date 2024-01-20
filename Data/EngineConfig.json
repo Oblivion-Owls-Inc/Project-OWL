@@ -1,51 +1,114 @@
 {
     "FixedFrameDuration": 0.016699999570846558,
-  "Systems": {
-    "PlatformSystem": {
-      "WindowSize": [
-        1200,
-        800
-      ],
-      "WindowName": "Dig Deeper",
-      "VSync": true
-    },
-    "InputSystem": {},
-    "SceneSystem": {
-      "BaseScenePath": "Data/Scenes/",
-      "NextSceneName": "Prototype"
-    },
-    "BehaviorSystem<Behavior>": {},
-    "BehaviorSystem<BulletBehavior>": {},
-    "BehaviorSystem<TilemapBase>": {},
-    "BehaviorSystem<RigidBody>": {},
-    "BehaviorSystem<WavesBehavior>": {},
-    "BehaviorSystem<GeneratorBehavior>": {},
-    "ParticleSystem": {},
-    "CollisionSystem": {
-      "CollisionLayerNames": [
-        "Terrain",
-        "Enemies",
-        "Player",
-        "Base",
-        "Projectiles"
-      ],
-      "CollisionSteps": 2
-    },
-    "BehaviorSystem<Animation>": {},
-    "BehaviorSystem<EffectAnimator>": {},
-    "EntitySystem": {},
-    "CameraSystem": {},
-    "RenderSystem": {},
-    "AudioSystem": {},
-    "CheatSystem": {},
-    "DebugSystem": {
-      "ShowFpsWindow": false,
-      "ShowDebugWindow": true
-    },
-    "AssetLibrary<Entity>": {},
-    "AssetLibrary<Sound>": {},
-    "AssetLibrary<Texture>": {},
-    "AssetLibrary<TransformAnimation>": {},
-    "AssetLibrary<AnimationAsset>": {}
-  }
+    "Systems": {
+        "PlatformSystem": {
+            "WindowSize": [
+                1200,
+                800
+            ],
+            "WindowName": "Dig Deeper",
+            "VSync": true
+        },
+        "InputSystem": {},
+        "SceneSystem": {
+            "BaseScenePath": "Data/Scenes/",
+            "NextSceneName": "ConstructionTest"
+        },
+        "BehaviorSystem<Behavior>": {},
+        "BehaviorSystem<BulletBehavior>": {},
+        "BehaviorSystem<RigidBody>": {},
+        "BehaviorSystem<WavesBehavior>": {},
+        "ComponentSystem<ItemComponent>": {},
+        "ParticleSystem": {},
+        "CollisionSystem": {
+            "CollisionLayerNames": [
+                "Terrain",
+                "Enemies",
+                "Player",
+                "Base",
+                "Projectiles"
+            ],
+            "CollisionSteps": 2
+        },
+        "BehaviorSystem<Animation>": {},
+        "BehaviorSystem<EffectAnimator>": {},
+        "EntitySystem": {},
+        "CameraSystem": {},
+        "RenderSystem": {},
+        "AudioSystem": {},
+        "CheatSystem": {},
+        "DebugSystem": {
+            "ShowFpsWindow": false,
+            "ShowDebugWindow": true
+        },
+        "AssetLibrary<Entity>": {},
+        "AssetLibrary<Sound>": {},
+        "AssetLibrary<Texture>": {},
+        "AssetLibrary<TransformAnimation>": {},
+        "AssetLibrary<AnimationAsset>": {},
+        "TileInfoSystem": {
+            "TileInfo": [
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    0
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                },
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    1
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                },
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    2
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                }
+            ]
+        }
+    }
 }
