@@ -38,9 +38,11 @@
 #include "WavesBehavior.h"
 #include "Animation.h"
 #include "Tilemap.h"
+#include "GeneratorBehavior.h"
 
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
+
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -359,6 +361,7 @@
         { "BehaviorSystem<Tilemap<int>>",          &addSystem< BehaviorSystem< Tilemap<int> > >           },
         { "BehaviorSystem<TilemapBase>",           &addSystem< BehaviorSystem< TilemapBase > >            },
         { "BehaviorSystem<WavesBehavior>",         &addSystem< BehaviorSystem< WavesBehavior > >          },
+        { "BehaviorSystem<GeneratorBehavior>",     &addSystem< BehaviorSystem< GeneratorBehavior > >      },
 
         { "AssetLibrary<Entity>",            &addSystem< AssetLibrarySystem< Entity > >                   },
         { "AssetLibrary<Sound>",             &addSystem< AssetLibrarySystem< Sound > >                    },

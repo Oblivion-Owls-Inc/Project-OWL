@@ -13,6 +13,7 @@
 #include "EnemyBehavior.h"
 #include "SceneSystem.h"
 #include "AudioPlayer.h"
+#include "BehaviorSystem.h"
 
 //-----------------------------------------------------------------------------
 // constructor / destructor 
@@ -22,12 +23,16 @@
 GeneratorBehavior::GeneratorBehavior() : BasicEntityBehavior(typeid(GeneratorBehavior))
 {
 	m_isActive = false;
+	m_radius = 0.0f;
+	m_depth = 0;
 }
 
 /// @brief  copy ctor
 GeneratorBehavior::GeneratorBehavior(const GeneratorBehavior& other) : BasicEntityBehavior(other)
 {
 	m_isActive = other.m_isActive;
+	m_radius = other.m_radius;
+	m_depth = other.m_depth;
 }
 
 /// @brief  dtor
@@ -48,7 +53,8 @@ Component* GeneratorBehavior::Clone() const
 /// @brief	initialize Generator
 void GeneratorBehavior::OnInit()
 {
-	BasicEntityBehavior::OnInit();
+	BehaviorSystem<GeneratorBehavior>::GetInstance()->AddBehavior(this);
+	//BasicEntityBehavior::OnInit();
 
 	GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
 		GetId(),
@@ -71,9 +77,17 @@ void GeneratorBehavior::OnInit()
 /// @brief	called on exit, handles loss state
 void GeneratorBehavior::OnExit()
 {
-	BasicEntityBehavior::OnExit();
+	BehaviorSystem<GeneratorBehavior>::GetInstance()->RemoveBehavior(this);
+	//BasicEntityBehavior::OnExit();
 }
 
+
+void GeneratorBehavior::Inspector()
+{
+	ImGui::InputFloat("Radius", &m_radius, 0.5f, 1.0f);
+	ImGui::InputInt("Depth", &m_depth, 1, 5);
+	BasicEntityBehavior::Inspector();
+}
 
 void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collisionData)
 {
@@ -110,12 +124,23 @@ void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collis
 ReadMethodMap<GeneratorBehavior> const GeneratorBehavior::s_ReadMethods =
 {
 	{ "Health",	  &readHealth},
-	
+	{ "Radius",	  &readRadius},
+	{ "Depth",	  &readDepth},
 };
 
 //-----------------------------------------------------------------------------
 // writing
 //-----------------------------------------------------------------------------
+
+void GeneratorBehavior::readRadius(nlohmann::ordered_json const& json)
+{
+	m_radius = Stream::Read<float>(json);
+}
+
+void GeneratorBehavior::readDepth(nlohmann::ordered_json const& json)
+{
+	m_depth = Stream::Read<int>(json);
+}
 
 /// @brief	write to json
 nlohmann::ordered_json GeneratorBehavior::Write() const
@@ -123,6 +148,8 @@ nlohmann::ordered_json GeneratorBehavior::Write() const
 	nlohmann::ordered_json data;
 
 	data["Health"] = m_Health.Write();
+	data["Radius"] = m_radius;
+	data["Depth"] = m_depth;
 
 
 	return data;

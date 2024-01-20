@@ -149,9 +149,7 @@
         { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         },
         { "UiElement"           , ComponentInfo< UiElement >()            },
         { "MiningLaser"         , ComponentInfo< MiningLaser >()          },
-
-        { "GeneratorBehavior"   , ComponentInfo< GeneratorBehavior >()    },
-        { "UiElement"           , ComponentInfo< UiElement >()            }
+        { "GeneratorBehavior"   , ComponentInfo< GeneratorBehavior >()    }
     };
 
 //-----------------------------------------------------------------------------

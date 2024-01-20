@@ -51,6 +51,15 @@ private:
     AudioPlayer* m_AudioPlayer = nullptr;
 
     bool m_isActive;
+    float m_radius;
+    int m_depth;
+
+//-----------------------------------------------------------------------------
+private: // inspector methods
+//-----------------------------------------------------------------------------
+
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -67,6 +76,12 @@ private: // reading
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
+
+    /// @brief read the power radius
+    void readRadius(nlohmann::ordered_json const& json);
+
+    /// @brief read the depth of the generator
+    void readDepth(nlohmann::ordered_json const& json);
 
 //-----------------------------------------------------------------------------
 public: // writing

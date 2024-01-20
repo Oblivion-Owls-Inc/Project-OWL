@@ -13,6 +13,7 @@
 #include "EnemyBehavior.h"
 #include "SceneSystem.h"
 #include "AudioPlayer.h"
+#include "GeneratorBehavior.h"
 
 //-----------------------------------------------------------------------------
 // constructor / destructor 
@@ -70,7 +71,8 @@ void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionDa
 	{
 		return;
 	}
-	
+	BasicEntityBehavior::GetHealth()->SetCurrent
+	(GetEntity()->GetComponent<GeneratorBehavior>()->GetHealth()->GetCurrent());
 	BasicEntityBehavior::TakeDamage(enemy->GetDamage());
 	if(m_AudioPlayer)
 	{

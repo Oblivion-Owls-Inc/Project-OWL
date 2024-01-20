@@ -216,6 +216,9 @@
     <Filter Include="Game\Behaviors\MiningLaser">
       <UniqueIdentifier>{f6265677-427f-4a02-b8f0-f148023cb81f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Behaviors\GeneratorBehavior">
+      <UniqueIdentifier>{f7c70975-e785-4543-98c2-edaa1fbf2d6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -467,6 +470,9 @@
     <ClCompile Include="Source\MiningLaser.cpp">
       <Filter>Game\Behaviors\MiningLaser</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GeneratorBehavior.cpp">
+      <Filter>Game\Behaviors\GeneratorBehavior</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -714,6 +720,9 @@
     </ClInclude>
     <ClInclude Include="Source\MiningLaser.h">
       <Filter>Game\Behaviors\MiningLaser</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GeneratorBehavior.h">
+      <Filter>Game\Behaviors\GeneratorBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
