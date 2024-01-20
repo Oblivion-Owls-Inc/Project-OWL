@@ -18,6 +18,12 @@ void Tilemap<int>::Inspector()
     int width = GetDimensions().x;
     int totalTiles = GetDimensions().x * GetDimensions().y;
 
+    glm::ivec2 dimensions = GetDimensions();
+    if ( ImGui::DragInt2( "Tilemap Size", &dimensions[0], 0.05f, 1, INT_MAX ) )
+    {
+        SetDimensions( dimensions );
+    }
+
     static std::string buffer;
     ImGui::InputTextMultiline( "Tilemap Data CSV", &buffer );
 

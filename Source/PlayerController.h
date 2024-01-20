@@ -81,12 +81,6 @@ private: // methods
     /// @brief  updates the mining laser
     void updateMiningLaser();
 
-    /// @brief  callback called when the MiningLaser breaks a tile
-    /// @param  tilemap - the tilemap that the tile was broken in
-    /// @param  tilePos - the position of the tile in the tilemap
-    /// @param  tileID  - the ID of the broken tile
-    void onMiningLaserBreakTile( Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int tileId );
-
 
 //-----------------------------------------------------------------------------
 private: // member variables

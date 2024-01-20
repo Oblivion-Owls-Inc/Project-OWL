@@ -11,8 +11,11 @@
 #include <cstdlib>
 #include <atomic>
 #include <typeindex>
+#include <random>
 
-#pragma warning(disable : 26451)
+#pragma warning( disable : 26451 )
+
+static std::default_random_engine __rng;
 
 /// @brief  returns a random float between min and max
 /// @param  min the minimum possible value
@@ -20,7 +23,16 @@
 /// @return the random value
 __inline float random( float min, float max )
 {
-    return rand() * (max - min) / RAND_MAX + min;
+    return std::uniform_real_distribution< float >( min, max )( __rng );
+}
+
+/// @brief  returns a random int between min and max
+/// @param  min the minimum possible value
+/// @param  max the maximum possible value
+/// @return the random value
+__inline int random( int min, int max )
+{
+    return std::uniform_int_distribution< int >( min, max )( __rng );
 }
 
 /// @brief  linear interpolation between two values

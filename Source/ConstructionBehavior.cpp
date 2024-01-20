@@ -14,6 +14,7 @@
 #include "Tilemap.h"
 #include "Sprite.h"
 #include "AudioPlayer.h"
+#include "Inventory.h"
 
 #include "AssetLibrarySystem.h"
 #include "Entity.h"
@@ -23,12 +24,123 @@
 
 #include "Engine.h"
 
-#include <climits>
-
-#include "Text.h"
-
 #include "Inspection.h"
 
+#include <climits>
+
+
+//-----------------------------------------------------------------------------
+// private: class BuildingInfo
+//-----------------------------------------------------------------------------
+
+
+    //-------------------------------------------------------------------------
+    // public: methods
+    //-------------------------------------------------------------------------
+
+
+        /// @brief  initializes this BuildingInfo
+        void ConstructionBehavior::BuildingInfo::Init()
+        {
+            M_Archetype = AssetLibrary< Entity >()->GetAsset( m_ArchetypeName );
+        }
+
+
+    //-------------------------------------------------------------------------
+    // public: inspection
+    //-------------------------------------------------------------------------
+
+
+        /// @brief  inspects this BuildingInfo
+        /// @return whether this BuildingInfo changed
+        bool ConstructionBehavior::BuildingInfo::Inspect()
+        {
+            bool changed = false;
+
+            if ( Inspection::SelectAssetFromLibrary< Entity >( "building archetype", &M_Archetype ) )
+            {
+                changed = true;
+                m_ArchetypeName = AssetLibrary< Entity >()->GetAssetName( M_Archetype );
+            }
+
+            changed = Inspection::InspectArray< ItemStack >(
+                "building cost",
+                &M_Cost,
+                []( ItemStack* itemStack ) -> bool
+                {
+                    return itemStack->Inspect();
+                }
+            ) || changed;
+
+            return changed;
+        }
+
+        
+    //-------------------------------------------------------------------------
+    // private: reading
+    //-------------------------------------------------------------------------
+
+        
+        /// @brief  reads the name of the archetype
+        /// @param  data    the json data to read from
+        void ConstructionBehavior::BuildingInfo::readArchetypeName( nlohmann::ordered_json const& data )
+        {
+            Stream::Read( m_ArchetypeName, data );
+        }
+
+        /// @brief  reads the cost of the building
+        /// @param  data    the json data to read from
+        void ConstructionBehavior::BuildingInfo::readCost( nlohmann::ordered_json const& data )
+        {
+            M_Cost.clear();
+
+            for ( auto const& costData : data )
+            {
+                ItemStack item;
+                Stream::Read( item, costData );
+                M_Cost.push_back( item );
+            }
+        }
+
+
+    //-------------------------------------------------------------------------
+    // public: reading / writing
+    //-------------------------------------------------------------------------
+
+
+        /// @brief  gets the map of read methods for this ConstructionBehavior
+        /// @return the map of read methods for this ConstructionBehavior
+        ReadMethodMap< ISerializable > const& ConstructionBehavior::BuildingInfo::GetReadMethods() const
+        {
+            static ReadMethodMap< BuildingInfo > const readMethods = {
+                { "ArchetypeName", &BuildingInfo::readArchetypeName },
+                { "Cost"         , &BuildingInfo::readCost          }
+            };
+
+            return (ReadMethodMap< ISerializable > const&)readMethods;
+        }
+
+
+        /// @brief  Write all ConstructionBehavior data to a JSON file.
+        /// @return The JSON file containing the ConstructionBehavior data.
+        nlohmann::ordered_json ConstructionBehavior::BuildingInfo::Write() const
+        {
+            nlohmann::ordered_json json;
+
+            nlohmann::ordered_json& costData = json[ "Cost" ];
+            for ( ItemStack const& itemStack : M_Cost )
+            {
+                costData.push_back( Stream::Write( itemStack ) );
+            }
+
+            json[ "ArchetypeName" ] = Stream::Write( m_ArchetypeName );
+
+            return json;
+        }
+
+
+    //-------------------------------------------------------------------------
+    
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
 //-----------------------------------------------------------------------------
@@ -49,9 +161,11 @@
     /// @brief  called once when entering the scene
     void ConstructionBehavior::OnInit()
     {
-        Behaviors< Behavior >()->AddBehavior( this );
+        Behaviors< Behavior >()->AddComponent( this );
 
-        m_PlayerTransform = Entities()->GetEntity( m_PlayerName )->GetComponent< Transform >();
+        Entity* m_PlayerEntity = Entities()->GetEntity( m_PlayerName );
+        m_PlayerTransform = m_PlayerEntity->GetComponent< Transform >();
+        m_PlayerInventory = m_PlayerEntity->GetComponent< Inventory >();
 
         m_TurretPlacementSound = Entities()->GetEntity( "TurretPlacementSound" )->GetComponent< AudioPlayer >();
 
@@ -62,13 +176,16 @@
         m_Transform = GetEntity()->GetComponent<Transform>();
         m_Sprite = GetEntity()->GetComponent<Sprite>();
 
-        m_ResourcesText = Entities()->GetEntity( m_ResourcesTextName )->GetComponent< Text >();
+        for ( BuildingInfo& buildingInfo : m_BuildingInfos )
+        {
+            buildingInfo.Init();
+        }
     }
 
     /// @brief  called once when exiting the scene
     void ConstructionBehavior::OnExit()
     {
-        Behaviors< Behavior >()->RemoveBehavior( this );
+        Behaviors< Behavior >()->RemoveComponent( this );
     }
 
     /// @brief  called every simulation frame
@@ -80,7 +197,6 @@
         tryPlaceBuilding();
 
         showBuildingPreview();
-        updateResourcesText();
     }
 
     /// @brief  displays this ConstructionBehavior in the Inspector
@@ -134,8 +250,8 @@
             m_BuildingIndex = i;
 
             // update preview sprite
-            m_Sprite->SetTexture( m_BuildingInfos[ i ].archetype->GetComponent<Sprite>()->GetTexture() );
-            m_Transform->SetScale( m_BuildingInfos[ i ].archetype->GetComponent<Transform>()->GetScale() );
+            m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
+            m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
 
             return;
         }
@@ -173,7 +289,7 @@
         }
 
         // not enough funds
-        if ( m_BuildingInfos[ m_BuildingIndex ].cost > m_CurrentResources )
+        if ( m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost ) == false )
         {
             return false;
         }
@@ -185,7 +301,7 @@
         }
 
         // target overlaps a tile
-        if ( m_Tilemap->GetTile( m_TargetTilePos ) != 0 )
+        if ( m_Tilemap->GetTile( m_TargetTilePos ) != -1 )
         {
             return false;
         }
@@ -208,17 +324,17 @@
     /// @brief  palces the currently selected building
     void ConstructionBehavior::placeBuilding()
     {
-        // TODO: give feedback that the building was placed
 
-        Entity* building = m_BuildingInfos[ m_BuildingIndex ].archetype->Clone();
-        building->GetComponent<Transform>()->SetTranslation( m_TargetPos );
+        Entity* building = m_BuildingInfos[ m_BuildingIndex ].M_Archetype->Clone();
+        building->GetComponent< Transform >()->SetTranslation( m_TargetPos );
         
         Entities()->AddEntity( building );
         m_Buildings->SetTile( m_TargetTilePos, building );
         
-        m_TurretPlacementSound->Play();
+        m_PlayerInventory->RemoveItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost );
 
-        m_CurrentResources -= m_BuildingInfos[ m_BuildingIndex ].cost;
+        // TODO: give feedback that the building was placed
+        m_TurretPlacementSound->Play();
     }
 
 
@@ -253,12 +369,6 @@
 
     }
 
-    /// @brief  updates the resources text UI
-    void ConstructionBehavior::updateResourcesText()
-    {
-        m_ResourcesText->SetText( m_ResourcesTextPrefix + std::to_string( m_CurrentResources ) );
-    }
-
 
 //-----------------------------------------------------------------------------
 // private: inspector methods
@@ -273,22 +383,24 @@
             &m_BuildingInfos,
             []( BuildingInfo* buildingInfo ) -> bool
             {
-                bool changed = false;
+                return buildingInfo->Inspect();
 
-                ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.35f );
-                if ( Inspection::SelectAssetFromLibrary( "Archetype", &buildingInfo->archetype ) )
-                {
-                    changed = true;
-                }
-
-                ImGui::SameLine();
-                ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.1f );
-                if ( ImGui::DragInt( "Cost", &buildingInfo->cost, 0.5f, 0, INT_MAX ) )
-                {
-                    changed = true;
-                }
-
-                return changed;
+                // bool changed = false;
+                // 
+                // ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.35f );
+                // if ( Inspection::SelectAssetFromLibrary( "Archetype", &buildingInfo->M_Archetype ) )
+                // {
+                //     changed = true;
+                // }
+                // 
+                // ImGui::SameLine();
+                // ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.1f );
+                // if ( ImGui::DragInt( "Cost", &buildingInfo->cost, 0.5f, 0, INT_MAX ) )
+                // {
+                //     changed = true;
+                // }
+                // 
+                // return changed;
             }
         );
     }
@@ -311,54 +423,26 @@
         ImGui::ColorEdit3( "Preview Color - NonPlaceable", &m_PreviewColorNonPlaceable[ 0 ] );
 
         ImGui::DragFloat( "Preview Alpha", &m_PreviewAlpha, 0.05f, 0.0f, 1.0f );
-
-        ImGui::DragInt( "Current Resources", &m_CurrentResources, 0.25f, 0, INT_MAX );
-
-        ImGui::InputText( "Resources Text Prefix", &m_ResourcesTextPrefix );
     }
 
     /// @brief  inspects the references to other entities
     void ConstructionBehavior::inspectEntityReferences()
     {
 
-        if ( ImGui::BeginCombo( "Player Entity", m_PlayerName.c_str() ) )
+        Entity* playerEntity = m_PlayerTransform->GetEntity();
+        if ( Inspection::SelectEntityFromScene( "player entity", &playerEntity ) )
         {
-            for ( Entity const * entity : Entities()->GetEntities() )
-            {
-                if ( ImGui::Selectable( entity->GetName().c_str(), m_PlayerName == entity->GetName() ) )
-                {
-                    m_PlayerName = entity->GetName();
-                    m_PlayerTransform = entity->GetComponent< Transform >();
-                }
-            }
-            ImGui::EndCombo();
+            m_PlayerName = playerEntity->GetName();
+            m_PlayerTransform = playerEntity->GetComponent< Transform >();
+            m_PlayerInventory = playerEntity->GetComponent< Inventory >();
         }
         
-        if ( ImGui::BeginCombo( "Tilemap Entity", m_TilemapName.c_str() ) )
+        Entity* tilemapEntity = m_Tilemap->GetEntity();
+        if ( Inspection::SelectEntityFromScene( "player entity", &tilemapEntity ) )
         {
-            for ( Entity* entity : Entities()->GetEntities() )
-            {
-                if ( ImGui::Selectable( entity->GetName().c_str(), m_TilemapName == entity->GetName() ) )
-                {
-                    m_TilemapName = entity->GetName();
-                    m_Tilemap = entity->GetComponent< Tilemap<int> >();
-                    m_Buildings = entity->GetComponent< Tilemap< Entity* > >();
-                }
-            }
-            ImGui::EndCombo();
-        }
-
-        if ( ImGui::BeginCombo( "Resources Text Entity", m_ResourcesTextName.c_str() ) )
-        {
-            for ( Entity* entity : Entities()->GetEntities() )
-            {
-                if ( ImGui::Selectable( entity->GetName().c_str(), m_ResourcesTextName == entity->GetName() ) )
-                {
-                    m_ResourcesTextName = entity->GetName();
-                    m_ResourcesText = entity->GetComponent< Text >();
-                }
-            }
-            ImGui::EndCombo();
+            m_TilemapName = tilemapEntity->GetName();
+            m_Tilemap = tilemapEntity->GetComponent< Tilemap< int > >();
+            m_Buildings = tilemapEntity->GetComponent< Tilemap< Entity* > >();
         }
 
     }
@@ -371,12 +455,12 @@
     /// @param  data    the json data to read from
     void ConstructionBehavior::readBuildings( nlohmann::ordered_json const& data )
     {
-        for ( nlohmann::json const& building : data )
+        m_BuildingInfos.clear();
+        for ( nlohmann::json const& buildingData : data )
         {
-            m_BuildingInfos.push_back( {
-                AssetLibrary< Entity >()->GetAsset( building[ "Name" ] ),
-                building[ "Cost" ]
-            } );
+            BuildingInfo buildingInfo;
+            Stream::Read( buildingInfo, buildingData );
+            m_BuildingInfos.push_back( buildingInfo );
         }
     }
 
@@ -425,22 +509,6 @@
     }
 
 
-    /// @brief  reads the current resources
-    /// @param  data    the json data to read from
-    void ConstructionBehavior::readCurrentResources( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_CurrentResources, data );
-    }
-
-
-    /// @brief  reads the resources text prefix
-    /// @param  data    the json data to read from
-    void ConstructionBehavior::readResourcesTextPrefix( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_ResourcesTextPrefix, data );
-    }
-
-
     /// @brief  read the tilemap name
     /// @param  data    the json data to read from
     void ConstructionBehavior::readTilemapName( nlohmann::ordered_json const& data )
@@ -455,29 +523,29 @@
         Stream::Read( m_PlayerName, data );
     }
 
-    /// @brief  reads the resources text entity name
-    /// @param  data    the json data to read from
-    void ConstructionBehavior::readResourcesTextName( nlohmann::ordered_json const& data )
+//-----------------------------------------------------------------------------
+// public: reading / writing
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    ReadMethodMap< ISerializable > const& ConstructionBehavior::GetReadMethods() const
     {
-        Stream::Read( m_ResourcesTextName, data );
+        static ReadMethodMap< ConstructionBehavior > const readMethods = {
+            { "Buildings"               , &ConstructionBehavior::readBuildings                },
+            { "BuildingIndex"           , &ConstructionBehavior::readBuildingIndex            },
+            { "PlacementRange"          , &ConstructionBehavior::readPlacementRange           },
+            { "PreviewFadeOutRadius"    , &ConstructionBehavior::readPreviewFadeOutRadius     },
+            { "PreviewColorPlaceable"   , &ConstructionBehavior::readPreviewColorPlaceable    },
+            { "PreviewColorNonPlaceable", &ConstructionBehavior::readPreviewColorNonPlaceable },
+            { "PreviewAlpha"            , &ConstructionBehavior::readPreviewAlpha             },
+            { "TilemapName"             , &ConstructionBehavior::readTilemapName              },
+            { "PlayerName"              , &ConstructionBehavior::readPlayerName               },
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
     }
-
-
-    /// @brief  map of the read methods for this Component
-    ReadMethodMap< ConstructionBehavior > ConstructionBehavior::s_ReadMethods = {
-        { "Buildings"               , &readBuildings                },
-        { "BuildingIndex"           , &readBuildingIndex            },
-        { "PlacementRange"          , &readPlacementRange           },
-        { "PreviewFadeOutRadius"    , &readPreviewFadeOutRadius     },
-        { "PreviewColorPlaceable"   , &readPreviewColorPlaceable    },
-        { "PreviewColorNonPlaceable", &readPreviewColorNonPlaceable },
-        { "PreviewAlpha"            , &readPreviewAlpha             },
-        { "CurrentResources"        , &readCurrentResources         },
-        { "ResourcesTextPrefix"     , &readResourcesTextPrefix      },
-        { "TilemapName"             , &readTilemapName              },
-        { "PlayerName"              , &readPlayerName               },
-        { "ResourcesTextName"       , &readResourcesTextName        }
-    };
 
 
 //-----------------------------------------------------------------------------
@@ -490,11 +558,10 @@
     {
         nlohmann::ordered_json json;
 
-        nlohmann::ordered_json& buildings = json[ "Buildings" ];
-        for ( int i = 0; i < m_BuildingInfos.size(); ++i )
+        nlohmann::ordered_json& buildingData = json[ "Buildings" ];
+        for ( BuildingInfo const& building : m_BuildingInfos )
         {
-            buildings[ i ][ "Name" ] = AssetLibrary< Entity >()->GetAssetName( m_BuildingInfos[ i ].archetype );
-            buildings[ i ][ "Cost" ] = m_BuildingInfos[ i ].cost;
+            buildingData.push_back( Stream::Write( building ) );
         }
 
         json[ "BuildingIndex"            ] = Stream::Write( m_BuildingIndex            );
@@ -503,19 +570,29 @@
         json[ "PreviewColorPlaceable"    ] = Stream::Write( m_PreviewColorPlaceable    );
         json[ "PreviewColorNonPlaceable" ] = Stream::Write( m_PreviewColorNonPlaceable );
         json[ "PreviewAlpha"             ] = Stream::Write( m_PreviewAlpha             );
-        json[ "CurrentResources"         ] = Stream::Write( m_CurrentResources         );
-        json[ "ResourcesTextPrefix"      ] = Stream::Write( m_ResourcesTextPrefix      );
         json[ "TilemapName"              ] = Stream::Write( m_TilemapName              );
         json[ "PlayerName"               ] = Stream::Write( m_PlayerName               );
-        json[ "ResourcesTextName"        ] = Stream::Write( m_ResourcesTextName        );
 
         return json;
+    }
+
+//-----------------------------------------------------------------------------
+// public: copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  clones this ConstructionBehavior
+    /// @return the newly created clone of this ConstructionBehavior
+    ConstructionBehavior* ConstructionBehavior::Clone() const
+    {
+        return new ConstructionBehavior( *this );
     }
 
 
 //-----------------------------------------------------------------------------
 // private: copying
 //-----------------------------------------------------------------------------
+
 
     /// @brief  copy-constructor for the ConstructionBehavior
     /// @param  other   the other ConstructionBehavior to copy
@@ -528,11 +605,9 @@
         m_PreviewColorPlaceable    ( other.m_PreviewColorPlaceable    ),
         m_PreviewColorNonPlaceable ( other.m_PreviewColorNonPlaceable ),
         m_PreviewAlpha             ( other.m_PreviewAlpha             ),
-        m_CurrentResources         ( other.m_CurrentResources         ),
-        m_ResourcesTextPrefix      ( other.m_ResourcesTextPrefix      ),
         m_TilemapName              ( other.m_TilemapName              ),
-        m_PlayerName               ( other.m_PlayerName               ),
-        m_ResourcesTextName        ( other.m_ResourcesTextName        )
+        m_PlayerName               ( other.m_PlayerName               )
     {}
+
 
 //-----------------------------------------------------------------------------

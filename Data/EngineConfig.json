@@ -12,13 +12,13 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Prototype"
+            "NextSceneName": "ConstructionTest"
         },
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<BulletBehavior>": {},
-        "BehaviorSystem<TilemapBase>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
+        "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
         "LightingSystem": {
             "Enabled": true,
@@ -49,6 +49,70 @@
         "AssetLibrary<Sound>": {},
         "AssetLibrary<Texture>": {},
         "AssetLibrary<TransformAnimation>": {},
-        "AssetLibrary<AnimationAsset>": {}
+        "AssetLibrary<AnimationAsset>": {},
+        "TileInfoSystem": {
+            "TileInfo": [
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    0
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                },
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    1
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                },
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    2
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                }
+            ]
+        }
     }
 }

@@ -69,9 +69,6 @@
     <Filter Include="Engine\Systems\CollisonSystem">
       <UniqueIdentifier>{e4c1899c-1ddc-4929-bad9-280620c375f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Systems\BehaviorSystem">
-      <UniqueIdentifier>{9409e403-6435-4204-8018-078cfa5ac289}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Systems\DebugSystem">
       <UniqueIdentifier>{35a2fdc3-17cc-41a8-9530-6bd146dfe9e7}</UniqueIdentifier>
     </Filter>
@@ -111,15 +108,6 @@
     <Filter Include="Game\Scenes\SandboxSystem">
       <UniqueIdentifier>{2e6eff95-6e99-4d15-bb46-87a201aa10e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Behaviors">
-      <UniqueIdentifier>{845055ef-3dd8-4f1c-a1b1-807e4ac7410c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Behaviors\PlayerController">
-      <UniqueIdentifier>{b63ef8e3-7039-4e9e-b113-413ff8380423}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Behaviors\Movement Behavior">
-      <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Framework\Curve">
       <UniqueIdentifier>{d2fc6db3-659e-4e13-91ec-b3a530965a57}</UniqueIdentifier>
     </Filter>
@@ -132,17 +120,11 @@
     <Filter Include="Engine\Entity\Component\Behavior\Animation\Asset">
       <UniqueIdentifier>{4ef39645-2d4e-4936-8ebf-80abd5fb3eb9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Behaviors\TurretBehavior">
-      <UniqueIdentifier>{e523f30f-0b00-4ea5-b75b-339074d48b3b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Behavior\EffectAnimator\Asset">
       <UniqueIdentifier>{a8d430fd-f8d6-4b89-8727-92c43de633df}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Entity\Component\Sprite\TilemapSprite">
       <UniqueIdentifier>{93b0b515-220d-4585-9469-d259306fc6a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Behaviors\FollowingBehavior">
-      <UniqueIdentifier>{d99a05fd-9afb-43c2-9c34-f18081c8c831}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Entity\Component\Text">
       <UniqueIdentifier>{388d999c-b943-4ddc-a7c9-6d32f6cde84c}</UniqueIdentifier>
@@ -156,29 +138,14 @@
     <Filter Include="Engine\Entity\Component\Pathfinder">
       <UniqueIdentifier>{09f5ca7d-4323-4aac-b628-c6ed0790810d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Behavior\Tilemap">
-      <UniqueIdentifier>{7c0f06d8-341a-42ab-ad77-109c905fe568}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Behaviors\ConstructionBehavior">
-      <UniqueIdentifier>{278dd904-bde9-4181-bd98-8a632d0db159}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\StaticBody">
       <UniqueIdentifier>{cb22a236-e348-4362-b443-aa70c5bc5671}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Entity\Component\Camera">
       <UniqueIdentifier>{3b8f4986-5f51-4a7a-a2e4-15aa9b2b6fcb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Behaviors\EnemyBehavior">
-      <UniqueIdentifier>{2f24013c-89a2-4584-ad87-757e4e412532}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Behaviors\BulletBehavior">
-      <UniqueIdentifier>{42316e6c-49e4-4c2f-a9b0-0ef8aaa91507}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Framework\Pool">
       <UniqueIdentifier>{a531bfc4-81f5-4864-9385-b9a1d92b2729}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Behaviors\WavesBehavior">
-      <UniqueIdentifier>{90ac62ba-a1a3-4ca9-8797-8d0f816804f5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Systems\ParticleSystem">
       <UniqueIdentifier>{82d6010a-5f55-4d06-bf33-4e48aa03a03b}</UniqueIdentifier>
@@ -188,12 +155,6 @@
     </Filter>
     <Filter Include="Game\BaseEntityBehavior">
       <UniqueIdentifier>{5821ef37-47bc-4d79-a76b-4e247b51bed3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Behaviors\BaseBehavior">
-      <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Behaviors\BasicEntityBehavior">
-      <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Framework\Inspection">
       <UniqueIdentifier>{973c8ce7-ba72-4cdf-8b08-0b9b9404380f}</UniqueIdentifier>
@@ -213,14 +174,80 @@
     <Filter Include="Data\Scenes">
       <UniqueIdentifier>{3f9b115a-55b0-494f-8bdd-55feec799a78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Behaviors\MiningLaser">
+    <Filter Include="Engine\Entity\Component\Tilemap">
+      <UniqueIdentifier>{7c0f06d8-341a-42ab-ad77-109c905fe568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Systems">
+      <UniqueIdentifier>{652e782e-38dc-472a-9d70-b889714152ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Systems\TileInfoSystem">
+      <UniqueIdentifier>{25634f32-48ea-4015-9397-0bc080155399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\ComponentSystem">
+      <UniqueIdentifier>{a7e2d2bc-ae9c-48a2-b9de-d8b83f5aec55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\ComponentSystem\BehaviorSystem">
+      <UniqueIdentifier>{9409e403-6435-4204-8018-078cfa5ac289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components">
+      <UniqueIdentifier>{6170e08d-05e7-4636-8d26-cfeadc90b03d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\ItemComponent">
+      <UniqueIdentifier>{fada79bd-b934-4b19-9d91-2fa90f20e3c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors">
+      <UniqueIdentifier>{845055ef-3dd8-4f1c-a1b1-807e4ac7410c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\PlayerController">
+      <UniqueIdentifier>{b63ef8e3-7039-4e9e-b113-413ff8380423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\Movement Behavior">
+      <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\TurretBehavior">
+      <UniqueIdentifier>{e523f30f-0b00-4ea5-b75b-339074d48b3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\FollowingBehavior">
+      <UniqueIdentifier>{d99a05fd-9afb-43c2-9c34-f18081c8c831}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\ConstructionBehavior">
+      <UniqueIdentifier>{278dd904-bde9-4181-bd98-8a632d0db159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\EnemyBehavior">
+      <UniqueIdentifier>{2f24013c-89a2-4584-ad87-757e4e412532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\BulletBehavior">
+      <UniqueIdentifier>{42316e6c-49e4-4c2f-a9b0-0ef8aaa91507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\WavesBehavior">
+      <UniqueIdentifier>{90ac62ba-a1a3-4ca9-8797-8d0f816804f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\BaseBehavior">
+      <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\BasicEntityBehavior">
+      <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\MiningLaser">
       <UniqueIdentifier>{f6265677-427f-4a02-b8f0-f148023cb81f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Light">
-      <UniqueIdentifier>{366ef2c8-f768-4d24-ac1a-b4e689e84f67}</UniqueIdentifier>
+    <Filter Include="Game\Components\TilemapItemDropper">
+      <UniqueIdentifier>{21c5aced-5a07-43a4-b1e5-740a7a52cdb8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Systems\LightingSystem">
-      <UniqueIdentifier>{e4aacf16-a18f-4cad-bc1c-df9cba9718c0}</UniqueIdentifier>
+    <Filter Include="Game\Item Handling">
+      <UniqueIdentifier>{7e91e06d-aaca-4ba7-903b-bee8a49b963d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Item Handling\LootTable">
+      <UniqueIdentifier>{1e63c73f-ca76-42cb-a3f3-c435918e4c13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Item Handling\ItemStack">
+      <UniqueIdentifier>{918c3560-ae25-48d0-a7dc-0de2c8568ec6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Inventory">
+      <UniqueIdentifier>{2a1550b3-c441-4158-b231-e07cb944055c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\ItemCollector">
+      <UniqueIdentifier>{4d1ec298-7749-4f83-8e8f-ee15a8eedd1f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -306,7 +333,7 @@
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\MovementAI.cpp">
-      <Filter>Game\Behaviors\Movement Behavior</Filter>
+      <Filter>Game\Components\Behaviors\Movement Behavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
@@ -320,14 +347,8 @@
     <ClCompile Include="Source\CircleCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\CircleCollider</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BehaviorSystem.cpp">
-      <Filter>Engine\Systems\BehaviorSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Component.cpp">
       <Filter>Engine\Entity\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BehaviorSystem.cpp">
-      <Filter>Engine\Systems\BehaviorSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
@@ -369,7 +390,7 @@
       <Filter>Source Files\imgui</Filter>
     </ClCompile>
     <ClCompile Include="Source\PlayerController.cpp">
-      <Filter>Game\Behaviors\PlayerController</Filter>
+      <Filter>Game\Components\Behaviors\PlayerController</Filter>
     </ClCompile>
     <ClCompile Include="Source\CollisionSystem.cpp">
       <Filter>Engine\Systems\CollisonSystem</Filter>
@@ -378,7 +399,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\TurretBehavior.cpp">
-      <Filter>Game\Behaviors\TurretBehavior</Filter>
+      <Filter>Game\Components\Behaviors\TurretBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\Stream.cpp">
       <Filter>Engine\Framework\Serialization</Filter>
@@ -393,13 +414,13 @@
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tilemap.t.cpp">
-      <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
+      <Filter>Engine\Entity\Component\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClCompile>
     <ClCompile Include="Source\FollowingBehavior.cpp">
-      <Filter>Game\Behaviors\FollowingBehavior</Filter>
+      <Filter>Game\Components\Behaviors\FollowingBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\Text.cpp">
       <Filter>Engine\Entity\Component\Text</Filter>
@@ -411,7 +432,7 @@
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClCompile>
     <ClCompile Include="Source\ConstructionBehavior.cpp">
-      <Filter>Game\Behaviors\ConstructionBehavior</Filter>
+      <Filter>Game\Components\Behaviors\ConstructionBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\StaticBody.cpp">
       <Filter>Engine\Entity\Component\StaticBody</Filter>
@@ -420,16 +441,16 @@
       <Filter>Engine\Entity\Component\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Source\EnemyBehavior.cpp">
-      <Filter>Game\Behaviors\EnemyBehavior</Filter>
+      <Filter>Game\Components\Behaviors\EnemyBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\BulletBehavior.cpp">
-      <Filter>Game\Behaviors\BulletBehavior</Filter>
+      <Filter>Game\Components\Behaviors\BulletBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\Pool.cpp">
       <Filter>Engine\Framework\Pool</Filter>
     </ClCompile>
     <ClCompile Include="Source\WavesBehavior.cpp">
-      <Filter>Game\Behaviors\WavesBehavior</Filter>
+      <Filter>Game\Components\Behaviors\WavesBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\Stream.t.cpp">
       <Filter>Engine\Framework\Serialization</Filter>
@@ -441,19 +462,19 @@
       <Filter>Engine\Systems\ParticleSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\BaseBehavior.cpp">
-      <Filter>Game\Behaviors\BaseBehavior</Filter>
+      <Filter>Game\Components\Behaviors\BaseBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\BasicEntityBehavior.cpp">
-      <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
+      <Filter>Game\Components\Behaviors\BasicEntityBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\Inspection.cpp">
       <Filter>Engine\Framework\Inspection</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tilemap.cpp">
-      <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
+      <Filter>Engine\Entity\Component\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="Source\WavesInspector.cpp">
-      <Filter>Game\Behaviors\WavesBehavior</Filter>
+      <Filter>Game\Components\Behaviors\WavesBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\CheatSystem.cpp">
       <Filter>Engine\Systems\CheatSystem</Filter>
@@ -471,13 +492,28 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\MiningLaser.cpp">
-      <Filter>Game\Behaviors\MiningLaser</Filter>
+      <Filter>Game\Components\Behaviors\MiningLaser</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Light.cpp">
-      <Filter>Engine\Entity\Component\Light</Filter>
+    <ClCompile Include="Source\LootTable.cpp">
+      <Filter>Game\Item Handling\LootTable</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LightingSystem.cpp">
-      <Filter>Engine\Systems\LightingSystem</Filter>
+    <ClCompile Include="Source\TileInfoSystem.cpp">
+      <Filter>Game\Systems\TileInfoSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ItemComponent.cpp">
+      <Filter>Game\Components\ItemComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ItemStack.cpp">
+      <Filter>Game\Item Handling\ItemStack</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TilemapItemDropper.cpp">
+      <Filter>Game\Components\TilemapItemDropper</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Inventory.cpp">
+      <Filter>Game\Components\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ItemCollector.cpp">
+      <Filter>Game\Components\Behaviors\ItemCollector</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -578,13 +614,13 @@
       <Filter>Engine\Entity\Component\Collider</Filter>
     </ClInclude>
     <ClInclude Include="Source\BehaviorSystem.h">
-      <Filter>Engine\Systems\BehaviorSystem</Filter>
+      <Filter>Engine\Systems\ComponentSystem\BehaviorSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\ComponentFactory.h">
       <Filter>Engine\Entity\Component</Filter>
     </ClInclude>
     <ClInclude Include="Source\MovementAI.h">
-      <Filter>Game\Behaviors\Movement Behavior</Filter>
+      <Filter>Game\Components\Behaviors\Movement Behavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\EntitySystem.h">
       <Filter>Engine\Systems\EntitySystem</Filter>
@@ -629,7 +665,7 @@
       <Filter>Engine\Systems\CameraSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayerController.h">
-      <Filter>Game\Behaviors\PlayerController</Filter>
+      <Filter>Game\Components\Behaviors\PlayerController</Filter>
     </ClInclude>
     <ClInclude Include="Source\Animation.h">
       <Filter>Engine\Entity\Component\Behavior\Animation</Filter>
@@ -638,7 +674,7 @@
       <Filter>Engine\Systems\CollisonSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\TurretBehavior.h">
-      <Filter>Game\Behaviors\TurretBehavior</Filter>
+      <Filter>Game\Components\Behaviors\TurretBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\Stream.h">
       <Filter>Engine\Framework\Serialization</Filter>
@@ -653,13 +689,13 @@
       <Filter>Engine\Entity\Component\Behavior\EffectAnimator\Asset</Filter>
     </ClInclude>
     <ClInclude Include="Source\Tilemap.h">
-      <Filter>Engine\Entity\Component\Behavior\Tilemap</Filter>
+      <Filter>Engine\Entity\Component\Tilemap</Filter>
     </ClInclude>
     <ClInclude Include="Source\TilemapSprite.h">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClInclude>
     <ClInclude Include="Source\FollowingBehavior.h">
-      <Filter>Game\Behaviors\FollowingBehavior</Filter>
+      <Filter>Game\Components\Behaviors\FollowingBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\Text.h">
       <Filter>Engine\Entity\Component\Text</Filter>
@@ -674,7 +710,7 @@
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClInclude>
     <ClInclude Include="Source\ConstructionBehavior.h">
-      <Filter>Game\Behaviors\ConstructionBehavior</Filter>
+      <Filter>Game\Components\Behaviors\ConstructionBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\StaticBody.h">
       <Filter>Engine\Entity\Component\StaticBody</Filter>
@@ -683,16 +719,16 @@
       <Filter>Engine\Entity\Component\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Source\EnemyBehavior.h">
-      <Filter>Game\Behaviors\EnemyBehavior</Filter>
+      <Filter>Game\Components\Behaviors\EnemyBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\BulletBehavior.h">
-      <Filter>Game\Behaviors\BulletBehavior</Filter>
+      <Filter>Game\Components\Behaviors\BulletBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\Pool.h">
       <Filter>Engine\Framework\Pool</Filter>
     </ClInclude>
     <ClInclude Include="Source\WavesBehavior.h">
-      <Filter>Game\Behaviors\WavesBehavior</Filter>
+      <Filter>Game\Components\Behaviors\WavesBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\Emitter.h">
       <Filter>Engine\Entity\Component\Emitter</Filter>
@@ -701,10 +737,10 @@
       <Filter>Engine\Systems\ParticleSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\BaseBehavior.h">
-      <Filter>Game\Behaviors\BaseBehavior</Filter>
+      <Filter>Game\Components\Behaviors\BaseBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\BasicEntityBehavior.h">
-      <Filter>Game\Behaviors\BasicEntityBehavior</Filter>
+      <Filter>Game\Components\Behaviors\BasicEntityBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\Inspection.h">
       <Filter>Engine\Framework\Inspection</Filter>
@@ -725,21 +761,36 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\MiningLaser.h">
-      <Filter>Game\Behaviors\MiningLaser</Filter>
+      <Filter>Game\Components\Behaviors\MiningLaser</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Light.h">
-      <Filter>Engine\Entity\Component\Light</Filter>
+    <ClInclude Include="Source\TileInfoSystem.h">
+      <Filter>Game\Systems\TileInfoSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LightingSystem.h">
-      <Filter>Engine\Systems\LightingSystem</Filter>
+    <ClInclude Include="Source\LootTable.h">
+      <Filter>Game\Item Handling\LootTable</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ItemComponent.h">
+      <Filter>Game\Components\ItemComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ComponentSystem.h">
+      <Filter>Engine\Systems\ComponentSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TilemapItemDropper.h">
+      <Filter>Game\Components\TilemapItemDropper</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ItemStack.h">
+      <Filter>Game\Item Handling\ItemStack</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Inventory.h">
+      <Filter>Game\Components\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ItemCollector.h">
+      <Filter>Game\Components\Behaviors\ItemCollector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
       <Filter>Data</Filter>
-    </None>
-    <None Include="Data\Scenes\Prototype.scene.json">
-      <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\GameOver.scene.json">
       <Filter>Data\Scenes</Filter>
@@ -750,5 +801,7 @@
     <None Include="Data\Scenes\Template.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
+    <None Include="Data\Scenes\Prototype.scene.json" />
+    <None Include="Data\Scenes\ConstructionTest.scene.json" />
   </ItemGroup>
 </Project>
