@@ -30,7 +30,6 @@ void LightingSystem::OnInit()
     Renderer()->AddShader("lights", new Shader("Data/shaders/vshader.vert", "Data/shaders/lighting.frag"));
     Renderer()->AddShader("spotlight", new Shader("Data/shaders/vshader.vert", "Data/shaders/spotlight.frag"));
     Platform()->AddOnWindowResizeCallback( GetId(), std::bind(&LightingSystem::reallocTexArray, this) );
-    //reallocTexArray();
     glGenFramebuffers(1, &m_FBO);
 }
 
@@ -61,19 +60,30 @@ void LightingSystem::OnUpdate(float dt)
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
     // render spotlights. one per layer.
-    for (size_t i=0; i<m_LightSources.size(); ++i)
+    size_t size = GetComponents().size();
+    if (size != m_PrevSize)
     {
-        glm::vec4 pos = glm::vec4( m_LightSources[i]->GetOffset(), 0, 1 );
-        Transform* pt = m_LightSources[i]->GetEntity()->GetComponent<Transform>();
+        reallocTexArray();
+        size = m_PrevSize;
+    }
+    for (size_t i=0; i<size; ++i)
+    {
+        Light &thislight = *GetComponents()[i];
+
+        if (thislight.GetRadius() > 3.0f || thislight.GetStrength() > 2.0f)
+            thislight.GetRadius();
+
+        glm::vec4 pos = glm::vec4( thislight.GetOffset(), 0, 1 );
+        Transform* pt = GetComponents()[i]->GetEntity()->GetComponent<Transform>();
         if (pt)
             pos += glm::vec4(pt->GetTranslation(), 0, 0);
 
-        glUniform1f(spotShader->GetUniformID("light_strength"), m_LightSources[i]->GetStrength());
+        glUniform1f(spotShader->GetUniformID("light_strength"), thislight.GetStrength());
 
         // convert position and radius to screen dimensions, set them on the shader
         pos = m_W2S * pos;
         glUniform2f(spotShader->GetUniformID("light_pos"), pos.x, pos.y);
-        glUniform1f(spotShader->GetUniformID("light_radius"), m_LightSources[i]->GetRadius() * 
+        glUniform1f(spotShader->GetUniformID("light_radius"), thislight.GetRadius() *
                                                               m_W2S[0][0]);
             // this scaling of the radius won't work if the camera is rotated.
             // then again, will we ever rotate it?
@@ -112,8 +122,7 @@ void LightingSystem::OnSceneInit()
 
 /// @brief  Called when exiting a scene
 void LightingSystem::OnSceneExit() 
-{ 
-    m_LightSources.clear();
+{
     Renderer()->RemoveSprite(m_Sprite);
 }
 
@@ -129,39 +138,15 @@ void LightingSystem::DebugWindow()
     if ( ImGui::InputInt("Layer", &m_ShadowLayer))
         m_Sprite->SetLayer(m_ShadowLayer);
 
+    int lightcount = (int)GetComponents().size();
+    ImGui::InputInt("Active Light Count", &lightcount);
+
     ImGui::End();
 
     SetDebugEnable(showWindow);
 }
 
 
-//-----------------------------------------------------------------------------
-//              Public methods
-//-----------------------------------------------------------------------------
-
-/// @brief        Adds a new light source to keep track of.
-/// @param light  Light component
-/// @return       Index of the added light
-int LightingSystem::AddLightSource(Light* light)
-{
-    m_LightSources.push_back(light);
-    reallocTexArray();
-
-    return (int)m_LightSources.size() - 1;
-}
-
-
-void LightingSystem::RemoveLightSource(int index)
-{
-    if (index < (int)m_LightSources.size())
-    m_LightSources.erase(m_LightSources.begin() + index);
-}
-
-
-
-//-----------------------------------------------------------------------------
-//              Helpers
-//-----------------------------------------------------------------------------
 
 /// @brief  Reallocates texture array - for when the amount of lights or the
 ///         screen resolution changes. (This is why Ligthing System keeps track of it,
@@ -176,12 +161,14 @@ void LightingSystem::reallocTexArray()
     glGenTextures(1, &m_TextureArrayID);
     glBindTexture(GL_TEXTURE_2D_ARRAY, m_TextureArrayID);
     glm::ivec2 dims = Platform()->GetWindowDimensions();
-    glTexStorage3D(GL_TEXTURE_2D_ARRAY, 1, GL_RGBA8, dims.x, dims.y, (GLsizei)m_LightSources.size());
+    glTexStorage3D(GL_TEXTURE_2D_ARRAY, 1, GL_RGBA8, dims.x, dims.y, (GLsizei)GetComponents().size());
 
     glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    m_PrevSize = GetComponents().size();
 }
 
 
@@ -231,7 +218,7 @@ nlohmann::ordered_json LightingSystem::Write() const
 
 /// @brief    Private constructor
 LightingSystem::LightingSystem() :
-    System( "LightingSystem" )
+    ComponentSystem( "LightingSystem" )
 {}
 
 /// @brief    The singleton instance of LightingSystem
@@ -274,7 +261,7 @@ void LightingSystem::LightingSprite::Draw()
     glm::mat4 m( glm::mat2(2.0f) );
     glUniformMatrix4fv(shdr->GetUniformID("mvp"), 1, false, &m[0][0]);
     glUniform1f(shdr->GetUniformID("opacity"), m_Opacity);
-    glUniform1i(shdr->GetUniformID("light_count"), Lights()->GetLightCount());
+    glUniform1i(shdr->GetUniformID("light_count"), Lights()->GetComponents().size());
     glUniform2f(shdr->GetUniformID("UV_offset"), 0.0f, 0.0f);
 
     // draw the combination of textures in the array

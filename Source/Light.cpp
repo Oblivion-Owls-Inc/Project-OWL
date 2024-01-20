@@ -19,10 +19,10 @@ Component* Light::Clone() const { return new Light(*this); }
 //-----------------------------------------------------------------------------
 
 /// @brief  Initialization: light adds itself to the lighting system
-void Light::OnInit() { m_Index = Lights()->AddLightSource(this); }
+void Light::OnInit() { Lights()->AddComponent(this); }
 
 /// @brief  Exit: light removes itself from lighting system
-void Light::OnExit() { Lights()->RemoveLightSource(m_Index); }
+void Light::OnExit() { Lights()->RemoveComponent(this); }
 
 /// @brief  Tweak properties in debug window
 void Light::Inspector()

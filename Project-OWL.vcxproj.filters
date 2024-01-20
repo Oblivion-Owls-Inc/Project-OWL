@@ -249,6 +249,12 @@
     <Filter Include="Game\Components\Behaviors\ItemCollector">
       <UniqueIdentifier>{4d1ec298-7749-4f83-8e8f-ee15a8eedd1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\LightingSystem">
+      <UniqueIdentifier>{201cb2cf-21b7-435d-a353-0f115885a82d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Light">
+      <UniqueIdentifier>{218912f3-8dcf-4df2-aedd-59bfbd1159a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -514,6 +520,12 @@
     </ClCompile>
     <ClCompile Include="Source\ItemCollector.cpp">
       <Filter>Game\Components\Behaviors\ItemCollector</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LightingSystem.cpp">
+      <Filter>Engine\Systems\LightingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Light.cpp">
+      <Filter>Engine\Entity\Component\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -787,6 +799,12 @@
     <ClInclude Include="Source\ItemCollector.h">
       <Filter>Game\Components\Behaviors\ItemCollector</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LightingSystem.h">
+      <Filter>Engine\Systems\LightingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Light.h">
+      <Filter>Engine\Entity\Component\Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -801,7 +819,11 @@
     <None Include="Data\Scenes\Template.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\Prototype.scene.json" />
-    <None Include="Data\Scenes\ConstructionTest.scene.json" />
+    <None Include="Data\Scenes\Prototype.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\ConstructionTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>

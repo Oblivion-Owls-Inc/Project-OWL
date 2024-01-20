@@ -6,12 +6,13 @@
  * \date   Jan 2024
  *********************************************************************/
 #pragma once
-#include "System.h"
+#include "Entity.h"
+#include "ComponentSystem.h"
 #include "Sprite.h"
 #include "Light.h"
 
 /// @brief   Let there be light.
-class LightingSystem : public System
+class LightingSystem : public ComponentSystem<Light>
 {
 public:
 
@@ -32,18 +33,8 @@ public:
 //              Public methods
 //-----------------------------------------------------------------------------
 public:
-    /// @brief        Adds a new light source to keep track of.
-    /// @param light  Light component
-    /// @return       Index of the added light
-    int AddLightSource(Light* light);
-
-    /// @brief        Removes light source from the system.
-    /// @param index  Index of the light
-    void RemoveLightSource(int index);
 
     __inline unsigned int GetTexArrayID() const { return m_TextureArrayID; }
-
-    __inline int GetLightCount() const { return (int)m_LightSources.size(); }
 
     __inline bool GetLightingEnabled() const { return m_Enabled; }
 
@@ -77,12 +68,12 @@ private:
 //-----------------------------------------------------------------------------
 private:
     LightingSprite* m_Sprite = nullptr;   /// @brief   Does the rendering.
-    std::vector<Light*> m_LightSources;   /// @brief   All light sources in scene
     unsigned int m_TextureArrayID = 0;    /// @brief   Texture array for light sources
     GLuint m_FBO = -1;                    /// @brief   Framebuffer for rendering lights to texture 
     bool m_Enabled = true;                /// @brief   For debugging. Can disable all lights.
     glm::mat4 m_S2W = {}, m_W2S = {};     /// @brief   Screen-to-world matrix (and inverse)
     int m_ShadowLayer = 5;                /// @brief   Rendering layer of the darkness
+    unsigned long long m_PrevSize = 0;
 
 
 //-----------------------------------------------------------------------------

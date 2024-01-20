@@ -65,9 +65,6 @@ private:
 //-----------------------------------------------------------------------------
 private:
 
-    /// @brief  Index to keep track of this light within lighting system
-    int m_Index = -1;
-
     /// @brief  Position offset from parent entity
     glm::vec2 m_Offset = { 0,0 };
 
