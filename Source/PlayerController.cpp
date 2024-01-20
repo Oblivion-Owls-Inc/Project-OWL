@@ -348,7 +348,11 @@ Component* PlayerController::Clone() const
 /// @brief Helper function for inspector.
 void PlayerController::vectorInspector()
 {
+    float respawnLocation[2] = { m_PlayerRespawnLocation.x, m_PlayerRespawnLocation.y };
     ImGui::InputFloat("Max Speed", &m_MaxSpeed, 0.1f, 1.0f);
+
+
+    ImGui::InputFloat2("Player Respawn", respawnLocation);
 }
 
 /// @brief Helper function for inspector.
