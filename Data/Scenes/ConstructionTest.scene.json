@@ -5640,7 +5640,11 @@
                         "PlayerMoveDown"
                     ],
                     "MaxSpeed": 1.0,
-                    "MiningLaserName": "MiningLaser"
+                    "MiningLaserName": "MiningLaser",
+                    "RespawnLocation": [
+                        -17.0,
+                        5.0
+                    ]
                 },
                 "RigidBody": {
                     "Velocity": [

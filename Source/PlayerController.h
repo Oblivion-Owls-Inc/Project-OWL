@@ -138,6 +138,10 @@ private: // reading
     /// @param data The JSON file to read from.
     void readMaxSpeed(nlohmann::ordered_json const& data);
 
+    /// @brief Read in the respawn location for the player.
+    /// @param data - the JSON file to read from.
+    void readRespawnLocation(nlohmann::ordered_json const& data);
+
     /// @brief Read in the animation names for the player.
     /// @param data The JSON file to read from.
     void readAnimationNames(nlohmann::ordered_json const& data);

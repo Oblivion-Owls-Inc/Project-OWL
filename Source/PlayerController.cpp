@@ -266,6 +266,13 @@ void PlayerController::playerRespawn()
         Stream::Read( m_MaxSpeed, data );
     }
 
+    /// @brief Read in the respawn location for the player.
+    /// @param data - the JSON file to read from.
+    void PlayerController::readRespawnLocation(nlohmann::ordered_json const& data)
+    {
+        m_PlayerRespawnLocation = Stream::Read<2, float>(data);
+    }
+
     /// @brief Read in the names of the player animations.
     /// @param data The JSON file to read from.
     void PlayerController::readAnimationNames(nlohmann::ordered_json const& data)
@@ -286,9 +293,10 @@ void PlayerController::playerRespawn()
 
     // Map of all the read methods for the PlayerController component.
     ReadMethodMap< PlayerController > const PlayerController::s_ReadMethods = {
-        { "MaxSpeed"       , &readMaxSpeed        },
-        { "AnimationNames" , &readAnimationNames  },
-        { "MiningLaserName", &readMiningLaserName }
+        { "MaxSpeed"        , &readMaxSpeed        },
+        { "RespawnLocation" , &readRespawnLocation },
+        { "AnimationNames"  , &readAnimationNames  },
+        { "MiningLaserName" , &readMiningLaserName }
     };
 
 //-----------------------------------------------------------------------------
@@ -309,6 +317,7 @@ void PlayerController::playerRespawn()
 
         data[ "MaxSpeed"        ] = m_MaxSpeed          ;
         data[ "MiningLaserName" ] = m_MiningLaserName   ;
+        data[ "RespawnLocation" ] = Stream::Write(m_PlayerRespawnLocation);
 
         return data;
     }
@@ -348,11 +357,14 @@ Component* PlayerController::Clone() const
 /// @brief Helper function for inspector.
 void PlayerController::vectorInspector()
 {
-    float respawnLocation[2] = { m_PlayerRespawnLocation.x, m_PlayerRespawnLocation.y };
     ImGui::InputFloat("Max Speed", &m_MaxSpeed, 0.1f, 1.0f);
 
-
-    ImGui::InputFloat2("Player Respawn", respawnLocation);
+    // Change the respawn location in the editor.
+    glm::vec2 respawn = m_PlayerRespawnLocation;
+    if (ImGui::DragFloat2("Respawn Location", &respawn[0], 0.0f))
+    {
+        m_PlayerRespawnLocation = respawn;
+    }
 }
 
 /// @brief Helper function for inspector.
