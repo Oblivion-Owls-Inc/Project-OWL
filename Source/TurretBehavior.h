@@ -89,6 +89,8 @@ private: // methods
     /// @param  direction the direction to fire the bullet in
 	void FireBullet( glm::vec2 const& direction );
 
+	void checkActive();
+
 	/// @brief  Uses Raycasting to check for a target on the same Collision Layer
 	/// @return the direction towards the target, or (0, 0) if no valid target found
 	glm::vec2 CheckForTarget();

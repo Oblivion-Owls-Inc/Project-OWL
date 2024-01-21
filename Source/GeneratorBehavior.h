@@ -83,6 +83,9 @@ private: // reading
     /// @brief read the depth of the generator
     void readDepth(nlohmann::ordered_json const& json);
 
+    /// @brief read if the generator starts on or off
+    void readActive(nlohmann::ordered_json const& json);
+
 //-----------------------------------------------------------------------------
 public: // writing
 //-----------------------------------------------------------------------------

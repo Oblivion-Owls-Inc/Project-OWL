@@ -23,6 +23,7 @@
 #include "DebugSystem.h"
 #include "RigidBody.h"
 #include "AudioPlayer.h"
+#include "glm/glm.hpp"
 
 //-------------------------------------------------------------------------------------------
 // public: constructor
@@ -57,26 +58,30 @@
     /// @brief Called Every Fixed Frame by the system
     void TurretBehavior::OnFixedUpdate()
     {
-        float dt = Engine::GetInstance()->GetFixedFrameDuration();
-
-
-        if ( m_FireCooldown > 0.0f )
+        checkActive();
+        if (m_IsActive)
         {
-            m_FireCooldown -= dt;
-            if ( m_FireCooldown > 0.0f ) { return; }
-        }
-        else
-        {
-            m_FireCooldown = 0.0f;
-        }
+            float dt = Engine::GetInstance()->GetFixedFrameDuration();
 
-        /// Check for a target
-        glm::vec2 direction = CheckForTarget();
 
-        if ( direction != glm::vec2( 0 ) )
-        {
-            /// Fire a bullet at the target
-            FireBullet( direction );
+            if (m_FireCooldown > 0.0f)
+            {
+                m_FireCooldown -= dt;
+                if (m_FireCooldown > 0.0f) { return; }
+            }
+            else
+            {
+                m_FireCooldown = 0.0f;
+            }
+
+            /// Check for a target
+            glm::vec2 direction = CheckForTarget();
+
+            if (direction != glm::vec2(0))
+            {
+                /// Fire a bullet at the target
+                FireBullet(direction);
+            }
         }
     }
 
@@ -118,6 +123,12 @@
         m_AudioPlayer->Play();
 
         m_FireCooldown += 1.0f / m_FireRate;
+    }
+
+    void TurretBehavior::checkActive()
+    {
+        //TODO fix me
+        glm::vec2 distance = glm::distance<>(glm::vec2, glm::vec2);
     }
 
     /// @brief  Uses Raycasting to check for a target on the same Collision Layer

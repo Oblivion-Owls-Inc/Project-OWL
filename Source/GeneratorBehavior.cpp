@@ -87,6 +87,7 @@ void GeneratorBehavior::Inspector()
 {
 	ImGui::InputFloat("Radius", &m_radius, 0.5f, 1.0f);
 	ImGui::InputInt("Depth", &m_depth, 1, 5);
+	if (ImGui::Checkbox("Active", &m_isActive)) {}
 	BasicEntityBehavior::Inspector();
 }
 
@@ -127,6 +128,7 @@ ReadMethodMap<GeneratorBehavior> const GeneratorBehavior::s_ReadMethods =
 	{ "Health",	  &readHealth},
 	{ "Radius",	  &readRadius},
 	{ "Depth",	  &readDepth},
+	{ "Active",	  &readActive},
 };
 
 //-----------------------------------------------------------------------------
@@ -143,6 +145,11 @@ void GeneratorBehavior::readDepth(nlohmann::ordered_json const& json)
 	m_depth = Stream::Read<int>(json);
 }
 
+void GeneratorBehavior::readActive(nlohmann::ordered_json const& json)
+{
+	m_isActive = Stream::Read<bool>(json);
+}
+
 /// @brief	write to json
 nlohmann::ordered_json GeneratorBehavior::Write() const
 {
@@ -151,6 +158,7 @@ nlohmann::ordered_json GeneratorBehavior::Write() const
 	data["Health"] = m_Health.Write();
 	data["Radius"] = m_radius;
 	data["Depth"] = m_depth;
+	data["Active"] = m_isActive;
 
 
 	return data;

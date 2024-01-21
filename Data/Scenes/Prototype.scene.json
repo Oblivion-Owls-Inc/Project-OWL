@@ -517,6 +517,8 @@
                 },
                 "GeneratorBehavior": {
                     "Radius": 5.0,
+                    "Depth": 0,
+                    "Active": true,
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
@@ -574,6 +576,8 @@
                 },
                 "GeneratorBehavior": {
                     "Radius": 5.0,
+                    "Depth": 2,
+                    "Active": true,
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
@@ -6058,6 +6062,8 @@
                 },
                 "GeneratorBehavior": {
                     "Radius": 5.0,
+                    "Depth": 1,
+                    "Active": true,
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
