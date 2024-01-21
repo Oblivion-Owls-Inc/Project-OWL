@@ -22,6 +22,10 @@
 #include "AnimationAsset.h"
 #include "AssetLibrarySystem.h" // GetAsset
 #include "DebugSystem.h"
+#include "EnemyBehavior.h"
+#include "Health.h"              // TakeDamage
+#include "Transform.h"
+#include "CircleCollider.h"
 #include "EntitySystem.h"
 
 #include "Inspection.h"
@@ -58,8 +62,16 @@ void PlayerController::OnInit()
     m_Animation = GetEntity()->GetComponent<Animation>();
     // Get the parent's AudioPlayer component.
     m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
+    // Get the parent's Health component.
+    m_Health = GetEntity()->GetComponent<Health>();
+    // Get the parent's Transform component.
+    m_Transform = GetEntity()->GetComponent<Transform>();
 
-    m_Transform = GetEntity()->GetComponent< Transform >();
+
+    GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
+        GetId(),
+        std::bind(&PlayerController::onCollision, this, std::placeholders::_1, std::placeholders::_2)
+    );
 
     // Get all the player's animations
     for ( int i = 0; i < NUM_ANIMATIONS; ++i )
@@ -74,13 +86,34 @@ void PlayerController::OnInit()
         m_MiningLaser = miningLaserEntity->GetComponent< MiningLaser >();
     }
 
-
+    // Set the callback for when the layer takes damage.
+    if(m_Health)
+    {
+        m_Health->AddOnHealthChangedCallback(
+            GetId(),
+            std::bind(
+                &PlayerController::playerRespawn,
+                this
+            )
+        );
+    }
 }
+
 
 /// @brief Removes this behavior from the behavior system on exit
 void PlayerController::OnExit()
 {
-    Behaviors< Behavior >()->RemoveComponent( this );
+    Behaviors<Behavior>()->RemoveComponent(this);
+
+    if ( m_MiningLaser != nullptr )
+    {
+        m_MiningLaser->RemoveOnBreakTileCallback( GetId() );
+    }
+
+    if (m_Health != nullptr)
+    {
+        m_Health->RemoveOnHealthChangedCallback(GetId());
+    }
 }
 
 /// @brief Used by the Debug System to display information about this Component.
@@ -211,6 +244,16 @@ void PlayerController::OnFixedUpdate()
 
     }
 
+/// @brief Check if player heal is 0, then respawn them. 
+void PlayerController::playerRespawn()
+{
+    // If the player is dead
+    if (m_Health->GetHealth()->GetCurrent() <= 0)
+    {
+        m_Transform->SetTranslation(m_PlayerRespawnLocation);
+    }
+}
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
@@ -221,6 +264,13 @@ void PlayerController::OnFixedUpdate()
     void PlayerController::readMaxSpeed(nlohmann::ordered_json const& data)
     {
         Stream::Read( m_MaxSpeed, data );
+    }
+
+    /// @brief Read in the respawn location for the player.
+    /// @param data - the JSON file to read from.
+    void PlayerController::readRespawnLocation(nlohmann::ordered_json const& data)
+    {
+        m_PlayerRespawnLocation = Stream::Read<2, float>(data);
     }
 
     /// @brief Read in the names of the player animations.
@@ -243,9 +293,10 @@ void PlayerController::OnFixedUpdate()
 
     // Map of all the read methods for the PlayerController component.
     ReadMethodMap< PlayerController > const PlayerController::s_ReadMethods = {
-        { "MaxSpeed"       , &readMaxSpeed        },
-        { "AnimationNames" , &readAnimationNames  },
-        { "MiningLaserName", &readMiningLaserName }
+        { "MaxSpeed"        , &readMaxSpeed        },
+        { "RespawnLocation" , &readRespawnLocation },
+        { "AnimationNames"  , &readAnimationNames  },
+        { "MiningLaserName" , &readMiningLaserName }
     };
 
 //-----------------------------------------------------------------------------
@@ -266,6 +317,7 @@ void PlayerController::OnFixedUpdate()
 
         data[ "MaxSpeed"        ] = m_MaxSpeed          ;
         data[ "MiningLaserName" ] = m_MiningLaserName   ;
+        data[ "RespawnLocation" ] = Stream::Write(m_PlayerRespawnLocation);
 
         return data;
     }
@@ -282,7 +334,9 @@ PlayerController::PlayerController(PlayerController const& other):
     m_MaxSpeed( other.m_MaxSpeed ),
     m_RigidBody( nullptr ),
     m_Animation( nullptr ),
-    m_AudioPlayer(nullptr)
+    m_AudioPlayer(nullptr),
+    m_Health(nullptr),
+    m_Transform(nullptr)
 {
     // Copy the animations
     for (int i = 0; i < NUM_ANIMATIONS; i++)
@@ -303,7 +357,10 @@ Component* PlayerController::Clone() const
 /// @brief Helper function for inspector.
 void PlayerController::vectorInspector()
 {
-    ImGui::InputFloat("Max Speed", &m_MaxSpeed, 0.1f, 1.0f);
+    ImGui::DragFloat( "Max Speed", &m_MaxSpeed, 0.05f, 0.0f, INFINITY );
+
+    // Change the respawn location in the editor.
+    ImGui::DragFloat2( "Respawn Location", &m_PlayerRespawnLocation[ 0 ], 0.05f );
 }
 
 /// @brief Helper function for inspector.
@@ -325,4 +382,25 @@ void PlayerController::animationInspector()
             ImGui::EndCombo();
         }
     }
+}
+
+/// @brief What to do when the player has been hit.
+/// @param other         - the collider of the other entity.
+/// @param collisionData - Holds details of the collision.
+void PlayerController::onCollision(Collider* other, CollisionData const& collisionData)
+{
+    // Get the enemy behaviour component.
+    EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
+    if (!enemy)
+    {
+        return;
+    }
+
+    if(m_Health)
+    {
+        // If the enemy collides with player, damage the player
+        m_Health->TakeDamage(enemy->GetDamage());
+    }
+
+    // Add physical reaction to enemy.
 }

@@ -5616,6 +5616,14 @@
                     "CollisionLayer": 2,
                     "CollisionLayerFlags": 3
                 },
+                "Health": {
+                    "Health": {
+                        "Name": "Pool Pool",
+                        "BaseValue": 20,
+                        "CurrentValue": 20,
+                        "Active": false
+                    }
+                },
                 "Inventory": {
                     "Items": null
                 },
@@ -5632,7 +5640,11 @@
                         "PlayerMoveDown"
                     ],
                     "MaxSpeed": 1.0,
-                    "MiningLaserName": "MiningLaser"
+                    "MiningLaserName": "MiningLaser",
+                    "RespawnLocation": [
+                        -17.0,
+                        5.0
+                    ]
                 },
                 "RigidBody": {
                     "Velocity": [

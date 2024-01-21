@@ -183,6 +183,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\FileExplorer.cpp" />
     <ClCompile Include="imgui\imgui_stdlib.cpp" />
     <ClCompile Include="Source\BasicEntityBehavior.cpp" />
@@ -272,6 +273,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\ItemStack.h" />
     <ClInclude Include="Source\LootTable.h" />
     <ClInclude Include="Source\MiningLaser.h" />
+    <ClInclude Include="Source\Health.h" />
     <ClInclude Include="Source\FileExplorer.h" />
     <ClInclude Include="imgui\imgui_stdlib.h" />
     <ClInclude Include="Source\Inspection.h" />

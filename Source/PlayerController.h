@@ -14,6 +14,7 @@
 //------------------------------------------------------------------------------
 #include "Behavior.h"
 #include <glm/glm.hpp> // glm::vec2
+#include <string>
 
 //------------------------------------------------------------------------------
 // Forward References:
@@ -22,8 +23,10 @@ class RigidBody;
 class Animation;
 class AnimationAsset;
 class AudioPlayer;
-class MiningLaser;
+class Health;
 class Transform;
+class MiningLaser;
+
 
 template < typename T >
 class Tilemap;
@@ -82,6 +85,9 @@ private: // methods
     void updateMiningLaser();
 
 
+    /// @brief Check if player heal is 0, then respawn them.
+    void playerRespawn();
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
@@ -90,9 +96,13 @@ private: // member variables
     // Define the maximum speed for smooth movement.
     float m_MaxSpeed = 1.0f;
 
+    // Player respawn location
+    glm::vec2 m_PlayerRespawnLocation = { -15.0f, 5.0f };
 
     // All the names of the animations for the player.
     std::string m_AnimationNames[4] = { "", "", "", "" };
+
+    
 
     // All the animations for the player.
     AnimationAsset const* m_PlayerAnimations[4] = { nullptr, nullptr, nullptr, nullptr };
@@ -116,6 +126,8 @@ private: // member variables
     /// @brief  the miningLaser this PlayerController uses
     MiningLaser* m_MiningLaser = nullptr;
 
+    // A cached instance of the parent's Health.
+    Health* m_Health = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -125,6 +137,10 @@ private: // reading
     /// @brief Read in the max speed for the player.
     /// @param data The JSON file to read from.
     void readMaxSpeed(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the respawn location for the player.
+    /// @param data - the JSON file to read from.
+    void readRespawnLocation(nlohmann::ordered_json const& data);
 
     /// @brief Read in the animation names for the player.
     /// @param data The JSON file to read from.
@@ -178,6 +194,9 @@ private: // inspector helpers
     /// @brief Allows all animation attributes to be accessed by the editor.
     void animationInspector();
 
-//-----------------------------------------------------------------------------
+    /// @brief What to do when the player has been hit.
+    /// @param other         - the collider of the other entity.
+    /// @param collisionData - Holds details of the collision.
+    void onCollision(Collider* other, CollisionData const& collisionData);
 
 };
