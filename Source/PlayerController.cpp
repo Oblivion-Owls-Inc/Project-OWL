@@ -357,14 +357,10 @@ Component* PlayerController::Clone() const
 /// @brief Helper function for inspector.
 void PlayerController::vectorInspector()
 {
-    ImGui::InputFloat("Max Speed", &m_MaxSpeed, 0.1f, 1.0f);
+    ImGui::DragFloat( "Max Speed", &m_MaxSpeed, 0.05f, 0.0f, INFINITY );
 
     // Change the respawn location in the editor.
-    glm::vec2 respawn = m_PlayerRespawnLocation;
-    if (ImGui::DragFloat2("Respawn Location", &respawn[0], 0.0f))
-    {
-        m_PlayerRespawnLocation = respawn;
-    }
+    ImGui::DragFloat2( "Respawn Location", &m_PlayerRespawnLocation[ 0 ], 0.05f );
 }
 
 /// @brief Helper function for inspector.

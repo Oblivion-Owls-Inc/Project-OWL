@@ -231,15 +231,11 @@
     <Filter Include="Game\Components\Behaviors\BasicEntityBehavior">
       <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Behaviors\MiningLaser">
     <Filter Include="Game\Behaviors\BasicEntityBehavior">
       <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Entity\Component\Health">
       <UniqueIdentifier>{e836e623-5921-472f-89b0-6e67007a2028}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Behaviors\MiningLaser">
-      <UniqueIdentifier>{f6265677-427f-4a02-b8f0-f148023cb81f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Components\TilemapItemDropper">
       <UniqueIdentifier>{21c5aced-5a07-43a4-b1e5-740a7a52cdb8}</UniqueIdentifier>
@@ -502,7 +498,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\MiningLaser.cpp">
-      <Filter>Game\Components\Behaviors\MiningLaser</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\LootTable.cpp">
       <Filter>Game\Item Handling\LootTable</Filter>
@@ -774,7 +770,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\MiningLaser.h">
-      <Filter>Game\Components\Behaviors\MiningLaser</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\TileInfoSystem.h">
       <Filter>Game\Systems\TileInfoSystem</Filter>
