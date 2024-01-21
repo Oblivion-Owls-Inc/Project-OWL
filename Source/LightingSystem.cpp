@@ -261,7 +261,7 @@ void LightingSystem::LightingSprite::Draw()
     glm::mat4 m( glm::mat2(2.0f) );
     glUniformMatrix4fv(shdr->GetUniformID("mvp"), 1, false, &m[0][0]);
     glUniform1f(shdr->GetUniformID("opacity"), m_Opacity);
-    glUniform1i(shdr->GetUniformID("light_count"), Lights()->GetComponents().size());
+    glUniform1i(shdr->GetUniformID("light_count"), (int)Lights()->GetComponents().size());
     glUniform2f(shdr->GetUniformID("UV_offset"), 0.0f, 0.0f);
 
     // draw the combination of textures in the array
