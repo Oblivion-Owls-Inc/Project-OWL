@@ -26,18 +26,18 @@ private: // virtual override methods
     /// @param  dt  the length in seconds the frame lasts
     virtual void OnUpdate( float dt ) override
     {
-        for ( BehaviorType* behavior : ComponentSystem< BehaviorType >::GetComponents() )
+        for ( size_t i = 0, count = ComponentSystem< BehaviorType >::GetComponents().size(); i < count; ++i )
         {
-            static_cast< Behavior* >( behavior )->OnUpdate( dt );
+            static_cast< Behavior* >( ComponentSystem< BehaviorType >::GetComponents()[ i ] )->OnUpdate( dt );
         }
     }
 
     /// @brief  updates each Behavior every simulation frame
     virtual void OnFixedUpdate() override
     {
-        for ( BehaviorType* behavior : ComponentSystem< BehaviorType >::GetComponents() )
+        for ( size_t i = 0, count = ComponentSystem< BehaviorType >::GetComponents().size(); i < count; ++i )
         {
-            static_cast< Behavior* >( behavior )->OnFixedUpdate();
+            static_cast< Behavior* >( ComponentSystem< BehaviorType >::GetComponents()[ i ] )->OnFixedUpdate();
         }
     }
 
