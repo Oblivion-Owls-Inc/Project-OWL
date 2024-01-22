@@ -181,6 +181,7 @@
         glm::vec2 translation = -(linearPart * m_Transform->GetTranslation());
 
         m_WorldToCamera = linearPart;
+        m_WorldToCamera[ 2 ][ 2 ] = 1.0f;
         m_WorldToCamera[ 3 ] = glm::vec4( translation, 0, 1 );
 
         m_WorldToCameraDirty = false;
@@ -191,6 +192,7 @@
     {
         m_CameraToClip[ 0 ][ 0 ] = 2.0f / GetWidth();
         m_CameraToClip[ 1 ][ 1 ] = 2.0f / GetHeight();
+        m_CameraToClip[ 2 ][ 2 ] = 1.0f;
     }
 
     /// @brief  calculates to WorldToClip matrix

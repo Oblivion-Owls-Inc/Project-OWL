@@ -61,7 +61,7 @@ void Tilemap<int>::Inspector()
 
             if ( c == '\n' && m_Dimensions.x == 0 )
             {
-                m_Dimensions.x = m_Tiles.size();
+                m_Dimensions.x = (int)m_Tiles.size();
             }
         }
 

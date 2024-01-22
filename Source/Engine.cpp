@@ -44,6 +44,7 @@
 
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
+#include "LightingSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -371,7 +372,8 @@
                                                                                                      
         { "ComponentSystem<ItemComponent>"  , &addSystem< ComponentSystem< ItemComponent > >            },
 
-        { "TileInfoSystem"                  , &addSystem< TileInfoSystem >                              }
+        { "TileInfoSystem"                  , &addSystem< TileInfoSystem >                              },
+        { "LightingSystem"                  , &addSystem< LightingSystem >                              }
 
         // { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >          },
         // { "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >                },
@@ -410,7 +412,8 @@
         m_ShouldExit( false ),
         m_FixedFrameDuration( 1.0f / 60.0f ),
         m_PreviousFixedTime( 0.0 ),
-        m_PreviousTime( 0.0 )
+        m_PreviousTime( 0.0 ),
+        m_currentMode(UpdateMode::update)
     {}
 
     /// @brief  gets the singleton instance of the Engine

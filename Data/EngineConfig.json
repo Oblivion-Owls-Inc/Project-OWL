@@ -12,7 +12,7 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "ConstructionTest"
+            "NextSceneName": "Prototype"
         },
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<BulletBehavior>": {},
@@ -20,6 +20,10 @@
         "BehaviorSystem<WavesBehavior>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
+        "LightingSystem": {
+            "Enabled": true,
+            "Layer": 5
+        },
         "CollisionSystem": {
             "CollisionLayerNames": [
                 "Terrain",

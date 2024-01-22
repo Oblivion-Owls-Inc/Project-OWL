@@ -5680,6 +5680,10 @@
                         1.0
                     ],
                     "IsDiegetic": true
+                },
+                "Light": {
+                    "Radius": 3.0,
+                    "Strength": 2.0
                 }
             }
         },
@@ -5800,7 +5804,7 @@
                     "String": "Resources: 0"
                 },
                 "TilemapSprite": {
-                    "Layer": 4,
+                    "Layer": 6,
                     "Color": [
                         0.0,
                         0.0,

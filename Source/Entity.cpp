@@ -7,7 +7,10 @@
 ///
 /// @copyright © 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
+
 #include "Entity.h"
+
+#include "EntitySystem.h"
 
 #include <algorithm>		  // std::sort
 #include "Component.h"		  // Type
@@ -105,7 +108,11 @@
                 {
                     Component* component = info.second();
                     AddComponent( component );
-                    component->OnInit();
+
+                    if ( Entities()->HasEntity( this ) )
+                    { // init the component only if it's in the scene
+                        component->OnInit();
+                    }
                 }
             }
             ImGui::EndCombo();

@@ -86,6 +86,7 @@
         m_ScreenToClip = glm::mat4( 0 );
         m_ScreenToClip[ 0 ][ 0 ] = scale.x;
         m_ScreenToClip[ 1 ][ 1 ] = scale.y;
+        m_ScreenToClip[ 2 ][ 2 ] = 1.0f;
         m_ScreenToClip[ 3 ] = glm::vec4( offset, 0, 1 );
 
         // screen to UI: re-scale based on screen width/height, flip, move to center
@@ -93,6 +94,7 @@
         offset = glm::vec2( -5, 5 * screen_ratio );
         m_ScreenToUi[ 0 ][ 0 ] = scale.x;
         m_ScreenToUi[ 1 ][ 1 ] = scale.y;
+        m_ScreenToUi[ 2 ][ 2 ] = 1.0f;
         m_ScreenToUi[ 3 ] = glm::vec4( offset, 0, 1 );
     
         // UI to clip (-1 to 1)

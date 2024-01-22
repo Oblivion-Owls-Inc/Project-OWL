@@ -150,12 +150,6 @@
     <Filter Include="Engine\Systems\ParticleSystem">
       <UniqueIdentifier>{82d6010a-5f55-4d06-bf33-4e48aa03a03b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Sprite\ParticleSprite">
-      <UniqueIdentifier>{b31df122-b6ac-40e0-894e-9df749af7fa2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Behaviors\BaseBehavior">
-      <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\BaseEntityBehavior">
       <UniqueIdentifier>{5821ef37-47bc-4d79-a76b-4e247b51bed3}</UniqueIdentifier>
     </Filter>
@@ -231,9 +225,6 @@
     <Filter Include="Game\Components\Behaviors\BasicEntityBehavior">
       <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Behaviors\BasicEntityBehavior">
-      <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Health">
       <UniqueIdentifier>{e836e623-5921-472f-89b0-6e67007a2028}</UniqueIdentifier>
     </Filter>
@@ -254,6 +245,15 @@
     </Filter>
     <Filter Include="Game\Components\Behaviors\ItemCollector">
       <UniqueIdentifier>{4d1ec298-7749-4f83-8e8f-ee15a8eedd1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\LightingSystem">
+      <UniqueIdentifier>{c056d385-3503-4591-b00c-986b177e965b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Light">
+      <UniqueIdentifier>{df964db4-c5d9-40be-8150-2118cec1ddd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Sprite\EmitterSprite">
+      <UniqueIdentifier>{b31df122-b6ac-40e0-894e-9df749af7fa2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -494,9 +494,6 @@
     <ClCompile Include="imgui\imgui_stdlib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EmitterSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MiningLaser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -523,6 +520,15 @@
     </ClCompile>
     <ClCompile Include="Source\Health.cpp">
       <Filter>Engine\Entity\Component\Health</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LightingSystem.cpp">
+      <Filter>Engine\Systems\LightingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Light.cpp">
+      <Filter>Engine\Entity\Component\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EmitterSprite.cpp">
+      <Filter>Engine\Entity\Component\Sprite\EmitterSprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -766,9 +772,6 @@
     <ClInclude Include="imgui\imgui_stdlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\EmitterSprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\MiningLaser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -798,6 +801,15 @@
     </ClInclude>
     <ClInclude Include="Source\Health.h">
       <Filter>Engine\Entity\Component\Health</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LightingSystem.h">
+      <Filter>Engine\Systems\LightingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Light.h">
+      <Filter>Engine\Entity\Component\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EmitterSprite.h">
+      <Filter>Engine\Entity\Component\Sprite\EmitterSprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
