@@ -7,24 +7,16 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #include "EntitySystem.h"
+
+#include "Entity.h"
+
 #include "DebugSystem.h"
 #include <algorithm>
 
-///-----------------------------------------------------------------------------
-/// Set Static Variables
-///-----------------------------------------------------------------------------
-
 //-----------------------------------------------------------------------------
-// public methods
+// public: methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  Adds an Entity to the EntitySystem
-    /// @param  entity  the entity to add the the EntitySystem
-    void EntitySystem::AddEntity( Entity* entity )
-    {
-        m_Entities.push_back( entity );
-        entity->InitComponents();
-    }
 
     /// @brief  gets an Entity by name
     /// @param  entityName  the name of the Entity to get
@@ -48,29 +40,23 @@
         return *iterator;
     }
 
-    /// @brief  removes an Entity from the EntitySystem
-    /// @param  entity  the Entity to remove
-    void EntitySystem::RemoveEntity( Entity* entity )
+    /// @brief  returns the container of all Entities in the Scene
+    /// @return the container of all Entities in the Scene
+    std::vector< Entity* > const& EntitySystem::GetEntities() const
     {
-        auto iterator = std::find( m_Entities.begin(), m_Entities.end(), entity );
-        
-        if ( iterator != m_Entities.end() )
-        {
-            m_Entities.erase( iterator );
-            entity->ExitComponents();
-        }
-        else
-        {
-            std::ostringstream errorMessage;
-            errorMessage <<
-                "Error: Could not find entity \"" << entity->GetName() <<
-                "\" to remove from the EntitySystem";
-            throw std::runtime_error( errorMessage.str() );
-        }
-
+        return m_Entities;
     }
 
-    /// @brief  checks if the EntitySystem contains the given Entity (for debugging)
+
+    /// @brief  queues an Entity to be added to the EntitySystem
+    /// @param  entity  the entity to add the the EntitySystem
+    void EntitySystem::QueueAddEntity( Entity* entity )
+    {
+        m_EntitiesToAdd.push_back( entity );
+    }
+
+
+    /// @brief  checks if the EntitySystem contains the given Entity
     /// @param  entity  the Entity to search for
     /// @return whether or not the EntitySystem has the specified Entity
     bool EntitySystem::HasEntity( Entity* entity )
@@ -80,86 +66,11 @@
         return iterator != m_Entities.end();
     }
 
-    /// @brief  loads all of the m_Entities in a scene
-    /// @param  entityData  the json object containing the entity data
-    void EntitySystem::LoadEntities( nlohmann::ordered_json const& data )
-    {
-        for ( auto& [ key, value ] : data.items() )
-        {
-            Entity * entity = new Entity();
-            Stream::Read( entity, value );
-            m_Entities.push_back( entity );
-        }
-
-        for ( Entity* entity : m_Entities )
-        {
-            entity->InitComponents();
-        }
-    }
-
-    /// @brief  saves all of the entities in a scene
-    /// @return the written json data
-    nlohmann::ordered_json EntitySystem::SaveEntities() const
-    {
-        nlohmann::ordered_json json;
-
-        for ( Entity* entity : m_Entities )
-        {
-            json[ entity->GetName() ] = entity->Write();
-        }
-
-        return json;
-    }
-
-    /// @brief Opens a window to create a new entity
-    /// @return - true if the window is open
-    bool EntitySystem::EntityCreateWindow()
-    {
-        /// Creates the window and auto resizes it
-        ImGui::Begin("Add New Entity", NULL, ImGuiWindowFlags_AlwaysAutoResize);
-
-        /// Sets the size of the window if it is the first time it is opened
-        ImGui::SetWindowSize(ImVec2(500, 500), ImGuiCond_FirstUseEver);
-
-        /// Input text for entity name
-        static char buffer[128] = ""; /// Buffer to hold the input, you can save this
-        ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.45f);
-        ImGui::InputText("##Entity Name", buffer, IM_ARRAYSIZE(buffer));
-
-        // add entity button
-        ImGui::SameLine();
-
-        if (ImGui::Button("Add Entity", ImVec2(100, 0)) || ImGui::IsKeyPressed(ImGuiKey_Enter))
-        {
-            
-            Entity* entity = new Entity(); /// Create a new entity
-            entity->SetName(std::string(buffer)); /// Set the name of the entity
-            AddEntity(entity); /// Add the entity to the EntitySystem
-
-            /// if the entity is added, close the window
-            ImGui::End();
-            return false; // close the window
-            
-        }
-
-        /// Aligns the cancel button with the add entity button
-        ImGui::SameLine();
-        /// Creates the cancel button
-        if (ImGui::Button("Cancel", ImVec2(100, 0)))
-        {
-            /// If the cancel button is pressed, close the window
-            ImGui::End();
-			return false; // close the window
-		}
-
-        ///The Matching End to the Begin to create the window
-        ImGui::End();
-        return true; // keep the window open
-    }
 
 //-----------------------------------------------------------------------------
-// virtual override methods
+// private: virtual override methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  Gets called whenever a scene is exited
     void EntitySystem::OnSceneExit()
@@ -177,21 +88,80 @@
         m_Entities.clear();
     }
 
+
     /// @brief Gets Called each frame
     void EntitySystem::OnUpdate(float)
     {
-        for ( int i = 0; i < m_Entities.size(); ++i )
-        {
-            Entity * entity = m_Entities[i];
+        removeEntities();
 
-            if (entity->IsDestroyed())
-            {
-				RemoveEntity(entity);
-                delete entity;
-                --i;
-            }
-		}
+        addEntities();
     }
+
+    
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  removes all queued Entities from the EntitySystem
+    void EntitySystem::removeEntities()
+    {
+        // lambda to filter for entities to remove
+        auto isDestroyed = []( Entity* entity ) -> bool
+        {
+            return entity->IsDestroyed();
+        };
+
+        // get all the entities that need to be removed
+        std::vector< Entity* > entitiesToRemove;
+        std::copy_if( m_Entities.begin(), m_Entities.end(), std::back_inserter( entitiesToRemove ), isDestroyed );
+
+        // exit the entities
+        for ( Entity* entity : entitiesToRemove )
+        {
+            entity->ExitComponents();
+        }
+
+        // delete the entities
+        for ( Entity* entity : entitiesToRemove )
+        {
+            delete entity;
+        }
+
+        // remove the entities from the System
+        m_Entities.erase(
+            std::remove_if(
+                m_Entities.begin(),
+                m_Entities.end(),
+                isDestroyed
+            ),
+            m_Entities.end()
+        );
+    }
+
+
+    /// @brief  adds all queued Entites to the EntitySystem
+    void EntitySystem::addEntities()
+    {
+        // append the components to m_Entities
+        m_Entities.insert( m_Entities.end(), m_EntitiesToAdd.begin(), m_EntitiesToAdd.end() );
+
+        // move the new Entities into a new vector, in case any component OnInit functions add more Entities to m_EntitiesToAdd
+        std::vector< Entity* > newEntities = std::move( m_EntitiesToAdd );
+        m_EntitiesToAdd.clear();
+
+        // initialize the entities
+        for ( Entity* entity : newEntities )
+        {
+            entity->InitComponents();
+        }
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
 
     /// @brief Called by the DebugSystem to display the debug window
     void EntitySystem::DebugWindow()
@@ -199,34 +169,83 @@
         static bool createEntity = false; 
 
         /// Used to make the Entity List a pop out window
-        if (ImGui::Button(m_PopOut ? "Pop In" : "Pop Out"))
+        if ( ImGui::Button( m_PopOut ? "Pop In" : "Pop Out" ) )
         {
             m_PopOut = !m_PopOut;
         }
         ImGui::SameLine();
-        if (ImGui::Button("Create Entity"))
+        if ( ImGui::Button( "Create Entity" ) )
         {
             createEntity = true;
         }
 
-        if (createEntity)
+        if ( createEntity )
         {
             Entity* entity = new Entity(); /// Create a new entity
-            entity->SetName(std::string("New Entity")); /// Set the name of the entity
-            AddEntity(entity); /// Add the entity to the EntitySystem
+            entity->SetName( "New Entity" ); /// Set the name of the entity
+            QueueAddEntity( entity ); /// Add the entity to the EntitySystem
             createEntity = false;
         }
 
         /// Display the Entity List
-	    EntityListWindow();
+	    entityListWindow();
     }
 
+
+    /// @brief Opens a window to create a new entity
+    /// @return - true if the window is open
+    bool EntitySystem::EntityCreateWindow()
+    {
+        /// Creates the window and auto resizes it
+        ImGui::Begin( "Add New Entity", NULL, ImGuiWindowFlags_AlwaysAutoResize );
+
+        /// Sets the size of the window if it is the first time it is opened
+        ImGui::SetWindowSize( ImVec2( 500, 500 ), ImGuiCond_FirstUseEver );
+
+        /// Input text for entity name
+        static std::string name = "";
+        ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.45f );
+        ImGui::InputText( "##Entity Name", &name );
+
+        // add entity button
+        ImGui::SameLine();
+
+        if ( ImGui::Button( "Add Entity", ImVec2( 100, 0 ) ) || ImGui::IsKeyPressed( ImGuiKey_Enter ) )
+        {
+
+            Entity* entity = new Entity(); /// Create a new entity
+            entity->SetName( name ); /// Set the name of the entity
+            QueueAddEntity( entity ); /// Add the entity to the EntitySystem
+
+            /// if the entity is added, close the window
+            ImGui::End();
+            return false; // close the window
+
+        }
+
+        /// Aligns the cancel button with the add entity button
+        ImGui::SameLine();
+        /// Creates the cancel button
+        if ( ImGui::Button( "Cancel", ImVec2( 100, 0 ) ) )
+        {
+            /// If the cancel button is pressed, close the window
+            ImGui::End();
+            return false; // close the window
+        }
+
+        ///The Matching End to the Begin to create the window
+        ImGui::End();
+        return true; // keep the window open
+    }
+
+
 //-----------------------------------------------------------------------------
-// private: methods
+// private: inspection
 //-----------------------------------------------------------------------------
 
+
     /// @brief Displays the Entity List Window
-    void EntitySystem::EntityListWindow()
+    void EntitySystem::entityListWindow()
     {
         /// used make this a pop out window
         if(m_PopOut)
@@ -245,12 +264,12 @@
             /// Set the width of the second column
             ImGui::TableSetupColumn("Contents");
             ImGui::TableHeadersRow();
-            
+
             /// Lists all the entities in the EntitySystem
-            for (const auto& entity : m_Entities)
+            for ( Entity* entity : m_Entities )
             {
                 /// Shows the Right C
-                EntityPropertiesWindow(entity);
+                entityPropertiesWindow( entity );
             }
 
             /// End the table
@@ -266,9 +285,10 @@
         }
     }
 
+
     /// @brief Shows the properties of an Entity in the Contents column of the Entity List
     /// @param entity - the entity to display the properties of 
-    void EntitySystem::EntityPropertiesWindow(Entity* entity)
+    void EntitySystem::entityPropertiesWindow(Entity* entity)
     {
         ImGui::TableNextRow();  // Move to the next row
 
@@ -291,7 +311,7 @@
             /// Creates the context to copy, paste , and delete entities
             if (ImGui::MenuItem("Copy")) 
             {
-               Stream::CopyToClipboard(entity);
+                Stream::CopyToClipboard(entity);
             }
             if (ImGui::MenuItem("Paste"))
             {
@@ -301,7 +321,7 @@
             {
                 open_popup = true;
             }
- 
+
             ImGui::EndPopup();
         }
 
@@ -352,29 +372,73 @@
 
     }
 
+    
 //-----------------------------------------------------------------------------
-// singleton stuff
+// public: reading / writing
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  loads all of the m_Entities in a scene
+    /// @param  entityData  the json object containing the entity data
+    void EntitySystem::LoadEntities( nlohmann::ordered_json const& data )
+    {
+        for ( auto& [ key, value ] : data.items() )
+        {
+            Entity * entity = new Entity();
+            Stream::Read( entity, value );
+            m_Entities.push_back( entity );
+        }
+
+        for ( Entity* entity : m_Entities )
+        {
+            entity->InitComponents();
+        }
+    }
+
+
+    /// @brief  saves all of the entities in a scene
+    /// @return the written json data
+    nlohmann::ordered_json EntitySystem::SaveEntities() const
+    {
+        nlohmann::ordered_json json;
+
+        for ( Entity* entity : m_Entities )
+        {
+            json[ entity->GetName() ] = entity->Write();
+        }
+
+        return json;
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: singleton stuff
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the instance of EntitySystem
+    /// @return the instance of the EntitySystem
+    EntitySystem* EntitySystem::GetInstance()
+    {
+        static EntitySystem* instance = nullptr;
+        if ( instance == nullptr )
+        {
+            instance = new EntitySystem();
+        }
+
+        return instance;
+    }
+
+    
+//-----------------------------------------------------------------------------
+// private: singleton stuff
 //-----------------------------------------------------------------------------
 
 
     /// @brief  Constructs the EntitySystem
     EntitySystem::EntitySystem() :
-        System( "EntitySystem" ),
-        m_Entities()
+        System( "EntitySystem" )
     {}
 
-    /// @brief  The singleton instance of EntitySystem
-    EntitySystem * EntitySystem::s_Instance = nullptr;
-
-    /// @brief  gets the instance of EntitySystem
-    /// @return the instance of the EntitySystem
-    EntitySystem * EntitySystem::GetInstance()
-    {
-        if ( s_Instance == nullptr )
-        {
-            s_Instance = new EntitySystem();
-        }
-        return s_Instance;
-    }
 
 //-----------------------------------------------------------------------------

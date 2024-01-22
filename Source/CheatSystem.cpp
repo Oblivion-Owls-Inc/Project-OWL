@@ -17,6 +17,7 @@
 #include "ConstructionBehavior.h"
 #include "SceneSystem.h"  // GetInstance
 #include "CircleCollider.h"
+#include "Entity.h"
 
 ///-------------------------------------------------------------------------------
 /// Static Variables
