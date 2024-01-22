@@ -14,6 +14,7 @@
 #include "Entity.h"
 #include "CollisionSystem.h"
 #include "CircleCollider.h"
+#include "Health.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructors
@@ -80,7 +81,7 @@
         // If the bullet hits an enemy, deal damage to it
         if ( other->GetCollisionLayerId() == Collisions()->GetCollisionLayerId( "Enemies" ) )
         {
-            other->GetEntity()->GetComponent< EnemyBehavior >()->TakeDamage( m_Damage );
+            other->GetEntity()->GetComponent< Health >()->TakeDamage( m_Damage );
         }
 
         // The bullet is destroyed on collision
