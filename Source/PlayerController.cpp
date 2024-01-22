@@ -86,7 +86,7 @@ void PlayerController::OnInit()
         m_MiningLaser = miningLaserEntity->GetComponent< MiningLaser >();
     }
 
-    // Set the callback for when the layer takes damage.
+    // Set the callback for when the player takes damage.
     if(m_Health)
     {
         m_Health->AddOnHealthChangedCallback(
