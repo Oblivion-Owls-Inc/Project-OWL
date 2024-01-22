@@ -95,7 +95,7 @@ void DebugSystem::OnInit()
 
     ImFont* font = io->Fonts->AddFontDefault();
     if (font) {
-        font->Scale = 1.3f;  // Increase the scale to make the font larger
+        font->Scale = 1.8f;  // Increase the scale to make the font larger
     }
     io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
     ImPlot::CreateContext();

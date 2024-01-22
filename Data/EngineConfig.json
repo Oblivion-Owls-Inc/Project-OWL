@@ -21,6 +21,10 @@
         "BehaviorSystem<GeneratorBehavior>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
+        "LightingSystem": {
+            "Enabled": true,
+            "Layer": 5
+        },
         "CollisionSystem": {
             "CollisionLayerNames": [
                 "Terrain",

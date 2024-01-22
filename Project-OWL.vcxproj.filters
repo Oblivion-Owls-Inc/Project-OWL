@@ -150,9 +150,6 @@
     <Filter Include="Engine\Systems\ParticleSystem">
       <UniqueIdentifier>{82d6010a-5f55-4d06-bf33-4e48aa03a03b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Sprite\ParticleSprite">
-      <UniqueIdentifier>{b31df122-b6ac-40e0-894e-9df749af7fa2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\BaseEntityBehavior">
       <UniqueIdentifier>{5821ef37-47bc-4d79-a76b-4e247b51bed3}</UniqueIdentifier>
     </Filter>
@@ -228,8 +225,8 @@
     <Filter Include="Game\Components\Behaviors\BasicEntityBehavior">
       <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Behaviors\MiningLaser">
-      <UniqueIdentifier>{f6265677-427f-4a02-b8f0-f148023cb81f}</UniqueIdentifier>
+    <Filter Include="Engine\Entity\Component\Health">
+      <UniqueIdentifier>{e836e623-5921-472f-89b0-6e67007a2028}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Components\TilemapItemDropper">
       <UniqueIdentifier>{21c5aced-5a07-43a4-b1e5-740a7a52cdb8}</UniqueIdentifier>
@@ -248,6 +245,15 @@
     </Filter>
     <Filter Include="Game\Components\Behaviors\ItemCollector">
       <UniqueIdentifier>{4d1ec298-7749-4f83-8e8f-ee15a8eedd1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\LightingSystem">
+      <UniqueIdentifier>{c056d385-3503-4591-b00c-986b177e965b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Light">
+      <UniqueIdentifier>{df964db4-c5d9-40be-8150-2118cec1ddd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Sprite\EmitterSprite">
+      <UniqueIdentifier>{b31df122-b6ac-40e0-894e-9df749af7fa2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Components\Behaviors\GeneratorSystem">
       <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
@@ -491,11 +497,8 @@
     <ClCompile Include="imgui\imgui_stdlib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EmitterSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MiningLaser.cpp">
-      <Filter>Game\Components\Behaviors\MiningLaser</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\LootTable.cpp">
       <Filter>Game\Item Handling\LootTable</Filter>
@@ -517,6 +520,18 @@
     </ClCompile>
     <ClCompile Include="Source\ItemCollector.cpp">
       <Filter>Game\Components\Behaviors\ItemCollector</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Health.cpp">
+      <Filter>Engine\Entity\Component\Health</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LightingSystem.cpp">
+      <Filter>Engine\Systems\LightingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Light.cpp">
+      <Filter>Engine\Entity\Component\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EmitterSprite.cpp">
+      <Filter>Engine\Entity\Component\Sprite\EmitterSprite</Filter>
     </ClCompile>
     <ClCompile Include="Source\GeneratorBehavior.cpp">
       <Filter>Game\Components\Behaviors\GeneratorSystem</Filter>
@@ -763,11 +778,8 @@
     <ClInclude Include="imgui\imgui_stdlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\EmitterSprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\MiningLaser.h">
-      <Filter>Game\Components\Behaviors\MiningLaser</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\TileInfoSystem.h">
       <Filter>Game\Systems\TileInfoSystem</Filter>
@@ -792,6 +804,18 @@
     </ClInclude>
     <ClInclude Include="Source\ItemCollector.h">
       <Filter>Game\Components\Behaviors\ItemCollector</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Health.h">
+      <Filter>Engine\Entity\Component\Health</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LightingSystem.h">
+      <Filter>Engine\Systems\LightingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Light.h">
+      <Filter>Engine\Entity\Component\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EmitterSprite.h">
+      <Filter>Engine\Entity\Component\Sprite\EmitterSprite</Filter>
     </ClInclude>
     <ClInclude Include="Source\GeneratorBehavior.h">
       <Filter>Game\Components\Behaviors\GeneratorSystem</Filter>

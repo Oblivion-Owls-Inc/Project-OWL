@@ -36,6 +36,7 @@
 #include "EmitterSprite.h"
 #include "Emitter.h"
 #include "BaseBehavior.h"
+#include "Health.h"
 #include "GeneratorBehavior.h"
 #include "UiElement.h"
 #include "MiningLaser.h"
@@ -43,6 +44,7 @@
 #include "TilemapItemDropper.h"
 #include "Inventory.h"
 #include "ItemCollector.h"
+#include "Light.h"
 
 
 //-----------------------------------------------------------------------------
@@ -151,6 +153,7 @@
         { "Emitter"             , ComponentInfo< Emitter >()              },
         { "EmitterSprite"       , ComponentInfo< EmitterSprite >()        },
         { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         },
+        { "Health"              , ComponentInfo< Health >()               },
         { "UiElement"           , ComponentInfo< UiElement >()            },
         { "MiningLaser"         , ComponentInfo< MiningLaser >()          },
         { "ItemComponent"       , ComponentInfo< ItemComponent >()        },
@@ -158,6 +161,7 @@
         { "Inventory"           , ComponentInfo< Inventory >()            },
         { "ItemCollector"       , ComponentInfo< ItemCollector >()        },
 
+        { "Light"               , ComponentInfo< Light >()                }
         { "GeneratorBehavior"   , ComponentInfo< GeneratorBehavior >()    }
     };
 
