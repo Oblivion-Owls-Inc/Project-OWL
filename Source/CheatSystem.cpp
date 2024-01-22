@@ -200,14 +200,14 @@ void CheatSystem::noClip()
             if (m_NoClip)
             {
                 flag = m_CircleCollider->GetCollisionLayerFlags();
-                ID = m_CircleCollider->GetCollisionLayerId();
+                ID = m_CircleCollider->GetCollisionLayer();
                 m_CircleCollider->SetCollisionLayerFlags(0);
-                m_CircleCollider->SetCollisionLayerId(INT_MAX);
+                m_CircleCollider->SetCollisionLayer(INT_MAX);
             }
             else
             {
                 m_CircleCollider->SetCollisionLayerFlags(flag);
-                m_CircleCollider->SetCollisionLayerId(ID);
+                m_CircleCollider->SetCollisionLayer(ID);
             }
         }
     }

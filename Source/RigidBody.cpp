@@ -206,7 +206,7 @@
         rigidBodyB->SetVelocity( velB );
 
         // if other will also collide with this, mark the collision as already resolved
-        if ( other->GetCollisionLayerFlags() & (1 << m_Collider->GetCollisionLayerId()) )
+        if ( other->GetCollisionLayerFlags() & (1 << m_Collider->GetCollisionLayer()) )
         {
             m_CollisionResolved = true;
         }

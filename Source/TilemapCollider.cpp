@@ -43,7 +43,7 @@
     {
         nlohmann::ordered_json data;
 
-        data[ "CollisionLayer" ] = GetCollisionLayerId();
+        data[ "CollisionLayer" ] = GetCollisionLayer();
         data[ "CollisionLayerFlags" ] = GetCollisionLayerFlags();
 
         return data;
