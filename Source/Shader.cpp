@@ -56,9 +56,20 @@ static unsigned int CompileShader(const char* filepath, unsigned int GL_type_SHA
 /// @param fragment_filepath    Fragment Shader file
 Shader::Shader(const char* vertex_filepath, const char* fragment_filepath)
 {
+    Debug() << "Creating shader with \"" << vertex_filepath << "\" and \"" << fragment_filepath << "\"\n";
+
+    char shaderInfo[ 1024 ];
+    GLsizei logSize = 0;
+
     // Compile vertex and fragment parts
     unsigned int vertID = CompileShader(vertex_filepath, GL_VERTEX_SHADER);
     unsigned int fragID = CompileShader(fragment_filepath, GL_FRAGMENT_SHADER);
+
+    glGetShaderInfoLog( vertID, 1024, &logSize, shaderInfo );
+    Debug() << " === vertex info log ===\n" << shaderInfo;
+
+    glGetShaderInfoLog( fragID, 1024, &logSize, shaderInfo );
+    Debug() << " === fragment info log ===\n" << shaderInfo;
 
     // Link them together into one shader program.
     if (vertID && fragID)
@@ -73,6 +84,9 @@ Shader::Shader(const char* vertex_filepath, const char* fragment_filepath)
     // Separate shader objects are no longer needed, get rid of them.
     if (vertID)     glDeleteShader(vertID);
     if (fragID)     glDeleteShader(fragID);
+
+    glGetProgramInfoLog( m_ShaderID, 1024, &logSize, shaderInfo );
+    Debug() << " === program info log ===\n" << shaderInfo << std::endl;
 }
 
 
@@ -125,8 +139,14 @@ unsigned int Shader::GetUniformID(const char* uniform_name)
         unsigned int u = glGetUniformLocation(m_ShaderID, uniform_name);
         // (returns -1 for undeclared uniforms)
         
-        if (u != -1)    m_UniformIDs[uniform_name] = u;
-        else            Debug() << "SHADER ERROR: this uniform does not exist." << std::endl;
+        if (u != -1)
+        {
+            m_UniformIDs[uniform_name] = u;
+        }
+        else
+        {
+            Debug() << "SHADER ERROR: this uniform does not exist." << std::endl;
+        }
         
         return u;
     }

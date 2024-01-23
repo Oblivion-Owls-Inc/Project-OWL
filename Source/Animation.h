@@ -149,6 +149,9 @@ private: // member variables
     Sprite* m_Sprite = nullptr;
 
 
+    /// @brief  the name of the animation asset in use
+    std::string m_AssetName = "";
+
     /// @brief  the animation asset this Animation Component is using
     AnimationAsset const* m_Asset = nullptr;
 
