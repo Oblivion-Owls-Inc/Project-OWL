@@ -1,27 +1,34 @@
 #version 430 core
 
 
-
+/// @brief  the color of the pixel to display onscreen
 out vec4 pixel_color;
 
+/// @brief  the uv coordinates of the fragment
 in vec2 v_UV;
 
+/// @brief  border texture
+uniform sampler2D TextureSlot; 
 
-uniform sampler2D TextureSlot; // border texture
-
+/// @brief  the maximum number of sections the bar can support
 #define MAX_UI_BAR_SECTIONS 3
 
+/// @brief  the parameters for each section of the bar
 uniform vec4  sectionColors[ MAX_UI_BAR_SECTIONS ];
 uniform float sectionValues[ MAX_UI_BAR_SECTIONS ];
 uniform float sectionSlopes[ MAX_UI_BAR_SECTIONS ];
 
+/// @param  the size of the border of the bar
 uniform vec2  negBorderWidth;
 uniform vec2  posBorderWidth;
 
+/// @param  the total size of the bar, including the border
 uniform vec2  size;
 
+/// @param  the number of sections in the bar
 uniform int   numSections;
 
+/// @param the opacity of the bar
 uniform float opacity;
 
 
@@ -61,11 +68,12 @@ bool isWithinSection( vec2 barPos, int section )
     return (barPos.x + barPos.y * sectionSlopes[ section ] <= sectionValues[ section ]);
 }
 
-
+/// @brief  fragment main function
 void main()
 {
     vec2 pos = v_UV * size;
 
+    // if the pixel is part of the border, sample the texture
     if ( isBorderPixel( pos ) )
     {
         pixel_color = texture( TextureSlot, v_UV );
@@ -73,6 +81,7 @@ void main()
         return;
     }
 
+    // use the color of the first section the pixel is a part of
     pos = pixelPosToBarPos( pos );
     for ( int i = 0; i < MAX_UI_BAR_SECTIONS - 1; ++i )
     {
@@ -89,6 +98,7 @@ void main()
         }
     }
 
+    // if the pixel didn't find a section, use the last section
     pixel_color = sectionColors[ numSections - 1 ];
     pixel_color.w *= opacity;
 }
