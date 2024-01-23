@@ -56,8 +56,6 @@ static unsigned int CompileShader(const char* filepath, unsigned int GL_type_SHA
 /// @param fragment_filepath    Fragment Shader file
 Shader::Shader(const char* vertex_filepath, const char* fragment_filepath)
 {
-    Debug() << "Creating shader with \"" << vertex_filepath << "\" and \"" << fragment_filepath << "\"\n";
-
     char shaderInfo[ 1024 ];
     GLsizei logSize = 0;
 
@@ -66,10 +64,16 @@ Shader::Shader(const char* vertex_filepath, const char* fragment_filepath)
     unsigned int fragID = CompileShader(fragment_filepath, GL_FRAGMENT_SHADER);
 
     glGetShaderInfoLog( vertID, 1024, &logSize, shaderInfo );
-    Debug() << " === vertex info log ===\n" << shaderInfo;
+    if ( logSize > 0 )
+    {
+        Debug() << " === shader \"" << vertex_filepath << "\" info log ===\n" << shaderInfo << std::endl;
+    }
 
     glGetShaderInfoLog( fragID, 1024, &logSize, shaderInfo );
-    Debug() << " === fragment info log ===\n" << shaderInfo;
+    if ( logSize > 0 )
+    {
+        Debug() << " === shader \"" << fragment_filepath << "\" info log ===\n" << shaderInfo << std::endl;
+    }
 
     // Link them together into one shader program.
     if (vertID && fragID)
@@ -86,7 +90,10 @@ Shader::Shader(const char* vertex_filepath, const char* fragment_filepath)
     if (fragID)     glDeleteShader(fragID);
 
     glGetProgramInfoLog( m_ShaderID, 1024, &logSize, shaderInfo );
-    Debug() << " === program info log ===\n" << shaderInfo << std::endl;
+    if ( logSize > 0 )
+    {
+        Debug() << " === program info log ===\n" << shaderInfo << std::endl;
+    }
 }
 
 
