@@ -1,3 +1,11 @@
+/// @file       UiBar.frag
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
+/// @brief      fragment shader for a configurable ui bar
+/// @date       2024-01-22
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+
+
 #version 430 core
 
 
@@ -67,6 +75,7 @@ bool isWithinSection( vec2 barPos, int section )
 {
     return (barPos.x + barPos.y * sectionSlopes[ section ] <= sectionValues[ section ]);
 }
+
 
 /// @brief  fragment main function
 void main()
