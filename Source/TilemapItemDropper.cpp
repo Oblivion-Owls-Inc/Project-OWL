@@ -117,7 +117,7 @@
         );
 
         // get initial velocity to spawn the item
-        float angle = random( 0.0f, 6.28 );
+        float angle = random( 0.0f, 6.283f );
         glm::vec2 velocity = glm::vec2(
             std::cos( angle ),
             std::sin( angle )
@@ -127,11 +127,12 @@
         // spawn the item
         Entity* itemEntity = m_ItemArchetype->Clone();
 
-        Entities()->AddEntity( itemEntity );
-
         itemEntity->GetComponent< Transform >()->SetTranslation( position );
         itemEntity->GetComponent< RigidBody >()->SetVelocity( velocity );
         itemEntity->GetComponent< ItemComponent >()->SetItemStack( itemStack );
+
+        Entities()->QueueAddEntity( itemEntity );
+
     }
 
 

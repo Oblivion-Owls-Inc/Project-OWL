@@ -76,7 +76,7 @@
             return;
         }
 
-        result = m_System->init( m_MaxChannels, FMOD_INIT_NORMAL, 0 );
+        result = m_System->init( m_MaxChannels, FMOD_INIT_3D_RIGHTHANDED, 0 );
         if ( result != FMOD_OK )
         {
             Debug() << "Failed to initialize FMOD system" << std::endl << std::endl;
@@ -102,6 +102,11 @@
     /// @param  dt  the elapsed time in seconds since the previous frame
     void AudioSystem::OnUpdate( float dt )
     {
+        if ( m_ActiveListener != nullptr )
+        {
+            m_ActiveListener->OnUpdate( dt );
+        }
+
         m_System->update();
     }
 

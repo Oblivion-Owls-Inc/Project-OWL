@@ -55,13 +55,16 @@
 
 
 //-----------------------------------------------------------------------------
-// private: virtual override methods
+// public: virtual override methods
 //-----------------------------------------------------------------------------
 
 
     /// @brief  called once when entering the scene
     void AudioListener::OnInit()
     {
+        m_Transform = GetEntity()->GetComponent< Transform >();
+        m_RigidBody = GetEntity()->GetComponent< RigidBody >();
+
         if ( m_IsActive )
         {
             MakeActive();

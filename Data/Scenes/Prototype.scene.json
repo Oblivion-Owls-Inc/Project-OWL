@@ -5743,11 +5743,11 @@
                         {
                             "Cost": [
                                 {
-                                    "ItemId": 0,
-                                    "Count": 1
+                                    "ItemId": 1,
+                                    "Count": 3
                                 }
                             ],
-                            "ArchetypeName": ""
+                            "ArchetypeName": "Turret"
                         }
                     ],
                     "BuildingIndex": -1,

@@ -321,7 +321,10 @@
     /// @brief  called once when entering the scene
     void AudioPlayer::OnInit()
     {
-        m_Sound = AssetLibrary< Sound >()->GetAsset( m_SoundName );
+        if ( m_SoundName.empty() == false )
+        {
+            m_Sound = AssetLibrary< Sound >()->GetAsset( m_SoundName );
+        }
 
         m_Transform = GetEntity()->GetComponent< Transform >();
         m_RigidBody = GetEntity()->GetComponent< RigidBody >();

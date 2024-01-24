@@ -255,6 +255,12 @@
     <Filter Include="Engine\Entity\Component\Sprite\EmitterSprite">
       <UniqueIdentifier>{b31df122-b6ac-40e0-894e-9df749af7fa2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Transform\UiElement">
+      <UniqueIdentifier>{834440a1-a0e2-4681-ac09-bb18b121c323}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\MiningLaser">
+      <UniqueIdentifier>{db9b700b-2253-4f54-bbbd-0e24b546e110}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -485,16 +491,10 @@
     <ClCompile Include="Source\CheatSystem.cpp">
       <Filter>Engine\Systems\CheatSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UiElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FileExplorer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="imgui\imgui_stdlib.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MiningLaser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\LootTable.cpp">
@@ -532,6 +532,12 @@
     </ClCompile>
     <ClCompile Include="Source\AudioListener.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UiElement.cpp">
+      <Filter>Engine\Entity\Component\Transform\UiElement</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MiningLaser.cpp">
+      <Filter>Game\Components\Behaviors\MiningLaser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -766,16 +772,10 @@
     <ClInclude Include="Source\CheatSystem.h">
       <Filter>Engine\Systems\CheatSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\UiElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\FileExplorer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui_stdlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MiningLaser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\TileInfoSystem.h">
@@ -817,6 +817,12 @@
     <ClInclude Include="Source\AudioListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\UiElement.h">
+      <Filter>Engine\Entity\Component\Transform\UiElement</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MiningLaser.h">
+      <Filter>Game\Components\Behaviors\MiningLaser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -831,10 +837,10 @@
     <None Include="Data\Scenes\Template.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\Prototype.scene.json">
+    <None Include="Data\Scenes\ConstructionTest.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\ConstructionTest.scene.json">
+    <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>
