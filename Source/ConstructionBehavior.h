@@ -167,9 +167,6 @@ private: // members
     /// @brief  the current tile being targeted
     glm::ivec2 m_TargetTilePos = { -1, -1 };
 
-    /// @brief  the current tile being mined
-    glm::ivec2 m_CurrentMiningTilePos = { -1, -1 };
-
     /// @brief  the current position being targeted
     glm::vec2 m_TargetPos = { 0, 0 };
 
@@ -353,11 +350,11 @@ private: // copying
 
     /// @brief  copy-constructor for the ConstructionBehavior
     /// @param  other   the other ConstructionBehavior to copy
-    ConstructionBehavior( const ConstructionBehavior& other );
+    ConstructionBehavior( ConstructionBehavior const& other );
 
 
     // diable = operator
-    void operator =( const ConstructionBehavior& ) = delete;
+    void operator =( ConstructionBehavior const& ) = delete;
 
 
 //-----------------------------------------------------------------------------

@@ -33,9 +33,9 @@
     void BulletBehavior::OnInit()
     {
 	    Behaviors< Behavior >()->AddComponent( this );
-        GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
+        GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionEnterCallback(
             GetId(),
-            std::bind( &BulletBehavior::onCollision, this, std::placeholders::_1, std::placeholders::_2 )
+            std::bind( &BulletBehavior::onCollisionEnter, this, std::placeholders::_1 )
         );
     }
 
@@ -72,13 +72,12 @@
 // private: methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  Called whenever a Collider on this Behavior's Entity collides
-    /// @param  other           the entity that was collided with
-    /// @param  collisionData   additional data about the collision
-    void BulletBehavior::onCollision( Collider* other, CollisionData const& collisionData )
+    /// @brief  called whenever this Entity's Collider enters a collision
+    /// @param  other   the collider that was collided with
+    void BulletBehavior::onCollisionEnter( Collider* other )
     {
         // If the bullet hits an enemy, deal damage to it
-        if ( other->GetCollisionLayerId() == Collisions()->GetCollisionLayerId( "Enemies" ) )
+        if ( other->GetCollisionLayer() == Collisions()->GetCollisionLayerId( "Enemies" ) )
         {
             other->GetEntity()->GetComponent< EnemyBehavior >()->TakeDamage( m_Damage );
         }
