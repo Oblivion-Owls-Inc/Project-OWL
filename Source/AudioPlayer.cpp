@@ -417,10 +417,7 @@
     void AudioPlayer::Inspector()
     {
 
-        if ( Inspection::SelectAssetFromLibrary< Sound >( "sound", &m_Sound ) )
-        {
-            m_SoundName = AssetLibrary< Sound >()->GetAssetName( m_Sound );
-        }
+        Inspection::SelectAssetFromLibrary< Sound >( "sound", &m_Sound, &m_SoundName );
 
         bool paused = GetIsPaused();
         if ( ImGui::Checkbox( "Paused", &paused ) )
