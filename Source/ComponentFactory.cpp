@@ -44,6 +44,8 @@
 #include "Inventory.h"
 #include "ItemCollector.h"
 #include "Light.h"
+#include "UiBarSprite.h"
+#include "HealthBar.h"
 
 
 //-----------------------------------------------------------------------------
@@ -159,6 +161,8 @@
         { "TilemapItemDropper"  , ComponentInfo< TilemapItemDropper >()   },
         { "Inventory"           , ComponentInfo< Inventory >()            },
         { "ItemCollector"       , ComponentInfo< ItemCollector >()        },
+        { "HealthBar"           , ComponentInfo< HealthBar >()            },
+        { "UiBarSprite"         , ComponentInfo< UiBarSprite >()          },
 
         { "Light"               , ComponentInfo< Light >()                }
     };

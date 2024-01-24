@@ -133,6 +133,25 @@ private:
     Shader* FindShader(const char* name);
 
 
+    /// @brief  openGL error message callback
+    /// @param  source      the source of the message
+    /// @param  type        the type of message
+    /// @param  id          the id of the message
+    /// @param  severity    the severity of the message
+    /// @param  length      the length of the message
+    /// @param  message     the message
+    /// @param  userParam   additional user-supplied data
+    static void GLAPIENTRY errorCallback(
+        GLenum source,
+        GLenum type,
+        GLuint id,
+        GLenum severity,
+        GLsizei length,
+        const GLchar* message,
+        const void* userParam
+    );
+
+
 
     //-------------------------------------------------------------------------
     //          singleton stuff
