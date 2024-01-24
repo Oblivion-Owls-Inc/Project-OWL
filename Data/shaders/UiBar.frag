@@ -26,30 +26,30 @@ uniform vec4  sectionColors[ MAX_UI_BAR_SECTIONS ];
 uniform float sectionValues[ MAX_UI_BAR_SECTIONS ];
 uniform float sectionSlopes[ MAX_UI_BAR_SECTIONS ];
 
-/// @param  the size of the border of the bar
-uniform vec2  negBorderWidth;
-uniform vec2  posBorderWidth;
+/// @breif  the offset from the left edge of the sprite that the bar starts and ends
+uniform vec2  borderPositions;
 
-/// @param  the total size of the bar, including the border
+/// @breif  the total size of the bar, including the border
 uniform vec2  size;
 
-/// @param  the number of sections in the bar
+/// @breif  the number of sections in the bar
 uniform int   numSections;
 
-/// @param the opacity of the bar
+/// @breif  the opacity of the bar
 uniform float opacity;
+
+/// @breif  the vertical offset of the center of rotation
+uniform float rotationPosition;
 
 
 /// @brief  checks if a pixel is part of the border
-/// @param  pixelPos    the position of the pixel to check
+/// @param  uv  the position of the pixel to check
 /// @return whether the pixel is part of the border
-bool isBorderPixel( vec2 pixelPos )
+bool isBorderPixel( vec2 uv )
 {
     return (
-        pixelPos.x < negBorderWidth.x ||
-        pixelPos.y < negBorderWidth.y ||
-        size.x - pixelPos.x < posBorderWidth.x ||
-        size.y - pixelPos.y < posBorderWidth.y
+        uv.x <= borderPositions.x ||
+        uv.x >  borderPositions.y
     );
 }
 
@@ -59,11 +59,11 @@ bool isBorderPixel( vec2 pixelPos )
 /// @return the bar position of the pixel
 vec2 pixelPosToBarPos( vec2 pixelPos )
 {
-    vec2  barSize = size - posBorderWidth - negBorderWidth;
+    vec2  barOrigin = vec2( borderPositions.x, rotationPosition * size.y );
+    
+    float barLength = size.x * (borderPositions.y - borderPositions.x);
 
-    vec2  barOrigin = vec2( negBorderWidth.x, negBorderWidth.y + 0.5 * barSize.y );
-
-    return (pixelPos - barOrigin) / barSize.x;
+    return (pixelPos - barOrigin) / barLength;
 }
 
 
@@ -81,33 +81,27 @@ bool isWithinSection( vec2 barPos, int section )
 void main()
 {
     vec2 pos = v_UV * size;
+    
+    pixel_color = texture( TextureSlot, v_UV );
+    pixel_color.w *= opacity;
 
     // if the pixel is part of the border, sample the texture
-    if ( isBorderPixel( pos ) )
+    if ( isBorderPixel( v_UV ) )
     {
-        pixel_color = texture( TextureSlot, v_UV );
-        pixel_color.w *= opacity;
         return;
     }
 
     // use the color of the first section the pixel is a part of
     pos = pixelPosToBarPos( pos );
-    for ( int i = 0; i < MAX_UI_BAR_SECTIONS - 1; ++i )
+    for ( int i = 0; i < numSections - 1; ++i )
     {
-        if ( i >= numSections - 1 )
-        {
-            break;
-        }
-
         if ( isWithinSection( pos, i ) )
         {
-            pixel_color = sectionColors[ i ];
-            pixel_color.w *= opacity;
+            pixel_color *= sectionColors[ i ];
             return;
         }
     }
 
     // if the pixel didn't find a section, use the last section
-    pixel_color = sectionColors[ numSections - 1 ];
-    pixel_color.w *= opacity;
+    pixel_color *= sectionColors[ numSections - 1 ];
 }

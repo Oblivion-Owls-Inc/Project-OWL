@@ -169,11 +169,10 @@
         {
             Debug() << "WARNING: UiBarSprite texture sheet dimensions are not < 1, 1 >" << std::endl;
         }
+
         m_Texture->Bind();
 
-
         prepareShader();
-
 
         // Render it with triangle strip mode
         Mesh const* mesh = m_Texture->GetMesh();
@@ -227,14 +226,15 @@
             glUniform1fv( shader->GetUniformID( "sectionSlopes" ), (GLsizei)m_Sections.size(), &sectionSlopes[ 0 ] );
         }
 
-        glUniform2fv( shader->GetUniformID( "negBorderWidth" ), 1, &m_NegBorderWidth[ 0 ] );
-        glUniform2fv( shader->GetUniformID( "posBorderWidth" ), 1, &m_PosBorderWidth[ 0 ] );
+        glUniform2fv( shader->GetUniformID( "borderPositions" ), 1, &m_BorderPositions[ 0 ] );
 
         glUniform2fv( shader->GetUniformID( "size" ), 1, &m_Transform->GetScale()[ 0 ] );
 
         glUniform1i( shader->GetUniformID( "numSections" ), (int)m_Sections.size() );
 
         glUniform1f( shader->GetUniformID( "opacity" ), m_Opacity );
+
+        glUniform1f( shader->GetUniformID( "rotationPosition" ), m_RotationPosition );
     }
 
 
@@ -261,9 +261,9 @@
             }
         );
 
-        ImGui::DragFloat2( "negative border widths", &m_NegBorderWidth[ 0 ], 0.05f, 0.0f, 1.0f );
+        ImGui::DragFloat2( "border positions", &m_BorderPositions[ 0 ], 0.05f, -1.0f, 2.0f );
 
-        ImGui::DragFloat2( "positive border widths", &m_PosBorderWidth[ 0 ], 0.05f, 0.0f, 1.0f );
+        ImGui::DragFloat( "rotation position", &m_RotationPosition, 0.05f, 0.0f, 1.0f );
     }
 
 
@@ -284,18 +284,18 @@
     }
 
 
-    /// @brief  the width of the negative borders
-    /// @param  data    the json data to read for
-    void UiBarSprite::readNegBorderWidth( nlohmann::ordered_json const& data )
+    /// @breif  reads the offset from the left edge of the sprite that the bar starts and ends
+    /// @param  data    the json data to read from
+    void UiBarSprite::readBorderPositions( nlohmann::ordered_json const& data )
     {
-        Stream::Read( &m_NegBorderWidth, data );
+        Stream::Read( &m_BorderPositions, data );
     }
 
-    /// @brief  the width of the positive borders
-    /// @param  data    the json data to read for
-    void UiBarSprite::readPosBorderWidth( nlohmann::ordered_json const& data )
+    /// @breif  reads the vertical position of the slope rotation
+    /// @param  data    the json data to read from
+    void UiBarSprite::readRotationPosition( nlohmann::ordered_json const& data )
     {
-        Stream::Read( &m_PosBorderWidth, data );
+        Stream::Read( m_RotationPosition, data );
     }
 
 
@@ -309,12 +309,12 @@
     ReadMethodMap< ISerializable > const& UiBarSprite::GetReadMethods() const
     {
         static ReadMethodMap< UiBarSprite > const readMethods = {
-            { "Texture"       , &UiBarSprite::readTexture        },
-            { "Layer"         , &UiBarSprite::readLayer          },
-            { "Opacity"       , &UiBarSprite::readOpacity        },
-            { "Sections"      , &UiBarSprite::readSections       },
-            { "NegBorderWidth", &UiBarSprite::readNegBorderWidth },
-            { "PosBorderWidth", &UiBarSprite::readPosBorderWidth }
+            { "Texture"         , &UiBarSprite::readTexture          },
+            { "Layer"           , &UiBarSprite::readLayer            },
+            { "Opacity"         , &UiBarSprite::readOpacity          },
+            { "Sections"        , &UiBarSprite::readSections         },
+            { "BorderPositions" , &UiBarSprite::readBorderPositions  },
+            { "RotationPosition", &UiBarSprite::readRotationPosition }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -333,11 +333,11 @@
             sectionData.push_back( Stream::Write( section ) );
         }
 
-        json[ "Texture"        ] = Stream::Write( m_TextureName    );
-        json[ "Layer"          ] = Stream::Write( m_Layer          );
-        json[ "Opacity"        ] = Stream::Write( m_Opacity        );
-        json[ "NegBorderWidth" ] = Stream::Write( m_NegBorderWidth );
-        json[ "PosBorderWidth" ] = Stream::Write( m_PosBorderWidth );
+        json[ "Texture"          ] = Stream::Write( m_TextureName      );
+        json[ "Layer"            ] = Stream::Write( m_Layer            );
+        json[ "Opacity"          ] = Stream::Write( m_Opacity          );
+        json[ "BorderPositions"  ] = Stream::Write( m_BorderPositions  );
+        json[ "RotationPosition" ] = Stream::Write( m_RotationPosition );
 
         return json;
     }
@@ -376,9 +376,9 @@
     /// @param  other   the other UiBarSprite to copy
     UiBarSprite::UiBarSprite( UiBarSprite const& other ) :
         Sprite( other ),
-        m_Sections      ( other.m_Sections       ),
-        m_NegBorderWidth( other.m_NegBorderWidth ),
-        m_PosBorderWidth( other.m_PosBorderWidth )
+        m_Sections        ( other.m_Sections         ),
+        m_BorderPositions ( other.m_BorderPositions  ),
+        m_RotationPosition( other.m_RotationPosition )
     {}
 
 

@@ -117,7 +117,7 @@
         );
 
         // get initial velocity to spawn the item
-        float angle = random( 0.0f, 6.28 );
+        float angle = random( 0.0f, 6.283f );
         glm::vec2 velocity = glm::vec2(
             std::cos( angle ),
             std::sin( angle )

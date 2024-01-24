@@ -124,11 +124,11 @@ private: // members
     std::vector< UiBarSection > m_Sections = {};
 
 
-    /// @brief  the widths of the negative borders
-    glm::vec2 m_NegBorderWidth = { 0.0f, 0.0f };
+    /// @breif  the offset from the left edge of the sprite that the bar starts and ends
+    glm::vec2 m_BorderPositions = { 0.0f, 1.0f };
 
-    /// @brief  the widths of the positive borders
-    glm::vec2 m_PosBorderWidth = { 0.0f, 0.0f };
+    /// @breif  the vertical position of the slope rotation
+    float m_RotationPosition = 0.5f;
 
 
 //-----------------------------------------------------------------------------
@@ -154,18 +154,18 @@ private: // reading
 //-----------------------------------------------------------------------------
 
     
-    /// @brief  the sections in this UiBar
-    /// @param  data    the json data to read for
+    /// @brief  reads the sections in this UiBar
+    /// @param  data    the json data to read from
     void readSections( nlohmann::ordered_json const& data );
 
 
-    /// @brief  the width of the negative borders
-    /// @param  data    the json data to read for
-    void readNegBorderWidth( nlohmann::ordered_json const& data );
+    /// @breif  reads the offset from the left edge of the sprite that the bar starts and ends
+    /// @param  data    the json data to read from
+    void readBorderPositions( nlohmann::ordered_json const& data );
 
-    /// @brief  the width of the positive borders
-    /// @param  data    the json data to read for
-    void readPosBorderWidth( nlohmann::ordered_json const& data );
+    /// @breif  reads the vertical position of the slope rotation
+    /// @param  data    the json data to read from
+    void readRotationPosition( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

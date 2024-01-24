@@ -108,6 +108,17 @@
                     1.0
                 ]
             },
+            "HealthBar": {
+                "Filepath": "Data/Textures/healthBar.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
             "Items": {
                 "Filepath": "Data/Textures/Items/TestItemSheet.png",
                 "SheetDimensions": [
@@ -6036,7 +6047,7 @@
                                 1.0
                             ],
                             "Value": 1.0,
-                            "Slope": 0.0
+                            "Slope": 1.0
                         },
                         {
                             "Color": [
@@ -6046,7 +6057,7 @@
                                 1.0
                             ],
                             "Value": 1.0,
-                            "Slope": 0.0
+                            "Slope": 1.0
                         },
                         {
                             "Color": [
@@ -6059,17 +6070,14 @@
                             "Slope": 0.0
                         }
                     ],
-                    "Texture": "Background",
+                    "Texture": "HealthBar",
                     "Layer": 6,
                     "Opacity": 1.0,
-                    "NegBorderWidth": [
-                        0.10000000149011612,
-                        0.10000000149011612
+                    "BorderPositions": [
+                        -0.20000000298023224,
+                        1.2000000476837158
                     ],
-                    "PosBorderWidth": [
-                        0.10000000149011612,
-                        0.10000000149011612
-                    ]
+                    "RotationPosition": 0.5
                 }
             }
         }
