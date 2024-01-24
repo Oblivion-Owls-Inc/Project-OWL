@@ -194,9 +194,8 @@ private: // inspector helpers
     /// @brief Allows all animation attributes to be accessed by the editor.
     void animationInspector();
 
-    /// @brief What to do when the player has been hit.
-    /// @param other         - the collider of the other entity.
-    /// @param collisionData - Holds details of the collision.
-    void onCollision(Collider* other, CollisionData const& collisionData);
+    /// @brief  What to do when the player has been hit.
+    /// @param  other   - the collider of the other entity.
+    void onCollisionEnter( Collider* other );
 
 };

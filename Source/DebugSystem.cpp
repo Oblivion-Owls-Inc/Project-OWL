@@ -29,6 +29,7 @@
 #include "Transform.h"
 #include "Engine.h"
 #include "EntitySystem.h"
+#include "Entity.h"
 #include <chrono>
 #include <string>
 

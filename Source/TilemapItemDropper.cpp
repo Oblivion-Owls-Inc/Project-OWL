@@ -127,11 +127,12 @@
         // spawn the item
         Entity* itemEntity = m_ItemArchetype->Clone();
 
-        Entities()->AddEntity( itemEntity );
-
         itemEntity->GetComponent< Transform >()->SetTranslation( position );
         itemEntity->GetComponent< RigidBody >()->SetVelocity( velocity );
         itemEntity->GetComponent< ItemComponent >()->SetItemStack( itemStack );
+
+        Entities()->QueueAddEntity( itemEntity );
+
     }
 
 

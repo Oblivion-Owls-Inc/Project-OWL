@@ -50,10 +50,9 @@ public: // virtual override methods
 private: // methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  Called whenever a Collider on this Behavior's Entity collides
-    /// @param  other           the entity that was collided with
-    /// @param  collisionData   additional data about the collision
-    void onCollision( Collider* other, CollisionData const& collisionData );
+    /// @brief  called whenever this Entity's Collider enters a collision
+    /// @param  other   the collider that was collided with
+    void onCollisionEnter( Collider* other );
 
 //-----------------------------------------------------------------------------
 private: // member variables

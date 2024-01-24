@@ -30,7 +30,7 @@
                 return ItemStack( -1, 0 );
             }
 
-            int itemIndex = random( 0, m_ItemIds.size() - 1 );
+            int itemIndex = random( 0, (int)m_ItemIds.size() - 1 );
             int itemCount = random( m_MinCount, m_MaxCount );
             return ItemStack( m_ItemIds[ itemIndex ], itemCount );
         }
@@ -289,7 +289,7 @@
 
         std::vector< ItemStack > loot = {};
 
-        unsigned numRolls = random( m_MinRolls, m_MaxRolls );
+        int numRolls = random( m_MinRolls, m_MaxRolls );
         for ( int i = 0; i < numRolls && totalWeight > 0.0f; ++i )
         {
             float targetWeight = random( 0.0f, totalWeight );

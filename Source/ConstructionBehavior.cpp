@@ -246,6 +246,12 @@
             m_BuildingIndex = i;
 
             // update preview sprite
+            if ( m_BuildingInfos[ i ].M_Archetype == nullptr )
+            {
+                Debug() << "WARNING: ConstructionManager building archetype is NULL" << std::endl;
+                return;
+            }
+
             m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
             m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
 
@@ -324,7 +330,7 @@
         Entity* building = m_BuildingInfos[ m_BuildingIndex ].M_Archetype->Clone();
         building->GetComponent< Transform >()->SetTranslation( m_TargetPos );
         
-        Entities()->AddEntity( building );
+        Entities()->QueueAddEntity( building );
         m_Buildings->SetTile( m_TargetTilePos, building );
         
         m_PlayerInventory->RemoveItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost );
@@ -380,23 +386,6 @@
             []( BuildingInfo* buildingInfo ) -> bool
             {
                 return buildingInfo->Inspect();
-
-                // bool changed = false;
-                // 
-                // ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.35f );
-                // if ( Inspection::SelectAssetFromLibrary( "Archetype", &buildingInfo->M_Archetype ) )
-                // {
-                //     changed = true;
-                // }
-                // 
-                // ImGui::SameLine();
-                // ImGui::PushItemWidth( ImGui::GetWindowWidth() * 0.1f );
-                // if ( ImGui::DragInt( "Cost", &buildingInfo->cost, 0.5f, 0, INT_MAX ) )
-                // {
-                //     changed = true;
-                // }
-                // 
-                // return changed;
             }
         );
     }
@@ -411,8 +400,6 @@
         ImGui::DragFloat( "Preview Fade-Out Radius", &m_PreviewFadeOutRadius, 0.05f, 0.0f, INFINITY );
 
         ImGui::DragInt2( "Target Tile", &m_TargetTilePos[ 0 ], 0, 0, 0, "%i", ImGuiSliderFlags_NoInput );
-
-        ImGui::DragInt2( "Currently Mining Tile", &m_CurrentMiningTilePos[ 0 ], 0, 0, 0, "%i", ImGuiSliderFlags_NoInput );
 
         ImGui::ColorEdit3( "Preview Color - Placeable", &m_PreviewColorPlaceable[ 0 ] );
 

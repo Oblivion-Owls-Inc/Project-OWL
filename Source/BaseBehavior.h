@@ -54,7 +54,9 @@ private:
 private: // reading
 //-----------------------------------------------------------------------------
 
-    void onCollision(Collider* other, CollisionData const& collisionData);
+    /// @brief  called whenever the base's Collider enters a collision
+    /// @param  other   the collider that was collided with
+    void onCollisionEnter( Collider* other );
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< BaseBehavior > const s_ReadMethods;

@@ -12,6 +12,8 @@
 #include "Health.h"
 #include "UiBarSprite.h"
 
+#include "Entity.h"
+
 #include "EntitySystem.h"
 #include "BehaviorSystem.h"
 #include "RenderSystem.h"
