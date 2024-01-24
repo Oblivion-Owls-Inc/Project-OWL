@@ -10,6 +10,7 @@
 // fwd refs
 class Mesh;
 class Texture;
+class Transform;
 
 /// @brief      Stores mesh + texture, along with other data needed to draw a basic 2D sprite.
 class Sprite : public Component
@@ -106,6 +107,9 @@ public: // accessors
     __inline void SetTexture( Texture const* texture ) { m_Texture = texture; }
 
 
+    __inline Transform* GetTransform() { return m_Transform; }
+
+
 //-----------------------------------------------------------------------------
 protected: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -130,7 +134,10 @@ protected: // member variables
 
     bool m_IsTextured;
 
+    std::string m_TextureName;
     Texture const* m_Texture;
+
+    Transform* m_Transform;
 
 //-----------------------------------------------------------------------------
 protected: // methods

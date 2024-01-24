@@ -29,6 +29,11 @@ void RenderSystem::OnInit()
     // Enable transparency
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
+    // enable debug output
+    glEnable              ( GL_DEBUG_OUTPUT );
+    glDebugMessageCallback( errorCallback, 0 );
 }
 
 
@@ -217,6 +222,36 @@ Shader* RenderSystem::SetActiveShader(const char* name)
 /// @param name     Name of the shader to return
 /// @return         Pointer to shader
 Shader* RenderSystem::GetShader(const char* name) { return FindShader(name); }
+
+
+/// @brief  openGL error message callback
+/// @param  source      the source of the message
+/// @param  type        the type of message
+/// @param  id          the id of the message
+/// @param  severity    the severity of the message
+/// @param  length      the length of the message
+/// @param  message     the message
+/// @param  userParam   additional user-supplied data
+void GLAPIENTRY RenderSystem::errorCallback(
+    GLenum source,
+    GLenum type,
+    GLuint id,
+    GLenum severity,
+    GLsizei length,
+    const GLchar* message,
+    const void* userParam
+)
+{
+    // if ( type == GL_DEBUG_TYPE_ERROR )
+    // {
+        Debug() << "OpenGL Error:\n" <<
+            " - source  : " << source <<
+            " - type    : " << type <<
+            " - id      : " << id <<
+            " - severity: " << severity <<
+            " - message : " << message << std::endl;
+    // }
+}
 
 
 //-----------------------------------------------------------------------------

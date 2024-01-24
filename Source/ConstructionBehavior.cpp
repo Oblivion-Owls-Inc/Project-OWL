@@ -57,11 +57,7 @@
         {
             bool changed = false;
 
-            if ( Inspection::SelectAssetFromLibrary< Entity >( "building archetype", &M_Archetype ) )
-            {
-                changed = true;
-                m_ArchetypeName = AssetLibrary< Entity >()->GetAssetName( M_Archetype );
-            }
+            changed |= Inspection::SelectAssetFromLibrary< Entity >( "building archetype", &M_Archetype, &m_ArchetypeName );
 
             changed = Inspection::InspectArray< ItemStack >(
                 "building cost",

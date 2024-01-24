@@ -150,9 +150,6 @@
     <Filter Include="Engine\Systems\ParticleSystem">
       <UniqueIdentifier>{82d6010a-5f55-4d06-bf33-4e48aa03a03b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\BaseEntityBehavior">
-      <UniqueIdentifier>{5821ef37-47bc-4d79-a76b-4e247b51bed3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Framework\Inspection">
       <UniqueIdentifier>{973c8ce7-ba72-4cdf-8b08-0b9b9404380f}</UniqueIdentifier>
     </Filter>
@@ -260,6 +257,27 @@
     </Filter>
     <Filter Include="Game\Components\Behaviors\MiningLaser">
       <UniqueIdentifier>{db9b700b-2253-4f54-bbbd-0e24b546e110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Shaders">
+      <UniqueIdentifier>{97ce018e-5de0-44c6-96c9-8a2df45e070e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Shaders\Vertex">
+      <UniqueIdentifier>{269741a7-681b-4a9f-b44b-92f9567f18d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Shaders\Compute">
+      <UniqueIdentifier>{8bbc1f15-b63f-4c79-80d0-7cfc0e45ad50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Shaders\Fragment">
+      <UniqueIdentifier>{85eec2d7-1007-471f-92a2-e9230a99ce4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\AudioListener">
+      <UniqueIdentifier>{9a8f7e43-8810-4cba-820c-c5eb52bc253b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Sprite\UiBarSprite">
+      <UniqueIdentifier>{32cbd1d8-2975-4861-9810-34ddd57b887e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\HealthBar">
+      <UniqueIdentifier>{3fff6889-b8c9-4f4e-aa99-ac10496f6c20}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -530,14 +548,20 @@
     <ClCompile Include="Source\EmitterSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\EmitterSprite</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AudioListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\UiElement.cpp">
       <Filter>Engine\Entity\Component\Transform\UiElement</Filter>
     </ClCompile>
     <ClCompile Include="Source\MiningLaser.cpp">
       <Filter>Game\Components\Behaviors\MiningLaser</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AudioListener.cpp">
+      <Filter>Engine\Entity\Component\AudioListener</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UiBarSprite.cpp">
+      <Filter>Engine\Entity\Component\Sprite\UiBarSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HealthBar.cpp">
+      <Filter>Game\Components\Behaviors\HealthBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -814,14 +838,20 @@
     <ClInclude Include="Source\EmitterSprite.h">
       <Filter>Engine\Entity\Component\Sprite\EmitterSprite</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AudioListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\UiElement.h">
       <Filter>Engine\Entity\Component\Transform\UiElement</Filter>
     </ClInclude>
     <ClInclude Include="Source\MiningLaser.h">
       <Filter>Game\Components\Behaviors\MiningLaser</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AudioListener.h">
+      <Filter>Engine\Entity\Component\AudioListener</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UiBarSprite.h">
+      <Filter>Engine\Entity\Component\Sprite\UiBarSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HealthBar.h">
+      <Filter>Game\Components\Behaviors\HealthBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -842,6 +872,36 @@
     </None>
     <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\shaders\particles_compute.glsl">
+      <Filter>Data\Shaders\Compute</Filter>
+    </None>
+    <None Include="Data\shaders\lighting.frag">
+      <Filter>Data\Shaders\Fragment</Filter>
+    </None>
+    <None Include="Data\shaders\particles.frag">
+      <Filter>Data\Shaders\Fragment</Filter>
+    </None>
+    <None Include="Data\shaders\spotlight.frag">
+      <Filter>Data\Shaders\Fragment</Filter>
+    </None>
+    <None Include="Data\shaders\texture.frag">
+      <Filter>Data\Shaders\Fragment</Filter>
+    </None>
+    <None Include="Data\shaders\UiBar.frag">
+      <Filter>Data\Shaders\Fragment</Filter>
+    </None>
+    <None Include="Data\shaders\vshader.vert">
+      <Filter>Data\Shaders\Vertex</Filter>
+    </None>
+    <None Include="Data\shaders\particles.vert">
+      <Filter>Data\Shaders\Vertex</Filter>
+    </None>
+    <None Include="Data\shaders\shadows.vert">
+      <Filter>Data\Shaders\Vertex</Filter>
+    </None>
+    <None Include="Data\shaders\tile_instancing.vert">
+      <Filter>Data\Shaders\Vertex</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -38,9 +38,10 @@ public: // public methods
     /// @tparam AssetType       the type of asset to select
     /// @param  label           the ImGui label of the dropdown selector
     /// @param  selectedAsset   pointer to the currently selected Asset
+    /// @param  selectedName    pointer to the name of the selectd Asset
     /// @return Whether an asset was selected
     template< class AssetType >
-    static bool SelectAssetFromLibrary( char const* label, AssetType const** selectedAsset );
+    static bool SelectAssetFromLibrary( char const* label, AssetType const** selectedAsset, std::string* selectedAssetName );
 
 
     /// @brief  selects an Entity from the Scene
@@ -98,16 +99,18 @@ private: // helper methods
     /// @tparam AssetType       the type of asset to select
     /// @param  label           the ImGui label of the dropdown selector
     /// @param  selectedAsset   pointer to the currently selected Asset
+    /// @param  selectedName    pointer to the name of the selectd Asset
     /// @return Whether an asset was selected
     template< class AssetType >
-    bool Inspection::SelectAssetFromLibrary( char const* label, AssetType const** selectedAsset )
+    bool Inspection::SelectAssetFromLibrary( char const* label, AssetType const** selectedAsset, std::string* selectedAssetName )
     {
-        if ( ImGui::BeginCombo( label, AssetLibrary< AssetType >()->GetAssetName( *selectedAsset ) ) )
+        if ( ImGui::BeginCombo( label, selectedAssetName->c_str() ) )
         {
             for ( auto const& [ name, asset ] : AssetLibrary< AssetType >()->GetAssets() )
             {
                 if ( ImGui::Selectable( name.c_str(), asset == *selectedAsset) )
                 {
+                    *selectedAssetName = name;
                     *selectedAsset = asset;
 
                     ImGui::EndCombo();
