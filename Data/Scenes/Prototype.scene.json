@@ -255,13 +255,14 @@
                 "Name": "Enemy",
                 "Components": {
                     "AudioPlayer": {
+                        "Sound": "EnemySound",
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
                         "PitchVariance": 0.0,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
-                        "Sound": "EnemySound"
+                        "IsSpatial": true
                     },
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
@@ -407,13 +408,14 @@
                 "Name": "Turret",
                 "Components": {
                     "AudioPlayer": {
+                        "Sound": "TurretShoot",
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
                         "PitchVariance": 0.0,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
-                        "Sound": "TurretShoot"
+                        "IsSpatial": false
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -457,13 +459,14 @@
             "Name": "Music",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "Music",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": true,
-                    "Sound": "Music"
+                    "IsSpatial": false
                 }
             }
         },
@@ -471,13 +474,14 @@
             "Name": "DiggingSound",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "PlayerDigging",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "PlayerDigging"
+                    "IsSpatial": false
                 }
             }
         },
@@ -485,13 +489,14 @@
             "Name": "TurretPlacementSound",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "TurretPlacement",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "TurretPlacement"
+                    "IsSpatial": false
                 }
             }
         },
@@ -499,13 +504,14 @@
             "Name": "Base",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "BaseDamageSound",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "BaseDamageSound"
+                    "IsSpatial": false
                 },
                 "BaseBehavior": {
                     "Health": {
@@ -5602,27 +5608,24 @@
                     "LoopCount": 0,
                     "Animation": "PlayerMoveUp"
                 },
+                "AudioListener": {
+                    "ZOffset": 0.0,
+                    "IsActive": true
+                },
                 "AudioPlayer": {
+                    "Sound": "PlayerFootSteps",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "PlayerFootSteps"
+                    "IsSpatial": false
                 },
                 "CircleCollider": {
                     "Radius": 0.30000001192092896,
                     "CollisionLayer": 2,
                     "CollisionLayerFlags": 3
-                },
-                "Inventory": {
-                    "Items": null
-                },
-                "ItemCollector": {
-                    "CollectionRadius": 0.5,
-                    "AttractionRadius": 3.0,
-                    "AttractionStrength": 50.0
                 },
                 "Health": {
                     "Health": {
@@ -5632,6 +5635,22 @@
                         "Active": false
                     }
                 },
+                "Inventory": {
+                    "Items": null
+                },
+                "ItemCollector": {
+                    "CollectionRadius": 0.5,
+                    "AttractionRadius": 3.0,
+                    "AttractionStrength": 50.0
+                },
+                "Light": {
+                    "Radius": 3.0,
+                    "Strength": 2.0,
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ]
+                },
                 "PlayerController": {
                     "AnimationNames": [
                         "PlayerMoveRight",
@@ -5640,7 +5659,11 @@
                         "PlayerMoveDown"
                     ],
                     "MaxSpeed": 1.0,
-                    "MiningLaserName": "MiningLaser"
+                    "MiningLaserName": "MiningLaser",
+                    "RespawnLocation": [
+                        -15.0,
+                        5.0
+                    ]
                 },
                 "RigidBody": {
                     "Velocity": [
@@ -5680,10 +5703,6 @@
                         1.0
                     ],
                     "IsDiegetic": true
-                },
-                "Light": {
-                    "Radius": 3.0,
-                    "Strength": 2.0
                 }
             }
         },
@@ -5722,8 +5741,13 @@
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
-                            "Name": "Turret",
-                            "Cost": 2
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 1
+                                }
+                            ],
+                            "ArchetypeName": ""
                         }
                     ],
                     "BuildingIndex": -1,
@@ -5742,11 +5766,8 @@
                         0.0
                     ],
                     "PreviewAlpha": 0.5,
-                    "CurrentResources": 0,
-                    "ResourcesTextPrefix": "Resources: ",
                     "TilemapName": "Tiles",
-                    "PlayerName": "Player",
-                    "ResourcesTextName": "ResourcesText"
+                    "PlayerName": "Player"
                 },
                 "Sprite": {
                     "Layer": 4,
@@ -5905,12 +5926,14 @@
             "Name": "MiningLaser",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
-                    "PlayOnInit": false
+                    "PlayOnInit": false,
+                    "IsSpatial": false
                 },
                 "Emitter": {
                     "PPS": 200.0,

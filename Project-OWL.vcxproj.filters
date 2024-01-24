@@ -530,6 +530,9 @@
     <ClCompile Include="Source\EmitterSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\EmitterSprite</Filter>
     </ClCompile>
+    <ClCompile Include="Source\AudioListener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -811,6 +814,9 @@
     <ClInclude Include="Source\EmitterSprite.h">
       <Filter>Engine\Entity\Component\Sprite\EmitterSprite</Filter>
     </ClInclude>
+    <ClInclude Include="Source\AudioListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -825,7 +831,11 @@
     <None Include="Data\Scenes\Template.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\Prototype.scene.json" />
-    <None Include="Data\Scenes\ConstructionTest.scene.json" />
+    <None Include="Data\Scenes\Prototype.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\ConstructionTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>

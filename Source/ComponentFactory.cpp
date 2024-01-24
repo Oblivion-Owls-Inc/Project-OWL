@@ -20,6 +20,7 @@
 #include "CircleCollider.h"
 #include "EnemyBehavior.h"
 #include "AudioPlayer.h"
+#include "AudioListener.h"
 #include "BulletBehavior.h"
 #include "Animation.h"
 #include "TurretBehavior.h"
@@ -133,6 +134,7 @@
         { "MovementAI"          , ComponentInfo< MovementAI >()           },
         { "CircleCollider"      , ComponentInfo< CircleCollider >()       },
         { "AudioPlayer"         , ComponentInfo< AudioPlayer >()          },
+        { "AudioListener"       , ComponentInfo< AudioListener >()        },
         { "Animation"           , ComponentInfo< Animation >()            },
         { "Text"                , ComponentInfo< Text >()                 },
         { "PlayerController"    , ComponentInfo< PlayerController >()     },
