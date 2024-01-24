@@ -121,7 +121,7 @@
         hit.distance = maxDistance;
         for ( Collider* collider : m_Colliders )
         {
-            if ( !(layers & (1 << collider->GetCollisionLayerId())) )
+            if ( !(layers & (1 << collider->GetCollisionLayer())) )
             {
                 continue;
             }
@@ -200,28 +200,21 @@
     void CollisionSystem::checkCollision( Collider* colliderA, Collider* colliderB )
     {
         // check if the layers interact
-        bool aCollidesB = colliderA->GetCollisionLayerFlags() & ( 1 << colliderB->GetCollisionLayerId() );
-        bool bCollidesA = colliderB->GetCollisionLayerFlags() & ( 1 << colliderA->GetCollisionLayerId() );
+        bool aCollidesB = colliderA->GetCollisionLayerFlags() & ( 1 << colliderB->GetCollisionLayer() );
+        bool bCollidesA = colliderB->GetCollisionLayerFlags() & ( 1 << colliderA->GetCollisionLayer() );
 
         // if collision layers don't interact, don't test collision
-        if ( !aCollidesB && !bCollidesA )
+        if ( (aCollidesB || bCollidesA) == false )
         {
             return;
         }
 
-            // ensure that both colliders have Transforms
-            if ( colliderA->GetTransform() == nullptr || colliderB->GetTransform() == nullptr )
-            {
-            #ifndef NDEBUG  // If not in release mode 
-                throw std::runtime_error(
-                    "Error: Collider component must always be accompanied by a Transform component"
-                    );
-            #else  // In release mode
-                Debug() << "Error: Collider component must always be accompanied by a Transform component" << std::endl;
-                exit(EXIT_FAILURE);  // Exit 
-            #endif
-            }
-
+        // ensure that both colliders have Transforms
+        if ( colliderA->GetTransform() == nullptr || colliderB->GetTransform() == nullptr )
+        {
+            Debug() << "WARNING: Collider component must always be accompanied by a Transform component" << std::endl;
+            return;
+        }
 
         // check type of each collider
         std::pair< std::type_index, std::type_index > colliderTypes = {
@@ -250,15 +243,10 @@
             checkFuncIt = s_CollisionFunctions.find( colliderTypes );
             if ( checkFuncIt == s_CollisionFunctions.end() )
             {
-                // if still no function found, fail
-                #ifndef NDEBUG // Let it silently fail in release mode
-                    throw std::runtime_error(
-                        std::string() +
-                        "Error: no collision function implemented between " +
-                        colliderTypes.first.name() + " and " +
-                        colliderTypes.second.name()
-                    );
-                #endif // !NDEBUG
+                Debug() <<
+                    "WARNING: no collision function implemented between " <<
+                    colliderTypes.first.name() <<
+                    " and " << colliderTypes.second.name();
 
                 return;
             }
@@ -266,20 +254,45 @@
 
         // check the collision
         CollisionData collisionData;
-        if ( (*checkFuncIt->second)( colliderA, colliderB, &collisionData ) )
+        if ( (*checkFuncIt->second)( colliderA, colliderB, &collisionData ) == false )
         {
-            collisionData.depth += 0.001f;
-
-            // call callbacks 
-            if ( aCollidesB )
+            // no collision happened
+            if ( aCollidesB && colliderA->TryRemoveContact( colliderB ) )
             {
-                colliderA->CallOnCollisionCallbacks( colliderB, collisionData );
+                colliderA->CallOnCollisionExitCallbacks( colliderB );
             }
 
-            if ( bCollidesA )
+            if ( bCollidesA && colliderB->TryRemoveContact( colliderA ) )
             {
-                collisionData.normal *= -1;
-                colliderB->CallOnCollisionCallbacks( colliderA, collisionData );
+                colliderB->CallOnCollisionExitCallbacks( colliderA );
+            }
+
+            return;
+        }
+
+        // a collision happened
+
+        collisionData.depth += 0.001f;
+
+        // call callbacks 
+        if ( aCollidesB )
+        {
+            colliderA->CallOnCollisionCallbacks( colliderB, collisionData );
+
+            if ( colliderA->TryAddContact( colliderB ) )
+            {
+                colliderA->CallOnCollisionEnterCallbacks( colliderB );
+            }
+        }
+
+        if ( bCollidesA )
+        {
+            collisionData.normal *= -1;
+            colliderB->CallOnCollisionCallbacks( colliderA, collisionData );
+
+            if ( colliderB->TryAddContact( colliderA ) )
+            {
+                colliderB->CallOnCollisionEnterCallbacks( colliderA );
             }
         }
     }

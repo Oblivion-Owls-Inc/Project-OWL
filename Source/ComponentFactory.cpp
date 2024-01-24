@@ -43,6 +43,7 @@
 #include "TilemapItemDropper.h"
 #include "Inventory.h"
 #include "ItemCollector.h"
+#include "Light.h"
 
 
 //-----------------------------------------------------------------------------
@@ -159,6 +160,7 @@
         { "Inventory"           , ComponentInfo< Inventory >()            },
         { "ItemCollector"       , ComponentInfo< ItemCollector >()        },
 
+        { "Light"               , ComponentInfo< Light >()                }
     };
 
 //-----------------------------------------------------------------------------

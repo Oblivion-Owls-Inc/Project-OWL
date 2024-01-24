@@ -12,14 +12,19 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "ConstructionTest"
+            "NextSceneName": "Prototype"
         },
+        "EntitySystem": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<BulletBehavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
+        "LightingSystem": {
+            "Enabled": true,
+            "Layer": 5
+        },
         "CollisionSystem": {
             "CollisionLayerNames": [
                 "Terrain",
@@ -32,7 +37,6 @@
         },
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
-        "EntitySystem": {},
         "CameraSystem": {},
         "RenderSystem": {},
         "AudioSystem": {},

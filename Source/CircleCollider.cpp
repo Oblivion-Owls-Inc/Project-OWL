@@ -61,7 +61,7 @@
         nlohmann::ordered_json data;
 
         data["Radius"] = m_Radius;
-        data["CollisionLayer"] = GetCollisionLayerId();
+        data["CollisionLayer"] = GetCollisionLayer();
         data["CollisionLayerFlags"] = GetCollisionLayerFlags();
 
         return data;

@@ -11,111 +11,148 @@
 #include "System.h"
 
 #include <vector>
-#include "Entity.h"
-#include "Stream.h"
+
+
+class Entity;
 
 
 /// @brief  Example System meant to be copy-pasted when creating new Systems
 class EntitySystem : public System
 {
-
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  Adds an Entity to the EntitySystem
-    /// @param  entity  the entity to add the the EntitySystem
-    void AddEntity( Entity* entity );
 
     /// @brief  gets an Entity by name
     /// @param  entityName  the name of the Entity to get
     /// @return the found Entity (nullptr if not found)
     Entity* GetEntity( std::string const& entityName );
 
-    /// @brief  removes an Entity from the EntitySystem
-    /// @param  entity  the Entity to remove
-    void RemoveEntity( Entity* entity );
+    /// @brief  returns the container of all Entities in the Scene
+    /// @return the container of all Entities in the Scene
+    std::vector< Entity* > const& GetEntities() const;
+
+
+    /// @brief  queues an Entity to be added to the EntitySystem
+    /// @param  entity  the entity to add the the EntitySystem
+    void QueueAddEntity( Entity* entity );
+
 
     /// @brief  checks if the EntitySystem contains the given Entity (for debugging)
     /// @param  entity  the Entity to search for
     /// @return whether or not the EntitySystem has the specified Entity
     bool HasEntity( Entity* entity );
 
-    /// @brief  loads all of the entities in a scene
-    /// @param  entityData  the json object containing the entity data
-    void LoadEntities( nlohmann::ordered_json const& data );
-
-    /// @brief  saves all of the entities in a scene
-    /// @return the written json data
-    nlohmann::ordered_json SaveEntities() const;
-
-    /// @brief returns the container of all Entities in the Scene
-    /// @return the container of all Entities in the Scene
-    std::vector< Entity* > const& GetEntities() const { return m_Entities; }
-
-    /// @brief Shows the Entity Create Window
-    bool EntityCreateWindow();
-
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
 
+
     /// @brief Gets Called each frame
-    virtual void OnUpdate(float) override;
-
-//-----------------------------------------------------------------------------
-public: // virtual override methods
-//-----------------------------------------------------------------------------
-
-    
-    /// @brief  shows this System's debug window
-    virtual void DebugWindow() override;
+    virtual void OnUpdate( float ) override;
 
 
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
+
     /// @brief  Container for all Entities in the Scene
-    std::vector< Entity* > m_Entities;
+    std::vector< Entity* > m_Entities = {};
+
+    /// @brief  Enities queued to be added to the EntitySystem
+    std::vector< Entity* > m_EntitiesToAdd = {};
+
+
+    /// @brief  should the debug window be popped out
     bool m_PopOut = false;
+
+    /// @brief  is the Entity Create window being shown
     bool m_ShowEntityCreate = true;
 
+
 //-----------------------------------------------------------------------------
-private: // Private Methods
+private: // methods
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  removes all queued Entities from the EntitySystem
+    void removeEntities();
+
+    /// @brief  adds all queued Entites to the EntitySystem
+    void addEntities();
+
+
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  shows this System's debug window
+    virtual void DebugWindow() override;
+
+    /// @brief  Shows the Entity Create Window
+    /// @return whether the window should be kept open
+    bool EntityCreateWindow();
+
+
+//-----------------------------------------------------------------------------
+private: // inspection
+//-----------------------------------------------------------------------------
+
 
     /// @brief Shows the Entity List Window
-    void EntityListWindow();
+    void entityListWindow();
+
 
     /// @brief Shows the Properites of the Selected Entity
-    void EntityPropertiesWindow(Entity* entity);
+    void entityPropertiesWindow(Entity* entity);
+
+
 //-----------------------------------------------------------------------------
-private: // singleton stuff
+public: // reading / writing
 //-----------------------------------------------------------------------------
 
-    /// @brief  Constructs the EntitySystem
-    EntitySystem();
+
+    /// @brief  loads all of the entities in a scene
+    /// @param  entityData  the json object containing the entity data
+    void LoadEntities( nlohmann::ordered_json const& data );
 
 
-    /// @brief  The singleton instance of EntitySystem
-    static EntitySystem * s_Instance;
+    /// @brief  saves all of the entities in a scene
+    /// @return the written json data
+    nlohmann::ordered_json SaveEntities() const;
+
 
 //-----------------------------------------------------------------------------
 public: // singleton stuff
 //-----------------------------------------------------------------------------
 
+
     /// @brief  gets the instance of EntitySystem
     /// @return the instance of the EntitySystem
     static EntitySystem * GetInstance();
 
+
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  Constructs the EntitySystem
+    EntitySystem();
+
+
     // Prevent copying
-    EntitySystem( EntitySystem& other ) = delete;
-    void operator=( const EntitySystem& ) = delete;
+    EntitySystem( EntitySystem const& ) = delete;
+    void operator =( EntitySystem const& ) = delete;
+
 
 //-----------------------------------------------------------------------------
 };

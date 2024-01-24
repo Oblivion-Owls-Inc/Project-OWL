@@ -29,6 +29,7 @@
 #include "Transform.h"
 #include "Engine.h"
 #include "EntitySystem.h"
+#include "Entity.h"
 #include <chrono>
 #include <string>
 
@@ -95,7 +96,7 @@ void DebugSystem::OnInit()
 
     ImFont* font = io->Fonts->AddFontDefault();
     if (font) {
-        font->Scale = 1.3f;  // Increase the scale to make the font larger
+        font->Scale = 1.8f;  // Increase the scale to make the font larger
     }
     io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
     ImPlot::CreateContext();
