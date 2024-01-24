@@ -161,7 +161,7 @@
         { "Inventory"           , ComponentInfo< Inventory >()            },
         { "ItemCollector"       , ComponentInfo< ItemCollector >()        },
 
-        { "Light"               , ComponentInfo< Light >()                }
+        { "Light"               , ComponentInfo< Light >()                },
         { "GeneratorBehavior"   , ComponentInfo< GeneratorBehavior >()    }
     };
 

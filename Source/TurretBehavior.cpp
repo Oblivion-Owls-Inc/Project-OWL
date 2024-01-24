@@ -128,7 +128,7 @@
     void TurretBehavior::checkActive()
     {
         //TODO fix me
-        glm::vec2 distance = glm::distance<>(glm::vec2, glm::vec2);
+        //glm::vec2 distance = glm::distance<>(glm::vec2, glm::vec2);
     }
 
     /// @brief  Uses Raycasting to check for a target on the same Collision Layer
