@@ -77,7 +77,7 @@
     {
         for ( Entity* entity : m_Entities )
         {
-            entity->ExitComponents();
+            entity->Exit();
         }
 
         for ( Entity* entity : m_Entities )
@@ -119,7 +119,7 @@
         // exit the entities
         for ( Entity* entity : entitiesToRemove )
         {
-            entity->ExitComponents();
+            entity->Exit();
         }
 
         // delete the entities
@@ -153,7 +153,7 @@
         // initialize the entities
         for ( Entity* entity : newEntities )
         {
-            entity->InitComponents();
+            entity->Init();
         }
     }
 
@@ -391,7 +391,7 @@
 
         for ( Entity* entity : m_Entities )
         {
-            entity->InitComponents();
+            entity->Init();
         }
     }
 

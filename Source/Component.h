@@ -23,12 +23,15 @@ class Component : public ISerializable
 public: // destructor
 //-----------------------------------------------------------------------------
 
+
 	/// @brief virtual destructor
 	virtual ~Component() {};
+
 
 //-----------------------------------------------------------------------------
 protected: // constructors
 //-----------------------------------------------------------------------------
+
 
     /// @brief default component constructor
     /// @param type what type of component this is
@@ -38,10 +41,12 @@ protected: // constructors
     /// @param the component to clone
     Component( Component const& other );
 
+
 //-----------------------------------------------------------------------------
 public: // virtual methods
 //-----------------------------------------------------------------------------
 	
+
 	/// @brief virtual component clone function
 	/// @return new clone of component
 	virtual Component* Clone() const = 0;
@@ -56,45 +61,52 @@ public: // virtual methods
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() {};
 
+
 //-----------------------------------------------------------------------------
 public: // Accessors
 //-----------------------------------------------------------------------------
 
-    /// @brief gets the components type
+
+    /// @brief  gets the components type
     /// @return component type
     std::type_index GetType() const { return m_Type; }
 
-    /// @brief sets the parent entity of the component
-    /// @param parent, the parent entity of the component
-    void SetParent( Entity* parent ) { m_Parent = parent; }
+    /// @brief  sets the parent entity of the component
+    /// @param  entity  the parent entity of the component
+    void SetEntity( Entity* entity ) { m_Entity = entity; }
 
     /// @brief returns the components parent entity
     /// @return the parent entity of the component
-    Entity* GetEntity() const { return m_Parent; }
+    Entity* GetEntity() const { return m_Entity; }
 
     /// @brief  gets the Id of this Component
     /// @return the Id of this Component
     unsigned GetId() const { return m_Id; }
 
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
+
 
 	/// @brief  the type of this Component
 	std::type_index m_Type;
 
 	/// @brief  the parent Entity of this Component
-	Entity* m_Parent;
+	Entity* m_Entity;
 
     /// @brief  the ID of this Component
     unsigned m_Id;
+
 
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  base Inspector for Components
     void BaseComponentInspector();
     
+
 //-----------------------------------------------------------------------------
 };
