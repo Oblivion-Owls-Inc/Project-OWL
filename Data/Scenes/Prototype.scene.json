@@ -648,6 +648,11 @@
                         1.0
                     ],
                     "IsDiegetic": true
+                },
+                "CameraBehavior": {
+                    "TargetEntityName": "Player",
+                    "XBounds": [-1, 1],
+                    "YBounds": [-24, 16]
                 }
             }
         },

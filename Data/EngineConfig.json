@@ -22,7 +22,7 @@
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
         "LightingSystem": {
-            "Enabled": true,
+            "Enabled": false,
             "Layer": 5
         },
         "CollisionSystem": {

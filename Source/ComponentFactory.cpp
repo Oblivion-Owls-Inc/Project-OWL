@@ -46,6 +46,7 @@
 #include "Light.h"
 #include "UiBarSprite.h"
 #include "HealthBar.h"
+#include "CameraBehavior.h"
 
 
 //-----------------------------------------------------------------------------
@@ -164,7 +165,8 @@
         { "HealthBar"           , ComponentInfo< HealthBar >()            },
         { "UiBarSprite"         , ComponentInfo< UiBarSprite >()          },
 
-        { "Light"               , ComponentInfo< Light >()                }
+        { "Light"               , ComponentInfo< Light >()                },
+        { "CameraBehavior"      , ComponentInfo< CameraBehavior >()       }
     };
 
 //-----------------------------------------------------------------------------
