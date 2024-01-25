@@ -72,13 +72,19 @@ public: // methods
     std::vector< ComponentType* > GetComponentsOfType();
 
 
-    /// @brief  adds a child to this Enity
-    /// @param  child   the child to add to this Enitity
-    void AddChild( Entity* child );
+    /// @brief  sets the parent of this Entity
+    /// @param  parent  the Entity that should be the parent of this one
+    void SetParent( Entity* parent );
 
-    /// @brief  rmoves a child to this Enity
-    /// @param  child   the child to remove from this Enitity
-    void RemoveChild( Entity* child );
+
+    /// @brief  checks if this Entity is descended from another Entity
+    /// @param  ancestor    The entity to check if this Entity is descended from
+    /// @return whether this Entity is descended from the other Entity
+    bool IsDescendedFrom( Entity const* ancestor ) const;
+
+
+    /// @brief  queues this Entity and its children to be added to the Scene
+    void AddToScene();
 
 
 //-----------------------------------------------------------------------------
@@ -128,6 +134,16 @@ public: // accessors
     std::vector< Entity* > const& GetChildren();
 
 
+    /// @brief  gets the number of descendants this Entity has
+    /// @return the number of descendants this Entity has
+    int GetNumDescendants() const;
+
+
+    /// @brief  gets whether the Entity is currently in the scene
+    /// @return whether the Entity is currently in the scene
+    bool IsInScene() const;
+
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
@@ -146,6 +162,10 @@ private: // member variables
     /// @brief  the children of this Entity
     std::vector< Entity* > m_Children = {};
 
+    /// @brief  the number of descendants this Entity has
+    int m_NumDescendants = 0;
+
+
     /// @brief  the parent Entity of this Entity
     Entity* m_Parent = nullptr;
 
@@ -154,18 +174,42 @@ private: // member variables
     bool m_IsDestroyed = false;
 
 
+    // TODO: implement Entity::m_IsInScene
+    /// @brief  whether the Entity is currently in the scene
+    bool m_IsInScene = false;
+
+
 //-----------------------------------------------------------------------------
 public: // engine methods
 //-----------------------------------------------------------------------------
 
 
     /// @brief  Initializes all components / children of this Entity
-    /// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
+    /// @brief  FOR ENGINE USE ONLY - only call this if you're modifying core engine functionality
     void Init();
 
     /// @brief  exits all components / children of this Entity
-    /// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
+    /// @brief  FOR ENGINE USE ONLY - only call this if you're modifying core engine functionality
     void Exit();
+
+
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+    
+    
+    /// @brief  adds a child to this Enity
+    /// @param  child   - the child to add to this Enitity
+    void addChild( Entity* child );
+
+    /// @brief  removes a child from this Enity
+    /// @param  child   - the child to remove from this Enitity
+    void removeChild( Entity* child );
+
+
+    /// @brief  changes descendant count and propagates that change
+    /// @param  changeBy    the number of descendants added or removed
+    void propagateDescendantChange( int changeBy );
 
 
 //-----------------------------------------------------------------------------

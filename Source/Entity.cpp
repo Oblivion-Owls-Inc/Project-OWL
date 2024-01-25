@@ -39,11 +39,6 @@
     /// @brief destructor
     Entity::~Entity()
     {
-        for ( Entity* child : m_Children )
-        {
-            delete child;
-        }
-
         for ( auto& [ type, component ] : m_Components )
         {
             delete component;
@@ -83,27 +78,67 @@
     }
 
 
-    /// @brief  adds a child to this Enity
-    /// @param  child   the child to add to this Enitity
-    void Entity::AddChild( Entity* child )
+    /// @brief  sets the parent of this Entity
+    /// @param  parent  the Entity that should be the parent of this one
+    void Entity::SetParent( Entity* parent )
     {
-        m_Children.push_back( child );
-        child->m_Parent = this;
-    }
-
-    /// @brief  rmoves a child to this Enity
-    /// @param  child   the child to remove from this Enitity
-    void Entity::RemoveChild( Entity* child )
-    {
-        auto it = std::find( m_Children.begin(), m_Children.end(), child );
-        if ( it == m_Children.end() )
+        // ensure the IsInScene statuses match
+        if ( parent != nullptr && IsInScene() != parent->IsInScene() )
         {
-            Debug() << "ERROR: cannot find child \"" << child->GetName() << "\" to remove" << std::endl;
+            Debug() << "WARNING: cannot set the parent of an Entity with a different IsInScene status" << std::endl;
             return;
         }
 
-        m_Children.erase( it );
-        child->m_Parent = nullptr;
+        // warn in the edge case that the new parent is a descendant
+        if ( parent != nullptr && parent->IsDescendedFrom( this ) )
+        {
+            Debug() << "WARNING: cannot set the parent of Entity \"" << m_Name <<
+                "\" to its descendant \"" << parent->GetName() << "\"" << std::endl;
+            return;
+        }
+
+        // separate this from its previous parent
+        if ( m_Parent != nullptr )
+        {
+            m_Parent->removeChild( this );
+        }
+
+        m_Parent = parent;
+
+        // add this to its new parent
+        if ( parent != nullptr )
+        {
+            parent->addChild( this );
+        }
+    }
+
+
+    /// @brief  checks if this Entity is descended from another Entity
+    /// @param  ancestor    The entity to check if this Entity is descended from
+    /// @return whether this Entity is descended from the other Entity
+    bool Entity::IsDescendedFrom( Entity const* ancestor ) const
+    {
+        for ( Entity* parent = m_Parent; parent != nullptr; parent = parent->m_Parent )
+        {
+            if ( parent == ancestor )
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /// @brief  queues this Entity and its children to be added to the Scene
+    void Entity::AddToScene()
+    {
+        Entities()->QueueAddEntity( this );
+
+        for ( Entity* child : m_Children )
+        {
+            child->AddToScene();
+        }
     }
 
 
@@ -181,39 +216,106 @@
     }
 
 
+    /// @brief  gets the number of descendants this Entity has
+    /// @return the number of descendants this Entity has
+    int Entity::GetNumDescendants() const
+    {
+        return m_NumDescendants;
+    }
+
+
+    /// @brief  gets whether the Entity is currently in the scene
+    /// @return whether the Entity is currently in the scene
+    bool Entity::IsInScene() const
+    {
+        return m_IsInScene;
+    }
+
+
 //------------------------------------------------------------------------------
 // Public: engine methods
 //------------------------------------------------------------------------------
 
 
-     /// @brief  Initializes all components / children of this Entity
-    /// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
+    /// @brief  Initializes all components / children of this Entity
+    /// @brief  FOR ENGINE USE ONLY - only call this if you're modifying core engine functionality
     void Entity::Init()
     {
+        m_IsInScene = true;
+
         for ( auto& [ type, component ] : m_Components )
         {
             component->OnInit();
         }
-
-        for ( Entity* child : m_Children )
-        {
-            child->Init();
-        }
     }
 
-
     /// @brief  exits all components / children of this Entity
-    /// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
+    /// @brief  FOR ENGINE USE ONLY - only call this if you're modifying core engine functionality
     void Entity::Exit()
     {
-        for ( Entity* child : m_Children )
-        {
-            child->Exit();
-        }
-
         for ( auto& [ type, component ] : m_Components )
         {
             component->OnExit();
+        }
+
+        m_IsInScene = false;
+    }
+
+
+    
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+    
+    
+    /// @brief  adds a child to this Enity
+    /// @param  child   the child to add to this Enitity
+    /// @note   assumes that this and the child's IsInScene status is the same
+    /// @note   assumes that the child currently has no parent
+    void Entity::addChild( Entity* child )
+    {
+        m_Children.push_back( child );
+
+        if ( IsInScene() )
+        {
+            Entities()->MoveEntityAfterParent( child );
+        }
+
+        propagateDescendantChange( child->GetNumDescendants() + 1 );
+    }
+
+    /// @brief  removes a child from this Enity
+    /// @param  child   the child to remove from this Enitity
+    /// @note   assumes that this and the child's IsInScene status is the same
+    void Entity::removeChild( Entity* child )
+    {
+        // remove child from the children list
+        auto it = std::find( m_Children.begin(), m_Children.end(), child );
+        if ( it == m_Children.end() )
+        {
+            Debug() << "ERROR: cannot find child \"" << child->GetName() << "\" to remove" << std::endl;
+            return;
+        }
+        m_Children.erase( it );
+
+        if ( IsInScene() )
+        {
+            Entities()->MoveToEnd( child );
+        }
+
+        propagateDescendantChange( -(child->GetNumDescendants() + 1) );
+    }
+
+
+    /// @brief  changes descendant count and propagates that change
+    /// @param  changeBy    the number of descendants added or removed
+    void Entity::propagateDescendantChange( int changeBy )
+    {
+        m_NumDescendants += changeBy;
+
+        if ( m_Parent != nullptr && IsInScene() == m_Parent->IsInScene() )
+        {
+            m_Parent->propagateDescendantChange( changeBy );
         }
     }
 
@@ -401,12 +503,18 @@
     /// @param  data    the json data to read from
     void Entity::readChildren( nlohmann::ordered_json const& data )
     {
+        if ( IsInScene() )
+        {
+            Debug() << "WARNING: cannot paste children into an Entity in the scene" << std::endl;
+            return;
+        }
+
         for ( auto& childData : data )
         {
             Entity* child = new Entity();
             Stream::Read( child, childData );
 
-            AddChild( child );
+            addChild( child );
         }
     }
 
@@ -460,11 +568,12 @@
 // copying
 //------------------------------------------------------------------------------
 
+
     /// @brief  copies all of another Entity's data and Components into this Entity
     /// @param  other   the entity to copy from
     void Entity::operator =( Entity const& other )
     {
-        assert( m_Components.empty() && m_Children.empty() );
+        assert( m_Components.empty() && m_Children.empty() && m_IsInScene == false );
 
         m_Name = other.m_Name;
         m_IsDestroyed = false;
@@ -476,8 +585,9 @@
 
         for ( Entity* child : other.m_Children )
         {
-            AddChild( child->Clone() );
+            addChild( child->Clone() );
         }
     }
+
 
 //------------------------------------------------------------------------------
