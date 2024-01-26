@@ -91,7 +91,10 @@ void Health::TakeDamage(int damage)
 ///--------------------------------------------------------------------------//
 /// @brief Inspector for this component.
 ///--------------------------------------------------------------------------//
-void Health::Inspector() { m_health.Inspector(); }
+void Health::Inspector() 
+{ 
+    m_health.Inspector(); 
+}
 
 ///--------------------------------------------------------------------------//
 /// @brief Reads the health of the entity from a JSON.

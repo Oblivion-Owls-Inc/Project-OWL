@@ -8,15 +8,16 @@
 
 
 #pragma once
-#include "BasicEntityBehavior.h"
+#include "Behavior.h"
 #include "Pool.h"
 
 class Pathfinder;
 class Transform;
 class RigidBody;
 class AudioPlayer;
+class Health;
 
-class EnemyBehavior : public BasicEntityBehavior
+class EnemyBehavior : public Behavior
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructor
@@ -36,6 +37,10 @@ private: // virtual override methods
 
     /// @brief Called once per frame
     virtual void OnUpdate(float) override;
+
+    /// @brief  called when this Component's Entity is removed from the Scene
+    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
+    virtual void OnExit() override;
 
     /// @brief  inspector for this component
     virtual void Inspector() override;
@@ -64,12 +69,18 @@ private: // Member Variables
 
     AudioPlayer* m_AudioPlayer = nullptr;
 
+    /// @brief Health of this entity.
+    Health* m_Health = nullptr;
+
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
     ///  @brief moves towards the target
     void ChaseTarget();
+
+    /// @brief What to do when the enemy gets damaged.
+    void OnDamageTaken();
 
 ///-----------------------------------------------------------------------------
 private: // Reading

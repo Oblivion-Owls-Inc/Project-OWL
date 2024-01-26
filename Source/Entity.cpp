@@ -124,7 +124,10 @@
             {
                 if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
                 {
-                    component->OnExit();
+                    if ( Entities()->HasEntity( this ) )
+                    {
+                        component->OnExit();
+                    }
                     delete component;
                     m_Components.erase( key );
                     break;

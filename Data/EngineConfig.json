@@ -39,7 +39,9 @@
         "BehaviorSystem<EffectAnimator>": {},
         "CameraSystem": {},
         "RenderSystem": {},
-        "AudioSystem": {},
+        "AudioSystem": {
+            "MaxChannels": 1024
+        },
         "CheatSystem": {},
         "DebugSystem": {
             "ShowFpsWindow": false,
