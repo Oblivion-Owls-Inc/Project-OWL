@@ -313,13 +313,15 @@
                         "FrameIndex": 0,
                         "Texture": "Fireball"
                     },
-                    "EnemyBehavior": {
+                    "Health": {
                         "Health": {
                             "Name": "Health Pool",
                             "BaseValue": 40,
-                            "CurrentValue": 0,
+                            "CurrentValue": 40,
                             "Active": true
-                        },
+                        }
+                    },
+                    "EnemyBehavior": {
                         "PathfinderName": "Tiles",
                         "Speed": 10.0,
                         "Damage": 1
@@ -5618,10 +5620,10 @@
                 },
                 "Health": {
                     "Health": {
-                        "Name": "Pool Pool",
+                        "Name": "Player Pool",
                         "BaseValue": 20,
                         "CurrentValue": 20,
-                        "Active": false
+                        "Active": true
                     }
                 },
                 "Inventory": {

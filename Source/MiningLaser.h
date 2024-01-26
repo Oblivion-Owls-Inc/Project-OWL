@@ -259,6 +259,9 @@ private: // members
     /// @brief  how much damage per second the laser deals
     float m_DamageRate = 1.0f;
 
+    /// @brief Used to distribute across frames.
+    float m_AccumulatedDamage = 1.0f;
+
 
     /// @brief  which layers the laser collides with
     CollisionLayerFlags m_CollisionLayers = 0;
@@ -286,7 +289,7 @@ private: // helper methods
     
     /// @brief  tries to damages the specified entity
     /// @param  entity  the entity to damage
-    void tryDamageEntity( Entity* entity ) const;
+    void tryDamageEntity( Entity* entity );
 
 
     /// @brief  damages the specified tile
