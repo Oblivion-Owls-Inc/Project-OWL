@@ -6,12 +6,19 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
+
 #include "AudioSystem.h"
+
+#include "AudioListener.h"
+
 #include "basics.h"
 #include "DebugSystem.h"
+
+
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
+
 
     /// @brief  gets the internal FMOD::System
     /// @return the FMOD::System
@@ -20,9 +27,42 @@
         return m_System;
     }
 
+
+    /// @brief  gets the currently active AudioListener
+    /// @return the currently active AudioListener
+    AudioListener* AudioSystem::GetActiveListener() const
+    {
+        return m_ActiveListener;
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the currently active AudioListener
+    /// @param  listener    the AudioListener to make active
+    void AudioSystem::SetActiveListener( AudioListener* listener )
+    {
+        if ( m_ActiveListener != nullptr )
+        {
+            m_ActiveListener->SetIsActive( false );
+        }
+
+        m_ActiveListener = listener;
+
+        if ( listener != nullptr )
+        {
+            listener->SetIsActive( true );
+        }
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: virtual overrides
 //-----------------------------------------------------------------------------
+
 
     /// @brief  Gets called once when this System is added to the Engine
     void AudioSystem::OnInit()
@@ -32,14 +72,14 @@
         result = FMOD::System_Create( &m_System );
         if ( result != FMOD_OK )
         {
-            Debug() << "Failed to initialize FMOD" << std::endl << std::endl;
+            Debug() << "Failed to create FMOD system" << std::endl << std::endl;
             return;
         }
 
-        result = m_System->init( m_MaxChannels, FMOD_INIT_NORMAL, 0 );
+        result = m_System->init( m_MaxChannels, FMOD_INIT_3D_RIGHTHANDED, 0 );
         if ( result != FMOD_OK )
         {
-            Debug() << "Failed to initialize FMOD" << std::endl << std::endl;
+            Debug() << "Failed to initialize FMOD system" << std::endl << std::endl;
             return;
         }
 
@@ -51,38 +91,30 @@
         }
     }
 
-    /// @brief  Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
-    /// @param  dt  the elapsed time in seconds since the previous frame
-    void AudioSystem::OnUpdate( float dt )
-    {
-        m_System->update();
-    }
-
     /// @brief  Gets called once before the Engine closes
     void AudioSystem::OnExit()
     {
         m_System->release();
     }
 
-//-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
 
-    /// @brief  reads the max channels
-    /// @param  stream  the data to read from
-    void AudioSystem::readMaxChannels( nlohmann::ordered_json const& data )
+    /// @brief  Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
+    /// @param  dt  the elapsed time in seconds since the previous frame
+    void AudioSystem::OnUpdate( float dt )
     {
-        m_MaxChannels = Stream::Read<int>( data );
+        if ( m_ActiveListener != nullptr )
+        {
+            m_ActiveListener->OnUpdate( dt );
+        }
+
+        m_System->update();
     }
 
-    /// @brief  map of the AudioSystem read methods
-    ReadMethodMap< AudioSystem > const AudioSystem::s_ReadMethods = {
-        { "MaxChannels", &readMaxChannels }
-    };
 
 //-----------------------------------------------------------------------------
 // private: static methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  FMOD callback function for error handling
     /// @param  system          handle to the FMOD system
@@ -222,30 +254,76 @@
         return FMOD_OK;
     }
 
+
 //-----------------------------------------------------------------------------
-// singleton stuff
+// private: reading
 //-----------------------------------------------------------------------------
 
-    /// @brief  Constructs the AudioSystem
-    AudioSystem::AudioSystem() :
-        System( "AudioSystem" ),
-        m_System( nullptr ),
-        m_MaxChannels( 1024 )
+
+    /// @brief  reads the max channels
+    /// @param  stream  the data to read from
+    void AudioSystem::readMaxChannels( nlohmann::ordered_json const& data )
     {
+        Stream::Read( m_MaxChannels, data );
     }
 
-    /// @brief  The singleton instance of AudioSystem
-    AudioSystem * AudioSystem::s_Instance = nullptr;
+    
+//-----------------------------------------------------------------------------
+// public: reading / writing
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< ISerializable > const& AudioSystem::GetReadMethods() const
+    {
+        static ReadMethodMap< AudioSystem > const readMethods = {
+            { "MaxChannels", &AudioSystem::readMaxChannels }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
+
+    /// @brief  writes this AudioSystem to json
+    /// @return the json data of the AudioSystem
+    nlohmann::ordered_json AudioSystem::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        json[ "MaxChannels" ] = Stream::Write( m_MaxChannels );
+
+        return json;
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: singleton stuff
+//-----------------------------------------------------------------------------
+
 
     /// @brief  gets the instance of AudioSystem
     /// @return the instance of the AudioSystem
-    AudioSystem * AudioSystem::GetInstance()
+    AudioSystem* AudioSystem::GetInstance()
     {
-        if ( s_Instance == nullptr )
+        static AudioSystem* instance = nullptr;
+        if ( instance == nullptr )
         {
-            s_Instance = new AudioSystem();
+            instance = new AudioSystem();
         }
-        return s_Instance;
+        return instance;
     }
+
+
+//-----------------------------------------------------------------------------
+// private: singleton stuff
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  Constructs the AudioSystem
+    AudioSystem::AudioSystem() :
+        System( "AudioSystem" )
+    {}
+
 
 //-----------------------------------------------------------------------------

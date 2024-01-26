@@ -8,13 +8,17 @@
 
 #pragma once
 
-#include "Component.h"
-#include "basics.h"
+#include "Behavior.h"
 
 #include "Sound.h"
 
+
+class Transform;
+class RigidBody;
+
+
 /// @brief  Component that can play audio
-class AudioPlayer : public Component
+class AudioPlayer : public Behavior
 {
 //-----------------------------------------------------------------------------
 public: // constructor / Destructor
@@ -141,8 +145,13 @@ public: // accessors
     void SetLoopCount( int loopCount );
 
 
+    /// @brief  sets whether the AudioPlayer is spatial
+    /// @param  isSpatial   whether the AudioPlayer should be spatial
+    void SetIsSpatial( bool isSpatial );
+
+
 //-----------------------------------------------------------------------------
-private: // virtual override methods
+public: // virtual override methods
 //-----------------------------------------------------------------------------
 
 
@@ -153,13 +162,21 @@ private: // virtual override methods
     virtual void OnExit() override;
 
 
-    /// @brief  shows the inspector for AudioPlayer
-    virtual void Inspector() override;
+    /// @brief  called once every graphics frame
+    /// @param  dt  the duration of the frame in seconds
+    virtual void OnUpdate( float dt ) override;
 
 
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  the name of the sound asset to use
+    std::string m_SoundName = "";
+
+    /// @brief  The sound that this AudioPlayer will play
+    Sound const* m_Sound = nullptr;
 
 
     /// @brief  the relative volume this AudioPlayer will play at
@@ -183,8 +200,16 @@ private: // members
     int m_DefaultLoopCount = 0;
 
 
-    /// @brief  The sound that this AudioPlayer will play
-    Sound const* m_Sound = nullptr;
+    /// @brief  whether the sound exists in 3D space
+    bool m_IsSpatial = false;
+
+
+    /// @brief  the Transform attached to this AudioPlayer
+    Transform* m_Transform = nullptr;
+
+    /// @brief  the RigidBody attached to this AudioPlayer
+    RigidBody* m_RigidBody = nullptr;
+
 
     /// @brief  The channelGroup to play sounds in
     FMOD::ChannelGroup* m_ChannelGroup = nullptr;
@@ -216,6 +241,19 @@ private: // methods
         void* commandData1,
         void* commandData2
     );
+
+
+    /// @brief  sets the spatial attributes of the current channel
+    void setSpatialAttributes();
+
+
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  shows the inspector for AudioPlayer
+    virtual void Inspector() override;
 
 
 //-----------------------------------------------------------------------------
@@ -250,8 +288,10 @@ private: // reading
     /// @param  data    the json data
     void readPlayOnInit( nlohmann::ordered_json const& data );
 
-    /// @brief  map of the read methods for this Component
-    static ReadMethodMap< AudioPlayer > s_ReadMethods;
+    /// @brief  read IsSpatial of this component from json
+    /// @param  data    the json data
+    void readIsSpatial( nlohmann::ordered_json const& data );
+
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
@@ -260,15 +300,22 @@ public: // reading / writing
 
     /// @brief  gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
     /// @brief  Writes all AudioPlayr data to a JSON file.
     /// @return The JSON file containing the data.
     virtual nlohmann::ordered_json Write() const override;
+
+    
+//-----------------------------------------------------------------------------
+public: // copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  clones this AudioPlayer
+    /// @return the newly created clone of this AudioPlayer
+    virtual AudioPlayer* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -278,23 +325,11 @@ private: // copying
 
     /// @brief  copy-constructor for the AudioPlayer
     /// @param  other   the other AudioPlayer to copy
-    AudioPlayer( const AudioPlayer& other );
+    AudioPlayer( AudioPlayer const& other );
 
-
-//-----------------------------------------------------------------------------
-public: // copying
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  clones this AudioPlayer
-    /// @return the newly created clone of this AudioPlayer
-    virtual AudioPlayer* Clone() const override
-    {
-        return new AudioPlayer( *this );
-    }
 
     // diable = operator
-    void operator=( const AudioPlayer& ) = delete;
+    void operator =( AudioPlayer const& ) = delete;
 
 
 //-----------------------------------------------------------------------------

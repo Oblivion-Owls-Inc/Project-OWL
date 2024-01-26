@@ -18,13 +18,14 @@
 #include "Pool.h"
 #include "Entity.h"
 #include "AudioPlayer.h"
+#include "Health.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / destructor
 //-----------------------------------------------------------------------------
 
     EnemyBehavior::EnemyBehavior() :
-        BasicEntityBehavior( typeid( EnemyBehavior ) )
+        Behavior( typeid( EnemyBehavior ) )
     {}
 
 //-----------------------------------------------------------------------------
@@ -34,12 +35,25 @@
     /// @brief initializes the component
     void EnemyBehavior::OnInit()
     {
-        BasicEntityBehavior::OnInit();
-
+        
+        Behaviors< Behavior >()->AddComponent(this);
         m_Pathfinder = Entities()->GetEntity( m_PathfinderName )->GetComponent< Pathfinder >();
         m_RigidBody = GetEntity()->GetComponent< RigidBody >();
         m_Transform = GetEntity()->GetComponent< Transform >();
         m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
+        m_Health = GetEntity()->GetComponent<Health>();
+
+        // Set the callback for when the enemy takes damage.
+        if (m_Health)
+        {
+            m_Health->AddOnHealthChangedCallback(
+                GetId(),
+                std::bind(
+                    &EnemyBehavior::OnDamageTaken,
+                    this
+                )
+            );
+        }
     }
 
     /// @brief Called at a fixed interval
@@ -52,13 +66,22 @@
     {
     }
 
+    /// @brief Removes this behavior from the behavior system on exit
+    void EnemyBehavior::OnExit()
+    {
+        Behaviors<Behavior>()->RemoveComponent(this);
+
+        if (m_Health != nullptr)
+        {
+            m_Health->RemoveOnHealthChangedCallback(GetId());
+        }
+    }
+
     void EnemyBehavior::Inspector()
     {
         ImGui::VSliderFloat("Speed", ImVec2(18, 160), &m_Speed, 0, 100);
         ImGui::SameLine();
         ImGui::VSliderInt("Damage", ImVec2(18, 160), &m_Damage, 0, 100);
-
-        BasicEntityBehavior::Inspector();
     }
 
 //-----------------------------------------------------------------------------
@@ -80,6 +103,15 @@
             m_Transform->SetScale( scale );
         }
         m_AudioPlayer->Play();
+    }
+
+    /// @brief What to do when the enemy gets damaged.
+    void EnemyBehavior::OnDamageTaken()
+    {
+        if (m_Health->GetHealth()->GetCurrent() <= 0)
+        {
+            GetEntity()->Destroy();
+        }
     }
 
 ///-----------------------------------------------------------------------------
@@ -107,7 +139,6 @@
 
     /// @brief  map of read methods
     ReadMethodMap< EnemyBehavior > const EnemyBehavior::s_ReadMethods = {
-	    { "Health"        , &BasicEntityBehavior::readHealth    },
         { "PathfinderName", &EnemyBehavior::readPathfinderName  },
         { "Speed"         , &EnemyBehavior::readSpeed           },
         { "Damage"        , &EnemyBehavior::readDamage          }
@@ -128,7 +159,6 @@
     {
         nlohmann::ordered_json data;
 
-        data["Health"] = m_Health.Write();
         data["PathfinderName"] = m_PathfinderName;
         data["Speed"] = m_Speed;
         data["Damage"] = m_Damage;
@@ -144,7 +174,7 @@
     /// @brief  copy constructor
     /// @param  other   the other EnemyBehavior to copy
     EnemyBehavior::EnemyBehavior( EnemyBehavior const& other ) :
-        BasicEntityBehavior( other ),
+        Behavior( other ),
         m_PathfinderName( other.m_PathfinderName ),
         m_Speed( other.m_Speed ),
         m_RigidBody(nullptr),

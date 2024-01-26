@@ -48,14 +48,6 @@
     }
 
 
-    /// @brief  queues an Entity to be added to the EntitySystem
-    /// @param  entity  the entity to add the the EntitySystem
-    void EntitySystem::QueueAddEntity( Entity* entity )
-    {
-        m_EntitiesToAdd.push_back( entity );
-    }
-
-
     /// @brief  checks if the EntitySystem contains the given Entity
     /// @param  entity  the Entity to search for
     /// @return whether or not the EntitySystem has the specified Entity
@@ -77,7 +69,7 @@
     {
         for ( Entity* entity : m_Entities )
         {
-            entity->ExitComponents();
+            entity->Exit();
         }
 
         for ( Entity* entity : m_Entities )
@@ -97,7 +89,48 @@
         addEntities();
     }
 
+//-----------------------------------------------------------------------------
+// public: engine methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  queues an Entity to be added to the EntitySystem
+    /// @param  entity  the entity to add the the EntitySystem
+    void EntitySystem::QueueAddEntity( Entity* entity )
+    {
+        m_EntitiesToAdd.push_back( entity );
+    }
+
+
+    /// @brief  moves an Entity to the end of its parent's children
+    /// @brief  FOR ENGINE USE ONLY - call this only if you're modifying core engine functionality
+    /// @param  entity  - the entity to move
+    void EntitySystem::MoveEntityAfterParent( Entity* entity )
+    {
+        auto destination = std::find( m_Entities.begin(), m_Entities.end(), entity->GetParent() ) + entity->GetParent()->GetNumDescendants() + 1;
+        auto sourceBegin = std::find( m_Entities.begin(), m_Entities.end(), entity );
+        auto sourceEnd = sourceBegin + entity->GetNumDescendants();
+
+        if ( destination > sourceBegin )
+        {
+            std::rotate( sourceBegin, sourceEnd, destination );
+        }
+        else
+        {
+            std::rotate( destination, sourceBegin, sourceEnd );
+        }
+    }
+
+    /// @brief  moves an Entity to the end the EntitySystem
+    /// @brief  FOR ENGINE USE ONLY - call this only if you're modifying core engine functionality
+    /// @param  entity  - the entity to move
+    void EntitySystem::MoveToEnd( Entity* entity )
+    {
+        auto it = std::find( m_Entities.begin(), m_Entities.end(), entity );
+        std::rotate( it, it + entity->GetNumDescendants() + 1, m_Entities.end() );
+    }
     
+
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
@@ -119,7 +152,7 @@
         // exit the entities
         for ( Entity* entity : entitiesToRemove )
         {
-            entity->ExitComponents();
+            entity->Exit();
         }
 
         // delete the entities
@@ -143,8 +176,23 @@
     /// @brief  adds all queued Entites to the EntitySystem
     void EntitySystem::addEntities()
     {
-        // append the components to m_Entities
-        m_Entities.insert( m_Entities.end(), m_EntitiesToAdd.begin(), m_EntitiesToAdd.end() );
+        // add entities to the system
+        for ( Entity* entity : m_EntitiesToAdd )
+        {
+            if ( entity->GetParent() != nullptr )
+            {
+                // if the entity has a parent, insert after its parent/siblings
+                // possible optimization: keep track of the position of the previously added Entity, and try there first
+                m_Entities.insert(
+                    std::find( m_Entities.begin(), m_Entities.end(), entity->GetParent() ) + 1,
+                    entity    
+                );
+            }
+            else
+            {
+                m_Entities.insert( m_Entities.end(), entity );
+            }
+        }
 
         // move the new Entities into a new vector, in case any component OnInit functions add more Entities to m_EntitiesToAdd
         std::vector< Entity* > newEntities = std::move( m_EntitiesToAdd );
@@ -153,7 +201,19 @@
         // initialize the entities
         for ( Entity* entity : newEntities )
         {
-            entity->InitComponents();
+            entity->Init();
+        }
+    }
+
+
+    /// @brief  adds the children of a loaded entity to the entities array
+    /// @param  entity  the Entity to add the children of
+    void EntitySystem::addLoadedChildren( Entity* entity )
+    {
+        for ( Entity* child : entity->GetChildren() )
+        {
+            m_Entities.push_back( child );
+            addLoadedChildren( child );
         }
     }
 
@@ -183,7 +243,7 @@
         {
             Entity* entity = new Entity(); /// Create a new entity
             entity->SetName( "New Entity" ); /// Set the name of the entity
-            QueueAddEntity( entity ); /// Add the entity to the EntitySystem
+            entity->AddToScene(); /// Add the entity to the EntitySystem
             createEntity = false;
         }
 
@@ -215,7 +275,7 @@
 
             Entity* entity = new Entity(); /// Create a new entity
             entity->SetName( name ); /// Set the name of the entity
-            QueueAddEntity( entity ); /// Add the entity to the EntitySystem
+            entity->AddToScene(); /// Add the entity to the EntitySystem
 
             /// if the entity is added, close the window
             ImGui::End();
@@ -382,16 +442,17 @@
     /// @param  entityData  the json object containing the entity data
     void EntitySystem::LoadEntities( nlohmann::ordered_json const& data )
     {
-        for ( auto& [ key, value ] : data.items() )
+        for ( auto& [ name, entityData ] : data.items() )
         {
-            Entity * entity = new Entity();
-            Stream::Read( entity, value );
+            Entity* entity = new Entity();
+            Stream::Read( entity, entityData );
             m_Entities.push_back( entity );
+            addLoadedChildren( entity );
         }
 
         for ( Entity* entity : m_Entities )
         {
-            entity->InitComponents();
+            entity->Init();
         }
     }
 
@@ -404,6 +465,12 @@
 
         for ( Entity* entity : m_Entities )
         {
+            // skip entities that have a parent - they'll be saved separately by their parent
+            if ( entity->GetParent() != nullptr )
+            {
+                continue;
+            }
+
             json[ entity->GetName() ] = entity->Write();
         }
 

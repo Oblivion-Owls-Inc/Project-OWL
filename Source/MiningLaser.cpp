@@ -12,6 +12,7 @@
 
 #include "Transform.h"
 #include "AudioPlayer.h"
+#include "Health.h"
 #include "Emitter.h"
 #include "Tilemap.h"
 
@@ -319,11 +320,21 @@
     
     /// @brief  tries to damages the specified entity
     /// @param  entity  the entity to damage
-    void MiningLaser::tryDamageEntity( Entity* entity ) const
+    void MiningLaser::tryDamageEntity( Entity* entity )
     {
+        Health* entityHealth = entity->GetComponent<Health>();
         // TODO: try damaging the entity
-    }
+        if (entityHealth)
+        {
+            m_AccumulatedDamage += GameEngine()->GetFixedFrameDuration() * m_DamageRate;
+            
+            int damage = static_cast<int>(m_AccumulatedDamage);
+            
+            entityHealth->TakeDamage(damage);
 
+            m_AccumulatedDamage -= damage;
+        }
+    }
 
     /// @brief  damages the specified tile
     /// @param  tilePos the tile to damage
@@ -583,7 +594,8 @@
         m_DamageRate( other.m_DamageRate ),
         m_CollisionLayers( other.m_CollisionLayers ),
         m_Direction( other.m_Direction ),
-        m_IsFiring( other.m_IsFiring )
+        m_IsFiring( other.m_IsFiring ),
+        m_AccumulatedDamage(other.m_AccumulatedDamage)
     {}
 
 //-----------------------------------------------------------------------------

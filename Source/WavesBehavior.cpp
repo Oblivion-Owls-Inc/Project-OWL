@@ -190,7 +190,7 @@ void WavesBehavior::Spawn(std::string name, int group)
 		{
 			copyTransform->SetTranslation(spawners[waves[currentWave].groups[group].spawner]);
 		}
-		Entities()->QueueAddEntity(copy);
+		copy->AddToScene();
 	}
 }
 

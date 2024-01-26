@@ -1,6 +1,6 @@
-/// @file       HealthBar.h
+/// @file       AudioListener.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      health bar UI that displays offset from an Entity with a Health component
+/// @brief      Component that picks up spatial audio
 /// @version    0.1
 /// @date       2023-10-20
 /// 
@@ -10,13 +10,13 @@
 
 #include "Behavior.h"
 
+
 class Transform;
-class UiBarSprite;
-class Health;
+class RigidBody;
 
 
-/// @brief  health bar UI that displays offset from an Entity with a Health component
-class HealthBar : public Behavior
+/// @brief  component that picks up spatial audio
+class AudioListener : public Behavior
 {
 //-----------------------------------------------------------------------------
 public: // types
@@ -33,7 +33,10 @@ public: // accessors
 //-----------------------------------------------------------------------------
 
 
-    
+    /// @brief  sets whether this AudioListener is the active listener in the scene
+    /// @param  isActive    whether this AudioListener is the active listener in the scene
+    /// @note   SHOULD ONLY BE USED BY AUDIOSYSTEM - use the MakeActive() function instead
+    void SetIsActive( bool isActive );
 
 
 //-----------------------------------------------------------------------------
@@ -41,8 +44,12 @@ public: //  methods
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  makes this the active AudioListener in the scene
+    void MakeActive();
+
+
 //-----------------------------------------------------------------------------
-private: // virtual override methods
+public: // virtual override methods
 //-----------------------------------------------------------------------------
 
 
@@ -53,13 +60,9 @@ private: // virtual override methods
     virtual void OnExit() override;
 
 
-    /// @brief  called once per graphics frame
-    /// @param  dt  the length of time the frame lasts
+    /// @brief  gets called every graphics frame
+    /// @param  dt  the duration of the frame in seconds
     virtual void OnUpdate( float dt ) override;
-
-
-    /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
-    virtual void OnHeirarchyChange() override;
 
 
 //-----------------------------------------------------------------------------
@@ -67,40 +70,18 @@ private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the offset from the target Entity to display the health bar
-    glm::vec2 m_Offset = { 0, 0 };
+    /// @brief  the z-axis offset out of the screen to calculate spatial audio with
+    float m_ZOffset = 0;
+
+    /// @brief  whether this AudioListener is the active listener in the scene
+    bool m_IsActive = true;
 
 
-    /// @brief  whether the bar should be hidden when the health is full
-    bool m_HideWhenFull = true;
-
-
-    /// @brief  the acceleration of how quickly the recent health display depletes
-    float m_RecentHealthAcceleration = 1.0f;
-
-
-    /// @brief  the current velocity of recent health depletion
-    float m_RecentHealthVelocity = 0.0f;
-
-    /// @brief  the portion of current health
-    float m_CurrentHealthPortion = 1.0f;
-
-    /// @brief  the proportion of recent health
-    float m_RecentHealthPortion = 1.0f;
-
-
-    /// @brief  the Transform attached to this HealthBar
+    /// @brief  the Transform attached to this AudioListener
     Transform* m_Transform = nullptr;
 
-    /// @brief  the UiBarSprite attached to this HealthBar
-    UiBarSprite* m_UiBarSprite = nullptr;
-
-
-    /// @brief  the Transform component of the Entity to display the health of
-    Transform* m_ParentTransform = nullptr;
-
-    /// @brief  the Health component of the Entity to display the health of
-    Health* m_ParentHealth = nullptr;
+    /// @brief  the RigidBody attached to this AudioListener
+    RigidBody* m_RigidBody = nullptr;
 
 
 //-----------------------------------------------------------------------------
@@ -108,25 +89,12 @@ private: // helper methods
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  callback called whenever the health component changes
-    void onHealthChangedCallback();
-
-
-    /// @brief  updates the recent health portion of the health bar
-    /// @param  dt  the length of time the frame lasts
-    void updateRecentHealth( float dt );
-
-
-    /// @brief  updates the Sprite and Transform attached to the HealthBar
-    void updateVisuals();
-
-
 //-----------------------------------------------------------------------------
 private: // inspection
 //-----------------------------------------------------------------------------
 
     
-    /// @brief  displays this HealthBar in the Inspector
+    /// @brief  displays this AudioListener in the Inspector
     virtual void Inspector() override;
 
 
@@ -135,18 +103,13 @@ private: // reading
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  reads the offset from the target Entity to display the health bar
+    /// @brief  reads the z-axis offset out of the screen to calculate spatial audio with
     /// @param  data    the json data to read from
-    void readOffset( nlohmann::ordered_json const& data );
+    void readZOffset( nlohmann::ordered_json const& data );
 
-    /// @brief  reads whether the bar should be hidden when the health is full
+    /// @brief  reads whether this AudioListener is the active listener in the scene
     /// @param  data    the json data to read from
-    void readHideWhenFull( nlohmann::ordered_json const& data );
-
-
-    /// @brief  reads the acceleration of how quickly the recent health display depletes
-    /// @param  data    the json data to read from
-    void readRecentHealthAcceleration( nlohmann::ordered_json const& data );
+    void readIsActive( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------
@@ -159,8 +122,8 @@ public: // reading / writing
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
-    /// @brief  Write all HealthBar data to a JSON file.
-    /// @return The JSON file containing the HealthBar data.
+    /// @brief  Write all AudioListener data to a JSON file.
+    /// @return The JSON file containing the AudioListener data.
     virtual nlohmann::ordered_json Write() const override;
 
 
@@ -170,7 +133,7 @@ public: // constructor / Destructor
 
 
     /// @brief  constructor
-    HealthBar();
+    AudioListener();
 
 
 //-----------------------------------------------------------------------------
@@ -178,9 +141,9 @@ public: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  clones this HealthBar
-    /// @return the newly created clone of this HealthBar
-    virtual HealthBar* Clone() const override;
+    /// @brief  clones this AudioListener
+    /// @return the newly created clone of this AudioListener
+    virtual AudioListener* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -188,12 +151,12 @@ private: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  copy-constructor for the HealthBar
-    /// @param  other   the other HealthBar to copy
-    HealthBar( const HealthBar& other );
+    /// @brief  copy-constructor for the AudioListener
+    /// @param  other   the other AudioListener to copy
+    AudioListener( AudioListener const& other );
 
     // diable = operator
-    void operator =( HealthBar const& ) = delete;
+    void operator =( AudioListener const& ) = delete;
 
 
 //-----------------------------------------------------------------------------

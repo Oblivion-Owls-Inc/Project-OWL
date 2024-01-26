@@ -62,20 +62,20 @@ private: // members
 
 
     /// @brief  the name of the Entity to drop items as
-    std::string m_ItemArchetypeName;
+    std::string m_ItemArchetypeName = "";
     /// @brief  the archetype of the Entity to drop items as
-    Entity const* m_ItemArchetype;
+    Entity const* m_ItemArchetype = nullptr;
 
 
     /// @brief  the maximum initial velocity of a dropped item
-    float m_MaxInitialVelocity;
+    float m_MaxInitialVelocity = 1.0f;
 
     /// @brief  the square radius aroud the center of the tile to spawn the items in
-    float m_ItemSpawnRadius;
+    float m_ItemSpawnRadius = 1.0f;
 
 
     /// @brief  the Tilemap attached to this TilemapItemDropper
-    Tilemap< int >* m_Tilemap;
+    Tilemap< int >* m_Tilemap = nullptr;
 
 
 //-----------------------------------------------------------------------------
