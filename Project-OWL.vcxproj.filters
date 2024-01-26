@@ -276,6 +276,9 @@
     <Filter Include="Engine\Entity\Component\Sprite\UiBarSprite">
       <UniqueIdentifier>{852198d0-322e-498b-aa61-6da5601c05f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Behaviors\CameraBehavior">
+      <UniqueIdentifier>{2a2b3e25-9b63-4372-a343-87fe0e096af2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -556,6 +559,9 @@
     </ClCompile>
     <ClCompile Include="Source\UiBarSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\UiBarSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CameraBehavior.cpp">
+      <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -843,6 +849,9 @@
     </ClInclude>
     <ClInclude Include="Source\UiBarSprite.h">
       <Filter>Engine\Entity\Component\Sprite\UiBarSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CameraBehavior.h">
+      <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

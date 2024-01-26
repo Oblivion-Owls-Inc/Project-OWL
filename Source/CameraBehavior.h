@@ -34,6 +34,7 @@ private:
     /// @brief  
     virtual void OnExit() override;
     
+    virtual void Inspector() override;
 
 
 //-----------------------------------------------------------------------------

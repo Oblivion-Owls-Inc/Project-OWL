@@ -52,6 +52,13 @@ void CameraBehavior::OnUpdate(float dt)
 }
 
 
+void CameraBehavior::Inspector()
+{
+	ImGui::InputText("Target Entity", &m_TargetEntityName);
+	ImGui::DragFloat2("X bounds", &m_xBounds[0], 0.01f);
+	ImGui::DragFloat2("Y bounds", &m_yBounds[0], 0.01f);
+}
+
 void CameraBehavior::clampOrCenter(float& val, float lo, float hi, float dist)
 {
 	if (lo != hi)
