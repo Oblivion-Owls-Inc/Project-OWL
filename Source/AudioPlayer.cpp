@@ -11,13 +11,19 @@
 #include "AudioPlayer.h"
 #include "AssetLibrarySystem.h"
 
+#include "Entity.h"
+#include "Transform.h"
+#include "RigidBody.h"
+
+#include "Inspection.h"
+
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
 //-----------------------------------------------------------------------------
 
     /// @brief  constructs a new AudioPlayer
     AudioPlayer::AudioPlayer() :
-        Component( typeid( AudioPlayer ) )
+        Behavior( typeid( AudioPlayer ) )
     {}
 
 //-----------------------------------------------------------------------------
@@ -28,6 +34,12 @@
     /// @brief  Starts playing this AudioPlayer's sound
     void AudioPlayer::Play()
     {
+        if ( m_Sound == nullptr )
+        {
+            Debug() << "WARNING: AudioPlayer::m_Sound is NULL" << std::endl;
+            return;
+        }
+
         // if this Audio player is already playing a sound, unpuase it
         if ( GetIsPlaying() )
         {
@@ -48,6 +60,12 @@
 
         // have the channel call the callback
         m_Channel->setCallback( onFmodChannelCallback );
+
+        if ( m_IsSpatial )
+        {
+            m_Channel->setMode( FMOD_3D );
+            setSpatialAttributes();
+        }
     }
 
 
@@ -55,7 +73,7 @@
     /// @note   FULLY STOPS the channel, doesn't just pause it
     void AudioPlayer::Stop()
     {
-        if (m_Channel == nullptr)
+        if ( m_Channel == nullptr )
         {
             return;
         }
@@ -95,9 +113,10 @@
 
     /// @brief  sets the SOund that this AudioPlayer plays
     /// @param  sound   the sound that this AudioPlayer will play
-    void AudioPlayer::SetSound( Sound const* _sound )
+    void AudioPlayer::SetSound( Sound const* sound )
     {
-        m_Sound = _sound;
+        m_Sound = sound;
+        m_SoundName = AssetLibrary< Sound >()->GetAssetName( sound );
     }
 
 
@@ -273,6 +292,27 @@
     }
 
 
+    /// @brief  sets whether the AudioPlayer is spatial
+    /// @param  isSpatial   whether the AudioPlayer should be spatial
+    void AudioPlayer::SetIsSpatial( bool isSpatial )
+    {
+        m_IsSpatial = isSpatial;
+        if ( m_Channel == nullptr )
+        {
+            return;
+        }
+
+        if ( isSpatial )
+        {
+            m_Channel->setMode( FMOD_3D );
+            setSpatialAttributes();
+        }
+        else
+        {
+            m_Channel->setMode( FMOD_2D );
+        }
+    }
+
 //-----------------------------------------------------------------------------
 // private: virtual override methods
 //-----------------------------------------------------------------------------
@@ -281,6 +321,14 @@
     /// @brief  called once when entering the scene
     void AudioPlayer::OnInit()
     {
+        if ( m_SoundName.empty() == false )
+        {
+            m_Sound = AssetLibrary< Sound >()->GetAsset( m_SoundName );
+        }
+
+        m_Transform = GetEntity()->GetComponent< Transform >();
+        m_RigidBody = GetEntity()->GetComponent< RigidBody >();
+
         if ( m_PlayOnInit )
         {
             Play();
@@ -294,61 +342,14 @@
     }
 
 
-    /// @brief  shows the inspector for AudioPlayer
-    void AudioPlayer::Inspector()
+    /// @brief  called once every graphics frame
+    /// @param  dt  the duration of the frame in seconds
+    void AudioPlayer::OnUpdate( float dt )
     {
-
-        if ( ImGui::BeginCombo( "Sound", AssetLibrary< Sound >()->GetAssetName( m_Sound ) ) )
+        if ( m_IsSpatial && m_Channel != nullptr )
         {
-            for ( auto& [ name, sound ] : AssetLibrary< Sound >()->GetAssets() )
-            {
-                if ( ImGui::Selectable( name.c_str(), sound == m_Sound ) )
-                {
-                    m_Sound = sound;
-                }
-            }
-
-            ImGui::EndCombo();
+            setSpatialAttributes();
         }
-
-        bool paused = GetIsPaused();
-        if ( ImGui::Checkbox( "Paused", &paused ) )
-        {
-            SetIsPaused( paused );
-        }
-
-        ImGui::InputInt( "Default Loop Count", &m_DefaultLoopCount, 1, 5 );
-
-        int currentLoopCount = GetLoopCount();
-        if ( ImGui::InputInt( "Current Loop Count", &currentLoopCount, 1, 5 ) )
-        {
-            SetLoopCount( currentLoopCount );
-        }
-
-        if ( ImGui::DragFloat( "Volume", &m_Volume, 0.1f, 0.0f, 100.0f, "%.3f", ImGuiSliderFlags_Logarithmic ) )
-        {
-            SetVolume( m_Volume );
-        }
-
-        ImGui::DragFloat( "Volume Variance", &m_VolumeVariance, 0.01f, 0.0f, 1.0f );
-
-        if ( ImGui::DragFloat( "Pitch", &m_Pitch, 0.1f, 0.0f, 100.0f, "%.3f", ImGuiSliderFlags_Logarithmic ) )
-        {
-            SetPitch( m_Pitch );
-        }
-
-        ImGui::DragFloat( "Pitch Variance", &m_PitchVariance, 0.01f, 0.0f, 1.0f );
-
-        if ( ImGui::Button( "Play" ) )
-        {
-            Play();
-        }
-
-        if ( ImGui::Button( "Stop" ) )
-        {
-            Stop();
-        }
-
     }
 
 
@@ -394,6 +395,76 @@
     }
 
 
+    /// @brief  sets the spatial attributes of the current channel
+    void AudioPlayer::setSpatialAttributes()
+    {
+        glm::vec2 pos2 = m_Transform != nullptr ? m_Transform->GetTranslation() : glm::vec2( 0.0f, 0.0f );
+        glm::vec2 vel2 = m_RigidBody != nullptr ? m_RigidBody->GetVelocity() : glm::vec2( 0.0f, 0.0f );
+
+        FMOD_VECTOR pos3 = { pos2.x, pos2.y, 0.0f };
+        FMOD_VECTOR vel3 = { vel2.x, vel2.y, 0.0f };
+
+        m_Channel->set3DAttributes( &pos3, &vel3 );
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  shows the inspector for AudioPlayer
+    void AudioPlayer::Inspector()
+    {
+
+        Inspection::SelectAssetFromLibrary< Sound >( "sound", &m_Sound, &m_SoundName );
+
+        bool paused = GetIsPaused();
+        if ( ImGui::Checkbox( "Paused", &paused ) )
+        {
+            SetIsPaused( paused );
+        }
+
+        if ( ImGui::Checkbox( "is spatial", &m_IsSpatial ) )
+        {
+            SetIsSpatial( m_IsSpatial );
+        }
+
+        ImGui::InputInt( "Default Loop Count", &m_DefaultLoopCount, 1, 5 );
+
+        int currentLoopCount = GetLoopCount();
+        if ( ImGui::InputInt( "Current Loop Count", &currentLoopCount, 1, 5 ) )
+        {
+            SetLoopCount( currentLoopCount );
+        }
+
+        if ( ImGui::DragFloat( "Volume", &m_Volume, 0.1f, 0.0f, 100.0f, "%.3f", ImGuiSliderFlags_Logarithmic ) )
+        {
+            SetVolume( m_Volume );
+        }
+
+        ImGui::DragFloat( "Volume Variance", &m_VolumeVariance, 0.01f, 0.0f, 1.0f );
+
+        if ( ImGui::DragFloat( "Pitch", &m_Pitch, 0.1f, 0.0f, 100.0f, "%.3f", ImGuiSliderFlags_Logarithmic ) )
+        {
+            SetPitch( m_Pitch );
+        }
+
+        ImGui::DragFloat( "Pitch Variance", &m_PitchVariance, 0.01f, 0.0f, 1.0f );
+
+        if ( ImGui::Button( "Play" ) )
+        {
+            Play();
+        }
+
+        if ( ImGui::Button( "Stop" ) )
+        {
+            Stop();
+        }
+
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
@@ -403,7 +474,7 @@
     /// @param  data    the json data
     void AudioPlayer::readSound( nlohmann::ordered_json const& data )
     {
-        m_Sound = AssetLibrary<Sound>()->GetAsset( Stream::Read<std::string>(data) );
+        Stream::Read( m_SoundName, data );
     }
 
     /// @brief  read the volume of this component from json
@@ -449,21 +520,37 @@
     }
 
 
-    /// @brief  map of the read methods for this Component
-    ReadMethodMap< AudioPlayer > AudioPlayer::s_ReadMethods = {
-        { "Sound"           , &readSound            },
-        { "Volume"          , &readVolume           },
-        { "Pitch"           , &readPitch            },
-        { "VolumeVariance"  , &readVolumeVariance   },
-        { "PitchVariance"   , &readPitchVariance    },
-        { "DefaultLoopCount", &readDefaultLoopCount },
-        { "PlayOnInit"      , &readPlayOnInit       }
-    };
+    /// @brief  read IsSpatial of this component from json
+    /// @param  data    the json data
+    void AudioPlayer::readIsSpatial( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_IsSpatial, data );
+    }
+
 
 
 //-----------------------------------------------------------------------------
-// public: writing
+// public: reading / writing
 //-----------------------------------------------------------------------------
+
+    
+    /// @brief  gets the map of read methods for this AudioPlayer
+    /// @return the map of read methods for this AudioPlayer
+    ReadMethodMap< ISerializable > const& AudioPlayer::GetReadMethods() const
+    {
+        static ReadMethodMap< AudioPlayer > const readMethods = {
+            { "Sound"           , &AudioPlayer::readSound            },
+            { "Volume"          , &AudioPlayer::readVolume           },
+            { "Pitch"           , &AudioPlayer::readPitch            },
+            { "VolumeVariance"  , &AudioPlayer::readVolumeVariance   },
+            { "PitchVariance"   , &AudioPlayer::readPitchVariance    },
+            { "DefaultLoopCount", &AudioPlayer::readDefaultLoopCount },
+            { "PlayOnInit"      , &AudioPlayer::readPlayOnInit       },
+            { "IsSpatial"       , &AudioPlayer::readIsSpatial        }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
 
 
     /// @brief  Writes all AudioPlayr data to a JSON file.
@@ -472,20 +559,29 @@
     {
         nlohmann::ordered_json data;
 
-        data[ "Volume" ] = Stream::Write( m_Volume );
-        data[ "Pitch" ] = Stream::Write( m_Pitch );
-        data[ "VolumeVariance" ] = Stream::Write( m_VolumeVariance );
-        data[ "PitchVariance" ] = Stream::Write( m_PitchVariance );
+        data[ "Sound"            ] = Stream::Write( m_SoundName        );
+        data[ "Volume"           ] = Stream::Write( m_Volume           );
+        data[ "Pitch"            ] = Stream::Write( m_Pitch            );
+        data[ "VolumeVariance"   ] = Stream::Write( m_VolumeVariance   );
+        data[ "PitchVariance"    ] = Stream::Write( m_PitchVariance    );
         data[ "DefaultLoopCount" ] = Stream::Write( m_DefaultLoopCount );
-        data[ "PlayOnInit" ] = Stream::Write( m_PlayOnInit );
-
-        std::string const& name = AssetLibrary<Sound>()->GetAssetName( m_Sound );
-        if ( name.empty() == false )
-        {
-            data["Sound"] = Stream::Write( name );
-        }
+        data[ "PlayOnInit"       ] = Stream::Write( m_PlayOnInit       );
+        data[ "IsSpatial"        ] = Stream::Write( m_IsSpatial        );
 
         return data;
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: cloning
+//-----------------------------------------------------------------------------
+
+    
+    /// @brief  clones this AudioPlayer
+    /// @return the newly created clone of this AudioPlayer
+    AudioPlayer* AudioPlayer::Clone() const
+    {
+        return new AudioPlayer( *this );
     }
 
 
@@ -496,14 +592,16 @@
 
     /// @brief  copy-constructor for the AudioPlayer
     /// @param  other   the other AudioPlayer to copy
-    AudioPlayer::AudioPlayer( const AudioPlayer& other ) :
-        Component( other ),
-        m_Sound( other.m_Sound ),
-        m_ChannelGroup( other.m_ChannelGroup ),
-        m_Volume( other.m_Volume ),
-        m_Pitch( other.m_Pitch ),
+    AudioPlayer::AudioPlayer( AudioPlayer const& other ) :
+        Behavior( other ),
+        m_Sound         ( other.m_Sound          ),
+        m_SoundName     ( other.m_SoundName      ),
+        m_ChannelGroup  ( other.m_ChannelGroup   ),
+        m_Volume        ( other.m_Volume         ),
+        m_Pitch         ( other.m_Pitch          ),
         m_VolumeVariance( other.m_VolumeVariance ),
-        m_PitchVariance( other.m_PitchVariance )
+        m_PitchVariance ( other.m_PitchVariance  ),
+        m_IsSpatial     ( other.m_IsSpatial      )
     {}
 
 

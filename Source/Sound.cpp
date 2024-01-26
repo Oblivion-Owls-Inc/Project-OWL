@@ -120,34 +120,10 @@
     }
 
 
-    // /// @brief  selects a filepath from a directory
-    // void Sound::inspectorSelectFilepathFromDirectory( char const* directoryPath )
-    // {
-    //     for ( auto const& file : std::filesystem::directory_iterator( directoryPath ) )
-    //     {
-    //         std::string filepath = file.path().filename().string();
-    //         if ( file.is_directory() )
-    //         {
-    //             if ( ImGui::TreeNode( filepath.c_str() ) )
-    //             {
-    //                 inspectorSelectFilepathFromDirectory( (directoryPath + ("/" + filepath)).c_str() );
-    //                 ImGui::TreePop();
-    //             }
-    //         }
-    //         else
-    //         {
-    //             if ( ImGui::Selectable( filepath.c_str(), filepath == m_Filepath ) )
-    //             {
-    //                 m_Filepath = directoryPath + ("/" + filepath);
-    //             }
-    //         }
-    //     }
-    // }
-
-
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
+
 
     /// @brief  reads filepath
     /// @param  data    the JSON data to read from

@@ -266,13 +266,14 @@
                 "Name": "Enemy",
                 "Components": {
                     "AudioPlayer": {
+                        "Sound": "EnemySound",
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
                         "PitchVariance": 0.0,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
-                        "Sound": "EnemySound"
+                        "IsSpatial": true
                     },
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
@@ -420,13 +421,14 @@
                 "Name": "Turret",
                 "Components": {
                     "AudioPlayer": {
+                        "Sound": "TurretShoot",
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
                         "PitchVariance": 0.0,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
-                        "Sound": "TurretShoot"
+                        "IsSpatial": false
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -470,13 +472,14 @@
             "Name": "Music",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "Music",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": true,
-                    "Sound": "Music"
+                    "IsSpatial": false
                 }
             }
         },
@@ -484,13 +487,14 @@
             "Name": "DiggingSound",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "PlayerDigging",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "PlayerDigging"
+                    "IsSpatial": false
                 }
             }
         },
@@ -498,13 +502,14 @@
             "Name": "TurretPlacementSound",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "TurretPlacement",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "TurretPlacement"
+                    "IsSpatial": false
                 }
             }
         },
@@ -512,13 +517,14 @@
             "Name": "Base",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "BaseDamageSound",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "BaseDamageSound"
+                    "IsSpatial": false
                 },
                 "BaseBehavior": {
                     "Health": {
@@ -5615,14 +5621,19 @@
                     "LoopCount": 0,
                     "Animation": "PlayerMoveUp"
                 },
+                "AudioListener": {
+                    "ZOffset": 0.0,
+                    "IsActive": true
+                },
                 "AudioPlayer": {
+                    "Sound": "PlayerFootSteps",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "PlayerFootSteps"
+                    "IsSpatial": false
                 },
                 "CircleCollider": {
                     "Radius": 0.30000001192092896,
@@ -5929,12 +5940,14 @@
             "Name": "MiningLaser",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
-                    "PlayOnInit": false
+                    "PlayOnInit": false,
+                    "IsSpatial": false
                 },
                 "Emitter": {
                     "PPS": 200.0,
