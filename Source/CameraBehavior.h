@@ -1,4 +1,9 @@
-
+/*********************************************************************
+* \file   CameraBehavior.h
+* \brief  Camera that smoothly follows specified entity.
+*
+* \author Eli Tsereteli
+*********************************************************************/
 #pragma once
 #include "Behavior.h"
 
@@ -25,15 +30,16 @@ private:
 //-----------------------------------------------------------------------------
 private:
 
-    /// @brief  
+    /// @brief  Adds itself to behavior system
     virtual void OnInit() override;
 
-    /// @brief  Called every frame
+    /// @brief  Performs the smooth following
     virtual void OnUpdate(float dt) override;
 
-    /// @brief  
+    /// @brief  Removes itself from behavior system
     virtual void OnExit() override;
     
+    /// @brief  Tweak properties in debug window
     virtual void Inspector() override;
 
 
