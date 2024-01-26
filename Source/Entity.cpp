@@ -55,6 +55,11 @@
     void Entity::Destroy()
     {
         m_IsDestroyed = true;
+
+        for ( Entity* child : m_Children )
+        {
+            child->Destroy();
+        }
     }
 
 
@@ -258,6 +263,11 @@
         for ( auto& [ type, component ] : m_Components )
         {
             component->OnExit();
+        }
+
+        for ( Entity* child : m_Children )
+        {
+            
         }
 
         m_IsInScene = false;
