@@ -22,8 +22,8 @@
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
         "LightingSystem": {
-            "Enabled": true,
-            "Layer": 5
+            "Enabled": false,
+            "Layer": 6
         },
         "CollisionSystem": {
             "CollisionLayerNames": [

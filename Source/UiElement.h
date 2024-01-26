@@ -26,15 +26,6 @@
 class UiElement : public Transform
 {
 //-----------------------------------------------------------------------------
-public: // constructor
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  constructor
-    UiElement();
-
-
-//-----------------------------------------------------------------------------
 public: // types
 //-----------------------------------------------------------------------------
 
@@ -52,43 +43,12 @@ public: // types
 
 
 //-----------------------------------------------------------------------------
-public: // methods
-//-----------------------------------------------------------------------------
-    
-
-    /// @brief  adds a child to this UiElement
-    /// @param  child   the child to add
-    void AddChild( UiElement* child );
-
-    /// @brief  removes a child from this UiElement
-    /// @param  child   the child to remove
-    void RemoveChild( UiElement* child );
-
-
-    /// @brief  adds a callback for whenever this UiElement gets clicked
-    /// @param  ownerId     the ID of the owner of the callback
-    /// @param  callback    the callback to call
-    void AddOnClickedCallback( unsigned ownerId, std::function< void() > callback );
-
-    /// @brief  removes a callback for whenever this UiElement gets clicked
-    /// @param  ownerId     the ID of the owner of the callback
-    void RemoveOnClickedCallback( unsigned ownerId );
-
-
-//-----------------------------------------------------------------------------
-public: // virtual override methods
+public: // constructor
 //-----------------------------------------------------------------------------
 
-    
-    /// @brief  called once when entering the scene
-    virtual void OnInit() override;
 
-    /// @brief  called once when leaving the scene
-    virtual void OnExit() override;
-
-
-    /// @brief  displays the Inspector
-    virtual void Inspector() override;
+    /// @brief  constructor
+    UiElement();
 
 
 //-----------------------------------------------------------------------------
@@ -98,68 +58,73 @@ public: // accessors
     
     /// @brief  gets the parent UiElement
     /// @return the parent UiElement
-    UiElement* GetParent() const { return m_Parent; }
-
-    /// @brief  gets the children UiElements
-    /// @return the chilfren UiElements
-    std::vector< UiElement* > const& GetChildren() const { return m_Children; }
+    UiElement* GetParentElement() const;
 
 
     /// @brief  gets the anchor position of this UiElement
     /// @return the anchor position
-    glm::vec2 const& GetAnchor() const { return m_Anchor; }
+    glm::vec2 const& GetAnchor() const;
 
     /// @brief  sets the anchor position of this UiElement
     /// @param  anchor  the anchor position
-    void SetAnchor( glm::vec2 const& anchor ) { m_Anchor = anchor; updateTransform(); }
+    void SetAnchor( glm::vec2 const& anchor );
 
 
     /// @brief  gets the pivot position of this UiElement
     /// @return the pivot position
-    glm::vec2 const& GetPivot() const { return m_Pivot; }
+    glm::vec2 const& GetPivot() const;
 
     /// @brief  sets the pivot position of this UiElement
     /// @param  pivot  the pivot position
-    void SetPivot( glm::vec2 const& pivot ) { m_Pivot = pivot; updateTransform(); }
+    void SetPivot( glm::vec2 const& pivot );
 
 
     /// @brief  gets the offset of this UiElement
     /// @return the offset
-    glm::vec2 const& GetOffset() const { return m_Offset; }
+    glm::vec2 const& GetOffset() const;
 
     /// @brief  sets the offset of this UiElement
     /// @param  offset  the offset
-    void SetOffset( glm::vec2 const& offset ) { m_Offset = offset; updateTransform(); }
+    void SetOffset( glm::vec2 const& offset );
 
 
     /// @brief  gets the frame size of this UiElement
     /// @return the frame size
-    glm::vec2 const& GetFrameSize() const { return m_FrameSize; }
+    glm::vec2 const& GetFrameSize() const;
 
     /// @brief  sets the frame size of this UiElement
     /// @param  frameSize   the frame size
-    void SetFrameSize( glm::vec2 const& frameSize ) { m_FrameSize = frameSize; updateTransform(); }
+    void SetFrameSize( glm::vec2 const& frameSize );
 
 
     /// @brief  gets the size types of this UiElement
     /// @return the size types
-    SizeTypeVec const& GetSizeTypes() const { return m_SizeTypes; }
+    SizeTypeVec const& GetSizeTypes() const;
 
     /// @brief  sets the size types of this UiElement
     /// @param  sizeTypes   the size types
-    void SetSizeTypes( SizeTypeVec const& sizeTypes ) { m_SizeTypes = sizeTypes; updateTransform(); }
+    void SetSizeTypes( SizeTypeVec const& sizeTypes );
+
+
+//-----------------------------------------------------------------------------
+public: // virtual override methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  called once when entering the scene
+    virtual void OnInit() override;
+
+    /// @brief  called once when leaving the scene
+    virtual void OnExit() override;
+
+
+    /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
+    virtual void OnHeirarchyChange() override;
 
 
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
-
-
-    /// @brief  the parent UiElement
-    UiElement* m_Parent = nullptr;
-
-    /// @brief  the children UiElements
-    std::vector< UiElement* > m_Children = {};
 
 
     /// @brief  what point on the parent is this UiElement relative to ( -1 to 1 )
@@ -179,16 +144,16 @@ private: // members
     SizeTypeVec m_SizeTypes = { SizeType::RelativeToWidth, SizeType::RelativeToHeight };
 
 
+    /// @brief  the parent UiElement
+    UiElement* m_ParentElement = nullptr;
+
+
     /// @brief  callbacks called whenever this UiElement is clicked
     std::map< unsigned, std::function< void() > > m_OnClickedCallbacks;
 
 
-    /// @brief  the name of the Parent UiElement entity
-    std::string m_ParentName = "";
-
-
 //-----------------------------------------------------------------------------
-// private: methods
+private: // methods
 //-----------------------------------------------------------------------------
 
 
@@ -196,12 +161,17 @@ private: // members
     void updateTransform();
 
 
-    /// @brief  call all callbacks
-    void callOnClickedCallbacks();
-
-
     /// @brief  callback for whenever the window resizes
     void onWindowResizedCallback( glm::ivec2 const& );
+
+
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  displays the Inspector
+    virtual void Inspector() override;
 
 
 //-----------------------------------------------------------------------------
@@ -225,21 +195,13 @@ private: // reading
     /// @param  data    the json data
     void readFrameSize( nlohmann::ordered_json const& data );
 
-    /// @brief  reads the ParentName
-    /// @param  data    the json data
-    void readParentName( nlohmann::ordered_json const& data );
-
-
     /// @brief  reads the SizeTypes
     /// @param  data    the json data
     void readSizeTypes( nlohmann::ordered_json const& data );
 
+
     /// @brief  map converting strings to size types
     static std::map< std::string, SizeType > const s_SizeTypes;
-
-
-    /// @brief  map of read methods
-    static ReadMethodMap< UiElement > const s_ReadMethods;
 
 
 //-----------------------------------------------------------------------------
@@ -249,10 +211,7 @@ public: // reading / writing
 
     /// @brief  gets the map of read methods
     /// @return the map of read methods
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
     /// @brief  writes this UiElement to json
@@ -267,10 +226,7 @@ public: // copying
 
     /// @brief  creates a new copy of this UiElement
     /// @return the newly created UiElement
-    virtual UiElement* Clone() const override
-    {
-        return new UiElement( *this );
-    }
+    virtual UiElement* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
