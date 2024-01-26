@@ -1,6 +1,6 @@
-/// @file       TilemapItemDropper.h
+/// @file       AudioListener.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      Drops an item whenever a tile is broken
+/// @brief      Component that picks up spatial audio
 /// @version    0.1
 /// @date       2023-10-20
 /// 
@@ -8,17 +8,15 @@
 
 #pragma once
 
-#include "Component.h"
-
-#include "ItemStack.h"
-
-template< typename TileType >
-class Tilemap;
+#include "Behavior.h"
 
 
+class Transform;
+class RigidBody;
 
-/// @brief  Drops an item whenever a tile is broken
-class TilemapItemDropper : public Component
+
+/// @brief  component that picks up spatial audio
+class AudioListener : public Behavior
 {
 //-----------------------------------------------------------------------------
 public: // types
@@ -35,8 +33,10 @@ public: // accessors
 //-----------------------------------------------------------------------------
 
 
-
-    
+    /// @brief  sets whether this AudioListener is the active listener in the scene
+    /// @param  isActive    whether this AudioListener is the active listener in the scene
+    /// @note   SHOULD ONLY BE USED BY AUDIOSYSTEM - use the MakeActive() function instead
+    void SetIsActive( bool isActive );
 
 
 //-----------------------------------------------------------------------------
@@ -44,8 +44,12 @@ public: //  methods
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  makes this the active AudioListener in the scene
+    void MakeActive();
+
+
 //-----------------------------------------------------------------------------
-private: // virtual override methods
+public: // virtual override methods
 //-----------------------------------------------------------------------------
 
 
@@ -56,26 +60,28 @@ private: // virtual override methods
     virtual void OnExit() override;
 
 
+    /// @brief  gets called every graphics frame
+    /// @param  dt  the duration of the frame in seconds
+    virtual void OnUpdate( float dt ) override;
+
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the name of the Entity to drop items as
-    std::string m_ItemArchetypeName = "";
-    /// @brief  the archetype of the Entity to drop items as
-    Entity const* m_ItemArchetype = nullptr;
+    /// @brief  the z-axis offset out of the screen to calculate spatial audio with
+    float m_ZOffset = 0;
+
+    /// @brief  whether this AudioListener is the active listener in the scene
+    bool m_IsActive = true;
 
 
-    /// @brief  the maximum initial velocity of a dropped item
-    float m_MaxInitialVelocity = 1.0f;
+    /// @brief  the Transform attached to this AudioListener
+    Transform* m_Transform = nullptr;
 
-    /// @brief  the square radius aroud the center of the tile to spawn the items in
-    float m_ItemSpawnRadius = 1.0f;
-
-
-    /// @brief  the Tilemap attached to this TilemapItemDropper
-    Tilemap< int >* m_Tilemap = nullptr;
+    /// @brief  the RigidBody attached to this AudioListener
+    RigidBody* m_RigidBody = nullptr;
 
 
 //-----------------------------------------------------------------------------
@@ -83,28 +89,12 @@ private: // helper methods
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  callback called whenever a tile is changed
-    /// @param  tilemap         the tilemap that a tile was changed on
-    /// @param  tilePos         the position of the changed tile; (-1, -1) if whole tilemap changed
-    /// @param  previousValue   the previous value of the changed tile
-    void onTilemapChangedCallback(
-        Tilemap< int >* tilemap,
-        glm::ivec2 const& tilePos,
-        int const& previousValue
-    ) const;
-
-    /// @brief  drop an ItemStack from the specified tile position
-    /// @param  itemStack   the item stack to drop
-    /// @param  tilePos     the position to drop the item
-    void dropItem( ItemStack const& itemStack, glm::ivec2 const& tilePos ) const;
-
-
 //-----------------------------------------------------------------------------
 private: // inspection
 //-----------------------------------------------------------------------------
 
     
-    /// @brief  displays this TilemapItemDropper in the Inspector
+    /// @brief  displays this AudioListener in the Inspector
     virtual void Inspector() override;
 
 
@@ -113,18 +103,13 @@ private: // reading
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  reads the name of the Entity to drop items as
+    /// @brief  reads the z-axis offset out of the screen to calculate spatial audio with
     /// @param  data    the json data to read from
-    void readItemArchetypeName( nlohmann::ordered_json const& data );
+    void readZOffset( nlohmann::ordered_json const& data );
 
-
-    /// @brief  reads the maximum initial velocity of a dropped item
+    /// @brief  reads whether this AudioListener is the active listener in the scene
     /// @param  data    the json data to read from
-    void readMaxInitialVelocity( nlohmann::ordered_json const& data );
-
-    /// @brief  reads the square radius aroud the center of the tile to spawn the items in
-    /// @param  data    the json data to read from
-    void readItemSpawnRadius( nlohmann::ordered_json const& data );
+    void readIsActive( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------
@@ -137,8 +122,8 @@ public: // reading / writing
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
-    /// @brief  Write all TilemapItemDropper data to a JSON file.
-    /// @return The JSON file containing the TilemapItemDropper data.
+    /// @brief  Write all AudioListener data to a JSON file.
+    /// @return The JSON file containing the AudioListener data.
     virtual nlohmann::ordered_json Write() const override;
 
 
@@ -148,7 +133,7 @@ public: // constructor / Destructor
 
 
     /// @brief  constructor
-    TilemapItemDropper();
+    AudioListener();
 
 
 //-----------------------------------------------------------------------------
@@ -156,9 +141,9 @@ public: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  clones this TilemapItemDropper
-    /// @return the newly created clone of this TilemapItemDropper
-    virtual TilemapItemDropper* Clone() const override;
+    /// @brief  clones this AudioListener
+    /// @return the newly created clone of this AudioListener
+    virtual AudioListener* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -166,12 +151,12 @@ private: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  copy-constructor for the TilemapItemDropper
-    /// @param  other   the other TilemapItemDropper to copy
-    TilemapItemDropper( const TilemapItemDropper& other );
+    /// @brief  copy-constructor for the AudioListener
+    /// @param  other   the other AudioListener to copy
+    AudioListener( AudioListener const& other );
 
     // diable = operator
-    void operator =( TilemapItemDropper const& ) = delete;
+    void operator =( AudioListener const& ) = delete;
 
 
 //-----------------------------------------------------------------------------

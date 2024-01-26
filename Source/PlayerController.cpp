@@ -68,9 +68,9 @@ void PlayerController::OnInit()
     m_Transform = GetEntity()->GetComponent<Transform>();
 
 
-    GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
+    GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionEnterCallback(
         GetId(),
-        std::bind(&PlayerController::onCollision, this, std::placeholders::_1, std::placeholders::_2)
+        std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
     );
 
     // Get all the player's animations
@@ -384,10 +384,9 @@ void PlayerController::animationInspector()
     }
 }
 
-/// @brief What to do when the player has been hit.
-/// @param other         - the collider of the other entity.
-/// @param collisionData - Holds details of the collision.
-void PlayerController::onCollision(Collider* other, CollisionData const& collisionData)
+/// @brief  What to do when the player has been hit.
+/// @param  other   - the collider of the other entity.
+void PlayerController::onCollisionEnter( Collider* other )
 {
     // Get the enemy behaviour component.
     EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();

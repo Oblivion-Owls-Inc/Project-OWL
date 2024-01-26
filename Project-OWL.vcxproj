@@ -183,6 +183,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\AudioListener.cpp" />
     <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\FileExplorer.cpp" />
     <ClCompile Include="imgui\imgui_stdlib.cpp" />
@@ -200,6 +201,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="imgui\implot.cpp" />
     <ClCompile Include="imgui\implot_demo.cpp" />
     <ClCompile Include="imgui\implot_items.cpp" />
+    <ClCompile Include="Source\HealthBar.cpp" />
     <ClCompile Include="Source\GeneratorBehavior.cpp" />
     <ClCompile Include="Source\Inspection.cpp" />
     <ClCompile Include="Source\EmitterSprite.cpp" />
@@ -262,6 +264,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\Stream.cpp" />
     <ClCompile Include="Source\CircleCollider.cpp" />
+    <ClCompile Include="Source\UiBarSprite.cpp" />
     <ClCompile Include="Source\UiElement.cpp" />
     <ClCompile Include="Source\WavesBehavior.cpp" />
     <ClCompile Include="Source\Stream.t.cpp" />
@@ -269,6 +272,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\TileInfoSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\AudioListener.h" />
+    <ClInclude Include="Source\HealthBar.h" />
+    <ClInclude Include="Source\UiBarSprite.h" />
     <ClInclude Include="Source\Inventory.h" />
     <ClInclude Include="Source\ComponentSystem.h" />
     <ClInclude Include="Source\ItemCollector.h" />
@@ -362,8 +368,18 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\ConstructionTest.scene.json" />
     <None Include="Data\Scenes\GameOver.scene.json" />
     <None Include="Data\Scenes\GameWin.scene.json" />
-    <None Include="Data\Scenes\Prototype.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />
+    <None Include="Data\Scenes\Prototype.scene.json" />
+    <None Include="Data\shaders\UiBar.frag" />
+    <None Include="Data\shaders\lighting.frag" />
+    <None Include="Data\shaders\particles.frag" />
+    <None Include="Data\shaders\particles.vert" />
+    <None Include="Data\shaders\particles_compute.glsl" />
+    <None Include="Data\shaders\shadows.vert" />
+    <None Include="Data\shaders\spotlight.frag" />
+    <None Include="Data\shaders\texture.frag" />
+    <None Include="Data\shaders\tile_instancing.vert" />
+    <None Include="Data\shaders\vshader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

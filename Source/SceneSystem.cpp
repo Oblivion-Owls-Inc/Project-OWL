@@ -9,6 +9,8 @@
 #include "SceneSystem.h"
 
 #include "EntitySystem.h"
+#include "Entity.h"
+
 #include "DebugSystem.h"
 
 #include "AssetLibrarySystem.h"

@@ -181,6 +181,8 @@
     {
         Behaviors< Animation >()->AddComponent( this );
         m_Sprite = GetEntity()->GetComponent<Sprite>();
+
+        m_Asset = AssetLibrary< AnimationAsset >()->GetAsset( m_AssetName );
     }
 
     /// @brief  gets called once when exiting the scene
@@ -210,7 +212,7 @@
     /// @brief  shows the Inspector for this Animation
     void Animation::Inspector()
     {
-        Inspection::SelectAssetFromLibrary( "Animation Asset", &m_Asset );
+        Inspection::SelectAssetFromLibrary( "Animation Asset", &m_Asset, &m_AssetName );
 
         if ( m_Asset == nullptr )
         {
@@ -312,7 +314,7 @@
     /// @param  stream  the json data to read from
     void Animation::readAnimation( nlohmann::ordered_json const& data )
     {
-        m_Asset = AssetLibrary< AnimationAsset >()->GetAsset( Stream::Read<std::string>(data) );
+        Stream::Read( m_AssetName, data );
     }
 
     /// @brief  Write all Animation component data to a JSON file.
@@ -325,12 +327,7 @@
         data[ "FrameDelay" ] = Stream::Write( m_FrameDelay );
         data[ "IsRunning" ] = Stream::Write( m_IsRunning );
         data[ "LoopCount" ] = Stream::Write( m_LoopCount );
-        
-        std::string name = AssetLibrary< AnimationAsset >()->GetAssetName( m_Asset );
-        if ( !name.empty() )
-        {
-            data[ "Animation" ] = Stream::Write( name );
-        }
+        data[ "Animation" ] = Stream::Write( m_AssetName );
 
         return data;
     }

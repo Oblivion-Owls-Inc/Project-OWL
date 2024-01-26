@@ -49,9 +49,9 @@ void BaseBehavior::OnInit()
 {
 	BasicEntityBehavior::OnInit();
 
-	GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
+	GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionEnterCallback(
 		GetId(),
-		std::bind(&BaseBehavior::onCollision, this, std::placeholders::_1, std::placeholders::_2)
+		std::bind( &BaseBehavior::onCollisionEnter, this, std::placeholders::_1 )
 	);
 
 	m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
@@ -64,7 +64,9 @@ void BaseBehavior::OnExit()
 }
 
 
-void BaseBehavior::onCollision(Collider* other, CollisionData const& collisionData)
+/// @brief  called whenever the base's Collider enters a collision
+/// @param  other   the collider that was collided with
+void BaseBehavior::onCollisionEnter( Collider* other )
 {
 	EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
 	if (!enemy)

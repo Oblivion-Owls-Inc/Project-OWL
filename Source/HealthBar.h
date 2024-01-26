@@ -1,6 +1,6 @@
-/// @file       TilemapItemDropper.h
+/// @file       HealthBar.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      Drops an item whenever a tile is broken
+/// @brief      health bar UI that displays offset from an Entity with a Health component
 /// @version    0.1
 /// @date       2023-10-20
 /// 
@@ -8,17 +8,15 @@
 
 #pragma once
 
-#include "Component.h"
+#include "Behavior.h"
 
-#include "ItemStack.h"
-
-template< typename TileType >
-class Tilemap;
-
+class Transform;
+class UiBarSprite;
+class Health;
 
 
-/// @brief  Drops an item whenever a tile is broken
-class TilemapItemDropper : public Component
+/// @brief  health bar UI that displays offset from an Entity with a Health component
+class HealthBar : public Behavior
 {
 //-----------------------------------------------------------------------------
 public: // types
@@ -33,7 +31,6 @@ private: // types
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
-
 
 
     
@@ -56,26 +53,54 @@ private: // virtual override methods
     virtual void OnExit() override;
 
 
+    /// @brief  called once per graphics frame
+    /// @param  dt  the length of time the frame lasts
+    virtual void OnUpdate( float dt ) override;
+
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the name of the Entity to drop items as
-    std::string m_ItemArchetypeName = "";
-    /// @brief  the archetype of the Entity to drop items as
-    Entity const* m_ItemArchetype = nullptr;
+    /// @brief  the name Entity to display the health of
+    std::string m_TargetEntityName = "";
+
+    /// @brief  the Transform component of the Entity to display the health of
+    Transform* m_TargetEntityTransform = nullptr;
+
+    /// @brief  the Health component of the Entity to display the health of
+    Health* m_TargetEntityHealth = nullptr;
 
 
-    /// @brief  the maximum initial velocity of a dropped item
-    float m_MaxInitialVelocity = 1.0f;
-
-    /// @brief  the square radius aroud the center of the tile to spawn the items in
-    float m_ItemSpawnRadius = 1.0f;
+    /// @brief  the offset from the target Entity to display the health bar
+    glm::vec2 m_Offset = { 0, 0 };
 
 
-    /// @brief  the Tilemap attached to this TilemapItemDropper
-    Tilemap< int >* m_Tilemap = nullptr;
+    /// @brief  whether the bar should be hidden when the health is full
+    bool m_HideWhenFull = true;
+
+
+    /// @brief  the acceleration of how quickly the recent health display depletes
+    float m_RecentHealthAcceleration = 1.0f;
+
+
+    /// @brief  the current velocity of recent health depletion
+    float m_RecentHealthVelocity = 0.0f;
+
+    /// @brief  the portion of current health
+    float m_CurrentHealthPortion = 1.0f;
+
+    /// @brief  the proportion of recent health
+    float m_RecentHealthPortion = 1.0f;
+
+
+
+    /// @brief  the Transform attached to this HealthBar
+    Transform* m_Transform = nullptr;
+
+    /// @brief  the UiBarSprite attached to this HealthBar
+    UiBarSprite* m_UiBarSprite = nullptr;
 
 
 //-----------------------------------------------------------------------------
@@ -83,20 +108,17 @@ private: // helper methods
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  callback called whenever a tile is changed
-    /// @param  tilemap         the tilemap that a tile was changed on
-    /// @param  tilePos         the position of the changed tile; (-1, -1) if whole tilemap changed
-    /// @param  previousValue   the previous value of the changed tile
-    void onTilemapChangedCallback(
-        Tilemap< int >* tilemap,
-        glm::ivec2 const& tilePos,
-        int const& previousValue
-    ) const;
+    /// @brief  callback called whenever the health component changes
+    void onHealthChangedCallback();
 
-    /// @brief  drop an ItemStack from the specified tile position
-    /// @param  itemStack   the item stack to drop
-    /// @param  tilePos     the position to drop the item
-    void dropItem( ItemStack const& itemStack, glm::ivec2 const& tilePos ) const;
+
+    /// @brief  updates the recent health portion of the health bar
+    /// @param  dt  the length of time the frame lasts
+    void updateRecentHealth( float dt );
+
+
+    /// @brief  updates the Sprite and Transform attached to the HealthBar
+    void updateVisuals();
 
 
 //-----------------------------------------------------------------------------
@@ -104,7 +126,7 @@ private: // inspection
 //-----------------------------------------------------------------------------
 
     
-    /// @brief  displays this TilemapItemDropper in the Inspector
+    /// @brief  displays this HealthBar in the Inspector
     virtual void Inspector() override;
 
 
@@ -113,18 +135,23 @@ private: // reading
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  reads the name of the Entity to drop items as
+    /// @brief  reads the name Entity to display the health of
     /// @param  data    the json data to read from
-    void readItemArchetypeName( nlohmann::ordered_json const& data );
+    void readTargetEntityName( nlohmann::ordered_json const& data );
 
 
-    /// @brief  reads the maximum initial velocity of a dropped item
+    /// @brief  reads the offset from the target Entity to display the health bar
     /// @param  data    the json data to read from
-    void readMaxInitialVelocity( nlohmann::ordered_json const& data );
+    void readOffset( nlohmann::ordered_json const& data );
 
-    /// @brief  reads the square radius aroud the center of the tile to spawn the items in
+    /// @brief  reads whether the bar should be hidden when the health is full
     /// @param  data    the json data to read from
-    void readItemSpawnRadius( nlohmann::ordered_json const& data );
+    void readHideWhenFull( nlohmann::ordered_json const& data );
+
+
+    /// @brief  reads the acceleration of how quickly the recent health display depletes
+    /// @param  data    the json data to read from
+    void readRecentHealthAcceleration( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------
@@ -137,8 +164,8 @@ public: // reading / writing
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
-    /// @brief  Write all TilemapItemDropper data to a JSON file.
-    /// @return The JSON file containing the TilemapItemDropper data.
+    /// @brief  Write all HealthBar data to a JSON file.
+    /// @return The JSON file containing the HealthBar data.
     virtual nlohmann::ordered_json Write() const override;
 
 
@@ -148,7 +175,7 @@ public: // constructor / Destructor
 
 
     /// @brief  constructor
-    TilemapItemDropper();
+    HealthBar();
 
 
 //-----------------------------------------------------------------------------
@@ -156,9 +183,9 @@ public: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  clones this TilemapItemDropper
-    /// @return the newly created clone of this TilemapItemDropper
-    virtual TilemapItemDropper* Clone() const override;
+    /// @brief  clones this HealthBar
+    /// @return the newly created clone of this HealthBar
+    virtual HealthBar* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -166,12 +193,12 @@ private: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  copy-constructor for the TilemapItemDropper
-    /// @param  other   the other TilemapItemDropper to copy
-    TilemapItemDropper( const TilemapItemDropper& other );
+    /// @brief  copy-constructor for the HealthBar
+    /// @param  other   the other HealthBar to copy
+    HealthBar( const HealthBar& other );
 
     // diable = operator
-    void operator =( TilemapItemDropper const& ) = delete;
+    void operator =( HealthBar const& ) = delete;
 
 
 //-----------------------------------------------------------------------------

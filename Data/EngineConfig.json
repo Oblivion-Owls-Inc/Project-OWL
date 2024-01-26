@@ -14,6 +14,7 @@
             "BaseScenePath": "Data/Scenes/",
             "NextSceneName": "Prototype"
         },
+        "EntitySystem": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<BulletBehavior>": {},
         "BehaviorSystem<RigidBody>": {},
@@ -37,10 +38,11 @@
         },
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
-        "EntitySystem": {},
         "CameraSystem": {},
         "RenderSystem": {},
-        "AudioSystem": {},
+        "AudioSystem": {
+            "MaxChannels": 1024
+        },
         "CheatSystem": {},
         "DebugSystem": {
             "ShowFpsWindow": false,

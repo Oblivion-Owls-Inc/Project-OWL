@@ -77,12 +77,13 @@ Component* Sprite::Clone() const { return new Sprite( *this ); }
 /// @brief  Copy constructor
 Sprite::Sprite(Sprite const& other) :
     Component( other ),
-    m_Color(      other.m_Color      ),
-    m_Opacity(    other.m_Opacity    ),
-    m_Layer(      other.m_Layer      ),
-    m_IsTextured( other.m_IsTextured ),
-    m_Texture(    other.m_Texture    ),
-    m_FrameIndex( other.m_FrameIndex )
+    m_Color      ( other.m_Color       ),
+    m_Opacity    ( other.m_Opacity     ),
+    m_Layer      ( other.m_Layer       ),
+    m_IsTextured ( other.m_IsTextured  ),
+    m_Texture    ( other.m_Texture     ),
+    m_TextureName( other.m_TextureName ),
+    m_FrameIndex ( other.m_FrameIndex  )
 {}
 
 //-----------------------------------------------------------------------------
@@ -106,17 +107,18 @@ void Sprite::Draw()
     glm::mat4 mat(1);   // it can still draw without parent and transform
     if (GetEntity())
     {
-        Transform* t = GetEntity()->GetComponent<Transform>();
-        if (t)
+        if ( m_Transform == nullptr)
         {
-            mat = t->GetMatrix();
-
-            // world or UI space
-            if (t->GetIsDiegetic())
-                mat = Cameras()->GetMat_WorldToClip() * mat;
-            else
-                mat = Cameras()->GetMat_UItoClip() * mat;
+            m_Transform = GetEntity()->GetComponent< Transform >();
         }
+
+        mat = m_Transform->GetMatrix();
+
+        // world or UI space
+        if ( m_Transform->GetIsDiegetic() )
+            mat = Cameras()->GetMat_WorldToClip() * mat;
+        else
+            mat = Cameras()->GetMat_UItoClip() * mat;
     }
 
     glUniformMatrix4fv(sh->GetUniformID("mvp"), 1, false, &mat[0][0]);
@@ -139,6 +141,13 @@ void Sprite::Draw()
 void Sprite::OnInit()
 {
     Renderer()->AddSprite( this );
+
+    m_Transform = GetEntity()->GetComponent< Transform >();
+    
+    if ( m_TextureName.empty() == false )
+    {
+        m_Texture = AssetLibrary< Texture >()->GetAsset( m_TextureName );
+    }
 }
 
 /// @brief  called when exiting the scene
@@ -163,7 +172,7 @@ void Sprite::OnExit()
             SetOpacity(m_Opacity);
         }
 
-        Inspection::SelectAssetFromLibrary( "Texture", &m_Texture );
+        Inspection::SelectAssetFromLibrary( "Texture", &m_Texture, &m_TextureName );
 
         if (!m_Texture)
         {
@@ -205,7 +214,7 @@ glm::vec2 Sprite::calcUVoffset() const
 /// @param  data  the json data to read from
 void Sprite::readTexture( nlohmann::ordered_json const& data )
 {
-    m_Texture = AssetLibrary<Texture>()->GetAsset( Stream::Read<std::string>( data ) );
+    Stream::Read( m_TextureName, data );
     m_IsTextured = true;
 }
 
@@ -243,18 +252,11 @@ nlohmann::ordered_json Sprite::Write() const
 {
     nlohmann::ordered_json data;
 
-    data["Layer"] = m_Layer;
-    data["Color"] = Stream::Write(m_Color);
-    data["Opacity"] = m_Opacity;
-    data["FrameIndex"] = m_FrameIndex;
-    if ( m_Texture != nullptr )
-    {
-        std::string const& name = AssetLibrary<Texture>()->GetAssetName(m_Texture);
-        if (!name.empty())
-        {
-            data["Texture"] = name;
-        }
-    }
+    data[ "Layer"      ] = Stream::Write( m_Layer       );
+    data[ "Color"      ] = Stream::Write( m_Color       );
+    data[ "Opacity"    ] = Stream::Write( m_Opacity     );
+    data[ "FrameIndex" ] = Stream::Write( m_FrameIndex  );
+    data[ "Texture"    ] = Stream::Write( m_TextureName );
 
     return data;
 }

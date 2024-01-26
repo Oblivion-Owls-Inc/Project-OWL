@@ -45,7 +45,10 @@
     {
         m_ItemStack = itemStack;
 
-        m_Sprite->SetFrameIndex( itemStack.M_ItemId );
+        if ( m_Sprite != nullptr )
+        {
+            m_Sprite->SetFrameIndex( itemStack.M_ItemId );
+        }
     }
 
 
@@ -89,6 +92,8 @@
         m_Transform = GetEntity()->GetComponent< Transform >();
         m_Sprite = GetEntity()->GetComponent< Sprite >();
         m_RigidBody = GetEntity()->GetComponent< RigidBody >();
+
+        m_Sprite->SetFrameIndex( m_ItemStack.M_ItemId );
     }
 
     /// @brief  called once when exiting the scene

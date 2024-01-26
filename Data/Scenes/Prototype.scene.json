@@ -108,6 +108,17 @@
                     1.0
                 ]
             },
+            "HealthBar": {
+                "Filepath": "Data/Textures/healthBar.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
             "Items": {
                 "Filepath": "Data/Textures/Items/TestItemSheet.png",
                 "SheetDimensions": [
@@ -255,13 +266,14 @@
                 "Name": "Enemy",
                 "Components": {
                     "AudioPlayer": {
+                        "Sound": "EnemySound",
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
                         "PitchVariance": 0.0,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
-                        "Sound": "EnemySound"
+                        "IsSpatial": true
                     },
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
@@ -407,13 +419,14 @@
                 "Name": "Turret",
                 "Components": {
                     "AudioPlayer": {
+                        "Sound": "TurretShoot",
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
                         "PitchVariance": 0.0,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
-                        "Sound": "TurretShoot"
+                        "IsSpatial": false
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -457,13 +470,14 @@
             "Name": "Music",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "Music",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": true,
-                    "Sound": "Music"
+                    "IsSpatial": false
                 }
             }
         },
@@ -471,13 +485,14 @@
             "Name": "DiggingSound",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "PlayerDigging",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "PlayerDigging"
+                    "IsSpatial": false
                 }
             }
         },
@@ -485,13 +500,14 @@
             "Name": "TurretPlacementSound",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "TurretPlacement",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "TurretPlacement"
+                    "IsSpatial": false
                 }
             }
         },
@@ -499,13 +515,14 @@
             "Name": "Base",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "BaseDamageSound",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "BaseDamageSound"
+                    "IsSpatial": false
                 },
                 "BaseBehavior": {
                     "Health": {
@@ -5667,27 +5684,24 @@
                     "LoopCount": 0,
                     "Animation": "PlayerMoveUp"
                 },
+                "AudioListener": {
+                    "ZOffset": 0.0,
+                    "IsActive": true
+                },
                 "AudioPlayer": {
+                    "Sound": "PlayerFootSteps",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "PlayerFootSteps"
+                    "IsSpatial": false
                 },
                 "CircleCollider": {
                     "Radius": 0.30000001192092896,
                     "CollisionLayer": 2,
                     "CollisionLayerFlags": 3
-                },
-                "Inventory": {
-                    "Items": null
-                },
-                "ItemCollector": {
-                    "CollectionRadius": 0.5,
-                    "AttractionRadius": 3.0,
-                    "AttractionStrength": 50.0
                 },
                 "Health": {
                     "Health": {
@@ -5697,6 +5711,22 @@
                         "Active": false
                     }
                 },
+                "Inventory": {
+                    "Items": null
+                },
+                "ItemCollector": {
+                    "CollectionRadius": 0.5,
+                    "AttractionRadius": 3.0,
+                    "AttractionStrength": 50.0
+                },
+                "Light": {
+                    "Radius": 3.0,
+                    "Strength": 2.0,
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ]
+                },
                 "PlayerController": {
                     "AnimationNames": [
                         "PlayerMoveRight",
@@ -5705,7 +5735,11 @@
                         "PlayerMoveDown"
                     ],
                     "MaxSpeed": 1.0,
-                    "MiningLaserName": "MiningLaser"
+                    "MiningLaserName": "MiningLaser",
+                    "RespawnLocation": [
+                        -15.0,
+                        5.0
+                    ]
                 },
                 "RigidBody": {
                     "Velocity": [
@@ -5745,10 +5779,6 @@
                         1.0
                     ],
                     "IsDiegetic": true
-                },
-                "Light": {
-                    "Radius": 3.0,
-                    "Strength": 2.0
                 }
             }
         },
@@ -5787,8 +5817,13 @@
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
-                            "Name": "Turret",
-                            "Cost": 2
+                            "Cost": [
+                                {
+                                    "ItemId": 1,
+                                    "Count": 3
+                                }
+                            ],
+                            "ArchetypeName": "Turret"
                         }
                     ],
                     "BuildingIndex": -1,
@@ -5807,11 +5842,8 @@
                         0.0
                     ],
                     "PreviewAlpha": 0.5,
-                    "CurrentResources": 0,
-                    "ResourcesTextPrefix": "Resources: ",
                     "TilemapName": "Tiles",
-                    "PlayerName": "Player",
-                    "ResourcesTextName": "ResourcesText"
+                    "PlayerName": "Player"
                 },
                 "Sprite": {
                     "Layer": 4,
@@ -5822,7 +5854,8 @@
                         0.0
                     ],
                     "Opacity": 0.0,
-                    "FrameIndex": 0
+                    "FrameIndex": 0,
+                    "Texture": ""
                 },
                 "Transform": {
                     "Translation": [
@@ -5970,12 +6003,14 @@
             "Name": "MiningLaser",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
-                    "PlayOnInit": false
+                    "PlayOnInit": false,
+                    "IsSpatial": false
                 },
                 "Emitter": {
                     "PPS": 200.0,
@@ -6019,7 +6054,8 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 0
+                    "FrameIndex": 0,
+                    "Texture": ""
                 },
                 "MiningLaser": {
                     "TilemapName": "Tiles",
@@ -6052,6 +6088,74 @@
                         1.0
                     ],
                     "IsDiegetic": true
+                }
+            }
+        },
+        "healthBar": {
+            "Name": "healthBar",
+            "Components": {
+                "HealthBar": {
+                    "TargetEntityName": "Player",
+                    "Offset": [
+                        0.0,
+                        1.0
+                    ],
+                    "HideWhenFull": false,
+                    "RecentHealthAcceleration": 1.0
+                },
+                "Transform": {
+                    "Translation": [
+                        -8.773333549499512,
+                        7.128334045410156
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        3.0,
+                        0.5
+                    ],
+                    "IsDiegetic": true
+                },
+                "UiBarSprite": {
+                    "Sections": [
+                        {
+                            "Color": [
+                                0.0,
+                                1.0,
+                                0.0,
+                                1.0
+                            ],
+                            "Value": 1.0,
+                            "Slope": 1.0
+                        },
+                        {
+                            "Color": [
+                                1.0,
+                                1.0,
+                                0.0,
+                                1.0
+                            ],
+                            "Value": 1.0,
+                            "Slope": 1.0
+                        },
+                        {
+                            "Color": [
+                                1.0,
+                                0.0,
+                                0.0,
+                                1.0
+                            ],
+                            "Value": 1.0,
+                            "Slope": 0.0
+                        }
+                    ],
+                    "Texture": "HealthBar",
+                    "Layer": 6,
+                    "Opacity": 1.0,
+                    "BorderPositions": [
+                        -0.20000000298023224,
+                        1.2000000476837158
+                    ],
+                    "RotationPosition": 0.5
                 }
             }
         },

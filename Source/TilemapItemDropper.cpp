@@ -117,7 +117,7 @@
         );
 
         // get initial velocity to spawn the item
-        float angle = random( 0.0f, 6.28 );
+        float angle = random( 0.0f, 6.283f );
         glm::vec2 velocity = glm::vec2(
             std::cos( angle ),
             std::sin( angle )
@@ -127,11 +127,12 @@
         // spawn the item
         Entity* itemEntity = m_ItemArchetype->Clone();
 
-        Entities()->AddEntity( itemEntity );
-
         itemEntity->GetComponent< Transform >()->SetTranslation( position );
         itemEntity->GetComponent< RigidBody >()->SetVelocity( velocity );
         itemEntity->GetComponent< ItemComponent >()->SetItemStack( itemStack );
+
+        Entities()->QueueAddEntity( itemEntity );
+
     }
 
 
@@ -143,10 +144,7 @@
     /// @brief  displays this TilemapItemDropper in the Inspector
     void TilemapItemDropper::Inspector()
     {
-        if ( Inspection::SelectAssetFromLibrary< Entity >( "Item Archetype", &m_ItemArchetype ) )
-        {
-            m_ItemArchetypeName = AssetLibrary< Entity >()->GetAssetName( m_ItemArchetype );
-        }
+        Inspection::SelectAssetFromLibrary< Entity >( "Item Archetype", &m_ItemArchetype, &m_ItemArchetypeName );
 
         ImGui::DragFloat( "max initial velocity", &m_MaxInitialVelocity, 0.05f, 0.0f, INFINITY );
 

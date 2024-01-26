@@ -20,6 +20,7 @@
 #include "CircleCollider.h"
 #include "EnemyBehavior.h"
 #include "AudioPlayer.h"
+#include "AudioListener.h"
 #include "BulletBehavior.h"
 #include "Animation.h"
 #include "TurretBehavior.h"
@@ -45,6 +46,8 @@
 #include "Inventory.h"
 #include "ItemCollector.h"
 #include "Light.h"
+#include "UiBarSprite.h"
+#include "HealthBar.h"
 
 
 //-----------------------------------------------------------------------------
@@ -134,6 +137,7 @@
         { "MovementAI"          , ComponentInfo< MovementAI >()           },
         { "CircleCollider"      , ComponentInfo< CircleCollider >()       },
         { "AudioPlayer"         , ComponentInfo< AudioPlayer >()          },
+        { "AudioListener"       , ComponentInfo< AudioListener >()        },
         { "Animation"           , ComponentInfo< Animation >()            },
         { "Text"                , ComponentInfo< Text >()                 },
         { "PlayerController"    , ComponentInfo< PlayerController >()     },
@@ -160,6 +164,8 @@
         { "TilemapItemDropper"  , ComponentInfo< TilemapItemDropper >()   },
         { "Inventory"           , ComponentInfo< Inventory >()            },
         { "ItemCollector"       , ComponentInfo< ItemCollector >()        },
+        { "HealthBar"           , ComponentInfo< HealthBar >()            },
+        { "UiBarSprite"         , ComponentInfo< UiBarSprite >()          },
 
         { "Light"               , ComponentInfo< Light >()                },
         { "GeneratorBehavior"   , ComponentInfo< GeneratorBehavior >()    }
