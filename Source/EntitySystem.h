@@ -34,11 +34,6 @@ public: // methods
     std::vector< Entity* > const& GetEntities() const;
 
 
-    /// @brief  queues an Entity to be added to the EntitySystem
-    /// @param  entity  the entity to add the the EntitySystem
-    void QueueAddEntity( Entity* entity );
-
-
     /// @brief  checks if the EntitySystem contains the given Entity (for debugging)
     /// @param  entity  the Entity to search for
     /// @return whether or not the EntitySystem has the specified Entity
@@ -78,6 +73,28 @@ private: // member variables
 
 
 //-----------------------------------------------------------------------------
+public: // engine methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  queues an Entity to be added to the EntitySystem
+    /// @brief  FOR ENGINE USE ONLY - call this only if you're modifying core engine functionality
+    /// @param  entity  the entity to add the the EntitySystem
+    void QueueAddEntity( Entity* entity );
+
+    
+    /// @brief  moves an Entity to the end of its parent's children
+    /// @brief  FOR ENGINE USE ONLY - call this only if you're modifying core engine functionality
+    /// @param  entity  - the entity to move
+    void MoveEntityAfterParent( Entity* entity );
+
+    /// @brief  moves an Entity to the end the EntitySystem
+    /// @brief  FOR ENGINE USE ONLY - call this only if you're modifying core engine functionality
+    /// @param  entity  - the entity to move
+    void MoveToEnd( Entity* entity );
+
+
+//-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
@@ -87,6 +104,11 @@ private: // methods
 
     /// @brief  adds all queued Entites to the EntitySystem
     void addEntities();
+
+
+    /// @brief  adds the children of a loaded entity to the entities array
+    /// @param  entity  the Entity to add the children of
+    void addLoadedChildren( Entity* entity );
 
 
 //-----------------------------------------------------------------------------

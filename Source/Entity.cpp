@@ -30,68 +30,329 @@
 /// Public: constructor / destructor
 ///------------------------------------------------------------------------------
 
+
     /// @brief  default constrcutor
     Entity::Entity() :
-        m_Name( "" ),
-	    m_IsDestroyed( false ),
-	    m_Components(),
         m_Id( GetUniqueId() )
     {}
 
     /// @brief destructor
     Entity::~Entity()
     {
-        free();
+        for ( auto& [ type, component ] : m_Components )
+        {
+            delete component;
+        }
     }
+
 
 //------------------------------------------------------------------------------
 // Public: methods
 //------------------------------------------------------------------------------
 
-    /// @brief  Initializes all components of this Entity
-    /// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
-    void Entity::InitComponents()
+
+    /// @brief  flags this Entity for destruction
+    void Entity::Destroy()
     {
-        for ( auto& component : m_Components )
+        m_IsDestroyed = true;
+
+        for ( Entity* child : m_Children )
         {
-            component.second->OnInit();
+            child->Destroy();
         }
     }
 
-    /// @brief  exits all components of this Entity
-    /// @note   ONLY CALL THIS IF YOU KNOW WHAT YOU'RE DOING
-    void Entity::ExitComponents()
-    {
-        for ( auto& component : m_Components )
-        {
-            component.second->OnExit();
-        }
-    }
-
-//------------------------------------------------------------------------------
-// Public: accessors
-//------------------------------------------------------------------------------
 
     /// @brief  attaches a component to this Entity
     /// @param  component   the component to attach to this Entity
-    void Entity::AddComponent(Component* component)
+    void Entity::AddComponent( Component* component )
     {
-
-        ///You tried to add a component that already exists on this entity.
+        // You tried to add a component that already exists on this entity.
         // Check if the component already exists. 
-        assert( m_Components.find( component->GetType() ) == m_Components.end() );
+        if ( m_Components.find( component->GetType() ) != m_Components.end() )
+        {
+            Debug() << "WARNING: attempting to add a duplicate component to the Entity \"" << m_Name << "\"" << std::endl;
+            return;
+        }
 
         // Set the component's parent as this entity
-        component->SetParent( this );
+        component->SetEntity( this );
 
         // add it to the entity.
         m_Components[ component->GetType() ] = component;
     }
 
+
+    /// @brief  sets the parent of this Entity
+    /// @param  parent  the Entity that should be the parent of this one
+    void Entity::SetParent( Entity* parent )
+    {
+        // ensure the IsInScene statuses match
+        if ( parent != nullptr && IsInScene() != parent->IsInScene() )
+        {
+            Debug() << "WARNING: cannot set the parent of an Entity with a different IsInScene status" << std::endl;
+            return;
+        }
+
+        // warn in the edge case that the new parent is a descendant
+        if ( parent != nullptr && parent->IsDescendedFrom( this ) )
+        {
+            Debug() << "WARNING: cannot set the parent of Entity \"" << m_Name <<
+                "\" to its descendant \"" << parent->GetName() << "\"" << std::endl;
+            return;
+        }
+
+        // separate this from its previous parent
+        if ( m_Parent != nullptr )
+        {
+            m_Parent->removeChild( this );
+        }
+
+        m_Parent = parent;
+
+        // add this to its new parent
+        if ( parent != nullptr )
+        {
+            parent->addChild( this );
+        }
+
+        propagateHeirachyChangeEvent();
+    }
+
+
+    /// @brief  checks if this Entity is descended from another Entity
+    /// @param  ancestor    The entity to check if this Entity is descended from
+    /// @return whether this Entity is descended from the other Entity
+    bool Entity::IsDescendedFrom( Entity const* ancestor ) const
+    {
+        for ( Entity* parent = m_Parent; parent != nullptr; parent = parent->m_Parent )
+        {
+            if ( parent == ancestor )
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /// @brief  queues this Entity and its children to be added to the Scene
+    void Entity::AddToScene()
+    {
+        Entities()->QueueAddEntity( this );
+
+        for ( Entity* child : m_Children )
+        {
+            child->AddToScene();
+        }
+    }
+
+
 //------------------------------------------------------------------------------
-// private: methods
+// Public: accessors
 //------------------------------------------------------------------------------
 
+    
+    /// @brief  gets all components in this Entity
+    /// @return the map of all components in this Entity
+    std::map< std::type_index, Component* >& Entity::getComponents()
+    {
+        return m_Components;
+    }
+
+
+    /// @brief  gets whether this Entity is flagged for destruction
+    /// @return whether this Entity is flagged for destruction
+    bool Entity::IsDestroyed() const
+    {
+        return m_IsDestroyed;
+    }
+
+
+    /// @brief  gets this Entity's name
+    /// @return this Entity's name
+    std::string const& Entity::GetName() const
+    {
+        return m_Name;
+    }
+
+    /// @brief  sets this Entity's name
+    /// @param  name    the new name for this Entity
+    void Entity::SetName( std::string const& name )
+    {
+        m_Name = name;
+    }
+
+
+    /// @brief  gets the Id of this Component
+    /// @return the Id of this Component
+    unsigned Entity::GetId() const
+    {
+        return m_Id;
+    }
+
+
+    /// @brief  gets the parent of this Entity
+    /// @return the parent of this Entity
+    Entity const* Entity::GetParent() const
+    {
+        return m_Parent;
+    }
+
+    /// @brief  gets the parent of this Entity
+    /// @return the parent of this Entity
+    Entity* Entity::GetParent()
+    {
+        return m_Parent;
+    }
+
+
+    /// @brief  gets the children of this Entity
+    /// @return the children of this Entity
+    std::vector< Entity const* > const& Entity::GetChildren() const
+    {
+        return reinterpret_cast< std::vector< Entity const* > const& >( m_Children );
+    }
+
+    /// @brief  gets the children of this Entity
+    /// @return the children of this Entity
+    std::vector< Entity* > const& Entity::GetChildren()
+    {
+        return m_Children;
+    }
+
+
+    /// @brief  gets the number of descendants this Entity has
+    /// @return the number of descendants this Entity has
+    int Entity::GetNumDescendants() const
+    {
+        return m_NumDescendants;
+    }
+
+
+    /// @brief  gets whether the Entity is currently in the scene
+    /// @return whether the Entity is currently in the scene
+    bool Entity::IsInScene() const
+    {
+        return m_IsInScene;
+    }
+
+
+//------------------------------------------------------------------------------
+// Public: engine methods
+//------------------------------------------------------------------------------
+
+
+    /// @brief  Initializes all components / children of this Entity
+    /// @brief  FOR ENGINE USE ONLY - only call this if you're modifying core engine functionality
+    void Entity::Init()
+    {
+        m_IsInScene = true;
+
+        for ( auto& [ type, component ] : m_Components )
+        {
+            component->OnInit();
+        }
+    }
+
+    /// @brief  exits all components / children of this Entity
+    /// @brief  FOR ENGINE USE ONLY - only call this if you're modifying core engine functionality
+    void Entity::Exit()
+    {
+        for ( auto& [ type, component ] : m_Components )
+        {
+            component->OnExit();
+        }
+
+        for ( Entity* child : m_Children )
+        {
+            
+        }
+
+        m_IsInScene = false;
+    }
+
+
+    
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+    
+    
+    /// @brief  adds a child to this Enity
+    /// @param  child   the child to add to this Enitity
+    /// @note   assumes that this and the child's IsInScene status is the same
+    /// @note   assumes that the child currently has no parent
+    void Entity::addChild( Entity* child )
+    {
+        m_Children.push_back( child );
+
+        if ( IsInScene() )
+        {
+            Entities()->MoveEntityAfterParent( child );
+        }
+
+        propagateDescendantChange( child->GetNumDescendants() + 1 );
+    }
+
+    /// @brief  removes a child from this Enity
+    /// @param  child   the child to remove from this Enitity
+    /// @note   assumes that this and the child's IsInScene status is the same
+    void Entity::removeChild( Entity* child )
+    {
+        // remove child from the children list
+        auto it = std::find( m_Children.begin(), m_Children.end(), child );
+        if ( it == m_Children.end() )
+        {
+            Debug() << "ERROR: cannot find child \"" << child->GetName() << "\" to remove" << std::endl;
+            return;
+        }
+        m_Children.erase( it );
+
+        if ( IsInScene() )
+        {
+            Entities()->MoveToEnd( child );
+        }
+
+        propagateDescendantChange( -(child->GetNumDescendants() + 1) );
+    }
+
+
+    /// @brief  changes descendant count and propagates that change
+    /// @param  changeBy    the number of descendants added or removed
+    void Entity::propagateDescendantChange( int changeBy )
+    {
+        m_NumDescendants += changeBy;
+
+        if ( m_Parent != nullptr && IsInScene() == m_Parent->IsInScene() )
+        {
+            m_Parent->propagateDescendantChange( changeBy );
+        }
+    }
+
+
+    /// @brief  propagates an OnHeirarchyChange event downwards
+    void Entity::propagateHeirachyChangeEvent()
+    {
+        for ( auto& [ type, component ] : m_Components )
+        {
+            component->OnHeirarchyChange();
+        }
+
+        for ( Entity* child : m_Children )
+        {
+            child->propagateHeirachyChangeEvent();
+        }
+    }
+
+
+//------------------------------------------------------------------------------
+// private: inspection
+//------------------------------------------------------------------------------
+
+
+    /// @brief used by the Debug System to display information about this Entity
     void Entity::Inspect()
     {
 
@@ -136,19 +397,19 @@
             ImGui::EndCombo();
         }
 
-        static char name[ 128 ];
-        //strcpy_s( name, 128, m_Name.c_str() )
-        ImGui::InputText("Entity Name", name, 128);
-
+        static std::string name = "";
+        ImGui::InputText( "Entity Name", &name );
         if (ImGui::Button("Rename Entity") || 
             Input()->GetKeyTriggered(GLFW_KEY_ENTER))
         {
-            if (strlen(name) > 0)
+            if ( name.empty() == false )
             {
                 Debug() << "Renamed Entity " << m_Name << " to " << name << "\n";
                 m_Name = name;
+                name.clear();
             }
         }
+
 
         for (const auto& componentPair : this->getComponents())
         {
@@ -194,25 +455,8 @@
 
     }
 
-    /// @brief Deallocates all memory associated with an entity.
-    void Entity::free()
-    {
-        // Traverse the component list
-        for (auto& component : m_Components)
-        {
-            // Make sure the component is valid.
-            assert(component.second);
 
-            // Delete the component.
-            delete component.second;
-
-            // No dangling ptr
-            component.second = nullptr;
-        }
-        // Clear the component list.
-        m_Components.clear();
-    }
-
+    /// @brief used by the Debug System to Rename this Entity
     void Entity::RenameEntity(const char* popup_id)
     {
 		// Open a popup window to rename the entity
@@ -239,18 +483,19 @@
 // private: reading
 //------------------------------------------------------------------------------
 
+
     /// @brief  Clone this entity from an archetype.
     /// @param  data    The json value to read from.
     void Entity::readArchetype( nlohmann::ordered_json const& data )
     {
-        *this = *AssetLibrary<Entity>()->GetAsset( Stream::Read<std::string>( data ) );
+        *this = *AssetLibrary< Entity >()->GetAsset( Stream::Read< std::string >( data ) );
     }
 
     /// @brief  Read in the name of entity.
     /// @param  data    The json value to read from.
     void Entity::readName( nlohmann::ordered_json const& data )
     {
-	    m_Name = Stream::Read<std::string>( data );
+	    Stream::Read( m_Name, data );
     }
 
     /// @brief  Read in the data for all the components of entity.
@@ -267,7 +512,7 @@
             if ( component == nullptr )
             {
                 component = ComponentFactory::Create( key );
-                component->SetParent( this );
+                component->SetEntity( this );
             }
 
             // read the component data
@@ -276,54 +521,103 @@
 			    // Read in all the data for the component from the json.
 			    Stream::Read( component, value );
 		    }
-		    catch (std::runtime_error error)
+		    catch ( std::runtime_error error )
 		    {
 			    std::cerr << error.what() << std::endl;
 		    }
 	    }
     }
 
+
+    /// @brief  reads the Children of this Entity
+    /// @param  data    the json data to read from
+    void Entity::readChildren( nlohmann::ordered_json const& data )
+    {
+        if ( IsInScene() )
+        {
+            Debug() << "WARNING: cannot paste children into an Entity in the scene" << std::endl;
+            return;
+        }
+
+        for ( auto& childData : data )
+        {
+            Entity* child = new Entity();
+            Stream::Read( child, childData );
+
+            child->SetParent( this );
+        }
+    }
+
+    
+//-----------------------------------------------------------------------------
+// public: reading / writing
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the map of read methods for Entities
+    /// @return the map of read methods for Entities
+    ReadMethodMap< ISerializable > const& Entity::GetReadMethods() const
+    {
+        static ReadMethodMap< Entity > const readMethods = {
+            { "Archetype"  , &Entity::readArchetype  },
+            { "Name"       , &Entity::readName	     },
+            { "Components" , &Entity::readComponents },
+            { "Children"   , &Entity::readChildren   }
+        };
+        
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
+
     /// @brief  Write all Entity data to a JSON file.
     /// @return The JSON file containing the Entity data.
     nlohmann::ordered_json Entity::Write() const
     {
-        nlohmann::ordered_json data;
+        nlohmann::ordered_json json;
 
-        data["Name"] = m_Name;
+        json[ "Name" ] = m_Name;
 
-        auto& components = data["Components"];
+        nlohmann::ordered_json& components = json[ "Components" ];
         for ( auto& [ key, value ] : m_Components )
         {
             components[ ComponentFactory::GetTypeName( key ) ] = value->Write();
         }
 
-        return data;
+        nlohmann::ordered_json& children = json[ "Children" ];
+        for ( Entity* child : m_Children )
+        {
+            children.push_back( child->Write() );
+        }
+
+        return json;
     }
 
-    /// @brief A map of the all read methods used by the Entity class.
-    ReadMethodMap< Entity > const Entity::s_ReadMethods = {
-	    { "Archetype"  , &readArchetype  },
-	    { "Components" , &readComponents },
-	    { "Name"       , &readName	     }
-    };
+
 
 //------------------------------------------------------------------------------
 // copying
 //------------------------------------------------------------------------------
 
+
     /// @brief  copies all of another Entity's data and Components into this Entity
     /// @param  other   the entity to copy from
     void Entity::operator =( Entity const& other )
     {
-        assert( m_Components.empty() );
+        assert( m_Components.empty() && m_Children.empty() && m_IsInScene == false );
 
         m_Name = other.m_Name;
         m_IsDestroyed = false;
 
-        for ( auto component : other.m_Components )
+        for ( auto& [ type, component ] : other.m_Components )
         {
-            AddComponent( component.second->Clone() );
+            AddComponent( component->Clone() );
+        }
+
+        for ( Entity const* child : other.m_Children )
+        {
+            child->Clone()->SetParent( this );
         }
     }
+
 
 //------------------------------------------------------------------------------
