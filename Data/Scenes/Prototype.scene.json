@@ -326,15 +326,17 @@
                         "Texture": "Fireball"
                     },
                     "EnemyBehavior": {
-                        "Health": {
-                            "Name": "Health Pool",
-                            "BaseValue": 40,
-                            "CurrentValue": 0,
-                            "Active": true
-                        },
                         "PathfinderName": "Tiles",
                         "Speed": 10.0,
                         "Damage": 1
+                    },
+                    "Health": {
+                        "Health": {
+                            "Name": "Enemy Health Pool",
+                            "BaseValue": 40,
+                            "CurrentValue": 40,
+                            "Active": false
+                        }
                     },
                     "RigidBody": {
                         "Velocity": [
