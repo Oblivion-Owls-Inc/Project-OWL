@@ -260,7 +260,8 @@
                         ],
                         "IsDiegetic": true
                     }
-                }
+                },
+                "Children": null
             },
             "Enemy": {
                 "Name": "Enemy",
@@ -432,7 +433,8 @@
                                 ],
                                 "RotationPosition": 0.5
                             }
-                        }
+                        },
+                        "Children": null
                     }
                 ]
             },
@@ -484,7 +486,8 @@
                         ],
                         "IsDiegetic": true
                     }
-                }
+                },
+                "Children": null
             },
             "Turret": {
                 "Name": "Turret",
@@ -532,7 +535,8 @@
                         "BulletName": "Bullet",
                         "Target": "Enemy"
                     }
-                }
+                },
+                "Children": null
             }
         }
     },
@@ -550,7 +554,8 @@
                     "PlayOnInit": true,
                     "IsSpatial": false
                 }
-            }
+            },
+            "Children": null
         },
         "DiggingSound": {
             "Name": "DiggingSound",
@@ -565,7 +570,8 @@
                     "PlayOnInit": false,
                     "IsSpatial": false
                 }
-            }
+            },
+            "Children": null
         },
         "TurretPlacementSound": {
             "Name": "TurretPlacementSound",
@@ -580,7 +586,8 @@
                     "PlayOnInit": false,
                     "IsSpatial": false
                 }
-            }
+            },
+            "Children": null
         },
         "Base": {
             "Name": "Base",
@@ -632,7 +639,8 @@
                     ],
                     "IsDiegetic": true
                 }
-            }
+            },
+            "Children": null
         },
         "Wave": {
             "Name": "Wave",
@@ -705,7 +713,8 @@
                         }
                     ]
                 }
-            }
+            },
+            "Children": null
         },
         "Camera": {
             "Name": "Camera",
@@ -726,7 +735,8 @@
                     ],
                     "IsDiegetic": true
                 }
-            }
+            },
+            "Children": null
         },
         "Tiles": {
             "Name": "Tiles",
@@ -2398,7 +2408,8 @@
                     ],
                     "IsDiegetic": true
                 }
-            }
+            },
+            "Children": null
         },
         "Tiles Background1 Layer": {
             "Name": "Tiles Background1 Layer",
@@ -4038,7 +4049,8 @@
                     ],
                     "IsDiegetic": true
                 }
-            }
+            },
+            "Children": null
         },
         "Tiles Background2 Layer": {
             "Name": "Tiles Background2 Layer",
@@ -5678,7 +5690,8 @@
                     ],
                     "IsDiegetic": true
                 }
-            }
+            },
+            "Children": null
         },
         "Player": {
             "Name": "Player",
@@ -5853,7 +5866,8 @@
                             ],
                             "RotationPosition": 0.5
                         }
-                    }
+                    },
+                    "Children": null
                 }
             ]
         },
@@ -5884,7 +5898,8 @@
                     ],
                     "IsDiegetic": true
                 }
-            }
+            },
+            "Children": null
         },
         "ConstructionManager": {
             "Name": "ConstructionManager",
@@ -5944,7 +5959,8 @@
                     ],
                     "IsDiegetic": true
                 }
-            }
+            },
+            "Children": null
         },
         "ResourcesText": {
             "Name": "ResourcesText",
@@ -5977,7 +5993,7 @@
                     "String": "Resources: 0"
                 },
                 "TilemapSprite": {
-                    "Layer": 6,
+                    "Layer": 10,
                     "Color": [
                         0.0,
                         0.0,
@@ -6010,7 +6026,8 @@
                         "Absolute"
                     ]
                 }
-            }
+            },
+            "Children": null
         },
         "Snow": {
             "Name": "Snow",
@@ -6072,7 +6089,8 @@
                     ],
                     "IsDiegetic": true
                 }
-            }
+            },
+            "Children": null
         },
         "MiningLaser": {
             "Name": "MiningLaser",
@@ -6144,7 +6162,7 @@
                         1.0
                     ],
                     "BeamWidth": 0.10000000149011612,
-                    "DamageRate": 1.0,
+                    "DamageRate": 10.0,
                     "CollideWithLayers": 3,
                     "Direction": [
                         1.0,
@@ -6164,7 +6182,8 @@
                     ],
                     "IsDiegetic": true
                 }
-            }
+            },
+            "Children": null
         }
     }
 }
