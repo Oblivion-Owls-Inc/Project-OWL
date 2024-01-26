@@ -184,7 +184,7 @@
                 // if the entity has a parent, insert after its parent/siblings
                 // possible optimization: keep track of the position of the previously added Entity, and try there first
                 m_Entities.insert(
-                    std::find( m_Entities.begin(), m_Entities.end(), entity->GetParent() ) + 1 + entity->GetParent()->GetNumDescendants(),
+                    std::find( m_Entities.begin(), m_Entities.end(), entity->GetParent() ) + 1,
                     entity    
                 );
             }
@@ -202,6 +202,18 @@
         for ( Entity* entity : newEntities )
         {
             entity->Init();
+        }
+    }
+
+
+    /// @brief  adds the children of a loaded entity to the entities array
+    /// @param  entity  the Entity to add the children of
+    void EntitySystem::addLoadedChildren( Entity* entity )
+    {
+        for ( Entity* child : entity->GetChildren() )
+        {
+            m_Entities.push_back( child );
+            addLoadedChildren( child );
         }
     }
 
@@ -231,7 +243,7 @@
         {
             Entity* entity = new Entity(); /// Create a new entity
             entity->SetName( "New Entity" ); /// Set the name of the entity
-            QueueAddEntity( entity ); /// Add the entity to the EntitySystem
+            entity->AddToScene(); /// Add the entity to the EntitySystem
             createEntity = false;
         }
 
@@ -263,7 +275,7 @@
 
             Entity* entity = new Entity(); /// Create a new entity
             entity->SetName( name ); /// Set the name of the entity
-            QueueAddEntity( entity ); /// Add the entity to the EntitySystem
+            entity->AddToScene(); /// Add the entity to the EntitySystem
 
             /// if the entity is added, close the window
             ImGui::End();
@@ -430,11 +442,12 @@
     /// @param  entityData  the json object containing the entity data
     void EntitySystem::LoadEntities( nlohmann::ordered_json const& data )
     {
-        for ( auto& [ key, value ] : data.items() )
+        for ( auto& [ name, entityData ] : data.items() )
         {
-            Entity * entity = new Entity();
-            Stream::Read( entity, value );
+            Entity* entity = new Entity();
+            Stream::Read( entity, entityData );
             m_Entities.push_back( entity );
+            addLoadedChildren( entity );
         }
 
         for ( Entity* entity : m_Entities )
@@ -452,6 +465,12 @@
 
         for ( Entity* entity : m_Entities )
         {
+            // skip entities that have a parent - they'll be saved separately by their parent
+            if ( entity->GetParent() != nullptr )
+            {
+                continue;
+            }
+
             json[ entity->GetName() ] = entity->Write();
         }
 

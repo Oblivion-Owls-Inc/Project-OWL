@@ -110,6 +110,8 @@
         {
             parent->addChild( this );
         }
+
+        propagateHeirachyChangeEvent();
     }
 
 
@@ -320,6 +322,21 @@
     }
 
 
+    /// @brief  propagates an OnHeirarchyChange event downwards
+    void Entity::propagateHeirachyChangeEvent()
+    {
+        for ( auto& [ type, component ] : m_Components )
+        {
+            component->OnHeirarchyChange();
+        }
+
+        for ( Entity* child : m_Children )
+        {
+            child->propagateHeirachyChangeEvent();
+        }
+    }
+
+
 //------------------------------------------------------------------------------
 // private: inspection
 //------------------------------------------------------------------------------
@@ -514,7 +531,7 @@
             Entity* child = new Entity();
             Stream::Read( child, childData );
 
-            addChild( child );
+            child->SetParent( this );
         }
     }
 
@@ -583,9 +600,9 @@
             AddComponent( component->Clone() );
         }
 
-        for ( Entity* child : other.m_Children )
+        for ( Entity const* child : other.m_Children )
         {
-            addChild( child->Clone() );
+            child->Clone()->SetParent( this );
         }
     }
 

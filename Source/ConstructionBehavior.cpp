@@ -330,8 +330,8 @@
         Entity* building = m_BuildingInfos[ m_BuildingIndex ].M_Archetype->Clone();
         building->GetComponent< Transform >()->SetTranslation( m_TargetPos );
         
-        Entities()->QueueAddEntity( building );
-        m_Buildings->SetTile( m_TargetTilePos, building );
+        building->AddToScene();
+        m_Buildings->SetTile( m_TargetTilePos, building ); // TODO: move this line into the Building's OnInit?
         
         m_PlayerInventory->RemoveItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost );
 

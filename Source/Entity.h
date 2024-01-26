@@ -212,6 +212,10 @@ private: // methods
     void propagateDescendantChange( int changeBy );
 
 
+    /// @brief  propagates an OnHeirarchyChange event downwards
+    void propagateHeirachyChangeEvent();
+
+
 //-----------------------------------------------------------------------------
 public: // inspection
 //-----------------------------------------------------------------------------

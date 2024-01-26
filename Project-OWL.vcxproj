@@ -364,8 +364,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\ConstructionTest.scene.json" />
     <None Include="Data\Scenes\GameOver.scene.json" />
     <None Include="Data\Scenes\GameWin.scene.json" />
-    <None Include="Data\Scenes\Template.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
+    <None Include="Data\Scenes\Template.scene.json" />
     <None Include="Data\shaders\UiBar.frag" />
     <None Include="Data\shaders\lighting.frag" />
     <None Include="Data\shaders\particles.frag" />

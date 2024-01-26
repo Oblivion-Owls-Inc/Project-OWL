@@ -45,21 +45,26 @@ protected: // constructors
 //-----------------------------------------------------------------------------
 public: // virtual methods
 //-----------------------------------------------------------------------------
-	
 
-	/// @brief virtual component clone function
-	/// @return new clone of component
-	virtual Component* Clone() const = 0;
 
     /// @brief called when this Component's Entity is added to the Scene
     virtual void OnInit() {};
 
     /// @brief  called when this Component's Entity is removed from the Scene
-    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
     virtual void OnExit() {};
+
+
+    /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
+    virtual void OnHeirarchyChange() {};
     
+
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() {};
+
+
+    /// @brief virtual component clone function
+    /// @return new clone of component
+    virtual Component* Clone() const = 0;
 
 
 //-----------------------------------------------------------------------------

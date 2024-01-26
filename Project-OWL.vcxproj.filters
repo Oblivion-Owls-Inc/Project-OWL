@@ -891,6 +891,9 @@
     <None Include="Data\Scenes\ConstructionTest.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
+    <None Include="Data\Scenes\HeirarchyTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
     <None Include="Data\Scenes\Prototype.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>

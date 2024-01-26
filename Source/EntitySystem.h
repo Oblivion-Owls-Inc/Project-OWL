@@ -106,6 +106,11 @@ private: // methods
     void addEntities();
 
 
+    /// @brief  adds the children of a loaded entity to the entities array
+    /// @param  entity  the Entity to add the children of
+    void addLoadedChildren( Entity* entity );
+
+
 //-----------------------------------------------------------------------------
 public: // inspection
 //-----------------------------------------------------------------------------

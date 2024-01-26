@@ -63,16 +63,6 @@ private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the name Entity to display the health of
-    std::string m_TargetEntityName = "";
-
-    /// @brief  the Transform component of the Entity to display the health of
-    Transform* m_TargetEntityTransform = nullptr;
-
-    /// @brief  the Health component of the Entity to display the health of
-    Health* m_TargetEntityHealth = nullptr;
-
-
     /// @brief  the offset from the target Entity to display the health bar
     glm::vec2 m_Offset = { 0, 0 };
 
@@ -95,12 +85,18 @@ private: // members
     float m_RecentHealthPortion = 1.0f;
 
 
-
     /// @brief  the Transform attached to this HealthBar
     Transform* m_Transform = nullptr;
 
     /// @brief  the UiBarSprite attached to this HealthBar
     UiBarSprite* m_UiBarSprite = nullptr;
+
+
+    /// @brief  the Transform component of the Entity to display the health of
+    Transform* m_ParentTransform = nullptr;
+
+    /// @brief  the Health component of the Entity to display the health of
+    Health* m_ParentHealth = nullptr;
 
 
 //-----------------------------------------------------------------------------
@@ -133,11 +129,6 @@ private: // inspection
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
-
-
-    /// @brief  reads the name Entity to display the health of
-    /// @param  data    the json data to read from
-    void readTargetEntityName( nlohmann::ordered_json const& data );
 
 
     /// @brief  reads the offset from the target Entity to display the health bar
