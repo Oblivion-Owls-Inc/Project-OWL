@@ -411,43 +411,52 @@
         }
 
 
+        /// Loop through all the components of the entity
+        ///  To display the components in the inspector
         for (const auto& componentPair : this->getComponents())
         {
-            const std::string componentName = componentPair.second->GetType().name() + 5; // Skip "class "
+            const std::string componentName = componentPair.second->GetType().name() + 5; /// Skip "class "
             /// Create a unique identifier for the popup menu based on the entity's ID
             std::string popup_id = "ComponentContextMenu##" + std::to_string(GetId());
 
-
+            /// Check if the tree node is open
             if (ImGui::TreeNode(componentName.c_str()))
             {
-                // Check for right-click on the tree node while open
+                /// Check for right-click on the tree node while open
                 if (ImGui::BeginPopupContextItem(popup_id.c_str()))
                 {
                     if (ImGui::MenuItem("Copy"))
                     {
-                        Stream::CopyToClipboard(*this);
+                        Stream::CopyToClipboard(componentPair.second);
                     }
                     if (ImGui::MenuItem("Paste"))
                     {
-                        Stream::PasteFromClipboard(*this);
+                        Stream::PasteFromClipboard(componentPair.second);
                     }
                     ImGui::EndPopup();
                 }
 
+                /// Display the component's inspector
                 componentPair.second->BaseComponentInspector();
                 ImGui::TreePop();
             }
+            else if (ImGui::IsItemHovered() && ImGui::IsMouseReleased(1))
+            {
+                ///Create a unique identifier for the popup menu based on the entity's ID
+                ImGui::OpenPopup(std::string(popup_id + componentName).c_str());
+            }
 
-            // Check for right-click on the tree node while closed
-            if (ImGui::BeginPopupContextItem(popup_id.c_str()))
+            ImGui::OpenPopupOnItemClick(std::string(popup_id + componentName).c_str());
+
+            if (ImGui::BeginPopupContextItem(std::string(popup_id + componentName).c_str()))
             {
                 if (ImGui::MenuItem("Copy"))
                 {
-                    Stream::CopyToClipboard(*this);
+                    Stream::CopyToClipboard(componentPair.second);
                 }
                 if (ImGui::MenuItem("Paste"))
                 {
-                    Stream::PasteFromClipboard(*this);
+                    Stream::PasteFromClipboard(componentPair.second);
                 }
                 ImGui::EndPopup();
             }
