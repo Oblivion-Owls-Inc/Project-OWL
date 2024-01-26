@@ -96,6 +96,34 @@
     }
 
 
+    /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
+    void HealthBar::OnHeirarchyChange()
+    {
+        Entity* parent = GetEntity()->GetParent();
+        if ( parent == nullptr )
+        {
+            Debug() << "WARNING: HealthBar Component has no parent Entity" << std::endl;
+            m_ParentTransform = nullptr;
+            m_ParentHealth = nullptr;
+            return;
+        }
+
+        m_ParentTransform = parent->GetComponent< Transform >();
+        m_ParentHealth    = parent->GetComponent< Health    >();
+
+        if ( m_ParentHealth == nullptr )
+        {
+            Debug() << "WARNING: HealthBar Component's parent does not have a Health component" << std::endl;
+            return;
+        }
+
+        m_ParentHealth->AddOnHealthChangedCallback(
+            GetId(),
+            std::bind( &HealthBar::onHealthChangedCallback, this )
+        );
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: helper methods
 //-----------------------------------------------------------------------------

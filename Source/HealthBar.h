@@ -58,6 +58,10 @@ private: // virtual override methods
     virtual void OnUpdate( float dt ) override;
 
 
+    /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
+    virtual void OnHeirarchyChange() override;
+
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
