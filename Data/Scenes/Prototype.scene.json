@@ -331,7 +331,7 @@
                     },
                     "Health": {
                         "Health": {
-                            "Name": "Pool Pool",
+                            "Name": "Enemy Health Pool",
                             "BaseValue": 40,
                             "CurrentValue": 40,
                             "Active": false
