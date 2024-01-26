@@ -19,7 +19,7 @@
     /// @param type_ type of Component being created.
     Component::Component( std::type_index type ) :
         m_Type( type ),
-        m_Parent( nullptr ),
+        m_Entity( nullptr ),
         m_Id( GetUniqueId() )
     {}
 
@@ -27,7 +27,7 @@
     /// @param other the other Component to copy
     Component::Component( Component const& other ) :
         m_Type( other.m_Type ),
-        m_Parent( nullptr ),
+        m_Entity( nullptr ),
         m_Id( GetUniqueId() )
     {}
 

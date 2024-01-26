@@ -131,7 +131,7 @@
         itemEntity->GetComponent< RigidBody >()->SetVelocity( velocity );
         itemEntity->GetComponent< ItemComponent >()->SetItemStack( itemStack );
 
-        Entities()->QueueAddEntity( itemEntity );
+        itemEntity->AddToScene();
 
     }
 
