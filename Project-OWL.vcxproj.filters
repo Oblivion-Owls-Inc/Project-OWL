@@ -279,7 +279,7 @@
     <Filter Include="Game\Components\Behaviors\HealthBar">
       <UniqueIdentifier>{3fff6889-b8c9-4f4e-aa99-ac10496f6c20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Behaviors\GeneratorSystem">
+    <Filter Include="Game\Components\Behaviors\GeneratorBehavior">
       <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -567,7 +567,7 @@
       <Filter>Game\Components\Behaviors\HealthBar</Filter>
     </ClCompile>
     <ClCompile Include="Source\GeneratorBehavior.cpp">
-      <Filter>Game\Components\Behaviors\GeneratorSystem</Filter>
+      <Filter>Game\Components\Behaviors\GeneratorBehavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -860,7 +860,7 @@
       <Filter>Game\Components\Behaviors\HealthBar</Filter>
     </ClInclude>
     <ClInclude Include="Source\GeneratorBehavior.h">
-      <Filter>Game\Components\Behaviors\GeneratorSystem</Filter>
+      <Filter>Game\Components\Behaviors\GeneratorBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

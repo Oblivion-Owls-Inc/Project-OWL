@@ -24,6 +24,7 @@
 #include "RigidBody.h"
 #include "AudioPlayer.h"
 #include "glm/glm.hpp"
+#include "GeneratorBehavior.h"
 
 //-------------------------------------------------------------------------------------------
 // public: constructor
@@ -95,6 +96,8 @@
         ImGui::InputFloat("Bullet Speed", &m_BulletSpeed, 0.5f, 1.0f);
         ImGui::InputFloat("Bullet Size", &m_BulletSize, 0.5f, 1.0f);
         ImGui::Text("Target Name: %s", m_TargetName.c_str());
+        if (m_IsActive) ImGui::Text("Active: True");
+        else ImGui::Text("Active: False");
     }
 
 ///-------------------------------------------------------------------------------------------
@@ -128,7 +131,21 @@
     void TurretBehavior::checkActive()
     {
         //TODO fix me
-        //glm::vec2 distance = glm::distance<>(glm::vec2, glm::vec2);
+        //std::vector<GeneratorBehavior*> generators = Behaviors<GeneratorBehavior>()->GetComponents();
+        for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
+        {
+            float distance = glm::distance<>(generator->GetEntity()->GetComponent<Transform>()->GetTranslation(),
+                GetEntity()->GetComponent<Transform>()->GetTranslation());
+            if (generator->GetRadius() > distance)
+            {
+                m_IsActive = true;
+                return;
+            }
+        }
+        //GetEntity()->GetComponent<Transform>()->GetTranslation();
+        //float distance = glm::distance<>(GetEntity()->GetComponent<Transform>()->GetTranslation(),
+            //GetEntity()->GetComponent<Transform>()->GetTranslation());
+        m_IsActive = false;
     }
 
     /// @brief  Uses Raycasting to check for a target on the same Collision Layer

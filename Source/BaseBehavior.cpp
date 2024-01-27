@@ -14,6 +14,7 @@
 #include "SceneSystem.h"
 #include "AudioPlayer.h"
 #include "GeneratorBehavior.h"
+#include "Health.h"
 
 //-----------------------------------------------------------------------------
 // constructor / destructor 
@@ -63,6 +64,11 @@ void BaseBehavior::OnExit()
 	BasicEntityBehavior::OnExit();
 }
 
+void BaseBehavior::Inspector()
+{
+
+}
+
 
 /// @brief  called whenever the base's Collider enters a collision
 /// @param  other   the collider that was collided with
@@ -73,16 +79,16 @@ void BaseBehavior::onCollisionEnter( Collider* other )
 	{
 		return;
 	}
-	BasicEntityBehavior::GetHealth()->SetCurrent
-	(GetEntity()->GetComponent<GeneratorBehavior>()->GetHealth()->GetCurrent());
-	BasicEntityBehavior::TakeDamage(enemy->GetDamage());
+	//BasicEntityBehavior::GetHealth()->SetCurrent
+	//(GetEntity()->GetComponent<GeneratorBehavior>()->GetHealth()->GetCurrent());
+	//BasicEntityBehavior::TakeDamage(enemy->GetDamage());
 	if(m_AudioPlayer)
 	{
 		m_AudioPlayer->Play();
 	}
 	enemy->GetEntity()->Destroy();
 
-	if (BasicEntityBehavior::GetHealth()->GetCurrent() <= 0)
+	if (GetEntity()->GetComponent<Health>()->GetHealth()->GetCurrent() <= 0)
 	{
 		SceneSystem::GetInstance()->SetNextScene("Gameover");
 	}

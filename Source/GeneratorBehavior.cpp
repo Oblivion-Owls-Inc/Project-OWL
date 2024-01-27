@@ -14,6 +14,7 @@
 #include "SceneSystem.h"
 #include "AudioPlayer.h"
 #include "BehaviorSystem.h"
+#include "Health.h"
 
 //-----------------------------------------------------------------------------
 // constructor / destructor 
@@ -24,6 +25,7 @@ GeneratorBehavior::GeneratorBehavior() : BasicEntityBehavior(typeid(GeneratorBeh
 {
 	m_isActive = false;
 	m_radius = 0.0f;
+	m_activateRadius = 0.0f;
 	m_depth = 0;
 }
 
@@ -32,6 +34,7 @@ GeneratorBehavior::GeneratorBehavior(const GeneratorBehavior& other) : BasicEnti
 {
 	m_isActive = other.m_isActive;
 	m_radius = other.m_radius;
+	m_activateRadius = other.m_activateRadius;
 	m_depth = other.m_depth;
 	//Behaviors<GeneratorBehavior>()->GetComponents();
 }
@@ -86,9 +89,9 @@ void GeneratorBehavior::OnExit()
 void GeneratorBehavior::Inspector()
 {
 	ImGui::InputFloat("Radius", &m_radius, 0.5f, 1.0f);
+	ImGui::InputFloat("Activate Radius", &m_activateRadius, 0.5f, 1.0f);
 	ImGui::InputInt("Depth", &m_depth, 1, 5);
 	if (ImGui::Checkbox("Active", &m_isActive)) {}
-	BasicEntityBehavior::Inspector();
 }
 
 void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collisionData)
@@ -127,6 +130,7 @@ ReadMethodMap<GeneratorBehavior> const GeneratorBehavior::s_ReadMethods =
 {
 	{ "Health",	  &readHealth},
 	{ "Radius",	  &readRadius},
+	{ "Activate Range",&readARadius},
 	{ "Depth",	  &readDepth},
 	{ "Active",	  &readActive},
 };
@@ -138,6 +142,11 @@ ReadMethodMap<GeneratorBehavior> const GeneratorBehavior::s_ReadMethods =
 void GeneratorBehavior::readRadius(nlohmann::ordered_json const& json)
 {
 	m_radius = Stream::Read<float>(json);
+}
+
+void GeneratorBehavior::readARadius(nlohmann::ordered_json const& json)
+{
+	m_activateRadius = Stream::Read<float>(json);
 }
 
 void GeneratorBehavior::readDepth(nlohmann::ordered_json const& json)

@@ -534,21 +534,29 @@
                         "Active": true
                     }
                 },
+                "CircleCollider": {
+                    "Radius": 1.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
+                },
                 "GeneratorBehavior": {
-                    "Radius": 5.0,
-                    "Depth": 0,
-                    "Active": true,
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
                         "CurrentValue": 5,
                         "Active": true
-                    }
+                    },
+                    "Radius": 5.0,
+                    "Depth": 0,
+                    "Active": true
                 },
-                "CircleCollider": {
-                    "Radius": 1.0,
-                    "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
+                "Health": {
+                    "Health": {
+                        "Name": "Pool Pool",
+                        "BaseValue": 5,
+                        "CurrentValue": 5,
+                        "Active": false
+                    }
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -580,13 +588,14 @@
             "Name": "Generator2",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "BaseDamageSound",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "BaseDamageSound"
+                    "IsSpatial": false
                 },
                 "CircleCollider": {
                     "Radius": 2.0,
@@ -594,15 +603,15 @@
                     "CollisionLayerFlags": 2
                 },
                 "GeneratorBehavior": {
-                    "Radius": 5.0,
-                    "Depth": 2,
-                    "Active": true,
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
                         "CurrentValue": 5,
                         "Active": true
-                    }
+                    },
+                    "Radius": 5.0,
+                    "Depth": 2,
+                    "Active": true
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -6165,13 +6174,14 @@
             "Name": "Generator",
             "Components": {
                 "AudioPlayer": {
+                    "Sound": "BaseDamageSound",
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "Sound": "BaseDamageSound"
+                    "IsSpatial": false
                 },
                 "CircleCollider": {
                     "Radius": 2.0,
@@ -6179,15 +6189,15 @@
                     "CollisionLayerFlags": 2
                 },
                 "GeneratorBehavior": {
-                    "Radius": 5.0,
-                    "Depth": 1,
-                    "Active": true,
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
                         "CurrentValue": 5,
                         "Active": true
-                    }
+                    },
+                    "Radius": 5.0,
+                    "Depth": 1,
+                    "Active": true
                 },
                 "Sprite": {
                     "Layer": 2,

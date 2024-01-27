@@ -181,7 +181,9 @@ void WavesBehavior::GuiGroups()
 		ImGui::PopID();
 
 		ImGui::PushID(3);
-        std::string enemyName = waves[ inspectorWave ].groups[ inspectorGroup ].enemy->GetName();
+		std::string enemyName = "Select";
+		if (waves[inspectorWave].groups[inspectorGroup].enemy)
+        enemyName = waves[ inspectorWave ].groups[ inspectorGroup ].enemy->GetName();
 		Inspection::SelectAssetFromLibrary( "Name", &waves[ inspectorWave ].groups[ inspectorGroup ].enemy, &enemyName );
 		ImGui::PopID();
 

@@ -36,6 +36,10 @@ public: // virtual override methods
 
     /// @brief called when Generator exits
     virtual void OnExit() override;
+
+    float GetRadius() { return m_radius; }
+
+    void Activate() { m_isActive = true; }
     
 //-----------------------------------------------------------------------------
 private: // copying
@@ -43,6 +47,8 @@ private: // copying
     
     /// @brief copy ctor
     GeneratorBehavior(const GeneratorBehavior& other);
+
+    
 
 //-----------------------------------------------------------------------------
 private:
@@ -52,6 +58,7 @@ private:
 
     bool m_isActive;
     float m_radius;
+    float m_activateRadius;
     int m_depth;
 
 //-----------------------------------------------------------------------------
@@ -79,6 +86,9 @@ private: // reading
 
     /// @brief read the power radius
     void readRadius(nlohmann::ordered_json const& json);
+
+    /// @brief read the power radius
+    void readARadius(nlohmann::ordered_json const& json);
 
     /// @brief read the depth of the generator
     void readDepth(nlohmann::ordered_json const& json);

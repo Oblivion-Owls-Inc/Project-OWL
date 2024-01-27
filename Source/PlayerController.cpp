@@ -27,6 +27,8 @@
 #include "Transform.h"
 #include "CircleCollider.h"
 #include "EntitySystem.h"
+#include "glm/glm.hpp"
+#include "GeneratorBehavior.h"
 
 #include "Inspection.h"
 
@@ -136,6 +138,20 @@ void PlayerController::OnFixedUpdate()
     // The normalised direction vector.
     glm::vec2 direction = { 0.0f, 0.0f };
 
+    if (Input()->GetKeyDown(GLFW_KEY_E))
+    {
+        for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
+        {
+            float distance = glm::distance<>(generator->GetEntity()->GetComponent<Transform>()->GetTranslation(),
+                GetEntity()->GetComponent<Transform>()->GetTranslation());
+            if (generator->GetRadius() > distance)
+            {
+                generator->Activate();
+                return;
+            }
+        }
+    }
+    
     if ( moveRight() )
     {
         // 0 is right.

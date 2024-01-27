@@ -36,6 +36,13 @@ public: // virtual override methods
 
     /// @brief called when base exits
     virtual void OnExit() override;
+
+//-----------------------------------------------------------------------------
+private: // inspector methods
+//-----------------------------------------------------------------------------
+
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector() override;
     
 //-----------------------------------------------------------------------------
 private: // copying
