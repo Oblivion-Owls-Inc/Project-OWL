@@ -166,7 +166,6 @@
         { "ItemCollector"       , ComponentInfo< ItemCollector >()        },
         { "HealthBar"           , ComponentInfo< HealthBar >()            },
         { "UiBarSprite"         , ComponentInfo< UiBarSprite >()          },
-
         { "Light"               , ComponentInfo< Light >()                },
         { "CameraBehavior"      , ComponentInfo< CameraBehavior >()       }
     };
