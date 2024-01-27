@@ -209,3 +209,12 @@ public: // singleton stuff
 
 //-----------------------------------------------------------------------------
 };
+
+/// @brief  shorthand method to get the SceneSystem instance
+/// @return the SceneSystem instance
+__inline SceneSystem* Scenes()
+{
+    return SceneSystem::GetInstance();
+}
+
+//-----------------------------------------------------------------------------

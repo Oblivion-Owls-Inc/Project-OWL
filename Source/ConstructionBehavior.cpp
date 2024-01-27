@@ -146,9 +146,56 @@
         Behavior( typeid( ConstructionBehavior ) )
     {}
 
+
 //-----------------------------------------------------------------------------
-// public: methods
+// public: accessors
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the placement range
+    /// @return the placement range
+    float ConstructionBehavior::GetPlacementRange() const
+    {
+        return m_PlacementRange;
+    }
+
+    /// @brief  sets the placement range
+    /// @param  range   the placement range
+    void ConstructionBehavior::SetPlacementRange( float range )
+    {
+        m_PlacementRange = range;
+    }
+
+
+    /// @brief  gets the building index
+    /// @return the building index
+    int ConstructionBehavior::GetBuildingIndex() const
+    {
+        return m_BuildingIndex;
+    }
+
+    /// @brief  sets the building index
+    /// @param  range   the building index
+    void ConstructionBehavior::SetBuildingIndex( int range )
+    {
+        m_BuildingIndex = range;
+    }
+
+
+    /// @brief  gets whether buildings should be able to be constructed for free
+    /// @return whether buildings should be able to be constructed for free
+    bool ConstructionBehavior::GetIgnoreCosts() const
+    {
+        return m_IgnoreCosts;
+    }
+
+    /// @brief  sets whether buildings should be able to be constructed for free
+    /// @param  ignoreCosts whether buildings should be able to be constructed for free
+    void ConstructionBehavior::SetIgnoreCosts( bool ignoreCosts )
+    {
+        m_IgnoreCosts = ignoreCosts;
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: virtual override methods
@@ -291,7 +338,7 @@
         }
 
         // not enough funds
-        if ( m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost ) == false )
+        if ( m_IgnoreCosts == false && m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost ) == false )
         {
             return false;
         }
@@ -333,9 +380,12 @@
         building->AddToScene();
         m_Buildings->SetTile( m_TargetTilePos, building ); // TODO: move this line into the Building's OnInit?
         
-        m_PlayerInventory->RemoveItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost );
+        if ( m_IgnoreCosts == false )
+        {
+            m_PlayerInventory->RemoveItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost );
+        }
 
-        // TODO: give feedback that the building was placed
+        // TODO: give audiovisual feedback that the building was placed
         m_TurretPlacementSound->Play();
     }
 
@@ -401,9 +451,9 @@
 
         ImGui::DragInt2( "Target Tile", &m_TargetTilePos[ 0 ], 0, 0, 0, "%i", ImGuiSliderFlags_NoInput );
 
-        ImGui::ColorEdit3( "Preview Color - Placeable", &m_PreviewColorPlaceable[ 0 ] );
+        ImGui::ColorEdit4( "Preview Color - Placeable", &m_PreviewColorPlaceable[ 0 ] );
 
-        ImGui::ColorEdit3( "Preview Color - NonPlaceable", &m_PreviewColorNonPlaceable[ 0 ] );
+        ImGui::ColorEdit4( "Preview Color - NonPlaceable", &m_PreviewColorNonPlaceable[ 0 ] );
 
         ImGui::DragFloat( "Preview Alpha", &m_PreviewAlpha, 0.05f, 0.0f, 1.0f );
     }
