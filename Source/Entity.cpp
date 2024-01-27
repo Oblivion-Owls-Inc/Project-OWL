@@ -159,7 +159,7 @@
             /// Check if the tree node is open
             if (ImGui::TreeNode(componentName.c_str()))
             {
-                // Check for right-click on the tree node while open
+                /// Check for right-click on the tree node while open
                 if (ImGui::BeginPopupContextItem(popup_id.c_str()))
                 {
                     if (ImGui::MenuItem("Copy"))
@@ -179,6 +179,7 @@
             }
             else if (ImGui::IsItemHovered() && ImGui::IsMouseReleased(1))
             {
+                ///Create a unique identifier for the popup menu based on the entity's ID
                 ImGui::OpenPopup(std::string(popup_id + componentName).c_str());
             }
 
@@ -196,21 +197,6 @@
                 }
                 ImGui::EndPopup();
             }
-
-
-            //// Check for right-click on the tree node while closed
-            //if (ImGui::BeginPopupContextItem(popup_id.c_str()))
-            //{
-            //    if (ImGui::MenuItem("Copy"))
-            //    {
-            //        Stream::CopyToClipboard(*this);
-            //    }
-            //    if (ImGui::MenuItem("Paste"))
-            //    {
-            //        Stream::PasteFromClipboard(*this);
-            //    }
-            //    ImGui::EndPopup();
-            //}
         }
 
     }
