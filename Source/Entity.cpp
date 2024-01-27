@@ -164,11 +164,11 @@
                 {
                     if (ImGui::MenuItem("Copy"))
                     {
-                        Stream::CopyToClipboard(*this);
+                        Stream::CopyToClipboard(componentPair.second);
                     }
                     if (ImGui::MenuItem("Paste"))
                     {
-                        Stream::PasteFromClipboard(*this);
+                        Stream::PasteFromClipboard(componentPair.second);
                     }
                     ImGui::EndPopup();
                 }
@@ -189,11 +189,11 @@
             {
                 if (ImGui::MenuItem("Copy"))
                 {
-                    Stream::CopyToClipboard(*this);
+                    Stream::CopyToClipboard(componentPair.second);
                 }
                 if (ImGui::MenuItem("Paste"))
                 {
-                    Stream::PasteFromClipboard(*this);
+                    Stream::PasteFromClipboard(componentPair.second);
                 }
                 ImGui::EndPopup();
             }
