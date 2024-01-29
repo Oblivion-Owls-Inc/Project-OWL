@@ -169,7 +169,7 @@
         { "UiBarSprite"         , ComponentInfo< UiBarSprite >()          },
 
         { "Light"               , ComponentInfo< Light >()                },
-        { "CameraBehavior"      , ComponentInfo< CameraBehavior >()       }
+        { "CameraBehavior"      , ComponentInfo< CameraBehavior >()       },
         { "GeneratorBehavior"   , ComponentInfo< GeneratorBehavior >()    }
     };
 
