@@ -602,9 +602,7 @@
                     "PlayOnInit": false,
                     "IsSpatial": false
                 },
-                "BaseBehavior": {
-                    
-                },
+                "BaseBehavior": null,
                 "CircleCollider": {
                     "Radius": 1.0,
                     "CollisionLayer": 3,
@@ -612,66 +610,8 @@
                 },
                 "GeneratorBehavior": {
                     "Radius": 5.0,
-                    "ActiveRadius": 3.0,
+                    "ActivateRadius": 0.0,
                     "Depth": 0,
-                    "Active": true
-                },
-                "Health": {
-                    "Health": {
-                        "Name": "Health Pool",
-                        "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
-                    }
-                },
-                "Sprite": {
-                    "Layer": 2,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": "Van"
-                },
-                "Transform": {
-                    "Translation": [
-                        -2.25,
-                        3.8499999046325684
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                }
-            }
-        },
-        "Generator2": {
-            "Name": "Generator2",
-            "Components": {
-                "AudioPlayer": {
-                    "Sound": "BaseDamageSound",
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "IsSpatial": false
-                },
-                "CircleCollider": {
-                    "Radius": 2.0,
-                    "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
-                },
-                "GeneratorBehavior": {
-                    "Radius": 5.0,
-                    "ActiveRadius": 3.0,
-                    "Depth": 2,
                     "Active": true
                 },
                 "Health": {
@@ -698,6 +638,124 @@
                     "Translation": [
                         -9.0,
                         5.5
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Generator": {
+            "Name": "Generator",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": "BaseDamageSound",
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
+                },
+                "GeneratorBehavior": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 0.0,
+                    "Depth": 0,
+                    "Active": false
+                },
+                "Health": {
+                    "Health": {
+                        "Name": "Health Pool",
+                        "BaseValue": 5,
+                        "CurrentValue": 5,
+                        "Active": true
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Van"
+                },
+                "Transform": {
+                    "Translation": [
+                        -5.679166793823242,
+                        -0.4700002670288086
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Generator2": {
+            "Name": "Generator2",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": "BaseDamageSound",
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
+                },
+                "GeneratorBehavior": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 0.0,
+                    "Depth": 0,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "Name": "Health Pool",
+                        "BaseValue": 5,
+                        "CurrentValue": 5,
+                        "Active": true
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Van"
+                },
+                "Transform": {
+                    "Translation": [
+                        12.337499618530273,
+                        -1.409998893737793
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -790,6 +848,17 @@
                     "Width": 47.0,
                     "IsActive": true
                 },
+                "CameraBehavior": {
+                    "TargetEntityName": "Player",
+                    "XBounds": [
+                        -1.0,
+                        1.0
+                    ],
+                    "YBounds": [
+                        -24.0,
+                        16.0
+                    ]
+                },
                 "Transform": {
                     "Translation": [
                         0.0,
@@ -801,11 +870,6 @@
                         1.0
                     ],
                     "IsDiegetic": true
-                },
-                "CameraBehavior": {
-                    "TargetEntityName": "Player",
-                    "XBounds": [-1, 1],
-                    "YBounds": [-24, 16]
                 }
             },
             "Children": null
@@ -2421,6 +2485,52 @@
                         17,
                         17,
                         17,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                         0
                     ]
                 },
@@ -4094,6 +4204,52 @@
                         -1,
                         -1,
                         -1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                         0
                     ]
                 },
@@ -5735,6 +5891,52 @@
                         9,
                         9,
                         9,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                         0
                     ]
                 },
@@ -6256,133 +6458,6 @@
                 }
             },
             "Children": null
-            }
-        },
-        "healthBar": {
-            "Name": "healthBar",
-            "Components": {
-                "HealthBar": {
-                    "TargetEntityName": "Player",
-                    "Offset": [
-                        0.0,
-                        1.0
-                    ],
-                    "HideWhenFull": false,
-                    "RecentHealthAcceleration": 1.0
-                },
-                "Transform": {
-                    "Translation": [
-                        -8.773333549499512,
-                        7.128334045410156
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        3.0,
-                        0.5
-                    ],
-                    "IsDiegetic": true
-                },
-                "UiBarSprite": {
-                    "Sections": [
-                        {
-                            "Color": [
-                                0.0,
-                                1.0,
-                                0.0,
-                                1.0
-                            ],
-                            "Value": 1.0,
-                            "Slope": 1.0
-                        },
-                        {
-                            "Color": [
-                                1.0,
-                                1.0,
-                                0.0,
-                                1.0
-                            ],
-                            "Value": 1.0,
-                            "Slope": 1.0
-                        },
-                        {
-                            "Color": [
-                                1.0,
-                                0.0,
-                                0.0,
-                                1.0
-                            ],
-                            "Value": 1.0,
-                            "Slope": 0.0
-                        }
-                    ],
-                    "Texture": "HealthBar",
-                    "Layer": 6,
-                    "Opacity": 1.0,
-                    "BorderPositions": [
-                        -0.20000000298023224,
-                        1.2000000476837158
-                    ],
-                    "RotationPosition": 0.5
-                }
-            }
-        },
-        "Generator": {
-            "Name": "Generator",
-            "Components": {
-                "AudioPlayer": {
-                    "Sound": "BaseDamageSound",
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "IsSpatial": false
-                },
-                "CircleCollider": {
-                    "Radius": 2.0,
-                    "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
-                },
-                "GeneratorBehavior": {
-                    "Radius": 5.0,
-                    "ActiveRadius": 3.0,
-                    "Depth": 0,
-                    "Active": true
-                },
-                "Health": {
-                    "Health": {
-                        "Name": "Health Pool",
-                        "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
-                    }
-                },
-                "Sprite": {
-                    "Layer": 2,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": "Van"
-                },
-                "Transform": {
-                    "Translation": [
-                        -0.47500038146972656,
-                        -1.1749992370605469
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                }
-            }
         }
     }
 }
