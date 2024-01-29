@@ -69,29 +69,34 @@ void BaseBehavior::Inspector()
 
 }
 
+void BaseBehavior::Destroy()
+{
+	SceneSystem::GetInstance()->SetNextScene("Gameover");
+}
+
 
 /// @brief  called whenever the base's Collider enters a collision
 /// @param  other   the collider that was collided with
 void BaseBehavior::onCollisionEnter( Collider* other )
 {
-	EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
-	if (!enemy)
-	{
-		return;
-	}
+	//EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
+	//if (!enemy)
+	//{
+		//return;
+	//}
 	//BasicEntityBehavior::GetHealth()->SetCurrent
 	//(GetEntity()->GetComponent<GeneratorBehavior>()->GetHealth()->GetCurrent());
 	//BasicEntityBehavior::TakeDamage(enemy->GetDamage());
-	if(m_AudioPlayer)
-	{
-		m_AudioPlayer->Play();
-	}
-	enemy->GetEntity()->Destroy();
+	//if(m_AudioPlayer)
+	//{
+		//m_AudioPlayer->Play();
+	//}
+	//enemy->GetEntity()->Destroy();
 
-	if (GetEntity()->GetComponent<Health>()->GetHealth()->GetCurrent() <= 0)
-	{
-		SceneSystem::GetInstance()->SetNextScene("Gameover");
-	}
+	//if (GetEntity()->GetComponent<Health>()->GetHealth()->GetCurrent() <= 0)
+	//{
+		//SceneSystem::GetInstance()->SetNextScene("Gameover");
+	//}
 
 	
 }
@@ -103,7 +108,6 @@ void BaseBehavior::onCollisionEnter( Collider* other )
 /// @brief read method map
 ReadMethodMap<BaseBehavior> const BaseBehavior::s_ReadMethods =
 {
-	{ "Health",	  &readHealth},
 	
 };
 
@@ -116,7 +120,6 @@ nlohmann::ordered_json BaseBehavior::Write() const
 {
 	nlohmann::ordered_json data;
 
-	data["Health"] = m_Health.Write();
 
 
 	return data;

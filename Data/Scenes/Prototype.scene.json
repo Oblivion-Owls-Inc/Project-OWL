@@ -527,12 +527,7 @@
                     "IsSpatial": false
                 },
                 "BaseBehavior": {
-                    "Health": {
-                        "Name": "Health Pool",
-                        "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
-                    }
+                    
                 },
                 "CircleCollider": {
                     "Radius": 1.0,
@@ -540,22 +535,17 @@
                     "CollisionLayerFlags": 2
                 },
                 "GeneratorBehavior": {
-                    "Health": {
-                        "Name": "Health Pool",
-                        "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
-                    },
                     "Radius": 5.0,
+                    "ActiveRadius": 3.0,
                     "Depth": 0,
                     "Active": true
                 },
                 "Health": {
                     "Health": {
-                        "Name": "Pool Pool",
+                        "Name": "Health Pool",
                         "BaseValue": 5,
                         "CurrentValue": 5,
-                        "Active": false
+                        "Active": true
                     }
                 },
                 "Sprite": {
@@ -603,15 +593,18 @@
                     "CollisionLayerFlags": 2
                 },
                 "GeneratorBehavior": {
+                    "Radius": 5.0,
+                    "ActiveRadius": 3.0,
+                    "Depth": 2,
+                    "Active": true
+                },
+                "Health": {
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
                         "CurrentValue": 5,
                         "Active": true
-                    },
-                    "Radius": 5.0,
-                    "Depth": 2,
-                    "Active": true
+                    }
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -6189,15 +6182,18 @@
                     "CollisionLayerFlags": 2
                 },
                 "GeneratorBehavior": {
+                    "Radius": 5.0,
+                    "ActiveRadius": 3.0,
+                    "Depth": 0,
+                    "Active": true
+                },
+                "Health": {
                     "Health": {
                         "Name": "Health Pool",
                         "BaseValue": 5,
                         "CurrentValue": 5,
                         "Active": true
-                    },
-                    "Radius": 5.0,
-                    "Depth": 1,
-                    "Active": true
+                    }
                 },
                 "Sprite": {
                     "Layer": 2,

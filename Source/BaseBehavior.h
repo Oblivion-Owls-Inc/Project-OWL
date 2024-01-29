@@ -43,6 +43,12 @@ private: // inspector methods
 
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() override;
+
+//-----------------------------------------------------------------------------
+public: // public method
+//-----------------------------------------------------------------------------
+
+    void Destroy();
     
 //-----------------------------------------------------------------------------
 private: // copying
@@ -83,4 +89,5 @@ public: // writing
     /// @return The JSON file containing the WavesBehavior data.
     virtual nlohmann::ordered_json Write() const override;
 };
+
 

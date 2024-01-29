@@ -39,6 +39,8 @@ public: // virtual override methods
 
     float GetRadius() { return m_radius; }
 
+    float GetActivateRadius() { return m_activateRadius; }
+
     void Activate() { m_isActive = true; }
     
 //-----------------------------------------------------------------------------
@@ -48,7 +50,11 @@ private: // copying
     /// @brief copy ctor
     GeneratorBehavior(const GeneratorBehavior& other);
 
-    
+//-----------------------------------------------------------------------------
+public: // accessor
+//-----------------------------------------------------------------------------
+
+    static Entity* GetLowestGenerator();
 
 //-----------------------------------------------------------------------------
 private:
@@ -99,7 +105,7 @@ private: // reading
 //-----------------------------------------------------------------------------
 public: // writing
 //-----------------------------------------------------------------------------
-
+    
     /// @brief Write all GeneratorBehavior data to a JSON file.
     /// @return The JSON file containing the WavesBehavior data.
     virtual nlohmann::ordered_json Write() const override;

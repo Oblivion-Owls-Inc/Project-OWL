@@ -15,6 +15,7 @@
 #include "AudioPlayer.h"
 #include "BehaviorSystem.h"
 #include "Health.h"
+#include "BaseBehavior.h"
 
 //-----------------------------------------------------------------------------
 // constructor / destructor 
@@ -94,6 +95,20 @@ void GeneratorBehavior::Inspector()
 	if (ImGui::Checkbox("Active", &m_isActive)) {}
 }
 
+Entity* GeneratorBehavior::GetLowestGenerator()
+{
+	int first = 1;
+	GeneratorBehavior* give = Behaviors<GeneratorBehavior>()->GetComponents().front();
+	for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
+	{
+		if (generator->m_depth > give->m_depth)
+		{
+			give = generator;
+		}
+	}
+	return give->GetEntity();
+}
+
 void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collisionData)
 {
 	if (m_isActive)
@@ -103,8 +118,8 @@ void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collis
 		{
 			return;
 		}
-
-		BasicEntityBehavior::GetHealth()->SetCurrent(BasicEntityBehavior::GetHealth()->GetCurrent() - enemy->GetDamage());
+		Health* health = GetEntity()->GetComponent<Health>();
+		health->GetHealth()->SetCurrent(health->GetHealth()->GetCurrent() - enemy->GetDamage());
 		//BasicEntityBehavior::TakeDamage(enemy->GetDamage());
 
 		if (m_AudioPlayer)
@@ -113,10 +128,15 @@ void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collis
 		}
 		enemy->GetEntity()->Destroy();
 
-		if (BasicEntityBehavior::GetHealth()->GetCurrent() <= 0)
+		if (health->GetHealth()->GetCurrent() <= 0)
 		{
 			m_isActive = false;
-			BasicEntityBehavior::GetHealth()->SetCurrent(BasicEntityBehavior::GetHealth()->GetDefault());
+			health->GetHealth()->SetCurrent(
+			health->GetHealth()->GetDefault());
+			if (GetEntity()->GetComponent<BaseBehavior>())
+			{
+				GetEntity()->GetComponent<BaseBehavior>()->Destroy();
+			}
 		}
 	}
 }
@@ -128,7 +148,6 @@ void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collis
 /// @brief read method map
 ReadMethodMap<GeneratorBehavior> const GeneratorBehavior::s_ReadMethods =
 {
-	{ "Health",	  &readHealth},
 	{ "Radius",	  &readRadius},
 	{ "Activate Range",&readARadius},
 	{ "Depth",	  &readDepth},
@@ -164,8 +183,8 @@ nlohmann::ordered_json GeneratorBehavior::Write() const
 {
 	nlohmann::ordered_json data;
 
-	data["Health"] = m_Health.Write();
 	data["Radius"] = m_radius;
+	data["ActivateRadius"] = m_activateRadius;
 	data["Depth"] = m_depth;
 	data["Active"] = m_isActive;
 
