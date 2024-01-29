@@ -53,7 +53,7 @@ void RenderSystem::OnUpdate(float dt)
     // draw debug shapes
     for ( Entity* entity : shapes )
     {
-        entity->GetComponent<Sprite>()->Draw();
+        entity->GetComponent< Sprite >()->Draw();
         delete entity;
     }
     shapes.clear();

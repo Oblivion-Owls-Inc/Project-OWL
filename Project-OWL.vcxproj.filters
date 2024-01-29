@@ -279,6 +279,9 @@
     <Filter Include="Game\Components\Behaviors\HealthBar">
       <UniqueIdentifier>{3fff6889-b8c9-4f4e-aa99-ac10496f6c20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Behaviors\CameraBehavior">
+      <UniqueIdentifier>{6678a6b1-d58f-4639-b348-e84b6479d1db}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Game\Components\Behaviors\GeneratorBehavior">
       <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
     </Filter>
@@ -565,6 +568,9 @@
     </ClCompile>
     <ClCompile Include="Source\HealthBar.cpp">
       <Filter>Game\Components\Behaviors\HealthBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CameraBehavior.cpp">
+      <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\GeneratorBehavior.cpp">
       <Filter>Game\Components\Behaviors\GeneratorBehavior</Filter>
@@ -859,6 +865,9 @@
     <ClInclude Include="Source\HealthBar.h">
       <Filter>Game\Components\Behaviors\HealthBar</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CameraBehavior.h">
+      <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
+    </ClInclude>
     <ClInclude Include="Source\GeneratorBehavior.h">
       <Filter>Game\Components\Behaviors\GeneratorBehavior</Filter>
     </ClInclude>
@@ -877,6 +886,9 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\ConstructionTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\HeirarchyTest.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype.scene.json">

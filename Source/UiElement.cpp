@@ -35,55 +35,90 @@
 
 
 //-----------------------------------------------------------------------------
-// public: methods
+// public: accessors
 //-----------------------------------------------------------------------------
-    
 
-    /// @brief  adds a child to this UiElement
-    /// @param  child   the child to add
-    void UiElement::AddChild( UiElement* child )
+
+    /// @brief  gets the parent UiElement
+    /// @return the parent UiElement
+    UiElement* UiElement::GetParentElement() const
     {
-        if ( child->m_Parent != nullptr )
-        {
-            child->m_Parent->RemoveChild( child );
-        }
-
-        m_Children.push_back( child );
-
-        child->m_Parent = this;
-        child->m_ParentName = GetEntity()->GetName();
-        child->updateTransform();
-    }
-
-    /// @brief  removes a child from this UiElement
-    /// @param  child   the child to remove
-    void UiElement::RemoveChild( UiElement* child )
-    {
-        m_Children.erase(
-            std::find( m_Children.begin(), m_Children.end(), child )
-        );
-
-        child->m_Parent = nullptr;
-        child->m_ParentName = "";
-        child->updateTransform();
+        return m_ParentElement;
     }
 
 
-    /// @brief  adds a callback for whenever this UiElement gets clicked
-    /// @param  ownerId     the ID of the owner of the callback
-    /// @param  callback    the callback to call
-    void UiElement::AddOnClickedCallback( unsigned ownerId, std::function< void() > callback )
+    /// @brief  gets the anchor position of this UiElement
+    /// @return the anchor position
+    glm::vec2 const& UiElement::GetAnchor() const
     {
-        // TODO: if callbacks empty, add callback to InputSystem
-        m_OnClickedCallbacks.emplace( ownerId, callback );
+        return m_Anchor;
     }
 
-    /// @brief  removes a callback for whenever this UiElement gets clicked
-    /// @param  ownerId     the ID of the owner of the callback
-    void UiElement::RemoveOnClickedCallback( unsigned ownerId )
+    /// @brief  sets the anchor position of this UiElement
+    /// @param  anchor  the anchor position
+    void UiElement::SetAnchor( glm::vec2 const& anchor )
     {
-        m_OnClickedCallbacks.erase( ownerId );
-        // TODO: if callbacks empty, remove callback from InputSystem
+        m_Anchor = anchor;
+    }
+
+
+    /// @brief  gets the pivot position of this UiElement
+    /// @return the pivot position
+    glm::vec2 const& UiElement::GetPivot() const
+    {
+        return m_Pivot;
+    }
+
+    /// @brief  sets the pivot position of this UiElement
+    /// @param  pivot  the pivot position
+    void UiElement::SetPivot( glm::vec2 const& pivot )
+    {
+        m_Pivot = pivot;
+    }
+
+
+    /// @brief  gets the offset of this UiElement
+    /// @return the offset
+    glm::vec2 const& UiElement::GetOffset() const
+    {
+        return m_Offset;
+    }
+
+    /// @brief  sets the offset of this UiElement
+    /// @param  offset  the offset
+    void UiElement::SetOffset( glm::vec2 const& offset )
+    {
+        m_Offset = offset;
+    }
+
+
+    /// @brief  gets the frame size of this UiElement
+    /// @return the frame size
+    glm::vec2 const& UiElement::GetFrameSize() const
+    {
+        return m_FrameSize;
+    }
+
+    /// @brief  sets the frame size of this UiElement
+    /// @param  frameSize   the frame size
+    void UiElement::SetFrameSize( glm::vec2 const& frameSize )
+    {
+        m_FrameSize = frameSize;
+    }
+
+
+    /// @brief  gets the size types of this UiElement
+    /// @return the size types
+    UiElement::SizeTypeVec const& UiElement::GetSizeTypes() const
+    {
+        return m_SizeTypes;
+    }
+
+    /// @brief  sets the size types of this UiElement
+    /// @param  sizeTypes   the size types
+    void UiElement::SetSizeTypes( SizeTypeVec const& sizeTypes )
+    {
+        m_SizeTypes = sizeTypes;
     }
 
 
@@ -97,41 +132,94 @@
     {
         Platform()->AddOnWindowResizeCallback( GetId(), std::bind( &UiElement::onWindowResizedCallback, this, std::placeholders::_1 ) );
 
-        if ( m_ParentName.empty() == false )
-        {
-            Entities()->GetEntity( m_ParentName )->GetComponent< UiElement >()->AddChild( this );
-        }
-        else
-        {
-            m_Parent = nullptr;
-            updateTransform();
-        }
+        Entity* parent = GetEntity()->GetParent();
+        m_ParentElement = parent == nullptr ? nullptr : parent->GetComponent< UiElement >();
+        updateTransform();
     }
 
     /// @brief  called once when leaving the scene
     void UiElement::OnExit()
     {
-        Platform()->RemoveOnWindowResizeCallback(GetId());
-
-        for ( UiElement* child : m_Children )
-        {
-            child->m_Parent = nullptr;
-            child->updateTransform();
-        }
-        m_Children.clear();
-
-        if ( m_Parent != nullptr )
-        {
-            m_Parent->RemoveChild( this );
-        }
+        Platform()->RemoveOnWindowResizeCallback( GetId() );
     }
+
+
+    /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
+    void UiElement::OnHeirarchyChange()
+    {
+        Entity* parent = GetEntity()->GetParent();
+        m_ParentElement = parent == nullptr ? nullptr : parent->GetComponent< UiElement >();
+        updateTransform();
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  updates the Transform and all children transforms
+    void UiElement::updateTransform()
+    {
+
+        glm::vec2 parentScale;
+        if ( m_ParentElement == nullptr )
+        {
+            glm::mat4 clipToUi = glm::inverse( Cameras()->GetMat_UItoClip() );
+            parentScale = clipToUi * glm::vec4( 1, 1, 0, 0 ) * 2.0f;
+        }
+        else
+        {
+            parentScale = m_ParentElement->GetScale();
+        }
+
+
+        glm::vec2 worldAnchor = (m_ParentElement ? m_ParentElement->GetTranslation() : glm::vec2( 0 )) + 0.5f * m_Anchor * parentScale;
+
+        glm::vec2 worldScale;
+        for ( int i = 0; i < worldScale.length(); ++i )
+        {
+            if ( m_SizeTypes[ i ] == SizeType::Absolute )
+            {
+                worldScale = m_FrameSize;
+            }
+            else
+            {
+
+                if ( m_SizeTypes[ i ] == SizeType::RelativeToWidth )
+                {
+                    worldScale[ i ] = parentScale.x * m_FrameSize[ i ];
+                }
+                else if ( m_SizeTypes[ i ] == SizeType::RelativeToHeight )
+                {
+                    worldScale[ i ] = parentScale.y * m_FrameSize[ i ];
+                }
+            }
+        }
+
+        glm::vec2 worldOffset = -m_Pivot * 0.5f * worldScale + m_Offset;
+
+        Set( worldAnchor + worldOffset, 0.0f, worldScale );
+    }
+
+
+    /// @brief  callback for whenever the window resizes
+    void UiElement::onWindowResizedCallback( glm::ivec2 const& )
+    {
+        updateTransform();
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
 
 
     /// @brief  displays the Inspector
     void UiElement::Inspector()
     {
         Renderer()->DrawRect( GetTranslation(), GetScale(), 0.0f, glm::vec4( -0.9f, -0.9f, -0.9f, 0.0f ), 0.2f, false );
-        
+
         if ( ImGui::DragFloat2( "Anchor", &m_Anchor[0], 0.01f, -1.0f, 1.0f ) )
         {
             updateTransform();
@@ -141,7 +229,7 @@
         {
             updateTransform();
         }
-        
+
         if ( ImGui::DragFloat2( "Offset", &m_Offset[0], 0.05f ) )
         {
             updateTransform();
@@ -184,85 +272,6 @@
             ImGui::SameLine();
         }
         ImGui::Text( "Size Types" );
-
-
-        Entity* parentEntity = m_Parent ? m_Parent->GetEntity() : nullptr;
-        if ( Inspection::SelectEntityFromScene( "Parent", &parentEntity ) )
-        {
-            UiElement* parentUiElement = parentEntity->GetComponent< UiElement >();
-            if ( parentUiElement == nullptr )
-            {
-                Debug()
-                    << "Warning: Entity \"" << parentEntity->GetName()
-                    << "\" does not have a UiElement component" << std::endl;
-            }
-            else
-            {
-                parentUiElement->AddChild( this );
-            }
-        }
-    }
-
-
-//-----------------------------------------------------------------------------
-// private: methods
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  updates the Transform and all children transforms
-    void UiElement::updateTransform()
-    {
-
-        glm::vec2 parentScale;
-        if ( m_Parent == nullptr )
-        {
-            glm::mat4 clipToUi = glm::inverse( Cameras()->GetMat_UItoClip() );
-            parentScale = clipToUi * glm::vec4( 1, 1, 0, 0 ) * 2.0f;
-        }
-        else
-        {
-            parentScale = m_Parent->GetScale();
-        }
-
-        // TODO: UiElement::updateTransform
-        glm::vec2 worldAnchor = (m_Parent ? m_Parent->GetTranslation() : glm::vec2( 0 )) + 0.5f * m_Anchor * parentScale;
-
-        glm::vec2 worldScale;
-        for ( int i = 0; i < worldScale.length(); ++i )
-        {
-            if ( m_SizeTypes[ i ] == SizeType::Absolute )
-            {
-                worldScale = m_FrameSize;
-            }
-            else
-            {
-
-                if ( m_SizeTypes[ i ] == SizeType::RelativeToWidth )
-                {
-                    worldScale[ i ] = parentScale.x * m_FrameSize[ i ];
-                }
-                else if ( m_SizeTypes[ i ] == SizeType::RelativeToHeight )
-                {
-                    worldScale[ i ] = parentScale.y * m_FrameSize[ i ];
-                }
-            }
-        }
-
-        glm::vec2 worldOffset = -m_Pivot * 0.5f * worldScale + m_Offset;
-
-        Set( worldAnchor + worldOffset, 0.0f, worldScale );
-
-        for ( UiElement* child : m_Children )
-        {
-            child->updateTransform();
-        }
-    }
-
-
-    /// @brief  callback for whenever the window resizes
-    void UiElement::onWindowResizedCallback( glm::ivec2 const& )
-    {
-        updateTransform();
     }
 
 
@@ -270,6 +279,7 @@
 // private: reading
 //-----------------------------------------------------------------------------
     
+
     /// @brief  reads the Anchor
     /// @param  data    the json data
     void UiElement::readAnchor( nlohmann::ordered_json const& data )
@@ -296,13 +306,6 @@
     void UiElement::readFrameSize( nlohmann::ordered_json const& data )
     {
         Stream::Read( &m_FrameSize, data );
-    }
-
-    /// @brief  reads the ParentName
-    /// @param  data    the json data
-    void UiElement::readParentName( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_ParentName, data );
     }
 
     /// @brief  reads the SizeTypes
@@ -352,6 +355,7 @@
         }
     }
 
+
     /// @brief  map converting strings to size types
     std::map< std::string, UiElement::SizeType > const UiElement::s_SizeTypes = {
         { "Absolute"        , SizeType::Absolute         },
@@ -360,20 +364,25 @@
     };
 
 
-    /// @brief  map of read methods
-    ReadMethodMap< UiElement > const UiElement::s_ReadMethods = {
-        { "Anchor"    , &readAnchor     },
-        { "Pivot"     , &readPivot      },
-        { "Offset"    , &readOffset     },
-        { "FrameSize" , &readFrameSize  },
-        { "SizeTypes" , &readSizeTypes  },
-        { "ParentName", &readParentName }
-    };
+//-----------------------------------------------------------------------------
+// public: reading / writing
+//-----------------------------------------------------------------------------
 
 
-//-----------------------------------------------------------------------------
-// public: writing
-//-----------------------------------------------------------------------------
+    /// @brief  gets the map of read methods
+    /// @return the map of read methods
+    ReadMethodMap< ISerializable > const& UiElement::GetReadMethods() const
+    {
+        static ReadMethodMap< UiElement > const readMethods = {
+            { "Anchor"    , &UiElement::readAnchor     },
+            { "Pivot"     , &UiElement::readPivot      },
+            { "Offset"    , &UiElement::readOffset     },
+            { "FrameSize" , &UiElement::readFrameSize  },
+            { "SizeTypes" , &UiElement::readSizeTypes  }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
 
 
     /// @brief  writes this UiElement to json
@@ -382,12 +391,12 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "Anchor" ] = Stream::Write( m_Anchor );
-        json[ "Pivot" ] = Stream::Write( m_Pivot );
-        json[ "Offset" ] = Stream::Write( m_Offset );
+        json[ "Anchor"    ] = Stream::Write( m_Anchor    );
+        json[ "Pivot"     ] = Stream::Write( m_Pivot     );
+        json[ "Offset"    ] = Stream::Write( m_Offset    );
         json[ "FrameSize" ] = Stream::Write( m_FrameSize );
 
-        nlohmann::ordered_json& sizeTypes = json[ "SizeTypes"];
+        nlohmann::ordered_json& sizeTypes = json[ "SizeTypes" ];
         for ( int i = 0; i < 2; ++i )
         {
             for ( auto const& [ name, sizeType ] : s_SizeTypes )
@@ -402,12 +411,20 @@
             }
         }
 
-        if ( m_Parent != nullptr )
-        {
-            json[ "ParentName" ] = Stream::Write( m_ParentName );
-        }
-
         return json;
+    }
+
+    
+//-----------------------------------------------------------------------------
+// public: copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  creates a new copy of this UiElement
+    /// @return the newly created UiElement
+    UiElement* UiElement::Clone() const
+    {
+        return new UiElement( *this );
     }
 
 
@@ -424,8 +441,7 @@
         m_Pivot( other.m_Pivot ),
         m_Offset( other.m_Offset ),
         m_FrameSize( other.m_FrameSize ),
-        m_SizeTypes( other.m_SizeTypes ),
-        m_ParentName( other.m_ParentName )
+        m_SizeTypes( other.m_SizeTypes )
     {}
 
 

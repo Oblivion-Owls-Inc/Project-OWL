@@ -120,7 +120,7 @@
         bullet->GetComponent< RigidBody >()->SetVelocity( direction * m_BulletSpeed );
 
         /// Add the bullet to the entity system
-        Entities()->QueueAddEntity(bullet);
+        bullet->AddToScene();
 
         /// Play turret shoot sound
         m_AudioPlayer->Play();
