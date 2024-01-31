@@ -272,6 +272,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\TileInfoSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\EventSystem.h" />
     <ClInclude Include="Source\AudioListener.h" />
     <ClInclude Include="Source\HealthBar.h" />
     <ClInclude Include="Source\CameraBehavior.h" />

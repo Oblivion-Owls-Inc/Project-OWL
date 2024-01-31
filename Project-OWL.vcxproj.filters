@@ -282,6 +282,9 @@
     <Filter Include="Game\Components\Behaviors\CameraBehavior">
       <UniqueIdentifier>{6678a6b1-d58f-4639-b348-e84b6479d1db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\EventSystem">
+      <UniqueIdentifier>{01871f02-0b0a-4145-9976-2ba5ca8c3bf3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -862,6 +865,9 @@
     <ClInclude Include="Source\CameraBehavior.h">
       <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
     </ClInclude>
+    <ClInclude Include="Source\EventSystem.h">
+      <Filter>Engine\Systems\EventSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -877,9 +883,6 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\ConstructionTest.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\HeirarchyTest.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype.scene.json">

@@ -13,47 +13,73 @@
 /// @brief  Example System meant to be copy-pasted when creating new Systems
 class ExampleSystem : public System
 {
-
 //-----------------------------------------------------------------------------
-private: // virtual override methods
-//-----------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------------
-private: // reading
+public: // methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  map of the ExampleSystem read methods
-    static ReadMethodMap< ExampleSystem > const s_ReadMethods;
+    
+//-----------------------------------------------------------------------------
+public: // virtual override methods
+//-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+private: // members
+//-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Gets Called by the Debug system to display debug information
+    virtual void DebugWindow() override;
+
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief  gets this System's read methods
     /// @return this System's read methods
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
-//-----------------------------------------------------------------------------
-private: // singleton stuff
-//-----------------------------------------------------------------------------
 
-    /// @brief  Constructs the ExampleSystem
-    ExampleSystem();
+    /// @brief  writes this ExampleSystem to JSON
+    /// @return the JSON data of this ExampleSystem
+    virtual nlohmann::ordered_json Write() const override;
 
-    /// @brief  The singleton instance of ExampleSystem
-    static ExampleSystem * s_Instance;
 
 //-----------------------------------------------------------------------------
 public: // singleton stuff
 //-----------------------------------------------------------------------------
 
+
     /// @brief  gets the instance of ExampleSystem
     /// @return the instance of the ExampleSystem
-    static ExampleSystem * GetInstance();
+    static ExampleSystem* GetInstance();
+
+
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  Constructs the ExampleSystem
+    ExampleSystem();
 
     // Prevent copying
-    ExampleSystem( ExampleSystem& other ) = delete;
-    void operator=( const ExampleSystem& ) = delete;
+    ExampleSystem( ExampleSystem const& ) = delete;
+    void operator =( ExampleSystem const& ) = delete;
 
+
+//-----------------------------------------------------------------------------
 };
 
