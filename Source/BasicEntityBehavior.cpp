@@ -51,7 +51,7 @@ void BasicEntityBehavior::OnExit()
 /// @brief inspector for this component
 void BasicEntityBehavior::Inspector()
 {
-    m_Health.Inspector();
+    m_Health.Inspect();
 }
 
 ///-----------------------------------------------------------------------------
