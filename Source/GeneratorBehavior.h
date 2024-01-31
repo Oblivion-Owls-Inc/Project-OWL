@@ -25,7 +25,9 @@ public: // constructor / destructors
     /// @brief dtor
     ~GeneratorBehavior();
     /// @brief Generator clone
+    /// @return Component pointer of the cloned generator behavior
     Component* Clone() const override;
+
 
 //-----------------------------------------------------------------------------
 public: // virtual override methods
@@ -37,11 +39,10 @@ public: // virtual override methods
     /// @brief called when Generator exits
     virtual void OnExit() override;
 
-    float GetRadius() { return m_radius; }
-
-    float GetActivateRadius() { return m_activateRadius; }
-
-    void Activate() { m_isActive = true; }
+    /// @brief handles a collision with the generator
+    /// @param other collider of colliding entity
+    /// @param collision data for the collision
+    void onCollision(Collider* other, CollisionData const& collisionData);
     
 //-----------------------------------------------------------------------------
 private: // copying
@@ -51,21 +52,34 @@ private: // copying
     GeneratorBehavior(const GeneratorBehavior& other);
 
 //-----------------------------------------------------------------------------
-public: // accessor
+public: // accessors
 //-----------------------------------------------------------------------------
 
+    /// @brief  gets the lowest generator
+    /// @return returns an entity pointer to the lowest generator
     static Entity* GetLowestGenerator();
 
+    /// @brief returns the radius within turrets are powered
+    /// @return the power radius of the generator
+    float GetRadius() { return m_powerRadius; }
+
+    /// @brief returns the radius a player can activate a generator within
+    /// @return current radius for activating a generator
+    float GetActivateRadius() { return m_activationRadius; }
+
+    /// @brief activate the generator
+    void Activate() { m_isActive = true; }
+
 //-----------------------------------------------------------------------------
-private:
+private: // variables
 //-----------------------------------------------------------------------------
 
     AudioPlayer* m_AudioPlayer = nullptr;
 
-    bool m_isActive;
-    float m_radius;
-    float m_activateRadius;
-    int m_depth;
+    bool m_isActive;        // is the generator active
+    float m_powerRadius;         // radius to power turrets
+    float m_activationRadius; // radius a play can activate within
+    int m_depth;            // depth value of the generator
 
 //-----------------------------------------------------------------------------
 private: // inspector methods
@@ -77,8 +91,6 @@ private: // inspector methods
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
-
-    void onCollision(Collider* other, CollisionData const& collisionData);
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< GeneratorBehavior > const s_ReadMethods;

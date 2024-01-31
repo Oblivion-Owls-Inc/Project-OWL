@@ -25,8 +25,8 @@
 GeneratorBehavior::GeneratorBehavior() : BasicEntityBehavior(typeid(GeneratorBehavior))
 {
 	m_isActive = false;
-	m_radius = 0.0f;
-	m_activateRadius = 0.0f;
+	m_powerRadius = 0.0f;
+	m_activationRadius = 0.0f;
 	m_depth = 0;
 }
 
@@ -34,8 +34,8 @@ GeneratorBehavior::GeneratorBehavior() : BasicEntityBehavior(typeid(GeneratorBeh
 GeneratorBehavior::GeneratorBehavior(const GeneratorBehavior& other) : BasicEntityBehavior(other)
 {
 	m_isActive = other.m_isActive;
-	m_radius = other.m_radius;
-	m_activateRadius = other.m_activateRadius;
+	m_powerRadius = other.m_powerRadius;
+	m_activationRadius = other.m_activationRadius;
 	m_depth = other.m_depth;
 	//Behaviors<GeneratorBehavior>()->GetComponents();
 }
@@ -49,6 +49,26 @@ GeneratorBehavior::~GeneratorBehavior()
 Component* GeneratorBehavior::Clone() const
 {
 	return new GeneratorBehavior(*this);
+}
+
+//-----------------------------------------------------------------------------
+// accessor
+//-----------------------------------------------------------------------------
+
+/// @brief	returns the lowest generator in the level
+/// @return entity pointer to the lowest generator
+Entity* GeneratorBehavior::GetLowestGenerator()
+{
+	int first = 1;
+	GeneratorBehavior* give = Behaviors<GeneratorBehavior>()->GetComponents().front();
+	for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
+	{
+		if (generator->m_depth > give->m_depth)
+		{
+			give = generator;
+		}
+	}
+	return give->GetEntity();
 }
 
 //-----------------------------------------------------------------------------
@@ -69,14 +89,6 @@ void GeneratorBehavior::OnInit()
 	m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
 
 	const std::string name = GetEntity()->GetName();
-	if (name == "Base")
-	{
-		m_isActive = true;
-	}
-	else
-	{
-		m_isActive = true;
-	}
 }
 
 /// @brief	called on exit, handles loss state
@@ -86,29 +98,16 @@ void GeneratorBehavior::OnExit()
 	//BasicEntityBehavior::OnExit();
 }
 
-
+/// @brief	inspector for generators
 void GeneratorBehavior::Inspector()
 {
-	ImGui::InputFloat("Radius", &m_radius, 0.5f, 1.0f);
-	ImGui::InputFloat("Activate Radius", &m_activateRadius, 0.5f, 1.0f);
+	ImGui::InputFloat("Radius", &m_powerRadius, 0.5f, 1.0f);
+	ImGui::InputFloat("Activate Radius", &m_activationRadius, 0.5f, 1.0f);
 	ImGui::InputInt("Depth", &m_depth, 1, 5);
 	if (ImGui::Checkbox("Active", &m_isActive)) {}
 }
 
-Entity* GeneratorBehavior::GetLowestGenerator()
-{
-	int first = 1;
-	GeneratorBehavior* give = Behaviors<GeneratorBehavior>()->GetComponents().front();
-	for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
-	{
-		if (generator->m_depth > give->m_depth)
-		{
-			give = generator;
-		}
-	}
-	return give->GetEntity();
-}
-
+/// @brief collision callback for generators
 void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collisionData)
 {
 	if (m_isActive)
@@ -158,21 +157,25 @@ ReadMethodMap<GeneratorBehavior> const GeneratorBehavior::s_ReadMethods =
 // writing
 //-----------------------------------------------------------------------------
 
+/// @brief	read the raidus from json
 void GeneratorBehavior::readRadius(nlohmann::ordered_json const& json)
 {
-	m_radius = Stream::Read<float>(json);
+	m_powerRadius = Stream::Read<float>(json);
 }
 
+/// @brief	read the activation radius from json
 void GeneratorBehavior::readARadius(nlohmann::ordered_json const& json)
 {
-	m_activateRadius = Stream::Read<float>(json);
+	m_activationRadius = Stream::Read<float>(json);
 }
 
+/// @brief	read the depth from json
 void GeneratorBehavior::readDepth(nlohmann::ordered_json const& json)
 {
 	m_depth = Stream::Read<int>(json);
 }
 
+/// @brief	read if the generator starts active from json
 void GeneratorBehavior::readActive(nlohmann::ordered_json const& json)
 {
 	m_isActive = Stream::Read<bool>(json);
@@ -183,8 +186,8 @@ nlohmann::ordered_json GeneratorBehavior::Write() const
 {
 	nlohmann::ordered_json data;
 
-	data["Radius"] = m_radius;
-	data["ActivateRadius"] = m_activateRadius;
+	data["Radius"] = m_powerRadius;
+	data["ActivateRadius"] = m_activationRadius;
 	data["Depth"] = m_depth;
 	data["Active"] = m_isActive;
 
