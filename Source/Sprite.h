@@ -62,52 +62,54 @@ public: // methods
     /// @brief  Draws the mesh with texture (if one is present), or color.
     virtual void Draw();
 
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
 
     /// @brief  gets the frame index
     /// @return the frame index
-    __inline int GetFrameIndex() const { return m_FrameIndex; }
+    int GetFrameIndex() const;
 
     /// @brief  Sets current frame index of the spritesheet.
     /// @param  frameIndex  New frame index
-    __inline void SetFrameIndex( int frameIndex ) { m_FrameIndex = frameIndex; }
+    void SetFrameIndex( int frameIndex );
 
     /// @brief  gets the layer
     /// @return the layer
-    __inline int GetLayer() const { return m_Layer; }
+    int GetLayer() const;
 
     /// @brief  Sets the rendering layer : 0 - 4.  0 is back, 4 is front.
     /// @param  layer   Rendering layer to move this sprite to.
-    __inline void SetLayer( int layer ) { m_Layer = layer; }
+    void SetLayer( int layer );
 
     /// @brief  gets the opacity
     /// @return the opacity
-    __inline float GetOpacity() const { return m_Opacity; }
+    float GetOpacity() const;
 
     /// @brief  Sets the opacity.
     /// @param  opacity I'm not explaining this.
-    __inline void SetOpacity( float opacity ) { m_Opacity = opacity; }
+    void SetOpacity( float opacity );
 
     /// @brief  gets the color
     /// @return the color
-    __inline glm::vec4 const& GetColor() const { return m_Color; }
+    glm::vec4 const& GetColor() const;
 
     /// @brief  sets the color
     /// @param  color   the color to apply
-    __inline void SetColor( glm::vec4 const& color ) { m_Color = color; }
+    void SetColor( glm::vec4 const& color );
 
     /// @brief  gets the Texture this Sprite is using
     /// @return the Texture this Sprite is using
-    __inline Texture const* GetTexture() const { return m_Texture; }
+    Texture const* GetTexture() const;
 
     /// @brief  sets the Texture this Sprite is using
     /// @param  texture the Texture to set this Sprite to use
-    __inline void SetTexture( Texture const* texture ) { m_Texture = texture; }
+    void SetTexture( Texture const* texture );
 
-
-    __inline Transform* GetTransform() { return m_Transform; }
+    /// @brief  gets the Transform component attached to this Sprite
+    /// @return the Transform component attached to this Sprite
+    Transform* GetTransform();
 
 
 //-----------------------------------------------------------------------------

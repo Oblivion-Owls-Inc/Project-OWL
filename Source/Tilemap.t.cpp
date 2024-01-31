@@ -97,6 +97,14 @@
         glm::vec4 pos4(pos, 0, 1);
         glm::ivec2 coord = glm::ivec2( m_InvMat * pos4 );
 
+        if (
+            coord.x < 0 || coord.y < 0 ||
+            coord.x >= m_Dimensions.x || coord.y >= m_Dimensions.y
+        )
+        {
+            return { -1, -1 };
+        }
+
         return coord;
     }
 
@@ -244,7 +252,10 @@
             return;
         }
 
-        m_Tiles.resize( data.size() );
+        m_Dimensions.y = (int)data.size() / m_Dimensions.x;
+        int extraTiles = data.size() % m_Dimensions.x;
+        m_Tiles.resize( data.size() + ( extraTiles == 0 ? 0 : m_Dimensions.x - extraTiles ) );
+
         m_Dimensions.y = (int)data.size() / m_Dimensions.x;
         for ( int i = 0; i < data.size(); ++i )
         {

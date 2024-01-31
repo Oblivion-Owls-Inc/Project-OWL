@@ -114,20 +114,29 @@ public: // accessors
 
     /// @brief  gets the placement range
     /// @return the placement range
-    float GetPlacementRange() const { return m_PlacementRange; }
+    float GetPlacementRange() const;
 
     /// @brief  sets the placement range
     /// @param  range   the placement range
-    void SetPlacementRange( float range ) { m_PlacementRange = range; }
+    void SetPlacementRange( float range );
 
 
     /// @brief  gets the building index
     /// @return the building index
-    int GetBuildingIndex() const { return m_BuildingIndex; }
+    int GetBuildingIndex() const;
 
     /// @brief  sets the building index
     /// @param  range   the building index
-    void SetBuildingIndex( int range ) { m_BuildingIndex = range; }
+    void SetBuildingIndex( int range );
+
+
+    /// @brief  gets whether buildings should be able to be constructed for free
+    /// @return whether buildings should be able to be constructed for free
+    bool GetIgnoreCosts() const;
+
+    /// @brief  sets whether buildings should be able to be constructed for free
+    /// @param  ignoreCosts whether buildings should be able to be constructed for free
+    void SetIgnoreCosts( bool ignoreCosts );
 
 
 //-----------------------------------------------------------------------------
@@ -172,13 +181,17 @@ private: // members
 
 
     /// @brief  color of the preview when the building is placeable
-    glm::vec4 m_PreviewColorPlaceable = { 0, 0.5f, 0, 0 };
+    glm::vec4 m_PreviewColorPlaceable = { 0, 0.5f, 0, 1.0f };
 
     /// @brief  color of the preview when the building is not placeable
-    glm::vec4 m_PreviewColorNonPlaceable = { 0.5f, 0, 0, 0 };
+    glm::vec4 m_PreviewColorNonPlaceable = { 0.5f, 0, 0, 1.0f };
 
     /// @brief  the default transparency the preview is shown with
     float m_PreviewAlpha = 0.5f;
+
+
+    /// @brief  whether buildings should be able to be constructed for free
+    bool m_IgnoreCosts = false;
 
 
     /// @brief  the name of the player entity

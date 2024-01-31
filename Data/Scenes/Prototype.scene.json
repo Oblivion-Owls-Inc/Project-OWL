@@ -723,6 +723,17 @@
                     "Width": 47.0,
                     "IsActive": true
                 },
+                "CameraBehavior": {
+                    "TargetEntityName": "Player",
+                    "XBounds": [
+                        -1.0,
+                        1.0
+                    ],
+                    "YBounds": [
+                        -24.0,
+                        16.0
+                    ]
+                },
                 "Transform": {
                     "Translation": [
                         0.0,
@@ -734,11 +745,6 @@
                         1.0
                     ],
                     "IsDiegetic": true
-                },
-                "CameraBehavior": {
-                    "TargetEntityName": "Player",
-                    "XBounds": [-1, 1],
-                    "YBounds": [-24, 16]
                 }
             },
             "Children": null
@@ -5926,15 +5932,15 @@
                     "PreviewFadeOutRadius": 2.0,
                     "PreviewColorPlaceable": [
                         0.0,
-                        0.5,
+                        0.501960813999176,
                         0.0,
-                        0.0
+                        1.0
                     ],
                     "PreviewColorNonPlaceable": [
-                        0.5,
+                        0.501960813999176,
                         0.0,
                         0.0,
-                        0.0
+                        1.0
                     ],
                     "PreviewAlpha": 0.5,
                     "TilemapName": "Tiles",

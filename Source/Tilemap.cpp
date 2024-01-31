@@ -68,6 +68,9 @@ void Tilemap<int>::Inspector()
         if ( m_Dimensions.x != 0 )
         {
             m_Dimensions.y = (int)m_Tiles.size() / m_Dimensions.x;
+
+            int extraTiles = m_Tiles.size() % m_Dimensions.x;
+            m_Tiles.resize( m_Tiles.size() + ( extraTiles == 0 ? 0 : m_Dimensions.x - extraTiles ) );
         }
 
         callOnTilemapChangedCallbacks();
