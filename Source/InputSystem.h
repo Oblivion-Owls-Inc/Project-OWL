@@ -47,6 +47,7 @@ private: // virtual override methods
 
 protected:
     
+    // bool array 0 down 1 triggered 2 released
     GLFWwindow* handle;
     map<int, bool[3]>* m_KeyStatesHold;
     map<int, bool[3]>* m_MouseStatesHold;
