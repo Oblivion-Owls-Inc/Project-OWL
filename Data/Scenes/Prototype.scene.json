@@ -6195,15 +6195,15 @@
                     "PreviewFadeOutRadius": 2.0,
                     "PreviewColorPlaceable": [
                         0.0,
-                        0.5,
+                        0.501960813999176,
                         0.0,
-                        0.0
+                        1.0
                     ],
                     "PreviewColorNonPlaceable": [
-                        0.5,
+                        0.501960813999176,
                         0.0,
                         0.0,
-                        0.0
+                        1.0
                     ],
                     "PreviewAlpha": 0.5,
                     "TilemapName": "Tiles",
