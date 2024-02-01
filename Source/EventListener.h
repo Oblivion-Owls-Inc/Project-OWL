@@ -13,6 +13,7 @@
 //-----------------------------------------------------------------------------
 
     #include "EventSystem.h"
+
     #include <functional>
 
 //-----------------------------------------------------------------------------
@@ -35,7 +36,7 @@ public: // destructor
 /// @brief  Event Listener that listens for a specific kind of event
 /// @tparam EventType   the type of the event to listen for
 template < typename EventType >
-class EventListener
+class EventListener : public EventListenerBase
 {
 //-----------------------------------------------------------------------------
 public: // constructor
@@ -50,7 +51,7 @@ public: // constructor
         std::function< bool ( EventType const& ) > filter = []( EventType const& event ) -> bool { return true; }
     ) :
         m_ResponseFunction( response ),
-        m_FilterFunction( filter ),
+        m_FilterFunction( filter )
     {}
 
 
