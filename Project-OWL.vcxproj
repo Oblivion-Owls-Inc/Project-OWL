@@ -184,6 +184,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\AudioListener.cpp" />
+    <ClCompile Include="Source\EventSystem.cpp" />
     <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\FileExplorer.cpp" />
     <ClCompile Include="imgui\imgui_stdlib.cpp" />
@@ -272,6 +273,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\TileInfoSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\EventListener.h" />
     <ClInclude Include="Source\EventSystem.h" />
     <ClInclude Include="Source\AudioListener.h" />
     <ClInclude Include="Source\HealthBar.h" />

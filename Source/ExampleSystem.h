@@ -1,16 +1,16 @@
 /// @file       ExampleSystem.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      Example System meant to be copy-pasted when creating new Systems
+/// @brief      DESCRIPTION HERE
 /// @version    0.1
-/// @date       2023-09-05
+/// @date       DATE HERE
 /// 
-/// @copyright  Copyright (c) 2023
+/// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
 
 #pragma once
 
 #include "System.h"
 
-/// @brief  Example System meant to be copy-pasted when creating new Systems
+/// @brief  DESCRIPTION HERE
 class ExampleSystem : public System
 {
 //-----------------------------------------------------------------------------

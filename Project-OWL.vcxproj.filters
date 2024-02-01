@@ -572,6 +572,9 @@
     <ClCompile Include="Source\CameraBehavior.cpp">
       <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EventSystem.cpp">
+      <Filter>Engine\Systems\EventSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -866,6 +869,9 @@
       <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\EventSystem.h">
+      <Filter>Engine\Systems\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EventListener.h">
       <Filter>Engine\Systems\EventSystem</Filter>
     </ClInclude>
   </ItemGroup>
