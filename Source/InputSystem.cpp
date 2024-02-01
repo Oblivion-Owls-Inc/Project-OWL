@@ -21,11 +21,13 @@ void InputSystem::mapUpdate()
     {
         m_KeyStatesHold = &m_FixedKeyStates;
         m_MouseStatesHold = &m_FixedMouseStates;
+        m_ControllerStatesHold = &m_FixedControllerStates;
     }
     if (mode == Engine::UpdateMode::update)
     {
         m_KeyStatesHold = &m_KeyStates;
         m_MouseStatesHold = &m_MouseStates;
+        m_ControllerStatesHold = &m_ControllerStates;
     }
 
     for (auto& key : *m_KeyStatesHold)
@@ -55,6 +57,30 @@ void InputSystem::mapUpdate()
     {
         bool old = key.second[0];
         key.second[0] = glfwGetMouseButton(handle, key.first);
+
+        if (key.second[0] == true && old == false)
+        {
+            key.second[1] = true;
+        }
+        else
+        {
+            key.second[1] = false;
+        }
+        if (key.second[0] == false && old == true)
+        {
+            key.second[2] = true;
+        }
+        else
+        {
+            key.second[2] = false;
+        }
+    }
+
+    for (auto& key : *m_ControllerStatesHold)
+    {
+        bool old = key.second[0];
+        GLFWgamepadstate state;
+        key.second[0] = glfwGetGamepadState(GLFW_JOYSTICK_1, &state);
 
         if (key.second[0] == true && old == false)
         {
@@ -139,6 +165,7 @@ int InputSystem::InitAlternateWindow(GLFWwindow* handle)
 /// @return returns if key is down
 bool InputSystem::GetKeyDown(int glfw_key, int altWindow)
 {
+    
     if (altWindow > 0)
     {
         return windows[altWindow - 1][glfw_key][0];
@@ -155,12 +182,34 @@ bool InputSystem::GetKeyDown(int glfw_key, int altWindow)
     return NULL;
 }
 
+/// @brief Checks if a given button is down.
+/// @param glfw_button the button to check
+/// @return returns if the button is down.
+bool InputSystem::GetGamepadButtonDown(int glfw_button)
+{
+    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    if (mode == Engine::UpdateMode::fixedUpdate)
+    {
+        return m_FixedControllerStates[glfw_button][0];
+    }
+    if (mode == Engine::UpdateMode::update)
+    {
+        return m_ControllerStates[glfw_button][0];
+    }
+    return NULL;
+}
+
 /// @brief checks if a given key is up
 /// @param glfw key to check
 /// @return returns if key is up
 bool InputSystem::GetKeyUp(int glfw_key, int altWindow)
 {
     return !GetKeyDown(glfw_key, altWindow);
+}
+
+bool InputSystem::GetGamepadButtonUp(int glfw_button)
+{
+    return !GetGamepadButtonDown(glfw_button);
 }
 
 /// @brief checks if a given key is triggered
@@ -184,6 +233,23 @@ bool InputSystem::GetKeyTriggered(int glfw_key, int altWindow)
     return NULL;
 }
 
+/// @brief Check if a given button is triggered
+/// @param glfw_button the button to check
+/// @return returns if button is triggered.
+bool InputSystem::GetGamepadButtonTriggered(int glfw_button)
+{
+    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    if (mode == Engine::UpdateMode::fixedUpdate)
+    {
+        return m_FixedControllerStates[glfw_button][1];
+    }
+    if (mode == Engine::UpdateMode::update)
+    {
+        return m_ControllerStates[glfw_button][1];
+    }
+    return NULL;
+}
+
 /// @brief checks if a given key is released
 /// @param glfw key to check
 /// @return returns if key is released
@@ -201,6 +267,23 @@ bool InputSystem::GetKeyReleased(int glfw_key, int altWindow)
     if (mode == Engine::UpdateMode::update)
     {
         return m_KeyStates[glfw_key][2];
+    }
+    return NULL;
+}
+
+/// @brief Checks if a given button is released
+/// @param glfw_button the button to check
+/// @return returns if the button is released
+bool InputSystem::GetGamepadButtonReleased(int glfw_button)
+{
+    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    if (mode == Engine::UpdateMode::fixedUpdate)
+    {
+        return m_FixedControllerStates[glfw_button][2];
+    }
+    if (mode == Engine::UpdateMode::update)
+    {
+        return m_ControllerStates[glfw_button][2];
     }
     return NULL;
 }
@@ -279,6 +362,38 @@ glm::vec2 InputSystem::convert(glm::mat4 matrix)
     vec[1] = vector[1];
     return vec;
 }
+
+/// @brief Get the position of the joystick
+/// @param glfw_joystick the joystick to check
+/// @return The position of the left joystick x axis.
+float InputSystem::GetJoystickXAxis(int glfw_joystick)
+{
+    int axescount = 0;
+    // Get the 4 axes associated with the joystick
+    const float* axes = glfwGetJoystickAxes(glfw_joystick, &axescount);
+    if (!axes)
+    {
+        return 0.0f;
+    }
+    return axes[0];
+}
+
+/// @brief Get the position of the joystick y-axis
+/// @param glfw_joystick the joystick to check
+/// @return The position of the y-axis
+float InputSystem::GetJoystickYAxis(int glfw_joystick)
+{
+    int axescount = 0;
+    // Get the 4 axes associated with the joystick
+    const float* axes = glfwGetJoystickAxes(glfw_joystick, &axescount);
+    if (!axes)
+    {
+        return 0.0f;
+    }
+    return axes[1];
+}
+
+
 /// @brief gets mouse pos in UI space
 /// @return returns the current mouse pos as a vec2
 glm::vec2 InputSystem::GetMousePosUI()
