@@ -30,6 +30,9 @@ void InputSystem::mapUpdate()
         m_ControllerStatesHold = &m_ControllerStates;
     }
 
+    int buttonCount = 0;
+    const unsigned char* buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+
     for (auto& key : *m_KeyStatesHold)
     {
         bool old = key.second[0];
@@ -78,26 +81,11 @@ void InputSystem::mapUpdate()
 
     for (auto& key : *m_ControllerStatesHold)
     {
-        bool old = key.second[0];
-        GLFWgamepadstate state;
-        key.second[0] = glfwGetGamepadState(GLFW_JOYSTICK_1, &state);
+        key.second[1] = (key.second[0] == false && buttons[key.first] == GLFW_PRESS);
+       
+        key.second[2] = (key.second[0] == true && buttons[key.first] == GLFW_RELEASE);
 
-        if (key.second[0] == true && old == false)
-        {
-            key.second[1] = true;
-        }
-        else
-        {
-            key.second[1] = false;
-        }
-        if (key.second[0] == false && old == true)
-        {
-            key.second[2] = true;
-        }
-        else
-        {
-            key.second[2] = false;
-        }
+        key.second[0] = buttons[key.first] == GLFW_PRESS;
     }
 
     for (int i = 0; i < amount; i++)
@@ -196,6 +184,7 @@ bool InputSystem::GetGamepadButtonDown(int glfw_button)
     {
         return m_ControllerStates[glfw_button][0];
     }
+
     return NULL;
 }
 
@@ -285,6 +274,7 @@ bool InputSystem::GetGamepadButtonReleased(int glfw_button)
     {
         return m_ControllerStates[glfw_button][2];
     }
+
     return NULL;
 }
 
@@ -366,10 +356,10 @@ glm::vec2 InputSystem::convert(glm::mat4 matrix)
 /// @brief Get the position of the joystick
 /// @param glfw_joystick the joystick to check
 /// @return The position of the left joystick x axis.
-float InputSystem::GetJoystickXAxis(int glfw_joystick)
+float InputSystem::GetLeftThumbstickXAxis(int glfw_joystick)
 {
     int axescount = 0;
-    // Get the 4 axes associated with the joystick
+    // Get the axes associated with the joystick
     const float* axes = glfwGetJoystickAxes(glfw_joystick, &axescount);
     if (!axes)
     {
@@ -381,10 +371,10 @@ float InputSystem::GetJoystickXAxis(int glfw_joystick)
 /// @brief Get the position of the joystick y-axis
 /// @param glfw_joystick the joystick to check
 /// @return The position of the y-axis
-float InputSystem::GetJoystickYAxis(int glfw_joystick)
+float InputSystem::GetLeftThumbstickYAxis(int glfw_joystick)
 {
     int axescount = 0;
-    // Get the 4 axes associated with the joystick
+    // Get the axes associated with the joystick
     const float* axes = glfwGetJoystickAxes(glfw_joystick, &axescount);
     if (!axes)
     {
@@ -393,6 +383,35 @@ float InputSystem::GetJoystickYAxis(int glfw_joystick)
     return axes[1];
 }
 
+/// @brief Get the position of the joystick's right trigger
+/// @param glfw_joystick - the joystick
+/// @return the position of the joystick's right trigger.
+float InputSystem::GetRightTrigger(int glfw_joystick)
+{
+    int axescount = 0;
+    // Get the axes associated with the joystick
+    const float* axes = glfwGetJoystickAxes(glfw_joystick, &axescount);
+    if (!axes)
+    {
+        return 0.0f;
+    }
+    return axes[5];
+}
+
+/// @brief Get the position of the joystick's left trigger
+/// @param glfw_joystick - the joystick
+/// @return the position of the joystick's left trigger.
+float InputSystem::GetLeftTrigger(int glfw_joystick)
+{
+    int axescount = 0;
+    // Get the axes associated with the joystick
+    const float* axes = glfwGetJoystickAxes(glfw_joystick, &axescount);
+    if (!axes)
+    {
+        return 0.0f;
+    }
+    return axes[4];
+}
 
 /// @brief gets mouse pos in UI space
 /// @return returns the current mouse pos as a vec2
@@ -421,6 +440,7 @@ glm::vec2 InputSystem::GetMousePosWorld()
         System( "InputSystem" ),
         m_KeyStatesHold(&m_KeyStates),
         m_MouseStatesHold(&m_MouseStates),
+        m_ControllerStatesHold(&m_ControllerStates),
         handle(nullptr),
         amount(0)
     {}
