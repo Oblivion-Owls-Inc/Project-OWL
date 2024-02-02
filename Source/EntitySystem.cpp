@@ -312,17 +312,20 @@
         {
             ImGui::Begin("Entity List");
         }
+
         /// Used to Create a Frame around the Entity List
         ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(2, 2));
+
         /// Creates a table with 2 columns that can be resized
-        if (ImGui::BeginTable("##split", 2, ImGuiTableFlags_BordersOuter | ImGuiTableFlags_Resizable | ImGuiTableFlags_ScrollY))
+        if (ImGui::BeginTable("##split", 1, ImGuiTableFlags_BordersOuter | ImGuiTableFlags_Resizable | ImGuiTableFlags_ScrollY))
         {
             /// Freeze the first row so it doesn't scroll
             ImGui::TableSetupScrollFreeze(0, 1);
             /// Set the width of the first column
             ImGui::TableSetupColumn("Entities");
+
             /// Set the width of the second column
-            ImGui::TableSetupColumn("Contents");
+            ///ImGui::TableSetupColumn("Contents");
             ImGui::TableHeadersRow();
 
             /// Lists all the entities in the EntitySystem
@@ -424,8 +427,8 @@
         /// if the tree node is open, display the entity's properties
         if (node_open)
         {
-            ImGui::TableSetColumnIndex(1);  // Set focus to the second column
-            entity->Inspect();  // Display entity properties
+           // ImGui::TableSetColumnIndex(1);  // Set focus to the second column
+            //entity->Inspect();  // Display entity properties
 
             ImGui::TreePop();  // Pop the tree node
         }
