@@ -15,9 +15,7 @@
 ///--------------------------------------------------------------------------//
 Health::Health()
     : Component(typeid(Health))
-{
-    m_health.OnInit();
-}
+{}
 
 /// @brief Copy Constructor
 /// @param other - Reference to an EntityHealth component to copy.
@@ -33,9 +31,7 @@ Health::Health(Health const& other)
 ///--------------------------------------------------------------------------//
 Health::Health(std::type_index const& type)
     : Component(type)
-{
-    m_health.OnInit();
-}
+{}
 
 ///--------------------------------------------------------------------------//
 /// @brief  Creates a new clone of this component.
@@ -93,7 +89,13 @@ void Health::TakeDamage(int damage)
 ///--------------------------------------------------------------------------//
 void Health::Inspector() 
 { 
-    m_health.Inspector(); 
+    if(m_health.Inspect())
+    {
+        for (auto callback : m_OnHealthChangedCallbacks)
+        {
+            callback.second();
+        }
+    }
 }
 
 ///--------------------------------------------------------------------------//
@@ -125,5 +127,5 @@ nlohmann::ordered_json Health::Write() const
 
 /// @brief Map of all the read methods for this component.
 ReadMethodMap<Health> Health::s_ReadMethods = {
-    { "Health" , &readHealth}
+    { "Health" , &readHealth }
 };
