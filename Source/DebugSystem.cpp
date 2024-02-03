@@ -116,22 +116,29 @@ void DebugSystem::OnInit()
 /// @param dt The time elapsed since the last update.
 void DebugSystem::OnUpdate(float dt)
 {
-#ifndef NDEBUG
+    /// Create a DockSpace on the Main Viewport for the Debug Window
+    ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode );
 
+#ifndef NDEBUG // Show the Debug Window in Debug Mode
+
+    /// Loop through all the Systems in the Engine
     for ( System* system : Engine::GetInstance()->GetSystems() )
     {
+        /// If the System is enabled, then show the Debug Window
         if ( system->GetDebugEnabled() )
         {
             system->DebugWindow();
         }
     }
 
+    /// Show the FPS Window
     if (m_ShowFpsWindow)
     {
         ShowFPSWindow();
     }
 
 #endif // !NDEBUG
+
 
     if ( Input()->GetKeyTriggered( GLFW_KEY_RIGHT_ALT ) && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
     {
@@ -148,10 +155,15 @@ void DebugSystem::OnUpdate(float dt)
 /// @brief Displays and Creates the Editor Window
 void DebugSystem::DebugWindow()
 {
+    
     static bool gameplayRunning = true;
 
     bool debugWindowShown = GetDebugEnabled();
-    ImGui::Begin("Editor Window", &debugWindowShown, ImGuiWindowFlags_MenuBar);
+    ImGuiWindowFlags window_flags = 0;
+    window_flags |= ImGuiWindowFlags_NoTitleBar;
+    window_flags |= ImGuiWindowFlags_MenuBar;
+
+    ImGui::Begin("Editor Window", &debugWindowShown, window_flags);
     SetDebugEnable( debugWindowShown );
 
     ImGui::SetWindowSize(ImVec2(700, 700), ImGuiCond_FirstUseEver);
@@ -547,6 +559,7 @@ void DebugSystem::OnFixedUpdate()
 /// @brief Perform cleanup and shutdown.
 void DebugSystem::OnExit()
 {
+    //ImGui::End();
     ImGui::Render();
     ImGui_ImplGlfw_Shutdown();
     ImPlot::DestroyContext();

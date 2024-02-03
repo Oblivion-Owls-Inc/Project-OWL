@@ -307,45 +307,7 @@
     /// @brief Displays the Entity List Window
     void EntitySystem::entityListWindow()
     {
-        /// used make this a pop out window
-        if(m_PopOut)
-        {
-            ImGui::Begin("Entity List");
-        }
-
-        /// Used to Create a Frame around the Entity List
-        ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(2, 2));
-
-        /// Creates a table with 2 columns that can be resized
-        if (ImGui::BeginTable("##split", 1, ImGuiTableFlags_BordersOuter | ImGuiTableFlags_Resizable | ImGuiTableFlags_ScrollY))
-        {
-            /// Freeze the first row so it doesn't scroll
-            ImGui::TableSetupScrollFreeze(0, 1);
-            /// Set the width of the first column
-            ImGui::TableSetupColumn("Entities");
-
-            /// Set the width of the second column
-            ///ImGui::TableSetupColumn("Contents");
-            ImGui::TableHeadersRow();
-
-            /// Lists all the entities in the EntitySystem
-            for ( Entity* entity : m_Entities )
-            {
-                /// Shows the Right C
-                entityPropertiesWindow( entity );
-            }
-
-            /// End the table
-            ImGui::EndTable();
-        }
-        /// Pop the style var
-        ImGui::PopStyleVar();
-
-        ///if the pop out window is open, end it
-        if (m_PopOut)
-        {
-            ImGui::End();
-        }
+       
     }
 
 
@@ -353,85 +315,6 @@
     /// @param entity - the entity to display the properties of 
     void EntitySystem::entityPropertiesWindow(Entity* entity)
     {
-        ImGui::TableNextRow();  // Move to the next row
-
-        ImGui::TableSetColumnIndex(0);  // Set focus to the first column
-
-        /// Create a unique identifier for the entity based on its name and ID
-        std::string label = entity->GetName() + "##" + std::to_string(entity->GetId());
-
-        bool node_open = ImGui::TreeNodeEx(label.c_str());  // Create a tree node for the entity
-        static bool open_popup = false ;  // Flag to check if the popup menu should be open
-
-        /// Create a unique identifier for the popup menu based on the entity's ID
-        std::string popup_id = "EntityContextMenu" + std::to_string(entity->GetId());
-        /// Create a unique identifier for the delete popup menu based on the entity's ID
-        std::string delete_id = "Confirm Deletion##" + std::to_string(entity->GetId());
-
-        // Check for right-click on the tree node
-        if (ImGui::BeginPopupContextItem(popup_id.c_str()))
-        {
-            /// Creates the context to copy, paste , and delete entities
-            if (ImGui::MenuItem("Copy")) 
-            {
-                Stream::CopyToClipboard(entity);
-            }
-            if (ImGui::MenuItem("Paste"))
-            {
-                Stream::PasteFromClipboard(entity);
-            }
-            if (ImGui::MenuItem("Delete"))
-            {
-                open_popup = true;
-            }
-
-            ImGui::EndPopup();
-        }
-
-        if (open_popup)
-        {
-            ImGui::OpenPopup(delete_id.c_str(), ImGuiPopupFlags_NoOpenOverExistingPopup);
-            /// This section needs to be fixed so the Modal popup works
-            /// Always center this window when appearing
-            ImVec2 center = ImGui::GetMainViewport()->GetCenter();
-            ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f)); 
-            /// Create a modal popup to confirm deletion
-            if (ImGui::BeginPopupModal(delete_id.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize))
-            {
-
-                ImGui::Text("Are you sure you want to delete this entity?");
-                ImGui::Separator();
-                /// Creates the buttons to confirm or cancel the deletion
-                if (ImGui::Button("OK", ImVec2(120, 0)))
-                {
-                    entity->Destroy();
-                    open_popup = false;
-                }
-                /// Set the focus on the cancel button
-                ImGui::SetItemDefaultFocus();
-                /// Aligns the cancel button with the OK button
-                ImGui::SameLine();
-                /// Creates the cancel button
-                if (ImGui::Button("Cancel", ImVec2(120, 0)))
-                {
-                    /// Closes the popup
-                    ImGui::CloseCurrentPopup();
-                    open_popup = false;
-                }
-
-                /// Ends the popup to match with the BeginPopupModal
-                ImGui::EndPopup();
-            }
-        }
-
-        /// if the tree node is open, display the entity's properties
-        if (node_open)
-        {
-           // ImGui::TableSetColumnIndex(1);  // Set focus to the second column
-            //entity->Inspect();  // Display entity properties
-
-            ImGui::TreePop();  // Pop the tree node
-        }
 
     }
 
