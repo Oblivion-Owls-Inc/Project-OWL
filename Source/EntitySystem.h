@@ -110,8 +110,6 @@ private: // methods
     void addLoadedChildren( Entity* entity );
 
     /// @brief Displays the children of an Entity in the Entity List Window
-    /// @param[in] entity the Entity to display the children of
-    /// @param[in] node_clicked the index of the node that was clicked
     void DisplayChildren(Entity* entity, int& node_clicked);
 
 //-----------------------------------------------------------------------------
