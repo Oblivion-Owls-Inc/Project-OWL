@@ -96,7 +96,7 @@ void DebugSystem::OnInit()
 
     ImFont* font = io->Fonts->AddFontDefault();
     if (font) {
-        font->Scale = 1.8f;  // Increase the scale to make the font larger
+        font->Scale = 1.5f;  // Increase the scale to make the font larger
     }
     io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
     ImPlot::CreateContext();
@@ -117,7 +117,9 @@ void DebugSystem::OnInit()
 void DebugSystem::OnUpdate(float dt)
 {
     /// Create a DockSpace on the Main Viewport for the Debug Window
-    ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode );
+    ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
+    dockspace_flags |= ImGuiDockNodeFlags_AutoHideTabBar;
+    ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), dockspace_flags);
 
 #ifndef NDEBUG // Show the Debug Window in Debug Mode
 

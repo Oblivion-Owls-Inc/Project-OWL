@@ -98,7 +98,6 @@ public: // engine methods
 private: // methods
 //-----------------------------------------------------------------------------
 
-
     /// @brief  removes all queued Entities from the EntitySystem
     void removeEntities();
 
@@ -110,6 +109,10 @@ private: // methods
     /// @param  entity  the Entity to add the children of
     void addLoadedChildren( Entity* entity );
 
+    /// @brief Displays the children of an Entity in the Entity List Window
+    /// @param[in] entity the Entity to display the children of
+    /// @param[in] node_clicked the index of the node that was clicked
+    void DisplayChildren(Entity* entity, int& node_clicked);
 
 //-----------------------------------------------------------------------------
 public: // inspection

@@ -228,17 +228,6 @@
     {
         static bool createEntity = false; 
 
-        /// Used to make the Entity List a pop out window
-        if ( ImGui::Button( m_PopOut ? "Pop In" : "Pop Out" ) )
-        {
-            m_PopOut = !m_PopOut;
-        }
-        ImGui::SameLine();
-        if ( ImGui::Button( "Create Entity" ) )
-        {
-            createEntity = true;
-        }
-
         if ( createEntity )
         {
             Entity* entity = new Entity(); /// Create a new entity
@@ -304,10 +293,83 @@
 //-----------------------------------------------------------------------------
 
 
+    void EntitySystem::DisplayChildren(Entity* entity, int& node_clicked)
+    {
+        if (entity->GetChildren().size() == 0)
+        {
+			return;
+		}
+        
+        auto& Children = entity->GetChildren(); /// Get the children of the entity
+
+        for (int i = 0; i < Children.size(); ++i)
+        {
+            /// Use the Variable i as the ID for the tree node
+            /// The Flags are set to open on arrow and double click
+            const bool node_open = ImGui::TreeNodeEx((void*)(intptr_t)i, ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick,
+                Children[i]->GetName().c_str()); /// Display the name of the entity
+
+            /// If the node is clicked, set the node clicked to the current node
+            if (ImGui::IsItemClicked())
+            {
+                node_clicked = i;
+            }
+
+            /// If the node is open, display the properties of the entity
+            if (node_open)
+            {
+                ///entityPropertiesWindow(child);
+                ImGui::TreePop();
+            }
+            
+			DisplayChildren( Children[i],node_clicked);
+		}
+	}
+
     /// @brief Displays the Entity List Window
     void EntitySystem::entityListWindow()
     {
-       
+        static ImGuiWindowFlags window_flags = 0; /// Create the window flags
+        window_flags |= ImGuiWindowFlags_NoTitleBar; /// Remove the title bar
+        window_flags |= ImGuiWindowFlags_AlwaysAutoResize; /// Auto resize the window
+
+
+        ImGui::Begin( "Entity List", NULL, window_flags); ///< Start The Window 
+
+		ImGui::SetWindowSize( ImVec2( 500, 1000 ), ImGuiCond_FirstUseEver );
+        static int selection_mask = (1 << 2); /// User Selection Status
+        int node_clicked = -1; /// The node that was clicked
+
+        /// Loop through all of the entities 
+        for (int i = 0; i < m_Entities.size(); i++)
+        {
+            // If the entity has a parent, skip it
+            if (m_Entities[i]->GetParent() != nullptr)
+            {
+                /// This will be shown later in the tree of the parent
+				continue;
+			}
+
+            /// Use the Variable i as the ID for the tree node
+            /// The Flags are set to open on arrow and double click
+			const bool node_open = ImGui::TreeNodeEx((void*)(intptr_t)i, ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick, 
+                m_Entities[i]->GetName().c_str()); /// Display the name of the entity
+			
+            /// If the node is clicked, set the node clicked to the current node
+            if (ImGui::IsItemClicked())
+            {
+                node_clicked = i;
+            }
+
+            /// If the node is open, display the properties of the entity
+            if (node_open)
+            {
+                DisplayChildren(m_Entities[i], node_clicked);
+				ImGui::TreePop();
+			}
+		}
+
+		ImGui::End(); /// End the window
     }
 
 
