@@ -154,6 +154,17 @@ public: // accessors
     /// @return the position of the joystik y axis.
     float GetLeftThumbstickYAxis(int glfw_joystick);
 
+   /// @brief Get the position of the right thumbstick X axis
+   /// @param glw_joystick the jotsick position to get
+   /// @return The position of the right thumbstick X axis
+   float GetRightThumbstickXAxis(int glfw_joystick);
+
+   /// @brief Get the position of the right thumbstick Y axis
+   /// @param glw_joystick the jotsick position to get
+   /// @return The position of the right thumbstick Y axis
+   float GetRightThumbstickYAxis(int glfw_joystick);
+
+
     /// @brief Get the position of the joystick's right trigger
     /// @param glfw_joystick - the joystick
     /// @return the position of the joystick's right trigger.

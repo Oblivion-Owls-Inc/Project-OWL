@@ -383,6 +383,36 @@ float InputSystem::GetLeftThumbstickYAxis(int glfw_joystick)
     return axes[1];
 }
 
+/// @brief Get the position of the right thumbstick X axis
+/// @param glw_joystick the jotsick position to get
+/// @return The position of the right thumbstick X axis
+float InputSystem::GetRightThumbstickXAxis(int glfw_joystick)
+{
+    int axescount = 0;
+    // Get the axes associated with the joystick
+    const float* axes = glfwGetJoystickAxes(glfw_joystick, &axescount);
+    if (!axes)
+    {
+        return 0.0f;
+    }
+    return axes[2];
+}
+
+/// @brief Get the position of the right thumbstick Y axis
+/// @param glw_joystick the jotsick position to get
+/// @return The position of the right thumbstick Y axis
+float InputSystem::GetRightThumbstickYAxis(int glfw_joystick)
+{
+    int axescount = 0;
+    // Get the axes associated with the joystick
+    const float* axes = glfwGetJoystickAxes(glfw_joystick, &axescount);
+    if (!axes)
+    {
+        return 0.0f;
+    }
+    return axes[3];
+}
+
 /// @brief Get the position of the joystick's right trigger
 /// @param glfw_joystick - the joystick
 /// @return the position of the joystick's right trigger.

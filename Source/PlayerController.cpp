@@ -236,6 +236,10 @@ void PlayerController::OnFixedUpdate()
         {
             m_MiningLaser->SetIsFiring( true );
             glm::vec2 direction = glm::normalize( Input()->GetMousePosWorld() - m_Transform->GetTranslation() );
+            if (Input()->GetRightTrigger(GLFW_JOYSTICK_1) == 1.0f)
+            {
+                direction = glm::normalize(Input()->GetRightThumbstickYAxis(GLFW_JOYSTICK_1) - m_Transform->GetTranslation());
+            }
             m_MiningLaser->SetDirection( direction );
         }
         else
