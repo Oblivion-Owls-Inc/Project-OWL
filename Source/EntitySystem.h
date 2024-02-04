@@ -110,7 +110,7 @@ private: // methods
     void addLoadedChildren( Entity* entity );
 
     /// @brief Displays the children of an Entity in the Entity List Window
-    void DisplayChildren(Entity* entity, int& node_clicked);
+    void DisplayChildren(Entity* entity, Entity* selectedEntity = nullptr);
 
 //-----------------------------------------------------------------------------
 public: // inspection

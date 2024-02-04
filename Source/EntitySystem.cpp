@@ -295,8 +295,8 @@
 
     /// @brief Displays the children of an Entity in the Entity List Window
     /// @param entity the Entity to display the children of
-    /// @param node_clicked the index of the node that was clicked
-    void EntitySystem::DisplayChildren(Entity* entity, int& node_clicked)
+    /// @param selectedEntity the currently selected entity
+    void EntitySystem::DisplayChildren(Entity* entity, Entity* selectedEntity)
     {
         if (entity->GetChildren().size() == 0)
         {
@@ -385,17 +385,17 @@
             /// If the node is clicked, set the node clicked to the current node
             if (ImGui::IsItemClicked())
             {
-                node_clicked = i;
+                selectedEntity = Children[i];
             }
 
-            /// If the node is open, display the properties of the entity
+            /// If the node is open, display the Children of the Child
             if (node_open)
             {
                 ///entityPropertiesWindow(child);
+			    DisplayChildren( Children[i], selectedEntity);
                 ImGui::TreePop();
             }
             
-			DisplayChildren( Children[i],node_clicked);
 		}
 	}
 
@@ -405,6 +405,8 @@
         static ImGuiWindowFlags window_flags = 0; /// Create the window flags
         window_flags |= ImGuiWindowFlags_NoTitleBar; /// Remove the title bar
         window_flags |= ImGuiWindowFlags_AlwaysAutoResize; /// Auto resize the window
+
+        static Entity* selectedEntity = nullptr; /// The selected entity
 
 
         ImGui::Begin( "Entity List", NULL, window_flags); ///< Start The Window 
@@ -498,7 +500,7 @@
             /// If the node is clicked, set the node clicked to the current node
             if (ImGui::IsItemClicked())
             {
-                node_clicked = i;
+                selectedEntity = m_Entities[i];
             }
 
             /// Work in progress for drag and drop
@@ -507,9 +509,18 @@
             /// If the node is open, display the properties of the entity
             if (node_open)
             {
-                DisplayChildren(m_Entities[i], node_clicked);
+                DisplayChildren(m_Entities[i], selectedEntity);
 				ImGui::TreePop();
 			}
+		}
+
+        /// Open the Entity Viewer Window
+		entityPropertiesWindow(selectedEntity);
+		
+		/// If the user clicks on the background, set the selected entity to null
+		if (ImGui::IsWindowHovered() && ImGui::IsMouseClicked(0))
+		{
+			selectedEntity = nullptr;
 		}
 
 		ImGui::End(); /// End the window
@@ -521,6 +532,16 @@
     void EntitySystem::entityPropertiesWindow(Entity* entity)
     {
 
+        ImGui::Begin("Inspector", NULL, ImGuiWindowFlags_AlwaysAutoResize); ///< Start The Window
+        if (entity == nullptr) /// If there is no entity selected
+		{
+			ImGui::Text("No Entity Selected"); /// Display that no entity is selected
+			ImGui::End(); /// End the window
+			return;
+		}
+        entity->Inspect(); /// Display the properties of the entity
+
+        ImGui::End(); /// End the window
     }
 
     
