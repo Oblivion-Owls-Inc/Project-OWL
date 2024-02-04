@@ -295,8 +295,7 @@
 
     /// @brief Displays the children of an Entity in the Entity List Window
     /// @param entity the Entity to display the children of
-    /// @param selectedEntity the currently selected entity
-    void EntitySystem::DisplayChildren(Entity* entity, Entity* selectedEntity)
+    void EntitySystem::DisplayChildren(Entity* entity, Entity** SelectedEntity)
     {
         if (entity->GetChildren().size() == 0)
         {
@@ -304,9 +303,8 @@
 		}
         
         static bool open_Childpopup = false;  // Flag to check if the popup menu should be open
-
         auto& Children = entity->GetChildren(); /// Get the children of the entity
-
+        static Entity* selectedEntity = nullptr; /// The selected entity
         for (int i = 0; i < Children.size(); ++i)
         {
             /// Create a unique identifier for the popup menu based on the entity's ID
@@ -360,6 +358,7 @@
                     if (ImGui::Button("OK", ImVec2(120, 0)))
                     {
                         Children[i]->Destroy();
+                        selectedEntity = nullptr;
                         open_Childpopup = false;
                     }
 
@@ -385,18 +384,20 @@
             /// If the node is clicked, set the node clicked to the current node
             if (ImGui::IsItemClicked())
             {
-                selectedEntity = Children[i];
+                /// Show the properties of the entity
+                *SelectedEntity = Children[i];
             }
 
             /// If the node is open, display the Children of the Child
             if (node_open)
             {
                 ///entityPropertiesWindow(child);
-			    DisplayChildren( Children[i], selectedEntity);
+			    DisplayChildren( Children[i], SelectedEntity);
                 ImGui::TreePop();
             }
             
 		}
+
 	}
 
     /// @brief Displays the Entity List Window
@@ -476,6 +477,7 @@
                     if (ImGui::Button("OK", ImVec2(120, 0)))
                     {
                         m_Entities[i]->Destroy();
+                        selectedEntity = nullptr;
                         open_popup = false;
                     }
 
@@ -509,7 +511,7 @@
             /// If the node is open, display the properties of the entity
             if (node_open)
             {
-                DisplayChildren(m_Entities[i], selectedEntity);
+                DisplayChildren(m_Entities[i], &selectedEntity);
 				ImGui::TreePop();
 			}
 		}
@@ -531,7 +533,6 @@
     /// @param entity - the entity to display the properties of 
     void EntitySystem::entityPropertiesWindow(Entity* entity)
     {
-
         ImGui::Begin("Inspector", NULL, ImGuiWindowFlags_AlwaysAutoResize); ///< Start The Window
         if (entity == nullptr) /// If there is no entity selected
 		{

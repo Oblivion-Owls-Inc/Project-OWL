@@ -109,8 +109,6 @@ private: // methods
     /// @param  entity  the Entity to add the children of
     void addLoadedChildren( Entity* entity );
 
-    /// @brief Displays the children of an Entity in the Entity List Window
-    void DisplayChildren(Entity* entity, Entity* selectedEntity = nullptr);
 
 //-----------------------------------------------------------------------------
 public: // inspection
@@ -137,6 +135,8 @@ private: // inspection
     /// @brief Shows the Properites of the Selected Entity
     void entityPropertiesWindow(Entity* entity);
 
+    /// @brief Displays the children of an Entity in the Entity List Window
+    void DisplayChildren(Entity* entity, Entity** SelectedEntity);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

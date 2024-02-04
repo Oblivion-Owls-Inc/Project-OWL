@@ -164,6 +164,9 @@ void DebugSystem::DebugWindow()
     ImGuiWindowFlags window_flags = 0;
     window_flags |= ImGuiWindowFlags_NoTitleBar;
     window_flags |= ImGuiWindowFlags_MenuBar;
+    window_flags |= ImGuiWindowFlags_NoMove;
+    window_flags |= ImGuiWindowFlags_NoBackground;
+    
 
     ImGui::Begin("Editor Window", &debugWindowShown, window_flags);
     SetDebugEnable( debugWindowShown );
