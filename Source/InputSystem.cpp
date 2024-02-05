@@ -30,8 +30,8 @@ void InputSystem::mapUpdate()
         m_ControllerStatesHold = &m_ControllerStates;
     }
 
-    int buttonCount = 0;
-    const unsigned char* buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+    GLFWgamepadstate state;
+    glfwGetGamepadState(GLFW_JOYSTICK_1, &state);
 
     for (auto& key : *m_KeyStatesHold)
     {
@@ -81,11 +81,11 @@ void InputSystem::mapUpdate()
 
     for (auto& key : *m_ControllerStatesHold)
     {
-        key.second[1] = (key.second[0] == false && buttons[key.first] == GLFW_PRESS);
+        key.second[1] = (key.second[0] == false && state.buttons[key.first] == GLFW_PRESS);
        
-        key.second[2] = (key.second[0] == true && buttons[key.first] == GLFW_RELEASE);
+        key.second[2] = (key.second[0] == true && state.buttons[key.first] == GLFW_RELEASE);
 
-        key.second[0] = buttons[key.first] == GLFW_PRESS;
+        key.second[0] = state.buttons[key.first] == GLFW_PRESS;
     }
 
     for (int i = 0; i < amount; i++)
@@ -278,6 +278,22 @@ bool InputSystem::GetGamepadButtonReleased(int glfw_button)
     return NULL;
 }
 
+/// @brief Checks the state of a passed in input key
+/// @param JID   - The ID of the controller to grab.
+/// @param input - The button or axis to check.
+/// @return Returns the state of an axis (float).
+float InputSystem::GetGamepadAxisState(int JID, int input)
+{
+    // Check if the joy stick is present
+    if (glfwJoystickPresent(JID) == GLFW_TRUE)
+    {
+        GLFWgamepadstate state;
+        glfwGetGamepadState(JID, &state);
+        return state.axes[input];
+    }
+
+    return 0.0f;
+}
 
 /// @brief checks if a given mouse button is down
 /// @param glfw mouse button to check
@@ -473,7 +489,10 @@ glm::vec2 InputSystem::GetMousePosWorld()
         m_ControllerStatesHold(&m_ControllerStates),
         handle(nullptr),
         amount(0)
-    {}
+    {
+        // Updates the mapping of gamepad controllers.
+        glfwUpdateGamepadMappings(Stream::ReadControllerMappings("Data/Controller Mappings/gamecontrollerdb.txt").c_str());
+    }
 
     /// @brief The singleton instance of InputSystem
     InputSystem * InputSystem::instance = nullptr;

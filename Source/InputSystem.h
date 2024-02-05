@@ -71,6 +71,8 @@ private: // private methods
     /// @brief convert matrix to vec2
     glm::vec2 convert(glm::mat4 matrix);
 
+    
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
@@ -123,6 +125,12 @@ public: // accessors
     /// @param glfw_button button to check
     /// @return returns if the button is released.
     bool GetGamepadButtonReleased(int glfw_button);
+
+    /// @brief Checks the state of a passed in input key
+    /// @param JID   - The ID of the controller to grab.
+    /// @param input - The button or axis to check.
+    /// @return Returns the state of an axis (float).
+    float GetGamepadAxisState(int JID, int input);
     
     /// @brief checks if a given mouse button is down
     /// @param glfw mouse button to check

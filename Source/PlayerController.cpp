@@ -197,28 +197,32 @@ void PlayerController::OnFixedUpdate()
     bool PlayerController::moveRight()
     {
         
-        return Input()->GetKeyDown(GLFW_KEY_D) || (Input()->GetLeftThumbstickXAxis(GLFW_JOYSTICK_1) >= 1.0f);
+        return Input()->GetKeyDown(GLFW_KEY_D) || 
+              (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_LEFT_X) >= 1.0f);
     }
 
     /// @brief  Check if the 'A' key is being pressed.
     /// @return Is the 'A' key being pressed?
     bool PlayerController::moveLeft()
     {
-	    return Input()->GetKeyDown(GLFW_KEY_A) || (Input()->GetLeftThumbstickXAxis(GLFW_JOYSTICK_1) <= -1.0f);
+	    return Input()->GetKeyDown(GLFW_KEY_A) || 
+               (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_LEFT_X) <= -1.0f);
     }
 
     /// @brief  Check if the 'W' key is being pressed.
     /// @return Is the 'W' key being pressed?
     bool PlayerController::moveUp()
     {
-	    return Input()->GetKeyDown(GLFW_KEY_W) || (Input()->GetLeftThumbstickYAxis(GLFW_JOYSTICK_1) <= -1.0f);
+	    return Input()->GetKeyDown(GLFW_KEY_W) || 
+               (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_LEFT_Y) <= -1.0f);
     }
 
     /// @brief  Check if the 'S' key is being pressed.
     /// @return Is the 'S' key being pressed?
     bool PlayerController::moveDown()
     {
-	    return Input()->GetKeyDown(GLFW_KEY_S) || (Input()->GetLeftThumbstickYAxis(GLFW_JOYSTICK_1) >= 1.0f);
+	    return Input()->GetKeyDown(GLFW_KEY_S) || 
+               (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_LEFT_Y) >= 1.0f);
     }
 
 
@@ -232,15 +236,25 @@ void PlayerController::OnFixedUpdate()
 
         m_MiningLaser->GetTransform()->SetTranslation( m_Transform->GetTranslation() );
 
-        if (Input()->GetMouseDown(GLFW_MOUSE_BUTTON_1) || (Input()->GetRightTrigger(GLFW_JOYSTICK_1) == 1.0f))
+        if (Input()->GetMouseDown(GLFW_MOUSE_BUTTON_1) || 
+           (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1,GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER) >= 1.0f))
         {
             m_MiningLaser->SetIsFiring( true );
-            glm::vec2 direction = glm::normalize( Input()->GetMousePosWorld() - m_Transform->GetTranslation() );
-            if (Input()->GetRightTrigger(GLFW_JOYSTICK_1) == 1.0f)
+            if (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER) >= 1.0f)
             {
-                direction = glm::normalize(Input()->GetRightThumbstickYAxis(GLFW_JOYSTICK_1) - m_Transform->GetTranslation());
+                // Get the data from the right thumbstick.
+                float xAxis = Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_X);
+                float yAxis = Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_Y);
+                glm::vec2 controllerAxis(xAxis, -yAxis);
+                glm::vec2 controllerDirection = glm::normalize(controllerAxis);
+                m_MiningLaser->SetDirection(controllerDirection);
             }
-            m_MiningLaser->SetDirection( direction );
+            else
+            {
+                glm::vec2 direction = glm::normalize(Input()->GetMousePosWorld() - m_Transform->GetTranslation());
+                m_MiningLaser->SetDirection(direction);
+            }
+            
         }
         else
         {

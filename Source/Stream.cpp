@@ -36,6 +36,25 @@
         return nlohmann::ordered_json::parse( file );
     }
 
+    /// @brief Read the SDL Controller Mappings
+    /// @param filepath - The .txt file containing the mappings.
+    /// @return A string holding all the mappings
+    std::string Stream::ReadControllerMappings(std::string const& filepath)
+    {
+        std::ifstream file(filepath);
+        std::string mappings;
+
+        if (file.is_open() == false)
+        {
+            Debug() << "Warning: unable to open file \"" << filepath << "\"" << std::endl;
+            return mappings;
+        }
+
+        file >> mappings;
+
+        return mappings;
+    }
+
     /// @brief Write a meesage to the trace log.
     /// @param traceMessage The message to be written.
     void Stream::WriteToTraceLog(std::string const& traceMessage)
