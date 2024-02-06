@@ -282,6 +282,9 @@
     <Filter Include="Game\Components\Behaviors\CameraBehavior">
       <UniqueIdentifier>{6678a6b1-d58f-4639-b348-e84b6479d1db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\TilemapTextureConnector">
+      <UniqueIdentifier>{f6c41e19-950d-4898-b359-f64157800677}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -568,6 +571,9 @@
     </ClCompile>
     <ClCompile Include="Source\CameraBehavior.cpp">
       <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TilemapTextureConnector.cpp">
+      <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -862,6 +868,9 @@
     <ClInclude Include="Source\CameraBehavior.h">
       <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
     </ClInclude>
+    <ClInclude Include="Source\TilemapTextureConnector.h">
+      <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -877,9 +886,6 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\ConstructionTest.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\HeirarchyTest.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype.scene.json">

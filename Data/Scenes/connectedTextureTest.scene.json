@@ -1,0 +1,116 @@
+{
+    "Assets": {
+        "Sounds": null,
+        "Textures": {
+            "Tilesheet": {
+                "Filepath": "Data/Textures/Tiles/ConnectedTextures.png",
+                "SheetDimensions": [
+                    4,
+                    4
+                ],
+                "Pivot": [
+                    0.0,
+                    1.0
+                ]
+            }
+        },
+        "TransformAnimations": null,
+        "Animations": null,
+        "Archetypes": null
+    },
+    "Entities": {
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 5.0,
+                    "IsActive": true
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Tilemap": {
+            "Name": "Tilemap",
+            "Components": {
+                "Tilemap<int>": {
+                    "Dimensions": [
+                        2,
+                        2
+                    ],
+                    "TileScale": [
+                        1.0,
+                        1.0
+                    ],
+                    "TileData": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "TilemapDisplay",
+                    "Components": {
+                        "Tilemap<int>": {
+                            "Dimensions": [
+                                2,
+                                2
+                            ],
+                            "TileScale": [
+                                1.0,
+                                1.0
+                            ],
+                            "TileData": [
+                                0, 0,
+                                0, 0
+                            ]
+                        },
+                        "Transform": {
+                            "Translation": [
+                                0.0,
+                                0.0
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        },
+                        "TilemapSprite": {
+                            "Texture": "Tilesheet"
+                        },
+                        "TilemapTextureConnector": {}
+                    },
+                    "Children": null
+                }
+            ]
+        }
+    }
+}
