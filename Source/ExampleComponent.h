@@ -1,26 +1,48 @@
-/// @file       ExampleSystem.h
+/// @file       ExampleComponent.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
 /// @brief      DESCRIPTION HERE
 /// @version    0.1
 /// @date       DATE HERE
 /// 
-/// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
+/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
 #pragma once
 
-#include "System.h"
+#include "Component.h"
+
 
 /// @brief  DESCRIPTION HERE
-class ExampleSystem : public System
+class ExampleComponent : public Component
 {
+//-----------------------------------------------------------------------------
+public: // constructor / Destructor
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  default constructor
+    ExampleComponent();
+
+
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
 
-    
+
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
+
 //-----------------------------------------------------------------------------
 public: // virtual override methods
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  called once when entering the scene
+    virtual void OnInit() override;
+
+    /// @brief  called once when exiting the scene
+    virtual void OnExit() override;
 
 
 //-----------------------------------------------------------------------------
@@ -38,8 +60,13 @@ public: // inspection
 //-----------------------------------------------------------------------------
 
 
-    /// @brief Gets Called by the Debug system to display debug information
-    virtual void DebugWindow() override;
+    /// @brief  shows the inspector for ExampleComponent
+    virtual void Inspector() override;
+
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
@@ -47,39 +74,39 @@ public: // reading / writing
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  gets this System's read methods
-    /// @return this System's read methods
+    /// @brief  gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
-    /// @brief  writes this ExampleSystem to JSON
-    /// @return the JSON data of this ExampleSystem
+    /// @brief  Writes all AudioPlayr data to a JSON file.
+    /// @return The JSON file containing the data.
     virtual nlohmann::ordered_json Write() const override;
 
-
+    
 //-----------------------------------------------------------------------------
-public: // singleton stuff
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  gets the instance of ExampleSystem
-    /// @return the instance of the ExampleSystem
-    static ExampleSystem* GetInstance();
-
-
-//-----------------------------------------------------------------------------
-private: // singleton stuff
+public: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  Constructs the ExampleSystem
-    ExampleSystem();
+    /// @brief  clones this ExampleComponent
+    /// @return the newly created clone of this ExampleComponent
+    virtual ExampleComponent* Clone() const override;
 
-    // Prevent copying
-    ExampleSystem( ExampleSystem const& ) = delete;
-    void operator =( ExampleSystem const& ) = delete;
+
+//-----------------------------------------------------------------------------
+private: // copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  copy-constructor for the ExampleComponent
+    /// @param  other   the other ExampleComponent to copy
+    ExampleComponent( ExampleComponent const& other );
+
+
+    // diable = operator
+    void operator =( ExampleComponent const& ) = delete;
 
 
 //-----------------------------------------------------------------------------
 };
-

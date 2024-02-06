@@ -23,7 +23,7 @@
     /// @brief  constructor
     BulletBehavior::BulletBehavior() :
         Behavior( typeid( BulletBehavior ) ),
-        m_LifeTime( std::string( "BulletLifeTime" ) )
+        m_LifeTime()
     {}
 
 //-----------------------------------------------------------------------------
@@ -56,7 +56,7 @@
 	    m_LifeTime -= dt;
 
 	    // Destroy the bullet if it's life time is over
-	    if ( m_LifeTime <= 0.0f )
+	    if ( m_LifeTime.GetCurrent() <= 0.0f )
 	    {
 		    GetEntity()->Destroy();
 	    }
@@ -65,7 +65,7 @@
     /// @brief Used by the Debug System to display information about this Component
     void BulletBehavior::Inspector()
     {
-	    m_LifeTime.Inspector();
+	    m_LifeTime.Inspect();
 	    ImGui::InputInt( "Bullet Damage", &m_Damage, 1, 5 );
     }
 

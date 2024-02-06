@@ -5,7 +5,7 @@
 /// @author Aidan Straker (aidan.straker)
 /// @date   September 2023
 ///
-/// @copyright © 2023 DigiPen (USA) Corporation.
+/// @copyright Â© 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 
 //-----------------------------------------------------------------------------
@@ -48,6 +48,7 @@
 #include "UiBarSprite.h"
 #include "HealthBar.h"
 #include "CameraBehavior.h"
+#include "UiButton.h"
 #include "TilemapTextureConnector.h"
 
 
@@ -167,6 +168,7 @@
         { "ItemCollector"          , ComponentInfo< ItemCollector >()           },
         { "HealthBar"              , ComponentInfo< HealthBar >()               },
         { "UiBarSprite"            , ComponentInfo< UiBarSprite >()             },
+        { "UiButton"               , ComponentInfo< UiButton >()                },
         { "Light"                  , ComponentInfo< Light >()                   },
         { "CameraBehavior"         , ComponentInfo< CameraBehavior >()          },
         { "TilemapTextureConnector", ComponentInfo< TilemapTextureConnector >() }
