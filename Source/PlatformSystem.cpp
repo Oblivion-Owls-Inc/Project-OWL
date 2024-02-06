@@ -183,9 +183,9 @@
         glfwSetWindowCloseCallback( m_Window, glfwWindowCloseCallback );
 
 
-#ifdef DEBUG
-        Renderer()->SetDrawToBuffer(true); // enable drawing to off-screen buffer
-#endif // DEBUG
+        #ifdef DEBUG
+            Renderer()->SetDrawToBuffer(true); // enable drawing to off-screen buffer
+        #endif // DEBUG
 
     }
 
@@ -196,6 +196,9 @@
         glfwTerminate();
     }
 
+
+    /// @brief  called every graphics frame
+    /// @param  dt  the duration of the frame in seconds
     void PlatformSystem::OnUpdate(float dt)
     {
         /// Create a DockSpace on the Main Viewport for the Debug Window
@@ -205,38 +208,36 @@
 
         #ifdef DEBUG
 
-        glm::ivec2 pos = { 0, 0 };
-        
-        /// Get the window position
-        glfwGetWindowPos(m_Window, &pos.x, &pos.y);
-        
         /// Start the ImGui window with the window name
-        ImGui::Begin(GetImguiWindowName().c_str());
+        ImGui::Begin( GetImguiWindowName().c_str() );
 
-        /// Get the window width and height
-        const float window_width = ImGui::GetContentRegionAvail().x;
-        const float window_height = ImGui::GetContentRegionAvail().y;
+            /// Get the window width and height
+            ImVec2 imGuiSize = ImGui::GetContentRegionAvail();
+            ImVec2 pos = ImGui::GetWindowPos();
+            ImVec2 max = ImVec2( pos.x + imGuiSize.x, pos.y + imGuiSize.y );
 
-        ImGui::GetWindowDrawList()->AddImage(
-            (void*)Renderer()->GetBufferTextureID(),
-            ImVec2(pos.x, pos.y),
-            ImVec2(pos.x + window_width, pos.y + window_height),
-            ImVec2(0, 1),
-            ImVec2(1, 0)
-        );
+            ImGui::GetWindowDrawList()->AddImage(
+                (void*)Renderer()->GetBufferTextureID(),
+                pos,
+                max,
+                ImVec2(0, 1),
+                ImVec2(1, 0)
+            );
+
         ImGui::End();
 
+        glm::ivec2 windowSize = glm::ivec2( (int)imGuiSize.x, (int)imGuiSize.y );
+        if ( windowSize != m_WindowSize )
+        {
+            m_WindowSize = windowSize;
+
+            for ( auto& [ key, callback ] : m_OnWindowResizedCallbacks )
+            {
+                callback( m_WindowSize );
+            }
+        }
+
         #endif /// DEBUG  
-    }
-
-
-    /// @brief  called every graphics frame
-    /// @param  dt  the duration of the frame in seconds
-    void PlatformSystem::OnUpdate( float dt )
-    {
-        #ifdef DEBUG
-            handleImGuiWindowResize();
-        #endif
     }
 
 
@@ -249,33 +250,6 @@
         if ( ImGui::Button( m_IsFullscreen ? "Fullscreen Mode" : "Windowed Mode" ) )
         {
             SetFullscreen( !m_IsFullscreen );
-        }
-    }
-
-
-//-----------------------------------------------------------------------------
-// private: methods
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  detect and handle when the ImGui window is resized
-    void PlatformSystem::handleImGuiWindowResize()
-    {
-        ImGui::Begin( GetImguiWindowName().c_str() );
-
-        ImVec2 imGuiWindowSize = ImGui::GetContentRegionAvail();
-        glm::ivec2 windowSize = glm::ivec2( (int)imGuiWindowSize.x, (int)imGuiWindowSize.y );
-
-        ImGui::End();
-
-        if ( windowSize != m_WindowSize )
-        {
-            m_WindowSize = windowSize;
-
-            for ( auto& [ key, callback ] : m_OnWindowResizedCallbacks )
-            {
-                callback( m_WindowSize );
-            }
         }
     }
 

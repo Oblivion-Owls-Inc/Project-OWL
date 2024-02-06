@@ -84,7 +84,6 @@ private: // virtual override methods
     /// @brief Shuts down window / GLFW.
     virtual void OnExit() override;
 
-    virtual void OnUpdate( float dt ) override;
 
     /// @brief  called every graphics frame
     /// @param  dt  the duration of the frame in seconds
@@ -117,15 +116,6 @@ private: // members
 
     /// @brief  callbacks to call whenever the window resizes
     std::map< unsigned, std::function< void ( glm::ivec2 const& ) > > m_OnWindowResizedCallbacks = {};
-
-
-//-----------------------------------------------------------------------------
-private: // methods
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  detect and handle when the ImGui window is resized
-    void handleImGuiWindowResize();
     
 
 //-----------------------------------------------------------------------------
