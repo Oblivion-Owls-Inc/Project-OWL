@@ -399,15 +399,21 @@
         nlohmann::ordered_json& sizeTypes = json[ "SizeTypes" ];
         for ( int i = 0; i < 2; ++i )
         {
+            bool found = false;
             for ( auto const& [ name, sizeType ] : s_SizeTypes )
             {
-                if ( sizeType == m_SizeTypes[i] )
+                if ( sizeType == m_SizeTypes[ i ] )
                 {
                     sizeTypes.push_back( name );
+                    found = true;
                     break;
                 }
+            }
 
-                Debug() << "JSON Warning: Unable to write UiElement: unrecognized SizeType" << std::endl;
+            if ( found == false )
+            {
+                Debug() << "WARNING: Unable to write UiElement: unrecognized SizeType" << std::endl;
+                return json;
             }
         }
 

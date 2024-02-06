@@ -265,11 +265,6 @@
             component->OnExit();
         }
 
-        for ( Entity* child : m_Children )
-        {
-            
-        }
-
         m_IsInScene = false;
     }
 

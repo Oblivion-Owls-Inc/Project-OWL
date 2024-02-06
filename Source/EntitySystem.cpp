@@ -375,7 +375,17 @@
             }
             if (ImGui::MenuItem("Paste"))
             {
+                for ( auto& [ type, component ] : entity->getComponents() )
+                {
+                    component->OnExit();
+                }
+
                 Stream::PasteFromClipboard(entity);
+
+                for ( auto& [ type, component ] : entity->getComponents() )
+                {
+                    component->OnInit();
+                }
             }
             if (ImGui::MenuItem("Delete"))
             {
