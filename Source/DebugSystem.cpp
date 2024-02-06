@@ -90,7 +90,7 @@ void DebugSystem::OnInit()
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     io = &ImGui::GetIO();
-    Renderer()->SetDrawToBuffer(true); // enable drawing to off-screen buffer
+
 #ifdef NDEBUG //if in release mode
     SetupImGuiConfigPath(); //set up the imgui config path to the appdata folder
     Renderer()->SetDrawToBuffer(false); //disable drawing to off-screen buffer
@@ -140,14 +140,19 @@ void DebugSystem::OnUpdate(float dt)
     {
         ShowFPSWindow();
     }
-    //////////////////////////////////////////This Section Will probably be moved
+
     glm::ivec2 pos = { 0, 0 };
 
+    /// Get the window position
     glfwGetWindowPos(_window, &pos.x, &pos.y);
 
-    ImGui::Begin("My Scene");
+    /// Start the ImGui window with the window name
+    ImGui::Begin(Platform()->GetImguiWindowName().c_str());
+
+    /// Get the window width and height
     const float window_width = ImGui::GetContentRegionAvail().x;
     const float window_height = ImGui::GetContentRegionAvail().y;
+
     ImGui::GetWindowDrawList()->AddImage(
         (void*)Renderer()->GetBufferTextureID(),
         ImVec2(pos.x, pos.y),
@@ -156,8 +161,6 @@ void DebugSystem::OnUpdate(float dt)
         ImVec2(1, 0)
     );
     ImGui::End();
-    ////////////////////////////////////////// to the Platform System
-    
 
 #endif // !DEBUG
 

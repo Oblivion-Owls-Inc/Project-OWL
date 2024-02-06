@@ -69,6 +69,9 @@ public: // accessors
     /// @return   glm ivec2: x = width, y = height.
 	glm::ivec2 GetWindowDimensions() const;
 
+    /// @brief   Returns the window name
+    /// @return  std::string: The name of the window.
+    std::string GetImguiWindowName() const;
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
@@ -81,6 +84,7 @@ private: // virtual override methods
     /// @brief Shuts down window / GLFW.
     virtual void OnExit() override;
 
+    virtual void OnUpdate( float dt ) override;
 
     /// @brief  called every graphics frame
     /// @param  dt  the duration of the frame in seconds
