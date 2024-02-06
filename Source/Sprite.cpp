@@ -91,46 +91,133 @@ Sprite::Sprite(Sprite const& other) :
 //-----------------------------------------------------------------------------
 
 
-/// @brief          Draws the mesh with texture (if one is present), or color.
-void Sprite::Draw()
-{
-    if (!m_Texture)
-        return;
+    /// @brief          Draws the mesh with texture (if one is present), or color.
+    void Sprite::Draw()
+    {
+        if (!m_Texture)
+            return;
 
-    Shader* sh = Renderer()->SetActiveShader("texture");
-    m_Texture->Bind();
-    glm::vec2 uv_offset = calcUVoffset();
-    glUniform2f(sh->GetUniformID("UV_offset"), uv_offset.x, uv_offset.y);
+        Shader* sh = Renderer()->SetActiveShader("texture");
+        m_Texture->Bind();
+        glm::vec2 uv_offset = calcUVoffset();
+        glUniform2f(sh->GetUniformID("UV_offset"), uv_offset.x, uv_offset.y);
     
 
-    // Stuff they both have in common: transform and opacity
-    glm::mat4 mat(1);   // it can still draw without parent and transform
-    if (GetEntity())
-    {
-        if ( m_Transform == nullptr)
+        // Stuff they both have in common: transform and opacity
+        glm::mat4 mat(1);   // it can still draw without parent and transform
+        if (GetEntity())
         {
-            m_Transform = GetEntity()->GetComponent< Transform >();
+            if ( m_Transform == nullptr)
+            {
+                m_Transform = GetEntity()->GetComponent< Transform >();
+            }
+
+            mat = m_Transform->GetMatrix();
+
+            // world or UI space
+            if ( m_Transform->GetIsDiegetic() )
+                mat = Cameras()->GetMat_WorldToClip() * mat;
+            else
+                mat = Cameras()->GetMat_UItoClip() * mat;
         }
 
-        mat = m_Transform->GetMatrix();
+        glUniformMatrix4fv(sh->GetUniformID("mvp"), 1, false, &mat[0][0]);
+        glUniform1f(sh->GetUniformID("opacity"), m_Opacity);
+        glUniform4fv(sh->GetUniformID("tint"), 1, &m_Color[0]);
 
-        // world or UI space
-        if ( m_Transform->GetIsDiegetic() )
-            mat = Cameras()->GetMat_WorldToClip() * mat;
-        else
-            mat = Cameras()->GetMat_UItoClip() * mat;
+        // Render it with triangle strip mode
+        Mesh const* m = m_Texture->GetMesh();
+        glBindVertexArray(m->GetVAO());
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, m->GetVertexCount());
+        glBindVertexArray(0);
     }
 
-    glUniformMatrix4fv(sh->GetUniformID("mvp"), 1, false, &mat[0][0]);
-    glUniform1f(sh->GetUniformID("opacity"), m_Opacity);
-    glUniform4fv(sh->GetUniformID("tint"), 1, &m_Color[0]);
 
-    // Render it with triangle strip mode
-    Mesh const* m = m_Texture->GetMesh();
-    glBindVertexArray(m->GetVAO());
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, m->GetVertexCount());
-    glBindVertexArray(0);
-}
+//-----------------------------------------------------------------------------
+// public: accessors
+//-----------------------------------------------------------------------------
+
+    /// @brief  gets the frame index
+    /// @return the frame index
+    int Sprite::GetFrameIndex() const
+    {
+        return m_FrameIndex;
+    }
+
+    /// @brief  Sets current frame index of the spritesheet.
+    /// @param  frameIndex  New frame index
+    void Sprite::SetFrameIndex( int frameIndex )
+    {
+        m_FrameIndex = frameIndex;
+    }
+
+    /// @brief  gets the layer
+    /// @return the layer
+    int Sprite::GetLayer() const
+    {
+        return m_Layer;
+    }
+
+    /// @brief  Sets the rendering layer : 0 - 4.  0 is back, 4 is front.
+    /// @param  layer   Rendering layer to move this sprite to.
+    void Sprite::SetLayer( int layer )
+    {
+        m_Layer = layer;
+    }
+
+    /// @brief  gets the opacity
+    /// @return the opacity
+    float Sprite::GetOpacity() const
+    {
+        return m_Opacity;
+    }
+
+    /// @brief  Sets the opacity.
+    /// @param  opacity I'm not explaining this.
+    void Sprite::SetOpacity( float opacity )
+    {
+        m_Opacity = opacity;
+    }
+
+    /// @brief  gets the color
+    /// @return the color
+    glm::vec4 const& Sprite::GetColor() const
+    {
+        return m_Color;
+    }
+
+    /// @brief  sets the color
+    /// @param  color   the color to apply
+    void Sprite::SetColor( glm::vec4 const& color )
+    {
+        m_Color = color;
+    }
+
+    /// @brief  gets the Texture this Sprite is using
+    /// @return the Texture this Sprite is using
+    Texture const* Sprite::GetTexture() const
+    {
+        if ( m_Texture != nullptr )
+        {
+            return m_Texture;
+        }
+
+        return AssetLibrary< Texture >()->GetAsset( m_TextureName );
+    }
+
+    /// @brief  sets the Texture this Sprite is using
+    /// @param  texture the Texture to set this Sprite to use
+    void Sprite::SetTexture( Texture const* texture )
+    {
+        m_Texture = texture;
+    }
+
+    /// @brief  gets the Transform component attached to this Sprite
+    /// @return the Transform component attached to this Sprite
+    Transform* Sprite::GetTransform()
+    {
+        return m_Transform;
+    }
 
 
 //-----------------------------------------------------------------------------

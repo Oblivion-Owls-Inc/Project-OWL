@@ -24,9 +24,6 @@ class CheatSystem :public System
 private: // virtual override methods
 //--------------------------------------------------------------------------------
 
-    /// @brief  Gets called once when this System is added to the Engine
-    virtual void OnInit() override;
-
     /// @brief  Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
     /// @param  dt  the elapsed time in seconds since the previous frame
     virtual void OnUpdate(float dt) override;
@@ -44,6 +41,7 @@ public: // virtual override methods
 //--------------------------------------------------------------------------------
 private: // methods
 //--------------------------------------------------------------------------------
+
     /// @brief Opens the console.
     /// @return Whether or not the key to open the console was pressed
     void OpenCheatMenu();
@@ -53,6 +51,10 @@ private: // methods
 
     /// @brief Turns off player collisions.
     void noClip();
+
+    /// @brief  toggles the inifinite resources cheat
+    /// @return the current state of whether there are infinite resources
+    bool toggleInfinteResources();
 
 //--------------------------------------------------------------------------------
 private: // members
