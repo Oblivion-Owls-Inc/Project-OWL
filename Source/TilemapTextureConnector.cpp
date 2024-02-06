@@ -26,6 +26,11 @@
         m_ParentTilemap = GetEntity()->GetParent()->GetComponent< Tilemap< int > >();
         m_Tilemap = GetEntity()->GetComponent< Tilemap< int > >();
 
+        if ( m_ParentTilemap == nullptr || m_Tilemap == nullptr )
+        {
+            return;
+        }
+
         m_ParentTilemap->AddOnTilemapChangedCallback( GetId(), std::bind(
             &TilemapTextureConnector::onTilemapChangedCallback,
             this,
@@ -41,7 +46,10 @@
     /// @brief  called once when exiting the scene
     void TilemapTextureConnector::OnExit()
     {
-        m_ParentTilemap->RemoveOnTilemapChangedCallback( GetId() );
+        if ( m_ParentTilemap != nullptr )
+        {
+            m_ParentTilemap->RemoveOnTilemapChangedCallback( GetId() );
+        }
     }
 
 
@@ -76,7 +84,7 @@
         glm::ivec2 tilePos;
         glm::ivec2 dimensions = m_ParentTilemap->GetDimensions();
 
-        m_Tilemap->SetDimensions( dimensions );
+        m_Tilemap->SetDimensions( dimensions * 2 );
 
         for ( tilePos.x = 0; tilePos.x < dimensions.x; ++tilePos.x )
         {
@@ -101,9 +109,9 @@
         );
 
         glm::ivec2 tilePos;
-        for ( tilePos.x = min.x; tilePos.x < max.x; ++tilePos.x )
+        for ( tilePos.x = min.x; tilePos.x <= max.x; ++tilePos.x )
         {
-            for ( tilePos.y = min.y; tilePos.y < max.y; ++tilePos.y )
+            for ( tilePos.y = min.y; tilePos.y <= max.y; ++tilePos.y )
             {
                 updateTile( tilePos );
             }
@@ -137,7 +145,7 @@
     /// @param  tileId  the ID of the type of tile being updated
     void TilemapTextureConnector::updateTopLeftCorner( glm::ivec2 const& tilePos, int tileId )
     {
-        glm::ivec2 offsets[ 3 ] = {
+        constexpr glm::ivec2 offsets[ 3 ] = {
             glm::ivec2(  0, -1 ),
             glm::ivec2( -1, -1 ),
             glm::ivec2( -1,  0 )
@@ -153,7 +161,7 @@
     /// @param  tileId  the ID of the type of tile being updated
     void TilemapTextureConnector::updateTopRightCorner( glm::ivec2 const& tilePos, int tileId )
     {
-        glm::ivec2 offsets[ 3 ] = {
+        constexpr glm::ivec2 offsets[ 3 ] = {
             glm::ivec2(  1,  0 ),
             glm::ivec2(  1, -1 ),
             glm::ivec2(  0, -1 )
@@ -168,7 +176,7 @@
     /// @param  tileId  the ID of the type of tile being updated
     void TilemapTextureConnector::updateBottomLeftCorner( glm::ivec2 const& tilePos, int tileId )
     {
-        glm::ivec2 offsets[ 3 ] = {
+        constexpr glm::ivec2 offsets[ 3 ] = {
             glm::ivec2( -1,  0 ),
             glm::ivec2( -1,  1 ),
             glm::ivec2(  0,  1 )
@@ -183,7 +191,7 @@
     /// @param  tileId  the ID of the type of tile being updated
     void TilemapTextureConnector::updateBottomRightCorner( glm::ivec2 const& tilePos, int tileId )
     {
-        glm::ivec2 offsets[ 3 ] = {
+        constexpr glm::ivec2 offsets[ 3 ] = {
             glm::ivec2(  0,  1 ),
             glm::ivec2(  1,  1 ),
             glm::ivec2(  1,  0 )
@@ -212,7 +220,7 @@
                 offsetPos.y < 0 || offsetPos.y >= dimensions.y
             )
             {
-                
+                continue;
             }
 
             if ( m_ParentTilemap->GetTile( offsetPos ) == tileId )
@@ -233,42 +241,50 @@
     /// @brief  displays this TilemapTextureConnector in the Inspector
     void TilemapTextureConnector::Inspector()
     {
-        ImGui::DragInt( "first texture offset", &m_FirstTileOffset, 0.05f, 0, INT_MAX );
+        bool changed = false;
+
+        changed |= ImGui::DragInt( "first texture offset", &m_FirstTileOffset, 0.05f, 0, INT_MAX );
         ImGui::SetItemTooltip( "the index of the first connected texture in the spritesheet" );
 
-        ImGui::DragInt( "textures per tile", &m_TexturesPerTile, 0.05f, 1, INT_MAX );
+        changed |= ImGui::DragInt( "textures per tile", &m_TexturesPerTile, 0.05f, 1, INT_MAX );
         ImGui::SetItemTooltip( "the number of textures that each tile has" );
 
 
+        // lambda function used to inspect each textureIndex in the array
         int texturesPerTile = m_TexturesPerTile;
         auto elementInspector = [ texturesPerTile ]( int* textureIndex ) -> bool
         {
             return ImGui::DragInt( "", textureIndex, 0.05f, 0, texturesPerTile );
         };
 
-        Inspection::InspectStaticArray< int, 8 >(
+        changed |= Inspection::InspectStaticArray< int, 8 >(
             "top left textures",
             m_TopLeftTextures,
             elementInspector
         );
 
-        Inspection::InspectStaticArray< int, 8 >(
+        changed |= Inspection::InspectStaticArray< int, 8 >(
             "top right textures",
             m_TopRightTextures,
             elementInspector
          );
          
-        Inspection::InspectStaticArray< int, 8 >(
+        changed |= Inspection::InspectStaticArray< int, 8 >(
             "bottom left textures",
             m_BottomLeftTextures,
             elementInspector
         );
 
-        Inspection::InspectStaticArray< int, 8 >(
+        changed |= Inspection::InspectStaticArray< int, 8 >(
             "bottom right textures",
             m_BottomRightTextures,
             elementInspector
-         );
+        );
+
+        if ( changed )
+        {
+            updateWholeTilemap();
+        }
     }
 
 
@@ -288,7 +304,7 @@
     /// @param  data    the json data to read from
     void TilemapTextureConnector::readTexturesPerTile( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_FirstTileOffset, data );
+        Stream::Read( m_TexturesPerTile, data );
     }
 
 
