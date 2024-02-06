@@ -165,7 +165,7 @@ void DebugSystem::OnUpdate(float dt)
     if ( Input()->GetKeyTriggered( GLFW_KEY_RIGHT_ALT ) && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
     {
 		m_Fullscreen = !m_Fullscreen;
-		PlatformSystem::GetInstance()->setFullscreen(m_Fullscreen);
+		PlatformSystem::GetInstance()->SetFullscreen(m_Fullscreen);
 	}
 
     ImGui::Render();
@@ -264,7 +264,7 @@ void DebugSystem::DebugWindow()
             if (ImGui::MenuItem(m_Fullscreen ? "Windowed" : "Fullscreen"))
             {
 				m_Fullscreen = !m_Fullscreen;
-				PlatformSystem::GetInstance()->setFullscreen(m_Fullscreen);
+				PlatformSystem::GetInstance()->SetFullscreen(m_Fullscreen);
 			}
 
             /// Shows the ImGui Demo Window

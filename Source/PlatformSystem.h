@@ -52,7 +52,7 @@ public: // methods
 
     /// @brief  sets whether the window is fullscreen
     /// @param  fullscreen  whether to set the window to fullscreen or windowed
-    void setFullscreen( bool fullscreen );
+    void SetFullscreen( bool fullscreen );
 
 
 //-----------------------------------------------------------------------------
@@ -80,6 +80,11 @@ private: // virtual override methods
 
     /// @brief Shuts down window / GLFW.
     virtual void OnExit() override;
+
+
+    /// @brief  called every graphics frame
+    /// @param  dt  the duration of the frame in seconds
+    virtual void OnUpdate( float dt ) override;
 
 
     /// @brief Debug window for PlatformSystem
@@ -115,6 +120,15 @@ private: // methods
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  detect and handle when the ImGui window is resized
+    void handleImGuiWindowResize();
+    
+
+//-----------------------------------------------------------------------------
+private: // callbacks
+//-----------------------------------------------------------------------------
+
+
     /// @brief            (callback) Gets called when there's some OpenGL error
     /// @param  message     Error message (text)
     /// @param  severity    Severity of the error.
@@ -129,11 +143,11 @@ private: // methods
     /// @param  window  handle to the window that was resized
     /// @param  width   the new width of the window
     /// @param  height  the new height of the window
-    static void OnWindowResizeCallback( GLFWwindow* window, int width, int height );
+    static void glfwWindowResizeCallback( GLFWwindow* window, int width, int height );
 
     /// @brief  callback called whenever the GLFW window closes
     /// @param  window  the window that was just closed
-    static void OnWindowCloseCallback( GLFWwindow* window );
+    static void glfwWindowCloseCallback( GLFWwindow* window );
 
 
 //-----------------------------------------------------------------------------
