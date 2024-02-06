@@ -5,7 +5,7 @@
 /// @author Aidan Straker (aidan.straker)
 /// @date   September 2023
 ///
-/// @copyright © 2023 DigiPen (USA) Corporation.
+/// @copyright Â© 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 
 //-----------------------------------------------------------------------------

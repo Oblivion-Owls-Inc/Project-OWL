@@ -20,7 +20,7 @@
 void BasicEntityBehavior::TakeDamage(int damage)
 {
     m_Health -= damage;
-    if (!m_Health)
+    if (m_Health.GetCurrent() <= 0)
     {
         GetEntity()->Destroy();
     }
@@ -40,7 +40,6 @@ BasicEntityBehavior::BasicEntityBehavior(BasicEntityBehavior const& other):
 void BasicEntityBehavior::OnInit()
 {
 	Behaviors< Behavior >()->AddComponent( this );
-	m_Health.OnInit();
 }
 
 /// @brief Called when the component is destroyed
@@ -52,7 +51,7 @@ void BasicEntityBehavior::OnExit()
 /// @brief inspector for this component
 void BasicEntityBehavior::Inspector()
 {
-    m_Health.Inspector();
+    m_Health.Inspect();
 }
 
 ///-----------------------------------------------------------------------------
