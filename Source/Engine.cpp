@@ -188,12 +188,6 @@
             system->OnInit();
             Debug() << "Starting " << system->GetName() << std::endl << std::endl;
         }
-
-        // TODO: move the below code out of the engine into its own systems
-
-        // this will go in GraphicsSystem
-        // Set the clear color (background color)
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     }
 
     /// @brief  Updates the engine each frame
@@ -227,14 +221,8 @@
 
                 GLFWwindow* window = PlatformSystem::GetInstance()->GetWindowHandle();
 
-                // ensure viewport size matches window size
-                int display_w, display_h;
-                glfwGetFramebufferSize(window, &display_w, &display_h);
-                glViewport(0, 0, display_w, display_h);
-
                 // Swap front and back buffers
                 glfwSwapBuffers(window);
-                glClear(GL_COLOR_BUFFER_BIT);
 
             // this goes to InputSystem
 
