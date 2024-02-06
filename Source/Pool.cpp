@@ -36,6 +36,7 @@ bool Pool<int>::Inspect()
 	if (ImGui::Button("Reset"))
 	{
 		Reset();
+        valueChanged = true;
 	}
 
 	return valueChanged;
