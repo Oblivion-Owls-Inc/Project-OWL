@@ -48,6 +48,7 @@
 #include "UiBarSprite.h"
 #include "HealthBar.h"
 #include "CameraBehavior.h"
+#include "UiButton.h"
 
 
 //-----------------------------------------------------------------------------
@@ -166,7 +167,7 @@
         { "ItemCollector"       , ComponentInfo< ItemCollector >()        },
         { "HealthBar"           , ComponentInfo< HealthBar >()            },
         { "UiBarSprite"         , ComponentInfo< UiBarSprite >()          },
-
+        { "UiButton"            , ComponentInfo< UiButton >()             },
         { "Light"               , ComponentInfo< Light >()                },
         { "CameraBehavior"      , ComponentInfo< CameraBehavior >()       }
     };

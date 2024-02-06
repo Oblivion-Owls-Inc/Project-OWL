@@ -184,6 +184,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\AudioListener.cpp" />
+    <ClCompile Include="Source\EventSystem.cpp" />
+    <ClCompile Include="Source\ExampleComponent.cpp" />
     <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\FileExplorer.cpp" />
     <ClCompile Include="imgui\imgui_stdlib.cpp" />
@@ -265,6 +267,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Stream.cpp" />
     <ClCompile Include="Source\CircleCollider.cpp" />
     <ClCompile Include="Source\UiBarSprite.cpp" />
+    <ClCompile Include="Source\UiButton.cpp" />
     <ClCompile Include="Source\UiElement.cpp" />
     <ClCompile Include="Source\WavesBehavior.cpp" />
     <ClCompile Include="Source\Stream.t.cpp" />
@@ -272,7 +275,10 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\TileInfoSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\EventListener.h" />
+    <ClInclude Include="Source\EventSystem.h" />
     <ClInclude Include="Source\AudioListener.h" />
+    <ClInclude Include="Source\ExampleComponent.h" />
     <ClInclude Include="Source\HealthBar.h" />
     <ClInclude Include="Source\CameraBehavior.h" />
     <ClInclude Include="Source\UiBarSprite.h" />
@@ -360,6 +366,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Transform.h" />
     <ClInclude Include="Source\Stream.h" />
     <ClInclude Include="Source\CircleCollider.h" />
+    <ClInclude Include="Source\UiButton.h" />
     <ClInclude Include="Source\UiElement.h" />
     <ClInclude Include="Source\WavesBehavior.h" />
   </ItemGroup>

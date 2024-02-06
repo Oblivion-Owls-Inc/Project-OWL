@@ -45,9 +45,6 @@
     <Filter Include="Engine\Entity\Component\Collider">
       <UniqueIdentifier>{d9911df2-a594-4ecf-8716-6849d3dae861}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\AudioPlayer">
-      <UniqueIdentifier>{b2ec916e-61a2-44ac-811c-cf0238123628}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Behavior">
       <UniqueIdentifier>{d83d07ff-93d2-4b77-b092-2feff66710aa}</UniqueIdentifier>
     </Filter>
@@ -155,9 +152,6 @@
     </Filter>
     <Filter Include="Engine\Systems\CheatSystem">
       <UniqueIdentifier>{1dbe9dbc-86de-434f-8fd4-19d968e00052}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Entity\Component\Emitter">
-      <UniqueIdentifier>{5fd7a429-be0c-4281-9acc-8f2a59ded737}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Systems\DebugSystem\FileExplorer">
       <UniqueIdentifier>{427d5f5a-9fc5-4bf5-b7f5-9934e8ece453}</UniqueIdentifier>
@@ -270,9 +264,6 @@
     <Filter Include="Data\Shaders\Fragment">
       <UniqueIdentifier>{85eec2d7-1007-471f-92a2-e9230a99ce4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\AudioListener">
-      <UniqueIdentifier>{9a8f7e43-8810-4cba-820c-c5eb52bc253b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Sprite\UiBarSprite">
       <UniqueIdentifier>{32cbd1d8-2975-4861-9810-34ddd57b887e}</UniqueIdentifier>
     </Filter>
@@ -281,6 +272,24 @@
     </Filter>
     <Filter Include="Game\Components\Behaviors\CameraBehavior">
       <UniqueIdentifier>{6678a6b1-d58f-4639-b348-e84b6479d1db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\EventSystem">
+      <UniqueIdentifier>{01871f02-0b0a-4145-9976-2ba5ca8c3bf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\ExampleComponent">
+      <UniqueIdentifier>{a59550b5-ff27-4284-8023-199922cdb8af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\AudioListener">
+      <UniqueIdentifier>{9a8f7e43-8810-4cba-820c-c5eb52bc253b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\Emitter">
+      <UniqueIdentifier>{5fd7a429-be0c-4281-9acc-8f2a59ded737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\AudioPlayer">
+      <UniqueIdentifier>{b2ec916e-61a2-44ac-811c-cf0238123628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\UiButton">
+      <UniqueIdentifier>{0c4f432e-8200-4f23-8c96-b0be0ad4f937}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -354,7 +363,7 @@
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="Source\AudioPlayer.cpp">
-      <Filter>Engine\Entity\Component\AudioPlayer</Filter>
+      <Filter>Engine\Entity\Component\Behavior\AudioPlayer</Filter>
     </ClCompile>
     <ClCompile Include="Source\Collider.cpp">
       <Filter>Engine\Entity\Component\Collider</Filter>
@@ -489,7 +498,7 @@
       <Filter>Engine\Framework\Serialization</Filter>
     </ClCompile>
     <ClCompile Include="Source\Emitter.cpp">
-      <Filter>Engine\Entity\Component\Emitter</Filter>
+      <Filter>Engine\Entity\Component\Behavior\Emitter</Filter>
     </ClCompile>
     <ClCompile Include="Source\ParticleSystem.cpp">
       <Filter>Engine\Systems\ParticleSystem</Filter>
@@ -558,7 +567,7 @@
       <Filter>Game\Components\Behaviors\MiningLaser</Filter>
     </ClCompile>
     <ClCompile Include="Source\AudioListener.cpp">
-      <Filter>Engine\Entity\Component\AudioListener</Filter>
+      <Filter>Engine\Entity\Component\Behavior\AudioListener</Filter>
     </ClCompile>
     <ClCompile Include="Source\UiBarSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\UiBarSprite</Filter>
@@ -568,6 +577,15 @@
     </ClCompile>
     <ClCompile Include="Source\CameraBehavior.cpp">
       <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EventSystem.cpp">
+      <Filter>Engine\Systems\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExampleComponent.cpp">
+      <Filter>Engine\Entity\Component\ExampleComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UiButton.cpp">
+      <Filter>Engine\Entity\Component\Behavior\UiButton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -653,7 +671,7 @@
       <Filter>Engine\Entity\Component\Sprite</Filter>
     </ClInclude>
     <ClInclude Include="Source\AudioPlayer.h">
-      <Filter>Engine\Entity\Component\AudioPlayer</Filter>
+      <Filter>Engine\Entity\Component\Behavior\AudioPlayer</Filter>
     </ClInclude>
     <ClInclude Include="Source\InputSystem.h">
       <Filter>Engine\Systems\InputSystem</Filter>
@@ -785,7 +803,7 @@
       <Filter>Game\Components\Behaviors\WavesBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\Emitter.h">
-      <Filter>Engine\Entity\Component\Emitter</Filter>
+      <Filter>Engine\Entity\Component\Behavior\Emitter</Filter>
     </ClInclude>
     <ClInclude Include="Source\ParticleSystem.h">
       <Filter>Engine\Systems\ParticleSystem</Filter>
@@ -851,7 +869,7 @@
       <Filter>Game\Components\Behaviors\MiningLaser</Filter>
     </ClInclude>
     <ClInclude Include="Source\AudioListener.h">
-      <Filter>Engine\Entity\Component\AudioListener</Filter>
+      <Filter>Engine\Entity\Component\Behavior\AudioListener</Filter>
     </ClInclude>
     <ClInclude Include="Source\UiBarSprite.h">
       <Filter>Engine\Entity\Component\Sprite\UiBarSprite</Filter>
@@ -861,6 +879,18 @@
     </ClInclude>
     <ClInclude Include="Source\CameraBehavior.h">
       <Filter>Game\Components\Behaviors\CameraBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EventSystem.h">
+      <Filter>Engine\Systems\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EventListener.h">
+      <Filter>Engine\Systems\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExampleComponent.h">
+      <Filter>Engine\Entity\Component\ExampleComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UiButton.h">
+      <Filter>Engine\Entity\Component\Behavior\UiButton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -877,9 +907,6 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\ConstructionTest.scene.json">
-      <Filter>Data\Scenes</Filter>
-    </None>
-    <None Include="Data\Scenes\HeirarchyTest.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype.scene.json">
