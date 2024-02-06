@@ -15,6 +15,7 @@
 #include "DebugSystem.h"
 #include "PlatformSystem.h"
 #include "InputSystem.h"
+#include "RenderSystem.h"
 #include "FileExplorer.h"
 #include "CheatSystem.h"
 #include "AssetLibrarySystem.h"
@@ -89,9 +90,10 @@ void DebugSystem::OnInit()
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     io = &ImGui::GetIO();
-
+    Renderer()->SetDrawToBuffer(true); // enable drawing to off-screen buffer
 #ifdef NDEBUG //if in release mode
     SetupImGuiConfigPath(); //set up the imgui config path to the appdata folder
+    Renderer()->SetDrawToBuffer(false); //disable drawing to off-screen buffer
 #endif // NDEBUG
 
     ImFont* font = io->Fonts->AddFontDefault();
@@ -121,7 +123,7 @@ void DebugSystem::OnUpdate(float dt)
     dockspace_flags |= ImGuiDockNodeFlags_AutoHideTabBar;
     ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), dockspace_flags);
 
-#ifndef NDEBUG // Show the Debug Window in Debug Mode
+#ifdef DEBUG // Show the Debug Window in Debug Mode
 
     /// Loop through all the Systems in the Engine
     for ( System* system : Engine::GetInstance()->GetSystems() )
@@ -138,8 +140,26 @@ void DebugSystem::OnUpdate(float dt)
     {
         ShowFPSWindow();
     }
+    //////////////////////////////////////////This Section Will probably be moved
+    glm::ivec2 pos = { 0, 0 };
 
-#endif // !NDEBUG
+    glfwGetWindowPos(_window, &pos.x, &pos.y);
+
+    ImGui::Begin("My Scene");
+    const float window_width = ImGui::GetContentRegionAvail().x;
+    const float window_height = ImGui::GetContentRegionAvail().y;
+    ImGui::GetWindowDrawList()->AddImage(
+        (void*)Renderer()->GetBufferTextureID(),
+        ImVec2(pos.x, pos.y),
+        ImVec2(pos.x + window_width, pos.y + window_height),
+        ImVec2(0, 1),
+        ImVec2(1, 0)
+    );
+    ImGui::End();
+    ////////////////////////////////////////// to the Platform System
+    
+
+#endif // !DEBUG
 
 
     if ( Input()->GetKeyTriggered( GLFW_KEY_RIGHT_ALT ) && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
@@ -164,7 +184,7 @@ void DebugSystem::DebugWindow()
     ImGuiWindowFlags window_flags = 0;
     window_flags |= ImGuiWindowFlags_NoTitleBar;
     window_flags |= ImGuiWindowFlags_MenuBar;
-    window_flags |= ImGuiWindowFlags_NoMove;
+   // window_flags |= ImGuiWindowFlags_NoMove;
     window_flags |= ImGuiWindowFlags_NoBackground;
     
 
