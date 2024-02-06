@@ -15,6 +15,7 @@
 #include "DebugSystem.h"
 #include "PlatformSystem.h"
 #include "InputSystem.h"
+#include "RenderSystem.h"
 #include "FileExplorer.h"
 #include "CheatSystem.h"
 #include "AssetLibrarySystem.h"
@@ -90,13 +91,17 @@ void DebugSystem::OnInit()
     ImGui::CreateContext();
     io = &ImGui::GetIO();
 
+    ImGuiStyle& style = ImGui::GetStyle();
+    style.WindowBorderSize = 0.0f;
+
 #ifdef NDEBUG //if in release mode
     SetupImGuiConfigPath(); //set up the imgui config path to the appdata folder
+    Renderer()->SetDrawToBuffer(false); //disable drawing to off-screen buffer
 #endif // NDEBUG
 
     ImFont* font = io->Fonts->AddFontDefault();
     if (font) {
-        font->Scale = 1.8f;  // Increase the scale to make the font larger
+        font->Scale = 1.5f;  // Increase the scale to make the font larger
     }
     io->ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
     ImPlot::CreateContext();
@@ -116,27 +121,32 @@ void DebugSystem::OnInit()
 /// @param dt The time elapsed since the last update.
 void DebugSystem::OnUpdate(float dt)
 {
-#ifndef NDEBUG
 
+#ifdef DEBUG // Show the Debug Window in Debug Mode
+
+    /// Loop through all the Systems in the Engine
     for ( System* system : Engine::GetInstance()->GetSystems() )
     {
+        /// If the System is enabled, then show the Debug Window
         if ( system->GetDebugEnabled() )
         {
             system->DebugWindow();
         }
     }
 
+    /// Show the FPS Window
     if (m_ShowFpsWindow)
     {
         ShowFPSWindow();
     }
 
-#endif // !NDEBUG
+#endif // !DEBUG
+
 
     if ( Input()->GetKeyTriggered( GLFW_KEY_RIGHT_ALT ) && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
     {
 		m_Fullscreen = !m_Fullscreen;
-		PlatformSystem::GetInstance()->setFullscreen(m_Fullscreen);
+		PlatformSystem::GetInstance()->SetFullscreen(m_Fullscreen);
 	}
 
     ImGui::Render();
@@ -148,10 +158,18 @@ void DebugSystem::OnUpdate(float dt)
 /// @brief Displays and Creates the Editor Window
 void DebugSystem::DebugWindow()
 {
+    
     static bool gameplayRunning = true;
 
     bool debugWindowShown = GetDebugEnabled();
-    ImGui::Begin("Editor Window", &debugWindowShown, ImGuiWindowFlags_MenuBar);
+    ImGuiWindowFlags window_flags = 0;
+    window_flags |= ImGuiWindowFlags_NoTitleBar;
+    window_flags |= ImGuiWindowFlags_MenuBar;
+   // window_flags |= ImGuiWindowFlags_NoMove;
+    window_flags |= ImGuiWindowFlags_NoBackground;
+    
+
+    ImGui::Begin("Editor Window", &debugWindowShown, window_flags);
     SetDebugEnable( debugWindowShown );
 
     ImGui::SetWindowSize(ImVec2(700, 700), ImGuiCond_FirstUseEver);
@@ -227,7 +245,7 @@ void DebugSystem::DebugWindow()
             if (ImGui::MenuItem(m_Fullscreen ? "Windowed" : "Fullscreen"))
             {
 				m_Fullscreen = !m_Fullscreen;
-				PlatformSystem::GetInstance()->setFullscreen(m_Fullscreen);
+				PlatformSystem::GetInstance()->SetFullscreen(m_Fullscreen);
 			}
 
             /// Shows the ImGui Demo Window
@@ -547,6 +565,7 @@ void DebugSystem::OnFixedUpdate()
 /// @brief Perform cleanup and shutdown.
 void DebugSystem::OnExit()
 {
+    //ImGui::End();
     ImGui::Render();
     ImGui_ImplGlfw_Shutdown();
     ImPlot::DestroyContext();

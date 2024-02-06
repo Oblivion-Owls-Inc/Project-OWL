@@ -5,7 +5,7 @@
 #include "glew.h"
 #include "RenderSystem.h"
 #include "Sprite.h"
-#include <iostream>             // error msg
+#include "PlatformSystem.h"     // screen size
 #include "Entity.h"
 #include "Transform.h"
 #include <vector>
@@ -30,10 +30,17 @@ void RenderSystem::OnInit()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    // set background color
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
     // enable debug output
     glEnable              ( GL_DEBUG_OUTPUT );
     glDebugMessageCallback( errorCallback, 0 );
+
+    // init FBO and texture for the screen buffer
+    glGenFramebuffers(1, &m_ScreenBufferFBO);
+    reallocScreenBufferTexture();
+    Platform()->AddOnWindowResizeCallback(GetId(), std::bind(&RenderSystem::reallocScreenBufferTexture, this));
 }
 
 
@@ -44,6 +51,12 @@ void RenderSystem::OnUpdate(float dt)
     std::stable_sort( m_Sprites.begin(), m_Sprites.end(), []( Sprite const* a, Sprite const* b ) -> bool {
         return a->GetLayer() < b->GetLayer();
     });
+
+    // draw to off-screen texture instead of main buffer
+    if (m_DrawToBuffer)
+        glBindFramebuffer(GL_FRAMEBUFFER, m_ScreenBufferFBO);
+
+    glClear(GL_COLOR_BUFFER_BIT);
 
     for ( Sprite* sprite : m_Sprites)
     {
@@ -58,6 +71,36 @@ void RenderSystem::OnUpdate(float dt)
     }
     shapes.clear();
 
+    // switch back to main buffer (for ImGui stuff to draw normally)
+    if (m_DrawToBuffer)
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    #if 0
+        // draw the screen buffer to actual screen
+        Shader* shdr = SetActiveShader("texture");
+        glm::mat4 m(glm::mat2(2.0f));
+        m[1][1] = -m[1][1];
+        glUniformMatrix4fv(shdr->GetUniformID("mvp"), 1, false, &m[0][0]);
+        glUniform1f(shdr->GetUniformID("opacity"), 1.0f);
+        glUniform2f(shdr->GetUniformID("UV_offset"), 0.0f, 0.0f);
+        glm::vec4 notint = {};
+        glUniform4fv(shdr->GetUniformID("tint"), 1, &notint[0]);
+        glBindVertexArray(m_DefaultMesh->GetVAO());
+        glBindTexture(GL_TEXTURE_2D, m_ScreenBufferTexID);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+        // draw a smaller version in the corner
+        m[0][0] *= 0.25f;
+        m[1][1] *= 0.25f;
+        m[3][0] = 0.7f;
+        m[3][1] = 0.7f;
+        glUniformMatrix4fv(shdr->GetUniformID("mvp"), 1, false, &m[0][0]);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    #endif
+    }
+    
+    glBindVertexArray(0);
+
     (void)dt;
 }
 
@@ -69,6 +112,9 @@ void RenderSystem::OnExit()
         delete shader.second;
 
     delete m_DefaultMesh;
+
+    glDeleteBuffers(1, &m_ScreenBufferFBO);
+    glDeleteTextures(1, &m_ScreenBufferTexID);
 }
 
 
@@ -251,6 +297,37 @@ void GLAPIENTRY RenderSystem::errorCallback(
             " - severity: " << severity <<
             " - message : " << message << std::endl;
     // }
+}
+
+
+/// @brief   Reallocates the texture for screen buffer.
+//           (needs to happen when resizing the screen)
+void RenderSystem::reallocScreenBufferTexture()
+{
+    // delete old
+    if (m_ScreenBufferTexID != -1)
+        glDeleteTextures(1, &m_ScreenBufferTexID);
+
+    // create new (same as screen size)
+    glm::ivec2 dims = Platform()->GetWindowDimensions();
+
+    // (create, bind, allocate)
+    glGenTextures(1, &m_ScreenBufferTexID);
+    glBindTexture(GL_TEXTURE_2D, m_ScreenBufferTexID);
+    glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, dims.x, dims.y);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    // attach (or re-attach) it to the FBO
+    glBindFramebuffer(GL_FRAMEBUFFER, m_ScreenBufferFBO);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_ScreenBufferTexID, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    
+    // (this should also be adjusted when changing screen size)
+    glViewport(0, 0, dims.x, dims.y);
 }
 
 
