@@ -98,7 +98,6 @@ public: // engine methods
 private: // methods
 //-----------------------------------------------------------------------------
 
-
     /// @brief  removes all queued Entities from the EntitySystem
     void removeEntities();
 
@@ -136,6 +135,8 @@ private: // inspection
     /// @brief Shows the Properites of the Selected Entity
     void entityPropertiesWindow(Entity* entity);
 
+    /// @brief Displays the children of an Entity in the Entity List Window
+    void DisplayChildren(Entity* entity, Entity** SelectedEntity);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

@@ -101,6 +101,14 @@ public:
     /// @return         Default mesh for simple quad textures
     __inline Mesh const* GetDefaultMesh() const { return m_DefaultMesh; }
 
+    /// @brief          Toggle rendering to off-screen buffer
+    /// @param draw     true: draw off-screen.   false: draw normally.
+    __inline void SetDrawToBuffer(bool draw) { m_DrawToBuffer = draw; }
+
+    /// @brief          Get texture ID of the off-screen buffer
+    /// @return         texture ID
+    __inline unsigned int GetBufferTextureID() const { return m_ScreenBufferTexID; }
+
 
     //-------------------------------------------------------------------------
     //          inherited virtuals
@@ -121,7 +129,9 @@ private:
     Shader* m_ActiveShader = nullptr;           /// @brief   Currently bound shader
     std::vector<Sprite*> m_Sprites;             /// @brief   Layered sprite references
     Mesh* m_DefaultMesh = nullptr;              /// @brief   Used for 1-frame textures
-
+    unsigned m_ScreenBufferTexID = 0;           /// @brief   Texture ID for screen buffer
+    unsigned m_ScreenBufferFBO = -1;            /// @brief   Framebuffer for rendering the screen
+    bool m_DrawToBuffer = false;                /// @brief   When true, renders everything to off-screen
 
     //-------------------------------------------------------------------------
     //          helpers
@@ -151,6 +161,10 @@ private:
         const void* userParam
     );
 
+
+    /// @brief   Reallocates the texture for screen buffer.
+    //           (needs to happen when resizing the screen)
+    void reallocScreenBufferTexture();
 
 
     //-------------------------------------------------------------------------
