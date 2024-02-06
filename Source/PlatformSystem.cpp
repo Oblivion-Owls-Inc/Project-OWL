@@ -208,6 +208,7 @@
 
         #ifdef DEBUG
 
+        ImGui::PushStyleVar( ImGuiStyleVar_WindowPadding, ImVec2( 0.0f, 0.0f ) );
         /// Start the ImGui window with the window name
         ImGui::Begin( GetImguiWindowName().c_str() );
 
@@ -225,6 +226,8 @@
             );
 
         ImGui::End();
+        ImGui::PopStyleVar();
+
 
         glm::ivec2 windowSize = glm::ivec2( (int)imGuiSize.x, (int)imGuiSize.y );
         if ( windowSize != m_WindowSize )
