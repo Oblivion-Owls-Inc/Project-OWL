@@ -13,7 +13,6 @@
 
 #include "CameraSystem.h"
 #include "PlatformSystem.h"
-#include "RenderSystem.h"
 
 #include "Entity.h"
 
@@ -194,9 +193,6 @@
         m_CameraToClip[ 0 ][ 0 ] = 2.0f / GetWidth();
         m_CameraToClip[ 1 ][ 1 ] = 2.0f / GetHeight();
         m_CameraToClip[ 2 ][ 2 ] = 1.0f;
-
-        if (Renderer()->GetDrawToBuffer())
-            m_CameraToClip[1][1] = -m_CameraToClip[1][1];
     }
 
     /// @brief  calculates to WorldToClip matrix
@@ -229,9 +225,6 @@
         m_ClipToWorld[ 3 ] = glm::vec4( translation, 0, 1 );
 
         m_ClipToWorldDirty = false;
-
-        if (Renderer()->GetDrawToBuffer())
-            m_ClipToWorld[1][1] = -m_ClipToWorld[1][1];
     }
 
 //-----------------------------------------------------------------------------
