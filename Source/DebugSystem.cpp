@@ -118,11 +118,6 @@ void DebugSystem::OnInit()
 /// @param dt The time elapsed since the last update.
 void DebugSystem::OnUpdate(float dt)
 {
-    /// Create a DockSpace on the Main Viewport for the Debug Window
-    ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
-    dockspace_flags |= ImGuiDockNodeFlags_AutoHideTabBar;
-    ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), dockspace_flags);
-
 #ifdef DEBUG // Show the Debug Window in Debug Mode
 
     /// Loop through all the Systems in the Engine
@@ -140,27 +135,6 @@ void DebugSystem::OnUpdate(float dt)
     {
         ShowFPSWindow();
     }
-
-    glm::ivec2 pos = { 0, 0 };
-
-    /// Get the window position
-    glfwGetWindowPos(_window, &pos.x, &pos.y);
-
-    /// Start the ImGui window with the window name
-    ImGui::Begin(Platform()->GetImguiWindowName().c_str());
-
-    /// Get the window width and height
-    const float window_width = ImGui::GetContentRegionAvail().x;
-    const float window_height = ImGui::GetContentRegionAvail().y;
-
-    ImGui::GetWindowDrawList()->AddImage(
-        (void*)Renderer()->GetBufferTextureID(),
-        ImVec2(pos.x, pos.y),
-        ImVec2(pos.x + window_width, pos.y + window_height),
-        ImVec2(0, 1),
-        ImVec2(1, 0)
-    );
-    ImGui::End();
 
 #endif // !DEBUG
 
