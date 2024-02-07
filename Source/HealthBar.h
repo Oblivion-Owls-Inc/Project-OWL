@@ -74,6 +74,12 @@ private: // members
     /// @brief  whether the bar should be hidden when the health is full
     bool m_HideWhenFull = true;
 
+    /// @brief  how long the opacity takes to animate in and out when the health is full
+    float m_OpacityAnimationTime = 1.0f;
+
+    /// @brief  the maximum opacity of the health bar
+    float m_MaxOpacity = 1.0f;
+
 
     /// @brief  the acceleration of how quickly the recent health display depletes
     float m_RecentHealthAcceleration = 1.0f;
@@ -96,11 +102,15 @@ private: // members
     UiBarSprite* m_UiBarSprite = nullptr;
 
 
-    /// @brief  the Transform component of the Entity to display the health of
-    Transform* m_ParentTransform = nullptr;
+    /// @brief  the name of the entity to track the health of
+    std::string m_TargetEntityName = "";
 
     /// @brief  the Health component of the Entity to display the health of
-    Health* m_ParentHealth = nullptr;
+    Health* m_TargetHealth = nullptr;
+
+
+    /// @brief  the Transform component of the Entity to display the health of
+    Transform* m_ParentTransform = nullptr;
 
 
 //-----------------------------------------------------------------------------
@@ -118,7 +128,8 @@ private: // helper methods
 
 
     /// @brief  updates the Sprite and Transform attached to the HealthBar
-    void updateVisuals();
+    /// @param  dt  the length of time the frame lasts
+    void updateVisuals( float dt );
 
 
 //-----------------------------------------------------------------------------
@@ -139,14 +150,28 @@ private: // reading
     /// @param  data    the json data to read from
     void readOffset( nlohmann::ordered_json const& data );
 
+
     /// @brief  reads whether the bar should be hidden when the health is full
     /// @param  data    the json data to read from
     void readHideWhenFull( nlohmann::ordered_json const& data );
+
+    /// @brief  how long the opacity takes to animate in and out when the health is full
+    /// @param  data    the json data to read from
+    void readOpacityAnimationTime( nlohmann::ordered_json const& data );
+
+    /// @brief  the maximum opacity of the health bar
+    /// @param  data    the json data to read from
+    void readMaxOpacity( nlohmann::ordered_json const& data );
 
 
     /// @brief  reads the acceleration of how quickly the recent health display depletes
     /// @param  data    the json data to read from
     void readRecentHealthAcceleration( nlohmann::ordered_json const& data );
+
+
+    /// @brief  reads the name of the entity to track the health of
+    /// @param  data    the json data to read from
+    void readTargetEntityName( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

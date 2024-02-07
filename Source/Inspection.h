@@ -45,10 +45,11 @@ public: // public methods
 
 
     /// @brief  selects an Entity from the Scene
-    /// @param  label           the ImGui label of the dropdown selector
-    /// @param  selectedEntity  pointer to the currently selected Entity
+    /// @param  label               the ImGui label of the dropdown selector
+    /// @param  selectedEntity      pointer to the currently selected Entity
+    /// @param  selectedEntityName  pointer to the name of the selected Entity
     /// @return whether an Entity was selected
-    static bool SelectEntityFromScene( char const* label, Entity** selectedEntity );
+    static bool SelectEntityFromScene( char const* label, Entity** selectedEntity, std::string* selectedEntityName );
 
 
     /// @brief  inspects an array of elements
