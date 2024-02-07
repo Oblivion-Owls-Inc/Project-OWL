@@ -91,9 +91,6 @@ void DebugSystem::OnInit()
     ImGui::CreateContext();
     io = &ImGui::GetIO();
 
-    ImGuiStyle& style = ImGui::GetStyle();
-    style.WindowBorderSize = 0.0f;
-
 #ifdef NDEBUG //if in release mode
     SetupImGuiConfigPath(); //set up the imgui config path to the appdata folder
     Renderer()->SetDrawToBuffer(false); //disable drawing to off-screen buffer
@@ -121,7 +118,6 @@ void DebugSystem::OnInit()
 /// @param dt The time elapsed since the last update.
 void DebugSystem::OnUpdate(float dt)
 {
-
 #ifdef DEBUG // Show the Debug Window in Debug Mode
 
     /// Loop through all the Systems in the Engine
