@@ -39,7 +39,7 @@
     /// @brief Read the SDL Controller Mappings
     /// @param filepath - The .txt file containing the mappings.
     /// @return A string holding all the mappings
-    std::string Stream::ReadControllerMappings(std::string const& filepath)
+    std::string Stream::ReadFromTXTFile(std::string const& filepath)
     {
         std::ifstream file(filepath);
         std::string mappings;

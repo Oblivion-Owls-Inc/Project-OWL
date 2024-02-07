@@ -130,7 +130,7 @@ public: // accessors
     /// @param JID   - The ID of the controller to grab.
     /// @param input - The button or axis to check.
     /// @return Returns the state of an axis (float).
-    float GetGamepadAxisState(int JID, int input);
+    float GetGamepadAxisState(int gamepad_id, int axis_id);
     
     /// @brief checks if a given mouse button is down
     /// @param glfw mouse button to check
@@ -152,37 +152,6 @@ public: // accessors
     /// @return returns if mouse button is released
     bool GetMouseReleased(int glfw_mouse_button);
 
-    /// @brief Get the position of the joystick x axis
-    /// @param glw_joystick the jotsick position to get
-    /// @return The position of the joystick
-    float GetLeftThumbstickXAxis(int glfw_joystick);
-
-    /// @brief Get the position of the joystick y axis
-    /// @param glfw_joystick - the joystick y axis
-    /// @return the position of the joystik y axis.
-    float GetLeftThumbstickYAxis(int glfw_joystick);
-
-   /// @brief Get the position of the right thumbstick X axis
-   /// @param glw_joystick the jotsick position to get
-   /// @return The position of the right thumbstick X axis
-   float GetRightThumbstickXAxis(int glfw_joystick);
-
-   /// @brief Get the position of the right thumbstick Y axis
-   /// @param glw_joystick the jotsick position to get
-   /// @return The position of the right thumbstick Y axis
-   float GetRightThumbstickYAxis(int glfw_joystick);
-
-
-    /// @brief Get the position of the joystick's right trigger
-    /// @param glfw_joystick - the joystick
-    /// @return the position of the joystick's right trigger.
-    float GetRightTrigger(int glfw_joystick);
-
-    /// @brief Get the position of the joystick's left trigger
-    /// @param glfw_joystick - the joystick
-    /// @return the position of the joystick's left trigger.
-    float GetLeftTrigger(int glfw_joystick);
-    
     /// @brief gets mouse pos in UI space
     /// @return returns the current mouse pos as a vec2
     glm::vec2 GetMousePosUI();

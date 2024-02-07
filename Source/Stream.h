@@ -47,7 +47,7 @@ public: // methods
     /// @brief Read the SDL Controller Mappings
     /// @param filepath - The .txt file containing the mappings.
     /// @return A string holding all the mappings
-    static std::string ReadControllerMappings(std::string const& filepath);
+    static std::string ReadFromTXTFile(std::string const& filepath);
 
     /// @brief  Writes json data to a file
     /// @param  filepath    the path of the file to write to
