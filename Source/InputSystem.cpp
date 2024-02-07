@@ -265,27 +265,28 @@ bool InputSystem::GetMouseReleased(int glfw_mouse_button)
     return NULL;
 }
 
-glm::vec2 InputSystem::convert(glm::mat4 matrix)
+
+/// @brief  convert matrix to vec2
+/// @param  transformation  the transformation to apply to the screen-space mouse position
+glm::vec2 InputSystem::getMousePosAfterTransformation( glm::mat4 const& transformation ) const
 {
-    glm::vec2 vec = { 0 , 0 };
-    glm::vec4 vector = { 0 , 0 , 0, 1 };
-    double x = 0;
-    double y = 0;
-    glfwGetCursorPos(handle, &x, &y);
-    vector[0] = (float)x;
-    vector[1] = (float)y;
-    vector = matrix * vector;
-    vec[0] = vector[0];
-    vec[1] = vector[1];
-    return vec;
+    glm::vec< 2, double > mousePosRaw;
+    glfwGetCursorPos( Platform()->GetWindowHandle(), &mousePosRaw.x, &mousePosRaw.y );
+
+    glm::vec2 mousePosScreen = mousePosRaw; // convert from double to float
+    mousePosScreen -= Platform()->GetGameWindowPos();
+
+    return transformation * glm::vec4( mousePosScreen, 0.0f, 1.0f );
 }
+
+
 /// @brief gets mouse pos in UI space
 /// @return returns the current mouse pos as a vec2
 glm::vec2 InputSystem::GetMousePosUI()
 {
     glm::mat4 matrix = Cameras()->GetMat_ScreenToUI();
     
-    return convert(matrix);
+    return getMousePosAfterTransformation( matrix );
 }
 
 /// @brief gets mouse pos in World space
@@ -294,7 +295,7 @@ glm::vec2 InputSystem::GetMousePosWorld()
 {
     glm::mat4 matrix = Cameras()->GetMat_ScreenToWorld();
     
-    return convert(matrix);
+    return getMousePosAfterTransformation( matrix );
 }
 
 //-----------------------------------------------------------------------------
