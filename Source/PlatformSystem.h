@@ -52,7 +52,7 @@ public: // methods
 
     /// @brief  sets whether the window is fullscreen
     /// @param  fullscreen  whether to set the window to fullscreen or windowed
-    void setFullscreen( bool fullscreen );
+    void SetFullscreen( bool fullscreen );
 
 
 //-----------------------------------------------------------------------------
@@ -69,6 +69,9 @@ public: // accessors
     /// @return   glm ivec2: x = width, y = height.
 	glm::ivec2 GetWindowDimensions() const;
 
+    /// @brief   Returns the window name
+    /// @return  std::string: The name of the window.
+    std::string GetImguiWindowName() const;
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
@@ -80,6 +83,11 @@ private: // virtual override methods
 
     /// @brief Shuts down window / GLFW.
     virtual void OnExit() override;
+
+
+    /// @brief  called every graphics frame
+    /// @param  dt  the duration of the frame in seconds
+    virtual void OnUpdate( float dt ) override;
 
 
     /// @brief Debug window for PlatformSystem
@@ -108,10 +116,10 @@ private: // members
 
     /// @brief  callbacks to call whenever the window resizes
     std::map< unsigned, std::function< void ( glm::ivec2 const& ) > > m_OnWindowResizedCallbacks = {};
-
+    
 
 //-----------------------------------------------------------------------------
-private: // methods
+private: // callbacks
 //-----------------------------------------------------------------------------
 
 
@@ -129,11 +137,11 @@ private: // methods
     /// @param  window  handle to the window that was resized
     /// @param  width   the new width of the window
     /// @param  height  the new height of the window
-    static void OnWindowResizeCallback( GLFWwindow* window, int width, int height );
+    static void glfwWindowResizeCallback( GLFWwindow* window, int width, int height );
 
     /// @brief  callback called whenever the GLFW window closes
     /// @param  window  the window that was just closed
-    static void OnWindowCloseCallback( GLFWwindow* window );
+    static void glfwWindowCloseCallback( GLFWwindow* window );
 
 
 //-----------------------------------------------------------------------------

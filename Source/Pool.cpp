@@ -15,6 +15,9 @@
 #include "basics.h"
 #include "DebugSystem.h"
 
+
+/// @brief The templated inspector the pool framework
+/// @return Was the value of the pool changed by the inspector
 template<>
 bool Pool<int>::Inspect()
 {
@@ -33,6 +36,7 @@ bool Pool<int>::Inspect()
 	if (ImGui::Button("Reset"))
 	{
 		Reset();
+        valueChanged = true;
 	}
 
 	return valueChanged;

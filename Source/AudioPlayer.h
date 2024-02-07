@@ -192,6 +192,11 @@ private: // members
     float m_PitchVariance = 0.0f;
 
 
+    /// @brief  allows the AudioPlayer to start playing a new sound before another one is finished,
+    /// @brief  but can no longer control sounds after they start playing
+    bool m_AllowMultipleSounds = false;
+
+
     /// @brief  whether the AudioPlayer should start playing on init
     bool m_PlayOnInit = false;
 
@@ -291,6 +296,10 @@ private: // reading
     /// @brief  read IsSpatial of this component from json
     /// @param  data    the json data
     void readIsSpatial( nlohmann::ordered_json const& data );
+
+    /// @brief  read AllowMultipleSounds of this component from json
+    /// @param  data    the json data
+    void readAllowMultipleSounds( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

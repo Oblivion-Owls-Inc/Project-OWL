@@ -55,17 +55,23 @@
             m_DefaultLoopCount
         );
 
-        // tell the channel which Audioplayer it belongs to
-        m_Channel->setUserData( this );
-
-        // have the channel call the callback
-        m_Channel->setCallback( onFmodChannelCallback );
-
         if ( m_IsSpatial )
         {
             m_Channel->setMode( FMOD_3D );
             setSpatialAttributes();
         }
+
+        if ( m_AllowMultipleSounds )
+        {
+            m_Channel = nullptr;
+            return;
+        }
+
+        // tell the channel which Audioplayer it belongs to
+        m_Channel->setUserData( this );
+
+        // have the channel call the callback
+        m_Channel->setCallback( onFmodChannelCallback );
     }
 
 
@@ -384,6 +390,11 @@
         AudioPlayer* self;
         ((FMOD::Channel*)channelControl)->getUserData( (void**)&self );
 
+        if ( self == nullptr )
+        { // only handle callbacks that belong to an AudioPlayer
+            return FMOD_OK;
+        }
+
         for ( auto& [ key, callback ] : self->m_OnSoundCompleteCallbacks )
         {
             callback();
@@ -425,6 +436,8 @@
             SetIsPaused( paused );
         }
 
+        ImGui::Checkbox( "Play on init", &m_PlayOnInit );
+
         if ( ImGui::Checkbox( "is spatial", &m_IsSpatial ) )
         {
             SetIsSpatial( m_IsSpatial );
@@ -451,6 +464,15 @@
         }
 
         ImGui::DragFloat( "Pitch Variance", &m_PitchVariance, 0.01f, 0.0f, 1.0f );
+
+        ImGui::Checkbox( "Allow Multiple Sounds", &m_AllowMultipleSounds );
+        if ( ImGui::BeginItemTooltip() )
+        {
+            ImGui::PushTextWrapPos( ImGui::GetFontSize() * 35.0f );
+            ImGui::TextUnformatted( "Allows this AudioPlayer to play multiple sounds at once, but loses the ability to control sounds after they start playing" );
+            ImGui::PopTextWrapPos();
+            ImGui::EndTooltip();
+        }
 
         if ( ImGui::Button( "Play" ) )
         {
@@ -519,12 +541,18 @@
         Stream::Read( m_PlayOnInit, data );
     }
 
-
     /// @brief  read IsSpatial of this component from json
     /// @param  data    the json data
     void AudioPlayer::readIsSpatial( nlohmann::ordered_json const& data )
     {
         Stream::Read( m_IsSpatial, data );
+    }
+
+    /// @brief  read AllowMultipleSounds of this component from json
+    /// @param  data    the json data
+    void AudioPlayer::readAllowMultipleSounds( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_AllowMultipleSounds, data );
     }
 
 
@@ -539,14 +567,15 @@
     ReadMethodMap< ISerializable > const& AudioPlayer::GetReadMethods() const
     {
         static ReadMethodMap< AudioPlayer > const readMethods = {
-            { "Sound"           , &AudioPlayer::readSound            },
-            { "Volume"          , &AudioPlayer::readVolume           },
-            { "Pitch"           , &AudioPlayer::readPitch            },
-            { "VolumeVariance"  , &AudioPlayer::readVolumeVariance   },
-            { "PitchVariance"   , &AudioPlayer::readPitchVariance    },
-            { "DefaultLoopCount", &AudioPlayer::readDefaultLoopCount },
-            { "PlayOnInit"      , &AudioPlayer::readPlayOnInit       },
-            { "IsSpatial"       , &AudioPlayer::readIsSpatial        }
+            { "Sound"              , &AudioPlayer::readSound               },
+            { "Volume"             , &AudioPlayer::readVolume              },
+            { "Pitch"              , &AudioPlayer::readPitch               },
+            { "VolumeVariance"     , &AudioPlayer::readVolumeVariance      },
+            { "PitchVariance"      , &AudioPlayer::readPitchVariance       },
+            { "DefaultLoopCount"   , &AudioPlayer::readDefaultLoopCount    },
+            { "PlayOnInit"         , &AudioPlayer::readPlayOnInit          },
+            { "IsSpatial"          , &AudioPlayer::readIsSpatial           },
+            { "AllowMultipleSounds", &AudioPlayer::readAllowMultipleSounds }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -559,14 +588,15 @@
     {
         nlohmann::ordered_json data;
 
-        data[ "Sound"            ] = Stream::Write( m_SoundName        );
-        data[ "Volume"           ] = Stream::Write( m_Volume           );
-        data[ "Pitch"            ] = Stream::Write( m_Pitch            );
-        data[ "VolumeVariance"   ] = Stream::Write( m_VolumeVariance   );
-        data[ "PitchVariance"    ] = Stream::Write( m_PitchVariance    );
-        data[ "DefaultLoopCount" ] = Stream::Write( m_DefaultLoopCount );
-        data[ "PlayOnInit"       ] = Stream::Write( m_PlayOnInit       );
-        data[ "IsSpatial"        ] = Stream::Write( m_IsSpatial        );
+        data[ "Sound"               ] = Stream::Write( m_SoundName           );
+        data[ "Volume"              ] = Stream::Write( m_Volume              );
+        data[ "Pitch"               ] = Stream::Write( m_Pitch               );
+        data[ "VolumeVariance"      ] = Stream::Write( m_VolumeVariance      );
+        data[ "PitchVariance"       ] = Stream::Write( m_PitchVariance       );
+        data[ "DefaultLoopCount"    ] = Stream::Write( m_DefaultLoopCount    );
+        data[ "PlayOnInit"          ] = Stream::Write( m_PlayOnInit          );
+        data[ "IsSpatial"           ] = Stream::Write( m_IsSpatial           );
+        data[ "AllowMultipleSounds" ] = Stream::Write( m_AllowMultipleSounds );
 
         return data;
     }
