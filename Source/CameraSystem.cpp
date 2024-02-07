@@ -108,7 +108,10 @@
     {
         calculateMatrices();
         // recalculate the active camera's height from it's width
-        m_ActiveCamera->SetWidth( m_ActiveCamera->GetWidth() );
+        if ( m_ActiveCamera != nullptr )
+        {
+            m_ActiveCamera->SetWidth( m_ActiveCamera->GetWidth() );
+        }
     }
 
 

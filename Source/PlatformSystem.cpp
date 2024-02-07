@@ -9,6 +9,7 @@
 #include "PlatformSystem.h"
 
 #include "DebugSystem.h"
+#include "RenderSystem.h"
 #include "Engine.h"
 
 // #include <glew.h>       // initialize, error callback
@@ -39,6 +40,56 @@
     }
 
 
+    /// @brief  sets whether the window is fullscreen
+    /// @param  fullscreen  whether to set the window to fullscreen or windowed
+    void PlatformSystem::SetFullscreen( bool fullscreen )
+    {
+        static int savedWidth = m_WindowSize.x;
+        static int savedHeight = m_WindowSize.y;
+        static int savedPosX, savedPosY;
+
+        GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+        GLFWvidmode const* mode = glfwGetVideoMode( monitor );
+
+        m_IsFullscreen = fullscreen;
+
+        if ( m_IsFullscreen == true )
+        {
+            // Save the current window size and position before going fullscreen
+            glfwGetWindowPos( m_Window, &savedPosX, &savedPosY );
+            savedWidth = m_WindowSize.x;
+            savedHeight = m_WindowSize.y;
+
+            // Set the window to fullscreen
+            glfwSetWindowMonitor( m_Window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate );
+
+            // Update m_WindowSize to the new dimensions
+            m_WindowSize = glm::ivec2( mode->width, mode->height );
+
+            glfwSwapInterval(m_VSync ? 1 : 0); // enable vsync
+
+            Debug() << "Fullscreen Mode" << std::endl;
+
+            Debug().ResetViewport();
+        }
+        else
+        {
+            Debug().ResetViewport();
+
+            glfwSwapInterval(m_VSync ? 1 : 0); // enable vsync
+
+            // Update m_WindowSize to the new dimensions
+            m_WindowSize = glm::ivec2( savedWidth, savedHeight );
+
+            // Restore the window's previous size and position
+            glfwSetWindowMonitor( m_Window, nullptr, savedPosX, savedPosY, savedWidth, savedHeight, 0 );
+
+            Debug() << "Windowed Mode" << std::endl;
+        }
+
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
@@ -57,6 +108,14 @@
     glm::ivec2 PlatformSystem::GetWindowDimensions() const
     {
         return m_WindowSize;
+    }
+
+    std::string PlatformSystem::GetImguiWindowName() const
+    {
+        /// Build the window name with the ID appended to it
+        const std::string windowName = m_WindowName + "###" + std::to_string(GetId());
+
+        return windowName;
     }
 
 
@@ -118,8 +177,16 @@
 
         glDebugMessageCallback( openGlErrorCallback, NULL ); // set OpenGL error callback func
 
-        glfwSetWindowSizeCallback( m_Window, OnWindowResizeCallback );
-        glfwSetWindowCloseCallback( m_Window, OnWindowCloseCallback );
+        #ifndef DEBUG
+            glfwSetWindowSizeCallback( m_Window, glfwWindowResizeCallback );
+        #endif
+        glfwSetWindowCloseCallback( m_Window, glfwWindowCloseCallback );
+
+
+        #ifdef DEBUG
+            Renderer()->SetDrawToBuffer(true); // enable drawing to off-screen buffer
+        #endif // DEBUG
+
     }
 
     /// @brief    Shuts down the the platform.
@@ -127,6 +194,53 @@
     {
         glfwDestroyWindow( m_Window );
         glfwTerminate();
+    }
+
+
+    /// @brief  called every graphics frame
+    /// @param  dt  the duration of the frame in seconds
+    void PlatformSystem::OnUpdate(float dt)
+    {
+        /// Create a DockSpace on the Main Viewport for the Debug Window
+        ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
+        dockspace_flags |= ImGuiDockNodeFlags_AutoHideTabBar;
+        ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), dockspace_flags);
+
+        #ifdef DEBUG
+
+        ImGui::PushStyleVar( ImGuiStyleVar_WindowPadding, ImVec2( 0.0f, 0.0f ) );
+        /// Start the ImGui window with the window name
+        ImGui::Begin( GetImguiWindowName().c_str() );
+
+            /// Get the window width and height
+            ImVec2 imGuiSize = ImGui::GetContentRegionAvail();
+            ImVec2 pos = ImGui::GetWindowPos();
+            ImVec2 max = ImVec2( pos.x + imGuiSize.x, pos.y + imGuiSize.y );
+
+            ImGui::GetWindowDrawList()->AddImage(
+                (void*)Renderer()->GetBufferTextureID(),
+                pos,
+                max,
+                ImVec2(0, 1),
+                ImVec2(1, 0)
+            );
+
+        ImGui::End();
+        ImGui::PopStyleVar();
+
+
+        glm::ivec2 windowSize = glm::ivec2( (int)imGuiSize.x, (int)imGuiSize.y );
+        if ( windowSize != m_WindowSize )
+        {
+            m_WindowSize = windowSize;
+
+            for ( auto& [ key, callback ] : m_OnWindowResizedCallbacks )
+            {
+                callback( m_WindowSize );
+            }
+        }
+
+        #endif /// DEBUG  
     }
 
 
@@ -138,64 +252,13 @@
 
         if ( ImGui::Button( m_IsFullscreen ? "Fullscreen Mode" : "Windowed Mode" ) )
         {
-            setFullscreen( !m_IsFullscreen );
+            SetFullscreen( !m_IsFullscreen );
         }
     }
 
-
 //-----------------------------------------------------------------------------
-// private: methods
+// private: callbacks
 //-----------------------------------------------------------------------------
-
-
-    /// @brief  sets whether the window is fullscreen
-    /// @param  fullscreen  whether to set the window to fullscreen or windowed
-    void PlatformSystem::setFullscreen( bool fullscreen )
-    {
-        static int savedWidth = m_WindowSize.x;
-        static int savedHeight = m_WindowSize.y;
-        static int savedPosX, savedPosY;
-
-        GLFWmonitor* monitor = glfwGetPrimaryMonitor();
-        GLFWvidmode const* mode = glfwGetVideoMode( monitor );
-
-        m_IsFullscreen = fullscreen;
-
-        if ( m_IsFullscreen == true )
-        {
-            // Save the current window size and position before going fullscreen
-            glfwGetWindowPos( m_Window, &savedPosX, &savedPosY );
-            savedWidth = m_WindowSize.x;
-            savedHeight = m_WindowSize.y;
-
-            // Set the window to fullscreen
-            glfwSetWindowMonitor( m_Window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate );
-
-            // Update m_WindowSize to the new dimensions
-            m_WindowSize = glm::ivec2( mode->width, mode->height );
-
-            glfwSwapInterval(m_VSync ? 1 : 0); // enable vsync
-
-            Debug() << "Fullscreen Mode" << std::endl;
-
-            Debug().ResetViewport();
-        }
-        else
-        {
-            Debug().ResetViewport();
-
-            glfwSwapInterval(m_VSync ? 1 : 0); // enable vsync
-
-            // Update m_WindowSize to the new dimensions
-            m_WindowSize = glm::ivec2( savedWidth, savedHeight );
-
-            // Restore the window's previous size and position
-            glfwSetWindowMonitor( m_Window, nullptr, savedPosX, savedPosY, savedWidth, savedHeight, 0 );
-
-            Debug() << "Windowed Mode" << std::endl;
-        }
-
-    }
 
 
     /// @brief            (callback) Gets called when there's some OpenGL error
@@ -231,9 +294,10 @@
     /// @param  window  handle to the window that was resized
     /// @param  width   the new width of the window
     /// @param  height  the new height of the window
-    void PlatformSystem::OnWindowResizeCallback( GLFWwindow* window, int width, int height )
+    void PlatformSystem::glfwWindowResizeCallback( GLFWwindow* window, int width, int height )
     {
         PlatformSystem* self = Platform();
+
         self->m_WindowSize = glm::ivec2( width, height );
 
         for ( auto& [ key, callback ] : self->m_OnWindowResizedCallbacks )
@@ -244,7 +308,7 @@
 
     /// @brief  callback called whenever the GLFW window closes
     /// @param  window  the window that was just closed
-    void PlatformSystem::OnWindowCloseCallback( GLFWwindow* window )
+    void PlatformSystem::glfwWindowCloseCallback( GLFWwindow* window )
     {
         Debug() << "Window Close Callback" << std::endl;
         Engine::GetInstance()->Close();
