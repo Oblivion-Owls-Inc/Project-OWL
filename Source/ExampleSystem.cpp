@@ -1,46 +1,93 @@
 /// @file       ExampleSystem.cpp
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      Example System meant to be copy-pasted when creating new Systems
+/// @brief      DESCRIPTION HERE
 /// @version    0.1
-/// @date       2023-09-05
+/// @date       DATE HERE
 /// 
-/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+/// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
 
 #include "ExampleSystem.h"
 
 //-----------------------------------------------------------------------------
-// virtual override methods
+// public: methods
 //-----------------------------------------------------------------------------
 
     
 //-----------------------------------------------------------------------------
-// private: reading
+// public: virtual override methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  map of the ExampleSystem read methods
-    ReadMethodMap< ExampleSystem > const ExampleSystem::s_ReadMethods = {};
 
 //-----------------------------------------------------------------------------
-// singleton stuff
+// private: members
 //-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Gets Called by the Debug system to display debug information
+    void ExampleSystem::DebugWindow()
+    {}
+
+
+//-----------------------------------------------------------------------------
+// public: reading / writing
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< ISerializable > const& ExampleSystem::GetReadMethods() const
+    {
+        static ReadMethodMap< ExampleSystem > const readMethods = {};
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
+
+    /// @brief  writes this ExampleSystem to JSON
+    /// @return the JSON data of this ExampleSystem
+    nlohmann::ordered_json ExampleSystem::Write() const
+    {
+        nlohmann::ordered_json json;
+        return json;
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: singleton stuff
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the instance of ExampleSystem
+    /// @return the instance of the ExampleSystem
+    ExampleSystem* ExampleSystem::GetInstance()
+    {
+        static ExampleSystem* instance = nullptr;
+        if ( instance == nullptr )
+        {
+            instance = new ExampleSystem();
+        }
+        return instance;
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: singleton stuff
+//-----------------------------------------------------------------------------
+
 
     /// @brief  Constructs the ExampleSystem
     ExampleSystem::ExampleSystem() :
         System( "ExampleSystem" )
     {}
 
-    /// @brief  The singleton instance of ExampleSystem
-    ExampleSystem * ExampleSystem::s_Instance = nullptr;
-
-    /// @brief  gets the instance of ExampleSystem
-    /// @return the instance of the ExampleSystem
-    ExampleSystem * ExampleSystem::GetInstance()
-    {
-        if ( s_Instance == nullptr )
-        {
-            s_Instance = new ExampleSystem();
-        }
-        return s_Instance;
-    }
 
 //-----------------------------------------------------------------------------

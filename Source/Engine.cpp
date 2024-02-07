@@ -23,6 +23,7 @@
 #include "EntitySystem.h"
 #include "CameraSystem.h"
 #include "TileInfoSystem.h"
+#include "EventSystem.h"
 
 #include "AssetLibrarySystem.h"
 #include "Sound.h"
@@ -344,6 +345,7 @@
         { "EntitySystem"                    , &addSystem< EntitySystem    >                             },
         { "ParticleSystem",                   &addSystem< ParticleSystem  >                             },
         { "CheatSystem"                     , &addSystem< CheatSystem     >                             },
+        { "EventSystem"                     , &addSystem< EventSystem     >                             },
 
         { "BehaviorSystem<RigidBody>"       , &addSystem< BehaviorSystem< RigidBody      > >            },
         { "BehaviorSystem<Behavior>"        , &addSystem< BehaviorSystem< Behavior       > >            },

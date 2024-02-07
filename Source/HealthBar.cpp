@@ -133,7 +133,7 @@
     void HealthBar::onHealthChangedCallback()
     {
         Pool< int > const& health = *m_ParentHealth->GetHealth();
-        m_CurrentHealthPortion = (float)health.GetCurrent() / health.GetDefault();
+        m_CurrentHealthPortion = (float)health.GetCurrent() / health.GetMaximum();
 
         m_RecentHealthVelocity = 0.0f;
     }
