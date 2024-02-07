@@ -15,7 +15,6 @@
 #include "AssetLibrarySystem.h"
 #include "Inspection.h"
 
-
 //-----------------------------------------------------------------------------
 // public: constructor / destructors
 //-----------------------------------------------------------------------------
@@ -96,6 +95,18 @@ Sprite::Sprite(Sprite const& other) :
     {
         if (!m_Texture)
             return;
+
+        if ( m_Transform == nullptr )
+        {
+            Debug() << "WARNING: Sprite component must have an attached Transform on entity \"" << GetEntity()->GetName() << "\"" << std::endl;
+            return;
+        }
+
+        if ( m_Texture->GetMesh() == nullptr )
+        {
+            Debug() << "WARNING: texture attached to sprite on \"" << GetEntity()->GetName() << "\" does not have an associated mesh"<< std::endl;
+            return;
+        }
 
         Shader* sh = Renderer()->SetActiveShader("texture");
         m_Texture->Bind();
@@ -276,6 +287,28 @@ void Sprite::OnExit()
 			SetFrameIndex(m_FrameIndex);
 		}
     }
+
+
+    /// @brief  called whenever another component is added to this component's Entity in the inspector
+    /// @param  component   the component that was added
+    void Sprite::OnInspectorAddComponent( Component* component )
+    {
+        if ( dynamic_cast< Transform* >( component ) != nullptr )
+        {
+            m_Transform = dynamic_cast< Transform* >( component );
+        }
+    }
+
+    /// @brief  called whenever another component is removed from this component's Entity in the inspector
+    /// @param  component   the component that will be removed
+    void Sprite::OnInspectorRemoveComponent( Component* component )
+    {
+        if ( dynamic_cast< Transform* >( component ) == m_Transform )
+        {
+            m_Transform = nullptr;
+        }
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: methods
