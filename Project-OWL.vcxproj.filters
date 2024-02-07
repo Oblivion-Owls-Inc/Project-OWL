@@ -291,6 +291,9 @@
     <Filter Include="Engine\Entity\Component\Behavior\UiButton">
       <UniqueIdentifier>{0c4f432e-8200-4f23-8c96-b0be0ad4f937}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\TilemapTextureConnector">
+      <UniqueIdentifier>{f6c41e19-950d-4898-b359-f64157800677}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -586,6 +589,9 @@
     </ClCompile>
     <ClCompile Include="Source\UiButton.cpp">
       <Filter>Engine\Entity\Component\Behavior\UiButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TilemapTextureConnector.cpp">
+      <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -891,6 +897,9 @@
     </ClInclude>
     <ClInclude Include="Source\UiButton.h">
       <Filter>Engine\Entity\Component\Behavior\UiButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TilemapTextureConnector.h">
+      <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
