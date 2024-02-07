@@ -9,6 +9,7 @@
 #include "PlatformSystem.h"
 
 #include "DebugSystem.h"
+#include "RenderSystem.h"
 #include "Engine.h"
 
 // #include <glew.h>       // initialize, error callback
@@ -57,6 +58,14 @@
     glm::ivec2 PlatformSystem::GetWindowDimensions() const
     {
         return m_WindowSize;
+    }
+
+    std::string PlatformSystem::GetImguiWindowName() const
+    {
+        /// Build the window name with the ID appended to it
+        const std::string windowName = m_WindowName + "###" + std::to_string(GetId());
+
+        return windowName;
     }
 
 
@@ -120,6 +129,12 @@
 
         glfwSetWindowSizeCallback( m_Window, OnWindowResizeCallback );
         glfwSetWindowCloseCallback( m_Window, OnWindowCloseCallback );
+
+
+#ifdef DEBUG
+        Renderer()->SetDrawToBuffer(true); // enable drawing to off-screen buffer
+#endif // DEBUG
+
     }
 
     /// @brief    Shuts down the the platform.
@@ -127,6 +142,34 @@
     {
         glfwDestroyWindow( m_Window );
         glfwTerminate();
+    }
+
+    void PlatformSystem::OnUpdate(float dt)
+    {
+        #ifdef DEBUG
+
+        //glm::ivec2 pos = { 0, 0 };
+        //
+        ///// Get the window position
+        //glfwGetWindowPos(m_Window, &pos.x, &pos.y);
+        //
+        ///// Start the ImGui window with the window name
+        //ImGui::Begin(GetImguiWindowName().c_str());
+
+        ///// Get the window width and height
+        //const float window_width = ImGui::GetContentRegionAvail().x;
+        //const float window_height = ImGui::GetContentRegionAvail().y;
+
+        //ImGui::GetWindowDrawList()->AddImage(
+        //    (void*)Renderer()->GetBufferTextureID(),
+        //    ImVec2(pos.x, pos.y),
+        //    ImVec2(pos.x + window_width, pos.y + window_height),
+        //    ImVec2(0, 1),
+        //    ImVec2(1, 0)
+        //);
+        //ImGui::End();
+
+        #endif /// DEBUG  
     }
 
 
