@@ -51,7 +51,7 @@ public: // public methods
     static bool SelectEntityFromScene( char const* label, Entity** selectedEntity );
 
 
-    /// @brief  inspects a (non-reorderable) array of elements
+    /// @brief  inspects an array of elements
     /// @tparam DataType            the type of data in the array
     /// @param  label               the label of the array inspector
     /// @param  array               the array to inspect
@@ -62,6 +62,20 @@ public: // public methods
         char const* label,
         std::vector< DataType >* array,
         std::function< bool ( DataType* ) > elementInspector
+    );
+
+    /// @brief  inspects a static-sized array of elements
+    /// @tparam DataType            the type of data in the array
+    /// @tparam count               the number of elements in the array
+    /// @param  label               the label of the array inspector
+    /// @param  array               the array to inspect
+    /// @param  elementInspector    the funvtion to use to insepct each element of the array
+    /// @return (bool)              whether the array was modified
+    template < typename DataType, int count >
+    static bool InspectStaticArray(
+        char const* label,
+        DataType* array,
+        std::function< bool( DataType* ) > elementInspector
     );
 
 
@@ -225,5 +239,49 @@ private: // helper methods
         return modified;
     }
 
+
+    /// @brief  inspects a static-sized array of elements
+    /// @tparam DataType            the type of data in the array
+    /// @tparam count               the number of elements in the array
+    /// @param  label               the label of the array inspector
+    /// @param  array               the array to inspect
+    /// @param  elementInspector    the funvtion to use to insepct each element of the array
+    /// @return (bool)              whether the array was modified
+    template < typename DataType, int count >
+    bool Inspection::InspectStaticArray(
+        char const* label,
+        DataType* array,
+        std::function< bool( DataType* ) > elementInspector
+    )
+    {
+        bool modified = false;
+
+        ImGui::BeginTable( label, 1, ImGuiTableFlags_Borders );
+
+        ImGui::TableNextRow();
+        ImGui::TableNextColumn();
+        
+        ImGui::Text( "%s", label );
+
+        for ( int i = 0; i < count; ++i )
+        {
+            ImGui::TableNextRow();
+            ImGui::TableNextColumn();
+
+            ImGui::PushID( i );
+
+            // inspect the element
+            if ( elementInspector( &(array)[ i ] ) )
+            {
+                modified = true;
+            }
+
+            ImGui::PopID();
+        }
+
+        ImGui::EndTable();
+
+        return modified;
+    }
 
 //-----------------------------------------------------------------------------
