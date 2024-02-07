@@ -79,7 +79,6 @@ void RenderSystem::OnUpdate(float dt)
         // draw the screen buffer to actual screen
         Shader* shdr = SetActiveShader("texture");
         glm::mat4 m(glm::mat2(2.0f));
-        m[1][1] = -m[1][1];
         glUniformMatrix4fv(shdr->GetUniformID("mvp"), 1, false, &m[0][0]);
         glUniform1f(shdr->GetUniformID("opacity"), 1.0f);
         glUniform2f(shdr->GetUniformID("UV_offset"), 0.0f, 0.0f);

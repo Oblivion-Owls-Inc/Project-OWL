@@ -105,6 +105,9 @@ public:
     /// @param draw     true: draw off-screen.   false: draw normally.
     __inline void SetDrawToBuffer(bool draw) { m_DrawToBuffer = draw; }
 
+
+    __inline bool GetDrawToBuffer() const { return m_DrawToBuffer; }
+
     /// @brief          Get texture ID of the off-screen buffer
     /// @return         texture ID
     __inline unsigned int GetBufferTextureID() const { return m_ScreenBufferTexID; }
