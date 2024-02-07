@@ -98,8 +98,12 @@ Sprite::Sprite(Sprite const& other) :
 
         if ( m_Transform == nullptr )
         {
-            Debug() << "WARNING: Sprite component must have an attached Transform on entity \"" << GetEntity()->GetName() << "\"" << std::endl;
-            return;
+            m_Transform = GetEntity()->GetComponent< Transform >();
+            if ( m_Transform == nullptr )
+            {
+                Debug() << "WARNING: Sprite component must have an attached Transform on entity \"" << GetEntity()->GetName() << "\"" << std::endl;
+                return;
+            }
         }
 
         if ( m_Texture->GetMesh() == nullptr )
