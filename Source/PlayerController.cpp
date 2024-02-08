@@ -144,7 +144,7 @@ void PlayerController::OnFixedUpdate()
         {
             float distance = glm::distance<>(generator->GetEntity()->GetComponent<Transform>()->GetTranslation(),
                 GetEntity()->GetComponent<Transform>()->GetTranslation());
-            if (generator->GetActivateRadius() > distance)
+            if (generator->GetActivationRadius() > distance)
             {
                 generator->Activate();
                 return;

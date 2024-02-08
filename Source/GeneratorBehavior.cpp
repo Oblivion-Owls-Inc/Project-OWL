@@ -30,45 +30,15 @@ GeneratorBehavior::GeneratorBehavior() : BasicEntityBehavior(typeid(GeneratorBeh
 	m_depth = 0;
 }
 
-/// @brief  copy ctor
-GeneratorBehavior::GeneratorBehavior(const GeneratorBehavior& other) : BasicEntityBehavior(other)
-{
-	m_isActive = other.m_isActive;
-	m_powerRadius = other.m_powerRadius;
-	m_activationRadius = other.m_activationRadius;
-	m_depth = other.m_depth;
-	//Behaviors<GeneratorBehavior>()->GetComponents();
-}
-
 /// @brief  dtor
 GeneratorBehavior::~GeneratorBehavior()
 {
 }
 
 /// @brief  clone
-Component* GeneratorBehavior::Clone() const
+GeneratorBehavior* GeneratorBehavior::Clone() const
 {
 	return new GeneratorBehavior(*this);
-}
-
-//-----------------------------------------------------------------------------
-// accessor
-//-----------------------------------------------------------------------------
-
-/// @brief	returns the lowest generator in the level
-/// @return entity pointer to the lowest generator
-Entity* GeneratorBehavior::GetLowestGenerator()
-{
-	int first = 1;
-	GeneratorBehavior* give = Behaviors<GeneratorBehavior>()->GetComponents().front();
-	for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
-	{
-		if (generator->m_depth > give->m_depth)
-		{
-			give = generator;
-		}
-	}
-	return give->GetEntity();
 }
 
 //-----------------------------------------------------------------------------
@@ -81,14 +51,14 @@ void GeneratorBehavior::OnInit()
 	BehaviorSystem<GeneratorBehavior>::GetInstance()->AddComponent(this);
 	//BasicEntityBehavior::OnInit();
 
-	GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionCallback(
+	GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionEnterCallback(
 		GetId(),
-		std::bind(&GeneratorBehavior::onCollision, this, std::placeholders::_1, std::placeholders::_2)
+		std::bind(&GeneratorBehavior::onCollisionEnter, this, std::placeholders::_1)
 	);
 
 	m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
 
-	const std::string name = GetEntity()->GetName();
+	//const std::string name = GetEntity()->GetName();
 }
 
 /// @brief	called on exit, handles loss state
@@ -98,17 +68,44 @@ void GeneratorBehavior::OnExit()
 	//BasicEntityBehavior::OnExit();
 }
 
-/// @brief	inspector for generators
-void GeneratorBehavior::Inspector()
+//-----------------------------------------------------------------------------
+// copying
+//-----------------------------------------------------------------------------
+
+/// @brief  copy ctor
+GeneratorBehavior::GeneratorBehavior(const GeneratorBehavior& other) : BasicEntityBehavior(other)
 {
-	ImGui::InputFloat("Radius", &m_powerRadius, 0.5f, 1.0f);
-	ImGui::InputFloat("Activate Radius", &m_activationRadius, 0.5f, 1.0f);
-	ImGui::InputInt("Depth", &m_depth, 1, 5);
-	if (ImGui::Checkbox("Active", &m_isActive)) {}
+	m_isActive = other.m_isActive;
+	m_powerRadius = other.m_powerRadius;
+	m_activationRadius = other.m_activationRadius;
+	m_depth = other.m_depth;
 }
 
+//-----------------------------------------------------------------------------
+// accessors
+//-----------------------------------------------------------------------------
+
+/// @brief	returns the lowest generator in the level
+/// @return entity pointer to the lowest generator
+Entity* GeneratorBehavior::GetLowestGenerator()
+{
+	GeneratorBehavior* give = Behaviors<GeneratorBehavior>()->GetComponents().front();
+	for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
+	{
+		if (generator->m_depth > give->m_depth)
+		{
+			give = generator;
+		}
+	}
+	return give->GetEntity();
+}
+
+//-----------------------------------------------------------------------------
+// private functions
+//-----------------------------------------------------------------------------
+
 /// @brief collision callback for generators
-void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collisionData)
+void GeneratorBehavior::onCollisionEnter(Collider* other)
 {
 	if (m_isActive)
 	{
@@ -118,7 +115,8 @@ void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collis
 			return;
 		}
 		Health* health = GetEntity()->GetComponent<Health>();
-		health->GetHealth()->SetCurrent(health->GetHealth()->GetCurrent() - enemy->GetDamage());
+		//health->GetHealth()->SetCurrent(health->GetHealth()->GetCurrent() - enemy->GetDamage());
+		health->TakeDamage(enemy->GetDamage());
 		//BasicEntityBehavior::TakeDamage(enemy->GetDamage());
 
 		if (m_AudioPlayer)
@@ -131,13 +129,26 @@ void GeneratorBehavior::onCollision(Collider* other, CollisionData const& collis
 		{
 			m_isActive = false;
 			health->GetHealth()->SetCurrent(
-			health->GetHealth()->GetDefault());
+			health->GetHealth()->GetMaximum());
 			if (GetEntity()->GetComponent<BaseBehavior>())
 			{
 				GetEntity()->GetComponent<BaseBehavior>()->Destroy();
 			}
 		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+// inspector methods
+//-----------------------------------------------------------------------------
+
+/// @brief	inspector for generators
+void GeneratorBehavior::Inspector()
+{
+	ImGui::InputFloat("Radius", &m_powerRadius, 0.5f, 1.0f);
+	ImGui::InputFloat("Activate Radius", &m_activationRadius, 0.5f, 1.0f);
+	ImGui::InputInt("Depth", &m_depth, 1, 5);
+	ImGui::Checkbox("Active", &m_isActive);
 }
 
 //-----------------------------------------------------------------------------
@@ -152,10 +163,6 @@ ReadMethodMap<GeneratorBehavior> const GeneratorBehavior::s_ReadMethods =
 	{ "Depth",	  &readDepth},
 	{ "Active",	  &readActive},
 };
-
-//-----------------------------------------------------------------------------
-// writing
-//-----------------------------------------------------------------------------
 
 /// @brief	read the raidus from json
 void GeneratorBehavior::readRadius(nlohmann::ordered_json const& json)
@@ -180,6 +187,10 @@ void GeneratorBehavior::readActive(nlohmann::ordered_json const& json)
 {
 	m_isActive = Stream::Read<bool>(json);
 }
+
+//-----------------------------------------------------------------------------
+// writing
+//-----------------------------------------------------------------------------
 
 /// @brief	write to json
 nlohmann::ordered_json GeneratorBehavior::Write() const

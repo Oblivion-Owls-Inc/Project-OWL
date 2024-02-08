@@ -22,11 +22,13 @@ public: // constructor / destructors
 
     /// @brief  constructor
     GeneratorBehavior();
+
     /// @brief dtor
     ~GeneratorBehavior();
+
     /// @brief Generator clone
     /// @return Component pointer of the cloned generator behavior
-    Component* Clone() const override;
+    virtual GeneratorBehavior* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -39,10 +41,7 @@ public: // virtual override methods
     /// @brief called when Generator exits
     virtual void OnExit() override;
 
-    /// @brief handles a collision with the generator
-    /// @param other collider of colliding entity
-    /// @param collision data for the collision
-    void onCollision(Collider* other, CollisionData const& collisionData);
+    
     
 //-----------------------------------------------------------------------------
 private: // copying
@@ -61,11 +60,11 @@ public: // accessors
 
     /// @brief returns the radius within turrets are powered
     /// @return the power radius of the generator
-    float GetRadius() { return m_powerRadius; }
+    float GetPowerRadius() { return m_powerRadius; }
 
     /// @brief returns the radius a player can activate a generator within
     /// @return current radius for activating a generator
-    float GetActivateRadius() { return m_activationRadius; }
+    float GetActivationRadius() { return m_activationRadius; }
 
     /// @brief activate the generator
     void Activate() { m_isActive = true; }
@@ -74,12 +73,29 @@ public: // accessors
 private: // variables
 //-----------------------------------------------------------------------------
 
+    /// @brief  audio
     AudioPlayer* m_AudioPlayer = nullptr;
 
-    bool m_isActive;        // is the generator active
-    float m_powerRadius;         // radius to power turrets
-    float m_activationRadius; // radius a play can activate within
-    int m_depth;            // depth value of the generator
+    /// @brief  is the generator active or not
+    bool m_isActive;        
+
+    /// @brief  radius the generator power turrets within
+    float m_powerRadius;         
+
+    /// @brief  radius a player can activate the generator within
+    float m_activationRadius;
+
+    /// @brief  depth value of the generator, used for determening lowest
+    int m_depth;            
+
+//-----------------------------------------------------------------------------
+private: // private functions
+//-----------------------------------------------------------------------------
+
+    /// @brief handles a collision with the generator
+        /// @param other collider of colliding entity
+        /// @param collision data for the collision
+    void onCollisionEnter(Collider* other);
 
 //-----------------------------------------------------------------------------
 private: // inspector methods

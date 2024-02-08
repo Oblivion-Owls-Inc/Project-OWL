@@ -136,7 +136,7 @@
         {
             float distance = glm::distance<>(generator->GetEntity()->GetComponent<Transform>()->GetTranslation(),
                 GetEntity()->GetComponent<Transform>()->GetTranslation());
-            if (generator->GetRadius() > distance)
+            if (generator->GetPowerRadius() > distance)
             {
                 m_IsActive = true;
                 return;
