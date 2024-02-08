@@ -5,7 +5,7 @@
 /// @author Aidan Straker (aidan.straker)
 /// @date   September 2023
 ///
-/// @copyright © 2023 DigiPen (USA) Corporation.
+/// @copyright Â© 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 
 //-----------------------------------------------------------------------------
@@ -49,6 +49,8 @@
 #include "UiBarSprite.h"
 #include "HealthBar.h"
 #include "CameraBehavior.h"
+#include "UiButton.h"
+#include "TilemapTextureConnector.h"
 
 
 //-----------------------------------------------------------------------------
@@ -132,45 +134,46 @@
 
     /// @brief  map containing information on Component types by name
     std::map< std::string, std::pair< std::type_index, Component* (*)() > > const ComponentFactory::s_ComponentTypes = {
-        { "Transform"           , ComponentInfo< Transform >()            },
-        { "Sprite"              , ComponentInfo< Sprite >()               },
-        { "RigidBody"           , ComponentInfo< RigidBody >()            },
-        { "MovementAI"          , ComponentInfo< MovementAI >()           },
-        { "CircleCollider"      , ComponentInfo< CircleCollider >()       },
-        { "AudioPlayer"         , ComponentInfo< AudioPlayer >()          },
-        { "AudioListener"       , ComponentInfo< AudioListener >()        },
-        { "Animation"           , ComponentInfo< Animation >()            },
-        { "Text"                , ComponentInfo< Text >()                 },
-        { "PlayerController"    , ComponentInfo< PlayerController >()     },
-		{ "EnemyBehavior"       , ComponentInfo< EnemyBehavior >()        },
-		{ "BulletBehavior"      , ComponentInfo< BulletBehavior >()       },
-        { "TurretBehavior"      , ComponentInfo< TurretBehavior >()       },
-        { "EffectAnimator"      , ComponentInfo< EffectAnimator >()       },
-        { "Tilemap<int>"        , ComponentInfo< Tilemap< int > >()       },
-        { "Tilemap<Entity*>"    , ComponentInfo< Tilemap< Entity* > >()   },
-        { "TilemapSprite"       , ComponentInfo< TilemapSprite >()        },
-        { "Pathfinder"          , ComponentInfo< Pathfinder >()           },
-        { "TilemapCollider"     , ComponentInfo< TilemapCollider >()      },
-        { "StaticBody"          , ComponentInfo< StaticBody >()           },
-        { "ConstructionBehavior", ComponentInfo< ConstructionBehavior >() },
-        { "Camera"              , ComponentInfo< Camera >()               },
-        { "WavesBehavior"       , ComponentInfo< WavesBehavior >()        },
-        { "Emitter"             , ComponentInfo< Emitter >()              },
-        { "EmitterSprite"       , ComponentInfo< EmitterSprite >()        },
-        { "BaseBehavior"        , ComponentInfo< BaseBehavior >()         },
-        { "Health"              , ComponentInfo< Health >()               },
-        { "UiElement"           , ComponentInfo< UiElement >()            },
-        { "MiningLaser"         , ComponentInfo< MiningLaser >()          },
-        { "ItemComponent"       , ComponentInfo< ItemComponent >()        },
-        { "TilemapItemDropper"  , ComponentInfo< TilemapItemDropper >()   },
-        { "Inventory"           , ComponentInfo< Inventory >()            },
-        { "ItemCollector"       , ComponentInfo< ItemCollector >()        },
-        { "HealthBar"           , ComponentInfo< HealthBar >()            },
-        { "UiBarSprite"         , ComponentInfo< UiBarSprite >()          },
-
-        { "Light"               , ComponentInfo< Light >()                },
-        { "CameraBehavior"      , ComponentInfo< CameraBehavior >()       },
-        { "GeneratorBehavior"   , ComponentInfo< GeneratorBehavior >()    }
+        { "Transform"              , ComponentInfo< Transform >()               },
+        { "Sprite"                 , ComponentInfo< Sprite >()                  },
+        { "RigidBody"              , ComponentInfo< RigidBody >()               },
+        { "MovementAI"             , ComponentInfo< MovementAI >()              },
+        { "CircleCollider"         , ComponentInfo< CircleCollider >()          },
+        { "AudioPlayer"            , ComponentInfo< AudioPlayer >()             },
+        { "AudioListener"          , ComponentInfo< AudioListener >()           },
+        { "Animation"              , ComponentInfo< Animation >()               },
+        { "Text"                   , ComponentInfo< Text >()                    },
+        { "PlayerController"       , ComponentInfo< PlayerController >()        },
+		{ "EnemyBehavior"          , ComponentInfo< EnemyBehavior >()           },
+		{ "BulletBehavior"         , ComponentInfo< BulletBehavior >()          },
+        { "TurretBehavior"         , ComponentInfo< TurretBehavior >()          },
+        { "EffectAnimator"         , ComponentInfo< EffectAnimator >()          },
+        { "Tilemap<int>"           , ComponentInfo< Tilemap< int > >()          },
+        { "Tilemap<Entity*>"       , ComponentInfo< Tilemap< Entity* > >()      },
+        { "TilemapSprite"          , ComponentInfo< TilemapSprite >()           },
+        { "Pathfinder"             , ComponentInfo< Pathfinder >()              },
+        { "TilemapCollider"        , ComponentInfo< TilemapCollider >()         },
+        { "StaticBody"             , ComponentInfo< StaticBody >()              },
+        { "ConstructionBehavior"   , ComponentInfo< ConstructionBehavior >()    },
+        { "Camera"                 , ComponentInfo< Camera >()                  },
+        { "WavesBehavior"          , ComponentInfo< WavesBehavior >()           },
+        { "Emitter"                , ComponentInfo< Emitter >()                 },
+        { "EmitterSprite"          , ComponentInfo< EmitterSprite >()           },
+        { "BaseBehavior"           , ComponentInfo< BaseBehavior >()            },
+        { "Health"                 , ComponentInfo< Health >()                  },
+        { "UiElement"              , ComponentInfo< UiElement >()               },
+        { "MiningLaser"            , ComponentInfo< MiningLaser >()             },
+        { "ItemComponent"          , ComponentInfo< ItemComponent >()           },
+        { "TilemapItemDropper"     , ComponentInfo< TilemapItemDropper >()      },
+        { "Inventory"              , ComponentInfo< Inventory >()               },
+        { "ItemCollector"          , ComponentInfo< ItemCollector >()           },
+        { "HealthBar"              , ComponentInfo< HealthBar >()               },
+        { "UiBarSprite"            , ComponentInfo< UiBarSprite >()             },
+        { "UiButton"               , ComponentInfo< UiButton >()                },
+        { "Light"                  , ComponentInfo< Light >()                   },
+        { "CameraBehavior"         , ComponentInfo< CameraBehavior >()          },
+        { "TilemapTextureConnector", ComponentInfo< TilemapTextureConnector >() },
+        { "GeneratorBehavior"      , ComponentInfo< GeneratorBehavior >()       }
     };
 
 //-----------------------------------------------------------------------------

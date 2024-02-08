@@ -24,6 +24,12 @@ void Tilemap<int>::Inspector()
         SetDimensions( dimensions );
     }
 
+    glm::vec2 tileSize = GetTileScale();
+    if ( ImGui::DragFloat2( "Tile Scale", &tileSize[ 0 ], 0.05f ) )
+    {
+        SetTileScale( tileSize );
+    }
+
     static std::string buffer;
     ImGui::InputTextMultiline( "Tilemap Data CSV", &buffer );
 

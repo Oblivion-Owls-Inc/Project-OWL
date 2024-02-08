@@ -1,0 +1,182 @@
+{
+    "Assets": {
+        "Sounds": null,
+        "Textures": {
+            "Tilesheet": {
+                "Filepath": "Data/Textures/Tiles/ConnectedTextures.png",
+                "SheetDimensions": [
+                    4,
+                    4
+                ],
+                "Pivot": [
+                    0.0,
+                    1.0
+                ]
+            }
+        },
+        "TransformAnimations": null,
+        "Animations": null,
+        "Archetypes": null
+    },
+    "Entities": {
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 9.050000190734863,
+                    "IsActive": true
+                },
+                "Transform": {
+                    "Translation": [
+                        2.0,
+                        -1.899999976158142
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Tilemap": {
+            "Name": "Tilemap",
+            "Components": {
+                "Tilemap<int>": {
+                    "Dimensions": [
+                        2,
+                        2
+                    ],
+                    "TileScale": [
+                        1.0,
+                        1.0
+                    ],
+                    "TileData": [
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "TilemapDisplay",
+                    "Components": {
+                        "Tilemap<int>": {
+                            "Dimensions": [
+                                4,
+                                4
+                            ],
+                            "TileScale": [
+                                1.0,
+                                1.0
+                            ],
+                            "TileData": [
+                                4,
+                                8,
+                                8,
+                                5,
+                                11,
+                                3,
+                                3,
+                                11,
+                                10,
+                                3,
+                                3,
+                                9,
+                                6,
+                                9,
+                                10,
+                                7
+                            ]
+                        },
+                        "TilemapSprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": "Tilesheet"
+                        },
+                        "TilemapTextureConnector": {
+                            "FirstTileOffset": 0,
+                            "TexturesPerTile": 24,
+                            "TopLeftTextures": [
+                                4,
+                                10,
+                                4,
+                                10,
+                                8,
+                                12,
+                                8,
+                                3
+                            ],
+                            "TopRightTextures": [
+                                5,
+                                8,
+                                5,
+                                8,
+                                9,
+                                13,
+                                9,
+                                3
+                            ],
+                            "BottomLeftTextures": [
+                                6,
+                                11,
+                                6,
+                                11,
+                                10,
+                                14,
+                                10,
+                                3
+                            ],
+                            "BottomRightTextures": [
+                                7,
+                                9,
+                                7,
+                                9,
+                                11,
+                                15,
+                                11,
+                                3
+                            ]
+                        },
+                        "Transform": {
+                            "Translation": [
+                                0.0,
+                                0.0
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        }
+    }
+}

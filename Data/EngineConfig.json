@@ -9,6 +9,7 @@
             "WindowName": "Dig Deeper",
             "VSync": true
         },
+        "EventSystem": {},
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
