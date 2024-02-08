@@ -1,59 +1,85 @@
 /// @file       ExampleSystem.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      Example System meant to be copy-pasted when creating new Systems
+/// @brief      DESCRIPTION HERE
 /// @version    0.1
-/// @date       2023-09-05
+/// @date       DATE HERE
 /// 
-/// @copyright  Copyright (c) 2023
+/// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
 
 #pragma once
 
 #include "System.h"
 
-/// @brief  Example System meant to be copy-pasted when creating new Systems
+/// @brief  DESCRIPTION HERE
 class ExampleSystem : public System
 {
-
 //-----------------------------------------------------------------------------
-private: // virtual override methods
-//-----------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------------
-private: // reading
+public: // methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  map of the ExampleSystem read methods
-    static ReadMethodMap< ExampleSystem > const s_ReadMethods;
+    
+//-----------------------------------------------------------------------------
+public: // virtual override methods
+//-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+private: // members
+//-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Gets Called by the Debug system to display debug information
+    virtual void DebugWindow() override;
+
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief  gets this System's read methods
     /// @return this System's read methods
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
-//-----------------------------------------------------------------------------
-private: // singleton stuff
-//-----------------------------------------------------------------------------
 
-    /// @brief  Constructs the ExampleSystem
-    ExampleSystem();
+    /// @brief  writes this ExampleSystem to JSON
+    /// @return the JSON data of this ExampleSystem
+    virtual nlohmann::ordered_json Write() const override;
 
-    /// @brief  The singleton instance of ExampleSystem
-    static ExampleSystem * s_Instance;
 
 //-----------------------------------------------------------------------------
 public: // singleton stuff
 //-----------------------------------------------------------------------------
 
+
     /// @brief  gets the instance of ExampleSystem
     /// @return the instance of the ExampleSystem
-    static ExampleSystem * GetInstance();
+    static ExampleSystem* GetInstance();
+
+
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  Constructs the ExampleSystem
+    ExampleSystem();
 
     // Prevent copying
-    ExampleSystem( ExampleSystem& other ) = delete;
-    void operator=( const ExampleSystem& ) = delete;
+    ExampleSystem( ExampleSystem const& ) = delete;
+    void operator =( ExampleSystem const& ) = delete;
 
+
+//-----------------------------------------------------------------------------
 };
 
