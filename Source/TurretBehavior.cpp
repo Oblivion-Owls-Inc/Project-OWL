@@ -46,6 +46,7 @@
         Behaviors< Behavior >()->AddComponent( this );
         m_Transform = GetEntity()->GetComponent< Transform >();
         m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
+        m_TurretTransform = GetEntity()->GetComponent<Transform>()->GetTranslation();
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
@@ -135,8 +136,8 @@
         for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
         {
             float distance = glm::distance<>(generator->GetEntity()->GetComponent<Transform>()->GetTranslation(),
-                GetEntity()->GetComponent<Transform>()->GetTranslation());
-            if (generator->GetPowerRadius() > distance)
+                m_TurretTransform);
+            if (generator->GetPowerRadius() > distance && generator->GetActive())
             {
                 m_IsActive = true;
                 return;

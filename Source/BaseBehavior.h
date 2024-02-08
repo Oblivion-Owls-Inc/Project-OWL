@@ -14,7 +14,7 @@
 class AudioPlayer;
 
 class BaseBehavior :
-    public BasicEntityBehavior
+    public Behavior
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructors
@@ -38,17 +38,15 @@ public: // virtual override methods
     virtual void OnExit() override;
 
 //-----------------------------------------------------------------------------
-private: // inspector methods
-//-----------------------------------------------------------------------------
-
-    /// @brief Used by the Debug System to display information about this Component
-    virtual void Inspector() override;
-
-//-----------------------------------------------------------------------------
 public: // public method
 //-----------------------------------------------------------------------------
 
+    /// @brief destroy the base
     void Destroy();
+
+    /// @breif  gets the health of the base
+    /// @return health of the base
+    Pool<int>* GetHealth();
     
 //-----------------------------------------------------------------------------
 private: // copying
@@ -58,18 +56,15 @@ private: // copying
     BaseBehavior(const BaseBehavior& other);
 
 //-----------------------------------------------------------------------------
-private:
+private: // private variables
 //-----------------------------------------------------------------------------
 
+    /// @brief audio component
     AudioPlayer* m_AudioPlayer = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
-
-    /// @brief  called whenever the base's Collider enters a collision
-    /// @param  other   the collider that was collided with
-    void onCollisionEnter( Collider* other );
 
     /// @brief the map of read methods for this Component
     static ReadMethodMap< BaseBehavior > const s_ReadMethods;

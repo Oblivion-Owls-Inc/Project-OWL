@@ -8,6 +8,8 @@
 
 #pragma once
 #include "behavior.h"
+#include "Entity.h"
+#include "Transform.h"
 
 
 
@@ -49,7 +51,11 @@ private: // virtual override methods
 private: /// Members
 ///-------------------------------------------------------------------------------------------
 
+	/// @brief is the turret active
 	bool m_IsActive = false;
+
+	/// @brief tranform of the turret
+	glm::vec2 m_TurretTransform;
 
 	/// @brief The fire rate of the turret
 	float m_FireRate = 1.0f;

@@ -16,13 +16,15 @@
 #include "BehaviorSystem.h"
 #include "Health.h"
 #include "BaseBehavior.h"
+#include "Behavior.h"
+#include "BehaviorSystem.h"
 
 //-----------------------------------------------------------------------------
 // constructor / destructor 
 //-----------------------------------------------------------------------------
 
 /// @brief  constructor
-GeneratorBehavior::GeneratorBehavior() : BasicEntityBehavior(typeid(GeneratorBehavior))
+GeneratorBehavior::GeneratorBehavior() : Behavior(typeid(GeneratorBehavior))
 {
 	m_isActive = false;
 	m_powerRadius = 0.0f;
@@ -73,7 +75,7 @@ void GeneratorBehavior::OnExit()
 //-----------------------------------------------------------------------------
 
 /// @brief  copy ctor
-GeneratorBehavior::GeneratorBehavior(const GeneratorBehavior& other) : BasicEntityBehavior(other)
+GeneratorBehavior::GeneratorBehavior(const GeneratorBehavior& other) : Behavior(other)
 {
 	m_isActive = other.m_isActive;
 	m_powerRadius = other.m_powerRadius;
@@ -159,7 +161,7 @@ void GeneratorBehavior::Inspector()
 ReadMethodMap<GeneratorBehavior> const GeneratorBehavior::s_ReadMethods =
 {
 	{ "Radius",	  &readRadius},
-	{ "Activate Range",&readARadius},
+	{ "ActivateRadius",&readARadius},
 	{ "Depth",	  &readDepth},
 	{ "Active",	  &readActive},
 };

@@ -610,7 +610,7 @@
                 },
                 "GeneratorBehavior": {
                     "Radius": 5.0,
-                    "ActivateRadius": 0.0,
+                    "ActivateRadius": 3.0,
                     "Depth": 0,
                     "Active": true
                 },
@@ -669,7 +669,7 @@
                 },
                 "GeneratorBehavior": {
                     "Radius": 5.0,
-                    "ActivateRadius": 0.0,
+                    "ActivateRadius": 3.0,
                     "Depth": 0,
                     "Active": false
                 },
@@ -728,7 +728,7 @@
                 },
                 "GeneratorBehavior": {
                     "Radius": 5.0,
-                    "ActivateRadius": 0.0,
+                    "ActivateRadius": 3.0,
                     "Depth": 0,
                     "Active": true
                 },

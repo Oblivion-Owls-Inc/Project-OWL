@@ -8,13 +8,13 @@
 
 #pragma once
 #include "BasicEntityBehavior.h"
+#include "Behavior.h"
 #include "Pool.h"
 
 
 class AudioPlayer;
 
-class GeneratorBehavior :
-    public BasicEntityBehavior
+class GeneratorBehavior : public Behavior
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructors
@@ -65,6 +65,10 @@ public: // accessors
     /// @brief returns the radius a player can activate a generator within
     /// @return current radius for activating a generator
     float GetActivationRadius() { return m_activationRadius; }
+
+    /// @brief returns if the generator is powered or not
+    /// @return is the generator active
+    bool GetActive() { return m_isActive;  }
 
     /// @brief activate the generator
     void Activate() { m_isActive = true; }
