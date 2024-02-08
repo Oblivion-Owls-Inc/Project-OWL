@@ -311,7 +311,8 @@
     void ConstructionBehavior::tryPlaceBuilding()
     {
         // skip if build button not pressed
-        if ( Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_2 ) == false )
+        if ( Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_2 ) == false &&
+            Input()->GetGamepadButtonTriggered(GLFW_GAMEPAD_BUTTON_A) == false)
         {
             return;
         }
