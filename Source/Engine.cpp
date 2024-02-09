@@ -54,16 +54,11 @@
     /// @brief  Starts running the engine.
     void Engine::Run()
     {
-
         load();
 
         init();
 
-        while (
-            // PlatformSystem::GetInstance()->WindowClosing() == false
-            m_ShouldExit == false &&
-            Input()->GetKeyTriggered(GLFW_KEY_ESCAPE) == false
-        )
+        while ( m_ShouldExit == false )
         {
             update();
         }
