@@ -8,6 +8,8 @@
 
 #pragma once
 #include "behavior.h"
+#include "Entity.h"
+#include "Transform.h"
 
 
 
@@ -49,6 +51,12 @@ private: // virtual override methods
 private: /// Members
 ///-------------------------------------------------------------------------------------------
 
+	/// @brief is the turret active
+	bool m_IsActive = false;
+
+	/// @brief tranform of the turret
+	glm::vec2 m_TurretTransform;
+
 	/// @brief The fire rate of the turret
 	float m_FireRate = 1.0f;
 
@@ -86,6 +94,8 @@ private: // methods
 	/// @brief  creates a bullet and fires it at the target
     /// @param  direction the direction to fire the bullet in
 	void FireBullet( glm::vec2 const& direction );
+
+	void checkActive();
 
 	/// @brief  Uses Raycasting to check for a target on the same Collision Layer
 	/// @return the direction towards the target, or (0, 0) if no valid target found
@@ -152,6 +162,8 @@ public: // copying
     {
         return new TurretBehavior( *this );
     }
+
+	void turretSetActive(bool state);
 
 ///-------------------------------------------------------------------------------------------
 private: // copying
