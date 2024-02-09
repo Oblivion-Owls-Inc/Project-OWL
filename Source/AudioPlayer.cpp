@@ -55,6 +55,11 @@
             m_DefaultLoopCount
         );
 
+        if ( m_Channel == nullptr )
+        {
+            return;
+        }
+
         if ( m_IsSpatial )
         {
             m_Channel->setMode( FMOD_3D );
