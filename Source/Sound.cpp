@@ -48,6 +48,12 @@
         int loopCount
     ) const
     {
+        if ( m_Sound == nullptr )
+        {
+            Debug() << "Warning: Sound had no audio data attached, could not be played" << std::endl;
+            return nullptr;
+        }
+
         FMOD::Channel* channel;
         AudioSystem::GetInstance()->GetFMOD()->playSound(
             m_Sound,
