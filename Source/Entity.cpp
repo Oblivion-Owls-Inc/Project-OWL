@@ -362,12 +362,21 @@
 
                 if ( ImGui::Selectable( name.c_str(), false ) )
                 {
-                    Component* component = info.second();
-                    AddComponent( component );
+                    Component* newComponent = info.second();
+                    AddComponent( newComponent );
 
-                    if ( Entities()->HasEntity( this ) )
-                    { // init the component only if it's in the scene
-                        component->OnInit();
+                    if ( IsInScene() )
+                    {
+                        newComponent->OnInit();
+
+                        // tell all other components that a component was added
+                        for ( auto& [ type, component ] : m_Components )
+                        {
+                            if ( component != newComponent )
+                            {
+                                component->OnInspectorAddComponent( newComponent );
+                            }
+                        }
                     }
                 }
             }
@@ -376,15 +385,26 @@
 
         if ( ImGui::BeginCombo( "Remove Component", "Select Component" ) )
         {
-            for ( auto& [ key, component ] : m_Components )
+            for ( auto& [ key, componentToDelete ] : m_Components )
             {
                 if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
                 {
-                    if ( Entities()->HasEntity( this ) )
+
+                    if ( IsInScene() )
                     {
-                        component->OnExit();
+                        // tell all other components that a component was deleted
+                        for ( auto& [ type, component ] : m_Components )
+                        {
+                            if ( component != componentToDelete )
+                            {
+                                component->OnInspectorRemoveComponent( componentToDelete );
+                            }
+                        }
+
+                        componentToDelete->OnExit();
                     }
-                    delete component;
+
+                    delete componentToDelete;
                     m_Components.erase( key );
                     break;
                 }

@@ -20,6 +20,8 @@
         "BehaviorSystem<BulletBehavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
+        "BehaviorSystem<GeneratorBehavior>": {},
+        "BehaviorSystem<EditorCameraController>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
         "LightingSystem": {

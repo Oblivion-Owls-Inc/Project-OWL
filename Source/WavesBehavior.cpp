@@ -66,7 +66,8 @@ WavesBehavior::EnemyGroup::EnemyGroup() :
 	spawnInterval(0),
 	timer(0),
 	offset(0),
-	spawner(0)
+	spawner(0),
+	enemy(0)
 {}
 
 //-----------------------------------------------------------------------------

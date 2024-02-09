@@ -297,6 +297,12 @@
     <Filter Include="Engine\Entity\Component\Tilemap\TilemapEditor">
       <UniqueIdentifier>{3e0165c1-e7de-42a5-8938-8e832cc5330b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Behaviors\GeneratorBehavior">
+      <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Camera\EditorCameraController">
+      <UniqueIdentifier>{2f431157-f18b-45fe-8287-c4e8f220b1bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -598,6 +604,12 @@
     </ClCompile>
     <ClCompile Include="Source\TilemapEditor.cpp">
       <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GeneratorBehavior.cpp">
+      <Filter>Game\Components\Behaviors\GeneratorBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EditorCameraController.cpp">
+      <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -910,6 +922,12 @@
     <ClInclude Include="Source\TilemapEditor.h">
       <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
     </ClInclude>
+    <ClInclude Include="Source\GeneratorBehavior.h">
+      <Filter>Game\Components\Behaviors\GeneratorBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EditorCameraController.h">
+      <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -960,5 +978,6 @@
     <None Include="Data\shaders\tile_instancing.vert">
       <Filter>Data\Shaders\Vertex</Filter>
     </None>
+    <None Include="Data\Scenes\MapTest.scene.json" />
   </ItemGroup>
 </Project>
