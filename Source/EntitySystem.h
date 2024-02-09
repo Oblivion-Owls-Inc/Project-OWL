@@ -39,6 +39,17 @@ public: // methods
     /// @return whether or not the EntitySystem has the specified Entity
     bool HasEntity( Entity* entity );
 
+    /// @brief Clears the Entity being inspected
+    void ClearSelectedEntity();
+
+///-----------------------------------------------------------------------------
+public: //Accessors
+///-----------------------------------------------------------------------------
+
+ 	/// @brief  returns the entity being viewed in the inspector
+	/// @return the Entity being viewed in the inspector
+	Entity* GetSelectedEntity() const;
+
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
@@ -70,6 +81,9 @@ private: // member variables
 
     /// @brief  is the Entity Create window being shown
     bool m_ShowEntityCreate = true;
+
+    /// @brief Entity that is selected by the Inpector
+    Entity* selectedEntity = nullptr; 
 
 
 //-----------------------------------------------------------------------------
