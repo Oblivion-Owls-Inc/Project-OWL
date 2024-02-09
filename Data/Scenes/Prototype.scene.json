@@ -2551,6 +2551,9 @@
                     ],
                     "Walkables": [
                         -1
+                    ],
+                    "Targets": [
+                      "Player - low"
                     ]
                 },
                 "StaticBody": {

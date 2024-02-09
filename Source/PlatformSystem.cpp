@@ -110,6 +110,8 @@
         return m_WindowSize;
     }
 
+    /// @brief   Returns the window name
+    /// @return  std::string: The name of the window.
     std::string PlatformSystem::GetImguiWindowName() const
     {
         /// Build the window name with the ID appended to it
@@ -118,6 +120,13 @@
         return windowName;
     }
 
+
+    /// @brief  gets the position of the gameWindow within the glfw window
+    /// @return the position of the game window
+    glm::vec2 const& PlatformSystem::GetGameWindowPos() const
+    {
+        return m_WindowPos;
+    }
 
 //-----------------------------------------------------------------------------
 // private: virtual override methods
@@ -217,17 +226,24 @@
             ImVec2 pos = ImGui::GetWindowPos();
             ImVec2 max = ImVec2( pos.x + imGuiSize.x, pos.y + imGuiSize.y );
 
+            #pragma warning( push )
+            #pragma warning( disable: 4312 )
             ImGui::GetWindowDrawList()->AddImage(
-                (void*)Renderer()->GetBufferTextureID(),
+                (ImTextureID)Renderer()->GetBufferTextureID(),
                 pos,
                 max,
                 ImVec2(0, 1),
                 ImVec2(1, 0)
             );
+            #pragma warning( pop )
 
         ImGui::End();
         ImGui::PopStyleVar();
 
+        glm::ivec2 glfwWindowPos;
+        glfwGetWindowPos( m_Window, &glfwWindowPos.x, &glfwWindowPos.y );
+
+        m_WindowPos = glm::vec2( pos.x - glfwWindowPos.x, pos.y - glfwWindowPos.y );
 
         glm::ivec2 windowSize = glm::ivec2( (int)imGuiSize.x, (int)imGuiSize.y );
         if ( windowSize != m_WindowSize )
