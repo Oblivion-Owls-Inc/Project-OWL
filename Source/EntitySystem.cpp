@@ -58,6 +58,19 @@
         return iterator != m_Entities.end();
     }
 
+    /// @brief Clears the Entity being inspected
+    void EntitySystem::ClearSelectedEntity()
+    {
+        selectedEntity = nullptr;
+    }
+
+    /// @brief  returns the entity being viewed in the inspector
+    /// @return the Entity being viewed in the inspector
+    Entity* EntitySystem::GetSelectedEntity() const
+    {
+        return selectedEntity;
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: virtual override methods
@@ -67,6 +80,8 @@
     /// @brief  Gets called whenever a scene is exited
     void EntitySystem::OnSceneExit()
     {
+        ClearSelectedEntity();
+
         for ( Entity* entity : m_Entities )
         {
             entity->Exit();
@@ -158,6 +173,9 @@
         // delete the entities
         for ( Entity* entity : entitiesToRemove )
         {
+            if (entity == selectedEntity)
+                selectedEntity = nullptr;
+
             delete entity;
         }
 
@@ -406,9 +424,6 @@
         static ImGuiWindowFlags window_flags = 0; /// Create the window flags
         window_flags |= ImGuiWindowFlags_NoTitleBar; /// Remove the title bar
         window_flags |= ImGuiWindowFlags_AlwaysAutoResize; /// Auto resize the window
-
-        static Entity* selectedEntity = nullptr; /// The selected entity
-
 
         ImGui::Begin( "Entity List", NULL, window_flags); ///< Start The Window 
 
