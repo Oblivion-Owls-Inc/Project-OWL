@@ -7,6 +7,8 @@
 #pragma once
 #include "Tilemap.h"
 #include <vector>
+#include <thread>  // run the algo in the background
+#include <atomic>  // thread sync
 
 class Pathfinder : public Component
 {
@@ -14,9 +16,15 @@ public:
     /// @brief   Default constructor
     Pathfinder();
 
+    /// @brief   Copy constructor
+    Pathfinder(Pathfinder const& other);
+
     /// @brief   Returns a copy of this component
     virtual Component * Clone() const override;
 
+    /// @brief   Target prioritization enum. Declared here, because it's used by a
+    ///          public function. It's a but weird... but it works.
+    enum Priority { Highest, High, Mid, Low };
 
 
 //-----------------------------------------------------------------------------
@@ -59,6 +67,15 @@ public:
     int GetTravelDistanceAt(glm::vec2 pos);
 
 
+    /// @brief           Add target entity for pathfinding
+    /// @param entity    Pointer to target entity
+    /// @param priority  How important it is to enemies
+    void AddTarget(Entity* entity, Priority priority);
+
+    /// @brief           Remove target entity from the list
+    /// @param entity    Pointer to target entity
+    void RemoveTarget(Entity* entity);
+
 
 //-----------------------------------------------------------------------------
 //          Virtual overrides
@@ -74,6 +91,7 @@ private:
     /// @brief  displays this Pathfinder's inspector
     virtual void Inspector() override;
 
+
 //-----------------------------------------------------------------------------
 //              Data
 //-----------------------------------------------------------------------------
@@ -88,15 +106,34 @@ private:
         Type type;              /// @brief  Node type (enum)
         int cost;               /// @brief  How far of a walk from destination
         glm::ivec2 direction;   /// @brief  Unit vector pointing toward destination
+        unsigned priority;      /// @brief  Higher number = higher priority
     };
+
+    /// @brief  Each target needs a priority.
 
     std::vector<Node> m_Nodes;          /// @brief  "grid" of nodes to navigate
     std::vector<int> m_Walkables;       /// @brief  Tile IDs of "not walls"
     glm::vec2 m_DestPos = {0,0};        /// @brief  Destination (actual position)
-    glm::ivec2 m_DestTile = {1,1};      /// @brief  Destination tile coord
+    glm::ivec2 m_DestTile = {1,1};      /// @brief  Destination tile
     Tilemap<int>* m_Tilemap = nullptr;  /// @brief  Cached parent tilemap
 
+    // leaving the singular destination too for now, for backwards compatibility.
+    // it will pathfind to both the DestPos (if it's not 0,0), and the targets.
 
+    /// @brief  Target transform + how important it is to enemies
+    struct Target 
+    {
+        Transform* transform;
+        Priority priority; 
+    };
+
+    /// @brief   Names of target entities
+    std::vector<std::string> m_TargetNames;
+    std::vector<Target> m_Targets;     /// @brief  Targets to nagivate to
+
+    std::thread m_Thread;              /// @brief  Background thread for the actual algo
+    std::atomic_bool m_Dirty = false,  /// @brief  Thread sync
+                     m_Done = false;
 
 
 //-----------------------------------------------------------------------------
@@ -110,6 +147,9 @@ private:
     /// @brief      Actual pathfinding. Updates all nodes.
     void explore();
 
+    /// @brief      For multithreading. Calls explore() in a separate thread if it's 
+    ///             not running already, or tells it to run again after current iteration.
+    void exploreQueue();
 
     /// @brief  inspector for choosing and displaying the destination of this Pathfinder
     void inspectDestination();
@@ -117,6 +157,8 @@ private:
     /// @brief  inspector for choosing which tiles are walkable
     void inspectWalkables();
 
+    /// @brief  Finds targets by their names, and stores their transforms for pathfinding
+    void getTargets();
 
 
 //-----------------------------------------------------------------------------
@@ -131,6 +173,10 @@ private: // reading
     /// @brief          Read in the array of walkable tiles
     /// @param  stream  The json to read from.
     void readWalkables( nlohmann::ordered_json const& data );
+
+    /// @brief          Read in the target entities
+    /// @param data     The json to read from.
+    void readTargets( nlohmann::ordered_json const& data );
 
 
     /// @brief the map of read methods for this Component
