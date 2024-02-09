@@ -39,14 +39,15 @@ public: // methods
     /// @return whether or not the EntitySystem has the specified Entity
     bool HasEntity( Entity* entity );
 
+    /// @brief Clears the Entity being inspected
     void ClearSelectedEntity();
 
 ///-----------------------------------------------------------------------------
 public: //Accessors
 ///-----------------------------------------------------------------------------
 
- 	/// @brief  returns the selected Entity
-	/// @return the selected Entity
+ 	/// @brief  returns the entity being viewed in the inspector
+	/// @return the Entity being viewed in the inspector
 	Entity* GetSelectedEntity() const;
 
 

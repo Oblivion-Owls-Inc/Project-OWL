@@ -58,11 +58,14 @@
         return iterator != m_Entities.end();
     }
 
+    /// @brief Clears the Entity being inspected
     void EntitySystem::ClearSelectedEntity()
     {
         selectedEntity = nullptr;
     }
 
+    /// @brief  returns the entity being viewed in the inspector
+    /// @return the Entity being viewed in the inspector
     Entity* EntitySystem::GetSelectedEntity() const
     {
         return selectedEntity;
