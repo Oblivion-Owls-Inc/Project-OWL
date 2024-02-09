@@ -93,7 +93,7 @@ private: // members
 
 
     /// @brief  the index in the tool buttons array of the specified tool
-    static constexpr int s_BrushToolIndex = 0, s_EraseToolIndex = 1, s_PickerToolIndex = 2, SelectionToolIndex = 3;
+    static constexpr int s_BrushToolIndex = 0, s_EraseToolIndex = 1, s_PickerToolIndex = 2, s_SelectionToolIndex = 3;
 
     /// @brief  the mouse buttons assigned to each tool
     MouseButtonId m_ToolButtons[ 4 ] = {
@@ -188,6 +188,9 @@ public: // inspection
 
     /// @brief  shows the inspector for TilemapEditor
     virtual void Inspector() override;
+
+
+    // TODO: add OnAddComponent method
 
 
 //-----------------------------------------------------------------------------

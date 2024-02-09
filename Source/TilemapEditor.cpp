@@ -52,6 +52,11 @@
         m_Tilemap = GetEntity()->GetComponent< Tilemap< int > >();
 
         m_PreviewTexture = AssetLibrary< Texture >()->GetAsset( m_PreviewTextureName );
+
+        if ( m_Tilemap != nullptr )
+        {
+            pushUndoableAction();
+        }
     }
 
 
@@ -81,16 +86,23 @@
             return;
         }
 
+        static bool changeMade = false;
+
         // don't use this tool if the mouse button is up
         if ( Input()->GetMouseDown( m_ToolButtons[ s_BrushToolIndex ] ) == false )
         {
+            if ( changeMade && Input()->GetMouseReleased( m_ToolButtons[ s_BrushToolIndex ] ) )
+            {
+                pushUndoableAction();
+            }
             return;
         }
+
 
         // when first starting to use this tool, register an undoable action
         if ( Input()->GetMouseTriggered( m_ToolButtons[ s_BrushToolIndex ] ) )
         {
-            pushUndoableAction();
+            changeMade = false;
         }
 
         // get the mouse position
@@ -103,6 +115,10 @@
         }
 
         // draw a tile at the mouse
+        if ( changeMade == false )
+        {
+            changeMade = true;
+        }
         m_Tilemap->SetTile( mousePos, m_SelectedTileIndex );
     }
 
@@ -114,17 +130,22 @@
         {
             return;
         }
-
+        
+        static bool changeMade = false;
         // don't use this tool if the mouse button is up
         if ( Input()->GetMouseDown( m_ToolButtons[ s_EraseToolIndex ] ) == false )
         {
+            if ( changeMade && Input()->GetMouseReleased( m_ToolButtons[ s_EraseToolIndex ] ) )
+            {
+                pushUndoableAction();
+            }
             return;
         }
 
         // when first starting to use this tool, register an undoable action
         if ( Input()->GetMouseTriggered( m_ToolButtons[ s_EraseToolIndex ] ) )
         {
-            pushUndoableAction();
+            changeMade = false;
         }
 
         // get the mouse position
@@ -137,6 +158,10 @@
         }
 
         // erase a tile at the mouse
+        if ( changeMade == false )
+        {
+            changeMade = true;
+        }
         m_Tilemap->SetTile( mousePos, -1 );
     }
 
@@ -164,20 +189,20 @@
         }
 
         // erase selection
-        if ( Input()->GetKeyTriggered( GLFW_KEY_DELETE ) || Input()->GetKeyTriggered( GLFW_KEY_DELETE ) )
+        if ( Input()->GetKeyTriggered( GLFW_KEY_DELETE ) || Input()->GetKeyTriggered( GLFW_KEY_BACKSPACE ) )
         {
             eraseSelection();
         }
 
 
         // don't use this tool if it's not selected
-        if ( m_ToolButtons[ s_EraseToolIndex ] == -1 )
+        if ( m_ToolButtons[ s_SelectionToolIndex ] == -1 )
         {
             return;
         }
 
         // don't use this tool if the mouse button is up
-        if ( Input()->GetMouseDown( m_ToolButtons[ s_EraseToolIndex ] ) == false )
+        if ( Input()->GetMouseDown( m_ToolButtons[ s_SelectionToolIndex ] ) == false )
         {
             return;
         }
@@ -186,7 +211,7 @@
         glm::ivec2 mousePos = getMouseTilePos();
 
         // when first starting to use this tool, set first position
-        if ( Input()->GetMouseTriggered( m_ToolButtons[ s_EraseToolIndex ] ) )
+        if ( Input()->GetMouseTriggered( m_ToolButtons[ s_SelectionToolIndex ] ) )
         {
             m_SelectionPos0 = mousePos;
         }
@@ -265,8 +290,6 @@
     {
         standardizeSelection();
 
-        pushUndoableAction();
-
         glm::ivec2 pos;
         for ( pos.y = m_SelectionPos0.y; pos.y <= m_SelectionPos1.y; ++pos.y )
         {
@@ -275,6 +298,8 @@
                 m_Tilemap->SetTile( pos, -1 );
             }
         }
+
+        pushUndoableAction();
     }
 
     /// @brief  pastes the current selection into the tilemap
@@ -282,17 +307,37 @@
     {
         standardizeSelection();
 
-        pushUndoableAction();
-
         glm::ivec2 pos;
         for ( pos.y = 0; pos.y < m_Clipboard.M_Size.y; ++pos.y )
         {
+            int destY = pos.y + m_SelectionPos0.y;
+            if ( destY < 0 )
+            {
+                continue;
+            }
+            if ( destY >= m_Tilemap->GetDimensions().y )
+            {
+                break;
+            }
+
             for ( pos.x = 0; pos.x < m_Clipboard.M_Size.x; ++pos.x )
             {
+                int destX = pos.x + m_SelectionPos0.x;
+                if ( destX < 0 )
+                {
+                    continue;
+                }
+                if ( destX >= m_Tilemap->GetDimensions().x )
+                {
+                    break;
+                }
+
                 int tile = m_Clipboard.M_Tiles[ pos.y * m_Clipboard.M_Size.x + pos.x ];
-                m_Tilemap->SetTile( pos + m_SelectionPos0, tile );
+                m_Tilemap->SetTile( glm::ivec2( destX, destY ), tile);
             }
         }
+
+        pushUndoableAction();
     }
 
 
@@ -324,25 +369,25 @@
     /// @brief  undoes the most recent action
     void TilemapEditor::undo()
     {
-        if ( m_UndoStackPosition < 1 )
+        if ( m_UndoStackPosition <= 1 )
         {
             return;
         }
 
         --m_UndoStackPosition;
-        Stream::Read( *m_Tilemap, m_UndoStack[ m_UndoStackPosition ] );
+        Stream::Read( *m_Tilemap, m_UndoStack[ m_UndoStackPosition - 1 ] );
     }
 
     /// @brief  redoes the most recent undo
     void TilemapEditor::redo()
     {
-        if ( m_UndoStackPosition >= m_UndoStack.size() - 1 )
+        if ( m_UndoStackPosition >= m_UndoStack.size() )
         {
             return;
         }
 
-        ++m_UndoStackPosition;
         Stream::Read( *m_Tilemap, m_UndoStack[ m_UndoStackPosition ] );
+        ++m_UndoStackPosition;
     }
 
 
@@ -361,7 +406,16 @@
     /// @brief  shows the inspector for TilemapEditor
     void TilemapEditor::Inspector()
     {
+        if ( m_Tilemap == nullptr )
+        {
+            ImGui::Text( "this TilemapEditor cannot find a tilemap to edit" );
+            return;
+        }
+
         ImGui::InputInt( "selected tile index", &m_SelectedTileIndex, 1, 5 );
+
+        ImGui::DragInt2( "selection Pos 1", &m_SelectionPos0[ 0 ], 0.05f, 0, INT_MAX );
+        ImGui::DragInt2( "selection Pos 2", &m_SelectionPos1[ 0 ], 0.05f, 0, INT_MAX );
 
         if ( ImGui::Button( "undo" ) )
         {
