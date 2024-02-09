@@ -25,7 +25,7 @@ private: // virtual override methods
     /// @brief  Gets called when system initializes
     virtual void OnInit() override;
 
-    /// @brief  Gets called when system initializes
+    /// @brief  Gets called when system exits
     virtual void OnExit() override;
 
     /// @brief fixed update for input, must be called for input to function
@@ -78,7 +78,16 @@ private: // private methods
     /// @brief convert matrix to vec2
     glm::vec2 convert(glm::mat4 matrix);
 
-    
+
+
+//-----------------------------------------------------------------------------
+private: // private class
+//-----------------------------------------------------------------------------
+
+    class Activation
+    {
+
+    };
 
 //-----------------------------------------------------------------------------
 public: // accessors
