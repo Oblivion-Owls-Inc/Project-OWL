@@ -135,7 +135,7 @@
         //std::vector<GeneratorBehavior*> generators = Behaviors<GeneratorBehavior>()->GetComponents();
         for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
         {
-            float distance = glm::distance<>(generator->GetEntity()->GetComponent<Transform>()->GetTranslation(),
+            float distance = glm::distance<>(generator->GetTransform()->GetTranslation(),
                 m_TurretTransform);
             if (generator->GetPowerRadius() > distance && generator->GetActive())
             {
@@ -291,5 +291,6 @@ TurretBehavior::TurretBehavior(const TurretBehavior& other) :
     m_BulletSize(other.m_BulletSize),
     m_FireCooldown(other.m_FireCooldown),
     m_BulletPrefab(other.m_BulletPrefab),
-    m_TargetName(other.m_TargetName)
+    m_TargetName(other.m_TargetName),
+    m_TurretTransform(other.m_TurretTransform)
 {}

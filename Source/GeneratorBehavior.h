@@ -9,6 +9,7 @@
 #pragma once
 #include "BasicEntityBehavior.h"
 #include "Behavior.h"
+#include "Transform.h"
 #include "Pool.h"
 
 
@@ -73,6 +74,10 @@ public: // accessors
     /// @brief activate the generator
     void Activate() { m_isActive = true; }
 
+    /// @brief  get the transform of the generator
+    /// @return the generator transform
+    Transform* GetTransform() { return m_Transform; }
+
 //-----------------------------------------------------------------------------
 private: // variables
 //-----------------------------------------------------------------------------
@@ -90,7 +95,10 @@ private: // variables
     float m_activationRadius;
 
     /// @brief  depth value of the generator, used for determening lowest
-    int m_depth;            
+    int m_depth;   
+
+    /// @brief  the transform of the generator
+    Transform* m_Transform = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // private functions

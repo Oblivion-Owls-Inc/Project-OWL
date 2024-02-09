@@ -60,6 +60,8 @@ void GeneratorBehavior::OnInit()
 
 	m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
 
+	m_Transform = GetEntity()->GetComponent<Transform>();
+
 	//const std::string name = GetEntity()->GetName();
 }
 

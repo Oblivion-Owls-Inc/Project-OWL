@@ -59,8 +59,6 @@ private: // copying
 private: // private variables
 //-----------------------------------------------------------------------------
 
-    /// @brief audio component
-    AudioPlayer* m_AudioPlayer = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // reading

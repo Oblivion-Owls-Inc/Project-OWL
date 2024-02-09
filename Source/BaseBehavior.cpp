@@ -48,8 +48,6 @@ Component* BaseBehavior::Clone() const
 /// @brief	initialize base
 void BaseBehavior::OnInit()
 {
-
-	m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
 }
 
 /// @brief	called on exit, handles loss state
