@@ -33,12 +33,26 @@ public: // constructors/destructors
 public: // methods
 //-----------------------------------------------------------------------------
 
+
+    /// @brief  calculates the uv offset for a given frame offset
+    /// @param  frameIndex  the index of the frame to get the UV offset of
+    /// @return the UV offset of the frame index
+    glm::vec2 GetUvOffset( int frameIndex ) const;
+
+
     /// @brief      Sets this texture as active, so it can be used by texture shader
     /// @param slot (optional) texture slot - for drawing multiple at once ig?
     void Bind( unsigned int slot = 0 ) const;
 
     /// @brief Used by the Debug to display information about this Texture
     void Inspect();
+
+
+    /// @brief  displays this Texture in ImGui
+    /// @param  scale       the scale to display this image at
+    /// @param  frameIndex  the index of the frame of this texture to display
+    void DisplayInInspector( int frameIndex = 0, float scale = 100.0f ) const;
+
 
 //-----------------------------------------------------------------------------
 public: // acccessors
@@ -48,8 +62,8 @@ public: // acccessors
     /// @return ivec2: x = width ,  y = height
     __inline glm::ivec2 const& GetPixelDimensions() const { return m_PixelDimensions; }
 
-    /// @brief  Returns the size of the original image in pixels
-    /// @return float: the aspec ratio of the Texture
+    /// @brief  Returns the aspect ratio (x / y) of the texture
+    /// @return float: the aspect ratio of the Texture
     __inline float GetAspectRatio() const { return (float)(m_PixelDimensions.x * m_SheetDimensions.y) /
                                                           (m_PixelDimensions.y * m_SheetDimensions.x); }
 
@@ -65,6 +79,12 @@ public: // acccessors
     /// @brief  sets the Mesh this Sprite is using
     /// @param  mesh    the Mesh to set this Sprite to use
     __inline void SetMesh( Mesh const* mesh ) { m_Mesh = mesh; }
+
+
+    /// @brief  gets the OpenGL ID of this Texture
+    /// @return the OpenGL ID of this Texture
+    unsigned GetTextureId() const;
+
 
 //-----------------------------------------------------------------------------
 private: // member variables

@@ -16,39 +16,50 @@
 // public: constructors/destructors
 //-----------------------------------------------------------------------------
 
-/// @brief  default constructor
-Texture::Texture() {}
+    /// @brief  default constructor
+    Texture::Texture() {}
 
-/// @brief                  Convenience constructor: loads texture image from 
-///                         file upon initialization
-/// @param  filepath        File to load
-/// @param  sheetDimensions x=columns, y=rows (of the spritesheet)
-/// @param  pivot           the pivot point of this Texture
-Texture::Texture( std::string const& filepath, glm::ivec2 const& sheetDimensions, glm::vec2 const& pivot) :
-    m_Filepath( filepath ),
-    m_SheetDimensions( sheetDimensions ),
-    m_Pivot( pivot ),
-    m_TextureID( 0 )
-{
-    LoadImage();
-}
+    /// @brief                  Convenience constructor: loads texture image from 
+    ///                         file upon initialization
+    /// @param  filepath        File to load
+    /// @param  sheetDimensions x=columns, y=rows (of the spritesheet)
+    /// @param  pivot           the pivot point of this Texture
+    Texture::Texture( std::string const& filepath, glm::ivec2 const& sheetDimensions, glm::vec2 const& pivot) :
+        m_Filepath( filepath ),
+        m_SheetDimensions( sheetDimensions ),
+        m_Pivot( pivot ),
+        m_TextureID( 0 )
+    {
+        LoadImage();
+    }
 
 
-/// @brief      Destructor: deletes texture data from GPU
-Texture::~Texture()
-{ 
-    if (m_TextureID)
-        glDeleteTextures(1, &m_TextureID);
+    /// @brief      Destructor: deletes texture data from GPU
+    Texture::~Texture()
+    { 
+        if (m_TextureID)
+            glDeleteTextures(1, &m_TextureID);
 
-    if (m_Mesh != Renderer()->GetDefaultMesh())
-        delete m_Mesh;
-}
+        if (m_Mesh != Renderer()->GetDefaultMesh())
+            delete m_Mesh;
+    }
 
 
 
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  calculates the uv offset for a given frame offset
+    /// @param  frameIndex  the index of the frame to get the UV offset of
+    /// @return the UV offset of the frame index
+    glm::vec2 Texture::GetUvOffset( int frameIndex ) const
+    {
+        int column = frameIndex % m_SheetDimensions.x;
+        int row = frameIndex / m_SheetDimensions.x;
+        return m_Mesh->GetUVsize() * glm::vec2( column, row );
+    }
 
 
     /// @brief       Sets this texture as active, so it can be used by texture shader
@@ -73,6 +84,39 @@ Texture::~Texture()
         {
             LoadImage();
         }
+    }
+
+
+    /// @brief  displays this Texture in ImGui
+    /// @param  scale       the scale to display this image at
+    /// @param  frameIndex  the index of the frame of this texture to display
+    void Texture::DisplayInInspector( int frameIndex, float scale ) const
+    {
+        glm::vec2 uvMin = GetUvOffset( frameIndex );
+        glm::vec2 uvMax = uvMin + m_Mesh->GetUVsize();
+
+        #pragma warning ( push )
+        #pragma warning ( disable: 4312 )
+        ImGui::Image(
+            (ImTextureID)m_TextureID,
+            ImVec2( scale, scale / GetAspectRatio() ),
+            ImVec2( uvMin.x, uvMin.y ),
+            ImVec2( uvMax.x, uvMax.y )
+        );
+        #pragma warning( pop )
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: accessors
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the OpenGL ID of this Texture
+    /// @return the OpenGL ID of this Texture
+    unsigned Texture::GetTextureId() const
+    {
+        return m_TextureID;
     }
 
 

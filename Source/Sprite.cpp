@@ -275,6 +275,8 @@ void Sprite::OnExit()
         {
 			SetFrameIndex(m_FrameIndex);
 		}
+
+        m_Texture->DisplayInInspector( m_FrameIndex );
     }
 
 //-----------------------------------------------------------------------------
@@ -285,11 +287,7 @@ void Sprite::OnExit()
 /// @return the UV offset
 glm::vec2 Sprite::calcUVoffset() const
 {
-    int width =  m_Texture->GetSheetDimensions().x;
-    int row = m_FrameIndex / width;
-    int col = m_FrameIndex % width;
-    glm::vec2 uv = m_Texture->GetMesh()->GetUVsize() * glm::vec2( col, row );
-    return uv;
+    return m_Texture->GetUvOffset( m_FrameIndex );
 }
 
 
