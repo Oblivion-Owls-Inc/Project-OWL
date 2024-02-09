@@ -209,10 +209,8 @@
                 "Components": {
                     "BulletBehavior": {
                         "Lifetime": {
-                            "Name": "Lifetime",
                             "BaseValue": 3.0,
-                            "CurrentValue": 3.0,
-                            "Active": true
+                            "CurrentValue": 3.0
                         },
                         "Damage": 1
                     },
@@ -274,7 +272,8 @@
                         "PitchVariance": 0.0,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
-                        "IsSpatial": true
+                        "IsSpatial": true,
+                        "AllowMultipleSounds": false
                     },
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
@@ -333,10 +332,8 @@
                     },
                     "Health": {
                         "Health": {
-                            "Name": "Enemy Health Pool",
                             "BaseValue": 40,
-                            "CurrentValue": 40,
-                            "Active": false
+                            "CurrentValue": 40
                         }
                     },
                     "RigidBody": {
@@ -500,7 +497,8 @@
                         "PitchVariance": 0.0,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
-                        "IsSpatial": false
+                        "IsSpatial": false,
+                        "AllowMultipleSounds": false
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -552,7 +550,8 @@
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": true,
-                    "IsSpatial": false
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
                 }
             },
             "Children": null
@@ -568,7 +567,8 @@
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "IsSpatial": false
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
                 }
             },
             "Children": null
@@ -584,7 +584,8 @@
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "IsSpatial": false
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
                 }
             },
             "Children": null
@@ -600,14 +601,13 @@
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "IsSpatial": false
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
                 },
                 "BaseBehavior": {
                     "Health": {
-                        "Name": "Health Pool",
                         "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
+                        "CurrentValue": 5
                     }
                 },
                 "CircleCollider": {
@@ -2360,6 +2360,52 @@
                         17,
                         17,
                         17,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                         0
                     ]
                 },
@@ -4033,6 +4079,52 @@
                         -1,
                         -1,
                         -1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                         0
                     ]
                 },
@@ -5674,6 +5766,52 @@
                         9,
                         9,
                         9,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                         0
                     ]
                 },
@@ -5726,7 +5864,8 @@
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "IsSpatial": false
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
                 },
                 "CircleCollider": {
                     "Radius": 0.30000001192092896,
@@ -5735,10 +5874,8 @@
                 },
                 "Health": {
                     "Health": {
-                        "Name": "PlayerHealth",
                         "BaseValue": 100,
-                        "CurrentValue": 100,
-                        "Active": false
+                        "CurrentValue": 100
                     }
                 },
                 "Inventory": {
@@ -6114,7 +6251,8 @@
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "IsSpatial": false
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
                 },
                 "Emitter": {
                     "PPS": 200.0,
