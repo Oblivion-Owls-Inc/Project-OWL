@@ -44,7 +44,7 @@ private:
 
 
 //-----------------------------------------------------------------------------
-//              Data
+//              Data & helper
 //-----------------------------------------------------------------------------
 private:
 
@@ -57,7 +57,12 @@ private:
     ///          If bound[0] == bound[1], it's unbounded.
     float m_xBounds[2] = {}, m_yBounds[2] = {};
 
-
+    /// @brief		 Helper: clamps or centers coordinate between given bounds, depending
+    ///			     on distance
+    /// @param val	 Value to clamp/center
+    /// @param lo	 Lower bound
+    /// @param hi	 Upper bound
+    /// @param dist  Distance to fit within bounds
     void clampOrCenter(float &val, float lo, float hi, float range);
 
 
@@ -68,10 +73,16 @@ private:
     /// @brief   the map of read methods for this Component
     static ReadMethodMap< CameraBehavior > const s_ReadMethods;
 
+    /// @brief		 Reads the name of the entity to follow
+    /// @param data  json data to read
     void readTargetEntityName(nlohmann::ordered_json const& data);
     
+    /// @brief		 Reads the horizontal bounds
+    /// @param data  json data to read
     void readXBounds(nlohmann::ordered_json const& data);
 
+    /// @brief		 Reads the vertical bounds
+    /// @param data  json data to read
     void readYBounds(nlohmann::ordered_json const& data);
 
 

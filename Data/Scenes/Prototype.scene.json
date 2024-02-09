@@ -6461,6 +6461,18 @@
                 }
             },
             "Children": null
+        },
+        "WinState": 
+        {
+            "Name": "WinState",
+            "Components": {
+                "WinState": {
+                    "Entity": "Player",
+                    "ItemID": 0,
+                    "ItemCount": 10,
+                    "WinScene": "GameWin"
+                }
+            }
         }
     }
 }

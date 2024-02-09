@@ -562,6 +562,7 @@ nlohmann::ordered_json Pathfinder::Write() const
 
     json[ "Destination" ] = Stream::Write( m_DestPos );
     json[ "Walkables" ] = Stream::Write( m_Walkables );
+    json[ "Targets" ] = Stream::Write( m_TargetNames );
 
     return json;
 }

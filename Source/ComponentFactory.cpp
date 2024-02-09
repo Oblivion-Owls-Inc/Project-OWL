@@ -51,6 +51,7 @@
 #include "CameraBehavior.h"
 #include "UiButton.h"
 #include "TilemapTextureConnector.h"
+#include "WinState.h"
 
 
 //-----------------------------------------------------------------------------
@@ -173,7 +174,8 @@
         { "Light"                  , ComponentInfo< Light >()                   },
         { "CameraBehavior"         , ComponentInfo< CameraBehavior >()          },
         { "TilemapTextureConnector", ComponentInfo< TilemapTextureConnector >() },
-        { "GeneratorBehavior"      , ComponentInfo< GeneratorBehavior >()       }
+        { "GeneratorBehavior"      , ComponentInfo< GeneratorBehavior >()       },
+        { "WinState"               , ComponentInfo< WinState >()                }
     };
 
 //-----------------------------------------------------------------------------
