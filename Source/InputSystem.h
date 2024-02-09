@@ -87,7 +87,8 @@ private: // private class
 
     class Activation
     {
-
+        std::vector<int> keys;
+        
     };
 
 //-----------------------------------------------------------------------------
