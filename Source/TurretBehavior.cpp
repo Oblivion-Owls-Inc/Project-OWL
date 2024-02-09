@@ -23,6 +23,8 @@
 #include "DebugSystem.h"
 #include "RigidBody.h"
 #include "AudioPlayer.h"
+#include "glm/glm.hpp"
+#include "GeneratorBehavior.h"
 
 //-------------------------------------------------------------------------------------------
 // public: constructor
@@ -44,6 +46,7 @@
         Behaviors< Behavior >()->AddComponent( this );
         m_Transform = GetEntity()->GetComponent< Transform >();
         m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
+        m_TurretTransform = GetEntity()->GetComponent<Transform>()->GetTranslation();
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
@@ -57,26 +60,30 @@
     /// @brief Called Every Fixed Frame by the system
     void TurretBehavior::OnFixedUpdate()
     {
-        float dt = Engine::GetInstance()->GetFixedFrameDuration();
-
-
-        if ( m_FireCooldown > 0.0f )
+        checkActive();
+        if (m_IsActive)
         {
-            m_FireCooldown -= dt;
-            if ( m_FireCooldown > 0.0f ) { return; }
-        }
-        else
-        {
-            m_FireCooldown = 0.0f;
-        }
+            float dt = Engine::GetInstance()->GetFixedFrameDuration();
 
-        /// Check for a target
-        glm::vec2 direction = CheckForTarget();
 
-        if ( direction != glm::vec2( 0 ) )
-        {
-            /// Fire a bullet at the target
-            FireBullet( direction );
+            if (m_FireCooldown > 0.0f)
+            {
+                m_FireCooldown -= dt;
+                if (m_FireCooldown > 0.0f) { return; }
+            }
+            else
+            {
+                m_FireCooldown = 0.0f;
+            }
+
+            /// Check for a target
+            glm::vec2 direction = CheckForTarget();
+
+            if (direction != glm::vec2(0))
+            {
+                /// Fire a bullet at the target
+                FireBullet(direction);
+            }
         }
     }
 
@@ -90,6 +97,8 @@
         ImGui::InputFloat("Bullet Speed", &m_BulletSpeed, 0.5f, 1.0f);
         ImGui::InputFloat("Bullet Size", &m_BulletSize, 0.5f, 1.0f);
         ImGui::Text("Target Name: %s", m_TargetName.c_str());
+        if (m_IsActive) ImGui::Text("Active: True");
+        else ImGui::Text("Active: False");
     }
 
 ///-------------------------------------------------------------------------------------------
@@ -118,6 +127,26 @@
         m_AudioPlayer->Play();
 
         m_FireCooldown += 1.0f / m_FireRate;
+    }
+
+    void TurretBehavior::checkActive()
+    {
+        //TODO fix me
+        //std::vector<GeneratorBehavior*> generators = Behaviors<GeneratorBehavior>()->GetComponents();
+        for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
+        {
+            float distance = glm::distance<>(generator->GetTransform()->GetTranslation(),
+                m_TurretTransform);
+            if (generator->GetPowerRadius() > distance && generator->GetActive())
+            {
+                m_IsActive = true;
+                return;
+            }
+        }
+        //GetEntity()->GetComponent<Transform>()->GetTranslation();
+        //float distance = glm::distance<>(GetEntity()->GetComponent<Transform>()->GetTranslation(),
+            //GetEntity()->GetComponent<Transform>()->GetTranslation());
+        m_IsActive = false;
     }
 
     /// @brief  Uses Raycasting to check for a target on the same Collision Layer
@@ -248,6 +277,11 @@ nlohmann::ordered_json TurretBehavior::Write() const
     return data;
 }
 
+void TurretBehavior::turretSetActive(bool state)
+{
+    m_IsActive = state;
+}
+
 TurretBehavior::TurretBehavior(const TurretBehavior& other) :
     Behavior( other ), 
     m_FireRate(other.m_FireRate), 
@@ -257,5 +291,6 @@ TurretBehavior::TurretBehavior(const TurretBehavior& other) :
     m_BulletSize(other.m_BulletSize),
     m_FireCooldown(other.m_FireCooldown),
     m_BulletPrefab(other.m_BulletPrefab),
-    m_TargetName(other.m_TargetName)
+    m_TargetName(other.m_TargetName),
+    m_TurretTransform(other.m_TurretTransform)
 {}

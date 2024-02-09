@@ -38,6 +38,7 @@
 #include "Emitter.h"
 #include "BaseBehavior.h"
 #include "Health.h"
+#include "GeneratorBehavior.h"
 #include "UiElement.h"
 #include "MiningLaser.h"
 #include "ItemComponent.h"
@@ -171,7 +172,8 @@
         { "UiButton"               , ComponentInfo< UiButton >()                },
         { "Light"                  , ComponentInfo< Light >()                   },
         { "CameraBehavior"         , ComponentInfo< CameraBehavior >()          },
-        { "TilemapTextureConnector", ComponentInfo< TilemapTextureConnector >() }
+        { "TilemapTextureConnector", ComponentInfo< TilemapTextureConnector >() },
+        { "GeneratorBehavior"      , ComponentInfo< GeneratorBehavior >()       }
     };
 
 //-----------------------------------------------------------------------------

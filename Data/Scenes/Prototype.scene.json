@@ -604,16 +604,23 @@
                     "IsSpatial": false,
                     "AllowMultipleSounds": false
                 },
-                "BaseBehavior": {
-                    "Health": {
-                        "BaseValue": 5,
-                        "CurrentValue": 5
-                    }
-                },
+                "BaseBehavior": null,
                 "CircleCollider": {
                     "Radius": 1.0,
                     "CollisionLayer": 3,
                     "CollisionLayerFlags": 2
+                },
+                "GeneratorBehavior": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 3.0,
+                    "Depth": 0,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -631,6 +638,124 @@
                     "Translation": [
                         -9.0,
                         5.5
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Generator": {
+            "Name": "Generator",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": "BaseDamageSound",
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
+                },
+                "GeneratorBehavior": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 3.0,
+                    "Depth": 0,
+                    "Active": false
+                },
+                "Health": {
+                    "Health": {
+                        "Name": "Health Pool",
+                        "BaseValue": 5,
+                        "CurrentValue": 5,
+                        "Active": true
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Van"
+                },
+                "Transform": {
+                    "Translation": [
+                        -5.679166793823242,
+                        -0.4700002670288086
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Generator2": {
+            "Name": "Generator2",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": "BaseDamageSound",
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
+                },
+                "GeneratorBehavior": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 3.0,
+                    "Depth": 0,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "Name": "Health Pool",
+                        "BaseValue": 5,
+                        "CurrentValue": 5,
+                        "Active": true
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": "Van"
+                },
+                "Transform": {
+                    "Translation": [
+                        12.337499618530273,
+                        -1.409998893737793
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -2426,6 +2551,9 @@
                     ],
                     "Walkables": [
                         -1
+                    ],
+                    "Targets": [
+                      "Player - low"
                     ]
                 },
                 "StaticBody": {

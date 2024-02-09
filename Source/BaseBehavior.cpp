@@ -13,18 +13,20 @@
 #include "EnemyBehavior.h"
 #include "SceneSystem.h"
 #include "AudioPlayer.h"
+#include "GeneratorBehavior.h"
+#include "Health.h"
 
 //-----------------------------------------------------------------------------
 // constructor / destructor 
 //-----------------------------------------------------------------------------
 
 /// @brief  constructor
-BaseBehavior::BaseBehavior() : BasicEntityBehavior(typeid(BaseBehavior))
+BaseBehavior::BaseBehavior() : Behavior(typeid(BaseBehavior))
 {
 }
 
 /// @brief  copy ctor
-BaseBehavior::BaseBehavior(const BaseBehavior& other) : BasicEntityBehavior(other)
+BaseBehavior::BaseBehavior(const BaseBehavior& other) : Behavior(other)
 {
 }
 
@@ -46,56 +48,31 @@ Component* BaseBehavior::Clone() const
 /// @brief	initialize base
 void BaseBehavior::OnInit()
 {
-	BasicEntityBehavior::OnInit();
-
-	GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionEnterCallback(
-		GetId(),
-		std::bind( &BaseBehavior::onCollisionEnter, this, std::placeholders::_1 )
-	);
-
-	m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
 }
 
 /// @brief	called on exit, handles loss state
 void BaseBehavior::OnExit()
 {
-	BasicEntityBehavior::OnExit();
 }
 
-
-/// @brief  called whenever the base's Collider enters a collision
-/// @param  other   the collider that was collided with
-void BaseBehavior::onCollisionEnter( Collider* other )
+/// @brief	destroy the base
+void BaseBehavior::Destroy()
 {
-	EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
-	if (!enemy)
-	{
-		return;
-	}
-	
-	BasicEntityBehavior::TakeDamage(enemy->GetDamage());
-	if(m_AudioPlayer)
-	{
-		m_AudioPlayer->Play();
-	}
-	enemy->GetEntity()->Destroy();
+	SceneSystem::GetInstance()->SetNextScene("Gameover");
+}
 
-	if (BasicEntityBehavior::GetHealth()->GetCurrent() <= 0)
-	{
-		SceneSystem::GetInstance()->SetNextScene("Gameover");
-	}
-
-	
+Pool<int>* BaseBehavior::GetHealth()
+{
+	return GetEntity()->GetComponent<Health>()->GetHealth();
 }
 
 //-----------------------------------------------------------------------------
 // reading
 //-----------------------------------------------------------------------------
 
-/// @brief read method map
+/// @brief	read method map
 ReadMethodMap<BaseBehavior> const BaseBehavior::s_ReadMethods =
 {
-	{ "Health",	  &readHealth},
 	
 };
 
@@ -107,9 +84,6 @@ ReadMethodMap<BaseBehavior> const BaseBehavior::s_ReadMethods =
 nlohmann::ordered_json BaseBehavior::Write() const
 {
 	nlohmann::ordered_json data;
-
-	data["Health"] = m_Health.Write();
-
 
 	return data;
 }
