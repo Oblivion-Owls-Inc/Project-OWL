@@ -73,6 +73,12 @@ public: // accessors
     /// @return  std::string: The name of the window.
     std::string GetImguiWindowName() const;
 
+
+    /// @brief  gets the position of the gameWindow within the glfw window
+    /// @return the position of the game window
+    glm::vec2 const& GetGameWindowPos() const;
+
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -112,6 +118,9 @@ private: // members
     
 	/// @brief  handle to the GLFW window
 	GLFWwindow* m_Window = nullptr;
+
+    /// @brief  the position of the game window within the GLFW window
+    glm::vec2 m_WindowPos = glm::vec2( 0.0f, 0.0f );
 
 
     /// @brief  callbacks to call whenever the window resizes
