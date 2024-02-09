@@ -68,8 +68,9 @@ private: // private methods
     /// @brief  updates map realted to fixed or standard update
     void mapUpdate();
 
-    /// @brief convert matrix to vec2
-    glm::vec2 convert(glm::mat4 matrix);
+    /// @brief  convert matrix to vec2
+    /// @param  transformation  the transformation to apply to the screen-space mouse position
+    glm::vec2 getMousePosAfterTransformation( glm::mat4 const& transformation ) const;
 
     
 
