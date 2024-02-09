@@ -294,6 +294,9 @@
     <Filter Include="Engine\Entity\Component\TilemapTextureConnector">
       <UniqueIdentifier>{f6c41e19-950d-4898-b359-f64157800677}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Tilemap\TilemapEditor">
+      <UniqueIdentifier>{3e0165c1-e7de-42a5-8938-8e832cc5330b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -592,6 +595,9 @@
     </ClCompile>
     <ClCompile Include="Source\TilemapTextureConnector.cpp">
       <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TilemapEditor.cpp">
+      <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -900,6 +906,9 @@
     </ClInclude>
     <ClInclude Include="Source\TilemapTextureConnector.h">
       <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TilemapEditor.h">
+      <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

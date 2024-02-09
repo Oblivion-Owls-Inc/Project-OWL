@@ -46,18 +46,12 @@
             "Components": {
                 "Tilemap<int>": {
                     "Dimensions": [
-                        2,
-                        2
+                        30,
+                        30
                     ],
                     "TileScale": [
                         1.0,
                         1.0
-                    ],
-                    "TileData": [
-                        0,
-                        0,
-                        0,
-                        0
                     ]
                 },
                 "Transform": {
@@ -79,30 +73,12 @@
                     "Components": {
                         "Tilemap<int>": {
                             "Dimensions": [
-                                4,
-                                4
+                                120,
+                                120
                             ],
                             "TileScale": [
-                                1.0,
-                                1.0
-                            ],
-                            "TileData": [
-                                4,
-                                8,
-                                8,
-                                5,
-                                11,
-                                3,
-                                3,
-                                11,
-                                10,
-                                3,
-                                3,
-                                9,
-                                6,
-                                9,
-                                10,
-                                7
+                                0.5,
+                                0.5
                             ]
                         },
                         "TilemapSprite": {

@@ -50,6 +50,7 @@
 #include "CameraBehavior.h"
 #include "UiButton.h"
 #include "TilemapTextureConnector.h"
+#include "TilemapEditor.h"
 
 
 //-----------------------------------------------------------------------------
@@ -171,7 +172,8 @@
         { "UiButton"               , ComponentInfo< UiButton >()                },
         { "Light"                  , ComponentInfo< Light >()                   },
         { "CameraBehavior"         , ComponentInfo< CameraBehavior >()          },
-        { "TilemapTextureConnector", ComponentInfo< TilemapTextureConnector >() }
+        { "TilemapTextureConnector", ComponentInfo< TilemapTextureConnector >() },
+        { "TilemapEditor"          , ComponentInfo< TilemapEditor >()           }
     };
 
 //-----------------------------------------------------------------------------
