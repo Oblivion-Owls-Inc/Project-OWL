@@ -90,7 +90,9 @@
     /// @brief  displays this Texture in ImGui
     /// @param  scale       the scale to display this image at
     /// @param  frameIndex  the index of the frame of this texture to display
-    void Texture::DisplayInInspector( int frameIndex, float scale ) const
+    /// @param  tintColor   the tint color of the displayed button
+    /// @param  borderColor the border color of the displayed button
+    void Texture::DisplayInInspector( int frameIndex, float scale, glm::vec4 const& tintColor, glm::vec4 const& borderColor ) const
     {
         glm::vec2 uvMin = GetUvOffset( frameIndex );
         glm::vec2 uvMax = uvMin + m_Mesh->GetUVsize();
@@ -101,7 +103,9 @@
             (ImTextureID)m_TextureID,
             ImVec2( scale, scale / GetAspectRatio() ),
             ImVec2( uvMin.x, uvMin.y ),
-            ImVec2( uvMax.x, uvMax.y )
+            ImVec2( uvMax.x, uvMax.y ),
+            *reinterpret_cast< ImVec4 const* >( &tintColor ),
+            *reinterpret_cast< ImVec4 const* >( &borderColor )
         );
         #pragma warning( pop )
     }

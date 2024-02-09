@@ -81,10 +81,6 @@ private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the index of the currently selected tile type
-    int m_SelectedTileIndex = 0;
-
-
     /// @brief  the name of the preview texture asset
     std::string m_PreviewTextureName = "";
     
@@ -104,12 +100,15 @@ private: // members
     };
 
 
-    /// @brief  the maximum number of undoable actions that will be kept track of
-    int m_UndoStackCapacity = 64;
+    /// @brief  the color to highlight the selection with
+    glm::vec4 m_SelectionColor = { 0.3f, 0.3f, 1.0f, 0.0f };
+
+    /// @brief  the transparency of the selection
+    float m_SelectionAlpha = 0.1f;
 
 
-    /// @brief  the tilemap attached to this Entity to edit
-    Tilemap< int >* m_Tilemap = nullptr;
+    /// @brief  the index of the currently selected tile type
+    int m_SelectedTileIndex = 0;
 
 
     /// @brief  the first corner of the selection
@@ -118,6 +117,9 @@ private: // members
     /// @brief  the second corner of the selection
     glm::ivec2 m_SelectionPos1 = { 0, 0 };
 
+
+    /// @brief  the maximum number of undoable actions that will be kept track of
+    int m_UndoStackCapacity = 64;
 
     /// @brief  the current position on the UndoStack
     int m_UndoStackPosition = 0;
@@ -128,6 +130,10 @@ private: // members
 
     /// @brief  the clipboard which can be copy-pasted
     RectangleSelection m_Clipboard;
+
+
+    /// @brief  the tilemap attached to this Entity to edit
+    Tilemap< int >* m_Tilemap = nullptr;
 
 
 //-----------------------------------------------------------------------------
@@ -153,15 +159,20 @@ private: // methods
     void updatePickerTool();
 
 
+    /// @brief  updates the hotkeys the TilemapEditor uses for copy/paste, undo/redo, and similar
+    void updateHotkeys();
+
+
     /// @brief  clamps the selection to the Tilemap bounds and makes pos0 the top left
-    void standardizeSelection();
+    /// @return whether the selection is valid
+    bool standardizeSelection();
 
 
     /// @brief  copies the current selection onto the clipboard
     void copySelection();
 
-    /// @brief  erases all tiles in the current selection
-    void eraseSelection();
+    /// @brief  fills the selection with the specified tile
+    void fillSelection( int tileId );
 
     /// @brief  pastes the current selection into the tilemap
     void pasteSelection();
@@ -209,6 +220,14 @@ private: // reading
     /// @brief  reads the maximum number of undoable actions that will be kept track of
     /// @param  data    the json data to read from
     void readUndoStackCapacity( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the color to highlight the selection with
+    /// @param  data    the json data to read from
+    void readSelectionColor( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the transparency of the selection
+    /// @param  data    the json data to read from
+    void readSelectionAlpha( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

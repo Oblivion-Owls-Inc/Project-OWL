@@ -16,6 +16,7 @@
 #include "AssetLibrarySystem.h"
 
 #include "InputSystem.h"
+#include "RenderSystem.h"
 
 #include "Inspection.h"
 
@@ -169,32 +170,6 @@
     void TilemapEditor::updateSelectionTool()
     {
 
-        // cut, copy, and paste
-        if ( Input()->GetKeyDown( GLFW_KEY_LEFT_CONTROL ) )
-        {
-            if ( Input()->GetKeyTriggered( GLFW_KEY_X ) )
-            {
-                copySelection();
-                eraseSelection();
-            }
-            else if ( Input()->GetKeyTriggered( GLFW_KEY_C ) )
-            {
-                copySelection();
-            }
-
-            if ( Input()->GetKeyTriggered( GLFW_KEY_V ) )
-            {
-                pasteSelection();
-            }
-        }
-
-        // erase selection
-        if ( Input()->GetKeyTriggered( GLFW_KEY_DELETE ) || Input()->GetKeyTriggered( GLFW_KEY_BACKSPACE ) )
-        {
-            eraseSelection();
-        }
-
-
         // don't use this tool if it's not selected
         if ( m_ToolButtons[ s_SelectionToolIndex ] == -1 )
         {
@@ -211,9 +186,14 @@
         glm::ivec2 mousePos = getMouseTilePos();
 
         // when first starting to use this tool, set first position
-        if ( Input()->GetMouseTriggered( m_ToolButtons[ s_SelectionToolIndex ] ) )
+        if ( Input()->GetMouseTriggered( m_ToolButtons[ s_SelectionToolIndex ] ) || m_SelectionPos0 == glm::ivec2( -1, -1 ) )
         {
             m_SelectionPos0 = mousePos;
+        }
+
+        if ( m_Tilemap->IsPositionWithinBounds( mousePos ) == false )
+        {
+            return;
         }
 
         // set the second pos wherever the mouse is as long as it's down
@@ -249,9 +229,67 @@
     }
 
 
-    /// @brief  clamps the selection to the Tilemap bounds and makes pos0 the top left
-    void TilemapEditor::standardizeSelection()
+    /// @brief  updates the hotkeys the TilemapEditor uses for copy/paste, undo/redo, and similar
+    void TilemapEditor::updateHotkeys()
     {
+        if ( Input()->GetKeyDown( GLFW_KEY_LEFT_CONTROL ) )
+        {
+            // copy/cut/paste
+            if ( Input()->GetKeyTriggered( GLFW_KEY_C ) )
+            {
+                copySelection();
+            }
+            if ( Input()->GetKeyTriggered( GLFW_KEY_X ) )
+            {
+                copySelection();
+                fillSelection( -1 );
+            }
+            if ( Input()->GetKeyTriggered( GLFW_KEY_V ) )
+            {
+                pasteSelection();
+            }
+
+            // undo / redo
+            if ( Input()->GetKeyTriggered( GLFW_KEY_Z ) )
+            {
+                if ( Input()->GetKeyDown( GLFW_KEY_LEFT_SHIFT ) )
+                {
+                    redo();
+                }
+                else
+                {
+                    undo();
+                }
+            }
+            if ( Input()->GetKeyTriggered( GLFW_KEY_Y ) )
+            {
+                redo();
+            }
+        }
+
+        // erase selection
+        if ( Input()->GetKeyTriggered( GLFW_KEY_DELETE ) || Input()->GetKeyTriggered( GLFW_KEY_BACKSPACE ) )
+        {
+            fillSelection( -1 );
+        }
+
+        // fill selection
+        if ( Input()->GetKeyTriggered( GLFW_KEY_F ) )
+        {
+            fillSelection( m_SelectedTileIndex );
+        }
+    }
+
+
+    /// @brief  clamps the selection to the Tilemap bounds and makes pos0 the top left
+    /// @return whether the selection is valid
+    bool TilemapEditor::standardizeSelection()
+    {
+        if ( m_SelectionPos0 == glm::ivec2( -1, -1 ) )
+        {
+            return false;
+        }
+
         glm::ivec2 min = glm::ivec2(
             std::min( std::min( m_SelectionPos0.x, m_SelectionPos1.x ), m_Tilemap->GetDimensions().x - 1 ),
             std::min( std::min( m_SelectionPos0.y, m_SelectionPos1.y ), m_Tilemap->GetDimensions().y - 1 )
@@ -264,13 +302,19 @@
 
         m_SelectionPos0 = min;
         m_SelectionPos1 = max;
+
+        return true;
     }
 
 
     /// @brief  copies the current selection onto the clipboard
     void TilemapEditor::copySelection()
     {
-        standardizeSelection();
+        bool selectionValid = standardizeSelection();
+        if ( selectionValid == false )
+        {
+            return;
+        };
 
         m_Clipboard.M_Size = m_SelectionPos1 - m_SelectionPos0 + glm::ivec2( 1, 1 );
         m_Clipboard.M_Tiles.clear();
@@ -285,17 +329,21 @@
         }
     }
 
-    /// @brief  erases all tiles in the current selection
-    void TilemapEditor::eraseSelection()
+    /// @brief  fills the selection with the specified tile
+    void TilemapEditor::fillSelection( int tileId )
     {
-        standardizeSelection();
+        bool selectionValid = standardizeSelection();
+        if ( selectionValid == false )
+        {
+            return;
+        };
 
         glm::ivec2 pos;
         for ( pos.y = m_SelectionPos0.y; pos.y <= m_SelectionPos1.y; ++pos.y )
         {
             for ( pos.x = m_SelectionPos0.x; pos.x <= m_SelectionPos1.x; ++pos.x )
             {
-                m_Tilemap->SetTile( pos, -1 );
+                m_Tilemap->SetTile( pos, tileId );
             }
         }
 
@@ -305,7 +353,11 @@
     /// @brief  pastes the current selection into the tilemap
     void TilemapEditor::pasteSelection()
     {
-        standardizeSelection();
+        bool selectionValid = standardizeSelection();
+        if ( selectionValid == false )
+        {
+            return;
+        };
 
         glm::ivec2 pos;
         for ( pos.y = 0; pos.y < m_Clipboard.M_Size.y; ++pos.y )
@@ -394,7 +446,19 @@
     /// @brief  displays the current selection
     void TilemapEditor::displaySelection() const
     {
-        // TODO: display selection
+        if ( m_SelectionPos0 == glm::ivec2( -1, -1 ) )
+        {
+            return;
+        }
+
+        glm::vec2 pos0 = m_Tilemap->TileCoordToWorldPos( m_SelectionPos0 );
+        glm::vec2 pos1 = m_Tilemap->TileCoordToWorldPos( m_SelectionPos1 );
+
+        glm::vec2 middle = 0.5f * ( pos0 + pos1 );
+        glm::vec2 scale = glm::vec2( std::abs( pos1.x - pos0.x ), std::abs( pos1.y - pos0.y ) );
+        scale += m_Tilemap->GetTileScale();
+
+        Renderer()->DrawRect( middle, scale, 0.0f, m_SelectionColor, m_SelectionAlpha );
     }
 
 
@@ -414,6 +478,26 @@
 
         ImGui::InputInt( "selected tile index", &m_SelectedTileIndex, 1, 5 );
 
+
+        if ( m_PreviewTexture != nullptr )
+        {
+            glm::ivec2 sheetDimensions = m_PreviewTexture->GetSheetDimensions();
+            for ( int i = 0; i < sheetDimensions.x * sheetDimensions.y; ++i )
+            {
+                if ( i % sheetDimensions.x != 0 )
+                {
+                    ImGui::SameLine();
+                }
+                glm::vec4 color = m_SelectedTileIndex == i ? glm::vec4( 1.0f, 1.0f, 1.0f, 1.0f ) : glm::vec4( 0.0f );
+                m_PreviewTexture->DisplayInInspector( i, (float)m_PreviewTexture->GetPixelDimensions().x / sheetDimensions.x, glm::vec4( 1.0f ), color );
+                if ( ImGui::IsItemClicked() )
+                {
+                    m_SelectedTileIndex = i;
+                }
+            }
+        }
+
+
         ImGui::DragInt2( "selection Pos 1", &m_SelectionPos0[ 0 ], 0.05f, 0, INT_MAX );
         ImGui::DragInt2( "selection Pos 2", &m_SelectionPos1[ 0 ], 0.05f, 0, INT_MAX );
 
@@ -427,12 +511,20 @@
             redo();
         }
 
+        ImGui::ColorEdit4( "selection highlight color", &m_SelectionColor[ 0 ] );
+        ImGui::DragFloat( "selection alpha", &m_SelectionAlpha );
+
+        Inspection::SelectAssetFromLibrary( "preview texture", &m_PreviewTexture, &m_PreviewTextureName );
+
         // TODO: rest of inspector
 
         updateBrushTool();
         updateEraseTool();
         updatePickerTool();
         updateSelectionTool();
+        updateHotkeys();
+
+        displaySelection();
     }
 
 
@@ -471,6 +563,20 @@
         Stream::Read( m_UndoStackCapacity, data );
     }
 
+    /// @brief  reads the color to highlight the selection with
+    /// @param  data    the json data to read from
+    void TilemapEditor::readSelectionColor( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( &m_SelectionColor, data );
+    }
+
+    /// @brief  reads the transparency of the selection
+    /// @param  data    the json data to read from
+    void TilemapEditor::readSelectionAlpha( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_SelectionAlpha, data );
+    }
+
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
@@ -483,7 +589,9 @@
         static ReadMethodMap< TilemapEditor > const readMethods = {
             { "PreviewTextureName", &TilemapEditor::readPreviewTextureName },
             { "ToolButtons"       , &TilemapEditor::readToolButtons        },
-            { "UndoStackCapacity" , &TilemapEditor::readUndoStackCapacity  }
+            { "UndoStackCapacity" , &TilemapEditor::readUndoStackCapacity  },
+            { "SelectionColor"    , &TilemapEditor::readSelectionColor     },
+            { "SelectionAlpha"    , &TilemapEditor::readSelectionAlpha     }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -498,6 +606,8 @@
 
         json[ "PreviewTextureName" ] = Stream::Write( m_PreviewTextureName );
         json[ "UndoStackCapacity"  ] = Stream::Write( m_UndoStackCapacity  );
+        json[ "SelectionColor"     ] = Stream::Write( m_SelectionColor     );
+        json[ "SelectionAlpha"     ] = Stream::Write( m_SelectionAlpha     );
 
         nlohmann::ordered_json& toolButtons = json[ "ToolButtons" ];
         for ( int button : m_ToolButtons )

@@ -51,7 +51,14 @@ public: // methods
     /// @brief  displays this Texture in ImGui
     /// @param  scale       the scale to display this image at
     /// @param  frameIndex  the index of the frame of this texture to display
-    void DisplayInInspector( int frameIndex = 0, float scale = 100.0f ) const;
+    /// @param  tintColor   the tint color of the displayed button
+    /// @param  borderColor the border color of the displayed button
+    void DisplayInInspector(
+        int frameIndex = 0,
+        float scale = 100.0f,
+        glm::vec4 const& tintColor = { 1.0f, 1.0f, 1.0f, 1.0f },
+        glm::vec4 const& borderColor = { 0.0f, 0.0f, 0.0f, 0.0f }
+    ) const;
 
 
 //-----------------------------------------------------------------------------

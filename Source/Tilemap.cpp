@@ -22,6 +22,7 @@ void Tilemap<int>::Inspector()
     if ( ImGui::DragInt2( "Tilemap Size", &dimensions[0], 0.05f, 1, INT_MAX ) )
     {
         SetDimensions( dimensions );
+        callOnTilemapChangedCallbacks();
     }
 
     glm::vec2 tileSize = GetTileScale();
