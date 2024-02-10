@@ -68,6 +68,11 @@ protected:
     std::vector<map<int, bool[3]>> windows;
     int amount = 0;
 
+    class Action; // forward reference
+
+    // map of actions
+    map<int, Action> m_Actions;
+
 //-----------------------------------------------------------------------------
 private: // private methods
 //-----------------------------------------------------------------------------
@@ -85,10 +90,65 @@ private: // private methods
 private: // private class
 //-----------------------------------------------------------------------------
 
-    class Activation
+    enum ActionType
     {
-        std::vector<int> keys;
+        Down,
+        Triggered,
+        Released
+    };
+
+    class Action
+    {
+    private:
+        /// @brief  key inputs
+        std::vector<int> a_keys;
+        /// @brief  mouse inputs
+        std::vector<int> a_mouse;
+        /// @brief  controller inputs
+        std::vector<int> a_controller;
+        /// @brief  controller inputs
+        ActionType a_inputType;
+        /// @brief  action name
+        std::string a_name;
+
+    public:
+
+        /// @brief  contructor
+        /// @param  name of the action
+        /// @param  type of the action
+        Action(std::string name, ActionType type);
+
+        /// @brief  adds a key to the action
+        /// @param  key to add
+        void AddKeyInput(int glfw_key);
+
+        /// @brief  removes a key from the action
+        /// @param  key to remove
+        void RemoveKeyInput(int glfw_key);
         
+        /// @brief  adds a mouse input to the action
+        /// @param  mouse input to add
+        void AddMouseInput(int glfw_mouse_button);
+
+        /// @brief  removes a mouse input from the action
+        /// @param  mouse input to remove
+        void RemoveMouseInput(int glfw_mouse_button);
+
+        /// @brief  adds a controller to the action
+        /// @param  controller input to add
+        void AddControllerInput(int glfw_button);
+
+        /// @brief  removes a controller input from the action
+        /// @param  controller input to remove
+        void RemoveControllerInput(int glfw_button);
+
+        /// @brief  sets the name of the action
+        /// @param  new name of action
+        void SetName(std::string name);
+
+        /// @brief  gets the name of this action
+        /// @return the name of the action
+        std::string GetName();
     };
 
 //-----------------------------------------------------------------------------
@@ -181,6 +241,8 @@ public: // accessors
     // Prevent copying
     InputSystem(InputSystem& other) = delete;
     void operator=(const InputSystem&) = delete;
+
+    Action* GetActionByName(std::string name);
 };
 
 /// @brief shortens input get instance to simply input
