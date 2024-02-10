@@ -119,6 +119,13 @@ public: // reading
     template<typename ValueType, int Size>
     static void Read(ValueType* array_data, nlohmann::ordered_json const& json);
 
+    /// @brief Reads a map with a string key and any standard data type from a JSON.
+    /// @tparam ValueType - the type of map value.
+    /// @param map_data   - pointer tot he map to read into.
+    /// @param json       - the JSON to read from.
+    template<typename ValueType>
+    static void Read(std::map<std::string, ValueType>* map_data, nlohmann::ordered_json const& json);
+
 //------------------------------------------------------------------------------
 public: // writing
 //------------------------------------------------------------------------------
@@ -145,9 +152,20 @@ public: // writing
     template<typename ValueType>
     static nlohmann::ordered_json Write(std::vector<ValueType> const& vec_data);
 
-   
+    /// @brief Write an array of any standard data type to a JSON.
+    /// @tparam ValueType - the type of data stored in the array
+    /// @tparam Size      - the size of the array
+    /// @param array_data - pointer to the array.
+    /// @return The JSON object containing the array.
     template<typename ValueType, int Size>
     static nlohmann::ordered_json Write(ValueType* array_data);
+
+    /// @brief Write a map of string keys and any standard data type to a JSON object.
+    /// @tparam ValueType - the data type of the map values.
+    /// @param map_data   - the map to write to a JSON object.
+    /// @return The JSON object containing the written map data.
+    template<typename ValueType>
+    static nlohmann::ordered_json Write(std::map<std::string, ValueType> map_data);
 
 //-----------------------------------------------------------------------------
 private: // static variables

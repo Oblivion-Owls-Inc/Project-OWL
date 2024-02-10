@@ -169,6 +169,36 @@ void Stream::Read(ValueType* array_data, nlohmann::ordered_json const& json)
     }
 }
 
+/// @brief Reads a map with a string key and any standard data type from a JSON.
+/// @tparam ValueType - the type of map value.
+/// @param map_data   - pointer tot he map to read into.
+/// @param json       - the JSON to read from.
+template<typename ValueType>
+void Stream::Read(std::map<std::string, ValueType>* map_data, nlohmann::ordered_json const& json)
+{
+    // JSON Error checking
+    if (json.is_object() == false)
+    {
+        std::cerr << "JSON Error: unexpected json type \"" << json.type_name() <<
+            "\" encountered (expected an Object instead) while trying to read object of " << typeid(ValueType).name() << "s" << std::endl;
+        return;
+    }
+
+    // Cleaar the map
+    map_data->clear();
+
+    // Iterate through the JSON object.
+    for ( auto const& [ key, value ] : json )
+    {
+        // Initialise the element.
+        ValueType element();
+        // Read the value from the JSON to the element
+        Read(element, value);
+        // Add the key & element from the JSON to the map
+        map_data->emplace(key, element);
+    }
+}
+
 //------------------------------------------------------------------------------
 // template write method definitions
 //------------------------------------------------------------------------------
@@ -243,6 +273,24 @@ nlohmann::ordered_json Stream::Write(ValueType* array_data)
     for (int i = 0; i < Size; i++)
     {
         data[i] = array_data[i];
+    }
+
+    return data;
+}
+
+/// @brief Write a map of string keys and any standard data type to a JSON object.
+/// @tparam ValueType - the data type of the map values.
+/// @param map_data   - the map to write to a JSON object.
+/// @return The JSON object containing the written map data.
+template<typename ValueType>
+nlohmann::ordered_json Stream::Write(std::map<std::string, ValueType> map_data)
+{
+    // The JSON object to write to.
+    nlohmann::ordered_json data;
+    // Write map into JSON object
+    for (auto& [key, value] : map_data)
+    {
+        data[key] = Write(value);
     }
 
     return data;
