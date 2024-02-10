@@ -105,6 +105,27 @@ public: // reading
     template< int size, typename ValueType >
     static void Read( glm::vec< size, ValueType >* value, nlohmann::ordered_json const& json );
 
+    /// @brief Reads a vector of a standard type from a JSON file.
+    /// @tparam ValueType - the type of data to read into the vector,
+    /// @param vector     - the vector to read into.
+    /// @param json       - the JSON to read from.
+    template<typename ValueType>
+    static void Read(std::vector<ValueType>* vec_data, nlohmann::ordered_json const& json);
+
+    /// @brief Reads an array of a standard type from a JSON file.
+    /// @tparam ValueType - the data type of the array.
+    /// @tparam Size      - the size of the array.
+    /// @param array      - the array to read into.
+    template<typename ValueType, int Size>
+    static void Read(ValueType* array_data, nlohmann::ordered_json const& json);
+
+    /// @brief Reads a map with a string key and any standard data type from a JSON.
+    /// @tparam ValueType - the type of map value.
+    /// @param map_data   - pointer tot he map to read into.
+    /// @param json       - the JSON to read from.
+    template<typename ValueType>
+    static void Read(std::map<std::string, ValueType>* map_data, nlohmann::ordered_json const& json);
+
 //------------------------------------------------------------------------------
 public: // writing
 //------------------------------------------------------------------------------
@@ -123,6 +144,28 @@ public: // writing
     /// @return the json data of the vector
     template< int size, typename ValueType >
     static nlohmann::ordered_json Write( glm::vec< size, ValueType > const& value );
+
+    /// @brief Write a vector of any standard data type to a JSON
+    /// @tparam ValueType - type of data stored by the vector.
+    /// @param vec_data   - the vector to write to JSON.
+    /// @return The JSON object containing the vector data.
+    template<typename ValueType>
+    static nlohmann::ordered_json Write(std::vector<ValueType> const& vec_data);
+
+    /// @brief Write an array of any standard data type to a JSON.
+    /// @tparam ValueType - the type of data stored in the array
+    /// @tparam Size      - the size of the array
+    /// @param array_data - pointer to the array.
+    /// @return The JSON object containing the array.
+    template<typename ValueType, int Size>
+    static nlohmann::ordered_json Write(ValueType* array_data);
+
+    /// @brief Write a map of string keys and any standard data type to a JSON object.
+    /// @tparam ValueType - the data type of the map values.
+    /// @param map_data   - the map to write to a JSON object.
+    /// @return The JSON object containing the written map data.
+    template<typename ValueType>
+    static nlohmann::ordered_json Write(std::map<std::string, ValueType> map_data);
 
 //-----------------------------------------------------------------------------
 private: // static variables
