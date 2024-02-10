@@ -105,6 +105,20 @@ public: // reading
     template< int size, typename ValueType >
     static void Read( glm::vec< size, ValueType >* value, nlohmann::ordered_json const& json );
 
+    /// @brief Reads a vector of a standard type from a JSON file.
+    /// @tparam ValueType - the type of data to read into the vector,
+    /// @param vector     - the vector to read into.
+    /// @param json       - the JSON to read from.
+    template<typename ValueType>
+    static void Read(std::vector<ValueType>* vec_data, nlohmann::ordered_json const& json);
+
+    /// @brief Reads an array of a standard type from a JSON file.
+    /// @tparam ValueType - the data type of the array.
+    /// @tparam Size      - the size of the array.
+    /// @param array      - the array to read into.
+    template<typename ValueType, int Size>
+    static void Read(ValueType* array_data, nlohmann::ordered_json const& json);
+
 //------------------------------------------------------------------------------
 public: // writing
 //------------------------------------------------------------------------------
@@ -123,6 +137,17 @@ public: // writing
     /// @return the json data of the vector
     template< int size, typename ValueType >
     static nlohmann::ordered_json Write( glm::vec< size, ValueType > const& value );
+
+    /// @brief Write a vector of any standard data type to a JSON
+    /// @tparam ValueType - type of data stored by the vector.
+    /// @param vec_data   - the vector to write to JSON.
+    /// @return The JSON object containing the vector data.
+    template<typename ValueType>
+    static nlohmann::ordered_json Write(std::vector<ValueType> const& vec_data);
+
+   
+    template<typename ValueType, int Size>
+    static nlohmann::ordered_json Write(ValueType* array_data);
 
 //-----------------------------------------------------------------------------
 private: // static variables
