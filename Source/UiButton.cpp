@@ -97,6 +97,11 @@
     /// @param  dt  the duration of the frame
     void UiButton::OnUpdate( float dt )
     {
+        if ( m_UiElement == nullptr )
+        {
+            return;
+        }
+
         // use if statements instead of switch statement so that the functions can cascade if an earlier function changes the state
         if ( m_State == ButtonState::Idle )
         {
@@ -146,7 +151,10 @@
         if ( s_currentlyDownButton == nullptr && isMouseOver() == true )
         {
             m_State = ButtonState::Hovered;
-            m_Sprite->SetFrameIndex( m_HoveredFrame );
+            if ( m_Sprite != nullptr )
+            {
+                m_Sprite->SetFrameIndex( m_HoveredFrame );
+            }
         }
     }
 
@@ -157,7 +165,10 @@
         if ( s_currentlyDownButton != nullptr || isMouseOver() == false )
         {
             m_State = ButtonState::Idle;
-            m_Sprite->SetFrameIndex( m_IdleFrame );
+            if ( m_Sprite != nullptr )
+            {
+                m_Sprite->SetFrameIndex( m_IdleFrame );
+            }
             return;
         }
 
@@ -173,10 +184,16 @@
             s_currentlyDownButton = this;
 
             m_State = ButtonState::Down;
-            m_Sprite->SetFrameIndex( m_DownFrame );
-            
-            m_AudioPlayer->SetSound( m_PressSound );
-            m_AudioPlayer->Play();
+            if ( m_Sprite != nullptr )
+            {
+                m_Sprite->SetFrameIndex( m_DownFrame );
+            }
+
+            if ( m_AudioPlayer != nullptr )
+            {
+                m_AudioPlayer->SetSound( m_PressSound );
+                m_AudioPlayer->Play();
+            }
         }
     }
 
@@ -188,8 +205,11 @@
         {
             s_currentlyDownButton = nullptr;
 
-            m_AudioPlayer->SetSound( m_ReleaseSound );
-            m_AudioPlayer->Play();
+            if ( m_AudioPlayer != nullptr )
+            {
+                m_AudioPlayer->SetSound( m_ReleaseSound );
+                m_AudioPlayer->Play();
+            }
 
             // only activate if still hovered
             if ( isMouseOver() == true )
@@ -201,12 +221,20 @@
                 }
 
                 m_State = ButtonState::Hovered;
-                m_Sprite->SetFrameIndex( m_HoveredFrame );
+
+                if ( m_Sprite != nullptr )
+                {
+                    m_Sprite->SetFrameIndex( m_HoveredFrame );
+                }
             }
             else
             {
                 m_State = ButtonState::Idle;
-                m_Sprite->SetFrameIndex( m_IdleFrame );
+
+                if ( m_Sprite != nullptr )
+                {
+                    m_Sprite->SetFrameIndex( m_IdleFrame );
+                }
             }
         }
     }
@@ -266,6 +294,42 @@
         Inspection::SelectAssetFromLibrary< Sound >( "button down sound", &m_PressSound  , &m_PressSoundName   );
         Inspection::SelectAssetFromLibrary< Sound >( "button up sound"  , &m_ReleaseSound, &m_ReleaseSoundName );
 
+    }
+
+    /// @brief  called whenever another component is added to this component's Entity in the inspector
+    /// @param  component   the component that was added
+    void UiButton::OnInspectorAddComponent( Component* component )
+    {
+        if ( component->GetType() == typeid( Sprite ) )
+        {
+            m_Sprite = static_cast< Sprite* >( component );
+        }
+        else if ( component->GetType() == typeid( AudioPlayer ) )
+        {
+            m_AudioPlayer = static_cast< AudioPlayer* >( component );
+        }
+        else if ( component->GetType() == typeid( UiElement ) )
+        {
+            m_UiElement = static_cast< UiElement* >( component );
+        }
+    }
+
+    /// @brief  called whenever another component is removed from this component's Entity in the inspector
+    /// @param  component   the component that will be removed
+    void UiButton::OnInspectorRemoveComponent( Component* component )
+    {
+        if ( static_cast< Sprite* >( component ) == m_Sprite )
+        {
+            m_Sprite = nullptr;
+        }
+        else if ( static_cast< AudioPlayer* >( component ) == m_AudioPlayer )
+        {
+            m_AudioPlayer = nullptr;
+        }
+        else if ( static_cast< UiElement* >( component ) == m_UiElement )
+        {
+            m_UiElement = nullptr;
+        }
     }
 
 
