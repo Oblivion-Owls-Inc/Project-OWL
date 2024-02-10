@@ -70,7 +70,7 @@ public:
     /// @brief           Add target entity for pathfinding
     /// @param entity    Pointer to target entity
     /// @param priority  How important it is to enemies
-    void AddTarget(Entity* entity, Priority priority);
+    void AddTarget(Entity* entity, Priority priority = Highest);
 
     /// @brief           Remove target entity from the list
     /// @param entity    Pointer to target entity

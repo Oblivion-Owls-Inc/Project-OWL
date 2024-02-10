@@ -11,7 +11,8 @@ struct Particle
     float size, rotation,
           dirAcc,  drag,   // dirAcc - magnitude of accelerating in the initial direction
           lifetime, time,
-          fadeIn, fadeOut;
+          fadeIn, fadeOut,
+          sizePerSec, align;
 };
 
 // how to initialize particles (including randomness and change over time)
@@ -21,8 +22,8 @@ struct InitData
     vec2 acceleration; float direction,  speed;
     float size, rotation,  dir_spread, speed_spread; 
     float size_spread, rotation_spread,  fadeInDuration, fadeOutDuration;
-    float lifetime, startAhead, dirAcc, padding;
-    int bufferSize, p1, p2, p3;
+    float lifetime, startAhead, dirAcc, sizePerSec;
+    int bufferSize, align1;
 };
 
 // Particle data buffer
@@ -101,6 +102,7 @@ void main()
         particles[idx].fadeIn =   zinit * init[initIndex].fadeInDuration;
         particles[idx].fadeOut =  zinit * particles[idx].lifetime - init[initIndex].fadeOutDuration;
         particles[idx].time = 0.0;
+        particles[idx].sizePerSec = zinit * init[initIndex].sizePerSec;
 
         particles[idx].drag = 0.0; // TODO:?
     }
@@ -109,8 +111,7 @@ void main()
     particles[idx].vel *= (1.0 - particles[idx].drag*dt);
     particles[idx].vel += particles[idx].acc * dt;
     particles[idx].pos += particles[idx].vel * dt;
-    //particles[idx].size += particles[idx].size_d * dt;
-    //particles[idx].rotation += particles[idx].rotation_d * dt;
+    particles[idx].size += step(0, particles[idx].size) * particles[idx].sizePerSec * dt;
 
     // "destroy" (just set size to 0) when time runs out
     particles[idx].time += dt;
@@ -125,12 +126,10 @@ void main()
 
     // arrange them from oldest to newest for rendering. inverse deque, wooo
     int renderIndex = (int(idx) + (init[initIndex].bufferSize - oldest)) % init[initIndex].bufferSize;
-    transforms[renderIndex] = proj * T * R * S; // TODO: change back to renderIndex
+    transforms[renderIndex] = proj * T * R * S;
 
     // fade in and out
     opacities[renderIndex] = lerpOpacity(0,                      particles[idx].fadeIn,   particles[idx].time) *
                           (1-lerpOpacity(particles[idx].fadeOut, particles[idx].lifetime, particles[idx].time));
 }
 
-// debugging: matrices order is not the issue. in fact, matrices are great.
-// wrong values are actually getting assigned.
