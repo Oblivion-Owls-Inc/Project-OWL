@@ -124,6 +124,16 @@ protected: // virtual override methods
 
     virtual void Inspector() override;
 
+
+    /// @brief  called whenever another component is added to this component's Entity in the inspector
+    /// @param  component   the component that was added
+    virtual void OnInspectorAddComponent( Component* component ) override;
+
+    /// @brief  called whenever another component is removed from this component's Entity in the inspector
+    /// @param  component   the component that will be removed
+    virtual void OnInspectorRemoveComponent( Component* component ) override;
+
+
 //-----------------------------------------------------------------------------
 protected: // member variables
 //-----------------------------------------------------------------------------

@@ -294,6 +294,9 @@
     <Filter Include="Engine\Entity\Component\TilemapTextureConnector">
       <UniqueIdentifier>{f6c41e19-950d-4898-b359-f64157800677}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Behaviors\GeneratorBehavior">
+      <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -592,6 +595,9 @@
     </ClCompile>
     <ClCompile Include="Source\TilemapTextureConnector.cpp">
       <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GeneratorBehavior.cpp">
+      <Filter>Game\Components\Behaviors\GeneratorBehavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -900,6 +906,9 @@
     </ClInclude>
     <ClInclude Include="Source\TilemapTextureConnector.h">
       <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GeneratorBehavior.h">
+      <Filter>Game\Components\Behaviors\GeneratorBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

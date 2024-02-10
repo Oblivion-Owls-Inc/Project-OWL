@@ -204,6 +204,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="imgui\implot_demo.cpp" />
     <ClCompile Include="imgui\implot_items.cpp" />
     <ClCompile Include="Source\HealthBar.cpp" />
+    <ClCompile Include="Source\GeneratorBehavior.cpp" />
     <ClCompile Include="Source\Inspection.cpp" />
     <ClCompile Include="Source\EmitterSprite.cpp" />
     <ClCompile Include="Source\Inventory.cpp" />
@@ -296,6 +297,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Health.h" />
     <ClInclude Include="Source\FileExplorer.h" />
     <ClInclude Include="imgui\imgui_stdlib.h" />
+    <ClInclude Include="Source\GeneratorBehavior.h" />
     <ClInclude Include="Source\Inspection.h" />
     <ClInclude Include="Source\BasicEntityBehavior.h" />
     <ClInclude Include="Source\BaseBehavior.h" />
@@ -377,6 +379,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\ConstructionTest.scene.json" />
     <None Include="Data\Scenes\GameOver.scene.json" />
     <None Include="Data\Scenes\GameWin.scene.json" />
+    <None Include="Data\Scenes\MapTest.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />
     <None Include="Data\shaders\UiBar.frag" />

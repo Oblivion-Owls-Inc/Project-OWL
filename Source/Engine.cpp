@@ -40,12 +40,14 @@
 #include "WavesBehavior.h"
 #include "Animation.h"
 #include "Tilemap.h"
+#include "GeneratorBehavior.h"
 
 #include "ItemComponent.h"
 
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
 #include "LightingSystem.h"
+
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -348,6 +350,7 @@
         { "BehaviorSystem<Animation>"       , &addSystem< BehaviorSystem< Animation      > >            },
         { "BehaviorSystem<EffectAnimator>"  , &addSystem< BehaviorSystem< EffectAnimator > >            },
         { "BehaviorSystem<WavesBehavior>"   , &addSystem< BehaviorSystem< WavesBehavior  > >            },
+        {"BehaviorSystem<GeneratorBehavior>", &addSystem< BehaviorSystem< GeneratorBehavior  > >       },
 
         { "AssetLibrary<Entity>"            , &addSystem< AssetLibrarySystem< Entity             > >    },
         { "AssetLibrary<Sound>"             , &addSystem< AssetLibrarySystem< Sound              > >    },
