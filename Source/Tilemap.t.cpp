@@ -79,7 +79,10 @@
         TileType previousValue = m_Tiles[ index ];
         m_Tiles[ index ] = tile;
 
-        callOnTilemapChangedCallbacks( coord, previousValue );
+        if ( previousValue != tile )
+        {
+            callOnTilemapChangedCallbacks( coord, previousValue );
+        }
     }
 
 
@@ -261,6 +264,8 @@
         {
             Stream::Read( m_Tiles[ i ], data[ i ] );
         }
+
+        callOnTilemapChangedCallbacks();
     }
 
 

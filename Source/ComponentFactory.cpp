@@ -51,6 +51,8 @@
 #include "CameraBehavior.h"
 #include "UiButton.h"
 #include "TilemapTextureConnector.h"
+#include "TilemapEditor.h"
+#include "EditorCameraController.h"
 
 
 //-----------------------------------------------------------------------------
@@ -173,7 +175,9 @@
         { "Light"                  , ComponentInfo< Light >()                   },
         { "CameraBehavior"         , ComponentInfo< CameraBehavior >()          },
         { "TilemapTextureConnector", ComponentInfo< TilemapTextureConnector >() },
-        { "GeneratorBehavior"      , ComponentInfo< GeneratorBehavior >()       }
+        { "GeneratorBehavior"      , ComponentInfo< GeneratorBehavior >()       },
+        { "TilemapEditor"          , ComponentInfo< TilemapEditor >()           },
+        { "EditorCameraController" , ComponentInfo< EditorCameraController >()  }
     };
 
 //-----------------------------------------------------------------------------

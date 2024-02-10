@@ -1,4 +1,4 @@
-/// @file   Stream.cpp
+/// @file   Stream.t.cpp
 /// @author Aidan Straker (aidan.straker@digipen.edu)
 /// @brief  JSON File reading/writing
 /// @version 0.1
@@ -17,8 +17,6 @@
 #ifndef STREAM_H
 #include "Stream.h"
 #endif
-
-
 
 //------------------------------------------------------------------------------
 // template clipboard method definitions
@@ -105,7 +103,7 @@ void Stream::Read(glm::vec< size, ValueType >* value, nlohmann::ordered_json con
     int count = size;
     if (json.size() != size)
     {
-        std::cout << "JSON Warning: expected an array of size " << size << " while reading a vector of " << typeid(ValueType).name() <<
+        std::cerr << "JSON Warning: expected an array of size " << size << " while reading a vector of " << typeid(ValueType).name() <<
             "s but encountered an array of size " << json.size() << " instead" << std::endl;
 
         count = std::min((int)json.size(), size);
@@ -114,6 +112,90 @@ void Stream::Read(glm::vec< size, ValueType >* value, nlohmann::ordered_json con
     for (int i = 0; i < count; ++i)
     {
         (*value)[i] = json[i].get< ValueType >();
+    }
+}
+
+/// @brief Reads a vector of a standard type from a JSON file.
+/// @tparam ValueType - the type of data to read into the vector,
+/// @param vector     - the vector to read into.
+/// @param json       - the JSON to read from.
+template<typename ValueType>
+void Stream::Read(std::vector<ValueType>* vec_data, nlohmann::ordered_json const& json)
+{
+    // Error checking
+    if (json.is_array() == false)
+    {
+        std::cerr << "JSON Error: unexpected json type \"" << json.type_name() <<
+            "\" encountered (expected an Array instead) while trying to read vector of " << typeid(ValueType).name() << "s" << std::endl;
+        return;
+    }
+
+    // Resize the vector to match the JSON size.
+    vec_data->resize(json.size());
+    // Read in the data from the JSON.
+    for (int i = 0; i < vec_data->size(); i++)
+    {
+        vec_data[i] = Read<ValueType>(json);
+    }
+}
+
+/// @brief Reads an array of a standard type from a JSON file.
+/// @tparam ValueType - the data type of the array.
+/// @tparam Size      - the size of the array.
+/// @param array      - the array to read into.
+template<typename ValueType, int Size>
+void Stream::Read(ValueType* array_data, nlohmann::ordered_json const& json)
+{
+    // JSON Error checking
+    if (json.is_array() == false)
+    {
+        std::cerr << "JSON Error: unexpected json type \"" << json.type_name() <<
+            "\" encountered (expected an Array instead) while trying to read vector of " << typeid(ValueType).name() << "s" << std::endl;
+        return;
+    }
+
+    // If there is a size mismatch throw an error
+    if (Size != json.size())
+    {
+        std::cerr << "Error: array size mismatch encountered. JSON size: " << json.size() <<
+            "\"  Array size: " << Size << std::endl;
+        return;
+    }
+
+    // Read in data from JSON.
+    for (int i = 0; i < Size; i++)
+    {
+        array_data[i] = Read<ValueType>(json[i]);
+    }
+}
+
+/// @brief Reads a map with a string key and any standard data type from a JSON.
+/// @tparam ValueType - the type of map value.
+/// @param map_data   - pointer tot he map to read into.
+/// @param json       - the JSON to read from.
+template<typename ValueType>
+void Stream::Read(std::map<std::string, ValueType>* map_data, nlohmann::ordered_json const& json)
+{
+    // JSON Error checking
+    if (json.is_object() == false)
+    {
+        std::cerr << "JSON Error: unexpected json type \"" << json.type_name() <<
+            "\" encountered (expected an Object instead) while trying to read object of " << typeid(ValueType).name() << "s" << std::endl;
+        return;
+    }
+
+    // Cleaar the map
+    map_data->clear();
+
+    // Iterate through the JSON object.
+    for ( auto const& [ key, value ] : json )
+    {
+        // Initialise the element.
+        ValueType element();
+        // Read the value from the JSON to the element
+        Read(element, value);
+        // Add the key & element from the JSON to the map
+        map_data->emplace(key, element);
     }
 }
 
@@ -147,14 +229,71 @@ nlohmann::ordered_json Stream::Write(ValueType const& value)
 template< int size, typename ValueType >
 nlohmann::ordered_json Stream::Write(glm::vec< size, ValueType > const& value)
 {
+    // JSON object to write the glm vector to.
     nlohmann::ordered_json json;
-
+    // Write the data to the JSON object.
     for (int i = 0; i < size; ++i)
     {
         json[i] = value[i];
     }
 
     return json;
+}
+
+/// @brief Write a vector of any standard data type to a JSON
+/// @tparam ValueType - type of data stored by the vector.
+/// @param vector     - the vector to write to JSON.
+/// @return The JSON object containing the vector data.
+template<typename ValueType>
+nlohmann::ordered_json Stream::Write(std::vector<ValueType> const& vec_data)
+{
+    // The JSON object to store the vector in.
+    nlohmann::ordered_json data;
+
+    // Write the data to the JSON object.
+    for (int i = 0; i < vec_data.size(); i++)
+    {
+        data[i] = vec_data[i];
+    }
+
+    return data;
+}
+
+/// @brief Write the data from an array into a JSON object
+/// @tparam ValueType - the type of data in the array
+/// @tparam Size      - the size of the array.
+/// @param array_data - Pointer to the array to write.
+/// @return A JSON object containing the array.
+template<typename ValueType, int Size>
+nlohmann::ordered_json Stream::Write(ValueType* array_data)
+{
+    // The JSON object to store the array in.
+    nlohmann::ordered_json data;
+    // Write the data to a JSON object.
+    for (int i = 0; i < Size; i++)
+    {
+        data[i] = array_data[i];
+    }
+
+    return data;
+}
+
+/// @brief Write a map of string keys and any standard data type to a JSON object.
+/// @tparam ValueType - the data type of the map values.
+/// @param map_data   - the map to write to a JSON object.
+/// @return The JSON object containing the written map data.
+template<typename ValueType>
+nlohmann::ordered_json Stream::Write(std::map<std::string, ValueType> map_data)
+{
+    // The JSON object to write to.
+    nlohmann::ordered_json data;
+    // Write map into JSON object
+    for (auto& [key, value] : map_data)
+    {
+        data[key] = Write(value);
+    }
+
+    return data;
 }
 
 //-----------------------------------------------------------------------------
