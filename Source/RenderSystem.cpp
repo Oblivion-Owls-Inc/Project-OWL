@@ -188,7 +188,8 @@ void RenderSystem::DrawTexture(
     Texture const* texture,
     glm::vec2 const& position, glm::vec2 const& scale, float angle,
     glm::vec4 const& color, float alpha,
-    bool isDiegetic
+    bool isDiegetic,
+    int frameIndex
 )
 {
     shapes.push_back( new Entity() );
@@ -203,6 +204,7 @@ void RenderSystem::DrawTexture(
     Sprite* sprite = new Sprite( texture );
     sprite->SetColor( color );
     sprite->SetOpacity( alpha );
+    sprite->SetFrameIndex( frameIndex );
     shapes.back()->AddComponent( sprite );
 }
 

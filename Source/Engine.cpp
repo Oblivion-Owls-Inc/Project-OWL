@@ -41,6 +41,7 @@
 #include "Animation.h"
 #include "Tilemap.h"
 #include "GeneratorBehavior.h"
+#include "EditorCameraController.h"
 
 #include "ItemComponent.h"
 
@@ -331,42 +332,38 @@
     /// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
     std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
 
-        { "PlatformSystem"                  , &addSystem< PlatformSystem  >                             },
-	    { "CollisionSystem"                 , &addSystem< CollisionSystem >                             },
-        { "CameraSystem"                    , &addSystem< CameraSystem    >                             },  
-        { "InputSystem"                     , &addSystem< InputSystem     >                             },
-        { "SceneSystem"                     , &addSystem< SceneSystem     >                             },
-        { "RenderSystem"                    , &addSystem< RenderSystem    >                             },
-        { "DebugSystem"                     , &addSystem< DebugSystem     >                             },
-        { "AudioSystem"                     , &addSystem< AudioSystem     >                             },
-        { "EntitySystem"                    , &addSystem< EntitySystem    >                             },
-        { "ParticleSystem",                   &addSystem< ParticleSystem  >                             },
-        { "CheatSystem"                     , &addSystem< CheatSystem     >                             },
-        { "EventSystem"                     , &addSystem< EventSystem     >                             },
+        { "PlatformSystem"                        , &addSystem< PlatformSystem  >                          },
+	    { "CollisionSystem"                       , &addSystem< CollisionSystem >                          },
+        { "CameraSystem"                          , &addSystem< CameraSystem    >                          },  
+        { "InputSystem"                           , &addSystem< InputSystem     >                          },
+        { "SceneSystem"                           , &addSystem< SceneSystem     >                          },
+        { "RenderSystem"                          , &addSystem< RenderSystem    >                          },
+        { "DebugSystem"                           , &addSystem< DebugSystem     >                          },
+        { "AudioSystem"                           , &addSystem< AudioSystem     >                          },
+        { "EntitySystem"                          , &addSystem< EntitySystem    >                          },
+        { "ParticleSystem"                        , &addSystem< ParticleSystem  >                          },
+        { "CheatSystem"                           , &addSystem< CheatSystem     >                          },
+        { "EventSystem"                           , &addSystem< EventSystem     >                          },
+                                                  
+        { "BehaviorSystem<RigidBody>"             , &addSystem< BehaviorSystem< RigidBody              > > },
+        { "BehaviorSystem<Behavior>"              , &addSystem< BehaviorSystem< Behavior               > > },
+        { "BehaviorSystem<BulletBehavior>"        , &addSystem< BehaviorSystem< BulletBehavior         > > },
+        { "BehaviorSystem<Animation>"             , &addSystem< BehaviorSystem< Animation              > > },
+        { "BehaviorSystem<EffectAnimator>"        , &addSystem< BehaviorSystem< EffectAnimator         > > },
+        { "BehaviorSystem<WavesBehavior>"         , &addSystem< BehaviorSystem< WavesBehavior          > > },
+        { "BehaviorSystem<GeneratorBehavior>"     , &addSystem< BehaviorSystem< GeneratorBehavior      > > },
+        { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
 
-        { "BehaviorSystem<RigidBody>"       , &addSystem< BehaviorSystem< RigidBody      > >            },
-        { "BehaviorSystem<Behavior>"        , &addSystem< BehaviorSystem< Behavior       > >            },
-        { "BehaviorSystem<BulletBehavior>"  , &addSystem< BehaviorSystem< BulletBehavior > >            },
-        { "BehaviorSystem<Animation>"       , &addSystem< BehaviorSystem< Animation      > >            },
-        { "BehaviorSystem<EffectAnimator>"  , &addSystem< BehaviorSystem< EffectAnimator > >            },
-        { "BehaviorSystem<WavesBehavior>"   , &addSystem< BehaviorSystem< WavesBehavior  > >            },
-        {"BehaviorSystem<GeneratorBehavior>", &addSystem< BehaviorSystem< GeneratorBehavior  > >       },
-
-        { "AssetLibrary<Entity>"            , &addSystem< AssetLibrarySystem< Entity             > >    },
-        { "AssetLibrary<Sound>"             , &addSystem< AssetLibrarySystem< Sound              > >    },
-        { "AssetLibrary<Texture>"           , &addSystem< AssetLibrarySystem< Texture            > >    },
-        { "AssetLibrary<TransformAnimation>", &addSystem< AssetLibrarySystem< TransformAnimation > >    },
-        { "AssetLibrary<AnimationAsset>"    , &addSystem< AssetLibrarySystem< AnimationAsset     > >    },
-                                                                                                     
-        { "ComponentSystem<ItemComponent>"  , &addSystem< ComponentSystem< ItemComponent > >            },
-
-        { "TileInfoSystem"                  , &addSystem< TileInfoSystem >                              },
-        { "LightingSystem"                  , &addSystem< LightingSystem >                              }
-
-        // { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >          },
-        // { "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >                },
-        // { "BehaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >            },
-        // { "BehaviorSystem<EnemyBehavior>",      &addSystem< BehaviorSystem< EnemyBehavior> >              },
+        { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
+        { "AssetLibrary<Sound>"                   , &addSystem< AssetLibrarySystem< Sound              > > },
+        { "AssetLibrary<Texture>"                 , &addSystem< AssetLibrarySystem< Texture            > > },
+        { "AssetLibrary<TransformAnimation>"      , &addSystem< AssetLibrarySystem< TransformAnimation > > },
+        { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
+                                                                                                          
+        { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
+                                                  
+        { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
+        { "LightingSystem"                        , &addSystem< LightingSystem >                           }
 
     };
 
