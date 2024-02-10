@@ -9,6 +9,7 @@
 #include "EntitySystem.h"
 
 #include "Entity.h"
+#include "Transform.h"
 
 #include "DebugSystem.h"
 #include <algorithm>
@@ -281,7 +282,9 @@
         {
 
             Entity* entity = new Entity(); /// Create a new entity
+            Transform* transform = new Transform(); /// Create a new transform
             entity->SetName( name ); /// Set the name of the entity
+            entity->AddComponent( transform ); /// Add the transform to the entity)
             entity->AddToScene(); /// Add the entity to the EntitySystem
 
             /// if the entity is added, close the window
