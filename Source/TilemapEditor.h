@@ -104,7 +104,13 @@ private: // members
     glm::vec4 m_SelectionColor = { 0.3f, 0.3f, 1.0f, 0.0f };
 
     /// @brief  the transparency of the selection
-    float m_SelectionAlpha = 0.1f;
+    float m_SelectionAlpha = 0.4f;
+
+    /// @brief  the transparency of the grid
+    float m_GridAlpha = 0.4f;
+
+    /// @brief  the transparency of the preview
+    float m_PreviewAlpha = 0.4f;
 
 
     /// @brief  the index of the currently selected tile type
@@ -192,6 +198,10 @@ private: // methods
     void displaySelection() const;
 
 
+    /// @brief  displays the preview tile and grid
+    void displayPreview() const;
+
+
 //-----------------------------------------------------------------------------
 public: // inspection
 //-----------------------------------------------------------------------------
@@ -228,6 +238,14 @@ private: // reading
     /// @brief  reads the transparency of the selection
     /// @param  data    the json data to read from
     void readSelectionAlpha( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the transparency of the grid
+    /// @param  data    the json data to read from
+    void readGridAlpha( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the transparency of the preview
+    /// @param  data    the json data to read from
+    void readPreviewAlpha( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

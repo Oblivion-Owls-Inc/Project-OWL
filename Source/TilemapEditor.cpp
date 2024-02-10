@@ -462,6 +462,27 @@
     }
 
 
+    /// @brief  displays the preview tile and grid
+    void TilemapEditor::displayPreview() const
+    {
+
+        glm::ivec2 tilePos = m_Tilemap->WorldPosToTileCoord( Input()->GetMousePosWorld() );
+        if ( m_Tilemap->IsPositionWithinBounds( tilePos ) == false )
+        {
+            return;
+        }
+        glm::vec2 pos = m_Tilemap->TileCoordToWorldPos( tilePos );
+
+        static Texture const grid = Texture( "Data/Textures/Debug/Grid.png" );
+        Renderer()->DrawTexture( &grid, pos, glm::vec2( 5.0f, 5.0f ), 0.0f, glm::vec4( 0.0f ), m_GridAlpha );
+
+        if ( m_SelectedTileIndex != -1 )
+        {
+            Renderer()->DrawTexture( m_PreviewTexture, pos, glm::vec2( 1.0f, 1.0f ), 0.0f, glm::vec4( 0.0f ), m_PreviewAlpha, true, m_SelectedTileIndex );
+        }
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: inspection
 //-----------------------------------------------------------------------------
@@ -513,6 +534,8 @@
 
         ImGui::ColorEdit4( "selection highlight color", &m_SelectionColor[ 0 ] );
         ImGui::DragFloat( "selection alpha", &m_SelectionAlpha );
+        ImGui::DragFloat( "grid alpha", &m_GridAlpha );
+        ImGui::DragFloat( "preview alpha", &m_PreviewAlpha );
 
         Inspection::SelectAssetFromLibrary( "preview texture", &m_PreviewTexture, &m_PreviewTextureName );
 
@@ -525,6 +548,7 @@
         updateHotkeys();
 
         displaySelection();
+        displayPreview();
     }
 
 
@@ -577,6 +601,20 @@
         Stream::Read( m_SelectionAlpha, data );
     }
 
+    /// @brief  reads the transparency of the grid
+    /// @param  data    the json data to read from
+    void TilemapEditor::readGridAlpha( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_GridAlpha, data );
+    }
+
+    /// @brief  reads the transparency of the preview
+    /// @param  data    the json data to read from
+    void TilemapEditor::readPreviewAlpha( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_PreviewAlpha, data );
+    }
+
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
@@ -591,7 +629,9 @@
             { "ToolButtons"       , &TilemapEditor::readToolButtons        },
             { "UndoStackCapacity" , &TilemapEditor::readUndoStackCapacity  },
             { "SelectionColor"    , &TilemapEditor::readSelectionColor     },
-            { "SelectionAlpha"    , &TilemapEditor::readSelectionAlpha     }
+            { "SelectionAlpha"    , &TilemapEditor::readSelectionAlpha     },
+            { "GridAlpha"         , &TilemapEditor::readGridAlpha          },
+            { "PreviewAlpha"      , &TilemapEditor::readPreviewAlpha       }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -608,6 +648,8 @@
         json[ "UndoStackCapacity"  ] = Stream::Write( m_UndoStackCapacity  );
         json[ "SelectionColor"     ] = Stream::Write( m_SelectionColor     );
         json[ "SelectionAlpha"     ] = Stream::Write( m_SelectionAlpha     );
+        json[ "GridAlpha"          ] = Stream::Write( m_GridAlpha          );
+        json[ "PreviewAlpha"       ] = Stream::Write( m_PreviewAlpha       );
 
         nlohmann::ordered_json& toolButtons = json[ "ToolButtons" ];
         for ( int button : m_ToolButtons )
