@@ -84,6 +84,7 @@ private:
     /// @brief  Name of entity that holds items (Player probably)
     std::string m_EntityName = "Player";
 
+    /// @brief  Name of the scene to switch to upon meeting the requirement
     std::string m_WinSceneName = "GameWin";
 
 

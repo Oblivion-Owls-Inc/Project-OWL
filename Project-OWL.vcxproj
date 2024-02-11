@@ -184,6 +184,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\AudioListener.cpp" />
+    <ClCompile Include="Source\EditorCameraController.cpp" />
     <ClCompile Include="Source\EventSystem.cpp" />
     <ClCompile Include="Source\ExampleComponent.cpp" />
     <ClCompile Include="Source\Health.cpp" />
@@ -245,6 +246,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
     <ClCompile Include="Source\TilemapCollider.cpp" />
+    <ClCompile Include="Source\TilemapEditor.cpp" />
     <ClCompile Include="Source\TilemapItemDropper.cpp" />
     <ClCompile Include="Source\TilemapSprite.cpp" />
     <ClCompile Include="Source\Tilemap.t.cpp" />
@@ -278,12 +280,14 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\EditorCameraController.h" />
     <ClInclude Include="Source\EventListener.h" />
     <ClInclude Include="Source\EventSystem.h" />
     <ClInclude Include="Source\AudioListener.h" />
     <ClInclude Include="Source\ExampleComponent.h" />
     <ClInclude Include="Source\HealthBar.h" />
     <ClInclude Include="Source\CameraBehavior.h" />
+    <ClInclude Include="Source\TilemapEditor.h" />
     <ClInclude Include="Source\TilemapTextureConnector.h" />
     <ClInclude Include="Source\UiBarSprite.h" />
     <ClInclude Include="Source\Inventory.h" />

@@ -37,9 +37,7 @@ void WinState::OnExit() { Behaviors< Behavior >()->RemoveComponent(this); }
 /// @brief  Keeps an eye on item count
 void WinState::OnUpdate(float dt)
 {
-	// You know what would be great? A caching system for entity/component references.
-	// Currently it's pain in the ass to do it from scratch in a way that does not 
-	// potentially crash the game when entity/component is removed. I'll just let it be slow for now.
+	// Caching is a pain in the ass and crash-prone. I'll just let it be a bit slow for now.
 	Entity* potentialItemHolder = Entities()->GetEntity(m_EntityName);
 	if (!potentialItemHolder)
 		return;
