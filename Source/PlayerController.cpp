@@ -58,40 +58,41 @@
 void PlayerController::OnInit()
 {
 	Behaviors< Behavior >()->AddComponent( this );
+
+
+    m_Health.SetOnConnectCallback( [ this ]( Health* health ) {
+        health->AddOnHealthChangedCallback(
+            GetId(),
+            std::bind( &PlayerController::playerRespawn, this )
+        );
+    } );
+    m_Health.SetOnDisconnectCallback( [ this ]( Health* health ) {
+        health->RemoveOnHealthChangedCallback( GetId() );
+    } );
+
+    m_Collider.SetOnConnectCallback( [ this ]( Collider* collider ) {
+        collider->AddOnCollisionEnterCallback(
+            GetId(),
+            std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
+        );
+    } );
+    m_Collider.SetOnDisconnectCallback( [ this ]( Collider* collider ) {
+        collider->RemoveOnCollisionEnterCallback( GetId() );
+    } );
     
     m_RigidBody  .Init( GetEntity() );
     m_Animation  .Init( GetEntity() );
     m_AudioPlayer.Init( GetEntity() );
     m_Transform  .Init( GetEntity() );
     m_Health     .Init( GetEntity() );
+    m_Collider   .Init( GetEntity() );
 
     m_MiningLaserEntity.Init();
-
-
-    GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionEnterCallback(
-        GetId(),
-        std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
-    );
 
     // Get all the player's animations
     for ( int i = 0; i < NUM_ANIMATIONS; ++i )
     {
         m_PlayerAnimations[ i ] = AssetLibrary< AnimationAsset >()->GetAsset( m_AnimationNames[ i ] );
-    }
-
-
-    
-
-    // Set the callback for when the player takes damage.
-    if(m_Health)
-    {
-        m_Health->AddOnHealthChangedCallback(
-            GetId(),
-            std::bind(
-                &PlayerController::playerRespawn,
-                this
-            )
-        );
     }
 }
 
@@ -101,17 +102,12 @@ void PlayerController::OnExit()
 {
     Behaviors<Behavior>()->RemoveComponent(this);
 
-    if (m_Health != nullptr)
-    {
-        m_Health->RemoveOnHealthChangedCallback(GetId());
-    }
-
-
     m_RigidBody  .Exit( GetEntity() );
     m_Animation  .Exit( GetEntity() );
     m_AudioPlayer.Exit( GetEntity() );
     m_Transform  .Exit( GetEntity() );
     m_Health     .Exit( GetEntity() );
+    m_Collider   .Exit( GetEntity() );
 
     m_MiningLaserEntity.Exit();
 }
@@ -332,10 +328,10 @@ void PlayerController::playerRespawn()
 
     // Map of all the read methods for the PlayerController component.
     ReadMethodMap< PlayerController > const PlayerController::s_ReadMethods = {
-        { "MaxSpeed"        , &readMaxSpeed         },
-        { "RespawnLocation" , &readRespawnLocation  },
-        { "AnimationNames"  , &readAnimationNames   },
-        { "MiningLaserEnitity" , &readMiningLaserEntity }
+        { "MaxSpeed"         , &readMaxSpeed          },
+        { "RespawnLocation"  , &readRespawnLocation   },
+        { "AnimationNames"   , &readAnimationNames    },
+        { "MiningLaserEntity", &readMiningLaserEntity }
     };
 
 //-----------------------------------------------------------------------------

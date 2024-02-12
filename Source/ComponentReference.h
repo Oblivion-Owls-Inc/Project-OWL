@@ -70,7 +70,7 @@ public: // constructor
 
 
 //-----------------------------------------------------------------------------
-public: // derived methods
+public: // methods
 //-----------------------------------------------------------------------------
 
 
@@ -83,17 +83,13 @@ public: // derived methods
     virtual void Exit( Entity* entity ) override;
 
 
-    /// @brief  sets this ComponentReference to nullptr
-    virtual void Clear() override;
+    /// @brief  sets the callback to call when this ComponentReference connects to a Component
+    /// @param  callback    the callback to call
+    void SetOnConnectCallback( std::function< void ( ComponentType* component ) > callback );
 
-
-    /// @brief  tries to set this ComponentReference to point to the component, checking if it's valid
-    /// @param  component   the component to try to set this ComponentReference to
-    virtual void TrySet( Component* component ) override;
-
-    /// @brief  compares the currently pointed to Component with the specified Component, and clears it if they match
-    /// @param  component   the component to compare with
-    virtual void TryRemove( Component* component ) override;
+    /// @brief  sets the callback to call when this ComponentReference disconnects from a Component
+    /// @param  callback    the callback to call
+    void SetOnDisconnectCallback( std::function< void ( ComponentType* component ) > callback );
 
 
 //-----------------------------------------------------------------------------
@@ -120,12 +116,37 @@ public: // accessors
 
 
 //-----------------------------------------------------------------------------
+public: // engine methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  sets this ComponentReference to nullptr
+    virtual void Clear() override;
+
+
+    /// @brief  tries to set this ComponentReference to point to the component, checking if it's valid
+    /// @param  component   the component to try to set this ComponentReference to
+    virtual void TrySet( Component* component ) override;
+
+    /// @brief  compares the currently pointed to Component with the specified Component, and clears it if they match
+    /// @param  component   the component to compare with
+    virtual void TryRemove( Component* component ) override;
+
+
+//-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
 
     /// @brief  the component this ComponentReference is referring to
     ComponentType* m_Component = nullptr;
+
+
+    /// @brief  callback called when this ComponentReference connects to a Component
+    std::function< void ( ComponentType* component ) > m_OnConnectCallback;
+
+    /// @brief  callback called when this ComponentReference disconnects from a Component
+    std::function< void ( ComponentType* component ) > m_OnDisconnectCallback;
 
 
 //-----------------------------------------------------------------------------

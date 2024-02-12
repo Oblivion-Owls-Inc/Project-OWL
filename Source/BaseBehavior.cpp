@@ -67,25 +67,3 @@ Pool<int>* BaseBehavior::GetHealth()
 }
 
 //-----------------------------------------------------------------------------
-// reading
-//-----------------------------------------------------------------------------
-
-/// @brief	read method map
-ReadMethodMap<BaseBehavior> const BaseBehavior::s_ReadMethods =
-{
-	
-};
-
-//-----------------------------------------------------------------------------
-// writing
-//-----------------------------------------------------------------------------
-
-/// @brief	write to json
-nlohmann::ordered_json BaseBehavior::Write() const
-{
-	nlohmann::ordered_json data;
-
-	return data;
-}
-
-

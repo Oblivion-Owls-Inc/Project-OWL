@@ -35,7 +35,7 @@
 
 
 //-----------------------------------------------------------------------------
-// public: derived methods
+// public: methods
 //-----------------------------------------------------------------------------
 
 
@@ -51,6 +51,11 @@
         }
 
         m_Component = entity->GetComponent< ComponentType >();
+
+        if ( m_Component != nullptr && m_OnConnectCallback )
+        {
+            m_OnConnectCallback( m_Component );
+        }
         
         entity->AddComponentReference( this );
     }
@@ -61,6 +66,11 @@
     template< class ComponentType >
     void ComponentReference< ComponentType >::Exit( Entity* entity )
     {
+        if ( m_Component != nullptr && m_OnDisconnectCallback )
+        {
+            m_OnDisconnectCallback( m_Component );
+        }
+
         m_Component = nullptr;
 
         if ( entity == nullptr )
@@ -72,40 +82,26 @@
     }
 
 
-    /// @brief  sets this ComponentReference to nullptr
+    /// @brief  sets the callback to call when this ComponentReference connects to a Component
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @param  callback    the callback to call
     template< class ComponentType >
-    void ComponentReference< ComponentType >::Clear()
+    void ComponentReference< ComponentType >::SetOnConnectCallback(
+        std::function< void( ComponentType* component ) > callback
+    )
     {
-        m_Component = nullptr;
+        m_OnConnectCallback = callback;
     }
 
-
-    /// @brief  tries to set this ComponentReference to point to the component, checking if it's valid
+    /// @brief  sets the callback to call when this ComponentReference disconnects from a Component
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
-    /// @param  component   the component to try to set this ComponentReference to
+    /// @param  callback    the callback to call
     template< class ComponentType >
-    void ComponentReference< ComponentType >::TrySet( Component* component )
+    void ComponentReference< ComponentType >::SetOnDisconnectCallback(
+        std::function< void ( ComponentType* component ) > callback
+    )
     {
-        if ( m_Component != nullptr )
-        {
-            return;
-        }
-
-        // dynamic_cast will be nullptr if not valid
-        m_Component = dynamic_cast< ComponentType* >( component );
-    }
-
-    /// @brief  compares the currently pointed to Component with the specified Component, and clears it if they match
-    /// @tparam ComponentType   the type of Component this ComponentReference refers to
-    /// @param  component   the component to compare with
-    template< class ComponentType >
-    void ComponentReference< ComponentType >::TryRemove( Component* component )
-    {
-        if ( static_cast< ComponentType* >( component ) == m_Component )
-        {
-            m_Component = nullptr;
-        }
+        m_OnDisconnectCallback = callback;
     }
 
 
@@ -148,7 +144,74 @@
     template< class ComponentType >
     void ComponentReference< ComponentType >::operator =( ComponentType* component )
     {
+        if ( m_Component != nullptr && m_OnDisconnectCallback )
+        {
+            m_OnDisconnectCallback( m_Component );
+        }
+
         m_Component = component;
+
+        if ( m_Component != nullptr && m_OnConnectCallback )
+        {
+            m_OnConnectCallback( m_Component );
+        }
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: engine methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  sets this ComponentReference to nullptr
+    /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    template< class ComponentType >
+    void ComponentReference< ComponentType >::Clear()
+    {
+        if ( m_Component != nullptr && m_OnDisconnectCallback )
+        {
+            m_OnDisconnectCallback( m_Component );
+        }
+
+        m_Component = nullptr;
+    }
+
+
+    /// @brief  tries to set this ComponentReference to point to the component, checking if it's valid
+    /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @param  component   the component to try to set this ComponentReference to
+    template< class ComponentType >
+    void ComponentReference< ComponentType >::TrySet( Component* component )
+    {
+        if ( m_Component != nullptr )
+        {
+            return;
+        }
+
+        // dynamic_cast will be nullptr if not valid
+        m_Component = dynamic_cast< ComponentType* >( component );
+
+        if ( m_Component != nullptr && m_OnConnectCallback )
+        {
+            m_OnConnectCallback( m_Component );
+        }
+    }
+
+    /// @brief  compares the currently pointed to Component with the specified Component, and clears it if they match
+    /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @param  component   the component to compare with
+    template< class ComponentType >
+    void ComponentReference< ComponentType >::TryRemove( Component* component )
+    {
+        if ( static_cast< ComponentType* >( component ) == m_Component )
+        {
+            if ( m_Component != nullptr && m_OnDisconnectCallback )
+            {
+                m_OnDisconnectCallback( m_Component );
+            }
+
+            m_Component = nullptr;
+        }
     }
 
 

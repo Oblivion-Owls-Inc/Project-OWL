@@ -23,6 +23,7 @@
 #include "AudioPlayer.h"
 #include "Health.h"
 #include "Transform.h"
+#include "CircleCollider.h"
 
 #include "EntityReference.h"
 #include "MiningLaser.h"
@@ -122,6 +123,8 @@ private: // member variables
     /// @brief  a cached instance of the parent's Health.
     ComponentReference< Health > m_Health;
 
+    /// @brief  a cached instance of the parent's collider.
+    ComponentReference< Collider > m_Collider;
     
 
     /// @brief  the miningLaser this PlayerController uses

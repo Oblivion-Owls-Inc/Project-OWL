@@ -60,27 +60,8 @@ private: // private variables
 //-----------------------------------------------------------------------------
 
 
-//-----------------------------------------------------------------------------
-private: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief the map of read methods for this Component
-    static ReadMethodMap< BaseBehavior > const s_ReadMethods;
-
-    /// @brief gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
 
 //-----------------------------------------------------------------------------
-public: // writing
-//-----------------------------------------------------------------------------
-
-    /// @brief Write all BaseBehavior data to a JSON file.
-    /// @return The JSON file containing the WavesBehavior data.
-    virtual nlohmann::ordered_json Write() const override;
 };
 
 

@@ -604,7 +604,7 @@
                     "IsSpatial": false,
                     "AllowMultipleSounds": false
                 },
-                "BaseBehavior": null,
+                "BaseBehavior": {},
                 "CircleCollider": {
                     "Radius": 1.0,
                     "CollisionLayer": 3,
@@ -660,7 +660,8 @@
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "IsSpatial": false
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
                 },
                 "CircleCollider": {
                     "Radius": 2.0,
@@ -675,10 +676,8 @@
                 },
                 "Health": {
                     "Health": {
-                        "Name": "Health Pool",
                         "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
+                        "CurrentValue": 5
                     }
                 },
                 "Sprite": {
@@ -719,7 +718,8 @@
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
-                    "IsSpatial": false
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
                 },
                 "CircleCollider": {
                     "Radius": 2.0,
@@ -734,10 +734,8 @@
                 },
                 "Health": {
                     "Health": {
-                        "Name": "Health Pool",
                         "BaseValue": 5,
-                        "CurrentValue": 5,
-                        "Active": true
+                        "CurrentValue": 5
                     }
                 },
                 "Sprite": {
@@ -880,7 +878,7 @@
                 "Tilemap<int>": {
                     "Dimensions": [
                         47,
-                        34
+                        35
                     ],
                     "TileScale": [
                         1.0,
@@ -2551,9 +2549,6 @@
                     ],
                     "Walkables": [
                         -1
-                    ],
-                    "Targets": [
-                      "Player - low"
                     ]
                 },
                 "StaticBody": {
@@ -2602,7 +2597,7 @@
                 "Tilemap<int>": {
                     "Dimensions": [
                         47,
-                        34
+                        35
                     ],
                     "TileScale": [
                         1.0,
@@ -4289,7 +4284,7 @@
                 "Tilemap<int>": {
                     "Dimensions": [
                         47,
-                        34
+                        35
                     ],
                     "TileScale": [
                         1.0,
@@ -6030,7 +6025,9 @@
                         "PlayerMoveDown"
                     ],
                     "MaxSpeed": 1.0,
-                    "MiningLaserName": "MiningLaser",
+                    "MiningLaserEntity": {
+                        "EntityName": "MiningLaser"
+                    },
                     "RespawnLocation": [
                         -15.0,
                         5.0
@@ -6428,7 +6425,9 @@
                     "Texture": ""
                 },
                 "MiningLaser": {
-                    "TilemapName": "Tiles",
+                    "TilemapEntity": {
+                        "EntityName": "Tiles"
+                    },
                     "Range": 4.0,
                     "MiningSpeed": 4.0,
                     "MaxInProgressTiles": 32,
