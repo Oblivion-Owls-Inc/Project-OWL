@@ -16,7 +16,6 @@
 #include "Transform.h"
 #include "TilemapSprite.h"
 #include "RigidBody.h"
-#include "MovementAI.h"
 #include "CircleCollider.h"
 #include "EnemyBehavior.h"
 #include "AudioPlayer.h"
@@ -139,7 +138,6 @@
         { "Transform"              , ComponentInfo< Transform >()               },
         { "Sprite"                 , ComponentInfo< Sprite >()                  },
         { "RigidBody"              , ComponentInfo< RigidBody >()               },
-        { "MovementAI"             , ComponentInfo< MovementAI >()              },
         { "CircleCollider"         , ComponentInfo< CircleCollider >()          },
         { "AudioPlayer"            , ComponentInfo< AudioPlayer >()             },
         { "AudioListener"          , ComponentInfo< AudioListener >()           },

@@ -22,7 +22,7 @@
 
 
     /// @brief	Defualt constructor
-    Animation::Animation() : 
+    Animation::Animation() :
 	    Behavior( typeid( Animation ) )
     {}
 
@@ -30,6 +30,7 @@
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  starts playing an Animation
     /// @param  assetName   the AnimationAsset to play
@@ -54,6 +55,11 @@
         m_FrameDelay = m_Asset->GetFrameDuration();
         m_IsRunning = true;
         
+        if ( m_Sprite == nullptr )
+        {
+            return;
+        }
+
         m_Sprite->SetFrameIndex( m_FrameIndex );
     }
 
@@ -180,7 +186,8 @@
     void Animation::OnInit()
     {
         Behaviors< Animation >()->AddComponent( this );
-        m_Sprite = GetEntity()->GetComponent<Sprite>();
+
+        m_Sprite.Init( GetEntity() );
 
         m_Asset = AssetLibrary< AnimationAsset >()->GetAsset( m_AssetName );
     }
@@ -189,6 +196,8 @@
     void Animation::OnExit()
     {
         Behaviors< Animation >()->RemoveComponent( this );
+
+        m_Sprite.Exit( GetEntity() );
     }
 
 
@@ -209,38 +218,10 @@
     }
 
 
-    /// @brief  shows the Inspector for this Animation
-    void Animation::Inspector()
-    {
-        Inspection::SelectAssetFromLibrary( "Animation Asset", &m_Asset, &m_AssetName );
-
-        if ( m_Asset == nullptr )
-        {
-            return;
-        }
-
-        ImGui::NewLine();
-
-        int relativeFrameIndex = GetFrameIndex( true );
-        if ( ImGui::DragInt(
-            "Frame Index", &relativeFrameIndex, 0.05f, 0, m_Asset->GetFrameCount() - 1, "%i", m_Asset->GetFrameCount() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput
-        ) )
-        {
-           SetFrameIndex( relativeFrameIndex );
-        }
-
-        ImGui::DragInt( "Loop Count", &m_LoopCount, 0.05f, -1, INT_MAX );
-
-        ImGui::DragFloat( "Frame Delay", &m_FrameDelay, 0.01f, 0.1f, INFINITY );
-
-        ImGui::Checkbox( "Is Running", &m_IsRunning );
-
-    }
-
-
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief	advances the animations frame when required
     void Animation::AdvanceFrame()
@@ -274,13 +255,60 @@
 		    m_FrameDelay = 0;
 	    }
 
-
-        m_Sprite->SetFrameIndex( m_FrameIndex );
+        if ( m_Sprite != nullptr )
+        {
+            m_Sprite->SetFrameIndex( m_FrameIndex );
+        }
     }
+
+
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  shows the Inspector for this Animation
+    void Animation::Inspector()
+    {
+        if ( m_Sprite == nullptr )
+        {
+            ImGui::Text( "WARNING: There is no Sprite attached to this Animation Component" );
+        }
+
+        Inspection::SelectAssetFromLibrary( "Animation Asset", &m_Asset, &m_AssetName );
+
+        if ( m_Asset == nullptr )
+        {
+            return;
+        }
+
+        ImGui::NewLine();
+
+        int relativeFrameIndex = GetFrameIndex( true );
+        if (
+            ImGui::DragInt(
+                "Frame Index", &relativeFrameIndex,
+                0.05f, 0, m_Asset->GetFrameCount() - 1, "%i",
+                m_Asset->GetFrameCount() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput
+            )
+        )
+        {
+            SetFrameIndex( relativeFrameIndex );
+        }
+
+        ImGui::DragInt( "Loop Count", &m_LoopCount, 0.05f, -1, INT_MAX );
+
+        ImGui::DragFloat( "Frame Delay", &m_FrameDelay, 0.01f, 0.1f, INFINITY );
+
+        ImGui::Checkbox( "Is Running", &m_IsRunning );
+
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: reading/writing
 //-----------------------------------------------------------------------------
+
 
     /// @brief		  Read from a JSON the frame index.
     /// @param stream The JSON to read from.

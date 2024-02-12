@@ -15,7 +15,8 @@
 
 #include "TransformAnimation.h"
 
-class Transform;
+#include "ComponentReference.h"
+#include "Transform.h"
 
 /// @brief  Component that can play audio
 class EffectAnimator : public Behavior
@@ -138,25 +139,25 @@ private: // members
 //-----------------------------------------------------------------------------
     
     /// @brief  the transform associated with this Entity
-    Transform* m_Transform;
+    ComponentReference< Transform > m_Transform;
 
     /// @brief  the effect currently being used by this EffectAnimator
-    TransformAnimation const* m_CurrentEffect;
+    TransformAnimation const* m_CurrentEffect = nullptr;
 
     /// @brief  how far into the current effect we are
-    float m_Time;
+    float m_Time = 0.0f;
 
     /// @brief  how many times left to loop (-1 to loop infinitely)
-    int m_LoopCount;
+    int m_LoopCount = 0;
 
     /// @brief  whether the Effect is currently playing
-    bool m_IsPlaying;
+    bool m_IsPlaying = false;
 
     /// @brief  speed multiplier for how quickly the effect is played
-    float m_Speed;
+    float m_Speed = 1.0f;
 
     /// @brief  callback functions to call when the animation completes
-    std::map< unsigned, std::function< void() > > m_OnAnimationCompleteCallbacks;
+    std::map< unsigned, std::function< void() > > m_OnAnimationCompleteCallbacks = {};
 
 //-----------------------------------------------------------------------------
 private: // reading

@@ -16,20 +16,19 @@
 #include <glm/glm.hpp> // glm::vec2
 #include <string>
 
-//------------------------------------------------------------------------------
-// Forward References:
-//------------------------------------------------------------------------------
-class RigidBody;
-class Animation;
+
+#include "ComponentReference.h"
+#include "RigidBody.h"
+#include "Animation.h"
+#include "AudioPlayer.h"
+#include "Health.h"
+#include "Transform.h"
+
+#include "EntityReference.h"
+#include "MiningLaser.h"
+
 class AnimationAsset;
-class AudioPlayer;
-class Health;
-class Transform;
-class MiningLaser;
 
-
-template < typename T >
-class Tilemap;
 
 class PlayerController : public Behavior
 {
@@ -100,7 +99,7 @@ private: // member variables
     glm::vec2 m_PlayerRespawnLocation = { -15.0f, 5.0f };
 
     // All the names of the animations for the player.
-    std::string m_AnimationNames[4] = { "", "", "", "" };
+    std::string m_AnimationNames[ 4 ] = { "", "", "", "" };
 
     
 
@@ -108,26 +107,28 @@ private: // member variables
     AnimationAsset const* m_PlayerAnimations[4] = { nullptr, nullptr, nullptr, nullptr };
 
 
-    // A cached instance of the parent's Rigidbody.
-    RigidBody* m_RigidBody = nullptr;
+    /// @brief  a cached instance of the parent's Rigidbody.
+    ComponentReference< RigidBody > m_RigidBody;
 
-    // A cached instance of the parent's animation.
-    Animation* m_Animation = nullptr;
+    /// @brief  a cached instance of the parent's animation.
+    ComponentReference< Animation > m_Animation;
 
-    // A cached instance of the parent's AudioPlayer.
-    AudioPlayer* m_AudioPlayer = nullptr;
+    /// @brief  a cached instance of the parent's AudioPlayer.
+    ComponentReference< AudioPlayer > m_AudioPlayer;
 
     /// @brief  the Transform attached to this PlayerController
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
+    /// @brief  a cached instance of the parent's Health.
+    ComponentReference< Health > m_Health;
 
-    /// @brief  the name of the MiningLaser entity this PlayerController uses
-    std::string m_MiningLaserName = "";
+    
+
     /// @brief  the miningLaser this PlayerController uses
-    MiningLaser* m_MiningLaser = nullptr;
+    ComponentReference< MiningLaser > m_MiningLaser;
+    /// @brief  the Entity of the MiningLaser this PlayerController uses
+    EntityReference m_MiningLaserEntity = EntityReference( { &m_MiningLaser } );
 
-    // A cached instance of the parent's Health.
-    Health* m_Health = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -148,7 +149,7 @@ private: // reading
 
     /// @brief  reads the name of the MiningLaser entity this PlayerController uses
     /// @param  data    the JSON data to read from
-    void readMiningLaserName( nlohmann::ordered_json const& data );
+    void readMiningLaserEntity( nlohmann::ordered_json const& data );
 
 
     /// @brief the map of read methods for this Component

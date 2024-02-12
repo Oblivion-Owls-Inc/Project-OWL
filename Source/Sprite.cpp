@@ -295,27 +295,6 @@ void Sprite::OnExit()
     }
 
 
-    /// @brief  called whenever another component is added to this component's Entity in the inspector
-    /// @param  component   the component that was added
-    void Sprite::OnInspectorAddComponent( Component* component )
-    {
-        if ( dynamic_cast< Transform* >( component ) != nullptr )
-        {
-            m_Transform = dynamic_cast< Transform* >( component );
-        }
-    }
-
-    /// @brief  called whenever another component is removed from this component's Entity in the inspector
-    /// @param  component   the component that will be removed
-    void Sprite::OnInspectorRemoveComponent( Component* component )
-    {
-        if ( dynamic_cast< Transform* >( component ) == m_Transform )
-        {
-            m_Transform = nullptr;
-        }
-    }
-
-
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------

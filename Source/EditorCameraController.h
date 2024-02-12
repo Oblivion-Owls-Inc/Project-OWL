@@ -76,13 +76,6 @@ public: // inspection
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  shows the inspector for EditorCameraController
-    virtual void OnInspectorAddComponent( Component* component ) override;
-
-    /// @brief  shows the inspector for EditorCameraController
-    virtual void OnInspectorRemoveComponent( Component* component ) override;
-
-
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------

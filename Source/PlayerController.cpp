@@ -58,16 +58,14 @@
 void PlayerController::OnInit()
 {
 	Behaviors< Behavior >()->AddComponent( this );
-    // Get the parent's RigidBody component.
-    m_RigidBody = GetEntity()->GetComponent<RigidBody>();
-    // Get the parent's Animation component.
-    m_Animation = GetEntity()->GetComponent<Animation>();
-    // Get the parent's AudioPlayer component.
-    m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
-    // Get the parent's Health component.
-    m_Health = GetEntity()->GetComponent<Health>();
-    // Get the parent's Transform component.
-    m_Transform = GetEntity()->GetComponent<Transform>();
+    
+    m_RigidBody  .Init( GetEntity() );
+    m_Animation  .Init( GetEntity() );
+    m_AudioPlayer.Init( GetEntity() );
+    m_Transform  .Init( GetEntity() );
+    m_Health     .Init( GetEntity() );
+
+    m_MiningLaserEntity.Init();
 
 
     GetEntity()->GetComponent< CircleCollider >()->AddOnCollisionEnterCallback(
@@ -82,11 +80,7 @@ void PlayerController::OnInit()
     }
 
 
-    Entity* miningLaserEntity = Entities()->GetEntity( m_MiningLaserName );
-    if ( miningLaserEntity != nullptr )
-    {
-        m_MiningLaser = miningLaserEntity->GetComponent< MiningLaser >();
-    }
+    
 
     // Set the callback for when the player takes damage.
     if(m_Health)
@@ -107,15 +101,19 @@ void PlayerController::OnExit()
 {
     Behaviors<Behavior>()->RemoveComponent(this);
 
-    if ( m_MiningLaser != nullptr )
-    {
-        m_MiningLaser->RemoveOnBreakTileCallback( GetId() );
-    }
-
     if (m_Health != nullptr)
     {
         m_Health->RemoveOnHealthChangedCallback(GetId());
     }
+
+
+    m_RigidBody  .Exit( GetEntity() );
+    m_Animation  .Exit( GetEntity() );
+    m_AudioPlayer.Exit( GetEntity() );
+    m_Transform  .Exit( GetEntity() );
+    m_Health     .Exit( GetEntity() );
+
+    m_MiningLaserEntity.Exit();
 }
 
 /// @brief Used by the Debug System to display information about this Component.
@@ -124,19 +122,21 @@ void PlayerController::Inspector()
     vectorInspector();
     animationInspector();
 
-    Entity* miningLaserEntity = m_MiningLaser != nullptr ? m_MiningLaser->GetEntity() : nullptr;
-    if ( Inspection::SelectEntityFromScene( "Mining Laser", &miningLaserEntity ) )
-    {
-        m_MiningLaserName = miningLaserEntity->GetName();
-        m_MiningLaser = miningLaserEntity->GetComponent< MiningLaser >();
-    }
+    m_MiningLaserEntity.Inspect( "Mining Laser Entity" );
 }
 
 /// @brief on fixed update check which input is being pressed.
 void PlayerController::OnFixedUpdate()
 {
-    // The normalised direction vector.
-    glm::vec2 direction = { 0.0f, 0.0f };
+    if (
+        m_Animation == nullptr ||
+        m_AudioPlayer == nullptr ||
+        m_RigidBody == nullptr
+    )
+    {
+        return;
+    }
+
 
     if (Input()->GetKeyDown(GLFW_KEY_E))
     {
@@ -151,6 +151,9 @@ void PlayerController::OnFixedUpdate()
             }
         }
     }
+
+    // The normalised direction vector.
+    glm::vec2 direction = { 0.0f, 0.0f };
     
     if ( moveRight() )
     {
@@ -321,18 +324,18 @@ void PlayerController::playerRespawn()
 
     /// @brief  reads the name of the MiningLaser entity this PlayerController uses
     /// @param  data    the JSON data to read from
-    void PlayerController::readMiningLaserName( nlohmann::ordered_json const& data )
+    void PlayerController::readMiningLaserEntity( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_MiningLaserName, data );
+        Stream::Read( m_MiningLaserEntity, data );
     }
 
 
     // Map of all the read methods for the PlayerController component.
     ReadMethodMap< PlayerController > const PlayerController::s_ReadMethods = {
-        { "MaxSpeed"        , &readMaxSpeed        },
-        { "RespawnLocation" , &readRespawnLocation },
-        { "AnimationNames"  , &readAnimationNames  },
-        { "MiningLaserName" , &readMiningLaserName }
+        { "MaxSpeed"        , &readMaxSpeed         },
+        { "RespawnLocation" , &readRespawnLocation  },
+        { "AnimationNames"  , &readAnimationNames   },
+        { "MiningLaserEnitity" , &readMiningLaserEntity }
     };
 
 //-----------------------------------------------------------------------------
@@ -351,9 +354,9 @@ void PlayerController::playerRespawn()
             animationNames.push_back( Stream::Write( animationName ) );
         }
 
-        data[ "MaxSpeed"        ] = m_MaxSpeed          ;
-        data[ "MiningLaserName" ] = m_MiningLaserName   ;
-        data[ "RespawnLocation" ] = Stream::Write(m_PlayerRespawnLocation);
+        data[ "MaxSpeed"          ] = Stream::Write( m_MaxSpeed              );
+        data[ "MiningLaserEntity" ] = Stream::Write( m_MiningLaserEntity     );
+        data[ "RespawnLocation"   ] = Stream::Write( m_PlayerRespawnLocation );
 
         return data;
     }
@@ -368,11 +371,7 @@ void PlayerController::playerRespawn()
 PlayerController::PlayerController(PlayerController const& other):
     Behavior( other ),
     m_MaxSpeed( other.m_MaxSpeed ),
-    m_RigidBody( nullptr ),
-    m_Animation( nullptr ),
-    m_AudioPlayer(nullptr),
-    m_Health(nullptr),
-    m_Transform(nullptr)
+    m_PlayerRespawnLocation( other.m_PlayerRespawnLocation )
 {
     // Copy the animations
     for (int i = 0; i < NUM_ANIMATIONS; i++)

@@ -296,42 +296,6 @@
 
     }
 
-    /// @brief  called whenever another component is added to this component's Entity in the inspector
-    /// @param  component   the component that was added
-    void UiButton::OnInspectorAddComponent( Component* component )
-    {
-        if ( component->GetType() == typeid( Sprite ) )
-        {
-            m_Sprite = static_cast< Sprite* >( component );
-        }
-        else if ( component->GetType() == typeid( AudioPlayer ) )
-        {
-            m_AudioPlayer = static_cast< AudioPlayer* >( component );
-        }
-        else if ( component->GetType() == typeid( UiElement ) )
-        {
-            m_UiElement = static_cast< UiElement* >( component );
-        }
-    }
-
-    /// @brief  called whenever another component is removed from this component's Entity in the inspector
-    /// @param  component   the component that will be removed
-    void UiButton::OnInspectorRemoveComponent( Component* component )
-    {
-        if ( static_cast< Sprite* >( component ) == m_Sprite )
-        {
-            m_Sprite = nullptr;
-        }
-        else if ( static_cast< AudioPlayer* >( component ) == m_AudioPlayer )
-        {
-            m_AudioPlayer = nullptr;
-        }
-        else if ( static_cast< UiElement* >( component ) == m_UiElement )
-        {
-            m_UiElement = nullptr;
-        }
-    }
-
 
 //-----------------------------------------------------------------------------
 // private: reading

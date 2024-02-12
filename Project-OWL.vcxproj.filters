@@ -189,14 +189,8 @@
     <Filter Include="Game\Components\Behaviors\PlayerController">
       <UniqueIdentifier>{b63ef8e3-7039-4e9e-b113-413ff8380423}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Behaviors\Movement Behavior">
-      <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Components\Behaviors\TurretBehavior">
       <UniqueIdentifier>{e523f30f-0b00-4ea5-b75b-339074d48b3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Components\Behaviors\FollowingBehavior">
-      <UniqueIdentifier>{d99a05fd-9afb-43c2-9c34-f18081c8c831}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Components\Behaviors\ConstructionBehavior">
       <UniqueIdentifier>{278dd904-bde9-4181-bd98-8a632d0db159}</UniqueIdentifier>
@@ -386,9 +380,6 @@
     <ClCompile Include="Source\ComponentFactory.cpp">
       <Filter>Engine\Entity\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Source\MovementAI.cpp">
-      <Filter>Game\Components\Behaviors\Movement Behavior</Filter>
-    </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
     </ClCompile>
@@ -472,9 +463,6 @@
     </ClCompile>
     <ClCompile Include="Source\TilemapSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FollowingBehavior.cpp">
-      <Filter>Game\Components\Behaviors\FollowingBehavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\Text.cpp">
       <Filter>Engine\Entity\Component\Text</Filter>
@@ -611,6 +599,12 @@
     <ClCompile Include="Source\EditorCameraController.cpp">
       <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EntityReference.cpp">
+      <Filter>Engine\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ComponentReference.t.cpp">
+      <Filter>Engine\Entity\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -715,9 +709,6 @@
     <ClInclude Include="Source\ComponentFactory.h">
       <Filter>Engine\Entity\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Source\MovementAI.h">
-      <Filter>Game\Components\Behaviors\Movement Behavior</Filter>
-    </ClInclude>
     <ClInclude Include="Source\EntitySystem.h">
       <Filter>Engine\Systems\EntitySystem</Filter>
     </ClInclude>
@@ -789,9 +780,6 @@
     </ClInclude>
     <ClInclude Include="Source\TilemapSprite.h">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\FollowingBehavior.h">
-      <Filter>Game\Components\Behaviors\FollowingBehavior</Filter>
     </ClInclude>
     <ClInclude Include="Source\Text.h">
       <Filter>Engine\Entity\Component\Text</Filter>
@@ -927,6 +915,12 @@
     </ClInclude>
     <ClInclude Include="Source\EditorCameraController.h">
       <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ComponentReference.h">
+      <Filter>Engine\Entity\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntityReference.h">
+      <Filter>Engine\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

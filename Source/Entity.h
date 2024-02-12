@@ -9,6 +9,7 @@
 //-----------------------------------------------------------------------------
 
 #pragma once
+#define ENTITY_H
 
 //-----------------------------------------------------------------------------
 // Include Files:
@@ -18,8 +19,12 @@
 #include <map>        // std::map
 #include <string>	  // std::string
 #include <vector>	  // std::vector
+#include <set>
 
 #include "ISerializable.h"
+
+class EntityReference;
+class ComponentReferenceBase;
 
 //-----------------------------------------------------------------------------
 // Class: Entity
@@ -179,6 +184,13 @@ private: // member variables
     bool m_IsInScene = false;
 
 
+    /// @brief  all of the ComponentReferences currently tracking this Entity
+    std::set< ComponentReferenceBase* > m_ComponentReferences;
+
+    /// @brief  all of the EntityReferences currently tracking this Entity
+    std::set< EntityReference* > m_EntityReferences;
+
+
 //-----------------------------------------------------------------------------
 public: // engine methods
 //-----------------------------------------------------------------------------
@@ -191,6 +203,24 @@ public: // engine methods
     /// @brief  exits all components / children of this Entity
     /// @brief  FOR ENGINE USE ONLY - only call this if you're modifying core engine functionality
     void Exit();
+
+
+    /// @brief  adds an EntityReference to this Entity
+    /// @param  entityReference the refernce to add
+    void AddEntityReference( EntityReference* entityReference );
+
+    /// @brief  removes an EntityReference to this Entity
+    /// @param  entityReference the refernce to remove
+    void RemoveEntityReference( EntityReference* entityReference );
+
+
+    /// @brief  adds an ComponentReference to this Component
+    /// @param  componentReference  the refernce to add
+    void AddComponentReference( ComponentReferenceBase* componentReference );
+
+    /// @brief  removes an ComponentReference to this Component
+    /// @param  componentReference  the refernce to remove
+    void RemoveComponentReference( ComponentReferenceBase* componentReference );
 
 
 //-----------------------------------------------------------------------------
@@ -275,7 +305,8 @@ public: // copying
 
     /// @brief  makes a copy of this Entity
     /// @return the new copy of this Entity
-    Entity* Clone() const {
+    Entity* Clone() const
+    {
         Entity* clone = new Entity;
         *clone = *this;
         return clone;
@@ -342,11 +373,11 @@ public: // copying
     template < typename ComponentType >
     std::vector< ComponentType* > Entity::GetComponentsOfType()
     {
-	    std::vector<ComponentType*> componentsOfType;
+	    std::vector< ComponentType* > componentsOfType;
 
-	    for ( auto component : m_Components ) 
+	    for ( auto& [ type, component ] : m_Components ) 
 	    {
-            ComponentType* casted = dynamic_cast<ComponentType*>( component.second );
+            ComponentType* casted = dynamic_cast< ComponentType* >( component );
 		    if ( casted != nullptr )
 		    {
 			    componentsOfType.push_back( casted );

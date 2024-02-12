@@ -62,15 +62,6 @@ public: // virtual methods
     virtual void Inspector() {};
 
 
-    /// @brief  called whenever another component is added to this component's Entity in the inspector
-    /// @param  component   the component that was added
-    virtual void OnInspectorAddComponent( Component* component ) {};
-
-    /// @brief  called whenever another component is removed from this component's Entity in the inspector
-    /// @param  component   the component that will be removed
-    virtual void OnInspectorRemoveComponent( Component* component ) {};
-
-
     /// @brief virtual component clone function
     /// @return new clone of component
     virtual Component* Clone() const = 0;

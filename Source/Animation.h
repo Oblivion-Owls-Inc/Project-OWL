@@ -12,6 +12,9 @@
 
 #include "AnimationAsset.h"
 
+#include "ComponentReference.h"
+#include "Sprite.h"
+
 #include <functional>
 
 class Sprite;
@@ -136,17 +139,13 @@ private: // virtual override methods
 	virtual void OnUpdate(float dt) override;
 
 
-    /// @brief  shows the Inspector for this Animation
-    virtual void Inspector() override;
-
-
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
 
     /// @brief  the sprite that this Animation Component is animating
-    Sprite* m_Sprite = nullptr;
+    ComponentReference< Sprite > m_Sprite;
 
 
     /// @brief  the name of the animation asset in use
@@ -181,6 +180,15 @@ private: // methods
 
     /// @brief  advances the frame of this Animation
     void AdvanceFrame();
+
+
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  shows the Inspector for this Animation
+    virtual void Inspector() override;
 
 
 //-----------------------------------------------------------------------------

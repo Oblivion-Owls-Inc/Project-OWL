@@ -13,8 +13,9 @@
 #include "Sound.h"
 
 
-class Transform;
-class RigidBody;
+#include "ComponentReference.h"
+#include "Transform.h"
+#include "RigidBody.h"
 
 
 /// @brief  Component that can play audio
@@ -210,10 +211,10 @@ private: // members
 
 
     /// @brief  the Transform attached to this AudioPlayer
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
     /// @brief  the RigidBody attached to this AudioPlayer
-    RigidBody* m_RigidBody = nullptr;
+    ComponentReference< RigidBody > m_RigidBody;
 
 
     /// @brief  The channelGroup to play sounds in

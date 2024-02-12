@@ -21,17 +21,12 @@
 // public: constructor / Destructor
 //-----------------------------------------------------------------------------
 
+
     /// @brief  constructor
     EffectAnimator::EffectAnimator() :
-        Behavior( typeid( EffectAnimator) ),
-        m_CurrentEffect( nullptr ),
-        m_IsPlaying( false ),
-        m_LoopCount( 1 ),
-        m_Speed( 1.0f ),
-        m_Time( 0.0f ),
-        m_Transform( nullptr ),
-        m_OnAnimationCompleteCallbacks()
+        Behavior( typeid( EffectAnimator) )
     {}
+
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -98,23 +93,28 @@
 // private: virtual override methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  called once when entering the scene
     void EffectAnimator::OnInit()
     {
         Behaviors< EffectAnimator >()->AddComponent( this );
-        m_Transform = GetEntity()->GetComponent< Transform >();
+
+        m_Transform.Init( GetEntity() );
     }
 
     /// @brief  called once when exiting the scene
     void EffectAnimator::OnExit()
     {
-        Behaviors<EffectAnimator>()->RemoveComponent(this);
+        Behaviors< EffectAnimator >()->RemoveComponent( this );
+
+        m_Transform.Exit( GetEntity() );
     }
 
     /// @brief  called every frame
     /// @param  dt  the amount of time since the previous frame
     void EffectAnimator::OnUpdate( float dt )
     {
+
         if ( m_IsPlaying == false )
         {
             return;
@@ -137,25 +137,33 @@
             }
         }
 
-        m_Transform->SetIsDirty( true );
-        m_Transform->SetMatrix( m_Transform->GetMatrix() * m_CurrentEffect->SampleAtTime( m_Time ) );
-
-        for ( auto callback : m_OnAnimationCompleteCallbacks )
+        if ( m_Transform != nullptr )
         {
-            callback.second();
+            m_Transform->SetIsDirty( true );
+            m_Transform->SetMatrix( m_Transform->GetMatrix() * m_CurrentEffect->SampleAtTime( m_Time ) );
+        }
+
+        for ( auto& [ id, callback ] : m_OnAnimationCompleteCallbacks )
+        {
+            callback();
         }
     }
 
     /// @brief  displays this EffectAnimator in the Inspector
     void EffectAnimator::Inspector()
     {
+        if ( m_Transform == nullptr )
+        {
+            ImGui::Text( "WARNING: no Transform attached to this Entity" );
+        }
+
 
         ImGui::DragFloat( "Time"     , &m_Time      );
         ImGui::DragFloat( "Speed"    , &m_Speed     );
         ImGui::DragInt(   "LoopCount", &m_LoopCount );
         ImGui::Checkbox(  "IsPlaying", &m_IsPlaying );
 
-        // TODO: implement effect selection after Jax pushes his changes
+        // TODO: utilize Inspection::SelectAssetFromLibrary
         
         std::map< std::string, TransformAnimation* > const& effects = AssetLibrary<TransformAnimation>()->GetAssets();
         
@@ -278,9 +286,7 @@
         m_IsPlaying( other.m_IsPlaying ),
         m_LoopCount( other.m_LoopCount ),
         m_Speed( other.m_Speed ),
-        m_Time( other.m_Time ),
-        m_Transform( nullptr ),
-        m_OnAnimationCompleteCallbacks()
+        m_Time( other.m_Time )
     {}
 
 //-----------------------------------------------------------------------------
