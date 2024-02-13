@@ -41,12 +41,14 @@
     {
         m_Asset = AssetLibrary< AssetType >()->GetAsset( m_AssetName );
 
+        #ifdef _DEBUG
         if ( m_Asset == nullptr )
         {
             Debug() << "Warning: Could not find asset of type \"" << PrefixlessName( typeid( AssetType ) )
                 << "\" with name \"" << m_AssetName
                 << "\" (AssetReference owned by \"" << m_OwnerName << "\")\n" << std::endl;
         }
+        #endif
     }
 
 
