@@ -90,13 +90,7 @@ private: // private methods
 private: // private class
 //-----------------------------------------------------------------------------
 
-    enum ActionType
-    {
-        Down,
-        Triggered,
-        Released
-    };
-
+    /// @brief  action class, used to track an action with dynamic input
     class Action
     {
     private:
@@ -106,17 +100,31 @@ private: // private class
         std::vector<int> a_mouse;
         /// @brief  controller inputs
         std::vector<int> a_controller;
-        /// @brief  controller inputs
-        ActionType a_inputType;
+        /// @brief  opposing axis for key inputs
+        std::vector<int> a_keyAxis;
+        /// @brief  opposing axis for mouse inputs
+        std::vector<int> a_mouseAxis;
+        /// @brief  opposing axis for controller inputs
+        std::vector<int> a_controllerAxis;
+        /// @brief  gamepad axis as input, sticks/triggers
+        std::vector<int> a_gamepadAxisAsInput;
+        /// @brief  gamepad axis, sticks/triggers
+        std::vector<int> a_gamepadAxis;
         /// @brief  action name
         std::string a_name;
+        /// @brief  editor description of action
+        std::string a_description;
 
     public:
 
         /// @brief  contructor
         /// @param  name of the action
         /// @param  type of the action
-        Action(std::string name, ActionType type);
+        Action(std::string name = "", std::string description = "");
+
+        /// @brief  removes all inputs for this action 
+        ///         and empties name
+        void Flush();
 
         /// @brief  adds a key to the action
         /// @param  key to add
@@ -142,6 +150,49 @@ private: // private class
         /// @param  controller input to remove
         void RemoveControllerInput(int glfw_button);
 
+        /// @brief  adds an axis as a button (triggers)
+        void AddAxisAsInput(int glfw_axis_id);
+
+        /// @brief  adds a key input axis
+        /// @param  glfw_key positive axis key
+        /// @param  glfw_key_negative negative axis key
+        void AddKeyAxis(int glfw_key, int glfw_key_negative);
+
+        /// @brief  removes a key input axis
+        /// @param  glfw_key positive axis key
+        /// @param  glfw_key_negative negative axis key
+        void RemoveKeyAxis(int glfw_key, int glfw_key_negative);
+
+        /// @brief  adds a mouse input axis
+        /// @param  glfw_mouse positive axis mouse
+        /// @param  glfw_mouse_negative negative axis mouse
+        void AddMouseAxis(int glfw_mouse, int glfw_mouse_negative);
+
+        /// @brief  removes a mouse input axis
+        /// @param  glfw_mouse positive axis mouse
+        /// @param  glfw_mouse_negative negative axis mouse
+        void RemoveMouseAxis(int glfw_mouse, int glfw_mouse_negative);
+
+        /// @brief  adds a controller input axis
+        /// @param  glfw_controller positive axis controller
+        /// @param  glfw_controller_negative negative axis controller
+        void AddControllerAxis(int glfw_controller, 
+                               int glfw_controller_negative);
+
+        /// @brief  removes a controller input axis
+        /// @param  glfw_controller positive axis controller
+        /// @param  glfw_controller_negative negative axis controller
+        void RemoveControllerAxis(int glfw_controller, 
+                                  int glfw_controller_negative);
+
+        /// @brief  adds a gamepad axis (stick/trigger)
+        /// @param  axis id to add
+        void AddAxis(int glfw_axis_id);
+        
+        /// @brief  removes a gamepad axis (stick/trigger)
+        /// @param  axis id to add
+        void RemoveAxis(int glfw_axis_id);
+
         /// @brief  sets the name of the action
         /// @param  new name of action
         void SetName(std::string name);
@@ -149,6 +200,22 @@ private: // private class
         /// @brief  gets the name of this action
         /// @return the name of the action
         std::string GetName();
+
+        /// @brief  gets if this action is down
+        /// @return action down status
+        bool GetDown();
+
+        /// @brief  gets if this action is triggered
+        /// @return action triggered status
+        bool GetTriggered();
+        
+        /// @brief  gets if this action is released
+        /// @return action released status
+        bool GetReleased();
+
+        /// @brief  gets if this action as an axis
+        /// @return axis status clamped to -1 and 1
+        float GetAxis();
     };
 
 //-----------------------------------------------------------------------------
@@ -242,6 +309,9 @@ public: // accessors
     InputSystem(InputSystem& other) = delete;
     void operator=(const InputSystem&) = delete;
 
+    /// @brief  gets an action by its name
+    /// @param  name name of the action
+    /// @retun  pointer to the action
     Action* GetActionByName(std::string name);
 };
 
