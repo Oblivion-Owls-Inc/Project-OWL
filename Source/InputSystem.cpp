@@ -148,6 +148,10 @@ int InputSystem::InitAlternateWindow(GLFWwindow* handle)
     return amount;
 }
 
+//-----------------------------------------------------------------------------
+// accessors
+//-----------------------------------------------------------------------------
+
 /// @brief checks if a given key is down
 /// @param glfw key to check
 /// @return returns if key is down
@@ -384,6 +388,115 @@ glm::vec2 InputSystem::GetMousePosWorld()
     glm::mat4 matrix = Cameras()->GetMat_ScreenToWorld();
     
     return getMousePosAfterTransformation( matrix );
+}
+
+/// @brief  gets an action by its name
+/// @param  name name of the action
+/// @retun  pointer to the action
+InputSystem::Action* InputSystem::GetActionByName(std::string name)
+{
+    return nullptr;
+}
+
+//-----------------------------------------------------------------------------
+// private class implimentation
+//-----------------------------------------------------------------------------
+
+InputSystem::Action::Action(std::string name, std::string description)
+{
+}
+
+void InputSystem::Action::Flush()
+{
+}
+
+void InputSystem::Action::AddKeyInput(int glfw_key)
+{
+}
+
+void InputSystem::Action::RemoveKeyInput(int glfw_key)
+{
+}
+
+void InputSystem::Action::AddMouseInput(int glfw_mouse_button)
+{
+}
+
+void InputSystem::Action::RemoveMouseInput(int glfw_mouse_button)
+{
+}
+
+void InputSystem::Action::AddControllerInput(int glfw_button)
+{
+}
+
+void InputSystem::Action::RemoveControllerInput(int glfw_button)
+{
+}
+
+void InputSystem::Action::AddAxisAsInput(int glfw_axis_id)
+{
+}
+
+void InputSystem::Action::AddKeyAxis(int glfw_key, int glfw_key_negative)
+{
+}
+
+void InputSystem::Action::RemoveKeyAxis(int glfw_key, int glfw_key_negative)
+{
+}
+
+void InputSystem::Action::AddMouseAxis(int glfw_mouse, int glfw_mouse_negative)
+{
+}
+
+void InputSystem::Action::RemoveMouseAxis(int glfw_mouse, int glfw_mouse_negative)
+{
+}
+
+void InputSystem::Action::AddControllerAxis(int glfw_controller, int glfw_controller_negative)
+{
+}
+
+void InputSystem::Action::RemoveControllerAxis(int glfw_controller, int glfw_controller_negative)
+{
+}
+
+void InputSystem::Action::AddAxis(int glfw_axis_id)
+{
+}
+
+void InputSystem::Action::RemoveAxis(int glfw_axis_id)
+{
+}
+
+void InputSystem::Action::SetName(std::string name)
+{
+}
+
+std::string InputSystem::Action::GetName()
+{
+    return std::string();
+}
+
+bool InputSystem::Action::GetDown()
+{
+    return false;
+}
+
+bool InputSystem::Action::GetTriggered()
+{
+    return false;
+}
+
+bool InputSystem::Action::GetReleased()
+{
+    return false;
+}
+
+float InputSystem::Action::GetAxis()
+{
+    return 0.0f;
 }
 
 //-----------------------------------------------------------------------------
