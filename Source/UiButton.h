@@ -10,12 +10,13 @@
 
 #include "Behavior.h"
 
+#include "ComponentReference.h"
+#include "UiElement.h"
+#include "Sprite.h"
+#include "AudioPlayer.h"
 
-class UiElement;
-class Sprite;
-class AudioPlayer;
-class Sound;
-
+#include "AssetReference.h"
+#include "Sound.h"
 
 /// @brief  Ui Button that sends an event when clicked
 class UiButton : public Behavior
@@ -106,11 +107,11 @@ private: // configurable members
     unsigned m_DownFrame = 0;
 
 
-    /// @brief  the name of the sound this UiButton plays when it is pressed
-    std::string m_PressSoundName = "";
+    /// @brief  the sound this UiButton plays when it is pressed
+    AssetReference< Sound > m_PressSound;
 
-    /// @brief  the name of the sound this UiButton plays when it is released
-    std::string m_ReleaseSoundName = "";
+    /// @brief  the sound this UiButton plays when it is released
+    AssetReference< Sound > m_ReleaseSound;
 
 
 //-----------------------------------------------------------------------------
@@ -125,21 +126,14 @@ private: // nonconfigurable members
     bool m_ActivatedSinceLastFixedUpdate = false;
 
 
-    /// @brief  the sound this UiButton plays when it is pressed
-    Sound const* m_PressSound = nullptr;
-
-    /// @brief  the sound this UiButton plays when it is released
-    Sound const* m_ReleaseSound = nullptr;
-
-
     /// @brief  the UiElement Component attached to this UiButton
-    UiElement* m_UiElement = nullptr;
+    ComponentReference< UiElement > m_UiElement;
 
     /// @brief  the Sprite Component attached to this UiButton
-    Sprite* m_Sprite = nullptr;
+    ComponentReference< Sprite > m_Sprite;
 
     /// @brief  the AudioPlayer Component attached to this UiButton
-    AudioPlayer* m_AudioPlayer = nullptr;
+    ComponentReference< AudioPlayer > m_AudioPlayer;
 
 
     /// @brief  callbacks to be called whenever this UiButton is clicked
@@ -213,13 +207,13 @@ private: // reading
     /// @param  data    the JSON data to read from
     void readDownFrame( nlohmann::ordered_json const& data );
 
-    /// @brief  reads the name of the sound this UiButton plays when it is pressed
+    /// @brief  reads the sound this UiButton plays when it is pressed
     /// @param  data    the JSON data to read from
-    void readPressSoundName( nlohmann::ordered_json const& data );
+    void readPressSound( nlohmann::ordered_json const& data );
 
-    /// @brief  reads the name of the sound this UiButton plays when it is released
+    /// @brief  reads the sound this UiButton plays when it is released
     /// @param  data    the JSON data to read from
-    void readReleaseSoundName( nlohmann::ordered_json const& data );
+    void readReleaseSound( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

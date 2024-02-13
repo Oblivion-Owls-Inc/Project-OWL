@@ -12,6 +12,7 @@
 //------------------------------------------------------------------------------
 // Includes:
 //------------------------------------------------------------------------------
+
 #include "Behavior.h"
 #include <glm/glm.hpp> // glm::vec2
 #include <string>
@@ -28,7 +29,8 @@
 #include "EntityReference.h"
 #include "MiningLaser.h"
 
-class AnimationAsset;
+#include "AssetReference.h"
+#include "AnimationAsset.h"
 
 
 class PlayerController : public Behavior
@@ -37,32 +39,74 @@ class PlayerController : public Behavior
 public: // constructor / destructor
 //-----------------------------------------------------------------------------
 
+
     /// @brief Default constructor for the PlayerController class.
     PlayerController();
 
     /// @brief Destructor for the PlayerController class.
     ~PlayerController() = default;
 
+
 //-----------------------------------------------------------------------------
-public: // methods
+public: // virtual override methods
 //-----------------------------------------------------------------------------
 	    
-	/// @brief Update method called per frame.
-	virtual void OnFixedUpdate() override;
 
     /// @brief called when this Component's Entity is added to the Scene
     virtual void OnInit() override;
 
     /// @brief  called when this Component's Entity is removed from the Scene
-    /// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
     virtual void OnExit() override;
 
-    /// @brief Used by the Debug System to display information about this Component
-    virtual void Inspector() override;
+
+    /// @brief Update method called per frame.
+    virtual void OnFixedUpdate() override;
+
+
+//-----------------------------------------------------------------------------
+private: // member variables
+//-----------------------------------------------------------------------------
+   
+
+    /// @brief  Define the maximum speed for smooth movement.
+    float m_MaxSpeed = 1.0f;
+
+    /// @brief  Player respawn location
+    glm::vec2 m_PlayerRespawnLocation = { -15.0f, 5.0f };
+
+    /// @brief  player directional movement animations
+    AssetReference< AnimationAsset > m_Animations[ 4 ] = {};
+
+
+    /// @brief  a cached instance of the parent's Rigidbody.
+    ComponentReference< RigidBody > m_RigidBody;
+
+    /// @brief  a cached instance of the parent's animation.
+    ComponentReference< Animation > m_Animation;
+
+    /// @brief  a cached instance of the parent's AudioPlayer.
+    ComponentReference< AudioPlayer > m_AudioPlayer;
+
+    /// @brief  the Transform attached to this PlayerController
+    ComponentReference< Transform > m_Transform;
+
+    /// @brief  a cached instance of the parent's Health.
+    ComponentReference< Health > m_Health;
+
+    /// @brief  a cached instance of the parent's collider.
+    ComponentReference< Collider > m_Collider;
+    
+
+    /// @brief  the miningLaser this PlayerController uses
+    ComponentReference< MiningLaser > m_MiningLaser;
+    /// @brief  the Entity the MiningLaser this PlayerController uses is attached to
+    EntityReference m_MiningLaserEntity = EntityReference( { &m_MiningLaser } );
+
 
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief private helper function to move the player
     /// @return if the player moved Right or not
@@ -88,49 +132,31 @@ private: // methods
     /// @brief Check if player heal is 0, then respawn them.
     void playerRespawn();
 
+
+    /// @brief  What to do when the player has been hit.
+    /// @param  other   - the collider of the other entity.
+    void onCollisionEnter( Collider* other );
+
+
 //-----------------------------------------------------------------------------
-private: // member variables
+public: // inspection
 //-----------------------------------------------------------------------------
-   
 
-    // Define the maximum speed for smooth movement.
-    float m_MaxSpeed = 1.0f;
 
-    // Player respawn location
-    glm::vec2 m_PlayerRespawnLocation = { -15.0f, 5.0f };
-
-    // All the names of the animations for the player.
-    std::string m_AnimationNames[ 4 ] = { "", "", "", "" };
-
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector() override;
     
 
-    // All the animations for the player.
-    AnimationAsset const* m_PlayerAnimations[4] = { nullptr, nullptr, nullptr, nullptr };
+//-----------------------------------------------------------------------------
+private: // inspection
+//-----------------------------------------------------------------------------
 
 
-    /// @brief  a cached instance of the parent's Rigidbody.
-    ComponentReference< RigidBody > m_RigidBody;
+    /// @brief Allows all vector attributes to be accessed by the editor.
+    void vectorInspector();
 
-    /// @brief  a cached instance of the parent's animation.
-    ComponentReference< Animation > m_Animation;
-
-    /// @brief  a cached instance of the parent's AudioPlayer.
-    ComponentReference< AudioPlayer > m_AudioPlayer;
-
-    /// @brief  the Transform attached to this PlayerController
-    ComponentReference< Transform > m_Transform;
-
-    /// @brief  a cached instance of the parent's Health.
-    ComponentReference< Health > m_Health;
-
-    /// @brief  a cached instance of the parent's collider.
-    ComponentReference< Collider > m_Collider;
-    
-
-    /// @brief  the miningLaser this PlayerController uses
-    ComponentReference< MiningLaser > m_MiningLaser;
-    /// @brief  the Entity of the MiningLaser this PlayerController uses
-    EntityReference m_MiningLaserEntity = EntityReference( { &m_MiningLaser } );
+    /// @brief Allows all animation attributes to be accessed by the editor.
+    void animationInspector();
 
 
 //-----------------------------------------------------------------------------
@@ -148,15 +174,11 @@ private: // reading
 
     /// @brief Read in the animation names for the player.
     /// @param data The JSON file to read from.
-    void readAnimationNames(nlohmann::ordered_json const& data);
+    void readAnimations(nlohmann::ordered_json const& data);
 
     /// @brief  reads the name of the MiningLaser entity this PlayerController uses
     /// @param  data    the JSON data to read from
     void readMiningLaserEntity( nlohmann::ordered_json const& data );
-
-
-    /// @brief the map of read methods for this Component
-    static ReadMethodMap< PlayerController > const  s_ReadMethods;
 
 
 //-----------------------------------------------------------------------------
@@ -166,10 +188,7 @@ public: // reading / writing
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
     /// @brief  Write all PlayerController data to a JSON file.
@@ -178,28 +197,27 @@ public: // reading / writing
 
 
 //-----------------------------------------------------------------------------
-private: // copying
+public: // copying
 //-----------------------------------------------------------------------------
+
 
     /// @brief  Creates a new copy of this Component.
     /// @return The newly created component
-    virtual Component* Clone() const override;
-
-    /// @brief Copy constructor.
-    PlayerController(PlayerController const& other);
+    virtual PlayerController* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
-private: // inspector helpers
+private: // copying
 //-----------------------------------------------------------------------------
 
-    /// @brief Allows all vector attributes to be accessed by the editor.
-    void vectorInspector();
-    /// @brief Allows all animation attributes to be accessed by the editor.
-    void animationInspector();
 
-    /// @brief  What to do when the player has been hit.
-    /// @param  other   - the collider of the other entity.
-    void onCollisionEnter( Collider* other );
+    /// @brief  Copy constructor.
+    PlayerController( PlayerController const& other );
 
+
+    // disable assignment operator 
+    void operator =( PlayerController const& ) = delete;
+
+
+//-----------------------------------------------------------------------------
 };

@@ -89,28 +89,33 @@ public: // Accessors
     unsigned GetId() const { return m_Id; }
 
 
+    /// @brief  gets this Component's name
+    /// @return this Component's name
+    std::string GetName() const;
+
+
+//-----------------------------------------------------------------------------
+public: // engine methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  base Inspector for Components
+    void BaseComponentInspector();
+
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
 
 	/// @brief  the type of this Component
-	std::type_index m_Type;
+	std::type_index const m_Type;
 
 	/// @brief  the parent Entity of this Component
 	Entity* m_Entity;
 
     /// @brief  the ID of this Component
     unsigned m_Id;
-
-
-//-----------------------------------------------------------------------------
-public: // methods
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  base Inspector for Components
-    void BaseComponentInspector();
     
 
 //-----------------------------------------------------------------------------

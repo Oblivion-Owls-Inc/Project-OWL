@@ -297,6 +297,18 @@
     <Filter Include="Engine\Entity\Component\Camera\EditorCameraController">
       <UniqueIdentifier>{2f431157-f18b-45fe-8287-c4e8f220b1bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Framework\References">
+      <UniqueIdentifier>{ce354a10-de0d-482d-aa2a-eb4e13ce930b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\References\ComponentReference">
+      <UniqueIdentifier>{758d0d06-3761-4b3a-b639-04edf329f727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\References\EntityReference">
+      <UniqueIdentifier>{fc1d5263-b81c-482f-98f6-789ac6b6eb94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\References\AssetReference">
+      <UniqueIdentifier>{1cf9ebca-9257-404d-9e46-92d01180452a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -599,11 +611,14 @@
     <ClCompile Include="Source\EditorCameraController.cpp">
       <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EntityReference.cpp">
-      <Filter>Engine\Entity</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ComponentReference.t.cpp">
-      <Filter>Engine\Entity\Component</Filter>
+      <Filter>Engine\Framework\References\ComponentReference</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntityReference.cpp">
+      <Filter>Engine\Framework\References\EntityReference</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AssetReference.t.cpp">
+      <Filter>Engine\Framework\References\AssetReference</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -917,10 +932,13 @@
       <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
     </ClInclude>
     <ClInclude Include="Source\ComponentReference.h">
-      <Filter>Engine\Entity\Component</Filter>
+      <Filter>Engine\Framework\References\ComponentReference</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AssetReference.h">
+      <Filter>Engine\Framework\References\AssetReference</Filter>
     </ClInclude>
     <ClInclude Include="Source\EntityReference.h">
-      <Filter>Engine\Entity</Filter>
+      <Filter>Engine\Framework\References\EntityReference</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

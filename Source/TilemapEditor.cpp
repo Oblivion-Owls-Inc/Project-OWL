@@ -50,19 +50,25 @@
     /// @brief  called once when entering the scene
     void TilemapEditor::OnInit()
     {
-        m_Tilemap = GetEntity()->GetComponent< Tilemap< int > >();
+        m_Tilemap.SetOnConnectCallback(
+            [ this ]( Tilemap< int >* )
+            {
+                pushUndoableAction();
+            }
+        );
 
-        m_PreviewTexture = AssetLibrary< Texture >()->GetAsset( m_PreviewTextureName );
+        m_Tilemap.Init( GetEntity() );
 
-        if ( m_Tilemap != nullptr )
-        {
-            pushUndoableAction();
-        }
+        m_PreviewTexture.SetOwnerName( GetName() );
+        m_PreviewTexture.Init();
     }
 
 
     /// @brief  called once when exiting the scene
-    void TilemapEditor::OnExit() {}
+    void TilemapEditor::OnExit()
+    {
+        m_Tilemap.Exit( GetEntity() );
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -537,9 +543,7 @@
         ImGui::DragFloat( "grid alpha", &m_GridAlpha );
         ImGui::DragFloat( "preview alpha", &m_PreviewAlpha );
 
-        Inspection::SelectAssetFromLibrary( "preview texture", &m_PreviewTexture, &m_PreviewTextureName );
-
-        // TODO: rest of inspector
+       m_PreviewTexture.Inspect( "preview texture" );
 
         updateBrushTool();
         updateEraseTool();
@@ -559,9 +563,9 @@
 
     /// @brief  reads the name of the preview texture asset
     /// @param  data    the json data to read from
-    void TilemapEditor::readPreviewTextureName( nlohmann::ordered_json const& data )
+    void TilemapEditor::readPreviewTexture( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_PreviewTextureName, data );
+        Stream::Read( m_PreviewTexture, data );
     }
 
     /// @brief  reads the mouse buttons assigned to each tool
@@ -625,13 +629,13 @@
     ReadMethodMap< ISerializable > const& TilemapEditor::GetReadMethods() const
     {
         static ReadMethodMap< TilemapEditor > const readMethods = {
-            { "PreviewTextureName", &TilemapEditor::readPreviewTextureName },
-            { "ToolButtons"       , &TilemapEditor::readToolButtons        },
-            { "UndoStackCapacity" , &TilemapEditor::readUndoStackCapacity  },
-            { "SelectionColor"    , &TilemapEditor::readSelectionColor     },
-            { "SelectionAlpha"    , &TilemapEditor::readSelectionAlpha     },
-            { "GridAlpha"         , &TilemapEditor::readGridAlpha          },
-            { "PreviewAlpha"      , &TilemapEditor::readPreviewAlpha       }
+            { "PreviewTexture"   , &TilemapEditor::readPreviewTexture    },
+            { "ToolButtons"      , &TilemapEditor::readToolButtons       },
+            { "UndoStackCapacity", &TilemapEditor::readUndoStackCapacity },
+            { "SelectionColor"   , &TilemapEditor::readSelectionColor    },
+            { "SelectionAlpha"   , &TilemapEditor::readSelectionAlpha    },
+            { "GridAlpha"        , &TilemapEditor::readGridAlpha         },
+            { "PreviewAlpha"     , &TilemapEditor::readPreviewAlpha      }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -644,12 +648,12 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "PreviewTextureName" ] = Stream::Write( m_PreviewTextureName );
-        json[ "UndoStackCapacity"  ] = Stream::Write( m_UndoStackCapacity  );
-        json[ "SelectionColor"     ] = Stream::Write( m_SelectionColor     );
-        json[ "SelectionAlpha"     ] = Stream::Write( m_SelectionAlpha     );
-        json[ "GridAlpha"          ] = Stream::Write( m_GridAlpha          );
-        json[ "PreviewAlpha"       ] = Stream::Write( m_PreviewAlpha       );
+        json[ "PreviewTexture"    ] = Stream::Write( m_PreviewTexture    );
+        json[ "UndoStackCapacity" ] = Stream::Write( m_UndoStackCapacity );
+        json[ "SelectionColor"    ] = Stream::Write( m_SelectionColor    );
+        json[ "SelectionAlpha"    ] = Stream::Write( m_SelectionAlpha    );
+        json[ "GridAlpha"         ] = Stream::Write( m_GridAlpha         );
+        json[ "PreviewAlpha"      ] = Stream::Write( m_PreviewAlpha      );
 
         nlohmann::ordered_json& toolButtons = json[ "ToolButtons" ];
         for ( int button : m_ToolButtons )
@@ -683,8 +687,19 @@
     /// @param  other   the other TilemapEditor to copy
     TilemapEditor::TilemapEditor( TilemapEditor const& other ) :
         Component( other ),
-        m_PreviewTextureName( other.m_PreviewTextureName )
-    {}
+        m_UndoStackCapacity( other.m_UndoStackCapacity ),
+        m_SelectionColor   ( other.m_SelectionColor    ),
+        m_SelectionAlpha   ( other.m_SelectionAlpha    ),
+        m_GridAlpha        ( other.m_GridAlpha         ),
+        m_PreviewAlpha     ( other.m_PreviewAlpha      ),
+
+        m_PreviewTexture( other.m_PreviewTexture )
+    {
+        for ( int i = 0; i < 4; ++i )
+        {
+            m_ToolButtons[ i ] = other.m_ToolButtons[ i ];
+        }
+    }
 
 
 //-----------------------------------------------------------------------------

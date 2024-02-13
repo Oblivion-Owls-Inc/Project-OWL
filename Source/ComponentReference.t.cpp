@@ -16,6 +16,8 @@
 #include "Entity.h"
 #endif
 
+#include "DebugSystem.h"
+
 
 //-----------------------------------------------------------------------------
 // public: constructor
@@ -24,14 +26,16 @@
 
     /// @brief  default constructor
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
-    template< class ComponentType >
-    ComponentReference< ComponentType >::ComponentReference() = default;
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
+    template < class ComponentType, bool required >
+    ComponentReference< ComponentType, required >::ComponentReference() = default;
 
 
     /// @brief  default destructor
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
-    template< class ComponentType >
-    ComponentReference< ComponentType >::~ComponentReference() = default;
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
+    template < class ComponentType, bool required >
+    ComponentReference< ComponentType, required >::~ComponentReference() = default;
 
 
 //-----------------------------------------------------------------------------
@@ -41,9 +45,10 @@
 
     /// @brief  initializes this ComponentReference to point to the Component of its type on the specified Entity
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @param  entity  the Entity this ComponentReference's Component is attached to
-    template< class ComponentType >
-    void ComponentReference< ComponentType >::Init( Entity* entity )
+    template < class ComponentType, bool required >
+    void ComponentReference< ComponentType, required >::Init( Entity* entity )
     {
         if ( entity == nullptr )
         {
@@ -51,6 +56,12 @@
         }
 
         m_Component = entity->GetComponent< ComponentType >();
+
+        if ( required && m_Component == nullptr )
+        {
+            Debug() << "WARNING: Could not find Component of type \"" << PrefixlessName( typeid( ComponentType ) )
+                << "\" attached to Entity \"" << entity->GetName() << "\"\n" << std::endl;
+        }
 
         if ( m_Component != nullptr && m_OnConnectCallback )
         {
@@ -62,9 +73,10 @@
 
     /// @brief  separates this ComponentReference from the target Entity
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @param  entity  the entity this ComponentReference is curently watching
-    template< class ComponentType >
-    void ComponentReference< ComponentType >::Exit( Entity* entity )
+    template < class ComponentType, bool required >
+    void ComponentReference< ComponentType, required >::Exit( Entity* entity )
     {
         if ( m_Component != nullptr && m_OnDisconnectCallback )
         {
@@ -84,9 +96,10 @@
 
     /// @brief  sets the callback to call when this ComponentReference connects to a Component
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @param  callback    the callback to call
-    template< class ComponentType >
-    void ComponentReference< ComponentType >::SetOnConnectCallback(
+    template < class ComponentType, bool required >
+    void ComponentReference< ComponentType, required >::SetOnConnectCallback(
         std::function< void( ComponentType* component ) > callback
     )
     {
@@ -95,9 +108,10 @@
 
     /// @brief  sets the callback to call when this ComponentReference disconnects from a Component
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @param  callback    the callback to call
-    template< class ComponentType >
-    void ComponentReference< ComponentType >::SetOnDisconnectCallback(
+    template < class ComponentType, bool required >
+    void ComponentReference< ComponentType, required >::SetOnDisconnectCallback(
         std::function< void ( ComponentType* component ) > callback
     )
     {
@@ -112,27 +126,30 @@
 
     /// @brief  dereference operator
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @return the Component this ComponentReference refers to
-    template< class ComponentType >
-    ComponentType& ComponentReference< ComponentType >::operator *() const
+    template < class ComponentType, bool required >
+    ComponentType& ComponentReference< ComponentType, required >::operator *() const
     {
         return *m_Component;
     }
 
     /// @brief  member dereference operator
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @return the Component this ComponentReference refers to
-    template< class ComponentType >
-    ComponentType* ComponentReference< ComponentType >::operator ->() const
+    template < class ComponentType, bool required >
+    ComponentType* ComponentReference< ComponentType, required >::operator ->() const
     {
         return m_Component;
     }
 
     /// @brief  implicit cast operator
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @return this ComponentReference's internal pointer
-    template< class ComponentType >
-    ComponentReference< ComponentType >::operator ComponentType*() const
+    template < class ComponentType, bool required >
+    ComponentReference< ComponentType, required >::operator ComponentType*() const
     {
         return m_Component;
     }
@@ -140,9 +157,10 @@
 
     /// @brief  assignment operator
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @param  component   the component to assign to this ComponentReference
-    template< class ComponentType >
-    void ComponentReference< ComponentType >::operator =( ComponentType* component )
+    template < class ComponentType, bool required >
+    void ComponentReference< ComponentType, required >::operator =( ComponentType* component )
     {
         if ( m_Component != nullptr && m_OnDisconnectCallback )
         {
@@ -165,8 +183,9 @@
 
     /// @brief  sets this ComponentReference to nullptr
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
-    template< class ComponentType >
-    void ComponentReference< ComponentType >::Clear()
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
+    template < class ComponentType, bool required >
+    void ComponentReference< ComponentType, required >::Clear()
     {
         if ( m_Component != nullptr && m_OnDisconnectCallback )
         {
@@ -179,9 +198,10 @@
 
     /// @brief  tries to set this ComponentReference to point to the component, checking if it's valid
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @param  component   the component to try to set this ComponentReference to
-    template< class ComponentType >
-    void ComponentReference< ComponentType >::TrySet( Component* component )
+    template < class ComponentType, bool required >
+    void ComponentReference< ComponentType, required >::TrySet( Component* component )
     {
         if ( m_Component != nullptr )
         {
@@ -199,9 +219,10 @@
 
     /// @brief  compares the currently pointed to Component with the specified Component, and clears it if they match
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @param  component   the component to compare with
-    template< class ComponentType >
-    void ComponentReference< ComponentType >::TryRemove( Component* component )
+    template < class ComponentType, bool required >
+    void ComponentReference< ComponentType, required >::TryRemove( Component* component )
     {
         if ( static_cast< ComponentType* >( component ) == m_Component )
         {

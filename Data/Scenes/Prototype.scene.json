@@ -244,7 +244,9 @@
                         ],
                         "Opacity": 1.0,
                         "FrameIndex": 0,
-                        "Texture": "Ball1"
+                        "Texture": {
+                            "AssetName": "Ball1"
+                        }
                     },
                     "Transform": {
                         "Translation": [
@@ -265,7 +267,9 @@
                 "Name": "Enemy",
                 "Components": {
                     "AudioPlayer": {
-                        "Sound": "EnemySound",
+                        "Sound": {
+                            "AssetName": "EnemySound"
+                        },
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
@@ -323,7 +327,9 @@
                         ],
                         "Opacity": 1.0,
                         "FrameIndex": 0,
-                        "Texture": "Fireball"
+                        "Texture": {
+                            "AssetName": "Fireball"
+                        }
                     },
                     "EnemyBehavior": {
                         "PathfinderName": "Tiles",
@@ -421,7 +427,9 @@
                                         "Slope": 0.0
                                     }
                                 ],
-                                "Texture": "HealthBar",
+                                "Texture": {
+                                    "AssetName": "HealthBar"
+                                },
                                 "Layer": 6,
                                 "Opacity": 1.0,
                                 "BorderPositions": [
@@ -469,7 +477,9 @@
                         ],
                         "Opacity": 1.0,
                         "FrameIndex": 0,
-                        "Texture": "Items"
+                        "Texture": {
+                            "AssetName": "Items"
+                        }
                     },
                     "Transform": {
                         "Translation": [
@@ -490,7 +500,9 @@
                 "Name": "Turret",
                 "Components": {
                     "AudioPlayer": {
-                        "Sound": "TurretShoot",
+                        "Sound": {
+                            "AssetName": "TurretShoot"
+                        },
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
@@ -510,7 +522,9 @@
                         ],
                         "Opacity": 1.0,
                         "FrameIndex": 0,
-                        "Texture": "Turret"
+                        "Texture": {
+                            "AssetName": "Turret"
+                        }
                     },
                     "Transform": {
                         "Translation": [
@@ -543,7 +557,9 @@
             "Name": "Music",
             "Components": {
                 "AudioPlayer": {
-                    "Sound": "Music",
+                    "Sound": {
+                        "AssetName": "Music"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -560,24 +576,9 @@
             "Name": "DiggingSound",
             "Components": {
                 "AudioPlayer": {
-                    "Sound": "PlayerDigging",
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "IsSpatial": false,
-                    "AllowMultipleSounds": false
-                }
-            },
-            "Children": null
-        },
-        "TurretPlacementSound": {
-            "Name": "TurretPlacementSound",
-            "Components": {
-                "AudioPlayer": {
-                    "Sound": "TurretPlacement",
+                    "Sound": {
+                        "AssetName": "PlayerDigging"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -594,7 +595,9 @@
             "Name": "Base",
             "Components": {
                 "AudioPlayer": {
-                    "Sound": "BaseDamageSound",
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -632,7 +635,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Van"
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -653,7 +658,9 @@
             "Name": "Generator",
             "Components": {
                 "AudioPlayer": {
-                    "Sound": "BaseDamageSound",
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -690,7 +697,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Van"
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -711,7 +720,9 @@
             "Name": "Generator2",
             "Components": {
                 "AudioPlayer": {
-                    "Sound": "BaseDamageSound",
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -748,7 +759,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Van"
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -793,7 +806,9 @@
                             "WaveNextTime": 0.0,
                             "EnemyGroups": [
                                 {
-                                    "EnemyName": "Enemy",
+                                    "Enemy": {
+                                        "AssetName": "Enemy"
+                                    },
                                     "Amount": 0,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
@@ -806,7 +821,9 @@
                             "WaveNextTime": 12.920777320861816,
                             "EnemyGroups": [
                                 {
-                                    "EnemyName": "Enemy",
+                                    "Enemy": {
+                                        "AssetName": "Enemy"
+                                    },
                                     "Amount": 0,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
@@ -819,14 +836,18 @@
                             "WaveNextTime": 999.0,
                             "EnemyGroups": [
                                 {
-                                    "EnemyName": "Enemy",
+                                    "Enemy": {
+                                        "AssetName": "Enemy"
+                                    },
                                     "Amount": 999,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
                                     "Spawner": 0
                                 },
                                 {
-                                    "EnemyName": "Enemy",
+                                    "Enemy": {
+                                        "AssetName": "Enemy"
+                                    },
                                     "Amount": 999,
                                     "SpawnInterval": 10.0,
                                     "InitialOffset": 10.0,
@@ -2560,7 +2581,9 @@
                     "CollisionLayerFlags": 0
                 },
                 "TilemapItemDropper": {
-                    "ItemArchetypeName": "Item",
+                    "ItemArchetype": {
+                        "AssetName": "Item"
+                    },
                     "MaxInitialVelocity": 1.0,
                     "ItemSpawnRadius": 0.30000001192092896
                 },
@@ -2574,7 +2597,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Level Assets"
+                    "Texture": {
+                        "AssetName": "Level Assets"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -4261,7 +4286,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Level Assets"
+                    "Texture": {
+                        "AssetName": "Level Assets"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -5948,7 +5975,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "CastlTiles"
+                    "Texture": {
+                        "AssetName": "CastlTiles"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -5973,14 +6002,18 @@
                     "FrameDelay": 0.06618662178516388,
                     "IsRunning": false,
                     "LoopCount": 0,
-                    "Animation": "PlayerMoveUp"
+                    "Animation": {
+                        "AssetName": ""
+                    }
                 },
                 "AudioListener": {
                     "ZOffset": 0.0,
                     "IsActive": true
                 },
                 "AudioPlayer": {
-                    "Sound": "PlayerFootSteps",
+                    "Sound": {
+                        "AssetName": "PlayerFootSteps"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -6018,11 +6051,19 @@
                     ]
                 },
                 "PlayerController": {
-                    "AnimationNames": [
-                        "PlayerMoveRight",
-                        "PlayerMoveLeft",
-                        "PlayerMoveUp",
-                        "PlayerMoveDown"
+                    "Animations": [
+                        {
+                            "AssetName": "PlayerMoveRight"
+                        },
+                        {
+                            "AssetName": "PlayerMoveLeft"
+                        },
+                        {
+                            "AssetName": "PlayerMoveUp"
+                        },
+                        {
+                            "AssetName": "PlayerMoveDown"
+                        }
                     ],
                     "MaxSpeed": 1.0,
                     "MiningLaserEntity": {
@@ -6058,7 +6099,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 12,
-                    "Texture": "PlayerSheet"
+                    "Texture": {
+                        "AssetName": "PlayerSheet"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -6130,7 +6173,9 @@
                                     "Slope": 0.0
                                 }
                             ],
-                            "Texture": "HealthBar",
+                            "Texture": {
+                                "AssetName": "HealthBar"
+                            },
                             "Layer": 6,
                             "Opacity": 1.0,
                             "BorderPositions": [
@@ -6157,7 +6202,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Background"
+                    "Texture": {
+                        "AssetName": "Background"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -6177,6 +6224,19 @@
         "ConstructionManager": {
             "Name": "ConstructionManager",
             "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "TurretPlacement"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
@@ -6186,7 +6246,9 @@
                                     "Count": 3
                                 }
                             ],
-                            "ArchetypeName": "Turret"
+                            "Archetype": {
+                                "AssetName": "Turret"
+                            }
                         }
                     ],
                     "BuildingIndex": -1,
@@ -6205,8 +6267,12 @@
                         1.0
                     ],
                     "PreviewAlpha": 0.5,
-                    "TilemapName": "Tiles",
-                    "PlayerName": "Player"
+                    "TilemapEntity": {
+                        "EntityName": "Tiles"
+                    },
+                    "PlayerEntity": {
+                        "EntityName": "Player"
+                    }
                 },
                 "Sprite": {
                     "Layer": 4,
@@ -6218,7 +6284,9 @@
                     ],
                     "Opacity": 0.0,
                     "FrameIndex": 0,
-                    "Texture": ""
+                    "Texture": {
+                        "AssetName": ""
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -6275,7 +6343,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "FontSheet"
+                    "Texture": {
+                        "AssetName": "FontSheet"
+                    }
                 },
                 "UiElement": {
                     "Anchor": [
@@ -6348,7 +6418,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Ball3"
+                    "Texture": {
+                        "AssetName": "Ball"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -6369,7 +6441,9 @@
             "Name": "MiningLaser",
             "Components": {
                 "AudioPlayer": {
-                    "Sound": "",
+                    "Sound": {
+                        "AssetName": ""
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -6422,7 +6496,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": ""
+                    "Texture": {
+                        "AssetName": ""
+                    }
                 },
                 "MiningLaser": {
                     "TilemapEntity": {

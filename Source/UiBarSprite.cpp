@@ -246,7 +246,7 @@
     /// @brief  displays this UiBarSprite in the Inspector
     void UiBarSprite::Inspector()
     {
-        Inspection::SelectAssetFromLibrary< Texture >( "texture", &m_Texture, &m_TextureName );
+       m_Texture.Inspect( "texture" );
 
         ImGui::DragInt( "layer", &m_Layer, 0.05f );
 
@@ -333,7 +333,7 @@
             sectionData.push_back( Stream::Write( section ) );
         }
 
-        json[ "Texture"          ] = Stream::Write( m_TextureName      );
+        json[ "Texture"          ] = Stream::Write( m_Texture          );
         json[ "Layer"            ] = Stream::Write( m_Layer            );
         json[ "Opacity"          ] = Stream::Write( m_Opacity          );
         json[ "BorderPositions"  ] = Stream::Write( m_BorderPositions  );

@@ -26,7 +26,6 @@ Sprite::Sprite() :
     m_Opacity( 1.0f ),
     m_Layer( 2 ),
     m_IsTextured( false ),
-    m_Texture( nullptr ),
     m_FrameIndex( 0 )
 {}
 
@@ -34,14 +33,15 @@ Sprite::Sprite() :
 /// @param  texture     the texture for this Sprite to use
 /// @param  layer       (optional) Rendering layer: 0-4. 0 is back, 4 is front.
 /// @param  type        for use ONLY when deriving with this Constructor
-Sprite::Sprite( Texture const* texture, int layer, std::type_index type ) :
+Sprite::Sprite( AssetReference< Texture > const& texture, int layer, std::type_index type ) :
     Component( type ),
     m_Color( { 1, 1, 1, 1 } ),
     m_Opacity( 1.0f ),
     m_Layer( layer ),
     m_IsTextured( true ),
-    m_Texture( texture ),
-    m_FrameIndex( 0 )
+    m_FrameIndex( 0 ),
+
+    m_Texture( texture )
 {}
 
 
@@ -57,7 +57,6 @@ Sprite::Sprite( std::type_index type ) :
     m_Opacity( 1.0f ),
     m_Layer( 2 ),
     m_IsTextured( false ),
-    m_Texture( nullptr ),
     m_FrameIndex( 0 )
 {}
 
@@ -67,7 +66,7 @@ Sprite::Sprite( std::type_index type ) :
 
 /// @brief  Creates new Sprite using copy constructor.
 /// @return pointer to copied Sprite component.
-Component* Sprite::Clone() const { return new Sprite( *this ); }
+Sprite* Sprite::Clone() const { return new Sprite( *this ); }
     
 //-----------------------------------------------------------------------------
 // public: copying
@@ -80,9 +79,9 @@ Sprite::Sprite(Sprite const& other) :
     m_Opacity    ( other.m_Opacity     ),
     m_Layer      ( other.m_Layer       ),
     m_IsTextured ( other.m_IsTextured  ),
-    m_Texture    ( other.m_Texture     ),
-    m_TextureName( other.m_TextureName ),
-    m_FrameIndex ( other.m_FrameIndex  )
+    m_FrameIndex ( other.m_FrameIndex  ),
+
+    m_Texture( other.m_Texture )
 {}
 
 //-----------------------------------------------------------------------------
@@ -210,19 +209,20 @@ Sprite::Sprite(Sprite const& other) :
 
     /// @brief  gets the Texture this Sprite is using
     /// @return the Texture this Sprite is using
-    Texture const* Sprite::GetTexture() const
+    AssetReference< Texture > const& Sprite::GetTexture() const
     {
-        if ( m_Texture != nullptr )
+        // if the texture has not been initialized, try initializing the texture before returning it
+        if ( m_Texture == nullptr )
         {
-            return m_Texture;
+            const_cast< AssetReference< Texture >& >( m_Texture ).Init();
         }
 
-        return AssetLibrary< Texture >()->GetAsset( m_TextureName );
+        return m_Texture;
     }
 
     /// @brief  sets the Texture this Sprite is using
     /// @param  texture the Texture to set this Sprite to use
-    void Sprite::SetTexture( Texture const* texture )
+    void Sprite::SetTexture( AssetReference< Texture > const& texture )
     {
         m_Texture = texture;
     }
@@ -239,24 +239,24 @@ Sprite::Sprite(Sprite const& other) :
 // private: virtual override methods
 //-----------------------------------------------------------------------------
 
-/// @brief  called when entering the scene
-void Sprite::OnInit()
-{
-    Renderer()->AddSprite( this );
-
-    m_Transform = GetEntity()->GetComponent< Transform >();
-    
-    if ( m_TextureName.empty() == false )
+    /// @brief  called when entering the scene
+    void Sprite::OnInit()
     {
-        m_Texture = AssetLibrary< Texture >()->GetAsset( m_TextureName );
-    }
-}
+        Renderer()->AddSprite( this );
 
-/// @brief  called when exiting the scene
-void Sprite::OnExit()
-{
-    Renderer()->RemoveSprite( this );
-}
+        m_Transform.Init( GetEntity() );
+
+        m_Texture.SetOwnerName( GetName() );
+        m_Texture.Init();
+    }
+
+    /// @brief  called when exiting the scene
+    void Sprite::OnExit()
+    {
+        Renderer()->RemoveSprite( this );
+
+        m_Transform.Exit( GetEntity() );
+    }
 
 
     void Sprite::Inspector()
@@ -274,7 +274,7 @@ void Sprite::OnExit()
             SetOpacity(m_Opacity);
         }
 
-        Inspection::SelectAssetFromLibrary( "Texture", &m_Texture, &m_TextureName );
+        m_Texture.Inspect( "texture" );
 
         if (!m_Texture)
         {
@@ -299,12 +299,12 @@ void Sprite::OnExit()
 // private: methods
 //-----------------------------------------------------------------------------
 
-/// @brief  Calculates UV offset based on current frameIndex
-/// @return the UV offset
-glm::vec2 Sprite::calcUVoffset() const
-{
-    return m_Texture->GetUvOffset( m_FrameIndex );
-}
+    /// @brief  Calculates UV offset based on current frameIndex
+    /// @return the UV offset
+    glm::vec2 Sprite::calcUVoffset() const
+    {
+        return m_Texture->GetUvOffset( m_FrameIndex );
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -315,7 +315,7 @@ glm::vec2 Sprite::calcUVoffset() const
 /// @param  data  the json data to read from
 void Sprite::readTexture( nlohmann::ordered_json const& data )
 {
-    Stream::Read( m_TextureName, data );
+    Stream::Read( m_Texture, data );
     m_IsTextured = true;
 }
 
@@ -357,7 +357,7 @@ nlohmann::ordered_json Sprite::Write() const
     data[ "Color"      ] = Stream::Write( m_Color       );
     data[ "Opacity"    ] = Stream::Write( m_Opacity     );
     data[ "FrameIndex" ] = Stream::Write( m_FrameIndex  );
-    data[ "Texture"    ] = Stream::Write( m_TextureName );
+    data[ "Texture"    ] = Stream::Write( m_Texture     );
 
     return data;
 }

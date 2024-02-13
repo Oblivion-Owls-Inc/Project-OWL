@@ -7,25 +7,15 @@
 ///
 /// @copyright (c) 2023 DigiPen (USA) Corporation.
 ///-----------------------------------------------------------------------------//
-/// 
+
 #include "PlayerController.h" 
 #include "BehaviorSystem.h"     // GetInstance, AddBehavior, RemoveBehavior
-
-#include "RigidBody.h"          // ApplyVelocity
-#include "Animation.h"          // SetAsset
-#include "AudioPlayer.h"
-#include "Transform.h"
-#include "MiningLaser.h"
-#include "ConstructionBehavior.h"
 
 #include "InputSystem.h"        // GetInstance, GetKeyDown
 #include "AnimationAsset.h"
 #include "AssetLibrarySystem.h" // GetAsset
 #include "DebugSystem.h"
 #include "EnemyBehavior.h"
-#include "Health.h"              // TakeDamage
-#include "Transform.h"
-#include "CircleCollider.h"
 #include "EntitySystem.h"
 #include "glm/glm.hpp"
 #include "GeneratorBehavior.h"
@@ -36,8 +26,10 @@
 /// Static Variables
 ///----------------------------------------------------------------------------
 
-// The amount of animations for the player character.
-#define NUM_ANIMATIONS 4
+
+    // The amount of animations for the player character.
+    #define NUM_ANIMATIONS 4
+
 
 ///----------------------------------------------------------------------------
 /// Public: constructor / destructor
@@ -54,164 +46,158 @@
 /// Public: methods
 ///----------------------------------------------------------------------------
 
-/// @brief Adds this behavior to the behavior system on init.
-void PlayerController::OnInit()
-{
-	Behaviors< Behavior >()->AddComponent( this );
+    /// @brief Adds this behavior to the behavior system on init.
+    void PlayerController::OnInit()
+    {
+	    Behaviors< Behavior >()->AddComponent( this );
 
 
-    m_Health.SetOnConnectCallback( [ this ]( Health* health ) {
-        health->AddOnHealthChangedCallback(
-            GetId(),
-            std::bind( &PlayerController::playerRespawn, this )
-        );
-    } );
-    m_Health.SetOnDisconnectCallback( [ this ]( Health* health ) {
-        health->RemoveOnHealthChangedCallback( GetId() );
-    } );
+        m_Health.SetOnConnectCallback( [ this ]( Health* health ) {
+            health->AddOnHealthChangedCallback(
+                GetId(),
+                std::bind( &PlayerController::playerRespawn, this )
+            );
+        } );
+        m_Health.SetOnDisconnectCallback( [ this ]( Health* health ) {
+            health->RemoveOnHealthChangedCallback( GetId() );
+        } );
 
-    m_Collider.SetOnConnectCallback( [ this ]( Collider* collider ) {
-        collider->AddOnCollisionEnterCallback(
-            GetId(),
-            std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
-        );
-    } );
-    m_Collider.SetOnDisconnectCallback( [ this ]( Collider* collider ) {
-        collider->RemoveOnCollisionEnterCallback( GetId() );
-    } );
+        m_Collider.SetOnConnectCallback( [ this ]( Collider* collider ) {
+            collider->AddOnCollisionEnterCallback(
+                GetId(),
+                std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
+            );
+        } );
+        m_Collider.SetOnDisconnectCallback( [ this ]( Collider* collider ) {
+            collider->RemoveOnCollisionEnterCallback( GetId() );
+        } );
     
-    m_RigidBody  .Init( GetEntity() );
-    m_Animation  .Init( GetEntity() );
-    m_AudioPlayer.Init( GetEntity() );
-    m_Transform  .Init( GetEntity() );
-    m_Health     .Init( GetEntity() );
-    m_Collider   .Init( GetEntity() );
+        m_RigidBody  .Init( GetEntity() );
+        m_Animation  .Init( GetEntity() );
+        m_AudioPlayer.Init( GetEntity() );
+        m_Transform  .Init( GetEntity() );
+        m_Health     .Init( GetEntity() );
+        m_Collider   .Init( GetEntity() );
 
-    m_MiningLaserEntity.Init();
-
-    // Get all the player's animations
-    for ( int i = 0; i < NUM_ANIMATIONS; ++i )
-    {
-        m_PlayerAnimations[ i ] = AssetLibrary< AnimationAsset >()->GetAsset( m_AnimationNames[ i ] );
-    }
-}
+        m_MiningLaserEntity.SetOwnerName( GetName() );
+        m_MiningLaserEntity.Init();
 
 
-/// @brief Removes this behavior from the behavior system on exit
-void PlayerController::OnExit()
-{
-    Behaviors<Behavior>()->RemoveComponent(this);
-
-    m_RigidBody  .Exit( GetEntity() );
-    m_Animation  .Exit( GetEntity() );
-    m_AudioPlayer.Exit( GetEntity() );
-    m_Transform  .Exit( GetEntity() );
-    m_Health     .Exit( GetEntity() );
-    m_Collider   .Exit( GetEntity() );
-
-    m_MiningLaserEntity.Exit();
-}
-
-/// @brief Used by the Debug System to display information about this Component.
-void PlayerController::Inspector()
-{
-    vectorInspector();
-    animationInspector();
-
-    m_MiningLaserEntity.Inspect( "Mining Laser Entity" );
-}
-
-/// @brief on fixed update check which input is being pressed.
-void PlayerController::OnFixedUpdate()
-{
-    if (
-        m_Animation == nullptr ||
-        m_AudioPlayer == nullptr ||
-        m_RigidBody == nullptr
-    )
-    {
-        return;
-    }
-
-
-    if (Input()->GetKeyDown(GLFW_KEY_E))
-    {
-        for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
+        for ( AssetReference< AnimationAsset >& assetReference : m_Animations )
         {
-            float distance = glm::distance<>(generator->GetTransform()->GetTranslation(),
-                GetEntity()->GetComponent<Transform>()->GetTranslation());
-            if (generator->GetActivationRadius() > distance)
-            {
-                generator->Activate();
-                return;
-            }
+            assetReference.Init();
         }
     }
 
-    // The normalised direction vector.
-    glm::vec2 direction = { 0.0f, 0.0f };
+
+    /// @brief Removes this behavior from the behavior system on exit
+    void PlayerController::OnExit()
+    {
+        Behaviors<Behavior>()->RemoveComponent(this);
+
+        m_RigidBody  .Exit( GetEntity() );
+        m_Animation  .Exit( GetEntity() );
+        m_AudioPlayer.Exit( GetEntity() );
+        m_Transform  .Exit( GetEntity() );
+        m_Health     .Exit( GetEntity() );
+        m_Collider   .Exit( GetEntity() );
+
+        m_MiningLaserEntity.Exit();
+    }
+
+
+    /// @brief on fixed update check which input is being pressed.
+    void PlayerController::OnFixedUpdate()
+    {
+        if (
+            m_Animation == nullptr ||
+            m_AudioPlayer == nullptr ||
+            m_RigidBody == nullptr
+        )
+        {
+            return;
+        }
+
+
+        if (Input()->GetKeyDown(GLFW_KEY_E))
+        {
+            for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
+            {
+                float distance = glm::distance<>(generator->GetTransform()->GetTranslation(),
+                    GetEntity()->GetComponent<Transform>()->GetTranslation());
+                if (generator->GetActivationRadius() > distance)
+                {
+                    generator->Activate();
+                    return;
+                }
+            }
+        }
+
+        // The normalised direction vector.
+        glm::vec2 direction = { 0.0f, 0.0f };
     
-    if ( moveRight() )
-    {
-        // 0 is right.
-        m_Animation->SetAsset( m_PlayerAnimations[ 0 ] );
-        m_Animation->SetIsRunning( true );
-        direction.x += 1.0f;
-        m_AudioPlayer->Play();
-    }
-    if ( moveLeft() )
-    {
-        // 1 is left
-        m_Animation->SetAsset( m_PlayerAnimations[ 1 ] );
-        m_Animation->SetIsRunning( true );
-        direction.x -= 1.0f;
-        m_AudioPlayer->Play();
-    }
-    if ( moveUp() )
-    {
-        // 2 is up.
-        m_Animation->SetAsset( m_PlayerAnimations[ 2 ] );
-        m_Animation->SetIsRunning( true );
-        direction.y += 1.0f;
-        m_AudioPlayer->Play();
-    }
-    if ( moveDown() )
-    {
-        // 3 is down.
-        m_Animation->SetAsset( m_PlayerAnimations[ 3 ] );
-        m_Animation->SetIsRunning( true );
-        direction.y -= 1.0f;
-        m_AudioPlayer->Play();
-	}
+        if ( moveRight() )
+        {
+            // 0 is right.
+            m_Animation->SetAsset( m_Animations[ 0 ] );
+            m_Animation->SetIsRunning( true );
+            direction.x += 1.0f;
+            m_AudioPlayer->Play();
+        }
+        if ( moveLeft() )
+        {
+            // 1 is left
+            m_Animation->SetAsset( m_Animations[ 1 ] );
+            m_Animation->SetIsRunning( true );
+            direction.x -= 1.0f;
+            m_AudioPlayer->Play();
+        }
+        if ( moveUp() )
+        {
+            // 2 is up.
+            m_Animation->SetAsset( m_Animations[ 2 ] );
+            m_Animation->SetIsRunning( true );
+            direction.y += 1.0f;
+            m_AudioPlayer->Play();
+        }
+        if ( moveDown() )
+        {
+            // 3 is down.
+            m_Animation->SetAsset( m_Animations[ 3 ] );
+            m_Animation->SetIsRunning( true );
+            direction.y -= 1.0f;
+            m_AudioPlayer->Play();
+	    }
 
     
 
-    if ( direction != glm::vec2( 0 ) )
-    {
-        direction = glm::normalize( direction );
+        if ( direction != glm::vec2( 0 ) )
+        {
+            direction = glm::normalize( direction );
+        }
+        else
+        {
+            m_Animation->SetIsRunning( false );
+            m_Animation->SetFrameIndex( 0, true );
+            m_AudioPlayer->Stop();
+        }
+
+        m_RigidBody->ApplyVelocity( direction * m_MaxSpeed );
+
+
+        updateMiningLaser();
     }
-    else
-    {
-        m_Animation->SetIsRunning( false );
-        m_Animation->SetFrameIndex( 0, true );
-        m_AudioPlayer->Stop();
-    }
 
-    m_RigidBody->ApplyVelocity( direction * m_MaxSpeed );
-
-
-    updateMiningLaser();
-}
 
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  Check if the 'D' key is being pressed.
     /// @return Is the 'D' key being pressed?
     bool PlayerController::moveRight()
     {
-        
         return Input()->GetKeyDown(GLFW_KEY_D) || 
               (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_LEFT_X) >= 1.0f);
     }
@@ -278,16 +264,80 @@ void PlayerController::OnFixedUpdate()
 
     }
 
-/// @brief Check if player heal is 0, then respawn them. 
-void PlayerController::playerRespawn()
-{
-    // If the player is dead
-    if (m_Health->GetHealth()->GetCurrent() <= 0)
+
+    /// @brief Check if player heal is 0, then respawn them. 
+    void PlayerController::playerRespawn()
     {
-        m_Transform->SetTranslation(m_PlayerRespawnLocation);
-        m_Health->GetHealth()->Reset();
+        // If the player is dead
+        if (m_Health->GetHealth()->GetCurrent() <= 0)
+        {
+            m_Transform->SetTranslation(m_PlayerRespawnLocation);
+            m_Health->GetHealth()->Reset();
+        }
     }
-}
+
+
+    /// @brief  What to do when the player has been hit.
+    /// @param  other   - the collider of the other entity.
+    void PlayerController::onCollisionEnter( Collider* other )
+    {
+        // Get the enemy behaviour component.
+        EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
+        if (!enemy)
+        {
+            return;
+        }
+
+        if(m_Health)
+        {
+            // If the enemy collides with player, damage the player
+            m_Health->TakeDamage(enemy->GetDamage());
+        }
+
+        // Add physical reaction to enemy.
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Used by the Debug System to display information about this Component.
+    void PlayerController::Inspector()
+    {
+        vectorInspector();
+        animationInspector();
+
+        m_MiningLaserEntity.Inspect( "Mining Laser Entity" );
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Helper function for inspector.
+    void PlayerController::vectorInspector()
+    {
+        ImGui::DragFloat( "Max Speed", &m_MaxSpeed, 0.05f, 0.0f, INFINITY );
+
+        // Change the respawn location in the editor.
+        ImGui::DragFloat2( "Respawn Location", &m_PlayerRespawnLocation[ 0 ], 0.05f );
+    }
+
+    /// @brief Helper function for inspector.
+    void PlayerController::animationInspector()
+    {
+        std::string animNames[ NUM_ANIMATIONS ] = { "Right Animation", "Left Animation", "Up Animation", "Down Animation" };
+
+        for ( int i = 0; i < NUM_ANIMATIONS; i++ )
+        {
+            m_Animations[ i ].Inspect( animNames[ i ].c_str() );
+        }
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: reading
@@ -310,11 +360,11 @@ void PlayerController::playerRespawn()
 
     /// @brief Read in the names of the player animations.
     /// @param data The JSON file to read from.
-    void PlayerController::readAnimationNames(nlohmann::ordered_json const& data)
+    void PlayerController::readAnimations(nlohmann::ordered_json const& data)
     {
-        for (int i = 0; i < NUM_ANIMATIONS; i++)
+        for ( int i = 0; i < NUM_ANIMATIONS; ++i )
         {
-            Stream::Read( m_AnimationNames[i], data[i] );
+            Stream::Read( m_Animations[ i ], data[ i ] );
         }
     }
 
@@ -326,17 +376,26 @@ void PlayerController::playerRespawn()
     }
 
 
-    // Map of all the read methods for the PlayerController component.
-    ReadMethodMap< PlayerController > const PlayerController::s_ReadMethods = {
-        { "MaxSpeed"         , &readMaxSpeed          },
-        { "RespawnLocation"  , &readRespawnLocation   },
-        { "AnimationNames"   , &readAnimationNames    },
-        { "MiningLaserEntity", &readMiningLaserEntity }
-    };
+//-----------------------------------------------------------------------------
+// public: reading writing
+//-----------------------------------------------------------------------------
 
-//-----------------------------------------------------------------------------
-// public: writing
-//-----------------------------------------------------------------------------
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    ReadMethodMap< ISerializable > const& PlayerController::GetReadMethods() const
+    {
+        static ReadMethodMap< PlayerController > const readMethods = {
+            { "MaxSpeed"         , &PlayerController::readMaxSpeed          },
+            { "RespawnLocation"  , &PlayerController::readRespawnLocation   },
+            { "Animations"       , &PlayerController::readAnimations        },
+            { "MiningLaserEntity", &PlayerController::readMiningLaserEntity }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
+
 
     /// @brief  Write all PlayerController data to a JSON file.
     /// @return The JSON file containing the TurretBehavior data.
@@ -344,10 +403,10 @@ void PlayerController::playerRespawn()
     {
         nlohmann::ordered_json data;
 
-        nlohmann::ordered_json& animationNames = data[ "AnimationNames" ];
-        for ( std::string const& animationName : m_AnimationNames )
+        nlohmann::ordered_json& animationNames = data[ "Animations" ];
+        for ( AssetReference< AnimationAsset > const& animation : m_Animations )
         {
-            animationNames.push_back( Stream::Write( animationName ) );
+            animationNames.push_back( Stream::Write( animation ) );
         }
 
         data[ "MaxSpeed"          ] = Stream::Write( m_MaxSpeed              );
@@ -359,78 +418,36 @@ void PlayerController::playerRespawn()
 
 
 //--------------------------------------------------------------------------------
-//  Copying/Cloning
+// public: copying
 //--------------------------------------------------------------------------------
 
-/// @brief Copy Constructor
-/// @param other A PlayerController to copy.
-PlayerController::PlayerController(PlayerController const& other):
-    Behavior( other ),
-    m_MaxSpeed( other.m_MaxSpeed ),
-    m_PlayerRespawnLocation( other.m_PlayerRespawnLocation )
-{
-    // Copy the animations
-    for (int i = 0; i < NUM_ANIMATIONS; i++)
+
+    /// @brief  Clones the current PlayerController and returns a copy.
+    /// @return A copy of the current PlayerController.
+    PlayerController* PlayerController::Clone() const
     {
-        m_AnimationNames[i] = other.m_AnimationNames[i];
-        m_PlayerAnimations[i] = other.m_PlayerAnimations[i];
+        return new PlayerController( *this );
     }
-}
 
-/// @brief  Clones the current PlayerController and returns a copy.
-/// @return A copy of the current PlayerController.
-Component* PlayerController::Clone() const
-{
-    return (Component*) new PlayerController(*this);
-}
+
+//--------------------------------------------------------------------------------
+// private: copying
 //--------------------------------------------------------------------------------
 
-/// @brief Helper function for inspector.
-void PlayerController::vectorInspector()
-{
-    ImGui::DragFloat( "Max Speed", &m_MaxSpeed, 0.05f, 0.0f, INFINITY );
 
-    // Change the respawn location in the editor.
-    ImGui::DragFloat2( "Respawn Location", &m_PlayerRespawnLocation[ 0 ], 0.05f );
-}
-
-/// @brief Helper function for inspector.
-void PlayerController::animationInspector()
-{
-    std::string animNames[NUM_ANIMATIONS] = { "Right Animation", "Left Animation", "Up Animation", "Down Animation" };
-
-    for(int i = 0; i < NUM_ANIMATIONS; i++)
+    /// @brief Copy Constructor
+    /// @param other A PlayerController to copy.
+    PlayerController::PlayerController(PlayerController const& other):
+        Behavior( other ),
+        m_MaxSpeed( other.m_MaxSpeed ),
+        m_PlayerRespawnLocation( other.m_PlayerRespawnLocation )
     {
-        if(ImGui::BeginCombo(animNames[i].c_str(), AssetLibrary<AnimationAsset>()->GetAssetName(m_PlayerAnimations[i])))
+        // Copy the animations
+        for (int i = 0; i < NUM_ANIMATIONS; i++)
         {
-            for ( auto& [ name, animation ] : AssetLibrary<AnimationAsset>()->GetAssets() )
-            {
-                if (ImGui::Selectable(name.c_str(), m_PlayerAnimations[i] == animation))
-                {
-                    m_PlayerAnimations[i] = animation;
-                }
-            }
-            ImGui::EndCombo();
+            m_Animations[ i ] = other.m_Animations[ i ];
         }
     }
-}
 
-/// @brief  What to do when the player has been hit.
-/// @param  other   - the collider of the other entity.
-void PlayerController::onCollisionEnter( Collider* other )
-{
-    // Get the enemy behaviour component.
-    EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
-    if (!enemy)
-    {
-        return;
-    }
 
-    if(m_Health)
-    {
-        // If the enemy collides with player, damage the player
-        m_Health->TakeDamage(enemy->GetDamage());
-    }
-
-    // Add physical reaction to enemy.
-}
+//--------------------------------------------------------------------------------    

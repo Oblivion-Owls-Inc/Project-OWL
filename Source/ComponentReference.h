@@ -53,7 +53,8 @@ public: // virtual methods
 
 /// @brief  a reference to a component in the scene
 /// @tparam ComponentType   the type of Component this ComponentReference refers to
-template < class ComponentType >
+/// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
+template < class ComponentType, bool required = true >
 class ComponentReference : public ComponentReferenceBase
 {
 //-----------------------------------------------------------------------------

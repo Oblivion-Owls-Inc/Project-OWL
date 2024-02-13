@@ -232,6 +232,7 @@
 
         m_Transform.Init( GetEntity() );
 
+        m_TilemapEntity.SetOwnerName( GetName() );
         m_TilemapEntity.Init();
     }
 
@@ -574,17 +575,18 @@
     /// @param  other   the other MiningLaser to copy
     MiningLaser::MiningLaser( const MiningLaser& other ) :
         Behavior( typeid( MiningLaser ) ),
-        m_TilemapEntity( other.m_TilemapEntity ),
-        m_Range( other.m_Range ),
-        m_MiningSpeed( other.m_MiningSpeed ),
+        m_Range             ( other.m_Range              ),
+        m_MiningSpeed       ( other.m_MiningSpeed        ),
         m_MaxInProgressTiles( other.m_MaxInProgressTiles ),
-        m_BeamColor( other.m_BeamColor ),
-        m_BeamWidth( other.m_BeamWidth ),
-        m_DamageRate( other.m_DamageRate ),
-        m_CollisionLayers( other.m_CollisionLayers ),
-        m_Direction( other.m_Direction ),
-        m_IsFiring( other.m_IsFiring ),
-        m_AccumulatedDamage( other.m_AccumulatedDamage )
+        m_BeamColor         ( other.m_BeamColor          ),
+        m_BeamWidth         ( other.m_BeamWidth          ),
+        m_DamageRate        ( other.m_DamageRate         ),
+        m_CollisionLayers   ( other.m_CollisionLayers    ),
+        m_Direction         ( other.m_Direction          ),
+        m_IsFiring          ( other.m_IsFiring           ),
+        m_AccumulatedDamage ( other.m_AccumulatedDamage  ),
+
+        m_TilemapEntity( other.m_TilemapEntity, { &m_Tilemap } )
     {}
 
 //-----------------------------------------------------------------------------

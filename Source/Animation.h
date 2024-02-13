@@ -17,7 +17,8 @@
 
 #include <functional>
 
-class Sprite;
+#include "AssetReference.h"
+#include "Sprite.h"
 
 class Animation : public Behavior
 {
@@ -37,21 +38,16 @@ public: // constructor / destructor
 public: // methods
 //-----------------------------------------------------------------------------
 
-
     /// @brief  starts playing an Animation
-    /// @param  assetName   the AnimationAsset to play
-    void Play( std::string const& assetName );
-
-    /// @brief  starts playing an Animation
-    /// @param  asset   the AnimationAsset to play
-    void Play( AnimationAsset const* asset );
+    /// @param  asset   the animation to play
+    void Play( AssetReference< AnimationAsset > const& asset );
 
     /// @brief  starts playing this Animation
     void Play();
 
 
     /// @brief  pauses the current animation
-    void Pause() { m_IsRunning = false; }
+    void Pause();
 
 
     /// @brief  how much longer until the current animation is done playing
@@ -119,7 +115,7 @@ public: // accessors
 
 	/// @brief	Sets the animation asset this Animation Component is using
 	/// @param	asset   animation asset to set
-	void SetAsset( AnimationAsset const* asset );
+	void SetAsset( AssetReference< AnimationAsset > const& asset );
 
 
 //-----------------------------------------------------------------------------
@@ -148,11 +144,8 @@ private: // member variables
     ComponentReference< Sprite > m_Sprite;
 
 
-    /// @brief  the name of the animation asset in use
-    std::string m_AssetName = "";
-
     /// @brief  the animation asset this Animation Component is using
-    AnimationAsset const* m_Asset = nullptr;
+    AssetReference< AnimationAsset > m_Asset;
 
 
     /// @brief  the current frame index
@@ -217,10 +210,6 @@ private: // reading
     void readAnimation( nlohmann::ordered_json const& data );
 
 
-	/// @brief  map of read methods
-	static ReadMethodMap< Animation > const s_ReadMethods;
-
-
 //-----------------------------------------------------------------------------
 public: // reading / writing
 //-----------------------------------------------------------------------------
@@ -228,10 +217,7 @@ public: // reading / writing
 
     /// @brief  gets the map of read methods
     /// @return the map of read methods
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
      /// @brief  Write all Animation component data to a JSON file.
@@ -246,10 +232,7 @@ public: // copying
 
     /// @brief	Clones an animation
     /// @return New animation copy
-    virtual Animation* Clone() const override
-    {
-        return new Animation( *this );
-    }
+    virtual Animation* Clone() const override;
 
 
 //-----------------------------------------------------------------------------

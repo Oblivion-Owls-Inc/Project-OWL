@@ -201,7 +201,9 @@ void RenderSystem::DrawTexture(
     transform->SetIsDiegetic( isDiegetic );
     shapes.back()->AddComponent( transform );
 
-    Sprite* sprite = new Sprite( texture );
+    AssetReference< Texture > textureReference;
+    textureReference = texture;
+    Sprite* sprite = new Sprite( textureReference );
     sprite->SetColor( color );
     sprite->SetOpacity( alpha );
     sprite->SetFrameIndex( frameIndex );

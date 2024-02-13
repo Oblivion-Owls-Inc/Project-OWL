@@ -78,10 +78,10 @@ private: // members
 
 
     /// @brief  the Transform attached to this AudioListener
-    ComponentReference< Transform > m_Transform;
+    ComponentReference< Transform, false > m_Transform;
 
     /// @brief  the RigidBody attached to this AudioListener
-    ComponentReference< RigidBody > m_RigidBody;
+    ComponentReference< RigidBody, false > m_RigidBody;
 
 
 //-----------------------------------------------------------------------------

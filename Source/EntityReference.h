@@ -40,6 +40,9 @@ public: // constructor
     /// @brief  disable default assignment operator
     void operator =( EntityReference const& ) = delete;
 
+    /// @brief  disable default copy constructor
+    EntityReference( EntityReference const& ) = delete;
+
 
 //-----------------------------------------------------------------------------
 public: // methods
@@ -57,6 +60,16 @@ public: // methods
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the name of the Entity
+    /// @return the name of the Entity
+    std::string const& GetName() const;
+
+
+    /// @brief  sets this EntityReference's Owner Name
+    /// @param  ownerName   the name of the owner of this EntityReference
+    void SetOwnerName( std::string const& ownerName );
 
 
     /// @brief  dereference operator
@@ -97,6 +110,10 @@ private: // members
 
     /// @brief  the component this EntityReference is referring to
     Entity* m_Entity = nullptr;
+
+
+    /// @brief  the name of the owner of this EntityReference (for debug logging)
+    std::string m_OwnerName = "";
 
 
     /// @brief  ComponentReferences attached to this EntityReference

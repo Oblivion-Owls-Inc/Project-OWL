@@ -51,6 +51,8 @@
 
         if ( m_Entity == nullptr )
         {
+            Debug() << "WARNING: Could not find Entity \"" << m_EntityName
+                << "\" (EntityReference owned by Entity \"" << m_OwnerName << "\")" << std::endl;
             return;
         }
 
@@ -78,6 +80,22 @@
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the name of the Entity
+    /// @return the name of the Entity
+    std::string const& EntityReference::GetName() const
+    {
+        return m_EntityName;
+    }
+
+
+    /// @brief  sets this EntityReference's Owner Name
+    /// @param  ownerName   the name of the owner of this EntityReference
+    void EntityReference::SetOwnerName( std::string const& ownerName )
+    {
+        m_OwnerName = ownerName;
+    }
 
 
     /// @brief  dereference operator

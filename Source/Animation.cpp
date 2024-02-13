@@ -31,18 +31,9 @@
 // public: methods
 //-----------------------------------------------------------------------------
 
-
-    /// @brief  starts playing an Animation
-    /// @param  assetName   the AnimationAsset to play
-    void Animation::Play( std::string const& assetName )
-    {
-        m_Asset = AssetLibrary< AnimationAsset >()->GetAsset( assetName );
-        Play();
-    }
-
     /// @brief  starts playing an Animation
     /// @param  asset   the AnimationAsset to play
-    void Animation::Play( AnimationAsset const* asset )
+    void Animation::Play( AssetReference< AnimationAsset > const& asset )
     {
         m_Asset = asset;
         Play();
@@ -64,10 +55,22 @@
     }
 
 
+    /// @brief  pauses the current animation
+    void Animation::Pause()
+    {
+        m_IsRunning = false;
+    }
+
+
     /// @brief  how much longer until the current animation is done playing
     /// @return the amount of remaining time
     float Animation::GetRemainingTime() const
     {
+        if ( m_Asset == nullptr )
+        {
+            return 0.0f;
+        }
+
         return m_FrameDelay + (m_Asset->GetEnd() - m_FrameIndex - 1) * m_Asset->GetFrameDuration();
     }
 
@@ -99,6 +102,11 @@
     /// @return	Frame index of the animation
     unsigned Animation::GetFrameIndex( bool relative ) const
     {
+        if ( m_Asset == nullptr )
+        {
+            return 0;
+        }
+
 	    return m_FrameIndex - (relative ? m_Asset->GetStart() : 0);
     }
 
@@ -107,6 +115,11 @@
     /// @param	index       frame index to set
     void Animation::SetFrameIndex( unsigned index, bool relative )
     {
+        if ( m_Asset == nullptr )
+        {
+            return;
+        }
+
 	    m_FrameIndex = index + (relative ? m_Asset->GetStart() : 0);
         if ( m_Sprite != nullptr )
         {
@@ -168,12 +181,12 @@
     }
 
     /// @brief	Sets the animation asset this Animation will use
-    /// @param	newAsset    animation asset to set
-    void Animation::SetAsset( AnimationAsset const* newAsset )
+    /// @param	asset   animation asset to set
+    void Animation::SetAsset( AssetReference< AnimationAsset > const& asset )
     {
-        int index = GetFrameIndex(true);
-	    m_Asset = newAsset;
-        SetFrameIndex(index, true);
+        int index = GetFrameIndex( true );
+	    m_Asset = asset;
+        SetFrameIndex( index, true );
     }
 
 
@@ -189,7 +202,8 @@
 
         m_Sprite.Init( GetEntity() );
 
-        m_Asset = AssetLibrary< AnimationAsset >()->GetAsset( m_AssetName );
+        m_Asset.SetOwnerName( GetName() );
+        m_Asset.Init();
     }
 
     /// @brief  gets called once when exiting the scene
@@ -275,10 +289,11 @@
             ImGui::Text( "WARNING: There is no Sprite attached to this Animation Component" );
         }
 
-        Inspection::SelectAssetFromLibrary( "Animation Asset", &m_Asset, &m_AssetName );
+       m_Asset.Inspect( "Animation Asset" );
 
         if ( m_Asset == nullptr )
         {
+            ImGui::Text( "WARNING: No Animation asset selected" );
             return;
         }
 
@@ -306,7 +321,7 @@
 
 
 //-----------------------------------------------------------------------------
-// private: reading/writing
+// private: reading
 //-----------------------------------------------------------------------------
 
 
@@ -342,8 +357,32 @@
     /// @param  stream  the json data to read from
     void Animation::readAnimation( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_AssetName, data );
+        Stream::Read( m_Asset, data );
     }
+
+    
+//-----------------------------------------------------------------------------
+// public: reading writing
+//-----------------------------------------------------------------------------
+
+
+    
+    /// @brief  gets the map of read methods
+    /// @return the map of read methods
+    ReadMethodMap< ISerializable > const& Animation::GetReadMethods() const
+    {
+        static ReadMethodMap< Animation > const readMethods = {
+            { "FrameIndex", &Animation::readFrameIndex },
+            { "FrameDelay", &Animation::readFrameDelay },
+            { "IsRunning" , &Animation::readIsRunning  },
+            { "LoopCount" , &Animation::readLoopCount  },
+            { "Animation" , &Animation::readAnimation  }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
+
 
     /// @brief  Write all Animation component data to a JSON file.
     /// @return The JSON file containing the Animation component data.
@@ -353,22 +392,25 @@
 
         data[ "FrameIndex" ] = Stream::Write( m_FrameIndex );
         data[ "FrameDelay" ] = Stream::Write( m_FrameDelay );
-        data[ "IsRunning" ] = Stream::Write( m_IsRunning );
-        data[ "LoopCount" ] = Stream::Write( m_LoopCount );
-        data[ "Animation" ] = Stream::Write( m_AssetName );
+        data[ "IsRunning"  ] = Stream::Write( m_IsRunning  );
+        data[ "LoopCount"  ] = Stream::Write( m_LoopCount  );
+        data[ "Animation"  ] = Stream::Write( m_Asset      );
 
         return data;
     }
 
+    
+//-----------------------------------------------------------------------------
+// private: copying
+//-----------------------------------------------------------------------------
 
-    /// @brief  map of read methods
-    ReadMethodMap< Animation > const Animation::s_ReadMethods = {
-	    { "FrameIndex", &readFrameIndex },
-	    { "FrameDelay", &readFrameDelay },
-	    { "IsRunning" , &readIsRunning  },
-        { "LoopCount" , &readLoopCount  },
-        { "Animation" , &readAnimation  }
-    };
+
+    /// @brief	Clones an animation
+    /// @return New animation copy
+    Animation* Animation::Clone() const
+    {
+        return new Animation( *this );
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -382,9 +424,9 @@
         Behavior( other ),
         m_FrameIndex( other.m_FrameIndex ),
         m_FrameDelay( other.m_FrameDelay ),
-        m_IsRunning( other.m_IsRunning ),
-        m_Asset( other.m_Asset ),
-        m_LoopCount( other.m_LoopCount )
+        m_IsRunning ( other.m_IsRunning  ),
+        m_LoopCount ( other.m_LoopCount  ),
+        m_Asset     ( other.m_Asset      )
     {}
 
 

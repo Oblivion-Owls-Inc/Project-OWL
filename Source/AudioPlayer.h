@@ -10,8 +10,8 @@
 
 #include "Behavior.h"
 
+#include "AssetReference.h"
 #include "Sound.h"
-
 
 #include "ComponentReference.h"
 #include "Transform.h"
@@ -62,11 +62,11 @@ public: // accessors
 
     /// @brief  gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
-    Sound const* GetSound();
+    AssetReference< Sound > const& GetSound();
 
     /// @brief  sets the SOund that this AudioPlayer plays
     /// @param  sound   the sound that this AudioPlayer will play
-    void SetSound( Sound const* sound );
+    void SetSound( AssetReference< Sound > const& sound );
 
 
     /// @brief  gets whether this AudioPlayer is currently playing anything
@@ -173,11 +173,8 @@ private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the name of the sound asset to use
-    std::string m_SoundName = "";
-
     /// @brief  The sound that this AudioPlayer will play
-    Sound const* m_Sound = nullptr;
+    AssetReference< Sound > m_Sound;
 
 
     /// @brief  the relative volume this AudioPlayer will play at
@@ -211,10 +208,10 @@ private: // members
 
 
     /// @brief  the Transform attached to this AudioPlayer
-    ComponentReference< Transform > m_Transform;
+    ComponentReference< Transform, false > m_Transform;
 
     /// @brief  the RigidBody attached to this AudioPlayer
-    ComponentReference< RigidBody > m_RigidBody;
+    ComponentReference< RigidBody, false > m_RigidBody;
 
 
     /// @brief  The channelGroup to play sounds in

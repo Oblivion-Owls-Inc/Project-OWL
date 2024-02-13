@@ -29,7 +29,7 @@ TilemapSprite::TilemapSprite() :
 /// @param stride_mult  (optional) Multiplier to adjust stride (spacing)
 /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
 /// @param type         (for derived) Component type
-TilemapSprite::TilemapSprite(Texture* texture, float stride_mult, int layer, 
+TilemapSprite::TilemapSprite( AssetReference< Texture > const& texture, float stride_mult, int layer, 
                              std::type_index type) :
     Sprite(texture, layer, type)
 {}
@@ -85,6 +85,13 @@ void TilemapSprite::LoadTileArray(std::vector<int> tiles)
 void TilemapSprite::OnInit()
 {
     Sprite::OnInit();
+
+    if ( m_Texture == nullptr )
+    {
+        Debug() << "WARNING: could no initialize TilemapSprite - no Texture present" << std::endl;
+        return;
+    }
+
     initInstancingStuff();
 
     // Init text shader if it ain't.
