@@ -464,17 +464,15 @@
     {
 
         Entity* playerEntity = m_PlayerTransform->GetEntity();
-        if ( Inspection::SelectEntityFromScene( "player entity", &playerEntity ) )
+        if ( Inspection::SelectEntityFromScene( "player entity", &playerEntity, &m_PlayerName ) )
         {
-            m_PlayerName = playerEntity->GetName();
             m_PlayerTransform = playerEntity->GetComponent< Transform >();
             m_PlayerInventory = playerEntity->GetComponent< Inventory >();
         }
         
         Entity* tilemapEntity = m_Tilemap->GetEntity();
-        if ( Inspection::SelectEntityFromScene( "player entity", &tilemapEntity ) )
+        if ( Inspection::SelectEntityFromScene( "player entity", &tilemapEntity, &m_TilemapName ) )
         {
-            m_TilemapName = tilemapEntity->GetName();
             m_Tilemap = tilemapEntity->GetComponent< Tilemap< int > >();
             m_Buildings = tilemapEntity->GetComponent< Tilemap< Entity* > >();
         }

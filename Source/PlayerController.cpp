@@ -125,9 +125,8 @@ void PlayerController::Inspector()
     animationInspector();
 
     Entity* miningLaserEntity = m_MiningLaser != nullptr ? m_MiningLaser->GetEntity() : nullptr;
-    if ( Inspection::SelectEntityFromScene( "Mining Laser", &miningLaserEntity ) )
+    if ( Inspection::SelectEntityFromScene( "Mining Laser", &miningLaserEntity, &m_MiningLaserName ) )
     {
-        m_MiningLaserName = miningLaserEntity->GetName();
         m_MiningLaser = miningLaserEntity->GetComponent< MiningLaser >();
     }
 }

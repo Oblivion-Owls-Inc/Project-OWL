@@ -414,10 +414,9 @@
     void MiningLaser::Inspector()
     {
         Entity* tilemapEntity = m_Tilemap != nullptr ? m_Tilemap->GetEntity() : nullptr;
-        if ( Inspection::SelectEntityFromScene( "Tilemap Entity", &tilemapEntity ) )
+        if ( Inspection::SelectEntityFromScene( "Tilemap Entity", &tilemapEntity, &m_TilemapName ) )
         {
             m_Tilemap = tilemapEntity->GetComponent< Tilemap< int > >();
-            m_TilemapName = tilemapEntity->GetName();
         }
 
 

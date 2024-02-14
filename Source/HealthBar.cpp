@@ -52,23 +52,37 @@
         m_Transform   = GetEntity()->GetComponent< Transform   >();
         m_UiBarSprite = GetEntity()->GetComponent< UiBarSprite >();
 
-        Entity* parent = GetEntity()->GetParent();
-        if ( parent == nullptr )
+
+        if ( m_TargetEntityName == "" )
         {
-            Debug() << "WARNING: HealthBar Component has no parent Entity" << std::endl;
+            Entity* parent = GetEntity()->GetParent();
+            if ( parent == nullptr )
+            {
+                Debug() << "WARNING: HealthBar does not have a target or parent" << std::endl;
+                return;
+            }
+            m_ParentTransform = parent->GetComponent< Transform >();
+            m_TargetHealth    = parent->GetComponent< Health    >();
+        }
+        else
+        {
+            Entity* target = Entities()->GetEntity( m_TargetEntityName );
+            if ( target == nullptr )
+            {
+                Debug() << "WARNING: healthbar's target could not be found" << std::endl;
+                return;
+            }
+            m_TargetHealth = target->GetComponent< Health >();
+        }
+
+
+        if ( m_TargetHealth == nullptr )
+        {
+            Debug() << "WARNING: HealthBar does not have a target with a Health component" << std::endl;
             return;
         }
 
-        m_ParentTransform = parent->GetComponent< Transform >();
-        m_ParentHealth    = parent->GetComponent< Health    >();
-
-        if ( m_ParentHealth == nullptr )
-        {
-            Debug() << "WARNING: HealthBar Component's parent does not have a Health component" << std::endl;
-            return;
-        }
-
-        m_ParentHealth->AddOnHealthChangedCallback(
+        m_TargetHealth->AddOnHealthChangedCallback(
             GetId(),
             std::bind( &HealthBar::onHealthChangedCallback, this )
         );
@@ -79,9 +93,9 @@
     {
         Behaviors< Behavior >()->RemoveComponent( this );
 
-        if ( m_ParentHealth != nullptr )
+        if ( m_TargetHealth != nullptr )
         {
-            m_ParentHealth->RemoveOnHealthChangedCallback( GetId() );
+            m_TargetHealth->RemoveOnHealthChangedCallback( GetId() );
         }
     }
 
@@ -92,32 +106,43 @@
     {
         updateRecentHealth( dt );
 
-        updateVisuals();
+        updateVisuals( dt );
     }
 
 
     /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
     void HealthBar::OnHeirarchyChange()
     {
+        if ( m_TargetEntityName == "" )
+        {
+            return;
+        }
+
+        if ( m_TargetHealth != nullptr )
+        {
+            m_TargetHealth->RemoveOnHealthChangedCallback( GetId() );
+        }
+
+
         Entity* parent = GetEntity()->GetParent();
         if ( parent == nullptr )
         {
-            Debug() << "WARNING: HealthBar Component has no parent Entity" << std::endl;
+            Debug() << "WARNING: HealthBar Component has no target or parent Entity" << std::endl;
             m_ParentTransform = nullptr;
-            m_ParentHealth = nullptr;
+            m_TargetHealth = nullptr;
             return;
         }
 
         m_ParentTransform = parent->GetComponent< Transform >();
-        m_ParentHealth    = parent->GetComponent< Health    >();
+        m_TargetHealth    = parent->GetComponent< Health    >();
 
-        if ( m_ParentHealth == nullptr )
+        if ( m_TargetHealth == nullptr )
         {
             Debug() << "WARNING: HealthBar Component's parent does not have a Health component" << std::endl;
             return;
         }
 
-        m_ParentHealth->AddOnHealthChangedCallback(
+        m_TargetHealth->AddOnHealthChangedCallback(
             GetId(),
             std::bind( &HealthBar::onHealthChangedCallback, this )
         );
@@ -132,7 +157,7 @@
     /// @brief  callback called whenever the health component changes
     void HealthBar::onHealthChangedCallback()
     {
-        Pool< int > const& health = *m_ParentHealth->GetHealth();
+        Pool< int > const& health = *m_TargetHealth->GetHealth();
         m_CurrentHealthPortion = (float)health.GetCurrent() / health.GetMaximum();
 
         m_RecentHealthVelocity = 0.0f;
@@ -159,25 +184,43 @@
 
 
     /// @brief  updates the Sprite and Transform attached to the HealthBar
-    void HealthBar::updateVisuals()
+    /// @param  dt  the length of time the frame lasts
+    void HealthBar::updateVisuals( float dt )
     {
-        if ( m_ParentTransform == nullptr )
-        {
-            return;
-        }
-
-        glm::vec2 position = m_ParentTransform->GetTranslation() + m_Offset;
-        m_Transform->SetTranslation( position );
-
         std::vector< UiBarSprite::UiBarSection >& barSections = m_UiBarSprite->GetSections();
         if ( barSections.size() < 2 )
         {
             Debug() << "WARNING: HealthBar UiBarSprite has less than two sections" << std::endl;
             return;
         }
-
         barSections[ 0 ].M_Value = m_CurrentHealthPortion;
         barSections[ 1 ].M_Value = m_RecentHealthPortion;
+
+
+        if ( m_HideWhenFull )
+        {
+            if ( m_CurrentHealthPortion >= 1.0f )
+            {
+                float opacity = m_UiBarSprite->GetOpacity();
+                opacity -= m_MaxOpacity / m_OpacityAnimationTime * dt;
+                opacity = std::max( 0.0f, opacity );
+                m_UiBarSprite->SetOpacity( opacity );
+            }
+            else
+            {
+                float opacity = m_UiBarSprite->GetOpacity();
+                opacity += m_MaxOpacity / m_OpacityAnimationTime * dt;
+                opacity = std::min( 1.0f, opacity );
+                m_UiBarSprite->SetOpacity( opacity );
+            }
+        }
+
+        if ( m_ParentTransform != nullptr && m_TargetEntityName.empty() )
+        {
+            glm::vec2 position = m_ParentTransform->GetTranslation() + m_Offset;
+            m_Transform->SetTranslation( position );
+        }
+
     }
 
 
@@ -193,7 +236,33 @@
 
         ImGui::Checkbox( "hide when full", &m_HideWhenFull );
 
+        if ( m_HideWhenFull )
+        {
+            ImGui::DragFloat( "opacity animation time", &m_OpacityAnimationTime, 0.05f, 0.0f, INFINITY );
+        }
+
+        ImGui::DragFloat( "max opacity", &m_MaxOpacity, 0.05f, 0.0f, 1.0f );
+
         ImGui::DragFloat( "recent health depletion rate", &m_RecentHealthAcceleration, 0.05f, 0.0f, INFINITY );
+
+        Entity* targetEntity = m_TargetEntityName.empty() ? nullptr : m_TargetHealth->GetEntity();
+        if ( Inspection::SelectEntityFromScene( "target entity", &targetEntity, &m_TargetEntityName ) )
+        {
+            if ( m_TargetHealth != nullptr )
+            {
+                m_TargetHealth->RemoveOnHealthChangedCallback( GetId() );
+            }
+
+            m_TargetHealth = targetEntity->GetComponent< Health >();
+
+            if ( m_TargetHealth != nullptr )
+            {
+                m_TargetHealth->AddOnHealthChangedCallback(
+                    GetId(),
+                    std::bind( &HealthBar::onHealthChangedCallback, this )
+                );
+            }
+        }
     }
 
 
@@ -217,12 +286,34 @@
         Stream::Read( m_HideWhenFull, data );
     }
 
+    /// @brief  how long the opacity takes to animate in and out when the health is full
+    /// @param  data    the json data to read from
+    void HealthBar::readOpacityAnimationTime( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_OpacityAnimationTime, data );
+    }
+
+    /// @brief  the maximum opacity of the health bar
+    /// @param  data    the json data to read from
+    void HealthBar::readMaxOpacity( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MaxOpacity, data );
+    }
+
 
     /// @brief  reads the acceleration of how quickly the recent health display depletes
     /// @param  data    the json data to read from
     void HealthBar::readRecentHealthAcceleration( nlohmann::ordered_json const& data )
     {
         Stream::Read( m_RecentHealthAcceleration, data );
+    }
+
+
+    /// @brief  reads the name of the entity to track the health of
+    /// @param  data    the json data to read from
+    void HealthBar::readTargetEntityName( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_TargetEntityName, data );
     }
 
 
@@ -238,7 +329,10 @@
         static ReadMethodMap< HealthBar > const readMethods = {
             { "Offset"                  , &HealthBar::readOffset                   },
             { "HideWhenFull"            , &HealthBar::readHideWhenFull             },
-            { "RecentHealthAcceleration", &HealthBar::readRecentHealthAcceleration }
+            { "OpacityAnimationTime"    , &HealthBar::readOpacityAnimationTime     },
+            { "MaxOpacity"              , &HealthBar::readMaxOpacity               },
+            { "RecentHealthAcceleration", &HealthBar::readRecentHealthAcceleration },
+            { "TargetEntityName"        , &HealthBar::readTargetEntityName         }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -253,7 +347,10 @@
 
         json[ "Offset"                   ] = Stream::Write( m_Offset                   );
         json[ "HideWhenFull"             ] = Stream::Write( m_HideWhenFull             );
+        json[ "OpacityAnimationTime"     ] = Stream::Write( m_OpacityAnimationTime     );
+        json[ "MaxOpacity"               ] = Stream::Write( m_MaxOpacity               );
         json[ "RecentHealthAcceleration" ] = Stream::Write( m_RecentHealthAcceleration );
+        json[ "TargetEntityName"         ] = Stream::Write( m_TargetEntityName         );
 
         return json;
     }
