@@ -126,10 +126,19 @@
     /// @param  entity  the Entity to assign to this EntityReference
     void EntityReference::operator =( Entity* entity )
     {
-        exitComponentReferences();
+        Exit();
 
         m_Entity = entity;
+
+        if ( entity == nullptr )
+        {
+            m_EntityName.clear();
+            return;
+        }
+
         m_EntityName = entity->GetName();
+
+        m_Entity->AddEntityReference( this );
 
         initComponentReferences();
     }
@@ -185,9 +194,22 @@
     {
         if ( ImGui::BeginCombo( label, m_EntityName.c_str() ) )
         {
+            if ( ImGui::Selectable( "[ none ]", m_EntityName.empty() ) )
+            {
+                *this = nullptr;
+
+                ImGui::EndCombo();
+                return true;
+            }
+
             for ( Entity* entity : Entities()->GetEntities() )
             {
-                if ( ImGui::Selectable( entity->GetName().c_str(), entity == m_Entity ) )
+                if (
+                    ImGui::Selectable(
+                        entity->GetName().c_str(),
+                        entity == m_Entity || ( m_Entity == nullptr && entity->GetName() == m_EntityName )
+                    )
+                )
                 {
                     *this = entity;
 

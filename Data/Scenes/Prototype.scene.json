@@ -379,12 +379,18 @@
                         "Name": "HealthBar",
                         "Components": {
                             "HealthBar": {
+                                "FollowTargetEntity": true,
                                 "Offset": [
                                     0.0,
                                     1.0
                                 ],
                                 "HideWhenFull": false,
-                                "RecentHealthAcceleration": 1.0
+                                "OpacityAnimationTime": 1.0,
+                                "MaxOpacity": 1.0,
+                                "RecentHealthAcceleration": 1.0,
+                                "TargetEntity": {
+                                    "EntityName": ""
+                                }
                             },
                             "Transform": {
                                 "Translation": [
@@ -618,9 +624,9 @@
                     "CollisionLayer": 3,
                     "CollisionLayerFlags": 2
                 },
-                "GeneratorBehavior": {
+                "Generator": {
                     "Radius": 5.0,
-                    "ActivateRadius": 3.0,
+                    "ActivateRadius": 1.0,
                     "Depth": 0,
                     "Active": true
                 },
@@ -683,11 +689,11 @@
                     "CollisionLayer": 3,
                     "CollisionLayerFlags": 2
                 },
-                "GeneratorBehavior": {
+                "Generator": {
                     "Radius": 5.0,
-                    "ActivateRadius": 3.0,
-                    "Depth": 0,
-                    "Active": false
+                    "ActivateRadius": 1.0,
+                    "Depth": 1,
+                    "Active": true
                 },
                 "Health": {
                     "Health": {
@@ -745,10 +751,10 @@
                     "CollisionLayer": 3,
                     "CollisionLayerFlags": 2
                 },
-                "GeneratorBehavior": {
+                "Generator": {
                     "Radius": 5.0,
-                    "ActivateRadius": 3.0,
-                    "Depth": 0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 2,
                     "Active": true
                 },
                 "Health": {
@@ -6129,12 +6135,18 @@
                     "Name": "HealthBar",
                     "Components": {
                         "HealthBar": {
+                            "FollowTargetEntity": true,
                             "Offset": [
                                 0.0,
                                 1.0
                             ],
                             "HideWhenFull": false,
-                            "RecentHealthAcceleration": 1.0
+                            "OpacityAnimationTime": 1.0,
+                            "MaxOpacity": 1.0,
+                            "RecentHealthAcceleration": 1.0,
+                            "TargetEntity": {
+                                "EntityName": "Player"
+                            }
                         },
                         "Transform": {
                             "Translation": [
