@@ -207,17 +207,19 @@
             "Bullet": {
                 "Name": "Bullet",
                 "Components": {
-                    "BulletBehavior": {
-                        "Lifetime": {
-                            "BaseValue": 3.0,
-                            "CurrentValue": 3.0
-                        },
+                    "Bullet": {
                         "Damage": 1
                     },
                     "CircleCollider": {
                         "Radius": 0.10000000149011612,
                         "CollisionLayer": 4,
                         "CollisionLayerFlags": 3
+                    },
+                    "Lifetime": {
+                        "Lifetime": {
+                            "BaseValue": 2.0,
+                            "CurrentValue": 2.0
+                        }
                     },
                     "RigidBody": {
                         "Velocity": [
@@ -6007,7 +6009,7 @@
                     "IsRunning": false,
                     "LoopCount": 0,
                     "Animation": {
-                        "AssetName": ""
+                        "AssetName": "PlayerMoveUp"
                     }
                 },
                 "AudioListener": {
@@ -6289,7 +6291,7 @@
                     "Opacity": 0.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": ""
+                        "AssetName": "Turret"
                     }
                 },
                 "Transform": {
@@ -6446,7 +6448,7 @@
             "Components": {
                 "AudioPlayer": {
                     "Sound": {
-                        "AssetName": ""
+                        "AssetName": "PlayerDigging"
                     },
                     "Volume": 1.0,
                     "Pitch": 1.0,
@@ -6501,7 +6503,7 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": ""
+                        "AssetName": "Fireball"
                     }
                 },
                 "MiningLaser": {

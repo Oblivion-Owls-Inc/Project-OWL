@@ -198,9 +198,6 @@
     <Filter Include="Game\Components\Behaviors\EnemyBehavior">
       <UniqueIdentifier>{2f24013c-89a2-4584-ad87-757e4e412532}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Behaviors\BulletBehavior">
-      <UniqueIdentifier>{42316e6c-49e4-4c2f-a9b0-0ef8aaa91507}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Components\Behaviors\WavesBehavior">
       <UniqueIdentifier>{90ac62ba-a1a3-4ca9-8797-8d0f816804f5}</UniqueIdentifier>
     </Filter>
@@ -305,6 +302,12 @@
     </Filter>
     <Filter Include="Game\Components\HomeBase">
       <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Lifetime">
+      <UniqueIdentifier>{334bddc5-1ff2-4bb8-abf2-e472e77067cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Bullet">
+      <UniqueIdentifier>{42316e6c-49e4-4c2f-a9b0-0ef8aaa91507}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -494,8 +497,8 @@
     <ClCompile Include="Source\EnemyBehavior.cpp">
       <Filter>Game\Components\Behaviors\EnemyBehavior</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BulletBehavior.cpp">
-      <Filter>Game\Components\Behaviors\BulletBehavior</Filter>
+    <ClCompile Include="Source\Bullet.cpp">
+      <Filter>Game\Components\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Source\Pool.cpp">
       <Filter>Engine\Framework\Pool</Filter>
@@ -613,6 +616,9 @@
     </ClCompile>
     <ClCompile Include="Source\AssetReference.t.cpp">
       <Filter>Engine\Framework\References\AssetReference</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lifetime.cpp">
+      <Filter>Engine\Entity\Component\Lifetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -814,8 +820,8 @@
     <ClInclude Include="Source\EnemyBehavior.h">
       <Filter>Game\Components\Behaviors\EnemyBehavior</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BulletBehavior.h">
-      <Filter>Game\Components\Behaviors\BulletBehavior</Filter>
+    <ClInclude Include="Source\Bullet.h">
+      <Filter>Game\Components\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Source\Pool.h">
       <Filter>Engine\Framework\Pool</Filter>
@@ -930,6 +936,9 @@
     </ClInclude>
     <ClInclude Include="Source\EntityReference.h">
       <Filter>Engine\Framework\References\EntityReference</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Lifetime.h">
+      <Filter>Engine\Entity\Component\Lifetime</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

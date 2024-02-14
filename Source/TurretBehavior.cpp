@@ -12,7 +12,7 @@
 #include "BehaviorSystem.h"
 #include "EntitySystem.h"
 #include "Transform.h"
-#include "BulletBehavior.h"
+#include "Bullet.h"
 #include "CircleCollider.h"
 #include "AssetLibrarySystem.h"
 #include "CollisionSystem.h"
@@ -117,7 +117,7 @@
         bulletTransform->SetTranslation( m_Transform->GetTranslation() );
         bulletTransform->SetScale( glm::vec2( m_BulletSize ) );
 
-        bullet->GetComponent< BulletBehavior >()->SetDamage( m_BulletDamage );
+        bullet->GetComponent< Bullet    >()->SetDamage( m_BulletDamage );
         bullet->GetComponent< RigidBody >()->SetVelocity( direction * m_BulletSpeed );
 
         /// Add the bullet to the entity system

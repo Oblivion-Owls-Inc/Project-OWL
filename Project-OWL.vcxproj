@@ -195,7 +195,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="imgui\imgui_stdlib.cpp" />
     <ClCompile Include="Source\HomeBase.cpp" />
     <ClCompile Include="Source\CheatSystem.cpp" />
-    <ClCompile Include="Source\BulletBehavior.cpp" />
+    <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\ConstructionBehavior.cpp" />
     <ClCompile Include="Source\Curve.cpp" />
@@ -213,6 +213,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ItemCollector.cpp" />
     <ClCompile Include="Source\ItemComponent.cpp" />
     <ClCompile Include="Source\ItemStack.cpp" />
+    <ClCompile Include="Source\Lifetime.cpp" />
     <ClCompile Include="Source\Light.cpp" />
     <ClCompile Include="Source\LightingSystem.cpp" />
     <ClCompile Include="Source\LootTable.cpp" />
@@ -289,6 +290,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\ExampleComponent.h" />
     <ClInclude Include="Source\HealthBar.h" />
     <ClInclude Include="Source\CameraBehavior.h" />
+    <ClInclude Include="Source\Lifetime.h" />
     <ClInclude Include="Source\TilemapEditor.h" />
     <ClInclude Include="Source\TilemapTextureConnector.h" />
     <ClInclude Include="Source\UiBarSprite.h" />
@@ -308,7 +310,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Inspection.h" />
     <ClInclude Include="Source\HomeBase.h" />
     <ClInclude Include="Source\CheatSystem.h" />
-    <ClInclude Include="Source\BulletBehavior.h" />
+    <ClInclude Include="Source\Bullet.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\ConstructionBehavior.h" />
     <ClInclude Include="Source\Curve.h" />

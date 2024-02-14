@@ -52,7 +52,6 @@ public: // types
 
     /// @brief  Callback called whenever this Collider enters or exits a collision
     /// @param  collider        - the other Collider that this Collider collided with
-    /// @param  collisionData   - physics information about the collision between the two objects
     using OnCollisionStateChangeCallback = std::function< void ( Collider* collider ) >;
 
     

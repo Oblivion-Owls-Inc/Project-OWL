@@ -17,7 +17,6 @@
         },
         "EntitySystem": {},
         "BehaviorSystem<Behavior>": {},
-        "BehaviorSystem<BulletBehavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<GeneratorBehavior>": {},

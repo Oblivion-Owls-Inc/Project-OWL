@@ -34,7 +34,6 @@
 #include "RigidBody.h"
 #include "PlayerController.h"
 #include "TurretBehavior.h"
-#include "BulletBehavior.h"
 #include "EffectAnimator.h"
 #include "WavesBehavior.h"
 #include "Animation.h"
@@ -346,7 +345,6 @@
                                                   
         { "BehaviorSystem<RigidBody>"             , &addSystem< BehaviorSystem< RigidBody              > > },
         { "BehaviorSystem<Behavior>"              , &addSystem< BehaviorSystem< Behavior               > > },
-        { "BehaviorSystem<BulletBehavior>"        , &addSystem< BehaviorSystem< BulletBehavior         > > },
         { "BehaviorSystem<Animation>"             , &addSystem< BehaviorSystem< Animation              > > },
         { "BehaviorSystem<EffectAnimator>"        , &addSystem< BehaviorSystem< EffectAnimator         > > },
         { "BehaviorSystem<WavesBehavior>"         , &addSystem< BehaviorSystem< WavesBehavior          > > },
