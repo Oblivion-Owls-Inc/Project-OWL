@@ -149,7 +149,7 @@ private: // member variables
 
 
     /// @brief  the current frame index
-    unsigned m_FrameIndex = 0;
+    int m_FrameIndex = 0;
     
     /// @brief  how long until the next frame
     float m_FrameDelay = 0.0f;
