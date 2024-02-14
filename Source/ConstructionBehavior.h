@@ -24,6 +24,8 @@
 #include "Inventory.h"
 #include "Tilemap.h"
 
+#include  "AssetReference.h"
+
 
 /// @brief  Component that handles the construction of towers and modification of terrain
 class ConstructionBehavior : public Behavior

@@ -40,9 +40,9 @@ Component * Pathfinder::Clone() const { return new Pathfinder(*this); }
 void Pathfinder::OnInit()
 {
     m_Tilemap.SetOnConnectCallback(
-        [ this ]( Tilemap< int >* tilemap )
+        [ this ]()
         {
-            tilemap->AddOnTilemapChangedCallback(
+            m_Tilemap->AddOnTilemapChangedCallback(
                 GetId(),
                 std::bind(
                     &Pathfinder::onTilemapChangedCallback,
@@ -55,9 +55,9 @@ void Pathfinder::OnInit()
         }
     );
     m_Tilemap.SetOnDisconnectCallback(
-        [ this ]( Tilemap< int >* tilemap )
+        [ this ]()
         {
-            tilemap->RemoveOnTilemapChangedCallback( GetId() );
+            m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
         }
     );
     

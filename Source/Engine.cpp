@@ -38,7 +38,7 @@
 #include "WavesBehavior.h"
 #include "Animation.h"
 #include "Tilemap.h"
-#include "GeneratorBehavior.h"
+#include "Generator.h"
 #include "EditorCameraController.h"
 
 #include "ItemComponent.h"
@@ -342,7 +342,6 @@
         { "BehaviorSystem<EffectAnimator>"        , &addSystem< BehaviorSystem< EffectAnimator         > > },
         { "BehaviorSystem<WavesBehavior>"         , &addSystem< BehaviorSystem< WavesBehavior          > > },
         { "BehaviorSystem<EnemyBehavior>"         , &addSystem< BehaviorSystem< EnemyBehavior          > > },
-        { "BehaviorSystem<GeneratorBehavior>"     , &addSystem< BehaviorSystem< GeneratorBehavior      > > },
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
@@ -352,6 +351,7 @@
         { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
                                                                                                           
         { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
+        { "ComponentSystem<Generator>"            , &addSystem< ComponentSystem< Generator     > >         },
                                                   
         { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
         { "LightingSystem"                        , &addSystem< LightingSystem >                           }

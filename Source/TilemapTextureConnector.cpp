@@ -24,9 +24,9 @@
     void TilemapTextureConnector::OnInit()
     {
         m_ParentTilemap.SetOnConnectCallback(
-            [ this ]( Tilemap< int >* tilemap )
+            [ this ]()
             {
-                tilemap->AddOnTilemapChangedCallback(
+                m_ParentTilemap->AddOnTilemapChangedCallback(
                     GetId(),
                     std::bind(
                         &TilemapTextureConnector::onTilemapChangedCallback,
@@ -43,14 +43,14 @@
             }
         );
         m_ParentTilemap.SetOnDisconnectCallback(
-            [ this ]( Tilemap< int >* tilemap )
+            [ this ]()
             {
-                tilemap->RemoveOnTilemapChangedCallback( GetId() );
+                m_ParentTilemap->RemoveOnTilemapChangedCallback( GetId() );
             }
         );
 
         m_Tilemap.SetOnConnectCallback(
-            [ this ]( Tilemap< int >* tilemap )
+            [ this ]()
             {
                 if ( m_ParentTilemap != nullptr )
                 {

@@ -56,9 +56,9 @@
         m_ItemArchetype.Init();
 
         m_Tilemap.SetOnConnectCallback(
-            [ this ]( Tilemap< int >* component )
+            [ this ]()
             {
-                component->AddOnTilemapChangedCallback(
+                m_Tilemap->AddOnTilemapChangedCallback(
                     GetId(),
                     std::bind(
                         &TilemapItemDropper::onTilemapChangedCallback,
@@ -69,9 +69,9 @@
             }
         );
         m_Tilemap.SetOnDisconnectCallback(
-            [ this ]( Tilemap< int >* component )
+            [ this ]()
             {
-                component->RemoveOnTilemapChangedCallback( GetId() );
+                m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
             }
         );
 

@@ -86,11 +86,11 @@ public: // methods
 
     /// @brief  sets the callback to call when this ComponentReference connects to a Component
     /// @param  callback    the callback to call
-    void SetOnConnectCallback( std::function< void ( ComponentType* component ) > callback );
+    void SetOnConnectCallback( std::function< void () > callback );
 
     /// @brief  sets the callback to call when this ComponentReference disconnects from a Component
     /// @param  callback    the callback to call
-    void SetOnDisconnectCallback( std::function< void ( ComponentType* component ) > callback );
+    void SetOnDisconnectCallback( std::function< void () > callback );
 
 
 //-----------------------------------------------------------------------------
@@ -144,10 +144,10 @@ private: // members
 
 
     /// @brief  callback called when this ComponentReference connects to a Component
-    std::function< void ( ComponentType* component ) > m_OnConnectCallback;
+    std::function< void () > m_OnConnectCallback;
 
     /// @brief  callback called when this ComponentReference disconnects from a Component
-    std::function< void ( ComponentType* component ) > m_OnDisconnectCallback;
+    std::function< void () > m_OnDisconnectCallback;
 
 
 //-----------------------------------------------------------------------------

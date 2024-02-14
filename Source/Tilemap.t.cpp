@@ -172,16 +172,16 @@
     void Tilemap<TileType>::OnInit()
     {
         m_Transform.SetOnConnectCallback(
-            [ this ]( Transform* transform )
+            [ this ]()
             {
-                transform->AddOnTransformChangedCallback( GetId(), std::bind( &Tilemap::updateMat, this ) );
+                m_Transform->AddOnTransformChangedCallback( GetId(), std::bind( &Tilemap::updateMat, this ) );
                 updateMat();
             }
         );
         m_Transform.SetOnDisconnectCallback(
-            [ this ]( Transform* transform )
+            [ this ]()
             {
-                transform->RemoveOnTransformChangedCallback( GetId() );
+                m_Transform->RemoveOnTransformChangedCallback( GetId() );
             }
         );
 

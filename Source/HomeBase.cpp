@@ -42,9 +42,9 @@
     void HomeBase::OnInit()
     {
         m_Health.SetOnConnectCallback(
-            [ this ]( Health* health )
+            [ this ]()
             {
-                health->AddOnHealthChangedCallback(
+                m_Health->AddOnHealthChangedCallback(
                     GetId(),
                     [ this ]()
                     {
@@ -57,9 +57,9 @@
             }
         );
         m_Health.SetOnDisconnectCallback(
-            [ this ]( Health* health )
+            [ this ]()
             {
-                health->RemoveOnHealthChangedCallback( GetId() );
+                m_Health->RemoveOnHealthChangedCallback( GetId() );
             }
         );
 

@@ -122,15 +122,15 @@
     void Camera::OnInit()
     {
         m_Transform.SetOnConnectCallback(
-            [ this ]( Transform* component )
+            [ this ]()
             {
-                component->AddOnTransformChangedCallback( GetId(), std::bind( &Camera::onTransformChangedCallback, this ) );
+                m_Transform->AddOnTransformChangedCallback( GetId(), std::bind( &Camera::onTransformChangedCallback, this ) );
             }
         );
         m_Transform.SetOnDisconnectCallback(
-            [ this ]( Transform* component )
+            [ this ]()
             {
-                component->RemoveOnTransformChangedCallback( GetId() );
+                m_Transform->RemoveOnTransformChangedCallback( GetId() );
             }
         );
 

@@ -45,18 +45,18 @@
     void Bullet::OnInit()
     {
         m_Collider.SetOnConnectCallback(
-            [ this ]( Collider* collider )
+            [ this ]()
             {
-                collider->AddOnCollisionEnterCallback(
+                m_Collider->AddOnCollisionEnterCallback(
                     GetId(),
                     std::bind( &Bullet::onCollisionEnter, this, std::placeholders::_1 )
                 );
             }
         );
         m_Collider.SetOnDisconnectCallback(
-            [ this ]( Collider* collider )
+            [ this ]()
             {
-                collider->RemoveOnCollisionEnterCallback( GetId() );
+                m_Collider->RemoveOnCollisionEnterCallback( GetId() );
             }
         );
 

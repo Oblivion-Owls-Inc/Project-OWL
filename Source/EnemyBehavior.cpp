@@ -63,9 +63,9 @@
         Behaviors< EnemyBehavior >()->AddComponent( this );
 
         m_Health.SetOnConnectCallback(
-            [ this ]( Health* health )
+            [ this ]()
             {
-                health->AddOnHealthChangedCallback(
+                m_Health->AddOnHealthChangedCallback(
                     GetId(),
                     std::bind(
                         &EnemyBehavior::onDamageTaken,
@@ -75,9 +75,9 @@
             }
         );
         m_Health.SetOnDisconnectCallback(
-            [ this ]( Health* health )
+            [ this ]()
             {
-                health->RemoveOnHealthChangedCallback( GetId() );
+                m_Health->RemoveOnHealthChangedCallback( GetId() );
             }
         );
 

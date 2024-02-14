@@ -17,7 +17,7 @@
 #include "RigidBody.h"
 
 #include "EnemyBehavior.h"
-#include "GeneratorBehavior.h"
+#include "Generator.h"
 
 #include "Engine.h"
 #include "CollisionSystem.h"
@@ -136,7 +136,7 @@
     /// @brief  checks if this Turret is in range of a Generator and updates it's active state
     void TurretBehavior::checkActive()
     {
-        for ( GeneratorBehavior* generator : Behaviors< GeneratorBehavior >()->GetComponents() )
+        for ( Generator* generator : Components< Generator >()->GetComponents() )
         {
             if ( generator->GetActive() == false )
             {

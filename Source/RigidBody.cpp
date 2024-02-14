@@ -67,18 +67,18 @@
         BehaviorSystem< RigidBody >::GetInstance()->AddComponent( this );
 
         m_Collider.SetOnConnectCallback(
-            [ this ]( Collider* component )
+            [ this ]()
             {
-                component->AddOnCollisionCallback(
+                m_Collider->AddOnCollisionCallback(
                     GetId(),
                     std::bind( &RigidBody::OnCollision, this, std::placeholders::_1, std::placeholders::_2 )
                 );
             }
         );
         m_Collider.SetOnDisconnectCallback(
-            [ this ]( Collider* component )
+            [ this ]()
             {
-                component->RemoveOnCollisionCallback( GetId() );
+                m_Collider->RemoveOnCollisionCallback( GetId() );
             }
         );
 

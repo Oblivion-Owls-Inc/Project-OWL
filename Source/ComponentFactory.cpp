@@ -38,7 +38,7 @@
 #include "Emitter.h"
 #include "HomeBase.h"
 #include "Health.h"
-#include "GeneratorBehavior.h"
+#include "Generator.h"
 #include "UiElement.h"
 #include "MiningLaser.h"
 #include "ItemComponent.h"
@@ -185,7 +185,7 @@
         { "Light"                  , ComponentInfo< Light                   >() },
         { "CameraBehavior"         , ComponentInfo< CameraBehavior          >() },
         { "TilemapTextureConnector", ComponentInfo< TilemapTextureConnector >() },
-        { "GeneratorBehavior"      , ComponentInfo< GeneratorBehavior       >() },
+        { "Generator"              , ComponentInfo< Generator               >() },
         { "TilemapEditor"          , ComponentInfo< TilemapEditor           >() },
         { "EditorCameraController" , ComponentInfo< EditorCameraController  >() }
     };

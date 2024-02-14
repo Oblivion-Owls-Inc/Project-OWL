@@ -65,7 +65,7 @@
 
         if ( m_Component != nullptr && m_OnConnectCallback )
         {
-            m_OnConnectCallback( m_Component );
+            m_OnConnectCallback();
         }
         
         entity->AddComponentReference( this );
@@ -80,7 +80,7 @@
     {
         if ( m_Component != nullptr && m_OnDisconnectCallback )
         {
-            m_OnDisconnectCallback( m_Component );
+            m_OnDisconnectCallback();
         }
 
         m_Component = nullptr;
@@ -100,7 +100,7 @@
     /// @param  callback    the callback to call
     template < class ComponentType, bool required >
     void ComponentReference< ComponentType, required >::SetOnConnectCallback(
-        std::function< void( ComponentType* component ) > callback
+        std::function< void () > callback
     )
     {
         m_OnConnectCallback = callback;
@@ -112,7 +112,7 @@
     /// @param  callback    the callback to call
     template < class ComponentType, bool required >
     void ComponentReference< ComponentType, required >::SetOnDisconnectCallback(
-        std::function< void ( ComponentType* component ) > callback
+        std::function< void () > callback
     )
     {
         m_OnDisconnectCallback = callback;
@@ -164,14 +164,14 @@
     {
         if ( m_Component != nullptr && m_OnDisconnectCallback )
         {
-            m_OnDisconnectCallback( m_Component );
+            m_OnDisconnectCallback();
         }
 
         m_Component = component;
 
         if ( m_Component != nullptr && m_OnConnectCallback )
         {
-            m_OnConnectCallback( m_Component );
+            m_OnConnectCallback();
         }
     }
 
@@ -189,7 +189,7 @@
     {
         if ( m_Component != nullptr && m_OnDisconnectCallback )
         {
-            m_OnDisconnectCallback( m_Component );
+            m_OnDisconnectCallback();
         }
 
         m_Component = nullptr;
@@ -213,7 +213,7 @@
 
         if ( m_Component != nullptr && m_OnConnectCallback )
         {
-            m_OnConnectCallback( m_Component );
+            m_OnConnectCallback();
         }
     }
 
@@ -228,7 +228,7 @@
         {
             if ( m_Component != nullptr && m_OnDisconnectCallback )
             {
-                m_OnDisconnectCallback( m_Component );
+                m_OnDisconnectCallback();
             }
 
             m_Component = nullptr;

@@ -18,7 +18,7 @@
 #include "EnemyBehavior.h"
 #include "EntitySystem.h"
 #include "glm/glm.hpp"
-#include "GeneratorBehavior.h"
+#include "Generator.h"
 
 #include "Inspection.h"
 
@@ -52,25 +52,37 @@
 	    Behaviors< Behavior >()->AddComponent( this );
 
 
-        m_Health.SetOnConnectCallback( [ this ]( Health* health ) {
-            health->AddOnHealthChangedCallback(
-                GetId(),
-                std::bind( &PlayerController::playerRespawn, this )
-            );
-        } );
-        m_Health.SetOnDisconnectCallback( [ this ]( Health* health ) {
-            health->RemoveOnHealthChangedCallback( GetId() );
-        } );
+        m_Health.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_Health->AddOnHealthChangedCallback(
+                    GetId(),
+                    std::bind( &PlayerController::playerRespawn, this )
+                );
+            }
+        );
+        m_Health.SetOnDisconnectCallback(
+            [ this ]()
+            {
+                m_Health->RemoveOnHealthChangedCallback( GetId() );
+            }
+        );
 
-        m_Collider.SetOnConnectCallback( [ this ]( Collider* collider ) {
-            collider->AddOnCollisionEnterCallback(
-                GetId(),
-                std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
-            );
-        } );
-        m_Collider.SetOnDisconnectCallback( [ this ]( Collider* collider ) {
-            collider->RemoveOnCollisionEnterCallback( GetId() );
-        } );
+        m_Collider.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_Collider->AddOnCollisionEnterCallback(
+                    GetId(),
+                    std::bind( &PlayerController::onCollisionEnter, this, std::placeholders::_1 )
+                );
+            }
+        );
+        m_Collider.SetOnDisconnectCallback(
+            [ this ]()
+            {
+                m_Collider->RemoveOnCollisionEnterCallback( GetId() );
+            }
+        );
     
         m_RigidBody  .Init( GetEntity() );
         m_Animation  .Init( GetEntity() );
@@ -122,7 +134,7 @@
 
         if (Input()->GetKeyDown(GLFW_KEY_E))
         {
-            for (auto& generator : Behaviors<GeneratorBehavior>()->GetComponents())
+            for (auto& generator : Components<Generator>()->GetComponents())
             {
                 float distance = glm::distance<>(generator->GetTransform()->GetTranslation(),
                     GetEntity()->GetComponent<Transform>()->GetTranslation());

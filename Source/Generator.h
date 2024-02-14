@@ -1,34 +1,35 @@
 ///*****************************************************************/
-/// @file	    GeneratorBehavior.h
+/// @file	    Generator.h
 /// @author     Tyler Birdsall (tyler.birdsall@digipen.edu)
 /// @date	    10/27/2023
-/// @brief      GeneratorBehavior class header
+/// @brief      Generator class header
 /// @copyright  Digipen LLC (c) 2024
 ///*****************************************************************/
 
 #pragma once
-#include "Behavior.h"
+
+#include "Component.h"
+
+#include "ComponentReference.h"
+#include "AudioPlayer.h"
 #include "Transform.h"
-#include "Pool.h"
+#include "Collider.h"
+#include "Health.h"
 
 
-class AudioPlayer;
-
-class GeneratorBehavior : public Behavior
+class Generator : public Component
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructors
 //-----------------------------------------------------------------------------
 
-    /// @brief  constructor
-    GeneratorBehavior();
 
-    /// @brief dtor
-    ~GeneratorBehavior();
+    /// @brief  constructor
+    Generator();
 
     /// @brief Generator clone
     /// @return Component pointer of the cloned generator behavior
-    virtual GeneratorBehavior* Clone() const override;
+    virtual Generator* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -48,30 +49,30 @@ private: // copying
 //-----------------------------------------------------------------------------
     
     /// @brief copy ctor
-    GeneratorBehavior(const GeneratorBehavior& other);
+    Generator(const Generator& other);
 
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
 
     /// @brief  gets the lowest generator
-    /// @return returns an entity pointer to the lowest generator
-    static Entity* GetLowestGenerator();
+    /// @return returns the lowest generator
+    static Generator* GetLowestGenerator();
 
     /// @brief returns the radius within turrets are powered
     /// @return the power radius of the generator
-    float GetPowerRadius() { return m_powerRadius; }
+    float GetPowerRadius() { return m_PowerRadius; }
 
     /// @brief returns the radius a player can activate a generator within
     /// @return current radius for activating a generator
-    float GetActivationRadius() { return m_activationRadius; }
+    float GetActivationRadius() { return m_ActivationRadius; }
 
     /// @brief returns if the generator is powered or not
     /// @return is the generator active
-    bool GetActive() { return m_isActive;  }
+    bool GetActive() { return m_IsActive;  }
 
     /// @brief activate the generator
-    void Activate() { m_isActive = true; }
+    void Activate() { m_IsActive = true; }
 
     /// @brief  get the transform of the generator
     /// @return the generator transform
@@ -81,46 +82,58 @@ public: // accessors
 private: // variables
 //-----------------------------------------------------------------------------
 
-    /// @brief  audio
-    AudioPlayer* m_AudioPlayer = nullptr;
-
     /// @brief  is the generator active or not
-    bool m_isActive;        
+    bool m_IsActive = false;        
 
     /// @brief  radius the generator power turrets within
-    float m_powerRadius;         
+    float m_PowerRadius = 1.0f;         
 
     /// @brief  radius a player can activate the generator within
-    float m_activationRadius;
+    float m_ActivationRadius = 1.0f;
 
     /// @brief  depth value of the generator, used for determening lowest
-    int m_depth;   
+    int m_Depth = 0;
+
 
     /// @brief  the transform of the generator
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
+
+    /// @brief  audioPlayer for when the Generator takes damage
+    ComponentReference< AudioPlayer > m_AudioPlayer;
+
+    /// @brief  the Collider component attached to this Generator
+    ComponentReference< Collider > m_Collider;
+
+    /// @brief  the Health component attached to this Generator
+    ComponentReference< Health > m_Health;
+
 
 //-----------------------------------------------------------------------------
 private: // private functions
 //-----------------------------------------------------------------------------
 
+
     /// @brief handles a collision with the generator
-        /// @param other collider of colliding entity
-        /// @param collision data for the collision
+    /// @param other collider of colliding entity
+    /// @param collision data for the collision
     void onCollisionEnter(Collider* other);
+
 
 //-----------------------------------------------------------------------------
 private: // inspector methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() override;
+
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
     /// @brief the map of read methods for this Component
-    static ReadMethodMap< GeneratorBehavior > const s_ReadMethods;
+    static ReadMethodMap< Generator > const s_ReadMethods;
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
@@ -145,7 +158,7 @@ private: // reading
 public: // writing
 //-----------------------------------------------------------------------------
     
-    /// @brief Write all GeneratorBehavior data to a JSON file.
+    /// @brief Write all Generator data to a JSON file.
     /// @return The JSON file containing the WavesBehavior data.
     virtual nlohmann::ordered_json Write() const override;
 };

@@ -51,7 +51,7 @@
     void TilemapEditor::OnInit()
     {
         m_Tilemap.SetOnConnectCallback(
-            [ this ]( Tilemap< int >* )
+            [ this ]()
             {
                 pushUndoableAction();
             }
