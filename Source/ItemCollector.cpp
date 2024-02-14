@@ -9,8 +9,6 @@
 #include "ItemCollector.h"
 #include "BehaviorSystem.h"
 
-#include "Transform.h"
-#include "Inventory.h"
 #include "ItemComponent.h"
 #include "RigidBody.h"
 
@@ -53,14 +51,17 @@
     {
         Behaviors< Behavior >()->AddComponent( this );
 
-        m_Transform = GetEntity()->GetComponent< Transform >();
-        m_Inventory = GetEntity()->GetComponent< Inventory >();
+        m_Transform.Init( GetEntity() );
+        m_Inventory.Init( GetEntity() );
     }
 
     /// @brief  called once when exiting the scene
     void ItemCollector::OnExit()
     {
         Behaviors< Behavior >()->RemoveComponent( this );
+
+        m_Transform.Exit( GetEntity() );
+        m_Inventory.Exit( GetEntity() );
     }
 
 
