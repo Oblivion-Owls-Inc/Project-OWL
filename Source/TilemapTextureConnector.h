@@ -10,8 +10,8 @@
 
 #include "Component.h"
 
-template < typename TileType >
-class Tilemap;
+#include "ComponentReference.h"
+#include "Tilemap.h"
 
 
 /// @brief  Component that uses a parent 'source' tilemap to update a child tilemap with connected textures
@@ -76,11 +76,11 @@ private: // members
 
 
     /// @brief  the 'source' tilemap attached to the parent
-    Tilemap< int >* m_ParentTilemap = nullptr;
+    ComponentReference< Tilemap< int > > m_ParentTilemap;
 
 
     /// @brief  the tilemap attached to this Entity that the TilemapTextureConnector writes to
-    Tilemap< int >* m_Tilemap = nullptr;
+    ComponentReference< Tilemap< int > > m_Tilemap;
 
 
 //-----------------------------------------------------------------------------

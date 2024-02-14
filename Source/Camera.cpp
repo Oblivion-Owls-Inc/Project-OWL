@@ -9,12 +9,9 @@
 #pragma once
 
 #include "Camera.h"
-#include "Transform.h"
 
 #include "CameraSystem.h"
 #include "PlatformSystem.h"
-
-#include "Entity.h"
 
 #include <imgui.h>
 
@@ -23,10 +20,12 @@
 // public: constructor
 //-------------------------------------------------------------------------
 
+
     /// @brief  constructor
     Camera::Camera() :
         Component( typeid( Camera ) )
     {}
+
 
 //-------------------------------------------------------------------------
 // public: accessors
@@ -106,22 +105,36 @@
 // public: methods
 //-------------------------------------------------------------------------
     
+
     /// @brief  sets this Camera as the active Camera in the scene
     void Camera::SetActive()
     {
         Cameras()->SetActiveCamera( this );
     }
 
+
 //-------------------------------------------------------------------------
 // private: virtual override methods
 //-------------------------------------------------------------------------
     
+
     /// @brief  called once when entering the scene
     void Camera::OnInit()
     {
-        m_Transform = GetEntity()->GetComponent< Transform >();
+        m_Transform.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_Transform->AddOnTransformChangedCallback( GetId(), std::bind( &Camera::onTransformChangedCallback, this ) );
+            }
+        );
+        m_Transform.SetOnDisconnectCallback(
+            [ this ]()
+            {
+                m_Transform->RemoveOnTransformChangedCallback( GetId() );
+            }
+        );
 
-        m_Transform->AddOnTransformChangedCallback( GetId(), std::bind( &Camera::onTransformChangedCallback, this ) );
+        m_Transform.Init( GetEntity() );
 
         if ( m_IsActive )
         {
@@ -132,8 +145,6 @@
     /// @brief  called once when leaving the scene
     void Camera::OnExit()
     {
-        m_Transform->RemoveOnTransformChangedCallback( GetId() );
-
         if ( m_IsActive )
         {
             Cameras()->SetActiveCamera( nullptr );
@@ -141,28 +152,10 @@
     }
 
 
-    /// @brief  shows the Inspector window
-    void Camera::Inspector()
-    {
-        // Edit width
-        float width = GetWidth();
-        if ( ImGui::DragFloat( "Width", &width, 0.05f ) )
-        {
-            SetWidth( width );
-        }
-
-        // Edit height
-        float height = GetHeight();
-        if ( ImGui::DragFloat( "Height", &height, 0.05f ) )
-        {
-            SetHeight( height );
-        }
-    }
-
-
 //-------------------------------------------------------------------------
 // private: methods
 //-------------------------------------------------------------------------
+
 
     /// @brief  called whenever this Camera's Transform changes
     void Camera::onTransformChangedCallback()
@@ -172,9 +165,15 @@
         m_ClipToWorldDirty = true;
     }
 
+
     /// @brief  calculates to WorldToCamera matrix
     void Camera::calculateWorldToCamera()
     {
+        if ( m_Transform == nullptr )
+        {
+            return;
+        }
+
         glm::mat2 linearPart = m_Transform->GetMatrix();
         linearPart = glm::inverse( linearPart );
 
@@ -227,42 +226,76 @@
         m_ClipToWorldDirty = false;
     }
 
+    
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  shows the Inspector window
+    void Camera::Inspector()
+    {
+        // Edit width
+        float width = GetWidth();
+        if ( ImGui::DragFloat( "Width", &width, 0.05f ) )
+        {
+            SetWidth( width );
+        }
+
+        // Edit height
+        float height = GetHeight();
+        if ( ImGui::DragFloat( "Height", &height, 0.05f ) )
+        {
+            SetHeight( height );
+        }
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
 
+
     /// @brief  reads the width of this Camera
-    /// @param  json    the json data to read from
-    void Camera::readWidth( nlohmann::ordered_json const& json )
+    /// @param  data    the json data to read from
+    void Camera::readWidth( nlohmann::ordered_json const& data )
     {
-        SetWidth( Stream::Read< float >( json ) );
+        SetWidth( Stream::Read< float >( data ) );
     }
 
     /// @brief  reads the height of this Camera
-    /// @param  json    the json data to read from
-    void Camera::readHeight( nlohmann::ordered_json const& json )
+    /// @param  data    the json data to read from
+    void Camera::readHeight( nlohmann::ordered_json const& data )
     {
 
-        SetHeight( Stream::Read< float >( json ) );
+        SetHeight( Stream::Read< float >( data ) );
     }
 
     /// @brief  reads the active state of this Camera
-    /// @param  json    the json data to read from
-    void Camera::readIsActive( nlohmann::ordered_json const& json )
+    /// @param  data    the json data to read from
+    void Camera::readIsActive( nlohmann::ordered_json const& data )
     {
-        m_IsActive = Stream::Read< bool >( json );
+        Stream::Read( m_IsActive, data );
     }
 
-    /// @brief map of the CameraSystem read methods
-    ReadMethodMap< Camera > const Camera::s_ReadMethods = {
-        { "Width",    &readWidth    },
-        { "Height",   &readHeight   },
-        { "IsActive", &readIsActive }
-    };
 
 //-----------------------------------------------------------------------------
 // public: writing
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< ISerializable > const& Camera::GetReadMethods() const
+    {
+        static ReadMethodMap< Camera > const readMethods = {
+            { "Width"   , &Camera::readWidth    },
+            { "Height"  , &Camera::readHeight   },
+            { "IsActive", &Camera::readIsActive }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
 
     /// @brief  writes this Camera to json
     /// @return the written json data
@@ -270,21 +303,38 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "Width" ] = Stream::Write( m_Scale );
+        json[ "Width"    ] = Stream::Write( m_Scale    );
         json[ "IsActive" ] = Stream::Write( m_IsActive );
 
         return json;
     }
 
+    
+//-----------------------------------------------------------------------------
+// public: copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  creates a new copy of this Camera
+    /// @return the copy of this Camera
+    Camera* Camera::Clone() const
+    {
+        return new Camera( *this );
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: copying
 //-----------------------------------------------------------------------------
+
 
     /// @brief  copy constructor
     /// @param  other   the Camera to copy
     Camera::Camera( Camera const& other ) :
         Component( other ),
-        m_Scale( other.m_Scale )
+        m_Scale   ( other.m_Scale    ),
+        m_IsActive( other.m_IsActive )
     {}
+
 
 //-----------------------------------------------------------------------------

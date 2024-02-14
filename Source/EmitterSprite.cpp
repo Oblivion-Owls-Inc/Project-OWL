@@ -26,7 +26,7 @@ EmitterSprite::EmitterSprite(const EmitterSprite& other) :
 {}
 
 /// @return  Copy of this component
-Component* EmitterSprite::Clone() const { return new EmitterSprite(*this); }
+EmitterSprite* EmitterSprite::Clone() const { return new EmitterSprite(*this); }
 
 /// @brief      Destructor: calls OnExit if needed
 EmitterSprite::~EmitterSprite()

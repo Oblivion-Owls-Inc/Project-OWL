@@ -32,15 +32,13 @@
 #include "BehaviorSystem.h"
 #include "EnemyBehavior.h"
 #include "RigidBody.h"
-#include "MovementAI.h"
 #include "PlayerController.h"
 #include "TurretBehavior.h"
-#include "BulletBehavior.h"
 #include "EffectAnimator.h"
 #include "WavesBehavior.h"
 #include "Animation.h"
 #include "Tilemap.h"
-#include "GeneratorBehavior.h"
+#include "Generator.h"
 #include "EditorCameraController.h"
 
 #include "ItemComponent.h"
@@ -159,17 +157,7 @@
     /// @brief  Loads the engine config from "Data/EngineConfig.json"
     void Engine::load()
     {
-        nlohmann::ordered_json json = Stream::ReadFromFile( "Data/EngineConfig.json" );
-
-        try
-        {
-            Engine* self = this; // convert from rvalue into lvalue
-            Stream::Read( self, json );
-        }
-        catch ( std::runtime_error error )
-        {
-            std::cerr << error.what();
-        }
+        Stream::ReadFromFile( this, "Data/EngineConfig.json" );
     }
 
     /// @brief  Initializes the engine and all Systems in the Engine
@@ -298,18 +286,17 @@
             // throw an error if token not found
             if ( addSystemMethod == s_AddSystemMethods.end() )
             {
-                throw std::runtime_error(
-                    (
-                        std::stringstream() <<
-                        "unrecognized token \"" <<
-                        key <<
-                        "\" encountered while reading Systems in Engine"
-                    ).str()
-                );
+                Debug() << "WARNING: unable to create unrecognized System type \"" << key << "\" at "
+                    << Stream::GetDebugLocation() << std::endl;
+                continue;
             }
+
+            Stream::PushDebugLocation( key + "." );
            
             System* system = ( this->*addSystemMethod->second )(); // create and add the System to the Engine
             Stream::Read( system, value ); // have the System load itself
+
+            Stream::PopDebugLocation();
         }
     }
 
@@ -347,11 +334,10 @@
                                                   
         { "BehaviorSystem<RigidBody>"             , &addSystem< BehaviorSystem< RigidBody              > > },
         { "BehaviorSystem<Behavior>"              , &addSystem< BehaviorSystem< Behavior               > > },
-        { "BehaviorSystem<BulletBehavior>"        , &addSystem< BehaviorSystem< BulletBehavior         > > },
         { "BehaviorSystem<Animation>"             , &addSystem< BehaviorSystem< Animation              > > },
         { "BehaviorSystem<EffectAnimator>"        , &addSystem< BehaviorSystem< EffectAnimator         > > },
         { "BehaviorSystem<WavesBehavior>"         , &addSystem< BehaviorSystem< WavesBehavior          > > },
-        { "BehaviorSystem<GeneratorBehavior>"     , &addSystem< BehaviorSystem< GeneratorBehavior      > > },
+        { "BehaviorSystem<EnemyBehavior>"         , &addSystem< BehaviorSystem< EnemyBehavior          > > },
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
@@ -361,6 +347,7 @@
         { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
                                                                                                           
         { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
+        { "ComponentSystem<Generator>"            , &addSystem< ComponentSystem< Generator     > >         },
                                                   
         { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
         { "LightingSystem"                        , &addSystem< LightingSystem >                           }

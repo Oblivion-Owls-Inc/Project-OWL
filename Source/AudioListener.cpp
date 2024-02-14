@@ -62,8 +62,8 @@
     /// @brief  called once when entering the scene
     void AudioListener::OnInit()
     {
-        m_Transform = GetEntity()->GetComponent< Transform >();
-        m_RigidBody = GetEntity()->GetComponent< RigidBody >();
+        m_Transform.Init( GetEntity() );
+        m_RigidBody.Init( GetEntity() );
 
         if ( m_IsActive )
         {
@@ -78,6 +78,9 @@
         {
             Audio()->SetActiveListener( nullptr );
         }
+
+        m_Transform.Exit( GetEntity() );
+        m_RigidBody.Exit( GetEntity() );
     }
 
 
@@ -115,6 +118,15 @@
     /// @brief  displays this AudioListener in the Inspector
     void AudioListener::Inspector()
     {
+        if ( m_Transform == nullptr )
+        {
+            ImGui::Text( "No Transform attached to this AudioListener, using pos = (0, 0)" );
+        }
+        if ( m_RigidBody == nullptr )
+        {
+            ImGui::Text( "No RigidBody attached to this AudioListener, using vel = (0, 0)" );
+        }
+
         ImGui::DragFloat( "z offset", &m_ZOffset, 0.05f );
 
         if ( ImGui::Checkbox( "is active", &m_IsActive ) )

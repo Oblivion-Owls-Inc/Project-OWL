@@ -5,6 +5,8 @@
  * \author Eli Tsereteli
  *********************************************************************/
 #pragma once
+
+#include "ComponentReference.h"
 #include "Tilemap.h"
 #include <vector>
 #include <thread>  // run the algo in the background
@@ -115,7 +117,9 @@ private:
     std::vector<int> m_Walkables;       /// @brief  Tile IDs of "not walls"
     glm::vec2 m_DestPos = {0,0};        /// @brief  Destination (actual position)
     glm::ivec2 m_DestTile = {1,1};      /// @brief  Destination tile
-    Tilemap<int>* m_Tilemap = nullptr;  /// @brief  Cached parent tilemap
+
+    /// @brief  Cached parent tilemap
+    ComponentReference< Tilemap< int > > m_Tilemap;
 
     // leaving the singular destination too for now, for backwards compatibility.
     // it will pathfind to both the DestPos (if it's not 0,0), and the targets.

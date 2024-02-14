@@ -42,17 +42,35 @@
 
 
     /// @return     UI space to clip space matrix
-    glm::mat4 const& CameraSystem::GetMat_UItoClip() const { return m_UiToClip; }
+    glm::mat4 const& CameraSystem::GetMat_UItoClip() const
+    {
+        return m_UiToClip;
+    }
 
     /// @return     World space to clip space matrix
-    glm::mat4 const& CameraSystem::GetMat_WorldToClip() const { return m_ActiveCamera->GetWorldToClip(); }
+    glm::mat4 const& CameraSystem::GetMat_WorldToClip() const
+    {
+        if ( m_ActiveCamera == nullptr )
+        {
+            return glm::mat4( 1.0f );
+        }
+        return m_ActiveCamera->GetWorldToClip();
+    }
 
     /// @return     Screen to UI space matrix
-    glm::mat4 const& CameraSystem::GetMat_ScreenToUI() const { return m_ScreenToUi; }
+    glm::mat4 const& CameraSystem::GetMat_ScreenToUI() const
+    {
+        return m_ScreenToUi;
+    }
 
     /// @return     Screen to world space matrix
     glm::mat4 CameraSystem::GetMat_ScreenToWorld() const
     {
+        if ( m_ActiveCamera == nullptr )
+        {
+            return glm::mat4( 1.0f );
+        }
+
         return m_ActiveCamera->GetClipToWorld() * m_ScreenToClip;
     }
 

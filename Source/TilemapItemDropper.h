@@ -12,8 +12,10 @@
 
 #include "ItemStack.h"
 
-template< typename TileType >
-class Tilemap;
+#include "ComponentReference.h"
+#include "Tilemap.h"
+
+#include "AssetReference.h"
 
 
 
@@ -61,10 +63,8 @@ private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the name of the Entity to drop items as
-    std::string m_ItemArchetypeName = "";
     /// @brief  the archetype of the Entity to drop items as
-    Entity const* m_ItemArchetype = nullptr;
+    AssetReference< Entity > m_ItemArchetype;
 
 
     /// @brief  the maximum initial velocity of a dropped item
@@ -75,7 +75,7 @@ private: // members
 
 
     /// @brief  the Tilemap attached to this TilemapItemDropper
-    Tilemap< int >* m_Tilemap = nullptr;
+    ComponentReference< Tilemap< int > > m_Tilemap;
 
 
 //-----------------------------------------------------------------------------
@@ -115,7 +115,7 @@ private: // reading
 
     /// @brief  reads the name of the Entity to drop items as
     /// @param  data    the json data to read from
-    void readItemArchetypeName( nlohmann::ordered_json const& data );
+    void readItemArchetype( nlohmann::ordered_json const& data );
 
 
     /// @brief  reads the maximum initial velocity of a dropped item

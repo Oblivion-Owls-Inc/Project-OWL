@@ -15,10 +15,11 @@
 
 #include <deque>
 
-template < typename TileType >
-class Tilemap;
+#include "ComponentReference.h"
+#include "Tilemap.h"
 
-class Texture;
+#include "AssetReference.h"
+#include "Texture.h"
 
 
 /// @brief  Component that allows direct editing of a Tilemap
@@ -81,11 +82,8 @@ private: // members
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  the name of the preview texture asset
-    std::string m_PreviewTextureName = "";
-    
     /// @brief  the preview textures of the placeable tiles
-    Texture const*  m_PreviewTexture = nullptr;
+    AssetReference< Texture > m_PreviewTexture;
 
 
     /// @brief  the index in the tool buttons array of the specified tool
@@ -139,7 +137,7 @@ private: // members
 
 
     /// @brief  the tilemap attached to this Entity to edit
-    Tilemap< int >* m_Tilemap = nullptr;
+    ComponentReference< Tilemap< int > > m_Tilemap;
 
 
 //-----------------------------------------------------------------------------
@@ -211,9 +209,6 @@ public: // inspection
     virtual void Inspector() override;
 
 
-    // TODO: add OnAddComponent method
-
-
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
@@ -221,7 +216,7 @@ private: // reading
 
     /// @brief  reads the name of the preview texture asset
     /// @param  data    the json data to read from
-    void readPreviewTextureName( nlohmann::ordered_json const& data );
+    void readPreviewTexture( nlohmann::ordered_json const& data );
 
     /// @brief  reads the mouse buttons assigned to each tool
     /// @param  data    the json data to read from

@@ -13,9 +13,11 @@
 
 #include <functional>
 
+#include "AssetReference.h"
 #include "TransformAnimation.h"
 
-class Transform;
+#include "ComponentReference.h"
+#include "Transform.h"
 
 /// @brief  Component that can play audio
 class EffectAnimator : public Behavior
@@ -34,18 +36,11 @@ public: // constructor / Destructor
 public: // methods
 //-----------------------------------------------------------------------------
 
-
-    /// @brief  starts playing an effect
-    /// @param  effectName      the name of the effect to get from the AssetLibrary
-    /// @param  playbackSpeed   the speed multiplier for how fast to play the effect
-    /// @param  loopCount       how many times to play the effect ( -1 to loop infinitely )
-    void Play( std::string const& effectName, float playbackSpeed = 1.0f, int loopCount = 1 );
-
     /// @brief  starts playing an effect
     /// @param  effect          the effect to play
     /// @param  playbackSpeed   the speed multiplier for how fast to play the effect
     /// @param  loopCount       how many times to play the effect ( -1 to loop infinitely )
-    void Play( TransformAnimation const* effect, float playbackSpeed = 1.0f, int loopCount = 1 );
+    void Play( AssetReference< TransformAnimation > const& effect, float playbackSpeed = 1.0f, int loopCount = 1 );
 
     /// @brief  starts playing the current effect
     /// @param  playbackSpeed   the speed multiplier for how fast to play the effect
@@ -54,7 +49,7 @@ public: // methods
 
 
     /// @brief  pauses the current effect
-    void Pause() { m_IsPlaying = false; }
+    void Pause();
 
 
     /// @brief  how much longer until the current animation is done playing
@@ -80,43 +75,44 @@ public: // accessors
 
     /// @brief  gets the effect currently in this EffectAnimator
     /// @return the effect currently in this EffectAnimator
-    TransformAnimation const* GetCurrentEffect() const { return m_CurrentEffect; }
+    AssetReference< TransformAnimation > const& GetCurrentEffect() const;
 
     /// @brief  sets the effect in this EffectAnimator
     /// @param  effect  the effect in this EffectAnimator
-    void SetCurrentEffect( TransformAnimation const* effect ) { m_CurrentEffect = effect; }
+    void SetCurrentEffect( AssetReference< TransformAnimation > const& effect );
 
 
     /// @brief  gets how far into the current effect we are
     /// @return how far into the current effect we are
-    float GetTime() const { return m_Time; }
+    float GetTime() const;
 
     /// @brief  sets how far into the current effect we are
     /// @param  time    how far into the current effect we are
-    void SetTime( float time ) { m_Time = time; }
+    void SetTime( float time );
 
 
     /// @brief  gets how many loops are remaining
     /// @return how many loops are remaining ( -1 for infinit looping )
-    int GetLoopCount() const { return m_LoopCount; }
+    int GetLoopCount() const;
 
     /// @brief  sets how many loops are remaining
     /// @param  loopCount   how many loops are remaining ( -1 for infinit looping )
-    void SetLoopCount( int loopCount ) { m_LoopCount = loopCount; }
+    void SetLoopCount( int loopCount );
 
 
     /// @brief  gets whether or not this EffectAnimator is currently playing
     /// @return whether or not this EffectAnimator is currently playing ( -1 for infinit looping )
-    float GetIsPlaying() const { return m_IsPlaying; }
+    float GetIsPlaying() const;
 
     /// @brief  sets whether or not this EffectAnimator is currently playing
     /// @param  isPlaying   whether or not this EffectAnimator is currently playing ( -1 for infinit looping )
-    void SetIsPlaying( float isPlaying ) { m_IsPlaying = isPlaying; }
+    void SetIsPlaying( float isPlaying );
 
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  called once when entering the scene
     virtual void OnInit() override;
@@ -133,38 +129,42 @@ private: // virtual override methods
     /// @brief  displays this EffectAnimator in the Inspector
     virtual void Inspector() override;
 
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
     
+
     /// @brief  the transform associated with this Entity
-    Transform* m_Transform;
+    ComponentReference< Transform > m_Transform;
 
     /// @brief  the effect currently being used by this EffectAnimator
-    TransformAnimation const* m_CurrentEffect;
+    AssetReference< TransformAnimation > m_Effect;
 
     /// @brief  how far into the current effect we are
-    float m_Time;
+    float m_Time = 0.0f;
 
     /// @brief  how many times left to loop (-1 to loop infinitely)
-    int m_LoopCount;
+    int m_LoopCount = 0;
 
     /// @brief  whether the Effect is currently playing
-    bool m_IsPlaying;
+    bool m_IsPlaying = false;
 
     /// @brief  speed multiplier for how quickly the effect is played
-    float m_Speed;
+    float m_Speed = 1.0f;
 
     /// @brief  callback functions to call when the animation completes
-    std::map< unsigned, std::function< void() > > m_OnAnimationCompleteCallbacks;
+    std::map< unsigned, std::function< void() > > m_OnAnimationCompleteCallbacks = {};
+
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
+
     /// @brief  reads the current effect
     /// @param  stream  the json data to read from
-    void readCurrentEffect( nlohmann::ordered_json const& data );
+    void readEffect( nlohmann::ordered_json const& data );
 
     /// @brief  reads the current time
     /// @param  stream  the json data to read from
@@ -182,17 +182,15 @@ private: // reading
     /// @param  stream  the json data to read from
     void readIsPlaying( nlohmann::ordered_json const& data );
 
-    /// @brief  map of the read methods for this Component
-    static ReadMethodMap< EffectAnimator > s_ReadMethods;
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief  gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
-
-public:
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
     /// @brief  Write all EffectAnimator data to a JSON file.
     /// @return The JSON file containing the EffectAnimator data.
@@ -200,23 +198,28 @@ public:
 
 
 //-----------------------------------------------------------------------------
-private: // copying
-//-----------------------------------------------------------------------------
-
-    /// @brief  copy-constructor for the EffectAnimator
-    /// @param  other   the other EffectAnimator to copy
-    EffectAnimator( const EffectAnimator& other );
-
-    /// @brief  clones this EffectAnimator
-    /// @return the newly created clone of this EffectAnimator
-    __inline virtual Component* Clone() const override { return new EffectAnimator( *this ); }
-
-//-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------
 
+
+    /// @brief  clones this EffectAnimator
+    /// @return the newly created clone of this EffectAnimator
+    virtual EffectAnimator* Clone() const override;
+
+
+//-----------------------------------------------------------------------------
+private: // copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  copy-constructor for the EffectAnimator
+    /// @param  other   the other EffectAnimator to copy
+    EffectAnimator( EffectAnimator const& other );
+
+
     // diable = operator
-    void operator =( const EffectAnimator& ) = delete;
+    void operator =( EffectAnimator const& ) = delete;
+
 
 //-----------------------------------------------------------------------------
 };

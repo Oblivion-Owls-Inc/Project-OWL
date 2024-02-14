@@ -7,10 +7,11 @@
 #include "glm/glm.hpp"  // vec4
 #include "Stream.h"
 
-// fwd refs
-class Mesh;
-class Texture;
-class Transform;
+#include "ComponentReference.h"
+#include "Transform.h"
+
+#include "AssetReference.h"
+#include "Texture.h"
 
 /// @brief      Stores mesh + texture, along with other data needed to draw a basic 2D sprite.
 class Sprite : public Component
@@ -26,7 +27,7 @@ public: // constructor / destructors
     /// @param  texture     the texture for this Sprite to use
     /// @param  layer       (optional) Rendering layer: 0-4. 0 is back, 4 is front.
     /// @param  type        for use ONLY when deriving with this Constructor
-    Sprite( Texture const* texture, int layer = 2, std::type_index type = typeid( Sprite ) );
+    Sprite( AssetReference< Texture > const& texture, int layer = 2, std::type_index type = typeid( Sprite ) );
 
 
     /// @brief              Virtual destructor: just to let derived types free stuff
@@ -46,7 +47,7 @@ public: // copying
     
     /// @brief  creates a new Sprite component which is a duplicate of this one
     /// @return Copy of this component.
-    virtual Component* Clone() const override;
+    virtual Sprite* Clone() const override;
 
 //-----------------------------------------------------------------------------
 protected: // copying
@@ -101,11 +102,11 @@ public: // accessors
 
     /// @brief  gets the Texture this Sprite is using
     /// @return the Texture this Sprite is using
-    Texture const* GetTexture() const;
+    AssetReference< Texture > const& GetTexture() const;
 
     /// @brief  sets the Texture this Sprite is using
     /// @param  texture the Texture to set this Sprite to use
-    void SetTexture( Texture const* texture );
+    void SetTexture( AssetReference< Texture > const& texture );
 
     /// @brief  gets the Transform component attached to this Sprite
     /// @return the Transform component attached to this Sprite
@@ -125,15 +126,6 @@ protected: // virtual override methods
     virtual void Inspector() override;
 
 
-    /// @brief  called whenever another component is added to this component's Entity in the inspector
-    /// @param  component   the component that was added
-    virtual void OnInspectorAddComponent( Component* component ) override;
-
-    /// @brief  called whenever another component is removed from this component's Entity in the inspector
-    /// @param  component   the component that will be removed
-    virtual void OnInspectorRemoveComponent( Component* component ) override;
-
-
 //-----------------------------------------------------------------------------
 protected: // member variables
 //-----------------------------------------------------------------------------
@@ -146,10 +138,12 @@ protected: // member variables
 
     bool m_IsTextured;
 
-    std::string m_TextureName;
-    Texture const* m_Texture;
+    /// @brief  the texture that this Sprite uses
+    AssetReference< Texture > m_Texture;
 
-    Transform* m_Transform;
+    /// @brief  the Transform attached to this Sprite
+    ComponentReference< Transform > m_Transform;
+
 
 //-----------------------------------------------------------------------------
 protected: // methods

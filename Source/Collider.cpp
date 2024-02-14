@@ -9,9 +9,6 @@
 
 #include "Collider.h"
 
-#include "Entity.h"
-#include "Transform.h"
-
 #include "CollisionSystem.h"
 #include "DebugSystem.h"
 
@@ -238,13 +235,16 @@
     void Collider::OnInit()
     {
         CollisionSystem::GetInstance()->addCollider( this );
-        m_Transform = GetEntity()->GetComponent< Transform >();
+
+        m_Transform.Init( GetEntity() );
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
     void Collider::OnExit()
     {
         CollisionSystem::GetInstance()->removeCollider( this );
+
+        m_Transform.Exit( GetEntity() );
     }
 
     

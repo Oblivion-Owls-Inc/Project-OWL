@@ -23,33 +23,53 @@
     /// @brief  called once when entering the scene
     void TilemapTextureConnector::OnInit()
     {
-        m_ParentTilemap = GetEntity()->GetParent()->GetComponent< Tilemap< int > >();
-        m_Tilemap = GetEntity()->GetComponent< Tilemap< int > >();
+        m_ParentTilemap.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_ParentTilemap->AddOnTilemapChangedCallback(
+                    GetId(),
+                    std::bind(
+                        &TilemapTextureConnector::onTilemapChangedCallback,
+                        this,
+                        std::placeholders::_1,
+                        std::placeholders::_2,
+                        std::placeholders::_3
+                    )
+                );
+                if ( m_Tilemap != nullptr )
+                {
+                    updateWholeTilemap();
+                }
+            }
+        );
+        m_ParentTilemap.SetOnDisconnectCallback(
+            [ this ]()
+            {
+                m_ParentTilemap->RemoveOnTilemapChangedCallback( GetId() );
+            }
+        );
 
-        if ( m_ParentTilemap == nullptr || m_Tilemap == nullptr )
-        {
-            return;
-        }
+        m_Tilemap.SetOnConnectCallback(
+            [ this ]()
+            {
+                if ( m_ParentTilemap != nullptr )
+                {
+                    updateWholeTilemap();
+                }
+            }
+        );
 
-        m_ParentTilemap->AddOnTilemapChangedCallback( GetId(), std::bind(
-            &TilemapTextureConnector::onTilemapChangedCallback,
-            this,
-            std::placeholders::_1,
-            std::placeholders::_2,
-            std::placeholders::_3
-        ) );
+        // TODO: figure out how to handle the edge case where this Entity's parent changes, which would invalidate m_ParentTilemap
 
-        updateWholeTilemap();
+        m_ParentTilemap.Init( GetEntity()->GetParent() );
+        m_Tilemap.Init( GetEntity() );
     }
-
 
     /// @brief  called once when exiting the scene
     void TilemapTextureConnector::OnExit()
     {
-        if ( m_ParentTilemap != nullptr )
-        {
-            m_ParentTilemap->RemoveOnTilemapChangedCallback( GetId() );
-        }
+        m_ParentTilemap.Exit( GetEntity()->GetParent() );
+        m_Tilemap.Exit( GetEntity() );
     }
 
 

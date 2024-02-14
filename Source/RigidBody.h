@@ -15,8 +15,10 @@
 #include "Entity.h"
 #include "Behavior.h"
 
-class Transform;
-class Collider;
+#include "ComponentReference.h"
+#include "Transform.h"
+#include "Collider.h"
+
 class StaticBody;
 
 ///*****************************************************************/
@@ -198,10 +200,10 @@ private: // member variables
 
 
     /// @brief  the transform associated with this RigidBody
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
     /// @brief  the Collider associated with this RigidBody
-    Collider* m_Collider = nullptr;
+    ComponentReference< Collider, false > m_Collider;
 
 
 //-----------------------------------------------------------------------------
@@ -239,44 +241,44 @@ private: // reading
     void readDrag( nlohmann::ordered_json const& data );
 
 
-    /// @brief the map of read methods for RigidBodys
-    static ReadMethodMap< RigidBody > s_ReadMethods;
+//-----------------------------------------------------------------------------
+public: // reading writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
-//-----------------------------------------------------------------------------
-public: // writing
-//-----------------------------------------------------------------------------
 
     /// @brief  Write all RigidBody component data to a JSON file.
     /// @return The JSON file containing the RigidBody component data.
     virtual nlohmann::ordered_json Write() const override;
+
+    
+//-----------------------------------------------------------------------------
+public: // copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  clones this RigidBody
+    /// @return the newly created clone of this RigidBody
+    virtual RigidBody* Clone() const override;
+
 
 //-----------------------------------------------------------------------------
 private: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  clones this RigidBody
-    /// @return the newly created clone of this RigidBody
-    virtual Component* Clone() const override;
-
     /// @brief  copy-constructor for the RigidBody
     /// @param  other   the other RigidBody to copy
-    RigidBody( const RigidBody& other );
+    RigidBody( RigidBody const& other );
 
-
-//-----------------------------------------------------------------------------
-public: // copying
-//-----------------------------------------------------------------------------
 
     // diable = operator
-    void operator =( const RigidBody& ) = delete;
+    void operator =( RigidBody const& ) = delete;
+
 
 //-----------------------------------------------------------------------------
 };

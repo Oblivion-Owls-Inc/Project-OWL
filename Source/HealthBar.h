@@ -10,9 +10,12 @@
 
 #include "Behavior.h"
 
-class Transform;
-class UiBarSprite;
-class Health;
+#include "ComponentReference.h"
+#include "Transform.h"
+#include "UiBarSprite.h"
+
+#include "EntityReference.h"
+#include "Health.h"
 
 
 /// @brief  health bar UI that displays offset from an Entity with a Health component
@@ -31,9 +34,6 @@ private: // types
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
-
-
-    
 
 
 //-----------------------------------------------------------------------------
@@ -58,14 +58,13 @@ private: // virtual override methods
     virtual void OnUpdate( float dt ) override;
 
 
-    /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
-    virtual void OnHeirarchyChange() override;
-
-
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
+
+    /// @brief  Whether this HealthBar should move to follow the TargetEntity
+    bool m_FollowTargetEntity = true;
 
     /// @brief  the offset from the target Entity to display the health bar
     glm::vec2 m_Offset = { 0, 0 };
@@ -96,21 +95,21 @@ private: // members
 
 
     /// @brief  the Transform attached to this HealthBar
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
     /// @brief  the UiBarSprite attached to this HealthBar
-    UiBarSprite* m_UiBarSprite = nullptr;
-
-
-    /// @brief  the name of the entity to track the health of
-    std::string m_TargetEntityName = "";
-
-    /// @brief  the Health component of the Entity to display the health of
-    Health* m_TargetHealth = nullptr;
+    ComponentReference< UiBarSprite > m_UiBarSprite;
 
 
     /// @brief  the Transform component of the Entity to display the health of
-    Transform* m_ParentTransform = nullptr;
+    ComponentReference< Transform, false > m_TargetTransform;
+
+    /// @brief  the Health component of the Entity to display the health of
+    ComponentReference< Health > m_TargetHealth;
+
+    /// @brief  the name of the entity to track the health of
+    EntityReference m_TargetEntity = EntityReference( { &m_TargetTransform, &m_TargetHealth } );
+
 
 
 //-----------------------------------------------------------------------------
@@ -146,6 +145,10 @@ private: // reading
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  reads Whether this HealthBar should move to follow the TargetEntity
+    /// @param  data    the json data to read from
+    void readFollowTargetEntity( nlohmann::ordered_json const& data );
+
     /// @brief  reads the offset from the target Entity to display the health bar
     /// @param  data    the json data to read from
     void readOffset( nlohmann::ordered_json const& data );
@@ -169,9 +172,9 @@ private: // reading
     void readRecentHealthAcceleration( nlohmann::ordered_json const& data );
 
 
-    /// @brief  reads the name of the entity to track the health of
+    /// @brief  reads the entity to track the health of
     /// @param  data    the json data to read from
-    void readTargetEntityName( nlohmann::ordered_json const& data );
+    void readTargetEntity( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

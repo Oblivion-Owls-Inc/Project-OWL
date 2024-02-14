@@ -16,12 +16,11 @@
 #include "Transform.h"
 #include "TilemapSprite.h"
 #include "RigidBody.h"
-#include "MovementAI.h"
 #include "CircleCollider.h"
 #include "EnemyBehavior.h"
 #include "AudioPlayer.h"
 #include "AudioListener.h"
-#include "BulletBehavior.h"
+#include "Bullet.h"
 #include "Animation.h"
 #include "TurretBehavior.h"
 #include "PlayerController.h"
@@ -33,12 +32,13 @@
 #include "StaticBody.h"
 #include "ConstructionBehavior.h"
 #include "Camera.h"
+#include "Lifetime.h"
 #include "WavesBehavior.h"
 #include "EmitterSprite.h"
 #include "Emitter.h"
-#include "BaseBehavior.h"
+#include "HomeBase.h"
 #include "Health.h"
-#include "GeneratorBehavior.h"
+#include "Generator.h"
 #include "UiElement.h"
 #include "MiningLaser.h"
 #include "ItemComponent.h"
@@ -64,15 +64,27 @@
     /// @return the created component
     Component* ComponentFactory::Create( std::string const& typeName )
     {
-        return GetComponentInfo( typeName ).second();
+        std::pair< std::type_index, Component* (*)() > const* componentInfo = getComponentInfo( typeName );
+        if ( componentInfo == nullptr )
+        {
+            return nullptr;
+        }
+
+        return componentInfo->second();
     }
 
     /// @brief  gets the std::type_index of the Component type with the specified name
     /// @param  typeName    the type name of the Component type to get
     /// @return the std::type_index of the Component type
-    std::type_index ComponentFactory::GetTypeId( std::string const& typeName )
+    std::type_index const* ComponentFactory::GetTypeId( std::string const& typeName )
     {
-        return GetComponentInfo( typeName ).first;
+        std::pair< std::type_index, Component* (*)() > const* componentInfo = getComponentInfo( typeName );
+        if ( componentInfo == nullptr )
+        {
+            return nullptr;
+        }
+
+        return &componentInfo->first;
     }
 
     /// @brief  gets the name of the Component type with the specified type_index
@@ -99,18 +111,16 @@
     /// @brief  accesses the Component type map with error handling
     /// @param  typeName    the type of component to get info about
     /// @return the Component type info for the specified type name
-    std::pair< std::type_index, Component* (*)() > const& ComponentFactory::GetComponentInfo( std::string const& typeName )
+    std::pair< std::type_index, Component* (*)() > const* ComponentFactory::getComponentInfo( std::string const& typeName )
     {
         auto iterator = s_ComponentTypes.find( typeName );
         if ( iterator == s_ComponentTypes.end() )
         {
-            throw std::runtime_error(
-                std::string() +
-                "Error: could not find Component Type with name \"" +
-                typeName + '\"'
-            );
+            Debug() <<  "WARNING: could not create unrecognized Component type \""
+                << typeName << "\"" << std::endl;
+            return nullptr;
         }
-        return iterator->second;
+        return &iterator->second;
     }
 
 //-----------------------------------------------------------------------------
@@ -136,48 +146,48 @@
 
     /// @brief  map containing information on Component types by name
     std::map< std::string, std::pair< std::type_index, Component* (*)() > > const ComponentFactory::s_ComponentTypes = {
-        { "Transform"              , ComponentInfo< Transform >()               },
-        { "Sprite"                 , ComponentInfo< Sprite >()                  },
-        { "RigidBody"              , ComponentInfo< RigidBody >()               },
-        { "MovementAI"             , ComponentInfo< MovementAI >()              },
-        { "CircleCollider"         , ComponentInfo< CircleCollider >()          },
-        { "AudioPlayer"            , ComponentInfo< AudioPlayer >()             },
-        { "AudioListener"          , ComponentInfo< AudioListener >()           },
-        { "Animation"              , ComponentInfo< Animation >()               },
-        { "Text"                   , ComponentInfo< Text >()                    },
-        { "PlayerController"       , ComponentInfo< PlayerController >()        },
-		{ "EnemyBehavior"          , ComponentInfo< EnemyBehavior >()           },
-		{ "BulletBehavior"         , ComponentInfo< BulletBehavior >()          },
-        { "TurretBehavior"         , ComponentInfo< TurretBehavior >()          },
-        { "EffectAnimator"         , ComponentInfo< EffectAnimator >()          },
-        { "Tilemap<int>"           , ComponentInfo< Tilemap< int > >()          },
-        { "Tilemap<Entity*>"       , ComponentInfo< Tilemap< Entity* > >()      },
-        { "TilemapSprite"          , ComponentInfo< TilemapSprite >()           },
-        { "Pathfinder"             , ComponentInfo< Pathfinder >()              },
-        { "TilemapCollider"        , ComponentInfo< TilemapCollider >()         },
-        { "StaticBody"             , ComponentInfo< StaticBody >()              },
-        { "ConstructionBehavior"   , ComponentInfo< ConstructionBehavior >()    },
-        { "Camera"                 , ComponentInfo< Camera >()                  },
-        { "WavesBehavior"          , ComponentInfo< WavesBehavior >()           },
-        { "Emitter"                , ComponentInfo< Emitter >()                 },
-        { "EmitterSprite"          , ComponentInfo< EmitterSprite >()           },
-        { "BaseBehavior"           , ComponentInfo< BaseBehavior >()            },
-        { "Health"                 , ComponentInfo< Health >()                  },
-        { "UiElement"              , ComponentInfo< UiElement >()               },
-        { "MiningLaser"            , ComponentInfo< MiningLaser >()             },
-        { "ItemComponent"          , ComponentInfo< ItemComponent >()           },
-        { "TilemapItemDropper"     , ComponentInfo< TilemapItemDropper >()      },
-        { "Inventory"              , ComponentInfo< Inventory >()               },
-        { "ItemCollector"          , ComponentInfo< ItemCollector >()           },
-        { "HealthBar"              , ComponentInfo< HealthBar >()               },
-        { "UiBarSprite"            , ComponentInfo< UiBarSprite >()             },
-        { "UiButton"               , ComponentInfo< UiButton >()                },
-        { "Light"                  , ComponentInfo< Light >()                   },
-        { "CameraBehavior"         , ComponentInfo< CameraBehavior >()          },
+        { "Transform"              , ComponentInfo< Transform               >() },
+        { "Sprite"                 , ComponentInfo< Sprite                  >() },
+        { "RigidBody"              , ComponentInfo< RigidBody               >() },
+        { "CircleCollider"         , ComponentInfo< CircleCollider          >() },
+        { "AudioPlayer"            , ComponentInfo< AudioPlayer             >() },
+        { "AudioListener"          , ComponentInfo< AudioListener           >() },
+        { "Animation"              , ComponentInfo< Animation               >() },
+        { "Text"                   , ComponentInfo< Text                    >() },
+        { "PlayerController"       , ComponentInfo< PlayerController        >() },
+		{ "EnemyBehavior"          , ComponentInfo< EnemyBehavior           >() },
+		{ "Bullet"                 , ComponentInfo< Bullet                  >() },
+        { "TurretBehavior"         , ComponentInfo< TurretBehavior          >() },
+        { "EffectAnimator"         , ComponentInfo< EffectAnimator          >() },
+        { "Tilemap<int>"           , ComponentInfo< Tilemap< int     >      >() },
+        { "Tilemap<Entity*>"       , ComponentInfo< Tilemap< Entity* >      >() },
+        { "TilemapSprite"          , ComponentInfo< TilemapSprite           >() },
+        { "Pathfinder"             , ComponentInfo< Pathfinder              >() },
+        { "TilemapCollider"        , ComponentInfo< TilemapCollider         >() },
+        { "StaticBody"             , ComponentInfo< StaticBody              >() },
+        { "ConstructionBehavior"   , ComponentInfo< ConstructionBehavior    >() },
+        { "Camera"                 , ComponentInfo< Camera                  >() },
+        { "Lifetime"               , ComponentInfo< Lifetime                >() },
+        { "WavesBehavior"          , ComponentInfo< WavesBehavior           >() },
+        { "Emitter"                , ComponentInfo< Emitter                 >() },
+        { "EmitterSprite"          , ComponentInfo< EmitterSprite           >() },
+        { "HomeBase"               , ComponentInfo< HomeBase                >() },
+        { "Health"                 , ComponentInfo< Health                  >() },
+        { "UiElement"              , ComponentInfo< UiElement               >() },
+        { "MiningLaser"            , ComponentInfo< MiningLaser             >() },
+        { "ItemComponent"          , ComponentInfo< ItemComponent           >() },
+        { "TilemapItemDropper"     , ComponentInfo< TilemapItemDropper      >() },
+        { "Inventory"              , ComponentInfo< Inventory               >() },
+        { "ItemCollector"          , ComponentInfo< ItemCollector           >() },
+        { "HealthBar"              , ComponentInfo< HealthBar               >() },
+        { "UiBarSprite"            , ComponentInfo< UiBarSprite             >() },
+        { "UiButton"               , ComponentInfo< UiButton                >() },
+        { "Light"                  , ComponentInfo< Light                   >() },
+        { "CameraBehavior"         , ComponentInfo< CameraBehavior          >() },
         { "TilemapTextureConnector", ComponentInfo< TilemapTextureConnector >() },
-        { "GeneratorBehavior"      , ComponentInfo< GeneratorBehavior >()       },
-        { "TilemapEditor"          , ComponentInfo< TilemapEditor >()           },
-        { "EditorCameraController" , ComponentInfo< EditorCameraController >()  }
+        { "Generator"              , ComponentInfo< Generator               >() },
+        { "TilemapEditor"          , ComponentInfo< TilemapEditor           >() },
+        { "EditorCameraController" , ComponentInfo< EditorCameraController  >() }
     };
 
 //-----------------------------------------------------------------------------

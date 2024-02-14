@@ -12,7 +12,8 @@
 
 #include <glm/glm.hpp>
 
-class Transform;
+#include "ComponentReference.h"
+#include "Transform.h"
 
 
 /// @brief      Handles camera and coordinate systems / spaces.
@@ -22,12 +23,15 @@ class Camera : public Component
 public: // constructor
 //-------------------------------------------------------------------------
 
+
     /// @brief  constructor
     Camera();
+
 
 //-------------------------------------------------------------------------
 public: // accessors
 //-------------------------------------------------------------------------
+
 
     /// @brief  gets the width of the Camera
     /// @return the width of the camera
@@ -64,25 +68,27 @@ public: // accessors
 public: // methods
 //-------------------------------------------------------------------------
     
+
     /// @brief  sets this Camera as the active Camera in the scene
     void SetActive();
+
 
 //-------------------------------------------------------------------------
 private: // virtual override methods
 //-------------------------------------------------------------------------
     
+
     /// @brief  called once when entering the scene
     virtual void OnInit() override;
 
     /// @brief  called once when leaving the scene
     virtual void OnExit() override;
 
-    /// @brief  shows the Inspector window
-    virtual void Inspector() override;
 
 //-------------------------------------------------------------------------
 private: // member variables
 //-------------------------------------------------------------------------
+
 
     /// @brief  how big the camera is (height; width is based on height and aspect ratio)
     float m_Scale = 5;
@@ -106,12 +112,14 @@ private: // member variables
     bool m_ClipToWorldDirty = true;
 
     /// @brief  the Transform associated with this Camera
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
+
 
 
 //-------------------------------------------------------------------------
 private: // methods
 //-------------------------------------------------------------------------
+
 
     /// @brief  called whenever this Camera's Transform changes
     void onTransformChangedCallback();
@@ -129,10 +137,21 @@ private: // methods
     /// @brief  calculates to WorldToClip matrix
     void calculateClipToWorld();
 
+    
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  shows the Inspector window
+    virtual void Inspector() override;
+
+
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
     
+
     /// @brief  reads the width of this Camera
     /// @param  json    the json data to read from
     void readWidth( nlohmann::ordered_json const& json );
@@ -145,42 +164,44 @@ private: // reading
     /// @param  json    the json data to read from
     void readIsActive( nlohmann::ordered_json const& json );
 
-    /// @brief map of the CameraSystem read methods
-    static ReadMethodMap< Camera > const s_ReadMethods;
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
 //-----------------------------------------------------------------------------
 
+
     /// @brief  gets this System's read methods
     /// @return this System's read methods
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
     /// @brief  writes this Camera to json
     /// @return the written json data
     nlohmann::ordered_json Write() const;
 
+
 //-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------
 
+
     /// @brief  creates a new copy of this Camera
-    /// @return 
-    Camera* Clone() const
-    {
-        return new Camera( *this );
-    }
+    /// @return the copy of this Camera
+    virtual Camera* Clone() const override;
+
 
 //-----------------------------------------------------------------------------
 private: // copying
 //-----------------------------------------------------------------------------
 
+
     /// @brief  copy constructor
     /// @param  other   the Camera to copy
     Camera( Camera const& other );
+
+
+    // disable assignment operator
+    void operator =( Camera const& ) = delete;
+
 
 //-----------------------------------------------------------------------------
 };

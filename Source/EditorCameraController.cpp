@@ -92,25 +92,6 @@
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  shows the inspector for EditorCameraController
-    void EditorCameraController::OnInspectorAddComponent( Component* component )
-    {
-        if ( component->GetType() == typeid( Transform ) )
-        {
-            m_Transform = static_cast< Transform* >( component );
-        }
-    }
-
-    /// @brief  shows the inspector for EditorCameraController
-    void EditorCameraController::OnInspectorRemoveComponent( Component* component )
-    {
-        if ( static_cast< Transform* >( component ) == m_Transform )
-        {
-            m_Transform = nullptr;
-        }
-    }
-
-
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------

@@ -10,6 +10,8 @@
 #include "behavior.h"
 #include "Transform.h"
 
+#include "AssetReference.h"
+
 
 
 ///*****************************************************************/
@@ -39,11 +41,6 @@ public: // constructor / destructor
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
-	/// @brief  Called whenever a Collider on this Behavior's Entity collides
-	/// @param  other           the entity that was collided with
-	/// @param  collisionData   additional data about the collision
-	virtual void OnCollision(Entity* other, CollisionData const& collisionData) {};
-
 
 	/// @brief Default constructor for the RigidBody class.
 	virtual void OnInit();
@@ -52,68 +49,74 @@ private: // virtual override methods
 	/// @note   NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this Component's System
 	virtual void OnExit();
 
-	/// @brief Called Every Frame by the system
-	/// @param dt - the time since the last frame
-	virtual void OnUpdate(float dt) override;
 
 	/// @brief Called Every Fixed Frame by the system
-	void OnFixedUpdate() override;
+	virtual void OnFixedUpdate() override;
+
 
 //-----------------------------------------------------------------------------
-private: // inspector methods
+public: // inspection
 //-----------------------------------------------------------------------------
+
 
 	/// @brief Used by the Debug System to display information about this Component
 	virtual void Inspector() override;
 
+    
+//-----------------------------------------------------------------------------
+private: // inspector methods
+//-----------------------------------------------------------------------------
+
+
 	/// @brief displays wave data to edit
-	void GuiWaves();
+	void guiWaves();
 
 	/// @brief displays group data to edit
-	void GuiGroups();
+	void guiGroups();
 
 	/// @brief displays the currently active wave data
-	void GuiCurrentWave();
+	void guiCurrentWave();
 
 	/// @brief displays the currently active enemy groups data
-	void GuiCurrentGroups();
+	void guiCurrentGroups();
 
 	/// @brief calls the current gui handlers
-	void GuiCurrent();
+	void guiCurrent();
 
 	/// @brief lists all spawners and locations
-	void GuiSpawners();
+	void guiSpawners();
 
 	/// @brief	allows dragging the spawner to change location
-	void DebugDrag(int number);
+	void debugDrag(int number);
 
 	/// @brief	adds a wave to the behavior
-	void GuiAddWave();
+	void guiAddWave();
 
 	/// @brief	removes a wave from the behavior
-	void GuiRemoveWave();
+	void guiRemoveWave();
 
 	/// @brief	adds a group to the behavior
-	void GuiAddGroup();
+	void guiAddGroup();
 
 	/// @brief	removes a group from the behavior
-	void GuiRemoveGroup();
+	void guiRemoveGroup();
 
 	/// @brief	adds a spawner to the behavior
-	void GuiAddSpawner();
+	void guiAddSpawner();
 
 	/// @brief	removes a spawner from the behavior
-	void GuiRemoveSpawner();
+	void guiRemoveSpawner();
+
 
 //-----------------------------------------------------------------------------
 private: // data
 //-----------------------------------------------------------------------------
 
+
 	int numWaves;
 	int currentWave;
 	int inspectorWave;
 	int inspectorGroup;
-	const Entity* base;
 
 	class EnemyGroup : public ISerializable
 	{
@@ -121,8 +124,7 @@ private: // data
 
 		/// @brief enemyGroup default constructor
 		EnemyGroup();
-		std::string name;
-		const Entity* enemy = nullptr;
+		AssetReference< Entity > enemy;
 		int enemyAmount;
 		float spawnInterval;
 		float timer;
@@ -132,7 +134,7 @@ private: // data
 	private:
 
 		/// @brief read the name of an enemy group
-		void readName(nlohmann::ordered_json const& json);
+		void readEnemy(nlohmann::ordered_json const& json);
 
 		/// @brief read the enemy amount of an enemy group
 		void readAmount(nlohmann::ordered_json const& json);
@@ -218,9 +220,9 @@ private: // methods
 //-----------------------------------------------------------------------------
 
 	/// @brief spawn an enemy with given name from given entity group
-	/// @param name  - the name of the enemy to spawn
+	/// @param enemy - the enemy to spawn
 	/// @param group - enemyGroup to spawn from
-	void Spawn(std::string name, int group);
+	void Spawn(Entity const* enemy, int group);
 
 //-----------------------------------------------------------------------------
 private: // reading

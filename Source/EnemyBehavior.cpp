@@ -24,89 +24,122 @@
 // public: constructor / destructor
 //-----------------------------------------------------------------------------
 
+    
+    /// @brief  default constructor
     EnemyBehavior::EnemyBehavior() :
         Behavior( typeid( EnemyBehavior ) )
     {}
+
+
+//-----------------------------------------------------------------------------
+// public: accessors
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the amount of damage that this EnemyBehavior deals
+    /// @return the amount of damage that this EnemyBehavior deals
+    int EnemyBehavior::GetDamage() const
+    {
+        return m_Damage;
+    }
+
+
+    /// @brief  gets this EnemyBehavior's attached Transform Component
+    /// @return this EnemyBehavior's attached Transform Component
+    Transform const* EnemyBehavior::GetTransform() const
+    {
+        return m_Transform;
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: virtual override methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief initializes the component
     void EnemyBehavior::OnInit()
     {
-        
-        Behaviors< Behavior >()->AddComponent(this);
-        m_Pathfinder = Entities()->GetEntity( m_PathfinderName )->GetComponent< Pathfinder >();
-        m_RigidBody = GetEntity()->GetComponent< RigidBody >();
-        m_Transform = GetEntity()->GetComponent< Transform >();
-        m_AudioPlayer = GetEntity()->GetComponent<AudioPlayer>();
-        m_Health = GetEntity()->GetComponent<Health>();
+        Behaviors< EnemyBehavior >()->AddComponent( this );
 
-        // Set the callback for when the enemy takes damage.
-        if (m_Health)
-        {
-            m_Health->AddOnHealthChangedCallback(
-                GetId(),
-                std::bind(
-                    &EnemyBehavior::OnDamageTaken,
-                    this
-                )
-            );
-        }
-    }
+        m_Health.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_Health->AddOnHealthChangedCallback(
+                    GetId(),
+                    std::bind(
+                        &EnemyBehavior::onDamageTaken,
+                        this
+                    )
+                );
+            }
+        );
+        m_Health.SetOnDisconnectCallback(
+            [ this ]()
+            {
+                m_Health->RemoveOnHealthChangedCallback( GetId() );
+            }
+        );
 
-    /// @brief Called at a fixed interval
-    void EnemyBehavior::OnFixedUpdate()
-    {
-        ChaseTarget();
-    }
+        m_RigidBody  .Init( GetEntity() );
+        m_Transform  .Init( GetEntity() );
+        m_AudioPlayer.Init( GetEntity() );
+        m_Health     .Init( GetEntity() );
 
-    void EnemyBehavior::OnUpdate(float)
-    {
+        m_PathfinderEntity.SetOwnerName( GetName() );
+        m_PathfinderEntity.Init();
     }
 
     /// @brief Removes this behavior from the behavior system on exit
     void EnemyBehavior::OnExit()
     {
-        Behaviors<Behavior>()->RemoveComponent(this);
+        Behaviors< EnemyBehavior >()->RemoveComponent( this );
 
-        if (m_Health != nullptr)
-        {
-            m_Health->RemoveOnHealthChangedCallback(GetId());
-        }
+        m_RigidBody  .Exit( GetEntity() );
+        m_Transform  .Exit( GetEntity() );
+        m_AudioPlayer.Exit( GetEntity() );
+        m_Health     .Exit( GetEntity() );
+
+        m_PathfinderEntity.Exit();
     }
 
-    void EnemyBehavior::Inspector()
+
+    /// @brief Called at a fixed interval
+    void EnemyBehavior::OnFixedUpdate()
     {
-        ImGui::VSliderFloat("Speed", ImVec2(18, 160), &m_Speed, 0, 100);
-        ImGui::SameLine();
-        ImGui::VSliderInt("Damage", ImVec2(18, 160), &m_Damage, 0, 100);
+        if (
+            m_Transform == nullptr ||
+            m_RigidBody == nullptr ||
+            m_Pathfinder == nullptr
+        )
+        {
+            return;
+        }
+
+        if ( m_AudioPlayer != nullptr )
+        {
+            m_AudioPlayer->Play();
+        }
+
+        chaseTarget();
     }
+
 
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
 
+
     ///  @brief moves towards the target
-    void EnemyBehavior::ChaseTarget()
+    void EnemyBehavior::chaseTarget()
     {
         // accelerate along path
         glm::vec2 moveDir = m_Pathfinder->GetDirectionAt( m_Transform->GetTranslation() );
         m_RigidBody->ApplyAcceleration( moveDir * m_Speed );
-
-        // Changes the animation based on the direction
-        glm::vec2 scale = m_Transform->GetScale();
-        if ( (scale.x > 0) != (moveDir.x > 0) )
-        {
-            scale.x *= -1;
-            m_Transform->SetScale( scale );
-        }
-        m_AudioPlayer->Play();
     }
 
     /// @brief What to do when the enemy gets damaged.
-    void EnemyBehavior::OnDamageTaken()
+    void EnemyBehavior::onDamageTaken()
     {
         if (m_Health->GetHealth()->GetCurrent() <= 0)
         {
@@ -114,15 +147,49 @@
         }
     }
 
-///-----------------------------------------------------------------------------
+    
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  inspector for this component
+    void EnemyBehavior::Inspector()
+    {
+        if ( m_Transform == nullptr )
+        {
+            ImGui::Text( "WARNING: no Trasform attached" );
+        }
+        if ( m_RigidBody == nullptr )
+        {
+            ImGui::Text( "WARNING: no RigidBody attached" );
+        }
+        if ( m_AudioPlayer == nullptr )
+        {
+            ImGui::Text( "WARNING: no AudioPlayer attached" );
+        }
+        if ( m_Health == nullptr )
+        {
+            ImGui::Text( "WARNING: no Health attached" );
+        }
+
+        ImGui::DragFloat( "Speed", &m_Speed, 0.05f, 0.0f, INFINITY );
+
+        ImGui::DragInt( "Damage", &m_Damage, 0.05f, 0, INT_MAX );
+
+        m_PathfinderEntity.Inspect( "pathfinder entity" );
+    }
+
+
+//-----------------------------------------------------------------------------
 // private: Reading
-///-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
     /// @brief  reads the name of the pathfinder entity
     /// @param  data    the json data to read from
-    void EnemyBehavior::readPathfinderName( nlohmann::ordered_json const& data )
+    void EnemyBehavior::readPathfinderEntity( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_PathfinderName, data );
+        Stream::Read( m_PathfinderEntity, data );
     }
 
     /// @brief  reads the speed
@@ -137,48 +204,66 @@
         Stream::Read( m_Damage, data );
     }
 
-    /// @brief  map of read methods
-    ReadMethodMap< EnemyBehavior > const EnemyBehavior::s_ReadMethods = {
-        { "PathfinderName", &EnemyBehavior::readPathfinderName  },
-        { "Speed"         , &EnemyBehavior::readSpeed           },
-        { "Damage"        , &EnemyBehavior::readDamage          }
-    };
+
+//-----------------------------------------------------------------------------
+// public: reading / writing
+//-----------------------------------------------------------------------------
 
 
-///----------------------------------------------------------------------------
-/// public: writing
-///----------------------------------------------------------------------------
-
-    int EnemyBehavior::GetDamage()
+    /// @brief  gets the map of read methods
+    /// @return the map of read methods
+    ReadMethodMap< ISerializable > const& EnemyBehavior::GetReadMethods() const
     {
-        return m_Damage;
+        static ReadMethodMap< EnemyBehavior > const readMethods = {
+            { "PathfinderEntity", &EnemyBehavior::readPathfinderEntity },
+            { "Speed"           , &EnemyBehavior::readSpeed            },
+            { "Damage"          , &EnemyBehavior::readDamage           }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
     }
+
 
     /// @brief  write all component data to a JSON object
     nlohmann::ordered_json EnemyBehavior::Write() const
     {
         nlohmann::ordered_json data;
 
-        data["PathfinderName"] = m_PathfinderName;
-        data["Speed"] = m_Speed;
-        data["Damage"] = m_Damage;
+        data[ "PathfinderEntity" ] = Stream::Write( m_PathfinderEntity );
+        data[ "Speed"            ] = Stream::Write( m_Speed            );
+        data[ "Damage"           ] = Stream::Write( m_Damage           );
 
         return data;
     }
 
+    
+//-----------------------------------------------------------------------------
+// public: copying
+//-----------------------------------------------------------------------------
 
-///----------------------------------------------------------------------------
-/// private: copying
-///----------------------------------------------------------------------------
+
+    /// @brief  creates a new copy of this Component
+    /// @return the newly created component
+    EnemyBehavior* EnemyBehavior::Clone() const
+    {
+        return new EnemyBehavior( *this );
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: copying
+//-----------------------------------------------------------------------------
+
 
     /// @brief  copy constructor
     /// @param  other   the other EnemyBehavior to copy
     EnemyBehavior::EnemyBehavior( EnemyBehavior const& other ) :
         Behavior( other ),
-        m_PathfinderName( other.m_PathfinderName ),
-        m_Speed( other.m_Speed ),
-        m_RigidBody(nullptr),
-        m_AudioPlayer(nullptr)
+        m_Speed ( other.m_Speed  ),
+        m_Damage( other.m_Damage ),
+
+        m_PathfinderEntity( other.m_PathfinderEntity, { &m_Pathfinder } )
     {}
 
-///----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------

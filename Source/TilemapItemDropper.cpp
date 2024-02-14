@@ -52,22 +52,36 @@
     /// @brief  called once when entering the scene
     void TilemapItemDropper::OnInit()
     {
-        m_ItemArchetype = AssetLibrary< Entity >()->GetAsset( m_ItemArchetypeName );
-        m_Tilemap = GetEntity()->GetComponent< Tilemap< int > >();
+        m_ItemArchetype.SetOwnerName( GetName() );
+        m_ItemArchetype.Init();
 
-        m_Tilemap->AddOnTilemapChangedCallback( GetId(), std::bind(
-            &TilemapItemDropper::onTilemapChangedCallback,
-            this,
-            std::placeholders::_1,
-            std::placeholders::_2,
-            std::placeholders::_3
-        ) );
+        m_Tilemap.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_Tilemap->AddOnTilemapChangedCallback(
+                    GetId(),
+                    std::bind(
+                        &TilemapItemDropper::onTilemapChangedCallback,
+                        this,
+                        std::placeholders::_1, std::placeholders::_2, std::placeholders::_3
+                    )
+                );
+            }
+        );
+        m_Tilemap.SetOnDisconnectCallback(
+            [ this ]()
+            {
+                m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
+            }
+        );
+
+        m_Tilemap.Init( GetEntity() );
     }
 
     /// @brief  called once when exiting the scene
     void TilemapItemDropper::OnExit()
     {
-        m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
+        m_Tilemap.Exit( GetEntity() );
     }
 
 
@@ -109,6 +123,12 @@
     /// @param  tilePos     the position to drop the item
     void TilemapItemDropper::dropItem( ItemStack const& itemStack, glm::ivec2 const& tilePos ) const
     {
+        if ( m_ItemArchetype == nullptr )
+        {
+            Debug() << "WARNING: TilemapItemDropper on entity " << GetEntity()->GetName() << " has no ItemArchetype" << std::endl;
+            return;
+        }
+
         // get position to spawn the item
         glm::vec2 position = m_Tilemap->TileCoordToWorldPos( tilePos );
         position += glm::vec2(
@@ -144,7 +164,7 @@
     /// @brief  displays this TilemapItemDropper in the Inspector
     void TilemapItemDropper::Inspector()
     {
-        Inspection::SelectAssetFromLibrary< Entity >( "Item Archetype", &m_ItemArchetype, &m_ItemArchetypeName );
+        m_ItemArchetype.Inspect( "item prefab" );
 
         ImGui::DragFloat( "max initial velocity", &m_MaxInitialVelocity, 0.05f, 0.0f, INFINITY );
 
@@ -159,9 +179,9 @@
 
     /// @brief  reads the name of the Entity to drop items as
     /// @param  data    the json data to read from
-    void TilemapItemDropper::readItemArchetypeName( nlohmann::ordered_json const& data )
+    void TilemapItemDropper::readItemArchetype( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_ItemArchetypeName, data );
+        Stream::Read( m_ItemArchetype, data );
     }
 
 
@@ -191,7 +211,7 @@
     ReadMethodMap< ISerializable > const& TilemapItemDropper::GetReadMethods() const
     {
         static ReadMethodMap< TilemapItemDropper > const readMethods = {
-            { "ItemArchetypeName" , &TilemapItemDropper::readItemArchetypeName  },
+            { "ItemArchetype"     , &TilemapItemDropper::readItemArchetype      },
             { "MaxInitialVelocity", &TilemapItemDropper::readMaxInitialVelocity },
             { "ItemSpawnRadius"   , &TilemapItemDropper::readItemSpawnRadius    }
         };
@@ -206,7 +226,7 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "ItemArchetypeName"  ] = Stream::Write( m_ItemArchetypeName  );
+        json[ "ItemArchetype"      ] = Stream::Write( m_ItemArchetype      );
         json[ "MaxInitialVelocity" ] = Stream::Write( m_MaxInitialVelocity );
         json[ "ItemSpawnRadius"    ] = Stream::Write( m_ItemSpawnRadius    );
 
@@ -247,10 +267,9 @@
     /// @param  other   the other TilemapItemDropper to copy
     TilemapItemDropper::TilemapItemDropper( const TilemapItemDropper& other ) :
         Component( other ),
-        m_ItemArchetype( other.m_ItemArchetype ),
-        m_ItemArchetypeName( other.m_ItemArchetypeName ),
         m_MaxInitialVelocity( other.m_MaxInitialVelocity ),
-        m_ItemSpawnRadius( other.m_ItemSpawnRadius )
+        m_ItemSpawnRadius   ( other.m_ItemSpawnRadius    ),
+        m_ItemArchetype     ( other.m_ItemArchetype      )
     {}
 
 

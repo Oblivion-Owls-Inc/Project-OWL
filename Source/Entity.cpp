@@ -21,6 +21,9 @@
 #include "DebugSystem.h"
 #include "basics.h"
 
+#include "EntityReference.h"
+#include "ComponentReference.h"
+
 
 ///-----------------------------------------------------------------------------
 /// Static Variables
@@ -265,9 +268,50 @@
             component->OnExit();
         }
 
+        for ( ComponentReferenceBase* componentReference : m_ComponentReferences )
+        {
+            componentReference->Clear();
+        }
+        m_ComponentReferences.clear();
+
+        for ( EntityReference* entityReference : m_EntityReferences )
+        {
+            entityReference->Clear();
+        }
+        m_EntityReferences.clear();
+
         m_IsInScene = false;
     }
 
+
+    /// @brief  adds an EntityReference to this Entity
+    /// @param  entityReference the refernce to add
+    void Entity::AddEntityReference( EntityReference* entityReference )
+    {
+        m_EntityReferences.insert( entityReference );
+    }
+
+    /// @brief  removes an EntityReference to this Entity
+    /// @param  entityReference the refernce to remove
+    void Entity::RemoveEntityReference( EntityReference* entityReference )
+    {
+        m_EntityReferences.erase( entityReference );
+    }
+
+
+    /// @brief  adds an ComponentReference to this Component
+    /// @param  componentReference  the refernce to add
+    void Entity::AddComponentReference( ComponentReferenceBase* componentReference )
+    {
+        m_ComponentReferences.insert( componentReference );
+    }
+
+    /// @brief  removes an ComponentReference to this Component
+    /// @param  componentReference  the refernce to remove
+    void Entity::RemoveComponentReference( ComponentReferenceBase* componentReference )
+    {
+        m_ComponentReferences.erase( componentReference );
+    }
 
     
 //-----------------------------------------------------------------------------
@@ -369,13 +413,10 @@
                     {
                         newComponent->OnInit();
 
-                        // tell all other components that a component was added
-                        for ( auto& [ type, component ] : m_Components )
+                        // tell other components that a component was added
+                        for ( ComponentReferenceBase* componentReference : m_ComponentReferences )
                         {
-                            if ( component != newComponent )
-                            {
-                                component->OnInspectorAddComponent( newComponent );
-                            }
+                            componentReference->TrySet( newComponent );
                         }
                     }
                 }
@@ -389,16 +430,12 @@
             {
                 if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
                 {
-
                     if ( IsInScene() )
                     {
-                        // tell all other components that a component was deleted
-                        for ( auto& [ type, component ] : m_Components )
+                        // tell other components a Component is about to be removed
+                        for ( ComponentReferenceBase* componentReference : m_ComponentReferences )
                         {
-                            if ( component != componentToDelete )
-                            {
-                                component->OnInspectorRemoveComponent( componentToDelete );
-                            }
+                            componentReference->TryRemove( componentToDelete );
                         }
 
                         componentToDelete->OnExit();
@@ -529,8 +566,15 @@
         for ( auto& [ key, value ] : data.items() )
 	    {
 
+            // verify that the Component type is valid
+            std::type_index const* type = ComponentFactory::GetTypeId( key );
+            if ( type == nullptr )
+            {
+                continue;
+            }
+
             // [] operator finds the key in the map, or creates it if it doesn't exist yet.
-            Component*& component = m_Components[ ComponentFactory::GetTypeId( key ) ];
+            Component*& component = m_Components[ *type ];
 
             // if the component doesn't exist yet, create and add it.
             if ( component == nullptr )

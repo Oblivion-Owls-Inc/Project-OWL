@@ -8,6 +8,8 @@
 #define TILEMAP_H
 
 #include "Component.h"
+
+#include "ComponentReference.h"
 #include "Transform.h"
 #include <functional>   // callbacks
 #include <map>
@@ -167,6 +169,9 @@ private: // virtual overrides
     /// @brief  called after component is added & read
     virtual void OnInit() override;
 
+    /// @brief  called after component is removed
+    virtual void OnExit() override;
+
 
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() override;
@@ -193,7 +198,7 @@ private: // data
     glm::mat4 m_InvMat = glm::mat4(1);
 
     /// @brief   Parent's transform (cached)
-    Transform* m_PTransform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
     /// @brief   Callback functions - they get called whenever tilemap changes.
     std::map< unsigned, OnTilemapChangedCallback > m_OnTilemapChangedCallbacks;

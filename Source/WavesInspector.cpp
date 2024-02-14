@@ -29,7 +29,7 @@
 //-----------------------------------------------------------------------------
 
 /// @brief displays wave data to edit
-void WavesBehavior::GuiWaves()
+void WavesBehavior::guiWaves()
 {
 	ImGui::Text("Total Waves: %i", numWaves);
 	// add/remove waves
@@ -39,12 +39,12 @@ void WavesBehavior::GuiWaves()
 	vector.y = 20;
 	if (ImGui::Button("-", vector))
 	{
-		GuiRemoveWave();
+		guiRemoveWave();
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("+", vector))
 	{
-		GuiAddWave();
+		guiAddWave();
 	}
 	if (numWaves > 0)
 	{
@@ -107,7 +107,7 @@ void WavesBehavior::GuiWaves()
 }
 
 /// @brief displays group data to edit
-void WavesBehavior::GuiGroups()
+void WavesBehavior::guiGroups()
 {
 	ImGui::Text("Groups in Wave: %i", waves[inspectorWave].groups.size());
 	// buttons to add/remove a group
@@ -118,12 +118,12 @@ void WavesBehavior::GuiGroups()
 	ImGui::PushID(1);
 	if (ImGui::Button("-", vector))
 	{
-		GuiRemoveGroup();
+		guiRemoveGroup();
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("+", vector))
 	{
-		GuiAddGroup();
+		guiAddGroup();
 	}
 	ImGui::PopID();
 	if (waves[inspectorWave].groups.size() > 0)
@@ -181,17 +181,9 @@ void WavesBehavior::GuiGroups()
 		ImGui::PopID();
 
 		ImGui::PushID(3);
-		std::string enemyName = "Select";
-		if (waves[inspectorWave].groups[inspectorGroup].enemy)
-        enemyName = waves[ inspectorWave ].groups[ inspectorGroup ].enemy->GetName();
-		Inspection::SelectAssetFromLibrary( "Name", &waves[ inspectorWave ].groups[ inspectorGroup ].enemy, &enemyName );
+		waves[inspectorWave].groups[inspectorGroup].enemy.Inspect( "enemy prefab" );
 		ImGui::PopID();
 
-		if (base)
-		{
-			waves[inspectorWave].groups[inspectorGroup].name =
-				waves[inspectorWave].groups[inspectorGroup].enemy->GetName();
-		}
 		// general group info
 		ImGui::InputInt("Enemies", &waves[inspectorWave].groups[inspectorGroup].enemyAmount);
 
@@ -215,7 +207,7 @@ void WavesBehavior::GuiGroups()
 }
 
 /// @brief displays the currently active wave data
-void WavesBehavior::GuiCurrentWave()
+void WavesBehavior::guiCurrentWave()
 {
 
 	if (currentWave < numWaves)
@@ -231,14 +223,14 @@ void WavesBehavior::GuiCurrentWave()
 }
 
 /// @brief displays the currently active enemy groups data
-void WavesBehavior::GuiCurrentGroups()
+void WavesBehavior::guiCurrentGroups()
 {
 	if (currentWave < numWaves)
 	{
 		for (int i = 0; i < waves[currentWave].groups.size(); i++)
 		{
 			ImGui::Text("Group: %i", i + 1);
-			ImGui::Text("Enemy Type: %s", waves[currentWave].groups[i].name.c_str());
+			ImGui::Text("Enemy Type: %s", waves[currentWave].groups[i].enemy.GetName().c_str());
 			ImGui::Text("Amount: %i", waves[currentWave].groups[i].enemyAmount);
 			ImGui::Text("Spawner: %i", waves[currentWave].groups[i].spawner);
 			ImGui::Text("Timer: %f", waves[currentWave].groups[i].timer);
@@ -248,21 +240,21 @@ void WavesBehavior::GuiCurrentGroups()
 }
 
 /// @brief calls the current gui handlers
-void WavesBehavior::GuiCurrent()
+void WavesBehavior::guiCurrent()
 {
 	char title[20];
 	snprintf(title, sizeof(title), "Current Wave Data:");
 	if (ImGui::TreeNode(title))
 	{
-		GuiCurrentWave();
+		guiCurrentWave();
 		ImGui::Text("");
-		GuiCurrentGroups();
+		guiCurrentGroups();
 		ImGui::TreePop();
 	}
 }
 
 /// @brief  allows dragging of Transforms with the mouse
-void WavesBehavior::DebugDrag(int number)
+void WavesBehavior::debugDrag(int number)
 {
 	float constexpr maxDragRange = 1.0f;
 
@@ -299,7 +291,7 @@ void WavesBehavior::DebugDrag(int number)
 }
 
 /// @brief	adds a wave to the behavior
-void WavesBehavior::GuiAddWave()
+void WavesBehavior::guiAddWave()
 {
 	numWaves++;
 	if (waves.size() >= numWaves)
@@ -316,7 +308,7 @@ void WavesBehavior::GuiAddWave()
 }
 
 /// @brief	removes a wave from the behavior
-void WavesBehavior::GuiRemoveWave()
+void WavesBehavior::guiRemoveWave()
 {
 	if (numWaves > 0)
 	{
@@ -325,16 +317,15 @@ void WavesBehavior::GuiRemoveWave()
 }
 
 /// @brief	adds a group to the behavior
-void WavesBehavior::GuiAddGroup()
+void WavesBehavior::guiAddGroup()
 {
 	EnemyGroup newGroup = EnemyGroup();
 	waves[inspectorWave].groups.push_back(newGroup);
 	inspectorGroup = (int)waves[inspectorWave].groups.size() - 1;
-	waves[inspectorWave].groups[inspectorGroup].enemy = base;
 }
 
 /// @brief	removes a group from the behavior
-void WavesBehavior::GuiRemoveGroup()
+void WavesBehavior::guiRemoveGroup()
 {
 	if (waves[inspectorWave].groups.size() > 0)
 	{
@@ -343,14 +334,14 @@ void WavesBehavior::GuiRemoveGroup()
 }
 
 /// @brief	adds a spawner to the behavior
-void WavesBehavior::GuiAddSpawner()
+void WavesBehavior::guiAddSpawner()
 {
 	glm::vec2 vec(0, 0);
 	spawners.push_back(vec);
 }
 
 /// @brief	removes a spawner from the behavior
-void WavesBehavior::GuiRemoveSpawner()
+void WavesBehavior::guiRemoveSpawner()
 {
 	if (spawners.size() > 0)
 	{
@@ -359,7 +350,7 @@ void WavesBehavior::GuiRemoveSpawner()
 }
 
 /// @brief lists all spawners and locations
-void WavesBehavior::GuiSpawners()
+void WavesBehavior::guiSpawners()
 {
 	// general inspector info
 	char title[20];
@@ -418,7 +409,7 @@ void WavesBehavior::GuiSpawners()
 			}
 			ImGui::PopID();
 			Renderer()->DrawTexture(Transform::GetWidgetTexture(), spawners[i], glm::vec2(1), 0, glm::vec4(0), 1.0f, true);
-			DebugDrag(i);
+			debugDrag(i);
 		}
 		// buttons to add/remove spawners
 		ImVec2 vector;
@@ -427,12 +418,12 @@ void WavesBehavior::GuiSpawners()
 		ImGui::PushID(2);
 		if (ImGui::Button("-", vector))
 		{
-			GuiRemoveSpawner();
+			guiRemoveSpawner();
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("+", vector))
 		{
-			GuiAddSpawner();
+			guiAddSpawner();
 		}
 		ImGui::PopID();
 		ImGui::TreePop();
@@ -443,15 +434,15 @@ void WavesBehavior::GuiSpawners()
 void WavesBehavior::Inspector()
 {
 	///Edit the Behavior of the Waves 
-	GuiWaves();
+	guiWaves();
 
 	if (numWaves > 0)
 	{
-		GuiGroups();
+		guiGroups();
 	}
 
-	GuiCurrent();
+	guiCurrent();
 
-	GuiSpawners();
+	guiSpawners();
 	
 }

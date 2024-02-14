@@ -31,8 +31,7 @@ WavesBehavior::WavesBehavior() :
 	numWaves(0),
 	currentWave(0),
 	inspectorWave(0),
-	inspectorGroup(0),
-	base(0)
+	inspectorGroup(0)
 {
 	waves.clear();
 }
@@ -43,8 +42,7 @@ WavesBehavior::WavesBehavior(const WavesBehavior& other)
 	numWaves(other.numWaves),
 	currentWave(other.currentWave),
 	inspectorWave(other.inspectorWave),
-	inspectorGroup(other.inspectorGroup),
-	base(other.base)
+	inspectorGroup(other.inspectorGroup)
 {
 	waves = other.waves;
 }
@@ -66,8 +64,7 @@ WavesBehavior::EnemyGroup::EnemyGroup() :
 	spawnInterval(0),
 	timer(0),
 	offset(0),
-	spawner(0),
-	enemy(0)
+	spawner(0)
 {}
 
 //-----------------------------------------------------------------------------
@@ -89,6 +86,15 @@ void WavesBehavior::OnInit()
 {
 	/// Add this behavior to the behavior system
 	Behaviors< WavesBehavior >()->AddComponent( this );
+
+    for ( Wave& wave : waves )
+    {
+        for ( EnemyGroup& group : wave.groups )
+        {
+            group.enemy.SetOwnerName( "WavesBehavior" );
+            group.enemy.Init();
+        }
+    }
 }
 
 /// @brief cleanup WavesBehavior
@@ -96,12 +102,6 @@ void WavesBehavior::OnExit()
 {
 	/// Remove this behavior from the behavior system
 	Behaviors< WavesBehavior >()->RemoveComponent( this );
-}
-
-/// @brief update, currently not used
-void WavesBehavior::OnUpdate(float dt)
-{
-	/// Do Waves Debug Stuff
 }
 
 /// @brief update waves behavior and handle when things should spawn
@@ -132,7 +132,7 @@ void WavesBehavior::OnFixedUpdate()
 						{
 							waves[currentWave].groups[i].spawner = 0;
 						}
-						Spawn(waves[currentWave].groups[i].name, i);
+						Spawn(waves[currentWave].groups[i].enemy, i);
 					}
 				}
 			}
@@ -173,14 +173,13 @@ float WavesBehavior::getTimer()
 //-----------------------------------------------------------------------------
 
 /// @brief spawn an enemy with given name from given entity group
-/// @param name  - the name of the enemy to spawn
+/// @param enemy - the enemy to spawn
 /// @param group - enemyGroup to spawn from
-void WavesBehavior::Spawn(std::string name, int group)
+void WavesBehavior::Spawn(Entity const* enemy, int group)
 {
-	const Entity* entity = AssetLibrary<Entity>()->GetAsset(name);
-	if (entity)
+	if (enemy)
 	{
-		Entity* copy = entity->Clone();
+		Entity* copy = enemy->Clone();
 		Transform* copyTransform = copy->GetComponent<Transform>();
 		if (spawners.size() == 0)
 		{
@@ -208,10 +207,6 @@ void WavesBehavior::readWaves(nlohmann::ordered_json const& data)
 	for (int i = 0; i < data.size(); ++i)
 	{
 		Stream::Read(waves[i], data[i]);
-	}
-	if (numWaves > 0 && waves[0].groups.size() > 0)
-	{
-		base = waves[0].groups[0].enemy;
 	}
 }
 
@@ -247,11 +242,10 @@ void WavesBehavior::Wave::readGroups(nlohmann::ordered_json const& json)
 	}
 }
 
-/// @brief read the name of an enemy group
-void WavesBehavior::EnemyGroup::readName(nlohmann::ordered_json const& json)
+/// @brief read the enemy of an enemy group
+void WavesBehavior::EnemyGroup::readEnemy(nlohmann::ordered_json const& json)
 {
-	name = Stream::Read<std::string>(json);
-	enemy = AssetLibrarySystem<Entity>::GetInstance()->GetAsset(name);
+    Stream::Read( enemy, json );
 }
 
 /// @brief read the enemy amount of an enemy group
@@ -321,7 +315,7 @@ nlohmann::ordered_json WavesBehavior::EnemyGroup::Write() const
 {
 	nlohmann::ordered_json data;
 
-	data["EnemyName"] = name;
+	data["Enemy"] = Stream::Write( enemy );
 	data["Amount"] = enemyAmount;
 	data["SpawnInterval"] = spawnInterval;
 	data["InitialOffset"] = offset;
@@ -349,7 +343,7 @@ ReadMethodMap<WavesBehavior::Wave> const WavesBehavior::Wave::s_ReadMethods =
 /// @brief read method map for an enemy group
 ReadMethodMap<WavesBehavior::EnemyGroup> const WavesBehavior::EnemyGroup::s_ReadMethods =
 {
-	{ "EnemyName",			  &readName},
+	{ "Enemy",                &readEnemy},
 	{ "Amount",				  &readAmount},
 	{ "SpawnInterval",		  &readInterval},
 	{ "InitialOffset",		  &readOffset},
