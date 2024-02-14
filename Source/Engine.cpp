@@ -157,16 +157,7 @@
     /// @brief  Loads the engine config from "Data/EngineConfig.json"
     void Engine::load()
     {
-        nlohmann::ordered_json json = Stream::ReadFromFile( "Data/EngineConfig.json" );
-
-        try
-        {
-            Stream::Read( *this, json );
-        }
-        catch ( std::runtime_error error )
-        {
-            std::cerr << error.what();
-        }
+        Stream::ReadFromFile( this, "Data/EngineConfig.json" );
     }
 
     /// @brief  Initializes the engine and all Systems in the Engine
@@ -295,12 +286,17 @@
             // throw an error if token not found
             if ( addSystemMethod == s_AddSystemMethods.end() )
             {
-                Debug() << "WARNING: unable to create unrecognized System type \"" << key << "\"" << std::endl;
+                Debug() << "WARNING: unable to create unrecognized System type \"" << key << "\" at "
+                    << Stream::GetDebugLocation() << std::endl;
                 continue;
             }
+
+            Stream::PushDebugLocation( key + "." );
            
             System* system = ( this->*addSystemMethod->second )(); // create and add the System to the Engine
             Stream::Read( system, value ); // have the System load itself
+
+            Stream::PopDebugLocation();
         }
     }
 

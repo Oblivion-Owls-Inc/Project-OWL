@@ -39,10 +39,11 @@ class Stream
 public: // methods
 //------------------------------------------------------------------------------
 
-	/// @brief	Opens and parses a json document.
-	/// @param  filepath    name of the file to read from.
-	/// @return	the parsed json data
-	static nlohmann::ordered_json ReadFromFile( std::string const& filepath );
+	/// @brief	Opens and parses a json document
+    /// @param  object      the object to read the JSON data into
+	/// @param  filepath    name of the file to read from
+	static void ReadFromFile( ISerializable* object, std::string const& filepath );
+
 
     /// @brief Read the SDL Controller Mappings
     /// @param filepath - The .txt file containing the mappings.
@@ -70,6 +71,7 @@ public: // methods
     /// @param  value       the value to paste the clipboard into
     template< typename ValueType >
     static void PasteFromClipboard( ValueType& value );
+
 
 //-----------------------------------------------------------------------------
 public: // reading
@@ -171,8 +173,38 @@ public: // writing
 private: // static variables
 //-----------------------------------------------------------------------------
     
+
     /// @brief  clipboard used for copy and pasting data around the editor
-    static nlohmann::ordered_json m_Clipboard;
+    static nlohmann::ordered_json s_Clipboard;
+
+    
+//-----------------------------------------------------------------------------
+public: // debug stack
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  pushes a Debug Location name to the DebugLocationStack
+    /// @param  locationName    the name of the location to push
+    static void PushDebugLocation( std::string const& locationName );
+
+
+    /// @brief  pops a Debug Location name from the DebugLocationStack
+    static void PopDebugLocation();
+
+
+    /// @brief  gets the DebugLocation as a string to print
+    /// @return the DebugLocation as a string
+    static std::string GetDebugLocation();
+
+
+//-----------------------------------------------------------------------------
+private: // debug stack
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  stack of strings representing the current location in the JSON file
+    static std::vector< std::string > s_DebugLocationStack;
+    
 
 //-----------------------------------------------------------------------------
 private: // pointer-aware methods

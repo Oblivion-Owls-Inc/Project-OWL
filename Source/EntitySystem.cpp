@@ -577,10 +577,14 @@
     {
         for ( auto& [ name, entityData ] : data.items() )
         {
+            Stream::PushDebugLocation( name + "." );
+
             Entity* entity = new Entity();
             Stream::Read( entity, entityData );
             m_Entities.push_back( entity );
             addLoadedChildren( entity );
+
+            Stream::PopDebugLocation();
         }
 
         for ( Entity* entity : m_Entities )
