@@ -47,6 +47,8 @@
             name = &m_CurrentSceneName;
         }
 
+        Debug() << "Saving scene \"" << name << "\"..." << std::endl;
+
         Stream::WriteToFile( scenePath( *name ), Scene().Write() );
     }
 
@@ -367,6 +369,7 @@
     /// @brief  Loads the next Scene
     void SceneSystem::loadScene()
     {
+        Debug() << "Loading Scene \"" << m_CurrentSceneName << "\"..." << std::endl;
 
         nlohmann::ordered_json json = Stream::ReadFromFile( scenePath( m_CurrentSceneName ) );
 
@@ -385,6 +388,8 @@
     /// @brief  Initializes the current Scene
     void SceneSystem::initScene()
     {
+        Debug() << "Initializing Scene \"" << m_CurrentSceneName << "\"..." << std::endl;
+
         for ( System* system : Engine::GetInstance()->GetSystems() )
         {
             system->OnSceneInit();
@@ -394,6 +399,8 @@
     /// @brief  Exits the current Scene
     void SceneSystem::exitScene()
     {
+        Debug() << "Exiting Scene \"" << m_CurrentSceneName << "\"..." << std::endl;
+
         for ( System* system : Engine::GetInstance()->GetSystems() )
         {
             system->OnSceneExit();
