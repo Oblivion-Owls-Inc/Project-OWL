@@ -332,7 +332,9 @@
                         }
                     },
                     "EnemyBehavior": {
-                        "PathfinderName": "Tiles",
+                        "PathfinderEntity": {
+                            "EntityName": "Tiles"
+                        },
                         "Speed": 10.0,
                         "Damage": 1
                     },
@@ -607,7 +609,6 @@
                     "IsSpatial": false,
                     "AllowMultipleSounds": false
                 },
-                "BaseBehavior": {},
                 "CircleCollider": {
                     "Radius": 1.0,
                     "CollisionLayer": 3,
@@ -624,6 +625,9 @@
                         "BaseValue": 5,
                         "CurrentValue": 5
                     }
+                },
+                "HomeBase": {
+                    "GameOverScene": "Gameover"
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -818,7 +822,7 @@
                         },
                         {
                             "WaveTime": 0.0,
-                            "WaveNextTime": 12.920777320861816,
+                            "WaveNextTime": 6.524757385253906,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
@@ -881,7 +885,7 @@
                 "Transform": {
                     "Translation": [
                         0.0,
-                        0.0
+                        -4.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -6130,8 +6134,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -8.773333549499512,
-                                7.128334045410156
+                                -15.0,
+                                6.5
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -6517,15 +6521,15 @@
                     "DamageRate": 10.0,
                     "CollideWithLayers": 3,
                     "Direction": [
-                        1.0,
-                        0.0
+                        -0.9299333691596985,
+                        0.36772796511650085
                     ],
                     "IsFiring": false
                 },
                 "Transform": {
                     "Translation": [
-                        0.0,
-                        0.0
+                        -15.0,
+                        5.5
                     ],
                     "Rotation": 0.0,
                     "Scale": [

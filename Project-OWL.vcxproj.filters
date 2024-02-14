@@ -204,12 +204,6 @@
     <Filter Include="Game\Components\Behaviors\WavesBehavior">
       <UniqueIdentifier>{90ac62ba-a1a3-4ca9-8797-8d0f816804f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Behaviors\BaseBehavior">
-      <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Components\Behaviors\BasicEntityBehavior">
-      <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Health">
       <UniqueIdentifier>{e836e623-5921-472f-89b0-6e67007a2028}</UniqueIdentifier>
     </Filter>
@@ -308,6 +302,9 @@
     </Filter>
     <Filter Include="Engine\Framework\References\AssetReference">
       <UniqueIdentifier>{1cf9ebca-9257-404d-9e46-92d01180452a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\HomeBase">
+      <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -515,11 +512,8 @@
     <ClCompile Include="Source\ParticleSystem.cpp">
       <Filter>Engine\Systems\ParticleSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BaseBehavior.cpp">
-      <Filter>Game\Components\Behaviors\BaseBehavior</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BasicEntityBehavior.cpp">
-      <Filter>Game\Components\Behaviors\BasicEntityBehavior</Filter>
+    <ClCompile Include="Source\HomeBase.cpp">
+      <Filter>Game\Components\HomeBase</Filter>
     </ClCompile>
     <ClCompile Include="Source\Inspection.cpp">
       <Filter>Engine\Framework\Inspection</Filter>
@@ -835,11 +829,8 @@
     <ClInclude Include="Source\ParticleSystem.h">
       <Filter>Engine\Systems\ParticleSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BaseBehavior.h">
-      <Filter>Game\Components\Behaviors\BaseBehavior</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BasicEntityBehavior.h">
-      <Filter>Game\Components\Behaviors\BasicEntityBehavior</Filter>
+    <ClInclude Include="Source\HomeBase.h">
+      <Filter>Game\Components\HomeBase</Filter>
     </ClInclude>
     <ClInclude Include="Source\Inspection.h">
       <Filter>Engine\Framework\Inspection</Filter>

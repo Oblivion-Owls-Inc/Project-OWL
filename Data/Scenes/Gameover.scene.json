@@ -34,7 +34,16 @@
             "Name": "Camera",
             "Components": {
                 "Camera": {
-                    "Width": 30.0
+                    "Width": 30.0,
+                    "IsActive": true
+                },
+                "Light": {
+                    "Radius": 20.0,
+                    "Strength": 20.0,
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ]
                 },
                 "Transform": {
                     "Translation": [
@@ -47,12 +56,9 @@
                         1.0
                     ],
                     "IsDiegetic": true
-                },
-                "Light": {
-                    "Radius": 20.0,
-                    "Strength": 20.0
                 }
-            }
+            },
+            "Children": null
         },
         "Background": {
             "Name": "Background",
@@ -67,7 +73,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Background"
+                    "Texture": {
+                        "AssetName": "Background"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -81,7 +89,8 @@
                     ],
                     "IsDiegetic": true
                 }
-            }
+            },
+            "Children": null
         },
         "YouLose": {
             "Name": "YouLose",
@@ -119,7 +128,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "FontSheet"
+                    "Texture": {
+                        "AssetName": "FontSheet"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -133,7 +144,8 @@
                     ],
                     "IsDiegetic": false
                 }
-            }
+            },
+            "Children": null
         }
     }
 }

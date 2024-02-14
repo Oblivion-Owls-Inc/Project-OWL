@@ -193,8 +193,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\FileExplorer.cpp" />
     <ClCompile Include="imgui\imgui_stdlib.cpp" />
-    <ClCompile Include="Source\BasicEntityBehavior.cpp" />
-    <ClCompile Include="Source\BaseBehavior.cpp" />
+    <ClCompile Include="Source\HomeBase.cpp" />
     <ClCompile Include="Source\CheatSystem.cpp" />
     <ClCompile Include="Source\BulletBehavior.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
@@ -307,8 +306,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="imgui\imgui_stdlib.h" />
     <ClInclude Include="Source\GeneratorBehavior.h" />
     <ClInclude Include="Source\Inspection.h" />
-    <ClInclude Include="Source\BasicEntityBehavior.h" />
-    <ClInclude Include="Source\BaseBehavior.h" />
+    <ClInclude Include="Source\HomeBase.h" />
     <ClInclude Include="Source\CheatSystem.h" />
     <ClInclude Include="Source\BulletBehavior.h" />
     <ClInclude Include="Source\Camera.h" />

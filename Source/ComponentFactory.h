@@ -46,7 +46,7 @@ public: // methods
     /// @brief  gets the std::type_index of the Component type with the specified name
     /// @param  typeName    the type name of the Component type to get
     /// @return the std::type_index of the Component type
-    static std::type_index GetTypeId( std::string const& typeName );
+    static std::type_index const* GetTypeId( std::string const& typeName );
 
     /// @brief  gets the name of the Component type with the specified type_index
     /// @param  typeIndex    the type index of the Component type to get
@@ -64,7 +64,7 @@ private: // methods
     /// @brief  accesses the Component type map with error handling
     /// @param  typeName    the type of component to get info about
     /// @return the Component type info for the specified type name
-    static std::pair< std::type_index, Component* (*)() > const& GetComponentInfo( std::string const& typeName );
+    static std::pair< std::type_index, Component* (*)() > const* getComponentInfo( std::string const& typeName );
 
 //-----------------------------------------------------------------------------
 private: // data

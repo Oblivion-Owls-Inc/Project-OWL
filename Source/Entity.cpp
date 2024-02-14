@@ -566,8 +566,15 @@
         for ( auto& [ key, value ] : data.items() )
 	    {
 
+            // verify that the Component type is valid
+            std::type_index const* type = ComponentFactory::GetTypeId( key );
+            if ( type == nullptr )
+            {
+                continue;
+            }
+
             // [] operator finds the key in the map, or creates it if it doesn't exist yet.
-            Component*& component = m_Components[ ComponentFactory::GetTypeId( key ) ];
+            Component*& component = m_Components[ *type ];
 
             // if the component doesn't exist yet, create and add it.
             if ( component == nullptr )

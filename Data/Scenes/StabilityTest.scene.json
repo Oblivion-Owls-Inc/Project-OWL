@@ -204,8 +204,8 @@
                 "EditorCameraController": {},
                 "Transform": {
                     "Translation": [
-                        15.008869171142578,
-                        -30.81899642944336
+                        15.594728469848633,
+                        -12.136682510375977
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -1931,6 +1931,12 @@
                     "Radius": 1.149999976158142,
                     "CollisionLayer": 3,
                     "CollisionLayerFlags": 0
+                },
+                "GeneratorBehavior": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 0,
+                    "Active": false
                 },
                 "Sprite": {
                     "Layer": 2,

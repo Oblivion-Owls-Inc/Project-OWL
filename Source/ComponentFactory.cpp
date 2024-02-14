@@ -35,7 +35,7 @@
 #include "WavesBehavior.h"
 #include "EmitterSprite.h"
 #include "Emitter.h"
-#include "BaseBehavior.h"
+#include "HomeBase.h"
 #include "Health.h"
 #include "GeneratorBehavior.h"
 #include "UiElement.h"
@@ -63,15 +63,27 @@
     /// @return the created component
     Component* ComponentFactory::Create( std::string const& typeName )
     {
-        return GetComponentInfo( typeName ).second();
+        std::pair< std::type_index, Component* (*)() > const* componentInfo = getComponentInfo( typeName );
+        if ( componentInfo == nullptr )
+        {
+            return nullptr;
+        }
+
+        return componentInfo->second();
     }
 
     /// @brief  gets the std::type_index of the Component type with the specified name
     /// @param  typeName    the type name of the Component type to get
     /// @return the std::type_index of the Component type
-    std::type_index ComponentFactory::GetTypeId( std::string const& typeName )
+    std::type_index const* ComponentFactory::GetTypeId( std::string const& typeName )
     {
-        return GetComponentInfo( typeName ).first;
+        std::pair< std::type_index, Component* (*)() > const* componentInfo = getComponentInfo( typeName );
+        if ( componentInfo == nullptr )
+        {
+            return nullptr;
+        }
+
+        return &componentInfo->first;
     }
 
     /// @brief  gets the name of the Component type with the specified type_index
@@ -98,18 +110,16 @@
     /// @brief  accesses the Component type map with error handling
     /// @param  typeName    the type of component to get info about
     /// @return the Component type info for the specified type name
-    std::pair< std::type_index, Component* (*)() > const& ComponentFactory::GetComponentInfo( std::string const& typeName )
+    std::pair< std::type_index, Component* (*)() > const* ComponentFactory::getComponentInfo( std::string const& typeName )
     {
         auto iterator = s_ComponentTypes.find( typeName );
         if ( iterator == s_ComponentTypes.end() )
         {
-            throw std::runtime_error(
-                std::string() +
-                "Error: could not find Component Type with name \"" +
-                typeName + '\"'
-            );
+            Debug() <<  "WARNING: could not create unrecognized Component type \""
+                << typeName << "\"" << std::endl;
+            return nullptr;
         }
-        return iterator->second;
+        return &iterator->second;
     }
 
 //-----------------------------------------------------------------------------
@@ -159,7 +169,7 @@
         { "WavesBehavior"          , ComponentInfo< WavesBehavior >()           },
         { "Emitter"                , ComponentInfo< Emitter >()                 },
         { "EmitterSprite"          , ComponentInfo< EmitterSprite >()           },
-        { "BaseBehavior"           , ComponentInfo< BaseBehavior >()            },
+        { "HomeBase"               , ComponentInfo< HomeBase >()                },
         { "Health"                 , ComponentInfo< Health >()                  },
         { "UiElement"              , ComponentInfo< UiElement >()               },
         { "MiningLaser"            , ComponentInfo< MiningLaser >()             },

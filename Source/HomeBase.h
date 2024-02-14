@@ -1,81 +1,71 @@
-/// @file       ExampleComponent.h
-/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      DESCRIPTION HERE
-/// @version    0.1
-/// @date       DATE HERE
-/// 
-/// @copyright  Copyright (c) 2024 Digipen Institute of Technology
+///*****************************************************************/
+/// @file	    HomeBase.h
+/// @author     Tyler Birdsall (tyler.birdsall@digipen.edu)
+/// @date	    10/27/2023
+/// @brief      HomeBase class header
+/// @copyright  Digipen LLC (c) 2023
+///*****************************************************************/
 
 #pragma once
-
 #include "Component.h"
 
 
-/// @brief  DESCRIPTION HERE
-class ExampleComponent : public Component
+class HomeBase :
+    public Component
 {
 //-----------------------------------------------------------------------------
-public: // constructor / Destructor
+public: // constructor / destructors
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  default constructor
-    ExampleComponent();
+    /// @brief  constructor
+    HomeBase();
 
 
 //-----------------------------------------------------------------------------
-public: // methods
+public: // public method
 //-----------------------------------------------------------------------------
 
 
-//-----------------------------------------------------------------------------
-public: // accessors
-//-----------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------------
-public: // virtual override methods
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  called once when entering the scene
-    virtual void OnInit() override;
-
-    /// @brief  called once when exiting the scene
-    virtual void OnExit() override;
-
-
+    /// @brief destroy the base
+    void Destroy();
+    
+    
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
+    
+    /// @brief  the name of the scene to transition to when the base dies
+    std::string m_GameOverSceneName = "Gameover";
 
-//-----------------------------------------------------------------------------
-private: // methods
-//-----------------------------------------------------------------------------
-
-
+    
 //-----------------------------------------------------------------------------
 public: // inspection
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  shows the inspector for ExampleComponent
+    /// @brief  inspector for this HomeBase
     virtual void Inspector() override;
 
-
+    
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
+    
+    /// @brief  reads the name of the scene to transition to when the base dies
+    /// @param  data    the JSON data to read from
+    void readGameOverSceneName( nlohmann::ordered_json const& data );
 
+    
 //-----------------------------------------------------------------------------
 public: // reading / writing
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
+    /// @brief  gets the map of read methods for this HomeBase
+    /// @return the map of read methods for this HomeBase
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
@@ -83,30 +73,29 @@ public: // reading / writing
     /// @return The JSON file containing the data.
     virtual nlohmann::ordered_json Write() const override;
 
-    
+
 //-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  clones this ExampleComponent
-    /// @return the newly created clone of this ExampleComponent
-    virtual ExampleComponent* Clone() const override;
+    /// @brief Base clone
+    virtual HomeBase* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
 private: // copying
 //-----------------------------------------------------------------------------
+    
+
+    /// @brief copy ctor
+    HomeBase( HomeBase const& other);
 
 
-    /// @brief  copy-constructor for the ExampleComponent
-    /// @param  other   the other ExampleComponent to copy
-    ExampleComponent( ExampleComponent const& other );
-
-
-    // diable = operator
-    void operator =( ExampleComponent const& ) = delete;
+    void operator =( HomeBase const& ) = delete;
 
 
 //-----------------------------------------------------------------------------
 };
+
+

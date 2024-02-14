@@ -7,7 +7,6 @@
 ///*****************************************************************/
 
 #pragma once
-#include "BasicEntityBehavior.h"
 #include "Behavior.h"
 #include "Transform.h"
 #include "Pool.h"
