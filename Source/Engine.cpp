@@ -161,8 +161,7 @@
 
         try
         {
-            Engine* self = this; // convert from rvalue into lvalue
-            Stream::Read( self, json );
+            Stream::Read( *this, json );
         }
         catch ( std::runtime_error error )
         {
@@ -296,14 +295,8 @@
             // throw an error if token not found
             if ( addSystemMethod == s_AddSystemMethods.end() )
             {
-                throw std::runtime_error(
-                    (
-                        std::stringstream() <<
-                        "unrecognized token \"" <<
-                        key <<
-                        "\" encountered while reading Systems in Engine"
-                    ).str()
-                );
+                Debug() << "WARNING: unable to create unrecognized System type \"" << key << "\"" << std::endl;
+                continue;
             }
            
             System* system = ( this->*addSystemMethod->second )(); // create and add the System to the Engine
@@ -348,6 +341,7 @@
         { "BehaviorSystem<Animation>"             , &addSystem< BehaviorSystem< Animation              > > },
         { "BehaviorSystem<EffectAnimator>"        , &addSystem< BehaviorSystem< EffectAnimator         > > },
         { "BehaviorSystem<WavesBehavior>"         , &addSystem< BehaviorSystem< WavesBehavior          > > },
+        { "BehaviorSystem<EnemyBehavior>"         , &addSystem< BehaviorSystem< EnemyBehavior          > > },
         { "BehaviorSystem<GeneratorBehavior>"     , &addSystem< BehaviorSystem< GeneratorBehavior      > > },
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
 

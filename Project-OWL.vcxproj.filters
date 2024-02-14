@@ -303,11 +303,11 @@
     <Filter Include="Game\Components\HomeBase">
       <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Lifetime">
-      <UniqueIdentifier>{334bddc5-1ff2-4bb8-abf2-e472e77067cf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Components\Bullet">
       <UniqueIdentifier>{42316e6c-49e4-4c2f-a9b0-0ef8aaa91507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\Lifetime">
+      <UniqueIdentifier>{334bddc5-1ff2-4bb8-abf2-e472e77067cf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -618,7 +618,7 @@
       <Filter>Engine\Framework\References\AssetReference</Filter>
     </ClCompile>
     <ClCompile Include="Source\Lifetime.cpp">
-      <Filter>Engine\Entity\Component\Lifetime</Filter>
+      <Filter>Engine\Entity\Component\Behavior\Lifetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -938,7 +938,7 @@
       <Filter>Engine\Framework\References\EntityReference</Filter>
     </ClInclude>
     <ClInclude Include="Source\Lifetime.h">
-      <Filter>Engine\Entity\Component\Lifetime</Filter>
+      <Filter>Engine\Entity\Component\Behavior\Lifetime</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

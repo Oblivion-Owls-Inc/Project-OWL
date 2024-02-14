@@ -153,7 +153,8 @@
     /// @brief  copy-constructor for the Lifetime
     /// @param  other   the other Lifetime to copy
     Lifetime::Lifetime( Lifetime const& other ) :
-        Behavior( other )
+        Behavior( other ),
+        m_Lifetime( other.m_Lifetime )
     {}
 
 

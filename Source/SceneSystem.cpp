@@ -47,7 +47,7 @@
             name = &m_CurrentSceneName;
         }
 
-        Debug() << "Saving scene \"" << name << "\"..." << std::endl;
+        Debug() << "Saving scene \"" << *name << "\"..." << std::endl;
 
         Stream::WriteToFile( scenePath( *name ), Scene().Write() );
     }

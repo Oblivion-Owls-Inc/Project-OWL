@@ -548,8 +548,10 @@
                         "BulletDamage": 10,
                         "BulletSpeed": 10.0,
                         "BulletSize": 0.30000001192092896,
-                        "BulletName": "Bullet",
-                        "Target": "Enemy"
+                        "ObstructionLayers": 1,
+                        "BulletPrefab": {
+                            "AssetName": "Bullet"
+                        }
                     }
                 },
                 "Children": null

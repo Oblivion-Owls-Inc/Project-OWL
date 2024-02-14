@@ -44,6 +44,14 @@
     }
 
 
+    /// @brief  gets this EnemyBehavior's attached Transform Component
+    /// @return this EnemyBehavior's attached Transform Component
+    Transform const* EnemyBehavior::GetTransform() const
+    {
+        return m_Transform;
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: virtual override methods
 //-----------------------------------------------------------------------------
@@ -52,7 +60,7 @@
     /// @brief initializes the component
     void EnemyBehavior::OnInit()
     {
-        Behaviors< Behavior >()->AddComponent(this);
+        Behaviors< EnemyBehavior >()->AddComponent( this );
 
         m_Health.SetOnConnectCallback(
             [ this ]( Health* health )
@@ -85,7 +93,7 @@
     /// @brief Removes this behavior from the behavior system on exit
     void EnemyBehavior::OnExit()
     {
-        Behaviors<Behavior>()->RemoveComponent(this);
+        Behaviors< EnemyBehavior >()->RemoveComponent( this );
 
         m_RigidBody  .Exit( GetEntity() );
         m_Transform  .Exit( GetEntity() );

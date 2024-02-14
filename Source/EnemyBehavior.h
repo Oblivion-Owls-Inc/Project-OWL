@@ -41,6 +41,11 @@ public: // accessors
     int GetDamage() const;
 
 
+    /// @brief  gets this EnemyBehavior's attached Transform Component
+    /// @return this EnemyBehavior's attached Transform Component
+    Transform const* GetTransform() const;
+
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
