@@ -10,8 +10,6 @@
 #include "DebugSystem.h"
 #include "Engine.h"
 
-#include "Collider.h"
-#include "Transform.h"
 #include "StaticBody.h"
 
 //-----------------------------------------------------------------------------
@@ -67,16 +65,25 @@
     void RigidBody::OnInit()
     {
         BehaviorSystem< RigidBody >::GetInstance()->AddComponent( this );
-        m_Transform = GetEntity()->GetComponent<Transform>();
-        m_Collider = GetEntity()->GetComponent<Collider>();
-        
-        if ( m_Collider != nullptr )
-        {
-            m_Collider->AddOnCollisionCallback(
-                GetId(),
-                std::bind( &RigidBody::OnCollision, this, std::placeholders::_1, std::placeholders::_2 )
-            );
-        }
+
+        m_Collider.SetOnConnectCallback(
+            [ this ]( Collider* component )
+            {
+                component->AddOnCollisionCallback(
+                    GetId(),
+                    std::bind( &RigidBody::OnCollision, this, std::placeholders::_1, std::placeholders::_2 )
+                );
+            }
+        );
+        m_Collider.SetOnDisconnectCallback(
+            [ this ]( Collider* component )
+            {
+                component->RemoveOnCollisionCallback( GetId() );
+            }
+        );
+
+        m_Transform.Init( GetEntity() );
+        m_Collider .Init( GetEntity() );
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
@@ -85,10 +92,8 @@
     {
         BehaviorSystem< RigidBody >::GetInstance()->RemoveComponent( this );
 
-        if ( m_Collider != nullptr )
-        {
-            m_Collider->RemoveOnCollisionCallback( GetId() );
-        }
+        m_Transform.Exit( GetEntity() );
+        m_Collider .Exit( GetEntity() );
     }
 
     /// @brief Update method called per frame.
@@ -101,6 +106,11 @@
     /// @brief Fixed update method called at a fixed time step.
     void RigidBody::OnFixedUpdate()
     {
+        if ( m_Transform == nullptr )
+        {
+            return;
+        }
+
         float dt = Engine::GetInstance()->GetFixedFrameDuration();
 
         // linear movement
@@ -123,13 +133,29 @@
     /// @brief Used by the Debug System to display information about this Component
     void RigidBody::Inspector()
     {
-        ImGui::DragFloat2("Velocity", &m_Velocity.x);
-        ImGui::DragFloat2("Acceleration", &m_Acceleration.x);
-        ImGui::DragFloat("Rotational Velocity", &m_RotationalVelocity);
-        ImGui::DragFloat("Mass", &m_Mass, 0.05f, 0.05f, 1000000.0f);
-        ImGui::DragFloat("Restitution", &m_Restitution, 0.05f, 0.0f, 1.0f);
-        ImGui::DragFloat("Friction", &m_Friction, 0.05f, 0.0f, 1000000.0f);
-        ImGui::DragFloat("Drag", &m_Drag, 0.05f, 0.0f, 1000000.0f);
+        if ( m_Transform == nullptr )
+        {
+            ImGui::Text( "WARNING: no Transform attached" );
+        }
+
+        if ( m_Collider == nullptr )
+        {
+            ImGui::Text( "no Collider attached" );
+        }
+
+        ImGui::DragFloat2( "Velocity", &m_Velocity.x );
+
+        ImGui::DragFloat2( "Acceleration", &m_Acceleration.x );
+
+        ImGui::DragFloat( "Rotational Velocity", &m_RotationalVelocity );
+
+        ImGui::DragFloat( "Mass", &m_Mass, 0.05f, 0.05f, INFINITY );
+
+        ImGui::DragFloat( "Restitution", &m_Restitution, 0.05f, 0.0f, 1.0f );
+
+        ImGui::DragFloat( "Friction", &m_Friction, 0.05f, 0.0f, INFINITY );
+
+        ImGui::DragFloat( "Drag", &m_Drag, 0.05f, 0.0f, INFINITY );
     }
 
 
@@ -238,49 +264,72 @@
     /// @param data the json data
     void RigidBody::readVelocity( nlohmann::ordered_json const& data )
     {
-        m_Velocity = Stream::Read< 2, float >(data);
+        Stream::Read( &m_Velocity, data );
     }
 
     /// @brief reads the acceleration from json
     /// @param data the json data
     void RigidBody::readAcceleration( nlohmann::ordered_json const& data )
     {
-        m_Acceleration = Stream::Read< 2, float >(data);
+        Stream::Read( &m_Acceleration, data );
     }
 
     /// @brief reads the rotationalVelocity from json
     /// @param data the json data
     void RigidBody::readRotationalVelocity( nlohmann::ordered_json const& data )
     {
-        m_RotationalVelocity = Stream::Read< float >(data);
+        Stream::Read( m_RotationalVelocity, data );
     }
 
     /// @brief reads the inverseMass from json
     /// @param data the json data
     void RigidBody::readMass( nlohmann::ordered_json const& data )
     {
-        m_Mass = Stream::Read<float>(data);
+        Stream::Read( m_Mass, data );
     }
 
     /// @brief reads the restitution from json
     /// @param data the json data
     void RigidBody::readRestitution( nlohmann::ordered_json const& data )
     {
-        m_Restitution = Stream::Read<float>(data);
+        Stream::Read( m_Restitution, data );
     }
 
     /// @brief reads the friction from json
     /// @param data the json data
     void RigidBody::readFriction( nlohmann::ordered_json const& data )
     {
-        m_Friction = Stream::Read<float>(data);
+        Stream::Read( m_Friction, data );
     }
 
     /// @brief  reads te drag from json
     /// @param  data    the json data
     void RigidBody::readDrag( nlohmann::ordered_json const& data )
     {
-        m_Drag = Stream::Read<float>(data);
+        Stream::Read( m_Drag, data );
+    }
+
+    
+//-----------------------------------------------------------------------------
+// public: reading / writing
+//-----------------------------------------------------------------------------
+
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    ReadMethodMap< ISerializable > const& RigidBody::GetReadMethods() const
+    {
+        static ReadMethodMap< RigidBody > const readMethods = {
+            { "Velocity"          , &RigidBody::readVelocity           },
+            { "Acceleration"      , &RigidBody::readAcceleration       },
+            { "RotationalVelocity", &RigidBody::readRotationalVelocity },
+            { "Mass"              , &RigidBody::readMass               },
+            { "Restitution"       , &RigidBody::readRestitution        },
+            { "Friction"          , &RigidBody::readFriction           },
+            { "Drag"              , &RigidBody::readDrag               }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
     }
 
     /// @brief  Write all RigidBody component data to a JSON file.
@@ -289,52 +338,48 @@
     {
         nlohmann::ordered_json data;
 
-        data["Velocity"] = Stream::Write(m_Velocity);
-        data["Acceleration"] = Stream::Write(m_Acceleration);
-        data["RotationalVelocity"] = m_RotationalVelocity;
-        data["Mass"] = m_Mass;
-        data["Restitution"] = m_Restitution;
-        data["Friction"] = m_Friction;
-        data["Drag"] = m_Drag;
+        data[ "Velocity"           ] = Stream::Write( m_Velocity           );
+        data[ "Acceleration"       ] = Stream::Write( m_Acceleration       );
+        data[ "RotationalVelocity" ] = Stream::Write( m_RotationalVelocity );
+        data[ "Mass"               ] = Stream::Write( m_Mass               );
+        data[ "Restitution"        ] = Stream::Write( m_Restitution        );
+        data[ "Friction"           ] = Stream::Write( m_Friction           );
+        data[ "Drag"               ] = Stream::Write( m_Drag               );
 
         return data;
     }
 
-    /// @brief the map of read methods for RigidBodys
-    ReadMethodMap< RigidBody > RigidBody::s_ReadMethods = {
-        { "Velocity"           , &readVelocity           },
-        { "Acceleration"       , &readAcceleration       },
-        { "RotationalVelocity" , &readRotationalVelocity },
-        { "Mass"               , &readMass               },
-        { "Restitution"        , &readRestitution        },
-        { "Friction"           , &readFriction           },
-        { "Drag"               , &readDrag               }
-    };
+    
+//-----------------------------------------------------------------------------
+// public: copying
+//-----------------------------------------------------------------------------
 
+
+    /// @brief  clones this RigidBody
+    /// @return the newly created clone of this RigidBody
+    RigidBody* RigidBody::Clone() const
+    {
+        return new RigidBody( *this );
+    }
+
+    
 //-----------------------------------------------------------------------------
 // private: copying
 //-----------------------------------------------------------------------------
 
-    /// @brief  clones this RigidBody
-    /// @return the newly created clone of this RigidBody
-    Component* RigidBody::Clone() const
-    {
-        return (Component*) new RigidBody(*this);
-    }
 
     /// @brief  copy-constructor for the RigidBody
     /// @param  other   the other RigidBody to copy
     RigidBody::RigidBody(const RigidBody& other) :
         Behavior( other ),
-        m_Velocity(           other.m_Velocity           ),
-        m_Acceleration(       other.m_Acceleration       ),
+        m_Velocity          ( other.m_Velocity           ),
+        m_Acceleration      ( other.m_Acceleration       ),
         m_RotationalVelocity( other.m_RotationalVelocity ),
-        m_Mass(               other.m_Mass               ),
-        m_Restitution(        other.m_Restitution        ),
-        m_Friction(           other.m_Friction           ),
-        m_Drag(               other.m_Drag               ),
-        m_CollisionResolved( false ),
-        m_Transform( nullptr )
+        m_Mass              ( other.m_Mass               ),
+        m_Restitution       ( other.m_Restitution        ),
+        m_Friction          ( other.m_Friction           ),
+        m_Drag              ( other.m_Drag               )
     {}
+
 
 //-----------------------------------------------------------------------------

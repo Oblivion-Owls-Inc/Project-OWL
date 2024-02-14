@@ -39,26 +39,34 @@ Component * Pathfinder::Clone() const { return new Pathfinder(*this); }
 /// @brief  called when entering a scene - syncs with Tilemap
 void Pathfinder::OnInit()
 {
-    m_Tilemap = GetEntity()->GetComponent< Tilemap<int> >();
+    m_Tilemap.SetOnConnectCallback(
+        [ this ]( Tilemap< int >* tilemap )
+        {
+            tilemap->AddOnTilemapChangedCallback(
+                GetId(),
+                std::bind(
+                    &Pathfinder::onTilemapChangedCallback,
+                    this,
+                    std::placeholders::_1,
+                    std::placeholders::_2,
+                    std::placeholders::_3
+                )
+            );
+        }
+    );
+    m_Tilemap.SetOnDisconnectCallback(
+        [ this ]( Tilemap< int >* tilemap )
+        {
+            tilemap->RemoveOnTilemapChangedCallback( GetId() );
+        }
+    );
+    
+    m_Tilemap.Init( GetEntity() );
 
-#ifndef NDEBUG
     if ( m_Tilemap == nullptr )
     {
-        Debug() << "Warning: Pathfinder parent does not have Tilemap component." << std::endl;
         return;
     }
-#endif
-
-    m_Tilemap->AddOnTilemapChangedCallback(
-        GetId(),
-        std::bind(
-            &Pathfinder::onTilemapChangedCallback,
-            this,
-            std::placeholders::_1,
-            std::placeholders::_2,
-            std::placeholders::_3
-        )
-    );
 
     m_Nodes.resize( m_Tilemap->GetTilemap().size() );
     SetDestination(m_DestPos);
@@ -70,7 +78,7 @@ void Pathfinder::OnInit()
 /// @brief  called when exiting a scene - un-syncs (removes callback)
 void Pathfinder::OnExit()
 {
-    m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
+    m_Tilemap.Exit( GetEntity() );
 
     if (m_Thread.joinable())
         m_Thread.join();

@@ -16,26 +16,53 @@
 // public: constructor
 //-----------------------------------------------------------------------------
 
+
     /// @brief  default constructor
     TilemapCollider::TilemapCollider() :
         Collider( typeid( TilemapCollider ) )
     {}
 
+
 //-----------------------------------------------------------------------------
 // private: virtual overrides
 //-----------------------------------------------------------------------------
+
 
     /// @brief  called once when entering the scene
     void TilemapCollider::OnInit()
     {
         Collider::OnInit();
 
-        m_Tilemap = GetEntity()->GetComponent< Tilemap< int > >();
+        m_Tilemap.Init( GetEntity() );
     }
 
+
+    /// @brief  called once when exiting the scene
+    void TilemapCollider::OnExit()
+    {
+        Collider::OnExit();
+
+        m_Tilemap.Exit( GetEntity() );
+    }
+
+
 //-----------------------------------------------------------------------------
-// private: reading
+// public: reading / writing
 //-----------------------------------------------------------------------------
+
+    
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    ReadMethodMap< ISerializable > const& TilemapCollider::GetReadMethods() const
+    {
+        static ReadMethodMap< TilemapCollider > const readMethods = {
+            { "CollisionLayer"     , &TilemapCollider::readCollisionLayer      },
+            { "CollisionLayerFlags", &TilemapCollider::readCollisionLayerFlags }
+        };
+        
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
 
     /// @brief Write all TilemapCollider component data to a JSON file.
     /// @return The JSON file containing the TilemapCollider component data.
@@ -43,21 +70,17 @@
     {
         nlohmann::ordered_json data;
 
-        data[ "CollisionLayer" ] = GetCollisionLayer();
-        data[ "CollisionLayerFlags" ] = GetCollisionLayerFlags();
+        data[ "CollisionLayer"      ] = Stream::Write( GetCollisionLayer()      );
+        data[ "CollisionLayerFlags" ] = Stream::Write( GetCollisionLayerFlags() );
 
         return data;
     }
 
-    /// @brief map of the read methods for this Component
-    ReadMethodMap< TilemapCollider > TilemapCollider::s_ReadMethods = {
-        { "CollisionLayer"     , &readCollisionLayer      },
-        { "CollisionLayerFlags", &readCollisionLayerFlags }
-    };
 
 //-----------------------------------------------------------------------------
 // public: copying
 //-----------------------------------------------------------------------------
+
 
     /// @brief  virtual component clone function
     /// @return new clone of component
@@ -66,14 +89,17 @@
         return new TilemapCollider( *this );
     }
 
+
 //-----------------------------------------------------------------------------
 // private: copying
 //-----------------------------------------------------------------------------
+
 
     /// @brief  copy-constructor
     /// @param  other   the collider to copy
     TilemapCollider::TilemapCollider( TilemapCollider const& other ) :
         Collider( other )
     {}
+
 
 //-----------------------------------------------------------------------------

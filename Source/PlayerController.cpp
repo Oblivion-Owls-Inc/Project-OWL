@@ -85,6 +85,7 @@
 
         for ( AssetReference< AnimationAsset >& assetReference : m_Animations )
         {
+            assetReference.SetOwnerName( GetName() );
             assetReference.Init();
         }
     }

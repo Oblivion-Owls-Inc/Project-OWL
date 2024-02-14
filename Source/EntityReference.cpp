@@ -53,7 +53,7 @@
         if ( m_Entity == nullptr )
         {
             Debug() << "WARNING: Could not find Entity \"" << m_EntityName
-                << "\" (EntityReference owned by Entity \"" << m_OwnerName << "\")" << std::endl;
+                << "\" (EntityReference owned by Entity \"" << m_OwnerName << "\")\n" << std::endl;
             return;
         }
         #endif

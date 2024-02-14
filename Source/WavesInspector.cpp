@@ -322,7 +322,6 @@ void WavesBehavior::guiAddGroup()
 	EnemyGroup newGroup = EnemyGroup();
 	waves[inspectorWave].groups.push_back(newGroup);
 	inspectorGroup = (int)waves[inspectorWave].groups.size() - 1;
-	waves[inspectorWave].groups[inspectorGroup].enemy = *base;
 }
 
 /// @brief	removes a group from the behavior

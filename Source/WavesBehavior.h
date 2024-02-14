@@ -117,7 +117,6 @@ private: // data
 	int currentWave;
 	int inspectorWave;
 	int inspectorGroup;
-	AssetReference< Entity >* base;
 
 	class EnemyGroup : public ISerializable
 	{

@@ -42,8 +42,7 @@ WavesBehavior::WavesBehavior(const WavesBehavior& other)
 	numWaves(other.numWaves),
 	currentWave(other.currentWave),
 	inspectorWave(other.inspectorWave),
-	inspectorGroup(other.inspectorGroup),
-	base( nullptr )
+	inspectorGroup(other.inspectorGroup)
 {
 	waves = other.waves;
 }
@@ -208,10 +207,6 @@ void WavesBehavior::readWaves(nlohmann::ordered_json const& data)
 	for (int i = 0; i < data.size(); ++i)
 	{
 		Stream::Read(waves[i], data[i]);
-	}
-	if (numWaves > 0 && waves[0].groups.size() > 0)
-	{
-		base = &waves[0].groups[0].enemy;
 	}
 }
 

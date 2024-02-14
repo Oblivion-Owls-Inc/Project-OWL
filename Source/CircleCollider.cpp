@@ -13,9 +13,6 @@
 #include "DebugSystem.h"
 #include "RenderSystem.h"
 
-#include "Transform.h"
-#include "Entity.h"
-
 //-----------------------------------------------------------------------------
 // public: constructor
 //-----------------------------------------------------------------------------

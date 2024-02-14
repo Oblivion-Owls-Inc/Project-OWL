@@ -14,6 +14,9 @@
 
 #include "Component.h"
 
+#include "ComponentReference.h"
+#include "Transform.h"
+
 #include <map>
 #include <functional>
 
@@ -22,8 +25,6 @@
 //-----------------------------------------------------------------------------
 
 struct CollisionData;
-
-class Transform;
 
 //-----------------------------------------------------------------------------
 // typedefs
@@ -200,7 +201,7 @@ private: // member variables
 
     
     /// @brief The transform of this Collider's Entity
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
 
     /// @brief  the collision layer of this Collider
