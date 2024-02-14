@@ -15,7 +15,6 @@
 #include "AudioPlayer.h"
 #include "BehaviorSystem.h"
 #include "Health.h"
-#include "HomeBase.h"
 #include "Behavior.h"
 #include "BehaviorSystem.h"
 
@@ -132,12 +131,7 @@ void GeneratorBehavior::onCollisionEnter(Collider* other)
 		if (health->GetHealth()->GetCurrent() <= 0)
 		{
 			m_isActive = false;
-			health->GetHealth()->SetCurrent(
-			health->GetHealth()->GetMaximum());
-			if (GetEntity()->GetComponent<HomeBase>())
-			{
-				GetEntity()->GetComponent<HomeBase>()->Destroy();
-			}
+			health->GetHealth()->Reset();
 		}
 	}
 }

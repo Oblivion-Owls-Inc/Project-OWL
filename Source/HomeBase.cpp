@@ -34,6 +34,46 @@
 
     
 //-----------------------------------------------------------------------------
+// public: virtual override methods
+//-----------------------------------------------------------------------------
+
+    
+    /// @brief  called once when entering the scene
+    void HomeBase::OnInit()
+    {
+        m_Health.SetOnConnectCallback(
+            [ this ]( Health* health )
+            {
+                health->AddOnHealthChangedCallback(
+                    GetId(),
+                    [ this ]()
+                    {
+                        if ( m_Health->GetHealth()->GetCurrent() <= 0 )
+                        {
+                            Destroy();
+                        }
+                    }
+                );
+            }
+        );
+        m_Health.SetOnDisconnectCallback(
+            [ this ]( Health* health )
+            {
+                health->RemoveOnHealthChangedCallback( GetId() );
+            }
+        );
+
+        m_Health.Init( GetEntity() );
+    }
+
+    /// @brief  called once when exiting the scene
+    void HomeBase::OnExit()
+    {
+        m_Health.Exit( GetEntity() );
+    }
+
+
+//-----------------------------------------------------------------------------
 // public: inspection
 //-----------------------------------------------------------------------------
 
@@ -41,6 +81,11 @@
     /// @brief  inspector for this HomeBase
     void HomeBase::Inspector()
     {
+        if ( m_Health == nullptr )
+        {
+            ImGui::Text( "WARNING: no Health Component attached" );
+        }
+
         ImGui::InputText( "game over scene name", &m_GameOverSceneName );
     }
 

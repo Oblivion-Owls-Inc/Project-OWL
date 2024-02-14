@@ -9,9 +9,10 @@
 #pragma once
 #include "Component.h"
 
+#include "ComponentReference.h"
+#include "Health.h"
 
-class HomeBase :
-    public Component
+class HomeBase : public Component
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructors
@@ -32,12 +33,28 @@ public: // public method
     
     
 //-----------------------------------------------------------------------------
+public: // virtual override methods
+//-----------------------------------------------------------------------------
+
+    
+    /// @brief  called once when entering the scene
+    virtual void OnInit() override;
+
+    /// @brief  called once when exiting the scene
+    virtual void OnExit() override;
+
+
+//-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
     
     /// @brief  the name of the scene to transition to when the base dies
     std::string m_GameOverSceneName = "Gameover";
+
+
+    /// @brief  the Health Component attached to this Entity
+    ComponentReference< Health > m_Health;
 
     
 //-----------------------------------------------------------------------------
