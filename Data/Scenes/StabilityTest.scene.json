@@ -1926,17 +1926,25 @@
         "Base": {
             "Name": "Base",
             "Components": {
-                "BaseBehavior": {},
                 "CircleCollider": {
                     "Radius": 1.149999976158142,
                     "CollisionLayer": 3,
-                    "CollisionLayerFlags": 0
+                    "CollisionLayerFlags": 2
                 },
                 "GeneratorBehavior": {
-                    "Radius": 5.0,
-                    "ActivateRadius": 1.0,
+                    "Radius": 0.0,
+                    "ActivateRadius": 0.0,
                     "Depth": 0,
-                    "Active": false
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
+                },
+                "HomeBase": {
+                    "GameOverScene": "Gameover"
                 },
                 "Sprite": {
                     "Layer": 2,
