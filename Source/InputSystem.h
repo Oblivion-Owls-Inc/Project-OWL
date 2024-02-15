@@ -123,7 +123,7 @@ private: // private class
         Action(std::string name = "", std::string description = "");
 
         /// @brief  removes all inputs for this action 
-        ///         and empties name
+        ///         and empties name/description
         void Flush();
 
         /// @brief  adds a key to the action

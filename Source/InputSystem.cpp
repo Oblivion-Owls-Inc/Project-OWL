@@ -409,18 +409,31 @@ m_name(name), m_description(description)
 
 void InputSystem::Action::Flush()
 {
+    m_keys.clear();
+    m_mouse.clear();
+    m_controller.clear();
+    m_keyAxis.clear();
+    m_mouseAxis.clear();
+    m_controllerAxis.clear();
+    m_gamepadAxisAsInput.clear();
+    m_gamepadAxis.clear();
+    m_name = "";
+    m_description = "";
 }
 
 void InputSystem::Action::AddKeyInput(int glfw_key)
 {
+    m_keys.push_back(glfw_key);
 }
 
 void InputSystem::Action::RemoveKeyInput(int glfw_key)
 {
+    
 }
 
 void InputSystem::Action::AddMouseInput(int glfw_mouse_button)
 {
+    m_mouse.push_back(glfw_mouse_button);
 }
 
 void InputSystem::Action::RemoveMouseInput(int glfw_mouse_button)
@@ -429,6 +442,7 @@ void InputSystem::Action::RemoveMouseInput(int glfw_mouse_button)
 
 void InputSystem::Action::AddControllerInput(int glfw_button)
 {
+    m_controller.push_back(glfw_button);
 }
 
 void InputSystem::Action::RemoveControllerInput(int glfw_button)
@@ -437,6 +451,7 @@ void InputSystem::Action::RemoveControllerInput(int glfw_button)
 
 void InputSystem::Action::AddAxisAsInput(int glfw_axis_id)
 {
+    m_gamepadAxisAsInput.push_back(glfw_axis_id);
 }
 
 void InputSystem::Action::RemoveAxisAsInput(int glfw_axis_id)
@@ -445,14 +460,17 @@ void InputSystem::Action::RemoveAxisAsInput(int glfw_axis_id)
 
 void InputSystem::Action::AddKeyAxisPositive(int glfw_key)
 {
+    AddKeyInput(glfw_key);
 }
 
 void InputSystem::Action::AddKeyAxisNegative(int glfw_key_negative)
 {
+    m_keyAxis.push_back(glfw_key_negative);
 }
 
 void InputSystem::Action::RemoveKeyAxisPositive(int glfw_key)
 {
+    RemoveKeyInput(glfw_key);
 }
 
 void InputSystem::Action::RemoveKeyAxisNegative(int glfw_key_negative)
@@ -461,10 +479,12 @@ void InputSystem::Action::RemoveKeyAxisNegative(int glfw_key_negative)
 
 void InputSystem::Action::AddMouseAxisPositive(int glfw_mouse)
 {
+    m_mouse.push_back(glfw_mouse);
 }
 
 void InputSystem::Action::AddMouseAxisNegative(int glfw_mouse_negative)
 {
+    m_mouseAxis.push_back(glfw_mouse_negative);
 }
 
 void InputSystem::Action::RemoveMouseAxisPositive(int glfw_mouse)
@@ -486,8 +506,6 @@ void InputSystem::Action::AddControllerAxisNegative(int glfw_controller_negative
 void InputSystem::Action::RemoveControllerAxisPositive(int glfw_controller)
 {
 }
-
-
 
 void InputSystem::Action::RemoveControllerAxisNegative(int glfw_controller_negative)
 {
