@@ -395,7 +395,7 @@
     void Entity::Inspect()
     {
 
-        if ( ImGui::BeginCombo( "Add Component", "Select Component" ) )
+        if ( ImGui::BeginCombo( "##Add Component", "Add Component" ) )
         {
             for ( auto& [ name, info ] : ComponentFactory::GetComponentTypes() )
             {
@@ -424,7 +424,7 @@
             ImGui::EndCombo();
         }
 
-        if ( ImGui::BeginCombo( "Remove Component", "Select Component" ) )
+        if ( ImGui::BeginCombo( "##Remove Component", "Remove Component" ) )
         {
             for ( auto& [ key, componentToDelete ] : m_Components )
             {
@@ -449,8 +449,8 @@
             ImGui::EndCombo();
         }
 
-        static std::string name = "";
-        ImGui::InputText( "Entity Name", &name );
+        static std::string name = GetName();
+        ImGui::InputText( "##Entity Name", &name );
         if (ImGui::Button("Rename Entity") || 
             Input()->GetKeyTriggered(GLFW_KEY_ENTER))
         {

@@ -506,8 +506,10 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
     {
         for (auto& system : Engine::GetInstance()->GetSystems())
         {
+            /// I know this isnt... the best way to do this, but it works and im tired
             if (system->GetName().compare(0, std::string("AssetLibrary").length(), std::string("AssetLibrary")) != 0 &&
-                system->GetName().compare(0, std::string("BehaviorSystem").length(), std::string("BehaviorSystem")) != 0)
+                system->GetName().compare(0, std::string("BehaviorSystem").length(), std::string("BehaviorSystem")) != 0 &&
+                system->GetName().compare(0, std::string("EntitySystem").length(), std::string("EntitySystem")) != 0)
             {
                 // Skip the debug system
                 if (system == GetInstance())
@@ -520,7 +522,7 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
     else
     {
 
-        /// Loops through all the Systems in the Engine
+        /// Loops through all the Systems in the Engine09
         for (auto& system : Engine::GetInstance()->GetSystems())
         {
             // Skip the debug system

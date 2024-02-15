@@ -141,16 +141,13 @@ public: // inspection
 private: // inspection
 //-----------------------------------------------------------------------------
 
-
-    /// @brief Shows the Entity List Window
-    void entityListWindow();
-
+    /// @brief Displays the Entity Hierarchy in the Entity List window
+    /// @param SelectedEntity - the entity that is currently selected 
+    /// @param child - whether or not to display the children of the selected entity
+    void DisplayEntityHierarchy(Entity** SelectedEntity, bool children = false);
 
     /// @brief Shows the Properites of the Selected Entity
     void entityPropertiesWindow(Entity* entity);
-
-    /// @brief Displays the children of an Entity in the Entity List Window
-    void DisplayChildren(Entity* entity, Entity** SelectedEntity);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
