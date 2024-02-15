@@ -71,7 +71,7 @@ protected:
     class Action; // forward reference
 
     // map of actions
-    map<int, Action> m_Actions;
+    vector<Action> m_Actions;
 
 //-----------------------------------------------------------------------------
 private: // private methods
@@ -95,31 +95,31 @@ private: // private class
     {
     private:
         /// @brief  key inputs
-        std::vector<int> a_keys;
+        std::vector<int> m_keys;
         /// @brief  mouse inputs
-        std::vector<int> a_mouse;
+        std::vector<int> m_mouse;
         /// @brief  controller inputs
-        std::vector<int> a_controller;
+        std::vector<int> m_controller;
         /// @brief  opposing axis for key inputs
-        std::vector<int> a_keyAxis;
+        std::vector<int> m_keyAxis;
         /// @brief  opposing axis for mouse inputs
-        std::vector<int> a_mouseAxis;
+        std::vector<int> m_mouseAxis;
         /// @brief  opposing axis for controller inputs
-        std::vector<int> a_controllerAxis;
+        std::vector<int> m_controllerAxis;
         /// @brief  gamepad axis as input, sticks/triggers
-        std::vector<int> a_gamepadAxisAsInput;
+        std::vector<int> m_gamepadAxisAsInput;
         /// @brief  gamepad axis, sticks/triggers
-        std::vector<int> a_gamepadAxis;
+        std::vector<int> m_gamepadAxis;
         /// @brief  action name
-        std::string a_name;
+        std::string m_name;
         /// @brief  editor description of action
-        std::string a_description;
+        std::string m_description;
 
     public:
 
         /// @brief  contructor
         /// @param  name of the action
-        /// @param  type of the action
+        /// @param  description of the action (viewable in editor)
         Action(std::string name = "", std::string description = "");
 
         /// @brief  removes all inputs for this action 
@@ -151,39 +151,62 @@ private: // private class
         void RemoveControllerInput(int glfw_button);
 
         /// @brief  adds an axis as a button (triggers)
+        /// @param  axis to add as input
         void AddAxisAsInput(int glfw_axis_id);
+
+        /// @brief  removes an axis as a button (triggers)
+        /// @param  axis to remove from input
+        void RemoveAxisAsInput(int glfw_axis_id);
 
         /// @brief  adds a key input axis
         /// @param  glfw_key positive axis key
+        void AddKeyAxisPositive(int glfw_key);
+
+        /// @brief  adds a key input axis
         /// @param  glfw_key_negative negative axis key
-        void AddKeyAxis(int glfw_key, int glfw_key_negative);
+        void AddKeyAxisNegative(int glfw_key_negative);
 
         /// @brief  removes a key input axis
         /// @param  glfw_key positive axis key
+        void RemoveKeyAxisPositive(int glfw_key);
+
+        /// @brief  removes a key input axis
         /// @param  glfw_key_negative negative axis key
-        void RemoveKeyAxis(int glfw_key, int glfw_key_negative);
+        void RemoveKeyAxisNegative(int glfw_key_negative);
 
         /// @brief  adds a mouse input axis
         /// @param  glfw_mouse positive axis mouse
+        void AddMouseAxisPositive(int glfw_mouse);
+
+        /// @brief  adds a mouse input axis
         /// @param  glfw_mouse_negative negative axis mouse
-        void AddMouseAxis(int glfw_mouse, int glfw_mouse_negative);
+        void AddMouseAxisNegative(int glfw_mouse_negative);
 
         /// @brief  removes a mouse input axis
         /// @param  glfw_mouse positive axis mouse
+        void RemoveMouseAxisPositive(int glfw_mouse);
+
+        /// @brief  removes a mouse input axis
         /// @param  glfw_mouse_negative negative axis mouse
-        void RemoveMouseAxis(int glfw_mouse, int glfw_mouse_negative);
+        void RemoveMouseAxisNegative(int glfw_mouse_negative);
 
         /// @brief  adds a controller input axis
         /// @param  glfw_controller positive axis controller
+        void AddControllerAxisPositive(int glfw_controller);
+
+        /// @brief  adds a controller input axis
         /// @param  glfw_controller_negative negative axis controller
-        void AddControllerAxis(int glfw_controller, 
-                               int glfw_controller_negative);
+        void AddControllerAxisNegative(int glfw_controller_negative);
 
         /// @brief  removes a controller input axis
         /// @param  glfw_controller positive axis controller
         /// @param  glfw_controller_negative negative axis controller
-        void RemoveControllerAxis(int glfw_controller, 
-                                  int glfw_controller_negative);
+        void RemoveControllerAxisPositive(int glfw_controller);
+
+        /// @brief  removes a controller input axis
+        /// @param  glfw_controller positive axis controller
+        /// @param  glfw_controller_negative negative axis controller
+        void RemoveControllerAxisNegative(int glfw_controller_negative);
 
         /// @brief  adds a gamepad axis (stick/trigger)
         /// @param  axis id to add
@@ -213,7 +236,7 @@ private: // private class
         /// @return action released status
         bool GetReleased();
 
-        /// @brief  gets if this action as an axis
+        /// @brief  gets this action as an axis
         /// @return axis status clamped to -1 and 1
         float GetAxis();
     };

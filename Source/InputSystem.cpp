@@ -402,7 +402,8 @@ InputSystem::Action* InputSystem::GetActionByName(std::string name)
 // private class implimentation
 //-----------------------------------------------------------------------------
 
-InputSystem::Action::Action(std::string name, std::string description)
+InputSystem::Action::Action(std::string name, std::string description) :
+m_name(name), m_description(description)
 {
 }
 
@@ -438,27 +439,57 @@ void InputSystem::Action::AddAxisAsInput(int glfw_axis_id)
 {
 }
 
-void InputSystem::Action::AddKeyAxis(int glfw_key, int glfw_key_negative)
+void InputSystem::Action::RemoveAxisAsInput(int glfw_axis_id)
 {
 }
 
-void InputSystem::Action::RemoveKeyAxis(int glfw_key, int glfw_key_negative)
+void InputSystem::Action::AddKeyAxisPositive(int glfw_key)
 {
 }
 
-void InputSystem::Action::AddMouseAxis(int glfw_mouse, int glfw_mouse_negative)
+void InputSystem::Action::AddKeyAxisNegative(int glfw_key_negative)
 {
 }
 
-void InputSystem::Action::RemoveMouseAxis(int glfw_mouse, int glfw_mouse_negative)
+void InputSystem::Action::RemoveKeyAxisPositive(int glfw_key)
 {
 }
 
-void InputSystem::Action::AddControllerAxis(int glfw_controller, int glfw_controller_negative)
+void InputSystem::Action::RemoveKeyAxisNegative(int glfw_key_negative)
 {
 }
 
-void InputSystem::Action::RemoveControllerAxis(int glfw_controller, int glfw_controller_negative)
+void InputSystem::Action::AddMouseAxisPositive(int glfw_mouse)
+{
+}
+
+void InputSystem::Action::AddMouseAxisNegative(int glfw_mouse_negative)
+{
+}
+
+void InputSystem::Action::RemoveMouseAxisPositive(int glfw_mouse)
+{
+}
+
+void InputSystem::Action::RemoveMouseAxisNegative(int glfw_mouse_negative)
+{
+}
+
+void InputSystem::Action::AddControllerAxisPositive(int glfw_controller)
+{
+}
+
+void InputSystem::Action::AddControllerAxisNegative(int glfw_controller_negative)
+{
+}
+
+void InputSystem::Action::RemoveControllerAxisPositive(int glfw_controller)
+{
+}
+
+
+
+void InputSystem::Action::RemoveControllerAxisNegative(int glfw_controller_negative)
 {
 }
 
