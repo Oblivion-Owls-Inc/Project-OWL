@@ -161,13 +161,7 @@
     {
         if ( m_Texture == nullptr )
         {
-            Debug() << "WARNING: UiBarSprite is missing a texture" << std::endl;
             return;
-        }
-
-        if ( m_Texture->GetSheetDimensions() != glm::ivec2( 1, 1 ) )
-        {
-            Debug() << "WARNING: UiBarSprite texture sheet dimensions are not < 1, 1 >" << std::endl;
         }
 
         m_Texture->Bind();
