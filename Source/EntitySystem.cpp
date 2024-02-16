@@ -62,14 +62,14 @@
     /// @brief Clears the Entity being inspected
     void EntitySystem::ClearSelectedEntity()
     {
-        selectedEntity = nullptr;
+        SelectedEntity = nullptr;
     }
 
     /// @brief  returns the entity being viewed in the inspector
     /// @return the Entity being viewed in the inspector
     Entity* EntitySystem::GetSelectedEntity() const
     {
-        return selectedEntity;
+        return SelectedEntity;
     }
 
 
@@ -174,8 +174,8 @@
         // delete the entities
         for ( Entity* entity : entitiesToRemove )
         {
-            if (entity == selectedEntity)
-                selectedEntity = nullptr;
+            if (entity == SelectedEntity)
+                SelectedEntity = nullptr;
 
             delete entity;
         }
@@ -256,8 +256,8 @@
         }
 
         /// Display the Entity List
-	    DisplayEntityHierarchy( &selectedEntity );
-        entityPropertiesWindow( selectedEntity );
+	    DisplayEntityHierarchy();
+        entityPropertiesWindow( SelectedEntity );
     }
 
 
@@ -317,7 +317,7 @@
     /// @brief Displays the Entity Hierarchy in the Entity List window
     /// @param SelectedEntity - the entity that is currently selected 
     /// @param child - whether or not to display the children of the selected entity
-    void EntitySystem::DisplayEntityHierarchy(Entity** SelectedEntity, bool child)
+    void EntitySystem::DisplayEntityHierarchy()
     {
         static bool showDeletePopup = false; // Flag to check if the delete popup should be shown
         static Entity* selectedEntityToDelete = nullptr; // Entity selected for deletion
@@ -328,126 +328,148 @@
 
         // Function to display entities recursively
         std::function<void(Entity*,bool)> displayEntityRecursive = [&](Entity* entity, bool child)
+        {
+            Entity* parent = entity ? entity->GetParent() : nullptr; // Get the parent of the current entity
+
+            // Get the children of the parent if it exists, otherwise get the root entities
+            auto& entities = parent ? parent->GetChildren() : m_Entities; // Get the children of the parent if it exists, otherwise get the root entities
+
+            for (int i = 0; i < entities.size(); ++i)
             {
-                Entity* parent = entity ? entity->GetParent() : nullptr; // Get the parent of the current entity
-                auto& entities = parent ? parent->GetChildren() : m_Entities; // Get the children of the parent if it exists, otherwise get the root entities
+                Entity* currentEntity = entities[i];
 
-                for (int i = 0; i < entities.size(); ++i)
+                if (!child)
                 {
-                    Entity* currentEntity = entities[i];
-                    if (!child)
+                    if (!entity && currentEntity->GetParent() != nullptr)
                     {
-                        if (!entity && currentEntity->GetParent() != nullptr)
-                        {
-                            continue; // Skip entities that are not root when entity is null
-                        }
-                    }
-					else
-					{
-						if (entity && currentEntity->GetParent() != entity)
-						{
-							continue; // Skip entities that are not children of the current entity
-						}
-					}
-
-                    
-                    std::string popup_id = "EntityContextMenu##" + std::to_string(currentEntity->GetId());
-                    std::string delete_id = "Confirm Deletion##" + std::to_string(currentEntity->GetId());
-
-                    // Determine if the current entity is a leaf node (no children)
-                    bool isLeaf = currentEntity->GetChildren().empty();
-
-                    // Adjust flags based on whether the entity has children
-                    ImGuiTreeNodeFlags nodeFlags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
-                    if (isLeaf)
-                    {
-                        nodeFlags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // Leaf nodes do not expand
-                    }
-
-                    bool node_open = ImGui::TreeNodeEx((void*)(intptr_t)i, nodeFlags, currentEntity->GetName().c_str());
-
-                    // Context menu for the entity
-                    if (ImGui::BeginPopupContextItem(popup_id.c_str()))
-                    {
-                        if (ImGui::MenuItem("Copy"))
-                        {
-                            Stream::CopyToClipboard(currentEntity);
-                        }
-
-                        if (ImGui::MenuItem("Paste"))
-                        {
-                            currentEntity->Exit();
-                            Stream::PasteFromClipboard(currentEntity);
-                            currentEntity->Init();
-                        }
-
-                        if (ImGui::MenuItem("Delete"))
-                        {
-                            showDeletePopup = true;
-                            selectedEntityToDelete = currentEntity;
-                        }
-
-                        ImGui::EndPopup();
-                    }
-
-                    // Display the delete popup if the flag is set and the current entity is the selected entity
-                    if (showDeletePopup && selectedEntityToDelete == currentEntity)
-                    {
-                        ImGui::OpenPopup(delete_id.c_str(), ImGuiPopupFlags_NoOpenOverExistingPopup);
-
-                        ImVec2 center = ImGui::GetMainViewport()->GetCenter();
-                        ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
-
-                        if (ImGui::BeginPopupModal(delete_id.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize)) // Create a modal window
-                        {
-                            std::string sentence = "Are you sure you want to delete " + currentEntity->GetName() + "?";
-                            ImGui::Text(sentence.c_str());
-
-                            ImGui::Separator(); // Add a separator
-
-                            if (ImGui::Button("OK", ImVec2(120, 0)))
-                            {
-                                currentEntity->Destroy();
-
-                                if (*SelectedEntity == currentEntity)
-                                {
-                                    *SelectedEntity = nullptr;
-                                }
-                                showDeletePopup = false;
-                                selectedEntityToDelete = nullptr;
-                            }
-
-                            ImGui::SetItemDefaultFocus(); // Set the focus on the OK button
-                            ImGui::SameLine(); // Align the cancel button to the right
-
-                            if (ImGui::Button("Cancel", ImVec2(120, 0)))
-                            {
-                                ImGui::CloseCurrentPopup();
-                                showDeletePopup = false;
-                            }
-                            ImGui::EndPopup();
-                        }
-                    }
-
-                    if (ImGui::IsItemClicked())
-                    {
-                        *SelectedEntity = currentEntity;
-                    }
-
-                    // Only attempt to display children if the entity is not a leaf
-                    if (!isLeaf && node_open)
-                    {
-                        displayEntityRecursive(currentEntity, true);
-                        ImGui::TreePop(); // Only pop if we actually pushed the tree node (non-leaf)
+                        continue; // Skip entities that are not root when entity is null
                     }
                 }
+				else
+				{
+					if (entity && currentEntity->GetParent() != entity)
+					{
+						continue; // Skip entities that are not children of the current entity
+					}
+				}
+
+                    
+                std::string popup_id = "EntityContextMenu##" + std::to_string(currentEntity->GetId());
+                std::string delete_id = "Confirm Deletion##" + std::to_string(currentEntity->GetId());
+
+                // Determine if the current entity is a leaf node (no children)
+                bool isLeaf = currentEntity->GetChildren().empty();
+
+                // Adjust flags based on whether the entity has children
+                ImGuiTreeNodeFlags nodeFlags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
+
+                if (isLeaf)
+                {
+                    nodeFlags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // Leaf nodes do not expand
+                }
+
+                // Highlight selected entity
+                if (SelectedEntity == currentEntity) 
+                {
+                    // Push style for highlight text color
+                    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 0.0f, 1.0f)); // Yellow text for the selected entity
+
+                    nodeFlags |= ImGuiTreeNodeFlags_Selected; // Additionally, mark the node as selected if desired
+                }
+
+                /// Get a Node Name for the entity
+                std::string id = currentEntity->GetName();
+
+                bool node_open = ImGui::TreeNodeEx((void*)(intptr_t)i, nodeFlags, id.c_str());
+
+                // If this entity was the selected one, pop the highlight style
+                if (SelectedEntity == currentEntity) 
+                {
+                    ImGui::PopStyleColor(1); // Ensure to only pop once to revert the text color change
+                }
+
+                // Context menu for the entity
+                if (ImGui::BeginPopupContextItem(popup_id.c_str()))
+                {
+                    if (ImGui::MenuItem("Copy"))
+                    {
+                        Stream::CopyToClipboard(currentEntity);
+                    }
+
+                    if (ImGui::MenuItem("Paste"))
+                    {
+                        currentEntity->Exit();
+                        Stream::PasteFromClipboard(currentEntity);
+                        currentEntity->Init();
+                    }
+
+                    if (ImGui::MenuItem("Delete"))
+                    {
+                        showDeletePopup = true;
+                        selectedEntityToDelete = currentEntity;
+                    }
+
+                    ImGui::EndPopup();
+                }
+
+                // Display the delete popup if the flag is set and the current entity is the selected entity
+                if (showDeletePopup && selectedEntityToDelete == currentEntity)
+                {
+                    ImGui::OpenPopup(delete_id.c_str(), ImGuiPopupFlags_NoOpenOverExistingPopup);
+
+                    ImVec2 center = ImGui::GetMainViewport()->GetCenter();
+                    ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+
+                    if (ImGui::BeginPopupModal(delete_id.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize)) // Create a modal window
+                    {
+                        std::string sentence = "Are you sure you want to delete " + currentEntity->GetName() + "?";
+                        ImGui::Text(sentence.c_str());
+
+                        ImGui::Separator(); // Add a separator
+
+                        if (ImGui::Button("OK", ImVec2(120, 0)))
+                        {
+                            currentEntity->Destroy();
+
+                            if (SelectedEntity == currentEntity)
+                            {
+                                SelectedEntity = nullptr;
+                            }
+                            showDeletePopup = false;
+                            selectedEntityToDelete = nullptr;
+                        }
+
+                        ImGui::SetItemDefaultFocus(); // Set the focus on the OK button
+                        ImGui::SameLine(); // Align the cancel button to the right
+
+                        if (ImGui::Button("Cancel", ImVec2(120, 0)))
+                        {
+                            ImGui::CloseCurrentPopup();
+                            showDeletePopup = false;
+                        }
+                        ImGui::EndPopup();
+                    }
+                }
+
+                if (ImGui::IsItemClicked())
+                {
+                    SelectedEntity = currentEntity;
+                }
+
+                // Only attempt to display children if the entity is not a leaf
+                if (!isLeaf && node_open)
+                {
+                    displayEntityRecursive(currentEntity, true);
+                    ImGui::TreePop(); // Only pop if we actually pushed the tree node (non-leaf)
+                }
+            }
         };
 
         displayEntityRecursive(nullptr,false); // Start with null to display root entities
 
         if (ImGui::IsWindowHovered() && ImGui::IsMouseClicked(0))
         {
-            *SelectedEntity = nullptr;
+            SelectedEntity = nullptr;
         }
 
         ImGui::End(); // End the window

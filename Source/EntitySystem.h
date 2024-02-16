@@ -83,7 +83,7 @@ private: // member variables
     bool m_ShowEntityCreate = true;
 
     /// @brief Entity that is selected by the Inpector
-    Entity* selectedEntity = nullptr; 
+    Entity* SelectedEntity = nullptr; 
 
 
 //-----------------------------------------------------------------------------
@@ -142,9 +142,7 @@ private: // inspection
 //-----------------------------------------------------------------------------
 
     /// @brief Displays the Entity Hierarchy in the Entity List window
-    /// @param SelectedEntity - the entity that is currently selected 
-    /// @param child - whether or not to display the children of the selected entity
-    void DisplayEntityHierarchy(Entity** SelectedEntity, bool children = false);
+    void DisplayEntityHierarchy();
 
     /// @brief Shows the Properites of the Selected Entity
     void entityPropertiesWindow(Entity* entity);
