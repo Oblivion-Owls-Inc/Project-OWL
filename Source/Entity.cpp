@@ -111,6 +111,7 @@
             m_Parent->removeChild( this );
         }
 
+        Entity* previousParent = m_Parent;
         m_Parent = parent;
 
         // add this to its new parent
@@ -119,7 +120,7 @@
             parent->addChild( this );
         }
 
-        propagateHeirachyChangeEvent();
+        propagateHeirachyChangeEvent( previousParent );
     }
 
 
@@ -372,16 +373,17 @@
 
 
     /// @brief  propagates an OnHeirarchyChange event downwards
-    void Entity::propagateHeirachyChangeEvent()
+    /// @param  previousParent the previous parent of this Entity
+    void Entity::propagateHeirachyChangeEvent( Entity* previousParent )
     {
         for ( auto& [ type, component ] : m_Components )
         {
-            component->OnHeirarchyChange();
+            component->OnHierarchyChange( previousParent );
         }
 
         for ( Entity* child : m_Children )
         {
-            child->propagateHeirachyChangeEvent();
+            child->propagateHeirachyChangeEvent( this );
         }
     }
 
@@ -406,17 +408,17 @@
 
                 if ( ImGui::Selectable( name.c_str(), false ) )
                 {
-                    Component* newComponent = info.second();
-                    AddComponent( newComponent );
+                    Component* component = info.second();
+                    AddComponent( component );
 
                     if ( IsInScene() )
                     {
-                        newComponent->OnInit();
+                        component->OnInit();
 
                         // tell other components that a component was added
                         for ( ComponentReferenceBase* componentReference : m_ComponentReferences )
                         {
-                            componentReference->TrySet( newComponent );
+                            componentReference->TrySet( component );
                         }
                     }
                 }
@@ -426,23 +428,11 @@
 
         if ( ImGui::BeginCombo( "Remove Component", "Select Component" ) )
         {
-            for ( auto& [ key, componentToDelete ] : m_Components )
+            for ( auto& [ key, component ] : m_Components )
             {
                 if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
                 {
-                    if ( IsInScene() )
-                    {
-                        // tell other components a Component is about to be removed
-                        for ( ComponentReferenceBase* componentReference : m_ComponentReferences )
-                        {
-                            componentReference->TryRemove( componentToDelete );
-                        }
-
-                        componentToDelete->OnExit();
-                    }
-
-                    delete componentToDelete;
-                    m_Components.erase( key );
+                    removeComponent( component );
                     break;
                 }
             }
@@ -451,8 +441,10 @@
 
         static std::string name = "";
         ImGui::InputText( "Entity Name", &name );
-        if (ImGui::Button("Rename Entity") || 
-            Input()->GetKeyTriggered(GLFW_KEY_ENTER))
+        if (
+            ( ImGui::IsItemFocused() && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )||
+            ImGui::Button("Rename Entity")
+        )
         {
             if ( name.empty() == false )
             {
@@ -462,58 +454,49 @@
             }
         }
 
+        // keep track of a component to be deleted, as Components can't be deleted mid-iteration
+        Component* componentToDelete = nullptr;
 
-        /// Loop through all the components of the entity
-        ///  To display the components in the inspector
-        for (const auto& componentPair : this->getComponents())
+        // Loop through all the components of the entity
+        //  To display the components in the inspector
+        for ( auto const& [ key, component ] : m_Components )
         {
-            const std::string componentName = componentPair.second->GetType().name() + 5; /// Skip "class "
-            /// Create a unique identifier for the popup menu based on the entity's ID
-            std::string popup_id = "ComponentContextMenu##" + std::to_string(GetId());
+            std::string const componentName = PrefixlessName( key );
 
-            /// Check if the tree node is open
-            if (ImGui::TreeNode(componentName.c_str()))
+            // Check if the tree node is open
+            bool open = ImGui::TreeNode( componentName.c_str() );
+
+            // right click menu for the tree node
+            if ( ImGui::BeginPopupContextItem() )
             {
-                /// Check for right-click on the tree node while open
-                if (ImGui::BeginPopupContextItem(popup_id.c_str()))
+                if ( ImGui::MenuItem( "Copy" ) )
                 {
-                    if (ImGui::MenuItem("Copy"))
-                    {
-                        Stream::CopyToClipboard(componentPair.second);
-                    }
-                    if (ImGui::MenuItem("Paste"))
-                    {
-                        Stream::PasteFromClipboard(componentPair.second);
-                    }
-                    ImGui::EndPopup();
+                    Stream::CopyToClipboard( component );
                 }
-
-                /// Display the component's inspector
-                componentPair.second->BaseComponentInspector();
-                ImGui::TreePop();
-            }
-            else if (ImGui::IsItemHovered() && ImGui::IsMouseReleased(1))
-            {
-                ///Create a unique identifier for the popup menu based on the entity's ID
-                ImGui::OpenPopup(std::string(popup_id + componentName).c_str());
-            }
-
-            ImGui::OpenPopupOnItemClick(std::string(popup_id + componentName).c_str());
-
-            if (ImGui::BeginPopupContextItem(std::string(popup_id + componentName).c_str()))
-            {
-                if (ImGui::MenuItem("Copy"))
+                if ( ImGui::MenuItem( "Paste" ) )
                 {
-                    Stream::CopyToClipboard(componentPair.second);
+                    Stream::PasteFromClipboard( component );
                 }
-                if (ImGui::MenuItem("Paste"))
+                if ( ImGui::MenuItem( "Delete" ) )
                 {
-                    Stream::PasteFromClipboard(componentPair.second);
+                    componentToDelete = component;
                 }
                 ImGui::EndPopup();
             }
+
+
+            // Display the component's inspector
+            if ( open )
+            {
+                component->BaseComponentInspector();
+                ImGui::TreePop();
+            }
         }
 
+        if ( componentToDelete != nullptr )
+        {
+            removeComponent( componentToDelete );
+        }
     }
 
 
@@ -537,6 +520,31 @@
 
             ImGui::EndPopup();
         }
+    }
+
+    
+//-----------------------------------------------------------------------------
+// private: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  removes a Component using the Inspector
+    /// @param  component   the Component to remove
+    void Entity::removeComponent( Component* component )
+    {
+        if ( IsInScene() )
+        {
+            // tell other components a Component is about to be removed
+            for ( ComponentReferenceBase* componentReference : m_ComponentReferences )
+            {
+                componentReference->TryRemove( component );
+            }
+
+            component->OnExit();
+        }
+
+        m_Components.erase( component->GetType() );
+        delete component;
     }
 
 

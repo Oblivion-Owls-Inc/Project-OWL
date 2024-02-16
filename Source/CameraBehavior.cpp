@@ -87,6 +87,15 @@ void CameraBehavior::Inspector()
 }
 
 
+/// @brief  What to do when entity is re-parented
+void CameraBehavior::OnHierarchyChange(Entity * previousParent)
+{
+	// re-init parent's transform
+	m_ParentTransform.Exit( previousParent );
+	m_ParentTransform.Init( GetEntity()->GetParent() );
+}
+
+
 //-----------------------------------------------------------------------------
 //              Helpers
 //-----------------------------------------------------------------------------

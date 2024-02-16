@@ -119,7 +119,7 @@ public: // virtual override methods
 
 
     /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
-    virtual void OnHeirarchyChange() override;
+    virtual void OnHierarchyChange( Entity* previousParent ) override;
 
 
 //-----------------------------------------------------------------------------

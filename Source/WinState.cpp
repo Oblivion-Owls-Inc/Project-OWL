@@ -69,6 +69,14 @@ void WinState::Inspector()
 }
 
 
+/// @brief  What to do when entity is re-parented
+void WinState::OnHierarchyChange(Entity* previousParent)
+{
+	// re-init inventory reference
+	m_Inventory.Exit( previousParent );
+	m_Inventory.Init( GetEntity()->GetParent() );
+}
+
 
 //-----------------------------------------------------------------------------
 //              Reading / Writing

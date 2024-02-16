@@ -45,6 +45,9 @@ private:
     /// @brief  Tweak properties in debug window
     virtual void Inspector() override;
 
+    /// @brief  What to do when entity is re-parented
+    virtual void OnHierarchyChange(Entity* previousParent);
+
 
 //-----------------------------------------------------------------------------
 //              Data
