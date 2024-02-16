@@ -17,9 +17,11 @@
         },
         "EntitySystem": {},
         "BehaviorSystem<Behavior>": {},
-        "BehaviorSystem<BulletBehavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
+        "BehaviorSystem<EnemyBehavior>": {},
+        "BehaviorSystem<GeneratorBehavior>": {},
+        "BehaviorSystem<EditorCameraController>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
         "LightingSystem": {

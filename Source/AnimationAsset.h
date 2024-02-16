@@ -32,20 +32,20 @@ public: // accessors
 
 	/// @brief	gets the start frame of the animation
 	/// @return	start frame of the animation
-	unsigned GetStart() const { return m_Start; }
+	int GetStart() const { return m_Start; }
 
 	/// @brief	sets a new start frame
 	/// @param	start   start frame to set
-	void SetStart( unsigned start ) { m_Start = start; }
+	void SetStart( int start ) { m_Start = start; }
 
 
 	/// @brief	gets the end frame of the animation
 	/// @return end frame of the animation
-	unsigned GetEnd() const { return m_End; }
+	int GetEnd() const { return m_End; }
 
 	/// @brief	sets a new end frame
 	/// @param	end end frame to set
-	void SetEnd( unsigned end ) { m_End = end; }
+	void SetEnd( int end ) { m_End = end; }
 
 
 	/// @brief	gets the duration of each frame of animation
@@ -60,15 +60,6 @@ public: // accessors
     /// @brief  gets the number of frames in this animation
     /// @return the number of frames in this animation
     int GetFrameCount() const { return m_End - m_Start; }
-
-
-//-----------------------------------------------------------------------------
-public: // methods
-//-----------------------------------------------------------------------------
-
-
-    // TODO: move this into a base class
-    void Inspect() {}
     
 
 //-----------------------------------------------------------------------------
@@ -77,13 +68,23 @@ private: // private variables
 
 
 	/// @brief  the start frame index of the animation
-	unsigned m_Start = 0;
+	int m_Start = 0;
 
 	/// @brief  the end frame index of the animation
-	unsigned m_End = 1;
+	int m_End = 1;
 
 	/// @brief  how long each frame lasts
 	float m_FrameDuration = 1.0f / 12.0f;
+
+    
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  inspects this AnimationAsset
+    /// @return whether the AnimationAsset was changed
+    bool Inspect();
 
 
 //-----------------------------------------------------------------------------

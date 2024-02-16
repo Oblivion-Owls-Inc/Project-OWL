@@ -76,8 +76,8 @@
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
+    /// @brief  gets the map of read methods for this ExampleComponent
+    /// @return the map of read methods for this ExampleComponent
     ReadMethodMap< ISerializable > const& ExampleComponent::GetReadMethods() const
     {
         static ReadMethodMap< ExampleComponent > const readMethods = {
@@ -88,7 +88,7 @@
     }
 
 
-    /// @brief  Writes all AudioPlayr data to a JSON file.
+    /// @brief  Writes all ExampleComponent data to a JSON file.
     /// @return The JSON file containing the data.
     nlohmann::ordered_json ExampleComponent::Write() const
     {

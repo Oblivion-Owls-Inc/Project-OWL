@@ -22,7 +22,7 @@
 
 
     /// @brief	Defualt constructor
-    Animation::Animation() : 
+    Animation::Animation() :
 	    Behavior( typeid( Animation ) )
     {}
 
@@ -32,16 +32,8 @@
 //-----------------------------------------------------------------------------
 
     /// @brief  starts playing an Animation
-    /// @param  assetName   the AnimationAsset to play
-    void Animation::Play( std::string const& assetName )
-    {
-        m_Asset = AssetLibrary< AnimationAsset >()->GetAsset( assetName );
-        Play();
-    }
-
-    /// @brief  starts playing an Animation
     /// @param  asset   the AnimationAsset to play
-    void Animation::Play( AnimationAsset const* asset )
+    void Animation::Play( AssetReference< AnimationAsset > const& asset )
     {
         m_Asset = asset;
         Play();
@@ -54,7 +46,19 @@
         m_FrameDelay = m_Asset->GetFrameDuration();
         m_IsRunning = true;
         
+        if ( m_Sprite == nullptr )
+        {
+            return;
+        }
+
         m_Sprite->SetFrameIndex( m_FrameIndex );
+    }
+
+
+    /// @brief  pauses the current animation
+    void Animation::Pause()
+    {
+        m_IsRunning = false;
     }
 
 
@@ -62,6 +66,11 @@
     /// @return the amount of remaining time
     float Animation::GetRemainingTime() const
     {
+        if ( m_Asset == nullptr )
+        {
+            return 0.0f;
+        }
+
         return m_FrameDelay + (m_Asset->GetEnd() - m_FrameIndex - 1) * m_Asset->GetFrameDuration();
     }
 
@@ -93,6 +102,11 @@
     /// @return	Frame index of the animation
     unsigned Animation::GetFrameIndex( bool relative ) const
     {
+        if ( m_Asset == nullptr )
+        {
+            return 0;
+        }
+
 	    return m_FrameIndex - (relative ? m_Asset->GetStart() : 0);
     }
 
@@ -101,6 +115,11 @@
     /// @param	index       frame index to set
     void Animation::SetFrameIndex( unsigned index, bool relative )
     {
+        if ( m_Asset == nullptr )
+        {
+            return;
+        }
+
 	    m_FrameIndex = index + (relative ? m_Asset->GetStart() : 0);
         if ( m_Sprite != nullptr )
         {
@@ -162,12 +181,12 @@
     }
 
     /// @brief	Sets the animation asset this Animation will use
-    /// @param	newAsset    animation asset to set
-    void Animation::SetAsset( AnimationAsset const* newAsset )
+    /// @param	asset   animation asset to set
+    void Animation::SetAsset( AssetReference< AnimationAsset > const& asset )
     {
-        int index = GetFrameIndex(true);
-	    m_Asset = newAsset;
-        SetFrameIndex(index, true);
+        int index = GetFrameIndex( true );
+	    m_Asset = asset;
+        SetFrameIndex( index, true );
     }
 
 
@@ -180,15 +199,19 @@
     void Animation::OnInit()
     {
         Behaviors< Animation >()->AddComponent( this );
-        m_Sprite = GetEntity()->GetComponent<Sprite>();
 
-        m_Asset = AssetLibrary< AnimationAsset >()->GetAsset( m_AssetName );
+        m_Sprite.Init( GetEntity() );
+
+        m_Asset.SetOwnerName( GetName() );
+        m_Asset.Init();
     }
 
     /// @brief  gets called once when exiting the scene
     void Animation::OnExit()
     {
         Behaviors< Animation >()->RemoveComponent( this );
+
+        m_Sprite.Exit( GetEntity() );
     }
 
 
@@ -209,38 +232,10 @@
     }
 
 
-    /// @brief  shows the Inspector for this Animation
-    void Animation::Inspector()
-    {
-        Inspection::SelectAssetFromLibrary( "Animation Asset", &m_Asset, &m_AssetName );
-
-        if ( m_Asset == nullptr )
-        {
-            return;
-        }
-
-        ImGui::NewLine();
-
-        int relativeFrameIndex = GetFrameIndex( true );
-        if ( ImGui::DragInt(
-            "Frame Index", &relativeFrameIndex, 0.05f, 0, m_Asset->GetFrameCount() - 1, "%i", m_Asset->GetFrameCount() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput
-        ) )
-        {
-           SetFrameIndex( relativeFrameIndex );
-        }
-
-        ImGui::DragInt( "Loop Count", &m_LoopCount, 0.05f, -1, INT_MAX );
-
-        ImGui::DragFloat( "Frame Delay", &m_FrameDelay, 0.01f, 0.1f, INFINITY );
-
-        ImGui::Checkbox( "Is Running", &m_IsRunning );
-
-    }
-
-
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief	advances the animations frame when required
     void Animation::AdvanceFrame()
@@ -274,13 +269,61 @@
 		    m_FrameDelay = 0;
 	    }
 
-
-        m_Sprite->SetFrameIndex( m_FrameIndex );
+        if ( m_Sprite != nullptr )
+        {
+            m_Sprite->SetFrameIndex( m_FrameIndex );
+        }
     }
 
+
 //-----------------------------------------------------------------------------
-// private: reading/writing
+// public: inspection
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  shows the Inspector for this Animation
+    void Animation::Inspector()
+    {
+        if ( m_Sprite == nullptr )
+        {
+            ImGui::Text( "WARNING: There is no Sprite attached to this Animation Component" );
+        }
+
+       m_Asset.Inspect( "Animation Asset" );
+
+        if ( m_Asset == nullptr )
+        {
+            ImGui::Text( "WARNING: No Animation asset selected" );
+            return;
+        }
+
+        ImGui::NewLine();
+
+        int relativeFrameIndex = GetFrameIndex( true );
+        if (
+            ImGui::DragInt(
+                "Frame Index", &relativeFrameIndex,
+                0.05f, 0, m_Asset->GetFrameCount() - 1, "%i",
+                m_Asset->GetFrameCount() > 1 ? ImGuiSliderFlags_None : ImGuiSliderFlags_NoInput
+            )
+        )
+        {
+            SetFrameIndex( relativeFrameIndex );
+        }
+
+        ImGui::DragInt( "Loop Count", &m_LoopCount, 0.05f, -1, INT_MAX );
+
+        ImGui::DragFloat( "Frame Delay", &m_FrameDelay, 0.01f, 0.1f, INFINITY );
+
+        ImGui::Checkbox( "Is Running", &m_IsRunning );
+
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
 
     /// @brief		  Read from a JSON the frame index.
     /// @param stream The JSON to read from.
@@ -314,8 +357,32 @@
     /// @param  stream  the json data to read from
     void Animation::readAnimation( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_AssetName, data );
+        Stream::Read( m_Asset, data );
     }
+
+    
+//-----------------------------------------------------------------------------
+// public: reading writing
+//-----------------------------------------------------------------------------
+
+
+    
+    /// @brief  gets the map of read methods
+    /// @return the map of read methods
+    ReadMethodMap< ISerializable > const& Animation::GetReadMethods() const
+    {
+        static ReadMethodMap< Animation > const readMethods = {
+            { "FrameIndex", &Animation::readFrameIndex },
+            { "FrameDelay", &Animation::readFrameDelay },
+            { "IsRunning" , &Animation::readIsRunning  },
+            { "LoopCount" , &Animation::readLoopCount  },
+            { "Animation" , &Animation::readAnimation  }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
+
 
     /// @brief  Write all Animation component data to a JSON file.
     /// @return The JSON file containing the Animation component data.
@@ -325,22 +392,25 @@
 
         data[ "FrameIndex" ] = Stream::Write( m_FrameIndex );
         data[ "FrameDelay" ] = Stream::Write( m_FrameDelay );
-        data[ "IsRunning" ] = Stream::Write( m_IsRunning );
-        data[ "LoopCount" ] = Stream::Write( m_LoopCount );
-        data[ "Animation" ] = Stream::Write( m_AssetName );
+        data[ "IsRunning"  ] = Stream::Write( m_IsRunning  );
+        data[ "LoopCount"  ] = Stream::Write( m_LoopCount  );
+        data[ "Animation"  ] = Stream::Write( m_Asset      );
 
         return data;
     }
 
+    
+//-----------------------------------------------------------------------------
+// private: copying
+//-----------------------------------------------------------------------------
 
-    /// @brief  map of read methods
-    ReadMethodMap< Animation > const Animation::s_ReadMethods = {
-	    { "FrameIndex", &readFrameIndex },
-	    { "FrameDelay", &readFrameDelay },
-	    { "IsRunning" , &readIsRunning  },
-        { "LoopCount" , &readLoopCount  },
-        { "Animation" , &readAnimation  }
-    };
+
+    /// @brief	Clones an animation
+    /// @return New animation copy
+    Animation* Animation::Clone() const
+    {
+        return new Animation( *this );
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -354,9 +424,9 @@
         Behavior( other ),
         m_FrameIndex( other.m_FrameIndex ),
         m_FrameDelay( other.m_FrameDelay ),
-        m_IsRunning( other.m_IsRunning ),
-        m_Asset( other.m_Asset ),
-        m_LoopCount( other.m_LoopCount )
+        m_IsRunning ( other.m_IsRunning  ),
+        m_LoopCount ( other.m_LoopCount  ),
+        m_Asset     ( other.m_Asset      )
     {}
 
 

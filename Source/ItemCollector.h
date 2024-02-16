@@ -10,8 +10,10 @@
 
 #include "Behavior.h"
 
-class Transform;
-class Inventory;
+#include "ComponentReference.h"
+#include "Transform.h"
+#include "Inventory.h"
+
 class ItemComponent;
 
 
@@ -75,10 +77,10 @@ private: // members
 
 
     /// @brief  the Transform attached to this ItemCollector
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
     /// @brief  the Inventory attached to this ItemCollector
-    Inventory* m_Inventory = nullptr;
+    ComponentReference< Inventory > m_Inventory;
 
 
 //-----------------------------------------------------------------------------

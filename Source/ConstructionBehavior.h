@@ -15,13 +15,17 @@
 
 #include <vector>
 
-class Transform;
-class Sprite;
-class AudioPlayer;
-class Inventory;
+#include "ComponentReference.h"
+#include "Transform.h"
+#include "Sprite.h"
+#include "AudioPlayer.h"
 
-template< typename T >
-class Tilemap;
+#include "EntityReference.h"
+#include "Inventory.h"
+#include "Tilemap.h"
+
+#include  "AssetReference.h"
+
 
 /// @brief  Component that handles the construction of towers and modification of terrain
 class ConstructionBehavior : public Behavior
@@ -40,19 +44,10 @@ private: // class BuildingInfo
 
 
         /// @brief  the archetype of the Building
-        Entity const* M_Archetype = nullptr;
+        AssetReference< Entity > M_Archetype;
         
         /// @brief  the cost of the building
         std::vector< ItemStack > M_Cost = {};
-
-
-    //-------------------------------------------------------------------------
-    private: // members
-    //-------------------------------------------------------------------------
-
-
-        /// @brief  the name of the archetype
-        std::string m_ArchetypeName;
         
 
     //-------------------------------------------------------------------------
@@ -81,7 +76,7 @@ private: // class BuildingInfo
         
         /// @brief  reads the name of the archetype
         /// @param  data    the json data to read from
-        void readArchetypeName( nlohmann::ordered_json const& data );
+        void readArchetype( nlohmann::ordered_json const& data );
 
         /// @brief  reads the cost of the building
         /// @param  data    the json data to read from
@@ -194,37 +189,34 @@ private: // members
     bool m_IgnoreCosts = false;
 
 
-    /// @brief  the name of the player entity
-    std::string m_PlayerName;
-
     /// @brief  the transform of the player
-    Transform const* m_PlayerTransform = nullptr;
+    ComponentReference< Transform > m_PlayerTransform;
 
     /// @brief  the Inventory of the player
-    Inventory* m_PlayerInventory = nullptr;
+    ComponentReference< Inventory > m_PlayerInventory;
 
+    /// @brief  the player entity
+    EntityReference m_PlayerEntity = EntityReference( { &m_PlayerTransform, &m_PlayerInventory } );
 
-    /// @brief  the name of the tilemap entity
-    std::string m_TilemapName;
 
     /// @brief  the tilemap of the terrain
-    Tilemap<int>* m_Tilemap = nullptr;
+    ComponentReference< Tilemap< int > > m_Tilemap;
 
     /// @brief  tilemap of the placed buildings
-    Tilemap< Entity* >* m_Buildings = nullptr;
+    ComponentReference< Tilemap< Entity* > > m_Buildings;
+
+    /// @brief  the tilemap entity
+    EntityReference m_TilemapEntity = EntityReference( { &m_Tilemap, &m_Buildings } );
 
 
     /// @brief  the transform of the preview sprite
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
     /// @brief  the preview sprite
-    Sprite* m_Sprite = nullptr;
-
-    /// @brief  the sound played when mining.
-    AudioPlayer* m_DiggingSound = nullptr;
+    ComponentReference< Sprite > m_Sprite;
 
     /// @brief  the sound played when placing a turret.
-    AudioPlayer* m_TurretPlacementSound = nullptr;
+    ComponentReference< AudioPlayer > m_TurretPlacementSound;
 
 
 //-----------------------------------------------------------------------------
@@ -313,13 +305,13 @@ private: // reading
     void readPreviewAlpha( nlohmann::ordered_json const& data );
 
 
-    /// @brief  read the tilemap name
+    /// @brief  read the tilemap entity
     /// @param  data    the json data to read from
-    void readTilemapName( nlohmann::ordered_json const& data );
+    void readTilemapEntity( nlohmann::ordered_json const& data );
 
-    /// @brief  read the player name
+    /// @brief  read the player entity
     /// @param  data    the json data to read from
-    void readPlayerName( nlohmann::ordered_json const& data );
+    void readPlayerEntity( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

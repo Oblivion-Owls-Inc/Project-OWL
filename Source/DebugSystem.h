@@ -155,7 +155,8 @@ private: // Members
         "RenderSystem",
         "AudioSystem",
         "DebugSystem",
-        "ParticleSystem"
+        "ParticleSystem",
+        "BehaviorSystem<EditorCameraController>"
     };
 
 //-----------------------------------------------------------------------------

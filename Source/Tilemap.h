@@ -8,6 +8,8 @@
 #define TILEMAP_H
 
 #include "Component.h"
+
+#include "ComponentReference.h"
 #include "Transform.h"
 #include <functional>   // callbacks
 #include <map>
@@ -167,6 +169,9 @@ private: // virtual overrides
     /// @brief  called after component is added & read
     virtual void OnInit() override;
 
+    /// @brief  called after component is removed
+    virtual void OnExit() override;
+
 
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() override;
@@ -193,7 +198,7 @@ private: // data
     glm::mat4 m_InvMat = glm::mat4(1);
 
     /// @brief   Parent's transform (cached)
-    Transform* m_PTransform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
     /// @brief   Callback functions - they get called whenever tilemap changes.
     std::map< unsigned, OnTilemapChangedCallback > m_OnTilemapChangedCallbacks;
@@ -234,14 +239,14 @@ private:
     /// @brief the map of read methods for this Component
     static ReadMethodMap< Tilemap > const s_ReadMethods;
 
+public:
+
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
     {
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
-
-public:
 
     /// @brief Write all Tilemap component data to a JSON file.
     /// @return The JSON file containing the Tilemap component data.

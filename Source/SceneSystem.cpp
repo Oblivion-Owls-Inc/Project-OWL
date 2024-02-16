@@ -47,6 +47,8 @@
             name = &m_CurrentSceneName;
         }
 
+        Debug() << "Saving scene \"" << *name << "\"..." << std::endl;
+
         Stream::WriteToFile( scenePath( *name ), Scene().Write() );
     }
 
@@ -280,27 +282,24 @@
     {
         for ( auto& [ key, value ] : data.items() )
         {
-            
-            // basically just std::find but different because we're not actually using a std::map
-            std::vector< std::pair< std::string, BaseAssetLibrarySystem* (*)() > >::const_iterator it;
-            for ( it = s_AssetLibraries.begin(); it != s_AssetLibraries.end(); ++it )
-            {
-                if ( it->first == key )
+            auto it = std::find_if(
+                s_AssetLibraries.begin(), s_AssetLibraries.end(),
+                [ key ]( std::pair< std::string, BaseAssetLibrarySystem* (*)() > const& it ) -> bool
                 {
-                    break;
+                    return it.first == key;
                 }
-            }
-
+            );
             if ( it == s_AssetLibraries.end() )
             {
-                std::stringstream errorMessage;
-                errorMessage <<
-                    "JSON error: unexpected token \"" << key <<
-                    "\" encountered while reading Scene asset types";
-                throw std::runtime_error( errorMessage.str() );
+                Debug() << "JSON WARNING: unrecognized token " << key << " at " << Stream::GetDebugLocation() << std::endl;
+                break;
             }
 
+            Stream::PushDebugLocation( key + "." );
+
             it->second()->LoadAssets( value );
+
+            Stream::PopDebugLocation();
         }
     }
 
@@ -367,24 +366,17 @@
     /// @brief  Loads the next Scene
     void SceneSystem::loadScene()
     {
-
-        nlohmann::ordered_json json = Stream::ReadFromFile( scenePath( m_CurrentSceneName ) );
+        Debug() << "Loading Scene \"" << m_CurrentSceneName << "\"..." << std::endl;
 
         Scene scene = Scene();
-        try
-        {
-            Stream::Read( scene, json );
-        }
-        catch ( std::runtime_error error )
-        {
-            std::cerr << error.what();
-        }
-
+        Stream::ReadFromFile( &scene, scenePath( m_CurrentSceneName ) );
     }
 
     /// @brief  Initializes the current Scene
     void SceneSystem::initScene()
     {
+        Debug() << "Initializing Scene \"" << m_CurrentSceneName << "\"..." << std::endl;
+
         for ( System* system : Engine::GetInstance()->GetSystems() )
         {
             system->OnSceneInit();
@@ -394,6 +386,8 @@
     /// @brief  Exits the current Scene
     void SceneSystem::exitScene()
     {
+        Debug() << "Exiting Scene \"" << m_CurrentSceneName << "\"..." << std::endl;
+
         for ( System* system : Engine::GetInstance()->GetSystems() )
         {
             system->OnSceneExit();

@@ -207,17 +207,19 @@
             "Bullet": {
                 "Name": "Bullet",
                 "Components": {
-                    "BulletBehavior": {
-                        "Lifetime": {
-                            "BaseValue": 3.0,
-                            "CurrentValue": 3.0
-                        },
+                    "Bullet": {
                         "Damage": 1
                     },
                     "CircleCollider": {
                         "Radius": 0.10000000149011612,
                         "CollisionLayer": 4,
                         "CollisionLayerFlags": 3
+                    },
+                    "Lifetime": {
+                        "Lifetime": {
+                            "BaseValue": 2.0,
+                            "CurrentValue": 2.0
+                        }
                     },
                     "RigidBody": {
                         "Velocity": [
@@ -244,7 +246,9 @@
                         ],
                         "Opacity": 1.0,
                         "FrameIndex": 0,
-                        "Texture": "Ball1"
+                        "Texture": {
+                            "AssetName": "Ball1"
+                        }
                     },
                     "Transform": {
                         "Translation": [
@@ -265,7 +269,9 @@
                 "Name": "Enemy",
                 "Components": {
                     "AudioPlayer": {
-                        "Sound": "EnemySound",
+                        "Sound": {
+                            "AssetName": "EnemySound"
+                        },
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
@@ -323,10 +329,14 @@
                         ],
                         "Opacity": 1.0,
                         "FrameIndex": 0,
-                        "Texture": "Fireball"
+                        "Texture": {
+                            "AssetName": "Fireball"
+                        }
                     },
                     "EnemyBehavior": {
-                        "PathfinderName": "Tiles",
+                        "PathfinderEntity": {
+                            "EntityName": "Tiles"
+                        },
                         "Speed": 10.0,
                         "Damage": 1
                     },
@@ -369,12 +379,18 @@
                         "Name": "HealthBar",
                         "Components": {
                             "HealthBar": {
+                                "FollowTargetEntity": true,
                                 "Offset": [
                                     0.0,
                                     1.0
                                 ],
                                 "HideWhenFull": false,
-                                "RecentHealthAcceleration": 1.0
+                                "OpacityAnimationTime": 1.0,
+                                "MaxOpacity": 1.0,
+                                "RecentHealthAcceleration": 1.0,
+                                "TargetEntity": {
+                                    "EntityName": ""
+                                }
                             },
                             "Transform": {
                                 "Translation": [
@@ -421,7 +437,9 @@
                                         "Slope": 0.0
                                     }
                                 ],
-                                "Texture": "HealthBar",
+                                "Texture": {
+                                    "AssetName": "HealthBar"
+                                },
                                 "Layer": 6,
                                 "Opacity": 1.0,
                                 "BorderPositions": [
@@ -469,7 +487,9 @@
                         ],
                         "Opacity": 1.0,
                         "FrameIndex": 0,
-                        "Texture": "Items"
+                        "Texture": {
+                            "AssetName": "Items"
+                        }
                     },
                     "Transform": {
                         "Translation": [
@@ -490,7 +510,9 @@
                 "Name": "Turret",
                 "Components": {
                     "AudioPlayer": {
-                        "Sound": "TurretShoot",
+                        "Sound": {
+                            "AssetName": "TurretShoot"
+                        },
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
@@ -510,7 +532,9 @@
                         ],
                         "Opacity": 1.0,
                         "FrameIndex": 0,
-                        "Texture": "Turret"
+                        "Texture": {
+                            "AssetName": "Turret"
+                        }
                     },
                     "Transform": {
                         "Translation": [
@@ -530,8 +554,10 @@
                         "BulletDamage": 10,
                         "BulletSpeed": 10.0,
                         "BulletSize": 0.30000001192092896,
-                        "BulletName": "Bullet",
-                        "Target": "Enemy"
+                        "ObstructionLayers": 1,
+                        "BulletPrefab": {
+                            "AssetName": "Bullet"
+                        }
                     }
                 },
                 "Children": null
@@ -543,7 +569,9 @@
             "Name": "Music",
             "Components": {
                 "AudioPlayer": {
-                    "Sound": "Music",
+                    "Sound": {
+                        "AssetName": "Music"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -560,24 +588,9 @@
             "Name": "DiggingSound",
             "Components": {
                 "AudioPlayer": {
-                    "Sound": "PlayerDigging",
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "IsSpatial": false,
-                    "AllowMultipleSounds": false
-                }
-            },
-            "Children": null
-        },
-        "TurretPlacementSound": {
-            "Name": "TurretPlacementSound",
-            "Components": {
-                "AudioPlayer": {
-                    "Sound": "TurretPlacement",
+                    "Sound": {
+                        "AssetName": "PlayerDigging"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -594,7 +607,9 @@
             "Name": "Base",
             "Components": {
                 "AudioPlayer": {
-                    "Sound": "BaseDamageSound",
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -604,16 +619,25 @@
                     "IsSpatial": false,
                     "AllowMultipleSounds": false
                 },
-                "BaseBehavior": {
+                "CircleCollider": {
+                    "Radius": 1.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 0,
+                    "Active": true
+                },
+                "Health": {
                     "Health": {
                         "BaseValue": 5,
                         "CurrentValue": 5
                     }
                 },
-                "CircleCollider": {
-                    "Radius": 1.0,
-                    "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
+                "HomeBase": {
+                    "GameOverScene": "Gameover"
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -625,12 +649,138 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Van"
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
                 },
                 "Transform": {
                     "Translation": [
                         -9.0,
                         5.5
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Generator": {
+            "Name": "Generator",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 1,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -5.679166793823242,
+                        -0.4700002670288086
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Generator2": {
+            "Name": "Generator2",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": 2
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 2,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        12.337499618530273,
+                        -1.409998893737793
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -670,7 +820,9 @@
                             "WaveNextTime": 0.0,
                             "EnemyGroups": [
                                 {
-                                    "EnemyName": "Enemy",
+                                    "Enemy": {
+                                        "AssetName": "Enemy"
+                                    },
                                     "Amount": 0,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
@@ -680,10 +832,12 @@
                         },
                         {
                             "WaveTime": 0.0,
-                            "WaveNextTime": 12.920777320861816,
+                            "WaveNextTime": 6.524757385253906,
                             "EnemyGroups": [
                                 {
-                                    "EnemyName": "Enemy",
+                                    "Enemy": {
+                                        "AssetName": "Enemy"
+                                    },
                                     "Amount": 0,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
@@ -696,14 +850,18 @@
                             "WaveNextTime": 999.0,
                             "EnemyGroups": [
                                 {
-                                    "EnemyName": "Enemy",
+                                    "Enemy": {
+                                        "AssetName": "Enemy"
+                                    },
                                     "Amount": 999,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
                                     "Spawner": 0
                                 },
                                 {
-                                    "EnemyName": "Enemy",
+                                    "Enemy": {
+                                        "AssetName": "Enemy"
+                                    },
                                     "Amount": 999,
                                     "SpawnInterval": 10.0,
                                     "InitialOffset": 10.0,
@@ -737,7 +895,7 @@
                 "Transform": {
                     "Translation": [
                         0.0,
-                        0.0
+                        -4.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -755,7 +913,7 @@
                 "Tilemap<int>": {
                     "Dimensions": [
                         47,
-                        34
+                        35
                     ],
                     "TileScale": [
                         1.0,
@@ -2426,9 +2584,6 @@
                     ],
                     "Walkables": [
                         -1
-                    ],
-                    "Targets": [
-                      "Player - low"
                     ]
                 },
                 "StaticBody": {
@@ -2440,7 +2595,9 @@
                     "CollisionLayerFlags": 0
                 },
                 "TilemapItemDropper": {
-                    "ItemArchetypeName": "Item",
+                    "ItemArchetype": {
+                        "AssetName": "Item"
+                    },
                     "MaxInitialVelocity": 1.0,
                     "ItemSpawnRadius": 0.30000001192092896
                 },
@@ -2454,7 +2611,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Level Assets"
+                    "Texture": {
+                        "AssetName": "Level Assets"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -2477,7 +2636,7 @@
                 "Tilemap<int>": {
                     "Dimensions": [
                         47,
-                        34
+                        35
                     ],
                     "TileScale": [
                         1.0,
@@ -4141,7 +4300,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Level Assets"
+                    "Texture": {
+                        "AssetName": "Level Assets"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -4164,7 +4325,7 @@
                 "Tilemap<int>": {
                     "Dimensions": [
                         47,
-                        34
+                        35
                     ],
                     "TileScale": [
                         1.0,
@@ -5828,7 +5989,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "CastlTiles"
+                    "Texture": {
+                        "AssetName": "CastlTiles"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -5853,14 +6016,18 @@
                     "FrameDelay": 0.06618662178516388,
                     "IsRunning": false,
                     "LoopCount": 0,
-                    "Animation": "PlayerMoveUp"
+                    "Animation": {
+                        "AssetName": "PlayerMoveUp"
+                    }
                 },
                 "AudioListener": {
                     "ZOffset": 0.0,
                     "IsActive": true
                 },
                 "AudioPlayer": {
-                    "Sound": "PlayerFootSteps",
+                    "Sound": {
+                        "AssetName": "PlayerFootSteps"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -5898,14 +6065,24 @@
                     ]
                 },
                 "PlayerController": {
-                    "AnimationNames": [
-                        "PlayerMoveRight",
-                        "PlayerMoveLeft",
-                        "PlayerMoveUp",
-                        "PlayerMoveDown"
+                    "Animations": [
+                        {
+                            "AssetName": "PlayerMoveRight"
+                        },
+                        {
+                            "AssetName": "PlayerMoveLeft"
+                        },
+                        {
+                            "AssetName": "PlayerMoveUp"
+                        },
+                        {
+                            "AssetName": "PlayerMoveDown"
+                        }
                     ],
                     "MaxSpeed": 1.0,
-                    "MiningLaserName": "MiningLaser",
+                    "MiningLaserEntity": {
+                        "EntityName": "MiningLaser"
+                    },
                     "RespawnLocation": [
                         -15.0,
                         5.0
@@ -5936,7 +6113,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 12,
-                    "Texture": "PlayerSheet"
+                    "Texture": {
+                        "AssetName": "PlayerSheet"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -5956,17 +6135,23 @@
                     "Name": "HealthBar",
                     "Components": {
                         "HealthBar": {
+                            "FollowTargetEntity": true,
                             "Offset": [
                                 0.0,
                                 1.0
                             ],
                             "HideWhenFull": false,
-                            "RecentHealthAcceleration": 1.0
+                            "OpacityAnimationTime": 1.0,
+                            "MaxOpacity": 1.0,
+                            "RecentHealthAcceleration": 1.0,
+                            "TargetEntity": {
+                                "EntityName": "Player"
+                            }
                         },
                         "Transform": {
                             "Translation": [
-                                -8.773333549499512,
-                                7.128334045410156
+                                -15.0,
+                                6.5
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -6008,7 +6193,9 @@
                                     "Slope": 0.0
                                 }
                             ],
-                            "Texture": "HealthBar",
+                            "Texture": {
+                                "AssetName": "HealthBar"
+                            },
                             "Layer": 6,
                             "Opacity": 1.0,
                             "BorderPositions": [
@@ -6035,7 +6222,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Background"
+                    "Texture": {
+                        "AssetName": "Background"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -6055,6 +6244,19 @@
         "ConstructionManager": {
             "Name": "ConstructionManager",
             "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "TurretPlacement"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
@@ -6064,7 +6266,9 @@
                                     "Count": 3
                                 }
                             ],
-                            "ArchetypeName": "Turret"
+                            "Archetype": {
+                                "AssetName": "Turret"
+                            }
                         }
                     ],
                     "BuildingIndex": -1,
@@ -6083,8 +6287,12 @@
                         1.0
                     ],
                     "PreviewAlpha": 0.5,
-                    "TilemapName": "Tiles",
-                    "PlayerName": "Player"
+                    "TilemapEntity": {
+                        "EntityName": "Tiles"
+                    },
+                    "PlayerEntity": {
+                        "EntityName": "Player"
+                    }
                 },
                 "Sprite": {
                     "Layer": 4,
@@ -6096,7 +6304,9 @@
                     ],
                     "Opacity": 0.0,
                     "FrameIndex": 0,
-                    "Texture": ""
+                    "Texture": {
+                        "AssetName": "Turret"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -6153,7 +6363,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "FontSheet"
+                    "Texture": {
+                        "AssetName": "FontSheet"
+                    }
                 },
                 "UiElement": {
                     "Anchor": [
@@ -6226,7 +6438,9 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": "Ball3"
+                    "Texture": {
+                        "AssetName": "Ball"
+                    }
                 },
                 "Transform": {
                     "Translation": [
@@ -6247,7 +6461,9 @@
             "Name": "MiningLaser",
             "Components": {
                 "AudioPlayer": {
-                    "Sound": "",
+                    "Sound": {
+                        "AssetName": "PlayerDigging"
+                    },
                     "Volume": 1.0,
                     "Pitch": 1.0,
                     "VolumeVariance": 0.0,
@@ -6300,10 +6516,14 @@
                     ],
                     "Opacity": 1.0,
                     "FrameIndex": 0,
-                    "Texture": ""
+                    "Texture": {
+                        "AssetName": "Fireball"
+                    }
                 },
                 "MiningLaser": {
-                    "TilemapName": "Tiles",
+                    "TilemapEntity": {
+                        "EntityName": "Tiles"
+                    },
                     "Range": 4.0,
                     "MiningSpeed": 4.0,
                     "MaxInProgressTiles": 32,
@@ -6317,15 +6537,15 @@
                     "DamageRate": 10.0,
                     "CollideWithLayers": 3,
                     "Direction": [
-                        1.0,
-                        0.0
+                        -0.9299333691596985,
+                        0.36772796511650085
                     ],
                     "IsFiring": false
                 },
                 "Transform": {
                     "Translation": [
-                        0.0,
-                        0.0
+                        -15.0,
+                        5.5
                     ],
                     "Rotation": 0.0,
                     "Scale": [

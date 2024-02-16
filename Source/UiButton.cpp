@@ -13,11 +13,6 @@
 
 #include "Entity.h"
 
-#include "UiElement.h"
-#include "Sprite.h"
-#include "AudioPlayer.h"
-#include "Sound.h"
-
 #include "InputSystem.h"
 #include "EventSystem.h"
 
@@ -78,18 +73,24 @@
     {
         Behaviors< Behavior >()->AddComponent( this );
 
-        m_UiElement   = GetEntity()->GetComponent< UiElement   >();
-        m_Sprite      = GetEntity()->GetComponent< Sprite      >();
-        m_AudioPlayer = GetEntity()->GetComponent< AudioPlayer >();
+        m_UiElement  .Init( GetEntity() );
+        m_Sprite     .Init( GetEntity() );
+        m_AudioPlayer.Init( GetEntity() );
 
-        m_PressSound   = AssetLibrary< Sound >()->GetAsset( m_PressSoundName   );
-        m_ReleaseSound = AssetLibrary< Sound >()->GetAsset( m_ReleaseSoundName );
+        m_PressSound  .SetOwnerName( GetName() );
+        m_PressSound  .Init();
+        m_ReleaseSound.SetOwnerName( GetName() );
+        m_ReleaseSound.Init();
     }
 
     /// @brief  called once when exiting the scene
     void UiButton::OnExit()
     {
         Behaviors< Behavior >()->RemoveComponent( this );
+
+        m_UiElement  .Exit( GetEntity() );
+        m_Sprite     .Exit( GetEntity() );
+        m_AudioPlayer.Exit( GetEntity() );
     }
 
 
@@ -291,45 +292,9 @@
         ImGui::DragInt( "hovered frame index", (int*)&m_HoveredFrame, 0.05f, 0, INT_MAX );
         ImGui::DragInt( "down frame index"   , (int*)&m_DownFrame   , 0.05f, 0, INT_MAX );
 
-        Inspection::SelectAssetFromLibrary< Sound >( "button down sound", &m_PressSound  , &m_PressSoundName   );
-        Inspection::SelectAssetFromLibrary< Sound >( "button up sound"  , &m_ReleaseSound, &m_ReleaseSoundName );
+        m_PressSound  .Inspect( "button down sound" );
+        m_ReleaseSound.Inspect( "button up sound"   );
 
-    }
-
-    /// @brief  called whenever another component is added to this component's Entity in the inspector
-    /// @param  component   the component that was added
-    void UiButton::OnInspectorAddComponent( Component* component )
-    {
-        if ( component->GetType() == typeid( Sprite ) )
-        {
-            m_Sprite = static_cast< Sprite* >( component );
-        }
-        else if ( component->GetType() == typeid( AudioPlayer ) )
-        {
-            m_AudioPlayer = static_cast< AudioPlayer* >( component );
-        }
-        else if ( component->GetType() == typeid( UiElement ) )
-        {
-            m_UiElement = static_cast< UiElement* >( component );
-        }
-    }
-
-    /// @brief  called whenever another component is removed from this component's Entity in the inspector
-    /// @param  component   the component that will be removed
-    void UiButton::OnInspectorRemoveComponent( Component* component )
-    {
-        if ( static_cast< Sprite* >( component ) == m_Sprite )
-        {
-            m_Sprite = nullptr;
-        }
-        else if ( static_cast< AudioPlayer* >( component ) == m_AudioPlayer )
-        {
-            m_AudioPlayer = nullptr;
-        }
-        else if ( static_cast< UiElement* >( component ) == m_UiElement )
-        {
-            m_UiElement = nullptr;
-        }
     }
 
 
@@ -373,18 +338,18 @@
         Stream::Read( m_DownFrame, data );
     }
 
-    /// @brief  reads the name of the sound this UiButton plays when it is pressed
+    /// @brief  reads the sound this UiButton plays when it is pressed
     /// @param  data    the JSON data to read from
-    void UiButton::readPressSoundName( nlohmann::ordered_json const& data )
+    void UiButton::readPressSound( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_PressSoundName, data );
+        Stream::Read( m_PressSound, data );
     }
 
-    /// @brief  reads the name of the sound this UiButton plays when it is released
+    /// @brief  reads the sound this UiButton plays when it is released
     /// @param  data    the JSON data to read from
-    void UiButton::readReleaseSoundName( nlohmann::ordered_json const& data )
+    void UiButton::readReleaseSound( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_ReleaseSoundName, data );
+        Stream::Read( m_ReleaseSound, data );
     }
 
 
@@ -403,8 +368,8 @@
             { "IdleFrame"            , &UiButton::readIdleFrame             },
             { "HoveredFrame"         , &UiButton::readHoveredFrame          },
             { "DownFrame"            , &UiButton::readDownFrame             },
-            { "PressSoundName"       , &UiButton::readPressSoundName        },
-            { "ReleaseSoundName"     , &UiButton::readReleaseSoundName      }
+            { "PressSound"           , &UiButton::readPressSound            },
+            { "ReleaseSound"         , &UiButton::readReleaseSound          }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -422,8 +387,8 @@
         json [ "IdleFrame"             ] = Stream::Write( m_IdleFrame             );
         json [ "HoveredFrame"          ] = Stream::Write( m_HoveredFrame          );
         json [ "DownFrame"             ] = Stream::Write( m_DownFrame             );
-        json [ "PressSoundName"        ] = Stream::Write( m_PressSoundName        );
-        json [ "ReleaseSoundName"      ] = Stream::Write( m_ReleaseSoundName      );
+        json [ "PressSound"            ] = Stream::Write( m_PressSound            );
+        json [ "ReleaseSound"          ] = Stream::Write( m_ReleaseSound          );
 
         return json;
     }
@@ -456,8 +421,8 @@
         m_IdleFrame            ( other.m_IdleFrame             ),
         m_HoveredFrame         ( other.m_HoveredFrame          ),
         m_DownFrame            ( other.m_DownFrame             ),
-        m_PressSoundName       ( other.m_PressSoundName        ),
-        m_ReleaseSoundName     ( other.m_ReleaseSoundName      )
+        m_PressSound           ( other.m_PressSound            ),
+        m_ReleaseSound         ( other.m_ReleaseSound          )
     {}
 
 

@@ -39,10 +39,11 @@ class Stream
 public: // methods
 //------------------------------------------------------------------------------
 
-	/// @brief	Opens and parses a json document.
-	/// @param  filepath    name of the file to read from.
-	/// @return	the parsed json data
-	static nlohmann::ordered_json ReadFromFile( std::string const& filepath );
+	/// @brief	Opens and parses a json document
+    /// @param  object      the object to read the JSON data into
+	/// @param  filepath    name of the file to read from
+	static void ReadFromFile( ISerializable* object, std::string const& filepath );
+
 
     /// @brief Read the SDL Controller Mappings
     /// @param filepath - The .txt file containing the mappings.
@@ -70,6 +71,7 @@ public: // methods
     /// @param  value       the value to paste the clipboard into
     template< typename ValueType >
     static void PasteFromClipboard( ValueType& value );
+
 
 //-----------------------------------------------------------------------------
 public: // reading
@@ -105,6 +107,27 @@ public: // reading
     template< int size, typename ValueType >
     static void Read( glm::vec< size, ValueType >* value, nlohmann::ordered_json const& json );
 
+    /// @brief Reads a vector of a standard type from a JSON file.
+    /// @tparam ValueType - the type of data to read into the vector,
+    /// @param vector     - the vector to read into.
+    /// @param json       - the JSON to read from.
+    template<typename ValueType>
+    static void Read(std::vector<ValueType>* vec_data, nlohmann::ordered_json const& json);
+
+    /// @brief Reads an array of a standard type from a JSON file.
+    /// @tparam ValueType - the data type of the array.
+    /// @tparam Size      - the size of the array.
+    /// @param array      - the array to read into.
+    template<typename ValueType, int Size>
+    static void Read(ValueType* array_data, nlohmann::ordered_json const& json);
+
+    /// @brief Reads a map with a string key and any standard data type from a JSON.
+    /// @tparam ValueType - the type of map value.
+    /// @param map_data   - pointer tot he map to read into.
+    /// @param json       - the JSON to read from.
+    template<typename ValueType>
+    static void Read(std::map<std::string, ValueType>* map_data, nlohmann::ordered_json const& json);
+
 //------------------------------------------------------------------------------
 public: // writing
 //------------------------------------------------------------------------------
@@ -124,12 +147,64 @@ public: // writing
     template< int size, typename ValueType >
     static nlohmann::ordered_json Write( glm::vec< size, ValueType > const& value );
 
+    /// @brief Write a vector of any standard data type to a JSON
+    /// @tparam ValueType - type of data stored by the vector.
+    /// @param vec_data   - the vector to write to JSON.
+    /// @return The JSON object containing the vector data.
+    template<typename ValueType>
+    static nlohmann::ordered_json Write(std::vector<ValueType> const& vec_data);
+
+    /// @brief Write an array of any standard data type to a JSON.
+    /// @tparam ValueType - the type of data stored in the array
+    /// @tparam Size      - the size of the array
+    /// @param array_data - pointer to the array.
+    /// @return The JSON object containing the array.
+    template<typename ValueType, int Size>
+    static nlohmann::ordered_json Write(ValueType* array_data);
+
+    /// @brief Write a map of string keys and any standard data type to a JSON object.
+    /// @tparam ValueType - the data type of the map values.
+    /// @param map_data   - the map to write to a JSON object.
+    /// @return The JSON object containing the written map data.
+    template<typename ValueType>
+    static nlohmann::ordered_json Write(std::map<std::string, ValueType> map_data);
+
 //-----------------------------------------------------------------------------
 private: // static variables
 //-----------------------------------------------------------------------------
     
+
     /// @brief  clipboard used for copy and pasting data around the editor
-    static nlohmann::ordered_json m_Clipboard;
+    static nlohmann::ordered_json s_Clipboard;
+
+    
+//-----------------------------------------------------------------------------
+public: // debug stack
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  pushes a Debug Location name to the DebugLocationStack
+    /// @param  locationName    the name of the location to push
+    static void PushDebugLocation( std::string const& locationName );
+
+
+    /// @brief  pops a Debug Location name from the DebugLocationStack
+    static void PopDebugLocation();
+
+
+    /// @brief  gets the DebugLocation as a string to print
+    /// @return the DebugLocation as a string
+    static std::string GetDebugLocation();
+
+
+//-----------------------------------------------------------------------------
+private: // debug stack
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  stack of strings representing the current location in the JSON file
+    static std::vector< std::string > s_DebugLocationStack;
+    
 
 //-----------------------------------------------------------------------------
 private: // pointer-aware methods

@@ -22,19 +22,24 @@
 //------------------------------------------------------------------------------
 
     /// @brief	Opens and parses a json document.
-    /// @param  filepath    name of the file to read from.
-    /// @return	the parsed json data
-    nlohmann::ordered_json Stream::ReadFromFile( std::string const& filepath )
+    /// @param  object      the object to read the JSON data into
+    /// @param  filepath    name of the file to read from
+    void Stream::ReadFromFile( ISerializable* object, std::string const& filepath )
     {
         std::ifstream file( filepath );
         if ( file.is_open() == false )
         {
             Debug() << "Warning: unable to open file \"" << filepath << "\"" << std::endl;
-            return nlohmann::ordered_json();
+            return;
         }
-        // TODO: error handling?
-        return nlohmann::ordered_json::parse( file );
+
+        s_DebugLocationStack.push_back( filepath + ":" );
+
+        Stream::Read( *object, nlohmann::ordered_json::parse( file ) );
+
+        s_DebugLocationStack.pop_back();
     }
+
 
     /// @brief Read the SDL Controller Mappings
     /// @param filepath - The .txt file containing the mappings.
@@ -128,7 +133,58 @@
 // private: static variables
 //-----------------------------------------------------------------------------
 
+
     /// @brief  clipboard used for copy and pasting data around the editor
-    nlohmann::ordered_json Stream::m_Clipboard = nlohmann::ordered_json();
+    nlohmann::ordered_json Stream::s_Clipboard = nlohmann::ordered_json();
+
+    
+//-----------------------------------------------------------------------------
+// public: debug stack
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  pushes a Debug Location name to the DebugLocationStack
+    /// @param  locationName    the name of the location to push
+    void Stream::PushDebugLocation( std::string const& locationName )
+    {
+        s_DebugLocationStack.push_back( locationName );
+    }
+
+
+    /// @brief  pops a Debug Location name from the DebugLocationStack
+    void Stream::PopDebugLocation()
+    {
+        s_DebugLocationStack.pop_back();
+    }
+
+
+    /// @brief  gets the DebugLocation as a string to print
+    /// @return the DebugLocation as a string
+    std::string Stream::GetDebugLocation()
+    {
+        std::string result = "";
+
+        for ( std::string const& string : s_DebugLocationStack )
+        {
+            result += string;
+        }
+
+        if ( result.empty() == false )
+        {
+            result.pop_back();
+        }
+
+        return result;
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: debug stack
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  stack of strings representing the current location in the JSON file
+    std::vector< std::string > Stream::s_DebugLocationStack = {};
+    
 
 //-----------------------------------------------------------------------------

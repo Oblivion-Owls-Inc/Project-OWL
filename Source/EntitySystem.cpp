@@ -9,6 +9,7 @@
 #include "EntitySystem.h"
 
 #include "Entity.h"
+#include "Transform.h"
 
 #include "DebugSystem.h"
 #include <algorithm>
@@ -281,7 +282,9 @@
         {
 
             Entity* entity = new Entity(); /// Create a new entity
+            Transform* transform = new Transform(); /// Create a new transform
             entity->SetName( name ); /// Set the name of the entity
+            entity->AddComponent( transform ); /// Add the transform to the entity)
             entity->AddToScene(); /// Add the entity to the EntitySystem
 
             /// if the entity is added, close the window
@@ -320,21 +323,21 @@
 			return;
 		}
         
-        static bool open_Childpopup = false;  // Flag to check if the popup menu should be open
-        auto& Children = entity->GetChildren(); /// Get the children of the entity
+        static bool showDeleteChildPopup = false;  // Flag to check if the popup menu should be open
+        auto& children = entity->GetChildren(); /// Get the children of the entity
         static Entity* selectedEntity = nullptr; /// The selected entity
-        for (int i = 0; i < Children.size(); ++i)
+        for (int i = 0; i < children.size(); ++i)
         {
             /// Create a unique identifier for the popup menu based on the entity's ID
-            std::string popup_id = "EntityContextMenu##" + std::to_string(Children[i]->GetId());
+            std::string popup_id = "EntityContextMenu##" + std::to_string(children[i]->GetId());
 
             /// Create a unique identifier for the delete popup menu based on the entity's ID
-            std::string delete_id = "Confirm Deletion##" + std::to_string(Children[i]->GetId());
+            std::string delete_id = "Confirm Deletion##" + std::to_string(children[i]->GetId());
 
             /// Use the Variable i as the ID for the tree node
             /// The Flags are set to open on arrow and double click
             const bool node_open = ImGui::TreeNodeEx((void*)(intptr_t)i, ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick,
-                Children[i]->GetName().c_str()); /// Display the name of the entity
+                children[i]->GetName().c_str()); /// Display the name of the entity
 
 
             // Check for right-click on the tree node
@@ -343,21 +346,23 @@
                 /// Creates the context to copy, paste , and delete entities
                 if (ImGui::MenuItem("Copy"))
                 {
-                    Stream::CopyToClipboard(Children[i]);
+                    Stream::CopyToClipboard(children[i]);
                 }
                 if (ImGui::MenuItem("Paste"))
                 {
-                    Stream::PasteFromClipboard(Children[i]);
+                    children[ i ]->Exit();
+                    Stream::PasteFromClipboard( children[ i ] );
+                    children[ i ]->Init();
                 }
                 if (ImGui::MenuItem("Delete"))
                 {
-                    open_Childpopup = true;
+                    showDeleteChildPopup = true;
                 }
 
                 ImGui::EndPopup();
             }
 
-            if (open_Childpopup)
+            if (showDeleteChildPopup)
             {
                 ImGui::OpenPopup(delete_id.c_str(), ImGuiPopupFlags_NoOpenOverExistingPopup);
 
@@ -368,16 +373,16 @@
                 if (ImGui::BeginPopupModal(delete_id.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize))
                 {
                     /// Create the sentence to ask the user if they are sure they want to delete the entity
-                    std::string sentence = "Are you sure you want to delete " + Children[i]->GetName() + "?";
+                    std::string sentence = "Are you sure you want to delete " + children[i]->GetName() + "?";
                     ImGui::Text(sentence.c_str());
 
                     ImGui::Separator();
                     /// Creates the buttons to confirm or cancel the deletion
                     if (ImGui::Button("OK", ImVec2(120, 0)))
                     {
-                        Children[i]->Destroy();
+                        children[i]->Destroy();
                         selectedEntity = nullptr;
-                        open_Childpopup = false;
+                        showDeleteChildPopup = false;
                     }
 
                     /// Set the focus on the cancel button
@@ -390,7 +395,7 @@
                     {
                         /// Closes the popup
                         ImGui::CloseCurrentPopup();
-                        open_Childpopup = false;
+                        showDeleteChildPopup = false;
                     }
 
                     /// Ends the popup to match with the BeginPopupModal
@@ -403,19 +408,17 @@
             if (ImGui::IsItemClicked())
             {
                 /// Show the properties of the entity
-                *SelectedEntity = Children[i];
+                *SelectedEntity = children[i];
             }
 
             /// If the node is open, display the Children of the Child
             if (node_open)
             {
                 ///entityPropertiesWindow(child);
-			    DisplayChildren( Children[i], SelectedEntity);
+			    DisplayChildren( children[i], SelectedEntity);
                 ImGui::TreePop();
             }
-            
 		}
-
 	}
 
     /// @brief Displays the Entity List Window
@@ -430,7 +433,7 @@
 		ImGui::SetWindowSize( ImVec2( 500, 1000 ), ImGuiCond_FirstUseEver );
         static int selection_mask = (1 << 2); /// User Selection Status
         int node_clicked = -1; /// The node that was clicked
-        static bool open_popup = false;  // Flag to check if the popup menu should be open
+        static bool showDeleteEntityPopup = false;  // Flag to check if the popup menu should be open
 
         /// Loop through all of the entities 
         for (int i = 0; i < m_Entities.size(); i++)
@@ -463,17 +466,19 @@
                 }
                 if (ImGui::MenuItem("Paste"))
                 {
-                    Stream::PasteFromClipboard(m_Entities[i]);
+                    m_Entities[ i ]->Exit();
+                    Stream::PasteFromClipboard( m_Entities[ i ] );
+                    m_Entities[ i ]->Init();
                 }
                 if (ImGui::MenuItem("Delete"))
                 {
-                    open_popup = true;
+                    showDeleteEntityPopup = true;
                 }
 
                 ImGui::EndPopup();
             }
 
-            if (open_popup)
+            if (showDeleteEntityPopup)
             {
                 ImGui::OpenPopup(delete_id.c_str(), ImGuiPopupFlags_NoOpenOverExistingPopup);
 
@@ -493,7 +498,7 @@
                     {
                         m_Entities[i]->Destroy();
                         selectedEntity = nullptr;
-                        open_popup = false;
+                        showDeleteEntityPopup = false;
                     }
 
                     /// Set the focus on the cancel button
@@ -506,7 +511,7 @@
                     {
                         /// Closes the popup
                         ImGui::CloseCurrentPopup();
-                        open_popup = false;
+                        showDeleteEntityPopup = false;
                     }
 
                     /// Ends the popup to match with the BeginPopupModal
@@ -572,10 +577,14 @@
     {
         for ( auto& [ name, entityData ] : data.items() )
         {
+            Stream::PushDebugLocation( name + "." );
+
             Entity* entity = new Entity();
             Stream::Read( entity, entityData );
             m_Entities.push_back( entity );
             addLoadedChildren( entity );
+
+            Stream::PopDebugLocation();
         }
 
         for ( Entity* entity : m_Entities )

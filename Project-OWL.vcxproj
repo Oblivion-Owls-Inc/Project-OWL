@@ -183,33 +183,37 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\AssetReference.t.cpp" />
     <ClCompile Include="Source\AudioListener.cpp" />
+    <ClCompile Include="Source\ComponentReference.t.cpp" />
+    <ClCompile Include="Source\EditorCameraController.cpp" />
+    <ClCompile Include="Source\EntityReference.cpp" />
     <ClCompile Include="Source\EventSystem.cpp" />
     <ClCompile Include="Source\ExampleComponent.cpp" />
     <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\FileExplorer.cpp" />
     <ClCompile Include="imgui\imgui_stdlib.cpp" />
-    <ClCompile Include="Source\BasicEntityBehavior.cpp" />
-    <ClCompile Include="Source\BaseBehavior.cpp" />
+    <ClCompile Include="Source\HomeBase.cpp" />
     <ClCompile Include="Source\CheatSystem.cpp" />
-    <ClCompile Include="Source\BulletBehavior.cpp" />
+    <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\ConstructionBehavior.cpp" />
     <ClCompile Include="Source\Curve.cpp" />
     <ClCompile Include="Source\EffectAnimator.cpp" />
     <ClCompile Include="Source\Emitter.cpp" />
     <ClCompile Include="Source\EnemyBehavior.cpp" />
-    <ClCompile Include="Source\FollowingBehavior.cpp" />
     <ClCompile Include="imgui\implot.cpp" />
     <ClCompile Include="imgui\implot_demo.cpp" />
     <ClCompile Include="imgui\implot_items.cpp" />
     <ClCompile Include="Source\HealthBar.cpp" />
+    <ClCompile Include="Source\Generator.cpp" />
     <ClCompile Include="Source\Inspection.cpp" />
     <ClCompile Include="Source\EmitterSprite.cpp" />
     <ClCompile Include="Source\Inventory.cpp" />
     <ClCompile Include="Source\ItemCollector.cpp" />
     <ClCompile Include="Source\ItemComponent.cpp" />
     <ClCompile Include="Source\ItemStack.cpp" />
+    <ClCompile Include="Source\Lifetime.cpp" />
     <ClCompile Include="Source\Light.cpp" />
     <ClCompile Include="Source\LightingSystem.cpp" />
     <ClCompile Include="Source\LootTable.cpp" />
@@ -234,7 +238,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\AnimationAsset.cpp" />
     <ClCompile Include="Source\ComponentFactory.cpp" />
     <ClCompile Include="Source\EntitySystem.cpp" />
-    <ClCompile Include="Source\MovementAI.cpp" />
     <ClCompile Include="Source\AudioPlayer.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\InputSystem.cpp" />
@@ -244,6 +247,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
     <ClCompile Include="Source\TilemapCollider.cpp" />
+    <ClCompile Include="Source\TilemapEditor.cpp" />
     <ClCompile Include="Source\TilemapItemDropper.cpp" />
     <ClCompile Include="Source\TilemapSprite.cpp" />
     <ClCompile Include="Source\Tilemap.t.cpp" />
@@ -276,12 +280,18 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\TileInfoSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\AssetReference.h" />
+    <ClInclude Include="Source\ComponentReference.h" />
+    <ClInclude Include="Source\EditorCameraController.h" />
+    <ClInclude Include="Source\EntityReference.h" />
     <ClInclude Include="Source\EventListener.h" />
     <ClInclude Include="Source\EventSystem.h" />
     <ClInclude Include="Source\AudioListener.h" />
     <ClInclude Include="Source\ExampleComponent.h" />
     <ClInclude Include="Source\HealthBar.h" />
     <ClInclude Include="Source\CameraBehavior.h" />
+    <ClInclude Include="Source\Lifetime.h" />
+    <ClInclude Include="Source\TilemapEditor.h" />
     <ClInclude Include="Source\TilemapTextureConnector.h" />
     <ClInclude Include="Source\UiBarSprite.h" />
     <ClInclude Include="Source\Inventory.h" />
@@ -296,18 +306,17 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Health.h" />
     <ClInclude Include="Source\FileExplorer.h" />
     <ClInclude Include="imgui\imgui_stdlib.h" />
+    <ClInclude Include="Source\Generator.h" />
     <ClInclude Include="Source\Inspection.h" />
-    <ClInclude Include="Source\BasicEntityBehavior.h" />
-    <ClInclude Include="Source\BaseBehavior.h" />
+    <ClInclude Include="Source\HomeBase.h" />
     <ClInclude Include="Source\CheatSystem.h" />
-    <ClInclude Include="Source\BulletBehavior.h" />
+    <ClInclude Include="Source\Bullet.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\ConstructionBehavior.h" />
     <ClInclude Include="Source\Curve.h" />
     <ClInclude Include="Source\EffectAnimator.h" />
     <ClInclude Include="Source\Emitter.h" />
     <ClInclude Include="Source\EnemyBehavior.h" />
-    <ClInclude Include="Source\FollowingBehavior.h" />
     <ClInclude Include="imgui\implot.h" />
     <ClInclude Include="imgui\implot_internal.h" />
     <ClInclude Include="Source\ISerializable.h" />
@@ -324,7 +333,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\CameraSystem.h" />
     <ClInclude Include="Source\CollisionSystem.h" />
     <ClInclude Include="Source\ComponentFactory.h" />
-    <ClInclude Include="Source\MovementAI.h" />
     <ClInclude Include="Source\Behavior.h" />
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\EntitySystem.h" />

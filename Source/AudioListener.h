@@ -10,9 +10,9 @@
 
 #include "Behavior.h"
 
-
-class Transform;
-class RigidBody;
+#include "ComponentReference.h"
+#include "Transform.h"
+#include "RigidBody.h"
 
 
 /// @brief  component that picks up spatial audio
@@ -78,10 +78,10 @@ private: // members
 
 
     /// @brief  the Transform attached to this AudioListener
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform, false > m_Transform;
 
     /// @brief  the RigidBody attached to this AudioListener
-    RigidBody* m_RigidBody = nullptr;
+    ComponentReference< RigidBody, false > m_RigidBody;
 
 
 //-----------------------------------------------------------------------------

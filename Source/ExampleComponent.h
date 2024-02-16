@@ -79,7 +79,7 @@ public: // reading / writing
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
-    /// @brief  Writes all AudioPlayr data to a JSON file.
+    /// @brief  Writes all HomeBase data to a JSON file.
     /// @return The JSON file containing the data.
     virtual nlohmann::ordered_json Write() const override;
 

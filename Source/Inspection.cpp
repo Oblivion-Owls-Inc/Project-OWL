@@ -41,30 +41,6 @@
     }
 
 
-    /// @brief  selects an Entity from the Scene
-    /// @param  label           the ImGui label of the dropdown selector
-    /// @param  selectedEntity  pointer to the currently selected Entity
-    /// @return whether an Entity was selected
-    bool Inspection::SelectEntityFromScene( char const* label, Entity** selectedEntity )
-    {
-        if ( ImGui::BeginCombo( label, *selectedEntity == nullptr ? "" : (*selectedEntity)->GetName().c_str() ) )
-        {
-            for ( Entity* entity : Entities()->GetEntities() )
-            {
-                if ( ImGui::Selectable( entity->GetName().c_str(), entity == *selectedEntity) )
-                {
-                    *selectedEntity = entity;
-                    ImGui::EndCombo();
-                    return true;
-                }
-            }
-            ImGui::EndCombo();
-        }
-
-        return false;
-    }
-
-
     /// @brief  inspects a CollisionLayerFlags
     /// @param  label           the label of the inspector
     /// @param  collisionLayers the collisionLayerFlags to inspect

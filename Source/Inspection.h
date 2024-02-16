@@ -34,23 +34,6 @@ public: // public methods
     static bool SelectFileFromDirectory( char const* label, std::string* selectedFile, std::string const& directoryPath );
 
 
-    /// @brief  selects an Asset from an AssetLibrary
-    /// @tparam AssetType       the type of asset to select
-    /// @param  label           the ImGui label of the dropdown selector
-    /// @param  selectedAsset   pointer to the currently selected Asset
-    /// @param  selectedName    pointer to the name of the selectd Asset
-    /// @return Whether an asset was selected
-    template< class AssetType >
-    static bool SelectAssetFromLibrary( char const* label, AssetType const** selectedAsset, std::string* selectedAssetName );
-
-
-    /// @brief  selects an Entity from the Scene
-    /// @param  label           the ImGui label of the dropdown selector
-    /// @param  selectedEntity  pointer to the currently selected Entity
-    /// @return whether an Entity was selected
-    static bool SelectEntityFromScene( char const* label, Entity** selectedEntity );
-
-
     /// @brief  inspects an array of elements
     /// @tparam DataType            the type of data in the array
     /// @param  label               the label of the array inspector
@@ -102,42 +85,12 @@ private: // helper methods
 };
 
 
-#include <imgui.h>
-
 //-----------------------------------------------------------------------------
-// public: tempalate implementations
+// template implementation
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  selects an Asset from an AssetLibrary
-    /// @tparam AssetType       the type of asset to select
-    /// @param  label           the ImGui label of the dropdown selector
-    /// @param  selectedAsset   pointer to the currently selected Asset
-    /// @param  selectedName    pointer to the name of the selectd Asset
-    /// @return Whether an asset was selected
-    template< class AssetType >
-    bool Inspection::SelectAssetFromLibrary( char const* label, AssetType const** selectedAsset, std::string* selectedAssetName )
-    {
-        if ( ImGui::BeginCombo( label, selectedAssetName->c_str() ) )
-        {
-            for ( auto const& [ name, asset ] : AssetLibrary< AssetType >()->GetAssets() )
-            {
-                if ( ImGui::Selectable( name.c_str(), asset == *selectedAsset) )
-                {
-                    *selectedAssetName = name;
-                    *selectedAsset = asset;
-
-                    ImGui::EndCombo();
-                    return true;
-                }
-            }
-
-            ImGui::EndCombo();
-        }
-
-        return false;
-    }
-
+    #include <imgui.h>
 
 
     /// @brief  inspects a reorderable array of elements
@@ -283,5 +236,6 @@ private: // helper methods
 
         return modified;
     }
+
 
 //-----------------------------------------------------------------------------

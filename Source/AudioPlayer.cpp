@@ -117,17 +117,16 @@
 
     /// @brief  gets the Sound that this AudioPlayer plays
     /// @return the Sound that this AudioPlayer plays
-    Sound const* AudioPlayer::GetSound()
+    AssetReference< Sound > const& AudioPlayer::GetSound()
     {
         return m_Sound;
     }
 
     /// @brief  sets the SOund that this AudioPlayer plays
     /// @param  sound   the sound that this AudioPlayer will play
-    void AudioPlayer::SetSound( Sound const* sound )
+    void AudioPlayer::SetSound( AssetReference< Sound > const& sound )
     {
         m_Sound = sound;
-        m_SoundName = AssetLibrary< Sound >()->GetAssetName( sound );
     }
 
 
@@ -332,13 +331,11 @@
     /// @brief  called once when entering the scene
     void AudioPlayer::OnInit()
     {
-        if ( m_SoundName.empty() == false )
-        {
-            m_Sound = AssetLibrary< Sound >()->GetAsset( m_SoundName );
-        }
+        m_Sound.SetOwnerName( GetName() );
+        m_Sound.Init();
 
-        m_Transform = GetEntity()->GetComponent< Transform >();
-        m_RigidBody = GetEntity()->GetComponent< RigidBody >();
+        m_Transform.Init( GetEntity() );
+        m_RigidBody.Init( GetEntity() );
 
         if ( m_PlayOnInit )
         {
@@ -350,6 +347,9 @@
     void AudioPlayer::OnExit()
     {
         Stop();
+
+        m_Transform.Exit( GetEntity() );
+        m_RigidBody.Exit( GetEntity() );
     }
 
 
@@ -432,8 +432,19 @@
     /// @brief  shows the inspector for AudioPlayer
     void AudioPlayer::Inspector()
     {
+        if ( m_IsSpatial )
+        {
+            if ( m_Transform == nullptr )
+            {
+                ImGui::Text( "No Transform attached to this AudioPlayer, using pos = (0, 0)" );
+            }
+            if ( m_RigidBody == nullptr )
+            {
+                ImGui::Text( "No RigidBody attached to this AudioPlayer, using vel = (0, 0)" );
+            }
+        }
 
-        Inspection::SelectAssetFromLibrary< Sound >( "sound", &m_Sound, &m_SoundName );
+        m_Sound.Inspect( "Sound" );
 
         bool paused = GetIsPaused();
         if ( ImGui::Checkbox( "Paused", &paused ) )
@@ -501,7 +512,7 @@
     /// @param  data    the json data
     void AudioPlayer::readSound( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_SoundName, data );
+        Stream::Read( m_Sound, data );
     }
 
     /// @brief  read the volume of this component from json
@@ -593,7 +604,7 @@
     {
         nlohmann::ordered_json data;
 
-        data[ "Sound"               ] = Stream::Write( m_SoundName           );
+        data[ "Sound"               ] = Stream::Write( m_Sound               );
         data[ "Volume"              ] = Stream::Write( m_Volume              );
         data[ "Pitch"               ] = Stream::Write( m_Pitch               );
         data[ "VolumeVariance"      ] = Stream::Write( m_VolumeVariance      );
@@ -629,14 +640,13 @@
     /// @param  other   the other AudioPlayer to copy
     AudioPlayer::AudioPlayer( AudioPlayer const& other ) :
         Behavior( other ),
-        m_Sound         ( other.m_Sound          ),
-        m_SoundName     ( other.m_SoundName      ),
         m_ChannelGroup  ( other.m_ChannelGroup   ),
         m_Volume        ( other.m_Volume         ),
         m_Pitch         ( other.m_Pitch          ),
         m_VolumeVariance( other.m_VolumeVariance ),
         m_PitchVariance ( other.m_PitchVariance  ),
-        m_IsSpatial     ( other.m_IsSpatial      )
+        m_IsSpatial     ( other.m_IsSpatial      ),
+        m_Sound         ( other.m_Sound          )
     {}
 
 
