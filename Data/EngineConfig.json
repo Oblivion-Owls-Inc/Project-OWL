@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1200,
-                800
+                1132,
+                695
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -20,8 +20,8 @@
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
-        "BehaviorSystem<GeneratorBehavior>": {},
         "BehaviorSystem<EditorCameraController>": {},
+        "ComponentSystem<Generator>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
         "LightingSystem": {

@@ -243,7 +243,8 @@ private: // methods
 
 
     /// @brief  propagates an OnHeirarchyChange event downwards
-    void propagateHeirachyChangeEvent();
+    /// @param  previousParent the previous parent of this Entity
+    void propagateHeirachyChangeEvent( Entity* previousParent );
 
 
 //-----------------------------------------------------------------------------
@@ -257,6 +258,16 @@ public: // inspection
 
     /// @brief used by the Debug System to Rename this Entity
     void RenameEntity( char const* popup_id );
+
+    
+//-----------------------------------------------------------------------------
+private: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  removes a Component using the Inspector
+    /// @param  component   the Component to remove
+    void removeComponent( Component* component );
 
 
 //-----------------------------------------------------------------------------
