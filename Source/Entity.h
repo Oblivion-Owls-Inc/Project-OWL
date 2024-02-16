@@ -258,6 +258,16 @@ public: // inspection
     /// @brief used by the Debug System to Rename this Entity
     void RenameEntity( char const* popup_id );
 
+    
+//-----------------------------------------------------------------------------
+private: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  removes a Component using the Inspector
+    /// @param  component   the Component to remove
+    void removeComponent( Component* component );
+
 
 //-----------------------------------------------------------------------------
 private: // reading
