@@ -326,13 +326,22 @@
         ImGui::Begin("Entity List", nullptr, window_flags);
         ImGui::SetWindowSize(ImVec2(500, 1000), ImGuiCond_FirstUseEver);
 
+
         // Function to display entities recursively
         std::function<void(Entity*,bool)> displayEntityRecursive = [&](Entity* entity, bool child)
         {
+            std::vector< Entity* > entities;
             Entity* parent = entity ? entity->GetParent() : nullptr; // Get the parent of the current entity
-
             // Get the children of the parent if it exists, otherwise get the root entities
-            auto& entities = parent ? parent->GetChildren() : m_Entities; // Get the children of the parent if it exists, otherwise get the root entities
+            if (!child)
+            {
+                entities = parent ? parent->GetChildren() : m_Entities; // Get the children of the parent if it exists, otherwise get the root entities
+            }
+            else
+            {
+				entities = entity->GetChildren(); // Get the children of the current entity
+			}
+
 
             for (int i = 0; i < entities.size(); ++i)
             {
@@ -451,6 +460,42 @@
                     }
                 }
 
+                // Drag Source
+                if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) 
+                {
+                    // Set payload to be the entity's ID or reference
+                    ImGui::SetDragDropPayload("ENTITY_PAYLOAD", &currentEntity, sizeof(Entity*));
+                    ImGui::Text("Moving %s", currentEntity->GetName().c_str());
+                    ImGui::EndDragDropSource();
+                }
+
+                // Drop Target
+                if (ImGui::BeginDragDropTarget()) 
+                {
+                    const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ENTITY_PAYLOAD");
+
+                    if (payload != NULL) 
+                    {
+                         Entity* droppedEntity = *(Entity**)payload->Data;
+                         // Set the parent of the dropped entity to the current entity
+                         // Check Imgui if shift is pressed
+                         // For now this is a temporary solution/implementation
+                         if (ImGui::GetIO().KeyShift)
+                         {
+                          
+						    droppedEntity->SetParent(nullptr);
+							 
+						 }
+                         else
+                         {
+                             droppedEntity->SetParent(currentEntity);
+                         }
+                       
+                    }
+
+                    ImGui::EndDragDropTarget();
+                }
+
                 if (ImGui::IsItemClicked())
                 {
                     SelectedEntity = currentEntity;
@@ -463,8 +508,10 @@
                     ImGui::TreePop(); // Only pop if we actually pushed the tree node (non-leaf)
                 }
             }
-        };
 
+            
+        };
+        
         displayEntityRecursive(nullptr,false); // Start with null to display root entities
 
         if (ImGui::IsWindowHovered() && ImGui::IsMouseClicked(0))
