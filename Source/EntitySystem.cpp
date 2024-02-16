@@ -12,6 +12,7 @@
 #include "Transform.h"
 
 #include "DebugSystem.h"
+#include "imgui_internal.h"
 #include <algorithm>
 
 //-----------------------------------------------------------------------------
@@ -315,8 +316,6 @@
 //-----------------------------------------------------------------------------
 
     /// @brief Displays the Entity Hierarchy in the Entity List window
-    /// @param SelectedEntity - the entity that is currently selected 
-    /// @param child - whether or not to display the children of the selected entity
     void EntitySystem::DisplayEntityHierarchy()
     {
         static bool showDeletePopup = false; // Flag to check if the delete popup should be shown
@@ -477,19 +476,9 @@
                     if (payload != NULL) 
                     {
                          Entity* droppedEntity = *(Entity**)payload->Data;
+
                          // Set the parent of the dropped entity to the current entity
-                         // Check Imgui if shift is pressed
-                         // For now this is a temporary solution/implementation
-                         if (ImGui::GetIO().KeyShift)
-                         {
-                          
-						    droppedEntity->SetParent(nullptr);
-							 
-						 }
-                         else
-                         {
-                             droppedEntity->SetParent(currentEntity);
-                         }
+                        droppedEntity->SetParent(currentEntity);
                        
                     }
 
@@ -511,6 +500,21 @@
 
             
         };
+
+        if (ImGui::BeginDragDropTargetCustom(ImGui::GetCurrentWindow()->Rect(), ImGui::GetID("ENTITY_PAYLOAD")))
+        {
+			const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ENTITY_PAYLOAD");
+
+            if (payload != NULL)
+            {
+				Entity* droppedEntity = *(Entity**)payload->Data;
+
+				droppedEntity->SetParent(nullptr);
+
+			}
+
+			ImGui::EndDragDropTarget();
+		}
         
         displayEntityRecursive(nullptr,false); // Start with null to display root entities
 
