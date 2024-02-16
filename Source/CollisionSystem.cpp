@@ -38,22 +38,71 @@
 // public: methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  adds a Collider to the CollisionSystem
-    /// @param  collider    the collider to add
-    void CollisionSystem::addCollider( Collider* collider )
+
+    /// @brief  adds a CircleCollider to the CollisionSystem
+    /// @param  circleCollider  the collider to add
+    void CollisionSystem::addCollider( CircleCollider* circleCollider )
     {
-        m_Colliders.push_back( collider );
+        if ( circleCollider->GetRadius() > m_GridSize )
+        {
+            m_LargeCircleColliders.push_back( circleCollider );
+            return;
+        }
+
+        glm::vec2 pos = circleCollider->GetTransform()->GetTranslation();
+        m_CircleCollidersGrid[ getGridCell( pos ) ].push_back( circleCollider );
     }
 
-    /// @brief  removes a Collider from this System
-    /// @param  collider    the collider to remove
-    void CollisionSystem::removeCollider( Collider* collider )
+    /// @brief  removes a CircleCollider from the CollisionSystem
+    /// @param  circleCollider  the collider to remove
+    void CollisionSystem::removeCollider( CircleCollider* circleCollider )
     {
-        auto it = std::remove( m_Colliders.begin(), m_Colliders.end(), collider );
-        if ( it != m_Colliders.end() )
+        std::vector< CircleCollider* >* container = &m_LargeCircleColliders;
+
+        if ( circleCollider->GetRadius() <= m_GridSize )
         {
-            m_Colliders.erase( it );
+            glm::vec2 pos = circleCollider->GetTransform()->GetTranslation();
+
+            auto it = m_CircleCollidersGrid.find( getGridCell( pos ) );
+            if ( it == m_CircleCollidersGrid.end() )
+            {
+                Debug() << "ERROR: could not find cell to remove CircleCollider" << std::endl;
+                return;
+            }
+
+            container = &it->second;
         }
+
+        auto it = std::find( container->begin(), container->end(), circleCollider );
+        if ( it == container->end() )
+        {
+            Debug() << "ERROR: could not find CircleCollider to remove" << std::endl;
+            return;
+        }
+
+        container->erase( it );
+    }
+
+
+    /// @brief  adds a TilemapCollider to the CollisionSystem
+    /// @param  tilemapCollider the collider to add
+    void CollisionSystem::addCollider( TilemapCollider* tilemapCollider )
+    {
+        m_TilemapColliders.push_back( tilemapCollider );
+    }
+
+    /// @brief  removes a TilemapCollider from the CollisionSystem
+    /// @param  tilemapCollider     the collider to remove
+    void CollisionSystem::removeCollider( TilemapCollider* tilemapCollider )
+    {
+        auto it = std::find( m_TilemapColliders.begin(), m_TilemapColliders.end(), tilemapCollider );
+        if ( it == m_TilemapColliders.end() )
+        {
+            Debug() << "ERRORL could not find TilemapCollider to remove" << std::endl;
+            return;
+        }
+
+        m_TilemapColliders.erase( it );
     }
 
 
@@ -119,6 +168,9 @@
     {
         RayCastHit hit;
         hit.distance = maxDistance;
+
+        for ( m_Circ ) // WIP
+
         for ( Collider* collider : m_Colliders )
         {
             if ( !(layers & (1 << collider->GetCollisionLayer())) )
@@ -187,6 +239,16 @@
             }
         }
     }
+
+
+    /// @brief  gets the collision grid cell of a given world pos
+    /// @param  worldPos    the world position to get the grid cell of
+    /// @return the grid cell position containing the world pos
+    glm::ivec2 CollisionSystem::getGridCell( glm::vec2 const& worldPos ) const
+    {
+        return glm::ivec2( worldPos / m_GridSize );
+    }
+
 
 //-----------------------------------------------------------------------------
 // private: static methods
