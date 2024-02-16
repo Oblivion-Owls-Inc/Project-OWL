@@ -874,39 +874,6 @@
             },
             "Children": null
         },
-        "Camera": {
-            "Name": "Camera",
-            "Components": {
-                "Camera": {
-                    "Width": 47.0,
-                    "IsActive": true
-                },
-                "CameraBehavior": {
-                    "TargetEntityName": "Player",
-                    "XBounds": [
-                        -1.0,
-                        1.0
-                    ],
-                    "YBounds": [
-                        -24.0,
-                        16.0
-                    ]
-                },
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        -4.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                }
-            },
-            "Children": null
-        },
         "Tiles": {
             "Name": "Tiles",
             "Components": {
@@ -2578,12 +2545,12 @@
                     ]
                 },
                 "Pathfinder": {
-                    "Destination": [
-                        -9.0,
-                        5.5
-                    ],
                     "Walkables": [
                         -1
+                    ],
+                    "Targets": [
+                        "Player - low",
+                        "Base - highest"
                     ]
                 },
                 "StaticBody": {
@@ -6131,6 +6098,44 @@
                 }
             },
             "Children": [
+                {
+                    "Name": "Camera",
+                    "Components": {
+                        "Camera": {
+                            "Width": 47.0,
+                            "IsActive": true
+                        },
+                        "CameraBehavior": {
+                            "XBounds": [
+                                -1.0,
+                                1.0
+                            ],
+                            "YBounds": [
+                                -24.0,
+                                16.0
+                            ]
+                        },
+                        "Transform": {
+                            "Translation": [
+                                0.0,
+                                -4.0
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                },
+                {
+                    "Name": "WinState",
+                    "Components": {
+                        "WinState": {}
+                    }
+                },
                 {
                     "Name": "HealthBar",
                     "Components": {
