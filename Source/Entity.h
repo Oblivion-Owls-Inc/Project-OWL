@@ -243,7 +243,8 @@ private: // methods
 
 
     /// @brief  propagates an OnHeirarchyChange event downwards
-    void propagateHeirachyChangeEvent();
+    /// @param  previousParent the previous parent of this Entity
+    void propagateHeirachyChangeEvent( Entity* previousParent );
 
 
 //-----------------------------------------------------------------------------

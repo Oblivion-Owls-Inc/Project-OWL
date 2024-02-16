@@ -111,6 +111,7 @@
             m_Parent->removeChild( this );
         }
 
+        Entity* previousParent = m_Parent;
         m_Parent = parent;
 
         // add this to its new parent
@@ -119,7 +120,7 @@
             parent->addChild( this );
         }
 
-        propagateHeirachyChangeEvent();
+        propagateHeirachyChangeEvent( previousParent );
     }
 
 
@@ -372,16 +373,17 @@
 
 
     /// @brief  propagates an OnHeirarchyChange event downwards
-    void Entity::propagateHeirachyChangeEvent()
+    /// @param  previousParent the previous parent of this Entity
+    void Entity::propagateHeirachyChangeEvent( Entity* previousParent )
     {
         for ( auto& [ type, component ] : m_Components )
         {
-            component->OnHeirarchyChange();
+            component->OnHierarchyChange( previousParent );
         }
 
         for ( Entity* child : m_Children )
         {
-            child->propagateHeirachyChangeEvent();
+            child->propagateHeirachyChangeEvent( this );
         }
     }
 

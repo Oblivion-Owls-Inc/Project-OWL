@@ -50,6 +50,11 @@ public: // virtual override methods
     virtual void OnExit() override;
 
 
+    /// @brief  called whenever the hierarchy this Entity is a part of changes
+    /// @param  previousParent  the previous parent of this Entity
+    virtual void OnHierarchyChange( Entity* previousParent ) override;
+
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------

@@ -55,7 +55,7 @@ public: // virtual methods
 
 
     /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
-    virtual void OnHeirarchyChange() {};
+    virtual void OnHierarchyChange( Entity* previousParent ) {};
     
 
     /// @brief Used by the Debug System to display information about this Component

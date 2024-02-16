@@ -145,7 +145,7 @@
 
 
     /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
-    void UiElement::OnHeirarchyChange()
+    void UiElement::OnHierarchyChange( Entity* previousParent )
     {
         Entity* parent = GetEntity()->GetParent();
         m_ParentElement = parent == nullptr ? nullptr : parent->GetComponent< UiElement >();
