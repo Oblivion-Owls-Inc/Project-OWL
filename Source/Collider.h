@@ -17,6 +17,8 @@
 #include "ComponentReference.h"
 #include "Transform.h"
 
+#include "CollisionLayerFlags.h"
+
 #include <map>
 #include <functional>
 
@@ -25,12 +27,6 @@
 //-----------------------------------------------------------------------------
 
 struct CollisionData;
-
-//-----------------------------------------------------------------------------
-// typedefs
-//-----------------------------------------------------------------------------
-
-using CollisionLayerFlags = unsigned;
 
 //-----------------------------------------------------------------------------
 // class
@@ -58,7 +54,7 @@ public: // types
 //-----------------------------------------------------------------------------
 protected: // constructor
 //-----------------------------------------------------------------------------
-	
+    
 
     /// @brief  default constructor
     /// @param  type    the type of Component
@@ -87,10 +83,6 @@ public: // accessors
     /// @param  layerId the collision layer to set
     void SetCollisionLayer( unsigned layerId );
 
-    /// @brief  sets the collision layer of this Collider
-    /// @param  layerName   the name of the collision layer to set
-    void SetCollisionLayer( std::string const& layerName );
-
 
     /// @brief  gets the flags of which layers this Collider collides with
     /// @return the flags of which layers this Collider collides with
@@ -100,14 +92,10 @@ public: // accessors
     /// @param  layerFlags  the flags of which layers this Collider should collide with
     void SetCollisionLayerFlags( CollisionLayerFlags layerFlags );
 
-    /// @brief  sets the flags of which layers this Collider collides with
-    /// @param  layerFlags  the names of which layers this Collider should collide with
-    void SetCollisionLayerFlags( std::vector< std::string > const& layerNames );
-
 
     /// @brief  gets the list of colliders this Collider is currently colliding with
     /// @return the list of colliders this Collider is currently colliding with
-    std::vector< Collider* > const& GetContacts() const;
+    std::set< Collider* > const& GetContacts() const;
 
 
 //-----------------------------------------------------------------------------
@@ -211,7 +199,7 @@ private: // member variables
 
 
     /// @brief  all of the Colliders this Collider is currently colliding with
-    std::vector< Collider* > m_Contacts = {};
+    std::set< Collider* > m_Contacts = {};
 
 
     /// @brief  callbacks which get called whenever this collider collides

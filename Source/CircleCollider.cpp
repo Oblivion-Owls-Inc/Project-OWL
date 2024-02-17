@@ -57,9 +57,9 @@
     {
         nlohmann::ordered_json data;
 
-        data["Radius"] = m_Radius;
-        data["CollisionLayer"] = GetCollisionLayer();
-        data["CollisionLayerFlags"] = GetCollisionLayerFlags();
+        data[ "Radius"              ] = Stream::Write( m_Radius                 );
+        data[ "CollisionLayer"      ] = Stream::Write( GetCollisionLayer()      );
+        data[ "CollisionLayerFlags" ] = Stream::Write( GetCollisionLayerFlags() );
 
         return data;
     }

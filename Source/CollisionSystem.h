@@ -12,11 +12,12 @@
 // Includes:
 //-----------------------------------------------------------------------------
 
-#include "System.h"
-#include <vector>
-#include <typeindex>
+    #include "System.h"
+    #include <vector>
+    #include <typeindex>
 
-#include "CollisionData.h"
+    #include "CollisionData.h"
+    #include "CollisionLayerFlags.h"
 
 //-----------------------------------------------------------------------------
 // Forward references:
@@ -26,15 +27,20 @@
 
     class TilemapCollider;
     class CircleCollider;
+    
 
-//-----------------------------------------------------------------------------
-// typedefs
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  bit flags of which layers a collider collides with
-    using CollisionLayerFlags = unsigned; 
-
+    // comparison operator for glm::ivec2 to use as key in map
+    namespace std
+    {
+        template <>
+        struct less< glm::ivec2 >
+        {
+            bool operator ()( glm::ivec2 const& a, glm::ivec2 const& b ) const
+            {
+                return (a.y != b.y) ? (a.y < b.y) : (a.x < b.x);
+            }
+        };
+    }
 
 //-----------------------------------------------------------------------------
 // class
@@ -65,16 +71,6 @@ public: // methods
     /// @brief  removes a TilemapCollider from the CollisionSystem
     /// @param  tilemapCollider     the collider to remove
     void removeCollider( TilemapCollider* tilemapCollider );
-
-
-    /// @brief  makes a CollisionLayerFlags for a set of layer names
-    /// @param  layerNames  the names of the layers to include in the flags
-    CollisionLayerFlags GetLayerFlags( std::vector< std::string > const& layerNames ) const;
-
-    /// @brief  gets the collision layer ID with the specified name
-    /// @param  layerName   the name of the layer to get
-    /// @return the collision layer ID
-    unsigned GetCollisionLayerId( std::string const& layerName ) const;
 
 
     /// @brief  gets the names of the layers in a CollisionLayerFlags
@@ -119,21 +115,6 @@ private: // virtual override methods
 
 
 //-----------------------------------------------------------------------------
-private: // methods
-//-----------------------------------------------------------------------------
-
-
-    /// @brief Checks and handles all Collisions
-    void checkCollisions();
-
-
-    /// @brief  gets the collision grid cell of a given world pos
-    /// @param  worldPos    the world position to get the grid cell of
-    /// @return the grid cell position containing the world pos
-    glm::ivec2 getGridCell( glm::vec2 const& worldPos ) const;
-
-
-//-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
@@ -159,32 +140,40 @@ private: // members
     /// @brief  all CircleColliders larger than the grid size in the scene
     std::vector< CircleCollider* > m_LargeCircleColliders = {};
 
+    
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Checks and handles all Collisions
+    void checkCollisions();
+
+
+    /// @brief  gets the collision grid cell of a given world pos
+    /// @param  worldPos    the world position to get the grid cell of
+    /// @return the grid cell position containing the world pos
+    glm::ivec2 getGridCell( glm::vec2 const& worldPos ) const;
+
 
 //-----------------------------------------------------------------------------
 private: // static methods
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  checks a collision between two colliders of unknown type
-    /// @param  colliderA       the first collider
-    /// @param  colliderB       the second collider
-    /// @param  collisionData   pointer to where to store additional data about the collision
-    /// @return whether or not the two colliders are colliding
-    static void checkCollision( Collider* colliderA, Collider* colliderB );
-
     /// @brief  checks a collision between two circle colliders
     /// @param  colliderA       the first collider
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    static bool checkCircleCircle( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
+    static bool checkCircleCircle( CircleCollider const* colliderA, CircleCollider const* colliderB, CollisionData* collisionData );
 
     /// @brief  checks a collision between a circle and tilemap collider
-    /// @param  colliderA       the first collider
-    /// @param  colliderB       the second collider
+    /// @param  circleCollider  the circle collider
+    /// @param  tilemapCollider the tilemap collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    static bool checkCircleTilemap( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
+    static bool checkCircleTilemap( CircleCollider const* circleCollider, TilemapCollider const* tilemapCollider, CollisionData* collisionData );
 
 
     /// @brief  helper function which checks a circle against an AABB
@@ -219,6 +208,17 @@ private: // static methods
     /// @param  tilemap         the TilemapCollider to test the ray against
     /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
     static void checkRayTilemap( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, TilemapCollider* tilemap, RayCastHit* rayCastHit );
+
+
+    /// @brief  checks if a ray hits a unit grid
+    /// @param  rayOrigin           the origin of the ray in grid space
+    /// @param  rayDirection        the direction of the ray in grid space
+    /// @param  gridCellCallback    callback that returns true when the ray should stop
+    static void checkRayUnitGrid(
+        glm::vec2 const& rayOrigin,
+        glm::vec2 const& rayDirection,
+        std::function< bool ( glm::ivec2 cellPos, float distance, glm::ivec2 stepDir, int stepAxis ) > gridCellCallback
+    );
 
 
 //-----------------------------------------------------------------------------
