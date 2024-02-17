@@ -38,7 +38,7 @@ private:
     virtual void OnExit() override;
 
     /// @return  Copy of this component
-    virtual Component* Clone() const override;
+    virtual EmitterSprite* Clone() const override;
 
 
 public:

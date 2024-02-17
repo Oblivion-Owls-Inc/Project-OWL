@@ -25,7 +25,7 @@ public:
     /// @param stride_mult  (optional) Multiplier to adjust stride (spacing)
     /// @param layer        (optional) Rendering layer: 0-4. 0 is back, 4 is front.
     /// @param type         (for derived) Component type
-    TilemapSprite(Texture* texture, float stride_mult = 1.0f, int layer = 2,
+    TilemapSprite( AssetReference< Texture > const& texture, float stride_mult = 1.0f, int layer = 2,
                   std::type_index type = typeid(TilemapSprite));;
 
 

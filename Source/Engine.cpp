@@ -32,20 +32,21 @@
 #include "BehaviorSystem.h"
 #include "EnemyBehavior.h"
 #include "RigidBody.h"
-#include "MovementAI.h"
 #include "PlayerController.h"
 #include "TurretBehavior.h"
-#include "BulletBehavior.h"
 #include "EffectAnimator.h"
 #include "WavesBehavior.h"
 #include "Animation.h"
 #include "Tilemap.h"
+#include "Generator.h"
+#include "EditorCameraController.h"
 
 #include "ItemComponent.h"
 
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
 #include "LightingSystem.h"
+
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -156,17 +157,7 @@
     /// @brief  Loads the engine config from "Data/EngineConfig.json"
     void Engine::load()
     {
-        nlohmann::ordered_json json = Stream::ReadFromFile( "Data/EngineConfig.json" );
-
-        try
-        {
-            Engine* self = this; // convert from rvalue into lvalue
-            Stream::Read( self, json );
-        }
-        catch ( std::runtime_error error )
-        {
-            std::cerr << error.what();
-        }
+        Stream::ReadFromFile( this, "Data/EngineConfig.json" );
     }
 
     /// @brief  Initializes the engine and all Systems in the Engine
@@ -295,18 +286,17 @@
             // throw an error if token not found
             if ( addSystemMethod == s_AddSystemMethods.end() )
             {
-                throw std::runtime_error(
-                    (
-                        std::stringstream() <<
-                        "unrecognized token \"" <<
-                        key <<
-                        "\" encountered while reading Systems in Engine"
-                    ).str()
-                );
+                Debug() << "WARNING: unable to create unrecognized System type \"" << key << "\" at "
+                    << Stream::GetDebugLocation() << std::endl;
+                continue;
             }
+
+            Stream::PushDebugLocation( key + "." );
            
             System* system = ( this->*addSystemMethod->second )(); // create and add the System to the Engine
             Stream::Read( system, value ); // have the System load itself
+
+            Stream::PopDebugLocation();
         }
     }
 
@@ -329,41 +319,38 @@
     /// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
     std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
 
-        { "PlatformSystem"                  , &addSystem< PlatformSystem  >                             },
-	    { "CollisionSystem"                 , &addSystem< CollisionSystem >                             },
-        { "CameraSystem"                    , &addSystem< CameraSystem    >                             },  
-        { "InputSystem"                     , &addSystem< InputSystem     >                             },
-        { "SceneSystem"                     , &addSystem< SceneSystem     >                             },
-        { "RenderSystem"                    , &addSystem< RenderSystem    >                             },
-        { "DebugSystem"                     , &addSystem< DebugSystem     >                             },
-        { "AudioSystem"                     , &addSystem< AudioSystem     >                             },
-        { "EntitySystem"                    , &addSystem< EntitySystem    >                             },
-        { "ParticleSystem",                   &addSystem< ParticleSystem  >                             },
-        { "CheatSystem"                     , &addSystem< CheatSystem     >                             },
-        { "EventSystem"                     , &addSystem< EventSystem     >                             },
+        { "PlatformSystem"                        , &addSystem< PlatformSystem  >                          },
+	    { "CollisionSystem"                       , &addSystem< CollisionSystem >                          },
+        { "CameraSystem"                          , &addSystem< CameraSystem    >                          },  
+        { "InputSystem"                           , &addSystem< InputSystem     >                          },
+        { "SceneSystem"                           , &addSystem< SceneSystem     >                          },
+        { "RenderSystem"                          , &addSystem< RenderSystem    >                          },
+        { "DebugSystem"                           , &addSystem< DebugSystem     >                          },
+        { "AudioSystem"                           , &addSystem< AudioSystem     >                          },
+        { "EntitySystem"                          , &addSystem< EntitySystem    >                          },
+        { "ParticleSystem"                        , &addSystem< ParticleSystem  >                          },
+        { "CheatSystem"                           , &addSystem< CheatSystem     >                          },
+        { "EventSystem"                           , &addSystem< EventSystem     >                          },
+                                                  
+        { "BehaviorSystem<RigidBody>"             , &addSystem< BehaviorSystem< RigidBody              > > },
+        { "BehaviorSystem<Behavior>"              , &addSystem< BehaviorSystem< Behavior               > > },
+        { "BehaviorSystem<Animation>"             , &addSystem< BehaviorSystem< Animation              > > },
+        { "BehaviorSystem<EffectAnimator>"        , &addSystem< BehaviorSystem< EffectAnimator         > > },
+        { "BehaviorSystem<WavesBehavior>"         , &addSystem< BehaviorSystem< WavesBehavior          > > },
+        { "BehaviorSystem<EnemyBehavior>"         , &addSystem< BehaviorSystem< EnemyBehavior          > > },
+        { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
 
-        { "BehaviorSystem<RigidBody>"       , &addSystem< BehaviorSystem< RigidBody      > >            },
-        { "BehaviorSystem<Behavior>"        , &addSystem< BehaviorSystem< Behavior       > >            },
-        { "BehaviorSystem<BulletBehavior>"  , &addSystem< BehaviorSystem< BulletBehavior > >            },
-        { "BehaviorSystem<Animation>"       , &addSystem< BehaviorSystem< Animation      > >            },
-        { "BehaviorSystem<EffectAnimator>"  , &addSystem< BehaviorSystem< EffectAnimator > >            },
-        { "BehaviorSystem<WavesBehavior>"   , &addSystem< BehaviorSystem< WavesBehavior  > >            },
-
-        { "AssetLibrary<Entity>"            , &addSystem< AssetLibrarySystem< Entity             > >    },
-        { "AssetLibrary<Sound>"             , &addSystem< AssetLibrarySystem< Sound              > >    },
-        { "AssetLibrary<Texture>"           , &addSystem< AssetLibrarySystem< Texture            > >    },
-        { "AssetLibrary<TransformAnimation>", &addSystem< AssetLibrarySystem< TransformAnimation > >    },
-        { "AssetLibrary<AnimationAsset>"    , &addSystem< AssetLibrarySystem< AnimationAsset     > >    },
-                                                                                                     
-        { "ComponentSystem<ItemComponent>"  , &addSystem< ComponentSystem< ItemComponent > >            },
-
-        { "TileInfoSystem"                  , &addSystem< TileInfoSystem >                              },
-        { "LightingSystem"                  , &addSystem< LightingSystem >                              }
-
-        // { "BehaviorSystem<PlayerController>",   &addSystem< BehaviorSystem< PlayerController > >          },
-        // { "BehaviorSystem<MovementAI>",         &addSystem< BehaviorSystem< MovementAI > >                },
-        // { "BehaviorSystem<TurretBehavior>",     &addSystem< BehaviorSystem< TurretBehavior > >            },
-        // { "BehaviorSystem<EnemyBehavior>",      &addSystem< BehaviorSystem< EnemyBehavior> >              },
+        { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
+        { "AssetLibrary<Sound>"                   , &addSystem< AssetLibrarySystem< Sound              > > },
+        { "AssetLibrary<Texture>"                 , &addSystem< AssetLibrarySystem< Texture            > > },
+        { "AssetLibrary<TransformAnimation>"      , &addSystem< AssetLibrarySystem< TransformAnimation > > },
+        { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
+                                                                                                          
+        { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
+        { "ComponentSystem<Generator>"            , &addSystem< ComponentSystem< Generator     > >         },
+                                                  
+        { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
+        { "LightingSystem"                        , &addSystem< LightingSystem >                           }
 
     };
 

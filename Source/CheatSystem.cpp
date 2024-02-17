@@ -13,7 +13,7 @@
 #include "InputSystem.h"  // GetInstance, GetKeyTriggered
 #include "EntitySystem.h" // Entities, Destroy, GetComponent, GetEntities
 #include "AssetLibrarySystem.h"
-#include "BaseBehavior.h" // GetHealth
+#include "Health.h" // GetHealth
 #include "Pool.h"         // SetCurrent
 #include "ConstructionBehavior.h"
 #include "SceneSystem.h"  // GetInstance
@@ -151,12 +151,11 @@
         // The infinite base health cheat.
         if(m_BaseGodMode)
         {
-           Entity* base = Entities()->GetEntity("Base");
-           if(base)
+           Entity* base = Entities()->GetEntity( "Base" );
+           if ( base )
            {
-               BaseBehavior* baseBehavior = base->GetComponent<BaseBehavior>();
-               Pool<int>* health = baseBehavior->GetHealth();
-               health->SetCurrent(9999);
+               Health* health = base->GetComponent< Health >();
+               health->GetHealth()->SetCurrent( 9999 );
            }
         }
     }

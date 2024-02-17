@@ -17,13 +17,10 @@
 #include <functional>
 #include <map>
 
-class Transform;
-class AudioPlayer;
-class Emitter;
-class health;
-
-template< typename T >
-class Tilemap;
+#include "EntityReference.h"
+#include "ComponentReference.h"
+#include "Transform.h"
+#include "Tilemap.h"
 
 /// @brief  Digging laser controllable by an entity
 class MiningLaser : public Behavior
@@ -156,22 +153,10 @@ public: // accessors
     /// @return the Transform attached to this MiningLaser
     Transform* GetTransform() const;
 
-    /// @brief  gets the AudioPlayer attached to this MiningLaser
-    /// @return the AudioPlayer attached to this MiningLaser
-    AudioPlayer* GetAudioPlayer() const;
-
-    /// @brief  gets the Emitter attached to this MiningLaser
-    /// @return the Emitter attached to this MiningLaser
-    Emitter* GetEmitter() const;
-
 
     /// @brief  gets the Tilemap this MiningLaser digs in
     /// @return the Tilemap this MiningLaser digs in
     Tilemap< int >* GetTilemap() const;
-
-    /// @brief  sets the Tilemap this MiningLaser digs in
-    /// @param  tilemap the Tilemap this MiningLaser digs in
-    void SetTilemap( Tilemap< int >* tilemap );
 
 
 
@@ -214,23 +199,14 @@ private: // members
 
 
     /// @brief  the Transform attached to this Entity
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
-
-    /// @brief  the name of the Tilemap entity
-    std::string m_TilemapName = "";
 
     /// @brief  the Tilemap this mining laser digs in
-    Tilemap< int >* m_Tilemap = nullptr;
+    ComponentReference< Tilemap< int > > m_Tilemap;
 
-
-    /// @brief  the AudioPlayer this mining laser uses to play sounds
-    AudioPlayer* m_AudioPlayer = nullptr;
-
-
-    /// @brief  the particleEmitter the laser particles emit with
-    Emitter* m_ParticleEmitter = nullptr;
-
+    /// @brief  the Entity that the target Tilemap is a part of
+    EntityReference m_TilemapEntity = EntityReference( { &m_Tilemap } );
 
 
     /// @brief  the range of the mining laser
@@ -323,7 +299,7 @@ private: // reading
 
     /// @brief  reads the name of the Tilemap entity
     /// @param  data the json data to read from
-    void readTilemapName( nlohmann::ordered_json const& data );
+    void readTilemapEntity( nlohmann::ordered_json const& data );
 
 
     /// @brief  reads the range of the laser

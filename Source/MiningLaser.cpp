@@ -187,34 +187,11 @@
         return m_Transform;
     }
 
-    /// @brief  gets the AudioPlayer attached to this MiningLaser
-    /// @return the AudioPlayer attached to this MiningLaser
-    AudioPlayer* MiningLaser::GetAudioPlayer() const
-    {
-        return m_AudioPlayer;
-    }
-
-    /// @brief  gets the Emitter attached to this MiningLaser
-    /// @return the Emitter attached to this MiningLaser
-    Emitter* MiningLaser::GetEmitter() const
-    {
-        return m_ParticleEmitter;
-    }
-
-
     /// @brief  gets the Tilemap this MiningLaser digs in
     /// @return the Tilemap this MiningLaser digs in
     Tilemap< int >* MiningLaser::GetTilemap() const
     {
         return m_Tilemap;
-    }
-
-    /// @brief  sets the Tilemap this MiningLaser digs in
-    /// @param  tilemap the Tilemap this MiningLaser digs in
-    void MiningLaser::SetTilemap( Tilemap< int >* tilemap )
-    {
-        m_Tilemap = tilemap;
-        m_TilemapName = tilemap->GetEntity()->GetName();
     }
 
 
@@ -253,27 +230,30 @@
     {
         Behaviors< Behavior >()->AddComponent( this );
 
-        m_Transform = GetEntity()->GetComponent< Transform >();
-        m_AudioPlayer = GetEntity()->GetComponent< AudioPlayer >();
-        m_ParticleEmitter = GetEntity()->GetComponent< Emitter >();
+        m_Transform.Init( GetEntity() );
 
-        Entity* tilemapEntity = Entities()->GetEntity( m_TilemapName );
-        if ( tilemapEntity != nullptr )
-        {
-            m_Tilemap = tilemapEntity->GetComponent< Tilemap< int > >();
-        }
+        m_TilemapEntity.SetOwnerName( GetName() );
+        m_TilemapEntity.Init();
     }
 
     /// @brief  called once when exiting the scene
     void MiningLaser::OnExit()
     {
         Behaviors< Behavior >()->RemoveComponent( this );
+
+        m_Transform.Exit( GetEntity() );
+        m_TilemapEntity.Exit();
     }
 
     /// @brief  called every graohics frame
     void MiningLaser::OnUpdate( float dt )
     {
         if ( m_IsFiring == false )
+        {
+            return;
+        }
+
+        if ( m_Transform == nullptr )
         {
             return;
         }
@@ -290,6 +270,11 @@
             return;
         }
 
+        if ( m_Transform == nullptr )
+        {
+            return;
+        }
+
         RayCastHit hit = Collisions()->RayCast( m_Transform->GetTranslation(), m_Direction, m_Range, m_CollisionLayers );
         m_beamLength = hit.distance;
 
@@ -300,6 +285,7 @@
 
         if (
             hit.colliderHit->GetType() == typeid( TilemapCollider ) &&
+            m_Tilemap != nullptr &&
             static_cast< TilemapCollider* >( hit.colliderHit )->GetTilemap() == m_Tilemap
         )
         {
@@ -413,12 +399,16 @@
     /// @brief  displays this MiningLaser in the Inspector
     void MiningLaser::Inspector()
     {
-        Entity* tilemapEntity = m_Tilemap != nullptr ? m_Tilemap->GetEntity() : nullptr;
-        if ( Inspection::SelectEntityFromScene( "Tilemap Entity", &tilemapEntity ) )
+        if ( m_Transform == nullptr )
         {
-            m_Tilemap = tilemapEntity->GetComponent< Tilemap< int > >();
-            m_TilemapName = tilemapEntity->GetName();
+            ImGui::Text( "WARNING: no Transform attached" );
         }
+        if ( m_Tilemap == nullptr )
+        {
+            ImGui::Text( "WARNING: target Entity doesn't exist or doesn't have a tilemap" );
+        }
+
+        m_TilemapEntity.Inspect( "Target tilemap Entity" );
 
 
         ImGui::DragFloat( "Max Range", &m_Range, 0.05f, 0.0f, INFINITY );
@@ -452,9 +442,9 @@
 
     /// @brief  reads the name of the Tilemap entity
     /// @param  data the json data to read from
-    void MiningLaser::readTilemapName( nlohmann::ordered_json const& data )
+    void MiningLaser::readTilemapEntity( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_TilemapName, data );
+        Stream::Read( m_TilemapEntity, data );
     }
 
 
@@ -538,7 +528,7 @@
 
     /// @brief  map of the read methods for this Component
     ReadMethodMap< MiningLaser > MiningLaser::s_ReadMethods = {
-        { "TilemapName"         , &readTilemapName          },
+        { "TilemapEntity"       , &readTilemapEntity        },
         { "Range"               , &readRange                },
         { "MiningSpeed"         , &readMiningSpeed          },
         { "MaxInProgressTiles"  , &readMaxInProgressTiles   },
@@ -562,14 +552,14 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "TilemapName"         ] = Stream::Write( m_TilemapName        );
+        json[ "TilemapEntity"       ] = Stream::Write( m_TilemapEntity      );
         json[ "Range"               ] = Stream::Write( m_Range              );
         json[ "MiningSpeed"         ] = Stream::Write( m_MiningSpeed        );
         json[ "MaxInProgressTiles"  ] = Stream::Write( m_MaxInProgressTiles );
         json[ "BeamColor"           ] = Stream::Write( m_BeamColor          );
         json[ "BeamWidth"           ] = Stream::Write( m_BeamWidth          );
         json[ "DamageRate"          ] = Stream::Write( m_DamageRate         );
-        json[ "CollideWithLayers"   ] = Stream::Write( m_CollisionLayers  );
+        json[ "CollideWithLayers"   ] = Stream::Write( m_CollisionLayers    );
         json[ "Direction"           ] = Stream::Write( m_Direction          );
         json[ "IsFiring"            ] = Stream::Write( m_IsFiring           );
 
@@ -585,17 +575,18 @@
     /// @param  other   the other MiningLaser to copy
     MiningLaser::MiningLaser( const MiningLaser& other ) :
         Behavior( typeid( MiningLaser ) ),
-        m_TilemapName( other.m_TilemapName ),
-        m_Range( other.m_Range ),
-        m_MiningSpeed( other.m_MiningSpeed ),
+        m_Range             ( other.m_Range              ),
+        m_MiningSpeed       ( other.m_MiningSpeed        ),
         m_MaxInProgressTiles( other.m_MaxInProgressTiles ),
-        m_BeamColor( other.m_BeamColor ),
-        m_BeamWidth( other.m_BeamWidth ),
-        m_DamageRate( other.m_DamageRate ),
-        m_CollisionLayers( other.m_CollisionLayers ),
-        m_Direction( other.m_Direction ),
-        m_IsFiring( other.m_IsFiring ),
-        m_AccumulatedDamage(other.m_AccumulatedDamage)
+        m_BeamColor         ( other.m_BeamColor          ),
+        m_BeamWidth         ( other.m_BeamWidth          ),
+        m_DamageRate        ( other.m_DamageRate         ),
+        m_CollisionLayers   ( other.m_CollisionLayers    ),
+        m_Direction         ( other.m_Direction          ),
+        m_IsFiring          ( other.m_IsFiring           ),
+        m_AccumulatedDamage ( other.m_AccumulatedDamage  ),
+
+        m_TilemapEntity( other.m_TilemapEntity, { &m_Tilemap } )
     {}
 
 //-----------------------------------------------------------------------------

@@ -79,7 +79,10 @@
         TileType previousValue = m_Tiles[ index ];
         m_Tiles[ index ] = tile;
 
-        callOnTilemapChangedCallbacks( coord, previousValue );
+        if ( previousValue != tile )
+        {
+            callOnTilemapChangedCallbacks( coord, previousValue );
+        }
     }
 
 
@@ -168,22 +171,28 @@
     template < typename TileType >
     void Tilemap<TileType>::OnInit()
     {
-        if ( GetEntity() == nullptr )
-        {
-            return;
-        }
-        
-        m_PTransform = GetEntity()->GetComponent<Transform>();
+        m_Transform.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_Transform->AddOnTransformChangedCallback( GetId(), std::bind( &Tilemap::updateMat, this ) );
+                updateMat();
+            }
+        );
+        m_Transform.SetOnDisconnectCallback(
+            [ this ]()
+            {
+                m_Transform->RemoveOnTransformChangedCallback( GetId() );
+            }
+        );
 
-    #ifndef NDEBUG
-        if ( m_PTransform == nullptr )
-        {
-            std::cout << "Tilemap: parent does not have transform" << std::endl;
-            return;
-        }
-    #endif
-    
-        updateMat();
+        m_Transform.Init( GetEntity() );
+    }
+
+    /// @brief  called when exiting a scene
+    template < typename TileType >
+    void Tilemap<TileType>::OnExit()
+    {
+        m_Transform.Exit( GetEntity() );
     }
 
 
@@ -223,14 +232,14 @@
     template < typename TileType >
     void Tilemap<TileType>::updateMat()
     {
-        if ( m_PTransform == nullptr )
+        if ( m_Transform == nullptr )
         {
             return;
         }
 
         // combine tilemap scale with parent transform position  (will rotation ever be needed?)
         m_Mat = glm::scale( glm::mat4( 1 ), { m_TileScale.x, -m_TileScale.y, 1 } );
-        glm::vec4 pos = { m_PTransform->GetTranslation(), 0, 1 };
+        glm::vec4 pos = { m_Transform->GetTranslation(), 0, 1 };
         m_Mat[ 3 ] = pos;
 
         m_InvMat = glm::inverse( m_Mat );
@@ -261,6 +270,8 @@
         {
             Stream::Read( m_Tiles[ i ], data[ i ] );
         }
+
+        callOnTilemapChangedCallbacks();
     }
 
 

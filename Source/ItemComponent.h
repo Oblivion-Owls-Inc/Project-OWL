@@ -12,9 +12,10 @@
 
 #include "ItemStack.h"
 
-class Transform;
-class Sprite;
-class RigidBody;
+#include "ComponentReference.h"
+#include "Transform.h"
+#include "Sprite.h"
+#include "RigidBody.h"
 
 
 /// @brief      Item in the world that can be picked up
@@ -85,13 +86,13 @@ private: // members
 
 
     /// @brief  the Transform attached to this ItemComponent
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
     /// @brief  the Sprite attached to this ItemComponent
-    Sprite* m_Sprite = nullptr;
+    ComponentReference< Sprite > m_Sprite;
 
     /// @brief  the RigidBody attached to this ItemComponent
-    RigidBody* m_RigidBody = nullptr;
+    ComponentReference< RigidBody > m_RigidBody;
 
 
 //-----------------------------------------------------------------------------
@@ -161,8 +162,9 @@ private: // copying
     /// @param  other   the other ItemComponent to copy
     ItemComponent( const ItemComponent& other );
 
-    // diable = operator
+    // disable = operator
     void operator =( ItemComponent const& ) = delete;
+
 
 //-----------------------------------------------------------------------------
 };

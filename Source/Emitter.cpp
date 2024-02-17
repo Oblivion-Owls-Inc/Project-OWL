@@ -72,7 +72,7 @@ void Emitter::OnInit()
     m_UparentPos = cs->GetUniformID("parentPos");
 
     // parent transform
-    m_Transform = GetEntity()->GetComponent<Transform>();
+    m_Transform.Init(GetEntity());
 }
 
 
@@ -144,6 +144,8 @@ void Emitter::Update(float dt)
     int count = (int)m_ParticleCount;
     m_ParticleCount -= glm::floor(m_ParticleCount);
 
+    glUniform1i(m_Uoldest, m_CurrentIndex);
+
     if (count && count <= m_BufferSize)
     {
         // initialize particles in the next available range.
@@ -151,15 +153,15 @@ void Emitter::Update(float dt)
             m_CurrentIndex = 0;
 
         glUniform2i(m_Urange, m_CurrentIndex, m_CurrentIndex+count);
-        m_CurrentIndex += count;
 
-        // other uniforms: oldest particle and parent position
-        glUniform1i(m_Uoldest, m_CurrentIndex);
 
         if (m_Transform)
             glUniform2fv(m_UparentPos, 1, &m_Transform->GetTranslation().x);
         else
             m_Transform = GetEntity()->GetComponent<Transform>();
+
+
+        m_CurrentIndex += count;
     }
     else
         glUniform2i(m_Urange, -1, -1); // (nothing to emit this time)
@@ -212,8 +214,9 @@ void Emitter::Inspector()
     initChanged |= ImGui::SliderFloat("###Speed", &m_Init.speed, 0.0f, 10.0f);
     initChanged |= ImGui::SliderFloat("spread ###spdspread", &m_Init.speed_spread, 0.0f, m_Init.speed);
     ImGui::Text("Size");
-    initChanged |= ImGui::SliderFloat("###Size", &m_Init.size, 0.0f, 2.0f);
+    initChanged |= ImGui::InputFloat("###Size", &m_Init.size, 0.01f, 0.05f, "%.2f");
     initChanged |= ImGui::SliderFloat("spread ###szspread", &m_Init.size_spread, 0.0f, m_Init.size);
+    initChanged |= ImGui::InputFloat("change/sec ###sizedt", &m_Init.sizePerSec, 0.01f, 0.05f, "%.2f");
     ImGui::Spacing();
     ImGui::Text("Start ahead");
     initChanged |= ImGui::DragFloat("###ahead", &m_Init.startAhead, 0.01f, 0.0f);
@@ -336,6 +339,8 @@ void Emitter::readData(nlohmann::ordered_json const& data)
     m_Init.lifetime = Stream::Read< float >(data[i++]);
     m_Init.startAhead = Stream::Read< float >(data[i++]);
     m_Init.dirAcc = Stream::Read< float >(data[i++]);
+    if (i < (int)data.size())
+        m_Init.sizePerSec = Stream::Read< float >(data[i++]);
 }
 
 
@@ -380,6 +385,7 @@ nlohmann::ordered_json Emitter::Write() const
     emitData.push_back( Stream::Write( m_Init.lifetime ) );
     emitData.push_back( Stream::Write( m_Init.startAhead ) );
     emitData.push_back( Stream::Write( m_Init.dirAcc ) );
+    emitData.push_back( Stream::Write( m_Init.sizePerSec ) );
 
     return data;
 }

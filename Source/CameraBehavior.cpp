@@ -17,56 +17,88 @@
 CameraBehavior::CameraBehavior() : Behavior(typeid(CameraBehavior)) {}
 
 /// @brief  Return a copy of this component
-Component* CameraBehavior::Clone() const {return new CameraBehavior(*this); }
+CameraBehavior* CameraBehavior::Clone() const { return new CameraBehavior(*this); }
 
 /// @brief  copy ctor
 CameraBehavior::CameraBehavior(const CameraBehavior& other) : Behavior(other) {}
 
-/// @brief  Adds itself to behavior system
-void CameraBehavior::OnInit() { Behaviors< Behavior >()->AddComponent(this); }
+
+
+//-----------------------------------------------------------------------------
+//              Overrides
+//-----------------------------------------------------------------------------
+
+/// @brief  Adds itself to behavior system, caches the transform
+void CameraBehavior::OnInit() 
+{
+	Behaviors< Behavior >()->AddComponent(this);
+
+	m_Cam.Init( GetEntity() );
+	m_Transform.Init( GetEntity() );
+
+	m_ParentTransform.Init( GetEntity()->GetParent() );
+}
+
 
 /// @brief  Removes itself from behavior system
-void CameraBehavior::OnExit() { Behaviors< Behavior >()->RemoveComponent(this); }
+void CameraBehavior::OnExit() 
+{ 
+	m_Cam.Exit(GetEntity());
+	m_Transform.Exit(GetEntity());
+
+	m_ParentTransform.Exit(GetEntity()->GetParent());
+
+	Behaviors< Behavior >()->RemoveComponent(this); 
+}
 
 
 /// @brief  Performs the smooth following
 void CameraBehavior::OnUpdate(float dt)
 {
-	// Acquire: camera, transform, and target transform.
-	// Slight overhead, less bugs to worry about.
-	Camera* cam = GetEntity()->GetComponent<Camera>();
-	Transform* tr = GetEntity()->GetComponent<Transform>();
-	if (!cam || !tr)	return;
-	Entity* target = Entities()->GetEntity(m_TargetEntityName);
-	if (!target)		return;
-	Transform* target_tr = target->GetComponent<Transform>();
-	if (!target_tr)		return;
+	if (!m_Cam || !m_Transform || !m_ParentTransform)
+		return;
 
 	// move
-	glm::vec2 pos = tr->GetTranslation(), prev_pos = pos,
-			  tpos = target_tr->GetTranslation();
+	glm::vec2 pos = m_Transform->GetTranslation(), prev_pos = pos,
+			  tpos = m_ParentTransform->GetTranslation();
 
-	pos += (tpos - pos) * dt;
+	pos += (tpos - pos) * dt * m_Factor;
 
 	// clamp to bounds
-	clampOrCenter(pos.y, m_yBounds[0], m_yBounds[1], cam->GetHeight());
-	clampOrCenter(pos.x, m_xBounds[0], m_xBounds[1], cam->GetWidth());
+	clampOrCenter(pos.y, m_yBounds[0], m_yBounds[1], m_Cam->GetHeight());
+	clampOrCenter(pos.x, m_xBounds[0], m_xBounds[1], m_Cam->GetWidth());
 
-	// don't move if really close already. Moving camera too slowly causes texture 
-	// flickering due to aliasing
+	// This shouldn't be customizable. It's here to prevent aliasing.
+	// However, combining it with 'speed' determines how lazy it is
+	// with following the target. So I call it 'follow factor'.
 	glm::vec2 change = prev_pos - pos;
 	if (glm::dot(change, change) > dt*dt)
-		tr->SetTranslation( pos );
+		m_Transform->SetTranslation( pos );
 }
 
 
 /// @brief  Tweak properties in debug window
 void CameraBehavior::Inspector()
 {
-	ImGui::InputText("Target Entity", &m_TargetEntityName);
 	ImGui::DragFloat2("X bounds", &m_xBounds[0], 0.01f);
 	ImGui::DragFloat2("Y bounds", &m_yBounds[0], 0.01f);
+	ImGui::Spacing();
+	ImGui::SliderFloat("Follow factor", &m_Factor, 0.0f, 5.0f, "%.2f");
 }
+
+
+/// @brief  What to do when entity is re-parented
+void CameraBehavior::OnHierarchyChange(Entity * previousParent)
+{
+	// re-init parent's transform
+	m_ParentTransform.Exit( previousParent );
+	m_ParentTransform.Init( GetEntity()->GetParent() );
+}
+
+
+//-----------------------------------------------------------------------------
+//              Helpers
+//-----------------------------------------------------------------------------
 
 /// @brief		 Helper: clamps or centers coordinate between given bounds, depending
 ///			     on distance
@@ -90,20 +122,16 @@ void CameraBehavior::clampOrCenter(float& val, float lo, float hi, float dist)
 }
 
 
+//-----------------------------------------------------------------------------
+//              Reading / Writing
+//-----------------------------------------------------------------------------
+
 /// @brief read method map
 ReadMethodMap<CameraBehavior> const CameraBehavior::s_ReadMethods =
 {
-	{ "TargetEntityName",	&readTargetEntityName},
-	{ "XBounds",			&readXBounds		 },
-	{ "YBounds",			&readYBounds		 },
+	{ "XBounds", &readXBounds },
+	{ "YBounds", &readYBounds },
 };
-
-/// @brief		 Reads the name of the entity to follow
-/// @param data  json data to read
-void CameraBehavior::readTargetEntityName(nlohmann::ordered_json const& data)
-{
-	Stream::Read(m_TargetEntityName, data);
-}
 
 /// @brief		 Reads the horizontal bounds
 /// @param data  json data to read
@@ -127,7 +155,6 @@ nlohmann::ordered_json CameraBehavior::Write() const
 {
 	nlohmann::ordered_json data;
 
-	data["TargetEntityName"] = m_TargetEntityName;
 	data["XBounds"] = m_xBounds;
 	data["YBounds"] = m_yBounds;
 

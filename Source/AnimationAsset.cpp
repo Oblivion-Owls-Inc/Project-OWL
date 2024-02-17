@@ -10,9 +10,39 @@
 
 #include "Stream.h"
 
+#include <imgui.h>
+
 //-----------------------------------------------------------------------------
 // public: constructor
 //-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  inspects this AnimationAsset
+    /// @return whether the AnimationAsset was changed
+    bool AnimationAsset::Inspect()
+    {
+        bool changed = false;
+
+        changed |= ImGui::DragInt( "start frame", &m_Start, 0.05f, 0, INT_MAX );
+
+        changed |= ImGui::DragInt( "end frame", &m_End, 0.05f, 1, INT_MAX );
+        
+        changed |= ImGui::DragFloat( "frame duration", &m_FrameDuration, 0.01f, 0.0f, INFINITY );
+
+        float fps = 1.0f / m_FrameDuration;
+        if ( ImGui::DragFloat( "fps", &fps, 0.1f, 0.0f, INFINITY ) )
+        {
+            m_FrameDuration = 1.0f / fps;
+            changed = true;
+        }
+
+        return changed;
+    }
 
 
 //-----------------------------------------------------------------------------

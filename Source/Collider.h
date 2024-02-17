@@ -14,6 +14,9 @@
 
 #include "Component.h"
 
+#include "ComponentReference.h"
+#include "Transform.h"
+
 #include <map>
 #include <functional>
 
@@ -22,8 +25,6 @@
 //-----------------------------------------------------------------------------
 
 struct CollisionData;
-
-class Transform;
 
 //-----------------------------------------------------------------------------
 // typedefs
@@ -51,7 +52,6 @@ public: // types
 
     /// @brief  Callback called whenever this Collider enters or exits a collision
     /// @param  collider        - the other Collider that this Collider collided with
-    /// @param  collisionData   - physics information about the collision between the two objects
     using OnCollisionStateChangeCallback = std::function< void ( Collider* collider ) >;
 
     
@@ -200,7 +200,7 @@ private: // member variables
 
     
     /// @brief The transform of this Collider's Entity
-    Transform* m_Transform = nullptr;
+    ComponentReference< Transform > m_Transform;
 
 
     /// @brief  the collision layer of this Collider

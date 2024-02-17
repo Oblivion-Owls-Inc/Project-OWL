@@ -73,31 +73,7 @@ void RenderSystem::OnUpdate(float dt)
 
     // switch back to main buffer (for ImGui stuff to draw normally)
     if (m_DrawToBuffer)
-    {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    #if 0
-        // draw the screen buffer to actual screen
-        Shader* shdr = SetActiveShader("texture");
-        glm::mat4 m(glm::mat2(2.0f));
-        m[1][1] = -m[1][1];
-        glUniformMatrix4fv(shdr->GetUniformID("mvp"), 1, false, &m[0][0]);
-        glUniform1f(shdr->GetUniformID("opacity"), 1.0f);
-        glUniform2f(shdr->GetUniformID("UV_offset"), 0.0f, 0.0f);
-        glm::vec4 notint = {};
-        glUniform4fv(shdr->GetUniformID("tint"), 1, &notint[0]);
-        glBindVertexArray(m_DefaultMesh->GetVAO());
-        glBindTexture(GL_TEXTURE_2D, m_ScreenBufferTexID);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-        // draw a smaller version in the corner
-        m[0][0] *= 0.25f;
-        m[1][1] *= 0.25f;
-        m[3][0] = 0.7f;
-        m[3][1] = 0.7f;
-        glUniformMatrix4fv(shdr->GetUniformID("mvp"), 1, false, &m[0][0]);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    #endif
-    }
     
     glBindVertexArray(0);
 
@@ -188,7 +164,8 @@ void RenderSystem::DrawTexture(
     Texture const* texture,
     glm::vec2 const& position, glm::vec2 const& scale, float angle,
     glm::vec4 const& color, float alpha,
-    bool isDiegetic
+    bool isDiegetic,
+    int frameIndex
 )
 {
     shapes.push_back( new Entity() );
@@ -200,9 +177,12 @@ void RenderSystem::DrawTexture(
     transform->SetIsDiegetic( isDiegetic );
     shapes.back()->AddComponent( transform );
 
-    Sprite* sprite = new Sprite( texture );
+    AssetReference< Texture > textureReference;
+    textureReference = texture;
+    Sprite* sprite = new Sprite( textureReference );
     sprite->SetColor( color );
     sprite->SetOpacity( alpha );
+    sprite->SetFrameIndex( frameIndex );
     shapes.back()->AddComponent( sprite );
 }
 

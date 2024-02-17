@@ -11,6 +11,8 @@
 
 #include <imgui.h>
 
+#include "Entity.h"
+
 //-----------------------------------------------------------------------------
 // protected: constructors
 //-----------------------------------------------------------------------------
@@ -31,8 +33,22 @@
         m_Id( GetUniqueId() )
     {}
 
+
 //-----------------------------------------------------------------------------
-// private: methods
+// public: accessors
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets this Component's name
+    /// @return this Component's name
+    std::string Component::GetName() const
+    {
+        return m_Entity->GetName() + "->" + PrefixlessName( m_Type );
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: methods
 //-----------------------------------------------------------------------------
 
     /// @brief Used by the Debug System to display information about this Component

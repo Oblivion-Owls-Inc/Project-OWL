@@ -25,7 +25,7 @@ public:
 
         // no copying
         LightingSprite(LightingSprite const& other) = delete;
-        virtual Component* Clone() const override { return nullptr; }
+        virtual LightingSprite* Clone() const override { return nullptr; }
     };
 
 

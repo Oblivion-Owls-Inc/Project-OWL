@@ -55,20 +55,11 @@ public: // virtual methods
 
 
     /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
-    virtual void OnHeirarchyChange() {};
+    virtual void OnHierarchyChange( Entity* previousParent ) {};
     
 
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() {};
-
-
-    /// @brief  called whenever another component is added to this component's Entity in the inspector
-    /// @param  component   the component that was added
-    virtual void OnInspectorAddComponent( Component* component ) {};
-
-    /// @brief  called whenever another component is removed from this component's Entity in the inspector
-    /// @param  component   the component that will be removed
-    virtual void OnInspectorRemoveComponent( Component* component ) {};
 
 
     /// @brief virtual component clone function
@@ -98,28 +89,33 @@ public: // Accessors
     unsigned GetId() const { return m_Id; }
 
 
+    /// @brief  gets this Component's name
+    /// @return this Component's name
+    std::string GetName() const;
+
+
+//-----------------------------------------------------------------------------
+public: // engine methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  base Inspector for Components
+    void BaseComponentInspector();
+
+
 //-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
 
 	/// @brief  the type of this Component
-	std::type_index m_Type;
+	std::type_index const m_Type;
 
 	/// @brief  the parent Entity of this Component
 	Entity* m_Entity;
 
     /// @brief  the ID of this Component
     unsigned m_Id;
-
-
-//-----------------------------------------------------------------------------
-public: // methods
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  base Inspector for Components
-    void BaseComponentInspector();
     
 
 //-----------------------------------------------------------------------------

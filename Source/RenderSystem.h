@@ -69,7 +69,8 @@ public:
         Texture const* texture,
         glm::vec2 const& position, glm::vec2 const& scale = { 1.0f, 1.0f }, float angle = 0.0f,
         glm::vec4 const& color = { 0.0f, 0.0f, 0.0f, 0.0f }, float alpha = 1.0f,
-        bool isDiegetic = true
+        bool isDiegetic = true,
+        int frameIndex = 0
     );
 
 

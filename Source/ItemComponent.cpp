@@ -10,11 +10,6 @@
 #include "ItemComponent.h"
 #include "ComponentSystem.h"
 
-#include "Entity.h"
-#include "Transform.h"
-#include "Sprite.h"
-#include "RigidBody.h"
-
 
 //-----------------------------------------------------------------------------
 // public: types
@@ -89,17 +84,27 @@
     {
         Components< ItemComponent >()->AddComponent( this );
 
-        m_Transform = GetEntity()->GetComponent< Transform >();
-        m_Sprite = GetEntity()->GetComponent< Sprite >();
-        m_RigidBody = GetEntity()->GetComponent< RigidBody >();
+        m_Sprite.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_Sprite->SetFrameIndex( m_ItemStack.M_ItemId );
+            }
+        );
 
-        m_Sprite->SetFrameIndex( m_ItemStack.M_ItemId );
+        m_Transform.Init( GetEntity() );
+        m_Sprite   .Init( GetEntity() );
+        m_RigidBody.Init( GetEntity() );
+
     }
 
     /// @brief  called once when exiting the scene
     void ItemComponent::OnExit()
     {
         Components< ItemComponent >()->RemoveComponent( this );
+
+        m_Transform.Exit( GetEntity() );
+        m_Sprite   .Exit( GetEntity() );
+        m_RigidBody.Exit( GetEntity() );
     }
 
 
@@ -116,7 +121,13 @@
     /// @brief  displays this ItemComponent in the Inspector
     void ItemComponent::Inspector()
     {
-        m_ItemStack.Inspect();
+        if ( m_ItemStack.Inspect() )
+        {
+            if ( m_Sprite != nullptr )
+            {
+                m_Sprite->SetFrameIndex( m_ItemStack.M_ItemId );
+            }
+        }
     }
 
 

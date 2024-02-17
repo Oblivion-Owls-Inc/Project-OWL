@@ -189,14 +189,8 @@
     <Filter Include="Game\Components\Behaviors\PlayerController">
       <UniqueIdentifier>{b63ef8e3-7039-4e9e-b113-413ff8380423}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Behaviors\Movement Behavior">
-      <UniqueIdentifier>{a0e6b571-78e0-48db-aefd-8e9493c83f24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Components\Behaviors\TurretBehavior">
       <UniqueIdentifier>{e523f30f-0b00-4ea5-b75b-339074d48b3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Components\Behaviors\FollowingBehavior">
-      <UniqueIdentifier>{d99a05fd-9afb-43c2-9c34-f18081c8c831}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Components\Behaviors\ConstructionBehavior">
       <UniqueIdentifier>{278dd904-bde9-4181-bd98-8a632d0db159}</UniqueIdentifier>
@@ -204,17 +198,8 @@
     <Filter Include="Game\Components\Behaviors\EnemyBehavior">
       <UniqueIdentifier>{2f24013c-89a2-4584-ad87-757e4e412532}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Behaviors\BulletBehavior">
-      <UniqueIdentifier>{42316e6c-49e4-4c2f-a9b0-0ef8aaa91507}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Components\Behaviors\WavesBehavior">
       <UniqueIdentifier>{90ac62ba-a1a3-4ca9-8797-8d0f816804f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Components\Behaviors\BaseBehavior">
-      <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Components\Behaviors\BasicEntityBehavior">
-      <UniqueIdentifier>{a55763f1-cfb8-40e3-a7f6-d913d0d356db}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Entity\Component\Health">
       <UniqueIdentifier>{e836e623-5921-472f-89b0-6e67007a2028}</UniqueIdentifier>
@@ -293,6 +278,36 @@
     </Filter>
     <Filter Include="Engine\Entity\Component\TilemapTextureConnector">
       <UniqueIdentifier>{f6c41e19-950d-4898-b359-f64157800677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Tilemap\TilemapEditor">
+      <UniqueIdentifier>{3e0165c1-e7de-42a5-8938-8e832cc5330b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Camera\EditorCameraController">
+      <UniqueIdentifier>{2f431157-f18b-45fe-8287-c4e8f220b1bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\References">
+      <UniqueIdentifier>{ce354a10-de0d-482d-aa2a-eb4e13ce930b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\References\ComponentReference">
+      <UniqueIdentifier>{758d0d06-3761-4b3a-b639-04edf329f727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\References\EntityReference">
+      <UniqueIdentifier>{fc1d5263-b81c-482f-98f6-789ac6b6eb94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Framework\References\AssetReference">
+      <UniqueIdentifier>{1cf9ebca-9257-404d-9e46-92d01180452a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\HomeBase">
+      <UniqueIdentifier>{42a22fd5-c754-4450-acda-f3e66d54d7b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Bullet">
+      <UniqueIdentifier>{42316e6c-49e4-4c2f-a9b0-0ef8aaa91507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Behavior\Lifetime">
+      <UniqueIdentifier>{334bddc5-1ff2-4bb8-abf2-e472e77067cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Generator">
+      <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -376,9 +391,6 @@
     </ClCompile>
     <ClCompile Include="Source\ComponentFactory.cpp">
       <Filter>Engine\Entity\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MovementAI.cpp">
-      <Filter>Game\Components\Behaviors\Movement Behavior</Filter>
     </ClCompile>
     <ClCompile Include="Source\RigidBody.cpp">
       <Filter>Engine\Entity\Component\Behavior\RigidBody</Filter>
@@ -464,9 +476,6 @@
     <ClCompile Include="Source\TilemapSprite.cpp">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FollowingBehavior.cpp">
-      <Filter>Game\Components\Behaviors\FollowingBehavior</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Text.cpp">
       <Filter>Engine\Entity\Component\Text</Filter>
     </ClCompile>
@@ -488,8 +497,8 @@
     <ClCompile Include="Source\EnemyBehavior.cpp">
       <Filter>Game\Components\Behaviors\EnemyBehavior</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BulletBehavior.cpp">
-      <Filter>Game\Components\Behaviors\BulletBehavior</Filter>
+    <ClCompile Include="Source\Bullet.cpp">
+      <Filter>Game\Components\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Source\Pool.cpp">
       <Filter>Engine\Framework\Pool</Filter>
@@ -506,11 +515,8 @@
     <ClCompile Include="Source\ParticleSystem.cpp">
       <Filter>Engine\Systems\ParticleSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BaseBehavior.cpp">
-      <Filter>Game\Components\Behaviors\BaseBehavior</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BasicEntityBehavior.cpp">
-      <Filter>Game\Components\Behaviors\BasicEntityBehavior</Filter>
+    <ClCompile Include="Source\HomeBase.cpp">
+      <Filter>Game\Components\HomeBase</Filter>
     </ClCompile>
     <ClCompile Include="Source\Inspection.cpp">
       <Filter>Engine\Framework\Inspection</Filter>
@@ -592,6 +598,27 @@
     </ClCompile>
     <ClCompile Include="Source\TilemapTextureConnector.cpp">
       <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TilemapEditor.cpp">
+      <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generator.cpp">
+      <Filter>Game\Components\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EditorCameraController.cpp">
+      <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ComponentReference.t.cpp">
+      <Filter>Engine\Framework\References\ComponentReference</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntityReference.cpp">
+      <Filter>Engine\Framework\References\EntityReference</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AssetReference.t.cpp">
+      <Filter>Engine\Framework\References\AssetReference</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lifetime.cpp">
+      <Filter>Engine\Entity\Component\Behavior\Lifetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -697,9 +724,6 @@
     <ClInclude Include="Source\ComponentFactory.h">
       <Filter>Engine\Entity\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Source\MovementAI.h">
-      <Filter>Game\Components\Behaviors\Movement Behavior</Filter>
-    </ClInclude>
     <ClInclude Include="Source\EntitySystem.h">
       <Filter>Engine\Systems\EntitySystem</Filter>
     </ClInclude>
@@ -772,9 +796,6 @@
     <ClInclude Include="Source\TilemapSprite.h">
       <Filter>Engine\Entity\Component\Sprite\TilemapSprite</Filter>
     </ClInclude>
-    <ClInclude Include="Source\FollowingBehavior.h">
-      <Filter>Game\Components\Behaviors\FollowingBehavior</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Text.h">
       <Filter>Engine\Entity\Component\Text</Filter>
     </ClInclude>
@@ -799,8 +820,8 @@
     <ClInclude Include="Source\EnemyBehavior.h">
       <Filter>Game\Components\Behaviors\EnemyBehavior</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BulletBehavior.h">
-      <Filter>Game\Components\Behaviors\BulletBehavior</Filter>
+    <ClInclude Include="Source\Bullet.h">
+      <Filter>Game\Components\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Source\Pool.h">
       <Filter>Engine\Framework\Pool</Filter>
@@ -814,11 +835,8 @@
     <ClInclude Include="Source\ParticleSystem.h">
       <Filter>Engine\Systems\ParticleSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BaseBehavior.h">
-      <Filter>Game\Components\Behaviors\BaseBehavior</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BasicEntityBehavior.h">
-      <Filter>Game\Components\Behaviors\BasicEntityBehavior</Filter>
+    <ClInclude Include="Source\HomeBase.h">
+      <Filter>Game\Components\HomeBase</Filter>
     </ClInclude>
     <ClInclude Include="Source\Inspection.h">
       <Filter>Engine\Framework\Inspection</Filter>
@@ -901,6 +919,27 @@
     <ClInclude Include="Source\TilemapTextureConnector.h">
       <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
     </ClInclude>
+    <ClInclude Include="Source\TilemapEditor.h">
+      <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Generator.h">
+      <Filter>Game\Components\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EditorCameraController.h">
+      <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ComponentReference.h">
+      <Filter>Engine\Framework\References\ComponentReference</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AssetReference.h">
+      <Filter>Engine\Framework\References\AssetReference</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntityReference.h">
+      <Filter>Engine\Framework\References\EntityReference</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Lifetime.h">
+      <Filter>Engine\Entity\Component\Behavior\Lifetime</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -951,5 +990,6 @@
     <None Include="Data\shaders\tile_instancing.vert">
       <Filter>Data\Shaders\Vertex</Filter>
     </None>
+    <None Include="Data\Scenes\MapTest.scene.json" />
   </ItemGroup>
 </Project>

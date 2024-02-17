@@ -23,11 +23,9 @@
 #include "BehaviorSystem.h"
 #include "Sound.h"
 #include "Texture.h"
-#include "Animation.h"
+#include "AnimationAsset.h"
 #include "TransformAnimation.h"
-#include "BulletBehavior.h"
 #include "implot.h"
-#include "Transform.h"
 #include "Engine.h"
 #include "EntitySystem.h"
 #include "Entity.h"
@@ -508,8 +506,10 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
     {
         for (auto& system : Engine::GetInstance()->GetSystems())
         {
+            /// I know this isnt... the best way to do this, but it works and im tired
             if (system->GetName().compare(0, std::string("AssetLibrary").length(), std::string("AssetLibrary")) != 0 &&
-                system->GetName().compare(0, std::string("BehaviorSystem").length(), std::string("BehaviorSystem")) != 0)
+                system->GetName().compare(0, std::string("BehaviorSystem").length(), std::string("BehaviorSystem")) != 0 &&
+                system->GetName().compare(0, std::string("EntitySystem").length(), std::string("EntitySystem")) != 0)
             {
                 // Skip the debug system
                 if (system == GetInstance())
