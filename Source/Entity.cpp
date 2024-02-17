@@ -396,8 +396,7 @@
     /// @brief used by the Debug System to display information about this Entity
     void Entity::Inspect()
     {
-
-        if ( ImGui::BeginCombo( "Add Component", "Select Component" ) )
+        if ( ImGui::BeginCombo( "##Add Component", "Add Component" , ImGuiComboFlags_HeightLarge) )
         {
             for ( auto& [ name, info ] : ComponentFactory::GetComponentTypes() )
             {
@@ -426,7 +425,7 @@
             ImGui::EndCombo();
         }
 
-        if ( ImGui::BeginCombo( "Remove Component", "Select Component" ) )
+        if ( ImGui::BeginCombo( "##Remove Component", "Remove Component" , ImGuiComboFlags_HeightLarge ) )
         {
             for ( auto& [ key, component ] : m_Components )
             {
