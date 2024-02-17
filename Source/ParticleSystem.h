@@ -77,6 +77,9 @@ private:
     /// @brief  Called when system exits
     virtual void OnExit() override;
 
+    /// @brief  Called when scene changes - reinits fast-forward
+    virtual void OnSceneInit() override;
+
 
 
 //-----------------------------------------------------------------------------
@@ -85,19 +88,17 @@ private:
 private:
 
     unsigned int m_UBO = 0;         /// @brief  ID of buffer used by uniform block
-    Shader* m_CShader = nullptr;    /// @brief  Pointer to compute shader
     bool m_InitDataDirty = true;    /// @brief  When true, re-load init data buffer
+    int m_FastForward = 300;        /// @brief  Fast forward 300 frames at start
 
     /// @brief  All the emitters.
     std::map<int, Emitter*> m_Emitters;
-
 
     /// @brief  Uniform locations
     unsigned int m_Udt = -1, 
                  m_Ut = -1,
                  m_Uproj = -1,
                  m_UinitIndex = -1;
-
 
     /// @brief  Size of each work group. This is also minimum amount of particles
     ///         per emitter. Make sure it matches what's in the shader.

@@ -73,6 +73,7 @@ void EmitterSprite::Draw()
     sh->use();
 
     glUniform1f(sh->GetUniformID("opacity"), m_Opacity);
+    glUniform4fv(sh->GetUniformID("tint"), 1, &m_Color[0]);
 
     // Bind the texture and render instanced mesh using ParticleSystem's VAO
     glBindVertexArray(m_VAO);

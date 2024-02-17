@@ -26,8 +26,8 @@
 void ParticleSystem::OnInit()
 {
     // shader
-    m_CShader = new Shader("Data/shaders/particles_compute.glsl");
-    Renderer()->AddShader("pCompute", m_CShader);
+    Shader* CShader = new Shader("Data/shaders/particles_compute.glsl");
+    Renderer()->AddShader("pCompute", CShader);
 
     // uniform block for init data (binding 2, first 2 are taken by emitters' buffers)
     glGenBuffers(1, &m_UBO);
@@ -36,10 +36,10 @@ void ParticleSystem::OnInit()
     glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 3, m_UBO);
 
     // cache the uniform locations
-    m_Ut = m_CShader->GetUniformID("t");
-    m_Udt = m_CShader->GetUniformID("dt");
-    m_Uproj = m_CShader->GetUniformID("proj");
-    m_UinitIndex = m_CShader->GetUniformID("initIndex");
+    m_Ut = CShader->GetUniformID("t");
+    m_Udt = CShader->GetUniformID("dt");
+    m_Uproj = CShader->GetUniformID("proj");
+    m_UinitIndex = CShader->GetUniformID("initIndex");
 }
 
 
@@ -51,15 +51,7 @@ void ParticleSystem::OnUpdate(float dt)
     if (m_Emitters.empty() || !Cameras()->GetActiveCamera())
         return;
 
-    static float time = 0.0f;
-    time += dt;
-
-    m_CShader->use();
-
-    // set common uniforms : dt, time, projection matrix
-    glUniform1f(m_Udt, dt);
-    glUniform1f(m_Ut, time);
-    glUniformMatrix4fv(m_Uproj, 1, 0, &Cameras()->GetMat_WorldToClip()[0][0]);
+    Renderer()->SetActiveShader("pCompute");
 
     // Put all of the emitters' init data together and send it to GPU.
     // If each emitter was to load its own data instead, executions would not be
@@ -76,17 +68,33 @@ void ParticleSystem::OnUpdate(float dt)
         glBufferData(GL_UNIFORM_BUFFER, sizeof(EmitData) * (int)inits.size(), 
                      &inits[0], GL_DYNAMIC_DRAW);
     }
+
+    static float time = 0.0f;
+    if (dt > 0.2f)
+        dt = 0.016f;
     
-    // let each emitter execute compute shader for its buffers
-    int index = 0;
-    for (auto& emitter : m_Emitters)
+    ++m_FastForward;
+    while (m_FastForward)
     {
-        glUniform1i(m_UinitIndex, index++);
-        emitter.second->Update(dt);
+        --m_FastForward;
+
+        // set common uniforms : dt, time, projection matrix
+        time += dt;
+        glUniform1f(m_Udt, dt);
+        glUniform1f(m_Ut, time);
+        glUniformMatrix4fv(m_Uproj, 1, 0, &Cameras()->GetMat_WorldToClip()[0][0]);
+    
+        // let each emitter execute compute shader for its buffers
+        int index = 0;
+        for (auto& emitter : m_Emitters)
+        {
+            glUniform1i(m_UinitIndex, index++);
+            emitter.second->Update(dt);
+        }
+        // This makes computations of particles little slower compared to doing it
+        // all in one go with single buffer. But, it's more manageable this way.
+        // The other version was too OP anyway.
     }
-    // This makes computations of particles little slower compared to doing it
-    // all in one go with single buffer. But, it's more manageable this way.
-    // The other version was too OP anyway.
 }
 
 
@@ -94,6 +102,12 @@ void ParticleSystem::OnUpdate(float dt)
 void ParticleSystem::OnExit()
 {
     glDeleteBuffers(1, &m_UBO);
+}
+
+
+void ParticleSystem::OnSceneInit()
+{
+    m_FastForward = 300;
 }
 
 
