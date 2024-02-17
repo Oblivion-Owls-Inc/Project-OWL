@@ -105,45 +105,18 @@
         m_TilemapColliders.erase( it );
     }
 
-
-    /// @brief  makes a CollisionLayerFlags for a set of layer names
-    /// @param  layerNames  the names of the layers to include in the flags
-    CollisionLayerFlags CollisionSystem::GetLayerFlags( std::vector< std::string > const& layerNames ) const
-    {
-        CollisionLayerFlags flags = 0;
-        for ( std::string const& name : layerNames )
-        {
-            flags |= 1 << GetCollisionLayerId( name );
-        }
-        return flags;
-    }
-
-    /// @brief  gets the collision layer ID with the specified name
-    /// @param  layerName   the name of the layer to get
-    /// @return the collision layer ID
-    unsigned CollisionSystem::GetCollisionLayerId( std::string const& layerName ) const
-    {
-        auto it = std::find( m_CollisionLayerNames.begin(), m_CollisionLayerNames.end(), layerName );
-        if ( it == m_CollisionLayerNames.end() )
-        {
-            Debug() << "Warning: \"" << layerName << "\" is not a recognized collision layer name";
-        }
-
-        return (int)(it - m_CollisionLayerNames.begin());
-    }
-
     /// @brief  gets the names of the layers in a CollisionLayerFlags
     /// @param  layerFlags  the layer flags to get the names of
     /// @return the names of the layers
     std::vector< std::string > CollisionSystem::GetLayerNames( CollisionLayerFlags layerFlags ) const
     {
         std::vector< std::string > layerNames;
-        for ( unsigned i = 0; layerFlags > 0; ++i )
+        for ( unsigned i = 0; layerFlags != 0; ++i )
         {
-            if ( layerFlags & (1 << i) )
+            if ( layerFlags.Includes( i ) )
             {
                 layerNames.push_back( GetLayerName( i ) );
-                layerFlags ^= 1 << i;
+                layerFlags = layerFlags ^ (1 << i);
             }
         }
         return layerNames;
@@ -169,24 +142,18 @@
         RayCastHit hit;
         hit.distance = maxDistance;
 
-        for ( m_Circ ) // WIP
-
-        for ( Collider* collider : m_Colliders )
+        for ( CircleCollider* circleCollider : m_LargeCircleColliders )
         {
-            if ( !(layers & (1 << collider->GetCollisionLayer())) )
-            {
-                continue;
-            }
-
-            if ( collider->GetType() == typeid( CircleCollider ) )
-            {
-                checkRayCircle( origin, direction, (CircleCollider*)collider, &hit );
-            }
-            else if ( collider->GetType() == typeid( TilemapCollider ) )
-            {
-                checkRayTilemap( origin, direction, (TilemapCollider*)collider, &hit );
-            }
+            checkRayCircle( origin, direction, circleCollider, &hit );
         }
+
+        for ( TilemapCollider* tilemapCollider : m_TilemapColliders )
+        {
+            checkRayTilemap( origin, direction, tilemapCollider, &hit );
+        }
+
+        // TODO: check ray against grid circles
+
         return hit;
     }
 
@@ -231,11 +198,34 @@
     /// @brief Checks and handles all Collisions
     void CollisionSystem::checkCollisions()
     {
-        for ( int i = 0; i < (int)m_Colliders.size() - 1; ++i )
+        for ( int i = 0; i < m_LargeCircleColliders.size(); ++i )
         {
-            for ( int j = i + 1; j < m_Colliders.size(); ++j )
+            CircleCollider* circleCollider = m_LargeCircleColliders[ i ];
+
+            for ( int j = 0; j < m_TilemapColliders.size(); ++i )
             {
-                checkCollision( m_Colliders[i], m_Colliders[j] );
+                TilemapCollider* tilemapCollider = m_TilemapColliders[ i ];
+
+                bool aCollidesB = circleCollider->GetCollisionLayerFlags().Includes( tilemapCollider->GetCollisionLayer() );
+
+
+                CollisionData collisionData;
+
+                if ( checkCircleTilemap( circleCollider, tilemapCollider, &collisionData ) )
+                {
+                    circleCollider->CallOnCollisionCallbacks( tilemapCollider, collisionData );
+                    tilemapCollider->CallOnCollisionCallbacks( circleCollider, -collisionData );
+
+                    if ( circleCollider->TryAddContact( tilemapCollider ) )
+                    {
+
+                    }
+
+                }
+                else
+                {
+                    
+                }
             }
         }
     }
@@ -254,123 +244,120 @@
 // private: static methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  checks a collision between two colliders of unknown type
-    /// @param  colliderA       the first collider
-    /// @param  colliderB       the second collider
-    /// @param  collisionData   pointer to where to store additional data about the collision
-    /// @return whether or not the two colliders are colliding
-    void CollisionSystem::checkCollision( Collider* colliderA, Collider* colliderB )
-    {
-        // check if the layers interact
-        bool aCollidesB = colliderA->GetCollisionLayerFlags() & ( 1 << colliderB->GetCollisionLayer() );
-        bool bCollidesA = colliderB->GetCollisionLayerFlags() & ( 1 << colliderA->GetCollisionLayer() );
-
-        // if collision layers don't interact, don't test collision
-        if ( (aCollidesB || bCollidesA) == false )
-        {
-            return;
-        }
-
-        // ensure that both colliders have Transforms
-        if ( colliderA->GetTransform() == nullptr || colliderB->GetTransform() == nullptr )
-        {
-            Debug() << "WARNING: Collider component must always be accompanied by a Transform component" << std::endl;
-            return;
-        }
-
-        // check type of each collider
-        std::pair< std::type_index, std::type_index > colliderTypes = {
-            colliderA->GetType(),
-            colliderB->GetType()
-        };
-
-        // find the collision function between those two shapes
-        auto checkFuncIt = s_CollisionFunctions.find( colliderTypes );
-        if ( checkFuncIt == s_CollisionFunctions.end() )
-        {
-            // if no collision function found, swap the order of the colliders and search again
-            colliderTypes = {
-                colliderTypes.second,
-                colliderTypes.first
-            };
-
-            Collider* tempPtr = colliderA;
-            colliderA = colliderB;
-            colliderB = tempPtr;
-
-            bool tempBool = aCollidesB;
-            aCollidesB = bCollidesA;
-            bCollidesA = tempBool;
-
-            checkFuncIt = s_CollisionFunctions.find( colliderTypes );
-            if ( checkFuncIt == s_CollisionFunctions.end() )
-            {
-                Debug() <<
-                    "WARNING: no collision function implemented between " <<
-                    colliderTypes.first.name() <<
-                    " and " << colliderTypes.second.name();
-
-                return;
-            }
-        }
-
-        // check the collision
-        CollisionData collisionData;
-        if ( (*checkFuncIt->second)( colliderA, colliderB, &collisionData ) == false )
-        {
-            // no collision happened
-            if ( aCollidesB && colliderA->TryRemoveContact( colliderB ) )
-            {
-                colliderA->CallOnCollisionExitCallbacks( colliderB );
-            }
-
-            if ( bCollidesA && colliderB->TryRemoveContact( colliderA ) )
-            {
-                colliderB->CallOnCollisionExitCallbacks( colliderA );
-            }
-
-            return;
-        }
-
-        // a collision happened
-
-        collisionData.depth += 0.001f;
-
-        // call callbacks 
-        if ( aCollidesB )
-        {
-            colliderA->CallOnCollisionCallbacks( colliderB, collisionData );
-
-            if ( colliderA->TryAddContact( colliderB ) )
-            {
-                colliderA->CallOnCollisionEnterCallbacks( colliderB );
-            }
-        }
-
-        if ( bCollidesA )
-        {
-            collisionData.normal *= -1;
-            colliderB->CallOnCollisionCallbacks( colliderA, collisionData );
-
-            if ( colliderB->TryAddContact( colliderA ) )
-            {
-                colliderB->CallOnCollisionEnterCallbacks( colliderA );
-            }
-        }
-    }
+    // /// @brief  checks a collision between two colliders of unknown type
+    // /// @param  colliderA       the first collider
+    // /// @param  colliderB       the second collider
+    // /// @param  collisionData   pointer to where to store additional data about the collision
+    // /// @return whether or not the two colliders are colliding
+    // void CollisionSystem::checkCollision( Collider* colliderA, Collider* colliderB )
+    // {
+    //     // check if the layers interact
+    //     bool aCollidesB = colliderA->GetCollisionLayerFlags() & ( 1 << colliderB->GetCollisionLayer() );
+    //     bool bCollidesA = colliderB->GetCollisionLayerFlags() & ( 1 << colliderA->GetCollisionLayer() );
+    // 
+    //     // if collision layers don't interact, don't test collision
+    //     if ( (aCollidesB || bCollidesA) == false )
+    //     {
+    //         return;
+    //     }
+    // 
+    //     // ensure that both colliders have Transforms
+    //     if ( colliderA->GetTransform() == nullptr || colliderB->GetTransform() == nullptr )
+    //     {
+    //         Debug() << "WARNING: Collider component must always be accompanied by a Transform component" << std::endl;
+    //         return;
+    //     }
+    // 
+    //     // check type of each collider
+    //     std::pair< std::type_index, std::type_index > colliderTypes = {
+    //         colliderA->GetType(),
+    //         colliderB->GetType()
+    //     };
+    // 
+    //     // find the collision function between those two shapes
+    //     auto checkFuncIt = s_CollisionFunctions.find( colliderTypes );
+    //     if ( checkFuncIt == s_CollisionFunctions.end() )
+    //     {
+    //         // if no collision function found, swap the order of the colliders and search again
+    //         colliderTypes = {
+    //             colliderTypes.second,
+    //             colliderTypes.first
+    //         };
+    // 
+    //         Collider* tempPtr = colliderA;
+    //         colliderA = colliderB;
+    //         colliderB = tempPtr;
+    // 
+    //         bool tempBool = aCollidesB;
+    //         aCollidesB = bCollidesA;
+    //         bCollidesA = tempBool;
+    // 
+    //         checkFuncIt = s_CollisionFunctions.find( colliderTypes );
+    //         if ( checkFuncIt == s_CollisionFunctions.end() )
+    //         {
+    //             Debug() <<
+    //                 "WARNING: no collision function implemented between " <<
+    //                 colliderTypes.first.name() <<
+    //                 " and " << colliderTypes.second.name();
+    // 
+    //             return;
+    //         }
+    //     }
+    // 
+    //     // check the collision
+    //     CollisionData collisionData;
+    //     if ( (*checkFuncIt->second)( colliderA, colliderB, &collisionData ) == false )
+    //     {
+    //         // no collision happened
+    //         if ( aCollidesB && colliderA->TryRemoveContact( colliderB ) )
+    //         {
+    //             colliderA->CallOnCollisionExitCallbacks( colliderB );
+    //         }
+    // 
+    //         if ( bCollidesA && colliderB->TryRemoveContact( colliderA ) )
+    //         {
+    //             colliderB->CallOnCollisionExitCallbacks( colliderA );
+    //         }
+    // 
+    //         return;
+    //     }
+    // 
+    //     // a collision happened
+    // 
+    //     collisionData.depth += 0.001f;
+    // 
+    //     // call callbacks 
+    //     if ( aCollidesB )
+    //     {
+    //         colliderA->CallOnCollisionCallbacks( colliderB, collisionData );
+    // 
+    //         if ( colliderA->TryAddContact( colliderB ) )
+    //         {
+    //             colliderA->CallOnCollisionEnterCallbacks( colliderB );
+    //         }
+    //     }
+    // 
+    //     if ( bCollidesA )
+    //     {
+    //         collisionData.normal *= -1;
+    //         colliderB->CallOnCollisionCallbacks( colliderA, collisionData );
+    // 
+    //         if ( colliderB->TryAddContact( colliderA ) )
+    //         {
+    //             colliderB->CallOnCollisionEnterCallbacks( colliderA );
+    //         }
+    //     }
+    // }
 
     /// @brief  checks a collision between two circle colliders
     /// @param  colliderA       the first collider
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    bool CollisionSystem::checkCircleCircle( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData )
+    bool CollisionSystem::checkCircleCircle( CircleCollider const* colliderA, CircleCollider const* colliderB, CollisionData* collisionData )
     {
         if (collisionData)
             *collisionData = {};
-            
-        CircleCollider const* circleA = (CircleCollider const*)colliderA;
-        CircleCollider const* circleB = (CircleCollider const*)colliderB;
 
         glm::vec2 posA = colliderA->GetTransform()->GetTranslation();
         glm::vec2 posB = colliderB->GetTransform()->GetTranslation();
@@ -378,7 +365,7 @@
         glm::vec2 displacement = posB - posA;
         float distance = glm::length( displacement );
 
-        float minDistance = circleA->GetRadius() + circleB->GetRadius();
+        float minDistance = colliderA->GetRadius() + colliderB->GetRadius();
         
         if ( distance >= minDistance )
         {
@@ -389,8 +376,8 @@
         {
             collisionData->normal = distance == 0 ? glm::vec2( 0 ) : - displacement / distance;
             collisionData->position = (
-                posA - collisionData->normal * circleA->GetRadius() +
-                posB + collisionData->normal * circleB->GetRadius()
+                posA - collisionData->normal * colliderA->GetRadius() +
+                posB + collisionData->normal * colliderB->GetRadius()
             ) * 0.5f;
             collisionData->depth = minDistance - distance;
         }
@@ -404,20 +391,19 @@
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    bool CollisionSystem::checkCircleTilemap( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData )
+    bool CollisionSystem::checkCircleTilemap( CircleCollider const* circleCollider, TilemapCollider const* tilemapCollider, CollisionData* collisionData )
     {
         if (collisionData)
             *collisionData = {};
 
-        CircleCollider const* circle = (CircleCollider const*)colliderA;
-        Tilemap< int > const* tilemap = ((TilemapCollider const*)colliderB)->GetTilemap();
+        Tilemap< int > const* tilemap = (tilemapCollider)->GetTilemap();
 
         glm::mat4 const& worldToTile = tilemap->GetWorldToTilemapMatrix();
         glm::mat4 const& tileToWorld = tilemap->GetTilemapToWorldMatrix();
         glm::vec2 const& tileSize = tilemap->GetTileScale();
 
-        glm::vec2 pos = circle->GetTransform()->GetTranslation();
-        float radius = circle->GetRadius() / tileSize.x;
+        glm::vec2 pos = circleCollider->GetTransform()->GetTranslation();
+        float radius = circleCollider->GetRadius() / tileSize.x;
 
         if ( std::abs( tileSize.x ) != std::abs( tileSize.y ) )
         {
@@ -445,7 +431,7 @@
                 if (
                     tilePos.x < 0 || tilePos.x >= tilemap->GetDimensions().x ||
                     tilePos.y < 0 || tilePos.y >= tilemap->GetDimensions().y
-                )
+                    )
                 {
                     continue;
                 }
@@ -649,21 +635,149 @@
         glm::vec2 tilePos = worldToTile * glm::vec4( rayOrigin, 0, 1 );
         glm::vec2 tileVel = worldToTile * glm::vec4( rayDirection, 0, 0 );
 
-        glm::ivec2 tile = tilePos;
+
+        checkRayUnitGrid(
+            tilePos, tileVel,
+            [ rayOrigin, rayDirection, tilemapCollider, rayCastHit ]( glm::ivec2 cellPos, float distance, glm::ivec2 stepDir, int stepAxis ) -> bool
+            {
+                Tilemap<int> const* tilemap = tilemapCollider->GetTilemap();
+
+                // ensure within bounds of tilemap
+                if (
+                    cellPos.x < 0 || cellPos.x >= tilemap->GetDimensions().x ||
+                    cellPos.y < 0 || cellPos.y >= tilemap->GetDimensions().y
+                )
+                {
+                    return (
+                        ( cellPos.x < 0 && stepDir.x <= 0 ) ||
+                        ( cellPos.y < 0 && stepDir.y <= 0 ) ||
+                        ( cellPos.x >= tilemap->GetDimensions().x && stepDir.x >= 0 ) ||
+                        ( cellPos.y >= tilemap->GetDimensions().y && stepDir.y >= 0 )
+                    );
+                }
+                
+                // check tile at current position
+                if ( tilemap->GetTile( cellPos ) >= 0 )
+                {
+                    rayCastHit->distance = distance;
+                    rayCastHit->colliderHit = tilemapCollider;
+                
+                    rayCastHit->normal = stepDir;
+                    rayCastHit->normal[ (int)!stepAxis ] = 0;
+                
+                    rayCastHit->position = rayOrigin + rayDirection * rayCastHit->distance;
+                    rayCastHit->tilePos = cellPos;
+                
+                    return true;
+                }
+            }
+        );
+
+        // glm::ivec2 tile = tilePos;
+        // // direction of the step in each axis
+        // glm::ivec2 stepDir = {
+        //     tileVel.x > 0 ? 1 : ( tileVel.x < 0 ? -1 : 0 ),
+        //     tileVel.y > 0 ? 1 : ( tileVel.y < 0 ? -1 : 0 )
+        // };
+        // 
+        // // length of the step in each axis
+        // glm::vec2 deltaT = {
+        //     tileVel.x == 0 ? INFINITY : 1 / std::abs( tileVel.x ),
+        //     tileVel.y == 0 ? INFINITY : 1 / std::abs( tileVel.y )
+        // };
+        // 
+        // // current position in each axis
+        // glm::vec2 t = tilePos - (glm::vec2)tile;
+        // if ( stepDir.x == 1 ) { t.x = 1 - t.x; }
+        // if ( stepDir.y == 1 ) { t.y = 1 - t.y; }
+        // 
+        // // can't just multiply because sometimes deltaT is infinity
+        // t.x = t.x == 0 ? 0 : t.x * deltaT.x;
+        // t.y = t.y == 0 ? 0 : t.y * deltaT.y;
+        // 
+        // // loop until max distance reached
+        // while ( t.x < rayCastHit->distance || t.y < rayCastHit->distance )
+        // {
+        //     // step in the closest direction
+        //     int stepAxis;
+        //     if ( t.x < t.y )
+        //     {
+        //         tile.x += stepDir.x;
+        //         t.x += deltaT.x;
+        //         stepAxis = 0;
+        //     }
+        //     else
+        //     {
+        //         tile.y += stepDir.y;
+        //         t.y += deltaT.y;
+        //         stepAxis = 1;
+        //     }
+        // 
+        //     // ensure within bounds of tilemap
+        //     if (
+        //         tile.x < 0 || tile.x >= tilemap->GetDimensions().x ||
+        //         tile.y < 0 || tile.y >= tilemap->GetDimensions().y
+        //     )
+        //     {
+        //         if (
+        //             ( tile.x < 0 && stepDir.x <= 0 ) ||
+        //             ( tile.y < 0 && stepDir.y <= 0 ) ||
+        //             ( tile.x >= tilemap->GetDimensions().x && stepDir.x >= 0 ) ||
+        //             ( tile.y >= tilemap->GetDimensions().y && stepDir.y >= 0 )
+        //         )
+        //         {
+        //             // don't infinite infinite loop upon exiting tilemap bounds
+        //             break;
+        //         }
+        // 
+        //         continue;
+        //     }
+        // 
+        //     // check tile at current position
+        //     if ( tilemap->GetTile( tile ) >= 0 )
+        //     {
+        //         rayCastHit->distance = t[ stepAxis ] - deltaT[ stepAxis ];
+        //         rayCastHit->colliderHit = tilemapCollider;
+        // 
+        //         rayCastHit->normal = stepDir;
+        //         rayCastHit->normal[ (int)!stepAxis ] = 0;
+        // 
+        //         rayCastHit->position = rayOrigin + rayDirection * rayCastHit->distance;
+        //         rayCastHit->tilePos = tile;
+        // 
+        //         return;
+        //     }
+        // }
+    }
+
+
+    /// @brief  checks if a ray hits a unit grid
+    /// @param  rayOrigin           the origin of the ray in grid space
+    /// @param  rayDirection        the direction of the ray in grid space
+    /// @param  gridCellCallback    callback that returns true when the ray should stop. argument is the current cell of the grid the ray is in.
+    void CollisionSystem::checkRayUnitGrid(
+        glm::vec2 const& rayOrigin,
+        glm::vec2 const& rayDirection,
+        std::function< bool ( glm::ivec2 cellPos, float distance, glm::ivec2 stepDir, int stepAxis ) > gridCellCallback
+    )
+    {
+
+        glm::ivec2 tile = rayOrigin;
+
         // direction of the step in each axis
         glm::ivec2 stepDir = {
-            tileVel.x > 0 ? 1 : ( tileVel.x < 0 ? -1 : 0 ),
-            tileVel.y > 0 ? 1 : ( tileVel.y < 0 ? -1 : 0 )
+            rayDirection.x > 0 ? 1 : ( rayDirection.x < 0 ? -1 : 0 ),
+            rayDirection.y > 0 ? 1 : ( rayDirection.y < 0 ? -1 : 0 )
         };
 
         // length of the step in each axis
         glm::vec2 deltaT = {
-            tileVel.x == 0 ? INFINITY : 1 / std::abs( tileVel.x ),
-            tileVel.y == 0 ? INFINITY : 1 / std::abs( tileVel.y )
+            rayDirection.x == 0 ? INFINITY : 1 / std::abs( rayDirection.x ),
+            rayDirection.y == 0 ? INFINITY : 1 / std::abs( rayDirection.y )
         };
 
         // current position in each axis
-        glm::vec2 t = tilePos - (glm::vec2)tile;
+        glm::vec2 t = rayOrigin - (glm::vec2)tile;
         if ( stepDir.x == 1 ) { t.x = 1 - t.x; }
         if ( stepDir.y == 1 ) { t.y = 1 - t.y; }
 
@@ -672,7 +786,7 @@
         t.y = t.y == 0 ? 0 : t.y * deltaT.y;
 
         // loop until max distance reached
-        while ( t.x < rayCastHit->distance || t.y < rayCastHit->distance )
+        while ( true )
         {
             // step in the closest direction
             int stepAxis;
@@ -689,38 +803,9 @@
                 stepAxis = 1;
             }
 
-            // ensure within bounds of tilemap
-            if (
-                tile.x < 0 || tile.x >= tilemap->GetDimensions().x ||
-                tile.y < 0 || tile.y >= tilemap->GetDimensions().y
-            )
-            {
-                if (
-                    ( tile.x < 0 && stepDir.x <= 0 ) ||
-                    ( tile.y < 0 && stepDir.y <= 0 ) ||
-                    ( tile.x >= tilemap->GetDimensions().x && stepDir.x >= 0 ) ||
-                    ( tile.y >= tilemap->GetDimensions().y && stepDir.y >= 0 )
-                )
-                {
-                    // don't infinite infinite loop upon exiting tilemap bounds
-                    break;
-                }
-
-                continue;
-            }
-
             // check tile at current position
-            if ( tilemap->GetTile( tile ) >= 0 )
+            if ( gridCellCallback( tile, t[ stepAxis ] - deltaT[ stepAxis ], stepDir, stepAxis ) )
             {
-                rayCastHit->distance = t[ stepAxis ] - deltaT[ stepAxis ];
-                rayCastHit->colliderHit = tilemapCollider;
-
-                rayCastHit->normal = stepDir;
-                rayCastHit->normal[ (int)!stepAxis ] = 0;
-
-                rayCastHit->position = rayOrigin + rayDirection * rayCastHit->distance;
-                rayCastHit->tilePos = tile;
-
                 return;
             }
         }
@@ -728,38 +813,49 @@
 
 
 //-----------------------------------------------------------------------------
-// private: static members
-//-----------------------------------------------------------------------------
-
-    /// @brief map that stores the CollisionCheckMethods between each Collider type
-    CollisionFunctionMap const CollisionSystem::s_CollisionFunctions = {
-        { { typeid( CircleCollider ), typeid( CircleCollider )  }, &checkCircleCircle  },
-        { { typeid( CircleCollider ), typeid( TilemapCollider ) }, &checkCircleTilemap }
-    };
-
-//-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
+
 
     /// @brief  reads the collision layer names from json
     /// @param  data    the json data to read from
     void CollisionSystem::readCollisionLayerNames( nlohmann::ordered_json const& data )
     {
-        m_CollisionLayerNames = data;
+        Stream::Read( m_CollisionLayerNames, data );
     }
 
     /// @brief  reads the number of collision steps each frame
     /// @param  data    the json data to read from
     void CollisionSystem::readCollisionSteps( nlohmann::ordered_json const& data )
     {
-        m_CollisionSteps = data;
+        Stream::Read( m_CollisionSteps, data );
     }
 
-    /// @brief map of the CollisionSystem read methods
-    ReadMethodMap< CollisionSystem > const CollisionSystem::s_ReadMethods = {
-        { "CollisionLayerNames", &readCollisionLayerNames },
-        { "CollisionSteps"     , &readCollisionSteps      }
-    };
+    /// @brief  reads the size of each cell of the collision grid
+    /// @param  data    the json data to read from
+    void CollisionSystem::readGridSize( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_GridSize, data );
+    }
+    
+//-----------------------------------------------------------------------------
+// public: reading / writing
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< ISerializable > const& CollisionSystem::GetReadMethods() const
+    {
+        static ReadMethodMap< CollisionSystem > const readMethods = {
+            { "CollisionLayerNames", &CollisionSystem::readCollisionLayerNames },
+            { "CollisionSteps"     , &CollisionSystem::readCollisionSteps      },
+            { "GridSize"           , &CollisionSystem::readGridSize            }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
 
     /// @brief  writes the CollisionSystem config to json
     /// @return the written json data
@@ -767,33 +863,41 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "CollisionLayerNames" ] = m_CollisionLayerNames;
-        json[ "CollisionSteps" ] = m_CollisionSteps;
+        json[ "CollisionLayerNames" ] = Stream::Write( m_CollisionLayerNames );
+        json[ "CollisionSteps"      ] = Stream::Write( m_CollisionSteps      );
+        json[ "GridSize"            ] = Stream::Write( m_GridSize            );
 
         return json;
     }
 
+
 //-----------------------------------------------------------------------------
-// singleton stuff
+// public: singleton stuff
 //-----------------------------------------------------------------------------
+
+
+    /// @brief gets the instance of CollisionSystem
+    /// @return the instance of the CollisionSystem
+    CollisionSystem* CollisionSystem::GetInstance()
+    {
+        static CollisionSystem* instance = nullptr;
+        if ( instance == nullptr )
+        {
+            instance = new CollisionSystem();
+        }
+        return instance;
+    }
+
+    
+//-----------------------------------------------------------------------------
+// private: singleton stuff
+//-----------------------------------------------------------------------------
+
 
     /// @brief Constructs the CollisionSystem
     CollisionSystem::CollisionSystem() :
         System( "CollisionSystem" )
     {}
 
-    /// @brief The singleton s_Instance of CollisionSystem
-    CollisionSystem* CollisionSystem::s_Instance = nullptr;
-
-    /// @brief gets the instance of CollisionSystem
-    /// @return the instance of the CollisionSystem
-    CollisionSystem* CollisionSystem::GetInstance()
-    {
-        if ( s_Instance == nullptr )
-        {
-            s_Instance = new CollisionSystem();
-        }
-        return s_Instance;
-    }
 
 //-----------------------------------------------------------------------------

@@ -61,13 +61,6 @@
         m_CollisionLayerId = layerId;
     }
 
-    /// @brief  sets the collision layer of this Collider
-    /// @param  layerName   the name of the collision layer to set
-    void Collider::SetCollisionLayer( std::string const& layerName )
-    {
-        m_CollisionLayerId = Collisions()->GetCollisionLayerId( layerName );
-    }
-
 
     /// @brief  gets the flags of which layers this Collider collides with
     /// @return the flags of which layers this Collider collides with
@@ -83,17 +76,10 @@
         m_CollisionLayerFlags = layerFlags;
     }
 
-    /// @brief  sets the flags of which layers this Collider collides with
-    /// @param  layerFlags  the names of which layers this Collider should collide with
-    void Collider::SetCollisionLayerFlags( std::vector< std::string > const& layerNames )
-    {
-        m_CollisionLayerFlags = Collisions()->GetLayerFlags( layerNames );
-    }
-
 
     /// @brief  gets the list of colliders this Collider is currently colliding with
     /// @return the list of colliders this Collider is currently colliding with
-    std::vector< Collider* > const& Collider::GetContacts() const
+    std::set< Collider* > const& Collider::GetContacts() const
     {
         return m_Contacts;
     }
@@ -109,7 +95,7 @@
     /// @return whether the colliders are colliding
     bool Collider::IsColliding( Collider* other )
     {
-        return std::find( m_Contacts.begin(), m_Contacts.end(), other ) != m_Contacts.end();
+        return m_Contacts.contains( other );
     }
 
 
@@ -201,12 +187,12 @@
     /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
     bool Collider::TryAddContact( Collider* other )
     {
-        if ( std::find( m_Contacts.begin(), m_Contacts.end(), other ) != m_Contacts.end() )
+        if ( m_Contacts.contains( other ) )
         {
             return false;
         }
 
-        m_Contacts.push_back( other );
+        m_Contacts.insert( other );
         return true;
     }
 
@@ -215,13 +201,12 @@
     /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
     bool Collider::TryRemoveContact( Collider* other )
     {
-        auto it = std::find( m_Contacts.begin(), m_Contacts.end(), other );
-        if ( it == m_Contacts.end() )
+        if ( m_Contacts.contains( other ) == false )
         {
             return false;
         }
 
-        m_Contacts.erase( it );
+        m_Contacts.erase( other );
         return true;
     }
 
@@ -234,16 +219,12 @@
     /// @brief  called when this Component's Entity enters the Scene
     void Collider::OnInit()
     {
-        CollisionSystem::GetInstance()->addCollider( this );
-
         m_Transform.Init( GetEntity() );
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
     void Collider::OnExit()
     {
-        CollisionSystem::GetInstance()->removeCollider( this );
-
         m_Transform.Exit( GetEntity() );
     }
 
@@ -272,7 +253,7 @@
         }
 
         /// collision layer flags
-        Inspection::InspectCollisionLayerFlags( ( std::string( "Collision Layer Flags##" ) + std::to_string( GetId() ) ).c_str(), &m_CollisionLayerFlags );
+        m_CollisionLayerFlags.Inspect( "Collision Layer Flags" );
     }
 
 
@@ -285,29 +266,14 @@
     /// @param  data    the json data to read from
     void Collider::readCollisionLayer( nlohmann::ordered_json const& data )
     {
-        if ( data.is_string() )
-        {
-            SetCollisionLayer( (std::string)data );
-        }
-        else if ( data.is_number_unsigned() )
-        {
-            SetCollisionLayer( (unsigned)data );
-        }
+        Stream::Read( m_CollisionLayerId, data );
     }
 
     /// @brief  reads the collision layer flags from json
     /// @param  data    the json data to read from
     void Collider::readCollisionLayerFlags( nlohmann::ordered_json const& data )
     {
-        if ( data.is_array() )
-        {
-            std::vector< std::string > collisionLayerNames = data;
-            SetCollisionLayerFlags( collisionLayerNames );
-        }
-        else if ( data.is_number_unsigned() )
-        {
-            SetCollisionLayerFlags( (CollisionLayerFlags)data );
-        }
+        Stream::Read( m_CollisionLayerFlags, data );
     }
 
 
