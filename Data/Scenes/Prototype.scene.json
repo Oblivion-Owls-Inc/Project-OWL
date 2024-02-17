@@ -316,7 +316,8 @@
                             0.14000000059604645,
                             0.7900000214576721,
                             0.0,
-                            -2.5999999046325684
+                            -2.5999999046325684,
+                            0.0
                         ]
                     },
                     "EmitterSprite": {
@@ -870,39 +871,6 @@
                             ]
                         }
                     ]
-                }
-            },
-            "Children": null
-        },
-        "Camera": {
-            "Name": "Camera",
-            "Components": {
-                "Camera": {
-                    "Width": 47.0,
-                    "IsActive": true
-                },
-                "CameraBehavior": {
-                    "TargetEntityName": "Player",
-                    "XBounds": [
-                        -1.0,
-                        1.0
-                    ],
-                    "YBounds": [
-                        -24.0,
-                        16.0
-                    ]
-                },
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        -4.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
                 }
             },
             "Children": null
@@ -2579,8 +2547,8 @@
                 },
                 "Pathfinder": {
                     "Destination": [
-                        -9.0,
-                        5.5
+                        0.0,
+                        0.0
                     ],
                     "Walkables": [
                         -1
@@ -6132,6 +6100,49 @@
             },
             "Children": [
                 {
+                    "Name": "Camera",
+                    "Components": {
+                        "Camera": {
+                            "Width": 47.0,
+                            "IsActive": true
+                        },
+                        "CameraBehavior": {
+                            "XBounds": [
+                                -1.0,
+                                1.0
+                            ],
+                            "YBounds": [
+                                -24.0,
+                                16.0
+                            ]
+                        },
+                        "Transform": {
+                            "Translation": [
+                                0.0,
+                                -4.0
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                },
+                {
+                    "Name": "WinState",
+                    "Components": {
+                        "WinState": {
+                            "ItemID": 0,
+                            "ItemCount": 10,
+                            "WinScene": "GameWin"
+                        }
+                    },
+                    "Children": null
+                },
+                {
                     "Name": "HealthBar",
                     "Components": {
                         "HealthBar": {
@@ -6425,6 +6436,7 @@
                         1.0,
                         5.0,
                         0.0,
+                        0.0,
                         0.0
                     ]
                 },
@@ -6439,7 +6451,7 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Ball"
+                        "AssetName": "Ball3"
                     }
                 },
                 "Transform": {
@@ -6502,6 +6514,7 @@
                         0.0,
                         0.0,
                         2.0,
+                        0.0,
                         0.0,
                         0.0
                     ]
