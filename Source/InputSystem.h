@@ -95,25 +95,32 @@ private: // private class
     {
     private:
         /// @brief  key inputs
-        std::vector<int> m_keys;
+        std::vector<int> m_keys; // 0
         /// @brief  mouse inputs
-        std::vector<int> m_mouse;
+        std::vector<int> m_mouse; // 1
         /// @brief  controller inputs
-        std::vector<int> m_controller;
+        std::vector<int> m_controller; // 2
         /// @brief  opposing axis for key inputs
-        std::vector<int> m_keyAxis;
+        std::vector<int> m_keyAxis; // 3
         /// @brief  opposing axis for mouse inputs
-        std::vector<int> m_mouseAxis;
+        std::vector<int> m_mouseAxis; // 4
         /// @brief  opposing axis for controller inputs
-        std::vector<int> m_controllerAxis;
+        std::vector<int> m_controllerAxis; // 5
         /// @brief  gamepad axis as input, sticks/triggers
-        std::vector<int> m_gamepadAxisAsInput;
+        std::vector<int> m_gamepadAxisAsInput; // 6
         /// @brief  gamepad axis, sticks/triggers
-        std::vector<int> m_gamepadAxis;
+        std::vector<int> m_gamepadAxis; // 7
+        /// @brief  vector of the input vectors
+        std::vector<vector<int>*> m_inputVectors;
         /// @brief  action name
         std::string m_name;
         /// @brief  editor description of action
         std::string m_description;
+
+        /// @brief  remove an input from action by input id
+        /// @param  vector to remove from
+        /// @param  input id to remove
+        void removeByInput(std::vector<int>* vector, int input);
 
     public:
 
@@ -223,6 +230,14 @@ private: // private class
         /// @brief  gets the name of this action
         /// @return the name of the action
         std::string GetName();
+
+        /// @brief  sets the description of the action
+        /// @param  new description of action
+        void SetDescription(std::string discription);
+
+        /// @brief  gets the description of this action
+        /// @return the description of the action
+        std::string GetDescription();
 
         /// @brief  gets if this action is down
         /// @return action down status

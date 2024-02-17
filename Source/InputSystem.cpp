@@ -11,6 +11,7 @@
 #include <map>
 #include "CameraSystem.h"
 #include "Engine.h"
+#include "DebugSystem.h"
 
 
 /// @brief  updates map realted to fixed or standard update
@@ -405,6 +406,25 @@ InputSystem::Action* InputSystem::GetActionByName(std::string name)
 InputSystem::Action::Action(std::string name, std::string description) :
 m_name(name), m_description(description)
 {
+    m_inputVectors.push_back(&m_keys);
+    m_inputVectors.push_back(&m_mouse);
+    m_inputVectors.push_back(&m_controller);
+    m_inputVectors.push_back(&m_keyAxis);
+    m_inputVectors.push_back(&m_mouseAxis);
+    m_inputVectors.push_back(&m_controllerAxis);
+    m_inputVectors.push_back(&m_gamepadAxisAsInput);
+    m_inputVectors.push_back(&m_gamepadAxis);
+}
+
+void InputSystem::Action::removeByInput(std::vector<int>* vector, int input)
+{
+    auto it = std::find(vector->begin(), vector->end(), input);
+    if (it == vector->end())
+    {
+        Debug() << "WARNING: Action could not remove a given input";
+        return;
+    }
+    vector->erase(it);
 }
 
 void InputSystem::Action::Flush()
@@ -428,7 +448,7 @@ void InputSystem::Action::AddKeyInput(int glfw_key)
 
 void InputSystem::Action::RemoveKeyInput(int glfw_key)
 {
-    
+    removeByInput(&m_keys, glfw_key);
 }
 
 void InputSystem::Action::AddMouseInput(int glfw_mouse_button)
@@ -438,6 +458,7 @@ void InputSystem::Action::AddMouseInput(int glfw_mouse_button)
 
 void InputSystem::Action::RemoveMouseInput(int glfw_mouse_button)
 {
+    removeByInput(&m_mouse, glfw_mouse_button);
 }
 
 void InputSystem::Action::AddControllerInput(int glfw_button)
@@ -447,6 +468,7 @@ void InputSystem::Action::AddControllerInput(int glfw_button)
 
 void InputSystem::Action::RemoveControllerInput(int glfw_button)
 {
+    removeByInput(&m_controller, glfw_button);
 }
 
 void InputSystem::Action::AddAxisAsInput(int glfw_axis_id)
@@ -456,6 +478,7 @@ void InputSystem::Action::AddAxisAsInput(int glfw_axis_id)
 
 void InputSystem::Action::RemoveAxisAsInput(int glfw_axis_id)
 {
+    removeByInput(&m_gamepadAxisAsInput, glfw_axis_id);
 }
 
 void InputSystem::Action::AddKeyAxisPositive(int glfw_key)
@@ -475,6 +498,7 @@ void InputSystem::Action::RemoveKeyAxisPositive(int glfw_key)
 
 void InputSystem::Action::RemoveKeyAxisNegative(int glfw_key_negative)
 {
+    removeByInput(&m_keyAxis, glfw_key_negative);
 }
 
 void InputSystem::Action::AddMouseAxisPositive(int glfw_mouse)
@@ -489,52 +513,109 @@ void InputSystem::Action::AddMouseAxisNegative(int glfw_mouse_negative)
 
 void InputSystem::Action::RemoveMouseAxisPositive(int glfw_mouse)
 {
+    RemoveMouseInput(glfw_mouse);
 }
 
 void InputSystem::Action::RemoveMouseAxisNegative(int glfw_mouse_negative)
 {
+    removeByInput(&m_mouseAxis, glfw_mouse_negative);
 }
 
 void InputSystem::Action::AddControllerAxisPositive(int glfw_controller)
 {
+    AddControllerInput(glfw_controller);
 }
 
 void InputSystem::Action::AddControllerAxisNegative(int glfw_controller_negative)
 {
+    m_controllerAxis.push_back(glfw_controller_negative);
 }
 
 void InputSystem::Action::RemoveControllerAxisPositive(int glfw_controller)
 {
+    RemoveControllerInput(glfw_controller);
 }
 
 void InputSystem::Action::RemoveControllerAxisNegative(int glfw_controller_negative)
 {
+    removeByInput(&m_controllerAxis, glfw_controller_negative);
 }
 
 void InputSystem::Action::AddAxis(int glfw_axis_id)
 {
+    m_gamepadAxis.push_back(glfw_axis_id);
 }
 
 void InputSystem::Action::RemoveAxis(int glfw_axis_id)
 {
+    removeByInput(&m_gamepadAxis, glfw_axis_id);
 }
 
 void InputSystem::Action::SetName(std::string name)
 {
+    m_name = name;
 }
 
 std::string InputSystem::Action::GetName()
 {
-    return std::string();
+    return m_name;
+}
+
+void InputSystem::Action::SetDescription(std::string description)
+{
+    m_description = description;
+}
+
+std::string InputSystem::Action::GetDescription()
+{
+    return m_description;
 }
 
 bool InputSystem::Action::GetDown()
 {
+    int size = m_inputVectors[0]->size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetKeyDown((m_inputVectors[1]->at(i))))
+        {
+            return true;
+        }
+    }
+
+    size = m_inputVectors[1]->size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetMouseDown((m_inputVectors[1]->at(i))))
+        {
+            return true;
+        }
+    }
+
+    size = m_inputVectors[2]->size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetGamepadButtonDown((m_inputVectors[2]->at(i))))
+        {
+            return true;
+        }
+    }
+
+    size = m_inputVectors[6]->size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetGamepadAxisState(0, (m_inputVectors[6]->at(i)))
+            > 0.1)
+        {
+            return true;
+        }
+    }
+
     return false;
 }
 
 bool InputSystem::Action::GetTriggered()
 {
+
     return false;
 }
 
