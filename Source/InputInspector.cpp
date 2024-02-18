@@ -29,6 +29,12 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     case 2:
         Input()->GetActionByName(Input()->M_whichAction)->RemoveKeyInput(key);
         break;
+    case 7:
+        Input()->GetActionByName(Input()->M_whichAction)->AddKeyAxisNegative(key);
+        break;
+    case 8:
+        Input()->GetActionByName(Input()->M_whichAction)->RemoveKeyAxisNegative(key);
+        break;
     default:
         break;
     }
@@ -275,6 +281,26 @@ void InputSystem::DebugWindow()
                         ImGui::SameLine();
                         ImGui::Text(glfwGetKeyName(vector[j], 0));
                     }
+                    if (ImGui::Button("Add Key"))
+                    {
+                        glfwSetKeyCallback(handle, &key_callback);
+                        M_changeingAction = 7;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 7)
+                    {
+                        ImGui::Text("Press key to add");
+                    }
+                    if (ImGui::Button("Remove Key"))
+                    {
+                        glfwSetKeyCallback(handle, &key_callback);
+                        M_changeingAction = 8;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 8)
+                    {
+                        ImGui::Text("Press key to remove");
+                    }
 
                     ImGui::TreePop();
                 }
@@ -288,7 +314,43 @@ void InputSystem::DebugWindow()
                     for (int j = 0; j < size; ++j)
                     {
                         ImGui::SameLine();
-                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                        char mouseButton[8] = { 0 };
+                        snprintf(mouseButton, sizeof(mouseButton), "M%d", vector[j]);
+                        ImGui::Text(mouseButton);
+                    }
+                    if (ImGui::Button("Add Mouse"))
+                    {
+                        M_changeingAction = 9;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 9)
+                    {
+                        ImGui::Text("Press mouse button to add");
+                        for (int j = 0; j < GLFW_MOUSE_BUTTON_LAST; ++j)
+                        {
+                            if (GetMouseDown(j))
+                            {
+                                m_Actions[i].AddMouseAxisNegative(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                    }
+                    if (ImGui::Button("Remove Mouse"))
+                    {
+                        M_changeingAction = 10;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 10)
+                    {
+                        ImGui::Text("Press mouse button to remove");
+                        for (int j = 0; j < GLFW_MOUSE_BUTTON_LAST; ++j)
+                        {
+                            if (GetMouseDown(j))
+                            {
+                                m_Actions[i].RemoveMouseAxisNegative(j);
+                                M_changeingAction = 0;
+                            }
+                        }
                     }
 
                     ImGui::TreePop();
@@ -303,7 +365,91 @@ void InputSystem::DebugWindow()
                     for (int j = 0; j < size; ++j)
                     {
                         ImGui::SameLine();
-                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                        switch (vector[j])
+                        {
+                        case GLFW_GAMEPAD_BUTTON_A:
+                            ImGui::Text("A");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_B:
+                            ImGui::Text("B");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_X:
+                            ImGui::Text("X");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_Y:
+                            ImGui::Text("Y");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_LEFT_BUMPER:
+                            ImGui::Text("LB");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_RIGHT_BUMPER:
+                            ImGui::Text("RB");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_BACK:
+                            ImGui::Text("Back");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_START:
+                            ImGui::Text("START");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_GUIDE:
+                            ImGui::Text("GUIDE");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_LEFT_THUMB:
+                            ImGui::Text("LTHUMB");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_RIGHT_THUMB:
+                            ImGui::Text("RTHUMB");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_DPAD_UP:
+                            ImGui::Text("DUP");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_DPAD_DOWN:
+                            ImGui::Text("DDOWN");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_DPAD_LEFT:
+                            ImGui::Text("DLEFT");
+                            break;
+                        case GLFW_GAMEPAD_BUTTON_DPAD_RIGHT:
+                            ImGui::Text("DRIGHT");
+                            break;
+                        default:
+                            ImGui::Text("Error");
+                            break;
+                        }
+                    }
+                    if (ImGui::Button("Add Controller"))
+                    {
+                        M_changeingAction = 11;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 11)
+                    {
+                        ImGui::Text("Press controller button to add");
+                        for (int j = 0; j <= GLFW_GAMEPAD_BUTTON_LAST; ++j)
+                        {
+                            if (GetGamepadButtonDown(j))
+                            {
+                                m_Actions[i].AddControllerAxisNegative(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                    }
+                    if (ImGui::Button("Remove Controller"))
+                    {
+                        M_changeingAction = 12;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 12)
+                    {
+                        ImGui::Text("Press controller button to remove");
+                        for (int j = 0; j <= GLFW_GAMEPAD_BUTTON_LAST; ++j)
+                        {
+                            if (GetGamepadButtonDown(j))
+                            {
+                                m_Actions[i].RemoveControllerAxisNegative(j);
+                                M_changeingAction = 0;
+                            }
+                        }
                     }
 
                     ImGui::TreePop();
@@ -318,7 +464,82 @@ void InputSystem::DebugWindow()
                     for (int j = 0; j < size; ++j)
                     {
                         ImGui::SameLine();
-                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                        switch (vector[j])
+                        {
+                        case GLFW_GAMEPAD_AXIS_LEFT_X:
+                            ImGui::Text("LX");
+                            break;
+                        case GLFW_GAMEPAD_AXIS_LEFT_Y:
+                            ImGui::Text("LY");
+                            break;
+                        case GLFW_GAMEPAD_AXIS_RIGHT_X:
+                            ImGui::Text("RX");
+                            break;
+                        case GLFW_GAMEPAD_AXIS_RIGHT_Y:
+                            ImGui::Text("RY");
+                            break;
+                        case GLFW_GAMEPAD_AXIS_LEFT_TRIGGER:
+                            ImGui::Text("LT");
+                            break;
+                        case GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER:
+                            ImGui::Text("RT");
+                            break;
+                        default:
+                            ImGui::Text("Error");
+                            break;
+                        }
+                    }
+                    if (ImGui::Button("Add Axis As Input"))
+                    {
+                        M_changeingAction = 13;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 13)
+                    {
+                        ImGui::Text("Press axis to add");
+                        for (int j = 0; j < 4; ++j)
+                        {
+                            if (GetGamepadAxisState(0, j) > 0.5 ||
+                                GetGamepadAxisState(0, j) < -0.5)
+                            {
+                                m_Actions[i].AddAxisAsInput(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                        for (int j = 4; j < 6; ++j)
+                        {
+                            if (GetGamepadAxisState(0, j) > 0.0)
+                            {
+                                m_Actions[i].AddAxisAsInput(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                    }
+                    if (ImGui::Button("Remove Axis As Input"))
+                    {
+                        M_changeingAction = 14;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 14)
+                    {
+                        ImGui::Text("Press axis to remove");
+                        for (int j = 0; j < 4; ++j)
+                        {
+                            if (GetGamepadAxisState(0, j) > 0.5 ||
+                                GetGamepadAxisState(0, j) < -0.5)
+                            {
+                                m_Actions[i].RemoveAxisAsInput(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                        for (int j = 4; j < 6; ++j)
+                        {
+                            if (GetGamepadAxisState(0, j) > 0.0)
+                            {
+                                m_Actions[i].RemoveAxisAsInput(j);
+                                M_changeingAction = 0;
+                            }
+                        }
                     }
 
                     ImGui::TreePop();
@@ -333,7 +554,82 @@ void InputSystem::DebugWindow()
                     for (int j = 0; j < size; ++j)
                     {
                         ImGui::SameLine();
-                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                        switch (vector[j])
+                        {
+                        case GLFW_GAMEPAD_AXIS_LEFT_X:
+                            ImGui::Text("LX");
+                            break;
+                        case GLFW_GAMEPAD_AXIS_LEFT_Y:
+                            ImGui::Text("LY");
+                            break;
+                        case GLFW_GAMEPAD_AXIS_RIGHT_X:
+                            ImGui::Text("RX");
+                            break;
+                        case GLFW_GAMEPAD_AXIS_RIGHT_Y:
+                            ImGui::Text("RY");
+                            break;
+                        case GLFW_GAMEPAD_AXIS_LEFT_TRIGGER:
+                            ImGui::Text("LT");
+                            break;
+                        case GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER:
+                            ImGui::Text("RT");
+                            break;
+                        default:
+                            ImGui::Text("Error");
+                            break;
+                        }
+                    }
+                    if (ImGui::Button("Add Axis"))
+                    {
+                        M_changeingAction = 15;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 15)
+                    {
+                        ImGui::Text("Press axis to add");
+                        for (int j = 0; j < 4; ++j)
+                        {
+                            if (GetGamepadAxisState(0, j) > 0.5 ||
+                                GetGamepadAxisState(0, j) < -0.5)
+                            {
+                                m_Actions[i].AddAxis(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                        for (int j = 4; j < 6; ++j)
+                        {
+                            if (GetGamepadAxisState(0, j) > 0.0)
+                            {
+                                m_Actions[i].AddAxis(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                    }
+                    if (ImGui::Button("Remove Axis"))
+                    {
+                        M_changeingAction = 16;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 16)
+                    {
+                        ImGui::Text("Press axis to remove");
+                        for (int j = 0; j < 4; ++j)
+                        {
+                            if (GetGamepadAxisState(0, j) > 0.5 ||
+                                GetGamepadAxisState(0, j) < -0.5)
+                            {
+                                m_Actions[i].RemoveAxis(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                        for (int j = 4; j < 6; ++j)
+                        {
+                            if (GetGamepadAxisState(0, j) > 0.0)
+                            {
+                                m_Actions[i].RemoveAxis(j);
+                                M_changeingAction = 0;
+                            }
+                        }
                     }
 
                     ImGui::TreePop();
@@ -570,8 +866,8 @@ bool InputSystem::Action::GetDown()
     size = (int)m_gamepadAxisAsInput.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetGamepadAxisState(0, m_gamepadAxisAsInput[i]) > 0.1 ||
-            Input()->GetGamepadAxisState(0, m_gamepadAxisAsInput[i]) < -0.1)
+        if (Input()->GetGamepadAxisState(0, m_gamepadAxisAsInput[i]) > 0.5 ||
+            Input()->GetGamepadAxisState(0, m_gamepadAxisAsInput[i]) < -0.5)
         {
             return true;
         }
@@ -582,15 +878,155 @@ bool InputSystem::Action::GetDown()
 
 bool InputSystem::Action::GetTriggered()
 {
-    return false;
+    bool triggered = false;
+
+    int size = (int)m_keys.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetKeyDown(m_keys[i]))
+        {
+            if (Input()->GetKeyTriggered(m_keys[i]))
+            {
+                triggered = true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    size = (int)m_mouse.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetMouseDown(m_mouse[i]))
+        {
+            if (Input()->GetMouseTriggered(m_mouse[i]))
+            {
+                triggered = true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    size = (int)m_controller.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetGamepadButtonDown(m_controller[i]))
+        {
+            if (Input()->GetGamepadButtonTriggered(m_controller[i]))
+            {
+                triggered = true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    return triggered;
 }
 
 bool InputSystem::Action::GetReleased()
 {
-    return false;
+    bool released = false;
+
+    int size = (int)m_keys.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetKeyDown(m_keys[i]))
+        {
+            return false;
+        }
+        if (Input()->GetKeyReleased(m_keys[i]))
+        {
+            released = true;
+        }
+    }
+
+    size = (int)m_mouse.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetMouseDown(m_mouse[i]))
+        {
+            return false;
+        }
+        if (Input()->GetMouseReleased(m_mouse[i]))
+        {
+            released = true;
+        }
+    }
+
+    size = (int)m_controller.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetGamepadButtonDown(m_controller[i]))
+        {
+            return false;
+        }
+        if (Input()->GetGamepadButtonReleased(m_controller[i]))
+        {
+            released = true;
+        }
+    }
+
+    return released;
 }
 
 float InputSystem::Action::GetAxis()
 {
-    return 0.0f;
+    float result = 0.0f;
+    int size = (int)m_keys.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetKeyDown(m_keys[i]))
+        {
+            result += 1;
+        }
+        if (Input()->GetKeyDown(m_keyAxis[i]))
+        {
+            result -= 1;
+        }
+    }
+
+    size = (int)m_mouse.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetMouseDown(m_mouse[i]))
+        {
+            result += 1;
+        }
+        if (Input()->GetMouseDown(m_mouseAxis[i]))
+        {
+            result -= 1;
+        }
+    }
+
+    size = (int)m_controller.size();
+    for (int i = 0; i < size; ++i)
+    {
+        if (Input()->GetGamepadButtonDown(m_controller[i]))
+        {
+            result += 1;
+        }
+        if (Input()->GetGamepadButtonDown(m_controllerAxis[i]))
+        {
+            result -= 1;
+        }
+    }
+
+    size = (int)m_gamepadAxisAsInput.size();
+    for (int i = 0; i < size; ++i)
+    {
+        result += Input()->GetGamepadAxisState(0, m_gamepadAxisAsInput[i]);
+        result += Input()->GetGamepadAxisState(0, m_gamepadAxisAsInput[i]);
+    }
+
+    result = min(1.0f, result);
+    result = max(-1.0f, result);
+    return result;
 }
