@@ -32,6 +32,8 @@
 #include "DebugSystem.h"
 #include "RenderSystem.h"
 
+#include "Engine.h"
+
 #include "Inspection.h"
 
 //-----------------------------------------------------------------------------
@@ -41,11 +43,18 @@
 
     /// @brief  adds a CircleCollider to the CollisionSystem
     /// @param  circleCollider  the collider to add
-    void CollisionSystem::addCollider( CircleCollider* circleCollider )
+    void CollisionSystem::AddCollider( CircleCollider* circleCollider )
     {
-        if ( circleCollider->GetRadius() > m_GridSize )
+        if ( 2.0f * circleCollider->GetRadius() > m_GridSize )
         {
             m_LargeCircleColliders.push_back( circleCollider );
+            return;
+        }
+
+        Transform* transform = circleCollider->GetTransform();
+        if ( transform == nullptr )
+        {
+            Debug() << "ERROR: cannot add a Collider without a Transform to CollisionSystem" << std::endl;
             return;
         }
 
@@ -55,11 +64,11 @@
 
     /// @brief  removes a CircleCollider from the CollisionSystem
     /// @param  circleCollider  the collider to remove
-    void CollisionSystem::removeCollider( CircleCollider* circleCollider )
+    void CollisionSystem::RemoveCollider( CircleCollider* circleCollider )
     {
         std::vector< CircleCollider* >* container = &m_LargeCircleColliders;
 
-        if ( circleCollider->GetRadius() <= m_GridSize )
+        if ( 2.0f * circleCollider->GetRadius() <= m_GridSize )
         {
             glm::vec2 pos = circleCollider->GetTransform()->GetTranslation();
 
@@ -68,6 +77,11 @@
             {
                 Debug() << "ERROR: could not find cell to remove CircleCollider" << std::endl;
                 return;
+            }
+
+            if ( circleCollider->GetHasChanged() )
+            {
+                updatePositionsInGrid();
             }
 
             container = &it->second;
@@ -86,14 +100,14 @@
 
     /// @brief  adds a TilemapCollider to the CollisionSystem
     /// @param  tilemapCollider the collider to add
-    void CollisionSystem::addCollider( TilemapCollider* tilemapCollider )
+    void CollisionSystem::AddCollider( TilemapCollider* tilemapCollider )
     {
         m_TilemapColliders.push_back( tilemapCollider );
     }
 
     /// @brief  removes a TilemapCollider from the CollisionSystem
     /// @param  tilemapCollider     the collider to remove
-    void CollisionSystem::removeCollider( TilemapCollider* tilemapCollider )
+    void CollisionSystem::RemoveCollider( TilemapCollider* tilemapCollider )
     {
         auto it = std::find( m_TilemapColliders.begin(), m_TilemapColliders.end(), tilemapCollider );
         if ( it == m_TilemapColliders.end() )
@@ -166,8 +180,11 @@
     {
         for ( unsigned i = 0; i < m_CollisionSteps; ++i )
         {
+            updatePositionsInGrid();
             checkCollisions();
         }
+
+        removeOutdatedContacts();
     }
 
     /// @brief  creates the debug window for the CollisionSystem
@@ -188,46 +205,172 @@
             }
         );
 
+        ImGui::NewLine();
+
+        ImGui::DragFloat( "grid size", &m_GridSize, 0.05f, 0.01f, INFINITY );
+        ImGui::Text( "If the grid size is changed, the scene must be reloaded" );
+
+        ImGui::DragInt( "collision steps", &m_CollisionSteps, 0.05f, 1, INT_MAX );
+
         ImGui::End();
     }
+
 
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief Checks and handles all Collisions
     void CollisionSystem::checkCollisions()
     {
-        for ( int i = 0; i < m_LargeCircleColliders.size(); ++i )
+        // check collisions between large circle colliders and each other
+        checkCollisions( &m_LargeCircleColliders );
+
+        // check collisions between large circle colliders and tilemaps
+        checkCollisions( &m_LargeCircleColliders, &m_TilemapColliders );
+
+
+        // loop through each cell with colliders in it
+        for ( auto& [ cellPos, colliders ] : m_CircleCollidersGrid )
         {
-            CircleCollider* circleCollider = m_LargeCircleColliders[ i ];
 
-            for ( int j = 0; j < m_TilemapColliders.size(); ++i )
+            // check collisions between multiple colliders in this cell
+            checkCollisions( &colliders );
+
+            // check small circle colliders against large circle colliders
+            checkCollisions( &colliders, &m_LargeCircleColliders );
+
+            // check small circle colliders against tilemap colliders
+            checkCollisions( &colliders, &m_TilemapColliders );
+
+            glm::ivec2 const offsets[] = {
+                glm::ivec2( 1, 0 ),
+                glm::ivec2( -1, 1 ),
+                glm::ivec2( 0, 1 ),
+                glm::ivec2( 1, 1 ),
+            };
+
+            // check colliders in this cell against adjacent cells
+            for ( glm::ivec2 const offset : offsets )
             {
-                TilemapCollider* tilemapCollider = m_TilemapColliders[ i ];
-
-                bool aCollidesB = circleCollider->GetCollisionLayerFlags().Includes( tilemapCollider->GetCollisionLayer() );
-
-
-                CollisionData collisionData;
-
-                if ( checkCircleTilemap( circleCollider, tilemapCollider, &collisionData ) )
+                auto it = m_CircleCollidersGrid.find( cellPos + offset );
+                if ( it == m_CircleCollidersGrid.end() )
                 {
-                    circleCollider->CallOnCollisionCallbacks( tilemapCollider, collisionData );
-                    tilemapCollider->CallOnCollisionCallbacks( circleCollider, -collisionData );
-
-                    if ( circleCollider->TryAddContact( tilemapCollider ) )
-                    {
-
-                    }
-
+                    continue;
                 }
-                else
-                {
-                    
-                }
+
+                checkCollisions( &colliders, &it->second );
             }
         }
+    }
+
+
+    /// @brief  removes outdated contacts from all colliders
+    void CollisionSystem::removeOutdatedContacts()
+    {
+        for ( CircleCollider* collider : m_LargeCircleColliders )
+        {
+            collider->RemoveOutdatedContacts();
+        }
+
+        for ( TilemapCollider* collider : m_TilemapColliders )
+        {
+            collider->RemoveOutdatedContacts();
+        }
+
+        for ( auto& [ cellPos, colliders ] : m_CircleCollidersGrid )
+        {
+            for ( CircleCollider* collider : colliders )
+            {
+                collider->RemoveOutdatedContacts();
+            }
+        }
+    }
+
+
+    /// @brief  updates the position of each Collider in the grid, if necessary
+    void CollisionSystem::updatePositionsInGrid()
+    {
+        std::map< glm::ivec2, std::vector< CircleCollider* > > newCells = {};
+
+        for ( auto& [ cellPos, colliders ] : m_CircleCollidersGrid )
+        {
+            // conditionally remove colliders from each cell
+            std::erase_if(
+                colliders,
+                [ & ]( CircleCollider* collider ) -> bool
+                {
+                    // don't remove colliders that haven't changed
+                    if ( collider->GetHasChanged() == false )
+                    {
+                        return false;
+                    }
+
+                    collider->ClearHasChanged();
+
+                    // move colliders that've grown larger than the grid size to the large colliders array
+                    if ( 2.0f * collider->GetRadius() > m_GridSize )
+                    {
+                        m_LargeCircleColliders.push_back( collider );
+                        return true;
+                    }
+
+                    // move colliders that've moved into a different cell to that cell
+                    glm::ivec2 newCell = getGridCell( collider->GetTransform()->GetTranslation() );
+                    if ( newCell != cellPos )
+                    {
+                        auto it = m_CircleCollidersGrid.find( newCell );
+                        if ( it == m_CircleCollidersGrid.end() )
+                        {
+                            // if the target cell doesn't exist yet, queue it to be added after we're done iterating through the cells
+                            newCells[ newCell ].push_back( collider );
+                        }
+                        else
+                        {
+                            // if the target cell already exists, move directly there
+                            it->second.push_back( collider );
+                        }
+
+                        return true;
+                    }
+
+                    return false;
+                }
+            );
+        }
+
+        // remove any empty cells
+        std::erase_if(
+            m_CircleCollidersGrid,
+            []( std::pair< glm::ivec2, std::vector< CircleCollider* > > const& cell ) -> bool
+            {
+                return cell.second.empty();
+            }
+        );
+
+        // move new cells into the grid
+        m_CircleCollidersGrid.insert( newCells.begin(), newCells.end() );
+
+        
+        // move colliders that are now small enough to be in the grid into the grid
+        std::erase_if(
+            m_LargeCircleColliders,
+            [ this ]( CircleCollider* collider ) -> bool
+            {
+                collider->ClearHasChanged();
+
+                if ( 2.0f * collider->GetRadius() > m_GridSize )
+                {
+                    return false;
+                }
+
+                glm::vec2 pos = collider->GetTransform()->GetTranslation();
+                m_CircleCollidersGrid[ getGridCell( pos ) ].push_back( collider );
+
+                return true;
+            }
+        );
     }
 
 
@@ -243,6 +386,88 @@
 //-----------------------------------------------------------------------------
 // private: static methods
 //-----------------------------------------------------------------------------
+
+    
+
+    /// @brief  checks collisions between Colliders of the same type in a container
+    /// @tparam ColliderType    the Type of collider to check collisions between
+    /// @param  colliders       the container of the Colliders to check between
+    template < class ColliderType >
+    void CollisionSystem::checkCollisions( std::vector< ColliderType* >* colliders )
+    {
+        for ( int i = 0; i < colliders->size(); ++i )
+        {
+            ColliderType* colliderA = (*colliders)[ i ];
+
+            for ( int j = i + 1; j < colliders->size(); ++j )
+            {
+                ColliderType* colliderB = (*colliders)[ j ];
+
+                checkCollision( colliderA, colliderB );
+            }
+        }
+    }
+
+
+    /// @brief  checks and updates collision between Colliders in two containters
+    /// @tparam ColliderAType   the type of the first Collider
+    /// @tparam ColliderBType   the type of the second Collider
+    /// @param  collidersA      the first container of Colliders
+    /// @param  collidersB      the second container of Colliders
+    template < class ColliderAType, class ColliderBType >
+    void CollisionSystem::checkCollisions( std::vector< ColliderAType* >* collidersA, std::vector< ColliderBType* >* collidersB )
+    {
+        for ( ColliderAType* colliderA : *collidersA )
+        {
+            for ( ColliderBType* colliderB : *collidersB )
+            {
+                checkCollision( colliderA, colliderB );
+            }
+        }
+    }
+
+
+    
+    /// @brief  checks and updates collision between two collider of any known type
+    /// @tparam ColliderAType   the type of the first Collider
+    /// @tparam ColliderBType   the type of the second Collider
+    /// @param  colliderA       the first Collider
+    /// @param  colliderB       the second Collider
+    template < class ColliderAType, class ColliderBType >
+    void CollisionSystem::checkCollision( ColliderAType* colliderA, ColliderBType* colliderB )
+    {
+        bool aCollidesB = colliderA->GetCollisionLayerFlags().Includes( colliderB->GetCollisionLayer() );
+        bool bCollidesA = colliderB->GetCollisionLayerFlags().Includes( colliderA->GetCollisionLayer() );
+
+        // if neither Collider can collide with the other based on flags, return
+        if ( !(aCollidesB || bCollidesA) )
+        {
+            return;
+        }
+
+        // check the collision
+        CollisionData collisionData;
+        bool touching = checkCollision( colliderA, colliderB, &collisionData );
+
+        if ( touching == false )
+        {
+            return;
+        }
+
+        // handle callbacks
+        if ( aCollidesB )
+        {
+            colliderA->CallOnCollisionCallbacks( colliderB, collisionData );
+            colliderA->TryAddContact( colliderB, GameEngine()->GetFixedFrameCount() );
+        }
+
+        if ( bCollidesA )
+        {
+            colliderB->CallOnCollisionCallbacks( colliderA, -collisionData );
+            colliderB->TryAddContact( colliderA, GameEngine()->GetFixedFrameCount() );
+        }
+    }
+
 
     // /// @brief  checks a collision between two colliders of unknown type
     // /// @param  colliderA       the first collider
@@ -354,7 +579,7 @@
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    bool CollisionSystem::checkCircleCircle( CircleCollider const* colliderA, CircleCollider const* colliderB, CollisionData* collisionData )
+    bool CollisionSystem::checkCollision( CircleCollider const* colliderA, CircleCollider const* colliderB, CollisionData* collisionData )
     {
         if (collisionData)
             *collisionData = {};
@@ -391,7 +616,7 @@
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    bool CollisionSystem::checkCircleTilemap( CircleCollider const* circleCollider, TilemapCollider const* tilemapCollider, CollisionData* collisionData )
+    bool CollisionSystem::checkCollision( CircleCollider const* circleCollider, TilemapCollider const* tilemapCollider, CollisionData* collisionData )
     {
         if (collisionData)
             *collisionData = {};
@@ -670,6 +895,8 @@
                 
                     return true;
                 }
+
+                return false;
             }
         );
 

@@ -10,7 +10,7 @@
 
 #include "TilemapCollider.h"
 
-#include "Tilemap.h"
+#include "CollisionSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor
@@ -31,18 +31,29 @@
     /// @brief  called once when entering the scene
     void TilemapCollider::OnInit()
     {
-        Collider::OnInit();
+        m_Transform.SetOnConnectCallback(
+            [ this ]()
+            {
+                Collisions()->AddCollider( this );
+            }
+        );
+        m_Transform.SetOnDisconnectCallback(
+            [ this ]()
+            {
+                Collisions()->RemoveCollider( this );
+            }
+        );
 
-        m_Tilemap.Init( GetEntity() );
+        m_Transform.Init( GetEntity() );
+        m_Tilemap  .Init( GetEntity() );
     }
 
 
     /// @brief  called once when exiting the scene
     void TilemapCollider::OnExit()
     {
-        Collider::OnExit();
-
-        m_Tilemap.Exit( GetEntity() );
+        m_Transform.Exit( GetEntity() );
+        m_Tilemap  .Exit( GetEntity() );
     }
 
 

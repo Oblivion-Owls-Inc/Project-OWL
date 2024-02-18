@@ -13,7 +13,7 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Prototype"
+            "NextSceneName": "collisionTest"
         },
         "EntitySystem": {},
         "BehaviorSystem<Behavior>": {},
@@ -36,7 +36,8 @@
                 "Base",
                 "Projectiles"
             ],
-            "CollisionSteps": 2
+            "CollisionSteps": 8,
+            "GridSize": 0.25
         },
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
@@ -47,7 +48,7 @@
         },
         "CheatSystem": {},
         "DebugSystem": {
-            "ShowFpsWindow": false,
+            "ShowFpsWindow": true,
             "ShowDebugWindow": true
         },
         "AssetLibrary<Entity>": {},

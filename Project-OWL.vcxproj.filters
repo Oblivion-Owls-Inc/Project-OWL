@@ -1012,5 +1012,8 @@
     <None Include="Data\Scenes\SplashScreen.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
+    <None Include="Data\Scenes\collisionTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>
