@@ -36,6 +36,14 @@ private: // virtual override methods
 
 //-----------------------------------------------------------------------------
 
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Gets Called by the Debug system to display debug information
+    virtual void DebugWindow() override;
+
     /// @brief Constructs the InputSystem
     InputSystem();
 
@@ -43,12 +51,16 @@ private: // virtual override methods
     /// @brief The singleton instance of InputSystem
     static InputSystem * instance;
 
-
+private:
+    class Action; // forward reference
 
 protected:
     
     // bool array 0 down 1 triggered 2 released
     GLFWwindow* handle;
+
+    // debug window chech
+    bool m_InputIsOpen = false;
 
     // pointers to maps for MapUpdate
     map<int, bool[3]>* m_KeyStatesHold;
@@ -68,7 +80,7 @@ protected:
     std::vector<map<int, bool[3]>> windows;
     int amount = 0;
 
-    class Action; // forward reference
+    int m_numActions = 0;
 
     // map of actions
     vector<Action> m_Actions;
@@ -84,14 +96,12 @@ private: // private methods
     /// @param  transformation  the transformation to apply to the screen-space mouse position
     glm::vec2 getMousePosAfterTransformation( glm::mat4 const& transformation ) const;
 
-
-
 //-----------------------------------------------------------------------------
 private: // private class
 //-----------------------------------------------------------------------------
 
     /// @brief  action class, used to track an action with dynamic input
-    class Action
+    class Action : public ISerializable
     {
     private:
         /// @brief  key inputs
@@ -121,6 +131,50 @@ private: // private class
         /// @param  vector to remove from
         /// @param  input id to remove
         void removeByInput(std::vector<int>* vector, int input);
+        
+        /// @brief the map of read methods for this Component
+        static ReadMethodMap< Action > const s_ReadMethods;
+
+        /// @brief read the key inputs for an action
+        void readName(nlohmann::ordered_json const& json);
+
+        /// @brief read the key inputs for an action
+        void readDescription(nlohmann::ordered_json const& json);
+
+        /// @brief read the key inputs for an action
+        void readKeys(nlohmann::ordered_json const& json);
+
+        /// @brief read the mouse inputs for an action
+        void readMouse(nlohmann::ordered_json const& json);
+
+        /// @brief read the controller inputs for an action
+        void readController(nlohmann::ordered_json const& json);
+
+        /// @brief read the key axis inputs for an action
+        void readKeyAxis(nlohmann::ordered_json const& json);
+
+        /// @brief read the mouse axis inputs for an action
+        void readMouseAxis(nlohmann::ordered_json const& json);
+
+        /// @brief read the controller axis inputs for an action
+        void readControllerAxis(nlohmann::ordered_json const& json);
+
+        /// @brief read the gamepad axis as input for an action
+        void readGamepadAxisAsInput(nlohmann::ordered_json const& json);
+
+        /// @brief read the gamepad axis inputs for an action
+        void readGamepadAxis(nlohmann::ordered_json const& json);
+
+    public:
+
+        /// @brief read method map for an Action
+        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+        {
+            return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+        }
+
+        /// @brief	write an Action to json
+        virtual nlohmann::ordered_json Write() const override;
 
     public:
 
@@ -128,7 +182,7 @@ private: // private class
         /// @param  name of the action
         /// @param  description of the action (viewable in editor)
         Action(std::string name = "", std::string description = "");
-
+        
         /// @brief  removes all inputs for this action 
         ///         and empties name/description
         void Flush();
@@ -351,7 +405,34 @@ public: // accessors
     /// @param  name name of the action
     /// @retun  pointer to the action
     Action* GetActionByName(std::string name);
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  map of the SceneSystem read methods
+    static ReadMethodMap< InputSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
+
+    void readActions(nlohmann::ordered_json const& data);
+
+//-----------------------------------------------------------------------------
+public: // writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  writes this System to json
+    virtual nlohmann::ordered_json Write() const override;
 };
+
+
+
 
 /// @brief shortens input get instance to simply input
 /// @return returns the input system instance
