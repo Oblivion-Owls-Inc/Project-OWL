@@ -159,7 +159,7 @@ void InputSystem::DebugWindow()
 {
     if (ImGui::Begin("Input System", &m_InputIsOpen, ImGuiWindowFlags_AlwaysAutoResize))
     {
-        char title[20];
+        char title[33];
         snprintf(title, sizeof(title), "Create Action");
         if (ImGui::TreeNode(title))
         {
@@ -176,6 +176,154 @@ void InputSystem::DebugWindow()
             ImGui::TreePop();
         }
 
+        int vectorSize = m_Actions.size();
+        for (int i = 0; i < vectorSize; ++i)
+        {
+            if (ImGui::TreeNode(m_Actions[i].GetName().c_str()))
+            {
+                snprintf(title, sizeof(title), "Description");
+                if (ImGui::TreeNode(title))
+                {
+                    char buffer[512] = { 0 };
+                    char* offset = buffer;
+                    strncpy_s(buffer, m_Actions[i].GetDescription().c_str(), 512);
+                    int size = m_Actions[i].GetDescription().size();
+                    while (size > 0)
+                    {
+                        snprintf(title, sizeof(title), offset);
+                        ImGui::Text(title);
+                        size -= 32;
+                        offset += 32;
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                snprintf(title, sizeof(title), "Key Inputs");
+                if (ImGui::TreeNode(title))
+                {
+                    std::vector<int> vector = m_Actions[i].GetActionVector(0);
+                    int size = vector.size();
+                    ImGui::Text("Inputs:");
+                    for (int j = 0; j < size; ++j)
+                    {
+                        ImGui::SameLine();
+                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                    }
+
+                    ImGui::TreePop();
+                }
+                
+
+                snprintf(title, sizeof(title), "Mouse Inputs");
+                if (ImGui::TreeNode(title))
+                {
+                    std::vector<int> vector = m_Actions[i].GetActionVector(1);
+                    int size = vector.size();
+                    ImGui::Text("Inputs:");
+                    for (int j = 0; j < size; ++j)
+                    {
+                        ImGui::SameLine();
+                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                snprintf(title, sizeof(title), "Controller Inputs");
+                if (ImGui::TreeNode(title))
+                {
+                    std::vector<int> vector = m_Actions[i].GetActionVector(2);
+                    int size = vector.size();
+                    ImGui::Text("Inputs:");
+                    for (int j = 0; j < size; ++j)
+                    {
+                        ImGui::SameLine();
+                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                snprintf(title, sizeof(title), "Key Negative Axis");
+                if (ImGui::TreeNode(title))
+                {
+                    std::vector<int> vector = m_Actions[i].GetActionVector(3);
+                    int size = vector.size();
+                    ImGui::Text("Inputs:");
+                    for (int j = 0; j < size; ++j)
+                    {
+                        ImGui::SameLine();
+                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                snprintf(title, sizeof(title), "Mouse Negative Axis");
+                if (ImGui::TreeNode(title))
+                {
+                    std::vector<int> vector = m_Actions[i].GetActionVector(4);
+                    int size = vector.size();
+                    ImGui::Text("Inputs:");
+                    for (int j = 0; j < size; ++j)
+                    {
+                        ImGui::SameLine();
+                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                snprintf(title, sizeof(title), "Controller Negative Axis");
+                if (ImGui::TreeNode(title))
+                {
+                    std::vector<int> vector = m_Actions[i].GetActionVector(5);
+                    int size = vector.size();
+                    ImGui::Text("Inputs:");
+                    for (int j = 0; j < size; ++j)
+                    {
+                        ImGui::SameLine();
+                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                snprintf(title, sizeof(title), "Axis As Input");
+                if (ImGui::TreeNode(title))
+                {
+                    std::vector<int> vector = m_Actions[i].GetActionVector(6);
+                    int size = vector.size();
+                    ImGui::Text("Inputs:");
+                    for (int j = 0; j < size; ++j)
+                    {
+                        ImGui::SameLine();
+                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                snprintf(title, sizeof(title), "Axis");
+                if (ImGui::TreeNode(title))
+                {
+                    std::vector<int> vector = m_Actions[i].GetActionVector(7);
+                    int size = vector.size();
+                    ImGui::Text("Inputs:");
+                    for (int j = 0; j < size; ++j)
+                    {
+                        ImGui::SameLine();
+                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                ImGui::TreePop();
+            }
+
+        }
     }
     ImGui::End();
 }
@@ -444,14 +592,6 @@ InputSystem::Action* InputSystem::GetActionByName(std::string name)
 InputSystem::Action::Action(std::string name, std::string description) :
 m_name(name), m_description(description)
 {
-    m_inputVectors.push_back(&m_keys);
-    m_inputVectors.push_back(&m_mouse);
-    m_inputVectors.push_back(&m_controller);
-    m_inputVectors.push_back(&m_keyAxis);
-    m_inputVectors.push_back(&m_mouseAxis);
-    m_inputVectors.push_back(&m_controllerAxis);
-    m_inputVectors.push_back(&m_gamepadAxisAsInput);
-    m_inputVectors.push_back(&m_gamepadAxis);
     Input()->m_numActions++;
 }
 
@@ -479,6 +619,31 @@ void InputSystem::Action::Flush()
     m_name = "";
     m_description = "";
     Input()->m_numActions = 0;
+}
+
+std::vector<int> InputSystem::Action::GetActionVector(int vector)
+{
+    switch (vector)
+    {
+    case 0:
+        return m_keys;
+    case 1:
+        return m_mouse;
+    case 2:
+        return m_controller;
+    case 3:
+        return m_keyAxis;
+    case 4:
+        return m_mouseAxis;
+    case 5:
+        return m_controllerAxis;
+    case 6:
+        return m_gamepadAxisAsInput;
+    case 7:
+        return m_gamepadAxis;
+    default:
+        return m_keys;
+    }
 }
 
 void InputSystem::Action::AddKeyInput(int glfw_key)
@@ -613,38 +778,38 @@ std::string InputSystem::Action::GetDescription()
 
 bool InputSystem::Action::GetDown()
 {
-    int size = (int)m_inputVectors[0]->size();
+    int size = (int)m_keys.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetKeyDown((m_inputVectors[1]->at(i))))
+        if (Input()->GetKeyDown((m_keys[1])))
         {
             return true;
         }
     }
 
-    size = (int)m_inputVectors[1]->size();
+    size = (int)m_mouse.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetMouseDown((m_inputVectors[1]->at(i))))
+        if (Input()->GetMouseDown((m_mouse[1])))
         {
             return true;
         }
     }
 
-    size = (int)m_inputVectors[2]->size();
+    size = (int)m_controller.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetGamepadButtonDown((m_inputVectors[2]->at(i))))
+        if (Input()->GetGamepadButtonDown((m_controller[2])))
         {
             return true;
         }
     }
 
-    size = (int)m_inputVectors[6]->size();
+    size = (int)m_gamepadAxisAsInput.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetGamepadAxisState(0, (m_inputVectors[6]->at(i))) > 0.1 ||
-            Input()->GetGamepadAxisState(0, (m_inputVectors[6]->at(i))) < -0.1)
+        if (Input()->GetGamepadAxisState(0, (m_gamepadAxisAsInput[6])) > 0.1 ||
+            Input()->GetGamepadAxisState(0, (m_gamepadAxisAsInput[6])) < -0.1)
         {
             return true;
         }

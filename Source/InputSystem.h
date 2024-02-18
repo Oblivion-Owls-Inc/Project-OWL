@@ -120,12 +120,12 @@ private: // private class
         std::vector<int> m_gamepadAxisAsInput; // 6
         /// @brief  gamepad axis, sticks/triggers
         std::vector<int> m_gamepadAxis; // 7
-        /// @brief  vector of the input vectors
-        std::vector<vector<int>*> m_inputVectors;
         /// @brief  action name
         std::string m_name;
         /// @brief  editor description of action
         std::string m_description;
+
+    private:
 
         /// @brief  remove an input from action by input id
         /// @param  vector to remove from
@@ -186,6 +186,10 @@ private: // private class
         /// @brief  removes all inputs for this action 
         ///         and empties name/description
         void Flush();
+
+        /// @brief  retrieves a private vector for inspector
+        /// @param  vector number
+        std::vector<int> GetActionVector(int vector);
 
         /// @brief  adds a key to the action
         /// @param  key to add
