@@ -270,12 +270,12 @@ void GLAPIENTRY RenderSystem::errorCallback(
 {
     // if ( type == GL_DEBUG_TYPE_ERROR )
     // {
-        Debug() << "OpenGL Error:\n" <<
-            " - source  : " << source <<
-            " - type    : " << type <<
-            " - id      : " << id <<
-            " - severity: " << severity <<
-            " - message : " << message << std::endl;
+        //Debug() << "OpenGL Error:\n" <<
+        //    " - source  : " << source <<
+        //    " - type    : " << type <<
+        //    " - id      : " << id <<
+        //    " - severity: " << severity <<
+        //    " - message : " << message << std::endl;
     // }
 }
 

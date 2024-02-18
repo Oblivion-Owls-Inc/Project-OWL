@@ -469,7 +469,8 @@
                             0.14000000059604645,
                             0.7900000214576721,
                             0.0,
-                            -2.5999999046325684
+                            -2.5999999046325684,
+                            0.0
                         ]
                     },
                     "EmitterSprite": {
@@ -879,14 +880,14 @@
                             ]
                         },
                         {
-                            "WaveTime": 817.414794921875,
-                            "WaveNextTime": 817.414794921875,
+                            "WaveTime": 749.3997802734375,
+                            "WaveNextTime": 749.3997802734375,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
                                         "AssetName": ""
                                     },
-                                    "Amount": 910,
+                                    "Amount": 880,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
                                     "Spawner": 0
@@ -895,7 +896,7 @@
                                     "Enemy": {
                                         "AssetName": ""
                                     },
-                                    "Amount": 981,
+                                    "Amount": 975,
                                     "SpawnInterval": 10.0,
                                     "InitialOffset": 10.0,
                                     "Spawner": 0
@@ -915,7 +916,6 @@
                     "IsActive": true
                 },
                 "CameraBehavior": {
-                    "TargetEntityName": "Player",
                     "XBounds": [
                         -1.0,
                         1.0
@@ -6227,7 +6227,7 @@
                                 }
                             ],
                             "Texture": {
-                                "AssetName": ""
+                                "AssetName": "HealthBar"
                             },
                             "Layer": 6,
                             "Opacity": 1.0,
@@ -6445,6 +6445,7 @@
                         1.0,
                         5.0,
                         0.0,
+                        0.0,
                         0.0
                     ]
                 },
@@ -6522,6 +6523,7 @@
                         0.0,
                         0.0,
                         2.0,
+                        0.0,
                         0.0,
                         0.0
                     ]
@@ -6733,6 +6735,7 @@
                         0.8100000023841858,
                         2.0,
                         0.0,
+                        0.0,
                         0.0
                     ]
                 },
@@ -6894,7 +6897,7 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonRelease"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
@@ -6962,7 +6965,7 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonRelease"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
@@ -7030,7 +7033,7 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonRelease"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
@@ -7109,6 +7112,9 @@
                                     "IsSpatial": false,
                                     "AllowMultipleSounds": true
                                 },
+                                "SceneChangeButton": {
+                                    "SceneName": "Prototype"
+                                },
                                 "Sprite": {
                                     "Layer": 22,
                                     "Color": [
@@ -7124,7 +7130,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "",
+                                    "ClickEventName": "Prototype",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,

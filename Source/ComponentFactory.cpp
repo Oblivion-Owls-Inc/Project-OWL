@@ -54,6 +54,7 @@
 #include "TilemapEditor.h"
 #include "EditorCameraController.h"
 #include "WinState.h"
+#include "SceneChangeButton.h"
 
 
 //-----------------------------------------------------------------------------
@@ -189,7 +190,8 @@
         { "Generator"              , ComponentInfo< Generator               >() },
         { "TilemapEditor"          , ComponentInfo< TilemapEditor           >() },
         { "EditorCameraController" , ComponentInfo< EditorCameraController  >() },
-        { "WinState"               , ComponentInfo< WinState                >() }
+        { "WinState"               , ComponentInfo< WinState                >() },
+		{ "SceneChangeButton"      , ComponentInfo< SceneChangeButton       >() }
     };
 
 //-----------------------------------------------------------------------------
