@@ -1000,5 +1000,8 @@
       <Filter>Data\Shaders\Vertex</Filter>
     </None>
     <None Include="Data\Scenes\MapTest.scene.json" />
+    <None Include="Data\Scenes\collisionTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>

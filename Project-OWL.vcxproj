@@ -384,6 +384,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
+    <None Include="Data\Scenes\collisionTest.scene.json" />
     <None Include="Data\Scenes\ConstructionTest.scene.json" />
     <None Include="Data\Scenes\GameOver.scene.json" />
     <None Include="Data\Scenes\GameWin.scene.json" />

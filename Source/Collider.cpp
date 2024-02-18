@@ -9,8 +9,10 @@
 
 #include "Collider.h"
 
-#include "CollisionSystem.h"
 #include "DebugSystem.h"
+#include "CollisionSystem.h"
+
+#include "Engine.h"
 
 #include "Inspection.h"
 
@@ -79,7 +81,7 @@
 
     /// @brief  gets the list of colliders this Collider is currently colliding with
     /// @return the list of colliders this Collider is currently colliding with
-    std::set< Collider* > const& Collider::GetContacts() const
+    std::map< Collider*, int > const& Collider::GetContacts() const
     {
         return m_Contacts;
     }
@@ -153,6 +155,7 @@
     /// @brief  calls all OnCollision callbacks attached to this Collider
     /// @param  other           the other entity this Collider collided with
     /// @param  collisionData   the collisionData of the collision
+    /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
     void Collider::CallOnCollisionCallbacks( Collider* other, CollisionData const& collisionData )
     {
         for ( auto& [ id, callback ] : m_OnCollisionCallbacks )
@@ -160,6 +163,50 @@
             callback( other, collisionData );
         }
     }
+
+
+    /// @brief  tries to add a contact to this Collider's contacts array
+    /// @param  other           the contact to add
+    /// @param  currentFrame    the frame the Contact was added on
+    /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
+    void Collider::TryAddContact( Collider* other, int currentFrame )
+    {
+        // [] operator adds element if it doesn't exist
+        int& previousFrame = m_Contacts[ other ];
+
+        // check if it already existed
+        if ( previousFrame == 0 )
+        {
+            CallOnCollisionEnterCallbacks( other );
+        }
+
+        previousFrame = currentFrame;
+    }
+
+
+    /// @brief  removes all outdated contacts from this Collider and calls OnCollisionExit callbacks
+    void Collider::RemoveOutdatedContacts()
+    {
+        int currentFrame = GameEngine()->GetFixedFrameCount();
+        std::erase_if(
+            m_Contacts,
+            [ this, currentFrame ]( std::pair< Collider*, int > const& contact ) -> bool
+            {
+                if ( contact.second != currentFrame )
+                {
+                    CallOnCollisionExitCallbacks( contact.first );
+                    return true;
+                }
+                return false;
+            }
+        );
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
 
     /// @brief  calls all OnCollisionEnter callbacks attached to this Collider
     /// @param  other           the other entity this Collider collided with
@@ -182,53 +229,6 @@
     }
 
 
-    /// @brief  adds a contact to this Collider's contacts array
-    /// @param  other   the contact to add
-    /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
-    bool Collider::TryAddContact( Collider* other )
-    {
-        if ( m_Contacts.contains( other ) )
-        {
-            return false;
-        }
-
-        m_Contacts.insert( other );
-        return true;
-    }
-
-    /// @brief  removes a contact to this Collider's contacts array
-    /// @param  other   the contact to add
-    /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
-    bool Collider::TryRemoveContact( Collider* other )
-    {
-        if ( m_Contacts.contains( other ) == false )
-        {
-            return false;
-        }
-
-        m_Contacts.erase( other );
-        return true;
-    }
-
-
-//-----------------------------------------------------------------------------
-// protected: virtual override methods
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  called when this Component's Entity enters the Scene
-    void Collider::OnInit()
-    {
-        m_Transform.Init( GetEntity() );
-    }
-
-    /// @brief  called when this Component's Entity is removed from the Scene
-    void Collider::OnExit()
-    {
-        m_Transform.Exit( GetEntity() );
-    }
-
-    
 //-----------------------------------------------------------------------------
 // protected: inspection
 //-----------------------------------------------------------------------------

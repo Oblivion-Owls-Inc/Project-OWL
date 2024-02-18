@@ -57,20 +57,20 @@ public: // methods
 
     /// @brief  adds a CircleCollider to the CollisionSystem
     /// @param  circleCollider  the collider to add
-    void addCollider( CircleCollider* circleCollider );
+    void AddCollider( CircleCollider* circleCollider );
 
     /// @brief  removes a CircleCollider from the CollisionSystem
     /// @param  circleCollider  the collider to remove
-    void removeCollider( CircleCollider* circleCollider );
+    void RemoveCollider( CircleCollider* circleCollider );
 
 
     /// @brief  adds a TilemapCollider to the CollisionSystem
     /// @param  tilemapCollider the collider to add
-    void addCollider( TilemapCollider* tilemapCollider );
+    void AddCollider( TilemapCollider* tilemapCollider );
 
     /// @brief  removes a TilemapCollider from the CollisionSystem
     /// @param  tilemapCollider     the collider to remove
-    void removeCollider( TilemapCollider* tilemapCollider );
+    void RemoveCollider( TilemapCollider* tilemapCollider );
 
 
     /// @brief  gets the names of the layers in a CollisionLayerFlags
@@ -123,7 +123,7 @@ private: // members
     std::vector< std::string > m_CollisionLayerNames = {};
 
     /// @brief  the number of time to check collisions each frame
-    unsigned m_CollisionSteps = 1;
+    int m_CollisionSteps = 1;
 
 
     /// @brief  the size of each cell of the collision grid
@@ -146,8 +146,16 @@ private: // methods
 //-----------------------------------------------------------------------------
 
 
-    /// @brief Checks and handles all Collisions
+    /// @brief  Checks and handles all Collisions
     void checkCollisions();
+
+
+    /// @brief  removes outdated contacts from all colliders
+    void removeOutdatedContacts();
+
+
+    /// @brief  updates the position of each Collider in the grid, if necessary
+    void updatePositionsInGrid();
 
 
     /// @brief  gets the collision grid cell of a given world pos
@@ -161,19 +169,46 @@ private: // static methods
 //-----------------------------------------------------------------------------
 
 
+
+    /// @brief  checks collisions between Colliders of the same type in a container
+    /// @tparam ColliderType    the Type of collider to check collisions between
+    /// @param  colliders       the container of the Colliders to check between
+    template < class ColliderType >
+    static void checkCollisions( std::vector< ColliderType* >* colliders );
+
+
+    /// @brief  checks and updates collision between Colliders in two containters
+    /// @tparam ColliderAType   the type of the first Collider
+    /// @tparam ColliderBType   the type of the second Collider
+    /// @param  collidersA      the first container of Colliders
+    /// @param  collidersB      the second container of Colliders
+    template < class ColliderAType, class ColliderBType >
+    static void checkCollisions( std::vector< ColliderAType* >* collidersA, std::vector< ColliderBType* >* collidersB );
+
+
+
+    /// @brief  checks and updates collision between two collider of any known type
+    /// @tparam ColliderAType   the type of the first Collider
+    /// @tparam ColliderBType   the type of the second Collider
+    /// @param  colliderA       the first Collider
+    /// @param  colliderB       the second Collider
+    template < class ColliderAType, class ColliderBType >
+    static void checkCollision( ColliderAType* colliderA, ColliderBType* colliderB );
+
+
     /// @brief  checks a collision between two circle colliders
     /// @param  colliderA       the first collider
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    static bool checkCircleCircle( CircleCollider const* colliderA, CircleCollider const* colliderB, CollisionData* collisionData );
+    static bool checkCollision( CircleCollider const* colliderA, CircleCollider const* colliderB, CollisionData* collisionData );
 
     /// @brief  checks a collision between a circle and tilemap collider
     /// @param  circleCollider  the circle collider
     /// @param  tilemapCollider the tilemap collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    static bool checkCircleTilemap( CircleCollider const* circleCollider, TilemapCollider const* tilemapCollider, CollisionData* collisionData );
+    static bool checkCollision( CircleCollider const* circleCollider, TilemapCollider const* tilemapCollider, CollisionData* collisionData );
 
 
     /// @brief  helper function which checks a circle against an AABB

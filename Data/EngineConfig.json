@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1200,
-                800
+                815,
+                812
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -13,14 +13,13 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Prototype"
+            "NextSceneName": "collisionTest"
         },
         "EntitySystem": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
-        "BehaviorSystem<GeneratorBehavior>": {},
         "BehaviorSystem<EditorCameraController>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
@@ -36,7 +35,8 @@
                 "Base",
                 "Projectiles"
             ],
-            "CollisionSteps": 2
+            "CollisionSteps": 8,
+            "GridSize": 0.25
         },
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
@@ -47,7 +47,7 @@
         },
         "CheatSystem": {},
         "DebugSystem": {
-            "ShowFpsWindow": false,
+            "ShowFpsWindow": true,
             "ShowDebugWindow": true
         },
         "AssetLibrary<Entity>": {},
