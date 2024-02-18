@@ -125,9 +125,8 @@
             /// Input text for typing scene name
             static char buffer[128] = ""; // Buffer to hold the input, you can save this
             ImGui::InputText("Type Scene Name", buffer, IM_ARRAYSIZE(buffer));
-
-            /// A button to load the scene, either from the dropdown or the input text
-            if (ImGui::Button("Load Scene"))
+            
+            if (ImGui::GetIO().KeysDown[GLFW_KEY_ENTER] || (ImGui::Button("Load Scene")))
             {
                 if (strlen(buffer) > 0)
                 {
@@ -146,6 +145,8 @@
                     return false; // close window
                 }
             }
+
+
         }
 
 		ImGui::End();

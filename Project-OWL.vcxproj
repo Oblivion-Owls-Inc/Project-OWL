@@ -222,6 +222,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ParticleSystem.cpp" />
     <ClCompile Include="Source\Pathfinder.cpp" />
     <ClCompile Include="Source\CameraBehavior.cpp" />
+    <ClCompile Include="Source\PauseSystem.cpp" />
     <ClCompile Include="Source\Pool.cpp" />
     <ClCompile Include="Source\Lua.cpp" />
     <ClCompile Include="Source\PlayerController.cpp" />
@@ -283,6 +284,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\PauseSystem.h" />
     <ClInclude Include="Source\SceneChangeButton.h" />
     <ClInclude Include="Source\AssetReference.h" />
     <ClInclude Include="Source\ComponentReference.h" />
