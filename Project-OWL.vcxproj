@@ -208,6 +208,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="imgui\implot_items.cpp" />
     <ClCompile Include="Source\HealthBar.cpp" />
     <ClCompile Include="Source\Generator.cpp" />
+    <ClCompile Include="Source\InputInspector.cpp" />
     <ClCompile Include="Source\Inspection.cpp" />
     <ClCompile Include="Source\EmitterSprite.cpp" />
     <ClCompile Include="Source\Inventory.cpp" />

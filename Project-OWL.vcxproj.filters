@@ -620,6 +620,12 @@
     <ClCompile Include="Source\Lifetime.cpp">
       <Filter>Engine\Entity\Component\Behavior\Lifetime</Filter>
     </ClCompile>
+    <ClCompile Include="Source\WinState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InputInspector.cpp">
+      <Filter>Engine\Systems\InputSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -939,6 +945,9 @@
     </ClInclude>
     <ClInclude Include="Source\Lifetime.h">
       <Filter>Engine\Entity\Component\Behavior\Lifetime</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WinState.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
