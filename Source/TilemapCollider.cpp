@@ -42,7 +42,7 @@
     {
         Collider::OnExit();
 
-        m_Tilemap.Exit( GetEntity() );
+        m_Tilemap.Exit();
     }
 
 

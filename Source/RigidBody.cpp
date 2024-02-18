@@ -92,8 +92,8 @@
     {
         BehaviorSystem< RigidBody >::GetInstance()->RemoveComponent( this );
 
-        m_Transform.Exit( GetEntity() );
-        m_Collider .Exit( GetEntity() );
+        m_Transform.Exit();
+        m_Collider .Exit();
     }
 
     /// @brief Update method called per frame.

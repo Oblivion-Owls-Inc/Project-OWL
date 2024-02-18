@@ -59,8 +59,8 @@
     {
         Behaviors< Behavior >()->RemoveComponent( this );
 
-        m_Transform  .Exit( GetEntity() );
-        m_AudioPlayer.Exit( GetEntity() );
+        m_Transform  .Exit();
+        m_AudioPlayer.Exit();
     }
 
     /// @brief Called Every Fixed Frame by the system

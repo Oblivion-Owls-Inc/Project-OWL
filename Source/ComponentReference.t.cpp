@@ -38,6 +38,26 @@
     ComponentReference< ComponentType, required >::~ComponentReference() = default;
 
 
+    /// @brief  move-assignment operator
+    /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
+    /// @param  other   the ComponentReference to move into this one
+    template < class ComponentType, bool required >
+    void ComponentReference< ComponentType, required >::operator =( ComponentReference&& other )
+    {
+        m_Entity    = other.m_Entity;
+        m_Component = other.m_Component;
+        m_OnConnectCallback    = std::move( other.m_OnConnectCallback );
+        m_OnDisconnectCallback = std::move( other.m_OnDisconnectCallback );
+
+        if ( m_Entity != nullptr )
+        {
+            m_Entity->RemoveComponentReference( &other );
+            m_Entity->AddComponentReference( this );
+        }
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------
@@ -55,6 +75,7 @@
             return;
         }
 
+        m_Entity = entity;
         m_Component = entity->GetComponent< ComponentType >();
 
         if ( required && m_Component == nullptr )
@@ -74,9 +95,8 @@
     /// @brief  separates this ComponentReference from the target Entity
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
     /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
-    /// @param  entity  the entity this ComponentReference is curently watching
     template < class ComponentType, bool required >
-    void ComponentReference< ComponentType, required >::Exit( Entity* entity )
+    void ComponentReference< ComponentType, required >::Exit()
     {
         if ( m_Component != nullptr && m_OnDisconnectCallback )
         {
@@ -85,12 +105,13 @@
 
         m_Component = nullptr;
 
-        if ( entity == nullptr )
+        if ( m_Entity == nullptr )
         {
             return;
         }
 
-        entity->RemoveComponentReference( this );
+        m_Entity->RemoveComponentReference( this );
+        m_Entity = nullptr;
     }
 
 
