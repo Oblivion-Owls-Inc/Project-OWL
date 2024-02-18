@@ -154,6 +154,24 @@ int InputSystem::InitAlternateWindow(GLFWwindow* handle)
 //-----------------------------------------------------------------------------
 
 
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    int whichAction = Input()->M_changeingAction;
+    switch (whichAction)
+    {
+    case 1:
+        Input()->GetActionByName(Input()->M_whichAction)->AddKeyInput(key);
+        break;
+    case 2:
+        Input()->GetActionByName(Input()->M_whichAction)->RemoveKeyInput(key);
+        break;
+    default:
+        break;
+    }
+    glfwSetKeyCallback(Input()->GetHandle(), nullptr);
+    Input()->M_changeingAction = 0;
+}
+
     /// @brief Gets Called by the Debug system to display debug information
 void InputSystem::DebugWindow()
 {
@@ -210,7 +228,26 @@ void InputSystem::DebugWindow()
                         ImGui::SameLine();
                         ImGui::Text(glfwGetKeyName(vector[j], 0));
                     }
-
+                    if (ImGui::Button("Add Key"))
+                    {
+                        glfwSetKeyCallback(handle, &key_callback);
+                        M_changeingAction = 1;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 1)
+                    {
+                        ImGui::Text("Press key to add");
+                    }
+                    if (ImGui::Button("Remove Key"))
+                    {
+                        glfwSetKeyCallback(handle, &key_callback);
+                        M_changeingAction = 2;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 2)
+                    {
+                        ImGui::Text("Press key to remove");
+                    }
                     ImGui::TreePop();
                 }
                 
@@ -224,9 +261,44 @@ void InputSystem::DebugWindow()
                     for (int j = 0; j < size; ++j)
                     {
                         ImGui::SameLine();
-                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                        char mouseButton[8] = {0};
+                        snprintf(mouseButton, sizeof(mouseButton), "M%d", vector[j]);
+                        ImGui::Text(mouseButton);
                     }
-
+                    if (ImGui::Button("Add Mouse"))
+                    {
+                        M_changeingAction = 3;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 3)
+                    {
+                        ImGui::Text("Press mouse button to add");
+                        for (int j = 0; j < GLFW_MOUSE_BUTTON_LAST; ++j)
+                        {
+                            if (GetMouseDown(j))
+                            {
+                                m_Actions[i].AddMouseInput(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                    }
+                    if (ImGui::Button("Remove Mouse"))
+                    {
+                        M_changeingAction = 4;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 4)
+                    {
+                        ImGui::Text("Press mouse button to remove");
+                        for (int j = 0; j < GLFW_MOUSE_BUTTON_LAST; ++j)
+                        {
+                            if (GetMouseDown(j))
+                            {
+                                m_Actions[i].RemoveMouseInput(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                    }
                     ImGui::TreePop();
                 }
 
@@ -239,9 +311,44 @@ void InputSystem::DebugWindow()
                     for (int j = 0; j < size; ++j)
                     {
                         ImGui::SameLine();
-                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                        char controllerButton[8] = { 0 };
+                        snprintf(controllerButton, sizeof(controllerButton), "C%d", vector[j]);
+                        ImGui::Text(controllerButton);
                     }
-
+                    if (ImGui::Button("Add Controller"))
+                    {
+                        M_changeingAction = 5;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 5)
+                    {
+                        ImGui::Text("Press controller button to add");
+                        for (int j = 0; j <= GLFW_GAMEPAD_BUTTON_LAST; ++j)
+                        {
+                            if (GetGamepadButtonDown(j))
+                            {
+                                m_Actions[i].AddControllerInput(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                    }
+                    if (ImGui::Button("Remove Controller"))
+                    {
+                        M_changeingAction = 6;
+                        M_whichAction = m_Actions[i].GetName();
+                    }
+                    if (M_changeingAction == 6)
+                    {
+                        ImGui::Text("Press controller button to remove");
+                        for (int j = 0; j <= GLFW_GAMEPAD_BUTTON_LAST; ++j)
+                        {
+                            if (GetGamepadButtonDown(j))
+                            {
+                                m_Actions[i].RemoveControllerInput(j);
+                                M_changeingAction = 0;
+                            }
+                        }
+                    }
                     ImGui::TreePop();
                 }
 

@@ -51,6 +51,14 @@ public: // inspection
     /// @brief The singleton instance of InputSystem
     static InputSystem * instance;
 
+//-----------------------------------------------------------------------------
+public: // public variables
+//-----------------------------------------------------------------------------
+
+    // checks to indicate an action is being changed
+    int M_changeingAction = 0;
+    std::string M_whichAction = "";
+
 private:
     class Action; // forward reference
 
@@ -80,7 +88,10 @@ protected:
     std::vector<map<int, bool[3]>> windows;
     int amount = 0;
 
+    // number of actions attached to input
     int m_numActions = 0;
+
+    
 
     // map of actions
     vector<Action> m_Actions;
@@ -321,6 +332,8 @@ public: // accessors
     /// @brief gets the instance of InputSystem
     /// @return the instance of the InputSystem
     static InputSystem * GetInstance();
+
+    GLFWwindow* GetHandle() { return handle; }
 
     /// @brief  sets a new window handle
     /// @param  handle of new window
