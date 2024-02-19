@@ -268,15 +268,15 @@ void GLAPIENTRY RenderSystem::errorCallback(
     const void* userParam
 )
 {
-    // if ( type == GL_DEBUG_TYPE_ERROR )
-    // {
-        //Debug() << "OpenGL Error:\n" <<
-        //    " - source  : " << source <<
-        //    " - type    : " << type <<
-        //    " - id      : " << id <<
-        //    " - severity: " << severity <<
-        //    " - message : " << message << std::endl;
-    // }
+     if ( type == GL_DEBUG_TYPE_ERROR )
+     {
+        Debug() << "OpenGL Error:\n" <<
+            " - source  : " << source <<
+            " - type    : " << type <<
+            " - id      : " << id <<
+            " - severity: " << severity <<
+            " - message : " << message << std::endl;
+     }
 }
 
 

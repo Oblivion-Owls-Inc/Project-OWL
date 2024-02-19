@@ -159,16 +159,20 @@
                     color = ImVec4(1.0f, 1.0f, 0.4f, 1.0f);
                     has_color = true;
                 }
-			    else if (item.find("Error:") != std::string::npos) 
+			    if (item.find("Error:") != std::string::npos) 
 			    {
 				    color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f);
 				    has_color = true;
 			    }
-                else if (item.rfind("# ", 0) == 0) 
+                if (item.rfind("# ", 0) == 0) 
                 { // Efficient check for prefix
                     color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f);
                     has_color = true;
                 }
+                if(item.rfind("OpenGL Error:", 0) == 0)
+				{
+                    continue;
+				}
 
                 if (has_color)
                 {
