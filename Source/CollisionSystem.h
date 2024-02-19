@@ -140,6 +140,14 @@ private: // members
     /// @brief  all CircleColliders larger than the grid size in the scene
     std::vector< CircleCollider* > m_LargeCircleColliders = {};
 
+
+    /// @brief  bit flags for which edges of an AABB are enabled
+    static constexpr int s_EdgeLeft  = 0b0001;
+    static constexpr int s_EdgeRight = 0b0010;
+    static constexpr int s_EdgeDown  = 0b0100;
+    static constexpr int s_EdgeUp    = 0b1000;
+    static constexpr int s_EdgeAll   = 0b1111;
+
     
 //-----------------------------------------------------------------------------
 private: // methods
@@ -217,9 +225,15 @@ private: // static methods
     /// @param  aabbMin         the min pos of the AABB
     /// @param  aabbMax         the max pos of the AABB
     /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @param  enabledEdges    flags of which edges of the AABB are enabled
     /// @return whether or not the two shapes are colliding
     /// @note   ASSUMES THAT THE AABB OF THE CIRCLE IS KNOWN TO OVERLAP THE RECTANGLE
-    static bool checkCircleAABB( glm::vec2 const& circlePos, float circleRadius, glm::vec2 const& aabbMin, glm::vec2 const& aabbMax, CollisionData* collisionData );
+    static bool checkCircleAABB(
+        glm::vec2 const& circlePos, float circleRadius,
+        glm::vec2 const& aabbMin, glm::vec2 const& aabbMax,
+        CollisionData* collisionData,
+        int enabledEdges = s_EdgeAll
+    );
 
     /// @brief  helper function which checks a circle against a point
     /// @param  circlePos       the position of the circle
