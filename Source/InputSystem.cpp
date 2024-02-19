@@ -406,6 +406,15 @@ InputSystem::Action* InputSystem::GetActionByName(std::string name)
     return nullptr;
 }
 
+
+/// @brief  gets the vector of Actions in the InputSystem
+/// @return the vector of Actions
+std::vector< InputSystem::Action > const& InputSystem::GetActions() const
+{
+    return m_Actions;
+}
+
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------

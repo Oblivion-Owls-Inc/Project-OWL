@@ -423,6 +423,11 @@ public: // accessors
     /// @retun  pointer to the action
     Action* GetActionByName(std::string name);
 
+    /// @brief  gets the vector of Actions in the InputSystem
+    /// @return the vector of Actions
+    std::vector< Action > const& GetActions() const;
+
+
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------

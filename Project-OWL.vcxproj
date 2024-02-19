@@ -184,6 +184,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\ActionReference.cpp" />
     <ClCompile Include="Source\AssetReference.t.cpp" />
     <ClCompile Include="Source\AudioListener.cpp" />
     <ClCompile Include="Source\ComponentReference.t.cpp" />
@@ -283,6 +284,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\ActionReference.h" />
     <ClInclude Include="Source\AssetReference.h" />
     <ClInclude Include="Source\ComponentReference.h" />
     <ClInclude Include="Source\EditorCameraController.h" />
