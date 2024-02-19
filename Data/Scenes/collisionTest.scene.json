@@ -154,14 +154,14 @@
             "Name": "Camera",
             "Components": {
                 "Camera": {
-                    "Width": 16.485000610351563,
+                    "Width": 31.78499984741211,
                     "IsActive": true
                 },
                 "EditorCameraController": {},
                 "Transform": {
                     "Translation": [
-                        7.586073875427246,
-                        -9.052474975585938
+                        9.805604934692383,
+                        -7.420454502105713
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -1476,14 +1476,14 @@
                     ],
                     "Waves": [
                         {
-                            "WaveTime": 2200.0,
-                            "WaveNextTime": 2200.0,
+                            "WaveTime": 22.0,
+                            "WaveNextTime": 22.0,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
                                         "AssetName": "Ball"
                                     },
-                                    "Amount": 10000,
+                                    "Amount": 1000,
                                     "SpawnInterval": 0.019999999552965164,
                                     "InitialOffset": 0.0,
                                     "Spawner": 0
@@ -1540,8 +1540,8 @@
                 },
                 "Transform": {
                     "Translation": [
-                        6.916811466217041,
-                        -13.904630661010742
+                        8.928155899047852,
+                        -10.656919479370117
                     ],
                     "Rotation": 0.0,
                     "Scale": [

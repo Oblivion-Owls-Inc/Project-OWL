@@ -687,10 +687,7 @@
         {
             for ( tilePos.x = minTile.x; tilePos.x <= maxTile.x; ++tilePos.x )
             {
-                if (
-                    tilePos.x < 0 || tilePos.x >= tilemap->GetDimensions().x ||
-                    tilePos.y < 0 || tilePos.y >= tilemap->GetDimensions().y
-                    )
+                if ( tilemap->IsPositionWithinBounds( tilePos ) == false )
                 {
                     continue;
                 }
@@ -700,10 +697,25 @@
                     continue;
                 }
 
-                // Renderer()->DrawRect( tileToWorld * glm::vec4( (glm::vec2)tilePos + glm::vec2( 0.5f, 0.5f), 0, 1 ), tileToWorld * glm::vec4( 1, 1, 0, 0 ) );
+                // get which edges of the AABB are enabled
+                int enabledEdges = 0;
+                glm::ivec2 offsets[] = {
+                    glm::ivec2( -1,  0 ),
+                    glm::ivec2( +1,  0 ),
+                    glm::ivec2(  0, -1 ),
+                    glm::ivec2(  0, +1 )
+                };
+                for ( int i = 0; i < 4; ++i )
+                {
+                    glm::ivec2 offsetTile = tilePos + offsets[ i ];
+                    if ( tilemap->IsPositionWithinBounds( offsetTile ) && tilemap->GetTile( offsetTile ) < 0 )
+                    {
+                        enabledEdges |= 1 << i;
+                    }
+                }
 
                 CollisionData tempCollisionData;
-                if ( !checkCircleAABB( pos, radius, tilePos, tilePos + glm::ivec2( 1, 1 ), collisionData ? &tempCollisionData : nullptr) )
+                if ( !checkCircleAABB( pos, radius, tilePos, tilePos + glm::ivec2( 1, 1 ), collisionData ? &tempCollisionData : nullptr, enabledEdges ) )
                 {
                     continue;
                 }
@@ -733,17 +745,28 @@
     /// @param  aabbMin         the min pos of the AABB
     /// @param  aabbMax         the max pos of the AABB
     /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @param  enabledEdges    flags of which edges of the AABB are enabled
     /// @return whether or not the two shapes are colliding
     /// @note   ASSUMES THAT THE AABB OF THE CIRCLE IS KNOWN TO OVERLAP THE RECTANGLE
-    bool CollisionSystem::checkCircleAABB( glm::vec2 const& circlePos, float circleRadius, glm::vec2 const& aabbMin, glm::vec2 const& aabbMax, CollisionData* collisionData )
+    bool CollisionSystem::checkCircleAABB(
+        glm::vec2 const& circlePos, float circleRadius,
+        glm::vec2 const& aabbMin, glm::vec2 const& aabbMax,
+        CollisionData* collisionData,
+        int enabledEdges
+    )
     {
-        if ( circlePos.x >= aabbMax.x )
+        if ( enabledEdges == 0 )
         {
-            if ( circlePos.y >= aabbMax.y )
+            return false;
+        }
+
+        if ( circlePos.x >= aabbMax.x && (enabledEdges & s_EdgeRight) )
+        {
+            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp) )
             { // top right corner
                 return checkCirclePoint( circlePos, circleRadius, aabbMax, collisionData );
             }
-            else if ( circlePos.y <= aabbMin.y )
+            else if ( circlePos.y <= aabbMin.y && (enabledEdges & s_EdgeDown) )
             { // bottom right corner
                 return checkCirclePoint( circlePos, circleRadius, glm::vec2( aabbMax.x, aabbMin.y ), collisionData );
             }
@@ -759,13 +782,13 @@
                 return true;
             }
         }
-        else if ( circlePos.x <= aabbMin.x )
+        else if ( circlePos.x <= aabbMin.x && (enabledEdges & s_EdgeLeft) )
         {
-            if ( circlePos.y >= aabbMax.y )
+            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp) )
             { // top left corner
                 return checkCirclePoint( circlePos, circleRadius, glm::vec2( aabbMin.x, aabbMax.y ), collisionData);
             }
-            else if ( circlePos.y <= aabbMin.y )
+            else if ( circlePos.y <= aabbMin.y && (enabledEdges & s_EdgeDown) )
             { // bottom left corner
                 return checkCirclePoint( circlePos, circleRadius, aabbMin , collisionData );
             }
@@ -783,7 +806,7 @@
         }
         else
         {
-            if ( circlePos.y >= aabbMax.y )
+            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp) )
             { // top edge
                 if ( collisionData != nullptr )
                 {
@@ -794,7 +817,7 @@
 
                 return true;
             }
-            else if ( circlePos.y <= aabbMin.y )
+            else if ( circlePos.y <= aabbMin.y && (enabledEdges & s_EdgeDown) )
             { // bottom edge
                 if ( collisionData != nullptr )
                 {
@@ -807,7 +830,50 @@
             }
             else
             { // interior
-                return false;
+                if ( collisionData == nullptr )
+                {
+                    return true;
+                }
+
+                collisionData->depth = -INFINITY;
+                if ( enabledEdges & s_EdgeLeft )
+                {
+                    collisionData->depth = (circlePos.x + circleRadius) - aabbMin.x;
+                    collisionData->position = circlePos + glm::vec2( circleRadius, 0 );
+                    collisionData->normal = glm::vec2( -1, 0 );
+                }
+                if ( enabledEdges & s_EdgeRight )
+                {
+                    float depth = aabbMax.x - (circlePos.x - circleRadius);
+                    if ( depth > collisionData->depth )
+                    {
+                        collisionData->depth = depth;
+                        collisionData->position = circlePos - glm::vec2( circleRadius, 0 );
+                        collisionData->normal = glm::vec2( 1, 0 );
+                    }
+                }
+                if ( enabledEdges & s_EdgeDown )
+                {
+                    float depth = (circlePos.y + circleRadius) - aabbMin.y;
+                    if ( depth > collisionData->depth )
+                    {
+                        collisionData->depth = depth;
+                        collisionData->position = circlePos + glm::vec2( 0, circleRadius );
+                        collisionData->normal = glm::vec2( 0, -1 );
+                    }
+                }
+                if ( enabledEdges & s_EdgeUp )
+                {
+                    float depth = aabbMax.y - (circlePos.y - circleRadius);
+                    if ( depth > collisionData->depth )
+                    {
+                        collisionData->depth = depth;
+                        collisionData->position = circlePos - glm::vec2( 0, circleRadius );
+                        collisionData->normal = glm::vec2( 0, 1 );
+                    }
+                }
+
+                return true;
             }
         }
     }
