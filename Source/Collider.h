@@ -15,7 +15,9 @@
 #include "Component.h"
 
 #include "ComponentReference.h"
-#include "Transform.h"
+class Transform;
+class RigidBody;
+class StaticBody;
 
 #include "CollisionLayerFlags.h"
 
@@ -73,6 +75,14 @@ public: // accessors
     /// @brief  gets this Collider's Transform
     /// @return this Collider's Transform
     Transform* GetTransform() const;
+
+    /// @brief  gets this Collider's RigidBody
+    /// @return this Collider's RigidBody
+    RigidBody* GetRigidBody() const;
+
+    /// @brief  gets this Collider's StaticBody
+    /// @return this Collider's StaticBody
+    StaticBody* GetStaticBody() const;
 
 
     /// @brief  gets the collision layer of this Collider
@@ -166,8 +176,14 @@ protected: // member variables
 //-----------------------------------------------------------------------------
 
     
-    /// @brief The transform of this Collider's Entity
+    /// @brief  the transform of this Collider's Entity
     ComponentReference< Transform > m_Transform;
+
+    /// @brief  the RigidBody attached to this Entity
+    ComponentReference< RigidBody, false > m_RigidBody;
+
+    /// @brief  the StaticBody attached to this Entity
+    ComponentReference< StaticBody, false > m_StaticBody;
 
 
     /// @brief  the collision layer of this Collider
@@ -182,13 +198,13 @@ protected: // member variables
 
 
     /// @brief  callbacks which get called whenever this collider collides
-    std::map< unsigned, OnCollisionCallback > m_OnCollisionCallbacks = {};
+    std::vector< std::pair< unsigned, OnCollisionCallback > > m_OnCollisionCallbacks = {};
 
     /// @brief  callbacks which get called whenever a collision begins
-    std::map< unsigned, OnCollisionStateChangeCallback > m_OnCollisionEnterCallbacks = {};
+    std::vector< std::pair< unsigned, OnCollisionStateChangeCallback > > m_OnCollisionEnterCallbacks = {};
 
     /// @brief  callbacks which get called whenever a collision ends
-    std::map< unsigned, OnCollisionStateChangeCallback > m_OnCollisionExitCallbacks = {};
+    std::vector< std::pair< unsigned, OnCollisionStateChangeCallback > > m_OnCollisionExitCallbacks = {};
 
     
 //-----------------------------------------------------------------------------

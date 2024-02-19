@@ -1,4 +1,4 @@
-/// @file       ComponentReference.t.cpp
+/// @file       ComponentReference.t.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
 /// @brief      a reference to a component in the scene
 /// @version    0.1
@@ -6,15 +6,15 @@
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
-#define COMPONENTREFERENCE_T
+#pragma once
 
-#ifndef COMPONENTREFERENCE_H
 #include "ComponentReference.h"
-#endif
 
-#ifndef ENTITY_H
 #include "Entity.h"
-#endif
+#include "Collider.h"
+#include "StaticBody.h"
+#include "Transform.h"
+#include "RigidBody.h"
 
 #include "DebugSystem.h"
 

@@ -13,7 +13,7 @@
 #include <glm/glm.hpp>
 
 #include "ComponentReference.h"
-#include "Transform.h"
+class Transform;
 
 
 /// @brief      Handles camera and coordinate systems / spaces.

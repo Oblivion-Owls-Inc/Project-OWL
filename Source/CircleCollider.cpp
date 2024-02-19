@@ -10,6 +10,11 @@
 
 #include "CircleCollider.h"
 
+#include "ComponentReference.t.h"
+#include "Transform.h"
+#include "RigidBody.h"
+#include "StaticBody.h"
+
 #include "DebugSystem.h"
 #include "RenderSystem.h"
 #include "CollisionSystem.h"
@@ -93,14 +98,17 @@
             }
         );
 
-        m_Transform.Init( GetEntity() );
-
+        m_Transform .Init( GetEntity() );
+        m_RigidBody .Init( GetEntity() );
+        m_StaticBody.Init( GetEntity() );
     }
 
     /// @brief  called when this Component's Entity is removed from the Scene
     void CircleCollider::OnExit()
     {
-        m_Transform.Exit( GetEntity() );
+        m_Transform .Exit( GetEntity() );
+        m_RigidBody .Exit( GetEntity() );
+        m_StaticBody.Exit( GetEntity() );
     }
 
     

@@ -231,36 +231,72 @@
         checkCollisions( &m_LargeCircleColliders, &m_TilemapColliders );
 
 
-        // loop through each cell with colliders in it
-        for ( auto& [ cellPos, colliders ] : m_CircleCollidersGrid )
+        // check large circle colliders against grid
+        for ( CircleCollider* collider : m_LargeCircleColliders )
         {
+            glm::vec2 pos = collider->GetTransform()->GetTranslation();
+
+            glm::ivec2 minCell = getGridCell( pos - glm::vec2( collider->GetRadius() + m_GridSize ) );
+            glm::ivec2 maxCell = getGridCell( pos + glm::vec2( collider->GetRadius() + m_GridSize ) );
+
+            // for each row the collider overlaps
+            for ( glm::ivec2 cell = minCell; cell.y <= maxCell.y; ++cell.y )
+            {
+                // find start of the row
+                auto it = m_CircleCollidersGrid.lower_bound( cell );
+                if ( it == m_CircleCollidersGrid.end() || it->first.y != cell.y )
+                {
+                    continue;
+                }
+
+                // loop through to end of row
+                while ( it != m_CircleCollidersGrid.end() && it->first.x <= maxCell.x )
+                {
+                    // check against each collider in that cell
+                    for ( CircleCollider* colliderB : it->second )
+                    {
+                        checkCollision( collider, colliderB );
+                    }
+
+                    ++it;
+                }
+            }
+        }
+
+
+        // loop through each cell with colliders in it
+        for ( auto it = m_CircleCollidersGrid.begin(); it != m_CircleCollidersGrid.end(); ++it )
+        {
+            glm::ivec2 const& cellPos = it->first;
+            std::vector< CircleCollider* >& colliders = it->second;
 
             // check collisions between multiple colliders in this cell
             checkCollisions( &colliders );
 
             // check small circle colliders against large circle colliders
-            checkCollisions( &colliders, &m_LargeCircleColliders );
+            // checkCollisions( &colliders, &m_LargeCircleColliders );
 
             // check small circle colliders against tilemap colliders
             checkCollisions( &colliders, &m_TilemapColliders );
 
-            glm::ivec2 const offsets[] = {
-                glm::ivec2( 1, 0 ),
-                glm::ivec2( -1, 1 ),
-                glm::ivec2( 0, 1 ),
-                glm::ivec2( 1, 1 ),
-            };
-
-            // check colliders in this cell against adjacent cells
-            for ( glm::ivec2 const offset : offsets )
+            // check collision against the next cell to the right
+            auto next = it;
+            ++next;
+            if ( next != m_CircleCollidersGrid.end() && next->first == cellPos + glm::ivec2( 1, 0 ) )
             {
-                auto it = m_CircleCollidersGrid.find( cellPos + offset );
-                if ( it == m_CircleCollidersGrid.end() )
-                {
-                    continue;
-                }
+                checkCollisions( &colliders, &next->second );
+            }
 
-                checkCollisions( &colliders, &it->second );
+            // check collision against the cells above
+            next = m_CircleCollidersGrid.lower_bound( cellPos + glm::ivec2( -1, 1 ) );
+            while (
+                next != m_CircleCollidersGrid.end() &&
+                next->first.y == cellPos.y + 1 &&
+                next->first.x <= cellPos.x + 1
+            )
+            {
+                checkCollisions( &colliders, &next->second );
+                ++next;
             }
         }
     }
@@ -581,25 +617,23 @@
     /// @return whether or not the two colliders are colliding
     bool CollisionSystem::checkCollision( CircleCollider const* colliderA, CircleCollider const* colliderB, CollisionData* collisionData )
     {
-        if (collisionData)
-            *collisionData = {};
-
         glm::vec2 posA = colliderA->GetTransform()->GetTranslation();
         glm::vec2 posB = colliderB->GetTransform()->GetTranslation();
 
         glm::vec2 displacement = posB - posA;
-        float distance = glm::length( displacement );
+        float squareDistance = glm::dot( displacement, displacement );
 
         float minDistance = colliderA->GetRadius() + colliderB->GetRadius();
         
-        if ( distance >= minDistance )
+        if ( squareDistance >= minDistance * minDistance )
         {
             return false;
         }
 
         if ( collisionData != nullptr )
         {
-            collisionData->normal = distance == 0 ? glm::vec2( 0 ) : - displacement / distance;
+            float distance = std::sqrt( squareDistance );
+            collisionData->normal = distance == 0.0f ? glm::vec2( 0 ) : - displacement / distance;
             collisionData->position = (
                 posA - collisionData->normal * colliderA->GetRadius() +
                 posB + collisionData->normal * colliderB->GetRadius()

@@ -10,6 +10,9 @@
 #include "DebugSystem.h"
 #include "Engine.h"
 
+#include "ComponentReference.t.h"
+#include "Transform.h"
+#include "Collider.h"
 #include "StaticBody.h"
 
 //-----------------------------------------------------------------------------
@@ -170,7 +173,7 @@
     void RigidBody::OnCollision( Collider* other, CollisionData const& collisionData )
     {
         // detect if colliding with StaticBody
-        StaticBody const* staticBody = other->GetEntity()->GetComponent<StaticBody>();
+        StaticBody const* staticBody = other->GetStaticBody();
         if ( staticBody != nullptr )
         {
             CollideWithStatic( staticBody, collisionData );
@@ -178,7 +181,7 @@
         }
 
         // only handle collisions with other rigidBodies
-        RigidBody* rigidBodyB = other->GetEntity()->GetComponent<RigidBody>();
+        RigidBody* rigidBodyB = other->GetRigidBody();
         if ( rigidBodyB == nullptr )
         {
             return;
