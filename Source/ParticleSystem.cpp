@@ -8,14 +8,9 @@
  *********************************************************************/
 #include "glew.h"
 #include "ParticleSystem.h"
-#include "RenderSystem.h"
-#include "CameraSystem.h"
 #include "Emitter.h"
-
-// for debugging
-#include "InputSystem.h"
-#include "glfw3.h"
-#include <iostream>
+#include "RenderSystem.h"   // shader
+#include "CameraSystem.h"   // projection matrix
 
 
 //-----------------------------------------------------------------------------
@@ -55,7 +50,7 @@ void ParticleSystem::OnUpdate(float dt)
 
     // Put all of the emitters' init data together and send it to GPU.
     // If each emitter was to load its own data instead, executions would not be
-    // parallelized.    (bindings and basic uniforms are ok)
+    // parallelized / queued.    (bindings and basic uniforms are ok)
     if (m_InitDataDirty)
     {
         m_InitDataDirty = false;
@@ -69,14 +64,14 @@ void ParticleSystem::OnUpdate(float dt)
                      &inits[0], GL_DYNAMIC_DRAW);
     }
 
-    static float time = 0.0f;
+    static float time = 0.0f;  // for the shader-side PRNG
     if (dt > 0.2f)
         dt = 0.016f;
     
-    ++m_FastForward;
-    while (m_FastForward)
+    m_FastForward += dt;
+    while (m_FastForward >= 0.0f)
     {
-        --m_FastForward;
+        m_FastForward -= dt;
 
         // set common uniforms : dt, time, projection matrix
         time += dt;
@@ -105,9 +100,10 @@ void ParticleSystem::OnExit()
 }
 
 
+/// @brief  Called when entering new scene: fast-forward 300 frames
 void ParticleSystem::OnSceneInit()
 {
-    m_FastForward = 300;
+    m_FastForward = 5.0f;
 }
 
 
@@ -155,6 +151,5 @@ ParticleSystem * ParticleSystem::GetInstance()
     }
     return s_Instance;
 }
-
 
 

@@ -9,8 +9,7 @@
 #include "System.h"
 #include <map>
 
-// fwd references
-class Shader;
+// fwd reference
 class Emitter;
 
 /// @brief  System in charge of managing compute shader and emitters.
@@ -89,7 +88,7 @@ private:
 
     unsigned int m_UBO = 0;         /// @brief  ID of buffer used by uniform block
     bool m_InitDataDirty = true;    /// @brief  When true, re-load init data buffer
-    int m_FastForward = 300;        /// @brief  Fast forward 300 frames at start
+    float m_FastForward = 5.0f;     /// @brief  Fast forward 5 sec at start
 
     /// @brief  All the emitters.
     std::map<int, Emitter*> m_Emitters;

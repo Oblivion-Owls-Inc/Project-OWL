@@ -3,7 +3,7 @@
 out vec4 pixel_color;
 
 in vec2 v_UV;
-in float v_opacity;
+in float v_opacity;  // per particle
 
 uniform sampler2D TextureSlot;
 uniform float opacity = 1.0f;

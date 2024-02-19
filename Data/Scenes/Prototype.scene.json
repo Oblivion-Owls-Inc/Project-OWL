@@ -2549,8 +2549,8 @@
                         -1
                     ],
                     "Targets": [
-                        "Player - low",
-                        "Base - highest"
+                        "Base - highest",
+                        "Player - low"
                     ]
                 },
                 "StaticBody": {
@@ -6444,7 +6444,7 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Ball"
+                        "AssetName": "Turret"
                     }
                 },
                 "Transform": {

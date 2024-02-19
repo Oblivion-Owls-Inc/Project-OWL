@@ -66,7 +66,7 @@ public:
     /// @param pos   Position from which to travel
     /// @return      Amount of tiles to travel til destination. If out of bounds, 
     ///              returns -1.
-    int GetTravelDistanceAt(glm::vec2 pos);
+    int GetTravelDistanceAt(glm::vec2 pos) const;
 
 
     /// @brief           Add target entity for pathfinding
@@ -127,16 +127,15 @@ private:
     /// @brief  Target transform + how important it is to enemies
     struct Target 
     {
-        Transform* transform;
+        ComponentReference<Transform> transform;
         Priority priority; 
     };
 
-    /// @brief   Names of target entities
-    std::vector<std::string> m_TargetNames;
-    std::vector<Target> m_Targets;     /// @brief  Targets to nagivate to
+    std::vector<std::string> m_TargetNames;  /// @brief  Names of target entities
+    std::vector<Target> m_Targets;           /// @brief  Targets to nagivate to
 
-    std::thread m_Thread;              /// @brief  Background thread for the actual algo
-    std::atomic_bool m_Dirty = false,  /// @brief  Thread sync
+    std::thread m_Thread;                    /// @brief  Background thread for the actual algo
+    std::atomic_bool m_Dirty = false,        /// @brief  Thread sync
                      m_Done = false;
 
 
