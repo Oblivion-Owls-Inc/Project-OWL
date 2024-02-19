@@ -6,10 +6,9 @@
  * \date   October 2023
  *********************************************************************/
 #pragma once
-#include "Component.h"
 #include "ParticleSystem.h"
-
-class Transform; // fwd ref
+#include "ComponentReference.h"
+#include "Transform.h"
 
 /// @brief  Emitter component - controls timing and behavior of particles
 class Emitter : public Component
@@ -92,7 +91,7 @@ private:
     bool m_Zinit = true;        /// @brief  Init buffer to 0 when this is true
     
     /// @brief   Parent entity's transform
-    Transform* m_Transform = nullptr;
+    ComponentReference<Transform> m_Transform;
 
     /// @brief   Data to initialize particles with on each emission
     ParticleSystem::EmitData m_Init = {};

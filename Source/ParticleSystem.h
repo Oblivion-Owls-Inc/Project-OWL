@@ -21,11 +21,12 @@ public:
     ///         Particle struct declared on the compute shader.
     struct Particle
     {
-        glm::vec2 pos, vel, acc, vec2padding; 
+        glm::vec2 pos, vel, acc, vec2padding;
         float size, rotation,
-              dirAcc,  drag,   // dirAcc - magnitude of accelerating in the initial direction
+              dirAcc, drag,   // dirAcc - magnitude of accelerating in the initial direction
               lifetime, time,
-              fadeIn, fadeOut;
+              fadeIn, fadeOut,
+              sizePerSec, align;
     };
 
     /// @brief  Mirrors the struct on the shader. Used for spawning new particles.
@@ -33,11 +34,11 @@ public:
     struct EmitData
     {
         glm::vec2 offset, pos_spread;
-        glm::vec2 acceleration; float direction,  speed;
-        float size, rotation,  dir_spread, speed_spread; 
-        float size_spread, rotation_spread,  fadeInDuration, fadeOutDuration;
-        float lifetime, startAhead, dirAcc, padding;
-        int bufferSize, p1, p2, p3;
+        glm::vec2 acceleration; float direction, speed;
+        float size, rotation, dir_spread, speed_spread;
+        float size_spread, rotation_spread, fadeInDuration, fadeOutDuration;
+        float lifetime, startAhead, dirAcc, sizePerSec;
+        int bufferSize, align1;
     };
 
 
@@ -48,7 +49,7 @@ public:
 public:
 
     /// @return  Thread size of each work group. 
-    __inline int GetWorkGroupSize() { return m_WGsize; }
+    __inline int GetWorkGroupSize() const { return m_WGsize; }
 
     /// @brief          Adds new emitter to the system
     /// @param emitter  Pointer to new emitter

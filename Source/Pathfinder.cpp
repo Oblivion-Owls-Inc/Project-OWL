@@ -28,7 +28,7 @@ Pathfinder::Pathfinder() : Component(typeid(Pathfinder))
 Pathfinder::Pathfinder(Pathfinder const& other) : Component(other) { }
 
 /// @return     A copy of this component
-Component * Pathfinder::Clone() const { return new Pathfinder(*this); }
+Pathfinder * Pathfinder::Clone() const { return new Pathfinder(*this); }
 
 
 
@@ -69,9 +69,11 @@ void Pathfinder::OnInit()
     }
 
     m_Nodes.resize( m_Tilemap->GetTilemap().size() );
-    SetDestination(m_DestPos);
 
     getTargets();
+
+    if (m_DestPos.x || m_DestPos.y)
+        SetDestination(m_DestPos);
 }
 
 
@@ -273,12 +275,15 @@ void Pathfinder::explore()
         int width = m_Tilemap->GetDimensions().x;
         int height = size / width;
 
-        // init first node
-        int indx = m_DestTile.y * width + m_DestTile.x;
-        m_Nodes[indx].type = Seen;
-        m_Nodes[indx].direction = {0,0};
-        m_Nodes[indx].cost = 0;
-        m_Nodes[indx].priority = 0;
+        // init first node (if it's not default)
+        if (m_DestTile.x || m_DestTile.y)
+        {
+            int indx = m_DestTile.y * width + m_DestTile.x;
+            m_Nodes[indx].type = Seen;
+            m_Nodes[indx].direction = {0,0};
+            m_Nodes[indx].cost = 0;
+            m_Nodes[indx].priority = 0;
+        }
 
         // and the target destinations
         for (Target t : m_Targets)

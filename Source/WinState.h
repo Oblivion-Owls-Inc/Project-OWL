@@ -1,42 +1,41 @@
 /*********************************************************************
-* \file   CameraBehavior.h
-* \brief  Camera that smoothly follows specified entity.
-* 
+* \file   WinState.h
+* \brief  Keeps track of inventory of an entity, switches to a scene
+*		  when specified amount of specified item is reached.
+*
 * \author Eli Tsereteli
 *********************************************************************/
 #pragma once
 #include "Behavior.h"
-
 #include "ComponentReference.h"
-#include "Camera.h"
-#include "Transform.h"
+#include "Inventory.h"
 
-class CameraBehavior : public Behavior
+class WinState : public Behavior
 {
 //-----------------------------------------------------------------------------
-public: // constructor / destructors
+public: // constructors / destructors
 //-----------------------------------------------------------------------------
 
     /// @brief  Default constructor
-    CameraBehavior();
+    WinState();
 
     /// @brief  Returns copy of this behavior
-    CameraBehavior* Clone() const override;
+    WinState* Clone() const override;
     
 private:
     /// @brief  copy ctor
-    CameraBehavior(const CameraBehavior& other);
+    WinState(const WinState& other);
+
 
 
 //-----------------------------------------------------------------------------
 //              Overrides
 //-----------------------------------------------------------------------------
 private:
-
     /// @brief  Adds itself to behavior system
     virtual void OnInit() override;
 
-    /// @brief  Performs the smooth following
+    /// @brief  Keeps an eye on item count
     virtual void OnUpdate(float dt) override;
 
     /// @brief  Removes itself from behavior system
@@ -50,41 +49,46 @@ private:
 
 
 //-----------------------------------------------------------------------------
+//              Public methods
+//-----------------------------------------------------------------------------
+public:
+    /// @brief   Sets the ID of winning item 
+    __inline void SetWinItemID(int id) { m_Item = id; }
+
+    /// @return  ID of winning item
+    __inline int GetWinItemID() const { return m_Item; }
+
+    /// @brief   Sets the item count required to win
+    __inline void SetWinItemCount(int count) { m_WinCount = count; }
+
+    /// @return  Item count required to win
+    __inline int GetWinItemCount() const { return m_WinCount; }
+
+    /// @brief   Sets the scene to switch to upon meeting item count requirement 
+    __inline void SetWinSceneName(std::string scene) { m_WinSceneName = scene; }
+
+    /// @return  Current win scene name 
+    __inline std::string GetWinSceneName() const { return m_WinSceneName; }
+
+
+
+//-----------------------------------------------------------------------------
 //              Data
 //-----------------------------------------------------------------------------
 private:
+    // (temporary, will need names once the items have them)
+    
+    /// @brief  Which item to keep track of
+    int m_Item = 0;
 
-    /// @brief   Transform of the entity to follow
-    ComponentReference< Transform > m_ParentTransform;
+    /// @brief  How many needed to win
+    int m_WinCount = 10;
 
-    /// @brief   Parent transform
-    ComponentReference< Transform > m_Transform;
+    /// @brief  Item holder's inventory
+    ComponentReference< Inventory > m_Inventory;
 
-    /// @brief   Camera component of parent
-    ComponentReference< Camera > m_Cam;
-
-    /// @brief   Map bounds. Stops camera from passing them (as long as its
-    ///          dimensions don't exceed it). 
-    ///          If camera dimensions exceed bounds, it will always be centered.
-    ///          If bound[0] == bound[1], it's unbounded.
-    float m_xBounds[2] = {}, m_yBounds[2] = {};
-
-    /// @brief   Low number - follows target slowly, does not bother centering;
-    ///          High number - snaps firmly to target
-    float m_Factor = 1.0f;
-
-
-//-----------------------------------------------------------------------------
-//              Helpers
-//-----------------------------------------------------------------------------
-private:
-    /// @brief		 Helper: clamps or centers coordinate between given bounds, 
-    ///              depending on distance
-    /// @param val	 Value to clamp/center
-    /// @param lo	 Lower bound
-    /// @param hi	 Upper bound
-    /// @param dist  Distance to fit within bounds
-    void clampOrCenter(float &val, float lo, float hi, float range);
+    /// @brief  Name of the scene to switch to upon meeting the requirement
+    std::string m_WinSceneName = "GameWin";
 
 
 //-----------------------------------------------------------------------------
@@ -92,16 +96,19 @@ private:
 //-----------------------------------------------------------------------------
 private:
     /// @brief   the map of read methods for this Component
-    static ReadMethodMap< CameraBehavior > const s_ReadMethods;
-    
-    /// @brief		 Reads the horizontal bounds
-    /// @param data  json data to read
-    void readXBounds(nlohmann::ordered_json const& data);
+    static ReadMethodMap< WinState > const s_ReadMethods;
 
-    /// @brief		 Reads the vertical bounds
+    /// @brief		 Reads winning item ID
     /// @param data  json data to read
-    void readYBounds(nlohmann::ordered_json const& data);
+    void readItemID(nlohmann::ordered_json const& data);
 
+    /// @brief		 Reads winning item count
+    /// @param data  json data to read
+    void readItemCount(nlohmann::ordered_json const& data);
+
+    /// @brief		 Reads win scene's name
+    /// @param data  json data to read
+    void readWinScene(nlohmann::ordered_json const& data);
 
 public:
 
@@ -112,8 +119,8 @@ public:
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
-    /// @brief      Write all CameraBehavior component data to a JSON file.
-    /// @return     The JSON file containing the CameraBehavior component data.
+    /// @brief      Write all WinState component data to a JSON file.
+    /// @return     The JSON file containing the WinState component data.
     virtual nlohmann::ordered_json Write() const override;
 };
 

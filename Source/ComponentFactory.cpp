@@ -53,6 +53,7 @@
 #include "TilemapTextureConnector.h"
 #include "TilemapEditor.h"
 #include "EditorCameraController.h"
+#include "WinState.h"
 #include "Logo.h"
 
 
@@ -189,7 +190,8 @@
         { "Generator"              , ComponentInfo< Generator               >() },
         { "TilemapEditor"          , ComponentInfo< TilemapEditor           >() },
         { "EditorCameraController" , ComponentInfo< EditorCameraController  >() },
-        { "SplashScreenController" , ComponentInfo< SplashScreenController  >() }
+        { "SplashScreenController" , ComponentInfo< SplashScreenController  >() },
+        { "WinState"               , ComponentInfo< WinState                >() }
     };
 
 //-----------------------------------------------------------------------------

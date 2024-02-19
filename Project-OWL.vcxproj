@@ -75,6 +75,7 @@
     <ExternalIncludePath>$(SolutionDir)libraries\includes;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>$(SolutionDir)libraries;$(LibraryPath);$(SolutionDir)FMOD\lib\x64</LibraryPath>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)FMOD\inc;$(SolutionDir)imgui;</IncludePath>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ExternalIncludePath>$(SolutionDir)libraries\includes;$(ExternalIncludePath)</ExternalIncludePath>
@@ -279,6 +280,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Stream.t.cpp" />
     <ClCompile Include="Source\WavesInspector.cpp" />
     <ClCompile Include="Source\TileInfoSystem.cpp" />
+    <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Logo.h" />
@@ -381,6 +383,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\UiButton.h" />
     <ClInclude Include="Source\UiElement.h" />
     <ClInclude Include="Source\WavesBehavior.h" />
+    <ClInclude Include="Source\WinState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json" />
