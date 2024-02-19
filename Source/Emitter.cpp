@@ -10,6 +10,7 @@
 #include "RenderSystem.h"   // shader uniform locations
 #include "Entity.h"         // parent transform
 #include "Transform.h"
+#include "ComponentReference.t.h"
 
 
 /// @brief	    Defualt constructor

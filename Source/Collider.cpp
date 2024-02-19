@@ -12,6 +12,11 @@
 #include "DebugSystem.h"
 #include "CollisionSystem.h"
 
+#include "ComponentReference.t.h"
+#include "Transform.h"
+#include "RigidBody.h"
+#include "StaticBody.h"
+
 #include "Engine.h"
 
 #include "Inspection.h"
@@ -46,6 +51,20 @@
     Transform* Collider::GetTransform() const
     {
         return m_Transform;
+    }
+
+    /// @brief  gets this Collider's RigidBody
+    /// @return this Collider's RigidBody
+    RigidBody* Collider::GetRigidBody() const
+    {
+        return m_RigidBody;
+    }
+
+    /// @brief  gets this Collider's StaticBody
+    /// @return this Collider's StaticBody
+    StaticBody* Collider::GetStaticBody() const
+    {
+        return m_StaticBody;
     }
 
 
@@ -107,14 +126,25 @@
     /// @note   YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT
     void Collider::AddOnCollisionCallback( unsigned ownerId, OnCollisionCallback callback )
     {
-        m_OnCollisionCallbacks.emplace( ownerId, std::move( callback ) );
+        m_OnCollisionCallbacks.push_back( { ownerId, std::move( callback ) } );
     }
 
     /// @brief  removes a callback function to be called when this collider collides
     /// @param  ownerId the ID of the owner of the callback to remove
     void Collider::RemoveOnCollisionCallback( unsigned ownerId )
     {
-        m_OnCollisionCallbacks.erase( ownerId );
+        auto it = std::find_if(
+            m_OnCollisionCallbacks.begin(),
+            m_OnCollisionCallbacks.end(),
+            [ ownerId ]( auto const& pair ) -> bool
+            {
+                return pair.first == ownerId;
+            }
+        );
+        if ( it != m_OnCollisionCallbacks.end() )
+        {
+            m_OnCollisionCallbacks.erase( it );
+        }
     }
 
 
@@ -124,14 +154,25 @@
     /// @note   YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT
     void Collider::AddOnCollisionEnterCallback( unsigned ownerId, OnCollisionStateChangeCallback callback )
     {
-        m_OnCollisionEnterCallbacks.emplace( ownerId, std::move( callback ) );
+        m_OnCollisionEnterCallbacks.push_back( { ownerId, std::move( callback ) } );
     }
 
     /// @brief  adds a callback function to be called when a collision begins
     /// @param  ownerId the ID of the owner of the callback to remove
     void Collider::RemoveOnCollisionEnterCallback( unsigned ownerId )
     {
-        m_OnCollisionEnterCallbacks.erase( ownerId );
+        auto it = std::find_if(
+            m_OnCollisionEnterCallbacks.begin(),
+            m_OnCollisionEnterCallbacks.end(),
+            [ ownerId ]( auto const& pair ) -> bool
+            {
+                return pair.first == ownerId;
+            }
+        );
+        if ( it != m_OnCollisionEnterCallbacks.end() )
+        {
+            m_OnCollisionEnterCallbacks.erase( it );
+        }
     }
 
 
@@ -141,14 +182,25 @@
     /// @note   YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT
     void Collider::AddOnCollisionExitCallback( unsigned ownerId, OnCollisionStateChangeCallback callback )
     {
-        m_OnCollisionExitCallbacks.emplace( ownerId, std::move( callback ) );
+        m_OnCollisionExitCallbacks.push_back( { ownerId, std::move( callback ) } );
     }
 
     /// @brief  adds a callback function to be called when a collision ends
     /// @param  ownerId the ID of the owner of the callback to remove
     void Collider::RemoveOnCollisionExitCallback( unsigned ownerId )
     {
-        m_OnCollisionExitCallbacks.erase( ownerId );
+        auto it = std::find_if(
+            m_OnCollisionExitCallbacks.begin(),
+            m_OnCollisionExitCallbacks.end(),
+            [ ownerId ]( auto const& pair ) -> bool
+            {
+                return pair.first == ownerId;
+            }
+        );
+        if ( it != m_OnCollisionExitCallbacks.end() )
+        {
+            m_OnCollisionExitCallbacks.erase( it );
+        }
     }
 
 
@@ -171,6 +223,12 @@
     /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
     void Collider::TryAddContact( Collider* other, int currentFrame )
     {
+        // don't track contacts on Entities without OnCollisionStateChange callbacks
+        if ( m_OnCollisionEnterCallbacks.empty() && m_OnCollisionExitCallbacks.empty() )
+        {
+            return;
+        }
+
         // [] operator adds element if it doesn't exist
         int& previousFrame = m_Contacts[ other ];
 

@@ -10,6 +10,11 @@
 
 #include "TilemapCollider.h"
 
+#include "ComponentReference.t.h"
+#include "Transform.h"
+#include "RigidBody.h"
+#include "StaticBody.h"
+
 #include "CollisionSystem.h"
 
 //-----------------------------------------------------------------------------
@@ -44,16 +49,20 @@
             }
         );
 
-        m_Transform.Init( GetEntity() );
-        m_Tilemap  .Init( GetEntity() );
+        m_Transform .Init( GetEntity() );
+        m_RigidBody .Init( GetEntity() );
+        m_StaticBody.Init( GetEntity() );
+        m_Tilemap   .Init( GetEntity() );
     }
 
 
     /// @brief  called once when exiting the scene
     void TilemapCollider::OnExit()
     {
-        m_Transform.Exit( GetEntity() );
-        m_Tilemap  .Exit( GetEntity() );
+        m_Transform .Exit( GetEntity() );
+        m_RigidBody .Exit( GetEntity() );
+        m_StaticBody.Exit( GetEntity() );
+        m_Tilemap   .Exit( GetEntity() );
     }
 
 

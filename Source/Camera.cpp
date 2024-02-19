@@ -13,6 +13,9 @@
 #include "CameraSystem.h"
 #include "PlatformSystem.h"
 
+#include "ComponentReference.t.h"
+#include "Transform.h"
+
 #include <imgui.h>
 
 
