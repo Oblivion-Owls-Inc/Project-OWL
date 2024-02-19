@@ -73,6 +73,20 @@
     }
 
 
+    /// @brief  called whenever the hierarchy this Entity is a part of changes
+    /// @param  previousParent  the previous parent of this Entity
+    void TilemapTextureConnector::OnHierarchyChange( Entity* previousParent )
+    {
+        if ( previousParent == GetEntity()->GetParent() )
+        {
+            return;
+        }
+
+        m_ParentTilemap.Exit( previousParent );
+        m_ParentTilemap.Init( GetEntity()->GetParent() );
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: helper methods
 //-----------------------------------------------------------------------------

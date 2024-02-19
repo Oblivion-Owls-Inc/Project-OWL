@@ -5,6 +5,14 @@
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Base/BaseDamage.ogg"
             },
+            "ButtonPress": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/button_press.ogg"
+            },
+            "ButtonRelease": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/button_release.ogg"
+            },
             "EnemySound": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Enemy/footsteps.ogg"
@@ -75,6 +83,17 @@
                     0.5
                 ]
             },
+            "ButtonTexture": {
+                "Filepath": "Data/Textures/TestButton.png",
+                "SheetDimensions": [
+                    1,
+                    3
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
             "CastlTiles": {
                 "Filepath": "Data/Textures/CastleTiles.png",
                 "SheetDimensions": [
@@ -84,6 +103,50 @@
                 "Pivot": [
                     0.0,
                     1.0
+                ]
+            },
+            "ContinueHover": {
+                "Filepath": "",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "ContinueIdle": {
+                "Filepath": "",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "ContinuePressed": {
+                "Filepath": "",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "CreditsButton": {
+                "Filepath": "Data/Textures/PauseMenuAssets/CreditsButtonSheetpng.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
                 ]
             },
             "Fireball": {
@@ -119,6 +182,17 @@
                     0.5
                 ]
             },
+            "InventoryBar": {
+                "Filepath": "Data/Textures/PLACEHOLDER_UI_Inventory.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
             "Items": {
                 "Filepath": "Data/Textures/Items/TestItemSheet.png",
                 "SheetDimensions": [
@@ -141,6 +215,50 @@
                     1.0
                 ]
             },
+            "PauseBackground": {
+                "Filepath": "Data/Textures/PauseMenuAssets/PauseBackground.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "PauseBase": {
+                "Filepath": "Data/Textures/PauseMenuAssets/PauseBase.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "PauseButton": {
+                "Filepath": "Data/Textures/PauseMenuAssets/ContinueButtonSheet.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "PauseLabel": {
+                "Filepath": "Data/Textures/PauseMenuAssets/Game Paused.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
             "PlayerSheet": {
                 "Filepath": "Data/Textures/Full Spritesheet.png",
                 "SheetDimensions": [
@@ -150,6 +268,50 @@
                 "Pivot": [
                     0.5,
                     0.3799999952316284
+                ]
+            },
+            "QuitButton": {
+                "Filepath": "Data/Textures/PauseMenuAssets/QuitGameSheet.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "SettingsButton": {
+                "Filepath": "Data/Textures/PauseMenuAssets/SettingsButtonSheet.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "SettingsHover": {
+                "Filepath": "",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            },
+            "SettingsIdle": {
+                "Filepath": "",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
                 ]
             },
             "Turret": {
@@ -207,21 +369,10 @@
             "Bullet": {
                 "Name": "Bullet",
                 "Components": {
-                    "Bullet": {
-                        "Damage": 1
-                    },
                     "CircleCollider": {
                         "Radius": 0.10000000149011612,
                         "CollisionLayer": 4,
-                        "CollisionLayerFlags": {
-                            "Flags": 3
-                        }
-                    },
-                    "Lifetime": {
-                        "Lifetime": {
-                            "BaseValue": 2.0,
-                            "CurrentValue": 2.0
-                        }
+                        "CollisionLayerFlags": 3
                     },
                     "RigidBody": {
                         "Velocity": [
@@ -249,7 +400,7 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "Ball1"
+                            "AssetName": ""
                         }
                     },
                     "Transform": {
@@ -272,7 +423,7 @@
                 "Components": {
                     "AudioPlayer": {
                         "Sound": {
-                            "AssetName": "EnemySound"
+                            "AssetName": ""
                         },
                         "Volume": 1.0,
                         "Pitch": 1.0,
@@ -286,9 +437,7 @@
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
                         "CollisionLayer": 1,
-                        "CollisionLayerFlags": {
-                            "Flags": 13
-                        }
+                        "CollisionLayerFlags": 7
                     },
                     "Emitter": {
                         "PPS": 680.4739990234375,
@@ -320,8 +469,7 @@
                             0.14000000059604645,
                             0.7900000214576721,
                             0.0,
-                            -2.5999999046325684,
-                            0.0
+                            -2.5999999046325684
                         ]
                     },
                     "EmitterSprite": {
@@ -335,12 +483,12 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "Fireball"
+                            "AssetName": ""
                         }
                     },
                     "EnemyBehavior": {
                         "PathfinderEntity": {
-                            "EntityName": "Tiles"
+                            "EntityName": ""
                         },
                         "Speed": 10.0,
                         "Damage": 1
@@ -443,7 +591,7 @@
                                     }
                                 ],
                                 "Texture": {
-                                    "AssetName": "HealthBar"
+                                    "AssetName": ""
                                 },
                                 "Layer": 6,
                                 "Opacity": 1.0,
@@ -493,7 +641,7 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "Items"
+                            "AssetName": ""
                         }
                     },
                     "Transform": {
@@ -516,7 +664,7 @@
                 "Components": {
                     "AudioPlayer": {
                         "Sound": {
-                            "AssetName": "TurretShoot"
+                            "AssetName": ""
                         },
                         "Volume": 1.0,
                         "Pitch": 1.0,
@@ -538,7 +686,7 @@
                         "Opacity": 1.0,
                         "FrameIndex": 0,
                         "Texture": {
-                            "AssetName": "Turret"
+                            "AssetName": ""
                         }
                     },
                     "Transform": {
@@ -559,11 +707,9 @@
                         "BulletDamage": 10,
                         "BulletSpeed": 10.0,
                         "BulletSize": 0.30000001192092896,
-                        "ObstructionLayers": {
-                            "Flags": 1
-                        },
+                        "ObstructionLayers": 0,
                         "BulletPrefab": {
-                            "AssetName": "Bullet"
+                            "AssetName": ""
                         }
                     }
                 },
@@ -577,7 +723,7 @@
             "Components": {
                 "AudioPlayer": {
                     "Sound": {
-                        "AssetName": "Music"
+                        "AssetName": ""
                     },
                     "Volume": 1.0,
                     "Pitch": 1.0,
@@ -596,7 +742,26 @@
             "Components": {
                 "AudioPlayer": {
                     "Sound": {
-                        "AssetName": "PlayerDigging"
+                        "AssetName": ""
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                }
+            },
+            "Children": null
+        },
+        "TurretPlacementSound": {
+            "Name": "TurretPlacementSound",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": ""
                     },
                     "Volume": 1.0,
                     "Pitch": 1.0,
@@ -615,7 +780,7 @@
             "Components": {
                 "AudioPlayer": {
                     "Sound": {
-                        "AssetName": "BaseDamageSound"
+                        "AssetName": ""
                     },
                     "Volume": 1.0,
                     "Pitch": 1.0,
@@ -629,24 +794,7 @@
                 "CircleCollider": {
                     "Radius": 1.0,
                     "CollisionLayer": 3,
-                    "CollisionLayerFlags": {
-                        "Flags": 2
-                    }
-                },
-                "Generator": {
-                    "Radius": 5.0,
-                    "ActivateRadius": 1.0,
-                    "Depth": 0,
-                    "Active": true
-                },
-                "Health": {
-                    "Health": {
-                        "BaseValue": 5,
-                        "CurrentValue": 5
-                    }
-                },
-                "HomeBase": {
-                    "GameOverScene": "Gameover"
+                    "CollisionLayerFlags": 2
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -666,134 +814,6 @@
                     "Translation": [
                         -9.0,
                         5.5
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                }
-            },
-            "Children": null
-        },
-        "Generator": {
-            "Name": "Generator",
-            "Components": {
-                "AudioPlayer": {
-                    "Sound": {
-                        "AssetName": "BaseDamageSound"
-                    },
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "IsSpatial": false,
-                    "AllowMultipleSounds": false
-                },
-                "CircleCollider": {
-                    "Radius": 2.0,
-                    "CollisionLayer": 3,
-                    "CollisionLayerFlags": {
-                        "Flags": 2
-                    }
-                },
-                "Generator": {
-                    "Radius": 5.0,
-                    "ActivateRadius": 1.0,
-                    "Depth": 1,
-                    "Active": true
-                },
-                "Health": {
-                    "Health": {
-                        "BaseValue": 5,
-                        "CurrentValue": 5
-                    }
-                },
-                "Sprite": {
-                    "Layer": 2,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": {
-                        "AssetName": "Van"
-                    }
-                },
-                "Transform": {
-                    "Translation": [
-                        -5.679166793823242,
-                        -0.4700002670288086
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                }
-            },
-            "Children": null
-        },
-        "Generator2": {
-            "Name": "Generator2",
-            "Components": {
-                "AudioPlayer": {
-                    "Sound": {
-                        "AssetName": "BaseDamageSound"
-                    },
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "IsSpatial": false,
-                    "AllowMultipleSounds": false
-                },
-                "CircleCollider": {
-                    "Radius": 2.0,
-                    "CollisionLayer": 3,
-                    "CollisionLayerFlags": {
-                        "Flags": 2
-                    }
-                },
-                "Generator": {
-                    "Radius": 5.0,
-                    "ActivateRadius": 1.0,
-                    "Depth": 2,
-                    "Active": true
-                },
-                "Health": {
-                    "Health": {
-                        "BaseValue": 5,
-                        "CurrentValue": 5
-                    }
-                },
-                "Sprite": {
-                    "Layer": 2,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": {
-                        "AssetName": "Van"
-                    }
-                },
-                "Transform": {
-                    "Translation": [
-                        12.337499618530273,
-                        -1.409998893737793
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -834,7 +854,7 @@
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
-                                        "AssetName": "Enemy"
+                                        "AssetName": ""
                                     },
                                     "Amount": 0,
                                     "SpawnInterval": 2.0,
@@ -845,11 +865,11 @@
                         },
                         {
                             "WaveTime": 0.0,
-                            "WaveNextTime": 6.524757385253906,
+                            "WaveNextTime": 0.0,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
-                                        "AssetName": "Enemy"
+                                        "AssetName": ""
                                     },
                                     "Amount": 0,
                                     "SpawnInterval": 2.0,
@@ -859,23 +879,23 @@
                             ]
                         },
                         {
-                            "WaveTime": 999.0,
-                            "WaveNextTime": 999.0,
+                            "WaveTime": 817.414794921875,
+                            "WaveNextTime": 817.414794921875,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
-                                        "AssetName": "Enemy"
+                                        "AssetName": ""
                                     },
-                                    "Amount": 999,
+                                    "Amount": 910,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
                                     "Spawner": 0
                                 },
                                 {
                                     "Enemy": {
-                                        "AssetName": "Enemy"
+                                        "AssetName": ""
                                     },
-                                    "Amount": 999,
+                                    "Amount": 981,
                                     "SpawnInterval": 10.0,
                                     "InitialOffset": 10.0,
                                     "Spawner": 0
@@ -883,6 +903,39 @@
                             ]
                         }
                     ]
+                }
+            },
+            "Children": null
+        },
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 47.0,
+                    "IsActive": true
+                },
+                "CameraBehavior": {
+                    "TargetEntityName": "Player",
+                    "XBounds": [
+                        -1.0,
+                        1.0
+                    ],
+                    "YBounds": [
+                        -24.0,
+                        16.0
+                    ]
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        2.855131149291992
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
                 }
             },
             "Children": null
@@ -2559,8 +2612,8 @@
                 },
                 "Pathfinder": {
                     "Destination": [
-                        0.0,
-                        0.0
+                        -9.0,
+                        5.5
                     ],
                     "Walkables": [
                         -1
@@ -2572,13 +2625,11 @@
                 },
                 "TilemapCollider": {
                     "CollisionLayer": 0,
-                    "CollisionLayerFlags": {
-                        "Flags": 0
-                    }
+                    "CollisionLayerFlags": 0
                 },
                 "TilemapItemDropper": {
                     "ItemArchetype": {
-                        "AssetName": "Item"
+                        "AssetName": ""
                     },
                     "MaxInitialVelocity": 1.0,
                     "ItemSpawnRadius": 0.30000001192092896
@@ -5972,7 +6023,7 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "CastlTiles"
+                        "AssetName": "Level Assets"
                     }
                 },
                 "Transform": {
@@ -5999,7 +6050,7 @@
                     "IsRunning": false,
                     "LoopCount": 0,
                     "Animation": {
-                        "AssetName": "PlayerMoveUp"
+                        "AssetName": ""
                     }
                 },
                 "AudioListener": {
@@ -6008,7 +6059,7 @@
                 },
                 "AudioPlayer": {
                     "Sound": {
-                        "AssetName": "PlayerFootSteps"
+                        "AssetName": ""
                     },
                     "Volume": 1.0,
                     "Pitch": 1.0,
@@ -6022,9 +6073,7 @@
                 "CircleCollider": {
                     "Radius": 0.30000001192092896,
                     "CollisionLayer": 2,
-                    "CollisionLayerFlags": {
-                        "Flags": 3
-                    }
+                    "CollisionLayerFlags": 3
                 },
                 "Health": {
                     "Health": {
@@ -6051,21 +6100,21 @@
                 "PlayerController": {
                     "Animations": [
                         {
-                            "AssetName": "PlayerMoveRight"
+                            "AssetName": ""
                         },
                         {
-                            "AssetName": "PlayerMoveLeft"
+                            "AssetName": ""
                         },
                         {
-                            "AssetName": "PlayerMoveUp"
+                            "AssetName": ""
                         },
                         {
-                            "AssetName": "PlayerMoveDown"
+                            "AssetName": ""
                         }
                     ],
                     "MaxSpeed": 1.0,
                     "MiningLaserEntity": {
-                        "EntityName": "MiningLaser"
+                        "EntityName": ""
                     },
                     "RespawnLocation": [
                         -15.0,
@@ -6115,49 +6164,6 @@
                 }
             },
             "Children": [
-                {
-                    "Name": "Camera",
-                    "Components": {
-                        "Camera": {
-                            "Width": 47.0,
-                            "IsActive": true
-                        },
-                        "CameraBehavior": {
-                            "XBounds": [
-                                -1.0,
-                                1.0
-                            ],
-                            "YBounds": [
-                                -24.0,
-                                16.0
-                            ]
-                        },
-                        "Transform": {
-                            "Translation": [
-                                0.0,
-                                -4.0
-                            ],
-                            "Rotation": 0.0,
-                            "Scale": [
-                                1.0,
-                                1.0
-                            ],
-                            "IsDiegetic": true
-                        }
-                    },
-                    "Children": null
-                },
-                {
-                    "Name": "WinState",
-                    "Components": {
-                        "WinState": {
-                            "ItemID": 0,
-                            "ItemCount": 10,
-                            "WinScene": "GameWin"
-                        }
-                    },
-                    "Children": null
-                },
                 {
                     "Name": "HealthBar",
                     "Components": {
@@ -6221,7 +6227,7 @@
                                 }
                             ],
                             "Texture": {
-                                "AssetName": "HealthBar"
+                                "AssetName": ""
                             },
                             "Layer": 6,
                             "Opacity": 1.0,
@@ -6271,19 +6277,6 @@
         "ConstructionManager": {
             "Name": "ConstructionManager",
             "Components": {
-                "AudioPlayer": {
-                    "Sound": {
-                        "AssetName": "TurretPlacement"
-                    },
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "IsSpatial": false,
-                    "AllowMultipleSounds": false
-                },
                 "ConstructionBehavior": {
                     "Buildings": [
                         {
@@ -6294,7 +6287,7 @@
                                 }
                             ],
                             "Archetype": {
-                                "AssetName": "Turret"
+                                "AssetName": ""
                             }
                         }
                     ],
@@ -6315,10 +6308,10 @@
                     ],
                     "PreviewAlpha": 0.5,
                     "TilemapEntity": {
-                        "EntityName": "Tiles"
+                        "EntityName": ""
                     },
                     "PlayerEntity": {
-                        "EntityName": "Player"
+                        "EntityName": ""
                     }
                 },
                 "Sprite": {
@@ -6332,7 +6325,7 @@
                     "Opacity": 0.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Turret"
+                        "AssetName": ""
                     }
                 },
                 "Transform": {
@@ -6391,7 +6384,7 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "FontSheet"
+                        "AssetName": ""
                     }
                 },
                 "UiElement": {
@@ -6452,7 +6445,6 @@
                         1.0,
                         5.0,
                         0.0,
-                        0.0,
                         0.0
                     ]
                 },
@@ -6467,7 +6459,7 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Ball3"
+                        "AssetName": "Ball"
                     }
                 },
                 "Transform": {
@@ -6490,7 +6482,7 @@
             "Components": {
                 "AudioPlayer": {
                     "Sound": {
-                        "AssetName": "PlayerDigging"
+                        "AssetName": ""
                     },
                     "Volume": 1.0,
                     "Pitch": 1.0,
@@ -6531,7 +6523,6 @@
                         0.0,
                         2.0,
                         0.0,
-                        0.0,
                         0.0
                     ]
                 },
@@ -6546,12 +6537,12 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Fireball"
+                        "AssetName": ""
                     }
                 },
                 "MiningLaser": {
                     "TilemapEntity": {
-                        "EntityName": "Tiles"
+                        "EntityName": ""
                     },
                     "Range": 4.0,
                     "MiningSpeed": 4.0,
@@ -6564,12 +6555,10 @@
                     ],
                     "BeamWidth": 0.10000000149011612,
                     "DamageRate": 10.0,
-                    "CollideWithLayers": {
-                        "Flags": 3
-                    },
+                    "CollideWithLayers": 3,
                     "Direction": [
-                        -0.9299333691596985,
-                        0.36772796511650085
+                        -0.558078408241272,
+                        0.8297881484031677
                     ],
                     "IsFiring": false
                 },
@@ -6587,6 +6576,594 @@
                 }
             },
             "Children": null
+        },
+        "TheButton": {
+            "Name": "TheButton",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": ""
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": true
+                },
+                "Sprite": {
+                    "Layer": 10,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": ""
+                    }
+                },
+                "UiButton": {
+                    "ClickEventName": "",
+                    "ShouldActivateOnPress": false,
+                    "IdleFrame": 0,
+                    "HoveredFrame": 1,
+                    "DownFrame": 2,
+                    "PressSound": {
+                        "AssetName": ""
+                    },
+                    "ReleaseSound": {
+                        "AssetName": ""
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.4000000059604645,
+                        0.20000000298023224
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        "InventoryBar": {
+            "Name": "InventoryBar",
+            "Components": {
+                "Sprite": {
+                    "Layer": 10,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "InventoryBar"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        -0.800000011920929
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.6555500030517578,
+                        0.07999999821186066
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToWidth"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        "Particle!": {
+            "Name": "Particle!",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": ""
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.9049999713897705,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": true,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": true
+                },
+                "Emitter": {
+                    "PPS": 200.0,
+                    "Delay": 0.0,
+                    "Max": 2048,
+                    "Continuous": true,
+                    "EmitData": [
+                        [
+                            0.0,
+                            0.0
+                        ],
+                        [
+                            0.0,
+                            0.0
+                        ],
+                        [
+                            0.0,
+                            0.699999988079071
+                        ],
+                        4.751999855041504,
+                        6.926000118255615,
+                        0.5680000185966492,
+                        0.0,
+                        0.3709999918937683,
+                        0.5,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.8100000023841858,
+                        2.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "EmitterSprite": {
+                    "Layer": 10,
+                    "Color": [
+                        0.963702380657196,
+                        0.28858599066734314,
+                        0.28858599066734314,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Ball"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -18.950000762939453,
+                        0.6000000238418579
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "PauseBackground": {
+            "Name": "PauseBackground",
+            "Components": {
+                "Sprite": {
+                    "Layer": 20,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "PauseBackground"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        1.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": [
+                {
+                    "Name": "PauseBase",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 21,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "PauseBase"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                0.0,
+                                0.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                0.6000000238418579,
+                                0.949999988079071
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToHeight"
+                            ]
+                        }
+                    },
+                    "Children": [
+                        {
+                            "Name": "PauseLabel",
+                            "Components": {
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "PauseLabel"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        0.0,
+                                        0.6700000166893005
+                                    ],
+                                    "Pivot": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.4000000059604645,
+                                        0.10000000149011612
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        },
+                        {
+                            "Name": "PauseButton",
+                            "Components": {
+                                "AudioPlayer": {
+                                    "Sound": {
+                                        "AssetName": ""
+                                    },
+                                    "Volume": 1.0,
+                                    "Pitch": 1.0,
+                                    "VolumeVariance": 0.0,
+                                    "PitchVariance": 0.0,
+                                    "DefaultLoopCount": 0,
+                                    "PlayOnInit": false,
+                                    "IsSpatial": false,
+                                    "AllowMultipleSounds": true
+                                },
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "PauseButton"
+                                    }
+                                },
+                                "UiButton": {
+                                    "ClickEventName": "",
+                                    "ShouldActivateOnPress": false,
+                                    "IdleFrame": 0,
+                                    "HoveredFrame": 1,
+                                    "DownFrame": 2,
+                                    "PressSound": {
+                                        "AssetName": "ButtonPress"
+                                    },
+                                    "ReleaseSound": {
+                                        "AssetName": "ButtonRelease"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        0.0,
+                                        0.36000001430511475
+                                    ],
+                                    "Pivot": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.4000000059604645,
+                                        0.10000000149011612
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        },
+                        {
+                            "Name": "QuitButton",
+                            "Components": {
+                                "AudioPlayer": {
+                                    "Sound": {
+                                        "AssetName": ""
+                                    },
+                                    "Volume": 1.0,
+                                    "Pitch": 1.0,
+                                    "VolumeVariance": 0.0,
+                                    "PitchVariance": 0.0,
+                                    "DefaultLoopCount": 0,
+                                    "PlayOnInit": false,
+                                    "IsSpatial": false,
+                                    "AllowMultipleSounds": true
+                                },
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "QuitButton"
+                                    }
+                                },
+                                "UiButton": {
+                                    "ClickEventName": "",
+                                    "ShouldActivateOnPress": false,
+                                    "IdleFrame": 0,
+                                    "HoveredFrame": 1,
+                                    "DownFrame": 2,
+                                    "PressSound": {
+                                        "AssetName": "ButtonPress"
+                                    },
+                                    "ReleaseSound": {
+                                        "AssetName": "ButtonRelease"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        0.0,
+                                        -0.6200000047683716
+                                    ],
+                                    "Pivot": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.4000000059604645,
+                                        0.10000000149011612
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        },
+                        {
+                            "Name": "CreditsButton",
+                            "Components": {
+                                "AudioPlayer": {
+                                    "Sound": {
+                                        "AssetName": ""
+                                    },
+                                    "Volume": 1.0,
+                                    "Pitch": 1.0,
+                                    "VolumeVariance": 0.0,
+                                    "PitchVariance": 0.0,
+                                    "DefaultLoopCount": 0,
+                                    "PlayOnInit": false,
+                                    "IsSpatial": false,
+                                    "AllowMultipleSounds": true
+                                },
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "CreditsButton"
+                                    }
+                                },
+                                "UiButton": {
+                                    "ClickEventName": "",
+                                    "ShouldActivateOnPress": false,
+                                    "IdleFrame": 0,
+                                    "HoveredFrame": 1,
+                                    "DownFrame": 2,
+                                    "PressSound": {
+                                        "AssetName": "ButtonPress"
+                                    },
+                                    "ReleaseSound": {
+                                        "AssetName": "ButtonRelease"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        0.0,
+                                        -0.30000001192092896
+                                    ],
+                                    "Pivot": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.4000000059604645,
+                                        0.10000000149011612
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        },
+                        {
+                            "Name": "SettingsButton",
+                            "Components": {
+                                "AudioPlayer": {
+                                    "Sound": {
+                                        "AssetName": ""
+                                    },
+                                    "Volume": 1.0,
+                                    "Pitch": 1.0,
+                                    "VolumeVariance": 0.0,
+                                    "PitchVariance": 0.0,
+                                    "DefaultLoopCount": 0,
+                                    "PlayOnInit": false,
+                                    "IsSpatial": false,
+                                    "AllowMultipleSounds": true
+                                },
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "SettingsButton"
+                                    }
+                                },
+                                "UiButton": {
+                                    "ClickEventName": "",
+                                    "ShouldActivateOnPress": false,
+                                    "IdleFrame": 0,
+                                    "HoveredFrame": 1,
+                                    "DownFrame": 2,
+                                    "PressSound": {
+                                        "AssetName": "ButtonPress"
+                                    },
+                                    "ReleaseSound": {
+                                        "AssetName": "ButtonRelease"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        0.0,
+                                        0.03999999910593033
+                                    ],
+                                    "Pivot": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.4000000059604645,
+                                        0.10000000149011612
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        }
+                    ]
+                }
+            ]
         }
     }
 }

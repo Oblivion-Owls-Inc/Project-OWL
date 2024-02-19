@@ -23,8 +23,9 @@ uniform mat4 mvp;
 
 void main()
 {
-    // position + offset
-    gl_Position = mvp * position + vec4(stridex,0,0) * (gl_InstanceID%rowwidth) + vec4(stridey,0,0) * (gl_InstanceID/rowwidth);
+    //           discard negative | tilemap position | individual tile offset 
+    gl_Position = step(0, tileID) * ( mvp * position + vec4(stridex,0,0) * (gl_InstanceID%rowwidth) + 
+                                                       vec4(stridey,0,0) * (gl_InstanceID/rowwidth) );
 
     // calculate UV's for current letter instance
     int frame = int(tileID);

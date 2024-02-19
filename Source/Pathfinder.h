@@ -22,7 +22,7 @@ public:
     Pathfinder(Pathfinder const& other);
 
     /// @brief   Returns a copy of this component
-    virtual Component * Clone() const override;
+    virtual Pathfinder * Clone() const override;
 
     /// @brief   Target prioritization enum. Declared here, because it's used by a
     ///          public function. It's a but weird... but it works.
@@ -116,7 +116,7 @@ private:
     std::vector<Node> m_Nodes;          /// @brief  "grid" of nodes to navigate
     std::vector<int> m_Walkables;       /// @brief  Tile IDs of "not walls"
     glm::vec2 m_DestPos = {0,0};        /// @brief  Destination (actual position)
-    glm::ivec2 m_DestTile = {1,1};      /// @brief  Destination tile
+    glm::ivec2 m_DestTile = {0,0};      /// @brief  Destination tile
 
     /// @brief  Cached parent tilemap
     ComponentReference< Tilemap< int > > m_Tilemap;
