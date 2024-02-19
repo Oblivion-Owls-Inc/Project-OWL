@@ -230,9 +230,9 @@
         m_PlayerEntity .Exit();
         m_TilemapEntity.Exit();
 
-        m_Transform           .Exit( GetEntity() );
-        m_Sprite              .Exit( GetEntity() );
-        m_TurretPlacementSound.Exit( GetEntity() );
+        m_Transform           .Exit();
+        m_Sprite              .Exit();
+        m_TurretPlacementSound.Exit();
     }
 
     /// @brief  called every simulation frame

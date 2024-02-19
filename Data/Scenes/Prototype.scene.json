@@ -316,7 +316,8 @@
                             0.14000000059604645,
                             0.7900000214576721,
                             0.0,
-                            -2.5999999046325684
+                            -2.5999999046325684,
+                            0.0
                         ]
                     },
                     "EmitterSprite": {
@@ -2545,6 +2546,10 @@
                     ]
                 },
                 "Pathfinder": {
+                    "Destination": [
+                        -9.5,
+                        5.5
+                    ],
                     "Walkables": [
                         -1
                     ],
@@ -6133,8 +6138,13 @@
                 {
                     "Name": "WinState",
                     "Components": {
-                        "WinState": {}
-                    }
+                        "WinState": {
+                            "ItemID": 0,
+                            "ItemCount": 10,
+                            "WinScene": "GameWin"
+                        }
+                    },
+                    "Children": null
                 },
                 {
                     "Name": "HealthBar",
@@ -6430,6 +6440,7 @@
                         1.0,
                         5.0,
                         0.0,
+                        0.0,
                         0.0
                     ]
                 },
@@ -6444,7 +6455,7 @@
                     "Opacity": 1.0,
                     "FrameIndex": 0,
                     "Texture": {
-                        "AssetName": "Turret"
+                        "AssetName": "Ball3"
                     }
                 },
                 "Transform": {
@@ -6507,6 +6518,7 @@
                         0.0,
                         0.0,
                         2.0,
+                        0.0,
                         0.0,
                         0.0
                     ]

@@ -148,7 +148,7 @@ void TilemapSprite::OnExit()
     if (m_Tilemap)
     {
         m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
-        m_Tilemap.Exit(GetEntity());
+        m_Tilemap.Exit();
     }
 }
 

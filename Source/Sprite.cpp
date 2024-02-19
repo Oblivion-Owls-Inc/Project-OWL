@@ -255,7 +255,7 @@ Sprite::Sprite(Sprite const& other) :
     {
         Renderer()->RemoveSprite( this );
 
-        m_Transform.Exit( GetEntity() );
+        m_Transform.Exit();
     }
 
 
@@ -274,7 +274,7 @@ Sprite::Sprite(Sprite const& other) :
             SetOpacity(m_Opacity);
         }
 
-        if (m_Texture.Inspect("texture"))
+        if (m_Texture.Inspect("texture") && GetEntity()->IsInScene())
         {
             OnExit();
             OnInit();

@@ -67,7 +67,7 @@
     /// @brief  called once when exiting the scene
     void TilemapEditor::OnExit()
     {
-        m_Tilemap.Exit( GetEntity() );
+        m_Tilemap.Exit();
     }
 
 

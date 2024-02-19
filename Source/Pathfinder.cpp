@@ -84,10 +84,10 @@ void Pathfinder::OnInit()
 /// @brief  called when exiting a scene - un-syncs (removes callback)
 void Pathfinder::OnExit()
 {
-    m_Tilemap.Exit( GetEntity() );
+    m_Tilemap.Exit( );
     for (Target& t : m_Targets)
         if (t.transform)
-            t.transform.Exit(t.transform->GetEntity());
+            t.transform.Exit();
 
     if (m_Thread.joinable())
         m_Thread.join();
@@ -210,7 +210,7 @@ void Pathfinder::RemoveTarget(Entity* entity)
     {
         if (it->transform == t)
         {
-            it->transform.Exit(entity);
+            it->transform.Exit();
             m_Targets.erase(it);
             break;
         }
@@ -596,5 +596,20 @@ nlohmann::ordered_json Pathfinder::Write() const
     return json;
 }
 
+
+
+// Custom constructors for Target
+
+Pathfinder::Target::Target(Target&& other) noexcept
+{
+    priority = other.priority;
+    transform = std::move(other.transform);
+}
+
+Pathfinder::Target::Target(ComponentReference<Transform> t, Priority p)
+{
+    priority = p;
+    transform = std::move(t);
+}
 
 //-----------------------------------------------------------------------------
