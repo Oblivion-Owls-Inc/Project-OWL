@@ -312,6 +312,9 @@
     <Filter Include="Game\Components\Buttons">
       <UniqueIdentifier>{d2ee4566-c692-4bc9-bd60-96eec3b83e74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\DebugSystem\Console">
+      <UniqueIdentifier>{e6f49d04-39c9-461c-aeed-7a2378f78fc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -628,6 +631,12 @@
     </ClCompile>
     <ClCompile Include="Source\SceneChangeButton.cpp">
       <Filter>Game\Components\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PauseSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Console.cpp">
+      <Filter>Engine\Systems\DebugSystem\Console</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -954,6 +963,12 @@
     </ClInclude>
     <ClInclude Include="Source\SceneChangeButton.h">
       <Filter>Game\Components\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PauseSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Console.h">
+      <Filter>Engine\Systems\DebugSystem\Console</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
