@@ -120,7 +120,10 @@ private: // methods
 //-----------------------------------------------------------------------------
 
     /// @brief  Loads texture image from file (deletes old one if present)
-    void LoadImage();
+    void loadImage();
+
+    /// @brief  reloads this Texture's mesh
+    void reloadMesh();
 
 //-----------------------------------------------------------------------------
 private: // reading
