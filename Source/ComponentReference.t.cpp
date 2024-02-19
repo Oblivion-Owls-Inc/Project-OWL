@@ -38,6 +38,18 @@
     ComponentReference< ComponentType, required >::~ComponentReference() = default;
 
 
+    /// @brief  move constructor
+    /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
+    /// @param  other   the ComponentReference to move into this one
+    template < class ComponentType, bool required >
+    ComponentReference< ComponentType, required >::ComponentReference( ComponentReference&& other ) :
+        m_Entity   ( other.m_Entity    ),
+        m_Component( other.m_Component ),
+        m_OnConnectCallback   ( std::move( other.m_OnConnectCallback    ) ),
+        m_OnDisconnectCallback( std::move( other.m_OnDisconnectCallback ) )
+    {}
+
     /// @brief  move-assignment operator
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
     /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
@@ -47,7 +59,7 @@
     {
         m_Entity    = other.m_Entity;
         m_Component = other.m_Component;
-        m_OnConnectCallback    = std::move( other.m_OnConnectCallback );
+        m_OnConnectCallback    = std::move( other.m_OnConnectCallback    );
         m_OnDisconnectCallback = std::move( other.m_OnDisconnectCallback );
 
         if ( m_Entity != nullptr )

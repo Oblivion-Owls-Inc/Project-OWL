@@ -69,6 +69,10 @@ public: // constructor
     virtual ~ComponentReference() override;
 
 
+    /// @brief  move constructor
+    /// @param  other   the ComponentReference to move into this one
+    ComponentReference( ComponentReference&& other );
+
     /// @brief  move-assignment operator
     /// @param  other   the ComponentReference to move into this one
     void operator =( ComponentReference&& other );
