@@ -108,7 +108,7 @@ private: // private methods
     glm::vec2 getMousePosAfterTransformation( glm::mat4 const& transformation ) const;
 
 //-----------------------------------------------------------------------------
-private: // private class
+public: // public class
 //-----------------------------------------------------------------------------
 
     /// @brief  action class, used to track an action with dynamic input

@@ -67,8 +67,22 @@ void InputSystem::DebugWindow()
         int vectorSize = m_Actions.size();
         for (int i = 0; i < vectorSize; ++i)
         {
-            if (ImGui::TreeNode(m_Actions[i].GetName().c_str()))
+            if (ImGui::TreeNode(m_Actions[i].GetName() != "" ? m_Actions[i].GetName().c_str() : "NO NAME"))
             {
+                snprintf(title, sizeof(title), "Set Name");
+                if (ImGui::TreeNode(title))
+                {
+                    static char nameBuffer[128] = ""; // Buffer to hold the input
+                    ImGui::InputText("New Name", nameBuffer, IM_ARRAYSIZE(nameBuffer));
+
+                    if (ImGui::Button("Rename"))
+                    {
+                        m_Actions[i].SetName(nameBuffer);
+                    }
+
+                    ImGui::TreePop();
+                }
+
                 snprintf(title, sizeof(title), "Description");
                 if (ImGui::TreeNode(title))
                 {
@@ -82,6 +96,14 @@ void InputSystem::DebugWindow()
                         ImGui::Text(title);
                         size -= 32;
                         offset += 32;
+                    }
+
+                    static char descriptionBuffer[512] = ""; // Buffer to hold the input
+                    ImGui::InputText("New Description", descriptionBuffer, IM_ARRAYSIZE(descriptionBuffer));
+
+                    if (ImGui::Button("Change"))
+                    {
+                        m_Actions[i].SetDescription(descriptionBuffer);
                     }
 
                     ImGui::TreePop();
