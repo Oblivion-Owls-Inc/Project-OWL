@@ -56,6 +56,10 @@
     /// @return the UV offset of the frame index
     glm::vec2 Texture::GetUvOffset( int frameIndex ) const
     {
+        if (m_Mesh == nullptr)
+        {
+            return glm::vec2(0.0f);
+        }
         int column = frameIndex % m_SheetDimensions.x;
         int row = frameIndex / m_SheetDimensions.x;
         return m_Mesh->GetUVsize() * glm::vec2( column, row );

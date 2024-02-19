@@ -152,7 +152,7 @@ public: // writing
     /// @param vec_data   - the vector to write to JSON.
     /// @return The JSON object containing the vector data.
     template<typename ValueType>
-    static nlohmann::ordered_json Write(std::vector<ValueType> const& vec_data);
+    static nlohmann::ordered_json WriteArray(std::vector<ValueType> const& vec_data);
 
     /// @brief Write an array of any standard data type to a JSON.
     /// @tparam ValueType - the type of data stored in the array

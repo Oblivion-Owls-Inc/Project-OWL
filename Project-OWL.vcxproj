@@ -183,6 +183,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Logo.cpp" />
     <ClCompile Include="Source\AssetReference.t.cpp" />
     <ClCompile Include="Source\AudioListener.cpp" />
     <ClCompile Include="Source\ComponentReference.t.cpp" />
@@ -280,6 +281,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\TileInfoSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Logo.h" />
     <ClInclude Include="Source\AssetReference.h" />
     <ClInclude Include="Source\ComponentReference.h" />
     <ClInclude Include="Source\EditorCameraController.h" />
@@ -387,6 +389,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\GameWin.scene.json" />
     <None Include="Data\Scenes\MapTest.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
+    <None Include="Data\Scenes\SplashScreen.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />
     <None Include="Data\shaders\UiBar.frag" />
     <None Include="Data\shaders\lighting.frag" />

@@ -309,6 +309,9 @@
     <Filter Include="Game\Components\Generator">
       <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Logo">
+      <UniqueIdentifier>{5070cea8-46ee-4117-ad1b-26fc2c9054bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -619,6 +622,9 @@
     </ClCompile>
     <ClCompile Include="Source\Lifetime.cpp">
       <Filter>Engine\Entity\Component\Behavior\Lifetime</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Logo.cpp">
+      <Filter>Game\Components\Logo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -940,6 +946,9 @@
     <ClInclude Include="Source\Lifetime.h">
       <Filter>Engine\Entity\Component\Behavior\Lifetime</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Logo.h">
+      <Filter>Game\Components\Logo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -991,5 +1000,8 @@
       <Filter>Data\Shaders\Vertex</Filter>
     </None>
     <None Include="Data\Scenes\MapTest.scene.json" />
+    <None Include="Data\Scenes\SplashScreen.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>
