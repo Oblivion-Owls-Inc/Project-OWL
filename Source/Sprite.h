@@ -64,6 +64,12 @@ public: // methods
     virtual void Draw();
 
 
+    /// @brief  checks if a a point in local space overlaps this Sprite
+    /// @param  point   the point to check if overlaps this Sprite
+    /// @return whether this Sprite overlaps the point
+    virtual bool OverlapsLocalPoint( glm::vec2 const& point ) const;
+
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
