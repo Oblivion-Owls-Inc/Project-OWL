@@ -158,15 +158,36 @@
 
         for ( CircleCollider* circleCollider : m_LargeCircleColliders )
         {
-            checkRayCircle( origin, direction, circleCollider, &hit );
+            checkRayCircle( origin, direction, circleCollider, &hit, layers );
         }
 
         for ( TilemapCollider* tilemapCollider : m_TilemapColliders )
         {
-            checkRayTilemap( origin, direction, tilemapCollider, &hit );
+            checkRayTilemap( origin, direction, tilemapCollider, &hit, layers );
         }
 
-        // TODO: check ray against grid circles
+        glm::vec2 gridOrigin = origin * m_GridSize;
+        checkRayUnitGrid(
+            gridOrigin, direction,
+            [ & ]( glm::ivec2 cellPos, float distance, glm::ivec2 stepDir, int stepAxis ) -> bool
+            {
+                if ( distance * m_GridSize >= maxDistance + m_GridSize )
+                {
+                    return true;
+                }
+
+                auto it = m_CircleCollidersGrid.find( cellPos );
+                if ( it == m_CircleCollidersGrid.end() )
+                {
+                    return false;
+                }
+
+                for ( CircleCollider* collider : it->second )
+                {
+                    checkRayCircle( origin, direction, collider, &hit, layers );
+                }
+            }
+        );
 
         return hit;
     }
@@ -915,8 +936,14 @@
     /// @param  rayDirection    the direction of the cast ray
     /// @param  circle          the CircleCollider to test the ray against
     /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
-    void CollisionSystem::checkRayCircle( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, CircleCollider* circle, RayCastHit* rayCastHit )
+    /// @param  layers          the Collision layers the raycast interacts with
+    void CollisionSystem::checkRayCircle( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, CircleCollider* circle, RayCastHit* rayCastHit, CollisionLayerFlags layers )
     {
+        if ( layers.Includes( circle->GetCollisionLayer() ) == false )
+        {
+            return;
+        }
+
         glm::vec2 offset = rayOrigin - circle->GetTransform()->GetTranslation();
         
         // quadratic coefficients
@@ -950,8 +977,14 @@
     /// @param  rayDirection    the direction of the cast ray
     /// @param  tilemapCollider the TilemapCollider to test the ray against
     /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
-    void CollisionSystem::checkRayTilemap( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, TilemapCollider* tilemapCollider, RayCastHit* rayCastHit )
+    /// @param  layers          the Collision layers the raycast interacts with
+    void CollisionSystem::checkRayTilemap( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, TilemapCollider* tilemapCollider, RayCastHit* rayCastHit, CollisionLayerFlags layers )
     {
+        if ( layers.Includes( tilemapCollider->GetCollisionLayer() ) == false )
+        {
+            return;
+        }
+
         // get relevant variables from collider
         Tilemap<int> const* tilemap = tilemapCollider->GetTilemap();
         glm::mat4 const& worldToTile = tilemap->GetWorldToTilemapMatrix();
@@ -966,6 +999,13 @@
             [ rayOrigin, rayDirection, tilemapCollider, rayCastHit ]( glm::ivec2 cellPos, float distance, glm::ivec2 stepDir, int stepAxis ) -> bool
             {
                 Tilemap<int> const* tilemap = tilemapCollider->GetTilemap();
+
+                distance *= tilemap->GetTileScale().x;
+
+                if ( distance >= rayCastHit->distance )
+                {
+                    return true;
+                }
 
                 // ensure within bounds of tilemap
                 if (
