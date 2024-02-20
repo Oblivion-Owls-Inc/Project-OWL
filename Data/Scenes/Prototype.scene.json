@@ -28,6 +28,14 @@
             "TurretShoot": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg"
+            },
+            "Bew": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Turret/bew.ogg"
+            },
+            "CyberBark": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Turret/cyberbark.ogg"
             }
         },
         "Textures": {
@@ -512,16 +520,16 @@
                 "Components": {
                     "AudioPlayer": {
                         "Sound": {
-                            "AssetName": "TurretShoot"
+                            "AssetName": "Bew"
                         },
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
-                        "PitchVariance": 0.0,
+                        "PitchVariance": 0.3,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": false,
-                        "AllowMultipleSounds": false
+                        "AllowMultipleSounds": true
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -550,9 +558,9 @@
                         "IsDiegetic": true
                     },
                     "TurretBehavior": {
-                        "FireRate": 1.0,
+                        "FireRate": 4.0,
                         "Range": 5.0,
-                        "BulletDamage": 10,
+                        "BulletDamage": 5,
                         "BulletSpeed": 10.0,
                         "BulletSize": 0.30000001192092896,
                         "ObstructionLayers": 1,
