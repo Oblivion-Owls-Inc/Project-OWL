@@ -249,14 +249,16 @@ private: // static methods
     /// @param  rayDirection    the direction of the cast ray
     /// @param  circle          the CircleCollider to test the ray against
     /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
-    static void checkRayCircle( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, CircleCollider* circle, RayCastHit* rayCastHit );
+    /// @param  layers          the Collision layers the raycast interacts with
+    static void checkRayCircle( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, CircleCollider* circle, RayCastHit* rayCastHit, CollisionLayerFlags layers = -1 );
 
     /// @brief  checks if a raycast hits a Circle
     /// @param  rayOrigin       the origin of the cast ray
     /// @param  rayDirection    the direction of the cast ray
     /// @param  tilemap         the TilemapCollider to test the ray against
     /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
-    static void checkRayTilemap( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, TilemapCollider* tilemap, RayCastHit* rayCastHit );
+    /// @param  layers          the Collision layers the raycast interacts with
+    static void checkRayTilemap( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, TilemapCollider* tilemap, RayCastHit* rayCastHit, CollisionLayerFlags layers = -1 );
 
 
     /// @brief  checks if a ray hits a unit grid
