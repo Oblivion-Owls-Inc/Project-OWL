@@ -315,6 +315,9 @@
     <Filter Include="Engine\Entity\Component\Sprite\Nineslice">
       <UniqueIdentifier>{bc8d0a95-989e-433f-8be1-732fafb61838}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\ResourcesUiManager">
+      <UniqueIdentifier>{aac1194b-1a66-4d6d-bd95-54900ba27e4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -963,6 +966,9 @@
     </ClInclude>
     <ClInclude Include="Source\Nineslice.h">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourcesUiManager.h">
+      <Filter>Game\Components\ResourcesUiManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

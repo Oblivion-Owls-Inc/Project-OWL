@@ -386,6 +386,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\CameraBehavior.h" />
     <ClInclude Include="Source\Lifetime.h" />
     <ClInclude Include="Source\Nineslice.h" />
+    <ClInclude Include="Source\ResourcesUiManager.h" />
     <ClInclude Include="Source\TilemapEditor.h" />
     <ClInclude Include="Source\TilemapTextureConnector.h" />
     <ClInclude Include="Source\UiBarSprite.h" />

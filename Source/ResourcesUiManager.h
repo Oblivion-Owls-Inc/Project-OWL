@@ -1,8 +1,8 @@
-/// @file       ExampleComponent.h
+/// @file       ResourcesUiManager.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      DESCRIPTION HERE
+/// @brief      Component that manages the UI for displaying what resources a player currently has
 /// @version    0.1
-/// @date       DATE HERE
+/// @date       2024-02-21
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
@@ -10,9 +10,19 @@
 
 #include "Component.h"
 
+#include "ComponentReference.h"
+class UiElement;
+class Sprite;
+class Text;
 
-/// @brief  DESCRIPTION HERE
-class ExampleComponent : public Component
+#include "EntityReference.h"
+class Inventory;
+
+#include "AssetReference.h"
+
+
+/// @brief  Component that manages the UI for displaying what resources a player currently has
+class ResourcesUiManager : public Component
 {
 //-----------------------------------------------------------------------------
 public: // constructor / Destructor
@@ -20,7 +30,8 @@ public: // constructor / Destructor
 
 
     /// @brief  default constructor
-    ExampleComponent();
+    ResourcesUiManager();
+
 
 
 //-----------------------------------------------------------------------------
@@ -49,6 +60,35 @@ public: // virtual override methods
 private: // members
 //-----------------------------------------------------------------------------
 
+    
+    /// @brief  hides the box sprite when empty
+    bool m_HideWhenEmpty;
+
+
+    /// @brief  the amount of space between the top and bottom of the box and the resource counters
+    float m_Padding;
+
+    /// @brief  the amount of space between each resource counter
+    float m_CounterOffsets;
+
+
+    /// @brief  prefab to spawn of a counter of a single resource type
+    AssetReference< Entity > m_ResourceCounterUiPrefab;
+
+
+    /// @brief  the Inventory component to display the contents of
+    ComponentReference< Inventory > m_Inventory;
+
+    /// @brief  reference to the Entity that has the Inventory to display
+    EntityReference m_InventoryEntity = EntityReference( { &m_Inventory } );
+
+
+    /// @brief  the UiElement of the parent box containing the resource counters
+    ComponentReference< UiElement > m_UiElement;
+
+    /// @brief  the Sprite Component of the box containing the resource counters
+    ComponentReference< Sprite > m_Sprite;
+
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -60,7 +100,7 @@ public: // inspection
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  shows the inspector for ExampleComponent
+    /// @brief  shows the inspector for ResourcesUiManager
     virtual void Inspector() override;
 
 
@@ -89,9 +129,9 @@ public: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  clones this ExampleComponent
-    /// @return the newly created clone of this ExampleComponent
-    virtual ExampleComponent* Clone() const override;
+    /// @brief  clones this ResourcesUiManager
+    /// @return the newly created clone of this ResourcesUiManager
+    virtual ResourcesUiManager* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -99,13 +139,13 @@ private: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  copy-constructor for the ExampleComponent
-    /// @param  other   the other ExampleComponent to copy
-    ExampleComponent( ExampleComponent const& other );
+    /// @brief  copy-constructor for the ResourcesUiManager
+    /// @param  other   the other ResourcesUiManager to copy
+    ResourcesUiManager( ResourcesUiManager const& other );
 
 
     // disable assignment operator
-    void operator =( ExampleComponent const& ) = delete;
+    void operator =( ResourcesUiManager const& ) = delete;
 
 
 //-----------------------------------------------------------------------------
