@@ -92,10 +92,10 @@ void DebugSystem::OnInit()
     ImGuiStyle& style = ImGui::GetStyle();
     style.WindowBorderSize = 0.0f;
 
-// #ifdef NDEBUG //if in release mode
-//     SetupImGuiConfigPath(); //set up the imgui config path to the appdata folder
-//     Renderer()->SetDrawToBuffer(false); //disable drawing to off-screen buffer
-// #endif // NDEBUG
+    #ifdef NDEBUG //if in release mode
+        SetupImGuiConfigPath(); //set up the imgui config path to the appdata folder
+        Renderer()->SetDrawToBuffer(false); //disable drawing to off-screen buffer
+    #endif // NDEBUG
 
     ImFont* font = io->Fonts->AddFontDefault();
     if (font) {
@@ -120,7 +120,7 @@ void DebugSystem::OnInit()
 void DebugSystem::OnUpdate(float dt)
 {
 
-// #ifdef DEBUG // Show the Debug Window in Debug Mode
+#ifndef NDEBUG // Show the Debug Window in Debug Mode
 
     /// Loop through all the Systems in the Engine
     for ( System* system : Engine::GetInstance()->GetSystems() )
@@ -138,7 +138,7 @@ void DebugSystem::OnUpdate(float dt)
         ShowFPSWindow();
     }
 
-// #endif // !DEBUG
+#endif // !DEBUG
 
 
     if ( Input()->GetKeyTriggered( GLFW_KEY_RIGHT_ALT ) && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
@@ -553,12 +553,12 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
 /// @brief PerDorm updates at a fixed time step.
 void DebugSystem::OnFixedUpdate()
 {
-    // #ifndef NDEBUG  
+    #ifndef NDEBUG  
     if ( InputSystem::GetInstance()->GetKeyTriggered( GLFW_KEY_GRAVE_ACCENT ) )
     {
         SetDebugEnable( !GetDebugEnabled() );
     }
-    // #endif
+    #endif
 }
 
 

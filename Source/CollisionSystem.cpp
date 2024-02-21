@@ -171,7 +171,7 @@
             gridOrigin, direction,
             [ & ]( glm::ivec2 cellPos, float distance, glm::ivec2 stepDir, int stepAxis ) -> bool
             {
-                if ( distance * m_GridSize >= maxDistance + m_GridSize )
+                if ( distance * m_GridSize >= hit.distance + m_GridSize )
                 {
                     return true;
                 }
@@ -186,6 +186,8 @@
                 {
                     checkRayCircle( origin, direction, collider, &hit, layers );
                 }
+
+                return false;
             }
         );
 
