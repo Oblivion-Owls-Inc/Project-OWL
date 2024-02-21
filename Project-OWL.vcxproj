@@ -186,7 +186,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   <ItemGroup>
     <ClCompile Include="Source\AssetReference.t.cpp" />
     <ClCompile Include="Source\AudioListener.cpp" />
-    <ClCompile Include="Source\ComponentReference.t.cpp" />
+    <ClCompile Include="Source\CollisionLayerFlags.cpp" />
     <ClCompile Include="Source\Console.cpp" />
     <ClCompile Include="Source\EditorCameraController.cpp" />
     <ClCompile Include="Source\EntityReference.cpp" />
@@ -220,6 +220,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\LightingSystem.cpp" />
     <ClCompile Include="Source\LootTable.cpp" />
     <ClCompile Include="Source\MiningLaser.cpp" />
+    <ClCompile Include="Source\Nineslice.cpp" />
     <ClCompile Include="Source\ParticleSystem.cpp" />
     <ClCompile Include="Source\Pathfinder.cpp" />
     <ClCompile Include="Source\CameraBehavior.cpp" />
@@ -285,7 +286,10 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\CollisionLayerFlags.h" />
+    <ClInclude Include="Source\ComponentReference.t.h" />
     <ClInclude Include="Source\Console.h" />
+    <ClInclude Include="Source\Nineslice.h" />
     <ClInclude Include="Source\PauseSystem.h" />
     <ClInclude Include="Source\SceneChangeButton.h" />
     <ClInclude Include="Source\AssetReference.h" />
