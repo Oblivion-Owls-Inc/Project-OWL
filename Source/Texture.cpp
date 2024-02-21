@@ -89,6 +89,11 @@
             reloadMesh();
         }
 
+        if ( ImGui::Checkbox( "Use Aspect Ratio", &m_UseAspectRatio ) )
+        {
+            reloadMesh();
+        }
+
         if ( ImGui::Button( "Reload Texture" ) )
         {
             loadImage();
@@ -282,7 +287,7 @@ void Texture::loadImage()
         }
         else
         {
-            m_Mesh = new Mesh( glm::vec2( GetAspectRatio(), 1 ), m_SheetDimensions, m_Pivot );
+            m_Mesh = new Mesh( m_UseAspectRatio ? glm::vec2( GetAspectRatio(), 1.0f ) : glm::vec2( 1.0f ), m_SheetDimensions, m_Pivot );
         }
     }
 

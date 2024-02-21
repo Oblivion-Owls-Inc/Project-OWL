@@ -257,18 +257,17 @@ Shader* RenderSystem::GetShader(const char* name) { return FindShader(name); }
 /// @return the topmost Sprite the mouse is over
 Sprite* RenderSystem::GetMouseOverSprite()
 {
-    // TODO: uncomment this after the CollisionDetection pull request gets in, as that PR contains the GetFrameCount method
     
-    // // store a cached return value that we can reuse if this function gets called multiple times in the same frame
-    // static int lastGottenFrame = -1;
-    // static Sprite* cachedSprite = nullptr;
-    // 
-    // if ( lastGottenFrame == GameEngine()->GetFrameCount() )
-    // {
-    //     return cachedSprite;
-    // }
-    // 
-    // lastGottenFrame = GameEngine()->GetFrameCount();
+    // store a cached return value that we can reuse if this function gets called multiple times in the same frame
+    static int lastGottenFrame = -1;
+    static Sprite* cachedSprite = nullptr;
+    
+    if ( lastGottenFrame == GameEngine()->GetFrameCount() )
+    {
+        return cachedSprite;
+    }
+    
+    lastGottenFrame = GameEngine()->GetFrameCount();
 
     glm::vec2 mousePosUi = Input()->GetMousePosUI();
     glm::vec2 mousePosWorld = Input()->GetMousePosWorld();
@@ -285,12 +284,13 @@ Sprite* RenderSystem::GetMouseOverSprite()
 
         if ( sprite->OverlapsLocalPoint( sprite->GetTransform()->GetIsDiegetic() ? mousePosWorld : mousePosUi ) )
         {
-            // cachedSprite = sprite;
-            return sprite;
+            cachedSprite = sprite;
+            return cachedSprite;
         }
     }
 
-    return nullptr;
+    cachedSprite = nullptr;
+    return cachedSprite;
 }
 
 
