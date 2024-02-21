@@ -18,6 +18,8 @@
 
 #include "DebugSystem.h"
 
+#include "ComponentReference.t.h"
+
 #include "RenderSystem.h"
 
     

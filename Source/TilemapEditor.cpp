@@ -10,6 +10,7 @@
 
 #include "TilemapEditor.h"
 
+#include "ComponentReference.t.h"
 #include "Tilemap.h"
 
 #include "Texture.h"

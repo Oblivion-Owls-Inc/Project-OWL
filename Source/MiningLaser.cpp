@@ -24,6 +24,8 @@
 
 #include "RenderSystem.h"
 
+#include "CollisionSystem.h"
+
 #include "Inspection.h"
 
 // TODO: include health component
@@ -423,7 +425,7 @@
         
         ImGui::DragFloat( "Damage Per Second", &m_DamageRate, 0.05f );
 
-        Inspection::InspectCollisionLayerFlags( "Collsion Layers", &m_CollisionLayers );
+        m_CollisionLayers.Inspect( "Collsion Layers" );
 
         float angle = std::atan2( m_Direction.y, m_Direction.x );
         if ( ImGui::SliderAngle( "Direction", &angle, -180.0f, 180.0f ) )
@@ -499,14 +501,7 @@
     /// @param  data the json data to read from
     void MiningLaser::readCollideWithLayers( nlohmann::ordered_json const& data )
     {
-        if ( data.is_string() )
-        {
-            m_CollisionLayers = Collisions()->GetLayerFlags( data );
-        }
-        else if ( data.is_number_unsigned() )
-        {
-            Stream::Read( m_CollisionLayers, data );
-        }
+        Stream::Read( m_CollisionLayers, data );
     }
 
 

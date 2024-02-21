@@ -10,11 +10,14 @@
 
 #include "ConstructionBehavior.h"
 
+
+#include "ComponentReference.t.h"
 #include "Transform.h"
-#include "Tilemap.h"
 #include "Sprite.h"
 #include "AudioPlayer.h"
 #include "Inventory.h"
+#include "Tilemap.h"
+
 
 #include "AssetLibrarySystem.h"
 #include "Entity.h"
