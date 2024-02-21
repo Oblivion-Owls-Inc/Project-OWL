@@ -315,6 +315,9 @@
     <Filter Include="Game\Components\Logo">
       <UniqueIdentifier>{5070cea8-46ee-4117-ad1b-26fc2c9054bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Sprite\Nineslice">
+      <UniqueIdentifier>{bc8d0a95-989e-433f-8be1-732fafb61838}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -614,9 +617,6 @@
     <ClCompile Include="Source\EditorCameraController.cpp">
       <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ComponentReference.t.cpp">
-      <Filter>Engine\Framework\References\ComponentReference</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EntityReference.cpp">
       <Filter>Engine\Framework\References\EntityReference</Filter>
     </ClCompile>
@@ -628,6 +628,15 @@
     </ClCompile>
     <ClCompile Include="Source\CollisionLayerFlags.cpp">
       <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ComponentReference.t.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WinState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Nineslice.cpp">
+      <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClCompile>
     <ClCompile Include="Source\Logo.cpp">
       <Filter>Game\Components\Logo</Filter>
@@ -955,6 +964,12 @@
     <ClInclude Include="Source\CollisionLayerFlags.h">
       <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
     </ClInclude>
+    <ClInclude Include="Source\WinState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Nineslice.h">
+      <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Logo.h">
       <Filter>Game\Components\Logo</Filter>
     </ClInclude>
@@ -1014,6 +1029,12 @@
     </None>
     <None Include="Data\Scenes\collisionTest.scene.json">
       <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\shaders\nineslice.vert">
+      <Filter>Data\Shaders\Vertex</Filter>
+    </None>
+    <None Include="Data\shaders\nineslice.frag">
+      <Filter>Data\Shaders\Fragment</Filter>
     </None>
   </ItemGroup>
 </Project>
