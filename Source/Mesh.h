@@ -50,6 +50,10 @@ public:
     /// @return              UV size (x = width, y = height)
     __inline glm::vec2 GetUVsize() const { return m_UVsize; }
 
+    /// @brief               gets this mesh's AABB
+    /// @return              this mesh's AABB (an array of 2 glm::vec2s)
+    __inline glm::vec2 const* GetBounds() const { return m_Bounds; }
+
     /// @brief               Returns the VAO index of this mesh. It can be used for rendering the mesh, or
     ///                      defining additional attributes.
     /// @return              UV size (x = width, y = height)
@@ -74,7 +78,8 @@ private:
     unsigned int m_VertexCount = 0; /// @brief      How many vertices to draw
     glm::vec2 m_UVsize ={1,1};      /// @brief      UV width + height
 
-
+    /// @brief  this meshes object-space AABB
+    glm::vec2 m_Bounds[ 2 ] = { { 0.0f, 0.0f }, { 0.0f, 0.0f } };
 
     // helper
     /// @brief   Initializes the Vertex Array Object and the buffer of this mesh.

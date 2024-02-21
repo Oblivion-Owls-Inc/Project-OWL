@@ -185,6 +185,11 @@
     void UiBarSprite::prepareShader() const
     {
         Shader* shader = Renderer()->SetActiveShader( "UiBar" );
+        if ( shader == nullptr )
+        {
+            Debug() << "Error: unable to find shader \"UiBar\"" << std::endl;
+            return;
+        }
 
 
         // mvp matrix

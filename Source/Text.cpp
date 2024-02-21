@@ -6,8 +6,6 @@
 #include "Entity.h"
 #include "Tilemap.h"
 
-// TODO: update when text (Tilemap) changes
-
 /// @brief   default constructor
 Text::Text() :
     Component( typeid( Text ) )

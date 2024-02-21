@@ -1,0 +1,101 @@
+{
+    "Assets": {
+        "Sounds": null,
+        "Textures": {
+            "button": {
+                "Filepath": "Data/Textures/TestButton.png",
+                "SheetDimensions": [
+                    1,
+                    3
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            }
+        },
+        "TransformAnimations": null,
+        "Animations": null,
+        "Archetypes": null
+    },
+    "Entities": {
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 5.0,
+                    "IsActive": true
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "button": {
+            "Name": "button",
+            "Components": {
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "button"
+                    }
+                },
+                "UiButton": {
+                    "ClickEventName": "",
+                    "ShouldActivateOnPress": false,
+                    "IdleFrame": 0,
+                    "HoveredFrame": 1,
+                    "DownFrame": 2,
+                    "PressSound": {
+                        "AssetName": ""
+                    },
+                    "ReleaseSound": {
+                        "AssetName": ""
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        3.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "Absolute",
+                        "Absolute"
+                    ]
+                }
+            },
+            "Children": null
+        }
+    }
+}

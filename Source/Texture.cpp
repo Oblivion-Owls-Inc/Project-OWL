@@ -89,6 +89,11 @@
             reloadMesh();
         }
 
+        if ( ImGui::Checkbox( "Use Aspect Ratio", &m_UseAspectRatio ) )
+        {
+            reloadMesh();
+        }
+
         if ( ImGui::Button( "Reload Texture" ) )
         {
             loadImage();
@@ -174,6 +179,14 @@ void Texture::readPivot( nlohmann::ordered_json const& data )
     m_Pivot = Stream::Read< 2, float >( data );
 }
 
+/// @brief  reads whether to use the aspect ratio of the texture instead of a square mesh
+/// @param  data    the data to read from
+void Texture::readUseAspectRatio( nlohmann::ordered_json const& data )
+{
+    Stream::Read( m_UseAspectRatio, data );
+}
+
+
 /// @brief  gets called after reading all arugments 
 void Texture::AfterLoad()
 {
@@ -192,6 +205,7 @@ nlohmann::ordered_json Texture::Write() const
     data["Filepath"] = m_Filepath;
     data["SheetDimensions"] = Stream::Write(m_SheetDimensions);
     data["Pivot"] = Stream::Write( m_Pivot );
+    data["UseAspectRatio"] = Stream::Write( m_UseAspectRatio );
 
     return data;
 }
@@ -202,7 +216,8 @@ nlohmann::ordered_json Texture::Write() const
 ReadMethodMap< Texture > const Texture::s_ReadMethods = {
     { "Filepath"       , &readFilepath        },
     { "SheetDimensions", &readSheetDimensions },
-    { "Pivot"          , &readPivot           }
+    { "Pivot"          , &readPivot           },
+    { "UseAspectRatio" , &readUseAspectRatio  }
 };
 
 
@@ -249,7 +264,7 @@ void Texture::loadImage()
         if (m_SheetDimensions == glm::ivec2( 1 ) && m_Pivot == glm::vec2( 0.5f ) )
             m_Mesh = Renderer()->GetDefaultMesh();
         else
-            m_Mesh = new Mesh( glm::vec2( GetAspectRatio(), 1 ), m_SheetDimensions, m_Pivot );
+            m_Mesh = new Mesh( m_UseAspectRatio ? glm::vec2( GetAspectRatio(), 1.0f ) : glm::vec2( 1.0f ), m_SheetDimensions, m_Pivot);
     }
     else
     {
@@ -272,7 +287,7 @@ void Texture::loadImage()
         }
         else
         {
-            m_Mesh = new Mesh( glm::vec2( GetAspectRatio(), 1 ), m_SheetDimensions, m_Pivot );
+            m_Mesh = new Mesh( m_UseAspectRatio ? glm::vec2( GetAspectRatio(), 1.0f ) : glm::vec2( 1.0f ), m_SheetDimensions, m_Pivot );
         }
     }
 

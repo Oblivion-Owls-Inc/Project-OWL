@@ -47,6 +47,7 @@
 #include "ItemCollector.h"
 #include "Light.h"
 #include "UiBarSprite.h"
+#include "Nineslice.h"
 #include "HealthBar.h"
 #include "CameraBehavior.h"
 #include "UiButton.h"
@@ -189,7 +190,8 @@
         { "Generator"              , ComponentInfo< Generator               >() },
         { "TilemapEditor"          , ComponentInfo< TilemapEditor           >() },
         { "EditorCameraController" , ComponentInfo< EditorCameraController  >() },
-        { "WinState"               , ComponentInfo< WinState                >() }
+        { "WinState"               , ComponentInfo< WinState                >() },
+        { "Nineslice"              , ComponentInfo< Nineslice               >() }
     };
 
 //-----------------------------------------------------------------------------

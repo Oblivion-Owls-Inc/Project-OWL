@@ -14,6 +14,9 @@
 #include "AssetLibrarySystem.h"
 #include "Texture.h"
 
+#include "InputSystem.h"
+#include "Engine.h"
+
 static std::vector<Entity*> shapes; // this is inefficient.
 // efficiency will improve once we have resource library.
 
@@ -250,6 +253,47 @@ Shader* RenderSystem::SetActiveShader(const char* name)
 Shader* RenderSystem::GetShader(const char* name) { return FindShader(name); }
 
 
+/// @brief  gets the topmost Sprite the mouse is over
+/// @return the topmost Sprite the mouse is over
+Sprite* RenderSystem::GetMouseOverSprite()
+{
+    
+    // store a cached return value that we can reuse if this function gets called multiple times in the same frame
+    static int lastGottenFrame = -1;
+    static Sprite* cachedSprite = nullptr;
+    
+    if ( lastGottenFrame == GameEngine()->GetFrameCount() )
+    {
+        return cachedSprite;
+    }
+    
+    lastGottenFrame = GameEngine()->GetFrameCount();
+
+    glm::vec2 mousePosUi = Input()->GetMousePosUI();
+    glm::vec2 mousePosWorld = Input()->GetMousePosWorld();
+
+    // iterate from back to front, as the back of the array gets drawn on top
+    for ( auto it = m_Sprites.rbegin(); it != m_Sprites.rend(); ++it )
+    {
+        Sprite* sprite = *it;
+
+        if ( sprite->GetTransform() == nullptr )
+        {
+            continue;
+        }
+
+        if ( sprite->OverlapsLocalPoint( sprite->GetTransform()->GetIsDiegetic() ? mousePosWorld : mousePosUi ) )
+        {
+            cachedSprite = sprite;
+            return cachedSprite;
+        }
+    }
+
+    cachedSprite = nullptr;
+    return cachedSprite;
+}
+
+
 /// @brief  openGL error message callback
 /// @param  source      the source of the message
 /// @param  type        the type of message
@@ -270,12 +314,12 @@ void GLAPIENTRY RenderSystem::errorCallback(
 {
     // if ( type == GL_DEBUG_TYPE_ERROR )
     // {
-        Debug() << "OpenGL Error:\n" <<
-            " - source  : " << source <<
-            " - type    : " << type <<
-            " - id      : " << id <<
-            " - severity: " << severity <<
-            " - message : " << message << std::endl;
+        Debug() << "OpenGL Error:" <<
+            "\n - source  : " << source <<
+            "\n - type    : " << type <<
+            "\n - id      : " << id <<
+            "\n - severity: " << severity <<
+            "\n - message : " << message << std::endl;
     // }
 }
 

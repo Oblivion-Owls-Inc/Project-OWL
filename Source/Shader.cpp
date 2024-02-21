@@ -152,7 +152,7 @@ unsigned int Shader::GetUniformID(const char* uniform_name)
         }
         else
         {
-            Debug() << "SHADER ERROR: this uniform does not exist." << std::endl;
+            Debug() << "SHADER ERROR: uniform \"" << uniform_name << "\" does not exist." << std::endl;
         }
         
         return u;

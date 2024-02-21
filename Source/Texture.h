@@ -97,23 +97,29 @@ public: // acccessors
 private: // member variables
 //-----------------------------------------------------------------------------
 
+
     /// @brief  the filepath to the texture
     std::string m_Filepath = "";
 
-    /// @brief  ID that texture is tracked with on GPU
-    unsigned int m_TextureID = 0;
-
-    /// @brief  Width and height of the original image
-    glm::ivec2 m_PixelDimensions = { 0, 0 };
-
     /// @brief  How many tiles/frames are in the texture
-    glm::ivec2 m_SheetDimensions = { 1.0f, 1.0f };
+    glm::ivec2 m_SheetDimensions = { 1, 1 };
 
     /// @brief  The pivot of the mesh this Texture uses
     glm::vec2 m_Pivot = { 0.5f, 0.5f };
 
+    /// @brief  whether to use the aspect ratio of the texture instead of a square mesh
+    bool m_UseAspectRatio = false;
+
+
+    /// @brief  Width and height of the original image
+    glm::ivec2 m_PixelDimensions = { 0, 0 };
+
+    /// @brief  ID that texture is tracked with on GPU
+    unsigned int m_TextureID = 0;
+
     /// @brief   Mesh to render texture onto
     Mesh const* m_Mesh = nullptr;
+
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -140,6 +146,10 @@ private: // reading
     /// @brief  reads the pivot of this Texture
     /// @param  data    the data to read from
     void readPivot( nlohmann::ordered_json const& data );
+
+    /// @brief  reads whether to use the aspect ratio of the texture instead of a square mesh
+    /// @param  data    the data to read from
+    void readUseAspectRatio( nlohmann::ordered_json const& data );
 
 
     /// @brief  the read methods for textures
