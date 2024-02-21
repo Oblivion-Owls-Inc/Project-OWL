@@ -158,7 +158,7 @@ Sprite::Sprite(Sprite const& other) :
         }
         
         glm::vec2 bounds[ 2 ] = {
-            m_Transform->GetTranslation() - m_Transform->GetScale() * m_Texture->GetMesh()->GetBounds()[ 0 ],
+            m_Transform->GetTranslation() + m_Transform->GetScale() * m_Texture->GetMesh()->GetBounds()[ 0 ],
             m_Transform->GetTranslation() + m_Transform->GetScale() * m_Texture->GetMesh()->GetBounds()[ 1 ],
         };
 
