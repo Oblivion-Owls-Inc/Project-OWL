@@ -204,7 +204,7 @@
 
         for ( ComponentReferenceBase* componentReference : m_ComponentReferences )
         {
-            componentReference->Exit( m_Entity );
+            componentReference->Exit();
         }
     }
 

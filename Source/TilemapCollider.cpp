@@ -59,10 +59,10 @@
     /// @brief  called once when exiting the scene
     void TilemapCollider::OnExit()
     {
-        m_Transform .Exit( GetEntity() );
-        m_RigidBody .Exit( GetEntity() );
-        m_StaticBody.Exit( GetEntity() );
-        m_Tilemap   .Exit( GetEntity() );
+        m_Transform .Exit();
+        m_RigidBody .Exit();
+        m_StaticBody.Exit();
+        m_Tilemap   .Exit();
     }
 
 

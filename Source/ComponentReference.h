@@ -31,8 +31,7 @@ public: // virtual methods
     virtual void Init( Entity* entity ) = 0;
 
     /// @brief  separates this ComponentReference from the target Entity
-    /// @param  entity  the entity this ComponentReference is curently watching
-    virtual void Exit( Entity* entity ) = 0;
+    virtual void Exit() = 0;
 
 
     /// @brief  sets this ComponentReference to nullptr
@@ -71,6 +70,15 @@ public: // constructor
     virtual ~ComponentReference() override;
 
 
+    /// @brief  move constructor
+    /// @param  other   the ComponentReference to move into this one
+    ComponentReference( ComponentReference&& other );
+
+    /// @brief  move-assignment operator
+    /// @param  other   the ComponentReference to move into this one
+    void operator =( ComponentReference&& other );
+
+
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
@@ -81,8 +89,7 @@ public: // methods
     virtual void Init( Entity* entity ) override;
 
     /// @brief  separates this ComponentReference from the target Entity
-    /// @param  entity  the entity this ComponentReference is curently watching
-    virtual void Exit( Entity* entity ) override;
+    virtual void Exit() override;
 
 
     /// @brief  sets the callback to call when this ComponentReference connects to a Component
@@ -138,6 +145,10 @@ public: // engine methods
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
+
+    
+    /// @brief  the Entity the tracked Component is attached to
+    Entity* m_Entity = nullptr;
 
 
     /// @brief  the component this ComponentReference is referring to

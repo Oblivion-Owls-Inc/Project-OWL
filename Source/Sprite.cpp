@@ -255,7 +255,7 @@ Sprite::Sprite(Sprite const& other) :
     {
         Renderer()->RemoveSprite( this );
 
-        m_Transform.Exit( GetEntity() );
+        m_Transform.Exit();
     }
 
 

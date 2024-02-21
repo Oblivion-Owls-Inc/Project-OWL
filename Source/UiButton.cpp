@@ -90,9 +90,9 @@
     {
         Behaviors< Behavior >()->RemoveComponent( this );
 
-        m_UiElement  .Exit( GetEntity() );
-        m_Sprite     .Exit( GetEntity() );
-        m_AudioPlayer.Exit( GetEntity() );
+        m_UiElement  .Exit();
+        m_Sprite     .Exit();
+        m_AudioPlayer.Exit();
     }
 
 
