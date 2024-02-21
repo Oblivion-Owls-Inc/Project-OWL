@@ -12,33 +12,35 @@
 // Includes:
 //-----------------------------------------------------------------------------
 
-#include "System.h"
-#include <vector>
-#include <typeindex>
+    #include "System.h"
+    #include <vector>
+    #include <typeindex>
 
-#include "CollisionData.h"
+    #include "CollisionData.h"
+    #include "CollisionLayerFlags.h"
 
 //-----------------------------------------------------------------------------
 // Forward references:
 //-----------------------------------------------------------------------------
 
-class Collider;
+    class Collider;
 
-class TilemapCollider;
-class CircleCollider;
+    class TilemapCollider;
+    class CircleCollider;
+    
 
-//-----------------------------------------------------------------------------
-// typedefs
-//-----------------------------------------------------------------------------
-
-/// @brief  function pointer to function that checks collisions between Collider types
-using CollisionCheckFunction = bool (*)( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
-
-/// @brief  map that stores the CollisionCheckMethods between each Collider type
-using CollisionFunctionMap = std::map< std::pair< std::type_index, std::type_index >, CollisionCheckFunction >;
-
-/// @brief  bit flags of which layers a collider collides with
-using CollisionLayerFlags = unsigned; 
+    // comparison operator for glm::ivec2 to use as key in map
+    namespace std
+    {
+        template <>
+        struct less< glm::ivec2 >
+        {
+            bool operator ()( glm::ivec2 const& a, glm::ivec2 const& b ) const
+            {
+                return (a.y != b.y) ? (a.y < b.y) : (a.x < b.x);
+            }
+        };
+    }
 
 //-----------------------------------------------------------------------------
 // class
@@ -48,28 +50,27 @@ using CollisionLayerFlags = unsigned;
 /// @brief  responsible for checking collsisions between all Colliders
 class CollisionSystem : public System
 {
-
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
     
-    /// @brief  adds a Collider to the CollisionSystem
-    /// @param  collider    the collider to add
-    void addCollider( Collider* collider );
 
-    /// @brief  removes a Collider from this System
-    /// @param  collider    the collider to remove
-    void removeCollider( Collider* collider );
+    /// @brief  adds a CircleCollider to the CollisionSystem
+    /// @param  circleCollider  the collider to add
+    void AddCollider( CircleCollider* circleCollider );
+
+    /// @brief  removes a CircleCollider from the CollisionSystem
+    /// @param  circleCollider  the collider to remove
+    void RemoveCollider( CircleCollider* circleCollider );
 
 
-    /// @brief  makes a CollisionLayerFlags for a set of layer names
-    /// @param  layerNames  the names of the layers to include in the flags
-    CollisionLayerFlags GetLayerFlags( std::vector< std::string > const& layerNames ) const;
+    /// @brief  adds a TilemapCollider to the CollisionSystem
+    /// @param  tilemapCollider the collider to add
+    void AddCollider( TilemapCollider* tilemapCollider );
 
-    /// @brief  gets the collision layer ID with the specified name
-    /// @param  layerName   the name of the layer to get
-    /// @return the collision layer ID
-    unsigned GetCollisionLayerId( std::string const& layerName ) const;
+    /// @brief  removes a TilemapCollider from the CollisionSystem
+    /// @param  tilemapCollider     the collider to remove
+    void RemoveCollider( TilemapCollider* tilemapCollider );
 
 
     /// @brief  gets the names of the layers in a CollisionLayerFlags
@@ -90,17 +91,21 @@ public: // methods
     /// @return RayCastHit struct containing information about the result of the raycast
     RayCastHit RayCast( glm::vec2 const& origin, glm::vec2 const& direction, float maxDistance = 100.0f, CollisionLayerFlags layers = (CollisionLayerFlags)-1 ) const;
 
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
     
+
     /// @brief  gets the collision layer names
     /// @return the array of collision layer names
     std::vector< std::string > const& GetLayerNames() const { return m_CollisionLayerNames; }
 
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
     virtual void OnFixedUpdate() override;
@@ -108,51 +113,110 @@ private: // virtual override methods
     /// @brief  creates the debug window for the CollisionSystem
     virtual void DebugWindow() override;
 
-//-----------------------------------------------------------------------------
-private: // methods
-//-----------------------------------------------------------------------------
-
-    /// @brief Checks and handles all Collisions
-    void checkCollisions();
 
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
-    /// @brief  all Colliders in the Scene
-    std::vector< Collider* > m_Colliders = {};
 
     /// @brief  the names of each collision layer
     std::vector< std::string > m_CollisionLayerNames = {};
 
     /// @brief  the number of time to check collisions each frame
-    unsigned m_CollisionSteps = 1;
+    int m_CollisionSteps = 1;
+
+
+    /// @brief  the size of each cell of the collision grid
+    float m_GridSize = 1.0f;
+
+
+    /// @brief  grid containing CircleColliders
+    std::map< glm::ivec2, std::vector< CircleCollider* > > m_CircleCollidersGrid = {};
+
+
+    /// @brief  all TilemapColliders in the Scene
+    std::vector< TilemapCollider* > m_TilemapColliders = {};
+
+    /// @brief  all CircleColliders larger than the grid size in the scene
+    std::vector< CircleCollider* > m_LargeCircleColliders = {};
+
+
+    /// @brief  bit flags for which edges of an AABB are enabled
+    static constexpr int s_EdgeLeft  = 0b0001;
+    static constexpr int s_EdgeRight = 0b0010;
+    static constexpr int s_EdgeDown  = 0b0100;
+    static constexpr int s_EdgeUp    = 0b1000;
+    static constexpr int s_EdgeAll   = 0b1111;
+
+    
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  Checks and handles all Collisions
+    void checkCollisions();
+
+
+    /// @brief  removes outdated contacts from all colliders
+    void removeOutdatedContacts();
+
+
+    /// @brief  updates the position of each Collider in the grid, if necessary
+    void updatePositionsInGrid();
+
+
+    /// @brief  gets the collision grid cell of a given world pos
+    /// @param  worldPos    the world position to get the grid cell of
+    /// @return the grid cell position containing the world pos
+    glm::ivec2 getGridCell( glm::vec2 const& worldPos ) const;
+
 
 //-----------------------------------------------------------------------------
 private: // static methods
 //-----------------------------------------------------------------------------
 
-    /// @brief  checks a collision between two colliders of unknown type
-    /// @param  colliderA       the first collider
-    /// @param  colliderB       the second collider
-    /// @param  collisionData   pointer to where to store additional data about the collision
-    /// @return whether or not the two colliders are colliding
-    static void checkCollision( Collider* colliderA, Collider* colliderB );
+
+
+    /// @brief  checks collisions between Colliders of the same type in a container
+    /// @tparam ColliderType    the Type of collider to check collisions between
+    /// @param  colliders       the container of the Colliders to check between
+    template < class ColliderType >
+    static void checkCollisions( std::vector< ColliderType* >* colliders );
+
+
+    /// @brief  checks and updates collision between Colliders in two containters
+    /// @tparam ColliderAType   the type of the first Collider
+    /// @tparam ColliderBType   the type of the second Collider
+    /// @param  collidersA      the first container of Colliders
+    /// @param  collidersB      the second container of Colliders
+    template < class ColliderAType, class ColliderBType >
+    static void checkCollisions( std::vector< ColliderAType* >* collidersA, std::vector< ColliderBType* >* collidersB );
+
+
+
+    /// @brief  checks and updates collision between two collider of any known type
+    /// @tparam ColliderAType   the type of the first Collider
+    /// @tparam ColliderBType   the type of the second Collider
+    /// @param  colliderA       the first Collider
+    /// @param  colliderB       the second Collider
+    template < class ColliderAType, class ColliderBType >
+    static void checkCollision( ColliderAType* colliderA, ColliderBType* colliderB );
+
 
     /// @brief  checks a collision between two circle colliders
     /// @param  colliderA       the first collider
     /// @param  colliderB       the second collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    static bool checkCircleCircle( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
+    static bool checkCollision( CircleCollider const* colliderA, CircleCollider const* colliderB, CollisionData* collisionData );
 
     /// @brief  checks a collision between a circle and tilemap collider
-    /// @param  colliderA       the first collider
-    /// @param  colliderB       the second collider
+    /// @param  circleCollider  the circle collider
+    /// @param  tilemapCollider the tilemap collider
     /// @param  collisionData   pointer to where to store additional data about the collision
     /// @return whether or not the two colliders are colliding
-    static bool checkCircleTilemap( Collider const* colliderA, Collider const* colliderB, CollisionData* collisionData );
-
+    static bool checkCollision( CircleCollider const* circleCollider, TilemapCollider const* tilemapCollider, CollisionData* collisionData );
 
 
     /// @brief  helper function which checks a circle against an AABB
@@ -161,9 +225,15 @@ private: // static methods
     /// @param  aabbMin         the min pos of the AABB
     /// @param  aabbMax         the max pos of the AABB
     /// @param  collisionData   pointer to where to store additional data about the collision
+    /// @param  enabledEdges    flags of which edges of the AABB are enabled
     /// @return whether or not the two shapes are colliding
     /// @note   ASSUMES THAT THE AABB OF THE CIRCLE IS KNOWN TO OVERLAP THE RECTANGLE
-    static bool checkCircleAABB( glm::vec2 const& circlePos, float circleRadius, glm::vec2 const& aabbMin, glm::vec2 const& aabbMax, CollisionData* collisionData );
+    static bool checkCircleAABB(
+        glm::vec2 const& circlePos, float circleRadius,
+        glm::vec2 const& aabbMin, glm::vec2 const& aabbMax,
+        CollisionData* collisionData,
+        int enabledEdges = s_EdgeAll
+    );
 
     /// @brief  helper function which checks a circle against a point
     /// @param  circlePos       the position of the circle
@@ -179,26 +249,33 @@ private: // static methods
     /// @param  rayDirection    the direction of the cast ray
     /// @param  circle          the CircleCollider to test the ray against
     /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
-    static void checkRayCircle( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, CircleCollider* circle, RayCastHit* rayCastHit );
+    /// @param  layers          the Collision layers the raycast interacts with
+    static void checkRayCircle( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, CircleCollider* circle, RayCastHit* rayCastHit, CollisionLayerFlags layers = -1 );
 
     /// @brief  checks if a raycast hits a Circle
     /// @param  rayOrigin       the origin of the cast ray
     /// @param  rayDirection    the direction of the cast ray
     /// @param  tilemap         the TilemapCollider to test the ray against
     /// @param  rayCastHit      information on the current best hit, to be overridden if this hit is better
-    static void checkRayTilemap( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, TilemapCollider* tilemap, RayCastHit* rayCastHit );
+    /// @param  layers          the Collision layers the raycast interacts with
+    static void checkRayTilemap( glm::vec2 const& rayOrigin, glm::vec2 const& rayDirection, TilemapCollider* tilemap, RayCastHit* rayCastHit, CollisionLayerFlags layers = -1 );
 
 
-//-----------------------------------------------------------------------------
-private: // static members
-//-----------------------------------------------------------------------------
+    /// @brief  checks if a ray hits a unit grid
+    /// @param  rayOrigin           the origin of the ray in grid space
+    /// @param  rayDirection        the direction of the ray in grid space
+    /// @param  gridCellCallback    callback that returns true when the ray should stop
+    static void checkRayUnitGrid(
+        glm::vec2 const& rayOrigin,
+        glm::vec2 const& rayDirection,
+        std::function< bool ( glm::ivec2 cellPos, float distance, glm::ivec2 stepDir, int stepAxis ) > gridCellCallback
+    );
 
-    /// @brief map that stores the CollisionCheckMethods between each Collider type
-    static CollisionFunctionMap const s_CollisionFunctions;
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
+
 
     /// @brief  reads the collision layer names from json
     /// @param  data    the json data to read from
@@ -208,41 +285,48 @@ private: // reading
     /// @param  data    the json data to read from
     void readCollisionSteps( nlohmann::ordered_json const& data );
 
-    /// @brief map of the CollisionSystem read methods
-    static ReadMethodMap< CollisionSystem > const s_ReadMethods;
+    /// @brief  reads the size of each cell of the collision grid
+    /// @param  data    the json data to read from
+    void readGridSize( nlohmann::ordered_json const& data );
+
+    
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief  gets this System's read methods
     /// @return this System's read methods
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+
 
     /// @brief  writes the CollisionSystem config to json
     /// @return the written json data
     virtual nlohmann::ordered_json Write() const override;
 
+
 //-----------------------------------------------------------------------------
 private: // singleton stuff
 //-----------------------------------------------------------------------------
 
+
     /// @brief Constructs the CollisionSystem
     CollisionSystem();
 
-    /// @brief The singleton s_Instance of CollisionSystem
-    static CollisionSystem* s_Instance;
 
 //-----------------------------------------------------------------------------
 public: // singleton stuff
 //-----------------------------------------------------------------------------
+
 
     /// @brief gets the instance of CollisionSystem
     /// @return the instance of the CollisionSystem
     static CollisionSystem* GetInstance();
 
     // Prevent copying
-    CollisionSystem(CollisionSystem& other) = delete;
-    void operator=(const CollisionSystem&) = delete;
+    CollisionSystem( CollisionSystem const& ) = delete;
+    void operator=( CollisionSystem const& ) = delete;
+
 
 //-----------------------------------------------------------------------------
 };

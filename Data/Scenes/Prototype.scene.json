@@ -213,7 +213,9 @@
                     "CircleCollider": {
                         "Radius": 0.10000000149011612,
                         "CollisionLayer": 4,
-                        "CollisionLayerFlags": 3
+                        "CollisionLayerFlags": {
+                            "Flags": 3
+                        }
                     },
                     "Lifetime": {
                         "Lifetime": {
@@ -284,7 +286,9 @@
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
                         "CollisionLayer": 1,
-                        "CollisionLayerFlags": 7
+                        "CollisionLayerFlags": {
+                            "Flags": 13
+                        }
                     },
                     "Emitter": {
                         "PPS": 680.4739990234375,
@@ -555,7 +559,9 @@
                         "BulletDamage": 10,
                         "BulletSpeed": 10.0,
                         "BulletSize": 0.30000001192092896,
-                        "ObstructionLayers": 1,
+                        "ObstructionLayers": {
+                            "Flags": 1
+                        },
                         "BulletPrefab": {
                             "AssetName": "Bullet"
                         }
@@ -623,7 +629,9 @@
                 "CircleCollider": {
                     "Radius": 1.0,
                     "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
                 },
                 "Generator": {
                     "Radius": 5.0,
@@ -688,7 +696,9 @@
                 "CircleCollider": {
                     "Radius": 2.0,
                     "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
                 },
                 "Generator": {
                     "Radius": 5.0,
@@ -750,7 +760,9 @@
                 "CircleCollider": {
                     "Radius": 2.0,
                     "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
                 },
                 "Generator": {
                     "Radius": 5.0,
@@ -2547,8 +2559,8 @@
                 },
                 "Pathfinder": {
                     "Destination": [
-                        0.0,
-                        0.0
+                        -9.0,
+                        5.5
                     ],
                     "Walkables": [
                         -1
@@ -2560,7 +2572,9 @@
                 },
                 "TilemapCollider": {
                     "CollisionLayer": 0,
-                    "CollisionLayerFlags": 0
+                    "CollisionLayerFlags": {
+                        "Flags": 0
+                    }
                 },
                 "TilemapItemDropper": {
                     "ItemArchetype": {
@@ -6008,7 +6022,9 @@
                 "CircleCollider": {
                     "Radius": 0.30000001192092896,
                     "CollisionLayer": 2,
-                    "CollisionLayerFlags": 3
+                    "CollisionLayerFlags": {
+                        "Flags": 3
+                    }
                 },
                 "Health": {
                     "Health": {
@@ -6548,7 +6564,9 @@
                     ],
                     "BeamWidth": 0.10000000149011612,
                     "DamageRate": 10.0,
-                    "CollideWithLayers": 3,
+                    "CollideWithLayers": {
+                        "Flags": 3
+                    },
                     "Direction": [
                         -0.9299333691596985,
                         0.36772796511650085

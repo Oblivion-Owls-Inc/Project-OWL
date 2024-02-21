@@ -74,38 +74,6 @@
     }
 
 
-//-----------------------------------------------------------------------------
-// public: accessors
-//-----------------------------------------------------------------------------
-
-    /// @brief  gets the current update status
-    /// @return the current status
-    Engine::UpdateMode Engine::GetCurrentUpdate() const
-    {
-        return m_currentMode;
-    }
-
-    /// @brief  gets the duration of each fixed frame
-    /// @return the amount of time in seconds that each fixed frame lasts
-    float Engine::GetFixedFrameDuration() const
-    {
-        return m_FixedFrameDuration;
-    }
-
-    /// @brief  sets the duration of each fixed frame
-    /// @param  fixedFrameDuration  the amount of time in seconds that each fixed frame lasts
-    void Engine::SetFixedFrameDuration( float fixedFrameDuration )
-    {
-        m_FixedFrameDuration = fixedFrameDuration;
-    }
-
-    /// @brief  Gets the array of all Systems in the engine.
-    /// @return the array of all Systems in the engine
-    std::vector< System* > const& Engine::GetSystems() const
-    {
-        return m_Systems;
-    }
-
     /// @brief Used To Create a Window to Save the Engine Config
     /// @return - true if the window is still open, false if the window is closed
     bool Engine::SaveEngineConfig()
@@ -135,14 +103,14 @@
                 ImGui::End();
                 return false; //close window
             }
-            
+
             ImGui::SameLine();
 
             /// Create a cancel button
             if (ImGui::Button("Cancel"))
             {
-				ImGui::End();
-				return false; //close window
+                ImGui::End();
+                return false; //close window
             }
         }
 
@@ -150,9 +118,62 @@
         return true; // Keep showing the window
     }
 
+
+//-----------------------------------------------------------------------------
+// public: accessors
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the current update status
+    /// @return the current status
+    Engine::UpdateMode Engine::GetCurrentUpdate() const
+    {
+        return m_currentMode;
+    }
+
+
+    /// @brief  gets the duration of each fixed frame
+    /// @return the amount of time in seconds that each fixed frame lasts
+    float Engine::GetFixedFrameDuration() const
+    {
+        return m_FixedFrameDuration;
+    }
+
+    /// @brief  sets the duration of each fixed frame
+    /// @param  fixedFrameDuration  the amount of time in seconds that each fixed frame lasts
+    void Engine::SetFixedFrameDuration( float fixedFrameDuration )
+    {
+        m_FixedFrameDuration = fixedFrameDuration;
+    }
+
+
+    /// @brief  gets the current graphics frame count
+    /// @return the number of graphics frames that have elapsed since the Engine started
+    int Engine::GetFrameCount() const
+    {
+        return m_FrameCount;
+    }
+
+    /// @brief  gets the current simulation frame count
+    /// @return the number of simulation frames that have elapsed since the Engine started
+    int Engine::GetFixedFrameCount() const
+    {
+        return m_FixedFrameCount;
+    }
+
+
+    /// @brief  Gets the array of all Systems in the engine.
+    /// @return the array of all Systems in the engine
+    std::vector< System* > const& Engine::GetSystems() const
+    {
+        return m_Systems;
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  Loads the engine config from "Data/EngineConfig.json"
     void Engine::load()
@@ -189,13 +210,11 @@
         {
             fixedUpdateSystems();
 
-            if ( currentTime - m_PreviousFixedTime <= -m_FixedFrameDuration )
+            m_PreviousFixedTime += m_FixedFrameDuration;
+
+            if ( currentTime - m_PreviousFixedTime >= m_FixedFrameDuration )
             {
                 m_PreviousFixedTime = currentTime;
-            }
-            else
-            {
-                m_PreviousFixedTime += m_FixedFrameDuration;
             }
         }
 
@@ -224,6 +243,7 @@
     void Engine::updateSystems( float dt )
     {
         m_currentMode = UpdateMode::update;
+        ++m_FrameCount;
         for ( System * system : m_Systems )
         {
             if ( system->GetEnabled() )
@@ -237,6 +257,7 @@
     void Engine::fixedUpdateSystems()
     {
         m_currentMode = UpdateMode::fixedUpdate;
+        ++m_FixedFrameCount;
         for ( System * system : m_Systems )
         {
             if ( system->GetEnabled() )
@@ -263,9 +284,11 @@
 
     }
 
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
+
 
     /// @brief  reads the fixedFrameDuration
     /// @param  data    the stream to read the data from
@@ -376,6 +399,7 @@
 // singleton stuff
 //-----------------------------------------------------------------------------
 
+
     /// @brief  The singleton instance of the Engine
     Engine * Engine::s_Instance;
 
@@ -398,5 +422,6 @@
         }
         return s_Instance;
     }
+
 
 //-----------------------------------------------------------------------------

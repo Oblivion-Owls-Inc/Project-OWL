@@ -30,7 +30,7 @@
         m_Pivot( pivot ),
         m_TextureID( 0 )
     {
-        LoadImage();
+        loadImage();
     }
 
 
@@ -74,15 +74,33 @@
     /// @brief Used by the Debug to display information about this Texture
     void Texture::Inspect()
     {
-        Inspection::SelectFileFromDirectory( "Filepath", &m_Filepath, "Data/Textures" );
+        if ( Inspection::SelectFileFromDirectory( "Filepath", &m_Filepath, "Data/Textures" ) )
+        {
+            loadImage();
+        }
 
-        ImGui::DragInt2( "Sheet Dimensions", &m_SheetDimensions[0], 0.02f, 1, INT_MAX );
+        if ( ImGui::DragInt2( "Sheet Dimensions", &m_SheetDimensions[0], 0.02f, 1, INT_MAX ) )
+        {
+            reloadMesh();
+        }
 
-        ImGui::DragFloat2( "Pivot", &m_Pivot[0], 0.01f, 0.0f, 1.0f );
+        if ( ImGui::DragFloat2( "Pivot", &m_Pivot[0], 0.01f, 0.0f, 1.0f ) )
+        {
+            reloadMesh();
+        }
 
         if ( ImGui::Button( "Reload Texture" ) )
         {
-            LoadImage();
+            loadImage();
+        }
+
+        for ( int i = 0; i < m_SheetDimensions.x * m_SheetDimensions.y; ++i )
+        {
+            if ( i % m_SheetDimensions.x != 0 )
+            {
+                ImGui::SameLine();
+            }
+            DisplayInInspector( i );
         }
     }
 
@@ -94,6 +112,11 @@
     /// @param  borderColor the border color of the displayed button
     void Texture::DisplayInInspector( int frameIndex, float scale, glm::vec4 const& tintColor, glm::vec4 const& borderColor ) const
     {
+        if ( m_TextureID == 0 || m_Mesh == nullptr )
+        {
+            return;
+        }
+
         glm::vec2 uvMin = GetUvOffset( frameIndex );
         glm::vec2 uvMax = uvMin + m_Mesh->GetUVsize();
 
@@ -156,7 +179,7 @@ void Texture::AfterLoad()
 {
     if ( m_Filepath.empty() == false )
     {
-        LoadImage();
+        loadImage();
     }
 }
 
@@ -189,7 +212,7 @@ ReadMethodMap< Texture > const Texture::s_ReadMethods = {
 //-----------------------------------------------------------------------------
 
 /// @brief  Loads texture image from file (deletes old one if present)
-void Texture::LoadImage()
+void Texture::loadImage()
 {
     if (m_TextureID)            // reloading with new data?
     {
@@ -229,7 +252,28 @@ void Texture::LoadImage()
             m_Mesh = new Mesh( glm::vec2( GetAspectRatio(), 1 ), m_SheetDimensions, m_Pivot );
     }
     else
-        std::cout << "TEXTURE ERROR: could not load file " << m_Filepath << std::endl;
+    {
+        Debug() << "ERROR: could not load texture " << m_Filepath << std::endl;
+    }
 }
+
+
+    /// @brief  reloads this Texture's mesh
+    void Texture::reloadMesh()
+    {
+        if ( m_Mesh != Renderer()->GetDefaultMesh() )
+        {
+            delete m_Mesh;
+        }
+
+        if (m_SheetDimensions == glm::ivec2( 1 ) && m_Pivot == glm::vec2( 0.5f ) )
+        {
+            m_Mesh = Renderer()->GetDefaultMesh();
+        }
+        else
+        {
+            m_Mesh = new Mesh( glm::vec2( GetAspectRatio(), 1 ), m_SheetDimensions, m_Pivot );
+        }
+    }
 
 //-----------------------------------------------------------------------------

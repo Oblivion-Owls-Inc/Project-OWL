@@ -17,6 +17,7 @@
 #include "AssetReference.h"
 #include "Entity.h"
 
+#include "CollisionLayerFlags.h"
 
 
 ///*****************************************************************/

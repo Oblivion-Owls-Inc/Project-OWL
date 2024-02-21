@@ -11,8 +11,7 @@
 
 #include "AudioSystem.h"
 
-#include "Transform.h"
-#include "RigidBody.h"
+#include "ComponentReference.t.h"
 
 #include "EntitySystem.h"
 

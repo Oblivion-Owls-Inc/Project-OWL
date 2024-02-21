@@ -13,6 +13,8 @@
 
 #include "ComponentReference.h"
 
+#include "DebugSystem.h"
+
 #include "EntitySystem.h"
 
 #include <imgui.h>
