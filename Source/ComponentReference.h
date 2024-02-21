@@ -8,9 +8,10 @@
 
 #pragma once
 
-#define COMPONENTREFERENCE_H
+#include <functional>
 
-#include "Entity.h"
+class Entity;
+class Component;
 
 
 /// @brief  abstract base class for templatized ComponentReferences
@@ -152,7 +153,3 @@ private: // members
 
 //-----------------------------------------------------------------------------
 };
-
-#ifndef COMPONENTREFERENCE_T
-#include "ComponentReference.t.cpp"
-#endif

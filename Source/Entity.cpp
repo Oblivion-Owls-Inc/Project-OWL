@@ -574,6 +574,7 @@
             std::type_index const* type = ComponentFactory::GetTypeId( key );
             if ( type == nullptr )
             {
+                Debug() << "JSON WARNING: unrecognized token \"" << key << "\" encountered at " << Stream::GetDebugLocation() << std::endl;
                 continue;
             }
 
@@ -587,16 +588,12 @@
                 component->SetEntity( this );
             }
 
-            // read the component data
-		    try
-		    {
-			    // Read in all the data for the component from the json.
-			    Stream::Read( component, value );
-		    }
-		    catch ( std::runtime_error error )
-		    {
-			    std::cerr << error.what() << std::endl;
-		    }
+            Stream::PushDebugLocation( key + "." );
+
+			// Read in all the data for the component from the json.
+			Stream::Read( component, value );
+
+            Stream::PopDebugLocation();
 	    }
     }
 

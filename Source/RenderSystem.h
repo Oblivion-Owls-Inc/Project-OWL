@@ -99,6 +99,11 @@ public:
     Shader* SetActiveShader(const char* name);
 
 
+    /// @brief  gets the topmost Sprite the mouse is over
+    /// @return the topmost Sprite the mouse is over
+    Sprite* GetMouseOverSprite();
+
+
     /// @return         Default mesh for simple quad textures
     __inline Mesh const* GetDefaultMesh() const { return m_DefaultMesh; }
 

@@ -29,23 +29,35 @@ public: // methods
     /// @brief  Flags the engine to close once it finishes this loop
     void Close();
 
+
+    // TODO: give this method a name that reflects that it opens a window, not directly saves the Engine Config
+    /// @brief Used To Create a Window to Save the Engine Config
+    /// @return - true if the window is still open, false if the window is closed
+    bool SaveEngineConfig();
+
+
 //-----------------------------------------------------------------------------
 public: // update enum
 //-----------------------------------------------------------------------------
 
+
+    /// @brief  enum saying which update mode the engine is currently in
     enum class UpdateMode
     {
         fixedUpdate,
         update
     };
 
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
 
+
     /// @brief  gets the current update status
     /// @return the current status
     UpdateMode GetCurrentUpdate() const;
+
 
     /// @brief  gets the duration of each fixed frame
     /// @return the amount of time in seconds that each fixed frame lasts
@@ -55,11 +67,20 @@ public: // accessors
     /// @param  fixedFrameDuration  the amount of time in seconds that each fixed frame lasts
     void SetFixedFrameDuration( float fixedFrameDuration );
 
+
+    /// @brief  gets the current graphics frame count
+    /// @return the number of graphics frames that have elapsed since the Engine started
+    int GetFrameCount() const;
+
+    /// @brief  gets the current simulation frame count
+    /// @return the number of simulation frames that have elapsed since the Engine started
+    int GetFixedFrameCount() const;
+
+
     /// @brief  gets the array of all Systems in the engine.
     /// @return the array of all Systems in the engine
     std::vector< System * > const& GetSystems() const;
 
-    bool SaveEngineConfig();
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -105,23 +126,36 @@ public: // reading / writing
 private: // member variables
 //-----------------------------------------------------------------------------
 
+
     /// @brief  Container of all the Systems in the engine
-    std::vector< System * > m_Systems;
+    std::vector< System * > m_Systems = {};
+
 
     /// @brief  flag set to true when the engine needs to exit
-    bool m_ShouldExit;
+    bool m_ShouldExit = false;
+
 
     /// @brief  The timestamp of the previous frame
-    double m_PreviousTime;
+    double m_PreviousTime = 0.0;
 
     /// @brief  The timestamp of the previous fixed frame
-    double m_PreviousFixedTime;
+    double m_PreviousFixedTime = 0.0;
+
 
     /// @brief  The duration of each fixed frame
-    float m_FixedFrameDuration;
+    float m_FixedFrameDuration = 1.0f / 60.0f;
+
+
+    /// @brief  the number of graphics frames that have elapsed since the Engine started
+    int m_FrameCount = 0;
+
+    /// @brief  the number of fixed frames that have elapsed since the Engine started
+    int m_FixedFrameCount = 0;
+
 
     /// @brief  The current update we're in
-    UpdateMode m_currentMode;
+    UpdateMode m_currentMode = UpdateMode::fixedUpdate;
+
 
 //-----------------------------------------------------------------------------
 private: // methods

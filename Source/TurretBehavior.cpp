@@ -233,7 +233,7 @@
 
         ImGui::DragFloat( "Bullet Size", &m_BulletSize, 0.05f, 0.0f, INFINITY );
 
-        Inspection::InspectCollisionLayerFlags( "obstruction layers", &m_ObstructionLayers );
+        m_ObstructionLayers.Inspect( "obstruction layers" );
 
         if ( m_IsActive ){ ImGui::Text( "Active: True" ); }
         else { ImGui::Text( "Active: False" ); }

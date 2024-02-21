@@ -59,8 +59,6 @@
             }
         );
 
-        // TODO: figure out how to handle the edge case where this Entity's parent changes, which would invalidate m_ParentTilemap
-
         m_ParentTilemap.Init( GetEntity()->GetParent() );
         m_Tilemap.Init( GetEntity() );
     }

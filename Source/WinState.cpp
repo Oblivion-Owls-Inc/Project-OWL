@@ -11,6 +11,8 @@
 #include "Inventory.h"
 #include "SceneSystem.h"
 
+#include "ComponentReference.t.h"
+
 /// @brief  Default constructor
 WinState::WinState() : Behavior(typeid(WinState)) {}
 

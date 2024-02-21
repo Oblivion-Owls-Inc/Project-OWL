@@ -8,6 +8,8 @@
 
 #include "HealthBar.h"
 
+#include "ComponentReference.t.h"
+
 #include "Transform.h"
 #include "Health.h"
 #include "UiBarSprite.h"

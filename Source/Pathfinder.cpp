@@ -12,6 +12,7 @@
 #include "InputSystem.h"    // inspector UI
 #include "RenderSystem.h"   // inspector UI
 
+#include "ComponentReference.t.h"
 
 /// @brief   Declaring them in header causes.. issues.
 

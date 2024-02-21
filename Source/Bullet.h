@@ -12,7 +12,7 @@
 #include "Component.h"
 
 #include "ComponentReference.h"
-#include "Collider.h"
+class Collider;
 
 
 /// @brief   Component that destroys itself and deals damage on contact
