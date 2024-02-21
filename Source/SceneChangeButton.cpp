@@ -1,9 +1,9 @@
 /////////////////////////////////////////////////////////////////////////////////
 /// @file       SceneChangeButton.cpp
 /// @author     Jax Clayton (jax.clayton@digipen.edu)
-/// @brief      DESCRIPTION HERE
+/// @brief      Component that changes the scene when clicked
 /// @version    0.1
-/// @date       DATE HERE
+/// @date       2/21/2024
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 /////////////////////////////////////////////////////////////////////////////////
@@ -46,17 +46,13 @@ void SceneChangeButton::OnInit()
     /// Set the filter function for the listener
     m_Listener.SetFilterFunction([&](std::string const& EventName) -> bool
 	{
-            Debug() << "EventName: " << EventName << " m_SceneName: " << m_SceneName << std::endl;
-            return EventName == m_SceneName;
+            return EventName == m_EventName;
 	});
 
     /// Set the Callback function for the listener
     m_Listener.SetResponseFunction([&](std::string const& EventName)
     {
-         Debug() << "EventName: " << EventName << " m_SceneName: " << m_SceneName << std::endl;
-
-         onButtonClick(EventName);
-         
+            onButtonClick();
     });
 
     m_Listener.Init();
@@ -74,7 +70,7 @@ void SceneChangeButton::OnExit()
 //-----------------------------------------------------------------------------
 
 /// @brief  called when the button is clicked to change the scene
-void SceneChangeButton::onButtonClick(std::string const&) const
+void SceneChangeButton::onButtonClick() const
 {
 	// Change the scene
     Scenes()->SetNextScene(m_SceneName);
@@ -88,22 +84,8 @@ void SceneChangeButton::onButtonClick(std::string const&) const
 /// @brief  shows the inspector for SceneChangeButton
 void SceneChangeButton::Inspector()
 {
-    static std::string name = m_SceneName;
-    ImGui::InputText("Scene Name", &name);
-    if ( ImGui::IsItemFocused() && Input()->GetKeyTriggered(GLFW_KEY_ENTER) )
-	{
-        // if the name is not empty
-        if (!name.empty())
-        {
-            // Set the visaual name to the scene name
-            m_SceneName = name;
-
-            m_Listener.SetFilterFunction([&](std::string const& EventName) -> bool
-			{
-				return EventName == name;
-			});
-        }
-	}
+    ImGui::InputText("Scene Name", &m_SceneName);
+    ImGui::InputText("Event Name", &m_EventName);
 }
 
 
@@ -111,6 +93,7 @@ void SceneChangeButton::Inspector()
 // private: reading
 //-----------------------------------------------------------------------------
 
+    /// @brief  reads the scene name from a JSON file
     void SceneChangeButton::readSceneName(nlohmann::ordered_json const& data)
     {
         Stream::Read(m_SceneName, data);
@@ -167,7 +150,7 @@ void SceneChangeButton::Inspector()
     /// @brief  copy-constructor for the SceneChangeButton
     /// @param  other   the other SceneChangeButton to copy
     SceneChangeButton::SceneChangeButton(SceneChangeButton const& other) :
-        Component(other)
+        Component(other), m_SceneName(other.m_SceneName)
     {}
 
 

@@ -283,14 +283,14 @@
     {
         for ( auto& [ key, value ] : data.items() )
         {
-            auto it = std::(find_if(
+            auto it = std::find_if(
                 s_AssetLibraries.begin(), s_AssetLibraries.end(),
-                [key](std::pair< std::string, BaseAssetLibrarySystem* (*)() > const& it) -> bool
+                [ key ]( std::pair< std::string, BaseAssetLibrarySystem* (*)() > const& it ) -> bool
                 {
                     return it.first == key;
                 }
             );
-            if (it == s_AssetLibraries.end())
+            if ( it == s_AssetLibraries.end() )
             {
                 Debug() << "WARNING: (JSON):  unrecognized token " << key << " at " << Stream::GetDebugLocation() << std::endl;
                 break;

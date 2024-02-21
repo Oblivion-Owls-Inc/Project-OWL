@@ -309,11 +309,14 @@
     <Filter Include="Game\Components\Generator">
       <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Buttons">
-      <UniqueIdentifier>{d2ee4566-c692-4bc9-bd60-96eec3b83e74}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Systems\DebugSystem\Console">
       <UniqueIdentifier>{e6f49d04-39c9-461c-aeed-7a2378f78fc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\PauseSystem">
+      <UniqueIdentifier>{b2d99e86-e84e-4f6c-95cc-aff39c1c2746}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Buttons">
+      <UniqueIdentifier>{d2ee4566-c692-4bc9-bd60-96eec3b83e74}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -536,12 +539,6 @@
     <ClCompile Include="Source\CheatSystem.cpp">
       <Filter>Engine\Systems\CheatSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FileExplorer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_stdlib.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LootTable.cpp">
       <Filter>Game\Item Handling\LootTable</Filter>
     </ClCompile>
@@ -630,13 +627,19 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\SceneChangeButton.cpp">
-      <Filter>Game\Components\Buttons</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PauseSystem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine\Entity\Component\Buttons</Filter>
     </ClCompile>
     <ClCompile Include="Source\Console.cpp">
       <Filter>Engine\Systems\DebugSystem\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_stdlib.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PauseSystem.cpp">
+      <Filter>Engine\Systems\PauseSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FileExplorer.cpp">
+      <Filter>Engine\Systems\DebugSystem\FileExplorer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -862,12 +865,6 @@
     <ClInclude Include="Source\CheatSystem.h">
       <Filter>Engine\Systems\CheatSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\FileExplorer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui_stdlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\TileInfoSystem.h">
       <Filter>Game\Systems\TileInfoSystem</Filter>
     </ClInclude>
@@ -962,13 +959,19 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\SceneChangeButton.h">
-      <Filter>Game\Components\Buttons</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PauseSystem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Engine\Entity\Component\Buttons</Filter>
     </ClInclude>
     <ClInclude Include="Source\Console.h">
       <Filter>Engine\Systems\DebugSystem\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_stdlib.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PauseSystem.h">
+      <Filter>Engine\Systems\PauseSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FileExplorer.h">
+      <Filter>Engine\Systems\DebugSystem\FileExplorer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1020,6 +1023,8 @@
     <None Include="Data\shaders\tile_instancing.vert">
       <Filter>Data\Shaders\Vertex</Filter>
     </None>
-    <None Include="Data\Scenes\MapTest.scene.json" />
+    <None Include="Data\Scenes\MapTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>

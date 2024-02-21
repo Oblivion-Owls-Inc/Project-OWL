@@ -1,9 +1,9 @@
 /////////////////////////////////////////////////////////////////////////////////
 /// @file       SceneChangeButton.h
 /// @author     Jax Clayton (jax.clayton@digipen.edu)
-/// @brief      DESCRIPTION HERE
+/// @brief      Component that changes the scene when clicked
 /// @version    0.1
-/// @date       DATE HERE
+/// @date      2/21/2024
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 /////////////////////////////////////////////////////////////////////////////////
@@ -13,7 +13,7 @@
 #include "Component.h"
 #include "EventListener.h"
 
-/// @brief  DESCRIPTION HERE
+/// @brief  Component that changes the scene when clicked
 class SceneChangeButton : public Component
 {
 //-----------------------------------------------------------------------------
@@ -54,14 +54,18 @@ private: // members
     /// @brief Listener for the button click
     EventListener<std::string> m_Listener;
    
+    /// @brief  the name of the scene to change to
     std::string m_SceneName;
+
+    /// @brief  the name of the event to listen for
+    std::string m_EventName;
 
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
     /// @brief  called when the button is clicked to change the scene
-    void onButtonClick(std::string const &) const;
+    void onButtonClick() const;
 
 //-----------------------------------------------------------------------------
 public: // inspection
@@ -76,10 +80,7 @@ public: // inspection
 private: // reading
 //-----------------------------------------------------------------------------
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="data"></param>
+    /// @brief  reads the scene name from the JSON data
     void readSceneName( nlohmann::ordered_json const& data);
 
 
