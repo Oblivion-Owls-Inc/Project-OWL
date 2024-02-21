@@ -179,7 +179,6 @@ private: // member variables
     bool m_IsDestroyed = false;
 
 
-    // TODO: implement Entity::m_IsInScene
     /// @brief  whether the Entity is currently in the scene
     bool m_IsInScene = false;
 

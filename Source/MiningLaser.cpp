@@ -28,8 +28,6 @@
 
 #include "Inspection.h"
 
-// TODO: include health component
-
 
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
@@ -312,7 +310,7 @@
     void MiningLaser::tryDamageEntity( Entity* entity )
     {
         Health* entityHealth = entity->GetComponent<Health>();
-        // TODO: try damaging the entity
+
         if (entityHealth)
         {
             m_AccumulatedDamage += GameEngine()->GetFixedFrameDuration() * m_DamageRate;
