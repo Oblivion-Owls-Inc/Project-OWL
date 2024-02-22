@@ -315,8 +315,14 @@
     <Filter Include="Engine\Entity\Component\Sprite\Nineslice">
       <UniqueIdentifier>{bc8d0a95-989e-433f-8be1-732fafb61838}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\ResourcesUiManager">
+    <Filter Include="Game\Components\ResourcesUi">
       <UniqueIdentifier>{aac1194b-1a66-4d6d-bd95-54900ba27e4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\ResourcesUi\ResourceCounterUi">
+      <UniqueIdentifier>{7ba80a85-380e-42e3-8548-00c377b6d9cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\ResourcesUi\ResourcesUiManager">
+      <UniqueIdentifier>{f1a7bcec-c3a8-4458-8cf7-0d7e17ead521}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -629,14 +635,20 @@
     <ClCompile Include="Source\CollisionLayerFlags.cpp">
       <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ComponentReference.t.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\WinState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Nineslice.cpp">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceCounterUi.cpp">
+      <Filter>Game\Components\ResourcesUi\ResourceCounterUi</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourcesUiManager.cpp">
+      <Filter>Game\Components\ResourcesUi\ResourcesUiManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ComponentReference.t.h">
+      <Filter>Engine\Framework\References\ComponentReference</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -967,8 +979,11 @@
     <ClInclude Include="Source\Nineslice.h">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ResourceCounterUi.h">
+      <Filter>Game\Components\ResourcesUi\ResourceCounterUi</Filter>
+    </ClInclude>
     <ClInclude Include="Source\ResourcesUiManager.h">
-      <Filter>Game\Components\ResourcesUiManager</Filter>
+      <Filter>Game\Components\ResourcesUi\ResourcesUiManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

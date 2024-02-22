@@ -335,6 +335,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\InputSystem.cpp" />
     <ClCompile Include="Source\AudioSystem.cpp" />
     <ClCompile Include="Source\RenderSystem.cpp" />
+    <ClCompile Include="Source\ResourceCounterUi.cpp" />
+    <ClCompile Include="Source\ResourcesUiManager.cpp" />
     <ClCompile Include="Source\StaticBody.cpp" />
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
@@ -373,6 +375,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\ResourceCounterUi.h" />
     <ClInclude Include="Source\AssetReference.h" />
     <ClInclude Include="Source\CollisionLayerFlags.h" />
     <ClInclude Include="Source\ComponentReference.h" />

@@ -44,14 +44,27 @@
     {
         for ( ItemStack& oldStack : m_Items )
         {
-            if ( oldStack.M_ItemId == newStack.M_ItemId )
+            if ( oldStack.M_ItemId != newStack.M_ItemId )
             {
-                oldStack.M_Count += newStack.M_Count;
-                return;
+                continue;
             }
+
+            oldStack.M_Count += newStack.M_Count;
+
+            for ( auto& [ ownerId, callback ] : m_OnRemoveItemStackCallbacks )
+            {
+                callback( newStack );
+            }
+
+            return;
         }
 
         m_Items.push_back( newStack );
+
+        for ( auto& [ ownerId, callback ] : m_OnRemoveItemStackCallbacks )
+        {
+            callback( newStack );
+        }
     }
 
     /// @brief  adds a collection of itemStack to this Inventory
@@ -71,17 +84,24 @@
     {
         for ( int i = 0; i < m_Items.size(); ++i )
         {
-            if ( m_Items[ i ].M_ItemId == removeStack.M_ItemId )
+            if ( m_Items[ i ].M_ItemId != removeStack.M_ItemId )
             {
-                m_Items[ i ].M_Count -= removeStack.M_Count;
-                
-                if ( m_Items[ i ].M_Count <= 0 )
-                {
-                    m_Items.erase( m_Items.begin() + i );
-                }
-
-                return;
+                continue;
             }
+
+            m_Items[ i ].M_Count -= removeStack.M_Count;
+
+            if ( m_Items[ i ].M_Count <= 0 )
+            {
+                m_Items.erase( m_Items.begin() + i );
+            }
+
+            for ( auto& [ ownerId, callback ] : m_OnRemoveItemStackCallbacks )
+            {
+                callback( removeStack );
+            }
+
+            return;
         }
     }
 
@@ -129,6 +149,73 @@
     }
 
 
+    /// @brief  gets the number of items of the specified type from this Inventory
+    /// @param  itemId  the ID of the type of item to get the count of
+    /// @return the amount of that type of item in the Inventory
+    int Inventory::GetItemCount( int itemId ) const
+    {
+        auto it = std::find_if(
+            m_Items.begin(), m_Items.end(),
+            [ itemId ]( ItemStack const& itemStack ) -> bool
+            {
+                return itemStack.M_ItemId == itemId;
+            }
+        );
+        if ( it == m_Items.end() )
+        {
+            return 0;
+        }
+
+        return it->M_Count;
+    }
+
+
+    /// @brief  adds a callback to this Inventory that gets called whenever an ItemStack is added to the Inventory
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @param  callback    the callback to call
+    void Inventory::AddOnAddItemStackCallback( unsigned ownerId, std::function< void( ItemStack const& itemStack ) > callback )
+    {
+        m_OnAddItemStackCallbacks.emplace( ownerId, callback );
+    }
+
+    /// @brief  removes a callback to this Inventory that gets called whenever an ItemStack is added to the Inventory
+    /// @param  ownerId     the ID of the owner of the callback
+    void Inventory::RemoveOnAddItemStackCallback( unsigned ownerId )
+    {
+        auto it = m_OnAddItemStackCallbacks.find( ownerId );
+        if ( it == m_OnAddItemStackCallbacks.end() )
+        {
+            Debug() << "Error: could not find OnAddItemStack Callback to remove (" << GetName() << ")" << std::endl;
+            return;
+        }
+
+        m_OnAddItemStackCallbacks.erase( it );
+    }
+
+
+    /// @brief  adds a callback to this Inventory that gets called whenever an ItemStack is removed from the Inventory
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @param  callback    the callback to call
+    void Inventory::AddOnRemoveItemStackCallback( unsigned ownerId, std::function< void( ItemStack const& itemStack ) > callback )
+    {
+        m_OnRemoveItemStackCallbacks.emplace( ownerId, callback );
+    }
+
+    /// @brief  removes a callback to this Inventory that gets called whenever an ItemStack is removed from the Inventory
+    /// @param  ownerId     the ID of the owner of the callback
+    void Inventory::RemoveOnRemoveItemStackCallback( unsigned ownerId )
+    {
+        auto it = m_OnRemoveItemStackCallbacks.find( ownerId );
+        if ( it == m_OnRemoveItemStackCallbacks.end() )
+        {
+            Debug() << "Error: could not find OnAddItemStack Callback to remove (" << GetName() << ")" << std::endl;
+            return;
+        }
+
+        m_OnRemoveItemStackCallbacks.erase( it );
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: virtual override methods
 //-----------------------------------------------------------------------------
@@ -147,6 +234,7 @@
     /// @brief  displays this Inventory in the Inspector
     void Inventory::Inspector()
     {
+        // TODO: make this work with callbacks
         Inspection::InspectArray< ItemStack >(
             "items",
             &m_Items,
@@ -155,6 +243,18 @@
                 return itemStack->Inspect();
             }
         );
+
+        // TEMP - this is testing code and needs to be removed
+        static int itemId = 0;
+        ImGui::InputInt( "itemId", &itemId );
+        if ( ImGui::Button( "+" ) )
+        {
+            AddItemStack( ItemStack( itemId, 1 ) );
+        }
+        if ( ImGui::Button( "-" ) )
+        {
+            RemoveItemStack( ItemStack( itemId, 1 ) );
+        }
     }
 
 

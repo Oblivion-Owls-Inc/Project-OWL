@@ -72,11 +72,11 @@ public: // constructor
 
     /// @brief  move constructor
     /// @param  other   the ComponentReference to move into this one
-    ComponentReference( ComponentReference&& other );
+    ComponentReference( ComponentReference&& other ) noexcept;
 
     /// @brief  move-assignment operator
     /// @param  other   the ComponentReference to move into this one
-    void operator =( ComponentReference&& other );
+    void operator =( ComponentReference&& other ) noexcept;
 
 
 //-----------------------------------------------------------------------------

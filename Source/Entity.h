@@ -183,6 +183,10 @@ private: // member variables
     bool m_IsInScene = false;
 
 
+    /// @brief  whether the Parent needs to be set on Init
+    bool m_SetParentOnInit = false;
+
+
     /// @brief  all of the ComponentReferences currently tracking this Entity
     std::set< ComponentReferenceBase* > m_ComponentReferences;
 
@@ -215,11 +219,11 @@ public: // engine methods
 
     /// @brief  adds an ComponentReference to this Component
     /// @param  componentReference  the refernce to add
-    void AddComponentReference( ComponentReferenceBase* componentReference );
+    void AddComponentReference( ComponentReferenceBase* componentReference ) noexcept;
 
     /// @brief  removes an ComponentReference to this Component
     /// @param  componentReference  the refernce to remove
-    void RemoveComponentReference( ComponentReferenceBase* componentReference );
+    void RemoveComponentReference( ComponentReferenceBase* componentReference ) noexcept;
 
 
 //-----------------------------------------------------------------------------

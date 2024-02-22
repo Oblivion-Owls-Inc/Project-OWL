@@ -59,6 +59,7 @@
     void UiElement::SetAnchor( glm::vec2 const& anchor )
     {
         m_Anchor = anchor;
+        updateTransform();
     }
 
 
@@ -74,6 +75,7 @@
     void UiElement::SetPivot( glm::vec2 const& pivot )
     {
         m_Pivot = pivot;
+        updateTransform();
     }
 
 
@@ -89,6 +91,7 @@
     void UiElement::SetOffset( glm::vec2 const& offset )
     {
         m_Offset = offset;
+        updateTransform();
     }
 
 
@@ -104,6 +107,7 @@
     void UiElement::SetFrameSize( glm::vec2 const& frameSize )
     {
         m_FrameSize = frameSize;
+        updateTransform();
     }
 
 
@@ -119,6 +123,7 @@
     void UiElement::SetSizeTypes( SizeTypeVec const& sizeTypes )
     {
         m_SizeTypes = sizeTypes;
+        updateTransform();
     }
 
 
