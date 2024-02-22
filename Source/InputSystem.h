@@ -200,7 +200,7 @@ public: // public class
 
         /// @brief  retrieves a private vector for inspector
         /// @param  vector number
-        std::vector<int> GetActionVector(int vector);
+        std::vector<int> GetActionVector(int vector) const;
 
         /// @brief  adds a key to the action
         /// @param  key to add
@@ -298,7 +298,7 @@ public: // public class
 
         /// @brief  gets the name of this action
         /// @return the name of the action
-        std::string GetName();
+        std::string GetName() const;
 
         /// @brief  sets the description of the action
         /// @param  new description of action
@@ -306,23 +306,23 @@ public: // public class
 
         /// @brief  gets the description of this action
         /// @return the description of the action
-        std::string GetDescription();
+        std::string GetDescription() const;
 
         /// @brief  gets if this action is down
         /// @return action down status
-        bool GetDown();
+        bool GetDown() const;
 
         /// @brief  gets if this action is triggered
         /// @return action triggered status
-        bool GetTriggered();
+        bool GetTriggered() const;
         
         /// @brief  gets if this action is released
         /// @return action released status
-        bool GetReleased();
+        bool GetReleased() const;
 
         /// @brief  gets this action as an axis
         /// @return axis status clamped to -1 and 1
-        float GetAxis();
+        float GetAxis() const;
     };
 
 //-----------------------------------------------------------------------------
