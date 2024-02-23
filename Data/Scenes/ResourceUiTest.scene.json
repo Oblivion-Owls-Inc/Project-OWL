@@ -45,32 +45,10 @@
             "ResourceCounter": {
                 "Name": "ResourceCounter",
                 "Components": {
-                    "Tilemap<int>": {
-                        "Dimensions": [
-                            10,
-                            1
-                        ],
-                        "TileScale": [
-                            0.5,
-                            1.0
-                        ],
-                        "TileData": [
-                            16,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0
-                        ]
-                    },
                     "ResourceCounterUi": {
                         "Resources": {
                             "ItemId": 0,
-                            "Count": 0
+                            "Count": 1
                         }
                     },
                     "Sprite": {
@@ -85,23 +63,6 @@
                         "FrameIndex": 0,
                         "Texture": {
                             "AssetName": "items"
-                        }
-                    },
-                    "Text": {
-                        "String": "0"
-                    },
-                    "TilemapSprite": {
-                        "Layer": 2,
-                        "Color": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "Opacity": 1.0,
-                        "FrameIndex": 0,
-                        "Texture": {
-                            "AssetName": "font"
                         }
                     },
                     "UiElement": {
@@ -127,7 +88,75 @@
                         ]
                     }
                 },
-                "Children": null
+                "Children": [
+                    {
+                        "Name": "ResourceCounterText",
+                        "Components": {
+                            "Tilemap<int>": {
+                                "Dimensions": [
+                                    10,
+                                    0
+                                ],
+                                "TileScale": [
+                                    0.5,
+                                    1.0
+                                ],
+                                "TileData": [
+                                    17,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "Text": {
+                                "String": "1"
+                            },
+                            "TilemapSprite": {
+                                "Layer": 2,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "font"
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    1.0,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    -1.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToWidth",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    }
+                ]
             }
         }
     },
@@ -188,8 +217,8 @@
                 },
                 "ResourcesUiManager": {
                     "HideWhenEmpty": false,
-                    "Padding": 0.10000000149011612,
-                    "Spacing": -0.10000000149011612,
+                    "Padding": 0.07500000298023224,
+                    "Spacing": -0.07500000298023224,
                     "InventoryEntity": {
                         "EntityName": "Inventory"
                     },
@@ -212,7 +241,7 @@
                     ],
                     "FrameSize": [
                         0.30000001192092896,
-                        0.20000000298023224
+                        0.15000000596046448
                     ],
                     "SizeTypes": [
                         "RelativeToWidth",

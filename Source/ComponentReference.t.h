@@ -221,6 +221,17 @@
     }
 
 
+    /// @brief  gets the Entity this ComponentReference watches
+    /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
+    /// @return the Entity this ComponentReference watches
+    template < class ComponentType, bool required >
+    Entity const* ComponentReference< ComponentType, required >::GetEntity() const
+    {
+        return m_Entity;
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: engine methods
 //-----------------------------------------------------------------------------

@@ -52,6 +52,8 @@
     void ResourcesUiManager::OnInit()
     {
 
+        getItemCountersFromChildren();
+
         m_Inventory.SetOnConnectCallback(
             [ this ]()
             {
@@ -76,8 +78,6 @@
         m_Inventory.SetOnDisconnectCallback(
             [ this ]()
             {
-                clearItemCounters();
-
                 m_Inventory->RemoveOnAddItemStackCallback   ( GetId() );
                 m_Inventory->RemoveOnRemoveItemStackCallback( GetId() );
             }
@@ -112,6 +112,22 @@
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  gets the Item Counters from the child Entities
+    void ResourcesUiManager::getItemCountersFromChildren()
+    {
+        for ( Entity* child : GetEntity()->GetChildren() )
+        {
+            ResourceCounterUi* resourceCounter = child->GetComponent< ResourceCounterUi >();
+            if ( resourceCounter == nullptr )
+            {
+                continue;
+            }
+
+            m_ResourceCounters.emplace( resourceCounter->GetResourceId(), resourceCounter );
+        }
+    }
+
+
     /// @brief  sets up the item counters using the contents of the Inventory
     void ResourcesUiManager::setupItemCounters()
     {
@@ -123,19 +139,8 @@
 
         for ( ItemStack const& itemStack : m_Inventory->GetItems() )
         {
-            addResourceCounter( itemStack );
+            updateResourceCounter( itemStack );
         }
-    }
-
-    /// @brief  clears all Item Counters from this Component
-    void ResourcesUiManager::clearItemCounters()
-    {
-        for ( ResourceCounterUi* resourceCounter : m_ResourceCounters )
-        {
-            resourceCounter->GetEntity()->Destroy();
-        }
-
-        m_ResourceCounters.clear();
     }
 
 
@@ -153,13 +158,7 @@
     /// @param  itemStack   the itemStack representing the resource counter to change, and what to change it to
     void ResourcesUiManager::updateResourceCounter( ItemStack const& itemStack )
     {
-        auto it = std::find_if(
-            m_ResourceCounters.begin(), m_ResourceCounters.end(),
-            [ itemStack ]( ResourceCounterUi* resourceCounter ) -> bool
-            {
-                return resourceCounter->GetResourceId() == itemStack.M_ItemId;
-            }
-        );
+        auto it = m_ResourceCounters.find( itemStack.M_ItemId );
 
         // if it doesn't exist yet, add it
         if ( it == m_ResourceCounters.end() )
@@ -168,15 +167,9 @@
             return;
         }
 
-        // if it's empty, remove it
-        if ( itemStack.M_Count == 0 )
-        {
-            removeResourceCounter( it );
-            return;
-        }
-
         // otherwise, set its resources
-        (*it)->SetResources( itemStack );
+        ResourceCounterUi* resourceCounter = it->second;
+        resourceCounter->SetResources( itemStack );
     }
 
 
@@ -191,45 +184,28 @@
 
         // create the entity from a prefab
         Entity* resourceCounterEntity = m_ResourceCounterPrefab->Clone();
-
-        // add the ResourceCounterUi to the array
-        ResourceCounterUi*& resourceCounter = m_ResourceCounters.emplace_back();
-        resourceCounter = resourceCounterEntity->GetComponent< ResourceCounterUi >();
+        ResourceCounterUi* resourceCounter = resourceCounterEntity->GetComponent< ResourceCounterUi >();
 
         // validate that the ResourceCounterUi exists
         if ( resourceCounter == nullptr )
         {
-            // if it doesn't exist, discard the Entity
+            Debug() << "WARNING: resourceCounterPrefab does not have a ResourceCounterUi Component" << std::endl;
             delete resourceCounterEntity;
-            m_ResourceCounters.pop_back();
             return;
         }
+
 
         // set up the ResourceCounterUi and add it to the scene
         resourceCounter->SetResources( itemStack );
         resourceCounterEntity->SetParent( GetEntity() );
         resourceCounterEntity->AddToScene();
 
+        // add it to the UI
+        m_ResourceCounters.emplace( itemStack.M_ItemId, resourceCounter );
+
         if ( m_HideWhenEmpty && m_Sprite != nullptr )
         {
             m_Sprite->SetOpacity( 1.0f );
-        }
-
-        updateTransforms();
-    }
-
-    /// @brief  removes a resource counter from this ResourceUiManager
-    /// @param  resourceCounter iterator of the resourceCounter to remove
-    void ResourcesUiManager::removeResourceCounter(
-        std::vector< ResourceCounterUi* >::iterator const& resourceCounter
-    )
-    {
-        (*resourceCounter)->GetEntity()->Destroy();
-        m_ResourceCounters.erase( resourceCounter );
-
-        if ( m_HideWhenEmpty && m_ResourceCounters.empty() && m_Sprite != nullptr )
-        {
-            m_Sprite->SetOpacity( 0.0f );
         }
 
         updateTransforms();
@@ -256,13 +232,13 @@
         frameSize.y = 2.0f * m_Padding + (m_ResourceCounters.size() - 1) * std::abs( m_Spacing );
         m_UiElement->SetFrameSize( frameSize );
 
-        float normalizedPadding = m_Padding / frameSize.y;
+        float normalizedPadding = 2.0f * m_Padding / frameSize.y;
         int sign = ((m_Spacing > 0.0f) - (m_Spacing < 0.0f));
-        float pos = sign * (1.0f + normalizedPadding);
-        float offset = sign * (2.0f - (2.0f * normalizedPadding)) / m_ResourceCounters.size();
+        float pos = -sign * (1.0f - normalizedPadding);
+        float offset = sign * ( 2.0f - 2.0f * normalizedPadding ) / (m_ResourceCounters.size() - 1.0f);
 
         // evenly space out the ResourceCounters
-        for ( ResourceCounterUi* resourceCounter : m_ResourceCounters )
+        for ( auto& [ itemId, resourceCounter ] : m_ResourceCounters )
         {
             if ( resourceCounter == nullptr || resourceCounter->GetUiElement() == nullptr )
             {
@@ -275,7 +251,6 @@
 
             pos += offset;
         }
-
     }
 
 

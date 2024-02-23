@@ -19,6 +19,8 @@
 #include "RenderSystem.h"
 #include "PlatformSystem.h"
 
+#include "ComponentReference.t.h"
+
 #include "Inspection.h"
 
 //-----------------------------------------------------------------------------
@@ -137,8 +139,29 @@
     {
         Platform()->AddOnWindowResizeCallback( GetId(), std::bind( &UiElement::onWindowResizedCallback, this, std::placeholders::_1 ) );
 
-        Entity* parent = GetEntity()->GetParent();
-        m_ParentElement = parent == nullptr ? nullptr : parent->GetComponent< UiElement >();
+        m_ParentElement.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_ParentElement->AddOnTransformChangedCallback(
+                    GetId(),
+                    [ this ]()
+                    {
+                        updateTransform();
+                    }
+                );
+            }
+        );
+        m_ParentElement.SetOnDisconnectCallback(
+            [ this ]()
+            {
+                m_ParentElement->RemoveOnTransformChangedCallback(
+                    GetId()
+                );
+            }
+        );
+
+        m_ParentElement.Init( GetEntity()->GetParent() );
+
         updateTransform();
     }
 
@@ -146,15 +169,21 @@
     void UiElement::OnExit()
     {
         Platform()->RemoveOnWindowResizeCallback( GetId() );
+
+        m_ParentElement.Exit();
     }
 
 
     /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
     void UiElement::OnHierarchyChange( Entity* previousParent )
     {
-        Entity* parent = GetEntity()->GetParent();
-        m_ParentElement = parent == nullptr ? nullptr : parent->GetComponent< UiElement >();
-        updateTransform();
+        if ( GetEntity()->GetParent() == previousParent )
+        {
+            return;
+        }
+
+        m_ParentElement.Exit();
+        m_ParentElement.Init( GetEntity()->GetParent() );
     }
 
 

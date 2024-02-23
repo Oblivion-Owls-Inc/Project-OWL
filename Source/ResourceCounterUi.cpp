@@ -65,6 +65,10 @@
     /// @return the UiElement attached to this ResourceCounterUi
     UiElement* ResourceCounterUi::GetUiElement()
     {
+        if ( m_UiElement == nullptr )
+        {
+            m_UiElement.Init( GetEntity() );
+        }
         return m_UiElement;
     }
 
@@ -72,6 +76,10 @@
     /// @return the Sprite attached to this ResourceCounterUi
     Sprite* ResourceCounterUi::GetSprite()
     {
+        if ( m_Sprite == nullptr )
+        {
+            m_Sprite.Init( GetEntity() );
+        }
         return m_Sprite;
     }
 
@@ -79,6 +87,10 @@
     /// @return the Text attached to this ResourceCounterUi
     Text* ResourceCounterUi::GetText()
     {
+        if ( m_Text == nullptr )
+        {
+            m_Text.Init( GetEntity() );
+        }
         return m_Text;
     }
 
@@ -106,7 +118,11 @@
 
         m_UiElement.Init( GetEntity() );
         m_Sprite   .Init( GetEntity() );
-        m_Text     .Init( GetEntity() );
+
+        if ( GetEntity()->GetChildren().empty() == false )
+        {
+            m_Text.Init( GetEntity()->GetChildren()[ 0 ] );
+        }
     }
 
     /// @brief  called once when exiting the scene
@@ -115,6 +131,27 @@
         m_UiElement.Exit();
         m_Sprite   .Exit();
         m_Text     .Exit();
+    }
+
+    
+    /// @brief  called after a Child Entity is added
+    /// @param  child   the Child Entity that was added
+    void ResourceCounterUi::OnAddChild( Entity* child )
+    {
+        if ( m_Text.GetEntity() == nullptr )
+        {
+            m_Text.Init( child );
+        }
+    }
+
+    /// @brief  called before a Child Entity is removed
+    /// @param  child   the Child Entity that will be removed
+    void ResourceCounterUi::OnRemoveChild( Entity* child )
+    {
+        if ( m_Text.GetEntity() == child )
+        {
+            m_Text.Exit();
+        }
     }
 
 

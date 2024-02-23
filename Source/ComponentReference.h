@@ -124,6 +124,11 @@ public: // accessors
     void operator =( ComponentType* component );
 
 
+    /// @brief  gets the Entity this ComponentReference watches
+    /// @return the Entity this ComponentReference watches
+    Entity const* GetEntity() const;
+
+
 //-----------------------------------------------------------------------------
 public: // engine methods
 //-----------------------------------------------------------------------------

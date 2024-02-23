@@ -75,6 +75,15 @@ public: // virtual override methods
     virtual void OnExit() override;
 
 
+    /// @brief  called after a Child Entity is added
+    /// @param  child   the Child Entity that was added
+    virtual void OnAddChild( Entity* child ) override;
+
+    /// @brief  called before a Child Entity is removed
+    /// @param  child   the Child Entity that will be removed
+    virtual void OnRemoveChild( Entity* child ) override;
+
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
@@ -90,7 +99,8 @@ private: // members
     /// @brief  the Sprite attached to this Entity
     ComponentReference< Sprite > m_Sprite;
     
-    /// @brief  the Text attached to this Entity
+
+    /// @brief  the Text Component attached to the child of this Entity
     ComponentReference< Text > m_Text;
 
 

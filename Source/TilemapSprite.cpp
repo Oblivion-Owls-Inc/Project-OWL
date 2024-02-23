@@ -257,3 +257,29 @@ void TilemapSprite::initInstancingStuff()
 }
 
 
+//-----------------------------------------------------------------------------
+// public: copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  creates a copy of this TilemapSprite
+    /// @return the newly created copy of this TilemapSprite
+    TilemapSprite* TilemapSprite::Clone() const
+    {
+        return new TilemapSprite( *this );
+    }
+
+    
+//-----------------------------------------------------------------------------
+// private: copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  copy constructor
+    /// @param  other   the TilemapSprite to copy
+    TilemapSprite::TilemapSprite( TilemapSprite const& other ) :
+        Sprite( other )
+    {}
+
+
+//-----------------------------------------------------------------------------

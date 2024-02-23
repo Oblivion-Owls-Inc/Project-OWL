@@ -92,19 +92,19 @@ private: // members
 
 
     /// @brief  The Resource Counters that are children of this UiElement
-    std::vector< ResourceCounterUi* > m_ResourceCounters;
+    std::map< int, ResourceCounterUi* > m_ResourceCounters;
 
 
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
+    
+    /// @brief  gets the Item Counters from the child Entities
+    void getItemCountersFromChildren();
 
     /// @brief  sets up the item counters using the contents of the Inventory
     void setupItemCounters();
-
-    /// @brief  clears all Item Counters from this Component
-    void clearItemCounters();
 
 
     /// @brief  callback which gets called after an ItemStack is added to the Inventory
@@ -119,10 +119,6 @@ private: // methods
     /// @brief  adds and initializes a ResourceCounter
     /// @param  itemStack   the ItemStack to initialize the ResourceCounter with
     void addResourceCounter( ItemStack const& itemStack );
-
-    /// @brief  removes a resource counter from this ResourceUiManager
-    /// @param  resourceCounter iterator of the resourceCounter to remove
-    void removeResourceCounter( std::vector< ResourceCounterUi* >::iterator const& resourceCounter );
 
 
     /// @brief  updates the Transforms off all UiElements in the resources ui
