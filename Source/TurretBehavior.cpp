@@ -59,8 +59,8 @@
     {
         Behaviors< Behavior >()->RemoveComponent( this );
 
-        m_Transform  .Exit( GetEntity() );
-        m_AudioPlayer.Exit( GetEntity() );
+        m_Transform  .Exit();
+        m_AudioPlayer.Exit();
     }
 
     /// @brief Called Every Fixed Frame by the system
@@ -233,7 +233,7 @@
 
         ImGui::DragFloat( "Bullet Size", &m_BulletSize, 0.05f, 0.0f, INFINITY );
 
-        Inspection::InspectCollisionLayerFlags( "obstruction layers", &m_ObstructionLayers );
+        m_ObstructionLayers.Inspect( "obstruction layers" );
 
         if ( m_IsActive ){ ImGui::Text( "Active: True" ); }
         else { ImGui::Text( "Active: False" ); }

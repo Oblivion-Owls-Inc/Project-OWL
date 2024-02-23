@@ -348,8 +348,8 @@
     {
         Stop();
 
-        m_Transform.Exit( GetEntity() );
-        m_RigidBody.Exit( GetEntity() );
+        m_Transform.Exit();
+        m_RigidBody.Exit();
     }
 
 

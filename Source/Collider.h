@@ -15,7 +15,11 @@
 #include "Component.h"
 
 #include "ComponentReference.h"
-#include "Transform.h"
+class Transform;
+class RigidBody;
+class StaticBody;
+
+#include "CollisionLayerFlags.h"
 
 #include <map>
 #include <functional>
@@ -25,12 +29,6 @@
 //-----------------------------------------------------------------------------
 
 struct CollisionData;
-
-//-----------------------------------------------------------------------------
-// typedefs
-//-----------------------------------------------------------------------------
-
-using CollisionLayerFlags = unsigned;
 
 //-----------------------------------------------------------------------------
 // class
@@ -58,7 +56,7 @@ public: // types
 //-----------------------------------------------------------------------------
 protected: // constructor
 //-----------------------------------------------------------------------------
-	
+    
 
     /// @brief  default constructor
     /// @param  type    the type of Component
@@ -78,6 +76,14 @@ public: // accessors
     /// @return this Collider's Transform
     Transform* GetTransform() const;
 
+    /// @brief  gets this Collider's RigidBody
+    /// @return this Collider's RigidBody
+    RigidBody* GetRigidBody() const;
+
+    /// @brief  gets this Collider's StaticBody
+    /// @return this Collider's StaticBody
+    StaticBody* GetStaticBody() const;
+
 
     /// @brief  gets the collision layer of this Collider
     /// @return the collision layer of this Collider
@@ -86,10 +92,6 @@ public: // accessors
     /// @brief  sets the collision layer of this Collider
     /// @param  layerId the collision layer to set
     void SetCollisionLayer( unsigned layerId );
-
-    /// @brief  sets the collision layer of this Collider
-    /// @param  layerName   the name of the collision layer to set
-    void SetCollisionLayer( std::string const& layerName );
 
 
     /// @brief  gets the flags of which layers this Collider collides with
@@ -100,14 +102,10 @@ public: // accessors
     /// @param  layerFlags  the flags of which layers this Collider should collide with
     void SetCollisionLayerFlags( CollisionLayerFlags layerFlags );
 
-    /// @brief  sets the flags of which layers this Collider collides with
-    /// @param  layerFlags  the names of which layers this Collider should collide with
-    void SetCollisionLayerFlags( std::vector< std::string > const& layerNames );
-
 
     /// @brief  gets the list of colliders this Collider is currently colliding with
     /// @return the list of colliders this Collider is currently colliding with
-    std::vector< Collider* > const& GetContacts() const;
+    std::map< Collider*, int > const& GetContacts() const;
 
 
 //-----------------------------------------------------------------------------
@@ -158,49 +156,34 @@ public: // methods
     /// @brief  calls all OnCollision callbacks attached to this Collider
     /// @param  other           the other entity this Collider collided with
     /// @param  collisionData   the collisionData of the collision
+    /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
     void CallOnCollisionCallbacks( Collider* other, CollisionData const& collisionData );
-
-    /// @brief  calls all OnCollisionEnter callbacks attached to this Collider
-    /// @param  other           the other entity this Collider collided with
-    void CallOnCollisionEnterCallbacks( Collider* other );
-
-    /// @brief  calls all OnCollisionExit callbacks attached to this Collider
-    /// @param  other           the other entity this Collider collided with
-    void CallOnCollisionExitCallbacks( Collider* other );
 
 
     /// @brief  tries to add a contact to this Collider's contacts array
-    /// @param  other   the contact to add
-    /// @return whether the contact was added
+    /// @param  other           the contact to add
+    /// @param  currentFrame    the frame the Contact was added on
     /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
-    bool TryAddContact( Collider* other );
+    void TryAddContact( Collider* other, int currentFrame );
 
-    /// @brief  tries to remove a contact to this Collider's contacts array
-    /// @param  other   the contact to add
-    /// @return whether the contact was removed
-    /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
-    bool TryRemoveContact( Collider* other );
+
+    /// @brief  removes all outdated contacts from this Collider and calls OnCollisionExit callbacks
+    void RemoveOutdatedContacts();
 
 
 //-----------------------------------------------------------------------------
-protected: // virtual override methods
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  called when this Component's Entity enters the Scene
-    virtual void OnInit() override;
-
-    /// @brief  called when this Component's Entity is removed from the Scene
-    virtual void OnExit() override;
-
-
-//-----------------------------------------------------------------------------
-private: // member variables
+protected: // member variables
 //-----------------------------------------------------------------------------
 
     
-    /// @brief The transform of this Collider's Entity
+    /// @brief  the transform of this Collider's Entity
     ComponentReference< Transform > m_Transform;
+
+    /// @brief  the RigidBody attached to this Entity
+    ComponentReference< RigidBody, false > m_RigidBody;
+
+    /// @brief  the StaticBody attached to this Entity
+    ComponentReference< StaticBody, false > m_StaticBody;
 
 
     /// @brief  the collision layer of this Collider
@@ -210,18 +193,32 @@ private: // member variables
     CollisionLayerFlags m_CollisionLayerFlags = 0;
 
 
-    /// @brief  all of the Colliders this Collider is currently colliding with
-    std::vector< Collider* > m_Contacts = {};
+    /// @brief  all of the Colliders this Collider is currently colliding with, and the last frame that they were colliding
+    std::map< Collider*, int > m_Contacts = {};
 
 
     /// @brief  callbacks which get called whenever this collider collides
-    std::map< unsigned, OnCollisionCallback > m_OnCollisionCallbacks = {};
+    std::vector< std::pair< unsigned, OnCollisionCallback > > m_OnCollisionCallbacks = {};
 
     /// @brief  callbacks which get called whenever a collision begins
-    std::map< unsigned, OnCollisionStateChangeCallback > m_OnCollisionEnterCallbacks = {};
+    std::vector< std::pair< unsigned, OnCollisionStateChangeCallback > > m_OnCollisionEnterCallbacks = {};
 
     /// @brief  callbacks which get called whenever a collision ends
-    std::map< unsigned, OnCollisionStateChangeCallback > m_OnCollisionExitCallbacks = {};
+    std::vector< std::pair< unsigned, OnCollisionStateChangeCallback > > m_OnCollisionExitCallbacks = {};
+
+    
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  calls all OnCollisionEnter callbacks attached to this Collider
+    /// @param  other           the other entity this Collider collided with
+    void CallOnCollisionEnterCallbacks( Collider* other );
+
+    /// @brief  calls all OnCollisionExit callbacks attached to this Collider
+    /// @param  other           the other entity this Collider collided with
+    void CallOnCollisionExitCallbacks( Collider* other );
 
 
 //-----------------------------------------------------------------------------

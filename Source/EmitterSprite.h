@@ -48,6 +48,10 @@ public:
     virtual void Draw() override;
 
 
+    /// @brief  checks if a a point in local space overlaps this Sprite
+    /// @return whether this Sprite overlaps the point
+    virtual bool OverlapsLocalPoint( glm::vec2 const& ) const override { return false; }
+
 //-----------------------------------------------------------------------------
 //              Data
 //-----------------------------------------------------------------------------

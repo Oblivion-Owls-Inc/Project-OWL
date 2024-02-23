@@ -192,7 +192,7 @@
     template < typename TileType >
     void Tilemap<TileType>::OnExit()
     {
-        m_Transform.Exit( GetEntity() );
+        m_Transform.Exit();
     }
 
 

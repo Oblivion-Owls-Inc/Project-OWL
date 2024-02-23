@@ -8,6 +8,9 @@
 
 #include "HomeBase.h"
 
+#include "ComponentReference.t.h"
+#include "Health.h"
+
 #include "SceneSystem.h"
 
 //-----------------------------------------------------------------------------
@@ -69,7 +72,7 @@
     /// @brief  called once when exiting the scene
     void HomeBase::OnExit()
     {
-        m_Health.Exit( GetEntity() );
+        m_Health.Exit();
     }
 
 

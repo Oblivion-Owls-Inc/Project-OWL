@@ -14,12 +14,20 @@
 class PauseSystem : public System
 {
 
+//-----------------------------------------------------------------------------
+public: // methods
+//-----------------------------------------------------------------------------
+
+    /// @brief  Sets the game to running or not
+    /// @param  running If the game is running
+    void SetRunning(bool running) { m_Running = running; }
+
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
 
-
+     
     /// @brief Update the PauseSystem
     /// @param dt The time elapsed since the last update
     virtual void OnUpdate(float dt) override;
@@ -36,10 +44,11 @@ private: // Members
 ///-----------------------------------------------------------------------------
 
 
-    bool m_Running = true; ///< Is the game Currently running
+    /// @brief  If the the game is running
+    bool m_Running = true; 
 
 
-
+    /// @brief  The names of the systems that DONT get paused
     std::set< std::string > const m_EditorSystemNames =
     {
         "PlatformSystem",
@@ -64,7 +73,7 @@ private: // Methods
 
 
     /// @brief  Pause the systems in the game
-    void PauseGame();
+    void pauseGame();
 
 
 //-----------------------------------------------------------------------------
@@ -116,6 +125,6 @@ private: // singleton stuff
 //-----------------------------------------------------------------------------
 };
 
-/// @brief A macro to create a new pause system
+/// @brief A macro to access the PauseSystem
 /// @return A PauseSystem pointer
 __inline PauseSystem* Pause() { return PauseSystem::GetInstance(); }

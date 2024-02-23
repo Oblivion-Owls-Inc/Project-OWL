@@ -10,6 +10,9 @@
 
 #include "Bullet.h"
 
+#include "ComponentReference.t.h"
+#include "Collider.h"
+
 #include "Health.h"
 
 //-----------------------------------------------------------------------------
@@ -66,7 +69,7 @@
     /// @brief  called when this Component's Entity is removed from the Scene
     void Bullet::OnExit()
     {
-        m_Collider.Exit( GetEntity() );
+        m_Collider.Exit();
     }
 
 

@@ -1,3 +1,10 @@
+///*****************************************************************/
+/// @file PauseSystem.cpp
+/// @author Jax Clayton (jax.clayton@digipen.edu)
+/// @brief A system that pauses the game when the pause button is pressed.
+/// 
+/// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+///*****************************************************************/
 
 
 
@@ -11,6 +18,9 @@
 
 
 
+///-----------------------------------------------------------------------------
+/// Private Virtual override methods
+///-----------------------------------------------------------------------------
 
 /// @brief Update the PauseSystem
 /// @param dt The time elapsed since the last update
@@ -21,16 +31,19 @@ void PauseSystem::OnUpdate(float dt)
         m_Running = !m_Running;
     }
 
-	PauseGame();
+	pauseGame();
 }
 
+/// @brief  Gets called whenever a scene is exited
 void PauseSystem::OnSceneExit()
 {
+#ifdef NDEBUG
     if (m_Running)
     {
 	   m_Running = true;
-	   PauseGame();
+	   pauseGame();
     }
+#endif // NDEBUG
 }
 
 /// @brief Gets Called by the Debug system to display debug information
@@ -46,17 +59,22 @@ void PauseSystem::DebugWindow()
 ///-----------------------------------------------------------------------------
 
 /// @brief  Pause the systems in the game
-void PauseSystem::PauseGame()
+void PauseSystem::pauseGame()
 {
     for (System* system : GameEngine()->GetSystems())
     {
 
         if (m_EditorSystemNames.contains(system->GetName()) == false)
         {
-            system->SetEnabled(m_Running);
+            system->SetEnabled(m_Running); 
         }
     }
 }
+
+
+///-----------------------------------------------------------------------------
+/// Private Reading
+///-----------------------------------------------------------------------------
 
 /// @brief map of the PauseSystem read methods
 ReadMethodMap< PauseSystem > const PauseSystem::s_ReadMethods = {
@@ -70,9 +88,9 @@ nlohmann::ordered_json PauseSystem::Write() const
 }
 
 
-//-----------------------------------------------------------------------------
-// singleton stuff
-//-----------------------------------------------------------------------------
+///-----------------------------------------------------------------------------
+/// singleton stuff
+///-----------------------------------------------------------------------------
 
 
 /// @brief The constructor of PauseSystem

@@ -16,13 +16,16 @@
 #include <vector>
 
 #include "ComponentReference.h"
-#include "Transform.h"
-#include "Sprite.h"
-#include "AudioPlayer.h"
+class Transform;
+class Sprite;
+class AudioPlayer;
 
 #include "EntityReference.h"
-#include "Inventory.h"
-#include "Tilemap.h"
+class Inventory;
+
+template < typename TileType >
+class Tilemap;
+class Entity;
 
 #include  "AssetReference.h"
 

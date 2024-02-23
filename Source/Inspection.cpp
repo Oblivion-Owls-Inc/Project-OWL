@@ -40,42 +40,6 @@
         return false;
     }
 
-
-    /// @brief  inspects a CollisionLayerFlags
-    /// @param  label           the label of the inspector
-    /// @param  collisionLayers the collisionLayerFlags to inspect
-    /// @return whether the CollisionLayerFlags was modified
-    bool Inspection::InspectCollisionLayerFlags( char const* label, CollisionLayerFlags* collisionLayers )
-    {
-        std::vector flagNames = Collisions()->GetLayerNames( *collisionLayers );
-        std::string flagNamesString = "";
-        if ( flagNames.size() > 0 )
-        {
-            flagNamesString = flagNames[ 0 ];
-            for ( int i = 1; i < flagNames.size(); ++i )
-            {
-                flagNamesString += ", " + flagNames[ i ];
-            }
-        }
-
-        bool changed = false;
-
-        if ( ImGui::BeginCombo( label, flagNamesString.c_str() ) ) // Default displayed
-        {
-            for (int i = 0; i < Collisions()->GetLayerNames().size(); ++i)
-            {
-                if ( ImGui::Selectable( Collisions()->GetLayerNames()[ i ].c_str(), *collisionLayers & (1 << i), ImGuiSelectableFlags_DontClosePopups ) )
-                {
-                    *collisionLayers ^= 1 << i;
-                    changed = true;
-                }
-            }
-            ImGui::EndCombo();
-        }
-
-        return true;
-    }
-
 //-----------------------------------------------------------------------------
 // private: helper methods
 //-----------------------------------------------------------------------------

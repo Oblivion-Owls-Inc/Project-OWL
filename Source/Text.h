@@ -46,6 +46,14 @@ private: // member variables / helpers
     void loadTextIntoTilemap();
 
 
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  inspects this Text Component
+    virtual void Inspector() override;
+
 
 //-----------------------------------------------------------------------------
 private: // Reading

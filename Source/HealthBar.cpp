@@ -8,6 +8,8 @@
 
 #include "HealthBar.h"
 
+#include "ComponentReference.t.h"
+
 #include "Transform.h"
 #include "Health.h"
 #include "UiBarSprite.h"
@@ -89,8 +91,8 @@
     {
         Behaviors< Behavior >()->RemoveComponent( this );
 
-        m_Transform  .Exit( GetEntity() );
-        m_UiBarSprite.Exit( GetEntity() );
+        m_Transform  .Exit();
+        m_UiBarSprite.Exit();
 
         m_TargetEntity.Exit();
     }

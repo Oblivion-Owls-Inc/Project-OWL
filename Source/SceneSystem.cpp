@@ -292,7 +292,7 @@
             );
             if ( it == s_AssetLibraries.end() )
             {
-                Debug() << "JSON WARNING: unrecognized token " << key << " at " << Stream::GetDebugLocation() << std::endl;
+                Debug() << "WARNING: (JSON):  unrecognized token " << key << " at " << Stream::GetDebugLocation() << std::endl;
                 break;
             }
 

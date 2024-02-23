@@ -40,9 +40,13 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
     {
         for ( auto& [ key, value ] : data.items() )
         {
+            Stream::PushDebugLocation( key + "." );
+
             // create and read the asset
             AssetType* asset = new AssetType();
             Stream::Read( asset, value );
+
+            Stream::PopDebugLocation();
 
             // insert the asset into the map
             AddAsset( key, asset );

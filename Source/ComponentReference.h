@@ -8,9 +8,10 @@
 
 #pragma once
 
-#define COMPONENTREFERENCE_H
+#include <functional>
 
-#include "Entity.h"
+class Entity;
+class Component;
 
 
 /// @brief  abstract base class for templatized ComponentReferences
@@ -30,8 +31,7 @@ public: // virtual methods
     virtual void Init( Entity* entity ) = 0;
 
     /// @brief  separates this ComponentReference from the target Entity
-    /// @param  entity  the entity this ComponentReference is curently watching
-    virtual void Exit( Entity* entity ) = 0;
+    virtual void Exit() = 0;
 
 
     /// @brief  sets this ComponentReference to nullptr
@@ -70,6 +70,15 @@ public: // constructor
     virtual ~ComponentReference() override;
 
 
+    /// @brief  move constructor
+    /// @param  other   the ComponentReference to move into this one
+    ComponentReference( ComponentReference&& other ) noexcept;
+
+    /// @brief  move-assignment operator
+    /// @param  other   the ComponentReference to move into this one
+    void operator =( ComponentReference&& other ) noexcept;
+
+
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
@@ -80,8 +89,7 @@ public: // methods
     virtual void Init( Entity* entity ) override;
 
     /// @brief  separates this ComponentReference from the target Entity
-    /// @param  entity  the entity this ComponentReference is curently watching
-    virtual void Exit( Entity* entity ) override;
+    virtual void Exit() override;
 
 
     /// @brief  sets the callback to call when this ComponentReference connects to a Component
@@ -116,6 +124,11 @@ public: // accessors
     void operator =( ComponentType* component );
 
 
+    /// @brief  gets the Entity this ComponentReference watches
+    /// @return the Entity this ComponentReference watches
+    Entity const* GetEntity() const;
+
+
 //-----------------------------------------------------------------------------
 public: // engine methods
 //-----------------------------------------------------------------------------
@@ -138,6 +151,10 @@ public: // engine methods
 private: // members
 //-----------------------------------------------------------------------------
 
+    
+    /// @brief  the Entity the tracked Component is attached to
+    Entity* m_Entity = nullptr;
+
 
     /// @brief  the component this ComponentReference is referring to
     ComponentType* m_Component = nullptr;
@@ -152,7 +169,3 @@ private: // members
 
 //-----------------------------------------------------------------------------
 };
-
-#ifndef COMPONENTREFERENCE_T
-#include "ComponentReference.t.cpp"
-#endif

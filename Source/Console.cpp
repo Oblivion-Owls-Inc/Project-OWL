@@ -46,7 +46,7 @@
         if (m_AutoScroll) 
         {
             m_ScrollToBottom = true;
-        }
+    }
     }
 
     /// @brief Shows the console window
@@ -71,24 +71,26 @@
             ImGui::EndPopup();
         }
 
+
+#define TEST
     #ifdef TEST
         if (ImGui::SmallButton("Add Debug Warning")) 
         { 
-            AddLog("Warning: Don't Do that");
+            AddLog("Warning: Don't Do that\n");
         }
 
         ImGui::SameLine();
 
         if (ImGui::SmallButton("Add Debug Error")) 
         { 
-            AddLog("Error: something went wrong"); 
+            AddLog("Error: something went wrong\n"); 
         }
 
         ImGui::SameLine();
 
         if (ImGui::SmallButton("Add Debug Message")) 
 	    { 
-		    AddLog("Debug: This is a debug message"); 
+		    AddLog("Debug: This is a debug message\n"); 
 	    }
 
         ImGui::SameLine();
@@ -194,12 +196,12 @@
 
             // Keep up at the bottom of the scroll region if we were already at the bottom at the beginning of the frame.
             // Using a scrollbar or mouse-wheel will take away from the bottom edge.
-            if (m_ScrollToBottom || (m_AutoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()))
+            if (m_AutoScroll || ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
             {
                 ImGui::SetScrollHereY(1.0f);
             }
 
-            m_ScrollToBottom = false;
+            m_AutoScroll = false;
 
             ImGui::PopStyleVar();
         }

@@ -59,8 +59,6 @@
             }
         );
 
-        // TODO: figure out how to handle the edge case where this Entity's parent changes, which would invalidate m_ParentTilemap
-
         m_ParentTilemap.Init( GetEntity()->GetParent() );
         m_Tilemap.Init( GetEntity() );
     }
@@ -68,8 +66,8 @@
     /// @brief  called once when exiting the scene
     void TilemapTextureConnector::OnExit()
     {
-        m_ParentTilemap.Exit( GetEntity()->GetParent() );
-        m_Tilemap.Exit( GetEntity() );
+        m_ParentTilemap.Exit();
+        m_Tilemap.Exit();
     }
 
 
@@ -82,7 +80,7 @@
             return;
         }
 
-        m_ParentTilemap.Exit( previousParent );
+        m_ParentTilemap.Exit();
         m_ParentTilemap.Init( GetEntity()->GetParent() );
     }
 

@@ -90,10 +90,17 @@
     /// @param  parent  the Entity that should be the parent of this one
     void Entity::SetParent( Entity* parent )
     {
-        // ensure the IsInScene statuses match
-        if ( parent != nullptr && IsInScene() != parent->IsInScene() )
+        // if the child isn't in the scene, just set the parent pointer and handle the rest when it gets added
+        if ( parent != nullptr && parent->IsInScene() == true && IsInScene() == false )
         {
-            Debug() << "WARNING: cannot set the parent of an Entity with a different IsInScene status" << std::endl;
+            if ( m_Parent != nullptr )
+            {
+                Debug() << "Error: cannot set the parent of an Enity that already has a parent and isn't in the scene to an Entity that is in the scene" << std::endl;
+                return;
+            }
+
+            m_Parent = parent;
+            m_SetParentOnInit = true;
             return;
         }
 
@@ -254,6 +261,13 @@
     {
         m_IsInScene = true;
 
+        if ( m_SetParentOnInit )
+        {
+            Entity* parent = m_Parent;
+            m_Parent = nullptr;
+            SetParent( parent );
+        }
+
         for ( auto& [ type, component ] : m_Components )
         {
             component->OnInit();
@@ -282,6 +296,11 @@
         m_EntityReferences.clear();
 
         m_IsInScene = false;
+
+        if ( m_Parent != nullptr )
+        {
+            m_Parent->removeChild( this );
+        }
     }
 
 
@@ -302,14 +321,14 @@
 
     /// @brief  adds an ComponentReference to this Component
     /// @param  componentReference  the refernce to add
-    void Entity::AddComponentReference( ComponentReferenceBase* componentReference )
+    void Entity::AddComponentReference( ComponentReferenceBase* componentReference ) noexcept
     {
         m_ComponentReferences.insert( componentReference );
     }
 
     /// @brief  removes an ComponentReference to this Component
     /// @param  componentReference  the refernce to remove
-    void Entity::RemoveComponentReference( ComponentReferenceBase* componentReference )
+    void Entity::RemoveComponentReference( ComponentReferenceBase* componentReference ) noexcept
     {
         m_ComponentReferences.erase( componentReference );
     }
@@ -334,6 +353,14 @@
         }
 
         propagateDescendantChange( child->GetNumDescendants() + 1 );
+
+        if ( IsInScene() )
+        {
+            for ( auto& [ type, component ] : m_Components )
+            {
+                component->OnAddChild( child );
+            }
+        }
     }
 
     /// @brief  removes a child from this Enity
@@ -341,6 +368,14 @@
     /// @note   assumes that this and the child's IsInScene status is the same
     void Entity::removeChild( Entity* child )
     {
+        if ( IsInScene() )
+        {
+            for ( auto& [ type, component ] : m_Components )
+            {
+                component->OnRemoveChild( child );
+            }
+        }
+
         // remove child from the children list
         auto it = std::find( m_Children.begin(), m_Children.end(), child );
         if ( it == m_Children.end() )
@@ -350,7 +385,7 @@
         }
         m_Children.erase( it );
 
-        if ( IsInScene() )
+        if ( child->IsInScene() )
         {
             Entities()->MoveToEnd( child );
         }
@@ -574,6 +609,7 @@
             std::type_index const* type = ComponentFactory::GetTypeId( key );
             if ( type == nullptr )
             {
+                Debug() << "JSON WARNING: unrecognized token \"" << key << "\" encountered at " << Stream::GetDebugLocation() << std::endl;
                 continue;
             }
 
@@ -587,16 +623,12 @@
                 component->SetEntity( this );
             }
 
-            // read the component data
-		    try
-		    {
-			    // Read in all the data for the component from the json.
-			    Stream::Read( component, value );
-		    }
-		    catch ( std::runtime_error error )
-		    {
-			    std::cerr << error.what() << std::endl;
-		    }
+            Stream::PushDebugLocation( key + "." );
+
+			// Read in all the data for the component from the json.
+			Stream::Read( component, value );
+
+            Stream::PopDebugLocation();
 	    }
     }
 

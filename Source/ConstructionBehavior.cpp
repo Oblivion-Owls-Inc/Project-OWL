@@ -10,11 +10,14 @@
 
 #include "ConstructionBehavior.h"
 
+
+#include "ComponentReference.t.h"
 #include "Transform.h"
-#include "Tilemap.h"
 #include "Sprite.h"
 #include "AudioPlayer.h"
 #include "Inventory.h"
+#include "Tilemap.h"
+
 
 #include "AssetLibrarySystem.h"
 #include "Entity.h"
@@ -230,9 +233,9 @@
         m_PlayerEntity .Exit();
         m_TilemapEntity.Exit();
 
-        m_Transform           .Exit( GetEntity() );
-        m_Sprite              .Exit( GetEntity() );
-        m_TurretPlacementSound.Exit( GetEntity() );
+        m_Transform           .Exit();
+        m_Sprite              .Exit();
+        m_TurretPlacementSound.Exit();
     }
 
     /// @brief  called every simulation frame

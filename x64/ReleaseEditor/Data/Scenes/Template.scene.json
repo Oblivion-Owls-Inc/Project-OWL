@@ -1,0 +1,11 @@
+{
+    "Entities": [
+        {
+            "Name": "Camera",
+            "Components": {
+                "Transform": {},
+                "Camera": {}
+            }
+        }
+    ]
+}

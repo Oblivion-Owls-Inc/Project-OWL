@@ -49,11 +49,16 @@ void Mesh::LoadVertices(std::vector<Vertex> vertices)
 void Mesh::LoadQuad( glm::vec2 scale, glm::ivec2 sheetDimensions, glm::vec2 pivot )
 {
     m_UVsize = glm::vec2( 1, 1 ) / (glm::vec2)sheetDimensions;
+    pivot *= scale;
+
+    m_Bounds[ 0 ] = glm::vec2( 0      , 0       ) - pivot;
+    m_Bounds[ 1 ] = glm::vec2( scale.x, scale.y ) - pivot;
+
     LoadVertices( {
-        { glm::vec2( 0, 1 ) - pivot, glm::vec2( 0         , 0          ) },
-        { glm::vec2( 1, 1 ) - pivot, glm::vec2( m_UVsize.x, 0          ) },
-        { glm::vec2( 0, 0 ) - pivot, glm::vec2( 0         , m_UVsize.y ) },
-        { glm::vec2( 1, 0 ) - pivot, glm::vec2( m_UVsize.x, m_UVsize.y ) }
+        { glm::vec2( m_Bounds[ 0 ].x, m_Bounds[ 1 ].y ), glm::vec2( 0         , 0          ) },
+        { glm::vec2( m_Bounds[ 1 ].x, m_Bounds[ 1 ].y ), glm::vec2( m_UVsize.x, 0          ) },
+        { glm::vec2( m_Bounds[ 0 ].x, m_Bounds[ 0 ].y ), glm::vec2( 0         , m_UVsize.y ) },
+        { glm::vec2( m_Bounds[ 1 ].x, m_Bounds[ 0 ].y ), glm::vec2( m_UVsize.x, m_UVsize.y ) }
     } );
 }
 

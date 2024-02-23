@@ -167,7 +167,7 @@
     {
         Behaviors< EffectAnimator >()->RemoveComponent( this );
 
-        m_Transform.Exit( GetEntity() );
+        m_Transform.Exit();
     }
 
     /// @brief  called every frame

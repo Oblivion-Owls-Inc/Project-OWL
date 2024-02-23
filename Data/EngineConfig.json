@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1132,
-                695
+                936,
+                957
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -38,7 +38,8 @@
                 "Base",
                 "Projectiles"
             ],
-            "CollisionSteps": 2
+            "CollisionSteps": 8,
+            "GridSize": 0.25
         },
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},

@@ -55,6 +55,12 @@ public: // methods
     void SetFullscreen( bool fullscreen );
 
 
+    /// @brief  checks if a screen pos is within the game window
+    /// @param  screenPos   the screen pos to check
+    /// @return whether the position is within the window
+    bool isPosWithinWindow( glm::vec2 const& screenPos ) const;
+
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------

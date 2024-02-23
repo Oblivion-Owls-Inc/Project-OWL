@@ -90,6 +90,18 @@
     }
 
 
+    /// @brief  checks if a screen pos is within the game window
+    /// @param  screenPos   the screen pos to check
+    /// @return whether the position is within the window
+    bool PlatformSystem::isPosWithinWindow( glm::vec2 const& screenPos ) const
+    {
+        return (
+            screenPos.x >= 0.0f && screenPos.x < m_WindowSize.x &&
+            screenPos.y >= 0.0f && screenPos.y < m_WindowSize.y
+        );
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
@@ -186,15 +198,13 @@
 
         glDebugMessageCallback( openGlErrorCallback, NULL ); // set OpenGL error callback func
 
-        #ifndef DEBUG
-            glfwSetWindowSizeCallback( m_Window, glfwWindowResizeCallback );
-        #endif
+        glfwSetWindowSizeCallback( m_Window, glfwWindowResizeCallback );
         glfwSetWindowCloseCallback( m_Window, glfwWindowCloseCallback );
 
 
-        #ifdef DEBUG
+        #ifndef NDEBUG
             Renderer()->SetDrawToBuffer(true); // enable drawing to off-screen buffer
-        #endif // DEBUG
+        #endif // NDEBUG
 
     }
 
@@ -215,48 +225,48 @@
         dockspace_flags |= ImGuiDockNodeFlags_AutoHideTabBar;
         ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), dockspace_flags);
 
-        #ifdef DEBUG
+        #ifndef NDEBUG
 
-        ImGui::PushStyleVar( ImGuiStyleVar_WindowPadding, ImVec2( 0.0f, 0.0f ) );
-        /// Start the ImGui window with the window name
-        ImGui::Begin( GetImguiWindowName().c_str() );
+            ImGui::PushStyleVar( ImGuiStyleVar_WindowPadding, ImVec2( 0.0f, 0.0f ) );
+            /// Start the ImGui window with the window name
+            ImGui::Begin( GetImguiWindowName().c_str() );
 
-            /// Get the window width and height
-            ImVec2 imGuiSize = ImGui::GetContentRegionAvail();
-            ImVec2 pos = ImGui::GetWindowPos();
-            ImVec2 max = ImVec2( pos.x + imGuiSize.x, pos.y + imGuiSize.y );
+                /// Get the window width and height
+                ImVec2 imGuiSize = ImGui::GetContentRegionAvail();
+                ImVec2 pos = ImGui::GetWindowPos();
+                ImVec2 max = ImVec2( pos.x + imGuiSize.x, pos.y + imGuiSize.y );
 
-            #pragma warning( push )
-            #pragma warning( disable: 4312 )
-            ImGui::GetWindowDrawList()->AddImage(
-                (ImTextureID)Renderer()->GetBufferTextureID(),
-                pos,
-                max,
-                ImVec2(0, 1),
-                ImVec2(1, 0)
-            );
-            #pragma warning( pop )
+                #pragma warning( push )
+                #pragma warning( disable: 4312 )
+                ImGui::GetWindowDrawList()->AddImage(
+                    (ImTextureID)Renderer()->GetBufferTextureID(),
+                    pos,
+                    max,
+                    ImVec2(0, 1),
+                    ImVec2(1, 0)
+                );
+                #pragma warning( pop )
 
-        ImGui::End();
-        ImGui::PopStyleVar();
+            ImGui::End();
+            ImGui::PopStyleVar();
 
-        glm::ivec2 glfwWindowPos;
-        glfwGetWindowPos( m_Window, &glfwWindowPos.x, &glfwWindowPos.y );
+            glm::ivec2 glfwWindowPos;
+            glfwGetWindowPos( m_Window, &glfwWindowPos.x, &glfwWindowPos.y );
 
-        m_WindowPos = glm::vec2( pos.x - glfwWindowPos.x, pos.y - glfwWindowPos.y );
+            m_WindowPos = glm::vec2( pos.x - glfwWindowPos.x, pos.y - glfwWindowPos.y );
 
-        glm::ivec2 windowSize = glm::ivec2( (int)imGuiSize.x, (int)imGuiSize.y );
-        if ( windowSize != m_WindowSize )
-        {
-            m_WindowSize = windowSize;
-
-            for ( auto& [ key, callback ] : m_OnWindowResizedCallbacks )
+            glm::ivec2 windowSize = glm::ivec2( (int)imGuiSize.x, (int)imGuiSize.y );
+            if ( windowSize != m_WindowSize )
             {
-                callback( m_WindowSize );
-            }
-        }
+                m_WindowSize = windowSize;
 
-        #endif /// DEBUG  
+                for ( auto& [ key, callback ] : m_OnWindowResizedCallbacks )
+                {
+                    callback( m_WindowSize );
+                }
+            }
+
+        #endif // NDEBUG  
     }
 
 

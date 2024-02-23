@@ -17,8 +17,6 @@
 
 class Entity;
 
-/// @brief  bit flags of which layers a collider collides with
-using CollisionLayerFlags = unsigned; 
 
 class Inspection
 {
@@ -61,13 +59,6 @@ public: // public methods
         DataType* array,
         std::function< bool( DataType* ) > elementInspector
     );
-
-
-    /// @brief  inspects a CollisionLayerFlags
-    /// @param  label           the label of the inspector
-    /// @param  collisionLayers the collisionLayerFlags to inspect
-    /// @return whether the CollisionLayerFlags was modified
-    static bool InspectCollisionLayerFlags( char const* label, CollisionLayerFlags* collisionLayers );
 
 
 //-----------------------------------------------------------------------------
