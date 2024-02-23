@@ -103,7 +103,7 @@ public: // accessors
 
     /// @brief  sets the function that this EventListener filters events with
     /// @param  filter  the function that this EventListener should filter events with
-    void SetFliterFunction( std::function< bool ( EventType const& ) > filter )
+    void SetFilterFunction( std::function< bool ( EventType const& ) > filter )
     {
         m_FilterFunction = filter;
     }

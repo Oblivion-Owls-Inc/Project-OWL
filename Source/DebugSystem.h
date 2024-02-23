@@ -21,6 +21,7 @@
 #include "imgui_stdlib.h"
 #include "imgui_impl_opengl3.h"
 #include "imgui_impl_glfw.h"
+#include "Console.h"
 #include <iostream>
 #include <sstream>
 #include <set>
@@ -99,6 +100,7 @@ public: // DebugStream
         #endif
 
 		Stream::WriteToTraceLog(oss.str());
+        WritetoConsole(oss.str());
 	}
 
 //-----------------------------------------------------------------------------
@@ -181,6 +183,9 @@ private: // methods
 
     /// @brief Sets up the ImGui configuration path
     void SetupImGuiConfigPath();
+
+    /// @brief Writes to the Console
+    void WritetoConsole(const std::string& message);
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------

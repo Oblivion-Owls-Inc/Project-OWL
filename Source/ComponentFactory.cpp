@@ -57,6 +57,8 @@
 #include "WinState.h"
 #include "ResourceCounterUi.h"
 #include "ResourcesUiManager.h"
+#include "SceneChangeButton.h"
+
 
 
 //-----------------------------------------------------------------------------
@@ -196,6 +198,7 @@
         { "Nineslice"              , ComponentInfo< Nineslice               >() },
         { "ResourceCounterUi"      , ComponentInfo< ResourceCounterUi       >() },
         { "ResourcesUiManager"     , ComponentInfo< ResourcesUiManager      >() },
+        { "SceneChangeButton"      , ComponentInfo< SceneChangeButton       >() },
     };
 
 //-----------------------------------------------------------------------------
