@@ -23,7 +23,7 @@
 SceneChangeButton::SceneChangeButton() :
     Component(typeid(SceneChangeButton))
 {}
-
+  
 
 //-----------------------------------------------------------------------------
 // public: methods
