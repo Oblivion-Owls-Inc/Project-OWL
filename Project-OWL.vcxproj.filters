@@ -632,6 +632,9 @@
     <ClCompile Include="Source\ActionReference.cpp">
       <Filter>Engine\Framework\References\ActionReference</Filter>
     </ClCompile>
+    <ClCompile Include="Source\InputCallback.cpp">
+      <Filter>Engine\Systems\InputSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">

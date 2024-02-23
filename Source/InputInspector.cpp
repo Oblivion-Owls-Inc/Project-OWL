@@ -17,36 +17,6 @@
 // public: inspection
 //-----------------------------------------------------------------------------
 
-/// @brief callback for recording an action
-/// @param window,   window to watch key inputs for
-/// @param key,      key captured
-/// @param scancode, scancode for the callback (unused)
-/// @param action,   action from callback (unused)
-/// @param mods,     modifiers such as sticky keys (unused)
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-    int whichAction = Input()->M_changeingAction;
-    switch (whichAction)
-    {
-    case 1:
-        Input()->GetActionByName(Input()->M_whichAction)->AddKeyInput(key);
-        break;
-    case 2:
-        Input()->GetActionByName(Input()->M_whichAction)->RemoveKeyInput(key);
-        break;
-    case 7:
-        Input()->GetActionByName(Input()->M_whichAction)->AddKeyAxisNegative(key);
-        break;
-    case 8:
-        Input()->GetActionByName(Input()->M_whichAction)->RemoveKeyAxisNegative(key);
-        break;
-    default:
-        break;
-    }
-    glfwSetKeyCallback(Input()->GetHandle(), nullptr);
-    Input()->M_changeingAction = 0;
-}
-
 /// @brief Gets Called by the Debug system to display debug information
 void InputSystem::DebugWindow()
 {
@@ -75,7 +45,7 @@ void InputSystem::DebugWindow()
         for (int i = 0; i < vectorSize; ++i)
         {
             // display name of input
-            if (ImGui::TreeNode(m_Actions[i].GetName() != "" ? m_Actions[i].GetName().c_str() : "NO NAME"))
+            if (ImGui::TreeNode(m_Actions[i].GetName().c_str()))
             {
                 // set the name of the action
                 snprintf(title, sizeof(title), "Set Name");
@@ -130,28 +100,31 @@ void InputSystem::DebugWindow()
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
-                        ImGui::SameLine();
-                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                        if (j % 5 != 0 || j == 0)
+                        {
+                            ImGui::SameLine();
+                        }
+                        keyVisual(vector[j]);
                     }
                     if (ImGui::Button("Add Key"))
                     {
-                        glfwSetKeyCallback(handle, &key_callback);
                         M_changeingAction = 1;
                         M_whichAction = m_Actions[i].GetName();
                     }
                     if (M_changeingAction == 1)
                     {
                         ImGui::Text("Press key to add");
+                        m_Actions[i].ManualKeyCallback();
                     }
                     if (ImGui::Button("Remove Key"))
                     {
-                        glfwSetKeyCallback(handle, &key_callback);
                         M_changeingAction = 2;
                         M_whichAction = m_Actions[i].GetName();
                     }
                     if (M_changeingAction == 2)
                     {
                         ImGui::Text("Press key to remove");
+                        m_Actions[i].ManualKeyCallback();
                     }
                     ImGui::TreePop();
                 }
@@ -165,7 +138,10 @@ void InputSystem::DebugWindow()
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
-                        ImGui::SameLine();
+                        if (j % 5 != 0 || j == 0)
+                        {
+                            ImGui::SameLine();
+                        }
                         char mouseButton[8] = { 0 };
                         snprintf(mouseButton, sizeof(mouseButton), "M%d", vector[j]);
                         ImGui::Text(mouseButton);
@@ -216,7 +192,10 @@ void InputSystem::DebugWindow()
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
-                        ImGui::SameLine();
+                        if (j % 5 != 0 || j == 0)
+                        {
+                            ImGui::SameLine();
+                        }
                         switch (vector[j])
                         {
                         case GLFW_GAMEPAD_BUTTON_A:
@@ -315,28 +294,31 @@ void InputSystem::DebugWindow()
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
-                        ImGui::SameLine();
-                        ImGui::Text(glfwGetKeyName(vector[j], 0));
+                        if (j % 5 != 0 || j == 0)
+                        {
+                            ImGui::SameLine();
+                        }
+                        keyVisual(vector[j]);
                     }
                     if (ImGui::Button("Add Key"))
                     {
-                        glfwSetKeyCallback(handle, &key_callback);
                         M_changeingAction = 7;
                         M_whichAction = m_Actions[i].GetName();
                     }
                     if (M_changeingAction == 7)
                     {
                         ImGui::Text("Press key to add");
+                        m_Actions[i].ManualKeyCallback();
                     }
                     if (ImGui::Button("Remove Key"))
                     {
-                        glfwSetKeyCallback(handle, &key_callback);
                         M_changeingAction = 8;
                         M_whichAction = m_Actions[i].GetName();
                     }
                     if (M_changeingAction == 8)
                     {
                         ImGui::Text("Press key to remove");
+                        m_Actions[i].ManualKeyCallback();
                     }
 
                     ImGui::TreePop();
@@ -351,7 +333,10 @@ void InputSystem::DebugWindow()
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
-                        ImGui::SameLine();
+                        if (j % 5 != 0 || j == 0)
+                        {
+                            ImGui::SameLine();
+                        }
                         char mouseButton[8] = { 0 };
                         snprintf(mouseButton, sizeof(mouseButton), "M%d", vector[j]);
                         ImGui::Text(mouseButton);
@@ -403,7 +388,10 @@ void InputSystem::DebugWindow()
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
-                        ImGui::SameLine();
+                        if (j % 5 != 0 || j == 0)
+                        {
+                            ImGui::SameLine();
+                        }
                         switch (vector[j])
                         {
                         case GLFW_GAMEPAD_BUTTON_A:
@@ -503,7 +491,6 @@ void InputSystem::DebugWindow()
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
-                        ImGui::SameLine();
                         switch (vector[j])
                         {
                         case GLFW_GAMEPAD_AXIS_LEFT_X:
@@ -917,7 +904,7 @@ void InputSystem::Action::SetName(std::string& name)
 /// @return the name of the action
 std::string InputSystem::Action::GetName() const
 {
-    return m_name;
+    return m_name != "" ? m_name : "NO NAME";
 }
 
 /// @brief  sets the description of the action

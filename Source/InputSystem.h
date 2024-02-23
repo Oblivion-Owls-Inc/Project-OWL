@@ -44,9 +44,13 @@ public: // inspection
     /// @brief Gets Called by the Debug system to display debug information
     virtual void DebugWindow() override;
 
+    /// @brief  displays a text version of a key to imgui (65 becomes "A", etc)
+    /// @param  key to convert
+    void keyVisual(int key);
+
+
     /// @brief Constructs the InputSystem
     InputSystem();
-
 
     /// @brief The singleton instance of InputSystem
     static InputSystem * instance;
@@ -194,6 +198,9 @@ public: // public class
         /// @brief  removes all inputs for this action 
         ///         and empties name/description
         void Flush();
+
+        /// @brief  manual callback catch for keys since imgui hates glfw
+        void ManualKeyCallback();
 
         /// @brief  retrieves a private vector for inspector
         /// @param  vector number
