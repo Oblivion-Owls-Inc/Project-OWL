@@ -309,6 +309,9 @@
     <Filter Include="Game\Components\Generator">
       <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Framework\References\ActionReference">
+      <UniqueIdentifier>{1ee2ee1a-a4cd-4e32-a19d-864b08a21394}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -625,6 +628,9 @@
     </ClCompile>
     <ClCompile Include="Source\InputInspector.cpp">
       <Filter>Engine\Systems\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ActionReference.cpp">
+      <Filter>Engine\Framework\References\ActionReference</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -948,6 +954,9 @@
     </ClInclude>
     <ClInclude Include="Source\WinState.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ActionReference.h">
+      <Filter>Engine\Framework\References\ActionReference</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -94,6 +94,10 @@
         m_MiningLaserEntity.SetOwnerName( GetName() );
         m_MiningLaserEntity.Init();
 
+        m_MoveHorizontal.Init();
+        m_MoveVertical  .Init();
+        m_FireLaser     .Init();
+        m_Interact      .Init();
 
         for ( AssetReference< AnimationAsset >& assetReference : m_Animations )
         {
@@ -132,7 +136,7 @@
         }
 
 
-        if (Input()->GetKeyDown(GLFW_KEY_E))
+        if ( m_Interact != nullptr && m_Interact->GetDown() )
         {
             for (auto& generator : Components<Generator>()->GetComponents())
             {
@@ -148,45 +152,44 @@
 
         // The normalised direction vector.
         glm::vec2 direction = { 0.0f, 0.0f };
-    
-        if ( moveRight() )
-        {
-            // 0 is right.
-            m_Animation->SetAsset( m_Animations[ 0 ] );
-            m_Animation->SetIsRunning( true );
-            direction.x += 1.0f;
-            m_AudioPlayer->Play();
-        }
-        if ( moveLeft() )
-        {
-            // 1 is left
-            m_Animation->SetAsset( m_Animations[ 1 ] );
-            m_Animation->SetIsRunning( true );
-            direction.x -= 1.0f;
-            m_AudioPlayer->Play();
-        }
-        if ( moveUp() )
-        {
-            // 2 is up.
-            m_Animation->SetAsset( m_Animations[ 2 ] );
-            m_Animation->SetIsRunning( true );
-            direction.y += 1.0f;
-            m_AudioPlayer->Play();
-        }
-        if ( moveDown() )
-        {
-            // 3 is down.
-            m_Animation->SetAsset( m_Animations[ 3 ] );
-            m_Animation->SetIsRunning( true );
-            direction.y -= 1.0f;
-            m_AudioPlayer->Play();
-	    }
 
+        direction.x = m_MoveHorizontal != nullptr ? m_MoveHorizontal->GetAxis() : 0.0f;
+        direction.y = m_MoveVertical != nullptr ? m_MoveVertical->GetAxis() : 0.0f;
     
 
         if ( direction != glm::vec2( 0 ) )
         {
             direction = glm::normalize( direction );
+
+            if ( std::abs( direction.x ) >= std::abs( direction.y ) )
+            {
+                if ( direction.x > 0 )
+                {
+                    // 0 is right
+                    m_Animation->SetAsset( m_Animations[ 0 ] );
+                }
+                else
+                {
+                    // 1 is left
+                    m_Animation->SetAsset( m_Animations[ 1 ] );
+                }
+            }
+            else
+            {
+                if ( direction.y > 0 )
+                {
+                    // 2 is up
+                    m_Animation->SetAsset( m_Animations[ 2 ] );
+                }
+                else
+                {
+                    // 3 is down
+                    m_Animation->SetAsset( m_Animations[ 3 ] );
+                }
+            }
+
+            m_AudioPlayer->Play();
+            m_Animation->SetIsRunning( true );
         }
         else
         {
@@ -207,39 +210,6 @@
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  Check if the 'D' key is being pressed.
-    /// @return Is the 'D' key being pressed?
-    bool PlayerController::moveRight()
-    {
-        return Input()->GetKeyDown(GLFW_KEY_D) || 
-              (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_LEFT_X) >= 1.0f);
-    }
-
-    /// @brief  Check if the 'A' key is being pressed.
-    /// @return Is the 'A' key being pressed?
-    bool PlayerController::moveLeft()
-    {
-	    return Input()->GetKeyDown(GLFW_KEY_A) || 
-               (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_LEFT_X) <= -1.0f);
-    }
-
-    /// @brief  Check if the 'W' key is being pressed.
-    /// @return Is the 'W' key being pressed?
-    bool PlayerController::moveUp()
-    {
-	    return Input()->GetKeyDown(GLFW_KEY_W) || 
-               (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_LEFT_Y) <= -1.0f);
-    }
-
-    /// @brief  Check if the 'S' key is being pressed.
-    /// @return Is the 'S' key being pressed?
-    bool PlayerController::moveDown()
-    {
-	    return Input()->GetKeyDown(GLFW_KEY_S) || 
-               (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_LEFT_Y) >= 1.0f);
-    }
-
-
     /// @brief  updates the mining laser
     void PlayerController::updateMiningLaser()
     {
@@ -250,8 +220,7 @@
 
         m_MiningLaser->GetTransform()->SetTranslation( m_Transform->GetTranslation() );
 
-        if (Input()->GetMouseDown(GLFW_MOUSE_BUTTON_1) || 
-           (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1,GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER) >= 1.0f))
+        if ( m_FireLaser != nullptr && m_FireLaser->GetDown() )
         {
             m_MiningLaser->SetIsFiring( true );
             if (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER) >= 1.0f)
@@ -323,6 +292,11 @@
         animationInspector();
 
         m_MiningLaserEntity.Inspect( "Mining Laser Entity" );
+
+        m_MoveVertical.Inspect( "Vertical Control Action" );
+        m_MoveHorizontal.Inspect( "Horizontal Control Action" );
+        m_FireLaser.Inspect( "Fire Laser Control Action" );
+        m_Interact.Inspect( "Interact Control Action" );
     }
 
 
@@ -389,6 +363,34 @@
     }
 
 
+    /// @brief  the control Action used for vertical movement
+    /// @param  data    the JSON data to read from
+    void PlayerController::readMoveVertical( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MoveVertical, data );
+    }
+
+    /// @brief  the control Action used for vertical movement
+    /// @param  data    the JSON data to read from
+    void PlayerController::readMoveHorizontal( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_MoveHorizontal, data );
+    }
+
+    /// @brief  the control Action to fire the laser
+    /// @param  data    the JSON data to read from
+    void PlayerController::readFireLaser( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_FireLaser, data );
+    }
+
+    /// @brief  the control Action to interact with something
+    /// @param  data    the JSON data to read from
+    void PlayerController::readInteract( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_Interact, data );
+    }
+
 //-----------------------------------------------------------------------------
 // public: reading writing
 //-----------------------------------------------------------------------------
@@ -402,7 +404,11 @@
             { "MaxSpeed"         , &PlayerController::readMaxSpeed          },
             { "RespawnLocation"  , &PlayerController::readRespawnLocation   },
             { "Animations"       , &PlayerController::readAnimations        },
-            { "MiningLaserEntity", &PlayerController::readMiningLaserEntity }
+            { "MiningLaserEntity", &PlayerController::readMiningLaserEntity },
+            { "MoveVertical"     , &PlayerController::readMoveVertical      },
+            { "MoveHorizontal"   , &PlayerController::readMoveHorizontal    },
+            { "FireLaser"        , &PlayerController::readFireLaser         },
+            { "Interact"         , &PlayerController::readInteract          }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -425,6 +431,10 @@
         data[ "MaxSpeed"          ] = Stream::Write( m_MaxSpeed              );
         data[ "MiningLaserEntity" ] = Stream::Write( m_MiningLaserEntity     );
         data[ "RespawnLocation"   ] = Stream::Write( m_PlayerRespawnLocation );
+        data[ "MoveVertical"      ] = Stream::Write( m_MoveVertical          );
+        data[ "MoveHorizontal"    ] = Stream::Write( m_MoveHorizontal        );
+        data[ "FireLaser"         ] = Stream::Write( m_FireLaser             );
+        data[ "Interact"          ] = Stream::Write( m_Interact              );
 
         return data;
     }
@@ -452,8 +462,12 @@
     /// @param other A PlayerController to copy.
     PlayerController::PlayerController(PlayerController const& other):
         Behavior( other ),
-        m_MaxSpeed( other.m_MaxSpeed ),
-        m_PlayerRespawnLocation( other.m_PlayerRespawnLocation )
+        m_MaxSpeed             ( other.m_MaxSpeed              ),
+        m_PlayerRespawnLocation( other.m_PlayerRespawnLocation ),
+        m_MoveVertical         ( other.m_MoveVertical          ),
+        m_MoveHorizontal       ( other.m_MoveHorizontal        ),
+        m_FireLaser            ( other.m_FireLaser             ),
+        m_Interact             ( other.m_Interact              )
     {
         // Copy the animations
         for (int i = 0; i < NUM_ANIMATIONS; i++)
