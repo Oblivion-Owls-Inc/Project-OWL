@@ -162,7 +162,7 @@ void TilemapSprite::Draw()
     glm::mat4 trm(1);                       // transform matrix - identity by default
     glm::vec2 uvsize = mesh->GetUVsize();   // UV size (for the frames of spritesheet)
     
-    glm::vec2 tileScale = m_Tilemap->GetTileScale();
+    glm::vec2 tileScale = m_Tilemap->GetTileScale() * m_Transform->GetScale();
     int rowWidth = m_Tilemap->GetDimensions().x;
 
     // Get data from Tilemap component, if it has been updated.

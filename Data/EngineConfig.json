@@ -4,7 +4,7 @@
         "PlatformSystem": {
             "WindowSize": [
                 936,
-                1095
+                957
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -13,7 +13,7 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "ResourceUiTest"
+            "NextSceneName": "Prototype"
         },
         "EntitySystem": {},
         "BehaviorSystem<Behavior>": {},
