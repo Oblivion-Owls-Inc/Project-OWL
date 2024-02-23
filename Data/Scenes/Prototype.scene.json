@@ -128,7 +128,7 @@
                 "UseAspectRatio": false
             },
             "Items": {
-                "Filepath": "Data/Textures/Items/TestItemSheet.png",
+                "Filepath": "Data/Textures/ResourceIcons.png",
                 "SheetDimensions": [
                     3,
                     1
@@ -601,7 +601,7 @@
                                     0,
                                     0,
                                     0,
-                                    0,
+                                    1,
                                     0,
                                     0,
                                     0,
@@ -612,7 +612,7 @@
                                 "String": "1"
                             },
                             "TilemapSprite": {
-                                "Layer": 2,
+                                "Layer": 21,
                                 "Color": [
                                     0.0,
                                     0.0,
@@ -6292,7 +6292,7 @@
                     "Name": "WinState",
                     "Components": {
                         "WinState": {
-                            "ItemID": 0,
+                            "ItemID": 2,
                             "ItemCount": 10,
                             "WinScene": "GameWin"
                         }
