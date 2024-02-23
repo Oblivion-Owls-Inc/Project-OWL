@@ -59,7 +59,7 @@ public: // public variables
     int M_changeingAction = 0;
     std::string M_whichAction = "";
 
-private:
+public:
     class Action; // forward reference
 
 protected:
@@ -87,9 +87,6 @@ protected:
     std::vector<GLFWwindow*> altHandles;
     std::vector<map<int, bool[3]>> windows;
     int amount = 0;
-
-    // number of actions attached to input
-    int m_numActions = 0;
 
     
 

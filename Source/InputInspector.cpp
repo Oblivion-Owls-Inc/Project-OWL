@@ -71,7 +71,7 @@ void InputSystem::DebugWindow()
         }
 
         // for each vector
-        int vectorSize = m_Actions.size();
+        size_t vectorSize = m_Actions.size();
         for (int i = 0; i < vectorSize; ++i)
         {
             // display name of input
@@ -100,7 +100,7 @@ void InputSystem::DebugWindow()
                     char buffer[512] = { 0 };
                     char* offset = buffer;
                     strncpy_s(buffer, m_Actions[i].GetDescription().c_str(), 512);
-                    int size = m_Actions[i].GetDescription().size();
+                    size_t size = m_Actions[i].GetDescription().size();
                     while (size > 0)
                     {
                         snprintf(title, sizeof(title), offset);
@@ -126,7 +126,7 @@ void InputSystem::DebugWindow()
                 if (ImGui::TreeNode(title))
                 {
                     std::vector<int> vector = m_Actions[i].GetActionVector(0);
-                    int size = vector.size();
+                    size_t size = vector.size();
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
@@ -161,7 +161,7 @@ void InputSystem::DebugWindow()
                 if (ImGui::TreeNode(title))
                 {
                     std::vector<int> vector = m_Actions[i].GetActionVector(1);
-                    int size = vector.size();
+                    size_t size = vector.size();
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
@@ -212,7 +212,7 @@ void InputSystem::DebugWindow()
                 if (ImGui::TreeNode(title))
                 {
                     std::vector<int> vector = m_Actions[i].GetActionVector(2);
-                    int size = vector.size();
+                    size_t size = vector.size();
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
@@ -311,7 +311,7 @@ void InputSystem::DebugWindow()
                 if (ImGui::TreeNode(title))
                 {
                     std::vector<int> vector = m_Actions[i].GetActionVector(3);
-                    int size = vector.size();
+                    size_t size = vector.size();
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
@@ -347,7 +347,7 @@ void InputSystem::DebugWindow()
                 if (ImGui::TreeNode(title))
                 {
                     std::vector<int> vector = m_Actions[i].GetActionVector(4);
-                    int size = vector.size();
+                    size_t size = vector.size();
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
@@ -399,7 +399,7 @@ void InputSystem::DebugWindow()
                 if (ImGui::TreeNode(title))
                 {
                     std::vector<int> vector = m_Actions[i].GetActionVector(5);
-                    int size = vector.size();
+                    size_t size = vector.size();
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
@@ -499,7 +499,7 @@ void InputSystem::DebugWindow()
                 if (ImGui::TreeNode(title))
                 {
                     std::vector<int> vector = m_Actions[i].GetActionVector(6);
-                    int size = vector.size();
+                    size_t size = vector.size();
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
@@ -590,7 +590,7 @@ void InputSystem::DebugWindow()
                 if (ImGui::TreeNode(title))
                 {
                     std::vector<int> vector = m_Actions[i].GetActionVector(7);
-                    int size = vector.size();
+                    size_t size = vector.size();
                     ImGui::Text("Inputs:");
                     for (int j = 0; j < size; ++j)
                     {
@@ -694,7 +694,6 @@ void InputSystem::DebugWindow()
 InputSystem::Action::Action(std::string name, std::string description) :
     m_name(name), m_description(description)
 {
-    Input()->m_numActions++;
 }
 
 void InputSystem::Action::removeByInput(std::vector<int>* vector, int input)
@@ -722,7 +721,6 @@ void InputSystem::Action::Flush()
     m_gamepadAxis.clear();
     m_name = "";
     m_description = "";
-    Input()->m_numActions = 0;
 }
 
 /// @brief  retrieves a private vector for inspector
