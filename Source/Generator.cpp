@@ -67,10 +67,10 @@ void Generator::OnExit()
 {
     Components< Generator >()->RemoveComponent(this);
 
-    m_Collider   .Exit( GetEntity() );
-    m_AudioPlayer.Exit( GetEntity() );
-    m_Transform  .Exit( GetEntity() );
-    m_Health     .Exit( GetEntity() );
+    m_Collider   .Exit();
+    m_AudioPlayer.Exit();
+    m_Transform  .Exit();
+    m_Health     .Exit();
 }
 
 //-----------------------------------------------------------------------------

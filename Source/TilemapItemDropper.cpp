@@ -81,7 +81,7 @@
     /// @brief  called once when exiting the scene
     void TilemapItemDropper::OnExit()
     {
-        m_Tilemap.Exit( GetEntity() );
+        m_Tilemap.Exit();
     }
 
 

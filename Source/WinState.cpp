@@ -42,7 +42,7 @@ void WinState::OnExit()
 { 
 	Behaviors< Behavior >()->RemoveComponent(this);
 
-	m_Inventory.Exit(GetEntity()->GetParent());
+	m_Inventory.Exit();
 }
 
 
@@ -75,7 +75,7 @@ void WinState::Inspector()
 void WinState::OnHierarchyChange(Entity* previousParent)
 {
 	// re-init inventory reference
-	m_Inventory.Exit( previousParent );
+	m_Inventory.Exit();
 	m_Inventory.Init( GetEntity()->GetParent() );
 }
 

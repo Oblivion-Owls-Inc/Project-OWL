@@ -66,8 +66,8 @@
     /// @brief  called once when exiting the scene
     void TilemapTextureConnector::OnExit()
     {
-        m_ParentTilemap.Exit( GetEntity()->GetParent() );
-        m_Tilemap.Exit( GetEntity() );
+        m_ParentTilemap.Exit();
+        m_Tilemap.Exit();
     }
 
 
@@ -80,7 +80,7 @@
             return;
         }
 
-        m_ParentTilemap.Exit( previousParent );
+        m_ParentTilemap.Exit();
         m_ParentTilemap.Init( GetEntity()->GetParent() );
     }
 

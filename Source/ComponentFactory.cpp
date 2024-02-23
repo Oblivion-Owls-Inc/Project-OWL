@@ -55,7 +55,10 @@
 #include "TilemapEditor.h"
 #include "EditorCameraController.h"
 #include "WinState.h"
+#include "ResourceCounterUi.h"
+#include "ResourcesUiManager.h"
 #include "SceneChangeButton.h"
+
 
 
 //-----------------------------------------------------------------------------
@@ -192,8 +195,10 @@
         { "TilemapEditor"          , ComponentInfo< TilemapEditor           >() },
         { "EditorCameraController" , ComponentInfo< EditorCameraController  >() },
         { "WinState"               , ComponentInfo< WinState                >() },
-        { "SceneChangeButton"      , ComponentInfo< SceneChangeButton       >() },
         { "Nineslice"              , ComponentInfo< Nineslice               >() },
+        { "ResourceCounterUi"      , ComponentInfo< ResourceCounterUi       >() },
+        { "ResourcesUiManager"     , ComponentInfo< ResourcesUiManager      >() },
+        { "SceneChangeButton"      , ComponentInfo< SceneChangeButton       >() },
     };
 
 //-----------------------------------------------------------------------------

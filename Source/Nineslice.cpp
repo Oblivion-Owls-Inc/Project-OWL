@@ -186,7 +186,12 @@
             { "MinInternalEdge", &Nineslice::readMinInternalEdge },
             { "MaxInternalEdge", &Nineslice::readMaxInternalEdge },
             { "MinBorderWidths", &Nineslice::readMinBorderWidths },
-            { "MaxBorderWidths", &Nineslice::readMaxBorderWidths }
+            { "MaxBorderWidths", &Nineslice::readMaxBorderWidths },
+            { "Texture"        , &Nineslice::readTexture         },
+            { "Opacity"        , &Nineslice::readOpacity         },
+            { "FrameIndex"     , &Nineslice::readFrameIndex      },
+            { "Color"          , &Nineslice::readColor           },
+            { "Layer"          , &Nineslice::readLayer           }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -203,6 +208,11 @@
         json[ "MaxInternalEdge" ] = Stream::Write( m_MaxInternalEdge );
         json[ "MinBorderWidths" ] = Stream::Write( m_MinBorderWidths );
         json[ "MaxBorderWidths" ] = Stream::Write( m_MaxBorderWidths );
+        json[ "Texture"         ] = Stream::Write( m_Texture         );
+        json[ "Opacity"         ] = Stream::Write( m_Opacity         );
+        json[ "FrameIndex"      ] = Stream::Write( m_FrameIndex      );
+        json[ "Color"           ] = Stream::Write( m_Color           );
+        json[ "Layer"           ] = Stream::Write( m_Layer           );
 
         return json;
     }

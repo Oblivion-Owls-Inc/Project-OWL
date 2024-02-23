@@ -45,10 +45,10 @@ void CameraBehavior::OnInit()
 /// @brief  Removes itself from behavior system
 void CameraBehavior::OnExit() 
 { 
-	m_Cam.Exit(GetEntity());
-	m_Transform.Exit(GetEntity());
+	m_Cam      .Exit();
+	m_Transform.Exit();
 
-	m_ParentTransform.Exit(GetEntity()->GetParent());
+	m_ParentTransform.Exit();
 
 	Behaviors< Behavior >()->RemoveComponent(this); 
 }
@@ -93,7 +93,7 @@ void CameraBehavior::Inspector()
 void CameraBehavior::OnHierarchyChange(Entity * previousParent)
 {
 	// re-init parent's transform
-	m_ParentTransform.Exit( previousParent );
+	m_ParentTransform.Exit();
 	m_ParentTransform.Init( GetEntity()->GetParent() );
 }
 
