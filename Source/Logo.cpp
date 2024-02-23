@@ -104,7 +104,7 @@ void SplashScreenController::readSceneName(nlohmann::ordered_json const& data)
 
 void SplashScreenController::readLogos(nlohmann::ordered_json const& data)
 {
-    Stream::Read(m_Logos, data);
+    Stream::Read< LogoData >( &m_Logos, data);
 }
 
 /// @brief A map of the read methods for this class
@@ -164,6 +164,8 @@ bool SplashScreenController::LogoData::Inspect()
 
     // Logo texture inspector component.
     dataChanged |= m_LogoTexture.Inspect("Logo Texture");
+
+    return dataChanged;
 }
 
 //-----------------------------------------------------------------------------

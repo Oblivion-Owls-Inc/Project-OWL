@@ -28,11 +28,11 @@
 class SplashScreenController : public Behavior
 {
 //-----------------------------------------------------------------------------
-private: // class LogoData
+public: // class LogoData
 //-----------------------------------------------------------------------------
 
     // A sub class for logo data.
-    class LogoData : ISerializable
+    class LogoData : public ISerializable
     {
     //-----------------------------------------------------------------------------
     public:
