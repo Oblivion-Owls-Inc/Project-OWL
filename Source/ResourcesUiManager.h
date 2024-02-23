@@ -6,6 +6,12 @@
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
+
+// TODO:
+// - Make it so that the box growing smoothly animates
+// - Add the ability to remove ResourceCounters using the Inspector
+
+
 #pragma once
 
 #include "Component.h"
@@ -34,7 +40,6 @@ public: // constructor / Destructor
     ResourcesUiManager();
 
 
-
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
@@ -55,6 +60,11 @@ public: // virtual override methods
 
     /// @brief  called once when exiting the scene
     virtual void OnExit() override;
+
+
+    /// @brief  called before a child is removed from this Entity
+    /// @param  child   the child that will be removed
+    virtual void OnRemoveChild( Entity* child ) override;
 
 
 //-----------------------------------------------------------------------------

@@ -102,6 +102,22 @@
     }
 
 
+    /// @brief  called before a child is removed from this Entity
+    /// @param  child   the child that will be removed
+    void ResourcesUiManager::OnRemoveChild( Entity* child )
+    {
+        for ( auto& [ itemId, resourceCounter ] : m_ResourceCounters )
+        {
+            if ( resourceCounter->GetEntity() == child )
+            {
+                m_ResourceCounters.erase( itemId );
+                updateTransforms();
+                return;
+            }
+        }
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: members
 //-----------------------------------------------------------------------------

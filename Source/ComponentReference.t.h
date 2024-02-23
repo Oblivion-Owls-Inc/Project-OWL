@@ -213,6 +213,7 @@
         }
 
         m_Component = component;
+        m_Entity = m_Component != nullptr ? m_Component->GetEntity() : nullptr;
 
         if ( m_Component != nullptr && m_OnConnectCallback )
         {

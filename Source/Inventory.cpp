@@ -243,18 +243,6 @@
                 return itemStack->Inspect();
             }
         );
-
-        // TEMP - this is testing code and needs to be removed
-        static int itemId = 0;
-        ImGui::InputInt( "itemId", &itemId );
-        if ( ImGui::Button( "+" ) )
-        {
-            AddItemStack( ItemStack( itemId, 1 ) );
-        }
-        if ( ImGui::Button( "-" ) )
-        {
-            RemoveItemStack( ItemStack( itemId, 1 ) );
-        }
     }
 
 
