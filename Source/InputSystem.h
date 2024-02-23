@@ -108,7 +108,7 @@ private: // private methods
     glm::vec2 getMousePosAfterTransformation( glm::mat4 const& transformation ) const;
 
 //-----------------------------------------------------------------------------
-private: // private class
+public: // public class
 //-----------------------------------------------------------------------------
 
     /// @brief  action class, used to track an action with dynamic input
@@ -200,7 +200,7 @@ private: // private class
 
         /// @brief  retrieves a private vector for inspector
         /// @param  vector number
-        std::vector<int> GetActionVector(int vector);
+        std::vector<int> GetActionVector(int vector) const;
 
         /// @brief  adds a key to the action
         /// @param  key to add
@@ -294,35 +294,35 @@ private: // private class
 
         /// @brief  sets the name of the action
         /// @param  new name of action
-        void SetName(std::string name);
+        void SetName(std::string& name);
 
         /// @brief  gets the name of this action
         /// @return the name of the action
-        std::string GetName();
+        std::string GetName() const;
 
         /// @brief  sets the description of the action
         /// @param  new description of action
-        void SetDescription(std::string discription);
+        void SetDescription(std::string& discription);
 
         /// @brief  gets the description of this action
         /// @return the description of the action
-        std::string GetDescription();
+        std::string GetDescription() const;
 
         /// @brief  gets if this action is down
         /// @return action down status
-        bool GetDown();
+        bool GetDown() const;
 
         /// @brief  gets if this action is triggered
         /// @return action triggered status
-        bool GetTriggered();
+        bool GetTriggered() const;
         
         /// @brief  gets if this action is released
         /// @return action released status
-        bool GetReleased();
+        bool GetReleased() const;
 
         /// @brief  gets this action as an axis
         /// @return axis status clamped to -1 and 1
-        float GetAxis();
+        float GetAxis() const;
     };
 
 //-----------------------------------------------------------------------------
@@ -421,7 +421,7 @@ public: // accessors
     /// @brief  gets an action by its name
     /// @param  name name of the action
     /// @retun  pointer to the action
-    Action* GetActionByName(std::string name);
+    Action* GetActionByName(std::string& name);
 
     /// @brief  gets the vector of Actions in the InputSystem
     /// @return the vector of Actions

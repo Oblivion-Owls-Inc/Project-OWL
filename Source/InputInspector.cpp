@@ -17,7 +17,12 @@
 // public: inspection
 //-----------------------------------------------------------------------------
 
-
+/// @brief callback for recording an action
+/// @param window,   window to watch key inputs for
+/// @param key,      key captured
+/// @param scancode, scancode for the callback (unused)
+/// @param action,   action from callback (unused)
+/// @param mods,     modifiers such as sticky keys (unused)
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     int whichAction = Input()->M_changeingAction;
@@ -45,6 +50,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 /// @brief Gets Called by the Debug system to display debug information
 void InputSystem::DebugWindow()
 {
+    // begin the input window
     if (ImGui::Begin("Input System", &m_InputIsOpen, ImGuiWindowFlags_AlwaysAutoResize))
     {
         char title[33];
@@ -64,11 +70,30 @@ void InputSystem::DebugWindow()
             ImGui::TreePop();
         }
 
+        // for each vector
         int vectorSize = m_Actions.size();
         for (int i = 0; i < vectorSize; ++i)
         {
-            if (ImGui::TreeNode(m_Actions[i].GetName().c_str()))
+            // display name of input
+            if (ImGui::TreeNode(m_Actions[i].GetName() != "" ? m_Actions[i].GetName().c_str() : "NO NAME"))
             {
+                // set the name of the action
+                snprintf(title, sizeof(title), "Set Name");
+                if (ImGui::TreeNode(title))
+                {
+                    static char nameBuffer[128] = ""; // Buffer to hold the input
+                    ImGui::InputText("New Name", nameBuffer, IM_ARRAYSIZE(nameBuffer));
+
+                    if (ImGui::Button("Rename"))
+                    {
+                        std::string nameBuf = nameBuffer;
+                        m_Actions[i].SetName(nameBuf);
+                    }
+
+                    ImGui::TreePop();
+                }
+
+                // set the description of the action
                 snprintf(title, sizeof(title), "Description");
                 if (ImGui::TreeNode(title))
                 {
@@ -84,9 +109,19 @@ void InputSystem::DebugWindow()
                         offset += 32;
                     }
 
+                    static char descriptionBuffer[512] = ""; // Buffer to hold the input
+                    ImGui::InputText("New Description", descriptionBuffer, IM_ARRAYSIZE(descriptionBuffer));
+
+                    if (ImGui::Button("Change"))
+                    {
+                        std::string descript = descriptionBuffer;
+                        m_Actions[i].SetDescription(descript);
+                    }
+
                     ImGui::TreePop();
                 }
 
+                // key inputs for the action
                 snprintf(title, sizeof(title), "Key Inputs");
                 if (ImGui::TreeNode(title))
                 {
@@ -121,7 +156,7 @@ void InputSystem::DebugWindow()
                     ImGui::TreePop();
                 }
 
-
+                // mouse inputs for the action
                 snprintf(title, sizeof(title), "Mouse Inputs");
                 if (ImGui::TreeNode(title))
                 {
@@ -172,6 +207,7 @@ void InputSystem::DebugWindow()
                     ImGui::TreePop();
                 }
 
+                // controller inputs for the action
                 snprintf(title, sizeof(title), "Controller Inputs");
                 if (ImGui::TreeNode(title))
                 {
@@ -270,6 +306,7 @@ void InputSystem::DebugWindow()
                     ImGui::TreePop();
                 }
 
+                // negative axis key inputs
                 snprintf(title, sizeof(title), "Key Negative Axis");
                 if (ImGui::TreeNode(title))
                 {
@@ -305,6 +342,7 @@ void InputSystem::DebugWindow()
                     ImGui::TreePop();
                 }
 
+                // negative axis mouse inputs
                 snprintf(title, sizeof(title), "Mouse Negative Axis");
                 if (ImGui::TreeNode(title))
                 {
@@ -356,6 +394,7 @@ void InputSystem::DebugWindow()
                     ImGui::TreePop();
                 }
 
+                // negative controller axis inputs
                 snprintf(title, sizeof(title), "Controller Negative Axis");
                 if (ImGui::TreeNode(title))
                 {
@@ -455,6 +494,7 @@ void InputSystem::DebugWindow()
                     ImGui::TreePop();
                 }
 
+                // axis as inputs
                 snprintf(title, sizeof(title), "Axis As Input");
                 if (ImGui::TreeNode(title))
                 {
@@ -545,6 +585,7 @@ void InputSystem::DebugWindow()
                     ImGui::TreePop();
                 }
 
+                // axis inputs
                 snprintf(title, sizeof(title), "Axis");
                 if (ImGui::TreeNode(title))
                 {
@@ -644,9 +685,12 @@ void InputSystem::DebugWindow()
 }
 
 //-----------------------------------------------------------------------------
-// private class implimentation
+// public class implimentation
 //-----------------------------------------------------------------------------
 
+/// @brief  contructor
+/// @param  name of the action
+/// @param  description of the action (viewable in editor)
 InputSystem::Action::Action(std::string name, std::string description) :
     m_name(name), m_description(description)
 {
@@ -664,6 +708,8 @@ void InputSystem::Action::removeByInput(std::vector<int>* vector, int input)
     vector->erase(it);
 }
 
+/// @brief  removes all inputs for this action 
+///         and empties name/description
 void InputSystem::Action::Flush()
 {
     m_keys.clear();
@@ -679,7 +725,9 @@ void InputSystem::Action::Flush()
     Input()->m_numActions = 0;
 }
 
-std::vector<int> InputSystem::Action::GetActionVector(int vector)
+/// @brief  retrieves a private vector for inspector
+/// @param  vector number
+std::vector<int> InputSystem::Action::GetActionVector(int vector) const
 {
     switch (vector)
     {
@@ -704,137 +752,193 @@ std::vector<int> InputSystem::Action::GetActionVector(int vector)
     }
 }
 
+/// @brief  adds a key to the action
+/// @param  key to add
 void InputSystem::Action::AddKeyInput(int glfw_key)
 {
     m_keys.push_back(glfw_key);
 }
 
+/// @brief  removes a key from the action
+/// @param  key to remove
 void InputSystem::Action::RemoveKeyInput(int glfw_key)
 {
     removeByInput(&m_keys, glfw_key);
 }
 
+/// @brief  adds a mouse input to the action
+/// @param  mouse input to add
 void InputSystem::Action::AddMouseInput(int glfw_mouse_button)
 {
     m_mouse.push_back(glfw_mouse_button);
 }
 
+/// @brief  removes a mouse input from the action
+/// @param  mouse input to remove
 void InputSystem::Action::RemoveMouseInput(int glfw_mouse_button)
 {
     removeByInput(&m_mouse, glfw_mouse_button);
 }
 
+/// @brief  adds a controller to the action
+/// @param  controller input to add
 void InputSystem::Action::AddControllerInput(int glfw_button)
 {
     m_controller.push_back(glfw_button);
 }
 
+/// @brief  removes a controller input from the action
+/// @param  controller input to remove
 void InputSystem::Action::RemoveControllerInput(int glfw_button)
 {
     removeByInput(&m_controller, glfw_button);
 }
 
+/// @brief  adds an axis as a button (triggers)
+/// @param  axis to add as input
 void InputSystem::Action::AddAxisAsInput(int glfw_axis_id)
 {
     m_gamepadAxisAsInput.push_back(glfw_axis_id);
 }
 
+/// @brief  removes an axis as a button (triggers)
+/// @param  axis to remove from input
 void InputSystem::Action::RemoveAxisAsInput(int glfw_axis_id)
 {
     removeByInput(&m_gamepadAxisAsInput, glfw_axis_id);
 }
 
+/// @brief  adds a key input axis
+/// @param  glfw_key positive axis key
 void InputSystem::Action::AddKeyAxisPositive(int glfw_key)
 {
     AddKeyInput(glfw_key);
 }
 
+/// @brief  adds a key input axis
+/// @param  glfw_key_negative negative axis key
 void InputSystem::Action::AddKeyAxisNegative(int glfw_key_negative)
 {
     m_keyAxis.push_back(glfw_key_negative);
 }
 
+/// @brief  removes a key input axis
+/// @param  glfw_key positive axis key
 void InputSystem::Action::RemoveKeyAxisPositive(int glfw_key)
 {
     RemoveKeyInput(glfw_key);
 }
 
+/// @brief  removes a key input axis
+/// @param  glfw_key_negative negative axis key
 void InputSystem::Action::RemoveKeyAxisNegative(int glfw_key_negative)
 {
     removeByInput(&m_keyAxis, glfw_key_negative);
 }
 
+/// @brief  adds a mouse input axis
+/// @param  glfw_mouse positive axis mouse
 void InputSystem::Action::AddMouseAxisPositive(int glfw_mouse)
 {
     m_mouse.push_back(glfw_mouse);
 }
 
+/// @brief  adds a mouse input axis
+/// @param  glfw_mouse_negative negative axis mouse
 void InputSystem::Action::AddMouseAxisNegative(int glfw_mouse_negative)
 {
     m_mouseAxis.push_back(glfw_mouse_negative);
 }
 
+/// @brief  removes a mouse input axis
+/// @param  glfw_mouse positive axis mouse
 void InputSystem::Action::RemoveMouseAxisPositive(int glfw_mouse)
 {
     RemoveMouseInput(glfw_mouse);
 }
 
+/// @brief  removes a mouse input axis
+/// @param  glfw_mouse_negative negative axis mouse
 void InputSystem::Action::RemoveMouseAxisNegative(int glfw_mouse_negative)
 {
     removeByInput(&m_mouseAxis, glfw_mouse_negative);
 }
 
+/// @brief  adds a controller input axis
+/// @param  glfw_controller positive axis controller
 void InputSystem::Action::AddControllerAxisPositive(int glfw_controller)
 {
     AddControllerInput(glfw_controller);
 }
 
+/// @brief  adds a controller input axis
+/// @param  glfw_controller_negative negative axis controller
 void InputSystem::Action::AddControllerAxisNegative(int glfw_controller_negative)
 {
     m_controllerAxis.push_back(glfw_controller_negative);
 }
 
+/// @brief  removes a controller input axis
+/// @param  glfw_controller positive axis controller
+/// @param  glfw_controller_negative negative axis controller
 void InputSystem::Action::RemoveControllerAxisPositive(int glfw_controller)
 {
     RemoveControllerInput(glfw_controller);
 }
 
+/// @brief  removes a controller input axis
+/// @param  glfw_controller positive axis controller
+/// @param  glfw_controller_negative negative axis controller
 void InputSystem::Action::RemoveControllerAxisNegative(int glfw_controller_negative)
 {
     removeByInput(&m_controllerAxis, glfw_controller_negative);
 }
 
+/// @brief  adds a gamepad axis (stick/trigger)
+/// @param  axis id to add
 void InputSystem::Action::AddAxis(int glfw_axis_id)
 {
     m_gamepadAxis.push_back(glfw_axis_id);
 }
 
+/// @brief  removes a gamepad axis (stick/trigger)
+/// @param  axis id to add
 void InputSystem::Action::RemoveAxis(int glfw_axis_id)
 {
     removeByInput(&m_gamepadAxis, glfw_axis_id);
 }
 
-void InputSystem::Action::SetName(std::string name)
+/// @brief  sets the name of the action
+/// @param  new name of action
+void InputSystem::Action::SetName(std::string& name)
 {
     m_name = name;
 }
 
-std::string InputSystem::Action::GetName()
+/// @brief  gets the name of this action
+/// @return the name of the action
+std::string InputSystem::Action::GetName() const
 {
     return m_name;
 }
 
-void InputSystem::Action::SetDescription(std::string description)
+/// @brief  sets the description of the action
+/// @param  new description of action
+void InputSystem::Action::SetDescription(std::string& description)
 {
     m_description = description;
 }
 
-std::string InputSystem::Action::GetDescription()
+/// @brief  gets the description of this action
+/// @return the description of the action
+std::string InputSystem::Action::GetDescription() const
 {
     return m_description;
 }
 
-bool InputSystem::Action::GetDown()
+/// @brief  gets if this action is down
+/// @return action down status
+bool InputSystem::Action::GetDown() const
 {
     int size = (int)m_keys.size();
     for (int i = 0; i < size; ++i)
@@ -876,7 +980,9 @@ bool InputSystem::Action::GetDown()
     return false;
 }
 
-bool InputSystem::Action::GetTriggered()
+/// @brief  gets if this action is triggered
+/// @return action triggered status
+bool InputSystem::Action::GetTriggered() const
 {
     bool triggered = false;
 
@@ -931,7 +1037,9 @@ bool InputSystem::Action::GetTriggered()
     return triggered;
 }
 
-bool InputSystem::Action::GetReleased()
+/// @brief  gets if this action is released
+/// @return action released status
+bool InputSystem::Action::GetReleased() const
 {
     bool released = false;
 
@@ -977,7 +1085,9 @@ bool InputSystem::Action::GetReleased()
     return released;
 }
 
-float InputSystem::Action::GetAxis()
+/// @brief  gets this action as an axis
+/// @return axis status clamped to -1 and 1
+float InputSystem::Action::GetAxis() const
 {
     float result = 0.0f;
     int size = (int)m_keys.size();

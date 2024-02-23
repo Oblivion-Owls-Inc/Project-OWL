@@ -394,7 +394,7 @@ glm::vec2 InputSystem::GetMousePosWorld()
 /// @brief  gets an action by its name
 /// @param  name name of the action
 /// @retun  pointer to the action
-InputSystem::Action* InputSystem::GetActionByName(std::string name)
+InputSystem::Action* InputSystem::GetActionByName(std::string& name)
 {
     for (int i = 0; i < m_numActions; ++i)
     {
