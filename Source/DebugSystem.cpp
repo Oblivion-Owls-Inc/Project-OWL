@@ -114,6 +114,7 @@ void DebugSystem::OnInit()
     // Stays at the Top
 
     SetDebugEnable( true );
+    SetNonEditorSystemsEnabled(m_EditorRunning);
 }
 
 /// @brief Perform updates.
@@ -159,8 +160,6 @@ void DebugSystem::OnUpdate(float dt)
 void DebugSystem::DebugWindow()
 {
     
-    static bool gameplayRunning = true;
-
     bool debugWindowShown = GetDebugEnabled();
     ImGuiWindowFlags window_flags = 0;
     window_flags |= ImGuiWindowFlags_NoTitleBar;
@@ -255,10 +254,10 @@ void DebugSystem::DebugWindow()
             }
 
             /// Pauses the Gameplay
-            if (ImGui::MenuItem(gameplayRunning ? "Pause Gameplay" : "Resume Gameplay"))
+            if (ImGui::MenuItem(m_EditorRunning ? "Pause Gameplay" : "Resume Gameplay"))
             {
-				gameplayRunning = !gameplayRunning;
-				SetNonEditorSystemsEnabled(gameplayRunning);
+				m_EditorRunning = !m_EditorRunning;
+				SetNonEditorSystemsEnabled(m_EditorRunning);
 			}
 
             ImGui::EndMenu();
