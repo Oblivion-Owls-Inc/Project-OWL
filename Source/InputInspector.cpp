@@ -1095,6 +1095,10 @@ float InputSystem::Action::GetAxis() const
         {
             result += 1;
         }
+    }
+    size = (int)m_keyAxis.size();
+    for (int i = 0; i < size; ++i)
+    {
         if (Input()->GetKeyDown(m_keyAxis[i]))
         {
             result -= 1;
@@ -1108,6 +1112,10 @@ float InputSystem::Action::GetAxis() const
         {
             result += 1;
         }
+    }
+    size = (int)m_mouseAxis.size();
+    for (int i = 0; i < size; ++i)
+    {
         if (Input()->GetMouseDown(m_mouseAxis[i]))
         {
             result -= 1;
@@ -1121,6 +1129,10 @@ float InputSystem::Action::GetAxis() const
         {
             result += 1;
         }
+    }
+    size = (int)m_controllerAxis.size();
+    for (int i = 0; i < size; ++i)
+    {
         if (Input()->GetGamepadButtonDown(m_controllerAxis[i]))
         {
             result -= 1;
