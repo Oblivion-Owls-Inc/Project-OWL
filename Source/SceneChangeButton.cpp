@@ -99,6 +99,13 @@ void SceneChangeButton::Inspector()
         Stream::Read(m_SceneName, data);
     }
 
+    /// @brief  reads the event name from a JSON file
+    void SceneChangeButton::readEventName(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_EventName, data);
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
@@ -109,7 +116,8 @@ void SceneChangeButton::Inspector()
     ReadMethodMap< ISerializable > const& SceneChangeButton::GetReadMethods() const
     {
         static ReadMethodMap< SceneChangeButton > const readMethods = {
-		    { "SceneName", &SceneChangeButton::readSceneName }
+		    { "SceneName", &SceneChangeButton::readSceneName },
+            { "EventName", &SceneChangeButton::readEventName }
 
         };
 
@@ -124,6 +132,7 @@ void SceneChangeButton::Inspector()
         nlohmann::ordered_json json;
 
         json["SceneName"] = m_SceneName;
+        json["EventName"] = m_EventName;
 
         return json;
     }
@@ -150,7 +159,7 @@ void SceneChangeButton::Inspector()
     /// @brief  copy-constructor for the SceneChangeButton
     /// @param  other   the other SceneChangeButton to copy
     SceneChangeButton::SceneChangeButton(SceneChangeButton const& other) :
-        Component(other), m_SceneName(other.m_SceneName)
+        Component(other), m_SceneName(other.m_SceneName), m_EventName(other.m_EventName)
     {}
 
 

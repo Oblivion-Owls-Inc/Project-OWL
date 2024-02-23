@@ -83,6 +83,9 @@ private: // reading
     /// @brief  reads the scene name from the JSON data
     void readSceneName( nlohmann::ordered_json const& data);
 
+    /// @brief  reads the event name from the JSON data
+    void readEventName( nlohmann::ordered_json const& data);
+
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

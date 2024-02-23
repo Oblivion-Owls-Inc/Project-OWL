@@ -9,7 +9,6 @@
 #pragma once
 
 #include "AssetLibrarySystem.h"
-#include "Console.h"
 
 #include <string>
 #include <vector>

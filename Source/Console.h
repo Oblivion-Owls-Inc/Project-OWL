@@ -53,9 +53,6 @@ private: // members
     /// @brief Chached user input text
     std::vector<std::string> m_History;
 
-    /// @brief If we move the cursor to the end of the buffer
-    bool m_ScrollToBottom = false;
-
     /// @brief If we are currently scrolling to the bottom to keep up with new entries.
     bool m_AutoScroll = true;
 
@@ -88,7 +85,6 @@ public: // reading / writing
     /// @brief  writes this DebugConsole to JSON
     /// @return the JSON data of this DebugConsole
     virtual nlohmann::ordered_json Write() const override;
-
 
 
 //-----------------------------------------------------------------------------
