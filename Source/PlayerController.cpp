@@ -94,6 +94,12 @@
         m_MiningLaserEntity.SetOwnerName( GetName() );
         m_MiningLaserEntity.Init();
 
+
+
+        m_MoveHorizontal.SetOwnerName( GetName() );
+        m_MoveVertical  .SetOwnerName( GetName() );
+        m_FireLaser     .SetOwnerName( GetName() );
+        m_Interact      .SetOwnerName( GetName() );
         m_MoveHorizontal.Init();
         m_MoveVertical  .Init();
         m_FireLaser     .Init();
