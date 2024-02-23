@@ -294,7 +294,7 @@ public: // public class
 
         /// @brief  sets the name of the action
         /// @param  new name of action
-        void SetName(std::string name);
+        void SetName(std::string& name);
 
         /// @brief  gets the name of this action
         /// @return the name of the action
@@ -302,7 +302,7 @@ public: // public class
 
         /// @brief  sets the description of the action
         /// @param  new description of action
-        void SetDescription(std::string discription);
+        void SetDescription(std::string& discription);
 
         /// @brief  gets the description of this action
         /// @return the description of the action
@@ -421,7 +421,7 @@ public: // accessors
     /// @brief  gets an action by its name
     /// @param  name name of the action
     /// @retun  pointer to the action
-    Action* GetActionByName(std::string name);
+    Action* GetActionByName(std::string& name);
 
 //-----------------------------------------------------------------------------
 private: // reading

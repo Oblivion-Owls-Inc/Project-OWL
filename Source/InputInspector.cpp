@@ -86,7 +86,8 @@ void InputSystem::DebugWindow()
 
                     if (ImGui::Button("Rename"))
                     {
-                        m_Actions[i].SetName(nameBuffer);
+                        std::string nameBuf = nameBuffer;
+                        m_Actions[i].SetName(nameBuf);
                     }
 
                     ImGui::TreePop();
@@ -113,7 +114,8 @@ void InputSystem::DebugWindow()
 
                     if (ImGui::Button("Change"))
                     {
-                        m_Actions[i].SetDescription(descriptionBuffer);
+                        std::string descript = descriptionBuffer;
+                        m_Actions[i].SetDescription(descript);
                     }
 
                     ImGui::TreePop();
@@ -908,7 +910,7 @@ void InputSystem::Action::RemoveAxis(int glfw_axis_id)
 
 /// @brief  sets the name of the action
 /// @param  new name of action
-void InputSystem::Action::SetName(std::string name)
+void InputSystem::Action::SetName(std::string& name)
 {
     m_name = name;
 }
@@ -922,7 +924,7 @@ std::string InputSystem::Action::GetName() const
 
 /// @brief  sets the description of the action
 /// @param  new description of action
-void InputSystem::Action::SetDescription(std::string description)
+void InputSystem::Action::SetDescription(std::string& description)
 {
     m_description = description;
 }
