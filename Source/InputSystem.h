@@ -88,9 +88,6 @@ protected:
     std::vector<map<int, bool[3]>> windows;
     int amount = 0;
 
-    // number of actions attached to input
-    int m_numActions = 0;
-
     
 
     // map of actions

@@ -694,7 +694,6 @@ void InputSystem::DebugWindow()
 InputSystem::Action::Action(std::string name, std::string description) :
     m_name(name), m_description(description)
 {
-    Input()->m_numActions++;
 }
 
 void InputSystem::Action::removeByInput(std::vector<int>* vector, int input)
@@ -722,7 +721,6 @@ void InputSystem::Action::Flush()
     m_gamepadAxis.clear();
     m_name = "";
     m_description = "";
-    Input()->m_numActions = 0;
 }
 
 /// @brief  retrieves a private vector for inspector

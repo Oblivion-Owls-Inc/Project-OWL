@@ -396,7 +396,7 @@ glm::vec2 InputSystem::GetMousePosWorld()
 /// @retun  pointer to the action
 InputSystem::Action* InputSystem::GetActionByName(std::string& name)
 {
-    for (int i = 0; i < m_numActions; ++i)
+    for (int i = 0; i < m_Actions.size(); ++i)
     {
         if (m_Actions[i].GetName() == name)
         {
@@ -412,7 +412,6 @@ InputSystem::Action* InputSystem::GetActionByName(std::string& name)
 
 void InputSystem::readActions(nlohmann::ordered_json const& data)
 {
-    m_numActions = (int)data.size();
     m_Actions.resize(data.size());
     for (int i = 0; i < data.size(); ++i)
     {
@@ -537,7 +536,7 @@ nlohmann::ordered_json InputSystem::Write() const
     nlohmann::ordered_json data;
 
     nlohmann::ordered_json& writeActions = data["Actions"];
-    for (int i = 0; i < m_numActions; i++)
+    for (int i = 0; i < m_Actions.size(); i++)
     {
         writeActions.push_back(m_Actions[i].Write());
     }
@@ -624,8 +623,7 @@ nlohmann::ordered_json InputSystem::Action::Write() const
         m_MouseStatesHold(&m_MouseStates),
         m_ControllerStatesHold(&m_ControllerStates),
         handle(nullptr),
-        amount(0),
-        m_numActions(0)
+        amount(0)
     {
         // Updates the mapping of gamepad controllers.
         glfwUpdateGamepadMappings(Stream::ReadFromTXTFile("Data/Controller Mappings/gamecontrollerdb.txt").c_str());
