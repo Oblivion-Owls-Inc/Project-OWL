@@ -76,6 +76,23 @@ public: // virtual override methods
     /// @brief  called once when exiting the scene
     virtual void OnExit() override;
 
+    
+//-----------------------------------------------------------------------------
+private: // constants
+//-----------------------------------------------------------------------------
+
+    
+    /// @brief  The different Tools the TileMapEditor can bind to mouse buttons
+    enum class MouseTool : int
+    {
+        None = 0,
+        Brush = 1,
+        Eraser = 2,
+        Selection = 3,
+        Picker = 4,
+        _Count = 5
+    };
+
 
 //-----------------------------------------------------------------------------
 private: // members
@@ -86,16 +103,8 @@ private: // members
     AssetReference< Texture > m_PreviewTexture;
 
 
-    /// @brief  the index in the tool buttons array of the specified tool
-    static constexpr int s_BrushToolIndex = 0, s_EraseToolIndex = 1, s_PickerToolIndex = 2, s_SelectionToolIndex = 3;
-
-    /// @brief  the mouse buttons assigned to each tool
-    MouseButtonId m_ToolButtons[ 4 ] = {
-        GLFW_MOUSE_BUTTON_1,
-        GLFW_MOUSE_BUTTON_2,
-        GLFW_MOUSE_BUTTON_3,
-        GLFW_MOUSE_BUTTON_4
-    };
+    /// @brief  the tools bound to each mouse button
+    std::vector< MouseTool > m_ToolBindings = { MouseTool::Brush, MouseTool::Eraser, MouseTool::None, MouseTool::Selection, MouseTool::Picker };
 
 
     /// @brief  the color to highlight the selection with
@@ -151,16 +160,20 @@ private: // methods
 
 
     /// @brief  updates the brush tool
-    void updateBrushTool();
+    /// @param  mouseButton the mouse button this tool is bound to
+    void updateBrushTool( int mouseButton );
 
     /// @brief  updates the erase tool
-    void updateEraseTool();
+    /// @param  mouseButton the mouse button this tool is bound to
+    void updateEraseTool( int mouseButton );
 
     /// @brief  updates the rectangle selection tool
-    void updateSelectionTool();
+    /// @param  mouseButton the mouse button this tool is bound to
+    void updateSelectionTool( int mouseButton );
 
     /// @brief  updates the picker tool
-    void updatePickerTool();
+    /// @param  mouseButton the mouse button this tool is bound to
+    void updatePickerTool( int mouseButton );
 
 
     /// @brief  updates the hotkeys the TilemapEditor uses for copy/paste, undo/redo, and similar
@@ -208,6 +221,16 @@ public: // inspection
     /// @brief  shows the inspector for TilemapEditor
     virtual void Inspector() override;
 
+    
+//-----------------------------------------------------------------------------
+private: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  inspects a MouseTool
+    /// @param  mouseTool   the MouseTool to inspect
+    static bool inspectMouseTool( MouseTool* mouseTool );
+
 
 //-----------------------------------------------------------------------------
 private: // reading
@@ -218,9 +241,9 @@ private: // reading
     /// @param  data    the json data to read from
     void readPreviewTexture( nlohmann::ordered_json const& data );
 
-    /// @brief  reads the mouse buttons assigned to each tool
+    /// @brief  reads the tools bound to each mouse button
     /// @param  data    the json data to read from
-    void readToolButtons( nlohmann::ordered_json const& data );
+    void readToolBindings( nlohmann::ordered_json const& data );
 
     /// @brief  reads the maximum number of undoable actions that will be kept track of
     /// @param  data    the json data to read from

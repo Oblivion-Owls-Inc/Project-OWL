@@ -57,6 +57,15 @@ public: // methods
     void Exit();
 
 
+    /// @brief  sets the callback to call when this EntityReference connects to an Entity
+    /// @param  callback    the callback to call
+    void SetOnConnectCallback( std::function< void () > callback );
+
+    /// @brief  sets the callback to call when this EntityReference disconnects from an Entity
+    /// @param  callback    the callback to call
+    void SetOnDisconnectCallback( std::function< void () > callback );
+
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
@@ -120,17 +129,24 @@ private: // members
     std::set< ComponentReferenceBase* > const m_ComponentReferences;
 
 
+    /// @brief  function that gets called when this EntityReference connects to an Entity
+    std::function< void () > m_OnConnectCallback = nullptr;
+
+    /// @brief  function that gets called before this EntityReference connects to an Entity
+    std::function< void () > m_OnDisconnectCallback = nullptr;
+
+
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
 
     /// @brief  inits all attached ComponentReferences
-    void initComponentReferences();
+    void initComponentReferencesAndCallbacks();
 
 
     /// @brief  exits all attached ComponentReferences
-    void exitComponentReferences();
+    void exitComponentReferencesAndCallbacks();
 
     
 //-----------------------------------------------------------------------------

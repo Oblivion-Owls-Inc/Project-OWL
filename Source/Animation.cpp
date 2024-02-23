@@ -211,7 +211,7 @@
     {
         Behaviors< Animation >()->RemoveComponent( this );
 
-        m_Sprite.Exit( GetEntity() );
+        m_Sprite.Exit();
     }
 
 

@@ -14,6 +14,8 @@
 
 #include "Transform.h"
 
+#include "ComponentReference.h"
+
 //-----------------------------------------------------------------------------
 // forward references
 //-----------------------------------------------------------------------------
@@ -145,7 +147,7 @@ private: // members
 
 
     /// @brief  the parent UiElement
-    UiElement* m_ParentElement = nullptr;
+    ComponentReference< UiElement > m_ParentElement;
 
 
     /// @brief  callbacks called whenever this UiElement is clicked

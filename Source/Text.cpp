@@ -6,6 +6,8 @@
 #include "Entity.h"
 #include "Tilemap.h"
 
+#include "imgui_stdlib.h"
+
 /// @brief   default constructor
 Text::Text() :
     Component( typeid( Text ) )
@@ -46,6 +48,19 @@ void Text::OnInit()
     loadTextIntoTilemap();
 }
 
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  inspects this Text Component
+    void Text::Inspector()
+    {
+        if ( ImGui::InputText( "text", &m_Text ) )
+        {
+            loadTextIntoTilemap();
+        }
+    }
 
 //-----------------------------------------------------------------------------
 // private: reading

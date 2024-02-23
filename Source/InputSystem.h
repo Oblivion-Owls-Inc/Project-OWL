@@ -65,13 +65,9 @@ protected:
 private: // private methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  updates map realted to fixed or standard update
     void mapUpdate();
-
-    /// @brief  convert matrix to vec2
-    /// @param  transformation  the transformation to apply to the screen-space mouse position
-    glm::vec2 getMousePosAfterTransformation( glm::mat4 const& transformation ) const;
-
     
 
 //-----------------------------------------------------------------------------
@@ -152,6 +148,11 @@ public: // accessors
     /// @param glfw mouse button to check
     /// @return returns if mouse button is released
     bool GetMouseReleased(int glfw_mouse_button);
+
+
+    /// @brief  gets the mouse pos in screen space
+    /// @return the current mouse pos in screen space
+    glm::vec2 GetMousePosScreen() const;
 
     /// @brief gets mouse pos in UI space
     /// @return returns the current mouse pos as a vec2

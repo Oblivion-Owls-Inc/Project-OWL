@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1132,
-                695
+                936,
+                957
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -48,7 +48,7 @@
         },
         "CheatSystem": {},
         "DebugSystem": {
-            "ShowFpsWindow": true,
+            "ShowFpsWindow": false,
             "ShowDebugWindow": true
         },
         "AssetLibrary<Entity>": {},

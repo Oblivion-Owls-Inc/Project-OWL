@@ -81,7 +81,7 @@ void Pathfinder::OnInit()
 /// @brief  called when exiting a scene - un-syncs (removes callback)
 void Pathfinder::OnExit()
 {
-    m_Tilemap.Exit( GetEntity() );
+    m_Tilemap.Exit();
 
     if (m_Thread.joinable())
         m_Thread.join();
