@@ -348,8 +348,8 @@
     {
         if ( data.is_array() == false )
         {
-            Debug()
-                << "JSON Warning: unexpected type \"" << data.type_name()
+            Debug()  << "Warning:"
+                << "JSON: unexpected type \"" << data.type_name()
                 << "\" encountered, expected type \"Array\" while reading UiElement SizeTypes"
                 << std::endl;
             return;
@@ -357,7 +357,7 @@
 
         if ( data.size() != 2 )
         {
-            Debug()
+            Debug() << "Warning:"
                 << "JSON Warning: unexpected array size \"" << data.size()
                 << "\" encountered, expected size \"2\" while reading UiElement SizeTypes"
                 << std::endl;
@@ -368,7 +368,7 @@
         {
             if ( data[ i ].is_string() == false )
             {
-                Debug()
+                Debug() << "Warning:"
                     << "JSON Warning: unexpected type \"" << data[ i ].type_name()
                     << "\" encountered, expected type \"String\" while reading UiElement SizeTypes"
                     << std::endl;
@@ -378,7 +378,7 @@
             auto const& sizeType = s_SizeTypes.find( data[ i ] );
             if ( sizeType == s_SizeTypes.end() )
             {
-                Debug()
+                Debug() << "Warning:"
                     << "JSON Warning: unrecognized token \"" << data[ i ]
                     << "\" encountered while reading UiElement SizeTypes"
                     << std::endl;

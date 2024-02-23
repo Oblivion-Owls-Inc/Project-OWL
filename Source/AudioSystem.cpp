@@ -242,7 +242,7 @@
                 "FMOD_ERRORCALLBACK_INSTANCETYPE_STUDIO_COMMANDREPLAY"
             };
 
-            Debug() << "There was an FMOD error:\n" <<
+            Debug() << "ERROR: " << "There was an FMOD error:\n" <<
                 "\tError Code:          " << errorCodeNames[ info->result ] << '\n' <<
                 "\tInstance Type:       " << instanceTypeNames[ info->instancetype ] << '\n' <<
                 "\tFunction Name:       " << info->functionname << '\n' <<

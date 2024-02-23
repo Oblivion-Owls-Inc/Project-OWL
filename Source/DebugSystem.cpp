@@ -80,6 +80,7 @@ void DebugSystem::SetupImGuiConfigPath()
     }
 }
 
+
 /// @brief Perform initialization.
 void DebugSystem::OnInit()
 {
@@ -137,6 +138,7 @@ void DebugSystem::OnUpdate(float dt)
     {
         ShowFPSWindow();
     }
+
 
 #endif // !DEBUG
 
@@ -352,6 +354,9 @@ void DebugSystem::DebugWindow()
     /// Creates a Spit Window for the EntityList and their components in the main
     /// editor window
     Entities()->DebugWindow();
+
+    /// Show the Console Window
+    Console()->Inspect();
 
     /// Ends the Editor Window
     ImGui::End();
@@ -659,6 +664,10 @@ void DebugSystem::ImguiStartFrame()
     ImGui::NewFrame();
 }
 
+void DebugSystem::WritetoConsole(const std::string& message)
+{
+    Console()->AddLog(message);
+}
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------

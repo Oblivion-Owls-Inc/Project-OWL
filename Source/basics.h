@@ -5,7 +5,6 @@
 #include <glew.h>
 #include <glfw/glfw3.h>
 #include <glm/glm.hpp>
-
 #include <iostream>
 #include <cassert>
 #include <cstdlib>
@@ -13,6 +12,7 @@
 #include <typeindex>
 #include <random>
 
+#include "ISerializable.h"
 #pragma warning( disable : 26451 )
 
 static std::default_random_engine __rng;
