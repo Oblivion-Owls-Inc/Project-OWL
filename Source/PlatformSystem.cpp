@@ -90,6 +90,18 @@
     }
 
 
+    /// @brief  checks if a screen pos is within the game window
+    /// @param  screenPos   the screen pos to check
+    /// @return whether the position is within the window
+    bool PlatformSystem::isPosWithinWindow( glm::vec2 const& screenPos ) const
+    {
+        return (
+            screenPos.x >= 0.0f && screenPos.x < m_WindowSize.x &&
+            screenPos.y >= 0.0f && screenPos.y < m_WindowSize.y
+        );
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------

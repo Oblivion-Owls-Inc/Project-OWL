@@ -16,6 +16,7 @@
 #include "Texture.h"
 #include "AssetLibrarySystem.h"
 
+#include "PlatformSystem.h"
 #include "InputSystem.h"
 #include "RenderSystem.h"
 
@@ -81,25 +82,25 @@
     /// @return the tile position of the mouse
     glm::ivec2 TilemapEditor::getMouseTilePos() const
     {
-       return m_Tilemap->WorldPosToTileCoord( Input()->GetMousePosWorld() );
+        if ( Platform()->isPosWithinWindow( Input()->GetMousePosScreen() ) == false )
+        {
+            return glm::ivec2( -1 );
+        }
+
+        return m_Tilemap->WorldPosToTileCoord( Input()->GetMousePosWorld() );
     }
 
 
     /// @brief  updates the brush tool
-    void TilemapEditor::updateBrushTool()
+    /// @param  mouseButton the mouse button this tool is bound to
+    void TilemapEditor::updateBrushTool( int mouseButton )
     {
-        // don't use this tool if it's not selected
-        if ( m_ToolButtons[ s_BrushToolIndex ] == -1 )
-        {
-            return;
-        }
-
         static bool changeMade = false;
 
         // don't use this tool if the mouse button is up
-        if ( Input()->GetMouseDown( m_ToolButtons[ s_BrushToolIndex ] ) == false )
+        if ( Input()->GetMouseDown( mouseButton ) == false )
         {
-            if ( changeMade && Input()->GetMouseReleased( m_ToolButtons[ s_BrushToolIndex ] ) )
+            if ( changeMade && Input()->GetMouseReleased( mouseButton ) )
             {
                 pushUndoableAction();
             }
@@ -108,7 +109,7 @@
 
 
         // when first starting to use this tool, register an undoable action
-        if ( Input()->GetMouseTriggered( m_ToolButtons[ s_BrushToolIndex ] ) )
+        if ( Input()->GetMouseTriggered( mouseButton ) )
         {
             changeMade = false;
         }
@@ -131,19 +132,14 @@
     }
 
     /// @brief  updates the erase tool
-    void TilemapEditor::updateEraseTool()
+    /// @param  mouseButton the mouse button this tool is bound to
+    void TilemapEditor::updateEraseTool( int mouseButton )
     {
-        // don't use this tool if it's not selected
-        if ( m_ToolButtons[ s_EraseToolIndex ] == -1 )
-        {
-            return;
-        }
-        
         static bool changeMade = false;
         // don't use this tool if the mouse button is up
-        if ( Input()->GetMouseDown( m_ToolButtons[ s_EraseToolIndex ] ) == false )
+        if ( Input()->GetMouseDown( mouseButton ) == false )
         {
-            if ( changeMade && Input()->GetMouseReleased( m_ToolButtons[ s_EraseToolIndex ] ) )
+            if ( changeMade && Input()->GetMouseReleased( mouseButton ) )
             {
                 pushUndoableAction();
             }
@@ -151,7 +147,7 @@
         }
 
         // when first starting to use this tool, register an undoable action
-        if ( Input()->GetMouseTriggered( m_ToolButtons[ s_EraseToolIndex ] ) )
+        if ( Input()->GetMouseTriggered( mouseButton ) )
         {
             changeMade = false;
         }
@@ -174,17 +170,11 @@
     }
 
     /// @brief  updates the rectangle selection tool
-    void TilemapEditor::updateSelectionTool()
+    /// @param  mouseButton the mouse button this tool is bound to
+    void TilemapEditor::updateSelectionTool( int mouseButton )
     {
-
-        // don't use this tool if it's not selected
-        if ( m_ToolButtons[ s_SelectionToolIndex ] == -1 )
-        {
-            return;
-        }
-
         // don't use this tool if the mouse button is up
-        if ( Input()->GetMouseDown( m_ToolButtons[ s_SelectionToolIndex ] ) == false )
+        if ( Input()->GetMouseDown( mouseButton ) == false )
         {
             return;
         }
@@ -193,7 +183,7 @@
         glm::ivec2 mousePos = getMouseTilePos();
 
         // when first starting to use this tool, set first position
-        if ( Input()->GetMouseTriggered( m_ToolButtons[ s_SelectionToolIndex ] ) || m_SelectionPos0 == glm::ivec2( -1, -1 ) )
+        if ( Input()->GetMouseTriggered( mouseButton ) || m_SelectionPos0 == glm::ivec2( -1, -1 ) )
         {
             m_SelectionPos0 = mousePos;
         }
@@ -209,16 +199,11 @@
     }
 
     /// @brief  updates the picker tool
-    void TilemapEditor::updatePickerTool()
+    /// @param  mouseButton the mouse button this tool is bound to
+    void TilemapEditor::updatePickerTool( int mouseButton )
     {
-        // don't use this tool if it's not selected
-        if ( m_ToolButtons[ s_PickerToolIndex ] == -1 )
-        {
-            return;
-        }
-
         // do nothing if the key is not triggered
-        if ( Input()->GetMouseTriggered( m_ToolButtons[ s_PickerToolIndex ] ) == false )
+        if ( Input()->GetMouseTriggered( mouseButton ) == false )
         {
             return;
         }
@@ -357,19 +342,21 @@
         pushUndoableAction();
     }
 
-    /// @brief  pastes the current selection into the tilemap
+    /// @brief  pastes the current selection into the tilemap at the position of the mouse
     void TilemapEditor::pasteSelection()
     {
-        bool selectionValid = standardizeSelection();
-        if ( selectionValid == false )
+        glm::ivec2 mousePos = getMouseTilePos();
+
+        // ensure the mouse pos is within the bounds
+        if ( mousePos == glm::ivec2( -1 ) )
         {
             return;
-        };
+        }
 
         glm::ivec2 pos;
         for ( pos.y = 0; pos.y < m_Clipboard.M_Size.y; ++pos.y )
         {
-            int destY = pos.y + m_SelectionPos0.y;
+            int destY = pos.y + mousePos.y;
             if ( destY < 0 )
             {
                 continue;
@@ -381,7 +368,7 @@
 
             for ( pos.x = 0; pos.x < m_Clipboard.M_Size.x; ++pos.x )
             {
-                int destX = pos.x + m_SelectionPos0.x;
+                int destX = pos.x + mousePos.x;
                 if ( destX < 0 )
                 {
                     continue;
@@ -544,18 +531,72 @@
         ImGui::DragFloat( "grid alpha", &m_GridAlpha );
         ImGui::DragFloat( "preview alpha", &m_PreviewAlpha );
 
-       m_PreviewTexture.Inspect( "preview texture" );
+        m_PreviewTexture.Inspect( "preview texture" );
 
-        updateBrushTool();
-        updateEraseTool();
-        updatePickerTool();
-        updateSelectionTool();
+        Inspection::InspectArray< MouseTool >(
+            "Tool Bindings", &m_ToolBindings,
+            []( MouseTool* mouseTool ) -> bool
+            {
+                return inspectMouseTool( mouseTool );
+            }
+        );
+
+
+        for ( int i = 0; i < m_ToolBindings.size(); ++i )
+        {
+            switch ( m_ToolBindings[ i ] )
+            {
+                case MouseTool::Brush:
+                    updateBrushTool( i );
+                    break;
+                case MouseTool::Eraser:
+                    updateEraseTool( i );
+                    break;
+                case MouseTool::Selection:
+                    updateSelectionTool( i );
+                    break;
+                case MouseTool::Picker:
+                    updatePickerTool( i );
+                    break;
+            }
+        }
+
         updateHotkeys();
 
         displaySelection();
         displayPreview();
     }
 
+
+    /// @brief  inspects a MouseTool
+    /// @param  mouseTool   the MouseTool to inspect
+    bool TilemapEditor::inspectMouseTool( MouseTool* mouseTool )
+    {
+        char const* const ToolNames[ (int)MouseTool::_Count ] = {
+            "[ none ]",
+            "Brush",
+            "Eraser",
+            "Selection",
+            "Picker"
+        };
+
+        bool changed = false;
+
+        if ( ImGui::BeginCombo( "", ToolNames[(int)(*mouseTool)] ) )
+        {
+            for ( int i = 0; i < (int)MouseTool::_Count; ++i )
+            {
+                if ( ImGui::Selectable( ToolNames[ i ], (int)(*mouseTool) == i ) )
+                {
+                    *mouseTool = (MouseTool)i;
+                    changed = true;
+                }
+            }
+            ImGui::EndCombo();
+        }
+
+        return changed;
+    }
 
 //-----------------------------------------------------------------------------
 // private: reading
@@ -569,20 +610,11 @@
         Stream::Read( m_PreviewTexture, data );
     }
 
-    /// @brief  reads the mouse buttons assigned to each tool
+    /// @brief  reads the tools bound to each mouse button
     /// @param  data    the json data to read from
-    void TilemapEditor::readToolButtons( nlohmann::ordered_json const& data )
+    void TilemapEditor::readToolBindings( nlohmann::ordered_json const& data )
     {
-        if ( data.size() != 4 )
-        {
-            Debug() << "WARNING: json TilemapEditor ToolButtons was not an array of size 4" << std::endl;
-            return;
-        }
-
-        for ( int i = 0; i < 4; ++i )
-        {
-            Stream::Read( m_ToolButtons[ i ], data[ i ] );
-        }
+        Stream::Read< int >( (std::vector< int >*)&m_ToolBindings, data);
     }
 
     /// @brief  reads the maximum number of undoable actions that will be kept track of
@@ -631,7 +663,7 @@
     {
         static ReadMethodMap< TilemapEditor > const readMethods = {
             { "PreviewTexture"   , &TilemapEditor::readPreviewTexture    },
-            { "ToolButtons"      , &TilemapEditor::readToolButtons       },
+            { "ToolBindings"     , &TilemapEditor::readToolBindings      },
             { "UndoStackCapacity", &TilemapEditor::readUndoStackCapacity },
             { "SelectionColor"   , &TilemapEditor::readSelectionColor    },
             { "SelectionAlpha"   , &TilemapEditor::readSelectionAlpha    },
@@ -656,11 +688,7 @@
         json[ "GridAlpha"         ] = Stream::Write( m_GridAlpha         );
         json[ "PreviewAlpha"      ] = Stream::Write( m_PreviewAlpha      );
 
-        nlohmann::ordered_json& toolButtons = json[ "ToolButtons" ];
-        for ( int button : m_ToolButtons )
-        {
-            toolButtons.push_back( button );
-        }
+        json[ "ToolBindings"      ] = Stream::Write< MouseTool >( m_ToolBindings );
 
         return json;
     }
@@ -693,14 +721,9 @@
         m_SelectionAlpha   ( other.m_SelectionAlpha    ),
         m_GridAlpha        ( other.m_GridAlpha         ),
         m_PreviewAlpha     ( other.m_PreviewAlpha      ),
-
-        m_PreviewTexture( other.m_PreviewTexture )
-    {
-        for ( int i = 0; i < 4; ++i )
-        {
-            m_ToolButtons[ i ] = other.m_ToolButtons[ i ];
-        }
-    }
+        m_PreviewTexture   ( other.m_PreviewTexture    ),
+        m_ToolBindings     ( other.m_ToolBindings      )
+    {}
 
 
 //-----------------------------------------------------------------------------
