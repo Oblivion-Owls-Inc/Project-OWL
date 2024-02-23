@@ -59,7 +59,7 @@ public: // public variables
     int M_changeingAction = 0;
     std::string M_whichAction = "";
 
-private:
+public:
     class Action; // forward reference
 
 protected:
