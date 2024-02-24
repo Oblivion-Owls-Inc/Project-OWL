@@ -6,10 +6,6 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 ///*****************************************************************/
 
-
-
-
-
 #include "PauseSystem.h"
 #include "DebugSystem.h"
 #include "InputSystem.h"
