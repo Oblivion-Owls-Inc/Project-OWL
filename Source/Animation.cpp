@@ -287,7 +287,6 @@
         if ( m_Sprite == nullptr )
         {
             ImGui::Text( "WARNING: There is no Sprite attached to this Animation Component" );
-            Console()->AddLog( "WARNING: There is no Sprite attached to this Animation Component" );
         }
 
        m_Asset.Inspect( "Animation Asset" );
@@ -295,7 +294,6 @@
         if ( m_Asset == nullptr )
         {
             ImGui::Text( "WARNING: No Animation asset selected" );
-            Console()->AddLog( "WARNING: No Animation asset selected" );
             return;
         }
 
