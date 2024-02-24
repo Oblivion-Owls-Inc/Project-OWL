@@ -137,7 +137,7 @@
         // Read in the data from the JSON.
         for (int i = 0; i < vec_data->size(); i++)
         {
-            Read( vec_data[ i ], json[ i ] );
+            Read( (*vec_data)[ i ], json[ i ] );
         }
     }
 

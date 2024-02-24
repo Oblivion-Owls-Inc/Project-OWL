@@ -41,12 +41,6 @@
             // Append the log to lastLog if it doesn't end with a newline.
             lastLog += log;
         }
-
-        // Auto-scroll logic remains the same
-        if (m_AutoScroll) 
-        {
-            m_ScrollToBottom = true;
-    }
     }
 
     /// @brief Shows the console window
