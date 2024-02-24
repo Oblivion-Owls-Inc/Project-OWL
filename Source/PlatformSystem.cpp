@@ -302,7 +302,7 @@
         #ifndef NDEBUG
         if (severity == GL_DEBUG_SEVERITY_HIGH)
         {
-            Debug() << message << std::endl;
+           // Debug() << message << std::endl;
             assert(x);  // Keep a breakpoint here: when it's triggered, drag to skip assert,
                         // and step outside this function to see where the error ocurred.
         }

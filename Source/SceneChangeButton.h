@@ -1,23 +1,20 @@
-/// @file       EditorCameraController.h
-/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      controls the camera while in the editor
+/////////////////////////////////////////////////////////////////////////////////
+/// @file       SceneChangeButton.h
+/// @author     Jax Clayton (jax.clayton@digipen.edu)
+/// @brief      Component that changes the scene when clicked
 /// @version    0.1
-/// @date       2024-02-09
+/// @date      2/21/2024
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
+/////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
-#include "Behavior.h"
+#include "Component.h"
+#include "EventListener.h"
 
-#include "ComponentReference.h"
-
-class Transform;
-class Camera;
-
-
-/// @brief  controls the camera while in the editor
-class EditorCameraController : public Behavior
+/// @brief  Component that changes the scene when clicked
+class SceneChangeButton : public Component
 {
 //-----------------------------------------------------------------------------
 public: // constructor / Destructor
@@ -25,7 +22,7 @@ public: // constructor / Destructor
 
 
     /// @brief  default constructor
-    EditorCameraController();
+    SceneChangeButton();
 
 
 //-----------------------------------------------------------------------------
@@ -50,47 +47,32 @@ public: // virtual override methods
     virtual void OnExit() override;
 
 
-    /// @brief  called once every graphics frame
-    /// @param  dt  the duration of the frame
-    virtual void OnUpdate( float dt ) override;
-
-
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
+    /// @brief Listener for the button click
+    EventListener<std::string> m_Listener;
+   
+    /// @brief  the name of the scene to change to
+    std::string m_SceneName;
 
-    /// @brief  how sensitive is the scroll wheel zooming
-    float m_Sensativity = 1.0f;
-
-
-    /// @brief  the Transform component attached to this Entity
-    ComponentReference< Transform > m_Transform;
-
-    /// @brief  the Camera Component attached to this Entity
-    ComponentReference< Camera > m_Camera;
-
-
-    /// @brief  the target world position of the mouse
-    glm::vec2 m_MouseTargetPos = { 0.0f, 0.0f };
-
+    /// @brief  the name of the event to listen for
+    std::string m_EventName;
 
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
 
-
-    /// @brief  moves the Transform to align the mouse target pos
-    /// @param  mousePos    the position of the mouse
-    void moveToAlignMouse( glm::vec2 const& mousePos );
-
+    /// @brief  called when the button is clicked to change the scene
+    void onButtonClick() const;
 
 //-----------------------------------------------------------------------------
 public: // inspection
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  shows the inspector for EditorCameraController
+    /// @brief  shows the inspector for SceneChangeButton
     virtual void Inspector() override;
 
 
@@ -98,35 +80,35 @@ public: // inspection
 private: // reading
 //-----------------------------------------------------------------------------
 
+    /// @brief  reads the scene name from the JSON data
+    void readSceneName( nlohmann::ordered_json const& data);
 
-    /// @brief  reads how sensitive is the scroll wheel zooming
-    /// @param  data    the JSON data to read from
-    void readSensativity( nlohmann::ordered_json const& data );
+    /// @brief  reads the event name from the JSON data
+    void readEventName( nlohmann::ordered_json const& data);
 
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
 //-----------------------------------------------------------------------------
 
-    
-    /// @brief  gets the map of read methods for this EditorCameraController
-    /// @return the map of read methods for this EditorCameraController
+    /// @brief  gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
-    /// @brief  writes this EditorCameraController to JSON
-    /// @return the JSON data of this EditorCameraController
+    /// @brief  Writes all HomeBase data to a JSON file.
+    /// @return The JSON file containing the data.
     virtual nlohmann::ordered_json Write() const override;
 
-
+    
 //-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  clones this EditorCameraController
-    /// @return the newly created clone of this EditorCameraController
-    virtual EditorCameraController* Clone() const override;
+    /// @brief  clones this SceneChangeButton
+    /// @return the newly created clone of this SceneChangeButton
+    virtual SceneChangeButton* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -134,13 +116,13 @@ private: // copying
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  copy-constructor for the EditorCameraController
-    /// @param  other   the other EditorCameraController to copy
-    EditorCameraController( EditorCameraController const& other );
+    /// @brief  copy-constructor for the SceneChangeButton
+    /// @param  other   the other SceneChangeButton to copy
+    SceneChangeButton( SceneChangeButton const& other );
 
 
     // diable = operator
-    void operator =( EditorCameraController const& ) = delete;
+    void operator =( SceneChangeButton const& ) = delete;
 
 
 //-----------------------------------------------------------------------------

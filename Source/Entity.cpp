@@ -475,10 +475,7 @@
 
         static std::string name = "";
         ImGui::InputText( "Entity Name", &name );
-        if (
-            ( ImGui::IsItemFocused() && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )||
-            ImGui::Button("Rename Entity")
-        )
+        if ( ImGui::IsItemFocused() && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
         {
             if ( name.empty() == false )
             {

@@ -61,6 +61,11 @@ protected:
     std::vector<map<int, bool[3]>> windows;
     int amount = 0;
 
+    /// @brief  how much the mouse has scrolled this graphicsframe
+    float m_DeltaScroll = 0.0f;
+    /// @brief  how much the mouse has scrolled this simulation frame
+    float m_FixedDeltaScroll = 0.0f;
+
 //-----------------------------------------------------------------------------
 private: // private methods
 //-----------------------------------------------------------------------------
@@ -161,6 +166,25 @@ public: // accessors
     /// @brief gets mouse pos in world space
     /// @return returns the current mouse pos as a vec2
     glm::vec2 GetMousePosWorld();
+
+
+    /// @brief  gets how much the mouse has scrolled since last frame
+    /// @return how much the mouse has scrolled since last frame
+    float GetMouseDeltaScroll();
+
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+
+    // callback called whenever the mouse scrolls
+    static void onMouseScrollCallback( GLFWwindow* window, double scrollX, double scrollY );
+
+
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
+
 
     // Prevent copying
     InputSystem(InputSystem& other) = delete;

@@ -17,6 +17,7 @@
 #include "SceneSystem.h"
 #include "DebugSystem.h"
 #include "RenderSystem.h"
+#include "PauseSystem.h"
 #include "AudioSystem.h"
 #include "CollisionSystem.h"
 #include "InputSystem.h"
@@ -30,6 +31,7 @@
 #include "Texture.h"
 
 #include "BehaviorSystem.h"
+#include "UiButton.h"
 #include "EnemyBehavior.h"
 #include "RigidBody.h"
 #include "PlayerController.h"
@@ -230,11 +232,6 @@
                 // Swap front and back buffers
                 glfwSwapBuffers(window);
 
-            // this goes to InputSystem
-
-                // Poll for and process events
-                glfwPollEvents();
-
         // TODO: move the above code out of Engine and into its own System
     }
 
@@ -354,6 +351,7 @@
         { "ParticleSystem"                        , &addSystem< ParticleSystem  >                          },
         { "CheatSystem"                           , &addSystem< CheatSystem     >                          },
         { "EventSystem"                           , &addSystem< EventSystem     >                          },
+        { "PauseSystem"                           , &addSystem< PauseSystem     >                          },
                                                   
         { "BehaviorSystem<RigidBody>"             , &addSystem< BehaviorSystem< RigidBody              > > },
         { "BehaviorSystem<Behavior>"              , &addSystem< BehaviorSystem< Behavior               > > },
@@ -362,6 +360,8 @@
         { "BehaviorSystem<WavesBehavior>"         , &addSystem< BehaviorSystem< WavesBehavior          > > },
         { "BehaviorSystem<EnemyBehavior>"         , &addSystem< BehaviorSystem< EnemyBehavior          > > },
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
+		{ "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
+
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
         { "AssetLibrary<Sound>"                   , &addSystem< AssetLibrarySystem< Sound              > > },
