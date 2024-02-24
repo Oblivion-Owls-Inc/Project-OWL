@@ -77,11 +77,15 @@ public:
     /// @brief Gets Called by the Debug system to display debug information
     virtual void DebugWindow() override;
 
+    /// @brief  Resets the Viewport when debug is closed
     void ResetViewport();
 
     /// @brief  sets whether the non-editor systems are enabled
     /// @param  enabled wether to enable 
     bool SetNonEditorSystemsEnabled(bool enabled);
+
+    /// @brief  sets whether the editor systems are enabled
+    bool IsEditorRunning() const { return m_EditorRunning; }
 
 ///----------------------------------------------------------------------------
 public: // DebugStream
@@ -118,7 +122,7 @@ private: // Members
 
     /// @brief Flag to control display of the ImGui demo window
     bool m_ShowDemoWindow = false;
-
+    
     bool m_Fullscreen = false;
 
     /// @brief Flag to show the Asset System List
@@ -129,6 +133,9 @@ private: // Members
 
     /// @brief Flag to show the Save Scene Window
     bool m_ShowSceneSaveWindow = false;
+
+    /// @brief If the Editor is Running
+    bool m_EditorRunning = false;
 
     /// @brief Flag to show the Save Engine Window
     bool m_ShowEngineSaveWindow = false;

@@ -37,13 +37,11 @@ void PauseSystem::OnUpdate(float dt)
 /// @brief  Gets called whenever a scene is exited
 void PauseSystem::OnSceneExit()
 {
-#ifdef NDEBUG
-    if (m_Running)
+    if (m_Running && Debug().IsEditorRunning())
     {
 	   m_Running = true;
 	   pauseGame();
     }
-#endif // NDEBUG
 }
 
 /// @brief Gets Called by the Debug system to display debug information
