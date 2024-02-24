@@ -124,7 +124,6 @@
     /// @brief on fixed update check which input is being pressed.
     void PlayerController::OnFixedUpdate()
     {
-        
         if (
             m_Animation == nullptr ||
             m_AudioPlayer == nullptr ||
@@ -133,6 +132,7 @@
         {
             return;
         }
+        
         
         if (Input()->GetKeyDown(GLFW_KEY_E))
         {
@@ -158,7 +158,6 @@
             m_Animation->SetIsRunning( true );
             direction.x += 1.0f;
             m_AudioPlayer->Play();
-
         }
         if ( moveLeft() )
         {
