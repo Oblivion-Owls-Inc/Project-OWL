@@ -11,11 +11,13 @@
 #include "EditorCameraController.h"
 #include "BehaviorSystem.h"
 
+#include "ComponentReference.t.h"
 #include "Transform.h"
-#include "Entity.h"
+#include "Camera.h"
 
 #include "DebugSystem.h"
 #include "InputSystem.h"
+#include "PlatformSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
@@ -48,13 +50,17 @@
     {
         Behaviors< EditorCameraController >()->AddComponent( this );
 
-        m_Transform = GetEntity()->GetComponent< Transform >();
+        m_Transform.Init( GetEntity() );
+        m_Camera   .Init( GetEntity() );
     }
 
     /// @brief  called once when exiting the scene
     void EditorCameraController::OnExit()
     {
         Behaviors< EditorCameraController >()->RemoveComponent( this );
+
+        m_Transform.Exit();
+        m_Camera   .Exit();
     }
 
 
@@ -75,9 +81,19 @@
         }
         else if ( Input()->GetMouseDown( GLFW_MOUSE_BUTTON_3 ) )
         {
-            glm::vec2 offset = m_MouseTargetPos - mousePos;
+            moveToAlignMouse( mousePos );
+        }
 
-            m_Transform->SetTranslation( m_Transform->GetTranslation() + offset );
+        if ( m_Camera != nullptr )
+        {
+            if ( Input()->GetMouseDeltaScroll() != 0.0f && Platform()->isPosWithinWindow( Input()->GetMousePosScreen() ) )
+            {
+                m_MouseTargetPos = mousePos;
+
+                m_Camera->SetWidth( m_Camera->GetWidth() * std::pow( 2.0f, m_Sensativity * Input()->GetMouseDeltaScroll() ) );
+
+                moveToAlignMouse( Input()->GetMousePosWorld() );
+            }
         }
     }
 
@@ -87,9 +103,25 @@
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  moves the Transform to align the mouse target pos
+    /// @param  mousePos    the position of the mouse
+    void EditorCameraController::moveToAlignMouse( glm::vec2 const& mousePos )
+    {
+        glm::vec2 offset = m_MouseTargetPos - mousePos;
+        m_Transform->SetTranslation( m_Transform->GetTranslation() + offset );
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: inspection
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  shows the inspector for EditorCameraController
+    void EditorCameraController::Inspector()
+    {
+        ImGui::DragFloat( "scroll sensativity", &m_Sensativity, 0.05f );
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -97,11 +129,43 @@
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  reads how sensitive is the scroll wheel zooming
+    /// @param  data    the JSON data to read from
+    void EditorCameraController::readSensativity( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_Sensativity, data );
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
 
     
+    /// @brief  gets the map of read methods for this EditorCameraController
+    /// @return the map of read methods for this EditorCameraController
+    ReadMethodMap< ISerializable > const& EditorCameraController::GetReadMethods() const
+    {
+        static ReadMethodMap< EditorCameraController > const readMethods = {
+            { "Sensativity", &EditorCameraController::readSensativity }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
+
+    /// @brief  Writes all EditorCameraController data to a JSON file.
+    /// @return The JSON file containing the data.
+    nlohmann::ordered_json EditorCameraController::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        json[ "Sensativity" ] = Stream::Write( m_Sensativity );
+
+        return json;
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: copying
 //-----------------------------------------------------------------------------
@@ -123,7 +187,8 @@
     /// @brief  copy-constructor for the EditorCameraController
     /// @param  other   the other EditorCameraController to copy
     EditorCameraController::EditorCameraController( EditorCameraController const& other ) :
-        Behavior( other )
+        Behavior( other ),
+        m_Sensativity( other.m_Sensativity )
     {}
 
 
