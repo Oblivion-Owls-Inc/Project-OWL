@@ -16,11 +16,13 @@
             "NextSceneName": "Prototype"
         },
         "EntitySystem": {},
+        "PauseSystem": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
         "BehaviorSystem<EditorCameraController>": {},
+        "BehaviorSystem<UiButton>": {}, 
         "ComponentSystem<Generator>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
