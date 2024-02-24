@@ -187,7 +187,6 @@
                 ImGui::LogFinish();
             }
 
-
             // Keep up at the bottom of the scroll region if we were already at the bottom at the beginning of the frame.
             // Using a scrollbar or mouse-wheel will take away from the bottom edge.
             if (m_AutoScroll || ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
