@@ -274,7 +274,7 @@ void Pathfinder::explore()
         glm::ivec2 dir[8] = { {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}, {-1,-1} };
 
         int width = m_Tilemap->GetDimensions().x;
-        int height = m_Nodes.size() / width;
+        int height = (int)m_Nodes.size() / width;
 
         // init first node (if it's not default)
         if (m_DestTile.x || m_DestTile.y)

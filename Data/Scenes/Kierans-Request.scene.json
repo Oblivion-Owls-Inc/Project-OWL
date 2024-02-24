@@ -6350,7 +6350,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 47.0,
+                            "Width": 23.5,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -6363,11 +6363,13 @@
                                 16.0
                             ]
                         },
-                        "EditorCameraController": {},
+                        "EditorCameraController": {
+                            "Sensativity": -0.25
+                        },
                         "Transform": {
                             "Translation": [
-                                -8.523533821105957,
-                                0.46278858184814453
+                                -8.613994598388672,
+                                3.598813533782959
                             ],
                             "Rotation": 0.0,
                             "Scale": [

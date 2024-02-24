@@ -90,7 +90,7 @@
             {
                 m_MouseTargetPos = mousePos;
 
-                m_Camera->SetWidth( m_Camera->GetWidth() * std::pow( 2, m_Sensativity * Input()->GetMouseDeltaScroll() ) );
+                m_Camera->SetWidth( m_Camera->GetWidth() * std::pow( 2.0f, m_Sensativity * Input()->GetMouseDeltaScroll() ) );
 
                 moveToAlignMouse( Input()->GetMousePosWorld() );
             }
