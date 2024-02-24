@@ -132,8 +132,8 @@
         {
             return;
         }
-        
-        
+
+
         if (Input()->GetKeyDown(GLFW_KEY_E))
         {
             for (auto& generator : Components<Generator>()->GetComponents())
