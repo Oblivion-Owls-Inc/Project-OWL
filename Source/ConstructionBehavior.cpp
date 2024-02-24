@@ -223,7 +223,7 @@
         if (GetEntity()->GetChildren().size() != 0)
         {
             m_RadiusSprite.Init(GetEntity()->GetChildren()[0]);
-            m_RadiusTransform = GetEntity()->GetChildren()[0]->GetComponent<Transform>();
+            m_RadiusTransform.Init(GetEntity()->GetChildren()[0]);
         }
 
         for ( BuildingInfo& buildingInfo : m_BuildingInfos )
@@ -244,6 +244,7 @@
         m_Sprite              .Exit();
         m_TurretPlacementSound.Exit();
         m_RadiusSprite        .Exit();
+        m_RadiusTransform     .Exit();
     }
 
     /// @brief  called every simulation frame
@@ -332,9 +333,8 @@
 
             m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
             m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
-            float scale = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >()->GetRange() * 2;
-            glm::vec2 distance = { scale, scale };
-            m_RadiusTransform->SetScale(distance);
+            float scale = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >()->GetRange();
+            m_RadiusTransform->SetScale(glm::vec2(scale * 2));
             return;
         }
     }
@@ -446,10 +446,8 @@
             return;
         }
 
-        int hasChildren = GetEntity()->GetChildren().size() != 0;
-
         m_Transform->SetTranslation( m_TargetPos );
-        if (hasChildren)
+        if (m_RadiusTransform != nullptr)
         {
             m_RadiusTransform->SetTranslation(m_TargetPos);
         }
@@ -459,9 +457,8 @@
             m_Sprite->SetColor( m_PreviewColorPlaceable );
             m_Sprite->SetOpacity( m_PreviewAlpha );
 
-            if (hasChildren)
+            if (m_RadiusSprite != nullptr)
             {
-                m_RadiusSprite->SetColor(m_PreviewRadiusColor);
                 m_RadiusSprite->SetOpacity(m_PreviewAlpha);
             }
         }
@@ -474,9 +471,8 @@
             alpha = std::min( alpha, m_PreviewAlpha );
             m_Sprite->SetOpacity( alpha );
 
-            if (hasChildren)
+            if (m_RadiusSprite != nullptr)
             {
-                m_RadiusSprite->SetColor(m_PreviewRadiusColor);
                 m_RadiusSprite->SetOpacity(alpha / 2);
             }
         }

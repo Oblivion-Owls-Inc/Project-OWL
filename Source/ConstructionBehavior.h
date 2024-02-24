@@ -191,9 +191,6 @@ private: // members
     /// @brief  color of the preview when the building is not placeable
     glm::vec4 m_PreviewColorNonPlaceable = { 0.5f, 0, 0, 1.0f };
 
-    /// @brief  color of the preview when the building is placeable
-    glm::vec4 m_PreviewRadiusColor = { 1.0f, 1.0f, 1.0f, 1.0f };
-
     /// @brief  the default transparency the preview is shown with
     float m_PreviewAlpha = 0.5f;
 
