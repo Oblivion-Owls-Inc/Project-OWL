@@ -273,7 +273,7 @@
             return;
         }
         m_RadiusSprite.Init(child);
-        m_RadiusTransform = GetEntity()->GetChildren()[0]->GetComponent<Transform>();
+        m_RadiusTransform.Init(child);
     }
 
     /// @brief  called whenever a child is about to be removed from this Entity
@@ -283,7 +283,7 @@
         if (m_RadiusSprite.GetEntity() == child)
         {
             m_RadiusSprite.Exit();
-            m_RadiusTransform = nullptr;
+            m_RadiusTransform.Exit();
         }
     }
 
