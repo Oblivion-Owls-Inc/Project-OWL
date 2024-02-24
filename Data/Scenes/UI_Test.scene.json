@@ -48,7 +48,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Ball": {
                 "Filepath": "Data/Textures/Balls/Ball.png",
@@ -59,7 +60,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Ball1": {
                 "Filepath": "Data/Textures/Balls/Ball2.png",
@@ -70,7 +72,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Ball3": {
                 "Filepath": "Data/Textures/Balls/Ball3.png",
@@ -81,7 +84,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "ButtonTexture": {
                 "Filepath": "Data/Textures/TestButton.png",
@@ -92,7 +96,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "CastlTiles": {
                 "Filepath": "Data/Textures/CastleTiles.png",
@@ -103,7 +108,8 @@
                 "Pivot": [
                     0.0,
                     1.0
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "ContinueHover": {
                 "Filepath": "",
@@ -114,7 +120,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "ContinueIdle": {
                 "Filepath": "",
@@ -125,7 +132,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "ContinuePressed": {
                 "Filepath": "",
@@ -136,7 +144,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "CreditsButton": {
                 "Filepath": "Data/Textures/PauseMenuAssets/CreditsButtonSheetpng.png",
@@ -147,7 +156,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Fireball": {
                 "Filepath": "Data/Textures/Balls/Ball4.png",
@@ -158,7 +168,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
@@ -169,7 +180,8 @@
                 "Pivot": [
                     0.0,
                     1.0
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "HealthBar": {
                 "Filepath": "Data/Textures/healthBar.png",
@@ -180,7 +192,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "InventoryBar": {
                 "Filepath": "Data/Textures/PLACEHOLDER_UI_Inventory.png",
@@ -191,7 +204,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Items": {
                 "Filepath": "Data/Textures/Items/TestItemSheet.png",
@@ -202,7 +216,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Level Assets": {
                 "Filepath": "Data/Textures/DigDeeper_Tileset_V1.png",
@@ -213,7 +228,8 @@
                 "Pivot": [
                     0.0,
                     1.0
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "PauseBackground": {
                 "Filepath": "Data/Textures/PauseMenuAssets/PauseBackground.png",
@@ -224,7 +240,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "PauseBase": {
                 "Filepath": "Data/Textures/PauseMenuAssets/PauseBase.png",
@@ -235,7 +252,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "PauseButton": {
                 "Filepath": "Data/Textures/PauseMenuAssets/ContinueButtonSheet.png",
@@ -246,7 +264,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "PauseLabel": {
                 "Filepath": "Data/Textures/PauseMenuAssets/Game Paused.png",
@@ -257,7 +276,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "PlayerSheet": {
                 "Filepath": "Data/Textures/Full Spritesheet.png",
@@ -268,7 +288,8 @@
                 "Pivot": [
                     0.5,
                     0.3799999952316284
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "QuitButton": {
                 "Filepath": "Data/Textures/PauseMenuAssets/QuitGameSheet.png",
@@ -279,7 +300,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "SettingsButton": {
                 "Filepath": "Data/Textures/PauseMenuAssets/SettingsButtonSheet.png",
@@ -290,7 +312,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "SettingsHover": {
                 "Filepath": "",
@@ -301,7 +324,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "SettingsIdle": {
                 "Filepath": "",
@@ -312,7 +336,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Turret": {
                 "Filepath": "Data/Textures/Turret.png",
@@ -323,7 +348,8 @@
                 "Pivot": [
                     0.699999988079071,
                     0.6000000238418579
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Van": {
                 "Filepath": "Data/Textures/van_large.png",
@@ -334,7 +360,8 @@
                 "Pivot": [
                     0.5,
                     0.3799999952316284
-                ]
+                ],
+                "UseAspectRatio": false
             }
         },
         "TransformAnimations": null,
@@ -372,7 +399,9 @@
                     "CircleCollider": {
                         "Radius": 0.10000000149011612,
                         "CollisionLayer": 4,
-                        "CollisionLayerFlags": 3
+                        "CollisionLayerFlags": {
+                            "Flags": 0
+                        }
                     },
                     "RigidBody": {
                         "Velocity": [
@@ -437,7 +466,9 @@
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
                         "CollisionLayer": 1,
-                        "CollisionLayerFlags": 7
+                        "CollisionLayerFlags": {
+                            "Flags": 0
+                        }
                     },
                     "Emitter": {
                         "PPS": 680.4739990234375,
@@ -469,7 +500,8 @@
                             0.14000000059604645,
                             0.7900000214576721,
                             0.0,
-                            -2.5999999046325684
+                            -2.5999999046325684,
+                            0.0
                         ]
                     },
                     "EmitterSprite": {
@@ -707,7 +739,9 @@
                         "BulletDamage": 10,
                         "BulletSpeed": 10.0,
                         "BulletSize": 0.30000001192092896,
-                        "ObstructionLayers": 0,
+                        "ObstructionLayers": {
+                            "Flags": 0
+                        },
                         "BulletPrefab": {
                             "AssetName": ""
                         }
@@ -794,7 +828,9 @@
                 "CircleCollider": {
                     "Radius": 1.0,
                     "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
+                    "CollisionLayerFlags": {
+                        "Flags": 0
+                    }
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -915,7 +951,6 @@
                     "IsActive": true
                 },
                 "CameraBehavior": {
-                    "TargetEntityName": "Player",
                     "XBounds": [
                         -1.0,
                         1.0
@@ -2625,7 +2660,9 @@
                 },
                 "TilemapCollider": {
                     "CollisionLayer": 0,
-                    "CollisionLayerFlags": 0
+                    "CollisionLayerFlags": {
+                        "Flags": 0
+                    }
                 },
                 "TilemapItemDropper": {
                     "ItemArchetype": {
@@ -6073,7 +6110,9 @@
                 "CircleCollider": {
                     "Radius": 0.30000001192092896,
                     "CollisionLayer": 2,
-                    "CollisionLayerFlags": 3
+                    "CollisionLayerFlags": {
+                        "Flags": 0
+                    }
                 },
                 "Health": {
                     "Health": {
@@ -6445,6 +6484,7 @@
                         1.0,
                         5.0,
                         0.0,
+                        0.0,
                         0.0
                     ]
                 },
@@ -6523,6 +6563,7 @@
                         0.0,
                         2.0,
                         0.0,
+                        0.0,
                         0.0
                     ]
                 },
@@ -6555,7 +6596,9 @@
                     ],
                     "BeamWidth": 0.10000000149011612,
                     "DamageRate": 10.0,
-                    "CollideWithLayers": 3,
+                    "CollideWithLayers": {
+                        "Flags": 0
+                    },
                     "Direction": [
                         -0.558078408241272,
                         0.8297881484031677
@@ -6733,6 +6776,7 @@
                         0.8100000023841858,
                         2.0,
                         0.0,
+                        0.0,
                         0.0
                     ]
                 },
@@ -6890,7 +6934,7 @@
                             "Children": null
                         },
                         {
-                            "Name": "PauseButton",
+                            "Name": "ContinueButton",
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
@@ -6920,7 +6964,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "",
+                                    "ClickEventName": "ContinueGame",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
@@ -6988,7 +7032,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "",
+                                    "ClickEventName": "QuitPrompt",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
@@ -7056,7 +7100,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "",
+                                    "ClickEventName": "CreditsOpen",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
@@ -7124,7 +7168,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "",
+                                    "ClickEventName": "SettingsOpen",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
