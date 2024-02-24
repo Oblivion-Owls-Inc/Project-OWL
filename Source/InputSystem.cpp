@@ -119,24 +119,31 @@ void InputSystem::mapUpdate()
 void InputSystem::OnInit()
 {
     handle = PlatformSystem::GetInstance()->GetWindowHandle();
+
+    glfwSetScrollCallback( handle, onMouseScrollCallback );
 }
 
 /// @brief  exit system
 void InputSystem::OnExit()
 {
-    
+
 }
 
 /// @brief fixed update for input, must be called
 void InputSystem::OnFixedUpdate()
 {
     mapUpdate();
+
+    m_FixedDeltaScroll = 0.0f;
 }
 
 /// @brief update system
 void InputSystem::OnUpdate(float dt)
 {
     mapUpdate();
+
+    m_DeltaScroll = 0.0f;
+    glfwPollEvents();
 }
 
 int InputSystem::InitAlternateWindow(GLFWwindow* handle)
@@ -380,6 +387,35 @@ glm::vec2 InputSystem::GetMousePosWorld()
 {
     return Cameras()->GetMat_ScreenToWorld() * glm::vec4( GetMousePosScreen(), 0.0f, 1.0f );
 }
+
+
+    /// @brief  gets how much the mouse has scrolled since last frame
+    /// @return how much the mouse has scrolled since last frame
+    float InputSystem::GetMouseDeltaScroll()
+    {
+        if ( GameEngine()->GetCurrentUpdate() == Engine::UpdateMode::fixedUpdate )
+        {
+            return m_FixedDeltaScroll;
+        }
+        else
+        {
+            return m_DeltaScroll;
+        }
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+
+    // callback called whenever the mouse scrolls
+    void InputSystem::onMouseScrollCallback( GLFWwindow*, double, double scrollY )
+    {
+        Input()->m_DeltaScroll += (float)scrollY;
+        Input()->m_FixedDeltaScroll += (float)scrollY;
+    }
+
 
 //-----------------------------------------------------------------------------
 // singleton stuff

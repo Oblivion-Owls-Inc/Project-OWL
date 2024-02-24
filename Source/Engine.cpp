@@ -232,11 +232,6 @@
                 // Swap front and back buffers
                 glfwSwapBuffers(window);
 
-            // this goes to InputSystem
-
-                // Poll for and process events
-                glfwPollEvents();
-
         // TODO: move the above code out of Engine and into its own System
     }
 
