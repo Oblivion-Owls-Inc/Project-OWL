@@ -124,7 +124,16 @@
     /// @brief on fixed update check which input is being pressed.
     void PlayerController::OnFixedUpdate()
     {
-
+        
+        if (
+            m_Animation == nullptr ||
+            m_AudioPlayer == nullptr ||
+            m_RigidBody == nullptr
+        )
+        {
+            return;
+        }
+        
         if (Input()->GetKeyDown(GLFW_KEY_E))
         {
             for (auto& generator : Components<Generator>()->GetComponents())
@@ -148,9 +157,7 @@
             m_Animation->SetAsset( m_Animations[ 0 ] );
             m_Animation->SetIsRunning( true );
             direction.x += 1.0f;
-
-            if (m_AudioPlayer)
-                m_AudioPlayer->Play();
+            m_AudioPlayer->Play();
 
         }
         if ( moveLeft() )
@@ -159,9 +166,7 @@
             m_Animation->SetAsset( m_Animations[ 1 ] );
             m_Animation->SetIsRunning( true );
             direction.x -= 1.0f;
-
-            if (m_AudioPlayer)
-                m_AudioPlayer->Play();
+            m_AudioPlayer->Play();
         }
         if ( moveUp() )
         {
@@ -169,9 +174,7 @@
             m_Animation->SetAsset( m_Animations[ 2 ] );
             m_Animation->SetIsRunning( true );
             direction.y += 1.0f;
-
-            if (m_AudioPlayer)
-                m_AudioPlayer->Play();
+            m_AudioPlayer->Play();
         }
         if ( moveDown() )
         {
@@ -179,9 +182,7 @@
             m_Animation->SetAsset( m_Animations[ 3 ] );
             m_Animation->SetIsRunning( true );
             direction.y -= 1.0f;
-
-            if (m_AudioPlayer)
-                m_AudioPlayer->Play();
+            m_AudioPlayer->Play();
 	    }
 
     
@@ -194,9 +195,7 @@
         {
             m_Animation->SetIsRunning( false );
             m_Animation->SetFrameIndex( 0, true );
-
-            if (m_AudioPlayer)
-                m_AudioPlayer->Stop();
+            m_AudioPlayer->Stop();
         }
 
         m_RigidBody->ApplyVelocity( direction * m_MaxSpeed );
