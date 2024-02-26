@@ -269,14 +269,15 @@
     /// @param array_data - Pointer to the array to write.
     /// @return A JSON object containing the array.
     template<typename ValueType, int Size>
-    nlohmann::ordered_json Stream::Write(ValueType* array_data)
+    nlohmann::ordered_json Stream::Write( ValueType const* array_data )
     {
         // The JSON object to store the array in.
-        nlohmann::ordered_json data;
+        nlohmann::ordered_json data = nlohmann::ordered_json::array();
+
         // Write the data to a JSON object.
         for (int i = 0; i < Size; i++)
         {
-            data[i] = array_data[i];
+            data.push_back( Stream::Write( array_data[ i ] ) );
         }
 
         return data;

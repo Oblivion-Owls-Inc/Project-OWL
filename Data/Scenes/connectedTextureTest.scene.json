@@ -5,7 +5,7 @@
             "TilePreview": {
                 "Filepath": "Data/Textures/Tiles/PreviewTextures.png",
                 "SheetDimensions": [
-                    2,
+                    3,
                     1
                 ],
                 "Pivot": [
@@ -18,7 +18,7 @@
                 "Filepath": "Data/Textures/Tiles/ConnectedTextures.png",
                 "SheetDimensions": [
                     4,
-                    8
+                    12
                 ],
                 "Pivot": [
                     0.0,
@@ -36,7 +36,7 @@
             "Name": "Camera",
             "Components": {
                 "Camera": {
-                    "Width": 21.753992080688477,
+                    "Width": 12.93499755859375,
                     "IsActive": true
                 },
                 "EditorCameraController": {
@@ -44,8 +44,8 @@
                 },
                 "Transform": {
                     "Translation": [
-                        7.528336048126221,
-                        -5.587361812591553
+                        7.679339408874512,
+                        -6.237523555755615
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -1263,6 +1263,14 @@
                             }
                         },
                         "TilemapTextureConnector": {
+                            "ConnectionRules": [
+                                [
+                                    0
+                                ],
+                                [
+                                    1
+                                ]
+                            ],
                             "FirstTileOffset": 0,
                             "TexturesPerTile": 16,
                             "TopLeftTextures": [
