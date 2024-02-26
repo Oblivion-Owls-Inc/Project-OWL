@@ -676,7 +676,7 @@
     bool CollisionSystem::checkCollision( CircleCollider const* circleCollider, TilemapCollider const* tilemapCollider, CollisionData* collisionData )
     {
         if (collisionData)
-            *collisionData = {};
+            *collisionData = CollisionData();
 
         Tilemap< int > const* tilemap = (tilemapCollider)->GetTilemap();
 
@@ -737,16 +737,9 @@
                     }
                 }
 
-                CollisionData tempCollisionData;
-                if ( !checkCircleAABB( pos, radius, tilePos, tilePos + glm::ivec2( 1, 1 ), collisionData ? &tempCollisionData : nullptr, enabledEdges ) )
+                if ( checkCircleAABB( pos, radius, tilePos, tilePos + glm::ivec2( 1, 1 ), collisionData, enabledEdges ) )
                 {
-                    continue;
-                }
-
-                collision = true;
-                if ( collisionData && tempCollisionData.depth > collisionData->depth )
-                {
-                    *collisionData = tempCollisionData;
+                    collision = true;
                 }
             }
         }
@@ -795,9 +788,15 @@
             }
             else
             { // right edge
-                if ( collisionData != nullptr )
+                if ( collisionData == nullptr )
                 {
-                    collisionData->depth = aabbMax.x - (circlePos.x - circleRadius);
+                    return true;
+                }
+
+                float depth = aabbMax.x - (circlePos.x - circleRadius);
+                if ( depth > collisionData->depth )
+                {
+                    collisionData->depth = depth;
                     collisionData->position = circlePos - glm::vec2( circleRadius, 0 );
                     collisionData->normal = glm::vec2( 1, 0 );
                 }
@@ -817,9 +816,15 @@
             }
             else
             { // left edge
-                if ( collisionData != nullptr )
+                if ( collisionData == nullptr )
                 {
-                    collisionData->depth = (circlePos.x + circleRadius) - aabbMin.x;
+                    return true;
+                }
+
+                float depth = (circlePos.x + circleRadius) - aabbMin.x;
+                if ( depth > collisionData->depth )
+                {
+                    collisionData->depth = depth;
                     collisionData->position = circlePos + glm::vec2( circleRadius, 0 );
                     collisionData->normal = glm::vec2( -1, 0 );
                 }
@@ -831,9 +836,15 @@
         {
             if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp) )
             { // top edge
-                if ( collisionData != nullptr )
+                if ( collisionData == nullptr )
                 {
-                    collisionData->depth = aabbMax.y - (circlePos.y - circleRadius);
+                    return true;
+                }
+
+                float depth = aabbMax.y - (circlePos.y - circleRadius);
+                if ( depth > collisionData->depth )
+                {
+                    collisionData->depth = depth;
                     collisionData->position = circlePos - glm::vec2( 0, circleRadius );
                     collisionData->normal = glm::vec2( 0, 1 );
                 }
@@ -842,9 +853,15 @@
             }
             else if ( circlePos.y <= aabbMin.y && (enabledEdges & s_EdgeDown) )
             { // bottom edge
-                if ( collisionData != nullptr )
+                if ( collisionData == nullptr )
                 {
-                    collisionData->depth = (circlePos.y + circleRadius) - aabbMin.y;
+                    return true;
+                }
+
+                float depth = (circlePos.y + circleRadius) - aabbMin.y;
+                if ( depth > collisionData->depth )
+                {
+                    collisionData->depth = depth;
                     collisionData->position = circlePos + glm::vec2( 0, circleRadius );
                     collisionData->normal = glm::vec2( 0, -1 );
                 }
@@ -858,17 +875,20 @@
                     return true;
                 }
 
-                collisionData->depth = -INFINITY;
                 if ( enabledEdges & s_EdgeLeft )
                 {
-                    collisionData->depth = (circlePos.x + circleRadius) - aabbMin.x;
-                    collisionData->position = circlePos + glm::vec2( circleRadius, 0 );
-                    collisionData->normal = glm::vec2( -1, 0 );
+                    float depth = (circlePos.x + circleRadius) - aabbMin.x;
+                    if ( depth < collisionData->depth )
+                    {
+                        collisionData->depth = depth;
+                        collisionData->position = circlePos + glm::vec2( circleRadius, 0 );
+                        collisionData->normal = glm::vec2( -1, 0 );
+                    }
                 }
                 if ( enabledEdges & s_EdgeRight )
                 {
                     float depth = aabbMax.x - (circlePos.x - circleRadius);
-                    if ( depth > collisionData->depth )
+                    if ( depth < collisionData->depth )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos - glm::vec2( circleRadius, 0 );
@@ -878,7 +898,7 @@
                 if ( enabledEdges & s_EdgeDown )
                 {
                     float depth = (circlePos.y + circleRadius) - aabbMin.y;
-                    if ( depth > collisionData->depth )
+                    if ( depth < collisionData->depth )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos + glm::vec2( 0, circleRadius );
@@ -888,7 +908,7 @@
                 if ( enabledEdges & s_EdgeUp )
                 {
                     float depth = aabbMax.y - (circlePos.y - circleRadius);
-                    if ( depth > collisionData->depth )
+                    if ( depth < collisionData->depth )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos - glm::vec2( 0, circleRadius );
@@ -919,9 +939,14 @@
             return false;
         }
 
-        if ( collisionData != nullptr )
+        if ( collisionData == nullptr )
         {
-            float distance = std::sqrt( distanceSquared );
+            return true;
+        }
+
+        float distance = std::sqrt( distanceSquared );
+        if ( circleRadius - distance > collisionData->depth )
+        {
             collisionData->depth = circleRadius - distance;
             collisionData->normal = distance == 0 ? glm::vec2( 0 ) : offset / distance;
             collisionData->position = point;
