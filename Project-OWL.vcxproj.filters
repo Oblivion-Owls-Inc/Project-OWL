@@ -324,6 +324,9 @@
     <Filter Include="Engine\Entity\Component\Tilemap\Pathfinder">
       <UniqueIdentifier>{09f5ca7d-4323-4aac-b628-c6ed0790810d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Components\Behaviors\HideableForeground">
+      <UniqueIdentifier>{fa718f60-f4fc-415e-8481-41d6a9855c4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -658,6 +661,9 @@
     </ClCompile>
     <ClCompile Include="Source\SceneChangeButton.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HideableForeground.cpp">
+      <Filter>Game\Components\Behaviors\HideableForeground</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1002,6 +1008,9 @@
     </ClInclude>
     <ClInclude Include="Source\SceneChangeButton.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HideableForeground.h">
+      <Filter>Game\Components\Behaviors\HideableForeground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
