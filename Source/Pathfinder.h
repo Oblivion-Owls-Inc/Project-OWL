@@ -111,6 +111,30 @@ private:
         unsigned priority;      /// @brief  Higher number = higher priority
     };
 
+    /// @brief  Target transform + how important it is to enemies
+    struct Target
+    {
+        // Constructors and operator= needed to pacify std::vector
+
+        /// @brief         Parametric constructor.
+        /// @param t       Target's Transform reference
+        /// @param p       Target's priority enum
+        Target(ComponentReference<Transform> t, Priority p);
+
+        /// @brief         Move constructor (replacement for copy ctor)
+        /// @param other   Target to copy/move
+        Target(Target&& other) noexcept;
+
+        /// @brief         Assignment operator. Does nothing. (not used, but compiler still wants it)
+        Target& operator=(const Target& other) { return *this; }
+
+        /// @brief  Reference to target's transform.
+        ComponentReference<Transform> transform;
+
+        /// @brief  Priority of the target. (enum)
+        Priority priority;
+    };
+
     /// @brief  Each target needs a priority.
 
     std::vector<Node> m_Nodes;          /// @brief  "grid" of nodes to navigate
@@ -124,20 +148,10 @@ private:
     // leaving the singular destination too for now, for backwards compatibility.
     // it will pathfind to both the DestPos (if it's not 0,0), and the targets.
 
-    /// @brief  Target transform + how important it is to enemies
-    struct Target 
-    {
-        Target(ComponentReference<Transform> t, Priority p);
-        Target(Target&& other) noexcept;
-        Target& operator=(const Target&) { return *this; }
 
-        ComponentReference<Transform> transform;
-        Priority priority; 
-    };
-
-    std::vector<std::string> m_TargetNames;  /// @brief  Names of target entities
+    /// @brief  Names of target entities (may or may not include priority as well)
+    std::vector<std::string> m_TargetNames;
     std::vector<Target> m_Targets;           /// @brief  Targets to nagivate to
-
     std::thread m_Thread;                    /// @brief  Background thread for the actual algo
     std::atomic_bool m_Dirty = false,        /// @brief  Thread sync
                      m_Done = false;

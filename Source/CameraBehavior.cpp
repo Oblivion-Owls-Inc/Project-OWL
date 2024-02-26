@@ -82,8 +82,9 @@ void CameraBehavior::OnUpdate(float dt)
 /// @brief  Tweak properties in debug window
 void CameraBehavior::Inspector()
 {
-	ImGui::DragFloat2("X bounds", &m_xBounds[0], 0.01f);
-	ImGui::DragFloat2("Y bounds", &m_yBounds[0], 0.01f);
+	ImGui::Text("Bounds:");
+	ImGui::DragFloat2("left / right", &m_xBounds[0], 0.01f);
+	ImGui::DragFloat2("bottom / top", &m_yBounds[0], 0.01f);
 	ImGui::Spacing();
 	ImGui::SliderFloat("Follow factor", &m_Factor, 0.0f, 5.0f, "%.2f");
 }

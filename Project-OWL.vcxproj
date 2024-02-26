@@ -285,6 +285,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\FileExplorer.cpp" />
     <ClCompile Include="imgui\imgui_stdlib.cpp" />
+    <ClCompile Include="Source\HideableForeground.cpp" />
     <ClCompile Include="Source\HomeBase.cpp" />
     <ClCompile Include="Source\CheatSystem.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
@@ -379,6 +380,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Console.h" />
+    <ClInclude Include="Source\HideableForeground.h" />
     <ClInclude Include="Source\PauseSystem.h" />
     <ClInclude Include="Source\ResourceCounterUi.h" />
     <ClInclude Include="Source\AssetReference.h" />

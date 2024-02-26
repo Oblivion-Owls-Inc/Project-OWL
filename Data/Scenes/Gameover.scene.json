@@ -11,7 +11,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
@@ -22,7 +23,8 @@
                 "Pivot": [
                     0.0,
                     1.0
-                ]
+                ],
+                "UseAspectRatio": false
             }
         },
         "TransformAnimations": null,
@@ -101,7 +103,7 @@
                         0
                     ],
                     "TileScale": [
-                        0.11999999731779099,
+                        0.6000000238418579,
                         0.3400000035762787
                     ],
                     "TileData": [
@@ -134,13 +136,13 @@
                 },
                 "Transform": {
                     "Translation": [
-                        0.0,
-                        0.0
+                        -1.1802101135253906,
+                        0.07186293601989746
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        0.20000000298023224,
-                        0.20000000298023224
+                        0.5,
+                        0.5
                     ],
                     "IsDiegetic": false
                 }

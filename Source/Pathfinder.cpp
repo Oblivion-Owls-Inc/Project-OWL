@@ -74,7 +74,7 @@ void Pathfinder::OnInit()
 
     getTargets();
 
-    // This will be depricated eventually.
+    // This will be depricated eventually. TODO
     if (m_DestPos.x || m_DestPos.y)
         SetDestination(m_DestPos);
 
@@ -300,11 +300,11 @@ void Pathfinder::explore()
         while (ti--)
         {
             // if this target is gone, reference to its transform will be null
-            //if (!m_Targets[ti].transform)
-            //{
-            //    m_Targets.erase(m_Targets.begin() + ti);
-            //    continue;
-            //}
+            if (!m_Targets[ti].transform)
+            {
+                m_Targets.erase(m_Targets.begin() + ti);
+                continue;
+            }
 
             glm::ivec2 tile = m_Tilemap->WorldPosToTileCoord(m_Targets[ti].transform->GetTranslation());
             if (tile.x != -1)
@@ -599,14 +599,21 @@ nlohmann::ordered_json Pathfinder::Write() const
 
 
 
-// Custom constructors for Target
+//-----------------------------------------------------------------------------
+//              Custom constructors for Target
+//-----------------------------------------------------------------------------
 
+/// @brief         Move constructor (replacement for copy ctor)
+/// @param other   Target to copy/move
 Pathfinder::Target::Target(Target&& other) noexcept
 {
     priority = other.priority;
     transform = std::move(other.transform);
 }
 
+/// @brief         Parametric constructor. Moves the given transform reference.
+/// @param t       Target's Transform reference
+/// @param p       Target's priority enum
 Pathfinder::Target::Target(ComponentReference<Transform> t, Priority p)
 {
     priority = p;
