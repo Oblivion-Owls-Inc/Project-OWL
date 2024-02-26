@@ -334,7 +334,7 @@
             m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
             m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
             float scale = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >()->GetRange();
-            if (m_RadiusSprite != nullptr)
+            if (m_RadiusTransform != nullptr)
             {
                 m_RadiusTransform->SetScale(glm::vec2(scale * 2));
             }
