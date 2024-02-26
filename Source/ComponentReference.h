@@ -8,9 +8,10 @@
 
 #pragma once
 
-#define COMPONENTREFERENCE_H
+#include <functional>
 
-#include "Entity.h"
+class Entity;
+class Component;
 
 
 /// @brief  abstract base class for templatized ComponentReferences
@@ -71,11 +72,11 @@ public: // constructor
 
     /// @brief  move constructor
     /// @param  other   the ComponentReference to move into this one
-    ComponentReference( ComponentReference&& other );
+    ComponentReference( ComponentReference&& other ) noexcept;
 
     /// @brief  move-assignment operator
     /// @param  other   the ComponentReference to move into this one
-    void operator =( ComponentReference&& other );
+    void operator =( ComponentReference&& other ) noexcept;
 
 
 //-----------------------------------------------------------------------------
@@ -123,6 +124,11 @@ public: // accessors
     void operator =( ComponentType* component );
 
 
+    /// @brief  gets the Entity this ComponentReference watches
+    /// @return the Entity this ComponentReference watches
+    Entity const* GetEntity() const;
+
+
 //-----------------------------------------------------------------------------
 public: // engine methods
 //-----------------------------------------------------------------------------
@@ -163,7 +169,3 @@ private: // members
 
 //-----------------------------------------------------------------------------
 };
-
-#ifndef COMPONENTREFERENCE_T
-#include "ComponentReference.t.cpp"
-#endif

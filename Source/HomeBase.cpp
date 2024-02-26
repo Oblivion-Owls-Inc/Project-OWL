@@ -8,6 +8,9 @@
 
 #include "HomeBase.h"
 
+#include "ComponentReference.t.h"
+#include "Health.h"
+
 #include "SceneSystem.h"
 
 //-----------------------------------------------------------------------------

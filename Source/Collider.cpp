@@ -9,8 +9,15 @@
 
 #include "Collider.h"
 
-#include "CollisionSystem.h"
 #include "DebugSystem.h"
+#include "CollisionSystem.h"
+
+#include "ComponentReference.t.h"
+#include "Transform.h"
+#include "RigidBody.h"
+#include "StaticBody.h"
+
+#include "Engine.h"
 
 #include "Inspection.h"
 
@@ -46,6 +53,20 @@
         return m_Transform;
     }
 
+    /// @brief  gets this Collider's RigidBody
+    /// @return this Collider's RigidBody
+    RigidBody* Collider::GetRigidBody() const
+    {
+        return m_RigidBody;
+    }
+
+    /// @brief  gets this Collider's StaticBody
+    /// @return this Collider's StaticBody
+    StaticBody* Collider::GetStaticBody() const
+    {
+        return m_StaticBody;
+    }
+
 
     /// @brief  gets the collision layer of this Collider
     /// @return the collision layer of this Collider
@@ -59,13 +80,6 @@
     void Collider::SetCollisionLayer( unsigned layerId )
     {
         m_CollisionLayerId = layerId;
-    }
-
-    /// @brief  sets the collision layer of this Collider
-    /// @param  layerName   the name of the collision layer to set
-    void Collider::SetCollisionLayer( std::string const& layerName )
-    {
-        m_CollisionLayerId = Collisions()->GetCollisionLayerId( layerName );
     }
 
 
@@ -83,17 +97,10 @@
         m_CollisionLayerFlags = layerFlags;
     }
 
-    /// @brief  sets the flags of which layers this Collider collides with
-    /// @param  layerFlags  the names of which layers this Collider should collide with
-    void Collider::SetCollisionLayerFlags( std::vector< std::string > const& layerNames )
-    {
-        m_CollisionLayerFlags = Collisions()->GetLayerFlags( layerNames );
-    }
-
 
     /// @brief  gets the list of colliders this Collider is currently colliding with
     /// @return the list of colliders this Collider is currently colliding with
-    std::vector< Collider* > const& Collider::GetContacts() const
+    std::map< Collider*, int > const& Collider::GetContacts() const
     {
         return m_Contacts;
     }
@@ -109,7 +116,7 @@
     /// @return whether the colliders are colliding
     bool Collider::IsColliding( Collider* other )
     {
-        return std::find( m_Contacts.begin(), m_Contacts.end(), other ) != m_Contacts.end();
+        return m_Contacts.contains( other );
     }
 
 
@@ -119,14 +126,25 @@
     /// @note   YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT
     void Collider::AddOnCollisionCallback( unsigned ownerId, OnCollisionCallback callback )
     {
-        m_OnCollisionCallbacks.emplace( ownerId, std::move( callback ) );
+        m_OnCollisionCallbacks.push_back( { ownerId, std::move( callback ) } );
     }
 
     /// @brief  removes a callback function to be called when this collider collides
     /// @param  ownerId the ID of the owner of the callback to remove
     void Collider::RemoveOnCollisionCallback( unsigned ownerId )
     {
-        m_OnCollisionCallbacks.erase( ownerId );
+        auto it = std::find_if(
+            m_OnCollisionCallbacks.begin(),
+            m_OnCollisionCallbacks.end(),
+            [ ownerId ]( auto const& pair ) -> bool
+            {
+                return pair.first == ownerId;
+            }
+        );
+        if ( it != m_OnCollisionCallbacks.end() )
+        {
+            m_OnCollisionCallbacks.erase( it );
+        }
     }
 
 
@@ -136,14 +154,25 @@
     /// @note   YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT
     void Collider::AddOnCollisionEnterCallback( unsigned ownerId, OnCollisionStateChangeCallback callback )
     {
-        m_OnCollisionEnterCallbacks.emplace( ownerId, std::move( callback ) );
+        m_OnCollisionEnterCallbacks.push_back( { ownerId, std::move( callback ) } );
     }
 
     /// @brief  adds a callback function to be called when a collision begins
     /// @param  ownerId the ID of the owner of the callback to remove
     void Collider::RemoveOnCollisionEnterCallback( unsigned ownerId )
     {
-        m_OnCollisionEnterCallbacks.erase( ownerId );
+        auto it = std::find_if(
+            m_OnCollisionEnterCallbacks.begin(),
+            m_OnCollisionEnterCallbacks.end(),
+            [ ownerId ]( auto const& pair ) -> bool
+            {
+                return pair.first == ownerId;
+            }
+        );
+        if ( it != m_OnCollisionEnterCallbacks.end() )
+        {
+            m_OnCollisionEnterCallbacks.erase( it );
+        }
     }
 
 
@@ -153,20 +182,32 @@
     /// @note   YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT
     void Collider::AddOnCollisionExitCallback( unsigned ownerId, OnCollisionStateChangeCallback callback )
     {
-        m_OnCollisionExitCallbacks.emplace( ownerId, std::move( callback ) );
+        m_OnCollisionExitCallbacks.push_back( { ownerId, std::move( callback ) } );
     }
 
     /// @brief  adds a callback function to be called when a collision ends
     /// @param  ownerId the ID of the owner of the callback to remove
     void Collider::RemoveOnCollisionExitCallback( unsigned ownerId )
     {
-        m_OnCollisionExitCallbacks.erase( ownerId );
+        auto it = std::find_if(
+            m_OnCollisionExitCallbacks.begin(),
+            m_OnCollisionExitCallbacks.end(),
+            [ ownerId ]( auto const& pair ) -> bool
+            {
+                return pair.first == ownerId;
+            }
+        );
+        if ( it != m_OnCollisionExitCallbacks.end() )
+        {
+            m_OnCollisionExitCallbacks.erase( it );
+        }
     }
 
 
     /// @brief  calls all OnCollision callbacks attached to this Collider
     /// @param  other           the other entity this Collider collided with
     /// @param  collisionData   the collisionData of the collision
+    /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
     void Collider::CallOnCollisionCallbacks( Collider* other, CollisionData const& collisionData )
     {
         for ( auto& [ id, callback ] : m_OnCollisionCallbacks )
@@ -174,6 +215,56 @@
             callback( other, collisionData );
         }
     }
+
+
+    /// @brief  tries to add a contact to this Collider's contacts array
+    /// @param  other           the contact to add
+    /// @param  currentFrame    the frame the Contact was added on
+    /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
+    void Collider::TryAddContact( Collider* other, int currentFrame )
+    {
+        // don't track contacts on Entities without OnCollisionStateChange callbacks
+        if ( m_OnCollisionEnterCallbacks.empty() && m_OnCollisionExitCallbacks.empty() )
+        {
+            return;
+        }
+
+        // [] operator adds element if it doesn't exist
+        int& previousFrame = m_Contacts[ other ];
+
+        // check if it already existed
+        if ( previousFrame == 0 )
+        {
+            CallOnCollisionEnterCallbacks( other );
+        }
+
+        previousFrame = currentFrame;
+    }
+
+
+    /// @brief  removes all outdated contacts from this Collider and calls OnCollisionExit callbacks
+    void Collider::RemoveOutdatedContacts()
+    {
+        int currentFrame = GameEngine()->GetFixedFrameCount();
+        std::erase_if(
+            m_Contacts,
+            [ this, currentFrame ]( std::pair< Collider*, int > const& contact ) -> bool
+            {
+                if ( contact.second != currentFrame )
+                {
+                    CallOnCollisionExitCallbacks( contact.first );
+                    return true;
+                }
+                return false;
+            }
+        );
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
 
     /// @brief  calls all OnCollisionEnter callbacks attached to this Collider
     /// @param  other           the other entity this Collider collided with
@@ -196,58 +287,6 @@
     }
 
 
-    /// @brief  adds a contact to this Collider's contacts array
-    /// @param  other   the contact to add
-    /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
-    bool Collider::TryAddContact( Collider* other )
-    {
-        if ( std::find( m_Contacts.begin(), m_Contacts.end(), other ) != m_Contacts.end() )
-        {
-            return false;
-        }
-
-        m_Contacts.push_back( other );
-        return true;
-    }
-
-    /// @brief  removes a contact to this Collider's contacts array
-    /// @param  other   the contact to add
-    /// @note   SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
-    bool Collider::TryRemoveContact( Collider* other )
-    {
-        auto it = std::find( m_Contacts.begin(), m_Contacts.end(), other );
-        if ( it == m_Contacts.end() )
-        {
-            return false;
-        }
-
-        m_Contacts.erase( it );
-        return true;
-    }
-
-
-//-----------------------------------------------------------------------------
-// protected: virtual override methods
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  called when this Component's Entity enters the Scene
-    void Collider::OnInit()
-    {
-        CollisionSystem::GetInstance()->addCollider( this );
-
-        m_Transform.Init( GetEntity() );
-    }
-
-    /// @brief  called when this Component's Entity is removed from the Scene
-    void Collider::OnExit()
-    {
-        CollisionSystem::GetInstance()->removeCollider( this );
-
-        m_Transform.Exit();
-    }
-
-    
 //-----------------------------------------------------------------------------
 // protected: inspection
 //-----------------------------------------------------------------------------
@@ -272,7 +311,7 @@
         }
 
         /// collision layer flags
-        Inspection::InspectCollisionLayerFlags( ( std::string( "Collision Layer Flags##" ) + std::to_string( GetId() ) ).c_str(), &m_CollisionLayerFlags );
+        m_CollisionLayerFlags.Inspect( "Collision Layer Flags" );
     }
 
 
@@ -285,29 +324,14 @@
     /// @param  data    the json data to read from
     void Collider::readCollisionLayer( nlohmann::ordered_json const& data )
     {
-        if ( data.is_string() )
-        {
-            SetCollisionLayer( (std::string)data );
-        }
-        else if ( data.is_number_unsigned() )
-        {
-            SetCollisionLayer( (unsigned)data );
-        }
+        Stream::Read( m_CollisionLayerId, data );
     }
 
     /// @brief  reads the collision layer flags from json
     /// @param  data    the json data to read from
     void Collider::readCollisionLayerFlags( nlohmann::ordered_json const& data )
     {
-        if ( data.is_array() )
-        {
-            std::vector< std::string > collisionLayerNames = data;
-            SetCollisionLayerFlags( collisionLayerNames );
-        }
-        else if ( data.is_number_unsigned() )
-        {
-            SetCollisionLayerFlags( (CollisionLayerFlags)data );
-        }
+        Stream::Read( m_CollisionLayerFlags, data );
     }
 
 

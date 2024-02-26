@@ -1,4 +1,4 @@
-/// @file       ComponentReference.t.cpp
+/// @file       ComponentReference.t.h
 /// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
 /// @brief      a reference to a component in the scene
 /// @version    0.1
@@ -6,15 +6,15 @@
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
-#define COMPONENTREFERENCE_T
+#pragma once
 
-#ifndef COMPONENTREFERENCE_H
 #include "ComponentReference.h"
-#endif
 
-#ifndef ENTITY_H
 #include "Entity.h"
-#endif
+#include "Collider.h"
+#include "StaticBody.h"
+#include "Transform.h"
+#include "RigidBody.h"
 
 #include "DebugSystem.h"
 
@@ -43,24 +43,36 @@
     /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @param  other   the ComponentReference to move into this one
     template < class ComponentType, bool required >
-    ComponentReference< ComponentType, required >::ComponentReference( ComponentReference&& other ) :
+    ComponentReference< ComponentType, required >::ComponentReference( ComponentReference&& other ) noexcept :
         m_Entity   ( other.m_Entity    ),
         m_Component( other.m_Component ),
         m_OnConnectCallback   ( std::move( other.m_OnConnectCallback    ) ),
         m_OnDisconnectCallback( std::move( other.m_OnDisconnectCallback ) )
-    {}
+    {
+        other.m_Entity = nullptr;
+        other.m_Component = nullptr;
+
+        if ( m_Entity != nullptr )
+        {
+            m_Entity->RemoveComponentReference( &other );
+            m_Entity->AddComponentReference( this );
+        }
+    }
 
     /// @brief  move-assignment operator
     /// @tparam ComponentType   the type of Component this ComponentReference refers to
     /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
     /// @param  other   the ComponentReference to move into this one
     template < class ComponentType, bool required >
-    void ComponentReference< ComponentType, required >::operator =( ComponentReference&& other )
+    void ComponentReference< ComponentType, required >::operator =( ComponentReference&& other ) noexcept
     {
         m_Entity    = other.m_Entity;
         m_Component = other.m_Component;
         m_OnConnectCallback    = std::move( other.m_OnConnectCallback    );
         m_OnDisconnectCallback = std::move( other.m_OnDisconnectCallback );
+
+        other.m_Entity = nullptr;
+        other.m_Component = nullptr;
 
         if ( m_Entity != nullptr )
         {
@@ -201,11 +213,23 @@
         }
 
         m_Component = component;
+        m_Entity = m_Component != nullptr ? m_Component->GetEntity() : nullptr;
 
         if ( m_Component != nullptr && m_OnConnectCallback )
         {
             m_OnConnectCallback();
         }
+    }
+
+
+    /// @brief  gets the Entity this ComponentReference watches
+    /// @tparam ComponentType   the type of Component this ComponentReference refers to
+    /// @tparam required        whether this ComponentReference is required or optional (for debug logging purposes)
+    /// @return the Entity this ComponentReference watches
+    template < class ComponentType, bool required >
+    Entity const* ComponentReference< ComponentType, required >::GetEntity() const
+    {
+        return m_Entity;
     }
 
 
@@ -226,6 +250,7 @@
         }
 
         m_Component = nullptr;
+        m_Entity = nullptr;
     }
 
 

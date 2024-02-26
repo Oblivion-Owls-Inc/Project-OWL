@@ -10,6 +10,8 @@
 #include "ItemComponent.h"
 #include "ComponentSystem.h"
 
+#include "ComponentReference.t.h"
+
 
 //-----------------------------------------------------------------------------
 // public: types

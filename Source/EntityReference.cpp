@@ -13,6 +13,8 @@
 
 #include "ComponentReference.h"
 
+#include "DebugSystem.h"
+
 #include "EntitySystem.h"
 
 #include <imgui.h>
@@ -60,7 +62,7 @@
 
         m_Entity->AddEntityReference( this );
 
-        initComponentReferences();
+        initComponentReferencesAndCallbacks();
     }
 
 
@@ -72,10 +74,25 @@
             return;
         }
 
-        exitComponentReferences();
+        exitComponentReferencesAndCallbacks();
 
         m_Entity->RemoveEntityReference( this );
         m_Entity = nullptr;
+    }
+
+
+    /// @brief  sets the callback to call when this EntityReference connects to an Entity
+    /// @param  callback    the callback to call
+    void EntityReference::SetOnConnectCallback( std::function< void () > callback )
+    {
+        m_OnConnectCallback = callback;
+    }
+
+    /// @brief  sets the callback to call when this EntityReference disconnects from an Entity
+    /// @param  callback    the callback to call
+    void EntityReference::SetOnDisconnectCallback( std::function< void () > callback )
+    {
+        m_OnDisconnectCallback = callback;
     }
 
 
@@ -122,7 +139,7 @@
     }
 
 
-    /// @brief  assignment operator
+    /// @brief  assignment operator (also initializes)
     /// @param  entity  the Entity to assign to this EntityReference
     void EntityReference::operator =( Entity* entity )
     {
@@ -140,7 +157,7 @@
 
         m_Entity->AddEntityReference( this );
 
-        initComponentReferences();
+        initComponentReferencesAndCallbacks();
     }
 
 
@@ -163,18 +180,28 @@
 
 
     /// @brief  inits all attached ComponentReferences
-    void EntityReference::initComponentReferences()
+    void EntityReference::initComponentReferencesAndCallbacks()
     {
         for ( ComponentReferenceBase* componentReference : m_ComponentReferences )
         {
             componentReference->Init( m_Entity );
         }
+
+        if ( m_OnConnectCallback )
+        {
+            m_OnConnectCallback();
+        }
     }
 
 
     /// @brief  exits all attached ComponentReferences
-    void EntityReference::exitComponentReferences()
+    void EntityReference::exitComponentReferencesAndCallbacks()
     {
+        if ( m_OnDisconnectCallback )
+        {
+            m_OnDisconnectCallback();
+        }
+
         for ( ComponentReferenceBase* componentReference : m_ComponentReferences )
         {
             componentReference->Exit();

@@ -179,9 +179,12 @@ private: // member variables
     bool m_IsDestroyed = false;
 
 
-    // TODO: implement Entity::m_IsInScene
     /// @brief  whether the Entity is currently in the scene
     bool m_IsInScene = false;
+
+
+    /// @brief  whether the Parent needs to be set on Init
+    bool m_SetParentOnInit = false;
 
 
     /// @brief  all of the ComponentReferences currently tracking this Entity
@@ -216,11 +219,11 @@ public: // engine methods
 
     /// @brief  adds an ComponentReference to this Component
     /// @param  componentReference  the refernce to add
-    void AddComponentReference( ComponentReferenceBase* componentReference );
+    void AddComponentReference( ComponentReferenceBase* componentReference ) noexcept;
 
     /// @brief  removes an ComponentReference to this Component
     /// @param  componentReference  the refernce to remove
-    void RemoveComponentReference( ComponentReferenceBase* componentReference );
+    void RemoveComponentReference( ComponentReferenceBase* componentReference ) noexcept;
 
 
 //-----------------------------------------------------------------------------

@@ -16,13 +16,16 @@
 #include <vector>
 
 #include "ComponentReference.h"
-#include "Transform.h"
-#include "Sprite.h"
-#include "AudioPlayer.h"
+class Transform;
+class Sprite;
+class AudioPlayer;
 
 #include "EntityReference.h"
-#include "Inventory.h"
-#include "Tilemap.h"
+class Inventory;
+
+template < typename TileType >
+class Tilemap;
+class Entity;
 
 #include  "AssetReference.h"
 
@@ -148,6 +151,14 @@ private: // virtual override methods
     /// @brief  called every simulation frame
     virtual void OnFixedUpdate() override;
 
+    /// @brief  called whenever a child is added to this Entity
+    /// @param  newChild    the child that was added
+    virtual void OnAddChild(Entity* child) override;
+
+    /// @brief  called whenever a child is about to be removed from this Entity
+    /// @param  newChild    the child that is about to be removed
+    virtual void OnRemoveChild(Entity* child) override;
+
 
 //-----------------------------------------------------------------------------
 private: // members
@@ -173,7 +184,6 @@ private: // members
 
     /// @brief  the current position being targeted
     glm::vec2 m_TargetPos = { 0, 0 };
-
 
     /// @brief  color of the preview when the building is placeable
     glm::vec4 m_PreviewColorPlaceable = { 0, 0.5f, 0, 1.0f };
@@ -214,6 +224,12 @@ private: // members
 
     /// @brief  the preview sprite
     ComponentReference< Sprite > m_Sprite;
+
+    /// @brief  the preview radius sprite
+    ComponentReference< Sprite > m_RadiusSprite;
+
+    /// @brief  the transform of the player
+    ComponentReference< Transform > m_RadiusTransform;
 
     /// @brief  the sound played when placing a turret.
     ComponentReference< AudioPlayer > m_TurretPlacementSound;

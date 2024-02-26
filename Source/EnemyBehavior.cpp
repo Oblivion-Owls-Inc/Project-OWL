@@ -8,6 +8,8 @@
 
 #include "EnemyBehavior.h"
 
+#include "ComponentReference.t.h"
+
 #include "BehaviorSystem.h"
 #include "EntitySystem.h"
 #include "Transform.h"

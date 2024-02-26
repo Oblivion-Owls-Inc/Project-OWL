@@ -161,13 +161,7 @@
     {
         if ( m_Texture == nullptr )
         {
-            Debug() << "WARNING: UiBarSprite is missing a texture" << std::endl;
             return;
-        }
-
-        if ( m_Texture->GetSheetDimensions() != glm::ivec2( 1, 1 ) )
-        {
-            Debug() << "WARNING: UiBarSprite texture sheet dimensions are not < 1, 1 >" << std::endl;
         }
 
         m_Texture->Bind();
@@ -191,6 +185,11 @@
     void UiBarSprite::prepareShader() const
     {
         Shader* shader = Renderer()->SetActiveShader( "UiBar" );
+        if ( shader == nullptr )
+        {
+            Debug() << "Error: unable to find shader \"UiBar\"" << std::endl;
+            return;
+        }
 
 
         // mvp matrix

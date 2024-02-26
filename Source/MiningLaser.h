@@ -11,7 +11,7 @@
 #include "Behavior.h"
 #include "basics.h"
 
-#include "CollisionSystem.h"
+#include "CollisionLayerFlags.h"
 
 #include <deque>
 #include <functional>

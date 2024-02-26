@@ -10,7 +10,7 @@
 #include "Component.h"
 
 #include "ComponentReference.h"
-#include "Health.h"
+class Health;
 
 class HomeBase : public Component
 {

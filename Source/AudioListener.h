@@ -11,8 +11,8 @@
 #include "Behavior.h"
 
 #include "ComponentReference.h"
-#include "Transform.h"
-#include "RigidBody.h"
+class Transform;
+class RigidBody;
 
 
 /// @brief  component that picks up spatial audio

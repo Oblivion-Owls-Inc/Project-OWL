@@ -47,6 +47,7 @@
 #include "ItemCollector.h"
 #include "Light.h"
 #include "UiBarSprite.h"
+#include "Nineslice.h"
 #include "HealthBar.h"
 #include "CameraBehavior.h"
 #include "UiButton.h"
@@ -54,6 +55,10 @@
 #include "TilemapEditor.h"
 #include "EditorCameraController.h"
 #include "WinState.h"
+#include "ResourceCounterUi.h"
+#include "ResourcesUiManager.h"
+#include "SceneChangeButton.h"
+
 
 
 //-----------------------------------------------------------------------------
@@ -189,7 +194,11 @@
         { "Generator"              , ComponentInfo< Generator               >() },
         { "TilemapEditor"          , ComponentInfo< TilemapEditor           >() },
         { "EditorCameraController" , ComponentInfo< EditorCameraController  >() },
-        { "WinState"               , ComponentInfo< WinState                >() }
+        { "WinState"               , ComponentInfo< WinState                >() },
+        { "Nineslice"              , ComponentInfo< Nineslice               >() },
+        { "ResourceCounterUi"      , ComponentInfo< ResourceCounterUi       >() },
+        { "ResourcesUiManager"     , ComponentInfo< ResourcesUiManager      >() },
+        { "SceneChangeButton"      , ComponentInfo< SceneChangeButton       >() },
     };
 
 //-----------------------------------------------------------------------------

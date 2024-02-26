@@ -67,6 +67,9 @@ public:
     virtual void Draw() override;
 
 
+    /// @brief  checks if a a point in local space overlaps this Sprite
+    /// @return whether this Sprite overlaps the point
+    virtual bool OverlapsLocalPoint( glm::vec2 const& ) const override { return false; }
 
 //-----------------------------------------------------------------------------
 //              Data
@@ -94,4 +97,26 @@ private:
     ///                 Tilemap component. The flag is reset when Draw() is called.
     void onTilemapChanged( Tilemap< int >*, glm::ivec2 const&, int const& ) { m_TilemapChanged = true; }
 
+
+//-----------------------------------------------------------------------------
+public: // copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  creates a copy of this TilemapSprite
+    /// @return the newly created copy of this TilemapSprite
+    virtual TilemapSprite* Clone() const override;
+
+    
+//-----------------------------------------------------------------------------
+private: // copying
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  copy constructor
+    /// @param  other   the TilemapSprite to copy
+    TilemapSprite( TilemapSprite const& other );
+
+
+//-----------------------------------------------------------------------------
 };

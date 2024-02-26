@@ -61,17 +61,18 @@ protected:
     std::vector<map<int, bool[3]>> windows;
     int amount = 0;
 
+    /// @brief  how much the mouse has scrolled this graphicsframe
+    float m_DeltaScroll = 0.0f;
+    /// @brief  how much the mouse has scrolled this simulation frame
+    float m_FixedDeltaScroll = 0.0f;
+
 //-----------------------------------------------------------------------------
 private: // private methods
 //-----------------------------------------------------------------------------
 
+
     /// @brief  updates map realted to fixed or standard update
     void mapUpdate();
-
-    /// @brief  convert matrix to vec2
-    /// @param  transformation  the transformation to apply to the screen-space mouse position
-    glm::vec2 getMousePosAfterTransformation( glm::mat4 const& transformation ) const;
-
     
 
 //-----------------------------------------------------------------------------
@@ -153,6 +154,11 @@ public: // accessors
     /// @return returns if mouse button is released
     bool GetMouseReleased(int glfw_mouse_button);
 
+
+    /// @brief  gets the mouse pos in screen space
+    /// @return the current mouse pos in screen space
+    glm::vec2 GetMousePosScreen() const;
+
     /// @brief gets mouse pos in UI space
     /// @return returns the current mouse pos as a vec2
     glm::vec2 GetMousePosUI();
@@ -160,6 +166,25 @@ public: // accessors
     /// @brief gets mouse pos in world space
     /// @return returns the current mouse pos as a vec2
     glm::vec2 GetMousePosWorld();
+
+
+    /// @brief  gets how much the mouse has scrolled since last frame
+    /// @return how much the mouse has scrolled since last frame
+    float GetMouseDeltaScroll();
+
+//-----------------------------------------------------------------------------
+private: // methods
+//-----------------------------------------------------------------------------
+
+
+    // callback called whenever the mouse scrolls
+    static void onMouseScrollCallback( GLFWwindow* window, double scrollX, double scrollY );
+
+
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
+
 
     // Prevent copying
     InputSystem(InputSystem& other) = delete;

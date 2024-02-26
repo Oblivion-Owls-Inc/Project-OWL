@@ -20,6 +20,8 @@
 #include "glm/glm.hpp"
 #include "Generator.h"
 
+#include "ComponentReference.t.h"
+
 #include "Inspection.h"
 
 ///----------------------------------------------------------------------------

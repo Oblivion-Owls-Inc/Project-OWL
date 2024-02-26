@@ -1,0 +1,81 @@
+{
+    "Assets": {
+        "Sounds": null,
+        "Textures": {
+            "testNineslice": {
+                "Filepath": "Data/Textures/TestNineslice.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            }
+        },
+        "TransformAnimations": null,
+        "Animations": null,
+        "Archetypes": null
+    },
+    "Entities": {
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 5.0,
+                    "IsActive": true
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "nineslice": {
+            "Name": "nineslice",
+            "Components": {
+                "Nineslice": {
+                    "MinInternalEdge": [
+                        0.25,
+                        0.25
+                    ],
+                    "MaxInternalEdge": [
+                        0.75,
+                        0.75
+                    ],
+                    "MinBorderWidths": [
+                        0.25,
+                        0.25
+                    ],
+                    "MaxBorderWidths": [
+                        0.25,
+                        0.25
+                    ]
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        }
+    }
+}

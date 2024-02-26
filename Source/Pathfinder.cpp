@@ -12,6 +12,7 @@
 #include "InputSystem.h"    // inspector UI
 #include "RenderSystem.h"   // inspector UI
 
+#include "ComponentReference.t.h"
 
 /// @brief   Declaring them in header causes.. issues.
 
@@ -261,8 +262,8 @@ void Pathfinder::explore()
         m_Dirty.store(false);
 
         // update walkability of tiles
-        int size = (int) m_Nodes.size();
-        for (int i=0; i<size; i++)
+        m_Nodes.resize( m_Tilemap->GetTilemap().size() );
+        for (int i=0; i<m_Nodes.size(); i++)
         {
             m_Nodes[i].type = Unwalkable;
             m_Nodes[i].direction = glm::ivec2( 0 );
@@ -282,7 +283,7 @@ void Pathfinder::explore()
         glm::ivec2 dir[8] = { {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}, {-1,-1} };
 
         int width = m_Tilemap->GetDimensions().x;
-        int height = size / width;
+        int height = (int)m_Nodes.size() / width;
 
         // init first node (if it's not default)
         if (m_DestTile.x || m_DestTile.y)

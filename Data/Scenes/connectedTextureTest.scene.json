@@ -11,7 +11,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Tilesheet": {
                 "Filepath": "Data/Textures/Tiles/ConnectedTextures.png",
@@ -22,7 +23,8 @@
                 "Pivot": [
                     0.0,
                     1.0
-                ]
+                ],
+                "UseAspectRatio": false
             }
         },
         "TransformAnimations": null,
@@ -34,14 +36,16 @@
             "Name": "Camera",
             "Components": {
                 "Camera": {
-                    "Width": 12.9350004196167,
+                    "Width": 21.753992080688477,
                     "IsActive": true
                 },
-                "EditorCameraController": {},
+                "EditorCameraController": {
+                    "Sensativity": -0.25
+                },
                 "Transform": {
                     "Translation": [
-                        5.457631587982178,
-                        -3.9573750495910645
+                        7.528336048126221,
+                        -5.587361812591553
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -307,11 +311,12 @@
                     "SelectionAlpha": 0.30000001192092896,
                     "GridAlpha": 0.10000000149011612,
                     "PreviewAlpha": 0.4000000059604645,
-                    "ToolButtons": [
-                        0,
+                    "ToolBindings": [
                         1,
                         2,
-                        3
+                        0,
+                        3,
+                        4
                     ]
                 },
                 "Transform": {
@@ -337,8 +342,8 @@
                                 30
                             ],
                             "TileScale": [
-                                0.5,
-                                0.5
+                                1.0,
+                                1.0
                             ],
                             "TileData": [
                                 4,

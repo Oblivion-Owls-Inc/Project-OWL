@@ -10,11 +10,15 @@
 
 #include "ConstructionBehavior.h"
 
+
+#include "ComponentReference.t.h"
 #include "Transform.h"
-#include "Tilemap.h"
 #include "Sprite.h"
 #include "AudioPlayer.h"
 #include "Inventory.h"
+#include "Tilemap.h"
+#include "TurretBehavior.h"
+
 
 #include "AssetLibrarySystem.h"
 #include "Entity.h"
@@ -216,6 +220,12 @@
         m_Sprite              .Init( GetEntity() );
         m_TurretPlacementSound.Init( GetEntity() );
 
+        if (GetEntity()->GetChildren().size() != 0)
+        {
+            m_RadiusSprite.Init(GetEntity()->GetChildren()[0]);
+            m_RadiusTransform.Init(GetEntity()->GetChildren()[0]);
+        }
+
         for ( BuildingInfo& buildingInfo : m_BuildingInfos )
         {
             buildingInfo.Init();
@@ -233,6 +243,8 @@
         m_Transform           .Exit();
         m_Sprite              .Exit();
         m_TurretPlacementSound.Exit();
+        m_RadiusSprite        .Exit();
+        m_RadiusTransform     .Exit();
     }
 
     /// @brief  called every simulation frame
@@ -249,6 +261,30 @@
         tryPlaceBuilding();
 
         showBuildingPreview();
+    }
+
+
+    /// @brief  called whenever a child is added to this Entity
+    /// @param  newChild    the child that was added
+    void ConstructionBehavior::OnAddChild(Entity* child)
+    {
+        if (m_RadiusSprite.GetEntity() != nullptr)
+        {
+            return;
+        }
+        m_RadiusSprite.Init(child);
+        m_RadiusTransform.Init(child);
+    }
+
+    /// @brief  called whenever a child is about to be removed from this Entity
+    /// @param  newChild    the child that is about to be removed
+    void ConstructionBehavior::OnRemoveChild(Entity* child)
+    {
+        if (m_RadiusSprite.GetEntity() == child)
+        {
+            m_RadiusSprite.Exit();
+            m_RadiusTransform.Exit();
+        }
     }
 
 
@@ -297,7 +333,8 @@
 
             m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
             m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
-
+            float scale = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >()->GetRange();
+            m_RadiusTransform->SetScale(glm::vec2(scale * 2));
             return;
         }
     }
@@ -402,15 +439,28 @@
         if ( m_BuildingIndex == -1 || distance >= m_PlacementRange + m_PreviewFadeOutRadius )
         {
             m_Sprite->SetOpacity( 0.0f );
+            if (m_RadiusSprite != nullptr)
+            {
+                m_RadiusSprite->SetOpacity(0.0f);
+            }
             return;
         }
 
         m_Transform->SetTranslation( m_TargetPos );
-
+        if (m_RadiusTransform != nullptr)
+        {
+            m_RadiusTransform->SetTranslation(m_TargetPos);
+        }
+        
         if ( isCurrentlyPlaceable() )
         {
             m_Sprite->SetColor( m_PreviewColorPlaceable );
             m_Sprite->SetOpacity( m_PreviewAlpha );
+
+            if (m_RadiusSprite != nullptr)
+            {
+                m_RadiusSprite->SetOpacity(m_PreviewAlpha);
+            }
         }
         else
         {
@@ -420,6 +470,11 @@
             float alpha = m_PreviewAlpha * ( 1.0f - ( distance - m_PlacementRange ) / m_PreviewFadeOutRadius );
             alpha = std::min( alpha, m_PreviewAlpha );
             m_Sprite->SetOpacity( alpha );
+
+            if (m_RadiusSprite != nullptr)
+            {
+                m_RadiusSprite->SetOpacity(alpha / 2);
+            }
         }
 
     }

@@ -130,6 +130,7 @@ private:
         Target(ComponentReference<Transform> t, Priority p);
         Target(Target&& other) noexcept;
         Target& operator=(const Target&) { return *this; }
+
         ComponentReference<Transform> transform;
         Priority priority; 
     };

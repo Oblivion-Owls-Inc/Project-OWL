@@ -13,6 +13,8 @@
 
 #include "InputSystem.h"
 
+#include "ComponentReference.t.h"
+
 /// @brief  Default constructor
 CameraBehavior::CameraBehavior() : Behavior(typeid(CameraBehavior)) {}
 

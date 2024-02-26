@@ -17,6 +17,7 @@
 #include "SceneSystem.h"
 #include "DebugSystem.h"
 #include "RenderSystem.h"
+#include "PauseSystem.h"
 #include "AudioSystem.h"
 #include "CollisionSystem.h"
 #include "InputSystem.h"
@@ -30,6 +31,7 @@
 #include "Texture.h"
 
 #include "BehaviorSystem.h"
+#include "UiButton.h"
 #include "EnemyBehavior.h"
 #include "RigidBody.h"
 #include "PlayerController.h"
@@ -74,38 +76,6 @@
     }
 
 
-//-----------------------------------------------------------------------------
-// public: accessors
-//-----------------------------------------------------------------------------
-
-    /// @brief  gets the current update status
-    /// @return the current status
-    Engine::UpdateMode Engine::GetCurrentUpdate() const
-    {
-        return m_currentMode;
-    }
-
-    /// @brief  gets the duration of each fixed frame
-    /// @return the amount of time in seconds that each fixed frame lasts
-    float Engine::GetFixedFrameDuration() const
-    {
-        return m_FixedFrameDuration;
-    }
-
-    /// @brief  sets the duration of each fixed frame
-    /// @param  fixedFrameDuration  the amount of time in seconds that each fixed frame lasts
-    void Engine::SetFixedFrameDuration( float fixedFrameDuration )
-    {
-        m_FixedFrameDuration = fixedFrameDuration;
-    }
-
-    /// @brief  Gets the array of all Systems in the engine.
-    /// @return the array of all Systems in the engine
-    std::vector< System* > const& Engine::GetSystems() const
-    {
-        return m_Systems;
-    }
-
     /// @brief Used To Create a Window to Save the Engine Config
     /// @return - true if the window is still open, false if the window is closed
     bool Engine::SaveEngineConfig()
@@ -135,14 +105,14 @@
                 ImGui::End();
                 return false; //close window
             }
-            
+
             ImGui::SameLine();
 
             /// Create a cancel button
             if (ImGui::Button("Cancel"))
             {
-				ImGui::End();
-				return false; //close window
+                ImGui::End();
+                return false; //close window
             }
         }
 
@@ -150,9 +120,62 @@
         return true; // Keep showing the window
     }
 
+
+//-----------------------------------------------------------------------------
+// public: accessors
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the current update status
+    /// @return the current status
+    Engine::UpdateMode Engine::GetCurrentUpdate() const
+    {
+        return m_currentMode;
+    }
+
+
+    /// @brief  gets the duration of each fixed frame
+    /// @return the amount of time in seconds that each fixed frame lasts
+    float Engine::GetFixedFrameDuration() const
+    {
+        return m_FixedFrameDuration;
+    }
+
+    /// @brief  sets the duration of each fixed frame
+    /// @param  fixedFrameDuration  the amount of time in seconds that each fixed frame lasts
+    void Engine::SetFixedFrameDuration( float fixedFrameDuration )
+    {
+        m_FixedFrameDuration = fixedFrameDuration;
+    }
+
+
+    /// @brief  gets the current graphics frame count
+    /// @return the number of graphics frames that have elapsed since the Engine started
+    int Engine::GetFrameCount() const
+    {
+        return m_FrameCount;
+    }
+
+    /// @brief  gets the current simulation frame count
+    /// @return the number of simulation frames that have elapsed since the Engine started
+    int Engine::GetFixedFrameCount() const
+    {
+        return m_FixedFrameCount;
+    }
+
+
+    /// @brief  Gets the array of all Systems in the engine.
+    /// @return the array of all Systems in the engine
+    std::vector< System* > const& Engine::GetSystems() const
+    {
+        return m_Systems;
+    }
+
+
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
+
 
     /// @brief  Loads the engine config from "Data/EngineConfig.json"
     void Engine::load()
@@ -189,13 +212,11 @@
         {
             fixedUpdateSystems();
 
-            if ( currentTime - m_PreviousFixedTime <= -m_FixedFrameDuration )
+            m_PreviousFixedTime += m_FixedFrameDuration;
+
+            if ( currentTime - m_PreviousFixedTime >= m_FixedFrameDuration )
             {
                 m_PreviousFixedTime = currentTime;
-            }
-            else
-            {
-                m_PreviousFixedTime += m_FixedFrameDuration;
             }
         }
 
@@ -211,11 +232,6 @@
                 // Swap front and back buffers
                 glfwSwapBuffers(window);
 
-            // this goes to InputSystem
-
-                // Poll for and process events
-                glfwPollEvents();
-
         // TODO: move the above code out of Engine and into its own System
     }
 
@@ -224,6 +240,7 @@
     void Engine::updateSystems( float dt )
     {
         m_currentMode = UpdateMode::update;
+        ++m_FrameCount;
         for ( System * system : m_Systems )
         {
             if ( system->GetEnabled() )
@@ -237,6 +254,7 @@
     void Engine::fixedUpdateSystems()
     {
         m_currentMode = UpdateMode::fixedUpdate;
+        ++m_FixedFrameCount;
         for ( System * system : m_Systems )
         {
             if ( system->GetEnabled() )
@@ -263,9 +281,11 @@
 
     }
 
+
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
+
 
     /// @brief  reads the fixedFrameDuration
     /// @param  data    the stream to read the data from
@@ -331,6 +351,7 @@
         { "ParticleSystem"                        , &addSystem< ParticleSystem  >                          },
         { "CheatSystem"                           , &addSystem< CheatSystem     >                          },
         { "EventSystem"                           , &addSystem< EventSystem     >                          },
+        { "PauseSystem"                           , &addSystem< PauseSystem     >                          },
                                                   
         { "BehaviorSystem<RigidBody>"             , &addSystem< BehaviorSystem< RigidBody              > > },
         { "BehaviorSystem<Behavior>"              , &addSystem< BehaviorSystem< Behavior               > > },
@@ -339,6 +360,8 @@
         { "BehaviorSystem<WavesBehavior>"         , &addSystem< BehaviorSystem< WavesBehavior          > > },
         { "BehaviorSystem<EnemyBehavior>"         , &addSystem< BehaviorSystem< EnemyBehavior          > > },
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
+		{ "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
+
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
         { "AssetLibrary<Sound>"                   , &addSystem< AssetLibrarySystem< Sound              > > },
@@ -376,6 +399,7 @@
 // singleton stuff
 //-----------------------------------------------------------------------------
 
+
     /// @brief  The singleton instance of the Engine
     Engine * Engine::s_Instance;
 
@@ -398,5 +422,6 @@
         }
         return s_Instance;
     }
+
 
 //-----------------------------------------------------------------------------

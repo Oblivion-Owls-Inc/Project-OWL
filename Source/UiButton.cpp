@@ -18,6 +18,10 @@
 
 #include "DebugSystem.h"
 
+#include "ComponentReference.t.h"
+
+#include "RenderSystem.h"
+
     
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
@@ -71,7 +75,7 @@
     /// @brief  called once when entering the scene
     void UiButton::OnInit()
     {
-        Behaviors< Behavior >()->AddComponent( this );
+        Behaviors< UiButton >()->AddComponent( this );
 
         m_UiElement  .Init( GetEntity() );
         m_Sprite     .Init( GetEntity() );
@@ -86,7 +90,7 @@
     /// @brief  called once when exiting the scene
     void UiButton::OnExit()
     {
-        Behaviors< Behavior >()->RemoveComponent( this );
+        Behaviors< UiButton >()->RemoveComponent( this );
 
         m_UiElement  .Exit();
         m_Sprite     .Exit();
@@ -245,18 +249,7 @@
     /// @return whether the mouse is over this button
     bool UiButton::isMouseOver() const
     {
-        glm::vec2 mousePos = Input()->GetMousePosUI();
-
-        glm::vec2 buttonSize = m_UiElement->GetScale();
-        glm::vec2 buttonPos = m_UiElement->GetTranslation();
-
-        glm::vec2 buttonMin = buttonPos - 0.5f * buttonSize;
-        glm::vec2 buttonMax = buttonPos + 0.5f * buttonSize;
-
-        return (
-            mousePos.x >= buttonMin.x && mousePos.x < buttonMax.x &&
-            mousePos.y >= buttonMin.y && mousePos.y < buttonMax.y
-        );
+        return Renderer()->GetMouseOverSprite() == m_Sprite;
     }
 
 

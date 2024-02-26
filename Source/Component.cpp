@@ -55,8 +55,8 @@
     void Component::BaseComponentInspector()
     {
         ImGui::NewLine();
-
         Inspector();
+        ImGui::NewLine();
     }
 
 //-----------------------------------------------------------------------------

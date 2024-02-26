@@ -1,0 +1,276 @@
+{
+    "Assets": {
+        "Sounds": null,
+        "Textures": {
+            "box": {
+                "Filepath": "Data/Textures/TestNineslice.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "font": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [
+                    16,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "items": {
+                "Filepath": "Data/Textures/Items/TestItemSheet.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            }
+        },
+        "TransformAnimations": null,
+        "Animations": null,
+        "Archetypes": {
+            "ResourceCounter": {
+                "Name": "ResourceCounter",
+                "Components": {
+                    "ResourceCounterUi": {
+                        "Resources": {
+                            "ItemId": 0,
+                            "Count": 1
+                        }
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "items"
+                        }
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            -0.5,
+                            0.0
+                        ],
+                        "Pivot": [
+                            0.0,
+                            0.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            0.0
+                        ],
+                        "FrameSize": [
+                            0.20000000298023224,
+                            0.20000000298023224
+                        ],
+                        "SizeTypes": [
+                            "RelativeToWidth",
+                            "RelativeToWidth"
+                        ]
+                    }
+                },
+                "Children": [
+                    {
+                        "Name": "ResourceCounterText",
+                        "Components": {
+                            "Tilemap<int>": {
+                                "Dimensions": [
+                                    10,
+                                    0
+                                ],
+                                "TileScale": [
+                                    0.5,
+                                    1.0
+                                ],
+                                "TileData": [
+                                    17,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "Text": {
+                                "String": "1"
+                            },
+                            "TilemapSprite": {
+                                "Layer": 2,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "font"
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    1.0,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    -1.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToWidth",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    }
+                ]
+            }
+        }
+    },
+    "Entities": {
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 5.0,
+                    "IsActive": true
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "ResourcesUi": {
+            "Name": "ResourcesUi",
+            "Components": {
+                "Nineslice": {
+                    "MinInternalEdge": [
+                        0.25,
+                        0.25
+                    ],
+                    "MaxInternalEdge": [
+                        0.75,
+                        0.75
+                    ],
+                    "MinBorderWidths": [
+                        0.25,
+                        0.25
+                    ],
+                    "MaxBorderWidths": [
+                        0.25,
+                        0.25
+                    ],
+                    "Texture": {
+                        "AssetName": "box"
+                    },
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ]
+                },
+                "ResourcesUiManager": {
+                    "HideWhenEmpty": false,
+                    "Padding": 0.07500000298023224,
+                    "Spacing": -0.07500000298023224,
+                    "InventoryEntity": {
+                        "EntityName": "Inventory"
+                    },
+                    "ResourceCounterPrefab": {
+                        "AssetName": "ResourceCounter"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        -1.0,
+                        1.0
+                    ],
+                    "Pivot": [
+                        -1.0,
+                        1.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.30000001192092896,
+                        0.15000000596046448
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToWidth"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        "Inventory": {
+            "Name": "Inventory",
+            "Components": {
+                "Inventory": {
+                    "Items": null
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        }
+    }
+}
