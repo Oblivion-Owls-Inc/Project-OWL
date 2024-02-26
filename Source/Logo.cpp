@@ -37,9 +37,9 @@ void SplashScreenController::OnExit()
 {
     Behaviors<Behavior>()->RemoveComponent(this);
 
-    m_RigidBody.Exit(GetEntity());
-    m_Transform.Exit(GetEntity());
-    m_Sprite.Exit(GetEntity());
+    m_RigidBody.Exit();
+    m_Transform.Exit();
+    m_Sprite.Exit();
 }
 
 

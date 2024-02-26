@@ -688,7 +688,7 @@
         json[ "GridAlpha"         ] = Stream::Write( m_GridAlpha         );
         json[ "PreviewAlpha"      ] = Stream::Write( m_PreviewAlpha      );
 
-        json[ "ToolBindings"      ] = Stream::Write< MouseTool >( m_ToolBindings );
+        json[ "ToolBindings"      ] = Stream::Write( m_ToolBindings );
 
         return json;
     }
