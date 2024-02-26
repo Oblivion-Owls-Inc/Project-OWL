@@ -32,7 +32,9 @@
 *.out
 *.app
 /Project-OWL.vcxproj.user
-/x64/Debug
+/x64/**
+/x64
+/Debug
 /Debug
 /x64/Release
 /Release

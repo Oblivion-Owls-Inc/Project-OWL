@@ -60,18 +60,26 @@ void SplashScreenController::OnFixedUpdate()
         SceneSystem::GetInstance()->SetNextScene(m_NextSceneName);
     }
 
-    // Displays the logos.
-    for (int i = 0; i < m_Logos.size(); i++)
+    // Swaps the logo when the current timer runs out.
+    if (m_Logos.back().m_LogoTimer < 0)
     {
-        m_Index = i;
-        SwitchLogo();
-        while (m_Logos[i].m_LogoTimer >= 0.0f)
-        {
-            m_Logos[i].m_LogoTimer -= GameEngine()->GetFixedFrameDuration();
-        }
+        m_Logos.pop_back();
+        m_Sprite->SetTexture(m_Logos.back().m_LogoTexture);
     }
 
-    SceneSystem::GetInstance()->SetNextScene(m_NextSceneName);
+    // Displays the texture for a set amount of time.
+    if (m_Logos.back().m_LogoTimer > 0.0f)
+    {
+        m_Logos.back().m_LogoTimer -= GameEngine()->GetFixedFrameDuration();
+        Debug() << m_Logos.back().m_LogoTimer << std::endl;
+    }
+    
+
+    // When the last timer runs out switch scenes.
+    if (m_Logos.front().m_LogoTimer < 0)
+    {
+        SceneSystem::GetInstance()->SetNextScene(m_NextSceneName);
+    }
 }
 
 /// @brief Displays the logo
@@ -129,7 +137,7 @@ nlohmann::ordered_json SplashScreenController::Write() const
     data["NextSceneName"] = Stream::Write(m_NextSceneName);
     data["Logos"] = Stream::WriteArray(m_Logos);
 
-    return nlohmann::ordered_json();
+    return data;
 }
 
 /// @brief  Clones this instance of splash screen controller.
@@ -215,7 +223,7 @@ nlohmann::ordered_json SplashScreenController::LogoData::Write() const
     nlohmann::ordered_json data;
 
     data["Timer"] = Stream::Write(m_LogoTimer);
-    data["AspectRation"] = Stream::Write(m_LogoAspectRatio);
+    data["AspectRatio"] = Stream::Write(m_LogoAspectRatio);
     data["Logo"] = Stream::Write(m_LogoTexture);
 
     return data;

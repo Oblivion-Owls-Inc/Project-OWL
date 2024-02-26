@@ -39,7 +39,7 @@ public: // class LogoData
     //-----------------------------------------------------------------------------
 
         /// @brief How long the logo is displayed for.
-        float m_LogoTimer = 1.0f;
+        float m_LogoTimer;
 
         /// @brief  The aspect ratio of the logo.
         float m_LogoAspectRatio = 1.0f;

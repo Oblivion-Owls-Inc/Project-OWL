@@ -11,10 +11,11 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
-            "DigiLogoTexture": {
-                "Filepath": "Data/Textures/DigDeeper.png",
+            "DigDeeperLogo": {
+                "Filepath": "Data/Textures/DigDeeperLogo-export.png",
                 "SheetDimensions": [
                     1,
                     1
@@ -22,7 +23,32 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
+            },
+            "DigiLogoTexture": {
+                "Filepath": "Data/Textures/DigiPen_WHITE.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "FMODLogo": {
+                "Filepath": "Data/Textures/FMOD.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
             }
         },
         "TransformAnimations": null,
@@ -70,52 +96,31 @@
                     "Friction": 0.0,
                     "Drag": 0.0
                 },
-                "Sprite": {
-                    "Layer": 2,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": {
-                        "AssetName": "BackgroundTexture"
-                    }
-                },
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        0.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        5.0,
-                        5.0
-                    ],
-                    "IsDiegetic": true
-                }
-            },
-            "Children": null
-        },
-        "DigiLogoEntity": {
-            "Name": "DigiLogoEntity",
-            "Components": {
-                "RigidBody": {
-                    "Velocity": [
-                        0.0,
-                        0.0
-                    ],
-                    "Acceleration": [
-                        0.0,
-                        0.0
-                    ],
-                    "RotationalVelocity": 0.0,
-                    "Mass": 1.0,
-                    "Restitution": 1.0,
-                    "Friction": 0.0,
-                    "Drag": 0.0
+                "SplashScreenController": {
+                    "NextSceneName": "Prototype",
+                    "Logos": [
+                        {
+                            "Timer": 2.0,
+                            "AspectRatio": 1.0,
+                            "Logo": {
+                                "AssetName": "DigiLogoTexture"
+                            }
+                        },
+                        {
+                            "Timer": 2.0,
+                            "AspectRatio": 1.0,
+                            "Logo": {
+                                "AssetName": "FMODLogo"
+                            }
+                        },
+                        {
+                            "Timer": 2.0,
+                            "AspectRatio": 1.0,
+                            "Logo": {
+                                "AssetName": "DigDeeperLogo"
+                            }
+                        }
+                    ]
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -133,13 +138,13 @@
                 },
                 "Transform": {
                     "Translation": [
-                        -0.1496565341949463,
-                        0.5299313068389893
+                        0.0,
+                        0.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        1.0,
-                        1.0
+                        5.0,
+                        5.0
                     ],
                     "IsDiegetic": true
                 }
