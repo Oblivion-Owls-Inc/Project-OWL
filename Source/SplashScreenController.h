@@ -1,6 +1,6 @@
 ///--------------------------------------------------------------------------//
-/// @file   Logo.h
-/// @brief  Logo Behaviour Class
+/// @file   SplashScreen.h
+/// @brief  SplashScreenController Behaviour Class
 /// 
 /// @author Aidan Straker (aidan.straker)
 /// @date   February 2024
@@ -42,10 +42,13 @@ public: // class LogoData
         float m_LogoTimer;
 
         /// @brief  The aspect ratio of the logo.
-        float m_LogoAspectRatio = 1.0f;
+        float m_LogoAspectRatio;
 
         /// @brief The texture for the logo.
         AssetReference<Texture> m_LogoTexture;
+
+        /// @brief The scale for each logo.
+        glm::vec2 m_LogoScale;
         
     //-----------------------------------------------------------------------------
     public: // inspection
@@ -73,6 +76,10 @@ public: // class LogoData
         /// @brief Read in the logos to de displayed.
         /// @param data The JSON file to read from.
         void readLogo(nlohmann::ordered_json const& data);
+
+        /// @brief Read in the scales for the logos.
+        /// @param data The JSON file to read from.
+        void readScale(nlohmann::ordered_json const& data);
 
     //-----------------------------------------------------------------------------
     public: // reading / writing
@@ -133,15 +140,6 @@ private: // member variables
 
     /// @brief The logos to be displayed.
     std::vector<LogoData> m_Logos = {};
-
-    int m_Index = 0;
-
-//-----------------------------------------------------------------------------
-private: // methods
-//-----------------------------------------------------------------------------
-
-    /// @brief Switches the logo to be displayed.
-    void SwitchLogo();
 
 //-----------------------------------------------------------------------------
 public: // Inspection

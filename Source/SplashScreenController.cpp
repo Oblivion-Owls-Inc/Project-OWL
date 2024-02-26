@@ -1,4 +1,14 @@
-#include "Logo.h"
+///--------------------------------------------------------------------------//
+/// @file   SplashScreen.cpp
+/// @brief  SplashScreenController Behaviour Class
+/// 
+/// @author Aidan Straker (aidan.straker)
+/// @date   February 2024
+///
+/// @copyright (c) 2024 DigiPen (USA) Corporation.
+///--------------------------------------------------------------------------//
+/// 
+#include "SplashScreenController.h"
 #include "BehaviorSystem.h" // AddBehavior, RemoveBehavior
 #include "InputSystem.h"    // GetKeyDown
 #include "SceneSystem.h"    // GetInstance, SetNextScene
@@ -46,6 +56,8 @@ void SplashScreenController::OnExit()
 /// @brief On fixed update to display logos.
 void SplashScreenController::OnFixedUpdate()
 {
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
     if (m_RigidBody == nullptr ||
         m_Sprite == nullptr    ||
         m_Transform == nullptr  )
@@ -54,6 +66,7 @@ void SplashScreenController::OnFixedUpdate()
     }
 
     // Immediately switches to game.
+    //TODO: get any button press functionality.
     if (Input()->GetKeyTriggered(GLFW_KEY_SPACE) || 
         Input()->GetGamepadButtonDown(GLFW_GAMEPAD_BUTTON_START))
     {
@@ -64,6 +77,7 @@ void SplashScreenController::OnFixedUpdate()
     if (m_Logos.back().m_LogoTimer < 0)
     {
         m_Logos.pop_back();
+        m_Transform->SetScale(m_Logos.back().m_LogoScale);
         m_Sprite->SetTexture(m_Logos.back().m_LogoTexture);
     }
 
@@ -80,12 +94,6 @@ void SplashScreenController::OnFixedUpdate()
     {
         SceneSystem::GetInstance()->SetNextScene(m_NextSceneName);
     }
-}
-
-/// @brief Displays the logo
-void SplashScreenController::SwitchLogo()
-{
-    m_Sprite->SetTexture(m_Logos[m_Index].m_LogoTexture);
 }
 
 /// @brief Inspector for this class
@@ -173,6 +181,8 @@ bool SplashScreenController::LogoData::Inspect()
     // Logo texture inspector component.
     dataChanged |= m_LogoTexture.Inspect("Logo Texture");
 
+    dataChanged |= ImGui::DragFloat2("Logo Scale", &m_LogoScale[0], 0.05f, INFINITY);
+
     return dataChanged;
 }
 
@@ -201,6 +211,13 @@ void SplashScreenController::LogoData::readLogo(nlohmann::ordered_json const& da
     Stream::Read(m_LogoTexture, data);
 }
 
+/// @brief Read the scale of an individual logo.
+/// @param data the JSON file to read from.
+void SplashScreenController::LogoData::readScale(nlohmann::ordered_json const& data)
+{
+   m_LogoScale = Stream::Read< 2, float >(data);
+}
+
 /// @brief Return a map of the read methods for this class.
 /// @return A map of this class' read methods.
 ReadMethodMap<ISerializable> const& SplashScreenController::LogoData::GetReadMethods() const
@@ -210,7 +227,8 @@ ReadMethodMap<ISerializable> const& SplashScreenController::LogoData::GetReadMet
         // If this does not work include splashscreen controller
         { "Timer"       , &LogoData::readTimer       },
         { "AspectRatio" , &LogoData::readAspectRatio },
-        { "Logo"        , &LogoData::readLogo        }
+        { "Logo"        , &LogoData::readLogo        },
+        { "Scale"       , &LogoData::readScale       }
     };
 
     return (ReadMethodMap< ISerializable > const&)readMethodsMap;
@@ -225,6 +243,7 @@ nlohmann::ordered_json SplashScreenController::LogoData::Write() const
     data["Timer"] = Stream::Write(m_LogoTimer);
     data["AspectRatio"] = Stream::Write(m_LogoAspectRatio);
     data["Logo"] = Stream::Write(m_LogoTexture);
+    data["Scale"] = Stream::Write(m_LogoScale);
 
     return data;
 }

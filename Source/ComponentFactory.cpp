@@ -58,7 +58,7 @@
 #include "ResourceCounterUi.h"
 #include "ResourcesUiManager.h"
 #include "SceneChangeButton.h"
-#include "Logo.h"
+#include "SplashScreenController.h"
 
 
 

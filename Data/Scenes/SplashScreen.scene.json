@@ -104,21 +104,33 @@
                             "AspectRatio": 1.0,
                             "Logo": {
                                 "AssetName": "DigDeeperLogo"
-                            }
+                            },
+                            "Scale": [
+                                3.0,
+                                3.0
+                            ]
                         },
                         {
                             "Timer": 2.0,
                             "AspectRatio": 1.0,
                             "Logo": {
                                 "AssetName": "FMODLogo"
-                            }
+                            },
+                            "Scale": [
+                                3.0,
+                                3.0
+                            ]
                         },
                         {
                             "Timer": 2.0,
                             "AspectRatio": 1.0,
                             "Logo": {
                                 "AssetName": "DigiLogoTexture"
-                            }
+                            },
+                            "Scale": [
+                                2.5,
+                                1.0
+                            ]
                         }
                     ]
                 },
@@ -143,8 +155,8 @@
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        5.0,
-                        5.0
+                        2.5,
+                        1.0
                     ],
                     "IsDiegetic": true
                 }
