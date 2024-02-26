@@ -122,6 +122,13 @@ public: // inspection
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() override;
 
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
+	/// @brief	get the turrets range
+	/// @return	range of the turret
+	float GetRange() const { return m_Range; }
 
 //-----------------------------------------------------------------------------
 private: // reading 

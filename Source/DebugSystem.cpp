@@ -80,6 +80,7 @@ void DebugSystem::SetupImGuiConfigPath()
     }
 }
 
+
 /// @brief Perform initialization.
 void DebugSystem::OnInit()
 {
@@ -113,6 +114,7 @@ void DebugSystem::OnInit()
     // Stays at the Top
 
     SetDebugEnable( true );
+    SetNonEditorSystemsEnabled(m_EditorRunning);
 }
 
 /// @brief Perform updates.
@@ -138,6 +140,7 @@ void DebugSystem::OnUpdate(float dt)
         ShowFPSWindow();
     }
 
+
 #endif // !DEBUG
 
 
@@ -157,8 +160,6 @@ void DebugSystem::OnUpdate(float dt)
 void DebugSystem::DebugWindow()
 {
     
-    static bool gameplayRunning = true;
-
     bool debugWindowShown = GetDebugEnabled();
     ImGuiWindowFlags window_flags = 0;
     window_flags |= ImGuiWindowFlags_NoTitleBar;
@@ -253,10 +254,10 @@ void DebugSystem::DebugWindow()
             }
 
             /// Pauses the Gameplay
-            if (ImGui::MenuItem(gameplayRunning ? "Pause Gameplay" : "Resume Gameplay"))
+            if (ImGui::MenuItem(m_EditorRunning ? "Pause Gameplay" : "Resume Gameplay"))
             {
-				gameplayRunning = !gameplayRunning;
-				SetNonEditorSystemsEnabled(gameplayRunning);
+				m_EditorRunning = !m_EditorRunning;
+				SetNonEditorSystemsEnabled(m_EditorRunning);
 			}
 
             ImGui::EndMenu();
@@ -352,6 +353,9 @@ void DebugSystem::DebugWindow()
     /// Creates a Spit Window for the EntityList and their components in the main
     /// editor window
     Entities()->DebugWindow();
+
+    /// Show the Console Window
+    Console()->Inspect();
 
     /// Ends the Editor Window
     ImGui::End();
@@ -659,6 +663,10 @@ void DebugSystem::ImguiStartFrame()
     ImGui::NewFrame();
 }
 
+void DebugSystem::WritetoConsole(const std::string& message)
+{
+    Console()->AddLog(message);
+}
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------

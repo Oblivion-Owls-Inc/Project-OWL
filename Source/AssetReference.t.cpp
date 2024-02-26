@@ -47,6 +47,7 @@
             Debug() << "Warning: Could not find asset of type \"" << PrefixlessName( typeid( AssetType ) )
                 << "\" with name \"" << m_AssetName
                 << "\" (AssetReference owned by \"" << m_OwnerName << "\")\n" << std::endl;
+
         }
         #endif
     }

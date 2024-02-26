@@ -90,6 +90,18 @@
     }
 
 
+    /// @brief  checks if a screen pos is within the game window
+    /// @param  screenPos   the screen pos to check
+    /// @return whether the position is within the window
+    bool PlatformSystem::isPosWithinWindow( glm::vec2 const& screenPos ) const
+    {
+        return (
+            screenPos.x >= 0.0f && screenPos.x < m_WindowSize.x &&
+            screenPos.y >= 0.0f && screenPos.y < m_WindowSize.y
+        );
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
@@ -290,7 +302,7 @@
         #ifndef NDEBUG
         if (severity == GL_DEBUG_SEVERITY_HIGH)
         {
-            Debug() << message << std::endl;
+           // Debug() << message << std::endl;
             assert(x);  // Keep a breakpoint here: when it's triggered, drag to skip assert,
                         // and step outside this function to see where the error ocurred.
         }

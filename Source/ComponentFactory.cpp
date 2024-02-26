@@ -55,7 +55,11 @@
 #include "TilemapEditor.h"
 #include "EditorCameraController.h"
 #include "WinState.h"
+#include "ResourceCounterUi.h"
+#include "ResourcesUiManager.h"
+#include "SceneChangeButton.h"
 #include "Logo.h"
+
 
 
 //-----------------------------------------------------------------------------
@@ -191,6 +195,9 @@
         { "Generator"              , ComponentInfo< Generator               >() },
         { "TilemapEditor"          , ComponentInfo< TilemapEditor           >() },
         { "EditorCameraController" , ComponentInfo< EditorCameraController  >() },
+        { "ResourceCounterUi"      , ComponentInfo< ResourceCounterUi       >() },
+        { "ResourcesUiManager"     , ComponentInfo< ResourcesUiManager      >() },
+        { "SceneChangeButton"      , ComponentInfo< SceneChangeButton       >() },
         { "WinState"               , ComponentInfo< WinState                >() },
         { "Nineslice"              , ComponentInfo< Nineslice               >() },
         { "SplashScreenController" , ComponentInfo< SplashScreenController  >() }

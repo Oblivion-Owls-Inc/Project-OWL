@@ -60,8 +60,8 @@
     {
         Behaviors< Behavior >()->RemoveComponent( this );
 
-        m_Transform.Exit( GetEntity() );
-        m_Inventory.Exit( GetEntity() );
+        m_Transform.Exit();
+        m_Inventory.Exit();
     }
 
 

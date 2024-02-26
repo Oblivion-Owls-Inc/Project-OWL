@@ -52,7 +52,7 @@
     {
         if ( m_ActiveCamera == nullptr )
         {
-            static glm::mat4 identity = glm::mat4( 1.0f ); // static to prevent returning address of local
+            static glm::mat4 const identity = glm::mat4( 1.0f );
             return identity;
         }
         return m_ActiveCamera->GetWorldToClip();

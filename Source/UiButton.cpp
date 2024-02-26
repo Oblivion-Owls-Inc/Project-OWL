@@ -18,10 +18,9 @@
 
 #include "DebugSystem.h"
 
-#include "RenderSystem.h"
-
-    
 #include "ComponentReference.t.h"
+
+#include "RenderSystem.h"
 
     
 //-----------------------------------------------------------------------------
@@ -76,7 +75,7 @@
     /// @brief  called once when entering the scene
     void UiButton::OnInit()
     {
-        Behaviors< Behavior >()->AddComponent( this );
+        Behaviors< UiButton >()->AddComponent( this );
 
         m_UiElement  .Init( GetEntity() );
         m_Sprite     .Init( GetEntity() );
@@ -91,11 +90,11 @@
     /// @brief  called once when exiting the scene
     void UiButton::OnExit()
     {
-        Behaviors< Behavior >()->RemoveComponent( this );
+        Behaviors< UiButton >()->RemoveComponent( this );
 
-        m_UiElement  .Exit( GetEntity() );
-        m_Sprite     .Exit( GetEntity() );
-        m_AudioPlayer.Exit( GetEntity() );
+        m_UiElement  .Exit();
+        m_Sprite     .Exit();
+        m_AudioPlayer.Exit();
     }
 
 

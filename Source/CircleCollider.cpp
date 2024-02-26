@@ -106,9 +106,9 @@
     /// @brief  called when this Component's Entity is removed from the Scene
     void CircleCollider::OnExit()
     {
-        m_Transform .Exit( GetEntity() );
-        m_RigidBody .Exit( GetEntity() );
-        m_StaticBody.Exit( GetEntity() );
+        m_Transform .Exit();
+        m_RigidBody .Exit();
+        m_StaticBody.Exit();
     }
 
     

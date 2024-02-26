@@ -97,10 +97,10 @@
     {
         Behaviors< EnemyBehavior >()->RemoveComponent( this );
 
-        m_RigidBody  .Exit( GetEntity() );
-        m_Transform  .Exit( GetEntity() );
-        m_AudioPlayer.Exit( GetEntity() );
-        m_Health     .Exit( GetEntity() );
+        m_RigidBody  .Exit();
+        m_Transform  .Exit();
+        m_AudioPlayer.Exit();
+        m_Health     .Exit();
 
         m_PathfinderEntity.Exit();
     }

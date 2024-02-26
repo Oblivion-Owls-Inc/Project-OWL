@@ -55,7 +55,17 @@ public: // virtual methods
 
 
     /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
+    /// @param  oldParent   the parent of this Entity before the hierarchy change
     virtual void OnHierarchyChange( Entity* previousParent ) {};
+
+
+    /// @brief  called whenever a child is added to this Entity
+    /// @param  newChild    the child that was added
+    virtual void OnAddChild( Entity* newChild ) {};
+
+    /// @brief  called whenever a child is about to be removed from this Entity
+    /// @param  newChild    the child that is about to be removed
+    virtual void OnRemoveChild( Entity* newChild ) {};
     
 
     /// @brief Used by the Debug System to display information about this Component
