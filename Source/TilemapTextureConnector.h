@@ -60,6 +60,12 @@ private: // members
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  which tiles connect to which other tiles
+    /// @details each index of the vector represents the ID of a tile
+    /// @details the set at that index contains which tiles that tile connects with
+    std::vector< std::set< int > > m_ConnectionRules = {};
+
+
     /// @brief  the offset from the start of the tilesheet of the first usable texture
     int m_FirstTileOffset = 0;
 
@@ -144,7 +150,7 @@ private: // helper methods
     /// @param  offsets     the tile position offsets to build the connection flags with
     /// @param  textures    the texture index offsets to display
     /// @return the texture index for this corner
-    int getCornerTexture( glm::ivec2 const& tilePos, int tileId, glm::ivec2 const offsets[], int const textures[] );
+    int getCornerTexture( glm::ivec2 const& tilePos, int tileId, glm::ivec2 const offsets[], int const textures[] ) const;
 
 
 //-----------------------------------------------------------------------------
@@ -159,6 +165,11 @@ public: // inspection
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
+
+    
+    /// @brief  reads which tiles connect to which other tiles
+    /// @param  data    the json data to read from
+    void readConnectionRules( nlohmann::ordered_json const& data );
 
 
     /// @brief  the offset from the start of the tilesheet of the first usable texture

@@ -132,9 +132,6 @@
     <Filter Include="Engine\Entity\Component\Collider\TilemapCollider">
       <UniqueIdentifier>{3e30138e-86f9-44e3-a4e3-092b4cdeacad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Pathfinder">
-      <UniqueIdentifier>{09f5ca7d-4323-4aac-b628-c6ed0790810d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\StaticBody">
       <UniqueIdentifier>{cb22a236-e348-4362-b443-aa70c5bc5671}</UniqueIdentifier>
     </Filter>
@@ -276,9 +273,6 @@
     <Filter Include="Engine\Entity\Component\Behavior\UiButton">
       <UniqueIdentifier>{0c4f432e-8200-4f23-8c96-b0be0ad4f937}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\TilemapTextureConnector">
-      <UniqueIdentifier>{f6c41e19-950d-4898-b359-f64157800677}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Tilemap\TilemapEditor">
       <UniqueIdentifier>{3e0165c1-e7de-42a5-8938-8e832cc5330b}</UniqueIdentifier>
     </Filter>
@@ -332,6 +326,15 @@
     </Filter>
     <Filter Include="Game\Components\SplashScreen">
       <UniqueIdentifier>{5070cea8-46ee-4117-ad1b-26fc2c9054bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Tilemap\TilemapTextureConnector">
+      <UniqueIdentifier>{f6c41e19-950d-4898-b359-f64157800677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Tilemap\Pathfinder">
+      <UniqueIdentifier>{09f5ca7d-4323-4aac-b628-c6ed0790810d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\HideableForeground">
+      <UniqueIdentifier>{fa718f60-f4fc-415e-8481-41d6a9855c4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -504,7 +507,7 @@
       <Filter>Engine\Entity\Component\Text</Filter>
     </ClCompile>
     <ClCompile Include="Source\Pathfinder.cpp">
-      <Filter>Engine\Entity\Component\Pathfinder</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
@@ -621,7 +624,7 @@
       <Filter>Engine\Entity\Component\Behavior\UiButton</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapTextureConnector.cpp">
-      <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\TilemapTextureConnector</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapEditor.cpp">
       <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
@@ -682,6 +685,18 @@
     </ClCompile>
     <ClCompile Include="Source\SplashScreenController.cpp">
       <Filter>Game\Components\SplashScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PauseSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneChangeButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HideableForeground.cpp">
+      <Filter>Game\Components\Behaviors\HideableForeground</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -866,7 +881,7 @@
       <Filter>Engine\Framework\Serialization</Filter>
     </ClInclude>
     <ClInclude Include="Source\Pathfinder.h">
-      <Filter>Engine\Entity\Component\Pathfinder</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
     </ClInclude>
     <ClInclude Include="Source\TilemapCollider.h">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
@@ -980,7 +995,7 @@
       <Filter>Engine\Entity\Component\Behavior\UiButton</Filter>
     </ClInclude>
     <ClInclude Include="Source\TilemapTextureConnector.h">
-      <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\TilemapTextureConnector</Filter>
     </ClInclude>
     <ClInclude Include="Source\TilemapEditor.h">
       <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
@@ -1038,6 +1053,18 @@
     </ClInclude>
     <ClInclude Include="Source\SplashScreenController.h">
       <Filter>Game\Components\SplashScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PauseSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneChangeButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HideableForeground.h">
+      <Filter>Game\Components\Behaviors\HideableForeground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

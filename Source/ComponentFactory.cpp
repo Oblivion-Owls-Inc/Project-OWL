@@ -59,6 +59,7 @@
 #include "ResourcesUiManager.h"
 #include "SceneChangeButton.h"
 #include "SplashScreenController.h"
+#include "HideableForeground.h"
 
 
 
@@ -200,8 +201,8 @@
         { "SceneChangeButton"      , ComponentInfo< SceneChangeButton       >() },
         { "WinState"               , ComponentInfo< WinState                >() },
         { "Nineslice"              , ComponentInfo< Nineslice               >() },
-        { "SplashScreenController" , ComponentInfo< SplashScreenController  >() }
-
+        { "SplashScreenController" , ComponentInfo< SplashScreenController  >() },
+        { "HideableForeground"     , ComponentInfo< HideableForeground      >() }
     };
 
 //-----------------------------------------------------------------------------
