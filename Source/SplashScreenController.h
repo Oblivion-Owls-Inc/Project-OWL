@@ -18,11 +18,13 @@
 #include <string>
 #include <vector>
 #include "ComponentReference.h"
-#include "RigidBody.h"
-#include "Transform.h"
-#include "Sprite.h"
 #include "EntityReference.h"
 #include "AssetReference.h"
+
+
+class Sprite;
+class Transform;
+class Texture;
 
 
 class SplashScreenController : public Behavior
@@ -39,26 +41,21 @@ public: // class LogoData
     //-----------------------------------------------------------------------------
 
         /// @brief How long the logo is displayed for.
-        float m_LogoTimer;
-
-        /// @brief  The aspect ratio of the logo.
-        float m_LogoAspectRatio;
+        float M_LogoTimer;
 
         /// @brief The texture for the logo.
-        AssetReference<Texture> m_LogoTexture;
+        AssetReference<Texture> M_LogoTexture;
 
         /// @brief The scale for each logo.
-        glm::vec2 m_LogoScale;
+        float M_LogoScale;
         
     //-----------------------------------------------------------------------------
     public: // inspection
     //-----------------------------------------------------------------------------
     
-
         /// @brief  inspects this LogoData
         /// @return whether the LogoData was modified
         bool Inspect();
-
 
     //-----------------------------------------------------------------------------
     private: // Reading
@@ -68,10 +65,6 @@ public: // class LogoData
         /// @brief Read in the timer for the logo.
         /// @param data The JSON file to read from.
         void readTimer(nlohmann::ordered_json const& data);
-
-        /// @brief Read in the aspect ratio for the logo.
-        /// @param data The JSON file to read from. 
-        void readAspectRatio(nlohmann::ordered_json const& data);
 
         /// @brief Read in the logos to de displayed.
         /// @param data The JSON file to read from.
@@ -119,8 +112,9 @@ public: // virtual override methods
     /// @brief Called when this component's entity is removed from the scene
     virtual void OnExit() override;
 
-    /// @brief Update method called per frame
-    virtual void OnFixedUpdate() override;
+    /// @brief Called every frame
+    /// @param dt change in time
+    virtual void OnUpdate(float dt) override;
 
 //-----------------------------------------------------------------------------
 private: // member variables
@@ -129,17 +123,20 @@ private: // member variables
     /// @brief The scene to switch too.
     std::string m_NextSceneName = "";
 
-    /// @brief  A cached instance of the parent's Rigidbody.
-    ComponentReference<RigidBody> m_RigidBody;
+    /// @brief The logos to be displayed.
+    std::vector<LogoData> m_Logos = {};
+
+    /// @brief Universal timer
+    float m_Timer;
+
+    /// @brief Index for the vector of logo data.
+    int m_Index;
 
     /// @brief  A cached instance of the parent's Sprite.
     ComponentReference<Sprite> m_Sprite;
 
     /// @brief  A cached instance of the parent's Transform.
     ComponentReference<Transform> m_Transform;
-
-    /// @brief The logos to be displayed.
-    std::vector<LogoData> m_Logos = {};
 
 //-----------------------------------------------------------------------------
 public: // Inspection

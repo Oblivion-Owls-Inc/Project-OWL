@@ -8,242 +8,260 @@
 /// @copyright (c) 2024 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 /// 
+
+//------------------------------------------------------------------------------
+// Includes:
+//------------------------------------------------------------------------------
 #include "SplashScreenController.h"
 #include "BehaviorSystem.h" // AddBehavior, RemoveBehavior
-#include "InputSystem.h"    // GetKeyDown
+#include "InputSystem.h"    // GetKeyTriggered, GetGamepadButtonDown
 #include "SceneSystem.h"    // GetInstance, SetNextScene
 #include "DebugSystem.h"    // ImGui::DragFloat
+#include "Transform.h"      // SetScale
+#include "Sprite.h"         // SetTexture
+#include "ComponentReference.t.h"
+
+
+
+//-----------------------------------------------------------------------------
+// private: Inspection
+//-----------------------------------------------------------------------------
+
+    /// @brief  Inspects the an instance of LogoData
+    /// @return Whether or not any data was changed
+    bool SplashScreenController::LogoData::Inspect()
+    {
+        bool dataChanged = false;
+
+        // Logo texture inspector component.
+        dataChanged |= M_LogoTexture.Inspect("Logo Texture");
+
+        // Timer inspector component
+        dataChanged |= ImGui::DragFloat("Logo Timer", &M_LogoTimer, 0.05f, 0.0f, INFINITY);
+
+        // Logo scale inspector component.
+        dataChanged |= ImGui::DragFloat("Logo Scale", &M_LogoScale, 0.05f, 0.0f, INFINITY);
+
+        return dataChanged;
+    }
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief Read the data for the timer from a JSON file.
+    /// @param data the JSON file to read from.
+    void SplashScreenController::LogoData::readTimer(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(M_LogoTimer, data);
+    }
+
+    /// @brief Read the logo texture from a JSON file.
+    /// @param data the JSON file to read from.
+    void SplashScreenController::LogoData::readLogo(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(M_LogoTexture, data);
+    }
+
+    /// @brief Read the scale of an individual logo.
+    /// @param data the JSON file to read from.
+    void SplashScreenController::LogoData::readScale(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(M_LogoScale, data);
+    }
+
+    /// @brief Return a map of the read methods for this class.
+    /// @return A map of this class' read methods.
+    ReadMethodMap<ISerializable> const& SplashScreenController::LogoData::GetReadMethods() const
+    {
+        static ReadMethodMap<LogoData> const readMethodsMap = {
+
+            // If this does not work include splashscreen controller
+            { "Timer"       , &LogoData::readTimer       },
+            { "Logo"        , &LogoData::readLogo        },
+            { "Scale"       , &LogoData::readScale       }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethodsMap;
+    }
+
+//-----------------------------------------------------------------------------
+// public: writing
+//-----------------------------------------------------------------------------
+    /// @brief Writes a logo's data to a file.
+    /// @return The JSON file containing the written ata.
+    nlohmann::ordered_json SplashScreenController::LogoData::Write() const
+    {
+        nlohmann::ordered_json data;
+
+        data["Timer"] = Stream::Write(M_LogoTimer);
+        data["Logo"] = Stream::Write(M_LogoTexture);
+        data["Scale"] = Stream::Write(M_LogoScale);
+
+        return data;
+    }
 
 ///----------------------------------------------------------------------------
 /// Public: constructor / destructor
 ///----------------------------------------------------------------------------
 SplashScreenController::SplashScreenController()
     : Behavior(typeid(SplashScreenController))
+    , m_Index(0)
+    , m_Timer(0.0f)
 {}
 
 ///----------------------------------------------------------------------------
-/// Public: methods
+/// Public: virtual override methods
 ///----------------------------------------------------------------------------
 
-/// @brief Adds this behavior to the behavior system on init.
-void SplashScreenController::OnInit()
-{
-    Behaviors<Behavior>()->AddComponent(this);
-
-    // Initialises all the references.
-    m_RigidBody.Init(GetEntity());
-    m_Transform.Init(GetEntity());
-    m_Sprite.Init(GetEntity());
-
-    for (LogoData& data : m_Logos)
+    /// @brief Adds this behavior to the behavior system on init.
+    void SplashScreenController::OnInit()
     {
-        data.m_LogoTexture.SetOwnerName(GetName());
-        data.m_LogoTexture.Init();
-    }
-}
+        Behaviors<Behavior>()->AddComponent(this);
 
-/// @brief Removes this behavior from the behavior system on exit.
-void SplashScreenController::OnExit()
-{
-    Behaviors<Behavior>()->RemoveComponent(this);
+        // Initialises all the references.
+        m_Transform.Init(GetEntity());
+        m_Sprite.Init(GetEntity());
 
-    m_RigidBody.Exit();
-    m_Transform.Exit();
-    m_Sprite.Exit();
-}
-
-
-/// @brief On fixed update to display logos.
-void SplashScreenController::OnFixedUpdate()
-{
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
-    if (m_RigidBody == nullptr ||
-        m_Sprite == nullptr    ||
-        m_Transform == nullptr  )
-    {
-        return;
-    }
-
-    // Immediately switches to game.
-    //TODO: get any button press functionality.
-    if (Input()->GetKeyTriggered(GLFW_KEY_SPACE) || 
-        Input()->GetGamepadButtonDown(GLFW_GAMEPAD_BUTTON_START))
-    {
-        SceneSystem::GetInstance()->SetNextScene(m_NextSceneName);
-    }
-
-    // Swaps the logo when the current timer runs out.
-    if (m_Logos.back().m_LogoTimer < 0)
-    {
-        m_Logos.pop_back();
-        m_Transform->SetScale(m_Logos.back().m_LogoScale);
-        m_Sprite->SetTexture(m_Logos.back().m_LogoTexture);
-    }
-
-    // Displays the texture for a set amount of time.
-    if (m_Logos.back().m_LogoTimer > 0.0f)
-    {
-        m_Logos.back().m_LogoTimer -= GameEngine()->GetFixedFrameDuration();
-        Debug() << m_Logos.back().m_LogoTimer << std::endl;
-    }
-    
-
-    // When the last timer runs out switch scenes.
-    if (m_Logos.front().m_LogoTimer < 0)
-    {
-        SceneSystem::GetInstance()->SetNextScene(m_NextSceneName);
-    }
-}
-
-/// @brief Inspector for this class
-void SplashScreenController::Inspector()
-{
-    ImGui::InputText("Next Scene:", &m_NextSceneName);
-
-    // Inspector for the logo data vector.
-    Inspection::InspectArray< LogoData >(
-        "Logos", &m_Logos,
-        [](LogoData* logoData) -> bool
+        for (LogoData& data : m_Logos)
         {
-            return logoData->Inspect();
+            data.M_LogoTexture.SetOwnerName(GetName());
+            data.M_LogoTexture.Init();
         }
-    );
-}
+        m_Timer = m_Logos[m_Index].M_LogoTimer;
+    }
 
-/// @brief Read in the name of the next scene
-/// @param data The JSON file to read from.
-void SplashScreenController::readSceneName(nlohmann::ordered_json const& data)
-{
-    Stream::Read(m_NextSceneName, data);
-}
+    /// @brief Removes this behavior from the behavior system on exit.
+    void SplashScreenController::OnExit()
+    {
+        Behaviors<Behavior>()->RemoveComponent(this);
 
-void SplashScreenController::readLogos(nlohmann::ordered_json const& data)
-{
-    Stream::Read< LogoData >( &m_Logos, data);
-}
+        m_Transform.Exit();
+        m_Sprite.Exit();
+    }
 
-/// @brief A map of the read methods for this class
-/// @return The map of this class's read methods.
-ReadMethodMap<ISerializable> const& SplashScreenController::GetReadMethods() const
-{
-    static ReadMethodMap<SplashScreenController> const readMethodsMap = {
+    /// @brief Display the logo every frame
+    /// @param dt change in time.
+    void SplashScreenController::OnUpdate( float dt )
+    {
+        // Sets the background to black
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-        { "NextSceneName" , &SplashScreenController::readSceneName },
-        { "Logos"         , &SplashScreenController::readLogos     }
-    };
+        if (
+            m_Sprite == nullptr    ||
+            m_Transform == nullptr  )
+        {
+            return;
+        }
 
-    return (ReadMethodMap< ISerializable > const&)readMethodsMap;
-}
+        // Immediately switches to game.
+        //TODO: get any button press functionality.
+        if (Input()->GetKeyTriggered(GLFW_KEY_SPACE) || 
+            Input()->GetGamepadButtonDown(GLFW_GAMEPAD_BUTTON_START))
+        {
+            SceneSystem::GetInstance()->SetNextScene(m_NextSceneName);
+        }
 
-/// @brief  Writes all data in this class into a JSON file.
-/// @return The JSON object containing the data.
-nlohmann::ordered_json SplashScreenController::Write() const
-{
-    nlohmann::ordered_json data;
+        m_Timer -= dt;
 
-    data["NextSceneName"] = Stream::Write(m_NextSceneName);
-    data["Logos"] = Stream::WriteArray(m_Logos);
-
-    return data;
-}
-
-/// @brief  Clones this instance of splash screen controller.
-/// @return A clone of this splash screen controller instance.
-SplashScreenController* SplashScreenController::Clone() const
-{
-    return new SplashScreenController(*this);
-}
-
-/// @brief Copy Constructor.
-/// @param other Reference to another splashscreen controller.
-SplashScreenController::SplashScreenController(SplashScreenController const& other)
-    :Behavior(other)
-    ,m_NextSceneName(other.m_NextSceneName)
-{}
+        // Swaps the logo when the current timer runs out.
+        if (m_Timer < 0)
+        {
+            m_Index++;
+            // Move to the next scene.
+            if (m_Index >= static_cast<int>(m_Logos.size()))
+            {
+                Scenes()->SetNextScene(m_NextSceneName);
+                return;
+            }
+            m_Transform->SetScale(glm::vec2(m_Logos[m_Index].M_LogoScale));
+            m_Sprite->SetTexture(m_Logos[m_Index].M_LogoTexture);
+            m_Timer = m_Logos[m_Index].M_LogoTimer;
+        }
+    }
 
 //-----------------------------------------------------------------------------
-// private: methods
+// public: Inspection
 //-----------------------------------------------------------------------------
+    /// @brief Inspector for this class
+    void SplashScreenController::Inspector()
+    {
+        ImGui::InputText("Next Scene:", &m_NextSceneName);
 
-/// @brief  Inspects the an instance of LogoData
-/// @return Whether or not any data was changed
-bool SplashScreenController::LogoData::Inspect()
-{
-    bool dataChanged = false;
+        // Inspector for the logo data vector.
+        Inspection::InspectArray< LogoData >(
+            "Logos", &m_Logos,
+            [](LogoData* logoData) -> bool
+            {
+                return logoData->Inspect();
+            }
+        );
+    }
 
-    // Timer inspector component
-    dataChanged |= ImGui::DragFloat("Logo Timer", &m_LogoTimer, 0.05f, 0.0f, INFINITY);
+//--------------------------------------------------------------------------------
+// private: Reading
+//--------------------------------------------------------------------------------
 
-    // Aspect Ratio inspector component.
-    dataChanged |= ImGui::DragFloat("Logo Aspect Ratio", &m_LogoAspectRatio, 0.05f, 0.0f, INFINITY);
+    /// @brief Read in the name of the next scene
+    /// @param data The JSON file to read from.
+    void SplashScreenController::readSceneName(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_NextSceneName, data);
+    }
 
-    // Logo texture inspector component.
-    dataChanged |= m_LogoTexture.Inspect("Logo Texture");
+    void SplashScreenController::readLogos(nlohmann::ordered_json const& data)
+    {
+        Stream::Read< LogoData >( &m_Logos, data);
+    }
 
-    dataChanged |= ImGui::DragFloat2("Logo Scale", &m_LogoScale[0], 0.05f, INFINITY);
+    /// @brief A map of the read methods for this class
+    /// @return The map of this class's read methods.
+    ReadMethodMap<ISerializable> const& SplashScreenController::GetReadMethods() const
+    {
+        static ReadMethodMap<SplashScreenController> const readMethodsMap = {
 
-    return dataChanged;
-}
+            { "NextSceneName" , &SplashScreenController::readSceneName },
+            { "Logos"         , &SplashScreenController::readLogos     }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethodsMap;
+    }
 
 //-----------------------------------------------------------------------------
-// private: reading
+// public: reading / writing
 //-----------------------------------------------------------------------------
+    /// @brief  Writes all data in this class into a JSON file.
+    /// @return The JSON object containing the data.
+    nlohmann::ordered_json SplashScreenController::Write() const
+    {
+        nlohmann::ordered_json data;
 
-/// @brief Read the data for the timer from a JSON file.
-/// @param data the JSON file to read from.
-void SplashScreenController::LogoData::readTimer(nlohmann::ordered_json const& data)
-{
-    Stream::Read(m_LogoTimer, data);
-}
+        data["NextSceneName"] = Stream::Write(m_NextSceneName);
+        data["Logos"] = Stream::WriteArray(m_Logos);
 
-/// @brief Read the data for the aspect ratio from a JSON file.
-/// @param data the JSON file to read from.
-void SplashScreenController::LogoData::readAspectRatio(nlohmann::ordered_json const& data)
-{
-    Stream::Read(m_LogoAspectRatio, data);
-}
+        return data;
+    }
 
-/// @brief Read the logo texture from a JSON file.
-/// @param data the JSON file to read from.
-void SplashScreenController::LogoData::readLogo(nlohmann::ordered_json const& data)
-{
-    Stream::Read(m_LogoTexture, data);
-}
+//-----------------------------------------------------------------------------
+// public: copying
+//-----------------------------------------------------------------------------
+    /// @brief  Clones this instance of splash screen controller.
+    /// @return A clone of this splash screen controller instance.
+    SplashScreenController* SplashScreenController::Clone() const
+    {
+        return new SplashScreenController(*this);
+    }
 
-/// @brief Read the scale of an individual logo.
-/// @param data the JSON file to read from.
-void SplashScreenController::LogoData::readScale(nlohmann::ordered_json const& data)
-{
-   m_LogoScale = Stream::Read< 2, float >(data);
-}
+//-----------------------------------------------------------------------------
+// private: copying
+//-----------------------------------------------------------------------------
+    /// @brief Copy Constructor.
+    /// @param other Reference to another splashscreen controller.
+    SplashScreenController::SplashScreenController(SplashScreenController const& other)
+        :Behavior(other)
+        ,m_NextSceneName(other.m_NextSceneName)
+        ,m_Index(0)
+        ,m_Timer(0.0f)
+    {}
 
-/// @brief Return a map of the read methods for this class.
-/// @return A map of this class' read methods.
-ReadMethodMap<ISerializable> const& SplashScreenController::LogoData::GetReadMethods() const
-{
-    static ReadMethodMap<LogoData> const readMethodsMap = {
 
-        // If this does not work include splashscreen controller
-        { "Timer"       , &LogoData::readTimer       },
-        { "AspectRatio" , &LogoData::readAspectRatio },
-        { "Logo"        , &LogoData::readLogo        },
-        { "Scale"       , &LogoData::readScale       }
-    };
-
-    return (ReadMethodMap< ISerializable > const&)readMethodsMap;
-}
-
-/// @brief Writes a logo's data to a file.
-/// @return The JSON file containing the written ata.
-nlohmann::ordered_json SplashScreenController::LogoData::Write() const
-{
-    nlohmann::ordered_json data;
-
-    data["Timer"] = Stream::Write(m_LogoTimer);
-    data["AspectRatio"] = Stream::Write(m_LogoAspectRatio);
-    data["Logo"] = Stream::Write(m_LogoTexture);
-    data["Scale"] = Stream::Write(m_LogoScale);
-
-    return data;
-}

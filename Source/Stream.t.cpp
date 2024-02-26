@@ -423,7 +423,14 @@
     template< typename ValueType >
     void Stream::Read(ValueType& value, nlohmann::ordered_json const& json, IsISerializable<false>)
     {
-        value = json.get< ValueType >();
+        try
+        {
+            value = json.get< ValueType >();
+        }
+        catch ( std::exception error )
+        {
+            std::cout << "WARNING: json: \"" << error.what() << "\" at " << GetDebugLocation() << std::endl;
+        }
     }
 
 

@@ -24,7 +24,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": true
             },
             "DigiLogoTexture": {
                 "Filepath": "Data/Textures/DigiPen_WHITE.png",
@@ -36,7 +36,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": true
             },
             "FMODLogo": {
                 "Filepath": "Data/Textures/FMOD.png",
@@ -48,7 +48,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": true
             }
         },
         "TransformAnimations": null,
@@ -81,56 +81,29 @@
         "Background": {
             "Name": "Background",
             "Components": {
-                "RigidBody": {
-                    "Velocity": [
-                        0.0,
-                        0.0
-                    ],
-                    "Acceleration": [
-                        0.0,
-                        0.0
-                    ],
-                    "RotationalVelocity": 0.0,
-                    "Mass": 1.0,
-                    "Restitution": 1.0,
-                    "Friction": 0.0,
-                    "Drag": 0.0
-                },
                 "SplashScreenController": {
                     "NextSceneName": "Prototype",
                     "Logos": [
                         {
                             "Timer": 2.0,
-                            "AspectRatio": 1.0,
-                            "Logo": {
-                                "AssetName": "DigDeeperLogo"
-                            },
-                            "Scale": [
-                                3.0,
-                                3.0
-                            ]
-                        },
-                        {
-                            "Timer": 2.0,
-                            "AspectRatio": 1.0,
-                            "Logo": {
-                                "AssetName": "FMODLogo"
-                            },
-                            "Scale": [
-                                3.0,
-                                3.0
-                            ]
-                        },
-                        {
-                            "Timer": 2.0,
-                            "AspectRatio": 1.0,
                             "Logo": {
                                 "AssetName": "DigiLogoTexture"
                             },
-                            "Scale": [
-                                2.5,
-                                1.0
-                            ]
+                            "Scale": 1.0
+                        },
+                        {
+                            "Timer": 2.0,
+                            "Logo": {
+                                "AssetName": "FMODLogo"
+                            },
+                            "Scale": 2.0
+                        },
+                        {
+                            "Timer": 2.0,
+                            "Logo": {
+                                "AssetName": "DigDeeperLogo"
+                            },
+                            "Scale": 3.0
                         }
                     ]
                 },
@@ -155,7 +128,7 @@
                     ],
                     "Rotation": 0.0,
                     "Scale": [
-                        2.5,
+                        1.0,
                         1.0
                     ],
                     "IsDiegetic": true
