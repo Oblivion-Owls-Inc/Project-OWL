@@ -103,7 +103,7 @@
                             "Timer": 2.0,
                             "AspectRatio": 1.0,
                             "Logo": {
-                                "AssetName": "DigiLogoTexture"
+                                "AssetName": "DigDeeperLogo"
                             }
                         },
                         {
@@ -117,7 +117,7 @@
                             "Timer": 2.0,
                             "AspectRatio": 1.0,
                             "Logo": {
-                                "AssetName": "DigDeeperLogo"
+                                "AssetName": "DigiLogoTexture"
                             }
                         }
                     ]
