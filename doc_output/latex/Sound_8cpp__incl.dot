@@ -88,10 +88,13 @@ digraph "Source/Sound.cpp"
   Node33 [label="sstream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node26 -> Node34 [color="midnightblue",fontsize="10",style="solid"];
   Node34 [label="set",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node26 -> Node35 [color="midnightblue",fontsize="10",style="solid"];
+  Node35 [label="PlayBar.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlayBar_8h.html",tooltip="UI Bar that handles playing, pausing, and autosaves of the scene."];
+  Node35 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
   Node23 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
   Node23 -> Node27 [color="midnightblue",fontsize="10",style="solid"];
-  Node23 -> Node35 [color="midnightblue",fontsize="10",style="solid"];
-  Node35 [label="functional",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node23 -> Node36 [color="midnightblue",fontsize="10",style="solid"];
+  Node36 [label="functional",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node23 -> Node28 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node28 [color="midnightblue",fontsize="10",style="solid"];
 }

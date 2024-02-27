@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['debugconsole_925',['DebugConsole',['../classDebugConsole.html',1,'']]],
-  ['debugsystem_926',['DebugSystem',['../classDebugSystem.html',1,'']]]
+  ['debugconsole_935',['DebugConsole',['../classDebugConsole.html',1,'']]],
+  ['debugsystem_936',['DebugSystem',['../classDebugSystem.html',1,'']]]
 ];

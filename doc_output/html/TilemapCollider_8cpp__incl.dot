@@ -141,14 +141,17 @@ digraph "Source/TilemapCollider.cpp"
   Node38 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node44 [label="sstream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node38 -> Node31 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node38 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node45 [label="PlayBar.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlayBar_8h.html",tooltip="UI Bar that handles playing, pausing, and autosaves of the scene."];
+  Node45 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node35 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node45 [label="CollisionSystem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$CollisionSystem_8h.html",tooltip="The CollisionSystem is responsible for checking for collisions between Different Colliders."];
-  Node45 -> Node39 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node45 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node45 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node45 -> Node37 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node45 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 [label="CollisionSystem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$CollisionSystem_8h.html",tooltip="The CollisionSystem is responsible for checking for collisions between Different Colliders."];
+  Node46 -> Node39 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 -> Node37 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }
