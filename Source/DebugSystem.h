@@ -26,6 +26,8 @@
 #include <sstream>
 #include <set>
 
+#include "PlayBar.h"
+
 
 
 /// @brief Forward declaration of the Entity class
@@ -86,6 +88,12 @@ public:
 
     /// @brief  sets whether the editor systems are enabled
     bool IsEditorRunning() const { return m_EditorRunning; }
+
+
+    /// @brief  gets the DebugSystem PlayBar
+    /// @return the DebugSystem PlayBar
+    PlayBar& GetPlayBar();
+
 
 ///----------------------------------------------------------------------------
 public: // DebugStream
@@ -148,6 +156,11 @@ private: // Members
     /// @brief Flag to Show the various Asset Prefab Windows
     bool m_CreationWindows[ (int)MenuItemType::_Count ] = { 0 };
 
+
+    /// @brief  the Play Bar
+    PlayBar m_PlayBar;
+
+
     /// @brief Pointer to the ImGui Input/Output structure
     ImGuiIO* io;
 
@@ -204,6 +217,7 @@ private: // reading
     /// @brief Reads whether to show the debug window
     /// @param stream  the data to read from
     void readShowDebugWindow( nlohmann::ordered_json const& data );
+
 
     /// @brief map containing read methods
     static ReadMethodMap< DebugSystem > const s_ReadMethods;

@@ -61,5 +61,6 @@ var searchData=
   ['audioplayer_2eh_58',['AudioPlayer.h',['../AudioPlayer_8h.html',1,'']]],
   ['audiosystem_59',['AudioSystem',['../classAudioSystem.html',1,'']]],
   ['audiosystem_2ecpp_60',['AudioSystem.cpp',['../AudioSystem_8cpp.html',1,'']]],
-  ['audiosystem_2eh_61',['AudioSystem.h',['../AudioSystem_8h.html',1,'']]]
+  ['audiosystem_2eh_61',['AudioSystem.h',['../AudioSystem_8h.html',1,'']]],
+  ['autosave_62',['Autosave',['../classSceneSystem.html#a9167f5f0bc197f908e1683b1cccd18ed',1,'SceneSystem']]]
 ];

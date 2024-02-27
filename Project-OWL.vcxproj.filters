@@ -336,6 +336,9 @@
     <Filter Include="Game\Components\Behaviors\HideableForeground">
       <UniqueIdentifier>{fa718f60-f4fc-415e-8481-41d6a9855c4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\DebugSystem\PlayBar">
+      <UniqueIdentifier>{aded7ad9-3229-43a6-a373-872cb12acd49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -697,6 +700,9 @@
     </ClCompile>
     <ClCompile Include="Source\HideableForeground.cpp">
       <Filter>Game\Components\Behaviors\HideableForeground</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayBar.cpp">
+      <Filter>Engine\Systems\DebugSystem\PlayBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1065,6 +1071,9 @@
     </ClInclude>
     <ClInclude Include="Source\HideableForeground.h">
       <Filter>Game\Components\Behaviors\HideableForeground</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayBar.h">
+      <Filter>Engine\Systems\DebugSystem\PlayBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
