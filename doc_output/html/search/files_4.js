@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['healthbar_2ecpp_1062',['HealthBar.cpp',['../HealthBar_8cpp.html',1,'']]],
-  ['healthbar_2eh_1063',['HealthBar.h',['../HealthBar_8h.html',1,'']]]
+  ['healthbar_2ecpp_1065',['HealthBar.cpp',['../HealthBar_8cpp.html',1,'']]],
+  ['healthbar_2eh_1066',['HealthBar.h',['../HealthBar_8h.html',1,'']]],
+  ['hideableforeground_2ecpp_1067',['HideableForeground.cpp',['../HideableForeground_8cpp.html',1,'']]],
+  ['hideableforeground_2eh_1068',['HideableForeground.h',['../HideableForeground_8h.html',1,'']]]
 ];

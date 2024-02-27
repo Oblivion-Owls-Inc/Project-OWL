@@ -5,13 +5,11 @@ digraph "Source/ComponentFactory.cpp"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="Source/ComponentFactory.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Definitions for the component factory class."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="ComponentFactory.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ComponentFactory_8h.html",tooltip="Declaration for the component factory class."];
+  Node2 [label="ComponentFactory.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$ComponentFactory_8h.html",tooltip="Declaration for the component factory class."];
   Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="map",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
-  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="typeindex",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node6 [label="Transform.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Transform_8h.html",tooltip="Transform."];
   Node6 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -150,4 +148,6 @@ digraph "Source/ComponentFactory.cpp"
   Node106 [label="ResourcesUiManager.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$ResourcesUiManager_8h.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
   Node1 -> Node107 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node107 [label="SceneChangeButton.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$SceneChangeButton_8h.html",tooltip="Component that changes the scene when clicked."];
+  Node1 -> Node110 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node110 [label="HideableForeground.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$HideableForeground_8h.html",tooltip="Component that hides an attached Sprite when it overlaps something."];
 }

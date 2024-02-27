@@ -132,10 +132,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e6baaec77eb5b1a1fd2b709700951c7"><td class="memTemplItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a8e6baaec77eb5b1a1fd2b709700951c7">Write</a> (std::vector&lt; ValueType &gt; const &amp;vec_data)</td></tr>
 <tr class="memdesc:a8e6baaec77eb5b1a1fd2b709700951c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a vector of any standard data type to a JSON.  <a href="classStream.html#a8e6baaec77eb5b1a1fd2b709700951c7">More...</a><br /></td></tr>
 <tr class="separator:a8e6baaec77eb5b1a1fd2b709700951c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf23e4e2eaf06d887d94cdbf41b9371c"><td class="memTemplParams" colspan="2">template&lt;typename ValueType , int Size&gt; </td></tr>
-<tr class="memitem:acf23e4e2eaf06d887d94cdbf41b9371c"><td class="memTemplItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#acf23e4e2eaf06d887d94cdbf41b9371c">Write</a> (ValueType *array_data)</td></tr>
-<tr class="memdesc:acf23e4e2eaf06d887d94cdbf41b9371c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write an array of any standard data type to a JSON.  <a href="classStream.html#acf23e4e2eaf06d887d94cdbf41b9371c">More...</a><br /></td></tr>
-<tr class="separator:acf23e4e2eaf06d887d94cdbf41b9371c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bb70f98b608a4e39a1010f48e4c9f72"><td class="memTemplParams" colspan="2">template&lt;typename ValueType , int Size&gt; </td></tr>
+<tr class="memitem:a1bb70f98b608a4e39a1010f48e4c9f72"><td class="memTemplItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a1bb70f98b608a4e39a1010f48e4c9f72">Write</a> (ValueType const *array_data)</td></tr>
+<tr class="memdesc:a1bb70f98b608a4e39a1010f48e4c9f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write an array of any standard data type to a JSON.  <a href="classStream.html#a1bb70f98b608a4e39a1010f48e4c9f72">More...</a><br /></td></tr>
+<tr class="separator:a1bb70f98b608a4e39a1010f48e4c9f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56ad6e8647adfd85d0c1e196c572bdd0"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
 <tr class="memitem:a56ad6e8647adfd85d0c1e196c572bdd0"><td class="memTemplItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a56ad6e8647adfd85d0c1e196c572bdd0">Write</a> (std::map&lt; std::string, ValueType &gt; map_data)</td></tr>
 <tr class="memdesc:a56ad6e8647adfd85d0c1e196c572bdd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a map of string keys and any standard data type to a JSON object.  <a href="classStream.html#a56ad6e8647adfd85d0c1e196c572bdd0">More...</a><br /></td></tr>
@@ -874,8 +874,51 @@ template&lt;typename ValueType &gt; </div>
 
 </div>
 </div>
-<a id="acf23e4e2eaf06d887d94cdbf41b9371c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf23e4e2eaf06d887d94cdbf41b9371c">&#9670;&nbsp;</a></span>Write() <span class="overload">[4/5]</span></h2>
+<a id="ac9133cfb3ea3c7e2c4620d134a699910"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9133cfb3ea3c7e2c4620d134a699910">&#9670;&nbsp;</a></span>Write() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json Stream::Write </td>
+          <td>(</td>
+          <td class="paramtype">ValueType const &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>writes data to json </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>the type of data to write to json </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>the data to write to json </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the written json data </dd></dl>
+
+</div>
+</div>
+<a id="a1bb70f98b608a4e39a1010f48e4c9f72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bb70f98b608a4e39a1010f48e4c9f72">&#9670;&nbsp;</a></span>Write() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -888,7 +931,7 @@ template&lt;typename ValueType , int Size&gt; </div>
         <tr>
           <td class="memname">nlohmann::ordered_json Stream::Write </td>
           <td>(</td>
-          <td class="paramtype">ValueType *&#160;</td>
+          <td class="paramtype">ValueType const *&#160;</td>
           <td class="paramname"><em>array_data</em></td><td>)</td>
           <td></td>
         </tr>
@@ -930,49 +973,6 @@ template&lt;typename ValueType , int Size&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A JSON object containing the array. </dd></dl>
-
-</div>
-</div>
-<a id="ac9133cfb3ea3c7e2c4620d134a699910"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9133cfb3ea3c7e2c4620d134a699910">&#9670;&nbsp;</a></span>Write() <span class="overload">[5/5]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename ValueType &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">nlohmann::ordered_json Stream::Write </td>
-          <td>(</td>
-          <td class="paramtype">ValueType const &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>writes data to json </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">ValueType</td><td>the type of data to write to json </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>the data to write to json </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the written json data </dd></dl>
 
 </div>
 </div>

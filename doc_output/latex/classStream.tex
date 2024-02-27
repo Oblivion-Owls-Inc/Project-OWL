@@ -35,7 +35,7 @@ static void \mbox{\hyperlink{classStream_aed3ce42882704b743cc11addcbd79571}{Writ
 \begin{DoxyCompactList}\small\item\em writes a glm vector to json \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Value\+Type $>$ }\\static nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classStream_a8e6baaec77eb5b1a1fd2b709700951c7}{Write}} (std\+::vector$<$ Value\+Type $>$ const \&vec\+\_\+data)
 \begin{DoxyCompactList}\small\item\em Write a vector of any standard data type to a JSON. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename Value\+Type , int Size$>$ }\\static nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classStream_acf23e4e2eaf06d887d94cdbf41b9371c}{Write}} (Value\+Type $\ast$array\+\_\+data)
+{\footnotesize template$<$typename Value\+Type , int Size$>$ }\\static nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classStream_a1bb70f98b608a4e39a1010f48e4c9f72}{Write}} (Value\+Type const $\ast$array\+\_\+data)
 \begin{DoxyCompactList}\small\item\em Write an array of any standard data type to a JSON. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Value\+Type $>$ }\\static nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classStream_a56ad6e8647adfd85d0c1e196c572bdd0}{Write}} (std\+::map$<$ std\+::string, Value\+Type $>$ map\+\_\+data)
 \begin{DoxyCompactList}\small\item\em Write a map of string keys and any standard data type to a JSON object. \end{DoxyCompactList}\item 
@@ -408,12 +408,36 @@ The JSON object containing the vector data.
 \begin{DoxyReturn}{Returns}
 The JSON object containing the vector data. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classStream_acf23e4e2eaf06d887d94cdbf41b9371c}\label{classStream_acf23e4e2eaf06d887d94cdbf41b9371c}} 
+\mbox{\Hypertarget{classStream_ac9133cfb3ea3c7e2c4620d134a699910}\label{classStream_ac9133cfb3ea3c7e2c4620d134a699910}} 
 \index{Stream@{Stream}!Write@{Write}}
 \index{Write@{Write}!Stream@{Stream}}
 \doxysubsubsection{\texorpdfstring{Write()}{Write()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+nlohmann\+::ordered\+\_\+json Stream\+::\+Write (\begin{DoxyParamCaption}\item[{Value\+Type const \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+writes data to json 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & the type of data to write to json \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & the data to write to json \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a1bb70f98b608a4e39a1010f48e4c9f72}\label{classStream_a1bb70f98b608a4e39a1010f48e4c9f72}} 
+\index{Stream@{Stream}!Write@{Write}}
+\index{Write@{Write}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
 {\footnotesize\ttfamily template$<$typename Value\+Type , int Size$>$ \\
-nlohmann\+::ordered\+\_\+json Stream\+::\+Write (\begin{DoxyParamCaption}\item[{Value\+Type $\ast$}]{array\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+nlohmann\+::ordered\+\_\+json Stream\+::\+Write (\begin{DoxyParamCaption}\item[{Value\+Type const $\ast$}]{array\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -450,30 +474,6 @@ The JSON object containing the array.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A JSON object containing the array. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classStream_ac9133cfb3ea3c7e2c4620d134a699910}\label{classStream_ac9133cfb3ea3c7e2c4620d134a699910}} 
-\index{Stream@{Stream}!Write@{Write}}
-\index{Write@{Write}!Stream@{Stream}}
-\doxysubsubsection{\texorpdfstring{Write()}{Write()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
-{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
-nlohmann\+::ordered\+\_\+json Stream\+::\+Write (\begin{DoxyParamCaption}\item[{Value\+Type const \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
-
-
-
-writes data to json 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em Value\+Type} & the type of data to write to json \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em value} & the data to write to json \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-the written json data 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classStream_adbc7ecc866c78d9a29b12d1d5ae4d91d}\label{classStream_adbc7ecc866c78d9a29b12d1d5ae4d91d}} 
 \index{Stream@{Stream}!WriteToFile@{WriteToFile}}
