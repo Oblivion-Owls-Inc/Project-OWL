@@ -9,39 +9,18 @@ The \mbox{\hyperlink{classCollisionSystem}{Collision\+System}} is responsible fo
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$typeindex$>$}\newline
 {\ttfamily \#include \char`\"{}Collision\+Data.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Collision\+Layer\+Flags.\+h\char`\"{}}\newline
 Include dependency graph for Collision\+System.\+h\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{CollisionSystem_8h__incl}
-\end{center}
-\end{figure}
+% FIG 0
 This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{CollisionSystem_8h__dep__incl}
-\end{center}
-\end{figure}
+% FIG 1
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
+struct \mbox{\hyperlink{structstd_1_1less_3_01glm_1_1ivec2_01_4}{std\+::less$<$ glm\+::ivec2 $>$}}
+\item 
 class \mbox{\hyperlink{classCollisionSystem}{Collision\+System}}
 \begin{DoxyCompactList}\small\item\em responsible for checking collsisions between all Colliders \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Typedefs}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{CollisionSystem_8h_ad4a15109fc5b785904b54d6044527336}\label{CollisionSystem_8h_ad4a15109fc5b785904b54d6044527336}} 
-using \mbox{\hyperlink{CollisionSystem_8h_ad4a15109fc5b785904b54d6044527336}{Collision\+Check\+Function}} = bool($\ast$)(\mbox{\hyperlink{classCollider}{Collider}} const  $\ast$colliderA, \mbox{\hyperlink{classCollider}{Collider}} const  $\ast$colliderB, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} $\ast$collision\+Data)
-\begin{DoxyCompactList}\small\item\em function pointer to function that checks collisions between \mbox{\hyperlink{classCollider}{Collider}} types \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{CollisionSystem_8h_a82fb835394855287a6873bf742462fdc}\label{CollisionSystem_8h_a82fb835394855287a6873bf742462fdc}} 
-using \mbox{\hyperlink{CollisionSystem_8h_a82fb835394855287a6873bf742462fdc}{Collision\+Function\+Map}} = std\+::map$<$ std\+::pair$<$ std\+::type\+\_\+index, std\+::type\+\_\+index $>$, \mbox{\hyperlink{CollisionSystem_8h_ad4a15109fc5b785904b54d6044527336}{Collision\+Check\+Function}} $>$
-\begin{DoxyCompactList}\small\item\em map that stores the Collision\+Check\+Methods between each \mbox{\hyperlink{classCollider}{Collider}} type \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}\label{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}} 
-using \mbox{\hyperlink{CollisionSystem_8h_abe804fe1964b76bbf5d5c5f63f0b25fd}{Collision\+Layer\+Flags}} = unsigned
-\begin{DoxyCompactList}\small\item\em bit flags of which layers a collider collides with \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 

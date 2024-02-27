@@ -2,7 +2,7 @@
 \label{classExampleSystem}\index{ExampleSystem@{ExampleSystem}}
 
 
-Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when creating new Systems.  
+DESCRIPTION HERE.  
 
 
 
@@ -11,31 +11,22 @@ Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when cr
 
 
 
-Inheritance diagram for Example\+System\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=176pt]{classExampleSystem__inherit__graph}
-\end{center}
-\end{figure}
+Inheritance diagram for Example\+System\+:
+% FIG 0
 
 
-Collaboration diagram for Example\+System\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=176pt]{classExampleSystem__coll__graph}
-\end{center}
-\end{figure}
+Collaboration diagram for Example\+System\+:
+% FIG 1
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classExampleSystem_a9a1534163be634b799129097d8af508d}\label{classExampleSystem_a9a1534163be634b799129097d8af508d}} 
-{\bfseries Example\+System} (\mbox{\hyperlink{classExampleSystem}{Example\+System}} \&other)=delete
-\item 
-\mbox{\Hypertarget{classExampleSystem_a0d8473177f91d674980ee77682819161}\label{classExampleSystem_a0d8473177f91d674980ee77682819161}} 
-void {\bfseries operator=} (const \mbox{\hyperlink{classExampleSystem}{Example\+System}} \&)=delete
-\end{DoxyCompactItemize}
+\mbox{\Hypertarget{classExampleSystem_a6ff404a2c29ae67a76b1aef70635a124}\label{classExampleSystem_a6ff404a2c29ae67a76b1aef70635a124}} 
+virtual void \mbox{\hyperlink{classExampleSystem_a6ff404a2c29ae67a76b1aef70635a124}{Debug\+Window}} () override
+\begin{DoxyCompactList}\small\item\em Gets Called by the Debug system to display debug information. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classExampleSystem_a426fdc4f1c53ce7ad57b0c774c03ae8c}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classExampleSystem_a194a25f2277169f8ecc6906cd5f3d920}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classExampleSystem}{Example\+System}} to JSON \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -45,7 +36,7 @@ static \mbox{\hyperlink{classExampleSystem}{Example\+System}} $\ast$ \mbox{\hype
 
 
 \doxysubsection{Detailed Description}
-Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when creating new Systems. 
+DESCRIPTION HERE. 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classExampleSystem_a3b10f9bf81cfa38b8d5b963c9a72d285}\label{classExampleSystem_a3b10f9bf81cfa38b8d5b963c9a72d285}} 
@@ -61,6 +52,40 @@ gets the instance of \mbox{\hyperlink{classExampleSystem}{Example\+System}}
 \begin{DoxyReturn}{Returns}
 the instance of the \mbox{\hyperlink{classExampleSystem}{Example\+System}} 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classExampleSystem_a426fdc4f1c53ce7ad57b0c774c03ae8c}\label{classExampleSystem_a426fdc4f1c53ce7ad57b0c774c03ae8c}} 
+\index{ExampleSystem@{ExampleSystem}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!ExampleSystem@{ExampleSystem}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Example\+System\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classExampleSystem_a194a25f2277169f8ecc6906cd5f3d920}\label{classExampleSystem_a194a25f2277169f8ecc6906cd5f3d920}} 
+\index{ExampleSystem@{ExampleSystem}!Write@{Write}}
+\index{Write@{Write}!ExampleSystem@{ExampleSystem}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Example\+System\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classExampleSystem}{Example\+System}} to JSON 
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classExampleSystem}{Example\+System}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

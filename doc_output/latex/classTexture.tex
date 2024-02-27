@@ -38,21 +38,27 @@ Collaboration diagram for Texture\+:\nopagebreak
 \mbox{\Hypertarget{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}\label{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}} 
 \mbox{\hyperlink{classTexture_a09c4bcb7462f64c1d20fa69dba3cee8a}{$\sim$\+Texture}} ()
 \begin{DoxyCompactList}\small\item\em Destructor\+: deletes texture data from GPU. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{classTexture_aaa1e67f2d4c62aa386f3f49604a93691}{Get\+Uv\+Offset}} (int frame\+Index) const
+\begin{DoxyCompactList}\small\item\em calculates the uv offset for a given frame offset \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTexture_a14a2a70d9f130ac91a5ac95c8a4c7831}{Bind}} (unsigned int slot=0) const
 \begin{DoxyCompactList}\small\item\em Sets this texture as active, so it can be used by texture shader. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classTexture_a8374f8cf2a8425a46e95ab2d1a0aebf5}\label{classTexture_a8374f8cf2a8425a46e95ab2d1a0aebf5}} 
 void \mbox{\hyperlink{classTexture_a8374f8cf2a8425a46e95ab2d1a0aebf5}{Inspect}} ()
 \begin{DoxyCompactList}\small\item\em Used by the Debug to display information about this \mbox{\hyperlink{classTexture}{Texture}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTexture_a1662711f5f736ae36c057f91d9dc5e1c}{Display\+In\+Inspector}} (int frame\+Index=0, float scale=100.\+0f, glm\+::vec4 const \&tint\+Color=\{ 1.\+0f, 1.\+0f, 1.\+0f, 1.\+0f \}, glm\+::vec4 const \&border\+Color=\{ 0.\+0f, 0.\+0f, 0.\+0f, 0.\+0f \}) const
+\begin{DoxyCompactList}\small\item\em displays this \mbox{\hyperlink{classTexture}{Texture}} in Im\+Gui \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline glm\+::ivec2 const  \& \mbox{\hyperlink{classTexture_ae0d942070b7a0925f41511b6f2884ab3}{Get\+Pixel\+Dimensions}} () const
 \begin{DoxyCompactList}\small\item\em Returns the size of the original image in pixels. \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline float \mbox{\hyperlink{classTexture_a6a359a101095f149dd1754242cc47472}{Get\+Aspect\+Ratio}} () const
-\begin{DoxyCompactList}\small\item\em Returns the size of the original image in pixels. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns the aspect ratio (x / y) of the texture. \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline glm\+::ivec2 const  \& \mbox{\hyperlink{classTexture_a775ad645b4c61af24c1cbb53bec1fc49}{Get\+Sheet\+Dimensions}} () const
 \begin{DoxyCompactList}\small\item\em Returns how many tiles/frames are in the texture. \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline \mbox{\hyperlink{classMesh}{Mesh}} const  $\ast$ \mbox{\hyperlink{classTexture_a735680df526bd8809aef3162f48024ca}{Get\+Mesh}} () const
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline void \mbox{\hyperlink{classTexture_a34824525978e7bc15067cd194bf6cfe2}{Set\+Mesh}} (\mbox{\hyperlink{classMesh}{Mesh}} const $\ast$mesh)
 \begin{DoxyCompactList}\small\item\em sets the \mbox{\hyperlink{classMesh}{Mesh}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{classTexture_a3b1a1b0c2727a5ee3a8aec5880ae3085}{Get\+Texture\+Id}} () const
+\begin{DoxyCompactList}\small\item\em gets the Open\+GL ID of this \mbox{\hyperlink{classTexture}{Texture}} \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classTexture_a2138e1ba2d1695e394c3a3bdb025498d}\label{classTexture_a2138e1ba2d1695e394c3a3bdb025498d}} 
 void \mbox{\hyperlink{classTexture_a2138e1ba2d1695e394c3a3bdb025498d}{After\+Load}} ()
 \begin{DoxyCompactList}\small\item\em gets called after reading all arugments \end{DoxyCompactList}\item 
@@ -105,6 +111,27 @@ Sets this texture as active, so it can be used by texture shader.
 {\em slot} & (optional) texture slot -\/ for drawing multiple at once ig? \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classTexture_a1662711f5f736ae36c057f91d9dc5e1c}\label{classTexture_a1662711f5f736ae36c057f91d9dc5e1c}} 
+\index{Texture@{Texture}!DisplayInInspector@{DisplayInInspector}}
+\index{DisplayInInspector@{DisplayInInspector}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{DisplayInInspector()}{DisplayInInspector()}}
+{\footnotesize\ttfamily void Texture\+::\+Display\+In\+Inspector (\begin{DoxyParamCaption}\item[{int}]{frame\+Index = {\ttfamily 0},  }\item[{float}]{scale = {\ttfamily 100.0f},  }\item[{glm\+::vec4 const \&}]{tint\+Color = {\ttfamily \{~1.0f,~1.0f,~1.0f,~1.0f~\}},  }\item[{glm\+::vec4 const \&}]{border\+Color = {\ttfamily \{~0.0f,~0.0f,~0.0f,~0.0f~\}} }\end{DoxyParamCaption}) const}
+
+
+
+displays this \mbox{\hyperlink{classTexture}{Texture}} in Im\+Gui 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scale} & the scale to display this image at \\
+\hline
+{\em frame\+Index} & the index of the frame of this texture to display \\
+\hline
+{\em tint\+Color} & the tint color of the displayed button \\
+\hline
+{\em border\+Color} & the border color of the displayed button \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classTexture_a6a359a101095f149dd1754242cc47472}\label{classTexture_a6a359a101095f149dd1754242cc47472}} 
 \index{Texture@{Texture}!GetAspectRatio@{GetAspectRatio}}
 \index{GetAspectRatio@{GetAspectRatio}!Texture@{Texture}}
@@ -113,10 +140,10 @@ Sets this texture as active, so it can be used by texture shader.
 
 
 
-Returns the size of the original image in pixels. 
+Returns the aspect ratio (x / y) of the texture. 
 
 \begin{DoxyReturn}{Returns}
-float\+: the aspec ratio of the \mbox{\hyperlink{classTexture}{Texture}} 
+float\+: the aspect ratio of the \mbox{\hyperlink{classTexture}{Texture}} 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classTexture_a735680df526bd8809aef3162f48024ca}\label{classTexture_a735680df526bd8809aef3162f48024ca}} 
 \index{Texture@{Texture}!GetMesh@{GetMesh}}
@@ -173,6 +200,37 @@ Returns how many tiles/frames are in the texture.
 
 \begin{DoxyReturn}{Returns}
 ivec2\+: x = width , y = height 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTexture_a3b1a1b0c2727a5ee3a8aec5880ae3085}\label{classTexture_a3b1a1b0c2727a5ee3a8aec5880ae3085}} 
+\index{Texture@{Texture}!GetTextureId@{GetTextureId}}
+\index{GetTextureId@{GetTextureId}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{GetTextureId()}{GetTextureId()}}
+{\footnotesize\ttfamily unsigned Texture\+::\+Get\+Texture\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the Open\+GL ID of this \mbox{\hyperlink{classTexture}{Texture}} 
+
+\begin{DoxyReturn}{Returns}
+the Open\+GL ID of this \mbox{\hyperlink{classTexture}{Texture}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTexture_aaa1e67f2d4c62aa386f3f49604a93691}\label{classTexture_aaa1e67f2d4c62aa386f3f49604a93691}} 
+\index{Texture@{Texture}!GetUvOffset@{GetUvOffset}}
+\index{GetUvOffset@{GetUvOffset}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{GetUvOffset()}{GetUvOffset()}}
+{\footnotesize\ttfamily glm\+::vec2 Texture\+::\+Get\+Uv\+Offset (\begin{DoxyParamCaption}\item[{int}]{frame\+Index }\end{DoxyParamCaption}) const}
+
+
+
+calculates the uv offset for a given frame offset 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame\+Index} & the index of the frame to get the UV offset of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the UV offset of the frame index 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classTexture_a34824525978e7bc15067cd194bf6cfe2}\label{classTexture_a34824525978e7bc15067cd194bf6cfe2}} 
 \index{Texture@{Texture}!SetMesh@{SetMesh}}

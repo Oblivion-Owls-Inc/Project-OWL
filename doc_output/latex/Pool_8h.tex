@@ -2,36 +2,47 @@
 \label{Pool_8h}\index{Source/Pool.h@{Source/Pool.h}}
 
 
-Used for Pools like Time or Health.  
+Used for Pools like Time or \mbox{\hyperlink{classHealth}{Health}}.  
 
 
 {\ttfamily \#include \char`\"{}ISerializable.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}Pool.\+cpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Debug\+System.\+h\char`\"{}}\newline
 Include dependency graph for Pool.\+h\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{Pool_8h__incl}
-\end{center}
-\end{figure}
+% FIG 0
 This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{Pool_8h__dep__incl}
-\end{center}
-\end{figure}
+% FIG 1
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classPool}{Pool$<$ Value $>$}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The pool framework is what we use to represent health in our game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Value $>$ }\\\mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \mbox{\hyperlink{Pool_8h_a99206ddd36bff355a1b3e905a5850970}{operator+}} (const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&lhs, const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Addition overload for the pool framework. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value $>$ }\\\mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \mbox{\hyperlink{Pool_8h_a36d777cec1c9155de0930dab9f40890d}{operator-\/}} (const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&lhs, const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Subtraction overload for the pool framework. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value $>$ }\\\mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \mbox{\hyperlink{Pool_8h_a6f5ef51b2e230aec3853e82bbafe4cd9}{operator$\ast$}} (const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&lhs, const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Multiplicaton overload for the pool framework. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value $>$ }\\\mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \mbox{\hyperlink{Pool_8h_afc26b2d37692a861ffe952a55875f7b5}{operator/}} (const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&lhs, const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Division overload for the pool framework. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value $>$ }\\bool \mbox{\hyperlink{Pool_8h_a04339a59a3aba11f8e36b985c6460080}{operator==}} (const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&lhs, const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Equality overload for the pool framework. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value $>$ }\\bool \mbox{\hyperlink{Pool_8h_acf91fbad2b14b2fe3d0da383a45e63c3}{operator!=}} (const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&lhs, const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Inequality overload for the pool framework. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value $>$ }\\bool \mbox{\hyperlink{Pool_8h_abb83ef7b3eadfe874cd33b565fc2a884}{operator$>$}} (const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&lhs, const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Greater than ovrload for the pool framework. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value $>$ }\\bool \mbox{\hyperlink{Pool_8h_a447ecb61bb6d12f6f4ea7174bc95f662}{operator$<$}} (const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&lhs, const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Lesser than ovrload for the pool framework. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value $>$ }\\bool \mbox{\hyperlink{Pool_8h_a2e0696b1b3812979c9d1cbf1b7c8c2ce}{operator$>$=}} (const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&lhs, const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Greater than eqal to ovrload for the pool framework. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value $>$ }\\bool \mbox{\hyperlink{Pool_8h_ad2ec866b15be14adc0380f90dd31dc4d}{operator$<$=}} (const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&lhs, const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Lesser than eqal to ovrload for the pool framework. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Used for Pools like Time or Health. 
+Used for Pools like Time or \mbox{\hyperlink{classHealth}{Health}}. 
 
 \begin{DoxyAuthor}{Author}
 Jax Clayton (\href{mailto:jax.clayton@digipen.edu}{\texttt{ jax.\+clayton@digipen.\+edu}}) 
@@ -45,3 +56,316 @@ Jax Clayton (\href{mailto:jax.clayton@digipen.edu}{\texttt{ jax.\+clayton@digipe
 \begin{DoxyCopyright}{Copyright}
 Copyright (c) 2023 Digipen Institute of Technology 
 \end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Pool_8h_acf91fbad2b14b2fe3d0da383a45e63c3}\label{Pool_8h_acf91fbad2b14b2fe3d0da383a45e63c3}} 
+\index{Pool.h@{Pool.h}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Pool.h@{Pool.h}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Inequality overload for the pool framework. 
+
+
+\begin{DoxyItemize}
+\item compares two pools for inequality
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & -\/ the type of data in the pool. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the pool to the left of the != \\
+\hline
+{\em rhs} & -\/ the pool to the right of the != \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Are the values of the pools not equal (bool). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Pool_8h_a6f5ef51b2e230aec3853e82bbafe4cd9}\label{Pool_8h_a6f5ef51b2e230aec3853e82bbafe4cd9}} 
+\index{Pool.h@{Pool.h}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Pool.h@{Pool.h}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}}$<$Value$>$ operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Multiplicaton overload for the pool framework. 
+
+
+\begin{DoxyItemize}
+\item multiplies two pools together
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & -\/ the type of data in the pool. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the pool to the left of the $\ast$ \\
+\hline
+{\em rhs} & -\/ the pool to the right of the $\ast$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The product of the two pools. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Pool_8h_a99206ddd36bff355a1b3e905a5850970}\label{Pool_8h_a99206ddd36bff355a1b3e905a5850970}} 
+\index{Pool.h@{Pool.h}!operator+@{operator+}}
+\index{operator+@{operator+}!Pool.h@{Pool.h}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}}$<$Value$>$ operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Addition overload for the pool framework. 
+
+
+\begin{DoxyItemize}
+\item adds two pools together
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & -\/ the type of data in the pool. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the pool to the left of the + \\
+\hline
+{\em rhs} & -\/ the pool to the right of the + \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sum of the two pools. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Pool_8h_a36d777cec1c9155de0930dab9f40890d}\label{Pool_8h_a36d777cec1c9155de0930dab9f40890d}} 
+\index{Pool.h@{Pool.h}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Pool.h@{Pool.h}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}}$<$Value$>$ operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Subtraction overload for the pool framework. 
+
+
+\begin{DoxyItemize}
+\item subtracts two pools together
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & -\/ the type of data in the pool. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the pool to the left of the -\/ \\
+\hline
+{\em rhs} & -\/ the pool to the right of the -\/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The difference between the two pools. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Pool_8h_afc26b2d37692a861ffe952a55875f7b5}\label{Pool_8h_afc26b2d37692a861ffe952a55875f7b5}} 
+\index{Pool.h@{Pool.h}!operator/@{operator/}}
+\index{operator/@{operator/}!Pool.h@{Pool.h}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+\mbox{\hyperlink{classPool}{Pool}}$<$Value$>$ operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Division overload for the pool framework. 
+
+
+\begin{DoxyItemize}
+\item divides two pools together
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & -\/ the type of data in the pool. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the pool to the left of the / \\
+\hline
+{\em rhs} & -\/ the pool to the right of the / \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The quotient of the two pools. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Pool_8h_a447ecb61bb6d12f6f4ea7174bc95f662}\label{Pool_8h_a447ecb61bb6d12f6f4ea7174bc95f662}} 
+\index{Pool.h@{Pool.h}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Pool.h@{Pool.h}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Lesser than ovrload for the pool framework. 
+
+
+\begin{DoxyItemize}
+\item compares two pools
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & -\/ the type of data in the pool. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the pool to the left of the $<$. \\
+\hline
+{\em rhs} & -\/ the pool to the right of the $<$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether or not the left pool is less than the right pool. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Pool_8h_ad2ec866b15be14adc0380f90dd31dc4d}\label{Pool_8h_ad2ec866b15be14adc0380f90dd31dc4d}} 
+\index{Pool.h@{Pool.h}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!Pool.h@{Pool.h}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Lesser than eqal to ovrload for the pool framework. 
+
+
+\begin{DoxyItemize}
+\item compares two pools
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & -\/ the type of data in the pool. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the pool to the left of the $<$=. \\
+\hline
+{\em rhs} & -\/ the pool to the right of the $<$=. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether or not the left pool is lesser than or equal to the right pool. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Pool_8h_a04339a59a3aba11f8e36b985c6460080}\label{Pool_8h_a04339a59a3aba11f8e36b985c6460080}} 
+\index{Pool.h@{Pool.h}!operator==@{operator==}}
+\index{operator==@{operator==}!Pool.h@{Pool.h}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Equality overload for the pool framework. 
+
+
+\begin{DoxyItemize}
+\item compares two pools for equality
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & -\/ the type of data in the pool. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the pool to the left of the == \\
+\hline
+{\em rhs} & -\/ the pool to the right of the == \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Are the values of the pools equal (bool). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Pool_8h_abb83ef7b3eadfe874cd33b565fc2a884}\label{Pool_8h_abb83ef7b3eadfe874cd33b565fc2a884}} 
+\index{Pool.h@{Pool.h}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Pool.h@{Pool.h}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Greater than ovrload for the pool framework. 
+
+
+\begin{DoxyItemize}
+\item compares two pools
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & -\/ the type of data in the pool. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the pool to the left of the $>$. \\
+\hline
+{\em rhs} & -\/ the pool to the right of the $>$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether or not the left pool is greater than the right pool. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{Pool_8h_a2e0696b1b3812979c9d1cbf1b7c8c2ce}\label{Pool_8h_a2e0696b1b3812979c9d1cbf1b7c8c2ce}} 
+\index{Pool.h@{Pool.h}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Pool.h@{Pool.h}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily template$<$typename Value $>$ \\
+bool operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classPool}{Pool}}$<$ Value $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Greater than eqal to ovrload for the pool framework. 
+
+
+\begin{DoxyItemize}
+\item compares two pools
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value} & -\/ the type of data in the pool. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & -\/ the pool to the left of the $>$=. \\
+\hline
+{\em rhs} & -\/ the pool to the right of the $>$=. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether or not the left pool is greater than or equal to the right pool. 
+\end{DoxyReturn}

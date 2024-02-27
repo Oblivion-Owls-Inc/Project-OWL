@@ -1,0 +1,82 @@
+\hypertarget{classCameraBehavior}{}\doxysection{Camera\+Behavior Class Reference}
+\label{classCameraBehavior}\index{CameraBehavior@{CameraBehavior}}
+
+
+Inheritance diagram for Camera\+Behavior\+:
+% FIG 0
+
+
+Collaboration diagram for Camera\+Behavior\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCameraBehavior_a3fbda2b766dba1e3a396f88383b25855}\label{classCameraBehavior_a3fbda2b766dba1e3a396f88383b25855}} 
+\mbox{\hyperlink{classCameraBehavior_a3fbda2b766dba1e3a396f88383b25855}{Camera\+Behavior}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCameraBehavior}{Camera\+Behavior}} $\ast$ \mbox{\hyperlink{classCameraBehavior_a06622f6be9e71fbb5dd9ffd11e824df3}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em Returns copy of this behavior. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classCameraBehavior_a598b323d5ae3d643f0d1a8ca03c082be}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCameraBehavior_ae730624674aa8be2cdabf60378ead03a}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classCameraBehavior}{Camera\+Behavior}} component data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCameraBehavior_a06622f6be9e71fbb5dd9ffd11e824df3}\label{classCameraBehavior_a06622f6be9e71fbb5dd9ffd11e824df3}} 
+\index{CameraBehavior@{CameraBehavior}!Clone@{Clone}}
+\index{Clone@{Clone}!CameraBehavior@{CameraBehavior}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCameraBehavior}{Camera\+Behavior}} $\ast$ Camera\+Behavior\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns copy of this behavior. 
+
+Return a copy of this component. 
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classCameraBehavior_a598b323d5ae3d643f0d1a8ca03c082be}\label{classCameraBehavior_a598b323d5ae3d643f0d1a8ca03c082be}} 
+\index{CameraBehavior@{CameraBehavior}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!CameraBehavior@{CameraBehavior}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Camera\+Behavior\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classCameraBehavior_ae730624674aa8be2cdabf60378ead03a}\label{classCameraBehavior_ae730624674aa8be2cdabf60378ead03a}} 
+\index{CameraBehavior@{CameraBehavior}!Write@{Write}}
+\index{Write@{Write}!CameraBehavior@{CameraBehavior}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Camera\+Behavior\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classCameraBehavior}{Camera\+Behavior}} component data to a JSON file. 
+
+write to json
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classCameraBehavior}{Camera\+Behavior}} component data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Camera\+Behavior.\+h\item 
+Source/Camera\+Behavior.\+cpp\end{DoxyCompactItemize}

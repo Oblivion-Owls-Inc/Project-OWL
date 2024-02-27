@@ -3,43 +3,39 @@
 
 
 Inheritance diagram for Enemy\+Behavior\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=195pt]{classEnemyBehavior__inherit__graph}
-\end{center}
-\end{figure}
+% FIG 0
 
 
 Collaboration diagram for Enemy\+Behavior\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=224pt]{classEnemyBehavior__coll__graph}
-\end{center}
-\end{figure}
+% FIG 1
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{classEnemyBehavior_aae7023bcc571e96354ec1ca6f2f5c565}{Get\+Damage}} ()
-\item 
+\mbox{\Hypertarget{classEnemyBehavior_a8213862f5410c3cc88a72d9a088f7e8d}\label{classEnemyBehavior_a8213862f5410c3cc88a72d9a088f7e8d}} 
+\mbox{\hyperlink{classEnemyBehavior_a8213862f5410c3cc88a72d9a088f7e8d}{Enemy\+Behavior}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEnemyBehavior_ade10d16aaade936e29810f4f68211403}{Get\+Damage}} () const
+\begin{DoxyCompactList}\small\item\em gets the amount of damage that this \mbox{\hyperlink{classEnemyBehavior}{Enemy\+Behavior}} deals \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTransform}{Transform}} const  $\ast$ \mbox{\hyperlink{classEnemyBehavior_a2c63f129124e57fce06f83a86eb27068}{Get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classEnemyBehavior}{Enemy\+Behavior}}\textquotesingle{}s attached \mbox{\hyperlink{classTransform}{Transform}} \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classEnemyBehavior_a9593f97b76e256b4cb42243891dfab56}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em inspector for this component \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classEnemyBehavior_a45f952361af86bed638e7ea348bbc78c}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEnemyBehavior_acca8ce2fd912d5f88610ff5dcb3261b5}\label{classEnemyBehavior_acca8ce2fd912d5f88610ff5dcb3261b5}} 
 nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEnemyBehavior_acca8ce2fd912d5f88610ff5dcb3261b5}{Write}} () const
 \begin{DoxyCompactList}\small\item\em write all component data to a JSON object \end{DoxyCompactList}\item 
-virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classEnemyBehavior_a67bfafad0cd82158dedf8095402b4fd1}{Get\+Read\+Methods}} () const override
-\begin{DoxyCompactList}\small\item\em gets the map of read methods \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{classEnemyBehavior}{Enemy\+Behavior}} $\ast$ \mbox{\hyperlink{classEnemyBehavior_a7ddc797439742166c3cd9f38c293aa2c}{Clone}} () const override
+virtual \mbox{\hyperlink{classEnemyBehavior}{Enemy\+Behavior}} $\ast$ \mbox{\hyperlink{classEnemyBehavior_a5f065172933cebdb58557b3438c06428}{Clone}} () const override
 \begin{DoxyCompactList}\small\item\em creates a new copy of this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classEnemyBehavior_a7ddc797439742166c3cd9f38c293aa2c}\label{classEnemyBehavior_a7ddc797439742166c3cd9f38c293aa2c}} 
+\mbox{\Hypertarget{classEnemyBehavior_a5f065172933cebdb58557b3438c06428}\label{classEnemyBehavior_a5f065172933cebdb58557b3438c06428}} 
 \index{EnemyBehavior@{EnemyBehavior}!Clone@{Clone}}
 \index{Clone@{Clone}!EnemyBehavior@{EnemyBehavior}}
 \doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{classEnemyBehavior}{Enemy\+Behavior}}$\ast$ Enemy\+Behavior\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEnemyBehavior}{Enemy\+Behavior}} $\ast$ Enemy\+Behavior\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -50,48 +46,70 @@ the newly created component
 \end{DoxyReturn}
 
 
-Reimplemented from \mbox{\hyperlink{classBasicEntityBehavior_ad3f269a9c099ca950b3a1241d44279f8}{Basic\+Entity\+Behavior}}.
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
 
-\mbox{\Hypertarget{classEnemyBehavior_aae7023bcc571e96354ec1ca6f2f5c565}\label{classEnemyBehavior_aae7023bcc571e96354ec1ca6f2f5c565}} 
+\mbox{\Hypertarget{classEnemyBehavior_ade10d16aaade936e29810f4f68211403}\label{classEnemyBehavior_ade10d16aaade936e29810f4f68211403}} 
 \index{EnemyBehavior@{EnemyBehavior}!GetDamage@{GetDamage}}
 \index{GetDamage@{GetDamage}!EnemyBehavior@{EnemyBehavior}}
 \doxysubsubsection{\texorpdfstring{GetDamage()}{GetDamage()}}
-{\footnotesize\ttfamily int Enemy\+Behavior\+::\+Get\+Damage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Enemy\+Behavior\+::\+Get\+Damage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-\DoxyHorRuler{0}
- \hypertarget{classEnemyBehavior_autotoc_md8}{}\doxysubsubsection{public\+: writing}\label{classEnemyBehavior_autotoc_md8}
-\mbox{\Hypertarget{classEnemyBehavior_a67bfafad0cd82158dedf8095402b4fd1}\label{classEnemyBehavior_a67bfafad0cd82158dedf8095402b4fd1}} 
+
+
+gets the amount of damage that this \mbox{\hyperlink{classEnemyBehavior}{Enemy\+Behavior}} deals 
+
+\begin{DoxyReturn}{Returns}
+the amount of damage that this \mbox{\hyperlink{classEnemyBehavior}{Enemy\+Behavior}} deals 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEnemyBehavior_a45f952361af86bed638e7ea348bbc78c}\label{classEnemyBehavior_a45f952361af86bed638e7ea348bbc78c}} 
 \index{EnemyBehavior@{EnemyBehavior}!GetReadMethods@{GetReadMethods}}
 \index{GetReadMethods@{GetReadMethods}!EnemyBehavior@{EnemyBehavior}}
 \doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
-{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Enemy\+Behavior\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Enemy\+Behavior\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
 gets the map of read methods 
 
-\begin{DoxyReturn}{Returns}
+\DoxyHorRuler{0}
+\DoxyHorRuler{0}
+ \begin{DoxyReturn}{Returns}
+the map of read methods
+
 the map of read methods 
 \end{DoxyReturn}
 
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
-\mbox{\Hypertarget{classEnemyBehavior_acca8ce2fd912d5f88610ff5dcb3261b5}\label{classEnemyBehavior_acca8ce2fd912d5f88610ff5dcb3261b5}} 
-\index{EnemyBehavior@{EnemyBehavior}!Write@{Write}}
-\index{Write@{Write}!EnemyBehavior@{EnemyBehavior}}
-\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
-{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Enemy\+Behavior\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+\mbox{\Hypertarget{classEnemyBehavior_a2c63f129124e57fce06f83a86eb27068}\label{classEnemyBehavior_a2c63f129124e57fce06f83a86eb27068}} 
+\index{EnemyBehavior@{EnemyBehavior}!GetTransform@{GetTransform}}
+\index{GetTransform@{GetTransform}!EnemyBehavior@{EnemyBehavior}}
+\doxysubsubsection{\texorpdfstring{GetTransform()}{GetTransform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTransform}{Transform}} const  $\ast$ Enemy\+Behavior\+::\+Get\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
-write all component data to a JSON object 
+gets this \mbox{\hyperlink{classEnemyBehavior}{Enemy\+Behavior}}\textquotesingle{}s attached \mbox{\hyperlink{classTransform}{Transform}} \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classEnemyBehavior}{Enemy\+Behavior}}\textquotesingle{}s attached \mbox{\hyperlink{classTransform}{Transform}} \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEnemyBehavior_a9593f97b76e256b4cb42243891dfab56}\label{classEnemyBehavior_a9593f97b76e256b4cb42243891dfab56}} 
+\index{EnemyBehavior@{EnemyBehavior}!Inspector@{Inspector}}
+\index{Inspector@{Inspector}!EnemyBehavior@{EnemyBehavior}}
+\doxysubsubsection{\texorpdfstring{Inspector()}{Inspector()}}
+{\footnotesize\ttfamily void Enemy\+Behavior\+::\+Inspector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+inspector for this component 
 
 \DoxyHorRuler{0}
 \DoxyHorRuler{0}
  
 
-Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+Reimplemented from \mbox{\hyperlink{classComponent_a5bfbb00a07c361c4c8d7b1812b9937ff}{Component}}.
 
 
 

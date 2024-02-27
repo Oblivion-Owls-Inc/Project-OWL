@@ -1,0 +1,164 @@
+\hypertarget{classUiButton}{}\doxysection{Ui\+Button Class Reference}
+\label{classUiButton}\index{UiButton@{UiButton}}
+
+
+Ui Button that sends an event when clicked.  
+
+
+
+
+{\ttfamily \#include $<$Ui\+Button.\+h$>$}
+
+
+
+Inheritance diagram for Ui\+Button\+:
+% FIG 0
+
+
+Collaboration diagram for Ui\+Button\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classUiButton_ad227088c83a26de4586c58a3502e735c}\label{classUiButton_ad227088c83a26de4586c58a3502e735c}} 
+\mbox{\hyperlink{classUiButton_ad227088c83a26de4586c58a3502e735c}{Ui\+Button}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiButton_a76c681e17e2ca5ea34ad1717e0184c3e}{Add\+On\+Clicked\+Callback}} (unsigned owner\+Id, std\+::function$<$ void() $>$ callback)
+\begin{DoxyCompactList}\small\item\em adds a callback to be called whenever the button is clicked \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUiButton_abe1289bca8cc7878a4315143985aa69c}{Remove\+On\+On\+Clicked\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em removes a callback to be called whenever the button is clicked \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classUiButton_a53193c8b60c99983ae1bd21fde22cad1}\label{classUiButton_a53193c8b60c99983ae1bd21fde22cad1}} 
+virtual void \mbox{\hyperlink{classUiButton_a53193c8b60c99983ae1bd21fde22cad1}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classUiButton_a8d7ae798514fa4374f009835fdb8fcb6}\label{classUiButton_a8d7ae798514fa4374f009835fdb8fcb6}} 
+virtual void \mbox{\hyperlink{classUiButton_a8d7ae798514fa4374f009835fdb8fcb6}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classUiButton_ae2e0c47ca79a86b7317bdad7bd92d995}{On\+Update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em called every graphics frame \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classUiButton_ad5753de32441f4f1b9ac402076ee8fbc}\label{classUiButton_ad5753de32441f4f1b9ac402076ee8fbc}} 
+virtual void \mbox{\hyperlink{classUiButton_ad5753de32441f4f1b9ac402076ee8fbc}{On\+Fixed\+Update}} () override
+\begin{DoxyCompactList}\small\item\em called every simulation frame \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classUiButton_ad574a9d865d79c8fa43404e712553984}\label{classUiButton_ad574a9d865d79c8fa43404e712553984}} 
+virtual void \mbox{\hyperlink{classUiButton_ad574a9d865d79c8fa43404e712553984}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classUiButton}{Ui\+Button}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classUiButton_a7d96db5b8e5b2f7abee0e8f21ab343f0}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classUiButton_aaab360dcb03a810c3e3a726fba387819}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Writes all Audio\+Playr data to a JSON file. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classUiButton}{Ui\+Button}} $\ast$ \mbox{\hyperlink{classUiButton_a2d51afb463497b3efd8192ef6a3be355}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classUiButton}{Ui\+Button}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Ui Button that sends an event when clicked. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classUiButton_a76c681e17e2ca5ea34ad1717e0184c3e}\label{classUiButton_a76c681e17e2ca5ea34ad1717e0184c3e}} 
+\index{UiButton@{UiButton}!AddOnClickedCallback@{AddOnClickedCallback}}
+\index{AddOnClickedCallback@{AddOnClickedCallback}!UiButton@{UiButton}}
+\doxysubsubsection{\texorpdfstring{AddOnClickedCallback()}{AddOnClickedCallback()}}
+{\footnotesize\ttfamily void Ui\+Button\+::\+Add\+On\+Clicked\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{std\+::function$<$ void() $>$}]{callback }\end{DoxyParamCaption})}
+
+
+
+adds a callback to be called whenever the button is clicked 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback to add \\
+\hline
+{\em callback} & the callback to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiButton_a2d51afb463497b3efd8192ef6a3be355}\label{classUiButton_a2d51afb463497b3efd8192ef6a3be355}} 
+\index{UiButton@{UiButton}!Clone@{Clone}}
+\index{Clone@{Clone}!UiButton@{UiButton}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUiButton}{Ui\+Button}} $\ast$ Ui\+Button\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classUiButton}{Ui\+Button}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classUiButton}{Ui\+Button}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classUiButton_a7d96db5b8e5b2f7abee0e8f21ab343f0}\label{classUiButton_a7d96db5b8e5b2f7abee0e8f21ab343f0}} 
+\index{UiButton@{UiButton}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!UiButton@{UiButton}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Ui\+Button\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classUiButton_ae2e0c47ca79a86b7317bdad7bd92d995}\label{classUiButton_ae2e0c47ca79a86b7317bdad7bd92d995}} 
+\index{UiButton@{UiButton}!OnUpdate@{OnUpdate}}
+\index{OnUpdate@{OnUpdate}!UiButton@{UiButton}}
+\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
+{\footnotesize\ttfamily void Ui\+Button\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called every graphics frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & the duration of the frame \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+\mbox{\Hypertarget{classUiButton_abe1289bca8cc7878a4315143985aa69c}\label{classUiButton_abe1289bca8cc7878a4315143985aa69c}} 
+\index{UiButton@{UiButton}!RemoveOnOnClickedCallback@{RemoveOnOnClickedCallback}}
+\index{RemoveOnOnClickedCallback@{RemoveOnOnClickedCallback}!UiButton@{UiButton}}
+\doxysubsubsection{\texorpdfstring{RemoveOnOnClickedCallback()}{RemoveOnOnClickedCallback()}}
+{\footnotesize\ttfamily void Ui\+Button\+::\+Remove\+On\+On\+Clicked\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+removes a callback to be called whenever the button is clicked 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classUiButton_aaab360dcb03a810c3e3a726fba387819}\label{classUiButton_aaab360dcb03a810c3e3a726fba387819}} 
+\index{UiButton@{UiButton}!Write@{Write}}
+\index{Write@{Write}!UiButton@{UiButton}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Ui\+Button\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Writes all Audio\+Playr data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{UiButton_8h}{Ui\+Button.\+h}}\item 
+Source/Ui\+Button.\+cpp\end{DoxyCompactItemize}

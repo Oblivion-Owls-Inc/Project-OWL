@@ -72,9 +72,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a2b110dc392d60535c03c658398dcaea3"><td class="memItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#a2b110dc392d60535c03c658398dcaea3">ReadFromFile</a> (std::string const &amp;filepath)</td></tr>
-<tr class="memdesc:a2b110dc392d60535c03c658398dcaea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens and parses a json document.  <a href="classStream.html#a2b110dc392d60535c03c658398dcaea3">More...</a><br /></td></tr>
-<tr class="separator:a2b110dc392d60535c03c658398dcaea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4df1d704d41d2009fe712f508b8cd57"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#ad4df1d704d41d2009fe712f508b8cd57">ReadFromFile</a> (<a class="el" href="classISerializable.html">ISerializable</a> *object, std::string const &amp;filepath)</td></tr>
+<tr class="memdesc:ad4df1d704d41d2009fe712f508b8cd57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens and parses a json document.  <a href="classStream.html#ad4df1d704d41d2009fe712f508b8cd57">More...</a><br /></td></tr>
+<tr class="separator:ad4df1d704d41d2009fe712f508b8cd57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14b022796bfd5c8176210c179f2832af"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#a14b022796bfd5c8176210c179f2832af">ReadFromTXTFile</a> (std::string const &amp;filepath)</td></tr>
+<tr class="memdesc:a14b022796bfd5c8176210c179f2832af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the SDL Controller Mappings.  <a href="classStream.html#a14b022796bfd5c8176210c179f2832af">More...</a><br /></td></tr>
+<tr class="separator:a14b022796bfd5c8176210c179f2832af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbc7ecc866c78d9a29b12d1d5ae4d91d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#adbc7ecc866c78d9a29b12d1d5ae4d91d">WriteToFile</a> (std::string const &amp;filepath, nlohmann::ordered_json const &amp;json)</td></tr>
 <tr class="memdesc:adbc7ecc866c78d9a29b12d1d5ae4d91d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes json data to a file.  <a href="classStream.html#adbc7ecc866c78d9a29b12d1d5ae4d91d">More...</a><br /></td></tr>
 <tr class="separator:adbc7ecc866c78d9a29b12d1d5ae4d91d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -105,6 +108,18 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:af30a18678dd30b2d682d55c4e29fb1e0"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#af30a18678dd30b2d682d55c4e29fb1e0">Read</a> (glm::vec&lt; size, ValueType &gt; *value, nlohmann::ordered_json const &amp;json)</td></tr>
 <tr class="memdesc:af30a18678dd30b2d682d55c4e29fb1e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">reads a glm vector from json  <a href="classStream.html#af30a18678dd30b2d682d55c4e29fb1e0">More...</a><br /></td></tr>
 <tr class="separator:af30a18678dd30b2d682d55c4e29fb1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cc1a9bd6bfc3809d073eb5cb4754942"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
+<tr class="memitem:a4cc1a9bd6bfc3809d073eb5cb4754942"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a4cc1a9bd6bfc3809d073eb5cb4754942">Read</a> (std::vector&lt; ValueType &gt; *vec_data, nlohmann::ordered_json const &amp;json)</td></tr>
+<tr class="memdesc:a4cc1a9bd6bfc3809d073eb5cb4754942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a vector of a standard type from a JSON file.  <a href="classStream.html#a4cc1a9bd6bfc3809d073eb5cb4754942">More...</a><br /></td></tr>
+<tr class="separator:a4cc1a9bd6bfc3809d073eb5cb4754942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a68701e7f5b5f273ba677469e33ad6c"><td class="memTemplParams" colspan="2">template&lt;typename ValueType , int Size&gt; </td></tr>
+<tr class="memitem:a5a68701e7f5b5f273ba677469e33ad6c"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a5a68701e7f5b5f273ba677469e33ad6c">Read</a> (ValueType *array_data, nlohmann::ordered_json const &amp;json)</td></tr>
+<tr class="memdesc:a5a68701e7f5b5f273ba677469e33ad6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads an array of a standard type from a JSON file.  <a href="classStream.html#a5a68701e7f5b5f273ba677469e33ad6c">More...</a><br /></td></tr>
+<tr class="separator:a5a68701e7f5b5f273ba677469e33ad6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af98ab2ed7daa29781368c8faf2b8e50c"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
+<tr class="memitem:af98ab2ed7daa29781368c8faf2b8e50c"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#af98ab2ed7daa29781368c8faf2b8e50c">Read</a> (std::map&lt; std::string, ValueType &gt; *map_data, nlohmann::ordered_json const &amp;json)</td></tr>
+<tr class="memdesc:af98ab2ed7daa29781368c8faf2b8e50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a map with a string key and any standard data type from a JSON.  <a href="classStream.html#af98ab2ed7daa29781368c8faf2b8e50c">More...</a><br /></td></tr>
+<tr class="separator:af98ab2ed7daa29781368c8faf2b8e50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9133cfb3ea3c7e2c4620d134a699910"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
 <tr class="memitem:ac9133cfb3ea3c7e2c4620d134a699910"><td class="memTemplItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#ac9133cfb3ea3c7e2c4620d134a699910">Write</a> (ValueType const &amp;value)</td></tr>
 <tr class="memdesc:ac9133cfb3ea3c7e2c4620d134a699910"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes data to json  <a href="classStream.html#ac9133cfb3ea3c7e2c4620d134a699910">More...</a><br /></td></tr>
@@ -113,6 +128,28 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a5969fddc4fbc4d9f6f4d918d67b7398f"><td class="memTemplItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a5969fddc4fbc4d9f6f4d918d67b7398f">Write</a> (glm::vec&lt; size, ValueType &gt; const &amp;value)</td></tr>
 <tr class="memdesc:a5969fddc4fbc4d9f6f4d918d67b7398f"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes a glm vector to json  <a href="classStream.html#a5969fddc4fbc4d9f6f4d918d67b7398f">More...</a><br /></td></tr>
 <tr class="separator:a5969fddc4fbc4d9f6f4d918d67b7398f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e6baaec77eb5b1a1fd2b709700951c7"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
+<tr class="memitem:a8e6baaec77eb5b1a1fd2b709700951c7"><td class="memTemplItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a8e6baaec77eb5b1a1fd2b709700951c7">Write</a> (std::vector&lt; ValueType &gt; const &amp;vec_data)</td></tr>
+<tr class="memdesc:a8e6baaec77eb5b1a1fd2b709700951c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a vector of any standard data type to a JSON.  <a href="classStream.html#a8e6baaec77eb5b1a1fd2b709700951c7">More...</a><br /></td></tr>
+<tr class="separator:a8e6baaec77eb5b1a1fd2b709700951c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf23e4e2eaf06d887d94cdbf41b9371c"><td class="memTemplParams" colspan="2">template&lt;typename ValueType , int Size&gt; </td></tr>
+<tr class="memitem:acf23e4e2eaf06d887d94cdbf41b9371c"><td class="memTemplItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#acf23e4e2eaf06d887d94cdbf41b9371c">Write</a> (ValueType *array_data)</td></tr>
+<tr class="memdesc:acf23e4e2eaf06d887d94cdbf41b9371c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write an array of any standard data type to a JSON.  <a href="classStream.html#acf23e4e2eaf06d887d94cdbf41b9371c">More...</a><br /></td></tr>
+<tr class="separator:acf23e4e2eaf06d887d94cdbf41b9371c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56ad6e8647adfd85d0c1e196c572bdd0"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
+<tr class="memitem:a56ad6e8647adfd85d0c1e196c572bdd0"><td class="memTemplItemLeft" align="right" valign="top">static nlohmann::ordered_json&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStream.html#a56ad6e8647adfd85d0c1e196c572bdd0">Write</a> (std::map&lt; std::string, ValueType &gt; map_data)</td></tr>
+<tr class="memdesc:a56ad6e8647adfd85d0c1e196c572bdd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a map of string keys and any standard data type to a JSON object.  <a href="classStream.html#a56ad6e8647adfd85d0c1e196c572bdd0">More...</a><br /></td></tr>
+<tr class="separator:a56ad6e8647adfd85d0c1e196c572bdd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a987897b766f12d1682756734a5bcbdf2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#a987897b766f12d1682756734a5bcbdf2">PushDebugLocation</a> (std::string const &amp;locationName)</td></tr>
+<tr class="memdesc:a987897b766f12d1682756734a5bcbdf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">pushes a Debug Location name to the DebugLocationStack  <a href="classStream.html#a987897b766f12d1682756734a5bcbdf2">More...</a><br /></td></tr>
+<tr class="separator:a987897b766f12d1682756734a5bcbdf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a101c05463246f07628daeeb90ebf57"><td class="memItemLeft" align="right" valign="top"><a id="a2a101c05463246f07628daeeb90ebf57"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#a2a101c05463246f07628daeeb90ebf57">PopDebugLocation</a> ()</td></tr>
+<tr class="memdesc:a2a101c05463246f07628daeeb90ebf57"><td class="mdescLeft">&#160;</td><td class="mdescRight">pops a Debug Location name from the DebugLocationStack <br /></td></tr>
+<tr class="separator:a2a101c05463246f07628daeeb90ebf57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a968da5528b2f7a796d2a907e5b27040b"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStream.html#a968da5528b2f7a796d2a907e5b27040b">GetDebugLocation</a> ()</td></tr>
+<tr class="memdesc:a968da5528b2f7a796d2a907e5b27040b"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the DebugLocation as a string to print  <a href="classStream.html#a968da5528b2f7a796d2a907e5b27040b">More...</a><br /></td></tr>
+<tr class="separator:a968da5528b2f7a796d2a907e5b27040b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a076c2fc1ed6336eb94bc5c1111984d55"></a>
@@ -154,6 +191,34 @@ template&lt;typename ValueType &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a968da5528b2f7a796d2a907e5b27040b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a968da5528b2f7a796d2a907e5b27040b">&#9670;&nbsp;</a></span>GetDebugLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Stream::GetDebugLocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets the DebugLocation as a string to print </p>
+<dl class="section return"><dt>Returns</dt><dd>the DebugLocation as a string </dd></dl>
 
 </div>
 </div>
@@ -199,8 +264,42 @@ template&lt;typename ValueType &gt; </div>
 
 </div>
 </div>
+<a id="a987897b766f12d1682756734a5bcbdf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a987897b766f12d1682756734a5bcbdf2">&#9670;&nbsp;</a></span>PushDebugLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Stream::PushDebugLocation </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>locationName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>pushes a Debug Location name to the DebugLocationStack </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">locationName</td><td>the name of the location to push </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="af30a18678dd30b2d682d55c4e29fb1e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af30a18678dd30b2d682d55c4e29fb1e0">&#9670;&nbsp;</a></span>Read() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af30a18678dd30b2d682d55c4e29fb1e0">&#9670;&nbsp;</a></span>Read() <span class="overload">[1/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,7 +353,7 @@ template&lt;int size, typename ValueType &gt; </div>
 </div>
 </div>
 <a id="aeec4f3553be629121e45da6a0ed56e2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeec4f3553be629121e45da6a0ed56e2b">&#9670;&nbsp;</a></span>Read() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aeec4f3553be629121e45da6a0ed56e2b">&#9670;&nbsp;</a></span>Read() <span class="overload">[2/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -297,7 +396,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="a7516793d7d71650c25efdae5acbe1ffd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7516793d7d71650c25efdae5acbe1ffd">&#9670;&nbsp;</a></span>Read() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7516793d7d71650c25efdae5acbe1ffd">&#9670;&nbsp;</a></span>Read() <span class="overload">[3/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -340,8 +439,114 @@ template&lt;int size, typename ValueType &gt; </div>
 
 </div>
 </div>
+<a id="af98ab2ed7daa29781368c8faf2b8e50c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af98ab2ed7daa29781368c8faf2b8e50c">&#9670;&nbsp;</a></span>Read() <span class="overload">[4/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Stream::Read </td>
+          <td>(</td>
+          <td class="paramtype">std::map&lt; std::string, ValueType &gt; *&#160;</td>
+          <td class="paramname"><em>map_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reads a map with a string key and any standard data type from a JSON. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>- the type of map value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map_data</td><td>- pointer tot he map to read into. </td></tr>
+    <tr><td class="paramname">json</td><td>- the JSON to read from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4cc1a9bd6bfc3809d073eb5cb4754942"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cc1a9bd6bfc3809d073eb5cb4754942">&#9670;&nbsp;</a></span>Read() <span class="overload">[5/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Stream::Read </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; ValueType &gt; *&#160;</td>
+          <td class="paramname"><em>vec_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reads a vector of a standard type from a JSON file. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>- the type of data to read into the vector, </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector</td><td>- the vector to read into. </td></tr>
+    <tr><td class="paramname">json</td><td>- the JSON to read from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a60793c962ada0ad504f6035bac92b139"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60793c962ada0ad504f6035bac92b139">&#9670;&nbsp;</a></span>Read() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a60793c962ada0ad504f6035bac92b139">&#9670;&nbsp;</a></span>Read() <span class="overload">[6/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -393,8 +598,61 @@ template&lt;typename ValueType &gt; </div>
 
 </div>
 </div>
-<a id="a2b110dc392d60535c03c658398dcaea3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b110dc392d60535c03c658398dcaea3">&#9670;&nbsp;</a></span>ReadFromFile()</h2>
+<a id="a5a68701e7f5b5f273ba677469e33ad6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a68701e7f5b5f273ba677469e33ad6c">&#9670;&nbsp;</a></span>Read() <span class="overload">[7/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType , int Size&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Stream::Read </td>
+          <td>(</td>
+          <td class="paramtype">ValueType *&#160;</td>
+          <td class="paramname"><em>array_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>json</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reads an array of a standard type from a JSON file. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>- the data type of the array. </td></tr>
+    <tr><td class="paramname">Size</td><td>- the size of the array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>- the array to read into. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad4df1d704d41d2009fe712f508b8cd57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4df1d704d41d2009fe712f508b8cd57">&#9670;&nbsp;</a></span>ReadFromFile()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -403,7 +661,52 @@ template&lt;typename ValueType &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">nlohmann::ordered_json Stream::ReadFromFile </td>
+          <td class="memname">void Stream::ReadFromFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classISerializable.html">ISerializable</a> *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>filepath</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Opens and parses a json document. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>the object to read the JSON data into </td></tr>
+    <tr><td class="paramname">filepath</td><td>name of the file to read from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a14b022796bfd5c8176210c179f2832af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14b022796bfd5c8176210c179f2832af">&#9670;&nbsp;</a></span>ReadFromTXTFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Stream::ReadFromTXTFile </td>
           <td>(</td>
           <td class="paramtype">std::string const &amp;&#160;</td>
           <td class="paramname"><em>filepath</em></td><td>)</td>
@@ -417,19 +720,19 @@ template&lt;typename ValueType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Opens and parses a json document. </p>
+<p>Read the SDL Controller Mappings. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filepath</td><td>name of the file to read from. </td></tr>
+    <tr><td class="paramname">filepath</td><td>- The .txt file containing the mappings. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the parsed json data </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A string holding all the mappings </dd></dl>
 
 </div>
 </div>
 <a id="a5969fddc4fbc4d9f6f4d918d67b7398f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5969fddc4fbc4d9f6f4d918d67b7398f">&#9670;&nbsp;</a></span>Write() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5969fddc4fbc4d9f6f4d918d67b7398f">&#9670;&nbsp;</a></span>Write() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -472,8 +775,166 @@ template&lt;int size, typename ValueType &gt; </div>
 
 </div>
 </div>
+<a id="a56ad6e8647adfd85d0c1e196c572bdd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56ad6e8647adfd85d0c1e196c572bdd0">&#9670;&nbsp;</a></span>Write() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json Stream::Write </td>
+          <td>(</td>
+          <td class="paramtype">std::map&lt; std::string, ValueType &gt;&#160;</td>
+          <td class="paramname"><em>map_data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write a map of string keys and any standard data type to a JSON object. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>- the data type of the map values. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map_data</td><td>- the map to write to a JSON object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The JSON object containing the written map data. </dd></dl>
+
+</div>
+</div>
+<a id="a8e6baaec77eb5b1a1fd2b709700951c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e6baaec77eb5b1a1fd2b709700951c7">&#9670;&nbsp;</a></span>Write() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json Stream::Write </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; ValueType &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>vec_data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write a vector of any standard data type to a JSON. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>- type of data stored by the vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec_data</td><td>- the vector to write to JSON. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The JSON object containing the vector data.</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>- type of data stored by the vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector</td><td>- the vector to write to JSON. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The JSON object containing the vector data. </dd></dl>
+
+</div>
+</div>
+<a id="acf23e4e2eaf06d887d94cdbf41b9371c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf23e4e2eaf06d887d94cdbf41b9371c">&#9670;&nbsp;</a></span>Write() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType , int Size&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">nlohmann::ordered_json Stream::Write </td>
+          <td>(</td>
+          <td class="paramtype">ValueType *&#160;</td>
+          <td class="paramname"><em>array_data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write an array of any standard data type to a JSON. </p>
+<p>Write the data from an array into a JSON object.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>- the type of data stored in the array </td></tr>
+    <tr><td class="paramname">Size</td><td>- the size of the array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array_data</td><td>- pointer to the array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The JSON object containing the array.</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>- the type of data in the array </td></tr>
+    <tr><td class="paramname">Size</td><td>- the size of the array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array_data</td><td>- Pointer to the array to write. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A JSON object containing the array. </dd></dl>
+
+</div>
+</div>
 <a id="ac9133cfb3ea3c7e2c4620d134a699910"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9133cfb3ea3c7e2c4620d134a699910">&#9670;&nbsp;</a></span>Write() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9133cfb3ea3c7e2c4620d134a699910">&#9670;&nbsp;</a></span>Write() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -599,7 +1060,7 @@ template&lt;typename ValueType &gt; </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Source/<a class="el" href="Stream_8h_source.html">Stream.h</a></li>
 <li>Source/<a class="el" href="Stream_8cpp.html">Stream.cpp</a></li>
-<li>Source/Stream.t.cpp</li>
+<li>Source/<a class="el" href="Stream_8t_8cpp.html">Stream.t.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

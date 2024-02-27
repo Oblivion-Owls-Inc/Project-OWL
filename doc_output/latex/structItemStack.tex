@@ -1,0 +1,99 @@
+\hypertarget{structItemStack}{}\doxysection{Item\+Stack Struct Reference}
+\label{structItemStack}\index{ItemStack@{ItemStack}}
+
+
+a stack of multiple items of the same type  
+
+
+
+
+{\ttfamily \#include $<$Item\+Stack.\+h$>$}
+
+
+
+Inheritance diagram for Item\+Stack\+:
+% FIG 0
+
+
+Collaboration diagram for Item\+Stack\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structItemStack_a1305b376e32d1680a77ba76298813035}\label{structItemStack_a1305b376e32d1680a77ba76298813035}} 
+\mbox{\hyperlink{structItemStack_a1305b376e32d1680a77ba76298813035}{Item\+Stack}} (int id=0, int count=1)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structItemStack_a9776fe90749169fa8e3f74e5f2063b16}{Inspect}} ()
+\begin{DoxyCompactList}\small\item\em inspets this \mbox{\hyperlink{structItemStack}{Item\+Stack}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{structItemStack_af07d43403e48c077d404ff4ad791b736}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{structItemStack}{Item\+Stack}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{structItemStack_a521235b064b962482140ef38d4981d80}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{structItemStack}{Item\+Stack}} data to JSON. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structItemStack_a5d438985cfe0883c0d245d3f0ead66a6}\label{structItemStack_a5d438985cfe0883c0d245d3f0ead66a6}} 
+int \mbox{\hyperlink{structItemStack_a5d438985cfe0883c0d245d3f0ead66a6}{M\+\_\+\+Item\+Id}}
+\begin{DoxyCompactList}\small\item\em the id of the items in the stack \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structItemStack_a3366d93bc3e8a5e78cb17df489ef5779}\label{structItemStack_a3366d93bc3e8a5e78cb17df489ef5779}} 
+int \mbox{\hyperlink{structItemStack_a3366d93bc3e8a5e78cb17df489ef5779}{M\+\_\+\+Count}}
+\begin{DoxyCompactList}\small\item\em how many items are in the stack \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+a stack of multiple items of the same type 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structItemStack_af07d43403e48c077d404ff4ad791b736}\label{structItemStack_af07d43403e48c077d404ff4ad791b736}} 
+\index{ItemStack@{ItemStack}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!ItemStack@{ItemStack}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Item\+Stack\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{structItemStack}{Item\+Stack}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{structItemStack}{Item\+Stack}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{structItemStack_a9776fe90749169fa8e3f74e5f2063b16}\label{structItemStack_a9776fe90749169fa8e3f74e5f2063b16}} 
+\index{ItemStack@{ItemStack}!Inspect@{Inspect}}
+\index{Inspect@{Inspect}!ItemStack@{ItemStack}}
+\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
+{\footnotesize\ttfamily bool Item\+Stack\+::\+Inspect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+inspets this \mbox{\hyperlink{structItemStack}{Item\+Stack}} 
+
+\begin{DoxyReturn}{Returns}
+whether the \mbox{\hyperlink{structItemStack}{Item\+Stack}} was changed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structItemStack_a521235b064b962482140ef38d4981d80}\label{structItemStack_a521235b064b962482140ef38d4981d80}} 
+\index{ItemStack@{ItemStack}!Write@{Write}}
+\index{Write@{Write}!ItemStack@{ItemStack}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Item\+Stack\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{structItemStack}{Item\+Stack}} data to JSON. 
+
+\begin{DoxyReturn}{Returns}
+The JSON containing the \mbox{\hyperlink{structItemStack}{Item\+Stack}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{ItemStack_8h}{Item\+Stack.\+h}}\item 
+Source/\mbox{\hyperlink{ItemStack_8cpp}{Item\+Stack.\+cpp}}\end{DoxyCompactItemize}

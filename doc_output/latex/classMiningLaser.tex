@@ -1,0 +1,461 @@
+\hypertarget{classMiningLaser}{}\doxysection{Mining\+Laser Class Reference}
+\label{classMiningLaser}\index{MiningLaser@{MiningLaser}}
+
+
+Digging laser controllable by an entity.  
+
+
+
+
+{\ttfamily \#include $<$Mining\+Laser.\+h$>$}
+
+
+
+Inheritance diagram for Mining\+Laser\+:
+% FIG 0
+
+
+Collaboration diagram for Mining\+Laser\+:
+% FIG 1
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classMiningLaser_a14036df214b9b8728c48a861f52c2fe3}{On\+Break\+Tile\+Callback}} = std\+::function$<$ void(\mbox{\hyperlink{classTilemap}{Tilemap}}$<$ int $>$ $\ast$tilemap, glm\+::ivec2 const  \&tile\+Pos, int tile\+Id) $>$
+\begin{DoxyCompactList}\small\item\em callback called when a \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} breaks a tile \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMiningLaser_a68abf7a5bdb22740326c860df7f43f23}\label{classMiningLaser_a68abf7a5bdb22740326c860df7f43f23}} 
+\mbox{\hyperlink{classMiningLaser_a68abf7a5bdb22740326c860df7f43f23}{Mining\+Laser}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMiningLaser_a4824bbfaf8d28d92dd533c885afe7501}\label{classMiningLaser_a4824bbfaf8d28d92dd533c885afe7501}} 
+\mbox{\hyperlink{classMiningLaser_a4824bbfaf8d28d92dd533c885afe7501}{$\sim$\+Mining\+Laser}} ()=default
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classMiningLaser_a62219577a88b68ad5c5f7a66f139482b}{Get\+Range}} () const
+\begin{DoxyCompactList}\small\item\em gets the range \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_aa1756d1802e552bd50aa0e3946b02962}{Set\+Range}} (float range)
+\begin{DoxyCompactList}\small\item\em sets the range \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classMiningLaser_aab0af419d0b77c5ee9e01055ec7b7306}{Get\+Mining\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em gets how quickly the laser breaks blocks \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_a935f0b5a2d45d38c1d4a2e8aeb65c075}{Set\+Mining\+Speed}} (float mining\+Speed)
+\begin{DoxyCompactList}\small\item\em sets how quickly the laser breaks blocks \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMiningLaser_a7ff14838a664b2d771821577186e0f9b}{Get\+Max\+In\+Progress\+Tiles}} () const
+\begin{DoxyCompactList}\small\item\em gets the max in progress tiles \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_a2a99a76e175c19a97740e21e52e624d0}{Set\+Max\+In\+Progress\+Tiles}} (int max\+In\+Progress\+Tiles)
+\begin{DoxyCompactList}\small\item\em sets the max in progress tiles \end{DoxyCompactList}\item 
+glm\+::vec4 const  \& \mbox{\hyperlink{classMiningLaser_aa94644890e85b90406529c781e15d9fb}{Get\+Beam\+Color}} () const
+\begin{DoxyCompactList}\small\item\em gets the beam color \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_acef87d8530b94b227ec80faa4001df0f}{Set\+Beam\+Color}} (glm\+::vec4 const \&beam\+Color)
+\begin{DoxyCompactList}\small\item\em sets the beam color \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classMiningLaser_a0e9d6b07d1a9cb08c8b2edf9fb9d780f}{Get\+Beam\+Width}} () const
+\begin{DoxyCompactList}\small\item\em gets the beam width \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_a9a8a90907874d8b32ed309ca27621f51}{Set\+Beam\+Width}} (float beam\+Width)
+\begin{DoxyCompactList}\small\item\em sets the beam width \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classMiningLaser_a9d61cf0850c5407caaa46f6012790905}{Get\+Damage\+Rate}} () const
+\begin{DoxyCompactList}\small\item\em gets how much damage per second the laser deals \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_a6fd4d4c04345924458374e04d0e3228c}{Set\+Damage\+Rate}} (float dps)
+\begin{DoxyCompactList}\small\item\em sets how much damage per second the laser deals \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} \mbox{\hyperlink{classMiningLaser_a9c95f38b0cad95b27a0a1cf248e969c9}{Get\+Collision\+Layers}} () const
+\begin{DoxyCompactList}\small\item\em gets which layers the laser collides with \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_a3aa5ebf77a0944b7e388cd32723dbdb3}{Set\+Collision\+Layers}} (\mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} collision\+Layers)
+\begin{DoxyCompactList}\small\item\em sets which layers the laser collides with \end{DoxyCompactList}\item 
+glm\+::vec2 const  \& \mbox{\hyperlink{classMiningLaser_a6fdbde62ef0d5a017d839ec9b4bd311a}{Get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em gets the direction that the beam is firing in \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_aa3a4d4e741017f9064f8312e236d6bbb}{Set\+Direction}} (glm\+::vec2 const \&direction)
+\begin{DoxyCompactList}\small\item\em sets the direction that the beam is firing in \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMiningLaser_a82675f08a196424d0731a58c8823c640}{Get\+Is\+Firing}} () const
+\begin{DoxyCompactList}\small\item\em gets whether the beam is firing \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_aa6f317cb0a3645f9c858444f5a393801}{Set\+Is\+Firing}} (bool is\+Firing)
+\begin{DoxyCompactList}\small\item\em sets whether the beam is firing \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTransform}{Transform}} $\ast$ \mbox{\hyperlink{classMiningLaser_ac112e7388c3e21cf3dbf9077fe995e0b}{Get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classTransform}{Transform}} attached to this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTilemap}{Tilemap}}$<$ int $>$ $\ast$ \mbox{\hyperlink{classMiningLaser_a26766705a464f8408e966ffe6b932feb}{Get\+Tilemap}} () const
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classTilemap}{Tilemap}} this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} digs in \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_ab9c93c53f39011ea797a89fbd1947585}{Add\+On\+Break\+Tile\+Callback}} (unsigned owner\+Id, \mbox{\hyperlink{classMiningLaser_a14036df214b9b8728c48a861f52c2fe3}{On\+Break\+Tile\+Callback}} callback)
+\begin{DoxyCompactList}\small\item\em adds an On\+Break\+Tile callback to this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMiningLaser_af3cc9fae62fb16adbec5e2b1b7e7c103}{Remove\+On\+Break\+Tile\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em removes an On\+Break\+Tile callback from this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classMiningLaser_a68ea8a114340a0b06f4eac1da4c6ed74}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classMiningLaser_a070cfc359d9a54df2abc6fb33f2b9cd7}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} data to a JSON file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMiningLaser_a9b3e2a3408f1cc04802296e65ef86abc}\label{classMiningLaser_a9b3e2a3408f1cc04802296e65ef86abc}} 
+void {\bfseries operator=} (const \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Digging laser controllable by an entity. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classMiningLaser_a14036df214b9b8728c48a861f52c2fe3}\label{classMiningLaser_a14036df214b9b8728c48a861f52c2fe3}} 
+\index{MiningLaser@{MiningLaser}!OnBreakTileCallback@{OnBreakTileCallback}}
+\index{OnBreakTileCallback@{OnBreakTileCallback}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{OnBreakTileCallback}{OnBreakTileCallback}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classMiningLaser_a14036df214b9b8728c48a861f52c2fe3}{Mining\+Laser\+::\+On\+Break\+Tile\+Callback}} =  std\+::function$<$ void ( \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ int $>$$\ast$ tilemap, glm\+::ivec2 const\& tile\+Pos, int tile\+Id ) $>$}
+
+
+
+callback called when a \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} breaks a tile 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tilemap} & -\/ the tilemap that the tile was broken in \\
+\hline
+{\em tile\+Pos} & -\/ the position of the tile in the tilemap \\
+\hline
+{\em tile\+ID} & -\/ the ID of the broken tile \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMiningLaser_ab9c93c53f39011ea797a89fbd1947585}\label{classMiningLaser_ab9c93c53f39011ea797a89fbd1947585}} 
+\index{MiningLaser@{MiningLaser}!AddOnBreakTileCallback@{AddOnBreakTileCallback}}
+\index{AddOnBreakTileCallback@{AddOnBreakTileCallback}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{AddOnBreakTileCallback()}{AddOnBreakTileCallback()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Add\+On\+Break\+Tile\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{\mbox{\hyperlink{classMiningLaser_a14036df214b9b8728c48a861f52c2fe3}{On\+Break\+Tile\+Callback}}}]{callback }\end{DoxyParamCaption})}
+
+
+
+adds an On\+Break\+Tile callback to this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+{\em callback} & the callback to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMiningLaser_aa94644890e85b90406529c781e15d9fb}\label{classMiningLaser_aa94644890e85b90406529c781e15d9fb}} 
+\index{MiningLaser@{MiningLaser}!GetBeamColor@{GetBeamColor}}
+\index{GetBeamColor@{GetBeamColor}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetBeamColor()}{GetBeamColor()}}
+{\footnotesize\ttfamily glm\+::vec4 const  \& Mining\+Laser\+::\+Get\+Beam\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the beam color 
+
+\begin{DoxyReturn}{Returns}
+the beam color 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_a0e9d6b07d1a9cb08c8b2edf9fb9d780f}\label{classMiningLaser_a0e9d6b07d1a9cb08c8b2edf9fb9d780f}} 
+\index{MiningLaser@{MiningLaser}!GetBeamWidth@{GetBeamWidth}}
+\index{GetBeamWidth@{GetBeamWidth}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetBeamWidth()}{GetBeamWidth()}}
+{\footnotesize\ttfamily float Mining\+Laser\+::\+Get\+Beam\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the beam width 
+
+\begin{DoxyReturn}{Returns}
+the beam width 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_a9c95f38b0cad95b27a0a1cf248e969c9}\label{classMiningLaser_a9c95f38b0cad95b27a0a1cf248e969c9}} 
+\index{MiningLaser@{MiningLaser}!GetCollisionLayers@{GetCollisionLayers}}
+\index{GetCollisionLayers@{GetCollisionLayers}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetCollisionLayers()}{GetCollisionLayers()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} Mining\+Laser\+::\+Get\+Collision\+Layers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets which layers the laser collides with 
+
+\begin{DoxyReturn}{Returns}
+which layers the laser collides with 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_a9d61cf0850c5407caaa46f6012790905}\label{classMiningLaser_a9d61cf0850c5407caaa46f6012790905}} 
+\index{MiningLaser@{MiningLaser}!GetDamageRate@{GetDamageRate}}
+\index{GetDamageRate@{GetDamageRate}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetDamageRate()}{GetDamageRate()}}
+{\footnotesize\ttfamily float Mining\+Laser\+::\+Get\+Damage\+Rate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets how much damage per second the laser deals 
+
+\begin{DoxyReturn}{Returns}
+how much damage per second the laser deals 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_a6fdbde62ef0d5a017d839ec9b4bd311a}\label{classMiningLaser_a6fdbde62ef0d5a017d839ec9b4bd311a}} 
+\index{MiningLaser@{MiningLaser}!GetDirection@{GetDirection}}
+\index{GetDirection@{GetDirection}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetDirection()}{GetDirection()}}
+{\footnotesize\ttfamily glm\+::vec2 const  \& Mining\+Laser\+::\+Get\+Direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the direction that the beam is firing in 
+
+\begin{DoxyReturn}{Returns}
+the direction that the beam is firing in 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_a82675f08a196424d0731a58c8823c640}\label{classMiningLaser_a82675f08a196424d0731a58c8823c640}} 
+\index{MiningLaser@{MiningLaser}!GetIsFiring@{GetIsFiring}}
+\index{GetIsFiring@{GetIsFiring}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetIsFiring()}{GetIsFiring()}}
+{\footnotesize\ttfamily bool Mining\+Laser\+::\+Get\+Is\+Firing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets whether the beam is firing 
+
+\begin{DoxyReturn}{Returns}
+whether the beam is firing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_a7ff14838a664b2d771821577186e0f9b}\label{classMiningLaser_a7ff14838a664b2d771821577186e0f9b}} 
+\index{MiningLaser@{MiningLaser}!GetMaxInProgressTiles@{GetMaxInProgressTiles}}
+\index{GetMaxInProgressTiles@{GetMaxInProgressTiles}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetMaxInProgressTiles()}{GetMaxInProgressTiles()}}
+{\footnotesize\ttfamily int Mining\+Laser\+::\+Get\+Max\+In\+Progress\+Tiles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the max in progress tiles 
+
+\begin{DoxyReturn}{Returns}
+the max in progress tiles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_aab0af419d0b77c5ee9e01055ec7b7306}\label{classMiningLaser_aab0af419d0b77c5ee9e01055ec7b7306}} 
+\index{MiningLaser@{MiningLaser}!GetMiningSpeed@{GetMiningSpeed}}
+\index{GetMiningSpeed@{GetMiningSpeed}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetMiningSpeed()}{GetMiningSpeed()}}
+{\footnotesize\ttfamily float Mining\+Laser\+::\+Get\+Mining\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets how quickly the laser breaks blocks 
+
+\begin{DoxyReturn}{Returns}
+how quickly the laser breaks blocks 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_a62219577a88b68ad5c5f7a66f139482b}\label{classMiningLaser_a62219577a88b68ad5c5f7a66f139482b}} 
+\index{MiningLaser@{MiningLaser}!GetRange@{GetRange}}
+\index{GetRange@{GetRange}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetRange()}{GetRange()}}
+{\footnotesize\ttfamily float Mining\+Laser\+::\+Get\+Range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the range 
+
+\begin{DoxyReturn}{Returns}
+the range 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_a68ea8a114340a0b06f4eac1da4c6ed74}\label{classMiningLaser_a68ea8a114340a0b06f4eac1da4c6ed74}} 
+\index{MiningLaser@{MiningLaser}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Mining\+Laser\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classMiningLaser_a26766705a464f8408e966ffe6b932feb}\label{classMiningLaser_a26766705a464f8408e966ffe6b932feb}} 
+\index{MiningLaser@{MiningLaser}!GetTilemap@{GetTilemap}}
+\index{GetTilemap@{GetTilemap}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetTilemap()}{GetTilemap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ int $>$ $\ast$ Mining\+Laser\+::\+Get\+Tilemap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the \mbox{\hyperlink{classTilemap}{Tilemap}} this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} digs in 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classTilemap}{Tilemap}} this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} digs in 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_ac112e7388c3e21cf3dbf9077fe995e0b}\label{classMiningLaser_ac112e7388c3e21cf3dbf9077fe995e0b}} 
+\index{MiningLaser@{MiningLaser}!GetTransform@{GetTransform}}
+\index{GetTransform@{GetTransform}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{GetTransform()}{GetTransform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTransform}{Transform}} $\ast$ Mining\+Laser\+::\+Get\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the \mbox{\hyperlink{classTransform}{Transform}} attached to this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classTransform}{Transform}} attached to this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_af3cc9fae62fb16adbec5e2b1b7e7c103}\label{classMiningLaser_af3cc9fae62fb16adbec5e2b1b7e7c103}} 
+\index{MiningLaser@{MiningLaser}!RemoveOnBreakTileCallback@{RemoveOnBreakTileCallback}}
+\index{RemoveOnBreakTileCallback@{RemoveOnBreakTileCallback}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{RemoveOnBreakTileCallback()}{RemoveOnBreakTileCallback()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Remove\+On\+Break\+Tile\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+removes an On\+Break\+Tile callback from this \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMiningLaser_acef87d8530b94b227ec80faa4001df0f}\label{classMiningLaser_acef87d8530b94b227ec80faa4001df0f}} 
+\index{MiningLaser@{MiningLaser}!SetBeamColor@{SetBeamColor}}
+\index{SetBeamColor@{SetBeamColor}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{SetBeamColor()}{SetBeamColor()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Set\+Beam\+Color (\begin{DoxyParamCaption}\item[{glm\+::vec4 const \&}]{beam\+Color }\end{DoxyParamCaption})}
+
+
+
+sets the beam color 
+
+
+\begin{DoxyParams}{Parameters}
+{\em beam\+Color} & the beam color \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMiningLaser_a9a8a90907874d8b32ed309ca27621f51}\label{classMiningLaser_a9a8a90907874d8b32ed309ca27621f51}} 
+\index{MiningLaser@{MiningLaser}!SetBeamWidth@{SetBeamWidth}}
+\index{SetBeamWidth@{SetBeamWidth}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{SetBeamWidth()}{SetBeamWidth()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Set\+Beam\+Width (\begin{DoxyParamCaption}\item[{float}]{beam\+Width }\end{DoxyParamCaption})}
+
+
+
+sets the beam width 
+
+
+\begin{DoxyParams}{Parameters}
+{\em beam\+Width} & the beam width \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMiningLaser_a3aa5ebf77a0944b7e388cd32723dbdb3}\label{classMiningLaser_a3aa5ebf77a0944b7e388cd32723dbdb3}} 
+\index{MiningLaser@{MiningLaser}!SetCollisionLayers@{SetCollisionLayers}}
+\index{SetCollisionLayers@{SetCollisionLayers}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{SetCollisionLayers()}{SetCollisionLayers()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Set\+Collision\+Layers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}}}]{collision\+Layers }\end{DoxyParamCaption})}
+
+
+
+sets which layers the laser collides with 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collision\+Layers} & which layers the laser collides with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMiningLaser_a6fd4d4c04345924458374e04d0e3228c}\label{classMiningLaser_a6fd4d4c04345924458374e04d0e3228c}} 
+\index{MiningLaser@{MiningLaser}!SetDamageRate@{SetDamageRate}}
+\index{SetDamageRate@{SetDamageRate}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{SetDamageRate()}{SetDamageRate()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Set\+Damage\+Rate (\begin{DoxyParamCaption}\item[{float}]{dps }\end{DoxyParamCaption})}
+
+
+
+sets how much damage per second the laser deals 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dps} & how much damage per second the laser deals \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMiningLaser_aa3a4d4e741017f9064f8312e236d6bbb}\label{classMiningLaser_aa3a4d4e741017f9064f8312e236d6bbb}} 
+\index{MiningLaser@{MiningLaser}!SetDirection@{SetDirection}}
+\index{SetDirection@{SetDirection}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{SetDirection()}{SetDirection()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Set\+Direction (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{direction }\end{DoxyParamCaption})}
+
+
+
+sets the direction that the beam is firing in 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & the direction that the beam is firing in \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMiningLaser_aa6f317cb0a3645f9c858444f5a393801}\label{classMiningLaser_aa6f317cb0a3645f9c858444f5a393801}} 
+\index{MiningLaser@{MiningLaser}!SetIsFiring@{SetIsFiring}}
+\index{SetIsFiring@{SetIsFiring}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{SetIsFiring()}{SetIsFiring()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Set\+Is\+Firing (\begin{DoxyParamCaption}\item[{bool}]{is\+Firing }\end{DoxyParamCaption})}
+
+
+
+sets whether the beam is firing 
+
+\begin{DoxyReturn}{Returns}
+whether the beam is firing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMiningLaser_a2a99a76e175c19a97740e21e52e624d0}\label{classMiningLaser_a2a99a76e175c19a97740e21e52e624d0}} 
+\index{MiningLaser@{MiningLaser}!SetMaxInProgressTiles@{SetMaxInProgressTiles}}
+\index{SetMaxInProgressTiles@{SetMaxInProgressTiles}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{SetMaxInProgressTiles()}{SetMaxInProgressTiles()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Set\+Max\+In\+Progress\+Tiles (\begin{DoxyParamCaption}\item[{int}]{max\+In\+Progress\+Tiles }\end{DoxyParamCaption})}
+
+
+
+sets the max in progress tiles 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+In\+Progress\+Tiles} & the max in progress tiles \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMiningLaser_a935f0b5a2d45d38c1d4a2e8aeb65c075}\label{classMiningLaser_a935f0b5a2d45d38c1d4a2e8aeb65c075}} 
+\index{MiningLaser@{MiningLaser}!SetMiningSpeed@{SetMiningSpeed}}
+\index{SetMiningSpeed@{SetMiningSpeed}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{SetMiningSpeed()}{SetMiningSpeed()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Set\+Mining\+Speed (\begin{DoxyParamCaption}\item[{float}]{mining\+Speed }\end{DoxyParamCaption})}
+
+
+
+sets how quickly the laser breaks blocks 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mining\+Speed} & how quickly the laser breaks blocks \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMiningLaser_aa1756d1802e552bd50aa0e3946b02962}\label{classMiningLaser_aa1756d1802e552bd50aa0e3946b02962}} 
+\index{MiningLaser@{MiningLaser}!SetRange@{SetRange}}
+\index{SetRange@{SetRange}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{SetRange()}{SetRange()}}
+{\footnotesize\ttfamily void Mining\+Laser\+::\+Set\+Range (\begin{DoxyParamCaption}\item[{float}]{range }\end{DoxyParamCaption})}
+
+
+
+sets the range 
+
+
+\begin{DoxyParams}{Parameters}
+{\em range} & the new range \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMiningLaser_a070cfc359d9a54df2abc6fb33f2b9cd7}\label{classMiningLaser_a070cfc359d9a54df2abc6fb33f2b9cd7}} 
+\index{MiningLaser@{MiningLaser}!Write@{Write}}
+\index{Write@{Write}!MiningLaser@{MiningLaser}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Mining\+Laser\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classMiningLaser}{Mining\+Laser}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{MiningLaser_8h}{Mining\+Laser.\+h}}\item 
+Source/\mbox{\hyperlink{MiningLaser_8cpp}{Mining\+Laser.\+cpp}}\end{DoxyCompactItemize}

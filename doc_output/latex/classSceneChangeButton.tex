@@ -1,0 +1,125 @@
+\hypertarget{classSceneChangeButton}{}\doxysection{Scene\+Change\+Button Class Reference}
+\label{classSceneChangeButton}\index{SceneChangeButton@{SceneChangeButton}}
+
+
+\mbox{\hyperlink{classComponent}{Component}} that changes the scene when clicked.  
+
+
+
+
+{\ttfamily \#include $<$Scene\+Change\+Button.\+h$>$}
+
+
+
+Inheritance diagram for Scene\+Change\+Button\+:
+% FIG 0
+
+
+Collaboration diagram for Scene\+Change\+Button\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSceneChangeButton_a53891e15da56fc0673306b600dd9b9cd}\label{classSceneChangeButton_a53891e15da56fc0673306b600dd9b9cd}} 
+\mbox{\hyperlink{classSceneChangeButton_a53891e15da56fc0673306b600dd9b9cd}{Scene\+Change\+Button}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSceneChangeButton_a43838d48d936ecdc5b526e45fa0863dc}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSceneChangeButton_a0f2ffe097600c08ae1dbfbd71481a8af}\label{classSceneChangeButton_a0f2ffe097600c08ae1dbfbd71481a8af}} 
+virtual void \mbox{\hyperlink{classSceneChangeButton_a0f2ffe097600c08ae1dbfbd71481a8af}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSceneChangeButton_a138610eb19576e2a8c1c0bfdc1303a00}\label{classSceneChangeButton_a138610eb19576e2a8c1c0bfdc1303a00}} 
+virtual void \mbox{\hyperlink{classSceneChangeButton_a138610eb19576e2a8c1c0bfdc1303a00}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classSceneChangeButton}{Scene\+Change\+Button}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classSceneChangeButton_aa77a652ef2328493ab8e3910bbb6f62e}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classSceneChangeButton_a97a8a390e7f833443bc16295157c5833}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Writes all \mbox{\hyperlink{classHomeBase}{Home\+Base}} data to a JSON file. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classSceneChangeButton}{Scene\+Change\+Button}} $\ast$ \mbox{\hyperlink{classSceneChangeButton_a339179104ced73989a0e4d06fa794f2c}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classSceneChangeButton}{Scene\+Change\+Button}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classComponent}{Component}} that changes the scene when clicked. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSceneChangeButton_a339179104ced73989a0e4d06fa794f2c}\label{classSceneChangeButton_a339179104ced73989a0e4d06fa794f2c}} 
+\index{SceneChangeButton@{SceneChangeButton}!Clone@{Clone}}
+\index{Clone@{Clone}!SceneChangeButton@{SceneChangeButton}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSceneChangeButton}{Scene\+Change\+Button}} $\ast$ Scene\+Change\+Button\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classSceneChangeButton}{Scene\+Change\+Button}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classSceneChangeButton}{Scene\+Change\+Button}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classSceneChangeButton_aa77a652ef2328493ab8e3910bbb6f62e}\label{classSceneChangeButton_aa77a652ef2328493ab8e3910bbb6f62e}} 
+\index{SceneChangeButton@{SceneChangeButton}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!SceneChangeButton@{SceneChangeButton}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Scene\+Change\+Button\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+gets the map of read methods for this \mbox{\hyperlink{classSceneChangeButton}{Scene\+Change\+Button}}
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}}
+
+the map of read methods for this \mbox{\hyperlink{classSceneChangeButton}{Scene\+Change\+Button}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classSceneChangeButton_a43838d48d936ecdc5b526e45fa0863dc}\label{classSceneChangeButton_a43838d48d936ecdc5b526e45fa0863dc}} 
+\index{SceneChangeButton@{SceneChangeButton}!OnInit@{OnInit}}
+\index{OnInit@{OnInit}!SceneChangeButton@{SceneChangeButton}}
+\doxysubsubsection{\texorpdfstring{OnInit()}{OnInit()}}
+{\footnotesize\ttfamily void Scene\+Change\+Button\+::\+On\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called once when entering the scene 
+
+Set the filter function for the listener
+
+Set the Callback function for the listener
+
+Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
+
+\mbox{\Hypertarget{classSceneChangeButton_a97a8a390e7f833443bc16295157c5833}\label{classSceneChangeButton_a97a8a390e7f833443bc16295157c5833}} 
+\index{SceneChangeButton@{SceneChangeButton}!Write@{Write}}
+\index{Write@{Write}!SceneChangeButton@{SceneChangeButton}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Scene\+Change\+Button\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Writes all \mbox{\hyperlink{classHomeBase}{Home\+Base}} data to a JSON file. 
+
+Writes all \mbox{\hyperlink{classSceneChangeButton}{Scene\+Change\+Button}} data to a JSON file.
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{SceneChangeButton_8h}{Scene\+Change\+Button.\+h}}\item 
+Source/\mbox{\hyperlink{SceneChangeButton_8cpp}{Scene\+Change\+Button.\+cpp}}\end{DoxyCompactItemize}

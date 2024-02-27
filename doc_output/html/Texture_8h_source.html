@@ -93,95 +93,124 @@ $(function() {
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>: <span class="comment">// methods</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a14a2a70d9f130ac91a5ac95c8a4c7831">Bind</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slot = 0 ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a8374f8cf2a8425a46e95ab2d1a0aebf5">Inspect</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    glm::vec2 <a class="code" href="classTexture.html#aaa1e67f2d4c62aa386f3f49604a93691">GetUvOffset</a>( <span class="keywordtype">int</span> frameIndex ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>: <span class="comment">// acccessors</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a14a2a70d9f130ac91a5ac95c8a4c7831">Bind</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slot = 0 ) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">   49</a></span>&#160;    __inline glm::ivec2 <span class="keyword">const</span>&amp; <a class="code" href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">GetPixelDimensions</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_PixelDimensions; }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a8374f8cf2a8425a46e95ab2d1a0aebf5">Inspect</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classTexture.html#a6a359a101095f149dd1754242cc47472">   53</a></span>&#160;    __inline <span class="keywordtype">float</span> <a class="code" href="classTexture.html#a6a359a101095f149dd1754242cc47472">GetAspectRatio</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">float</span>)(m_PixelDimensions.x * m_SheetDimensions.y) /</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                                          (m_PixelDimensions.y * m_SheetDimensions.x); }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">   58</a></span>&#160;    __inline glm::ivec2 <span class="keyword">const</span>&amp; <a class="code" href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">GetSheetDimensions</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_SheetDimensions; }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classTexture.html#a735680df526bd8809aef3162f48024ca">   63</a></span>&#160;    __inline <a class="code" href="classMesh.html">Mesh</a> <span class="keyword">const</span>* <a class="code" href="classTexture.html#a735680df526bd8809aef3162f48024ca">GetMesh</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Mesh; }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">   67</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">SetMesh</a>( <a class="code" href="classMesh.html">Mesh</a> <span class="keyword">const</span>* mesh ) { m_Mesh = mesh; }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::string m_Filepath = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_TextureID = 0;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    glm::ivec2 m_PixelDimensions = { 0, 0 };</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a1662711f5f736ae36c057f91d9dc5e1c">DisplayInInspector</a>(</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">int</span> frameIndex = 0,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordtype">float</span> scale = 100.0f,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        glm::vec4 <span class="keyword">const</span>&amp; tintColor = { 1.0f, 1.0f, 1.0f, 1.0f },</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        glm::vec4 <span class="keyword">const</span>&amp; borderColor = { 0.0f, 0.0f, 0.0f, 0.0f }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">public</span>: <span class="comment">// acccessors</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">   70</a></span>&#160;    __inline glm::ivec2 <span class="keyword">const</span>&amp; <a class="code" href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">GetPixelDimensions</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_PixelDimensions; }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classTexture.html#a6a359a101095f149dd1754242cc47472">   74</a></span>&#160;    __inline <span class="keywordtype">float</span> <a class="code" href="classTexture.html#a6a359a101095f149dd1754242cc47472">GetAspectRatio</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">float</span>)(m_PixelDimensions.x * m_SheetDimensions.y) /</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                                                          (m_PixelDimensions.y * m_SheetDimensions.x); }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">   79</a></span>&#160;    __inline glm::ivec2 <span class="keyword">const</span>&amp; <a class="code" href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">GetSheetDimensions</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_SheetDimensions; }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    glm::ivec2 m_SheetDimensions = { 1.0f, 1.0f };</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    glm::vec2 m_Pivot = { 0.5f, 0.5f };</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classMesh.html">Mesh</a> <span class="keyword">const</span>* m_Mesh = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classTexture.html#a735680df526bd8809aef3162f48024ca">   84</a></span>&#160;    __inline <a class="code" href="classMesh.html">Mesh</a> <span class="keyword">const</span>* <a class="code" href="classTexture.html#a735680df526bd8809aef3162f48024ca">GetMesh</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Mesh; }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">   88</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">SetMesh</a>( <a class="code" href="classMesh.html">Mesh</a> <span class="keyword">const</span>* mesh ) { m_Mesh = mesh; }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="classTexture.html#a3b1a1b0c2727a5ee3a8aec5880ae3085">GetTextureId</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> LoadImage();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> readFilepath( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">void</span> readSheetDimensions( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    std::string m_Filepath = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    glm::ivec2 m_SheetDimensions = { 1, 1 };</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    glm::vec2 m_Pivot = { 0.5f, 0.5f };</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">void</span> readPivot( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">bool</span> m_UseAspectRatio = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; Texture &gt; <span class="keyword">const</span> s_ReadMethods;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    glm::ivec2 m_PixelDimensions = { 0, 0 };</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_TextureID = 0;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="classMesh.html">Mesh</a> <span class="keyword">const</span>* m_Mesh = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a2138e1ba2d1695e394c3a3bdb025498d">AfterLoad</a>();</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="classTexture.html#a99d414b0eb4b988d1a579d439165f83b">  129</a></span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classTexture.html#a99d414b0eb4b988d1a579d439165f83b">GetReadMethods</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classTexture.html#aad558ead96f52ead97b4f2b33ad8d778">Write</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">void</span> loadImage();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">void</span> reloadMesh();</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;};</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordtype">void</span> readFilepath( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordtype">void</span> readSheetDimensions( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">void</span> readPivot( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">void</span> readUseAspectRatio( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; Texture &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTexture.html#a2138e1ba2d1695e394c3a3bdb025498d">AfterLoad</a>();</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="classTexture.html#a99d414b0eb4b988d1a579d439165f83b">  169</a></span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classTexture.html#a99d414b0eb4b988d1a579d439165f83b">GetReadMethods</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    }</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classTexture.html#aad558ead96f52ead97b4f2b33ad8d778">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;};</div>
 <div class="ttc" id="aISerializable_8h_html"><div class="ttname"><a href="ISerializable_8h.html">ISerializable.h</a></div><div class="ttdoc">interface for all serializable objects</div></div>
 <div class="ttc" id="aMesh_8h_html"><div class="ttname"><a href="Mesh_8h.html">Mesh.h</a></div><div class="ttdoc">Mesh class - holds on to buffer/VAO references, draws their contents.</div></div>
 <div class="ttc" id="aclassISerializable_html"><div class="ttname"><a href="classISerializable.html">ISerializable</a></div><div class="ttdoc">interface for all serializable objects</div><div class="ttdef"><b>Definition:</b> ISerializable.h:24</div></div>
 <div class="ttc" id="aclassMesh_html"><div class="ttname"><a href="classMesh.html">Mesh</a></div><div class="ttdoc">Stores data needed to render a basic mesh.</div><div class="ttdef"><b>Definition:</b> Mesh.h:12</div></div>
 <div class="ttc" id="aclassTexture_html"><div class="ttname"><a href="classTexture.html">Texture</a></div><div class="ttdoc">Stores texture data, and allows to bind it for rendering.</div><div class="ttdef"><b>Definition:</b> Texture.h:14</div></div>
 <div class="ttc" id="aclassTexture_html_a09c4bcb7462f64c1d20fa69dba3cee8a"><div class="ttname"><a href="classTexture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">Texture::~Texture</a></div><div class="ttdeci">~Texture()</div><div class="ttdoc">Destructor: deletes texture data from GPU.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:38</div></div>
-<div class="ttc" id="aclassTexture_html_a14a2a70d9f130ac91a5ac95c8a4c7831"><div class="ttname"><a href="classTexture.html#a14a2a70d9f130ac91a5ac95c8a4c7831">Texture::Bind</a></div><div class="ttdeci">void Bind(unsigned int slot=0) const</div><div class="ttdoc">Sets this texture as active, so it can be used by texture shader.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:56</div></div>
-<div class="ttc" id="aclassTexture_html_a2138e1ba2d1695e394c3a3bdb025498d"><div class="ttname"><a href="classTexture.html#a2138e1ba2d1695e394c3a3bdb025498d">Texture::AfterLoad</a></div><div class="ttdeci">void AfterLoad()</div><div class="ttdoc">gets called after reading all arugments</div><div class="ttdef"><b>Definition:</b> Texture.cpp:107</div></div>
-<div class="ttc" id="aclassTexture_html_a34824525978e7bc15067cd194bf6cfe2"><div class="ttname"><a href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">Texture::SetMesh</a></div><div class="ttdeci">__inline void SetMesh(Mesh const *mesh)</div><div class="ttdoc">sets the Mesh this Sprite is using</div><div class="ttdef"><b>Definition:</b> Texture.h:67</div></div>
-<div class="ttc" id="aclassTexture_html_a6a359a101095f149dd1754242cc47472"><div class="ttname"><a href="classTexture.html#a6a359a101095f149dd1754242cc47472">Texture::GetAspectRatio</a></div><div class="ttdeci">__inline float GetAspectRatio() const</div><div class="ttdoc">Returns the size of the original image in pixels.</div><div class="ttdef"><b>Definition:</b> Texture.h:53</div></div>
+<div class="ttc" id="aclassTexture_html_a14a2a70d9f130ac91a5ac95c8a4c7831"><div class="ttname"><a href="classTexture.html#a14a2a70d9f130ac91a5ac95c8a4c7831">Texture::Bind</a></div><div class="ttdeci">void Bind(unsigned int slot=0) const</div><div class="ttdoc">Sets this texture as active, so it can be used by texture shader.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:67</div></div>
+<div class="ttc" id="aclassTexture_html_a1662711f5f736ae36c057f91d9dc5e1c"><div class="ttname"><a href="classTexture.html#a1662711f5f736ae36c057f91d9dc5e1c">Texture::DisplayInInspector</a></div><div class="ttdeci">void DisplayInInspector(int frameIndex=0, float scale=100.0f, glm::vec4 const &amp;tintColor={ 1.0f, 1.0f, 1.0f, 1.0f }, glm::vec4 const &amp;borderColor={ 0.0f, 0.0f, 0.0f, 0.0f }) const</div><div class="ttdoc">displays this Texture in ImGui</div><div class="ttdef"><b>Definition:</b> Texture.cpp:118</div></div>
+<div class="ttc" id="aclassTexture_html_a2138e1ba2d1695e394c3a3bdb025498d"><div class="ttname"><a href="classTexture.html#a2138e1ba2d1695e394c3a3bdb025498d">Texture::AfterLoad</a></div><div class="ttdeci">void AfterLoad()</div><div class="ttdoc">gets called after reading all arugments</div><div class="ttdef"><b>Definition:</b> Texture.cpp:191</div></div>
+<div class="ttc" id="aclassTexture_html_a34824525978e7bc15067cd194bf6cfe2"><div class="ttname"><a href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">Texture::SetMesh</a></div><div class="ttdeci">__inline void SetMesh(Mesh const *mesh)</div><div class="ttdoc">sets the Mesh this Sprite is using</div><div class="ttdef"><b>Definition:</b> Texture.h:88</div></div>
+<div class="ttc" id="aclassTexture_html_a3b1a1b0c2727a5ee3a8aec5880ae3085"><div class="ttname"><a href="classTexture.html#a3b1a1b0c2727a5ee3a8aec5880ae3085">Texture::GetTextureId</a></div><div class="ttdeci">unsigned GetTextureId() const</div><div class="ttdoc">gets the OpenGL ID of this Texture</div><div class="ttdef"><b>Definition:</b> Texture.cpp:149</div></div>
+<div class="ttc" id="aclassTexture_html_a6a359a101095f149dd1754242cc47472"><div class="ttname"><a href="classTexture.html#a6a359a101095f149dd1754242cc47472">Texture::GetAspectRatio</a></div><div class="ttdeci">__inline float GetAspectRatio() const</div><div class="ttdoc">Returns the aspect ratio (x / y) of the texture.</div><div class="ttdef"><b>Definition:</b> Texture.h:74</div></div>
 <div class="ttc" id="aclassTexture_html_a6c275e3f186675ff6ed73ccf970e552f"><div class="ttname"><a href="classTexture.html#a6c275e3f186675ff6ed73ccf970e552f">Texture::Texture</a></div><div class="ttdeci">Texture()</div><div class="ttdoc">default constructor</div><div class="ttdef"><b>Definition:</b> Texture.cpp:20</div></div>
-<div class="ttc" id="aclassTexture_html_a735680df526bd8809aef3162f48024ca"><div class="ttname"><a href="classTexture.html#a735680df526bd8809aef3162f48024ca">Texture::GetMesh</a></div><div class="ttdeci">__inline Mesh const  * GetMesh() const</div><div class="ttdoc">gets the Mesh this Sprite is using</div><div class="ttdef"><b>Definition:</b> Texture.h:63</div></div>
-<div class="ttc" id="aclassTexture_html_a775ad645b4c61af24c1cbb53bec1fc49"><div class="ttname"><a href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">Texture::GetSheetDimensions</a></div><div class="ttdeci">__inline glm::ivec2 const  &amp; GetSheetDimensions() const</div><div class="ttdoc">Returns how many tiles/frames are in the texture.</div><div class="ttdef"><b>Definition:</b> Texture.h:58</div></div>
-<div class="ttc" id="aclassTexture_html_a8374f8cf2a8425a46e95ab2d1a0aebf5"><div class="ttname"><a href="classTexture.html#a8374f8cf2a8425a46e95ab2d1a0aebf5">Texture::Inspect</a></div><div class="ttdeci">void Inspect()</div><div class="ttdoc">Used by the Debug to display information about this Texture.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:64</div></div>
-<div class="ttc" id="aclassTexture_html_a99d414b0eb4b988d1a579d439165f83b"><div class="ttname"><a href="classTexture.html#a99d414b0eb4b988d1a579d439165f83b">Texture::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const</div><div class="ttdoc">gets the read method map</div><div class="ttdef"><b>Definition:</b> Texture.h:129</div></div>
-<div class="ttc" id="aclassTexture_html_aad558ead96f52ead97b4f2b33ad8d778"><div class="ttname"><a href="classTexture.html#aad558ead96f52ead97b4f2b33ad8d778">Texture::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Texture data to a JSON file.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:117</div></div>
-<div class="ttc" id="aclassTexture_html_ae0d942070b7a0925f41511b6f2884ab3"><div class="ttname"><a href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">Texture::GetPixelDimensions</a></div><div class="ttdeci">__inline glm::ivec2 const  &amp; GetPixelDimensions() const</div><div class="ttdoc">Returns the size of the original image in pixels.</div><div class="ttdef"><b>Definition:</b> Texture.h:49</div></div>
+<div class="ttc" id="aclassTexture_html_a735680df526bd8809aef3162f48024ca"><div class="ttname"><a href="classTexture.html#a735680df526bd8809aef3162f48024ca">Texture::GetMesh</a></div><div class="ttdeci">__inline Mesh const  * GetMesh() const</div><div class="ttdoc">gets the Mesh this Sprite is using</div><div class="ttdef"><b>Definition:</b> Texture.h:84</div></div>
+<div class="ttc" id="aclassTexture_html_a775ad645b4c61af24c1cbb53bec1fc49"><div class="ttname"><a href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">Texture::GetSheetDimensions</a></div><div class="ttdeci">__inline glm::ivec2 const  &amp; GetSheetDimensions() const</div><div class="ttdoc">Returns how many tiles/frames are in the texture.</div><div class="ttdef"><b>Definition:</b> Texture.h:79</div></div>
+<div class="ttc" id="aclassTexture_html_a8374f8cf2a8425a46e95ab2d1a0aebf5"><div class="ttname"><a href="classTexture.html#a8374f8cf2a8425a46e95ab2d1a0aebf5">Texture::Inspect</a></div><div class="ttdeci">void Inspect()</div><div class="ttdoc">Used by the Debug to display information about this Texture.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:75</div></div>
+<div class="ttc" id="aclassTexture_html_a99d414b0eb4b988d1a579d439165f83b"><div class="ttname"><a href="classTexture.html#a99d414b0eb4b988d1a579d439165f83b">Texture::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const</div><div class="ttdoc">gets the read method map</div><div class="ttdef"><b>Definition:</b> Texture.h:169</div></div>
+<div class="ttc" id="aclassTexture_html_aaa1e67f2d4c62aa386f3f49604a93691"><div class="ttname"><a href="classTexture.html#aaa1e67f2d4c62aa386f3f49604a93691">Texture::GetUvOffset</a></div><div class="ttdeci">glm::vec2 GetUvOffset(int frameIndex) const</div><div class="ttdoc">calculates the uv offset for a given frame offset</div><div class="ttdef"><b>Definition:</b> Texture.cpp:57</div></div>
+<div class="ttc" id="aclassTexture_html_aad558ead96f52ead97b4f2b33ad8d778"><div class="ttname"><a href="classTexture.html#aad558ead96f52ead97b4f2b33ad8d778">Texture::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Texture data to a JSON file.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:201</div></div>
+<div class="ttc" id="aclassTexture_html_ae0d942070b7a0925f41511b6f2884ab3"><div class="ttname"><a href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">Texture::GetPixelDimensions</a></div><div class="ttdeci">__inline glm::ivec2 const  &amp; GetPixelDimensions() const</div><div class="ttdoc">Returns the size of the original image in pixels.</div><div class="ttdef"><b>Definition:</b> Texture.h:70</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

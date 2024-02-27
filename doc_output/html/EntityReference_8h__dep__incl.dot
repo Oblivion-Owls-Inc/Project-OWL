@@ -1,0 +1,49 @@
+digraph "Source/EntityReference.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Source/EntityReference.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="a reference to an Entity in the scene"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Source/ConstructionBehavior.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ConstructionBehavior_8h.html",tooltip="handles the construction of towers and modification of terrain"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Source/CheatSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$CheatSystem_8cpp.html",tooltip="CheatSystem Class definition."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Source/ComponentFactory.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ComponentFactory_8cpp.html",tooltip="Definitions for the component factory class."];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Source/ConstructionBehavior.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ConstructionBehavior_8cpp.html",tooltip="handles the construction of towers and modification of terrain"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Source/EnemyBehavior.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$EnemyBehavior_8h_source.html",tooltip=" "];
+  Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Source/Engine.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Engine_8cpp.html",tooltip="Engine class."];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Source/PlayerController.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlayerController_8cpp.html",tooltip="PlayerController Behaviour Class."];
+  Node6 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Source/TurretBehavior.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TurretBehavior_8cpp.html",tooltip="Behavior Compenent for Basic Turret"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Source/Entity.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Entity_8cpp.html",tooltip="Function definitions for the Entity class."];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="Source/EntityReference.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$EntityReference_8cpp.html",tooltip="a reference to an Entity in the scene"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="Source/HealthBar.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$HealthBar_8h.html",tooltip="health bar UI that displays offset from an Entity with a Health component"];
+  Node12 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="Source/HealthBar.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$HealthBar_8cpp.html",tooltip="health bar UI that displays offset from an Entity with a Health component"];
+  Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="Source/MiningLaser.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$MiningLaser_8h.html",tooltip="Digging laser controllable by an entity."];
+  Node14 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="Source/MiningLaser.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$MiningLaser_8cpp.html",tooltip="Digging laser controllable by an entity."];
+  Node14 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="Source/PlayerController.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlayerController_8h.html",tooltip="PlayerController Behaviour Class."];
+  Node16 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="Source/ResourcesUiManager.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8h.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
+  Node17 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="Source/ResourcesUiManager.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8cpp.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
+}
