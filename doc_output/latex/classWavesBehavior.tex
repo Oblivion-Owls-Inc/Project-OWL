@@ -2,8 +2,7 @@
 \label{classWavesBehavior}\index{WavesBehavior@{WavesBehavior}}
 
 
-Inheritance diagram for Waves\+Behavior\+:
-\nopagebreak
+Inheritance diagram for Waves\+Behavior\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Waves\+Behavior\+:
 \end{figure}
 
 
-Collaboration diagram for Waves\+Behavior\+:
-\nopagebreak
+Collaboration diagram for Waves\+Behavior\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -34,6 +32,8 @@ Collaboration diagram for Waves\+Behavior\+:
 \begin{DoxyCompactList}\small\item\em dtor \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classWavesBehavior_a7bdf2beb6eeedcdaa48a257e9589d346}{Clone}} () const override
 \begin{DoxyCompactList}\small\item\em wave default constructor \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classWavesBehavior_a6012e3e7e8443ee1dfa23d54e45e2b04}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classWavesBehavior_ae84777db3f835767bc332ff0f4e5d7f3}{get\+Timer}} ()
 \begin{DoxyCompactList}\small\item\em get the timer for a UI element \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classWavesBehavior_afe7fef07cef13d4731bd9179ba2cdd97}{Write}} () const override
@@ -66,7 +66,21 @@ Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Co
 
 get the timer for a UI element 
 
-this should probably be fancier \mbox{\Hypertarget{classWavesBehavior_afe7fef07cef13d4731bd9179ba2cdd97}\label{classWavesBehavior_afe7fef07cef13d4731bd9179ba2cdd97}} 
+this should probably be fancier \mbox{\Hypertarget{classWavesBehavior_a6012e3e7e8443ee1dfa23d54e45e2b04}\label{classWavesBehavior_a6012e3e7e8443ee1dfa23d54e45e2b04}} 
+\index{WavesBehavior@{WavesBehavior}!Inspector@{Inspector}}
+\index{Inspector@{Inspector}!WavesBehavior@{WavesBehavior}}
+\doxysubsubsection{\texorpdfstring{Inspector()}{Inspector()}}
+{\footnotesize\ttfamily void Waves\+Behavior\+::\+Inspector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. 
+
+handles displaying Im\+Gui inspectors Edit the \mbox{\hyperlink{classBehavior}{Behavior}} of the Waves
+
+Reimplemented from \mbox{\hyperlink{classComponent_a5bfbb00a07c361c4c8d7b1812b9937ff}{Component}}.
+
+\mbox{\Hypertarget{classWavesBehavior_afe7fef07cef13d4731bd9179ba2cdd97}\label{classWavesBehavior_afe7fef07cef13d4731bd9179ba2cdd97}} 
 \index{WavesBehavior@{WavesBehavior}!Write@{Write}}
 \index{Write@{Write}!WavesBehavior@{WavesBehavior}}
 \doxysubsubsection{\texorpdfstring{Write()}{Write()}}

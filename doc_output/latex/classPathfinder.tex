@@ -18,13 +18,24 @@ Collaboration diagram for Pathfinder\+:\nopagebreak
 \includegraphics[width=157pt]{classPathfinder__coll__graph}
 \end{center}
 \end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPathfinder_a8d6ceeaa1b54828d4da05f223c7eef59}\label{classPathfinder_a8d6ceeaa1b54828d4da05f223c7eef59}} 
+enum \mbox{\hyperlink{classPathfinder_a8d6ceeaa1b54828d4da05f223c7eef59}{Priority}} \{ {\bfseries Highest}
+, {\bfseries High}
+, {\bfseries Mid}
+, {\bfseries Low}
+ \}
+\begin{DoxyCompactList}\small\item\em Target prioritization enum. Declared here, because it\textquotesingle{}s used by a public function. It\textquotesingle{}s a but weird... but it works. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classPathfinder_af562d840858cf2b369fcee51f5069456}\label{classPathfinder_af562d840858cf2b369fcee51f5069456}} 
 \mbox{\hyperlink{classPathfinder_af562d840858cf2b369fcee51f5069456}{Pathfinder}} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classPathfinder_ab8111e36fe8bf49e8222c0773e7e6d05}{Clone}} () const override
+\mbox{\hyperlink{classPathfinder_ade234916e023f318a578b5ba3a0dde05}{Pathfinder}} (\mbox{\hyperlink{classPathfinder}{Pathfinder}} const \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPathfinder}{Pathfinder}} $\ast$ \mbox{\hyperlink{classPathfinder_a3899f72726b8bb9487c380f42d1e2e55}{Clone}} () const override
 \begin{DoxyCompactList}\small\item\em Returns a copy of this component. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classPathfinder_a7a8dc462194b09099700a00b7a867943}{Set\+Destination}} (glm\+::vec2 pos)
 \begin{DoxyCompactList}\small\item\em Sets new destination based on world position. \end{DoxyCompactList}\item 
@@ -38,6 +49,10 @@ bool \mbox{\hyperlink{classPathfinder_a678639bbc8bbed133598656210c4b927}{Is\+Wal
 \begin{DoxyCompactList}\small\item\em Sets which tile IDs should be considered walkable. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classPathfinder_a08230584ed031550ede930ee77be4b32}{Get\+Travel\+Distance\+At}} (glm\+::vec2 pos)
 \begin{DoxyCompactList}\small\item\em Gets the travel distance (in tiles) to the destination. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPathfinder_a525972ca290a0c5bd4141905d7be790c}{Add\+Target}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity, \mbox{\hyperlink{classPathfinder_a8d6ceeaa1b54828d4da05f223c7eef59}{Priority}} priority)
+\begin{DoxyCompactList}\small\item\em Add target entity for pathfinding. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPathfinder_a62d84fb9860eae3d652ac5482310401a}{Remove\+Target}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)
+\begin{DoxyCompactList}\small\item\em Remove target entity from the list. \end{DoxyCompactList}\item 
 virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classPathfinder_a446ecc5602362b86a58d8ff78add6731}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPathfinder_a95fc5a8f90fffe2b8e56acad88fe6e88}{Write}} () const override
@@ -45,12 +60,63 @@ virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPathfinder_a95fc5a8f
 \doxysubsection*{Additional Inherited Members}
 
 
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPathfinder_af562d840858cf2b369fcee51f5069456}\label{classPathfinder_af562d840858cf2b369fcee51f5069456}} 
+\index{Pathfinder@{Pathfinder}!Pathfinder@{Pathfinder}}
+\index{Pathfinder@{Pathfinder}!Pathfinder@{Pathfinder}}
+\doxysubsubsection{\texorpdfstring{Pathfinder()}{Pathfinder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Pathfinder\+::\+Pathfinder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+Declaring them in header causes.. issues.
+
+Default constructor \mbox{\Hypertarget{classPathfinder_ade234916e023f318a578b5ba3a0dde05}\label{classPathfinder_ade234916e023f318a578b5ba3a0dde05}} 
+\index{Pathfinder@{Pathfinder}!Pathfinder@{Pathfinder}}
+\index{Pathfinder@{Pathfinder}!Pathfinder@{Pathfinder}}
+\doxysubsubsection{\texorpdfstring{Pathfinder()}{Pathfinder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Pathfinder\+::\+Pathfinder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPathfinder}{Pathfinder}} const \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+Copy ctor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & component to copy \\
+\hline
+\end{DoxyParams}
+
+
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classPathfinder_ab8111e36fe8bf49e8222c0773e7e6d05}\label{classPathfinder_ab8111e36fe8bf49e8222c0773e7e6d05}} 
+\mbox{\Hypertarget{classPathfinder_a525972ca290a0c5bd4141905d7be790c}\label{classPathfinder_a525972ca290a0c5bd4141905d7be790c}} 
+\index{Pathfinder@{Pathfinder}!AddTarget@{AddTarget}}
+\index{AddTarget@{AddTarget}!Pathfinder@{Pathfinder}}
+\doxysubsubsection{\texorpdfstring{AddTarget()}{AddTarget()}}
+{\footnotesize\ttfamily void Pathfinder\+::\+Add\+Target (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{entity,  }\item[{\mbox{\hyperlink{classPathfinder_a8d6ceeaa1b54828d4da05f223c7eef59}{Priority}}}]{priority }\end{DoxyParamCaption})}
+
+
+
+Add target entity for pathfinding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & Pointer to target entity \\
+\hline
+{\em priority} & How important it is to enemies\\
+\hline
+{\em entity} & Pointer to target entity \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPathfinder_a3899f72726b8bb9487c380f42d1e2e55}\label{classPathfinder_a3899f72726b8bb9487c380f42d1e2e55}} 
 \index{Pathfinder@{Pathfinder}!Clone@{Clone}}
 \index{Clone@{Clone}!Pathfinder@{Pathfinder}}
 \doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Pathfinder\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPathfinder}{Pathfinder}} $\ast$ Pathfinder\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -147,6 +213,21 @@ Checks if the given world position is walkable.
 \begin{DoxyReturn}{Returns}
 Walkable or not 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classPathfinder_a62d84fb9860eae3d652ac5482310401a}\label{classPathfinder_a62d84fb9860eae3d652ac5482310401a}} 
+\index{Pathfinder@{Pathfinder}!RemoveTarget@{RemoveTarget}}
+\index{RemoveTarget@{RemoveTarget}!Pathfinder@{Pathfinder}}
+\doxysubsubsection{\texorpdfstring{RemoveTarget()}{RemoveTarget()}}
+{\footnotesize\ttfamily void Pathfinder\+::\+Remove\+Target (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{entity }\end{DoxyParamCaption})}
+
+
+
+Remove target entity from the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & Pointer to target entity \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classPathfinder_a7a8dc462194b09099700a00b7a867943}\label{classPathfinder_a7a8dc462194b09099700a00b7a867943}} 
 \index{Pathfinder@{Pathfinder}!SetDestination@{SetDestination}}
 \index{SetDestination@{SetDestination}!Pathfinder@{Pathfinder}}

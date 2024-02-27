@@ -2,60 +2,68 @@
 \label{classBehaviorSystem}\index{BehaviorSystem$<$ BehaviorType $>$@{BehaviorSystem$<$ BehaviorType $>$}}
 
 
-Inheritance diagram for Behavior\+System$<$ Behavior\+Type $>$\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=232pt]{classBehaviorSystem__inherit__graph}
-\end{center}
-\end{figure}
+\mbox{\hyperlink{classSystem}{System}} that keeps track of and updates a specific kind of \mbox{\hyperlink{classBehavior}{Behavior}}.  
 
 
-Collaboration diagram for Behavior\+System$<$ Behavior\+Type $>$\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=232pt]{classBehaviorSystem__coll__graph}
-\end{center}
-\end{figure}
+
+
+{\ttfamily \#include $<$Behavior\+System.\+h$>$}
+
+
+
+Inheritance diagram for Behavior\+System$<$ Behavior\+Type $>$\+:
+% FIG 0
+
+
+Collaboration diagram for Behavior\+System$<$ Behavior\+Type $>$\+:
+% FIG 1
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classBehaviorSystem_aa6d9536bc1a699ef246cc2ec01404728}\label{classBehaviorSystem_aa6d9536bc1a699ef246cc2ec01404728}} 
-void \mbox{\hyperlink{classBehaviorSystem_aa6d9536bc1a699ef246cc2ec01404728}{Add\+Behavior}} (Behavior\+Type $\ast$behavior)
-\begin{DoxyCompactList}\small\item\em Adds a new \mbox{\hyperlink{classBehavior}{Behavior}} to the system. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classBehaviorSystem_a224361fcf4111d4e70f132d4a1ec7832}\label{classBehaviorSystem_a224361fcf4111d4e70f132d4a1ec7832}} 
-void \mbox{\hyperlink{classBehaviorSystem_a224361fcf4111d4e70f132d4a1ec7832}{Remove\+Behavior}} (Behavior\+Type $\ast$behavior)
-\begin{DoxyCompactList}\small\item\em Removes a \mbox{\hyperlink{classBehavior}{Behavior}} from the system. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classBehaviorSystem_ac186ed230b7725d15b428d1bfe6f0654}\label{classBehaviorSystem_ac186ed230b7725d15b428d1bfe6f0654}} 
-std\+::vector$<$ Behavior\+Type $\ast$ $>$ \& {\bfseries Get\+Behaviors} () const
+\mbox{\Hypertarget{classBehaviorSystem_a19c7932fc20b18d99455e08c3d1488a6}\label{classBehaviorSystem_a19c7932fc20b18d99455e08c3d1488a6}} 
+{\bfseries Behavior\+System} (\mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}} const \&)=delete
+\item 
+\mbox{\Hypertarget{classBehaviorSystem_a8bcc47b9170f4c0d0e8d0afef2a05d5b}\label{classBehaviorSystem_a8bcc47b9170f4c0d0e8d0afef2a05d5b}} 
+void {\bfseries operator=} (\mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}} const \&)=delete
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}}$<$ Behavior\+Type $>$ $\ast$ \mbox{\hyperlink{classBehaviorSystem_a61f07a517530933ec83a2af9109ac873}{Get\+Instance}} ()
-\begin{DoxyCompactList}\small\item\em Gets the instance of \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}}$<$ Behavior\+Type $>$ $\ast$ \mbox{\hyperlink{classBehaviorSystem_ad9e0080d6449b9d8158870d346040d51}{Get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em gets the instance of \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Behavior\+Type$>$\newline
+class Behavior\+System$<$ Behavior\+Type $>$}
+
+\mbox{\hyperlink{classSystem}{System}} that keeps track of and updates a specific kind of \mbox{\hyperlink{classBehavior}{Behavior}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Behavior\+Type} & the type of \mbox{\hyperlink{classBehavior}{Behavior}} this \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}} keeps track of \\
+\hline
+\end{DoxyTemplParams}
+
+
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classBehaviorSystem_a61f07a517530933ec83a2af9109ac873}\label{classBehaviorSystem_a61f07a517530933ec83a2af9109ac873}} 
+\mbox{\Hypertarget{classBehaviorSystem_ad9e0080d6449b9d8158870d346040d51}\label{classBehaviorSystem_ad9e0080d6449b9d8158870d346040d51}} 
 \index{BehaviorSystem$<$ BehaviorType $>$@{BehaviorSystem$<$ BehaviorType $>$}!GetInstance@{GetInstance}}
 \index{GetInstance@{GetInstance}!BehaviorSystem$<$ BehaviorType $>$@{BehaviorSystem$<$ BehaviorType $>$}}
 \doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
-{\footnotesize\ttfamily template$<$typename Behavior\+Type $>$ \\
-\mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}}$<$ Behavior\+Type $>$ $\ast$ \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}}$<$ Behavior\+Type $>$\+::Get\+Instance\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily template$<$class Behavior\+Type $>$ \\
+static \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}}$<$ Behavior\+Type $>$$\ast$ \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}}$<$ Behavior\+Type $>$\+::Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
-Gets the instance of \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}}. 
+gets the instance of \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}} 
 
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}} pointer\+: new or existing instance of this system 
+the instance of the \mbox{\hyperlink{classBehaviorSystem}{Behavior\+System}} 
 \end{DoxyReturn}
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Source/Behavior\+System.\+h\item 
-Source/Behavior\+System.\+cpp\end{DoxyCompactItemize}
+Source/\mbox{\hyperlink{BehaviorSystem_8h}{Behavior\+System.\+h}}\end{DoxyCompactItemize}

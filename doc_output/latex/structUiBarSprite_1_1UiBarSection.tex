@@ -1,0 +1,99 @@
+\hypertarget{structUiBarSprite_1_1UiBarSection}{}\doxysection{Ui\+Bar\+Sprite\+::Ui\+Bar\+Section Struct Reference}
+\label{structUiBarSprite_1_1UiBarSection}\index{UiBarSprite::UiBarSection@{UiBarSprite::UiBarSection}}
+
+
+struct that represents a data section in the Ui\+Bar  
+
+
+
+
+{\ttfamily \#include $<$Ui\+Bar\+Sprite.\+h$>$}
+
+
+
+Inheritance diagram for Ui\+Bar\+Sprite\+::Ui\+Bar\+Section\+:
+% FIG 0
+
+
+Collaboration diagram for Ui\+Bar\+Sprite\+::Ui\+Bar\+Section\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection_a9295727bc4eae5df21213fa289f568b4}{Inspect}} ()
+\begin{DoxyCompactList}\small\item\em inspects this \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection_a5a772cb5572215d1d7641553fc81d9ad}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection_a332a9c1bac16bb1662de122923fc8d0f}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structUiBarSprite_1_1UiBarSection_ac1b6aea90246bf651872e0f4b559b465}\label{structUiBarSprite_1_1UiBarSection_ac1b6aea90246bf651872e0f4b559b465}} 
+glm\+::vec4 \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection_ac1b6aea90246bf651872e0f4b559b465}{M\+\_\+\+Color}} = \{ 1.\+0f, 0.\+0f, 0.\+0f, 1.\+0f \}
+\begin{DoxyCompactList}\small\item\em the color of this \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structUiBarSprite_1_1UiBarSection_a2e872eac27cc348d7626f2cb80bfd85d}\label{structUiBarSprite_1_1UiBarSection_a2e872eac27cc348d7626f2cb80bfd85d}} 
+float \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection_a2e872eac27cc348d7626f2cb80bfd85d}{M\+\_\+\+Value}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em the value of this \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structUiBarSprite_1_1UiBarSection_ae8e860ea82ef72091e312243297d0cc8}\label{structUiBarSprite_1_1UiBarSection_ae8e860ea82ef72091e312243297d0cc8}} 
+float \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection_ae8e860ea82ef72091e312243297d0cc8}{M\+\_\+\+Slope}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em the inverse slope of the edge of this \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+struct that represents a data section in the Ui\+Bar 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structUiBarSprite_1_1UiBarSection_a5a772cb5572215d1d7641553fc81d9ad}\label{structUiBarSprite_1_1UiBarSection_a5a772cb5572215d1d7641553fc81d9ad}} 
+\index{UiBarSprite::UiBarSection@{UiBarSprite::UiBarSection}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!UiBarSprite::UiBarSection@{UiBarSprite::UiBarSection}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Ui\+Bar\+Sprite\+::\+Ui\+Bar\+Section\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{structUiBarSprite_1_1UiBarSection_a9295727bc4eae5df21213fa289f568b4}\label{structUiBarSprite_1_1UiBarSection_a9295727bc4eae5df21213fa289f568b4}} 
+\index{UiBarSprite::UiBarSection@{UiBarSprite::UiBarSection}!Inspect@{Inspect}}
+\index{Inspect@{Inspect}!UiBarSprite::UiBarSection@{UiBarSprite::UiBarSection}}
+\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
+{\footnotesize\ttfamily bool Ui\+Bar\+Sprite\+::\+Ui\+Bar\+Section\+::\+Inspect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+inspects this \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} 
+
+\begin{DoxyReturn}{Returns}
+whether a change was made 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structUiBarSprite_1_1UiBarSection_a332a9c1bac16bb1662de122923fc8d0f}\label{structUiBarSprite_1_1UiBarSection_a332a9c1bac16bb1662de122923fc8d0f}} 
+\index{UiBarSprite::UiBarSection@{UiBarSprite::UiBarSection}!Write@{Write}}
+\index{Write@{Write}!UiBarSprite::UiBarSection@{UiBarSprite::UiBarSection}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Ui\+Bar\+Sprite\+::\+Ui\+Bar\+Section\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{structUiBarSprite_1_1UiBarSection}{Ui\+Bar\+Section}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{UiBarSprite_8h}{Ui\+Bar\+Sprite.\+h}}\item 
+Source/\mbox{\hyperlink{UiBarSprite_8cpp}{Ui\+Bar\+Sprite.\+cpp}}\end{DoxyCompactItemize}

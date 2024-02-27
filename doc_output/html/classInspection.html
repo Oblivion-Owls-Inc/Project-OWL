@@ -74,28 +74,29 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0ee88ee285431b0765ad985023774f1a"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInspection.html#a0ee88ee285431b0765ad985023774f1a">SelectFileFromDirectory</a> (char const *label, std::string *selectedFile, std::string const &amp;directoryPath)</td></tr>
 <tr class="memdesc:a0ee88ee285431b0765ad985023774f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">selects a file from a directory  <a href="classInspection.html#a0ee88ee285431b0765ad985023774f1a">More...</a><br /></td></tr>
 <tr class="separator:a0ee88ee285431b0765ad985023774f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f69a2bca6e677a2a905f50879faf8c5"><td class="memTemplParams" colspan="2">template&lt;class AssetType &gt; </td></tr>
-<tr class="memitem:a0f69a2bca6e677a2a905f50879faf8c5"><td class="memTemplItemLeft" align="right" valign="top">static bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classInspection.html#a0f69a2bca6e677a2a905f50879faf8c5">SelectAssetFromLibrary</a> (char const *label, AssetType const **selectedAsset)</td></tr>
-<tr class="memdesc:a0f69a2bca6e677a2a905f50879faf8c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">selects an Asset from an AssetLibrary  <a href="classInspection.html#a0f69a2bca6e677a2a905f50879faf8c5">More...</a><br /></td></tr>
-<tr class="separator:a0f69a2bca6e677a2a905f50879faf8c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10f3db8bd396df6d253cddba2152926f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInspection.html#a10f3db8bd396df6d253cddba2152926f">SelectEntityFromScene</a> (char const *label, <a class="el" href="classEntity.html">Entity</a> **selectedEntity)</td></tr>
-<tr class="memdesc:a10f3db8bd396df6d253cddba2152926f"><td class="mdescLeft">&#160;</td><td class="mdescRight">selects an <a class="el" href="classEntity.html">Entity</a> from the Scene  <a href="classInspection.html#a10f3db8bd396df6d253cddba2152926f">More...</a><br /></td></tr>
-<tr class="separator:a10f3db8bd396df6d253cddba2152926f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0bac19136fcbc95cbb78bf81d52021e"><td class="memTemplParams" colspan="2">template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:af0bac19136fcbc95cbb78bf81d52021e"><td class="memTemplItemLeft" align="right" valign="top">static bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classInspection.html#af0bac19136fcbc95cbb78bf81d52021e">InspectArray</a> (char const *label, std::vector&lt; DataType &gt; *array, std::function&lt; bool(DataType *) &gt; elementInspector)</td></tr>
+<tr class="memdesc:af0bac19136fcbc95cbb78bf81d52021e"><td class="mdescLeft">&#160;</td><td class="mdescRight">inspects an array of elements  <a href="classInspection.html#af0bac19136fcbc95cbb78bf81d52021e">More...</a><br /></td></tr>
+<tr class="separator:af0bac19136fcbc95cbb78bf81d52021e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1b91273225c56cec7ab23a1c31db48"><td class="memTemplParams" colspan="2">template&lt;typename DataType , int count&gt; </td></tr>
+<tr class="memitem:a9d1b91273225c56cec7ab23a1c31db48"><td class="memTemplItemLeft" align="right" valign="top">static bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classInspection.html#a9d1b91273225c56cec7ab23a1c31db48">InspectStaticArray</a> (char const *label, DataType *array, std::function&lt; bool(DataType *) &gt; elementInspector)</td></tr>
+<tr class="memdesc:a9d1b91273225c56cec7ab23a1c31db48"><td class="mdescLeft">&#160;</td><td class="mdescRight">inspects a static-sized array of elements  <a href="classInspection.html#a9d1b91273225c56cec7ab23a1c31db48">More...</a><br /></td></tr>
+<tr class="separator:a9d1b91273225c56cec7ab23a1c31db48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0f69a2bca6e677a2a905f50879faf8c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f69a2bca6e677a2a905f50879faf8c5">&#9670;&nbsp;</a></span>SelectAssetFromLibrary()</h2>
+<a id="af0bac19136fcbc95cbb78bf81d52021e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0bac19136fcbc95cbb78bf81d52021e">&#9670;&nbsp;</a></span>InspectArray()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class AssetType &gt; </div>
+template&lt;typename DataType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Inspection::SelectAssetFromLibrary </td>
+          <td class="memname">bool Inspection::InspectArray </td>
           <td>(</td>
           <td class="paramtype">char const *&#160;</td>
           <td class="paramname"><em>label</em>, </td>
@@ -103,8 +104,14 @@ template&lt;class AssetType &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">AssetType const **&#160;</td>
-          <td class="paramname"><em>selectedAsset</em>&#160;</td>
+          <td class="paramtype">std::vector&lt; DataType &gt; *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; bool(DataType *) &gt;&#160;</td>
+          <td class="paramname"><em>elementInspector</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -119,35 +126,39 @@ template&lt;class AssetType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>selects an Asset from an AssetLibrary </p>
+<p>inspects an array of elements </p>
+<p>inspects a reorderable array of elements</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">AssetType</td><td>the type of asset to select </td></tr>
+    <tr><td class="paramname">DataType</td><td>the type of data in the array </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">label</td><td>the ImGui label of the dropdown selector </td></tr>
-    <tr><td class="paramname">selectedAsset</td><td>pointer to the currently selected Asset </td></tr>
+    <tr><td class="paramname">label</td><td>the label of the array inspector </td></tr>
+    <tr><td class="paramname">array</td><td>the array to inspect </td></tr>
+    <tr><td class="paramname">elementInspector</td><td>the function to use to inspect each element of the array </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether an asset was selected </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(bool) whether the array was modified </dd></dl>
 
 </div>
 </div>
-<a id="a10f3db8bd396df6d253cddba2152926f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10f3db8bd396df6d253cddba2152926f">&#9670;&nbsp;</a></span>SelectEntityFromScene()</h2>
+<a id="a9d1b91273225c56cec7ab23a1c31db48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d1b91273225c56cec7ab23a1c31db48">&#9670;&nbsp;</a></span>InspectStaticArray()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataType , int count&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Inspection::SelectEntityFromScene </td>
+          <td class="memname">bool Inspection::InspectStaticArray </td>
           <td>(</td>
           <td class="paramtype">char const *&#160;</td>
           <td class="paramname"><em>label</em>, </td>
@@ -155,8 +166,14 @@ template&lt;class AssetType &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classEntity.html">Entity</a> **&#160;</td>
-          <td class="paramname"><em>selectedEntity</em>&#160;</td>
+          <td class="paramtype">DataType *&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; bool(DataType *) &gt;&#160;</td>
+          <td class="paramname"><em>elementInspector</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -171,15 +188,23 @@ template&lt;class AssetType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>selects an <a class="el" href="classEntity.html">Entity</a> from the Scene </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">label</td><td>the ImGui label of the dropdown selector </td></tr>
-    <tr><td class="paramname">selectedEntity</td><td>pointer to the currently selected <a class="el" href="classEntity.html">Entity</a> </td></tr>
+<p>inspects a static-sized array of elements </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">DataType</td><td>the type of data in the array </td></tr>
+    <tr><td class="paramname">count</td><td>the number of elements in the array </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>whether an <a class="el" href="classEntity.html">Entity</a> was selected </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">label</td><td>the label of the array inspector </td></tr>
+    <tr><td class="paramname">array</td><td>the array to inspect </td></tr>
+    <tr><td class="paramname">elementInspector</td><td>the funvtion to use to insepct each element of the array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>(bool) whether the array was modified </dd></dl>
 
 </div>
 </div>

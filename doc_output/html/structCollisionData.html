@@ -62,6 +62,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structCollisionData-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -74,24 +75,59 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="CollisionData_8h_source.html">CollisionData.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ada5e1cd02ec97a5090819b318eb47008"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCollisionData.html">CollisionData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCollisionData.html#ada5e1cd02ec97a5090819b318eb47008">operator-</a> () const</td></tr>
+<tr class="memdesc:ada5e1cd02ec97a5090819b318eb47008"><td class="mdescLeft">&#160;</td><td class="mdescRight">negate operator  <a href="structCollisionData.html#ada5e1cd02ec97a5090819b318eb47008">More...</a><br /></td></tr>
+<tr class="separator:ada5e1cd02ec97a5090819b318eb47008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a1763784e229daafb6789a0fbf248f042"><td class="memItemLeft" align="right" valign="top"><a id="a1763784e229daafb6789a0fbf248f042"></a>
-glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCollisionData.html#a1763784e229daafb6789a0fbf248f042">position</a></td></tr>
+glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCollisionData.html#a1763784e229daafb6789a0fbf248f042">position</a> = { 0, 0 }</td></tr>
 <tr class="memdesc:a1763784e229daafb6789a0fbf248f042"><td class="mdescLeft">&#160;</td><td class="mdescRight">The position of the collision. <br /></td></tr>
 <tr class="separator:a1763784e229daafb6789a0fbf248f042"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb89e7f7c1da6f64c8955621ea3fc34e"><td class="memItemLeft" align="right" valign="top"><a id="afb89e7f7c1da6f64c8955621ea3fc34e"></a>
-glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCollisionData.html#afb89e7f7c1da6f64c8955621ea3fc34e">normal</a></td></tr>
+glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCollisionData.html#afb89e7f7c1da6f64c8955621ea3fc34e">normal</a> = { 0, 0 }</td></tr>
 <tr class="memdesc:afb89e7f7c1da6f64c8955621ea3fc34e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The normal of the collision. <br /></td></tr>
 <tr class="separator:afb89e7f7c1da6f64c8955621ea3fc34e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b0159669cecf089a7c231ca72737d4d"><td class="memItemLeft" align="right" valign="top"><a id="a3b0159669cecf089a7c231ca72737d4d"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCollisionData.html#a3b0159669cecf089a7c231ca72737d4d">depth</a></td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCollisionData.html#a3b0159669cecf089a7c231ca72737d4d">depth</a> = -INFINITY</td></tr>
 <tr class="memdesc:a3b0159669cecf089a7c231ca72737d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">How deep the collision penetrated. <br /></td></tr>
 <tr class="separator:a3b0159669cecf089a7c231ca72737d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Struct that holds data about collisions. </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ada5e1cd02ec97a5090819b318eb47008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada5e1cd02ec97a5090819b318eb47008">&#9670;&nbsp;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCollisionData.html">CollisionData</a> CollisionData::operator- </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>negate operator </p>
+<dl class="section return"><dt>Returns</dt><dd>a negated version of this <a class="el" href="structCollisionData.html" title="Struct that holds data about collisions.">CollisionData</a> </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>Source/<a class="el" href="CollisionData_8h_source.html">CollisionData.h</a></li>
 </ul>
 </div><!-- contents -->

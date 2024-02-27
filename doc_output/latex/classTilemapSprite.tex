@@ -20,27 +20,26 @@ Inheritance diagram for Tilemap\+Sprite\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for Tilemap\+Sprite\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=234pt]{classTilemapSprite__coll__graph}
-\end{center}
-\end{figure}
+Collaboration diagram for Tilemap\+Sprite\+:
+% FIG 0
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classTilemapSprite_ae0092a169d3ebae5ba593094ecec4fd8}\label{classTilemapSprite_ae0092a169d3ebae5ba593094ecec4fd8}} 
 \mbox{\hyperlink{classTilemapSprite_ae0092a169d3ebae5ba593094ecec4fd8}{Tilemap\+Sprite}} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classTilemapSprite_aacc42f13bb996c067acfeabbb8e61502}{Tilemap\+Sprite}} (\mbox{\hyperlink{classTexture}{Texture}} $\ast$texture, float stride\+\_\+mult=1.\+0f, int layer=2, std\+::type\+\_\+index type=typeid(\mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}}))
+\mbox{\hyperlink{classTilemapSprite_a75fe363c43e37594deac4fb7c53272a3}{Tilemap\+Sprite}} (\mbox{\hyperlink{classAssetReference}{Asset\+Reference}}$<$ \mbox{\hyperlink{classTexture}{Texture}} $>$ const \&texture, float stride\+\_\+mult=1.\+0f, int layer=2, std\+::type\+\_\+index type=typeid(\mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}}))
 \begin{DoxyCompactList}\small\item\em Textured constructor. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTilemapSprite_a7e846266495ed45f4b082696a16e3bb9}{Load\+Tile\+Array}} (const char $\ast$tiles, int size)
 \begin{DoxyCompactList}\small\item\em Loads the tile array from a raw char array. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTilemapSprite_aee927c2de899762926f80f09b235ef77}{Load\+Tile\+Array}} (std\+::vector$<$ int $>$ tiles)
 \begin{DoxyCompactList}\small\item\em Loads the tile array from a vector of ints. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}{Draw}} () override
-\begin{DoxyCompactList}\small\item\em Draws tilemap using currently loaded array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Draws tilemap using currently loaded array. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classTilemapSprite_a38c7af38d3f9d8cfa93f10e85bd2453a}{Overlaps\+Local\+Point}} (glm\+::vec2 const \&) const override
+\begin{DoxyCompactList}\small\item\em checks if a a point in local space overlaps this \mbox{\hyperlink{classSprite}{Sprite}} \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}} $\ast$ \mbox{\hyperlink{classTilemapSprite_a073622f9f48c1d3d317ad9fc7a9701c3}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em creates a copy of this \mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -48,11 +47,11 @@ virtual void \mbox{\hyperlink{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba
 A version of \mbox{\hyperlink{classSprite}{Sprite}} for rendering tilemaps using GPU instancing. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classTilemapSprite_aacc42f13bb996c067acfeabbb8e61502}\label{classTilemapSprite_aacc42f13bb996c067acfeabbb8e61502}} 
+\mbox{\Hypertarget{classTilemapSprite_a75fe363c43e37594deac4fb7c53272a3}\label{classTilemapSprite_a75fe363c43e37594deac4fb7c53272a3}} 
 \index{TilemapSprite@{TilemapSprite}!TilemapSprite@{TilemapSprite}}
 \index{TilemapSprite@{TilemapSprite}!TilemapSprite@{TilemapSprite}}
 \doxysubsubsection{\texorpdfstring{TilemapSprite()}{TilemapSprite()}}
-{\footnotesize\ttfamily Tilemap\+Sprite\+::\+Tilemap\+Sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTexture}{Texture}} $\ast$}]{texture,  }\item[{float}]{stride\+\_\+mult = {\ttfamily 1.0f},  }\item[{int}]{layer = {\ttfamily 2},  }\item[{std\+::type\+\_\+index}]{type = {\ttfamily typeid(\mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}})} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Tilemap\+Sprite\+::\+Tilemap\+Sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAssetReference}{Asset\+Reference}}$<$ \mbox{\hyperlink{classTexture}{Texture}} $>$ const \&}]{texture,  }\item[{float}]{stride\+\_\+mult = {\ttfamily 1.0f},  }\item[{int}]{layer = {\ttfamily 2},  }\item[{std\+::type\+\_\+index}]{type = {\ttfamily typeid(\mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}})} }\end{DoxyParamCaption})}
 
 
 
@@ -72,6 +71,23 @@ Textured constructor.
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTilemapSprite_a073622f9f48c1d3d317ad9fc7a9701c3}\label{classTilemapSprite_a073622f9f48c1d3d317ad9fc7a9701c3}} 
+\index{TilemapSprite@{TilemapSprite}!Clone@{Clone}}
+\index{Clone@{Clone}!TilemapSprite@{TilemapSprite}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}} $\ast$ Tilemap\+Sprite\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+creates a copy of this \mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created copy of this \mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classSprite_a8d3bdc61b2f5da93f5f6197fecb81604}{Sprite}}.
+
 \mbox{\Hypertarget{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}\label{classTilemapSprite_a0de4cfc296ee7c517f6675b3d7a8ba4b}} 
 \index{TilemapSprite@{TilemapSprite}!Draw@{Draw}}
 \index{Draw@{Draw}!TilemapSprite@{TilemapSprite}}
@@ -118,6 +134,23 @@ Loads the tile array from a vector of ints.
 {\em tiles} & tile IDs (spritesheet frames) \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classTilemapSprite_a38c7af38d3f9d8cfa93f10e85bd2453a}\label{classTilemapSprite_a38c7af38d3f9d8cfa93f10e85bd2453a}} 
+\index{TilemapSprite@{TilemapSprite}!OverlapsLocalPoint@{OverlapsLocalPoint}}
+\index{OverlapsLocalPoint@{OverlapsLocalPoint}!TilemapSprite@{TilemapSprite}}
+\doxysubsubsection{\texorpdfstring{OverlapsLocalPoint()}{OverlapsLocalPoint()}}
+{\footnotesize\ttfamily virtual bool Tilemap\+Sprite\+::\+Overlaps\+Local\+Point (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+checks if a a point in local space overlaps this \mbox{\hyperlink{classSprite}{Sprite}} 
+
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classSprite}{Sprite}} overlaps the point 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classSprite_ad5d20b22aef221885d2349fe7b1bdbac}{Sprite}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
