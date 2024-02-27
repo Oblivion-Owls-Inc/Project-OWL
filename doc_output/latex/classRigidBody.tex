@@ -77,11 +77,12 @@ virtual void \mbox{\hyperlink{classRigidBody_a917128cf7a2629cfc9449b202f51d463}{
 \mbox{\Hypertarget{classRigidBody_a0c4b289170298754343537ca703e46b7}\label{classRigidBody_a0c4b289170298754343537ca703e46b7}} 
 virtual void \mbox{\hyperlink{classRigidBody_a0c4b289170298754343537ca703e46b7}{Inspector}} () override
 \begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classRigidBody_af5787b0a8304f5e5adde3f562b6188ae}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classRigidBody_a4783016ea152257cb416a41a633504d7}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} component data to a JSON file. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRigidBody_affe7e505799efc05ad54db0abb3b2c53}\label{classRigidBody_affe7e505799efc05ad54db0abb3b2c53}} 
-void {\bfseries operator=} (const \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} \&)=delete
-\end{DoxyCompactItemize}
+virtual \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} $\ast$ \mbox{\hyperlink{classRigidBody_a3bb397fb970374cfaa325b0b0cc7e4b6}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -148,6 +149,23 @@ adds to the Velocity of this Rigidbody
 {\em velocity} & the velocity to apply \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classRigidBody_a3bb397fb970374cfaa325b0b0cc7e4b6}\label{classRigidBody_a3bb397fb970374cfaa325b0b0cc7e4b6}} 
+\index{RigidBody@{RigidBody}!Clone@{Clone}}
+\index{Clone@{Clone}!RigidBody@{RigidBody}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} $\ast$ Rigid\+Body\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
 \mbox{\Hypertarget{classRigidBody_a9b84d9e179c09127b2f2c04743ccd3b4}\label{classRigidBody_a9b84d9e179c09127b2f2c04743ccd3b4}} 
 \index{RigidBody@{RigidBody}!GetAcceleration@{GetAcceleration}}
 \index{GetAcceleration@{GetAcceleration}!RigidBody@{RigidBody}}
@@ -216,6 +234,23 @@ Get the mass of the rigid\+Body.
 \begin{DoxyReturn}{Returns}
 The mass of the rigid\+Body 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classRigidBody_af5787b0a8304f5e5adde3f562b6188ae}\label{classRigidBody_af5787b0a8304f5e5adde3f562b6188ae}} 
+\index{RigidBody@{RigidBody}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!RigidBody@{RigidBody}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Rigid\+Body\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
 \mbox{\Hypertarget{classRigidBody_ad25d91e23489af5c06806e9ea36888bc}\label{classRigidBody_ad25d91e23489af5c06806e9ea36888bc}} 
 \index{RigidBody@{RigidBody}!GetRestitution@{GetRestitution}}
 \index{GetRestitution@{GetRestitution}!RigidBody@{RigidBody}}

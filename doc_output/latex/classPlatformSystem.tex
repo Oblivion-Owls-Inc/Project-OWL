@@ -25,12 +25,18 @@ void \mbox{\hyperlink{classPlatformSystem_a48d1c8fb51bba89e3386ac04626bcc4b}{Add
 \begin{DoxyCompactList}\small\item\em adds a callback to get called whenever the window resizes \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classPlatformSystem_a761878f6076e03f60246aea3044950f7}{Remove\+On\+Window\+Resize\+Callback}} (unsigned owner\+Id)
 \begin{DoxyCompactList}\small\item\em removes an On\+Window\+Resize callback \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classPlatformSystem_a7b7d488277ebfc3295176ef3223bf08b}{set\+Fullscreen}} (bool fullscreen)
+void \mbox{\hyperlink{classPlatformSystem_ac9f3d31161ee99951142fb3760f10f8c}{Set\+Fullscreen}} (bool fullscreen)
 \begin{DoxyCompactList}\small\item\em sets whether the window is fullscreen \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPlatformSystem_a37c012e68c72ec7900c22dc8a3902fa4}{is\+Pos\+Within\+Window}} (glm\+::vec2 const \&screen\+Pos) const
+\begin{DoxyCompactList}\small\item\em checks if a screen pos is within the game window \end{DoxyCompactList}\item 
 GLFWwindow $\ast$ \mbox{\hyperlink{classPlatformSystem_a7d73cfdf13c05bef48a7e03c9ce0783d}{Get\+Window\+Handle}} ()
 \begin{DoxyCompactList}\small\item\em Returns the window handle. \end{DoxyCompactList}\item 
 glm\+::ivec2 \mbox{\hyperlink{classPlatformSystem_a065f3bce34c50288f3c7fea6fe97e70c}{Get\+Window\+Dimensions}} () const
 \begin{DoxyCompactList}\small\item\em Returns window dimensions in pixels. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classPlatformSystem_a64d12b99210d49ff22d02de92ca2839f}{Get\+Imgui\+Window\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Returns the window name. \end{DoxyCompactList}\item 
+glm\+::vec2 const  \& \mbox{\hyperlink{classPlatformSystem_a000751d2abf49ccc77ea146869e3be2c}{Get\+Game\+Window\+Pos}} () const
+\begin{DoxyCompactList}\small\item\em gets the position of the game\+Window within the glfw window \end{DoxyCompactList}\item 
 virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classPlatformSystem_a344964fb6aa36a9d64349cbfaa716a42}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPlatformSystem_a8fded9fb1c1602acd76c771e38fc6a7c}{Write}} () const override
@@ -67,7 +73,33 @@ adds a callback to get called whenever the window resizes
 {\em callback} & the to callback to add \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classPlatformSystem_a01ebae6f4d5422d5494e55c3ed629488}\label{classPlatformSystem_a01ebae6f4d5422d5494e55c3ed629488}} 
+\mbox{\Hypertarget{classPlatformSystem_a000751d2abf49ccc77ea146869e3be2c}\label{classPlatformSystem_a000751d2abf49ccc77ea146869e3be2c}} 
+\index{PlatformSystem@{PlatformSystem}!GetGameWindowPos@{GetGameWindowPos}}
+\index{GetGameWindowPos@{GetGameWindowPos}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{GetGameWindowPos()}{GetGameWindowPos()}}
+{\footnotesize\ttfamily glm\+::vec2 const  \& Platform\+System\+::\+Get\+Game\+Window\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the position of the game\+Window within the glfw window 
+
+\begin{DoxyReturn}{Returns}
+the position of the game window 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPlatformSystem_a64d12b99210d49ff22d02de92ca2839f}\label{classPlatformSystem_a64d12b99210d49ff22d02de92ca2839f}} 
+\index{PlatformSystem@{PlatformSystem}!GetImguiWindowName@{GetImguiWindowName}}
+\index{GetImguiWindowName@{GetImguiWindowName}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{GetImguiWindowName()}{GetImguiWindowName()}}
+{\footnotesize\ttfamily std\+::string Platform\+System\+::\+Get\+Imgui\+Window\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the window name. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string\+: The name of the window. 
+\end{DoxyReturn}
+Build the window name with the ID appended to it\mbox{\Hypertarget{classPlatformSystem_a01ebae6f4d5422d5494e55c3ed629488}\label{classPlatformSystem_a01ebae6f4d5422d5494e55c3ed629488}} 
 \index{PlatformSystem@{PlatformSystem}!GetInstance@{GetInstance}}
 \index{GetInstance@{GetInstance}!PlatformSystem@{PlatformSystem}}
 \doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
@@ -129,6 +161,24 @@ Returns the window handle.
 \begin{DoxyReturn}{Returns}
 GLFWwindow pointer\+: Current window handle. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classPlatformSystem_a37c012e68c72ec7900c22dc8a3902fa4}\label{classPlatformSystem_a37c012e68c72ec7900c22dc8a3902fa4}} 
+\index{PlatformSystem@{PlatformSystem}!isPosWithinWindow@{isPosWithinWindow}}
+\index{isPosWithinWindow@{isPosWithinWindow}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{isPosWithinWindow()}{isPosWithinWindow()}}
+{\footnotesize\ttfamily bool Platform\+System\+::is\+Pos\+Within\+Window (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{screen\+Pos }\end{DoxyParamCaption}) const}
+
+
+
+checks if a screen pos is within the game window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em screen\+Pos} & the screen pos to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the position is within the window 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classPlatformSystem_a761878f6076e03f60246aea3044950f7}\label{classPlatformSystem_a761878f6076e03f60246aea3044950f7}} 
 \index{PlatformSystem@{PlatformSystem}!RemoveOnWindowResizeCallback@{RemoveOnWindowResizeCallback}}
 \index{RemoveOnWindowResizeCallback@{RemoveOnWindowResizeCallback}!PlatformSystem@{PlatformSystem}}
@@ -144,11 +194,11 @@ removes an On\+Window\+Resize callback
 {\em owner\+Id} & the ID of the owner of the callback to remove \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classPlatformSystem_a7b7d488277ebfc3295176ef3223bf08b}\label{classPlatformSystem_a7b7d488277ebfc3295176ef3223bf08b}} 
-\index{PlatformSystem@{PlatformSystem}!setFullscreen@{setFullscreen}}
-\index{setFullscreen@{setFullscreen}!PlatformSystem@{PlatformSystem}}
-\doxysubsubsection{\texorpdfstring{setFullscreen()}{setFullscreen()}}
-{\footnotesize\ttfamily void Platform\+System\+::set\+Fullscreen (\begin{DoxyParamCaption}\item[{bool}]{fullscreen }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classPlatformSystem_ac9f3d31161ee99951142fb3760f10f8c}\label{classPlatformSystem_ac9f3d31161ee99951142fb3760f10f8c}} 
+\index{PlatformSystem@{PlatformSystem}!SetFullscreen@{SetFullscreen}}
+\index{SetFullscreen@{SetFullscreen}!PlatformSystem@{PlatformSystem}}
+\doxysubsubsection{\texorpdfstring{SetFullscreen()}{SetFullscreen()}}
+{\footnotesize\ttfamily void Platform\+System\+::\+Set\+Fullscreen (\begin{DoxyParamCaption}\item[{bool}]{fullscreen }\end{DoxyParamCaption})}
 
 
 

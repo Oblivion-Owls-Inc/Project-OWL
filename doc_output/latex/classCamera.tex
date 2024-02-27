@@ -11,8 +11,7 @@ Handles camera and coordinate systems / spaces.
 
 
 
-Inheritance diagram for Camera\+:
-\nopagebreak
+Inheritance diagram for Camera\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Camera\+:
 \end{figure}
 
 
-Collaboration diagram for Camera\+:
-\nopagebreak
+Collaboration diagram for Camera\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -52,11 +50,14 @@ void \mbox{\hyperlink{classCamera_a3ae7992e1708480c12839853bbffe076}{Set\+Is\+Ac
 \mbox{\Hypertarget{classCamera_a7412485475d29789f5aabee5c99c82ec}\label{classCamera_a7412485475d29789f5aabee5c99c82ec}} 
 void \mbox{\hyperlink{classCamera_a7412485475d29789f5aabee5c99c82ec}{Set\+Active}} ()
 \begin{DoxyCompactList}\small\item\em sets this \mbox{\hyperlink{classCamera}{Camera}} as the active \mbox{\hyperlink{classCamera}{Camera}} in the scene \end{DoxyCompactList}\item 
-virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classCamera_a1b626e25b20be95bc257e73a4a73ad71}{Get\+Read\+Methods}} () const override
+\mbox{\Hypertarget{classCamera_a22f63de262413d51e6931d3c5904d781}\label{classCamera_a22f63de262413d51e6931d3c5904d781}} 
+virtual void \mbox{\hyperlink{classCamera_a22f63de262413d51e6931d3c5904d781}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the Inspector window \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classCamera_a215be5bde1e752d1210c8dd8ec479def}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
 nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCamera_ac0900b3ef7f5262ebfd1d7551453cb44}{Write}} () const
 \begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classCamera}{Camera}} to json \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classCamera}{Camera}} $\ast$ \mbox{\hyperlink{classCamera_aae79f318d0ee116b40785c50078d8ce7}{Clone}} () const
+virtual \mbox{\hyperlink{classCamera}{Camera}} $\ast$ \mbox{\hyperlink{classCamera_a5f9cd12c0227e459114bd912894c4aa4}{Clone}} () const override
 \begin{DoxyCompactList}\small\item\em creates a new copy of this \mbox{\hyperlink{classCamera}{Camera}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -65,19 +66,18 @@ nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCamera_ac0900b3ef7f5262ebfd1
 Handles camera and coordinate systems / spaces. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classCamera_aae79f318d0ee116b40785c50078d8ce7}\label{classCamera_aae79f318d0ee116b40785c50078d8ce7}} 
+\mbox{\Hypertarget{classCamera_a5f9cd12c0227e459114bd912894c4aa4}\label{classCamera_a5f9cd12c0227e459114bd912894c4aa4}} 
 \index{Camera@{Camera}!Clone@{Clone}}
 \index{Clone@{Clone}!Camera@{Camera}}
 \doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classCamera}{Camera}}$\ast$ Camera\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCamera}{Camera}} $\ast$ Camera\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
 creates a new copy of this \mbox{\hyperlink{classCamera}{Camera}} 
 
 \begin{DoxyReturn}{Returns}
-~\newline
- 
+the copy of this \mbox{\hyperlink{classCamera}{Camera}} 
 \end{DoxyReturn}
 
 
@@ -109,11 +109,11 @@ gets the height of the \mbox{\hyperlink{classCamera}{Camera}}
 \begin{DoxyReturn}{Returns}
 the height of the camera 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classCamera_a1b626e25b20be95bc257e73a4a73ad71}\label{classCamera_a1b626e25b20be95bc257e73a4a73ad71}} 
+\mbox{\Hypertarget{classCamera_a215be5bde1e752d1210c8dd8ec479def}\label{classCamera_a215be5bde1e752d1210c8dd8ec479def}} 
 \index{Camera@{Camera}!GetReadMethods@{GetReadMethods}}
 \index{GetReadMethods@{GetReadMethods}!Camera@{Camera}}
 \doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
-{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Camera\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Camera\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
