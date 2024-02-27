@@ -107,12 +107,15 @@ digraph "Source/UiBarSprite.h"
   Node37 [label="sstream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node30 -> Node38 [color="midnightblue",fontsize="10",style="solid"];
   Node38 [label="set",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
-  Node2 -> Node39 [color="midnightblue",fontsize="10",style="solid"];
-  Node39 [label="Texture.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Texture_8h.html",tooltip="Header for the OpenGL texture wrapper."];
-  Node39 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node30 -> Node39 [color="midnightblue",fontsize="10",style="solid"];
+  Node39 [label="PlayBar.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlayBar_8h.html",tooltip="UI Bar that handles playing, pausing, and autosaves of the scene."];
   Node39 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
-  Node39 -> Node40 [color="midnightblue",fontsize="10",style="solid"];
-  Node40 [label="Mesh.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Mesh_8h.html",tooltip="Mesh class - holds on to buffer/VAO references, draws their contents."];
-  Node40 -> Node31 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node40 [color="midnightblue",fontsize="10",style="solid"];
+  Node40 [label="Texture.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Texture_8h.html",tooltip="Header for the OpenGL texture wrapper."];
   Node40 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node40 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node40 -> Node41 [color="midnightblue",fontsize="10",style="solid"];
+  Node41 [label="Mesh.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Mesh_8h.html",tooltip="Mesh class - holds on to buffer/VAO references, draws their contents."];
+  Node41 -> Node31 [color="midnightblue",fontsize="10",style="solid"];
+  Node41 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
 }

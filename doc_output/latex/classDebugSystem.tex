@@ -50,6 +50,8 @@ bool \mbox{\hyperlink{classDebugSystem_a5cfa3b382f2d154106d1b0de36012e47}{Set\+N
 \mbox{\Hypertarget{classDebugSystem_a8948f55ea425f82fb10f5a7855b6f0df}\label{classDebugSystem_a8948f55ea425f82fb10f5a7855b6f0df}} 
 bool \mbox{\hyperlink{classDebugSystem_a8948f55ea425f82fb10f5a7855b6f0df}{Is\+Editor\+Running}} () const
 \begin{DoxyCompactList}\small\item\em sets whether the editor systems are enabled \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlayBar}{Play\+Bar}} \& \mbox{\hyperlink{classDebugSystem_ab2113dc364ee350532591a248a221f22}{Get\+Play\+Bar}} ()
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} \mbox{\hyperlink{classPlayBar}{Play\+Bar}} \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Type $>$ }\\void \mbox{\hyperlink{classDebugSystem_a7fd8d26c421f240359aa2f553175cf47}{Write}} (const Type \&value)
 \begin{DoxyCompactList}\small\item\em Wrapper to write to the Debug\+Stream. \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classDebugSystem_aae994854f516187647c79c65db6abb8e}{Write}} () const override
@@ -135,8 +137,6 @@ Toggles Fullscreen
 
 Shows the Im\+Gui Demo Window
 
-Pauses the Gameplay
-
 Insert menu which holds \mbox{[}New \mbox{\hyperlink{classEntity}{Entity}}, New Asset Prefab\mbox{]}
 
 Creates a new \mbox{\hyperlink{classEntity}{Entity}}
@@ -181,6 +181,19 @@ Ends the Editor Window
 
 Reimplemented from \mbox{\hyperlink{classSystem_ac37b07a2ad20e2d2fe1f77766902af5d}{System}}.
 
+\mbox{\Hypertarget{classDebugSystem_ab2113dc364ee350532591a248a221f22}\label{classDebugSystem_ab2113dc364ee350532591a248a221f22}} 
+\index{DebugSystem@{DebugSystem}!GetPlayBar@{GetPlayBar}}
+\index{GetPlayBar@{GetPlayBar}!DebugSystem@{DebugSystem}}
+\doxysubsubsection{\texorpdfstring{GetPlayBar()}{GetPlayBar()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlayBar}{Play\+Bar}} \& Debug\+System\+::\+Get\+Play\+Bar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} \mbox{\hyperlink{classPlayBar}{Play\+Bar}} 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} \mbox{\hyperlink{classPlayBar}{Play\+Bar}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}\label{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}} 
 \index{DebugSystem@{DebugSystem}!OnExit@{OnExit}}
 \index{OnExit@{OnExit}!DebugSystem@{DebugSystem}}
