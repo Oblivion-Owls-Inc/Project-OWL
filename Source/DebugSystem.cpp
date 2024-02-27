@@ -146,9 +146,9 @@ void DebugSystem::OnUpdate(float dt)
 
     if ( Input()->GetKeyTriggered( GLFW_KEY_RIGHT_ALT ) && Input()->GetKeyTriggered( GLFW_KEY_ENTER ) )
     {
-		m_Fullscreen = !m_Fullscreen;
-		PlatformSystem::GetInstance()->SetFullscreen(m_Fullscreen);
-	}
+        m_Fullscreen = !m_Fullscreen;
+        PlatformSystem::GetInstance()->SetFullscreen(m_Fullscreen);
+    }
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -190,13 +190,13 @@ void DebugSystem::DebugWindow()
             if (ImGui::MenuItem("Load File"))
             {
                 m_LoadDataFile = true;
-			}
+            }
 
             /// Reloads the Scene
             if (ImGui::MenuItem("Reload Scene"))
             {
                 SceneSystem::GetInstance()->ResetScene();
-			}
+            }
 
             /// Opens the Save Menu which holds [Save All, Save Scene, Save Engine Config]
             if (ImGui::BeginMenu("Save.."))
@@ -204,15 +204,15 @@ void DebugSystem::DebugWindow()
                 /// Saves the Scene and Engine Config
                 if (ImGui::MenuItem("Save All"))
                 {
-					m_ShowSceneSaveWindow = true;
-					m_ShowEngineSaveWindow = true;
-				}
+                    m_ShowSceneSaveWindow = true;
+                    m_ShowEngineSaveWindow = true;
+                }
 
                 /// Saves the Scene
                 if (ImGui::MenuItem("Save Scene"))
                 {
                     m_ShowSceneSaveWindow = true;
-				}
+                }
 
                 /// Saves the Engine Config
                 if (ImGui::MenuItem("Save Engine Config"))
@@ -243,22 +243,23 @@ void DebugSystem::DebugWindow()
             /// Toggles Fullscreen
             if (ImGui::MenuItem(m_Fullscreen ? "Windowed" : "Fullscreen"))
             {
-				m_Fullscreen = !m_Fullscreen;
-				PlatformSystem::GetInstance()->SetFullscreen(m_Fullscreen);
-			}
+                m_Fullscreen = !m_Fullscreen;
+                PlatformSystem::GetInstance()->SetFullscreen(m_Fullscreen);
+            }
 
             /// Shows the ImGui Demo Window
             if (ImGui::MenuItem(m_ShowDemoWindow ? "Hide DEMO" : "Show DEMO"))
             {
-				m_ShowDemoWindow = !m_ShowDemoWindow;
+                m_ShowDemoWindow = !m_ShowDemoWindow;
             }
 
-            /// Pauses the Gameplay
-            if (ImGui::MenuItem(m_EditorRunning ? "Pause Gameplay" : "Resume Gameplay"))
-            {
-				m_EditorRunning = !m_EditorRunning;
-				SetNonEditorSystemsEnabled(m_EditorRunning);
-			}
+            // This has been remove since it's now handled in the menu bar, and changing the running state may cause problems
+            // /// Pauses the Gameplay
+            // if (ImGui::MenuItem(m_EditorRunning ? "Pause Gameplay" : "Resume Gameplay"))
+            // {
+            //     m_EditorRunning = !m_EditorRunning;
+            //     SetNonEditorSystemsEnabled(m_EditorRunning);
+            // }
 
             ImGui::EndMenu();
         }
@@ -357,6 +358,11 @@ void DebugSystem::DebugWindow()
     /// Show the Console Window
     Console()->Inspect();
 
+
+    // show the PlayBar window
+    m_PlayBar.Display();
+
+
     /// Ends the Editor Window
     ImGui::End();
 }
@@ -394,8 +400,8 @@ void DebugSystem::MenuWindows()
     if (m_ShowDemoWindow)
     {
         /// if the Demo Window is closed, then close the window
-		ImGui::ShowDemoWindow(&m_ShowDemoWindow);
-	}
+        ImGui::ShowDemoWindow(&m_ShowDemoWindow);
+    }
     
     /// Opens the Asset System List
     if (m_ShowAssetSystemList)
@@ -408,13 +414,13 @@ void DebugSystem::MenuWindows()
     if (m_ShowBehaviorSystemList)
     {
         /// Shows the Behavior System List
-		ShowSystemList("BehaviorSystem");
-	}
+        ShowSystemList("BehaviorSystem");
+    }
 
     if (m_LoadDataFile)
     {
         FileExplorer::Explore(&m_LoadDataFile);
-	}
+    }
 
     ///-------------------------------------------///
     /// Save Scene and Engine Config Windows      ///
@@ -424,14 +430,14 @@ void DebugSystem::MenuWindows()
     if (m_ShowSceneLoadWindow)
     {
         /// if the Save Scene Window is closed, then close the window
-        m_ShowSceneLoadWindow = SceneSystem::GetInstance()->LoadScene();
+        m_ShowSceneLoadWindow = SceneSystem::GetInstance()->InspectorLoadScene();
     }
 
     /// Opens the Save Scene Window
     if (m_ShowSceneSaveWindow)
     {
         /// if the Save Scene Window is closed, then close the window
-		m_ShowSceneSaveWindow = SceneSystem::GetInstance()->SaveScene();
+        m_ShowSceneSaveWindow = SceneSystem::GetInstance()->InspectorSaveScene();
     }
 
     /// Opens the Save Engine Window
@@ -439,7 +445,7 @@ void DebugSystem::MenuWindows()
     {
         /// if the Save Engine Window is closed, then close the window
         m_ShowEngineSaveWindow = GameEngine()->SaveEngineConfig();
-	}
+    }
 
     ///-------------------------------------------///
     /// Asset Prefab Creation Windows             ///
@@ -474,9 +480,9 @@ void DebugSystem::MenuWindows()
         if (!AssetLibrary<Texture>()->DebugCreateAssetWindow())
         {
             /// Closes the New Texture Window
-			m_CreationWindows[(int)MenuItemType::NewTexture] = false;
-		}
-	}
+            m_CreationWindows[(int)MenuItemType::NewTexture] = false;
+        }
+    }
 
     /// Opens the New Asset Prefab Windows for Transform Animation
     if (m_CreationWindows[(int)MenuItemType::NewTransformAnimation])
@@ -495,9 +501,9 @@ void DebugSystem::MenuWindows()
         /// if the New Sprite Animation Window is closed, then close the window
         if (!AssetLibrary<AnimationAsset>()->DebugCreateAssetWindow())
         {
-			m_CreationWindows[(int)MenuItemType::NewSpriteAnimation] = false;
-		}
-	}
+            m_CreationWindows[(int)MenuItemType::NewSpriteAnimation] = false;
+        }
+    }
 }
 
 /// @brief Shows the System List for the Editor Window
@@ -519,10 +525,10 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
                 if (system == GetInstance())
                     continue;
             
-				filteredSystems.push_back(system);
-			}
-		}
-	}
+                filteredSystems.push_back(system);
+            }
+        }
+    }
     else
     {
 
@@ -581,12 +587,14 @@ void DebugSystem::OnExit()
 /// @param  enabled wether to enable or disable the systems
 bool DebugSystem::SetNonEditorSystemsEnabled( bool enabled )
 {
+    m_EditorRunning = enabled;
+
     for ( System* system : Engine::GetInstance()->GetSystems() )
     {
         if (system == Cheats())
         {
-			continue;
-		}
+            continue;
+        }
 
         if ( m_EditorSystemNames.contains( system->GetName() ) == false )
         {
@@ -595,6 +603,14 @@ bool DebugSystem::SetNonEditorSystemsEnabled( bool enabled )
     }
 
     return enabled;
+}
+
+
+/// @brief  gets the DebugSystem PlayBar
+/// @return the DebugSystem PlayBar
+PlayBar& DebugSystem::GetPlayBar()
+{
+    return m_PlayBar;
 }
 
 
@@ -682,13 +698,13 @@ void DebugSystem::WritetoConsole(const std::string& message)
     /// @param  data    the data to read from
     void DebugSystem::readShowDebugWindow( nlohmann::ordered_json const& data )
     {
-		SetDebugEnable( Stream::Read<bool>( data ) );
+        SetDebugEnable( Stream::Read<bool>( data ) );
     }
 
     /// @brief map containing read methods
     ReadMethodMap< DebugSystem > const DebugSystem::s_ReadMethods = {
-        { "ShowFpsWindow", &readShowFpsWindow },
-		{ "ShowDebugWindow", &readShowDebugWindow }
+        { "ShowFpsWindow"  , &readShowFpsWindow   },
+        { "ShowDebugWindow", &readShowDebugWindow }
     };
 
 //-----------------------------------------------------------------------------
@@ -701,8 +717,8 @@ void DebugSystem::WritetoConsole(const std::string& message)
     {
         nlohmann::ordered_json json;
         
-        json[ "ShowFpsWindow" ] = m_ShowFpsWindow;
-        json[ "ShowDebugWindow" ] = GetDebugEnabled();
+        json[ "ShowFpsWindow"   ] = Stream::Write( m_ShowFpsWindow   );
+        json[ "ShowDebugWindow" ] = Stream::Write( GetDebugEnabled() );
 
         return json;
     }

@@ -316,6 +316,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Pathfinder.cpp" />
     <ClCompile Include="Source\CameraBehavior.cpp" />
     <ClCompile Include="Source\PauseSystem.cpp" />
+    <ClCompile Include="Source\PlayBar.cpp" />
     <ClCompile Include="Source\Pool.cpp" />
     <ClCompile Include="Source\Lua.cpp" />
     <ClCompile Include="Source\PlayerController.cpp" />
@@ -383,6 +384,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Console.h" />
     <ClInclude Include="Source\HideableForeground.h" />
     <ClInclude Include="Source\PauseSystem.h" />
+    <ClInclude Include="Source\PlayBar.h" />
     <ClInclude Include="Source\ResourceCounterUi.h" />
     <ClInclude Include="Source\AssetReference.h" />
     <ClInclude Include="Source\CollisionLayerFlags.h" />
