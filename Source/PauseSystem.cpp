@@ -9,6 +9,9 @@
 #include "PauseSystem.h"
 #include "DebugSystem.h"
 #include "InputSystem.h"
+#include "AssetLibrarySystem.h"
+#include "Entity.h"
+#include "EntitySystem.h"
 #include "Engine.h"
 
 
@@ -22,9 +25,28 @@
 /// @param dt The time elapsed since the last update
 void PauseSystem::OnUpdate(float dt)
 {
-    if (Input()->GetKeyTriggered(GLFW_KEY_TAB))
+    if (Input()->GetKeyTriggered(GLFW_KEY_ESCAPE))
     {
         m_Running = !m_Running;
+
+        if (!m_Running)
+        {
+            const Entity* Pause = AssetLibrary<Entity>()->GetAsset("PauseMenu");
+
+            if (Pause != nullptr)
+            {
+                Entity* pauseMenu = Pause->Clone();
+                pauseMenu->AddToScene();
+            }
+        }
+        else
+        {
+            Entity* pauseMenu = Entities()->GetEntity("PauseMenu");
+            if (pauseMenu != nullptr)
+            {
+                pauseMenu->Destroy();
+            }
+        }
     }
 
 	pauseGame();
