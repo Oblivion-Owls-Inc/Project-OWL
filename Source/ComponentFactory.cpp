@@ -58,6 +58,7 @@
 #include "ResourceCounterUi.h"
 #include "ResourcesUiManager.h"
 #include "SceneChangeButton.h"
+#include "HideableForeground.h"
 
 
 
@@ -199,6 +200,7 @@
         { "ResourceCounterUi"      , ComponentInfo< ResourceCounterUi       >() },
         { "ResourcesUiManager"     , ComponentInfo< ResourcesUiManager      >() },
         { "SceneChangeButton"      , ComponentInfo< SceneChangeButton       >() },
+        { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
     };
 
 //-----------------------------------------------------------------------------
