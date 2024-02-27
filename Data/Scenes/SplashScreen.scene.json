@@ -1,0 +1,140 @@
+{
+    "Assets": {
+        "Sounds": null,
+        "Textures": {
+            "BackgroundTexture": {
+                "Filepath": "Data/Textures/Background.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "DigDeeperLogo": {
+                "Filepath": "Data/Textures/DigDeeperLogo-export.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
+            "DigiLogoTexture": {
+                "Filepath": "Data/Textures/DigiPen_WHITE.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
+            "FMODLogo": {
+                "Filepath": "Data/Textures/FMOD.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            }
+        },
+        "TransformAnimations": null,
+        "Animations": null,
+        "Archetypes": null
+    },
+    "Entities": {
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 5.0,
+                    "IsActive": true
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Background": {
+            "Name": "Background",
+            "Components": {
+                "SplashScreenController": {
+                    "NextSceneName": "Prototype",
+                    "Logos": [
+                        {
+                            "Timer": 2.0,
+                            "Logo": {
+                                "AssetName": "DigiLogoTexture"
+                            },
+                            "Scale": 1.0
+                        },
+                        {
+                            "Timer": 2.0,
+                            "Logo": {
+                                "AssetName": "FMODLogo"
+                            },
+                            "Scale": 2.0
+                        },
+                        {
+                            "Timer": 2.0,
+                            "Logo": {
+                                "AssetName": "DigDeeperLogo"
+                            },
+                            "Scale": 3.0
+                        }
+                    ]
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "DigiLogoTexture"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        }
+    }
+}

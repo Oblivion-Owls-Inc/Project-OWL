@@ -56,6 +56,10 @@
     /// @return the UV offset of the frame index
     glm::vec2 Texture::GetUvOffset( int frameIndex ) const
     {
+        if (m_Mesh == nullptr)
+        {
+            return glm::vec2(0.0f);
+        }
         int column = frameIndex % m_SheetDimensions.x;
         int row = frameIndex / m_SheetDimensions.x;
         return m_Mesh->GetUVsize() * glm::vec2( column, row );
@@ -261,7 +265,7 @@ void Texture::loadImage()
         glTexParameterfv( GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, &glm::vec4( 0.0f, 0.0f, 0.0f, 0.0f )[ 0 ] );
 
         // attach mesh
-        if (m_SheetDimensions == glm::ivec2( 1 ) && m_Pivot == glm::vec2( 0.5f ) )
+        if ((m_UseAspectRatio == false || GetAspectRatio() == 1.0f) && m_SheetDimensions == glm::ivec2( 1 ) && m_Pivot == glm::vec2( 0.5f ) )
             m_Mesh = Renderer()->GetDefaultMesh();
         else
             m_Mesh = new Mesh( m_UseAspectRatio ? glm::vec2( GetAspectRatio(), 1.0f ) : glm::vec2( 1.0f ), m_SheetDimensions, m_Pivot);
@@ -281,7 +285,7 @@ void Texture::loadImage()
             delete m_Mesh;
         }
 
-        if (m_SheetDimensions == glm::ivec2( 1 ) && m_Pivot == glm::vec2( 0.5f ) )
+        if ( (m_UseAspectRatio == false || GetAspectRatio() == 1.0f) && m_SheetDimensions == glm::ivec2( 1 ) && m_Pivot == glm::vec2( 0.5f ) )
         {
             m_Mesh = Renderer()->GetDefaultMesh();
         }
