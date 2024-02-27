@@ -36,4 +36,4 @@ jobs:
 
     - name: Commit Files to Github
       run: |
-        git push https://${{ secrets.MY_GITHUB_TOKEN }}@github.com/SixSleepyAsh/Project-OWL.git ${{ github.ref_name }}
+        git push https://${{ secrets.MY_GITHUB_TOKEN }}@github.com/Oblivion-Owls-Inc/Project-OWL.git ${{ github.ref_name }}
