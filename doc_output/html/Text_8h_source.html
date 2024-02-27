@@ -104,32 +104,40 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> loadTextIntoTilemap();</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>: <span class="comment">// Reading</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">public</span>: <span class="comment">// inspection</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> readText( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classText.html#a455483830810e2fd5688a94ac1fe18f8">Inspector</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; Text &gt; <span class="keyword">const</span> s_ReadMethods;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; GetReadMethods()<span class="keyword"> const override</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classText.html#a47029e0070e938c6af896bf827a99f9d">Write</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>: <span class="comment">// Reading</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> readText( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; Text &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; GetReadMethods()<span class="keyword"> const override</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classText.html#a47029e0070e938c6af896bf827a99f9d">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};</div>
 <div class="ttc" id="aComponent_8h_html"><div class="ttname"><a href="Component_8h.html">Component.h</a></div><div class="ttdoc">Virtual component header.</div></div>
 <div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:21</div></div>
 <div class="ttc" id="aclassText_html"><div class="ttname"><a href="classText.html">Text</a></div><div class="ttdoc">Uses TilemapSprite attached to parent entity to draw text.</div><div class="ttdef"><b>Definition:</b> Text.h:12</div></div>
 <div class="ttc" id="aclassText_html_a21fb9900e98f5c5ecf308f0f9a52f752"><div class="ttname"><a href="classText.html#a21fb9900e98f5c5ecf308f0f9a52f752">Text::SetText</a></div><div class="ttdeci">__inline void SetText(std::string const &amp;text)</div><div class="ttdoc">sets the text of this Text</div><div class="ttdef"><b>Definition:</b> Text.h:28</div></div>
-<div class="ttc" id="aclassText_html_a47029e0070e938c6af896bf827a99f9d"><div class="ttname"><a href="classText.html#a47029e0070e938c6af896bf827a99f9d">Text::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Text component data to a JSON file.</div><div class="ttdef"><b>Definition:</b> Text.cpp:65</div></div>
+<div class="ttc" id="aclassText_html_a455483830810e2fd5688a94ac1fe18f8"><div class="ttname"><a href="classText.html#a455483830810e2fd5688a94ac1fe18f8">Text::Inspector</a></div><div class="ttdeci">virtual void Inspector() override</div><div class="ttdoc">inspects this Text Component</div><div class="ttdef"><b>Definition:</b> Text.cpp:57</div></div>
+<div class="ttc" id="aclassText_html_a47029e0070e938c6af896bf827a99f9d"><div class="ttname"><a href="classText.html#a47029e0070e938c6af896bf827a99f9d">Text::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Text component data to a JSON file.</div><div class="ttdef"><b>Definition:</b> Text.cpp:78</div></div>
 <div class="ttc" id="aclassText_html_ab3e26143fccc52699bcc5149cae852bc"><div class="ttname"><a href="classText.html#ab3e26143fccc52699bcc5149cae852bc">Text::Text</a></div><div class="ttdeci">Text()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> Text.cpp:12</div></div>
 <div class="ttc" id="aclassText_html_ac971ea4d6d43c1635ffd078f1c0e7e95"><div class="ttname"><a href="classText.html#ac971ea4d6d43c1635ffd078f1c0e7e95">Text::Clone</a></div><div class="ttdeci">virtual Component * Clone() const override</div><div class="ttdef"><b>Definition:</b> Text.cpp:17</div></div>
 <div class="ttc" id="aclassText_html_ae0aeffd11075b567fa4a2d26049c0d5c"><div class="ttname"><a href="classText.html#ae0aeffd11075b567fa4a2d26049c0d5c">Text::GetText</a></div><div class="ttdeci">__inline std::string const  &amp; GetText() const</div><div class="ttdoc">gets the text of this Text</div><div class="ttdef"><b>Definition:</b> Text.h:23</div></div>

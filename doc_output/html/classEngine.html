@@ -91,9 +91,10 @@ Collaboration diagram for Engine:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a9b23df7a1bc3a25e909b8eb472db8b01"><td class="memItemLeft" align="right" valign="top"><a id="a9b23df7a1bc3a25e909b8eb472db8b01"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>UpdateMode</b> { <b>fixedUpdate</b>
+<tr class="memitem:a9b23df7a1bc3a25e909b8eb472db8b01"><td class="memItemLeft" align="right" valign="top"><a id="a9b23df7a1bc3a25e909b8eb472db8b01"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a9b23df7a1bc3a25e909b8eb472db8b01">UpdateMode</a> { <b>fixedUpdate</b>
 , <b>update</b>
  }</td></tr>
+<tr class="memdesc:a9b23df7a1bc3a25e909b8eb472db8b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">enum saying which update mode the engine is currently in <br /></td></tr>
 <tr class="separator:a9b23df7a1bc3a25e909b8eb472db8b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -105,7 +106,10 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#ac7dc8c00262aee2a11183e4080fa5faf">Close</a> ()</td></tr>
 <tr class="memdesc:ac7dc8c00262aee2a11183e4080fa5faf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flags the engine to close once it finishes this loop. <br /></td></tr>
 <tr class="separator:ac7dc8c00262aee2a11183e4080fa5faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f6f4831c70172dcc71a995d7e0ad488"><td class="memItemLeft" align="right" valign="top">UpdateMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a2f6f4831c70172dcc71a995d7e0ad488">GetCurrentUpdate</a> () const</td></tr>
+<tr class="memitem:acff67dbd8e2736e407852768d1fbd509"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#acff67dbd8e2736e407852768d1fbd509">SaveEngineConfig</a> ()</td></tr>
+<tr class="memdesc:acff67dbd8e2736e407852768d1fbd509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used To Create a Window to Save the <a class="el" href="classEngine.html">Engine</a> Config.  <a href="classEngine.html#acff67dbd8e2736e407852768d1fbd509">More...</a><br /></td></tr>
+<tr class="separator:acff67dbd8e2736e407852768d1fbd509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f6f4831c70172dcc71a995d7e0ad488"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEngine.html#a9b23df7a1bc3a25e909b8eb472db8b01">UpdateMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a2f6f4831c70172dcc71a995d7e0ad488">GetCurrentUpdate</a> () const</td></tr>
 <tr class="memdesc:a2f6f4831c70172dcc71a995d7e0ad488"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the current update status  <a href="classEngine.html#a2f6f4831c70172dcc71a995d7e0ad488">More...</a><br /></td></tr>
 <tr class="separator:a2f6f4831c70172dcc71a995d7e0ad488"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b5b5213266b2be7fe2c1c94b43946aa"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a8b5b5213266b2be7fe2c1c94b43946aa">GetFixedFrameDuration</a> () const</td></tr>
@@ -114,12 +118,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a0e98f1b1054e492ba78731b1a8e800d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a0e98f1b1054e492ba78731b1a8e800d1">SetFixedFrameDuration</a> (float fixedFrameDuration)</td></tr>
 <tr class="memdesc:a0e98f1b1054e492ba78731b1a8e800d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the duration of each fixed frame  <a href="classEngine.html#a0e98f1b1054e492ba78731b1a8e800d1">More...</a><br /></td></tr>
 <tr class="separator:a0e98f1b1054e492ba78731b1a8e800d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf09ae5be5a7f43804cedcb99ec52ed8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#aaf09ae5be5a7f43804cedcb99ec52ed8">GetFrameCount</a> () const</td></tr>
+<tr class="memdesc:aaf09ae5be5a7f43804cedcb99ec52ed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the current graphics frame count  <a href="classEngine.html#aaf09ae5be5a7f43804cedcb99ec52ed8">More...</a><br /></td></tr>
+<tr class="separator:aaf09ae5be5a7f43804cedcb99ec52ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54a2b4d293680df3c4f6f978023da227"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a54a2b4d293680df3c4f6f978023da227">GetFixedFrameCount</a> () const</td></tr>
+<tr class="memdesc:a54a2b4d293680df3c4f6f978023da227"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the current simulation frame count  <a href="classEngine.html#a54a2b4d293680df3c4f6f978023da227">More...</a><br /></td></tr>
+<tr class="separator:a54a2b4d293680df3c4f6f978023da227"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b12e00c76c381b58c44ee4e468cfd3a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classSystem.html">System</a> * &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#a0b12e00c76c381b58c44ee4e468cfd3a">GetSystems</a> () const</td></tr>
 <tr class="memdesc:a0b12e00c76c381b58c44ee4e468cfd3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the array of all Systems in the engine.  <a href="classEngine.html#a0b12e00c76c381b58c44ee4e468cfd3a">More...</a><br /></td></tr>
 <tr class="separator:a0b12e00c76c381b58c44ee4e468cfd3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acff67dbd8e2736e407852768d1fbd509"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#acff67dbd8e2736e407852768d1fbd509">SaveEngineConfig</a> ()</td></tr>
-<tr class="memdesc:acff67dbd8e2736e407852768d1fbd509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used To Create a Window to Save the <a class="el" href="classEngine.html">Engine</a> Config.  <a href="classEngine.html#acff67dbd8e2736e407852768d1fbd509">More...</a><br /></td></tr>
-<tr class="separator:acff67dbd8e2736e407852768d1fbd509"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc01dc48e09185a4e093d67904cfef6d"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEngine.html#abc01dc48e09185a4e093d67904cfef6d">GetReadMethods</a> () const override</td></tr>
 <tr class="memdesc:abc01dc48e09185a4e093d67904cfef6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the map of <a class="el" href="classEngine.html">Engine</a> read methods  <a href="classEngine.html#abc01dc48e09185a4e093d67904cfef6d">More...</a><br /></td></tr>
 <tr class="separator:abc01dc48e09185a4e093d67904cfef6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,7 +159,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Engine::UpdateMode Engine::GetCurrentUpdate </td>
+          <td class="memname"><a class="el" href="classEngine.html#a9b23df7a1bc3a25e909b8eb472db8b01">Engine::UpdateMode</a> Engine::GetCurrentUpdate </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -162,6 +169,26 @@ Static Public Member Functions</h2></td></tr>
 
 <p>gets the current update status </p>
 <dl class="section return"><dt>Returns</dt><dd>the current status </dd></dl>
+
+</div>
+</div>
+<a id="a54a2b4d293680df3c4f6f978023da227"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54a2b4d293680df3c4f6f978023da227">&#9670;&nbsp;</a></span>GetFixedFrameCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Engine::GetFixedFrameCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the current simulation frame count </p>
+<dl class="section return"><dt>Returns</dt><dd>the number of simulation frames that have elapsed since the <a class="el" href="classEngine.html">Engine</a> started </dd></dl>
 
 </div>
 </div>
@@ -182,6 +209,26 @@ Static Public Member Functions</h2></td></tr>
 
 <p>gets the duration of each fixed frame </p>
 <dl class="section return"><dt>Returns</dt><dd>the amount of time in seconds that each fixed frame lasts </dd></dl>
+
+</div>
+</div>
+<a id="aaf09ae5be5a7f43804cedcb99ec52ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf09ae5be5a7f43804cedcb99ec52ed8">&#9670;&nbsp;</a></span>GetFrameCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Engine::GetFrameCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the current graphics frame count </p>
+<dl class="section return"><dt>Returns</dt><dd>the number of graphics frames that have elapsed since the <a class="el" href="classEngine.html">Engine</a> started </dd></dl>
 
 </div>
 </div>

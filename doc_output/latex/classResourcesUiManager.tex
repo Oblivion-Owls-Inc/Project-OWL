@@ -1,0 +1,133 @@
+\hypertarget{classResourcesUiManager}{}\doxysection{Resources\+Ui\+Manager Class Reference}
+\label{classResourcesUiManager}\index{ResourcesUiManager@{ResourcesUiManager}}
+
+
+\mbox{\hyperlink{classComponent}{Component}} that manages the UI for displaying what resources a player currently has.  
+
+
+
+
+{\ttfamily \#include $<$Resources\+Ui\+Manager.\+h$>$}
+
+
+
+Inheritance diagram for Resources\+Ui\+Manager\+:
+% FIG 0
+
+
+Collaboration diagram for Resources\+Ui\+Manager\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classResourcesUiManager_a4e83fccc1924227100dc27f5c8e252f6}\label{classResourcesUiManager_a4e83fccc1924227100dc27f5c8e252f6}} 
+\mbox{\hyperlink{classResourcesUiManager_a4e83fccc1924227100dc27f5c8e252f6}{Resources\+Ui\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classResourcesUiManager_a6761098422420cba6fe1f7e6c32a7bf9}\label{classResourcesUiManager_a6761098422420cba6fe1f7e6c32a7bf9}} 
+virtual void \mbox{\hyperlink{classResourcesUiManager_a6761098422420cba6fe1f7e6c32a7bf9}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classResourcesUiManager_ad36f620e6de9428d8a6353b8951c53b6}\label{classResourcesUiManager_ad36f620e6de9428d8a6353b8951c53b6}} 
+virtual void \mbox{\hyperlink{classResourcesUiManager_ad36f620e6de9428d8a6353b8951c53b6}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classResourcesUiManager_ae28c75112e70509d85268fde360b3dd6}{On\+Remove\+Child}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$child) override
+\begin{DoxyCompactList}\small\item\em called before a child is removed from this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classResourcesUiManager_aa679c38db2eace156320acc6e0bb11c8}\label{classResourcesUiManager_aa679c38db2eace156320acc6e0bb11c8}} 
+virtual void \mbox{\hyperlink{classResourcesUiManager_aa679c38db2eace156320acc6e0bb11c8}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classResourcesUiManager_a153210a0e60b9c36ae4923f0fdc0a939}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classResourcesUiManager_a40d92741d8e6a3f5c6eda17d1969f5f6}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} $\ast$ \mbox{\hyperlink{classResourcesUiManager_a596f12c0d42595d2e0baaaa8ca956174}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classComponent}{Component}} that manages the UI for displaying what resources a player currently has. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classResourcesUiManager_a596f12c0d42595d2e0baaaa8ca956174}\label{classResourcesUiManager_a596f12c0d42595d2e0baaaa8ca956174}} 
+\index{ResourcesUiManager@{ResourcesUiManager}!Clone@{Clone}}
+\index{Clone@{Clone}!ResourcesUiManager@{ResourcesUiManager}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} $\ast$ Resources\+Ui\+Manager\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classResourcesUiManager_a153210a0e60b9c36ae4923f0fdc0a939}\label{classResourcesUiManager_a153210a0e60b9c36ae4923f0fdc0a939}} 
+\index{ResourcesUiManager@{ResourcesUiManager}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!ResourcesUiManager@{ResourcesUiManager}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Resources\+Ui\+Manager\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} 
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}}
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}}
+
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classResourcesUiManager_ae28c75112e70509d85268fde360b3dd6}\label{classResourcesUiManager_ae28c75112e70509d85268fde360b3dd6}} 
+\index{ResourcesUiManager@{ResourcesUiManager}!OnRemoveChild@{OnRemoveChild}}
+\index{OnRemoveChild@{OnRemoveChild}!ResourcesUiManager@{ResourcesUiManager}}
+\doxysubsubsection{\texorpdfstring{OnRemoveChild()}{OnRemoveChild()}}
+{\footnotesize\ttfamily void Resources\+Ui\+Manager\+::\+On\+Remove\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{child }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called before a child is removed from this \mbox{\hyperlink{classEntity}{Entity}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & the child that will be removed \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classComponent_a4395f6697c9fb583a226c26754478eb0}{Component}}.
+
+\mbox{\Hypertarget{classResourcesUiManager_a40d92741d8e6a3f5c6eda17d1969f5f6}\label{classResourcesUiManager_a40d92741d8e6a3f5c6eda17d1969f5f6}} 
+\index{ResourcesUiManager@{ResourcesUiManager}!Write@{Write}}
+\index{Write@{Write}!ResourcesUiManager@{ResourcesUiManager}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Resources\+Ui\+Manager\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} to JSON 
+
+Writes all \mbox{\hyperlink{classHomeBase}{Home\+Base}} data to a JSON file.
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}}
+
+The JSON file containing the data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{ResourcesUiManager_8h}{Resources\+Ui\+Manager.\+h}}\item 
+Source/\mbox{\hyperlink{ResourcesUiManager_8cpp}{Resources\+Ui\+Manager.\+cpp}}\end{DoxyCompactItemize}

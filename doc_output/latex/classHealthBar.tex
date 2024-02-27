@@ -1,0 +1,95 @@
+\hypertarget{classHealthBar}{}\doxysection{Health\+Bar Class Reference}
+\label{classHealthBar}\index{HealthBar@{HealthBar}}
+
+
+health bar UI that displays offset from an \mbox{\hyperlink{classEntity}{Entity}} with a \mbox{\hyperlink{classHealth}{Health}} component  
+
+
+
+
+{\ttfamily \#include $<$Health\+Bar.\+h$>$}
+
+
+
+Inheritance diagram for Health\+Bar\+:
+% FIG 0
+
+
+Collaboration diagram for Health\+Bar\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classHealthBar_a69296042c323d998dce679a968389548}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classHealthBar_a92b4ac59e715f79fc6c7ea542d26a068}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classHealthBar}{Health\+Bar}} data to a JSON file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHealthBar_a05f694deecdc0399d9c5fb230493df05}\label{classHealthBar_a05f694deecdc0399d9c5fb230493df05}} 
+\mbox{\hyperlink{classHealthBar_a05f694deecdc0399d9c5fb230493df05}{Health\+Bar}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classHealthBar}{Health\+Bar}} $\ast$ \mbox{\hyperlink{classHealthBar_abe0072a9f2caa339699f49877dcb9360}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classHealthBar}{Health\+Bar}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+health bar UI that displays offset from an \mbox{\hyperlink{classEntity}{Entity}} with a \mbox{\hyperlink{classHealth}{Health}} component 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHealthBar_abe0072a9f2caa339699f49877dcb9360}\label{classHealthBar_abe0072a9f2caa339699f49877dcb9360}} 
+\index{HealthBar@{HealthBar}!Clone@{Clone}}
+\index{Clone@{Clone}!HealthBar@{HealthBar}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHealthBar}{Health\+Bar}} $\ast$ Health\+Bar\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classHealthBar}{Health\+Bar}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classHealthBar}{Health\+Bar}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classHealthBar_a69296042c323d998dce679a968389548}\label{classHealthBar_a69296042c323d998dce679a968389548}} 
+\index{HealthBar@{HealthBar}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!HealthBar@{HealthBar}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Health\+Bar\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classHealthBar_a92b4ac59e715f79fc6c7ea542d26a068}\label{classHealthBar_a92b4ac59e715f79fc6c7ea542d26a068}} 
+\index{HealthBar@{HealthBar}!Write@{Write}}
+\index{Write@{Write}!HealthBar@{HealthBar}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Health\+Bar\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classHealthBar}{Health\+Bar}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classHealthBar}{Health\+Bar}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{HealthBar_8h}{Health\+Bar.\+h}}\item 
+Source/\mbox{\hyperlink{HealthBar_8cpp}{Health\+Bar.\+cpp}}\end{DoxyCompactItemize}

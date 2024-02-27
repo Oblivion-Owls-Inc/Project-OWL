@@ -103,9 +103,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemapSprite.html#ae0092a169d3ebae5ba593094ecec4fd8">TilemapSprite</a> ()</td></tr>
 <tr class="memdesc:ae0092a169d3ebae5ba593094ecec4fd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
 <tr class="separator:ae0092a169d3ebae5ba593094ecec4fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacc42f13bb996c067acfeabbb8e61502"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemapSprite.html#aacc42f13bb996c067acfeabbb8e61502">TilemapSprite</a> (<a class="el" href="classTexture.html">Texture</a> *texture, float stride_mult=1.0f, int layer=2, std::type_index type=typeid(<a class="el" href="classTilemapSprite.html">TilemapSprite</a>))</td></tr>
-<tr class="memdesc:aacc42f13bb996c067acfeabbb8e61502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Textured constructor.  <a href="classTilemapSprite.html#aacc42f13bb996c067acfeabbb8e61502">More...</a><br /></td></tr>
-<tr class="separator:aacc42f13bb996c067acfeabbb8e61502"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75fe363c43e37594deac4fb7c53272a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemapSprite.html#a75fe363c43e37594deac4fb7c53272a3">TilemapSprite</a> (<a class="el" href="classAssetReference.html">AssetReference</a>&lt; <a class="el" href="classTexture.html">Texture</a> &gt; const &amp;texture, float stride_mult=1.0f, int layer=2, std::type_index type=typeid(<a class="el" href="classTilemapSprite.html">TilemapSprite</a>))</td></tr>
+<tr class="memdesc:a75fe363c43e37594deac4fb7c53272a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Textured constructor.  <a href="classTilemapSprite.html#a75fe363c43e37594deac4fb7c53272a3">More...</a><br /></td></tr>
+<tr class="separator:a75fe363c43e37594deac4fb7c53272a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e846266495ed45f4b082696a16e3bb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemapSprite.html#a7e846266495ed45f4b082696a16e3bb9">LoadTileArray</a> (const char *tiles, int size)</td></tr>
 <tr class="memdesc:a7e846266495ed45f4b082696a16e3bb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the tile array from a raw char array.  <a href="classTilemapSprite.html#a7e846266495ed45f4b082696a16e3bb9">More...</a><br /></td></tr>
 <tr class="separator:a7e846266495ed45f4b082696a16e3bb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,50 +115,56 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0de4cfc296ee7c517f6675b3d7a8ba4b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemapSprite.html#a0de4cfc296ee7c517f6675b3d7a8ba4b">Draw</a> () override</td></tr>
 <tr class="memdesc:a0de4cfc296ee7c517f6675b3d7a8ba4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws tilemap using currently loaded array.  <a href="classTilemapSprite.html#a0de4cfc296ee7c517f6675b3d7a8ba4b">More...</a><br /></td></tr>
 <tr class="separator:a0de4cfc296ee7c517f6675b3d7a8ba4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38c7af38d3f9d8cfa93f10e85bd2453a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemapSprite.html#a38c7af38d3f9d8cfa93f10e85bd2453a">OverlapsLocalPoint</a> (glm::vec2 const &amp;) const override</td></tr>
+<tr class="memdesc:a38c7af38d3f9d8cfa93f10e85bd2453a"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a a point in local space overlaps this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a>  <a href="classTilemapSprite.html#a38c7af38d3f9d8cfa93f10e85bd2453a">More...</a><br /></td></tr>
+<tr class="separator:a38c7af38d3f9d8cfa93f10e85bd2453a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a073622f9f48c1d3d317ad9fc7a9701c3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classTilemapSprite.html">TilemapSprite</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTilemapSprite.html#a073622f9f48c1d3d317ad9fc7a9701c3">Clone</a> () const override</td></tr>
+<tr class="memdesc:a073622f9f48c1d3d317ad9fc7a9701c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a copy of this <a class="el" href="classTilemapSprite.html" title="A version of Sprite for rendering tilemaps using GPU instancing.">TilemapSprite</a>  <a href="classTilemapSprite.html#a073622f9f48c1d3d317ad9fc7a9701c3">More...</a><br /></td></tr>
+<tr class="separator:a073622f9f48c1d3d317ad9fc7a9701c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classSprite"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classSprite')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classSprite.html">Sprite</a></td></tr>
 <tr class="memitem:a12cba3ac1868418add3c4d95ce87e615 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a12cba3ac1868418add3c4d95ce87e615">Sprite</a> ()</td></tr>
 <tr class="memdesc:a12cba3ac1868418add3c4d95ce87e615 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="classSprite.html#a12cba3ac1868418add3c4d95ce87e615">More...</a><br /></td></tr>
 <tr class="separator:a12cba3ac1868418add3c4d95ce87e615 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0eac278459f74bee4fbdd1f56ced6c4a inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a0eac278459f74bee4fbdd1f56ced6c4a">Sprite</a> (<a class="el" href="classTexture.html">Texture</a> const *texture, int layer=2, std::type_index type=typeid(<a class="el" href="classSprite.html">Sprite</a>))</td></tr>
-<tr class="memdesc:a0eac278459f74bee4fbdd1f56ced6c4a inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Textured constructor.  <a href="classSprite.html#a0eac278459f74bee4fbdd1f56ced6c4a">More...</a><br /></td></tr>
-<tr class="separator:a0eac278459f74bee4fbdd1f56ced6c4a inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9babd6c72dc4289993572952b538c2 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a6a9babd6c72dc4289993572952b538c2">Sprite</a> (<a class="el" href="classAssetReference.html">AssetReference</a>&lt; <a class="el" href="classTexture.html">Texture</a> &gt; const &amp;texture, int layer=2, std::type_index type=typeid(<a class="el" href="classSprite.html">Sprite</a>))</td></tr>
+<tr class="memdesc:a6a9babd6c72dc4289993572952b538c2 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Textured constructor.  <a href="classSprite.html#a6a9babd6c72dc4289993572952b538c2">More...</a><br /></td></tr>
+<tr class="separator:a6a9babd6c72dc4289993572952b538c2 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff0448963fc0515aad87ac0cce6f8bc2 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top"><a id="aff0448963fc0515aad87ac0cce6f8bc2"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#aff0448963fc0515aad87ac0cce6f8bc2">~Sprite</a> ()</td></tr>
 <tr class="memdesc:aff0448963fc0515aad87ac0cce6f8bc2 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor: just to let derived types free stuff. <br /></td></tr>
 <tr class="separator:aff0448963fc0515aad87ac0cce6f8bc2 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4f77c982a39659c389f00b9d395b0db inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classComponent.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ac4f77c982a39659c389f00b9d395b0db">Clone</a> () const override</td></tr>
-<tr class="memdesc:ac4f77c982a39659c389f00b9d395b0db inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates a new <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> component which is a duplicate of this one  <a href="classSprite.html#ac4f77c982a39659c389f00b9d395b0db">More...</a><br /></td></tr>
-<tr class="separator:ac4f77c982a39659c389f00b9d395b0db inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97b2c1ba79abbc619db3f908e7c70c40 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">__inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a97b2c1ba79abbc619db3f908e7c70c40">GetFrameIndex</a> () const</td></tr>
-<tr class="memdesc:a97b2c1ba79abbc619db3f908e7c70c40 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the frame index  <a href="classSprite.html#a97b2c1ba79abbc619db3f908e7c70c40">More...</a><br /></td></tr>
-<tr class="separator:a97b2c1ba79abbc619db3f908e7c70c40 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a896696f592637d87d0582abf0bc53b4a inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a896696f592637d87d0582abf0bc53b4a">SetFrameIndex</a> (int frameIndex)</td></tr>
-<tr class="memdesc:a896696f592637d87d0582abf0bc53b4a inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets current frame index of the spritesheet.  <a href="classSprite.html#a896696f592637d87d0582abf0bc53b4a">More...</a><br /></td></tr>
-<tr class="separator:a896696f592637d87d0582abf0bc53b4a inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab38781e0ae652ac69cc936b896de5342 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">__inline int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ab38781e0ae652ac69cc936b896de5342">GetLayer</a> () const</td></tr>
-<tr class="memdesc:ab38781e0ae652ac69cc936b896de5342 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the layer  <a href="classSprite.html#ab38781e0ae652ac69cc936b896de5342">More...</a><br /></td></tr>
-<tr class="separator:ab38781e0ae652ac69cc936b896de5342 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a003cc1fef2ee6b8b087f79f047a68ff2 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a003cc1fef2ee6b8b087f79f047a68ff2">SetLayer</a> (int layer)</td></tr>
-<tr class="memdesc:a003cc1fef2ee6b8b087f79f047a68ff2 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the rendering layer : 0 - 4. 0 is back, 4 is front.  <a href="classSprite.html#a003cc1fef2ee6b8b087f79f047a68ff2">More...</a><br /></td></tr>
-<tr class="separator:a003cc1fef2ee6b8b087f79f047a68ff2 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cd7ec2dda5c9e891d8084dc52491950 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">__inline float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a3cd7ec2dda5c9e891d8084dc52491950">GetOpacity</a> () const</td></tr>
-<tr class="memdesc:a3cd7ec2dda5c9e891d8084dc52491950 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the opacity  <a href="classSprite.html#a3cd7ec2dda5c9e891d8084dc52491950">More...</a><br /></td></tr>
-<tr class="separator:a3cd7ec2dda5c9e891d8084dc52491950 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0dcfdef3d0a63316188f8db9d8a9f14 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ac0dcfdef3d0a63316188f8db9d8a9f14">SetOpacity</a> (float opacity)</td></tr>
-<tr class="memdesc:ac0dcfdef3d0a63316188f8db9d8a9f14 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the opacity.  <a href="classSprite.html#ac0dcfdef3d0a63316188f8db9d8a9f14">More...</a><br /></td></tr>
-<tr class="separator:ac0dcfdef3d0a63316188f8db9d8a9f14 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc83344068197f7c80f30deecd041579 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">__inline glm::vec4 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#abc83344068197f7c80f30deecd041579">GetColor</a> () const</td></tr>
-<tr class="memdesc:abc83344068197f7c80f30deecd041579 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the color  <a href="classSprite.html#abc83344068197f7c80f30deecd041579">More...</a><br /></td></tr>
-<tr class="separator:abc83344068197f7c80f30deecd041579 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbfee434d423324f10c67b5016c15181 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#abbfee434d423324f10c67b5016c15181">SetColor</a> (glm::vec4 const &amp;color)</td></tr>
-<tr class="memdesc:abbfee434d423324f10c67b5016c15181 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the color  <a href="classSprite.html#abbfee434d423324f10c67b5016c15181">More...</a><br /></td></tr>
-<tr class="separator:abbfee434d423324f10c67b5016c15181 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0956ca2a207a07b11c4c07641f4c1f75 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">__inline <a class="el" href="classTexture.html">Texture</a> const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a0956ca2a207a07b11c4c07641f4c1f75">GetTexture</a> () const</td></tr>
-<tr class="memdesc:a0956ca2a207a07b11c4c07641f4c1f75 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> is using  <a href="classSprite.html#a0956ca2a207a07b11c4c07641f4c1f75">More...</a><br /></td></tr>
-<tr class="separator:a0956ca2a207a07b11c4c07641f4c1f75 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add75a99e4693d8570349f7726577bff8 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#add75a99e4693d8570349f7726577bff8">SetTexture</a> (<a class="el" href="classTexture.html">Texture</a> const *texture)</td></tr>
-<tr class="memdesc:add75a99e4693d8570349f7726577bff8 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> is using  <a href="classSprite.html#add75a99e4693d8570349f7726577bff8">More...</a><br /></td></tr>
-<tr class="separator:add75a99e4693d8570349f7726577bff8 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7145e9434b6b1d3320ac2a182f76228f inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a7145e9434b6b1d3320ac2a182f76228f">GetFrameIndex</a> () const</td></tr>
+<tr class="memdesc:a7145e9434b6b1d3320ac2a182f76228f inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the frame index  <a href="classSprite.html#a7145e9434b6b1d3320ac2a182f76228f">More...</a><br /></td></tr>
+<tr class="separator:a7145e9434b6b1d3320ac2a182f76228f inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a672920b37562700f29b3371387a5f58a inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a672920b37562700f29b3371387a5f58a">SetFrameIndex</a> (int frameIndex)</td></tr>
+<tr class="memdesc:a672920b37562700f29b3371387a5f58a inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets current frame index of the spritesheet.  <a href="classSprite.html#a672920b37562700f29b3371387a5f58a">More...</a><br /></td></tr>
+<tr class="separator:a672920b37562700f29b3371387a5f58a inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a854b09aa7faba07d95bb26c3e2975923 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a854b09aa7faba07d95bb26c3e2975923">GetLayer</a> () const</td></tr>
+<tr class="memdesc:a854b09aa7faba07d95bb26c3e2975923 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the layer  <a href="classSprite.html#a854b09aa7faba07d95bb26c3e2975923">More...</a><br /></td></tr>
+<tr class="separator:a854b09aa7faba07d95bb26c3e2975923 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62b9a79a31deef902e15bdd386d12d16 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a62b9a79a31deef902e15bdd386d12d16">SetLayer</a> (int layer)</td></tr>
+<tr class="memdesc:a62b9a79a31deef902e15bdd386d12d16 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the rendering layer : 0 - 4. 0 is back, 4 is front.  <a href="classSprite.html#a62b9a79a31deef902e15bdd386d12d16">More...</a><br /></td></tr>
+<tr class="separator:a62b9a79a31deef902e15bdd386d12d16 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89e42437b6563b529341920ff91f1de3 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a89e42437b6563b529341920ff91f1de3">GetOpacity</a> () const</td></tr>
+<tr class="memdesc:a89e42437b6563b529341920ff91f1de3 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the opacity  <a href="classSprite.html#a89e42437b6563b529341920ff91f1de3">More...</a><br /></td></tr>
+<tr class="separator:a89e42437b6563b529341920ff91f1de3 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa7134433875254290e1f57df34143e inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a9fa7134433875254290e1f57df34143e">SetOpacity</a> (float opacity)</td></tr>
+<tr class="memdesc:a9fa7134433875254290e1f57df34143e inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the opacity.  <a href="classSprite.html#a9fa7134433875254290e1f57df34143e">More...</a><br /></td></tr>
+<tr class="separator:a9fa7134433875254290e1f57df34143e inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5cd0aeeb7ee8775fe2672fac78b1db5 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">glm::vec4 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ae5cd0aeeb7ee8775fe2672fac78b1db5">GetColor</a> () const</td></tr>
+<tr class="memdesc:ae5cd0aeeb7ee8775fe2672fac78b1db5 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the color  <a href="classSprite.html#ae5cd0aeeb7ee8775fe2672fac78b1db5">More...</a><br /></td></tr>
+<tr class="separator:ae5cd0aeeb7ee8775fe2672fac78b1db5 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40f7e29776cccce53e44bf294ade1cb5 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a40f7e29776cccce53e44bf294ade1cb5">SetColor</a> (glm::vec4 const &amp;color)</td></tr>
+<tr class="memdesc:a40f7e29776cccce53e44bf294ade1cb5 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the color  <a href="classSprite.html#a40f7e29776cccce53e44bf294ade1cb5">More...</a><br /></td></tr>
+<tr class="separator:a40f7e29776cccce53e44bf294ade1cb5 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab87373c71585d1d0bde5f3ef0378a176 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAssetReference.html">AssetReference</a>&lt; <a class="el" href="classTexture.html">Texture</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ab87373c71585d1d0bde5f3ef0378a176">GetTexture</a> () const</td></tr>
+<tr class="memdesc:ab87373c71585d1d0bde5f3ef0378a176 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> is using  <a href="classSprite.html#ab87373c71585d1d0bde5f3ef0378a176">More...</a><br /></td></tr>
+<tr class="separator:ab87373c71585d1d0bde5f3ef0378a176 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e811377c115dbdd8dd8cfa1e442d9e7 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a2e811377c115dbdd8dd8cfa1e442d9e7">SetTexture</a> (<a class="el" href="classAssetReference.html">AssetReference</a>&lt; <a class="el" href="classTexture.html">Texture</a> &gt; const &amp;texture)</td></tr>
+<tr class="memdesc:a2e811377c115dbdd8dd8cfa1e442d9e7 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> is using  <a href="classSprite.html#a2e811377c115dbdd8dd8cfa1e442d9e7">More...</a><br /></td></tr>
+<tr class="separator:a2e811377c115dbdd8dd8cfa1e442d9e7 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d9f3387b31f4066598deefd909bc1ca inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTransform.html">Transform</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a1d9f3387b31f4066598deefd909bc1ca">GetTransform</a> ()</td></tr>
+<tr class="memdesc:a1d9f3387b31f4066598deefd909bc1ca inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classTransform.html">Transform</a> component attached to this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a>  <a href="classSprite.html#a1d9f3387b31f4066598deefd909bc1ca">More...</a><br /></td></tr>
+<tr class="separator:a1d9f3387b31f4066598deefd909bc1ca inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f236ad7df686bd5bc9a21bed0eb7e4b inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a7f236ad7df686bd5bc9a21bed0eb7e4b">Write</a> () const override</td></tr>
 <tr class="memdesc:a7f236ad7df686bd5bc9a21bed0eb7e4b inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> component data to a JSON file.  <a href="classSprite.html#a7f236ad7df686bd5bc9a21bed0eb7e4b">More...</a><br /></td></tr>
 <tr class="separator:a7f236ad7df686bd5bc9a21bed0eb7e4b inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,18 +173,30 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">~Component</a> ()</td></tr>
 <tr class="memdesc:a2e9aa4348314d981f05f67397ad2f872 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtual destructor <br /></td></tr>
 <tr class="separator:a2e9aa4348314d981f05f67397ad2f872 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac497ba6d9c43e2a93ea660067807e3e1 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ac497ba6d9c43e2a93ea660067807e3e1">OnHierarchyChange</a> (<a class="el" href="classEntity.html">Entity</a> *previousParent)</td></tr>
+<tr class="memdesc:ac497ba6d9c43e2a93ea660067807e3e1 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">called every time after the <a class="el" href="classEntity.html">Entity</a> this <a class="el" href="classComponent.html">Component</a> is attached to's heirarchy changes  <a href="classComponent.html#ac497ba6d9c43e2a93ea660067807e3e1">More...</a><br /></td></tr>
+<tr class="separator:ac497ba6d9c43e2a93ea660067807e3e1 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac47602f1a581b4989adb6fefa4940d1 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#aac47602f1a581b4989adb6fefa4940d1">OnAddChild</a> (<a class="el" href="classEntity.html">Entity</a> *newChild)</td></tr>
+<tr class="memdesc:aac47602f1a581b4989adb6fefa4940d1 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">called whenever a child is added to this <a class="el" href="classEntity.html">Entity</a>  <a href="classComponent.html#aac47602f1a581b4989adb6fefa4940d1">More...</a><br /></td></tr>
+<tr class="separator:aac47602f1a581b4989adb6fefa4940d1 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4395f6697c9fb583a226c26754478eb0 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a4395f6697c9fb583a226c26754478eb0">OnRemoveChild</a> (<a class="el" href="classEntity.html">Entity</a> *newChild)</td></tr>
+<tr class="memdesc:a4395f6697c9fb583a226c26754478eb0 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">called whenever a child is about to be removed from this <a class="el" href="classEntity.html">Entity</a>  <a href="classComponent.html#a4395f6697c9fb583a226c26754478eb0">More...</a><br /></td></tr>
+<tr class="separator:a4395f6697c9fb583a226c26754478eb0 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab75652d7b0af6b7c604cc67efb34cfeb inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">std::type_index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ab75652d7b0af6b7c604cc67efb34cfeb">GetType</a> () const</td></tr>
 <tr class="memdesc:ab75652d7b0af6b7c604cc67efb34cfeb inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the components type  <a href="classComponent.html#ab75652d7b0af6b7c604cc67efb34cfeb">More...</a><br /></td></tr>
 <tr class="separator:ab75652d7b0af6b7c604cc67efb34cfeb inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">SetParent</a> (<a class="el" href="classEntity.html">Entity</a> *parent)</td></tr>
-<tr class="memdesc:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the parent entity of the component  <a href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">More...</a><br /></td></tr>
-<tr class="separator:a7cbb92a522d77dc8ce22098dd277f84b inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0099a8a475c9ddaabf9d4ecefcd17dd5 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a0099a8a475c9ddaabf9d4ecefcd17dd5">SetEntity</a> (<a class="el" href="classEntity.html">Entity</a> *entity)</td></tr>
+<tr class="memdesc:a0099a8a475c9ddaabf9d4ecefcd17dd5 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the parent entity of the component  <a href="classComponent.html#a0099a8a475c9ddaabf9d4ecefcd17dd5">More...</a><br /></td></tr>
+<tr class="separator:a0099a8a475c9ddaabf9d4ecefcd17dd5 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bac0f3387cfd9163ca61445ceb0b6b9 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a0bac0f3387cfd9163ca61445ceb0b6b9">GetEntity</a> () const</td></tr>
 <tr class="memdesc:a0bac0f3387cfd9163ca61445ceb0b6b9 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the components parent entity  <a href="classComponent.html#a0bac0f3387cfd9163ca61445ceb0b6b9">More...</a><br /></td></tr>
 <tr class="separator:a0bac0f3387cfd9163ca61445ceb0b6b9 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">GetId</a> () const</td></tr>
 <tr class="memdesc:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the Id of this <a class="el" href="classComponent.html">Component</a>  <a href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">More...</a><br /></td></tr>
 <tr class="separator:a767bfcc0db2ef4632db94b1c7a23f663 inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9af52e1878212622948ab2189f4f29dd inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a9af52e1878212622948ab2189f4f29dd">GetName</a> () const</td></tr>
+<tr class="memdesc:a9af52e1878212622948ab2189f4f29dd inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classComponent.html">Component</a>'s name  <a href="classComponent.html#a9af52e1878212622948ab2189f4f29dd">More...</a><br /></td></tr>
+<tr class="separator:a9af52e1878212622948ab2189f4f29dd inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab013472b21ba197a25143ab1e1e9272e inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ab013472b21ba197a25143ab1e1e9272e">BaseComponentInspector</a> ()</td></tr>
 <tr class="memdesc:ab013472b21ba197a25143ab1e1e9272e inherit pub_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">base Inspector for Components  <a href="classComponent.html#ab013472b21ba197a25143ab1e1e9272e">More...</a><br /></td></tr>
 <tr class="separator:ab013472b21ba197a25143ab1e1e9272e inherit pub_methods_classComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -243,15 +261,20 @@ glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><b>m_Color</b></td>
 <tr class="memitem:a86eea754a83045cdb83e99212d1f90be inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top"><a id="a86eea754a83045cdb83e99212d1f90be"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_IsTextured</b></td></tr>
 <tr class="separator:a86eea754a83045cdb83e99212d1f90be inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b354a442796e5d20aae06cd3f1d513f inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top"><a id="a7b354a442796e5d20aae06cd3f1d513f"></a>
-<a class="el" href="classTexture.html">Texture</a> const  *&#160;</td><td class="memItemRight" valign="bottom"><b>m_Texture</b></td></tr>
-<tr class="separator:a7b354a442796e5d20aae06cd3f1d513f inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99975c0b3165033a566245e785c39127 inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top"><a id="a99975c0b3165033a566245e785c39127"></a>
+<a class="el" href="classAssetReference.html">AssetReference</a>&lt; <a class="el" href="classTexture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a99975c0b3165033a566245e785c39127">m_Texture</a></td></tr>
+<tr class="memdesc:a99975c0b3165033a566245e785c39127 inherit pro_attribs_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">the texture that this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> uses <br /></td></tr>
+<tr class="separator:a99975c0b3165033a566245e785c39127 inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb812ebc27dd9c97702103010c226b2d inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top"><a id="acb812ebc27dd9c97702103010c226b2d"></a>
+<a class="el" href="classComponentReference.html">ComponentReference</a>&lt; <a class="el" href="classTransform.html">Transform</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#acb812ebc27dd9c97702103010c226b2d">m_Transform</a></td></tr>
+<tr class="memdesc:acb812ebc27dd9c97702103010c226b2d inherit pro_attribs_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">the <a class="el" href="classTransform.html">Transform</a> attached to this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> <br /></td></tr>
+<tr class="separator:acb812ebc27dd9c97702103010c226b2d inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A version of <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> for rendering tilemaps using GPU instancing. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aacc42f13bb996c067acfeabbb8e61502"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacc42f13bb996c067acfeabbb8e61502">&#9670;&nbsp;</a></span>TilemapSprite()</h2>
+<a id="a75fe363c43e37594deac4fb7c53272a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75fe363c43e37594deac4fb7c53272a3">&#9670;&nbsp;</a></span>TilemapSprite()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -259,7 +282,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_IsTextured</b></td>
         <tr>
           <td class="memname">TilemapSprite::TilemapSprite </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classTexture.html">Texture</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classAssetReference.html">AssetReference</a>&lt; <a class="el" href="classTexture.html">Texture</a> &gt; const &amp;&#160;</td>
           <td class="paramname"><em>texture</em>, </td>
         </tr>
         <tr>
@@ -302,6 +325,36 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_IsTextured</b></td>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a073622f9f48c1d3d317ad9fc7a9701c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a073622f9f48c1d3d317ad9fc7a9701c3">&#9670;&nbsp;</a></span>Clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTilemapSprite.html">TilemapSprite</a> * TilemapSprite::Clone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>creates a copy of this <a class="el" href="classTilemapSprite.html" title="A version of Sprite for rendering tilemaps using GPU instancing.">TilemapSprite</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>the newly created copy of this <a class="el" href="classTilemapSprite.html" title="A version of Sprite for rendering tilemaps using GPU instancing.">TilemapSprite</a> </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classSprite.html#a8d3bdc61b2f5da93f5f6197fecb81604">Sprite</a>.</p>
+
+</div>
+</div>
 <a id="a0de4cfc296ee7c517f6675b3d7a8ba4b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0de4cfc296ee7c517f6675b3d7a8ba4b">&#9670;&nbsp;</a></span>Draw()</h2>
 
@@ -392,6 +445,37 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_IsTextured</b></td>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a38c7af38d3f9d8cfa93f10e85bd2453a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38c7af38d3f9d8cfa93f10e85bd2453a">&#9670;&nbsp;</a></span>OverlapsLocalPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool TilemapSprite::OverlapsLocalPoint </td>
+          <td>(</td>
+          <td class="paramtype">glm::vec2 const &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>checks if a a point in local space overlaps this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>whether this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> overlaps the point </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classSprite.html#ad5d20b22aef221885d2349fe7b1bdbac">Sprite</a>.</p>
 
 </div>
 </div>

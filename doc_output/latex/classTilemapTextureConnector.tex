@@ -1,0 +1,125 @@
+\hypertarget{classTilemapTextureConnector}{}\doxysection{Tilemap\+Texture\+Connector Class Reference}
+\label{classTilemapTextureConnector}\index{TilemapTextureConnector@{TilemapTextureConnector}}
+
+
+\mbox{\hyperlink{classComponent}{Component}} that uses a parent \textquotesingle{}source\textquotesingle{} tilemap to update a child tilemap with connected textures.  
+
+
+
+
+{\ttfamily \#include $<$Tilemap\+Texture\+Connector.\+h$>$}
+
+
+
+Inheritance diagram for Tilemap\+Texture\+Connector\+:
+% FIG 0
+
+
+Collaboration diagram for Tilemap\+Texture\+Connector\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTilemapTextureConnector_af70c0f8a0000f6a0186023fd4d5c6167}\label{classTilemapTextureConnector_af70c0f8a0000f6a0186023fd4d5c6167}} 
+virtual void \mbox{\hyperlink{classTilemapTextureConnector_af70c0f8a0000f6a0186023fd4d5c6167}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTilemapTextureConnector_afef66def5679ca35a5bd3025d5177f61}\label{classTilemapTextureConnector_afef66def5679ca35a5bd3025d5177f61}} 
+virtual void \mbox{\hyperlink{classTilemapTextureConnector_afef66def5679ca35a5bd3025d5177f61}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classTilemapTextureConnector_a0578a37962ac8910f11a3f325b0249be}{On\+Hierarchy\+Change}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$previous\+Parent) override
+\begin{DoxyCompactList}\small\item\em called whenever the hierarchy this \mbox{\hyperlink{classEntity}{Entity}} is a part of changes \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTilemapTextureConnector_a57224122126ed45a8983765f11f7073f}\label{classTilemapTextureConnector_a57224122126ed45a8983765f11f7073f}} 
+virtual void \mbox{\hyperlink{classTilemapTextureConnector_a57224122126ed45a8983765f11f7073f}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em displays this \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} in the Inspector \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classTilemapTextureConnector_aa5cf7ae55420c8c74c4383164a2b2f24}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classTilemapTextureConnector_abd4ac8f96a0dd4e7adf3f48c7d9d2565}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} data to a JSON file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTilemapTextureConnector_aa52d0fd2c8ccbf7e1a47f43a8409efc3}\label{classTilemapTextureConnector_aa52d0fd2c8ccbf7e1a47f43a8409efc3}} 
+\mbox{\hyperlink{classTilemapTextureConnector_aa52d0fd2c8ccbf7e1a47f43a8409efc3}{Tilemap\+Texture\+Connector}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} $\ast$ \mbox{\hyperlink{classTilemapTextureConnector_af6a339f69169bd986d242bbd4672f3cf}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classComponent}{Component}} that uses a parent \textquotesingle{}source\textquotesingle{} tilemap to update a child tilemap with connected textures. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTilemapTextureConnector_af6a339f69169bd986d242bbd4672f3cf}\label{classTilemapTextureConnector_af6a339f69169bd986d242bbd4672f3cf}} 
+\index{TilemapTextureConnector@{TilemapTextureConnector}!Clone@{Clone}}
+\index{Clone@{Clone}!TilemapTextureConnector@{TilemapTextureConnector}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} $\ast$ Tilemap\+Texture\+Connector\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classTilemapTextureConnector_aa5cf7ae55420c8c74c4383164a2b2f24}\label{classTilemapTextureConnector_aa5cf7ae55420c8c74c4383164a2b2f24}} 
+\index{TilemapTextureConnector@{TilemapTextureConnector}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!TilemapTextureConnector@{TilemapTextureConnector}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Tilemap\+Texture\+Connector\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classTilemapTextureConnector_a0578a37962ac8910f11a3f325b0249be}\label{classTilemapTextureConnector_a0578a37962ac8910f11a3f325b0249be}} 
+\index{TilemapTextureConnector@{TilemapTextureConnector}!OnHierarchyChange@{OnHierarchyChange}}
+\index{OnHierarchyChange@{OnHierarchyChange}!TilemapTextureConnector@{TilemapTextureConnector}}
+\doxysubsubsection{\texorpdfstring{OnHierarchyChange()}{OnHierarchyChange()}}
+{\footnotesize\ttfamily void Tilemap\+Texture\+Connector\+::\+On\+Hierarchy\+Change (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{previous\+Parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called whenever the hierarchy this \mbox{\hyperlink{classEntity}{Entity}} is a part of changes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em previous\+Parent} & the previous parent of this \mbox{\hyperlink{classEntity}{Entity}} \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classComponent_ac497ba6d9c43e2a93ea660067807e3e1}{Component}}.
+
+\mbox{\Hypertarget{classTilemapTextureConnector_abd4ac8f96a0dd4e7adf3f48c7d9d2565}\label{classTilemapTextureConnector_abd4ac8f96a0dd4e7adf3f48c7d9d2565}} 
+\index{TilemapTextureConnector@{TilemapTextureConnector}!Write@{Write}}
+\index{Write@{Write}!TilemapTextureConnector@{TilemapTextureConnector}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Tilemap\+Texture\+Connector\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classTilemapTextureConnector}{Tilemap\+Texture\+Connector}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{TilemapTextureConnector_8h}{Tilemap\+Texture\+Connector.\+h}}\item 
+Source/\mbox{\hyperlink{TilemapTextureConnector_8cpp}{Tilemap\+Texture\+Connector.\+cpp}}\end{DoxyCompactItemize}

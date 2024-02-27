@@ -12,57 +12,50 @@ Stores mesh + texture, along with other data needed to draw a basic 2D sprite.
 
 
 Inheritance diagram for Sprite\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=264pt]{classSprite__inherit__graph}
-\end{center}
-\end{figure}
+% FIG 0
 
 
-Collaboration diagram for Sprite\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=234pt]{classSprite__coll__graph}
-\end{center}
-\end{figure}
+Collaboration diagram for Sprite\+:
+% FIG 1
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classSprite_a12cba3ac1868418add3c4d95ce87e615}{Sprite}} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classSprite_a0eac278459f74bee4fbdd1f56ced6c4a}{Sprite}} (\mbox{\hyperlink{classTexture}{Texture}} const $\ast$texture, int layer=2, std\+::type\+\_\+index type=typeid(\mbox{\hyperlink{classSprite}{Sprite}}))
+\mbox{\hyperlink{classSprite_a6a9babd6c72dc4289993572952b538c2}{Sprite}} (\mbox{\hyperlink{classAssetReference}{Asset\+Reference}}$<$ \mbox{\hyperlink{classTexture}{Texture}} $>$ const \&texture, int layer=2, std\+::type\+\_\+index type=typeid(\mbox{\hyperlink{classSprite}{Sprite}}))
 \begin{DoxyCompactList}\small\item\em Textured constructor. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSprite_aff0448963fc0515aad87ac0cce6f8bc2}\label{classSprite_aff0448963fc0515aad87ac0cce6f8bc2}} 
 virtual \mbox{\hyperlink{classSprite_aff0448963fc0515aad87ac0cce6f8bc2}{$\sim$\+Sprite}} ()
 \begin{DoxyCompactList}\small\item\em Virtual destructor\+: just to let derived types free stuff. \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classSprite_ac4f77c982a39659c389f00b9d395b0db}{Clone}} () const override
+virtual \mbox{\hyperlink{classSprite}{Sprite}} $\ast$ \mbox{\hyperlink{classSprite_a8d3bdc61b2f5da93f5f6197fecb81604}{Clone}} () const override
 \begin{DoxyCompactList}\small\item\em creates a new \mbox{\hyperlink{classSprite}{Sprite}} component which is a duplicate of this one \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSprite_a054a4c340c14c3d218b99e484bf83d21}\label{classSprite_a054a4c340c14c3d218b99e484bf83d21}} 
 virtual void \mbox{\hyperlink{classSprite_a054a4c340c14c3d218b99e484bf83d21}{Draw}} ()
 \begin{DoxyCompactList}\small\item\em Draws the mesh with texture (if one is present), or color. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline int \mbox{\hyperlink{classSprite_a97b2c1ba79abbc619db3f908e7c70c40}{Get\+Frame\+Index}} () const
+virtual bool \mbox{\hyperlink{classSprite_ad5d20b22aef221885d2349fe7b1bdbac}{Overlaps\+Local\+Point}} (glm\+::vec2 const \&point) const
+\begin{DoxyCompactList}\small\item\em checks if a a point in local space overlaps this \mbox{\hyperlink{classSprite}{Sprite}} \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSprite_a7145e9434b6b1d3320ac2a182f76228f}{Get\+Frame\+Index}} () const
 \begin{DoxyCompactList}\small\item\em gets the frame index \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classSprite_a896696f592637d87d0582abf0bc53b4a}{Set\+Frame\+Index}} (int frame\+Index)
+void \mbox{\hyperlink{classSprite_a672920b37562700f29b3371387a5f58a}{Set\+Frame\+Index}} (int frame\+Index)
 \begin{DoxyCompactList}\small\item\em Sets current frame index of the spritesheet. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline int \mbox{\hyperlink{classSprite_ab38781e0ae652ac69cc936b896de5342}{Get\+Layer}} () const
+int \mbox{\hyperlink{classSprite_a854b09aa7faba07d95bb26c3e2975923}{Get\+Layer}} () const
 \begin{DoxyCompactList}\small\item\em gets the layer \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classSprite_a003cc1fef2ee6b8b087f79f047a68ff2}{Set\+Layer}} (int layer)
+void \mbox{\hyperlink{classSprite_a62b9a79a31deef902e15bdd386d12d16}{Set\+Layer}} (int layer)
 \begin{DoxyCompactList}\small\item\em Sets the rendering layer \+: 0 -\/ 4. 0 is back, 4 is front. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline float \mbox{\hyperlink{classSprite_a3cd7ec2dda5c9e891d8084dc52491950}{Get\+Opacity}} () const
+float \mbox{\hyperlink{classSprite_a89e42437b6563b529341920ff91f1de3}{Get\+Opacity}} () const
 \begin{DoxyCompactList}\small\item\em gets the opacity \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classSprite_ac0dcfdef3d0a63316188f8db9d8a9f14}{Set\+Opacity}} (float opacity)
+void \mbox{\hyperlink{classSprite_a9fa7134433875254290e1f57df34143e}{Set\+Opacity}} (float opacity)
 \begin{DoxyCompactList}\small\item\em Sets the opacity. \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline glm\+::vec4 const  \& \mbox{\hyperlink{classSprite_abc83344068197f7c80f30deecd041579}{Get\+Color}} () const
+glm\+::vec4 const  \& \mbox{\hyperlink{classSprite_ae5cd0aeeb7ee8775fe2672fac78b1db5}{Get\+Color}} () const
 \begin{DoxyCompactList}\small\item\em gets the color \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classSprite_abbfee434d423324f10c67b5016c15181}{Set\+Color}} (glm\+::vec4 const \&color)
+void \mbox{\hyperlink{classSprite_a40f7e29776cccce53e44bf294ade1cb5}{Set\+Color}} (glm\+::vec4 const \&color)
 \begin{DoxyCompactList}\small\item\em sets the color \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline \mbox{\hyperlink{classTexture}{Texture}} const  $\ast$ \mbox{\hyperlink{classSprite_a0956ca2a207a07b11c4c07641f4c1f75}{Get\+Texture}} () const
+\mbox{\hyperlink{classAssetReference}{Asset\+Reference}}$<$ \mbox{\hyperlink{classTexture}{Texture}} $>$ const  \& \mbox{\hyperlink{classSprite_ab87373c71585d1d0bde5f3ef0378a176}{Get\+Texture}} () const
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classTexture}{Texture}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classSprite_add75a99e4693d8570349f7726577bff8}{Set\+Texture}} (\mbox{\hyperlink{classTexture}{Texture}} const $\ast$texture)
+void \mbox{\hyperlink{classSprite_a2e811377c115dbdd8dd8cfa1e442d9e7}{Set\+Texture}} (\mbox{\hyperlink{classAssetReference}{Asset\+Reference}}$<$ \mbox{\hyperlink{classTexture}{Texture}} $>$ const \&texture)
 \begin{DoxyCompactList}\small\item\em sets the \mbox{\hyperlink{classTexture}{Texture}} this \mbox{\hyperlink{classSprite}{Sprite}} is using \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTransform}{Transform}} $\ast$ \mbox{\hyperlink{classSprite_a1d9f3387b31f4066598deefd909bc1ca}{Get\+Transform}} ()
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classTransform}{Transform}} component attached to this \mbox{\hyperlink{classSprite}{Sprite}} \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classSprite_a7f236ad7df686bd5bc9a21bed0eb7e4b}{Write}} () const override
 \begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classSprite}{Sprite}} component data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
@@ -110,9 +103,12 @@ glm\+::vec4 {\bfseries m\+\_\+\+Color}
 \mbox{\Hypertarget{classSprite_a86eea754a83045cdb83e99212d1f90be}\label{classSprite_a86eea754a83045cdb83e99212d1f90be}} 
 bool {\bfseries m\+\_\+\+Is\+Textured}
 \item 
-\mbox{\Hypertarget{classSprite_a7b354a442796e5d20aae06cd3f1d513f}\label{classSprite_a7b354a442796e5d20aae06cd3f1d513f}} 
-\mbox{\hyperlink{classTexture}{Texture}} const  $\ast$ {\bfseries m\+\_\+\+Texture}
-\end{DoxyCompactItemize}
+\mbox{\Hypertarget{classSprite_a99975c0b3165033a566245e785c39127}\label{classSprite_a99975c0b3165033a566245e785c39127}} 
+\mbox{\hyperlink{classAssetReference}{Asset\+Reference}}$<$ \mbox{\hyperlink{classTexture}{Texture}} $>$ \mbox{\hyperlink{classSprite_a99975c0b3165033a566245e785c39127}{m\+\_\+\+Texture}}
+\begin{DoxyCompactList}\small\item\em the texture that this \mbox{\hyperlink{classSprite}{Sprite}} uses \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSprite_acb812ebc27dd9c97702103010c226b2d}\label{classSprite_acb812ebc27dd9c97702103010c226b2d}} 
+\mbox{\hyperlink{classComponentReference}{Component\+Reference}}$<$ \mbox{\hyperlink{classTransform}{Transform}} $>$ \mbox{\hyperlink{classSprite_acb812ebc27dd9c97702103010c226b2d}{m\+\_\+\+Transform}}
+\begin{DoxyCompactList}\small\item\em the \mbox{\hyperlink{classTransform}{Transform}} attached to this \mbox{\hyperlink{classSprite}{Sprite}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -129,11 +125,11 @@ Stores mesh + texture, along with other data needed to draw a basic 2D sprite.
 
 Default constructor. 
 
-default constructor \mbox{\Hypertarget{classSprite_a0eac278459f74bee4fbdd1f56ced6c4a}\label{classSprite_a0eac278459f74bee4fbdd1f56ced6c4a}} 
+default constructor \mbox{\Hypertarget{classSprite_a6a9babd6c72dc4289993572952b538c2}\label{classSprite_a6a9babd6c72dc4289993572952b538c2}} 
 \index{Sprite@{Sprite}!Sprite@{Sprite}}
 \index{Sprite@{Sprite}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{Sprite()}{Sprite()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily Sprite\+::\+Sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTexture}{Texture}} const $\ast$}]{texture,  }\item[{int}]{layer = {\ttfamily 2},  }\item[{std\+::type\+\_\+index}]{type = {\ttfamily typeid(~\mbox{\hyperlink{classSprite}{Sprite}}~)} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Sprite\+::\+Sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAssetReference}{Asset\+Reference}}$<$ \mbox{\hyperlink{classTexture}{Texture}} $>$ const \&}]{texture,  }\item[{int}]{layer = {\ttfamily 2},  }\item[{std\+::type\+\_\+index}]{type = {\ttfamily typeid(~\mbox{\hyperlink{classSprite}{Sprite}}~)} }\end{DoxyParamCaption})}
 
 
 
@@ -179,11 +175,11 @@ Calculates UV offset based on current frame\+Index.
 \begin{DoxyReturn}{Returns}
 the UV offset 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSprite_ac4f77c982a39659c389f00b9d395b0db}\label{classSprite_ac4f77c982a39659c389f00b9d395b0db}} 
+\mbox{\Hypertarget{classSprite_a8d3bdc61b2f5da93f5f6197fecb81604}\label{classSprite_a8d3bdc61b2f5da93f5f6197fecb81604}} 
 \index{Sprite@{Sprite}!Clone@{Clone}}
 \index{Clone@{Clone}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Sprite\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSprite}{Sprite}} $\ast$ Sprite\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -200,11 +196,15 @@ pointer to copied \mbox{\hyperlink{classSprite}{Sprite}} component.
 
 Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
 
-\mbox{\Hypertarget{classSprite_abc83344068197f7c80f30deecd041579}\label{classSprite_abc83344068197f7c80f30deecd041579}} 
+
+
+Reimplemented in \mbox{\hyperlink{classUiBarSprite_aec5f6691284d5fc296a8b1131c607a94}{Ui\+Bar\+Sprite}}, \mbox{\hyperlink{classTilemapSprite_a073622f9f48c1d3d317ad9fc7a9701c3}{Tilemap\+Sprite}}, \mbox{\hyperlink{classNineslice_a22800fc08cb65af3a24304c9f40ba7e2}{Nineslice}}, and \mbox{\hyperlink{classLightingSystem_1_1LightingSprite_a9173bd5244bc9ff586f763f05d985bfc}{Lighting\+System\+::\+Lighting\+Sprite}}.
+
+\mbox{\Hypertarget{classSprite_ae5cd0aeeb7ee8775fe2672fac78b1db5}\label{classSprite_ae5cd0aeeb7ee8775fe2672fac78b1db5}} 
 \index{Sprite@{Sprite}!GetColor@{GetColor}}
 \index{GetColor@{GetColor}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{GetColor()}{GetColor()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline glm\+::vec4 const\& Sprite\+::\+Get\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily glm\+::vec4 const  \& Sprite\+::\+Get\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -213,11 +213,11 @@ gets the color
 \begin{DoxyReturn}{Returns}
 the color 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSprite_a97b2c1ba79abbc619db3f908e7c70c40}\label{classSprite_a97b2c1ba79abbc619db3f908e7c70c40}} 
+\mbox{\Hypertarget{classSprite_a7145e9434b6b1d3320ac2a182f76228f}\label{classSprite_a7145e9434b6b1d3320ac2a182f76228f}} 
 \index{Sprite@{Sprite}!GetFrameIndex@{GetFrameIndex}}
 \index{GetFrameIndex@{GetFrameIndex}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{GetFrameIndex()}{GetFrameIndex()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline int Sprite\+::\+Get\+Frame\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily int Sprite\+::\+Get\+Frame\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -226,11 +226,11 @@ gets the frame index
 \begin{DoxyReturn}{Returns}
 the frame index 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSprite_ab38781e0ae652ac69cc936b896de5342}\label{classSprite_ab38781e0ae652ac69cc936b896de5342}} 
+\mbox{\Hypertarget{classSprite_a854b09aa7faba07d95bb26c3e2975923}\label{classSprite_a854b09aa7faba07d95bb26c3e2975923}} 
 \index{Sprite@{Sprite}!GetLayer@{GetLayer}}
 \index{GetLayer@{GetLayer}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{GetLayer()}{GetLayer()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline int Sprite\+::\+Get\+Layer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily int Sprite\+::\+Get\+Layer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -239,11 +239,11 @@ gets the layer
 \begin{DoxyReturn}{Returns}
 the layer 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSprite_a3cd7ec2dda5c9e891d8084dc52491950}\label{classSprite_a3cd7ec2dda5c9e891d8084dc52491950}} 
+\mbox{\Hypertarget{classSprite_a89e42437b6563b529341920ff91f1de3}\label{classSprite_a89e42437b6563b529341920ff91f1de3}} 
 \index{Sprite@{Sprite}!GetOpacity@{GetOpacity}}
 \index{GetOpacity@{GetOpacity}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{GetOpacity()}{GetOpacity()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline float Sprite\+::\+Get\+Opacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily float Sprite\+::\+Get\+Opacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -252,11 +252,11 @@ gets the opacity
 \begin{DoxyReturn}{Returns}
 the opacity 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classSprite_a0956ca2a207a07b11c4c07641f4c1f75}\label{classSprite_a0956ca2a207a07b11c4c07641f4c1f75}} 
+\mbox{\Hypertarget{classSprite_ab87373c71585d1d0bde5f3ef0378a176}\label{classSprite_ab87373c71585d1d0bde5f3ef0378a176}} 
 \index{Sprite@{Sprite}!GetTexture@{GetTexture}}
 \index{GetTexture@{GetTexture}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{GetTexture()}{GetTexture()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline \mbox{\hyperlink{classTexture}{Texture}} const$\ast$ Sprite\+::\+Get\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAssetReference}{Asset\+Reference}}$<$ \mbox{\hyperlink{classTexture}{Texture}} $>$ const  \& Sprite\+::\+Get\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -264,6 +264,19 @@ gets the \mbox{\hyperlink{classTexture}{Texture}} this \mbox{\hyperlink{classSpr
 
 \begin{DoxyReturn}{Returns}
 the \mbox{\hyperlink{classTexture}{Texture}} this \mbox{\hyperlink{classSprite}{Sprite}} is using 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSprite_a1d9f3387b31f4066598deefd909bc1ca}\label{classSprite_a1d9f3387b31f4066598deefd909bc1ca}} 
+\index{Sprite@{Sprite}!GetTransform@{GetTransform}}
+\index{GetTransform@{GetTransform}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{GetTransform()}{GetTransform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTransform}{Transform}} $\ast$ Sprite\+::\+Get\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the \mbox{\hyperlink{classTransform}{Transform}} component attached to this \mbox{\hyperlink{classSprite}{Sprite}} 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classTransform}{Transform}} component attached to this \mbox{\hyperlink{classSprite}{Sprite}} 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSprite_a5c74462e3560a9a46a7d7af03f7519fd}\label{classSprite_a5c74462e3560a9a46a7d7af03f7519fd}} 
 \index{Sprite@{Sprite}!OnExit@{OnExit}}
@@ -292,6 +305,28 @@ called when entering a scene
 called when entering the scene 
 
 Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
+
+\mbox{\Hypertarget{classSprite_ad5d20b22aef221885d2349fe7b1bdbac}\label{classSprite_ad5d20b22aef221885d2349fe7b1bdbac}} 
+\index{Sprite@{Sprite}!OverlapsLocalPoint@{OverlapsLocalPoint}}
+\index{OverlapsLocalPoint@{OverlapsLocalPoint}!Sprite@{Sprite}}
+\doxysubsubsection{\texorpdfstring{OverlapsLocalPoint()}{OverlapsLocalPoint()}}
+{\footnotesize\ttfamily bool Sprite\+::\+Overlaps\+Local\+Point (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{point }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+checks if a a point in local space overlaps this \mbox{\hyperlink{classSprite}{Sprite}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point} & the point to check if overlaps this \mbox{\hyperlink{classSprite}{Sprite}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classSprite}{Sprite}} overlaps the point 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classTilemapSprite_a38c7af38d3f9d8cfa93f10e85bd2453a}{Tilemap\+Sprite}}, and \mbox{\hyperlink{classEmitterSprite_a22f78e177038ebd51e21b22b1a732d5c}{Emitter\+Sprite}}.
 
 \mbox{\Hypertarget{classSprite_a2cfed0de34c5d9f5cb6eff050ac543c3}\label{classSprite_a2cfed0de34c5d9f5cb6eff050ac543c3}} 
 \index{Sprite@{Sprite}!readColor@{readColor}}
@@ -380,11 +415,11 @@ reads the \mbox{\hyperlink{classTexture}{Texture}} of this \mbox{\hyperlink{clas
 {\em data} & the json data to read from \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSprite_abbfee434d423324f10c67b5016c15181}\label{classSprite_abbfee434d423324f10c67b5016c15181}} 
+\mbox{\Hypertarget{classSprite_a40f7e29776cccce53e44bf294ade1cb5}\label{classSprite_a40f7e29776cccce53e44bf294ade1cb5}} 
 \index{Sprite@{Sprite}!SetColor@{SetColor}}
 \index{SetColor@{SetColor}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{SetColor()}{SetColor()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Sprite\+::\+Set\+Color (\begin{DoxyParamCaption}\item[{glm\+::vec4 const \&}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Sprite\+::\+Set\+Color (\begin{DoxyParamCaption}\item[{glm\+::vec4 const \&}]{color }\end{DoxyParamCaption})}
 
 
 
@@ -395,11 +430,11 @@ sets the color
 {\em color} & the color to apply \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSprite_a896696f592637d87d0582abf0bc53b4a}\label{classSprite_a896696f592637d87d0582abf0bc53b4a}} 
+\mbox{\Hypertarget{classSprite_a672920b37562700f29b3371387a5f58a}\label{classSprite_a672920b37562700f29b3371387a5f58a}} 
 \index{Sprite@{Sprite}!SetFrameIndex@{SetFrameIndex}}
 \index{SetFrameIndex@{SetFrameIndex}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{SetFrameIndex()}{SetFrameIndex()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Sprite\+::\+Set\+Frame\+Index (\begin{DoxyParamCaption}\item[{int}]{frame\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Sprite\+::\+Set\+Frame\+Index (\begin{DoxyParamCaption}\item[{int}]{frame\+Index }\end{DoxyParamCaption})}
 
 
 
@@ -410,11 +445,11 @@ Sets current frame index of the spritesheet.
 {\em frame\+Index} & New frame index \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSprite_a003cc1fef2ee6b8b087f79f047a68ff2}\label{classSprite_a003cc1fef2ee6b8b087f79f047a68ff2}} 
+\mbox{\Hypertarget{classSprite_a62b9a79a31deef902e15bdd386d12d16}\label{classSprite_a62b9a79a31deef902e15bdd386d12d16}} 
 \index{Sprite@{Sprite}!SetLayer@{SetLayer}}
 \index{SetLayer@{SetLayer}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{SetLayer()}{SetLayer()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Sprite\+::\+Set\+Layer (\begin{DoxyParamCaption}\item[{int}]{layer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Sprite\+::\+Set\+Layer (\begin{DoxyParamCaption}\item[{int}]{layer }\end{DoxyParamCaption})}
 
 
 
@@ -425,11 +460,11 @@ Sets the rendering layer \+: 0 -\/ 4. 0 is back, 4 is front.
 {\em layer} & Rendering layer to move this sprite to. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSprite_ac0dcfdef3d0a63316188f8db9d8a9f14}\label{classSprite_ac0dcfdef3d0a63316188f8db9d8a9f14}} 
+\mbox{\Hypertarget{classSprite_a9fa7134433875254290e1f57df34143e}\label{classSprite_a9fa7134433875254290e1f57df34143e}} 
 \index{Sprite@{Sprite}!SetOpacity@{SetOpacity}}
 \index{SetOpacity@{SetOpacity}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{SetOpacity()}{SetOpacity()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Sprite\+::\+Set\+Opacity (\begin{DoxyParamCaption}\item[{float}]{opacity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Sprite\+::\+Set\+Opacity (\begin{DoxyParamCaption}\item[{float}]{opacity }\end{DoxyParamCaption})}
 
 
 
@@ -440,11 +475,11 @@ Sets the opacity.
 {\em opacity} & I\textquotesingle{}m not explaining this. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classSprite_add75a99e4693d8570349f7726577bff8}\label{classSprite_add75a99e4693d8570349f7726577bff8}} 
+\mbox{\Hypertarget{classSprite_a2e811377c115dbdd8dd8cfa1e442d9e7}\label{classSprite_a2e811377c115dbdd8dd8cfa1e442d9e7}} 
 \index{Sprite@{Sprite}!SetTexture@{SetTexture}}
 \index{SetTexture@{SetTexture}!Sprite@{Sprite}}
 \doxysubsubsection{\texorpdfstring{SetTexture()}{SetTexture()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Sprite\+::\+Set\+Texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTexture}{Texture}} const $\ast$}]{texture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Sprite\+::\+Set\+Texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAssetReference}{Asset\+Reference}}$<$ \mbox{\hyperlink{classTexture}{Texture}} $>$ const \&}]{texture }\end{DoxyParamCaption})}
 
 
 
@@ -471,6 +506,10 @@ The JSON file containing the \mbox{\hyperlink{classSprite}{Sprite}} component da
 
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classUiBarSprite_abc974493dba5398eb6014bb1ab0d84f8}{Ui\+Bar\+Sprite}}, and \mbox{\hyperlink{classNineslice_a9cbfafc0bebffa201d60b24768eab46d}{Nineslice}}.
 
 
 

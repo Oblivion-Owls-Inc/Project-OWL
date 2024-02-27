@@ -70,6 +70,11 @@ $(function() {
 <div class="title">Pool&lt; Value &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The pool framework is what we use to represent health in our game.  
+ <a href="classPool.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Pool_8h_source.html">Pool.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Pool&lt; Value &gt;:</div>
 <div class="dyncontent">
@@ -91,64 +96,40 @@ Collaboration diagram for Pool&lt; Value &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a70918e5f5da422cfcc09288106ce19be"><td class="memItemLeft" align="right" valign="top"><a id="a70918e5f5da422cfcc09288106ce19be"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a70918e5f5da422cfcc09288106ce19be">Pool</a> (std::string name=std::string(&quot;Pool&quot;), Value value=0, bool active=0)</td></tr>
-<tr class="memdesc:a70918e5f5da422cfcc09288106ce19be"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor <br /></td></tr>
-<tr class="separator:a70918e5f5da422cfcc09288106ce19be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f3f3e1d44270e57a02b6454ec255bfe"><td class="memItemLeft" align="right" valign="top"><a id="a7f3f3e1d44270e57a02b6454ec255bfe"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Pool</b> (const <a class="el" href="classPool.html">Pool</a> &amp;other)</td></tr>
+<tr class="memitem:a76a4847e605a105ccdc050ae457ca2cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a76a4847e605a105ccdc050ae457ca2cc">Pool</a> (Value value=0)</td></tr>
+<tr class="memdesc:a76a4847e605a105ccdc050ae457ca2cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor  <a href="classPool.html#a76a4847e605a105ccdc050ae457ca2cc">More...</a><br /></td></tr>
+<tr class="separator:a76a4847e605a105ccdc050ae457ca2cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f3f3e1d44270e57a02b6454ec255bfe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a7f3f3e1d44270e57a02b6454ec255bfe">Pool</a> (const <a class="el" href="classPool.html">Pool</a> &amp;other)</td></tr>
+<tr class="memdesc:a7f3f3e1d44270e57a02b6454ec255bfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="classPool.html#a7f3f3e1d44270e57a02b6454ec255bfe">More...</a><br /></td></tr>
 <tr class="separator:a7f3f3e1d44270e57a02b6454ec255bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a311a2a1b6f4cc15ecb7f9af42b2d994e"><td class="memItemLeft" align="right" valign="top">__inline std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a311a2a1b6f4cc15ecb7f9af42b2d994e">GetName</a> () const</td></tr>
-<tr class="memdesc:a311a2a1b6f4cc15ecb7f9af42b2d994e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the pool.  <a href="classPool.html#a311a2a1b6f4cc15ecb7f9af42b2d994e">More...</a><br /></td></tr>
-<tr class="separator:a311a2a1b6f4cc15ecb7f9af42b2d994e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9c0d038d31e42594be7586eda31f608"><td class="memItemLeft" align="right" valign="top">__inline Value const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#ac9c0d038d31e42594be7586eda31f608">GetCurrent</a> () const</td></tr>
+<tr class="memitem:ac9c0d038d31e42594be7586eda31f608"><td class="memItemLeft" align="right" valign="top">Value const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#ac9c0d038d31e42594be7586eda31f608">GetCurrent</a> () const</td></tr>
 <tr class="memdesc:ac9c0d038d31e42594be7586eda31f608"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the current value  <a href="classPool.html#ac9c0d038d31e42594be7586eda31f608">More...</a><br /></td></tr>
 <tr class="separator:ac9c0d038d31e42594be7586eda31f608"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af243533c8cf6262b8c52f58b8d029371"><td class="memItemLeft" align="right" valign="top">__inline Value const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#af243533c8cf6262b8c52f58b8d029371">GetDefault</a> () const</td></tr>
-<tr class="memdesc:af243533c8cf6262b8c52f58b8d029371"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the default value  <a href="classPool.html#af243533c8cf6262b8c52f58b8d029371">More...</a><br /></td></tr>
-<tr class="separator:af243533c8cf6262b8c52f58b8d029371"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a970e1997e363b3fc5acbbb4ed3dbaae0"><td class="memItemLeft" align="right" valign="top">__inline bool const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a970e1997e363b3fc5acbbb4ed3dbaae0">GetActive</a> () const</td></tr>
-<tr class="memdesc:a970e1997e363b3fc5acbbb4ed3dbaae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the active state  <a href="classPool.html#a970e1997e363b3fc5acbbb4ed3dbaae0">More...</a><br /></td></tr>
-<tr class="separator:a970e1997e363b3fc5acbbb4ed3dbaae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d2a42844ecab8f8e05af8f6e896797c"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a4d2a42844ecab8f8e05af8f6e896797c">SetCurrent</a> (Value value)</td></tr>
+<tr class="memitem:a3a96a39f1d46f5b891bffa08e01d7c8f"><td class="memItemLeft" align="right" valign="top">Value const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a3a96a39f1d46f5b891bffa08e01d7c8f">GetMaximum</a> () const</td></tr>
+<tr class="memdesc:a3a96a39f1d46f5b891bffa08e01d7c8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the default value  <a href="classPool.html#a3a96a39f1d46f5b891bffa08e01d7c8f">More...</a><br /></td></tr>
+<tr class="separator:a3a96a39f1d46f5b891bffa08e01d7c8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d2a42844ecab8f8e05af8f6e896797c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a4d2a42844ecab8f8e05af8f6e896797c">SetCurrent</a> (Value value)</td></tr>
 <tr class="memdesc:a4d2a42844ecab8f8e05af8f6e896797c"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the current value  <a href="classPool.html#a4d2a42844ecab8f8e05af8f6e896797c">More...</a><br /></td></tr>
 <tr class="separator:a4d2a42844ecab8f8e05af8f6e896797c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eb501bce90c80eaca0434eeabebf729"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a2eb501bce90c80eaca0434eeabebf729">SetDefault</a> (Value value)</td></tr>
-<tr class="memdesc:a2eb501bce90c80eaca0434eeabebf729"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the base value.  <a href="classPool.html#a2eb501bce90c80eaca0434eeabebf729">More...</a><br /></td></tr>
-<tr class="separator:a2eb501bce90c80eaca0434eeabebf729"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02c29d60b64896813d0ce8c2d529467b"><td class="memItemLeft" align="right" valign="top"><a id="a02c29d60b64896813d0ce8c2d529467b"></a>
-__inline void&#160;</td><td class="memItemRight" valign="bottom"><b>DecreasePoolTime</b> (Value value)</td></tr>
+<tr class="memitem:ac077df7bd0b3efad8e4dade13b8fa951"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#ac077df7bd0b3efad8e4dade13b8fa951">SetMaximum</a> (Value value)</td></tr>
+<tr class="memdesc:ac077df7bd0b3efad8e4dade13b8fa951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the base value.  <a href="classPool.html#ac077df7bd0b3efad8e4dade13b8fa951">More...</a><br /></td></tr>
+<tr class="separator:ac077df7bd0b3efad8e4dade13b8fa951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02c29d60b64896813d0ce8c2d529467b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a02c29d60b64896813d0ce8c2d529467b">DecreasePoolTime</a> (Value value)</td></tr>
+<tr class="memdesc:a02c29d60b64896813d0ce8c2d529467b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decreases the value of the pool.  <a href="classPool.html#a02c29d60b64896813d0ce8c2d529467b">More...</a><br /></td></tr>
 <tr class="separator:a02c29d60b64896813d0ce8c2d529467b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e246d8e779b81e1ff4f54bd41e64315"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a1e246d8e779b81e1ff4f54bd41e64315">SetActive</a> (bool active)</td></tr>
-<tr class="memdesc:a1e246d8e779b81e1ff4f54bd41e64315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes if the pool is active.  <a href="classPool.html#a1e246d8e779b81e1ff4f54bd41e64315">More...</a><br /></td></tr>
-<tr class="separator:a1e246d8e779b81e1ff4f54bd41e64315"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae40a3851233214aa138f7673b8efd16"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#aae40a3851233214aa138f7673b8efd16">SetName</a> (std::string name)</td></tr>
-<tr class="memdesc:aae40a3851233214aa138f7673b8efd16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the name of the pool.  <a href="classPool.html#aae40a3851233214aa138f7673b8efd16">More...</a><br /></td></tr>
-<tr class="separator:aae40a3851233214aa138f7673b8efd16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41bda4c39fcde8794becac08d973886e"><td class="memItemLeft" align="right" valign="top"><a id="a41bda4c39fcde8794becac08d973886e"></a>
 __inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a41bda4c39fcde8794becac08d973886e">Reset</a> ()</td></tr>
 <tr class="memdesc:a41bda4c39fcde8794becac08d973886e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the pool to its default value. <br /></td></tr>
 <tr class="separator:a41bda4c39fcde8794becac08d973886e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae085a0da1852c382beeaec59106db94b"><td class="memItemLeft" align="right" valign="top"><a id="ae085a0da1852c382beeaec59106db94b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#ae085a0da1852c382beeaec59106db94b">Inspector</a> ()</td></tr>
-<tr class="memdesc:ae085a0da1852c382beeaec59106db94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classComponent.html">Component</a>. <br /></td></tr>
-<tr class="separator:ae085a0da1852c382beeaec59106db94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a912e337700a07070657de8ee22caa1ff"><td class="memItemLeft" align="right" valign="top"><a id="a912e337700a07070657de8ee22caa1ff"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a912e337700a07070657de8ee22caa1ff">OnInit</a> ()</td></tr>
-<tr class="memdesc:a912e337700a07070657de8ee22caa1ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when this <a class="el" href="classComponent.html">Component</a>'s <a class="el" href="classEntity.html">Entity</a> is added to the Scene <br /></td></tr>
-<tr class="separator:a912e337700a07070657de8ee22caa1ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae36e7ca806d58297189605a865dbd0ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#ae36e7ca806d58297189605a865dbd0ac">readName</a> (nlohmann::ordered_json const &amp;data)</td></tr>
-<tr class="memdesc:ae36e7ca806d58297189605a865dbd0ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the Name of the pool from the json data.  <a href="classPool.html#ae36e7ca806d58297189605a865dbd0ac">More...</a><br /></td></tr>
-<tr class="separator:ae36e7ca806d58297189605a865dbd0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0205596cb44aeaacdb7dd02bef7a8a8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a0205596cb44aeaacdb7dd02bef7a8a8b">readBaseValue</a> (nlohmann::ordered_json const &amp;data)</td></tr>
-<tr class="memdesc:a0205596cb44aeaacdb7dd02bef7a8a8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the Base Value from the json data.  <a href="classPool.html#a0205596cb44aeaacdb7dd02bef7a8a8b">More...</a><br /></td></tr>
-<tr class="separator:a0205596cb44aeaacdb7dd02bef7a8a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a248b6f3216d42c9a38712301ccc60924"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a248b6f3216d42c9a38712301ccc60924">Inspect</a> ()</td></tr>
+<tr class="memdesc:a248b6f3216d42c9a38712301ccc60924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classComponent.html">Component</a>.  <a href="classPool.html#a248b6f3216d42c9a38712301ccc60924">More...</a><br /></td></tr>
+<tr class="separator:a248b6f3216d42c9a38712301ccc60924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf7a2dd41cb3513eda57af93faec3936"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#abf7a2dd41cb3513eda57af93faec3936">readMaximumValue</a> (nlohmann::ordered_json const &amp;data)</td></tr>
+<tr class="memdesc:abf7a2dd41cb3513eda57af93faec3936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the Base Value from the json data.  <a href="classPool.html#abf7a2dd41cb3513eda57af93faec3936">More...</a><br /></td></tr>
+<tr class="separator:abf7a2dd41cb3513eda57af93faec3936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7733deb5eb93cf422885c8083d33b38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#af7733deb5eb93cf422885c8083d33b38">readCurrentValue</a> (nlohmann::ordered_json const &amp;data)</td></tr>
 <tr class="memdesc:af7733deb5eb93cf422885c8083d33b38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the Current Value from the json data.  <a href="classPool.html#af7733deb5eb93cf422885c8083d33b38">More...</a><br /></td></tr>
 <tr class="separator:af7733deb5eb93cf422885c8083d33b38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a871e555d3200e5b4ebade7a43098de01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a871e555d3200e5b4ebade7a43098de01">readActive</a> (nlohmann::ordered_json const &amp;data)</td></tr>
-<tr class="memdesc:a871e555d3200e5b4ebade7a43098de01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the Active State from the json data.  <a href="classPool.html#a871e555d3200e5b4ebade7a43098de01">More...</a><br /></td></tr>
-<tr class="separator:a871e555d3200e5b4ebade7a43098de01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6210bb44722bdc6bac03dc81a20b05c"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#aa6210bb44722bdc6bac03dc81a20b05c">GetReadMethods</a> () const override</td></tr>
 <tr class="memdesc:aa6210bb44722bdc6bac03dc81a20b05c"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the map of read methods for this <a class="el" href="classComponent.html">Component</a>  <a href="classPool.html#aa6210bb44722bdc6bac03dc81a20b05c">More...</a><br /></td></tr>
 <tr class="separator:aa6210bb44722bdc6bac03dc81a20b05c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -176,10 +157,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </ul>
  <a href="classPool.html#a63e24740dc0d711628a358ae6f0f709c">More...</a><br /></td></tr>
 <tr class="separator:a63e24740dc0d711628a358ae6f0f709c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a111cb134cb46f9848d0f86dd02689680"><td class="memItemLeft" align="right" valign="top"><a id="a111cb134cb46f9848d0f86dd02689680"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#a111cb134cb46f9848d0f86dd02689680">operator bool</a> () const</td></tr>
-<tr class="memdesc:a111cb134cb46f9848d0f86dd02689680"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts the pool to a bool <br /></td></tr>
-<tr class="separator:a111cb134cb46f9848d0f86dd02689680"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae89156f6a4bbc6172387c99a9b761590"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPool.html#ae89156f6a4bbc6172387c99a9b761590">Write</a> () const override</td></tr>
 <tr class="memdesc:ae89156f6a4bbc6172387c99a9b761590"><td class="mdescLeft">&#160;</td><td class="mdescRight">write the data to json  <a href="classPool.html#ae89156f6a4bbc6172387c99a9b761590">More...</a><br /></td></tr>
 <tr class="separator:ae89156f6a4bbc6172387c99a9b761590"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -258,9 +235,20 @@ Friends</h2></td></tr>
  <a href="classPool.html#a723a3d39149ca305b80f7e4cb51f3b39">More...</a><br /></td></tr>
 <tr class="separator:a723a3d39149ca305b80f7e4cb51f3b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a970e1997e363b3fc5acbbb4ed3dbaae0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a970e1997e363b3fc5acbbb4ed3dbaae0">&#9670;&nbsp;</a></span>GetActive()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename Value&gt;<br />
+class Pool&lt; Value &gt;</h3>
+
+<p>The pool framework is what we use to represent health in our game. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a76a4847e605a105ccdc050ae457ca2cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76a4847e605a105ccdc050ae457ca2cc">&#9670;&nbsp;</a></span>Pool() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,13 +256,99 @@ Friends</h2></td></tr>
 template&lt;typename Value &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool const  &amp; <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::GetActive</td>
+          <td class="memname"><a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::<a class="el" href="classPool.html">Pool</a> </td>
+          <td>(</td>
+          <td class="paramtype">Value&#160;</td>
+          <td class="paramname"><em>value</em> = <code>0</code></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>get the active state </p>
-<dl class="section return"><dt>Returns</dt><dd>the active state </dd></dl>
+<p>constructor </p>
+<p>Constructor for the pool framework.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the data type of the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>- the magnitude of the data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7f3f3e1d44270e57a02b6454ec255bfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f3f3e1d44270e57a02b6454ec255bfe">&#9670;&nbsp;</a></span>Pool() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Value &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::<a class="el" href="classPool.html">Pool</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPool.html">Pool</a>&lt; Value &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<p>Copy Constructor for the pool framework.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>- A reference to another pool</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the data type of the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>- a reference to another pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a02c29d60b64896813d0ce8c2d529467b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02c29d60b64896813d0ce8c2d529467b">&#9670;&nbsp;</a></span>DecreasePoolTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Value &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::DecreasePoolTime </td>
+          <td>(</td>
+          <td class="paramtype">Value&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decreases the value of the pool. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>- The value to decrease by. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -293,12 +367,20 @@ template&lt;typename Value &gt; </div>
 </div><div class="memdoc">
 
 <p>get the current value </p>
-<p>///</p><dl class="section return"><dt>Returns</dt><dd>the current value </dd></dl>
+<p>Get the current value of the pool.</p>
+<dl class="section return"><dt>Returns</dt><dd>the current value</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The current value of the data in the pool (Value). </dd></dl>
 
 </div>
 </div>
-<a id="af243533c8cf6262b8c52f58b8d029371"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af243533c8cf6262b8c52f58b8d029371">&#9670;&nbsp;</a></span>GetDefault()</h2>
+<a id="a3a96a39f1d46f5b891bffa08e01d7c8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a96a39f1d46f5b891bffa08e01d7c8f">&#9670;&nbsp;</a></span>GetMaximum()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -306,32 +388,21 @@ template&lt;typename Value &gt; </div>
 template&lt;typename Value &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">Value const  &amp; <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::GetDefault</td>
+          <td class="memname">Value const  &amp; <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::GetMaximum</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>get the default value </p>
-<dl class="section return"><dt>Returns</dt><dd>the default value </dd></dl>
-
-</div>
-</div>
-<a id="a311a2a1b6f4cc15ecb7f9af42b2d994e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a311a2a1b6f4cc15ecb7f9af42b2d994e">&#9670;&nbsp;</a></span>GetName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Value &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string const  &amp; <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::GetName</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the name of the pool. </p>
-<dl class="section return"><dt>Returns</dt><dd>Name of the <a class="el" href="classPool.html">Pool</a> </dd></dl>
+<p>Get the maximum value of the pool.</p>
+<dl class="section return"><dt>Returns</dt><dd>the default value</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The maximum value of the data in the pool. </dd></dl>
 
 </div>
 </div>
@@ -367,6 +438,32 @@ template&lt;typename Value &gt; </div>
 
 </div>
 </div>
+<a id="a248b6f3216d42c9a38712301ccc60924"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a248b6f3216d42c9a38712301ccc60924">&#9670;&nbsp;</a></span>Inspect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Value &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::Inspect</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classComponent.html">Component</a>. </p>
+<p>The inspector for the pool framework.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Was the data in the pool changed in the inspector (bool). </dd></dl>
+
+</div>
+</div>
 <a id="a0dc128a1ebc75cec3cc685e53e749436"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0dc128a1ebc75cec3cc685e53e749436">&#9670;&nbsp;</a></span>operator*=()</h2>
 
@@ -389,13 +486,27 @@ template&lt;typename Value &gt; </div>
 <li>multiplies the pool by a value </li>
 </ul>
 </p>
+<p>compound multiplication overload for the pool framework</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>- the value to multiply by </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- the new pool value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- the new pool value</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>- the value to multiply with the current value of the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the pool </dd></dl>
 
 </div>
 </div>
@@ -421,13 +532,27 @@ template&lt;typename Value &gt; </div>
 <li>adds a value to the pool </li>
 </ul>
 </p>
+<p>compound addition overload for the pool framework</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>- the value to add </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- the new pool value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- the new pool value</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>- the value to add to the current value of the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the pool </dd></dl>
 
 </div>
 </div>
@@ -453,13 +578,27 @@ template&lt;typename Value &gt; </div>
 <li>subtracts a value from the pool </li>
 </ul>
 </p>
+<p>compound subtraction overload for the pool framework</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>- the value to subtract </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- the new pool value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- the new pool value</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>- the value to subtract from the current value of the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the pool </dd></dl>
 
 </div>
 </div>
@@ -485,69 +624,27 @@ template&lt;typename Value &gt; </div>
 <li>divides the pool by a value </li>
 </ul>
 </p>
+<p>compound division overload for the pool framework</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>- the value to divide by </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- the new pool value </dd></dl>
-
-</div>
-</div>
-<a id="a871e555d3200e5b4ebade7a43098de01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a871e555d3200e5b4ebade7a43098de01">&#9670;&nbsp;</a></span>readActive()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Value &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::readActive </td>
-          <td>(</td>
-          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
-          <td class="paramname"><em>data</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads the Active State from the json data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">data</td><td>- the json data to read from </td></tr>
+<dl class="section return"><dt>Returns</dt><dd>- the new pool value</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a0205596cb44aeaacdb7dd02bef7a8a8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0205596cb44aeaacdb7dd02bef7a8a8b">&#9670;&nbsp;</a></span>readBaseValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Value &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::readBaseValue </td>
-          <td>(</td>
-          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
-          <td class="paramname"><em>data</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads the Base Value from the json data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td>- the json data to read from </td></tr>
+    <tr><td class="paramname">value</td><td>- the value to divide the current value of the pool by. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the pool </dd></dl>
 
 </div>
 </div>
@@ -578,38 +675,10 @@ template&lt;typename Value &gt; </div>
 </dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Value</td><td>the type of Value in this <a class="el" href="classPool.html">Pool</a> </td></tr>
+    <tr><td class="paramname">Value</td><td>- the type of Value in this <a class="el" href="classPool.html" title="The pool framework is what we use to represent health in our game.">Pool</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">data</td><td>the json data to read from </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ae36e7ca806d58297189605a865dbd0ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae36e7ca806d58297189605a865dbd0ac">&#9670;&nbsp;</a></span>readName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Value &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::readName </td>
-          <td>(</td>
-          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
-          <td class="paramname"><em>data</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reads the Name of the pool from the json data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>- the json data to read from </td></tr>
@@ -619,8 +688,8 @@ template&lt;typename Value &gt; </div>
 
 </div>
 </div>
-<a id="a1e246d8e779b81e1ff4f54bd41e64315"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e246d8e779b81e1ff4f54bd41e64315">&#9670;&nbsp;</a></span>SetActive()</h2>
+<a id="abf7a2dd41cb3513eda57af93faec3936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf7a2dd41cb3513eda57af93faec3936">&#9670;&nbsp;</a></span>readMaximumValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -628,19 +697,32 @@ template&lt;typename Value &gt; </div>
 template&lt;typename Value &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::SetActive </td>
+          <td class="memname">void <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::readMaximumValue </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>active</em></td><td>)</td>
+          <td class="paramtype">nlohmann::ordered_json const &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Changes if the pool is active. </p>
+<p>Reads the Base Value from the json data. </p>
+<p>Reads the Maaximum Value from the json data.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">active</td><td>- the new active state </td></tr>
+    <tr><td class="paramname">data</td><td>- the json data to read from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>the type of Value in this <a class="el" href="classPool.html" title="The pool framework is what we use to represent health in our game.">Pool</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>the json data to read from </td></tr>
   </table>
   </dd>
 </dl>
@@ -666,18 +748,31 @@ template&lt;typename Value &gt; </div>
 </div><div class="memdoc">
 
 <p>set the current value </p>
+<p>Set the current value of the pool.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>- the new current value <br  />
- </td></tr>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>- the value to set the current to. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a2eb501bce90c80eaca0434eeabebf729"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2eb501bce90c80eaca0434eeabebf729">&#9670;&nbsp;</a></span>SetDefault()</h2>
+<a id="ac077df7bd0b3efad8e4dade13b8fa951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac077df7bd0b3efad8e4dade13b8fa951">&#9670;&nbsp;</a></span>SetMaximum()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -685,7 +780,7 @@ template&lt;typename Value &gt; </div>
 template&lt;typename Value &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::SetDefault </td>
+          <td class="memname">void <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::SetMaximum </td>
           <td>(</td>
           <td class="paramtype">Value&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
@@ -695,37 +790,22 @@ template&lt;typename Value &gt; </div>
 </div><div class="memdoc">
 
 <p>Changes the base value. </p>
+<p>Set the maximum value of the pool.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>- the new base value </td></tr>
+    <tr><td class="paramname">value</td><td>- the new base value</td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="aae40a3851233214aa138f7673b8efd16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae40a3851233214aa138f7673b8efd16">&#9670;&nbsp;</a></span>SetName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Value &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classPool.html">Pool</a>&lt; Value &gt;::SetName </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Changes the name of the pool. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>- The New Name of the pool </td></tr>
+    <tr><td class="paramname">value</td><td>- the value to set the maximum value to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -755,7 +835,15 @@ template&lt;typename Value &gt; </div>
 </div><div class="memdoc">
 
 <p>write the data to json </p>
-<dl class="section return"><dt>Returns</dt><dd>the written json data </dd></dl>
+<p>Writes all the data of the pool to a JSON file.</p>
+<dl class="section return"><dt>Returns</dt><dd>the written json data</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The JSON file it was written to. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classISerializable.html#a9fa16420df0e7bb8f2c51adc9b920655">ISerializable</a>.</p>
 
@@ -809,7 +897,21 @@ template&lt;typename Value &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- true if the pools are not equal </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- true if the pools are not equal</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>- the pool to the left of the != </td></tr>
+    <tr><td class="paramname">rhs</td><td>- the pool to the right of the != </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Are the values of the pools not equal (bool). </dd></dl>
 
 </div>
 </div>
@@ -860,7 +962,21 @@ template&lt;typename Value &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- the new pool value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- the new pool value</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>- the pool to the left of the * </td></tr>
+    <tr><td class="paramname">rhs</td><td>- the pool to the right of the * </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The product of the two pools. </dd></dl>
 
 </div>
 </div>
@@ -911,7 +1027,21 @@ template&lt;typename Value &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- the new pool value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- the new pool value</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>- the pool to the left of the + </td></tr>
+    <tr><td class="paramname">rhs</td><td>- the pool to the right of the + </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The sum of the two pools. </dd></dl>
 
 </div>
 </div>
@@ -962,7 +1092,21 @@ template&lt;typename Value &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- the new pool value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- the new pool value</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>- the pool to the left of the - </td></tr>
+    <tr><td class="paramname">rhs</td><td>- the pool to the right of the - </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The difference between the two pools. </dd></dl>
 
 </div>
 </div>
@@ -1013,7 +1157,21 @@ template&lt;typename Value &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- the new pool value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- the new pool value</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>- the pool to the left of the / </td></tr>
+    <tr><td class="paramname">rhs</td><td>- the pool to the right of the / </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The quotient of the two pools. </dd></dl>
 
 </div>
 </div>
@@ -1064,7 +1222,21 @@ template&lt;typename Value &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- true if the left hand side is less than the right hand side </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- true if the left hand side is less than the right hand side</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>- the pool to the left of the &lt;. </td></tr>
+    <tr><td class="paramname">rhs</td><td>- the pool to the right of the &lt;. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the left pool is less than the right pool. </dd></dl>
 
 </div>
 </div>
@@ -1115,7 +1287,21 @@ template&lt;typename Value &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- true if the left hand side is less than or equal to the right hand side </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- true if the left hand side is less than or equal to the right hand side</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>- the pool to the left of the &lt;=. </td></tr>
+    <tr><td class="paramname">rhs</td><td>- the pool to the right of the &lt;=. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the left pool is lesser than or equal to the right pool. </dd></dl>
 
 </div>
 </div>
@@ -1166,7 +1352,21 @@ template&lt;typename Value &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- true if the pools are equal </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- true if the pools are equal</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>- the pool to the left of the == </td></tr>
+    <tr><td class="paramname">rhs</td><td>- the pool to the right of the == </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Are the values of the pools equal (bool). </dd></dl>
 
 </div>
 </div>
@@ -1217,7 +1417,21 @@ template&lt;typename Value &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- true if the left hand side is greater than the right hand side </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- true if the left hand side is greater than the right hand side</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>- the pool to the left of the &gt;. </td></tr>
+    <tr><td class="paramname">rhs</td><td>- the pool to the right of the &gt;. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the left pool is greater than the right pool. </dd></dl>
 
 </div>
 </div>
@@ -1268,7 +1482,21 @@ template&lt;typename Value &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- true if the left hand side is greater than or equal to the right hand side </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>- true if the left hand side is greater than or equal to the right hand side</dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>- the pool to the left of the &gt;=. </td></tr>
+    <tr><td class="paramname">rhs</td><td>- the pool to the right of the &gt;=. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the left pool is greater than or equal to the right pool. </dd></dl>
 
 </div>
 </div>
@@ -1295,20 +1523,24 @@ template&lt;typename Value &gt; </div>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    { <span class="stringliteral">&quot;Name&quot;</span>        , &amp;<a class="code" href="classPool.html">Pool&lt;Value&gt;::readName</a>         }, </div>
-<div class="line">    { <span class="stringliteral">&quot;BaseValue&quot;</span>   , &amp;<a class="code" href="classPool.html">Pool&lt;Value&gt;::readBaseValue</a>    },</div>
-<div class="line">    { <span class="stringliteral">&quot;Active&quot;</span>      , &amp;<a class="code" href="classPool.html">Pool&lt;Value&gt;::readActive</a>       },</div>
+<div class="line">    { <span class="stringliteral">&quot;BaseValue&quot;</span>   , &amp;<a class="code" href="classPool.html">Pool&lt;Value&gt;::readMaximumValue</a> },</div>
 <div class="line">    { <span class="stringliteral">&quot;CurrentValue&quot;</span>, &amp;<a class="code" href="classPool.html">Pool&lt;Value&gt;::readCurrentValue</a> }</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassPool_html"><div class="ttname"><a href="classPool.html">Pool</a></div><div class="ttdef"><b>Definition:</b> Pool.h:17</div></div>
+<div class="ttc" id="aclassPool_html"><div class="ttname"><a href="classPool.html">Pool</a></div><div class="ttdoc">The pool framework is what we use to represent health in our game.</div><div class="ttdef"><b>Definition:</b> Pool.h:20</div></div>
 </div><!-- fragment -->
 <p>map of the read methods </p>
+<p>A map of all the functions responsible for reading in data for the pool framework.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>- the type of data in the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Source/<a class="el" href="Pool_8h_source.html">Pool.h</a></li>
-<li>Source/<a class="el" href="Pool_8cpp.html">Pool.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

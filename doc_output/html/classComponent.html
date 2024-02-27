@@ -127,32 +127,45 @@ Public Member Functions</h2></td></tr>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">~Component</a> ()</td></tr>
 <tr class="memdesc:a2e9aa4348314d981f05f67397ad2f872"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtual destructor <br /></td></tr>
 <tr class="separator:a2e9aa4348314d981f05f67397ad2f872"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84ffb31637b6208fc8114114fb60dc4a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classComponent.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">Clone</a> () const =0</td></tr>
-<tr class="memdesc:a84ffb31637b6208fc8114114fb60dc4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtual component clone function  <a href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">More...</a><br /></td></tr>
-<tr class="separator:a84ffb31637b6208fc8114114fb60dc4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a76b143949c4f40b890c182cdd18a22"><td class="memItemLeft" align="right" valign="top"><a id="a2a76b143949c4f40b890c182cdd18a22"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a2a76b143949c4f40b890c182cdd18a22">OnInit</a> ()</td></tr>
 <tr class="memdesc:a2a76b143949c4f40b890c182cdd18a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when this <a class="el" href="classComponent.html">Component</a>'s <a class="el" href="classEntity.html">Entity</a> is added to the Scene <br /></td></tr>
 <tr class="separator:a2a76b143949c4f40b890c182cdd18a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71b5ee92e9f8e65ab040a80e149fc596"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a71b5ee92e9f8e65ab040a80e149fc596">OnExit</a> ()</td></tr>
-<tr class="memdesc:a71b5ee92e9f8e65ab040a80e149fc596"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when this <a class="el" href="classComponent.html">Component</a>'s <a class="el" href="classEntity.html">Entity</a> is removed from the Scene  <a href="classComponent.html#a71b5ee92e9f8e65ab040a80e149fc596">More...</a><br /></td></tr>
+<tr class="memitem:a71b5ee92e9f8e65ab040a80e149fc596"><td class="memItemLeft" align="right" valign="top"><a id="a71b5ee92e9f8e65ab040a80e149fc596"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a71b5ee92e9f8e65ab040a80e149fc596">OnExit</a> ()</td></tr>
+<tr class="memdesc:a71b5ee92e9f8e65ab040a80e149fc596"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when this <a class="el" href="classComponent.html">Component</a>'s <a class="el" href="classEntity.html">Entity</a> is removed from the Scene <br /></td></tr>
 <tr class="separator:a71b5ee92e9f8e65ab040a80e149fc596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac497ba6d9c43e2a93ea660067807e3e1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ac497ba6d9c43e2a93ea660067807e3e1">OnHierarchyChange</a> (<a class="el" href="classEntity.html">Entity</a> *previousParent)</td></tr>
+<tr class="memdesc:ac497ba6d9c43e2a93ea660067807e3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">called every time after the <a class="el" href="classEntity.html">Entity</a> this <a class="el" href="classComponent.html">Component</a> is attached to's heirarchy changes  <a href="classComponent.html#ac497ba6d9c43e2a93ea660067807e3e1">More...</a><br /></td></tr>
+<tr class="separator:ac497ba6d9c43e2a93ea660067807e3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac47602f1a581b4989adb6fefa4940d1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#aac47602f1a581b4989adb6fefa4940d1">OnAddChild</a> (<a class="el" href="classEntity.html">Entity</a> *newChild)</td></tr>
+<tr class="memdesc:aac47602f1a581b4989adb6fefa4940d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">called whenever a child is added to this <a class="el" href="classEntity.html">Entity</a>  <a href="classComponent.html#aac47602f1a581b4989adb6fefa4940d1">More...</a><br /></td></tr>
+<tr class="separator:aac47602f1a581b4989adb6fefa4940d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4395f6697c9fb583a226c26754478eb0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a4395f6697c9fb583a226c26754478eb0">OnRemoveChild</a> (<a class="el" href="classEntity.html">Entity</a> *newChild)</td></tr>
+<tr class="memdesc:a4395f6697c9fb583a226c26754478eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">called whenever a child is about to be removed from this <a class="el" href="classEntity.html">Entity</a>  <a href="classComponent.html#a4395f6697c9fb583a226c26754478eb0">More...</a><br /></td></tr>
+<tr class="separator:a4395f6697c9fb583a226c26754478eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bfbb00a07c361c4c8d7b1812b9937ff"><td class="memItemLeft" align="right" valign="top"><a id="a5bfbb00a07c361c4c8d7b1812b9937ff"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a5bfbb00a07c361c4c8d7b1812b9937ff">Inspector</a> ()</td></tr>
 <tr class="memdesc:a5bfbb00a07c361c4c8d7b1812b9937ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the Debug <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to display information about this <a class="el" href="classComponent.html">Component</a>. <br /></td></tr>
 <tr class="separator:a5bfbb00a07c361c4c8d7b1812b9937ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84ffb31637b6208fc8114114fb60dc4a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classComponent.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">Clone</a> () const =0</td></tr>
+<tr class="memdesc:a84ffb31637b6208fc8114114fb60dc4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtual component clone function  <a href="classComponent.html#a84ffb31637b6208fc8114114fb60dc4a">More...</a><br /></td></tr>
+<tr class="separator:a84ffb31637b6208fc8114114fb60dc4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab75652d7b0af6b7c604cc67efb34cfeb"><td class="memItemLeft" align="right" valign="top">std::type_index&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ab75652d7b0af6b7c604cc67efb34cfeb">GetType</a> () const</td></tr>
 <tr class="memdesc:ab75652d7b0af6b7c604cc67efb34cfeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the components type  <a href="classComponent.html#ab75652d7b0af6b7c604cc67efb34cfeb">More...</a><br /></td></tr>
 <tr class="separator:ab75652d7b0af6b7c604cc67efb34cfeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cbb92a522d77dc8ce22098dd277f84b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">SetParent</a> (<a class="el" href="classEntity.html">Entity</a> *parent)</td></tr>
-<tr class="memdesc:a7cbb92a522d77dc8ce22098dd277f84b"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the parent entity of the component  <a href="classComponent.html#a7cbb92a522d77dc8ce22098dd277f84b">More...</a><br /></td></tr>
-<tr class="separator:a7cbb92a522d77dc8ce22098dd277f84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0099a8a475c9ddaabf9d4ecefcd17dd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a0099a8a475c9ddaabf9d4ecefcd17dd5">SetEntity</a> (<a class="el" href="classEntity.html">Entity</a> *entity)</td></tr>
+<tr class="memdesc:a0099a8a475c9ddaabf9d4ecefcd17dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the parent entity of the component  <a href="classComponent.html#a0099a8a475c9ddaabf9d4ecefcd17dd5">More...</a><br /></td></tr>
+<tr class="separator:a0099a8a475c9ddaabf9d4ecefcd17dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bac0f3387cfd9163ca61445ceb0b6b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a0bac0f3387cfd9163ca61445ceb0b6b9">GetEntity</a> () const</td></tr>
 <tr class="memdesc:a0bac0f3387cfd9163ca61445ceb0b6b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the components parent entity  <a href="classComponent.html#a0bac0f3387cfd9163ca61445ceb0b6b9">More...</a><br /></td></tr>
 <tr class="separator:a0bac0f3387cfd9163ca61445ceb0b6b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a767bfcc0db2ef4632db94b1c7a23f663"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">GetId</a> () const</td></tr>
 <tr class="memdesc:a767bfcc0db2ef4632db94b1c7a23f663"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the Id of this <a class="el" href="classComponent.html">Component</a>  <a href="classComponent.html#a767bfcc0db2ef4632db94b1c7a23f663">More...</a><br /></td></tr>
 <tr class="separator:a767bfcc0db2ef4632db94b1c7a23f663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9af52e1878212622948ab2189f4f29dd"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a9af52e1878212622948ab2189f4f29dd">GetName</a> () const</td></tr>
+<tr class="memdesc:a9af52e1878212622948ab2189f4f29dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classComponent.html">Component</a>'s name  <a href="classComponent.html#a9af52e1878212622948ab2189f4f29dd">More...</a><br /></td></tr>
+<tr class="separator:a9af52e1878212622948ab2189f4f29dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab013472b21ba197a25143ab1e1e9272e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ab013472b21ba197a25143ab1e1e9272e">BaseComponentInspector</a> ()</td></tr>
 <tr class="memdesc:ab013472b21ba197a25143ab1e1e9272e"><td class="mdescLeft">&#160;</td><td class="mdescRight">base Inspector for Components  <a href="classComponent.html#ab013472b21ba197a25143ab1e1e9272e">More...</a><br /></td></tr>
 <tr class="separator:ab013472b21ba197a25143ab1e1e9272e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -297,7 +310,7 @@ Protected Member Functions</h2></td></tr>
 <p>virtual component clone function </p>
 <dl class="section return"><dt>Returns</dt><dd>new clone of component </dd></dl>
 
-<p>Implemented in <a class="el" href="classWavesBehavior.html#a7bdf2beb6eeedcdaa48a257e9589d346">WavesBehavior</a>, <a class="el" href="classUiElement.html#a406854ff27a7b1b185a22816d834f81a">UiElement</a>, <a class="el" href="classTurretBehavior.html#a1b8536cf1e5f5aff5281fb54fcc55125">TurretBehavior</a>, <a class="el" href="classTransform.html#a49130d0a3f94a70eec11a67979ce693c">Transform</a>, <a class="el" href="classTilemapCollider.html#a6f19edbc75cf29184524b4a51df23869">TilemapCollider</a>, <a class="el" href="classTilemap.html#a3a15bf3e418406b1f2008b50880c68cd">Tilemap&lt; TileType &gt;</a>, <a class="el" href="classTilemap.html#a3a15bf3e418406b1f2008b50880c68cd">Tilemap&lt; int &gt;</a>, <a class="el" href="classTilemap.html#a3a15bf3e418406b1f2008b50880c68cd">Tilemap&lt; Entity * &gt;</a>, <a class="el" href="classText.html#ac971ea4d6d43c1635ffd078f1c0e7e95">Text</a>, <a class="el" href="classSprite.html#ac4f77c982a39659c389f00b9d395b0db">Sprite</a>, <a class="el" href="classPathfinder.html#ab8111e36fe8bf49e8222c0773e7e6d05">Pathfinder</a>, <a class="el" href="classEnemyBehavior.html#a7ddc797439742166c3cd9f38c293aa2c">EnemyBehavior</a>, <a class="el" href="classEmitter.html#a00a50f4e55a246b70c45a01f3cdb28b1">Emitter</a>, <a class="el" href="classCircleCollider.html#a31fae47f8e77ce5e37a3fc4bcd20a84f">CircleCollider</a>, <a class="el" href="classBulletBehavior.html#a433416cdb18e02f28ca77cea9349c1f1">BulletBehavior</a>, <a class="el" href="classBasicEntityBehavior.html#ad3f269a9c099ca950b3a1241d44279f8">BasicEntityBehavior</a>, <a class="el" href="classBaseBehavior.html#a2e2e69bdb480e974db1c6cc1d45296e5">BaseBehavior</a>, <a class="el" href="classAudioPlayer.html#a203b4eacecae024e66a0016d2484c87c">AudioPlayer</a>, <a class="el" href="classAnimation.html#a490b465c9eef5c3e54c4ad1a382179c1">Animation</a>, <a class="el" href="classLineCollider.html#a81c679f3f85f0c43ed4ebec18eeec1fa">LineCollider</a>, and <a class="el" href="classCamera.html#aae79f318d0ee116b40785c50078d8ce7">Camera</a>.</p>
+<p>Implemented in <a class="el" href="classWinState.html#a0f2eebb21729481f2ab446fdbeae257c">WinState</a>, <a class="el" href="classWavesBehavior.html#a7bdf2beb6eeedcdaa48a257e9589d346">WavesBehavior</a>, <a class="el" href="classUiElement.html#abf2051e19e4a70109a61f983dc158be0">UiElement</a>, <a class="el" href="classUiButton.html#a2d51afb463497b3efd8192ef6a3be355">UiButton</a>, <a class="el" href="classUiBarSprite.html#aec5f6691284d5fc296a8b1131c607a94">UiBarSprite</a>, <a class="el" href="classTurretBehavior.html#a6f63b22b49dcabd9c9b052cef517e8c0">TurretBehavior</a>, <a class="el" href="classTransform.html#a49130d0a3f94a70eec11a67979ce693c">Transform</a>, <a class="el" href="classTilemapTextureConnector.html#af6a339f69169bd986d242bbd4672f3cf">TilemapTextureConnector</a>, <a class="el" href="classTilemapSprite.html#a073622f9f48c1d3d317ad9fc7a9701c3">TilemapSprite</a>, <a class="el" href="classTilemapItemDropper.html#a327f447ad0c3141d4284f4885dbe67fb">TilemapItemDropper</a>, <a class="el" href="classTilemapEditor.html#a151331109f70cf51e40edac8dc6c049e">TilemapEditor</a>, <a class="el" href="classTilemapCollider.html#a6f19edbc75cf29184524b4a51df23869">TilemapCollider</a>, <a class="el" href="classTilemap.html#a5fe3c0ebaee5169ce9b89815def8b279">Tilemap&lt; TileType &gt;</a>, <a class="el" href="classTilemap.html#a5fe3c0ebaee5169ce9b89815def8b279">Tilemap&lt; int &gt;</a>, <a class="el" href="classText.html#ac971ea4d6d43c1635ffd078f1c0e7e95">Text</a>, <a class="el" href="classSprite.html#a8d3bdc61b2f5da93f5f6197fecb81604">Sprite</a>, <a class="el" href="classSplashScreenController.html#aef24a864df432b7f8e1033c161f19f8a">SplashScreenController</a>, <a class="el" href="classSceneChangeButton.html#a339179104ced73989a0e4d06fa794f2c">SceneChangeButton</a>, <a class="el" href="classRigidBody.html#a3bb397fb970374cfaa325b0b0cc7e4b6">RigidBody</a>, <a class="el" href="classResourcesUiManager.html#a596f12c0d42595d2e0baaaa8ca956174">ResourcesUiManager</a>, <a class="el" href="classResourceCounterUi.html#aac6a7ea7965fcad7833a74d4c926cebe">ResourceCounterUi</a>, <a class="el" href="classPlayerController.html#abda6c8b64060d67d6970c07709ea6dd8">PlayerController</a>, <a class="el" href="classPathfinder.html#a3899f72726b8bb9487c380f42d1e2e55">Pathfinder</a>, <a class="el" href="classNineslice.html#a22800fc08cb65af3a24304c9f40ba7e2">Nineslice</a>, <a class="el" href="classLightingSystem_1_1LightingSprite.html#a9173bd5244bc9ff586f763f05d985bfc">LightingSystem::LightingSprite</a>, <a class="el" href="classLight.html#a70a6cbe6dba3d36c4d96a60223a715c9">Light</a>, <a class="el" href="classLifetime.html#ae261de904ca647e751c265007391f831">Lifetime</a>, <a class="el" href="classItemComponent.html#a7621cff5d5c53b51e107720faafae8d8">ItemComponent</a>, <a class="el" href="classItemCollector.html#a29a1ea29b24ae8092762d2fb8fa65e7e">ItemCollector</a>, <a class="el" href="classInventory.html#a3a81fe1d5a277f8a02fc10765e16dfcd">Inventory</a>, <a class="el" href="classHomeBase.html#aa6159af121dd5e0eb2e29486214dd10c">HomeBase</a>, <a class="el" href="classHideableForeground.html#acc054f78a7b40d19cd2b6bcd6bf70870">HideableForeground</a>, <a class="el" href="classHealthBar.html#abe0072a9f2caa339699f49877dcb9360">HealthBar</a>, <a class="el" href="classHealth.html#ac259dcd441a393fa3217b90b448dba93">Health</a>, <a class="el" href="classGenerator.html#a9c5b90f67e097c6fbf46613ed8c0889d">Generator</a>, <a class="el" href="classExampleComponent.html#a5dc72bd67e3821ba3f2fa083689f896c">ExampleComponent</a>, <a class="el" href="classEnemyBehavior.html#a5f065172933cebdb58557b3438c06428">EnemyBehavior</a>, <a class="el" href="classEmitter.html#a00a50f4e55a246b70c45a01f3cdb28b1">Emitter</a>, <a class="el" href="classEffectAnimator.html#ad923c304efe18d2b94a877b8c9942196">EffectAnimator</a>, <a class="el" href="classEditorCameraController.html#a31d24ccd3f36be90e8e321fbc9c5eca2">EditorCameraController</a>, <a class="el" href="classConstructionBehavior.html#adf86235ac69f5bfed5ccd0a0e817df1e">ConstructionBehavior</a>, <a class="el" href="classCircleCollider.html#a31fae47f8e77ce5e37a3fc4bcd20a84f">CircleCollider</a>, <a class="el" href="classCameraBehavior.html#a06622f6be9e71fbb5dd9ffd11e824df3">CameraBehavior</a>, <a class="el" href="classCamera.html#a5f9cd12c0227e459114bd912894c4aa4">Camera</a>, <a class="el" href="classBullet.html#abbdc2a132a643708d11f6342642874a1">Bullet</a>, <a class="el" href="classAudioPlayer.html#aa6c0a0ce4a6d8726ed56dfc7850b112e">AudioPlayer</a>, <a class="el" href="classAudioListener.html#aec82f909b2f06520688b9b7a2fb0765a">AudioListener</a>, and <a class="el" href="classAnimation.html#a748c6840bc1a4cbb19369588909c6e2b">Animation</a>.</p>
 
 </div>
 </div>
@@ -357,6 +370,26 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a9af52e1878212622948ab2189f4f29dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9af52e1878212622948ab2189f4f29dd">&#9670;&nbsp;</a></span>GetName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Component::GetName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets this <a class="el" href="classComponent.html">Component</a>'s name </p>
+<dl class="section return"><dt>Returns</dt><dd>this <a class="el" href="classComponent.html">Component</a>'s name </dd></dl>
+
+</div>
+</div>
 <a id="ab75652d7b0af6b7c604cc67efb34cfeb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab75652d7b0af6b7c604cc67efb34cfeb">&#9670;&nbsp;</a></span>GetType()</h2>
 
@@ -385,8 +418,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a71b5ee92e9f8e65ab040a80e149fc596"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71b5ee92e9f8e65ab040a80e149fc596">&#9670;&nbsp;</a></span>OnExit()</h2>
+<a id="aac47602f1a581b4989adb6fefa4940d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac47602f1a581b4989adb6fefa4940d1">&#9670;&nbsp;</a></span>OnAddChild()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -395,9 +428,10 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void Component::OnExit </td>
+          <td class="memname">virtual void Component::OnAddChild </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classEntity.html">Entity</a> *&#160;</td>
+          <td class="paramname"><em>newChild</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -408,15 +442,20 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>called when this <a class="el" href="classComponent.html">Component</a>'s <a class="el" href="classEntity.html">Entity</a> is removed from the Scene </p>
-<dl class="section note"><dt>Note</dt><dd>NOT CALLED WHEN THE SCENE IS EXITED - that should be handled by this <a class="el" href="classComponent.html">Component</a>'s <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> </dd></dl>
+<p>called whenever a child is added to this <a class="el" href="classEntity.html">Entity</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newChild</td><td>the child that was added </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Reimplemented in <a class="el" href="classUiElement.html#a744b29d45238fb1dce09f10c2ce6f38a">UiElement</a>, <a class="el" href="classSprite.html#a5c74462e3560a9a46a7d7af03f7519fd">Sprite</a>, <a class="el" href="classRigidBody.html#a770d7ad3c7ce05ba7a1ea111b19f53af">RigidBody</a>, <a class="el" href="classPlayerController.html#aa9ec38dc404388d57ebabea4b8e6802c">PlayerController</a>, <a class="el" href="classCollider.html#acbc7a995612010a0c08e980fad647fc9">Collider</a>, <a class="el" href="classBulletBehavior.html#ad6be49c95c1a766b177a7b78a53ad798">BulletBehavior</a>, <a class="el" href="classBasicEntityBehavior.html#aa7112825d32eacb601f8a7f77fb742c5">BasicEntityBehavior</a>, and <a class="el" href="classBaseBehavior.html#a77e6fd01a56a7c392220f99ba3855e68">BaseBehavior</a>.</p>
+<p>Reimplemented in <a class="el" href="classResourceCounterUi.html#ab91670488cb05d086f18ff583aa25a57">ResourceCounterUi</a>.</p>
 
 </div>
 </div>
-<a id="a7cbb92a522d77dc8ce22098dd277f84b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7cbb92a522d77dc8ce22098dd277f84b">&#9670;&nbsp;</a></span>SetParent()</h2>
+<a id="ac497ba6d9c43e2a93ea660067807e3e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac497ba6d9c43e2a93ea660067807e3e1">&#9670;&nbsp;</a></span>OnHierarchyChange()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -425,10 +464,82 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Component::SetParent </td>
+          <td class="memname">virtual void Component::OnHierarchyChange </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classEntity.html">Entity</a> *&#160;</td>
-          <td class="paramname"><em>parent</em></td><td>)</td>
+          <td class="paramname"><em>previousParent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>called every time after the <a class="el" href="classEntity.html">Entity</a> this <a class="el" href="classComponent.html">Component</a> is attached to's heirarchy changes </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oldParent</td><td>the parent of this <a class="el" href="classEntity.html">Entity</a> before the hierarchy change </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classUiElement.html#abfca2b5e5354a9e84df7e8a86555ae90">UiElement</a>, and <a class="el" href="classTilemapTextureConnector.html#a0578a37962ac8910f11a3f325b0249be">TilemapTextureConnector</a>.</p>
+
+</div>
+</div>
+<a id="a4395f6697c9fb583a226c26754478eb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4395f6697c9fb583a226c26754478eb0">&#9670;&nbsp;</a></span>OnRemoveChild()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Component::OnRemoveChild </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEntity.html">Entity</a> *&#160;</td>
+          <td class="paramname"><em>newChild</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>called whenever a child is about to be removed from this <a class="el" href="classEntity.html">Entity</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newChild</td><td>the child that is about to be removed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classResourcesUiManager.html#ae28c75112e70509d85268fde360b3dd6">ResourcesUiManager</a>, and <a class="el" href="classResourceCounterUi.html#a3719dc33aa5391acb08432b6a7b4b9b0">ResourceCounterUi</a>.</p>
+
+</div>
+</div>
+<a id="a0099a8a475c9ddaabf9d4ecefcd17dd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0099a8a475c9ddaabf9d4ecefcd17dd5">&#9670;&nbsp;</a></span>SetEntity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Component::SetEntity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEntity.html">Entity</a> *&#160;</td>
+          <td class="paramname"><em>entity</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -442,7 +553,7 @@ Protected Member Functions</h2></td></tr>
 <p>sets the parent entity of the component </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">parent,the</td><td>parent entity of the component </td></tr>
+    <tr><td class="paramname">entity</td><td>the parent entity of the component </td></tr>
   </table>
   </dd>
 </dl>

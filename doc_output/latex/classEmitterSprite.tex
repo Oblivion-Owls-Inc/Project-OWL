@@ -1,0 +1,83 @@
+\hypertarget{classEmitterSprite}{}\doxysection{Emitter\+Sprite Class Reference}
+\label{classEmitterSprite}\index{EmitterSprite@{EmitterSprite}}
+
+
+A version of \mbox{\hyperlink{classSprite}{Sprite}} for rendering tilemaps using GPU instancing.  
+
+
+
+
+{\ttfamily \#include $<$Emitter\+Sprite.\+h$>$}
+
+
+
+Inheritance diagram for Emitter\+Sprite\+:
+% FIG 0
+
+
+Collaboration diagram for Emitter\+Sprite\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEmitterSprite_aab2b6d9dfa14331513cb1b541ea4db0b}\label{classEmitterSprite_aab2b6d9dfa14331513cb1b541ea4db0b}} 
+\mbox{\hyperlink{classEmitterSprite_aab2b6d9dfa14331513cb1b541ea4db0b}{Emitter\+Sprite}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEmitterSprite_a2da5417f7e3be838e05a14e886cd36d9}{Emitter\+Sprite}} (const \mbox{\hyperlink{classEmitterSprite}{Emitter\+Sprite}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEmitterSprite_abc8e51b24c99c690977f7df74bad920f}\label{classEmitterSprite_abc8e51b24c99c690977f7df74bad920f}} 
+\mbox{\hyperlink{classEmitterSprite_abc8e51b24c99c690977f7df74bad920f}{$\sim$\+Emitter\+Sprite}} ()
+\begin{DoxyCompactList}\small\item\em Destructor\+: calls On\+Exit if needed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEmitterSprite_a1c7da8bb787e919a321af90050bd3c15}\label{classEmitterSprite_a1c7da8bb787e919a321af90050bd3c15}} 
+virtual void \mbox{\hyperlink{classEmitterSprite_a1c7da8bb787e919a321af90050bd3c15}{Draw}} () override
+\begin{DoxyCompactList}\small\item\em Draws particles using gpu instancing. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classEmitterSprite_a22f78e177038ebd51e21b22b1a732d5c}{Overlaps\+Local\+Point}} (glm\+::vec2 const \&) const override
+\begin{DoxyCompactList}\small\item\em checks if a a point in local space overlaps this \mbox{\hyperlink{classSprite}{Sprite}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A version of \mbox{\hyperlink{classSprite}{Sprite}} for rendering tilemaps using GPU instancing. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEmitterSprite_a2da5417f7e3be838e05a14e886cd36d9}\label{classEmitterSprite_a2da5417f7e3be838e05a14e886cd36d9}} 
+\index{EmitterSprite@{EmitterSprite}!EmitterSprite@{EmitterSprite}}
+\index{EmitterSprite@{EmitterSprite}!EmitterSprite@{EmitterSprite}}
+\doxysubsubsection{\texorpdfstring{EmitterSprite()}{EmitterSprite()}}
+{\footnotesize\ttfamily Emitter\+Sprite\+::\+Emitter\+Sprite (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEmitterSprite}{Emitter\+Sprite}} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \mbox{\hyperlink{classComponent}{Component}} to copy \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEmitterSprite_a22f78e177038ebd51e21b22b1a732d5c}\label{classEmitterSprite_a22f78e177038ebd51e21b22b1a732d5c}} 
+\index{EmitterSprite@{EmitterSprite}!OverlapsLocalPoint@{OverlapsLocalPoint}}
+\index{OverlapsLocalPoint@{OverlapsLocalPoint}!EmitterSprite@{EmitterSprite}}
+\doxysubsubsection{\texorpdfstring{OverlapsLocalPoint()}{OverlapsLocalPoint()}}
+{\footnotesize\ttfamily virtual bool Emitter\+Sprite\+::\+Overlaps\+Local\+Point (\begin{DoxyParamCaption}\item[{glm\+::vec2 const \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+checks if a a point in local space overlaps this \mbox{\hyperlink{classSprite}{Sprite}} 
+
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classSprite}{Sprite}} overlaps the point 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classSprite_ad5d20b22aef221885d2349fe7b1bdbac}{Sprite}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{EmitterSprite_8h}{Emitter\+Sprite.\+h}}\item 
+Source/\mbox{\hyperlink{EmitterSprite_8cpp}{Emitter\+Sprite.\+cpp}}\end{DoxyCompactItemize}
