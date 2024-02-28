@@ -9,9 +9,6 @@
 
 #include "Text.h"
 
-#include "Entity.h"
-#include "Tilemap.h"
-
 #include "ComponentReference.t.h"
 #include "Tilemap.h"
 
