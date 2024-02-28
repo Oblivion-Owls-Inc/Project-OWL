@@ -11,7 +11,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
@@ -22,7 +23,8 @@
                 "Pivot": [
                     0.0,
                     1.0
-                ]
+                ],
+                "UseAspectRatio": false
             }
         },
         "TransformAnimations": null,
@@ -101,8 +103,8 @@
                         0
                     ],
                     "TileScale": [
-                        0.11999999731779099,
-                        0.3400000035762787
+                        0.6669999957084656,
+                        1.0
                     ],
                     "TileData": [
                         57,

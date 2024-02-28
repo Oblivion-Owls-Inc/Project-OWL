@@ -74,13 +74,13 @@ public: // reading / writing
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
+    /// @brief  gets the map of read methods for this ExampleComponent
+    /// @return the map of read methods for this ExampleComponent
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
-    /// @brief  Writes all HomeBase data to a JSON file.
-    /// @return The JSON file containing the data.
+    /// @brief  writes this ExampleComponent to JSON
+    /// @return the JSON data of this ExampleComponent
     virtual nlohmann::ordered_json Write() const override;
 
     
@@ -104,7 +104,7 @@ private: // copying
     ExampleComponent( ExampleComponent const& other );
 
 
-    // diable = operator
+    // disable assignment operator
     void operator =( ExampleComponent const& ) = delete;
 
 

@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include "ISerializable.h"
-
 #include "basics.h"
 #include "Stream.h"
 

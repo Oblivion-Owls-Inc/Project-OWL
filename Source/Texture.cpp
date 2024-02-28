@@ -30,7 +30,7 @@
         m_Pivot( pivot ),
         m_TextureID( 0 )
     {
-        LoadImage();
+        loadImage();
     }
 
 
@@ -56,6 +56,10 @@
     /// @return the UV offset of the frame index
     glm::vec2 Texture::GetUvOffset( int frameIndex ) const
     {
+        if (m_Mesh == nullptr)
+        {
+            return glm::vec2(0.0f);
+        }
         int column = frameIndex % m_SheetDimensions.x;
         int row = frameIndex / m_SheetDimensions.x;
         return m_Mesh->GetUVsize() * glm::vec2( column, row );
@@ -74,15 +78,38 @@
     /// @brief Used by the Debug to display information about this Texture
     void Texture::Inspect()
     {
-        Inspection::SelectFileFromDirectory( "Filepath", &m_Filepath, "Data/Textures" );
+        if ( Inspection::SelectFileFromDirectory( "Filepath", &m_Filepath, "Data/Textures" ) )
+        {
+            loadImage();
+        }
 
-        ImGui::DragInt2( "Sheet Dimensions", &m_SheetDimensions[0], 0.02f, 1, INT_MAX );
+        if ( ImGui::DragInt2( "Sheet Dimensions", &m_SheetDimensions[0], 0.02f, 1, INT_MAX ) )
+        {
+            reloadMesh();
+        }
 
-        ImGui::DragFloat2( "Pivot", &m_Pivot[0], 0.01f, 0.0f, 1.0f );
+        if ( ImGui::DragFloat2( "Pivot", &m_Pivot[0], 0.01f, 0.0f, 1.0f ) )
+        {
+            reloadMesh();
+        }
+
+        if ( ImGui::Checkbox( "Use Aspect Ratio", &m_UseAspectRatio ) )
+        {
+            reloadMesh();
+        }
 
         if ( ImGui::Button( "Reload Texture" ) )
         {
-            LoadImage();
+            loadImage();
+        }
+
+        for ( int i = 0; i < m_SheetDimensions.x * m_SheetDimensions.y; ++i )
+        {
+            if ( i % m_SheetDimensions.x != 0 )
+            {
+                ImGui::SameLine();
+            }
+            DisplayInInspector( i );
         }
     }
 
@@ -94,6 +121,11 @@
     /// @param  borderColor the border color of the displayed button
     void Texture::DisplayInInspector( int frameIndex, float scale, glm::vec4 const& tintColor, glm::vec4 const& borderColor ) const
     {
+        if ( m_TextureID == 0 || m_Mesh == nullptr )
+        {
+            return;
+        }
+
         glm::vec2 uvMin = GetUvOffset( frameIndex );
         glm::vec2 uvMax = uvMin + m_Mesh->GetUVsize();
 
@@ -151,12 +183,20 @@ void Texture::readPivot( nlohmann::ordered_json const& data )
     m_Pivot = Stream::Read< 2, float >( data );
 }
 
+/// @brief  reads whether to use the aspect ratio of the texture instead of a square mesh
+/// @param  data    the data to read from
+void Texture::readUseAspectRatio( nlohmann::ordered_json const& data )
+{
+    Stream::Read( m_UseAspectRatio, data );
+}
+
+
 /// @brief  gets called after reading all arugments 
 void Texture::AfterLoad()
 {
     if ( m_Filepath.empty() == false )
     {
-        LoadImage();
+        loadImage();
     }
 }
 
@@ -169,6 +209,7 @@ nlohmann::ordered_json Texture::Write() const
     data["Filepath"] = m_Filepath;
     data["SheetDimensions"] = Stream::Write(m_SheetDimensions);
     data["Pivot"] = Stream::Write( m_Pivot );
+    data["UseAspectRatio"] = Stream::Write( m_UseAspectRatio );
 
     return data;
 }
@@ -179,7 +220,8 @@ nlohmann::ordered_json Texture::Write() const
 ReadMethodMap< Texture > const Texture::s_ReadMethods = {
     { "Filepath"       , &readFilepath        },
     { "SheetDimensions", &readSheetDimensions },
-    { "Pivot"          , &readPivot           }
+    { "Pivot"          , &readPivot           },
+    { "UseAspectRatio" , &readUseAspectRatio  }
 };
 
 
@@ -189,7 +231,7 @@ ReadMethodMap< Texture > const Texture::s_ReadMethods = {
 //-----------------------------------------------------------------------------
 
 /// @brief  Loads texture image from file (deletes old one if present)
-void Texture::LoadImage()
+void Texture::loadImage()
 {
     if (m_TextureID)            // reloading with new data?
     {
@@ -223,13 +265,34 @@ void Texture::LoadImage()
         glTexParameterfv( GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, &glm::vec4( 0.0f, 0.0f, 0.0f, 0.0f )[ 0 ] );
 
         // attach mesh
-        if (m_SheetDimensions == glm::ivec2( 1 ) && m_Pivot == glm::vec2( 0.5f ) )
+        if ((m_UseAspectRatio == false || GetAspectRatio() == 1.0f) && m_SheetDimensions == glm::ivec2( 1 ) && m_Pivot == glm::vec2( 0.5f ) )
             m_Mesh = Renderer()->GetDefaultMesh();
         else
-            m_Mesh = new Mesh( glm::vec2( GetAspectRatio(), 1 ), m_SheetDimensions, m_Pivot );
+            m_Mesh = new Mesh( m_UseAspectRatio ? glm::vec2( GetAspectRatio(), 1.0f ) : glm::vec2( 1.0f ), m_SheetDimensions, m_Pivot);
     }
     else
-        std::cout << "TEXTURE ERROR: could not load file " << m_Filepath << std::endl;
+    {
+        Debug() << "ERROR: could not load texture " << m_Filepath << std::endl;
+    }
 }
+
+
+    /// @brief  reloads this Texture's mesh
+    void Texture::reloadMesh()
+    {
+        if ( m_Mesh != Renderer()->GetDefaultMesh() )
+        {
+            delete m_Mesh;
+        }
+
+        if ( (m_UseAspectRatio == false || GetAspectRatio() == 1.0f) && m_SheetDimensions == glm::ivec2( 1 ) && m_Pivot == glm::vec2( 0.5f ) )
+        {
+            m_Mesh = Renderer()->GetDefaultMesh();
+        }
+        else
+        {
+            m_Mesh = new Mesh( m_UseAspectRatio ? glm::vec2( GetAspectRatio(), 1.0f ) : glm::vec2( 1.0f ), m_SheetDimensions, m_Pivot );
+        }
+    }
 
 //-----------------------------------------------------------------------------

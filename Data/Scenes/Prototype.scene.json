@@ -40,7 +40,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Ball": {
                 "Filepath": "Data/Textures/Balls/Ball.png",
@@ -51,7 +52,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Ball1": {
                 "Filepath": "Data/Textures/Balls/Ball2.png",
@@ -62,7 +64,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Ball3": {
                 "Filepath": "Data/Textures/Balls/Ball3.png",
@@ -73,7 +76,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "CastlTiles": {
                 "Filepath": "Data/Textures/CastleTiles.png",
@@ -84,7 +88,8 @@
                 "Pivot": [
                     0.0,
                     1.0
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Fireball": {
                 "Filepath": "Data/Textures/Balls/Ball4.png",
@@ -95,7 +100,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "FontSheet": {
                 "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
@@ -104,9 +110,10 @@
                     8
                 ],
                 "Pivot": [
-                    0.0,
-                    1.0
-                ]
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
             },
             "HealthBar": {
                 "Filepath": "Data/Textures/healthBar.png",
@@ -117,7 +124,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Items": {
                 "Filepath": "Data/Textures/Items/TestItemSheet.png",
@@ -128,7 +136,8 @@
                 "Pivot": [
                     0.5,
                     0.5
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Level Assets": {
                 "Filepath": "Data/Textures/DigDeeper_Tileset_V1.png",
@@ -139,7 +148,8 @@
                 "Pivot": [
                     0.0,
                     1.0
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "PlayerSheet": {
                 "Filepath": "Data/Textures/Full Spritesheet.png",
@@ -150,7 +160,20 @@
                 "Pivot": [
                     0.5,
                     0.3799999952316284
-                ]
+                ],
+                "UseAspectRatio": false
+            },
+            "TestNineslice": {
+                "Filepath": "Data/Textures/TestNineslice.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
             },
             "Turret": {
                 "Filepath": "Data/Textures/Turret.png",
@@ -161,7 +184,8 @@
                 "Pivot": [
                     0.699999988079071,
                     0.6000000238418579
-                ]
+                ],
+                "UseAspectRatio": false
             },
             "Van": {
                 "Filepath": "Data/Textures/van_large.png",
@@ -172,7 +196,8 @@
                 "Pivot": [
                     0.5,
                     0.3799999952316284
-                ]
+                ],
+                "UseAspectRatio": true
             }
         },
         "TransformAnimations": null,
@@ -213,7 +238,9 @@
                     "CircleCollider": {
                         "Radius": 0.10000000149011612,
                         "CollisionLayer": 4,
-                        "CollisionLayerFlags": 3
+                        "CollisionLayerFlags": {
+                            "Flags": 3
+                        }
                     },
                     "Lifetime": {
                         "Lifetime": {
@@ -284,7 +311,9 @@
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
                         "CollisionLayer": 1,
-                        "CollisionLayerFlags": 7
+                        "CollisionLayerFlags": {
+                            "Flags": 13
+                        }
                     },
                     "Emitter": {
                         "PPS": 680.4739990234375,
@@ -507,6 +536,122 @@
                 },
                 "Children": null
             },
+            "ResourceCounter": {
+                "Name": "ResourceCounter",
+                "Components": {
+                    "ResourceCounterUi": {
+                        "Resources": {
+                            "ItemId": 0,
+                            "Count": 1
+                        }
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Items"
+                        }
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            -0.5,
+                            0.0
+                        ],
+                        "Pivot": [
+                            0.0,
+                            0.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            0.0
+                        ],
+                        "FrameSize": [
+                            0.20000000298023224,
+                            0.20000000298023224
+                        ],
+                        "SizeTypes": [
+                            "RelativeToWidth",
+                            "RelativeToWidth"
+                        ]
+                    }
+                },
+                "Children": [
+                    {
+                        "Name": "ResourceCounterText",
+                        "Components": {
+                            "Tilemap<int>": {
+                                "Dimensions": [
+                                    10,
+                                    1
+                                ],
+                                "TileScale": [
+                                    0.5,
+                                    1.0
+                                ],
+                                "TileData": [
+                                    17,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "Text": {
+                                "String": "1"
+                            },
+                            "TilemapSprite": {
+                                "Layer": 2,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "FontSheet"
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    1.0,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    -1.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    1.0,
+                                    1.0
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToWidth",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    }
+                ]
+            },
             "Turret": {
                 "Name": "Turret",
                 "Components": {
@@ -555,7 +700,9 @@
                         "BulletDamage": 10,
                         "BulletSpeed": 10.0,
                         "BulletSize": 0.30000001192092896,
-                        "ObstructionLayers": 1,
+                        "ObstructionLayers": {
+                            "Flags": 1
+                        },
                         "BulletPrefab": {
                             "AssetName": "Bullet"
                         }
@@ -623,7 +770,9 @@
                 "CircleCollider": {
                     "Radius": 1.0,
                     "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
                 },
                 "Generator": {
                     "Radius": 5.0,
@@ -688,7 +837,9 @@
                 "CircleCollider": {
                     "Radius": 2.0,
                     "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
                 },
                 "Generator": {
                     "Radius": 5.0,
@@ -750,7 +901,9 @@
                 "CircleCollider": {
                     "Radius": 2.0,
                     "CollisionLayer": 3,
-                    "CollisionLayerFlags": 2
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
                 },
                 "Generator": {
                     "Radius": 5.0,
@@ -2547,8 +2700,8 @@
                 },
                 "Pathfinder": {
                     "Destination": [
-                        0.0,
-                        0.0
+                        -9.0,
+                        5.5
                     ],
                     "Walkables": [
                         -1
@@ -2560,7 +2713,9 @@
                 },
                 "TilemapCollider": {
                     "CollisionLayer": 0,
-                    "CollisionLayerFlags": 0
+                    "CollisionLayerFlags": {
+                        "Flags": 0
+                    }
                 },
                 "TilemapItemDropper": {
                     "ItemArchetype": {
@@ -6008,7 +6163,9 @@
                 "CircleCollider": {
                     "Radius": 0.30000001192092896,
                     "CollisionLayer": 2,
-                    "CollisionLayerFlags": 3
+                    "CollisionLayerFlags": {
+                        "Flags": 3
+                    }
                 },
                 "Health": {
                     "Health": {
@@ -6334,48 +6491,48 @@
             },
             "Children": null
         },
-        "ResourcesText": {
-            "Name": "ResourcesText",
+        "ResourcesUi": {
+            "Name": "ResourcesUi",
             "Components": {
-                "Tilemap<int>": {
-                    "Dimensions": [
-                        41,
-                        0
+                "Nineslice": {
+                    "MinInternalEdge": [
+                        0.25,
+                        0.25
                     ],
-                    "TileScale": [
-                        0.11999999731779099,
-                        0.3400000035762787
+                    "MaxInternalEdge": [
+                        0.75,
+                        0.75
                     ],
-                    "TileData": [
-                        50,
-                        69,
-                        83,
-                        79,
-                        85,
-                        82,
-                        67,
-                        69,
-                        83,
-                        26,
-                        0,
-                        16
-                    ]
-                },
-                "Text": {
-                    "String": "Resources: 0"
-                },
-                "TilemapSprite": {
-                    "Layer": 10,
+                    "MinBorderWidths": [
+                        0.125,
+                        0.125
+                    ],
+                    "MaxBorderWidths": [
+                        0.125,
+                        0.125
+                    ],
+                    "Texture": {
+                        "AssetName": "TestNineslice"
+                    },
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
                     "Color": [
                         0.0,
                         0.0,
                         0.0,
                         0.0
                     ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": {
-                        "AssetName": "FontSheet"
+                    "Layer": 2
+                },
+                "ResourcesUiManager": {
+                    "HideWhenEmpty": false,
+                    "Padding": 0.02500000037252903,
+                    "Spacing": -0.02500000037252903,
+                    "InventoryEntity": {
+                        "EntityName": "Player"
+                    },
+                    "ResourceCounterPrefab": {
+                        "AssetName": "ResourceCounter"
                     }
                 },
                 "UiElement": {
@@ -6392,12 +6549,12 @@
                         0.0
                     ],
                     "FrameSize": [
-                        0.20000000298023224,
-                        0.20000000298023224
+                        0.10000000149011612,
+                        0.05000000074505806
                     ],
                     "SizeTypes": [
-                        "Absolute",
-                        "Absolute"
+                        "RelativeToWidth",
+                        "RelativeToWidth"
                     ]
                 }
             },
@@ -6548,7 +6705,9 @@
                     ],
                     "BeamWidth": 0.10000000149011612,
                     "DamageRate": 10.0,
-                    "CollideWithLayers": 3,
+                    "CollideWithLayers": {
+                        "Flags": 3
+                    },
                     "Direction": [
                         -0.9299333691596985,
                         0.36772796511650085

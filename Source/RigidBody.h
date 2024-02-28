@@ -16,9 +16,8 @@
 #include "Behavior.h"
 
 #include "ComponentReference.h"
-#include "Transform.h"
-#include "Collider.h"
-
+class Transform;
+class Collider;
 class StaticBody;
 
 ///*****************************************************************/

@@ -19,76 +19,116 @@ class CircleCollider : public Collider
 public: // constructor
 //-----------------------------------------------------------------------------
 
+
     /// @brief  default constructor
     CircleCollider();
+
 
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
 
+
     /// @brief  gets this CircleCollider's radius
     /// @return this CircleCollider's radius
-    __inline float GetRadius() const { return m_Radius; }
+    float GetRadius() const;
 
     /// @brief  sets this CircleCollider's radius
     /// @param  radius  the radius
-    __inline void SetRadius( float radius ) { m_Radius = radius; }
+    void SetRadius( float radius );
+
+
+    /// @brief  gets whether this CircleCollider has changed and its position in the CollisionSystem needs to update
+    /// @return whether this CircleCollider has changed and its position in the CollisionSystem needs to update
+    bool GetHasChanged() const;
+
+    /// @brief  clears the HasChanged flag
+    /// @brief  SHOULD ONLY BE CALLED BY COLLISIONSYSTEM
+    void ClearHasChanged();
+
 
 //-----------------------------------------------------------------------------
-private: // virtual overrides
+public: // virtual overrides
 //-----------------------------------------------------------------------------
 
-    /// @brief  inspector for this CircleCollider
-    virtual void Inspector() override;
+
+    /// @brief  called when this Component's Entity enters the Scene
+    virtual void OnInit() override;
+
+    /// @brief  called when this Component's Entity is removed from the Scene
+    virtual void OnExit() override;
+
 
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
-    /// @brief The radius of this CircleCollider
-    float m_Radius;
+
+    /// @brief  The radius of this CircleCollider
+    float m_Radius = 1.0f;
+
+
+    /// @brief  whether this CircleCollider has changed and its position in the CollisionSystem needs to update
+    bool m_HasChanged = false;
+
+    
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  inspector for this CircleCollider
+    virtual void Inspector() override;
+
 
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
 
+
     /// @brief  Reads the radius
     /// @param  stream  The json data to read from
     void readRadius( nlohmann::ordered_json const& data );
 
-    /// @brief map of the read methods for this Component
-    static ReadMethodMap< CircleCollider > s_ReadMethods;
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-    {
-        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-    }
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
-//-----------------------------------------------------------------------------
-public: // writing
-//-----------------------------------------------------------------------------
 
     /// @brief Write all CircleCollider component data to a JSON file.
     /// @return The JSON file containing the CircleCollider component data.
     virtual nlohmann::ordered_json Write() const override;
 
+
 //-----------------------------------------------------------------------------
 public: // copying
 //-----------------------------------------------------------------------------
+
 
     /// @brief  virtual component clone function
     /// @return new clone of component
     virtual CircleCollider* Clone() const override;
 
+
 //-----------------------------------------------------------------------------
 private: // copying
 //-----------------------------------------------------------------------------
 
+
     /// @brief  copy-constructor
     /// @param  other   the collider to copy
     CircleCollider( CircleCollider const& other );
+
+
+    // disable assignment operator
+    void operator =( CircleCollider const& ) = delete;
+
     
 //-----------------------------------------------------------------------------
 };

@@ -68,7 +68,34 @@ public: //  methods
     /// @brief  checks if the Inventory contains the specified item stacks
     /// @param  itemStacks  the itemStacks to check if the Inventory contains
     /// @return whether the inventory contains the item stacks
-    bool ContainsItemStacks(  std::vector< ItemStack > const& itemStacks ) const;
+    bool ContainsItemStacks( std::vector< ItemStack > const& itemStacks ) const;
+
+
+    /// @brief  gets the number of items of the specified type from this Inventory
+    /// @param  itemId  the ID of the type of item to get the count of
+    /// @return the amount of that type of item in the Inventory
+    int GetItemCount( int itemId ) const;
+
+
+
+    /// @brief  adds a callback to this Inventory that gets called whenever an ItemStack is added to the Inventory
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @param  callback    the callback to call
+    void AddOnAddItemStackCallback( unsigned ownerId, std::function< void ( ItemStack const& itemStack ) > callback );
+
+    /// @brief  removes a callback to this Inventory that gets called whenever an ItemStack is added to the Inventory
+    /// @param  ownerId     the ID of the owner of the callback
+    void RemoveOnAddItemStackCallback( unsigned ownerId );
+
+
+    /// @brief  adds a callback to this Inventory that gets called whenever an ItemStack is removed from the Inventory
+    /// @param  ownerId     the ID of the owner of the callback
+    /// @param  callback    the callback to call
+    void AddOnRemoveItemStackCallback( unsigned ownerId, std::function< void ( ItemStack const& itemStack ) > callback );
+
+    /// @brief  removes a callback to this Inventory that gets called whenever an ItemStack is removed from the Inventory
+    /// @param  ownerId     the ID of the owner of the callback
+    void RemoveOnRemoveItemStackCallback( unsigned ownerId );
 
 
 //-----------------------------------------------------------------------------
@@ -83,6 +110,13 @@ private: // members
 
     /// @brief  the items in this inventory
     std::vector< ItemStack > m_Items;
+
+
+    /// @brief  callbacks that get called whenever an ItemStack is added
+    std::map< unsigned, std::function< void ( ItemStack const& itemStack ) > > m_OnAddItemStackCallbacks;
+
+    /// @brief  callbacks that get called whenever an ItemStack is removed
+    std::map< unsigned, std::function< void ( ItemStack const& itemStack ) > > m_OnRemoveItemStackCallbacks;
 
 
 //-----------------------------------------------------------------------------

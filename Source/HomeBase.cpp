@@ -8,6 +8,9 @@
 
 #include "HomeBase.h"
 
+#include "ComponentReference.t.h"
+#include "Health.h"
+
 #include "SceneSystem.h"
 
 //-----------------------------------------------------------------------------
@@ -29,7 +32,7 @@
     /// @brief	destroy the base
     void HomeBase::Destroy()
     {
-	    SceneSystem::GetInstance()->SetNextScene( "Gameover" );
+	    SceneSystem::GetInstance()->SetNextScene(m_GameOverSceneName);
     }
 
     
@@ -69,7 +72,7 @@
     /// @brief  called once when exiting the scene
     void HomeBase::OnExit()
     {
-        m_Health.Exit( GetEntity() );
+        m_Health.Exit();
     }
 
 

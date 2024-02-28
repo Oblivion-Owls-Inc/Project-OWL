@@ -1,0 +1,129 @@
+\hypertarget{classEditorCameraController}{}\doxysection{Editor\+Camera\+Controller Class Reference}
+\label{classEditorCameraController}\index{EditorCameraController@{EditorCameraController}}
+
+
+controls the camera while in the editor  
+
+
+
+
+{\ttfamily \#include $<$Editor\+Camera\+Controller.\+h$>$}
+
+
+
+Inheritance diagram for Editor\+Camera\+Controller\+:
+% FIG 0
+
+
+Collaboration diagram for Editor\+Camera\+Controller\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEditorCameraController_ae4aa63bd8eac0b0825034135e7662d21}\label{classEditorCameraController_ae4aa63bd8eac0b0825034135e7662d21}} 
+\mbox{\hyperlink{classEditorCameraController_ae4aa63bd8eac0b0825034135e7662d21}{Editor\+Camera\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEditorCameraController_a7bd86f340f332b752235eba403930926}\label{classEditorCameraController_a7bd86f340f332b752235eba403930926}} 
+virtual void \mbox{\hyperlink{classEditorCameraController_a7bd86f340f332b752235eba403930926}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEditorCameraController_a3bf9e84d085fbc7abd900d73a58b98f1}\label{classEditorCameraController_a3bf9e84d085fbc7abd900d73a58b98f1}} 
+virtual void \mbox{\hyperlink{classEditorCameraController_a3bf9e84d085fbc7abd900d73a58b98f1}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classEditorCameraController_a8b44f2e32cec476ab723427110a0d212}{On\+Update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em called once every graphics frame \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEditorCameraController_a44dce43979477731737b6b46b89986ea}\label{classEditorCameraController_a44dce43979477731737b6b46b89986ea}} 
+virtual void \mbox{\hyperlink{classEditorCameraController_a44dce43979477731737b6b46b89986ea}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classEditorCameraController_a8eec091d19de871dfaa47cdeace05117}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEditorCameraController_ab2ece56ab4accd3e1a552a3a9e1d95e7}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} $\ast$ \mbox{\hyperlink{classEditorCameraController_a31d24ccd3f36be90e8e321fbc9c5eca2}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+controls the camera while in the editor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEditorCameraController_a31d24ccd3f36be90e8e321fbc9c5eca2}\label{classEditorCameraController_a31d24ccd3f36be90e8e321fbc9c5eca2}} 
+\index{EditorCameraController@{EditorCameraController}!Clone@{Clone}}
+\index{Clone@{Clone}!EditorCameraController@{EditorCameraController}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} $\ast$ Editor\+Camera\+Controller\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classEditorCameraController_a8eec091d19de871dfaa47cdeace05117}\label{classEditorCameraController_a8eec091d19de871dfaa47cdeace05117}} 
+\index{EditorCameraController@{EditorCameraController}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!EditorCameraController@{EditorCameraController}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Editor\+Camera\+Controller\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classEditorCameraController_a8b44f2e32cec476ab723427110a0d212}\label{classEditorCameraController_a8b44f2e32cec476ab723427110a0d212}} 
+\index{EditorCameraController@{EditorCameraController}!OnUpdate@{OnUpdate}}
+\index{OnUpdate@{OnUpdate}!EditorCameraController@{EditorCameraController}}
+\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
+{\footnotesize\ttfamily void Editor\+Camera\+Controller\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called once every graphics frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & the duration of the frame \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+\mbox{\Hypertarget{classEditorCameraController_ab2ece56ab4accd3e1a552a3a9e1d95e7}\label{classEditorCameraController_ab2ece56ab4accd3e1a552a3a9e1d95e7}} 
+\index{EditorCameraController@{EditorCameraController}!Write@{Write}}
+\index{Write@{Write}!EditorCameraController@{EditorCameraController}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Editor\+Camera\+Controller\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} to JSON 
+
+Writes all \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}} data to a JSON file.
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classEditorCameraController}{Editor\+Camera\+Controller}}
+
+The JSON file containing the data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{EditorCameraController_8h}{Editor\+Camera\+Controller.\+h}}\item 
+Source/\mbox{\hyperlink{EditorCameraController_8cpp}{Editor\+Camera\+Controller.\+cpp}}\end{DoxyCompactItemize}

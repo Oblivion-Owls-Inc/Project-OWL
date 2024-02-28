@@ -1,0 +1,39 @@
+name: Generate Doxygen Documentation
+permissions:
+  contents: write
+
+on:
+  push:
+    branches-ignore:
+      - main  # Exclude the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Ensures the entire git history is checked out
+
+    - name: Set up Doxygen
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y doxygen
+
+    - name: Generate Documentation
+      run: doxygen Doxyfile
+
+    - name: Create Login Configuration
+      run: |
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          
+    - name: Create Commit
+      run: |
+        git add .
+        git commit -m "Update documentation" || echo "No changes to commit"
+
+    - name: Commit Files to Github
+      run: |
+        git push https://${{ secrets.MY_GITHUB_TOKEN }}@github.com/Oblivion-Owls-Inc/Project-OWL.git ${{ github.ref_name }}

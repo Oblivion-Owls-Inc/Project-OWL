@@ -1,5 +1,5 @@
-/// @file       CircleCollider.h
-/// @author     Steve Bukowinski (jax.clayton@digipen.edu)
+/// @file       CollisionData.h
+/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
 /// @brief      struct that holds collision information
 /// @version    0.1
 /// @date       2023-09-13
@@ -23,7 +23,16 @@ struct CollisionData
     glm::vec2 normal = { 0, 0 };
 
     /// @brief How deep the collision penetrated
-    float depth = 0;
+    float depth = -INFINITY;
+
+    /// @brief  negate operator
+    /// @return a negated version of this CollisionData
+    CollisionData operator -() const
+    {
+        CollisionData negated = *this;
+        negated.normal *= -1;
+        return negated;
+    }
 };
 
 /// @struct RayCastHit

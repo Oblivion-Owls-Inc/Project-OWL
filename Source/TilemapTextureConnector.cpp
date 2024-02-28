@@ -59,8 +59,6 @@
             }
         );
 
-        // TODO: figure out how to handle the edge case where this Entity's parent changes, which would invalidate m_ParentTilemap
-
         m_ParentTilemap.Init( GetEntity()->GetParent() );
         m_Tilemap.Init( GetEntity() );
     }
@@ -68,8 +66,8 @@
     /// @brief  called once when exiting the scene
     void TilemapTextureConnector::OnExit()
     {
-        m_ParentTilemap.Exit( GetEntity()->GetParent() );
-        m_Tilemap.Exit( GetEntity() );
+        m_ParentTilemap.Exit();
+        m_Tilemap.Exit();
     }
 
 
@@ -82,7 +80,7 @@
             return;
         }
 
-        m_ParentTilemap.Exit( previousParent );
+        m_ParentTilemap.Exit();
         m_ParentTilemap.Init( GetEntity()->GetParent() );
     }
 
@@ -242,8 +240,13 @@
     /// @param  offsets     the tile position offsets to build the connection flags with
     /// @param  textures    the texture index offsets to display
     /// @return the texture index for this corner
-    int TilemapTextureConnector::getCornerTexture( glm::ivec2 const& tilePos, int tileId, glm::ivec2 const offsets[], int const textures[] )
+    int TilemapTextureConnector::getCornerTexture( glm::ivec2 const& tilePos, int tileId, glm::ivec2 const offsets[], int const textures[] ) const
     {
+        if ( tileId < 0 || tileId >= m_ConnectionRules.size() )
+        {
+            return 0;
+        }
+
         unsigned flags = 0;
         glm::ivec2 dimensions = m_ParentTilemap->GetDimensions();
         for ( int i = 0; i < 3; ++i )
@@ -257,7 +260,7 @@
                 continue;
             }
 
-            if ( m_ParentTilemap->GetTile( offsetPos ) == tileId )
+            if ( m_ConnectionRules[ tileId ].contains( m_ParentTilemap->GetTile( offsetPos ) ) )
             {
                 flags |= 1 << i;
             }
@@ -277,43 +280,94 @@
     {
         bool changed = false;
 
-        changed |= ImGui::DragInt( "first texture offset", &m_FirstTileOffset, 0.05f, 0, INT_MAX );
-        ImGui::SetItemTooltip( "the index of the first connected texture in the spritesheet" );
-
-        changed |= ImGui::DragInt( "textures per tile", &m_TexturesPerTile, 0.05f, 1, INT_MAX );
-        ImGui::SetItemTooltip( "the number of textures that each tile has" );
-
-
-        // lambda function used to inspect each textureIndex in the array
-        int texturesPerTile = m_TexturesPerTile;
-        auto elementInspector = [ texturesPerTile ]( int* textureIndex ) -> bool
+        if ( ImGui::TreeNode( "Connection Rules" ) )
         {
-            return ImGui::DragInt( "", textureIndex, 0.05f, 0, texturesPerTile );
-        };
+            int tileTypeCount = m_ConnectionRules.size();
+            changed |= Inspection::InspectArray< std::set< int > >(
+                "ConnectionRules", &m_ConnectionRules,
+                [ tileTypeCount ]( std::set< int >* set ) -> bool
+                {
+                    std::string preview = "";
+                    for ( int connection : *set )
+                    {
+                        preview += std::to_string( connection ) + ", ";
+                    }
 
-        changed |= Inspection::InspectStaticArray< int, 8 >(
-            "top left textures",
-            m_TopLeftTextures,
-            elementInspector
-        );
+                    bool changed = false;
+                    if ( ImGui::BeginCombo( "", preview.c_str() ) )
+                    {
+                        for ( int i = -1; i < tileTypeCount; ++i )
+                        {
+                            bool contains = set->contains( i );
+                            if ( ImGui::Selectable( std::to_string( i ).c_str(), contains, ImGuiSelectableFlags_DontClosePopups ) )
+                            {
+                                if ( contains )
+                                {
+                                    set->erase( i );
+                                }
+                                else
+                                {
+                                    set->insert( i );
+                                }
 
-        changed |= Inspection::InspectStaticArray< int, 8 >(
-            "top right textures",
-            m_TopRightTextures,
-            elementInspector
-         );
+                                changed = true;
+                            }
+                        }
+
+                        ImGui::EndCombo();
+                    }
+
+                    return changed;
+                }
+            );
+
+            ImGui::TreePop();
+        }
+
+
+        if ( ImGui::TreeNode( "Texture Configuration" ) )
+        {
+            changed |= ImGui::DragInt( "first texture offset", &m_FirstTileOffset, 0.05f, 0, INT_MAX );
+            ImGui::SetItemTooltip( "the index of the first connected texture in the spritesheet" );
+
+            changed |= ImGui::DragInt( "textures per tile", &m_TexturesPerTile, 0.05f, 1, INT_MAX );
+            ImGui::SetItemTooltip( "the number of textures that each tile has" );
+
+
+            // lambda function used to inspect each textureIndex in the array
+            int texturesPerTile = m_TexturesPerTile;
+            auto elementInspector = [ texturesPerTile ]( int* textureIndex ) -> bool
+            {
+                return ImGui::DragInt( "", textureIndex, 0.05f, 0, texturesPerTile );
+            };
+
+            changed |= Inspection::InspectStaticArray< int, 8 >(
+                "top left textures",
+                m_TopLeftTextures,
+                elementInspector
+            );
+
+            changed |= Inspection::InspectStaticArray< int, 8 >(
+                "top right textures",
+                m_TopRightTextures,
+                elementInspector
+             );
          
-        changed |= Inspection::InspectStaticArray< int, 8 >(
-            "bottom left textures",
-            m_BottomLeftTextures,
-            elementInspector
-        );
+            changed |= Inspection::InspectStaticArray< int, 8 >(
+                "bottom left textures",
+                m_BottomLeftTextures,
+                elementInspector
+            );
 
-        changed |= Inspection::InspectStaticArray< int, 8 >(
-            "bottom right textures",
-            m_BottomRightTextures,
-            elementInspector
-        );
+            changed |= Inspection::InspectStaticArray< int, 8 >(
+                "bottom right textures",
+                m_BottomRightTextures,
+                elementInspector
+            );
+
+            ImGui::TreePop();
+        }
+            
 
         if ( changed )
         {
@@ -325,6 +379,22 @@
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  reads which tiles connect to which other tiles
+    /// @param  data    the json data to read from
+    void TilemapTextureConnector::readConnectionRules( nlohmann::ordered_json const& data )
+    {
+        m_ConnectionRules.clear();
+        for ( nlohmann::ordered_json tileTypeData : data )
+        {
+            m_ConnectionRules.emplace_back();
+            for ( nlohmann::ordered_json connectionData : tileTypeData )
+            {
+                m_ConnectionRules.back().insert( Stream::Read< int >( connectionData ) );
+            }
+        }
+    }
 
 
     /// @brief  the offset from the start of the tilesheet of the first usable texture
@@ -394,6 +464,7 @@
     ReadMethodMap< ISerializable > const& TilemapTextureConnector::GetReadMethods() const
     {
         static ReadMethodMap< TilemapTextureConnector > const readMethods = {
+            { "ConnectionRules"    , &TilemapTextureConnector::readConnectionRules     },
             { "FirstTileOffset"    , &TilemapTextureConnector::readFirstTileOffset     },
             { "TexturesPerTile"    , &TilemapTextureConnector::readTexturesPerTile     },
             { "TopLeftTextures"    , &TilemapTextureConnector::readTopLeftTextures     },
@@ -412,32 +483,23 @@
     {
         nlohmann::ordered_json json;
 
+        nlohmann::ordered_json& connectionRules = json[ "ConnectionRules" ] = nlohmann::ordered_json::array();
+        for ( std::set< int > const& set : m_ConnectionRules )
+        {
+            nlohmann::ordered_json& connections = connectionRules.emplace_back( nlohmann::ordered_json::array() );
+            for ( int connection : set )
+            {
+                connections.push_back( connection );
+            }
+        }
+
         json[ "FirstTileOffset" ] = Stream::Write( m_FirstTileOffset );
         json[ "TexturesPerTile" ] = Stream::Write( m_TexturesPerTile );
 
-        nlohmann::ordered_json& topLeft = json[ "TopLeftTextures" ];
-        for ( int const& element : m_TopLeftTextures )
-        {
-            topLeft.push_back( Stream::Write( element ) );
-        }
-
-        nlohmann::ordered_json& topRight = json[ "TopRightTextures" ];
-        for ( int const& element : m_TopRightTextures )
-        {
-            topRight.push_back( Stream::Write( element ) );
-        }
-
-        nlohmann::ordered_json& bottomLeft = json[ "BottomLeftTextures" ];
-        for ( int const& element : m_BottomLeftTextures )
-        {
-            bottomLeft.push_back( Stream::Write( element ) );
-        }
-
-        nlohmann::ordered_json& bottomRight = json[ "BottomRightTextures" ];
-        for ( int const& element : m_BottomRightTextures )
-        {
-            bottomRight.push_back( Stream::Write( element ) );
-        }
+        json[ "TopLeftTextures"     ] = Stream::Write< int, 8 >( &m_TopLeftTextures    [ 0 ] );
+        json[ "TopRightTextures"    ] = Stream::Write< int, 8 >( &m_TopRightTextures   [ 0 ] );
+        json[ "BottomLeftTextures"  ] = Stream::Write< int, 8 >( &m_BottomLeftTextures [ 0 ] );
+        json[ "BottomRightTextures" ] = Stream::Write< int, 8 >( &m_BottomRightTextures[ 0 ] );
 
         return json;
     }
@@ -477,6 +539,7 @@
     /// @param  other   the other TilemapTextureConnector to copy
     TilemapTextureConnector::TilemapTextureConnector( TilemapTextureConnector const& other ) :
         Component( other ),
+        m_ConnectionRules( other.m_ConnectionRules ),
         m_FirstTileOffset( other.m_FirstTileOffset ),
         m_TexturesPerTile( other.m_TexturesPerTile )
     {

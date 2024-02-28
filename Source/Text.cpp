@@ -6,7 +6,7 @@
 #include "Entity.h"
 #include "Tilemap.h"
 
-// TODO: update when text (Tilemap) changes
+#include "imgui_stdlib.h"
 
 /// @brief   default constructor
 Text::Text() :
@@ -48,6 +48,19 @@ void Text::OnInit()
     loadTextIntoTilemap();
 }
 
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  inspects this Text Component
+    void Text::Inspector()
+    {
+        if ( ImGui::InputText( "text", &m_Text ) )
+        {
+            loadTextIntoTilemap();
+        }
+    }
 
 //-----------------------------------------------------------------------------
 // private: reading

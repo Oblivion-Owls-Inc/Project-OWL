@@ -31,13 +31,21 @@ public: // methods
     /// @param  sceneName   the file to save the scene to
     void SaveScene( std::string const& sceneName = "" ) const;
 
-    bool SaveScene();
+    bool InspectorSaveScene();
 
     /// @brief Used to reset the current scene
     void ResetScene();
 
     /// @brief Used by the DebugSystem to load a scene
-    bool LoadScene();
+    bool InspectorLoadScene();
+
+
+    /// @brief  saves the current scene to an Autosave file
+    void Autosave();
+
+    /// @brief  sets the next scene to the autosaved scene
+    void LoadAutosave();
+
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -59,6 +67,14 @@ private: // member variables
 
     /// @brief  The base path of all Scene files
     std::string m_BaseScenePath;
+
+
+    /// @brief  the name of the autosave scene
+    std::string m_AutosaveName = "Autosaved_Scene";
+
+    /// @brief  whether the next scene loaded must be copied into the autosave
+    bool m_MustCopyAutosave = true;
+
 
     /// @brief  array of all Scene names in the Scenes directory
     std::vector< std::string > m_SceneNames;
@@ -99,6 +115,10 @@ private: // reading
     /// @param  stream  the data to read from
     void readNextSceneName( nlohmann::ordered_json const& data );
 
+    /// @brief  reads the name of the autosave scene
+    /// @param  stream  the data to read from
+    void readAutosaveName( nlohmann::ordered_json const& data );
+
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< SceneSystem > const s_ReadMethods;
 
@@ -136,7 +156,7 @@ private: // methods
 
     /// @brief  Lists all Scenes in a DebugWindow dropdown
     /// @return the selected scene index
-    unsigned listScenes();
+    unsigned inspectorListScenes();
 
     /// @brief  Gets all of the Scenes in the scenes directory
     void getSceneNames();

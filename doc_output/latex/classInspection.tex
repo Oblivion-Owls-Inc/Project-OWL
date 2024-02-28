@@ -5,58 +5,72 @@
 \item 
 static bool \mbox{\hyperlink{classInspection_a0ee88ee285431b0765ad985023774f1a}{Select\+File\+From\+Directory}} (char const $\ast$label, std\+::string $\ast$selected\+File, std\+::string const \&directory\+Path)
 \begin{DoxyCompactList}\small\item\em selects a file from a directory \end{DoxyCompactList}\item 
-{\footnotesize template$<$class Asset\+Type $>$ }\\static bool \mbox{\hyperlink{classInspection_a0f69a2bca6e677a2a905f50879faf8c5}{Select\+Asset\+From\+Library}} (char const $\ast$label, Asset\+Type const $\ast$$\ast$selected\+Asset)
-\begin{DoxyCompactList}\small\item\em selects an Asset from an Asset\+Library \end{DoxyCompactList}\item 
-static bool \mbox{\hyperlink{classInspection_a10f3db8bd396df6d253cddba2152926f}{Select\+Entity\+From\+Scene}} (char const $\ast$label, \mbox{\hyperlink{classEntity}{Entity}} $\ast$$\ast$selected\+Entity)
-\begin{DoxyCompactList}\small\item\em selects an \mbox{\hyperlink{classEntity}{Entity}} from the Scene \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\footnotesize template$<$typename Data\+Type $>$ }\\static bool \mbox{\hyperlink{classInspection_af0bac19136fcbc95cbb78bf81d52021e}{Inspect\+Array}} (char const $\ast$label, std\+::vector$<$ Data\+Type $>$ $\ast$array, std\+::function$<$ bool(Data\+Type $\ast$) $>$ element\+Inspector)
+\begin{DoxyCompactList}\small\item\em inspects an array of elements \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Data\+Type , int count$>$ }\\static bool \mbox{\hyperlink{classInspection_a9d1b91273225c56cec7ab23a1c31db48}{Inspect\+Static\+Array}} (char const $\ast$label, Data\+Type $\ast$array, std\+::function$<$ bool(Data\+Type $\ast$) $>$ element\+Inspector)
+\begin{DoxyCompactList}\small\item\em inspects a static-\/sized array of elements \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classInspection_a0f69a2bca6e677a2a905f50879faf8c5}\label{classInspection_a0f69a2bca6e677a2a905f50879faf8c5}} 
-\index{Inspection@{Inspection}!SelectAssetFromLibrary@{SelectAssetFromLibrary}}
-\index{SelectAssetFromLibrary@{SelectAssetFromLibrary}!Inspection@{Inspection}}
-\doxysubsubsection{\texorpdfstring{SelectAssetFromLibrary()}{SelectAssetFromLibrary()}}
-{\footnotesize\ttfamily template$<$class Asset\+Type $>$ \\
-bool Inspection\+::\+Select\+Asset\+From\+Library (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{Asset\+Type const $\ast$$\ast$}]{selected\+Asset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\mbox{\Hypertarget{classInspection_af0bac19136fcbc95cbb78bf81d52021e}\label{classInspection_af0bac19136fcbc95cbb78bf81d52021e}} 
+\index{Inspection@{Inspection}!InspectArray@{InspectArray}}
+\index{InspectArray@{InspectArray}!Inspection@{Inspection}}
+\doxysubsubsection{\texorpdfstring{InspectArray()}{InspectArray()}}
+{\footnotesize\ttfamily template$<$typename Data\+Type $>$ \\
+bool Inspection\+::\+Inspect\+Array (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{std\+::vector$<$ Data\+Type $>$ $\ast$}]{array,  }\item[{std\+::function$<$ bool(Data\+Type $\ast$) $>$}]{element\+Inspector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
-selects an Asset from an Asset\+Library 
+inspects an array of elements 
+
+inspects a reorderable array of elements
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em Asset\+Type} & the type of asset to select \\
+{\em Data\+Type} & the type of data in the array \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em label} & the Im\+Gui label of the dropdown selector \\
+{\em label} & the label of the array inspector \\
 \hline
-{\em selected\+Asset} & pointer to the currently selected Asset \\
+{\em array} & the array to inspect \\
+\hline
+{\em element\+Inspector} & the function to use to inspect each element of the array \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Whether an asset was selected 
+(bool) whether the array was modified 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classInspection_a10f3db8bd396df6d253cddba2152926f}\label{classInspection_a10f3db8bd396df6d253cddba2152926f}} 
-\index{Inspection@{Inspection}!SelectEntityFromScene@{SelectEntityFromScene}}
-\index{SelectEntityFromScene@{SelectEntityFromScene}!Inspection@{Inspection}}
-\doxysubsubsection{\texorpdfstring{SelectEntityFromScene()}{SelectEntityFromScene()}}
-{\footnotesize\ttfamily bool Inspection\+::\+Select\+Entity\+From\+Scene (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$$\ast$}]{selected\+Entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\mbox{\Hypertarget{classInspection_a9d1b91273225c56cec7ab23a1c31db48}\label{classInspection_a9d1b91273225c56cec7ab23a1c31db48}} 
+\index{Inspection@{Inspection}!InspectStaticArray@{InspectStaticArray}}
+\index{InspectStaticArray@{InspectStaticArray}!Inspection@{Inspection}}
+\doxysubsubsection{\texorpdfstring{InspectStaticArray()}{InspectStaticArray()}}
+{\footnotesize\ttfamily template$<$typename Data\+Type , int count$>$ \\
+bool Inspection\+::\+Inspect\+Static\+Array (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{Data\+Type $\ast$}]{array,  }\item[{std\+::function$<$ bool(Data\+Type $\ast$) $>$}]{element\+Inspector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
-selects an \mbox{\hyperlink{classEntity}{Entity}} from the Scene 
+inspects a static-\/sized array of elements 
 
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Data\+Type} & the type of data in the array \\
+\hline
+{\em count} & the number of elements in the array \\
+\hline
+\end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em label} & the Im\+Gui label of the dropdown selector \\
+{\em label} & the label of the array inspector \\
 \hline
-{\em selected\+Entity} & pointer to the currently selected \mbox{\hyperlink{classEntity}{Entity}} \\
+{\em array} & the array to inspect \\
+\hline
+{\em element\+Inspector} & the funvtion to use to insepct each element of the array \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-whether an \mbox{\hyperlink{classEntity}{Entity}} was selected 
+(bool) whether the array was modified 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classInspection_a0ee88ee285431b0765ad985023774f1a}\label{classInspection_a0ee88ee285431b0765ad985023774f1a}} 
 \index{Inspection@{Inspection}!SelectFileFromDirectory@{SelectFileFromDirectory}}

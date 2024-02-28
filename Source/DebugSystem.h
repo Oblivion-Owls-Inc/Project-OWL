@@ -21,9 +21,12 @@
 #include "imgui_stdlib.h"
 #include "imgui_impl_opengl3.h"
 #include "imgui_impl_glfw.h"
+#include "Console.h"
 #include <iostream>
 #include <sstream>
 #include <set>
+
+#include "PlayBar.h"
 
 
 
@@ -76,11 +79,21 @@ public:
     /// @brief Gets Called by the Debug system to display debug information
     virtual void DebugWindow() override;
 
+    /// @brief  Resets the Viewport when debug is closed
     void ResetViewport();
 
     /// @brief  sets whether the non-editor systems are enabled
     /// @param  enabled wether to enable 
     bool SetNonEditorSystemsEnabled(bool enabled);
+
+    /// @brief  sets whether the editor systems are enabled
+    bool IsEditorRunning() const { return m_EditorRunning; }
+
+
+    /// @brief  gets the DebugSystem PlayBar
+    /// @return the DebugSystem PlayBar
+    PlayBar& GetPlayBar();
+
 
 ///----------------------------------------------------------------------------
 public: // DebugStream
@@ -99,6 +112,7 @@ public: // DebugStream
         #endif
 
 		Stream::WriteToTraceLog(oss.str());
+        WritetoConsole(oss.str());
 	}
 
 //-----------------------------------------------------------------------------
@@ -116,7 +130,7 @@ private: // Members
 
     /// @brief Flag to control display of the ImGui demo window
     bool m_ShowDemoWindow = false;
-
+    
     bool m_Fullscreen = false;
 
     /// @brief Flag to show the Asset System List
@@ -128,6 +142,9 @@ private: // Members
     /// @brief Flag to show the Save Scene Window
     bool m_ShowSceneSaveWindow = false;
 
+    /// @brief If the Editor is Running
+    bool m_EditorRunning = false;
+
     /// @brief Flag to show the Save Engine Window
     bool m_ShowEngineSaveWindow = false;
 
@@ -138,6 +155,11 @@ private: // Members
     
     /// @brief Flag to Show the various Asset Prefab Windows
     bool m_CreationWindows[ (int)MenuItemType::_Count ] = { 0 };
+
+
+    /// @brief  the Play Bar
+    PlayBar m_PlayBar;
+
 
     /// @brief Pointer to the ImGui Input/Output structure
     ImGuiIO* io;
@@ -181,6 +203,9 @@ private: // methods
 
     /// @brief Sets up the ImGui configuration path
     void SetupImGuiConfigPath();
+
+    /// @brief Writes to the Console
+    void WritetoConsole(const std::string& message);
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
@@ -192,6 +217,7 @@ private: // reading
     /// @brief Reads whether to show the debug window
     /// @param stream  the data to read from
     void readShowDebugWindow( nlohmann::ordered_json const& data );
+
 
     /// @brief map containing read methods
     static ReadMethodMap< DebugSystem > const s_ReadMethods;

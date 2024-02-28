@@ -132,9 +132,6 @@
     <Filter Include="Engine\Entity\Component\Collider\TilemapCollider">
       <UniqueIdentifier>{3e30138e-86f9-44e3-a4e3-092b4cdeacad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\Pathfinder">
-      <UniqueIdentifier>{09f5ca7d-4323-4aac-b628-c6ed0790810d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\StaticBody">
       <UniqueIdentifier>{cb22a236-e348-4362-b443-aa70c5bc5671}</UniqueIdentifier>
     </Filter>
@@ -276,9 +273,6 @@
     <Filter Include="Engine\Entity\Component\Behavior\UiButton">
       <UniqueIdentifier>{0c4f432e-8200-4f23-8c96-b0be0ad4f937}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Entity\Component\TilemapTextureConnector">
-      <UniqueIdentifier>{f6c41e19-950d-4898-b359-f64157800677}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity\Component\Tilemap\TilemapEditor">
       <UniqueIdentifier>{3e0165c1-e7de-42a5-8938-8e832cc5330b}</UniqueIdentifier>
     </Filter>
@@ -309,8 +303,41 @@
     <Filter Include="Game\Components\Generator">
       <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Framework\References\ActionReference">
-      <UniqueIdentifier>{1ee2ee1a-a4cd-4e32-a19d-864b08a21394}</UniqueIdentifier>
+    <Filter Include="Engine\Systems\CollisonSystem\CollisionLayerFlags">
+      <UniqueIdentifier>{e06163df-945e-4eea-a970-e79a5db2c22f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Sprite\Nineslice">
+      <UniqueIdentifier>{bc8d0a95-989e-433f-8be1-732fafb61838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\ResourcesUi">
+      <UniqueIdentifier>{aac1194b-1a66-4d6d-bd95-54900ba27e4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\ResourcesUi\ResourceCounterUi">
+      <UniqueIdentifier>{7ba80a85-380e-42e3-8548-00c377b6d9cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\ResourcesUi\ResourcesUiManager">
+      <UniqueIdentifier>{f1a7bcec-c3a8-4458-8cf7-0d7e17ead521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\CollisonSystem\CollisionLayerFlags">
+      <UniqueIdentifier>{e06163df-945e-4eea-a970-e79a5db2c22f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Sprite\Nineslice">
+      <UniqueIdentifier>{bc8d0a95-989e-433f-8be1-732fafb61838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\SplashScreen">
+      <UniqueIdentifier>{5070cea8-46ee-4117-ad1b-26fc2c9054bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Tilemap\TilemapTextureConnector">
+      <UniqueIdentifier>{f6c41e19-950d-4898-b359-f64157800677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\Tilemap\Pathfinder">
+      <UniqueIdentifier>{09f5ca7d-4323-4aac-b628-c6ed0790810d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\HideableForeground">
+      <UniqueIdentifier>{fa718f60-f4fc-415e-8481-41d6a9855c4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\DebugSystem\PlayBar">
+      <UniqueIdentifier>{aded7ad9-3229-43a6-a373-872cb12acd49}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -483,7 +510,7 @@
       <Filter>Engine\Entity\Component\Text</Filter>
     </ClCompile>
     <ClCompile Include="Source\Pathfinder.cpp">
-      <Filter>Engine\Entity\Component\Pathfinder</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
@@ -600,7 +627,7 @@
       <Filter>Engine\Entity\Component\Behavior\UiButton</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapTextureConnector.cpp">
-      <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\TilemapTextureConnector</Filter>
     </ClCompile>
     <ClCompile Include="Source\TilemapEditor.cpp">
       <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
@@ -611,9 +638,6 @@
     <ClCompile Include="Source\EditorCameraController.cpp">
       <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ComponentReference.t.cpp">
-      <Filter>Engine\Framework\References\ComponentReference</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EntityReference.cpp">
       <Filter>Engine\Framework\References\EntityReference</Filter>
     </ClCompile>
@@ -623,17 +647,62 @@
     <ClCompile Include="Source\Lifetime.cpp">
       <Filter>Engine\Entity\Component\Behavior\Lifetime</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CollisionLayerFlags.cpp">
+      <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
+    </ClCompile>
     <ClCompile Include="Source\WinState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InputInspector.cpp">
-      <Filter>Engine\Systems\InputSystem</Filter>
+    <ClCompile Include="Source\Nineslice.cpp">
+      <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ActionReference.cpp">
-      <Filter>Engine\Framework\References\ActionReference</Filter>
+    <ClCompile Include="Source\ResourceCounterUi.cpp">
+      <Filter>Game\Components\ResourcesUi\ResourceCounterUi</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InputCallback.cpp">
-      <Filter>Engine\Systems\InputSystem</Filter>
+    <ClCompile Include="Source\ResourcesUiManager.cpp">
+      <Filter>Game\Components\ResourcesUi\ResourcesUiManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ComponentReference.t.h">
+      <Filter>Engine\Framework\References\ComponentReference</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollisionLayerFlags.cpp">
+      <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ComponentReference.t.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WinState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Nineslice.cpp">
+      <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PauseSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneChangeButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SplashScreenController.cpp">
+      <Filter>Game\Components\SplashScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PauseSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneChangeButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HideableForeground.cpp">
+      <Filter>Game\Components\Behaviors\HideableForeground</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayBar.cpp">
+      <Filter>Engine\Systems\DebugSystem\PlayBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -818,7 +887,7 @@
       <Filter>Engine\Framework\Serialization</Filter>
     </ClInclude>
     <ClInclude Include="Source\Pathfinder.h">
-      <Filter>Engine\Entity\Component\Pathfinder</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
     </ClInclude>
     <ClInclude Include="Source\TilemapCollider.h">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
@@ -932,7 +1001,7 @@
       <Filter>Engine\Entity\Component\Behavior\UiButton</Filter>
     </ClInclude>
     <ClInclude Include="Source\TilemapTextureConnector.h">
-      <Filter>Engine\Entity\Component\TilemapTextureConnector</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\TilemapTextureConnector</Filter>
     </ClInclude>
     <ClInclude Include="Source\TilemapEditor.h">
       <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
@@ -955,11 +1024,56 @@
     <ClInclude Include="Source\Lifetime.h">
       <Filter>Engine\Entity\Component\Behavior\Lifetime</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CollisionLayerFlags.h">
+      <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
+    </ClInclude>
     <ClInclude Include="Source\WinState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ActionReference.h">
-      <Filter>Engine\Framework\References\ActionReference</Filter>
+    <ClInclude Include="Source\Nineslice.h">
+      <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceCounterUi.h">
+      <Filter>Game\Components\ResourcesUi\ResourceCounterUi</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourcesUiManager.h">
+      <Filter>Game\Components\ResourcesUi\ResourcesUiManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CollisionLayerFlags.h">
+      <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WinState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Nineslice.h">
+      <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PauseSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneChangeButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SplashScreenController.h">
+      <Filter>Game\Components\SplashScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PauseSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneChangeButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HideableForeground.h">
+      <Filter>Game\Components\Behaviors\HideableForeground</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayBar.h">
+      <Filter>Engine\Systems\DebugSystem\PlayBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1012,5 +1126,26 @@
       <Filter>Data\Shaders\Vertex</Filter>
     </None>
     <None Include="Data\Scenes\MapTest.scene.json" />
+    <None Include="Data\Scenes\collisionTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\shaders\nineslice.vert">
+      <Filter>Data\Shaders\Vertex</Filter>
+    </None>
+    <None Include="Data\shaders\nineslice.frag">
+      <Filter>Data\Shaders\Fragment</Filter>
+    </None>
+    <None Include="Data\Scenes\SplashScreen.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\collisionTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\shaders\nineslice.vert">
+      <Filter>Data\Shaders\Vertex</Filter>
+    </None>
+    <None Include="Data\shaders\nineslice.frag">
+      <Filter>Data\Shaders\Fragment</Filter>
+    </None>
   </ItemGroup>
 </Project>

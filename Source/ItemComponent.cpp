@@ -10,6 +10,8 @@
 #include "ItemComponent.h"
 #include "ComponentSystem.h"
 
+#include "ComponentReference.t.h"
+
 
 //-----------------------------------------------------------------------------
 // public: types
@@ -102,9 +104,9 @@
     {
         Components< ItemComponent >()->RemoveComponent( this );
 
-        m_Transform.Exit( GetEntity() );
-        m_Sprite   .Exit( GetEntity() );
-        m_RigidBody.Exit( GetEntity() );
+        m_Transform.Exit();
+        m_Sprite   .Exit();
+        m_RigidBody.Exit();
     }
 
 

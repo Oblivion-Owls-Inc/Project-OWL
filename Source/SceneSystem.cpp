@@ -54,7 +54,7 @@
 
     /// @brief Used To create the Save Scene Window
     /// @return - true if the window is open, false if the window is closed
-    bool SceneSystem::SaveScene()
+    bool SceneSystem::InspectorSaveScene()
     {
         /// Used to keep the window open
         bool _show = true;
@@ -104,7 +104,7 @@
 
     /// @brief Creates the Load Scene Window
     /// @return - true if the window is open, false if the window is closed
-    bool SceneSystem::LoadScene()
+    bool SceneSystem::InspectorLoadScene()
     {
         /// Used to keep the window open
         bool _show = true;
@@ -120,20 +120,22 @@
             }
 
             /// Creates a dropdown menu of all the scenes in the scenes directory
-            unsigned selectedScene = listScenes();
+            unsigned selectedScene = inspectorListScenes();
             
             /// Input text for typing scene name
             static char buffer[128] = ""; // Buffer to hold the input, you can save this
             ImGui::InputText("Type Scene Name", buffer, IM_ARRAYSIZE(buffer));
-
-            /// A button to load the scene, either from the dropdown or the input text
-            if (ImGui::Button("Load Scene"))
+            
+            if (ImGui::GetIO().KeysDown[GLFW_KEY_ENTER] || (ImGui::Button("Load Scene")))
             {
                 if (strlen(buffer) > 0)
                 {
                     std::string sceneName(buffer);
                     SetNextScene(sceneName); // Load scene using name typed into buffer
                     buffer[0] = '\0'; // Clear the buffer
+
+                    m_MustCopyAutosave = true;
+                    Debug().GetPlayBar().OnInspectorLoadScene();
 
                     /// Close the window
                     ImGui::End();
@@ -146,11 +148,27 @@
                     return false; // close window
                 }
             }
+
+
         }
 
 		ImGui::End();
         return true; // keep window open
     }
+
+
+    /// @brief  saves the current scene to an Autosave file
+    void SceneSystem::Autosave()
+    {
+        SaveScene( m_AutosaveName );
+    }
+
+    /// @brief  sets the next scene to the autosaved scene
+    void SceneSystem::LoadAutosave()
+    {
+        SetNextScene( m_AutosaveName );
+    }
+
 
 //-----------------------------------------------------------------------------
 // public accessors
@@ -210,7 +228,7 @@
     void SceneSystem::DebugWindow()
     {
 
-        unsigned selectedScene = listScenes();
+        unsigned selectedScene = inspectorListScenes();
 
 
         // Input text for typing scene name
@@ -257,18 +275,29 @@
         m_NextSceneName = Stream::Read<std::string>( data );
     }
 
+    /// @brief  reads the name of the autosave scene
+    /// @param  stream  the data to read from
+    void SceneSystem::readAutosaveName( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_AutosaveName, data );
+    }
+
     /// @brief  map of the SceneSystem read methods
     ReadMethodMap< SceneSystem > const SceneSystem::s_ReadMethods = {
         { "BaseScenePath", &readBaseScenePath },
-        { "NextSceneName", &readNextSceneName }
+        { "NextSceneName", &readNextSceneName },
+        { "AutosaveName" , &readAutosaveName  }
     };
 
     /// @brief  writes this System to json
     nlohmann::ordered_json SceneSystem::Write() const
     {
         nlohmann::ordered_json json;
+
         json[ "BaseScenePath" ] = m_BaseScenePath;
         json[ "NextSceneName" ] = m_CurrentSceneName;
+        json[ "AutosaveName"  ] = m_AutosaveName;
+
         return json;
     }
 
@@ -291,7 +320,7 @@
             );
             if ( it == s_AssetLibraries.end() )
             {
-                Debug() << "JSON WARNING: unrecognized token " << key << " at " << Stream::GetDebugLocation() << std::endl;
+                Debug() << "WARNING: (JSON):  unrecognized token " << key << " at " << Stream::GetDebugLocation() << std::endl;
                 break;
             }
 
@@ -370,6 +399,12 @@
 
         Scene scene = Scene();
         Stream::ReadFromFile( &scene, scenePath( m_CurrentSceneName ) );
+
+        if ( m_MustCopyAutosave )
+        {
+            SaveScene( m_AutosaveName );
+            m_MustCopyAutosave = false;
+        }
     }
 
     /// @brief  Initializes the current Scene
@@ -396,7 +431,7 @@
 
     /// @brief Creates the Load Scene Window and returns the selected scene index
     /// @return - the selected scene index
-    unsigned SceneSystem::listScenes()
+    unsigned SceneSystem::inspectorListScenes()
     {
         static int selectedScene = -1; // Default index for dropdown, you can save this
         if ( selectedScene < 0 )

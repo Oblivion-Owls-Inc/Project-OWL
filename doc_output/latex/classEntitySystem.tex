@@ -30,30 +30,31 @@ Collaboration diagram for Entity\+System\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classEntitySystem_a61b4aa488083b35dc0f188cc58af935d}{Add\+Entity}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)
-\begin{DoxyCompactList}\small\item\em Adds an \mbox{\hyperlink{classEntity}{Entity}} to the \mbox{\hyperlink{classEntitySystem}{Entity\+System}}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classEntity}{Entity}} $\ast$ \mbox{\hyperlink{classEntitySystem_a285cb347255f00e4ba4d26214420a16a}{Get\+Entity}} (std\+::string const \&entity\+Name)
 \begin{DoxyCompactList}\small\item\em gets an \mbox{\hyperlink{classEntity}{Entity}} by name \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classEntitySystem_a7143c495b23a3dfab627dde07b43cd6c}{Remove\+Entity}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)
-\begin{DoxyCompactList}\small\item\em removes an \mbox{\hyperlink{classEntity}{Entity}} from the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $\ast$ $>$ const  \& \mbox{\hyperlink{classEntitySystem_a3f95128f48491d1d14c24c778a541b6c}{Get\+Entities}} () const
+\begin{DoxyCompactList}\small\item\em returns the container of all Entities in the Scene \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classEntitySystem_a86f324f2d492e696283f08a10a6f2ac0}{Has\+Entity}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)
 \begin{DoxyCompactList}\small\item\em checks if the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} contains the given \mbox{\hyperlink{classEntity}{Entity}} (for debugging) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntitySystem_a059958d05b4216676904beb227881bda}\label{classEntitySystem_a059958d05b4216676904beb227881bda}} 
+void \mbox{\hyperlink{classEntitySystem_a059958d05b4216676904beb227881bda}{Clear\+Selected\+Entity}} ()
+\begin{DoxyCompactList}\small\item\em Clears the \mbox{\hyperlink{classEntity}{Entity}} being inspected. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} $\ast$ \mbox{\hyperlink{classEntitySystem_a3c0b97c3ff435b0fe85d9c82d480e011}{Get\+Selected\+Entity}} () const
+\begin{DoxyCompactList}\small\item\em returns the entity being viewed in the inspector \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntitySystem_a314fb5ad21955f6e5ccabc7f948161c0}{Queue\+Add\+Entity}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)
+\begin{DoxyCompactList}\small\item\em queues an \mbox{\hyperlink{classEntity}{Entity}} to be added to the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntitySystem_af4b105c95e06ef3840d3fa53035d1670}{Move\+Entity\+After\+Parent}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)
+\begin{DoxyCompactList}\small\item\em moves an \mbox{\hyperlink{classEntity}{Entity}} to the end of its parent\textquotesingle{}s children \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntitySystem_ab4f5c3b4b8fabbb75074bc2a46facbef}{Move\+To\+End}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)
+\begin{DoxyCompactList}\small\item\em moves an \mbox{\hyperlink{classEntity}{Entity}} to the end the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classEntitySystem_a024540cf9bdf470e1a2c691e0bb4fdb6}{Debug\+Window}} () override
+\begin{DoxyCompactList}\small\item\em shows this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s debug window \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntitySystem_a409d4956a21b58cc77b086e405c171a6}{Entity\+Create\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Shows the \mbox{\hyperlink{classEntity}{Entity}} Create Window. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEntitySystem_aa1413b1ebe7d025a06da369297b7c8b8}{Load\+Entities}} (nlohmann\+::ordered\+\_\+json const \&data)
 \begin{DoxyCompactList}\small\item\em loads all of the entities in a scene \end{DoxyCompactList}\item 
 nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEntitySystem_abee09afc33e2dddda270d3e4bacb247c}{Save\+Entities}} () const
-\begin{DoxyCompactList}\small\item\em saves all of the entities in a scene \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $\ast$ $>$ const  \& \mbox{\hyperlink{classEntitySystem_aa527daa36c0689122424d88acc2d8476}{Get\+Entities}} () const
-\begin{DoxyCompactList}\small\item\em returns the container of all Entities in the Scene \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classEntitySystem_a409d4956a21b58cc77b086e405c171a6}{Entity\+Create\+Window}} ()
-\begin{DoxyCompactList}\small\item\em Shows the \mbox{\hyperlink{classEntity}{Entity}} Create Window. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classEntitySystem_a024540cf9bdf470e1a2c691e0bb4fdb6}{Debug\+Window}} () override
-\begin{DoxyCompactList}\small\item\em Called by the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} to display the debug window. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classEntitySystem_a2a5373dc2163f8de05f07ec49c8afb9d}\label{classEntitySystem_a2a5373dc2163f8de05f07ec49c8afb9d}} 
-{\bfseries Entity\+System} (\mbox{\hyperlink{classEntitySystem}{Entity\+System}} \&other)=delete
-\item 
-\mbox{\Hypertarget{classEntitySystem_a277e189363cb705175d51a840151589d}\label{classEntitySystem_a277e189363cb705175d51a840151589d}} 
-void {\bfseries operator=} (const \mbox{\hyperlink{classEntitySystem}{Entity\+System}} \&)=delete
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em saves all of the entities in a scene \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -66,28 +67,6 @@ static \mbox{\hyperlink{classEntitySystem}{Entity\+System}} $\ast$ \mbox{\hyperl
 Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when creating new Systems. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classEntitySystem_a61b4aa488083b35dc0f188cc58af935d}\label{classEntitySystem_a61b4aa488083b35dc0f188cc58af935d}} 
-\index{EntitySystem@{EntitySystem}!AddEntity@{AddEntity}}
-\index{AddEntity@{AddEntity}!EntitySystem@{EntitySystem}}
-\doxysubsubsection{\texorpdfstring{AddEntity()}{AddEntity()}}
-{\footnotesize\ttfamily void Entity\+System\+::\+Add\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{entity }\end{DoxyParamCaption})}
-
-
-
-Adds an \mbox{\hyperlink{classEntity}{Entity}} to the \mbox{\hyperlink{classEntitySystem}{Entity\+System}}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em entity} & the entity to add the the \mbox{\hyperlink{classEntitySystem}{Entity\+System}}\\
-\hline
-\end{DoxyParams}
-\DoxyHorRuler{0}
- \hypertarget{classEntitySystem_autotoc_md12}{}\doxysubsubsection{Set Static Variables}\label{classEntitySystem_autotoc_md12}
-
-\begin{DoxyParams}{Parameters}
-{\em entity} & the entity to add the the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{classEntitySystem_a024540cf9bdf470e1a2c691e0bb4fdb6}\label{classEntitySystem_a024540cf9bdf470e1a2c691e0bb4fdb6}} 
 \index{EntitySystem@{EntitySystem}!DebugWindow@{DebugWindow}}
 \index{DebugWindow@{DebugWindow}!EntitySystem@{EntitySystem}}
@@ -96,11 +75,9 @@ Adds an \mbox{\hyperlink{classEntity}{Entity}} to the \mbox{\hyperlink{classEnti
 
 
 
-Called by the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} to display the debug window. 
+shows this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s debug window 
 
-Used to make the \mbox{\hyperlink{classEntity}{Entity}} List a pop out window
-
-Create a new entity
+Called by the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} to display the debug window. Create a new entity
 
 Set the name of the entity
 
@@ -123,6 +100,8 @@ Shows the \mbox{\hyperlink{classEntity}{Entity}} Create Window.
 Opens a window to create a new entity.
 
 \begin{DoxyReturn}{Returns}
+whether the window should be kept open
+
 -\/ true if the window is open 
 \end{DoxyReturn}
 Creates the window and auto resizes it
@@ -131,11 +110,13 @@ Sets the size of the window if it is the first time it is opened
 
 Input text for entity name
 
-Buffer to hold the input, you can save this
-
 Create a new entity
 
+Create a new transform
+
 Set the name of the entity
+
+Add the transform to the entity)
 
 Add the entity to the \mbox{\hyperlink{classEntitySystem}{Entity\+System}}
 
@@ -147,11 +128,11 @@ Creates the cancel button
 
 If the cancel button is pressed, close the window
 
-The Matching End to the Begin to create the window\mbox{\Hypertarget{classEntitySystem_aa527daa36c0689122424d88acc2d8476}\label{classEntitySystem_aa527daa36c0689122424d88acc2d8476}} 
+The Matching End to the Begin to create the window\mbox{\Hypertarget{classEntitySystem_a3f95128f48491d1d14c24c778a541b6c}\label{classEntitySystem_a3f95128f48491d1d14c24c778a541b6c}} 
 \index{EntitySystem@{EntitySystem}!GetEntities@{GetEntities}}
 \index{GetEntities@{GetEntities}!EntitySystem@{EntitySystem}}
 \doxysubsubsection{\texorpdfstring{GetEntities()}{GetEntities()}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}}$\ast$ $>$ const\& Entity\+System\+::\+Get\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $\ast$ $>$ const  \& Entity\+System\+::\+Get\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -191,6 +172,23 @@ gets the instance of \mbox{\hyperlink{classEntitySystem}{Entity\+System}}
 \begin{DoxyReturn}{Returns}
 the instance of the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classEntitySystem_a3c0b97c3ff435b0fe85d9c82d480e011}\label{classEntitySystem_a3c0b97c3ff435b0fe85d9c82d480e011}} 
+\index{EntitySystem@{EntitySystem}!GetSelectedEntity@{GetSelectedEntity}}
+\index{GetSelectedEntity@{GetSelectedEntity}!EntitySystem@{EntitySystem}}
+\doxysubsubsection{\texorpdfstring{GetSelectedEntity()}{GetSelectedEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}} $\ast$ Entity\+System\+::\+Get\+Selected\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+returns the entity being viewed in the inspector 
+
+\DoxyHorRuler{0}
+\DoxyHorRuler{0}
+ \begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classEntity}{Entity}} being viewed in the inspector
+
+the \mbox{\hyperlink{classEntity}{Entity}} being viewed in the inspector 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classEntitySystem_a86f324f2d492e696283f08a10a6f2ac0}\label{classEntitySystem_a86f324f2d492e696283f08a10a6f2ac0}} 
 \index{EntitySystem@{EntitySystem}!HasEntity@{HasEntity}}
 \index{HasEntity@{HasEntity}!EntitySystem@{EntitySystem}}
@@ -200,6 +198,8 @@ the instance of the \mbox{\hyperlink{classEntitySystem}{Entity\+System}}
 
 
 checks if the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} contains the given \mbox{\hyperlink{classEntity}{Entity}} (for debugging) 
+
+checks if the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} contains the given \mbox{\hyperlink{classEntity}{Entity}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -226,19 +226,51 @@ loads all of the m\+\_\+\+Entities in a scene
 {\em entity\+Data} & the json object containing the entity data \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classEntitySystem_a7143c495b23a3dfab627dde07b43cd6c}\label{classEntitySystem_a7143c495b23a3dfab627dde07b43cd6c}} 
-\index{EntitySystem@{EntitySystem}!RemoveEntity@{RemoveEntity}}
-\index{RemoveEntity@{RemoveEntity}!EntitySystem@{EntitySystem}}
-\doxysubsubsection{\texorpdfstring{RemoveEntity()}{RemoveEntity()}}
-{\footnotesize\ttfamily void Entity\+System\+::\+Remove\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{entity }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classEntitySystem_af4b105c95e06ef3840d3fa53035d1670}\label{classEntitySystem_af4b105c95e06ef3840d3fa53035d1670}} 
+\index{EntitySystem@{EntitySystem}!MoveEntityAfterParent@{MoveEntityAfterParent}}
+\index{MoveEntityAfterParent@{MoveEntityAfterParent}!EntitySystem@{EntitySystem}}
+\doxysubsubsection{\texorpdfstring{MoveEntityAfterParent()}{MoveEntityAfterParent()}}
+{\footnotesize\ttfamily void Entity\+System\+::\+Move\+Entity\+After\+Parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{entity }\end{DoxyParamCaption})}
 
 
 
-removes an \mbox{\hyperlink{classEntity}{Entity}} from the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} 
+moves an \mbox{\hyperlink{classEntity}{Entity}} to the end of its parent\textquotesingle{}s children 
 
-
+FOR ENGINE USE ONLY -\/ call this only if you\textquotesingle{}re modifying core engine functionality 
 \begin{DoxyParams}{Parameters}
-{\em entity} & the \mbox{\hyperlink{classEntity}{Entity}} to remove \\
+{\em entity} & -\/ the entity to move \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEntitySystem_ab4f5c3b4b8fabbb75074bc2a46facbef}\label{classEntitySystem_ab4f5c3b4b8fabbb75074bc2a46facbef}} 
+\index{EntitySystem@{EntitySystem}!MoveToEnd@{MoveToEnd}}
+\index{MoveToEnd@{MoveToEnd}!EntitySystem@{EntitySystem}}
+\doxysubsubsection{\texorpdfstring{MoveToEnd()}{MoveToEnd()}}
+{\footnotesize\ttfamily void Entity\+System\+::\+Move\+To\+End (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{entity }\end{DoxyParamCaption})}
+
+
+
+moves an \mbox{\hyperlink{classEntity}{Entity}} to the end the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} 
+
+FOR ENGINE USE ONLY -\/ call this only if you\textquotesingle{}re modifying core engine functionality 
+\begin{DoxyParams}{Parameters}
+{\em entity} & -\/ the entity to move \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEntitySystem_a314fb5ad21955f6e5ccabc7f948161c0}\label{classEntitySystem_a314fb5ad21955f6e5ccabc7f948161c0}} 
+\index{EntitySystem@{EntitySystem}!QueueAddEntity@{QueueAddEntity}}
+\index{QueueAddEntity@{QueueAddEntity}!EntitySystem@{EntitySystem}}
+\doxysubsubsection{\texorpdfstring{QueueAddEntity()}{QueueAddEntity()}}
+{\footnotesize\ttfamily void Entity\+System\+::\+Queue\+Add\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{entity }\end{DoxyParamCaption})}
+
+
+
+queues an \mbox{\hyperlink{classEntity}{Entity}} to be added to the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} 
+
+FOR ENGINE USE ONLY -\/ call this only if you\textquotesingle{}re modifying core engine functionality 
+\begin{DoxyParams}{Parameters}
+{\em entity} & the entity to add the the \mbox{\hyperlink{classEntitySystem}{Entity\+System}}\\
+\hline
+{\em entity} & the entity to add the the \mbox{\hyperlink{classEntitySystem}{Entity\+System}} \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classEntitySystem_abee09afc33e2dddda270d3e4bacb247c}\label{classEntitySystem_abee09afc33e2dddda270d3e4bacb247c}} 

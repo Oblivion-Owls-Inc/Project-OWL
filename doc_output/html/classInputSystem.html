@@ -93,18 +93,36 @@ Collaboration diagram for InputSystem:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7164574fa58270fbca4828d10b33d367"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a7164574fa58270fbca4828d10b33d367">GetKeyDown</a> (int glfw_key)</td></tr>
-<tr class="memdesc:a7164574fa58270fbca4828d10b33d367"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given key is down  <a href="classInputSystem.html#a7164574fa58270fbca4828d10b33d367">More...</a><br /></td></tr>
-<tr class="separator:a7164574fa58270fbca4828d10b33d367"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9969b85f4d1dc654f94e884d34565738"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a9969b85f4d1dc654f94e884d34565738">GetKeyUp</a> (int glfw_key)</td></tr>
-<tr class="memdesc:a9969b85f4d1dc654f94e884d34565738"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given key is up  <a href="classInputSystem.html#a9969b85f4d1dc654f94e884d34565738">More...</a><br /></td></tr>
-<tr class="separator:a9969b85f4d1dc654f94e884d34565738"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a316a694c0ccaf20ae38a02088f5d7aed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a316a694c0ccaf20ae38a02088f5d7aed">GetKeyTriggered</a> (int glfw_key)</td></tr>
-<tr class="memdesc:a316a694c0ccaf20ae38a02088f5d7aed"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given key is triggered  <a href="classInputSystem.html#a316a694c0ccaf20ae38a02088f5d7aed">More...</a><br /></td></tr>
-<tr class="separator:a316a694c0ccaf20ae38a02088f5d7aed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a477593f77b154e764abf05c3eaebbbb8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a477593f77b154e764abf05c3eaebbbb8">GetKeyReleased</a> (int glfw_key)</td></tr>
-<tr class="memdesc:a477593f77b154e764abf05c3eaebbbb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given key is released  <a href="classInputSystem.html#a477593f77b154e764abf05c3eaebbbb8">More...</a><br /></td></tr>
-<tr class="separator:a477593f77b154e764abf05c3eaebbbb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e148d02bc1ff4eb04898e15242a3bec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a3e148d02bc1ff4eb04898e15242a3bec">InitAlternateWindow</a> (GLFWwindow *handle)</td></tr>
+<tr class="memdesc:a3e148d02bc1ff4eb04898e15242a3bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets a new window handle  <a href="classInputSystem.html#a3e148d02bc1ff4eb04898e15242a3bec">More...</a><br /></td></tr>
+<tr class="separator:a3e148d02bc1ff4eb04898e15242a3bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf1000882f8617d5b87dfee51e0374cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#aaf1000882f8617d5b87dfee51e0374cf">GetKeyDown</a> (int glfw_key, int altWindow=0)</td></tr>
+<tr class="memdesc:aaf1000882f8617d5b87dfee51e0374cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given key is down  <a href="classInputSystem.html#aaf1000882f8617d5b87dfee51e0374cf">More...</a><br /></td></tr>
+<tr class="separator:aaf1000882f8617d5b87dfee51e0374cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25408eb41abdd2b482a5d026c7b495d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a25408eb41abdd2b482a5d026c7b495d3">GetGamepadButtonDown</a> (int glfw_button)</td></tr>
+<tr class="memdesc:a25408eb41abdd2b482a5d026c7b495d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given game pad button is down.  <a href="classInputSystem.html#a25408eb41abdd2b482a5d026c7b495d3">More...</a><br /></td></tr>
+<tr class="separator:a25408eb41abdd2b482a5d026c7b495d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac256c5fe1a5dea731854635d8f3e6f07"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#ac256c5fe1a5dea731854635d8f3e6f07">GetKeyUp</a> (int glfw_key, int altWindow=0)</td></tr>
+<tr class="memdesc:ac256c5fe1a5dea731854635d8f3e6f07"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given key is up  <a href="classInputSystem.html#ac256c5fe1a5dea731854635d8f3e6f07">More...</a><br /></td></tr>
+<tr class="separator:ac256c5fe1a5dea731854635d8f3e6f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a931cbc0049e92c06bc71150bf693c25c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a931cbc0049e92c06bc71150bf693c25c">GetGamepadButtonUp</a> (int glfw_button)</td></tr>
+<tr class="memdesc:a931cbc0049e92c06bc71150bf693c25c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given game pad button is up.  <a href="classInputSystem.html#a931cbc0049e92c06bc71150bf693c25c">More...</a><br /></td></tr>
+<tr class="separator:a931cbc0049e92c06bc71150bf693c25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca4d87022c19249e096103fee042b491"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#aca4d87022c19249e096103fee042b491">GetKeyTriggered</a> (int glfw_key, int altWindow=0)</td></tr>
+<tr class="memdesc:aca4d87022c19249e096103fee042b491"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given key is triggered  <a href="classInputSystem.html#aca4d87022c19249e096103fee042b491">More...</a><br /></td></tr>
+<tr class="separator:aca4d87022c19249e096103fee042b491"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09e0dbe63d78b2deb9b9f0f727b79c1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a09e0dbe63d78b2deb9b9f0f727b79c1f">GetGamepadButtonTriggered</a> (int glfw_button)</td></tr>
+<tr class="memdesc:a09e0dbe63d78b2deb9b9f0f727b79c1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given game pad button is triggered.  <a href="classInputSystem.html#a09e0dbe63d78b2deb9b9f0f727b79c1f">More...</a><br /></td></tr>
+<tr class="separator:a09e0dbe63d78b2deb9b9f0f727b79c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a370411559b9479a165e08197c05e287f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a370411559b9479a165e08197c05e287f">GetKeyReleased</a> (int glfw_key, int altWindow=0)</td></tr>
+<tr class="memdesc:a370411559b9479a165e08197c05e287f"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given key is released  <a href="classInputSystem.html#a370411559b9479a165e08197c05e287f">More...</a><br /></td></tr>
+<tr class="separator:a370411559b9479a165e08197c05e287f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6a58a33761d77355f1bb08d3746e017"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#aa6a58a33761d77355f1bb08d3746e017">GetGamepadButtonReleased</a> (int glfw_button)</td></tr>
+<tr class="memdesc:aa6a58a33761d77355f1bb08d3746e017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given game pad button is released.  <a href="classInputSystem.html#aa6a58a33761d77355f1bb08d3746e017">More...</a><br /></td></tr>
+<tr class="separator:aa6a58a33761d77355f1bb08d3746e017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3d0144a1052d8271475a6acfa3daf0a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#aa3d0144a1052d8271475a6acfa3daf0a">GetGamepadAxisState</a> (int gamepad_id, int axis_id)</td></tr>
+<tr class="memdesc:aa3d0144a1052d8271475a6acfa3daf0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the state of a passed in input key.  <a href="classInputSystem.html#aa3d0144a1052d8271475a6acfa3daf0a">More...</a><br /></td></tr>
+<tr class="separator:aa3d0144a1052d8271475a6acfa3daf0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67cc327fa217177f764e8ca15f77c040"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a67cc327fa217177f764e8ca15f77c040">GetMouseDown</a> (int glfw_mouse_button)</td></tr>
 <tr class="memdesc:a67cc327fa217177f764e8ca15f77c040"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given mouse button is down  <a href="classInputSystem.html#a67cc327fa217177f764e8ca15f77c040">More...</a><br /></td></tr>
 <tr class="separator:a67cc327fa217177f764e8ca15f77c040"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,27 +135,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a31e73149cd8c6e9f2d6935471afd6d75"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a31e73149cd8c6e9f2d6935471afd6d75">GetMouseReleased</a> (int glfw_mouse_button)</td></tr>
 <tr class="memdesc:a31e73149cd8c6e9f2d6935471afd6d75"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given mouse button is released  <a href="classInputSystem.html#a31e73149cd8c6e9f2d6935471afd6d75">More...</a><br /></td></tr>
 <tr class="separator:a31e73149cd8c6e9f2d6935471afd6d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6d0e0063c3900ed6678a21b3ea7817e"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#ae6d0e0063c3900ed6678a21b3ea7817e">GetMousePosScreen</a> () const</td></tr>
+<tr class="memdesc:ae6d0e0063c3900ed6678a21b3ea7817e"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the mouse pos in screen space  <a href="classInputSystem.html#ae6d0e0063c3900ed6678a21b3ea7817e">More...</a><br /></td></tr>
+<tr class="separator:ae6d0e0063c3900ed6678a21b3ea7817e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c89c230ccf1c3d3fcfc41c9368e8e83"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a3c89c230ccf1c3d3fcfc41c9368e8e83">GetMousePosUI</a> ()</td></tr>
 <tr class="memdesc:a3c89c230ccf1c3d3fcfc41c9368e8e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets mouse pos in UI space  <a href="classInputSystem.html#a3c89c230ccf1c3d3fcfc41c9368e8e83">More...</a><br /></td></tr>
 <tr class="separator:a3c89c230ccf1c3d3fcfc41c9368e8e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a4c9201d7299d4ff7100a35fc030118"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a1a4c9201d7299d4ff7100a35fc030118">GetMousePosWorld</a> ()</td></tr>
 <tr class="memdesc:a1a4c9201d7299d4ff7100a35fc030118"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets mouse pos in world space  <a href="classInputSystem.html#a1a4c9201d7299d4ff7100a35fc030118">More...</a><br /></td></tr>
 <tr class="separator:a1a4c9201d7299d4ff7100a35fc030118"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c5d736864be0ddae0ea0066d8c6fa90"><td class="memItemLeft" align="right" valign="top"><a id="a3c5d736864be0ddae0ea0066d8c6fa90"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>InputSystem</b> (<a class="el" href="classInputSystem.html">InputSystem</a> &amp;other)=delete</td></tr>
-<tr class="separator:a3c5d736864be0ddae0ea0066d8c6fa90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e9cd50ed575cf88233c307f548d790e"><td class="memItemLeft" align="right" valign="top"><a id="a7e9cd50ed575cf88233c307f548d790e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classInputSystem.html">InputSystem</a> &amp;)=delete</td></tr>
-<tr class="separator:a7e9cd50ed575cf88233c307f548d790e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f09ca7da9888ea5d3ef513ee49a029c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a3f09ca7da9888ea5d3ef513ee49a029c">GetMouseDeltaScroll</a> ()</td></tr>
+<tr class="memdesc:a3f09ca7da9888ea5d3ef513ee49a029c"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets how much the mouse has scrolled since last frame  <a href="classInputSystem.html#a3f09ca7da9888ea5d3ef513ee49a029c">More...</a><br /></td></tr>
+<tr class="separator:a3f09ca7da9888ea5d3ef513ee49a029c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classSystem"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classSystem')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classSystem.html">System</a></td></tr>
-<tr class="memitem:ab2599efd39c3969bf4da3ded49574f28 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="ab2599efd39c3969bf4da3ded49574f28"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ab2599efd39c3969bf4da3ded49574f28">OnInit</a> ()</td></tr>
-<tr class="memdesc:ab2599efd39c3969bf4da3ded49574f28 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once when this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> is added to the <a class="el" href="classEngine.html">Engine</a>. <br /></td></tr>
-<tr class="separator:ab2599efd39c3969bf4da3ded49574f28 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaebe51536352d44fea4c0e44f449eb5 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="abaebe51536352d44fea4c0e44f449eb5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#abaebe51536352d44fea4c0e44f449eb5">OnExit</a> ()</td></tr>
-<tr class="memdesc:abaebe51536352d44fea4c0e44f449eb5 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once before the <a class="el" href="classEngine.html">Engine</a> closes. <br /></td></tr>
-<tr class="separator:abaebe51536352d44fea4c0e44f449eb5 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="a57235c9268a213e2944d83cffa3b4aae"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a> ()</td></tr>
 <tr class="memdesc:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
@@ -195,24 +205,53 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a6932d0a3a9fec54bc5f16c5792130fe6"><td class="memItemLeft" align="right" valign="top"><a id="a6932d0a3a9fec54bc5f16c5792130fe6"></a>
+GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>handle</b></td></tr>
+<tr class="separator:a6932d0a3a9fec54bc5f16c5792130fe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06e6a4f2a090251417efcb0c49a9efa2"><td class="memItemLeft" align="right" valign="top"><a id="a06e6a4f2a090251417efcb0c49a9efa2"></a>
 map&lt; int, bool[3]&gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>m_KeyStatesHold</b></td></tr>
 <tr class="separator:a06e6a4f2a090251417efcb0c49a9efa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fe5f67e01538a23ce3e2947441ca8f5"><td class="memItemLeft" align="right" valign="top"><a id="a3fe5f67e01538a23ce3e2947441ca8f5"></a>
 map&lt; int, bool[3]&gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>m_MouseStatesHold</b></td></tr>
 <tr class="separator:a3fe5f67e01538a23ce3e2947441ca8f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a110d2a20b1792039169eef285def4f01"><td class="memItemLeft" align="right" valign="top"><a id="a110d2a20b1792039169eef285def4f01"></a>
+map&lt; int, bool[3]&gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>m_ControllerStatesHold</b></td></tr>
+<tr class="separator:a110d2a20b1792039169eef285def4f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b9aa4d1dbe8693f89f305198aa83fc4"><td class="memItemLeft" align="right" valign="top"><a id="a2b9aa4d1dbe8693f89f305198aa83fc4"></a>
 map&lt; int, bool[3]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_KeyStates</b></td></tr>
 <tr class="separator:a2b9aa4d1dbe8693f89f305198aa83fc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2033d90f27fef1d08e1441ac199aeda5"><td class="memItemLeft" align="right" valign="top"><a id="a2033d90f27fef1d08e1441ac199aeda5"></a>
 map&lt; int, bool[3]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_FixedKeyStates</b></td></tr>
 <tr class="separator:a2033d90f27fef1d08e1441ac199aeda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7da63858e8d542984a2dc12cad644f26"><td class="memItemLeft" align="right" valign="top"><a id="a7da63858e8d542984a2dc12cad644f26"></a>
+map&lt; int, bool[3]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_ControllerStates</b></td></tr>
+<tr class="separator:a7da63858e8d542984a2dc12cad644f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1feda43e880987edcbe4cac293889467"><td class="memItemLeft" align="right" valign="top"><a id="a1feda43e880987edcbe4cac293889467"></a>
+map&lt; int, bool[3]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_FixedControllerStates</b></td></tr>
+<tr class="separator:a1feda43e880987edcbe4cac293889467"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98df56265d9e034fa160981ebd056a12"><td class="memItemLeft" align="right" valign="top"><a id="a98df56265d9e034fa160981ebd056a12"></a>
 map&lt; int, bool[3]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_MouseStates</b></td></tr>
 <tr class="separator:a98df56265d9e034fa160981ebd056a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4679f7d717904ab198f332a48c555502"><td class="memItemLeft" align="right" valign="top"><a id="a4679f7d717904ab198f332a48c555502"></a>
 map&lt; int, bool[3]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_FixedMouseStates</b></td></tr>
 <tr class="separator:a4679f7d717904ab198f332a48c555502"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac82b9600b4b7853302a0bb81a64399af"><td class="memItemLeft" align="right" valign="top"><a id="ac82b9600b4b7853302a0bb81a64399af"></a>
+std::vector&lt; GLFWwindow * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>altHandles</b></td></tr>
+<tr class="separator:ac82b9600b4b7853302a0bb81a64399af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93de3b3edb774846dc980a651b8046fb"><td class="memItemLeft" align="right" valign="top"><a id="a93de3b3edb774846dc980a651b8046fb"></a>
+std::vector&lt; map&lt; int, bool[3]&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>windows</b></td></tr>
+<tr class="separator:a93de3b3edb774846dc980a651b8046fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97ebd940ae78cb1e1997c0544de1a77d"><td class="memItemLeft" align="right" valign="top"><a id="a97ebd940ae78cb1e1997c0544de1a77d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>amount</b> = 0</td></tr>
+<tr class="separator:a97ebd940ae78cb1e1997c0544de1a77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ab5505fcd02e2b33bc7437ed0042ee3"><td class="memItemLeft" align="right" valign="top"><a id="a4ab5505fcd02e2b33bc7437ed0042ee3"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a4ab5505fcd02e2b33bc7437ed0042ee3">m_DeltaScroll</a> = 0.0f</td></tr>
+<tr class="memdesc:a4ab5505fcd02e2b33bc7437ed0042ee3"><td class="mdescLeft">&#160;</td><td class="mdescRight">how much the mouse has scrolled this graphicsframe <br /></td></tr>
+<tr class="separator:a4ab5505fcd02e2b33bc7437ed0042ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c605487d4bcf93d558dce7d59a1ee3b"><td class="memItemLeft" align="right" valign="top"><a id="a6c605487d4bcf93d558dce7d59a1ee3b"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a6c605487d4bcf93d558dce7d59a1ee3b">m_FixedDeltaScroll</a> = 0.0f</td></tr>
+<tr class="memdesc:a6c605487d4bcf93d558dce7d59a1ee3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">how much the mouse has scrolled this simulation frame <br /></td></tr>
+<tr class="separator:a6c605487d4bcf93d558dce7d59a1ee3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -223,6 +262,176 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a9cd1cf06022ecbde6f0b27be372a0cf6 inherit pro_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa3d0144a1052d8271475a6acfa3daf0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3d0144a1052d8271475a6acfa3daf0a">&#9670;&nbsp;</a></span>GetGamepadAxisState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float InputSystem::GetGamepadAxisState </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>gamepad_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>axis_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks the state of a passed in input key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">JID</td><td>- The ID of the controller to grab. </td></tr>
+    <tr><td class="paramname">input</td><td>- The button or axis to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the state of an axis (float). </dd></dl>
+
+</div>
+</div>
+<a id="a25408eb41abdd2b482a5d026c7b495d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25408eb41abdd2b482a5d026c7b495d3">&#9670;&nbsp;</a></span>GetGamepadButtonDown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InputSystem::GetGamepadButtonDown </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>glfw_button</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a given game pad button is down. </p>
+<p>Checks if a given button is down.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">glfw_key</td><td>button to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns if the button is down.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">glfw_button</td><td>the button to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns if the button is down. </dd></dl>
+
+</div>
+</div>
+<a id="aa6a58a33761d77355f1bb08d3746e017"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6a58a33761d77355f1bb08d3746e017">&#9670;&nbsp;</a></span>GetGamepadButtonReleased()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InputSystem::GetGamepadButtonReleased </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>glfw_button</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a given game pad button is released. </p>
+<p>Checks if a given button is released.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">glfw_button</td><td>button to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns if the button is released.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">glfw_button</td><td>the button to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns if the button is released </dd></dl>
+
+</div>
+</div>
+<a id="a09e0dbe63d78b2deb9b9f0f727b79c1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09e0dbe63d78b2deb9b9f0f727b79c1f">&#9670;&nbsp;</a></span>GetGamepadButtonTriggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InputSystem::GetGamepadButtonTriggered </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>glfw_button</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a given game pad button is triggered. </p>
+<p>Check if a given button is triggered.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">glfw_key</td><td>button to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns if the button is triggered.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">glfw_button</td><td>the button to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns if button is triggered. </dd></dl>
+
+</div>
+</div>
+<a id="a931cbc0049e92c06bc71150bf693c25c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a931cbc0049e92c06bc71150bf693c25c">&#9670;&nbsp;</a></span>GetGamepadButtonUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InputSystem::GetGamepadButtonUp </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>glfw_button</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a given game pad button is up. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">glfw_key</td><td>button to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns if the button is up. </dd></dl>
+
+</div>
+</div>
 <a id="af5fc404c7c6bc2303d741bd7b9abe7df"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af5fc404c7c6bc2303d741bd7b9abe7df">&#9670;&nbsp;</a></span>GetInstance()</h2>
 
@@ -251,8 +460,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a7164574fa58270fbca4828d10b33d367"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7164574fa58270fbca4828d10b33d367">&#9670;&nbsp;</a></span>GetKeyDown()</h2>
+<a id="aaf1000882f8617d5b87dfee51e0374cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf1000882f8617d5b87dfee51e0374cf">&#9670;&nbsp;</a></span>GetKeyDown()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,8 +470,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">bool InputSystem::GetKeyDown </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>glfw_key</em></td><td>)</td>
+          <td class="paramname"><em>glfw_key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>altWindow</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -278,8 +497,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a477593f77b154e764abf05c3eaebbbb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a477593f77b154e764abf05c3eaebbbb8">&#9670;&nbsp;</a></span>GetKeyReleased()</h2>
+<a id="a370411559b9479a165e08197c05e287f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a370411559b9479a165e08197c05e287f">&#9670;&nbsp;</a></span>GetKeyReleased()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,8 +507,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">bool InputSystem::GetKeyReleased </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>glfw_key</em></td><td>)</td>
+          <td class="paramname"><em>glfw_key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>altWindow</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -305,8 +534,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a316a694c0ccaf20ae38a02088f5d7aed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a316a694c0ccaf20ae38a02088f5d7aed">&#9670;&nbsp;</a></span>GetKeyTriggered()</h2>
+<a id="aca4d87022c19249e096103fee042b491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca4d87022c19249e096103fee042b491">&#9670;&nbsp;</a></span>GetKeyTriggered()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -315,8 +544,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">bool InputSystem::GetKeyTriggered </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>glfw_key</em></td><td>)</td>
+          <td class="paramname"><em>glfw_key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>altWindow</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -332,8 +571,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a9969b85f4d1dc654f94e884d34565738"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9969b85f4d1dc654f94e884d34565738">&#9670;&nbsp;</a></span>GetKeyUp()</h2>
+<a id="ac256c5fe1a5dea731854635d8f3e6f07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac256c5fe1a5dea731854635d8f3e6f07">&#9670;&nbsp;</a></span>GetKeyUp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -342,8 +581,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">bool InputSystem::GetKeyUp </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>glfw_key</em></td><td>)</td>
+          <td class="paramname"><em>glfw_key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>altWindow</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -356,6 +605,26 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>returns if key is up </dd></dl>
+
+</div>
+</div>
+<a id="a3f09ca7da9888ea5d3ef513ee49a029c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f09ca7da9888ea5d3ef513ee49a029c">&#9670;&nbsp;</a></span>GetMouseDeltaScroll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float InputSystem::GetMouseDeltaScroll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets how much the mouse has scrolled since last frame </p>
+<dl class="section return"><dt>Returns</dt><dd>how much the mouse has scrolled since last frame </dd></dl>
 
 </div>
 </div>
@@ -383,6 +652,26 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>returns if mouse button is down </dd></dl>
+
+</div>
+</div>
+<a id="ae6d0e0063c3900ed6678a21b3ea7817e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6d0e0063c3900ed6678a21b3ea7817e">&#9670;&nbsp;</a></span>GetMousePosScreen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec2 InputSystem::GetMousePosScreen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the mouse pos in screen space </p>
+<dl class="section return"><dt>Returns</dt><dd>the current mouse pos in screen space </dd></dl>
 
 </div>
 </div>
@@ -505,6 +794,33 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>returns if mouse button is up </dd></dl>
+
+</div>
+</div>
+<a id="a3e148d02bc1ff4eb04898e15242a3bec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e148d02bc1ff4eb04898e15242a3bec">&#9670;&nbsp;</a></span>InitAlternateWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int InputSystem::InitAlternateWindow </td>
+          <td>(</td>
+          <td class="paramtype">GLFWwindow *&#160;</td>
+          <td class="paramname"><em>handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets a new window handle </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>of new window </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int, pass this back to check window </dd></dl>
 
 </div>
 </div>

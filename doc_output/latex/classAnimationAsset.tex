@@ -27,13 +27,13 @@ Collaboration diagram for Animation\+Asset\+:\nopagebreak
 \mbox{\Hypertarget{classAnimationAsset_af931996cd8b9e3558761732bbee4c5d5}\label{classAnimationAsset_af931996cd8b9e3558761732bbee4c5d5}} 
 \mbox{\hyperlink{classAnimationAsset_af931996cd8b9e3558761732bbee4c5d5}{$\sim$\+Animation\+Asset}} ()=default
 \begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
-unsigned \mbox{\hyperlink{classAnimationAsset_aeb8eacea2189800cb8f5e62f726a8ff3}{Get\+Start}} () const
+int \mbox{\hyperlink{classAnimationAsset_a5b5632af46b3d38a8f728cf94adf4143}{Get\+Start}} () const
 \begin{DoxyCompactList}\small\item\em gets the start frame of the animation \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimationAsset_ac1c97ffaa6781593d2698b2ce5629813}{Set\+Start}} (unsigned start)
+void \mbox{\hyperlink{classAnimationAsset_a13e9bf9c09fcdee6685df4a11d3eb7d5}{Set\+Start}} (int start)
 \begin{DoxyCompactList}\small\item\em sets a new start frame \end{DoxyCompactList}\item 
-unsigned \mbox{\hyperlink{classAnimationAsset_a646437cca4a44272ed534880603b6245}{Get\+End}} () const
+int \mbox{\hyperlink{classAnimationAsset_a7e273dfc1efe36f57e249b1a66f3da0c}{Get\+End}} () const
 \begin{DoxyCompactList}\small\item\em gets the end frame of the animation \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classAnimationAsset_a9454caab28ddebde2142ee1cdc05b22c}{Set\+End}} (unsigned end)
+void \mbox{\hyperlink{classAnimationAsset_a5f06f12ebd4aff31a02946d68dbf7ab0}{Set\+End}} (int end)
 \begin{DoxyCompactList}\small\item\em sets a new end frame \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classAnimationAsset_a8b697c503a1c29e342471324e302a407}{Get\+Frame\+Duration}} () const
 \begin{DoxyCompactList}\small\item\em gets the duration of each frame of animation \end{DoxyCompactList}\item 
@@ -41,9 +41,8 @@ void \mbox{\hyperlink{classAnimationAsset_ab078c32a0ada796856ff092f0dd50fb4}{Set
 \begin{DoxyCompactList}\small\item\em sets a new frame duration \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classAnimationAsset_a8d04906a1856429b1d1a72614987f9a7}{Get\+Frame\+Count}} () const
 \begin{DoxyCompactList}\small\item\em gets the number of frames in this animation \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classAnimationAsset_a750ace84bc77cbeba0defc6aac437c68}\label{classAnimationAsset_a750ace84bc77cbeba0defc6aac437c68}} 
-void {\bfseries Inspect} ()
-\item 
+bool \mbox{\hyperlink{classAnimationAsset_a327e634927bc364bb6d28b98b6a72a25}{Inspect}} ()
+\begin{DoxyCompactList}\small\item\em inspects this \mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} \end{DoxyCompactList}\item 
 virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classAnimationAsset_ac7250f3c027a830e6f94f94384daaf6e}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} read method map \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classAnimationAsset_a72391566c61d80704ccd2ebe08427670}{Write}} () const override
@@ -51,11 +50,11 @@ virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classAnimationAsset_a7239
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classAnimationAsset_a646437cca4a44272ed534880603b6245}\label{classAnimationAsset_a646437cca4a44272ed534880603b6245}} 
+\mbox{\Hypertarget{classAnimationAsset_a7e273dfc1efe36f57e249b1a66f3da0c}\label{classAnimationAsset_a7e273dfc1efe36f57e249b1a66f3da0c}} 
 \index{AnimationAsset@{AnimationAsset}!GetEnd@{GetEnd}}
 \index{GetEnd@{GetEnd}!AnimationAsset@{AnimationAsset}}
 \doxysubsubsection{\texorpdfstring{GetEnd()}{GetEnd()}}
-{\footnotesize\ttfamily unsigned Animation\+Asset\+::\+Get\+End (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily int Animation\+Asset\+::\+Get\+End (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -107,11 +106,11 @@ the read method map
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
-\mbox{\Hypertarget{classAnimationAsset_aeb8eacea2189800cb8f5e62f726a8ff3}\label{classAnimationAsset_aeb8eacea2189800cb8f5e62f726a8ff3}} 
+\mbox{\Hypertarget{classAnimationAsset_a5b5632af46b3d38a8f728cf94adf4143}\label{classAnimationAsset_a5b5632af46b3d38a8f728cf94adf4143}} 
 \index{AnimationAsset@{AnimationAsset}!GetStart@{GetStart}}
 \index{GetStart@{GetStart}!AnimationAsset@{AnimationAsset}}
 \doxysubsubsection{\texorpdfstring{GetStart()}{GetStart()}}
-{\footnotesize\ttfamily unsigned Animation\+Asset\+::\+Get\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily int Animation\+Asset\+::\+Get\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -120,11 +119,24 @@ gets the start frame of the animation
 \begin{DoxyReturn}{Returns}
 start frame of the animation 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classAnimationAsset_a9454caab28ddebde2142ee1cdc05b22c}\label{classAnimationAsset_a9454caab28ddebde2142ee1cdc05b22c}} 
+\mbox{\Hypertarget{classAnimationAsset_a327e634927bc364bb6d28b98b6a72a25}\label{classAnimationAsset_a327e634927bc364bb6d28b98b6a72a25}} 
+\index{AnimationAsset@{AnimationAsset}!Inspect@{Inspect}}
+\index{Inspect@{Inspect}!AnimationAsset@{AnimationAsset}}
+\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
+{\footnotesize\ttfamily bool Animation\+Asset\+::\+Inspect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+inspects this \mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} 
+
+\begin{DoxyReturn}{Returns}
+whether the \mbox{\hyperlink{classAnimationAsset}{Animation\+Asset}} was changed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAnimationAsset_a5f06f12ebd4aff31a02946d68dbf7ab0}\label{classAnimationAsset_a5f06f12ebd4aff31a02946d68dbf7ab0}} 
 \index{AnimationAsset@{AnimationAsset}!SetEnd@{SetEnd}}
 \index{SetEnd@{SetEnd}!AnimationAsset@{AnimationAsset}}
 \doxysubsubsection{\texorpdfstring{SetEnd()}{SetEnd()}}
-{\footnotesize\ttfamily void Animation\+Asset\+::\+Set\+End (\begin{DoxyParamCaption}\item[{unsigned}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Animation\+Asset\+::\+Set\+End (\begin{DoxyParamCaption}\item[{int}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -150,11 +162,11 @@ sets a new frame duration
 {\em frame\+Duration} & frame duration to set \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classAnimationAsset_ac1c97ffaa6781593d2698b2ce5629813}\label{classAnimationAsset_ac1c97ffaa6781593d2698b2ce5629813}} 
+\mbox{\Hypertarget{classAnimationAsset_a13e9bf9c09fcdee6685df4a11d3eb7d5}\label{classAnimationAsset_a13e9bf9c09fcdee6685df4a11d3eb7d5}} 
 \index{AnimationAsset@{AnimationAsset}!SetStart@{SetStart}}
 \index{SetStart@{SetStart}!AnimationAsset@{AnimationAsset}}
 \doxysubsubsection{\texorpdfstring{SetStart()}{SetStart()}}
-{\footnotesize\ttfamily void Animation\+Asset\+::\+Set\+Start (\begin{DoxyParamCaption}\item[{unsigned}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Animation\+Asset\+::\+Set\+Start (\begin{DoxyParamCaption}\item[{int}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

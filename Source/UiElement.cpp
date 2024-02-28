@@ -19,6 +19,8 @@
 #include "RenderSystem.h"
 #include "PlatformSystem.h"
 
+#include "ComponentReference.t.h"
+
 #include "Inspection.h"
 
 //-----------------------------------------------------------------------------
@@ -59,6 +61,7 @@
     void UiElement::SetAnchor( glm::vec2 const& anchor )
     {
         m_Anchor = anchor;
+        updateTransform();
     }
 
 
@@ -74,6 +77,7 @@
     void UiElement::SetPivot( glm::vec2 const& pivot )
     {
         m_Pivot = pivot;
+        updateTransform();
     }
 
 
@@ -89,6 +93,7 @@
     void UiElement::SetOffset( glm::vec2 const& offset )
     {
         m_Offset = offset;
+        updateTransform();
     }
 
 
@@ -104,6 +109,7 @@
     void UiElement::SetFrameSize( glm::vec2 const& frameSize )
     {
         m_FrameSize = frameSize;
+        updateTransform();
     }
 
 
@@ -119,6 +125,7 @@
     void UiElement::SetSizeTypes( SizeTypeVec const& sizeTypes )
     {
         m_SizeTypes = sizeTypes;
+        updateTransform();
     }
 
 
@@ -132,8 +139,29 @@
     {
         Platform()->AddOnWindowResizeCallback( GetId(), std::bind( &UiElement::onWindowResizedCallback, this, std::placeholders::_1 ) );
 
-        Entity* parent = GetEntity()->GetParent();
-        m_ParentElement = parent == nullptr ? nullptr : parent->GetComponent< UiElement >();
+        m_ParentElement.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_ParentElement->AddOnTransformChangedCallback(
+                    GetId(),
+                    [ this ]()
+                    {
+                        updateTransform();
+                    }
+                );
+            }
+        );
+        m_ParentElement.SetOnDisconnectCallback(
+            [ this ]()
+            {
+                m_ParentElement->RemoveOnTransformChangedCallback(
+                    GetId()
+                );
+            }
+        );
+
+        m_ParentElement.Init( GetEntity()->GetParent() );
+
         updateTransform();
     }
 
@@ -141,15 +169,21 @@
     void UiElement::OnExit()
     {
         Platform()->RemoveOnWindowResizeCallback( GetId() );
+
+        m_ParentElement.Exit();
     }
 
 
     /// @brief  called every time after the Entity this Component is attached to's heirarchy changes
     void UiElement::OnHierarchyChange( Entity* previousParent )
     {
-        Entity* parent = GetEntity()->GetParent();
-        m_ParentElement = parent == nullptr ? nullptr : parent->GetComponent< UiElement >();
-        updateTransform();
+        if ( GetEntity()->GetParent() == previousParent )
+        {
+            return;
+        }
+
+        m_ParentElement.Exit();
+        m_ParentElement.Init( GetEntity()->GetParent() );
     }
 
 
@@ -314,8 +348,8 @@
     {
         if ( data.is_array() == false )
         {
-            Debug()
-                << "JSON Warning: unexpected type \"" << data.type_name()
+            Debug()  << "Warning:"
+                << "JSON: unexpected type \"" << data.type_name()
                 << "\" encountered, expected type \"Array\" while reading UiElement SizeTypes"
                 << std::endl;
             return;
@@ -323,7 +357,7 @@
 
         if ( data.size() != 2 )
         {
-            Debug()
+            Debug() << "Warning:"
                 << "JSON Warning: unexpected array size \"" << data.size()
                 << "\" encountered, expected size \"2\" while reading UiElement SizeTypes"
                 << std::endl;
@@ -334,7 +368,7 @@
         {
             if ( data[ i ].is_string() == false )
             {
-                Debug()
+                Debug() << "Warning:"
                     << "JSON Warning: unexpected type \"" << data[ i ].type_name()
                     << "\" encountered, expected type \"String\" while reading UiElement SizeTypes"
                     << std::endl;
@@ -344,7 +378,7 @@
             auto const& sizeType = s_SizeTypes.find( data[ i ] );
             if ( sizeType == s_SizeTypes.end() )
             {
-                Debug()
+                Debug() << "Warning:"
                     << "JSON Warning: unrecognized token \"" << data[ i ]
                     << "\" encountered while reading UiElement SizeTypes"
                     << std::endl;

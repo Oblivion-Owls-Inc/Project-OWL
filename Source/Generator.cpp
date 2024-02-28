@@ -42,7 +42,7 @@ void Generator::OnInit()
     m_Collider.SetOnConnectCallback(
         [ this ]()
         {
-            m_Collider->AddOnCollisionCallback(
+            m_Collider->AddOnCollisionEnterCallback(
                 GetId(),
                 std::bind(&Generator::onCollisionEnter, this, std::placeholders::_1)
             );
@@ -51,7 +51,7 @@ void Generator::OnInit()
     m_Collider.SetOnDisconnectCallback(
         [ this ]()
         {
-            m_Collider->RemoveOnCollisionCallback( GetId() );
+            m_Collider->RemoveOnCollisionEnterCallback( GetId() );
         }
     );
 
@@ -67,10 +67,10 @@ void Generator::OnExit()
 {
     Components< Generator >()->RemoveComponent(this);
 
-    m_Collider   .Exit( GetEntity() );
-    m_AudioPlayer.Exit( GetEntity() );
-    m_Transform  .Exit( GetEntity() );
-    m_Health     .Exit( GetEntity() );
+    m_Collider   .Exit();
+    m_AudioPlayer.Exit();
+    m_Transform  .Exit();
+    m_Health     .Exit();
 }
 
 //-----------------------------------------------------------------------------

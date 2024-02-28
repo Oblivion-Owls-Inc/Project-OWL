@@ -147,6 +147,28 @@ Sprite::Sprite(Sprite const& other) :
     }
 
 
+    /// @brief  checks if a a point in local space overlaps this Sprite
+    /// @param  point   the point to check if overlaps this Sprite
+    /// @return whether this Sprite overlaps the point
+    bool Sprite::OverlapsLocalPoint( glm::vec2 const& point ) const
+    {
+        if ( m_Transform == nullptr || m_Texture == nullptr || m_Texture->GetMesh() == nullptr )
+        {
+            return false;
+        }
+        
+        glm::vec2 bounds[ 2 ] = {
+            m_Transform->GetTranslation() + m_Transform->GetScale() * m_Texture->GetMesh()->GetBounds()[ 0 ],
+            m_Transform->GetTranslation() + m_Transform->GetScale() * m_Texture->GetMesh()->GetBounds()[ 1 ],
+        };
+
+        return (
+            point.x >= bounds[ 0 ].x && point.x < bounds[ 1 ].x &&
+            point.y >= bounds[ 0 ].y && point.y < bounds[ 1 ].y
+        );
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
@@ -255,7 +277,7 @@ Sprite::Sprite(Sprite const& other) :
     {
         Renderer()->RemoveSprite( this );
 
-        m_Transform.Exit( GetEntity() );
+        m_Transform.Exit();
     }
 
 

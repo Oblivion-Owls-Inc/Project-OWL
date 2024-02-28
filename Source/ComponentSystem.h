@@ -10,6 +10,7 @@
 
 #include "System.h"
 #include "Component.h"
+#include "Entity.h"
 
 #include "Inspection.h"
 

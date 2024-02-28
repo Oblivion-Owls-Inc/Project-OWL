@@ -120,24 +120,31 @@ void InputSystem::mapUpdate()
 void InputSystem::OnInit()
 {
     handle = PlatformSystem::GetInstance()->GetWindowHandle();
+
+    glfwSetScrollCallback( handle, onMouseScrollCallback );
 }
 
 /// @brief  exit system
 void InputSystem::OnExit()
 {
-    
+
 }
 
 /// @brief fixed update for input, must be called
 void InputSystem::OnFixedUpdate()
 {
     mapUpdate();
+
+    m_FixedDeltaScroll = 0.0f;
 }
 
 /// @brief update system
 void InputSystem::OnUpdate(float dt)
 {
     mapUpdate();
+
+    m_DeltaScroll = 0.0f;
+    glfwPollEvents();
 }
 
 int InputSystem::InitAlternateWindow(GLFWwindow* handle)
@@ -360,36 +367,59 @@ bool InputSystem::GetMouseReleased(int glfw_mouse_button)
 }
 
 
-/// @brief  convert matrix to vec2
-/// @param  transformation  the transformation to apply to the screen-space mouse position
-glm::vec2 InputSystem::getMousePosAfterTransformation( glm::mat4 const& transformation ) const
+/// @brief  gets the mouse pos in screen space
+/// @return the current mouse pos in screen space
+glm::vec2 InputSystem::GetMousePosScreen() const
 {
     glm::vec< 2, double > mousePosRaw;
     glfwGetCursorPos( Platform()->GetWindowHandle(), &mousePosRaw.x, &mousePosRaw.y );
 
     glm::vec2 mousePosScreen = mousePosRaw; // convert from double to float
-    mousePosScreen -= Platform()->GetGameWindowPos();
-
-    return transformation * glm::vec4( mousePosScreen, 0.0f, 1.0f );
+    return mousePosScreen - Platform()->GetGameWindowPos();
 }
+
 
 /// @brief gets mouse pos in UI space
 /// @return returns the current mouse pos as a vec2
 glm::vec2 InputSystem::GetMousePosUI()
 {
-    glm::mat4 matrix = Cameras()->GetMat_ScreenToUI();
-    
-    return getMousePosAfterTransformation( matrix );
+    return Cameras()->GetMat_ScreenToUI() * glm::vec4( GetMousePosScreen(), 0.0f, 1.0f );
 }
 
 /// @brief gets mouse pos in World space
 /// @return returns the current mouse pos as a vec2
 glm::vec2 InputSystem::GetMousePosWorld()
 {
-    glm::mat4 matrix = Cameras()->GetMat_ScreenToWorld();
-    
-    return getMousePosAfterTransformation( matrix );
+    return Cameras()->GetMat_ScreenToWorld() * glm::vec4( GetMousePosScreen(), 0.0f, 1.0f );
 }
+
+
+    /// @brief  gets how much the mouse has scrolled since last frame
+    /// @return how much the mouse has scrolled since last frame
+    float InputSystem::GetMouseDeltaScroll()
+    {
+        if ( GameEngine()->GetCurrentUpdate() == Engine::UpdateMode::fixedUpdate )
+        {
+            return m_FixedDeltaScroll;
+        }
+        else
+        {
+            return m_DeltaScroll;
+        }
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
+
+
+    // callback called whenever the mouse scrolls
+    void InputSystem::onMouseScrollCallback( GLFWwindow*, double, double scrollY )
+    {
+        Input()->m_DeltaScroll += (float)scrollY;
+        Input()->m_FixedDeltaScroll += (float)scrollY;
+    }
 
 /// @brief  gets an action by its name
 /// @param  name name of the action
