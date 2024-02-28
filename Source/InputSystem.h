@@ -487,6 +487,7 @@ public: // reading/writing
 private: // reading
 //-----------------------------------------------------------------------------
 
+    /// @brief  read actions for input
     void readActions(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
