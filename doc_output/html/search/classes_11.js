@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wavesbehavior_1020',['WavesBehavior',['../classWavesBehavior.html',1,'']]],
-  ['winstate_1021',['WinState',['../classWinState.html',1,'']]]
+  ['wavesbehavior_1064',['WavesBehavior',['../classWavesBehavior.html',1,'']]],
+  ['winstate_1065',['WinState',['../classWinState.html',1,'']]]
 ];
