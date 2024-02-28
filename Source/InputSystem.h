@@ -123,6 +123,9 @@ private: // private methods
 
     /// @brief  updates map realted to fixed or standard update
     void mapUpdate();
+
+    // callback called whenever the mouse scrolls
+    static void onMouseScrollCallback(GLFWwindow* window, double scrollX, double scrollY);
     
 
 //-----------------------------------------------------------------------------
@@ -154,7 +157,9 @@ public: // public class
         /// @brief  editor description of action
         std::string m_Description;
 
-    private:
+    //-------------------------------------------------------------------------
+    private: // private class reading
+    //-------------------------------------------------------------------------
 
         /// @brief  remove an input from action by input id
         /// @param  vector to remove from
@@ -194,7 +199,9 @@ public: // public class
         /// @brief read the gamepad axis inputs for an action
         void readGamepadAxis(nlohmann::ordered_json const& json);
 
-    public:
+    //-------------------------------------------------------------------------
+    public: // class writing
+    //-------------------------------------------------------------------------
 
         /// @brief read method map for an Action
         virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
@@ -205,7 +212,9 @@ public: // public class
         /// @brief	write an Action to json
         virtual nlohmann::ordered_json Write() const override;
 
-    public:
+    //-------------------------------------------------------------------------
+    public: // public class methods
+    //-------------------------------------------------------------------------
 
         /// @brief  contructor
         /// @param  name of the action
@@ -445,33 +454,22 @@ public: // accessors
     /// @return how much the mouse has scrolled since last frame
     float GetMouseDeltaScroll();
 
-//-----------------------------------------------------------------------------
-private: // methods
-//-----------------------------------------------------------------------------
-
-
-    // callback called whenever the mouse scrolls
-    static void onMouseScrollCallback( GLFWwindow* window, double scrollX, double scrollY );
-
-
-//-----------------------------------------------------------------------------
-private: // singleton stuff
-//-----------------------------------------------------------------------------
-
-
-    // Prevent copying
-    InputSystem(InputSystem& other) = delete;
-    void operator=(const InputSystem&) = delete;
-
     /// @brief  gets an action by its name
     /// @param  name name of the action
-    /// @retun  pointer to the action
+    /// @return  pointer to the action
     Action* GetActionByName(std::string& name);
 
     /// @brief  gets the vector of Actions in the InputSystem
     /// @return the vector of Actions
     std::vector< Action > const& GetActions() const;
 
+//-----------------------------------------------------------------------------
+private: // singleton stuff
+//-----------------------------------------------------------------------------
+
+    // Prevent copying
+    InputSystem(InputSystem& other) = delete;
+    void operator=(const InputSystem&) = delete;
 
 //-----------------------------------------------------------------------------
 private: // reading
