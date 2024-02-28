@@ -18,11 +18,24 @@ Collaboration diagram for Input\+System\+:\nopagebreak
 \includegraphics[width=158pt]{classInputSystem__coll__graph}
 \end{center}
 \end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classInputSystem_1_1Action}{Action}}
+\begin{DoxyCompactList}\small\item\em action class, used to track an action with dynamic input \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{classInputSystem_a3e148d02bc1ff4eb04898e15242a3bec}{Init\+Alternate\+Window}} (GLFWwindow $\ast$handle)
-\begin{DoxyCompactList}\small\item\em sets a new window handle \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInputSystem_a54ce226da68c48fc59a9074f54938f87}\label{classInputSystem_a54ce226da68c48fc59a9074f54938f87}} 
+virtual void \mbox{\hyperlink{classInputSystem_a54ce226da68c48fc59a9074f54938f87}{Debug\+Window}} () override
+\begin{DoxyCompactList}\small\item\em Gets Called by the Debug system to display debug information. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classInputSystem_a7e3c9e3db7f53b846a922e1e2caae92e}{Get\+Debug\+Key\+Name}} (int key) const
+\begin{DoxyCompactList}\small\item\em displays a text version of a key to imgui (65 becomes \char`\"{}\+A\char`\"{}, etc) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInputSystem_ad7af35c165101998b6b87336e3f39ffe}\label{classInputSystem_ad7af35c165101998b6b87336e3f39ffe}} 
+GLFWwindow $\ast$ {\bfseries Getm\+\_\+\+Handle} ()
+\item 
+int \mbox{\hyperlink{classInputSystem_ab3c87041dbe89aa0f75f5220d16231b7}{Init\+Alternate\+Window}} (GLFWwindow $\ast$m\+\_\+\+Handle)
+\begin{DoxyCompactList}\small\item\em sets a new window m\+\_\+\+Handle \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classInputSystem_aaf1000882f8617d5b87dfee51e0374cf}{Get\+Key\+Down}} (int glfw\+\_\+key, int alt\+Window=0)
 \begin{DoxyCompactList}\small\item\em checks if a given key is down \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classInputSystem_a25408eb41abdd2b482a5d026c7b495d3}{Get\+Gamepad\+Button\+Down}} (int glfw\+\_\+button)
@@ -56,64 +69,81 @@ glm\+::vec2 \mbox{\hyperlink{classInputSystem_a3c89c230ccf1c3d3fcfc41c9368e8e83}
 glm\+::vec2 \mbox{\hyperlink{classInputSystem_a1a4c9201d7299d4ff7100a35fc030118}{Get\+Mouse\+Pos\+World}} ()
 \begin{DoxyCompactList}\small\item\em gets mouse pos in world space \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classInputSystem_a3f09ca7da9888ea5d3ef513ee49a029c}{Get\+Mouse\+Delta\+Scroll}} ()
-\begin{DoxyCompactList}\small\item\em gets how much the mouse has scrolled since last frame \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em gets how much the mouse has scrolled since last frame \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInputSystem_1_1Action}{Action}} $\ast$ \mbox{\hyperlink{classInputSystem_a94e6c29f77c4462f71c5d96c079d47a7}{Get\+Action\+By\+Name}} (std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em gets an action by its name \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classInputSystem_1_1Action}{Action}} $>$ const  \& \mbox{\hyperlink{classInputSystem_aa635de5491dcd343eef28a620cf63e91}{Get\+Actions}} () const
+\begin{DoxyCompactList}\small\item\em gets the vector of Actions in the \mbox{\hyperlink{classInputSystem}{Input\+System}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classInputSystem_a70a0d3ad29912ecc7e41f05b0620cf66}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInputSystem_a83e693fc73f696b8813590f1949f80d6}\label{classInputSystem_a83e693fc73f696b8813590f1949f80d6}} 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classInputSystem_a83e693fc73f696b8813590f1949f80d6}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classSystem}{System}} to json \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{classInputSystem}{Input\+System}} $\ast$ \mbox{\hyperlink{classInputSystem_af5fc404c7c6bc2303d741bd7b9abe7df}{Get\+Instance}} ()
 \begin{DoxyCompactList}\small\item\em gets the instance of \mbox{\hyperlink{classInputSystem}{Input\+System}} \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes}
+\doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classInputSystem_a6932d0a3a9fec54bc5f16c5792130fe6}\label{classInputSystem_a6932d0a3a9fec54bc5f16c5792130fe6}} 
-GLFWwindow $\ast$ {\bfseries handle}
-\item 
-\mbox{\Hypertarget{classInputSystem_a06e6a4f2a090251417efcb0c49a9efa2}\label{classInputSystem_a06e6a4f2a090251417efcb0c49a9efa2}} 
-map$<$ int, bool\mbox{[}3\mbox{]}$>$ $\ast$ {\bfseries m\+\_\+\+Key\+States\+Hold}
-\item 
-\mbox{\Hypertarget{classInputSystem_a3fe5f67e01538a23ce3e2947441ca8f5}\label{classInputSystem_a3fe5f67e01538a23ce3e2947441ca8f5}} 
-map$<$ int, bool\mbox{[}3\mbox{]}$>$ $\ast$ {\bfseries m\+\_\+\+Mouse\+States\+Hold}
-\item 
-\mbox{\Hypertarget{classInputSystem_a110d2a20b1792039169eef285def4f01}\label{classInputSystem_a110d2a20b1792039169eef285def4f01}} 
-map$<$ int, bool\mbox{[}3\mbox{]}$>$ $\ast$ {\bfseries m\+\_\+\+Controller\+States\+Hold}
-\item 
-\mbox{\Hypertarget{classInputSystem_a2b9aa4d1dbe8693f89f305198aa83fc4}\label{classInputSystem_a2b9aa4d1dbe8693f89f305198aa83fc4}} 
-map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Key\+States}
-\item 
-\mbox{\Hypertarget{classInputSystem_a2033d90f27fef1d08e1441ac199aeda5}\label{classInputSystem_a2033d90f27fef1d08e1441ac199aeda5}} 
-map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Fixed\+Key\+States}
-\item 
-\mbox{\Hypertarget{classInputSystem_a7da63858e8d542984a2dc12cad644f26}\label{classInputSystem_a7da63858e8d542984a2dc12cad644f26}} 
-map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Controller\+States}
-\item 
-\mbox{\Hypertarget{classInputSystem_a1feda43e880987edcbe4cac293889467}\label{classInputSystem_a1feda43e880987edcbe4cac293889467}} 
-map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Fixed\+Controller\+States}
-\item 
-\mbox{\Hypertarget{classInputSystem_a98df56265d9e034fa160981ebd056a12}\label{classInputSystem_a98df56265d9e034fa160981ebd056a12}} 
-map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Mouse\+States}
-\item 
-\mbox{\Hypertarget{classInputSystem_a4679f7d717904ab198f332a48c555502}\label{classInputSystem_a4679f7d717904ab198f332a48c555502}} 
-map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Fixed\+Mouse\+States}
-\item 
-\mbox{\Hypertarget{classInputSystem_ac82b9600b4b7853302a0bb81a64399af}\label{classInputSystem_ac82b9600b4b7853302a0bb81a64399af}} 
-std\+::vector$<$ GLFWwindow $\ast$ $>$ {\bfseries alt\+Handles}
-\item 
-\mbox{\Hypertarget{classInputSystem_a93de3b3edb774846dc980a651b8046fb}\label{classInputSystem_a93de3b3edb774846dc980a651b8046fb}} 
-std\+::vector$<$ map$<$ int, bool\mbox{[}3\mbox{]}$>$ $>$ {\bfseries windows}
-\item 
-\mbox{\Hypertarget{classInputSystem_a97ebd940ae78cb1e1997c0544de1a77d}\label{classInputSystem_a97ebd940ae78cb1e1997c0544de1a77d}} 
-int {\bfseries amount} = 0
-\item 
-\mbox{\Hypertarget{classInputSystem_a4ab5505fcd02e2b33bc7437ed0042ee3}\label{classInputSystem_a4ab5505fcd02e2b33bc7437ed0042ee3}} 
-float \mbox{\hyperlink{classInputSystem_a4ab5505fcd02e2b33bc7437ed0042ee3}{m\+\_\+\+Delta\+Scroll}} = 0.\+0f
-\begin{DoxyCompactList}\small\item\em how much the mouse has scrolled this graphicsframe \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classInputSystem_a6c605487d4bcf93d558dce7d59a1ee3b}\label{classInputSystem_a6c605487d4bcf93d558dce7d59a1ee3b}} 
-float \mbox{\hyperlink{classInputSystem_a6c605487d4bcf93d558dce7d59a1ee3b}{m\+\_\+\+Fixed\+Delta\+Scroll}} = 0.\+0f
-\begin{DoxyCompactList}\small\item\em how much the mouse has scrolled this simulation frame \end{DoxyCompactList}\end{DoxyCompactItemize}
+static Read\+Method\+Map$<$ \mbox{\hyperlink{classInputSystem}{Input\+System}} $>$ const \mbox{\hyperlink{classInputSystem_a3a366316edee40bc24140bdfe80576c1}{s\+\_\+\+Read\+Methods}}
+\begin{DoxyCompactList}\small\item\em map of the \mbox{\hyperlink{classSceneSystem}{Scene\+System}} read methods \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classInputSystem_a94e6c29f77c4462f71c5d96c079d47a7}\label{classInputSystem_a94e6c29f77c4462f71c5d96c079d47a7}} 
+\index{InputSystem@{InputSystem}!GetActionByName@{GetActionByName}}
+\index{GetActionByName@{GetActionByName}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetActionByName()}{GetActionByName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInputSystem_1_1Action}{Input\+System\+::\+Action}} $\ast$ Input\+System\+::\+Get\+Action\+By\+Name (\begin{DoxyParamCaption}\item[{std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+gets an action by its name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & name of the action \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the action
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & name of the action @retun pointer to the action \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_aa635de5491dcd343eef28a620cf63e91}\label{classInputSystem_aa635de5491dcd343eef28a620cf63e91}} 
+\index{InputSystem@{InputSystem}!GetActions@{GetActions}}
+\index{GetActions@{GetActions}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetActions()}{GetActions()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classInputSystem_1_1Action}{Input\+System\+::\+Action}} $>$ const  \& Input\+System\+::\+Get\+Actions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the vector of Actions in the \mbox{\hyperlink{classInputSystem}{Input\+System}} 
+
+\begin{DoxyReturn}{Returns}
+the vector of Actions 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a7e3c9e3db7f53b846a922e1e2caae92e}\label{classInputSystem_a7e3c9e3db7f53b846a922e1e2caae92e}} 
+\index{InputSystem@{InputSystem}!GetDebugKeyName@{GetDebugKeyName}}
+\index{GetDebugKeyName@{GetDebugKeyName}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetDebugKeyName()}{GetDebugKeyName()}}
+{\footnotesize\ttfamily const char $\ast$ Input\+System\+::\+Get\+Debug\+Key\+Name (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption}) const}
+
+
+
+displays a text version of a key to imgui (65 becomes \char`\"{}\+A\char`\"{}, etc) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & to convert \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classInputSystem_aa3d0144a1052d8271475a6acfa3daf0a}\label{classInputSystem_aa3d0144a1052d8271475a6acfa3daf0a}} 
 \index{InputSystem@{InputSystem}!GetGamepadAxisState@{GetGamepadAxisState}}
 \index{GetGamepadAxisState@{GetGamepadAxisState}!InputSystem@{InputSystem}}
@@ -447,19 +477,36 @@ checks if a given mouse button is up
 \begin{DoxyReturn}{Returns}
 returns if mouse button is up 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classInputSystem_a3e148d02bc1ff4eb04898e15242a3bec}\label{classInputSystem_a3e148d02bc1ff4eb04898e15242a3bec}} 
+\mbox{\Hypertarget{classInputSystem_a70a0d3ad29912ecc7e41f05b0620cf66}\label{classInputSystem_a70a0d3ad29912ecc7e41f05b0620cf66}} 
+\index{InputSystem@{InputSystem}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Input\+System\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classInputSystem_ab3c87041dbe89aa0f75f5220d16231b7}\label{classInputSystem_ab3c87041dbe89aa0f75f5220d16231b7}} 
 \index{InputSystem@{InputSystem}!InitAlternateWindow@{InitAlternateWindow}}
 \index{InitAlternateWindow@{InitAlternateWindow}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{InitAlternateWindow()}{InitAlternateWindow()}}
-{\footnotesize\ttfamily int Input\+System\+::\+Init\+Alternate\+Window (\begin{DoxyParamCaption}\item[{GLFWwindow $\ast$}]{handle }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Input\+System\+::\+Init\+Alternate\+Window (\begin{DoxyParamCaption}\item[{GLFWwindow $\ast$}]{m\+\_\+\+Handle }\end{DoxyParamCaption})}
 
 
 
-sets a new window handle 
+sets a new window m\+\_\+\+Handle 
 
 
 \begin{DoxyParams}{Parameters}
-{\em handle} & of new window \\
+{\em m\+\_\+\+Handle} & of new window \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -467,7 +514,29 @@ int, pass this back to check window
 \end{DoxyReturn}
 
 
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classInputSystem_a3a366316edee40bc24140bdfe80576c1}\label{classInputSystem_a3a366316edee40bc24140bdfe80576c1}} 
+\index{InputSystem@{InputSystem}!s\_ReadMethods@{s\_ReadMethods}}
+\index{s\_ReadMethods@{s\_ReadMethods}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{s\_ReadMethods}{s\_ReadMethods}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classInputSystem}{Input\+System}} $>$ const Input\+System\+::s\+\_\+\+Read\+Methods\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Actions"{}}, \&readActions \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+map of the \mbox{\hyperlink{classSceneSystem}{Scene\+System}} read methods 
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
 Source/\mbox{\hyperlink{InputSystem_8h}{Input\+System.\+h}}\item 
+Source/\mbox{\hyperlink{InputCallback_8cpp}{Input\+Callback.\+cpp}}\item 
+Source/\mbox{\hyperlink{InputInspector_8cpp}{Input\+Inspector.\+cpp}}\item 
 Source/\mbox{\hyperlink{InputSystem_8cpp}{Input\+System.\+cpp}}\end{DoxyCompactItemize}

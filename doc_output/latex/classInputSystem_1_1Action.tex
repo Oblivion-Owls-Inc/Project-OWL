@@ -1,0 +1,636 @@
+\hypertarget{classInputSystem_1_1Action}{}\doxysection{Input\+System\+::Action Class Reference}
+\label{classInputSystem_1_1Action}\index{InputSystem::Action@{InputSystem::Action}}
+
+
+action class, used to track an action with dynamic input  
+
+
+
+
+{\ttfamily \#include $<$Input\+System.\+h$>$}
+
+
+
+Inheritance diagram for Input\+System\+::Action\+:
+% FIG 0
+
+
+Collaboration diagram for Input\+System\+::Action\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classInputSystem_1_1Action_a87cf437f116e11a3454640877c90242d}\label{classInputSystem_1_1Action_a87cf437f116e11a3454640877c90242d}} 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classInputSystem_1_1Action_a87cf437f116e11a3454640877c90242d}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em read method map for an \mbox{\hyperlink{classInputSystem_1_1Action}{Action}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classInputSystem_1_1Action_a125bd25f2baa9e77e1e04f93267b283a}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em write an \mbox{\hyperlink{classInputSystem_1_1Action}{Action}} to json \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classInputSystem_1_1Action_a1cf11955e6defc299f56a2a88916bedf}{Action}} (std\+::string name=\char`\"{}\char`\"{}, std\+::string description=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em contructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInputSystem_1_1Action_a54981feeb9d3668033f0dd187ff03635}\label{classInputSystem_1_1Action_a54981feeb9d3668033f0dd187ff03635}} 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a54981feeb9d3668033f0dd187ff03635}{Flush}} ()
+\begin{DoxyCompactList}\small\item\em removes all inputs for this action and empties name/description \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInputSystem_1_1Action_a7735cc81bb95234f0459d24855b94ada}\label{classInputSystem_1_1Action_a7735cc81bb95234f0459d24855b94ada}} 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a7735cc81bb95234f0459d24855b94ada}{Manual\+Key\+Callback}} ()
+\begin{DoxyCompactList}\small\item\em manual callback catch for keys since imgui hates glfw \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classInputSystem_1_1Action_a3bbbe328d929f8cc5d1c2335a6bf0794}{Get\+Action\+Vector}} (int vector) const
+\begin{DoxyCompactList}\small\item\em retrieves a private vector for inspector \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_af687411ad88cf7601a89be93437e7882}{Add\+Key\+Input}} (int glfw\+\_\+key)
+\begin{DoxyCompactList}\small\item\em adds a key to the action \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_abdd17c852a632bb34433c085b363be74}{Remove\+Key\+Input}} (int glfw\+\_\+key)
+\begin{DoxyCompactList}\small\item\em removes a key from the action \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_ab4db58e74c9e5f75e006137e8d176b7e}{Add\+Mouse\+Input}} (int glfw\+\_\+mouse\+\_\+button)
+\begin{DoxyCompactList}\small\item\em adds a mouse input to the action \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a4dbaf86bc5809c825384c0f339e437b6}{Remove\+Mouse\+Input}} (int glfw\+\_\+mouse\+\_\+button)
+\begin{DoxyCompactList}\small\item\em removes a mouse input from the action \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a9d616a5a3236aa7f0c1fe4e016ecb8c8}{Add\+Controller\+Input}} (int glfw\+\_\+button)
+\begin{DoxyCompactList}\small\item\em adds a controller to the action \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a4bc905d953caa156b9312187c9961117}{Remove\+Controller\+Input}} (int glfw\+\_\+button)
+\begin{DoxyCompactList}\small\item\em removes a controller input from the action \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_aa3c76d34883a92f561fff7c157c8e7ca}{Add\+Axis\+As\+Input}} (int glfw\+\_\+axis\+\_\+id)
+\begin{DoxyCompactList}\small\item\em adds an axis as a button (triggers) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_afe2f88aceef1d7141fb4dcc3664cbc1a}{Remove\+Axis\+As\+Input}} (int glfw\+\_\+axis\+\_\+id)
+\begin{DoxyCompactList}\small\item\em removes an axis as a button (triggers) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_ad6db74caee081c18807a4b7bb15c9785}{Add\+Key\+Axis\+Positive}} (int glfw\+\_\+key)
+\begin{DoxyCompactList}\small\item\em adds a key input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a56ad3f4daa9db1b7879a8bc3fc79ab8a}{Add\+Key\+Axis\+Negative}} (int glfw\+\_\+key\+\_\+negative)
+\begin{DoxyCompactList}\small\item\em adds a key input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a7e7ff6bc2cda54606fa466d1214315cf}{Remove\+Key\+Axis\+Positive}} (int glfw\+\_\+key)
+\begin{DoxyCompactList}\small\item\em removes a key input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a28cc903cb0c46e330c94b20af3dea4f9}{Remove\+Key\+Axis\+Negative}} (int glfw\+\_\+key\+\_\+negative)
+\begin{DoxyCompactList}\small\item\em removes a key input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a00b45418ce229fb1221af2f339c6cbb1}{Add\+Mouse\+Axis\+Positive}} (int glfw\+\_\+mouse)
+\begin{DoxyCompactList}\small\item\em adds a mouse input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a5c61fe4cb6c59d6a7b18f6ccf639698a}{Add\+Mouse\+Axis\+Negative}} (int glfw\+\_\+mouse\+\_\+negative)
+\begin{DoxyCompactList}\small\item\em adds a mouse input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a60428efc5014c53add32a2104e4445a8}{Remove\+Mouse\+Axis\+Positive}} (int glfw\+\_\+mouse)
+\begin{DoxyCompactList}\small\item\em removes a mouse input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_ad2538d8c7265d0996a62f8b81bcf63a9}{Remove\+Mouse\+Axis\+Negative}} (int glfw\+\_\+mouse\+\_\+negative)
+\begin{DoxyCompactList}\small\item\em removes a mouse input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a4ecf6e0075ae1f8a2c1707a9574ccce6}{Add\+Controller\+Axis\+Positive}} (int glfw\+\_\+controller)
+\begin{DoxyCompactList}\small\item\em adds a controller input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a617f0b8413775e1da5e6fb4657a9579b}{Add\+Controller\+Axis\+Negative}} (int glfw\+\_\+controller\+\_\+negative)
+\begin{DoxyCompactList}\small\item\em adds a controller input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a2fa5d610fa7bdde06571647edb681307}{Remove\+Controller\+Axis\+Positive}} (int glfw\+\_\+controller)
+\begin{DoxyCompactList}\small\item\em removes a controller input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a4efd664f22da8a936209b98af228622a}{Remove\+Controller\+Axis\+Negative}} (int glfw\+\_\+controller\+\_\+negative)
+\begin{DoxyCompactList}\small\item\em removes a controller input axis \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a5711babbbdec727fbdc186820578c6e2}{Add\+Axis}} (int glfw\+\_\+axis\+\_\+id)
+\begin{DoxyCompactList}\small\item\em adds a gamepad axis (stick/trigger) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a5541895bfdb9d323b741ed3549d3f2ab}{Remove\+Axis}} (int glfw\+\_\+axis\+\_\+id)
+\begin{DoxyCompactList}\small\item\em removes a gamepad axis (stick/trigger) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_accee3a7a8cfbbab2318aba8ee572f2d8}{Set\+Name}} (std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em sets the name of the action \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classInputSystem_1_1Action_aa7f455d4ac8550ff95ed2a8749ec4e4b}{Get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em gets the name of this action \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_1_1Action_a51133223392d73b3b2be5eb1f43ca711}{Set\+Description}} (std\+::string \&discription)
+\begin{DoxyCompactList}\small\item\em sets the description of the action \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classInputSystem_1_1Action_a16119def54c40b8ccea2b5fe47803fbb}{Get\+Description}} () const
+\begin{DoxyCompactList}\small\item\em gets the description of this action \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInputSystem_1_1Action_a6705cbec60e593e347ae3cd9daef3bcc}{Get\+Down}} () const
+\begin{DoxyCompactList}\small\item\em gets if this action is down \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInputSystem_1_1Action_a6d27b8c918228b7a74b6cdde3b2f62f3}{Get\+Triggered}} () const
+\begin{DoxyCompactList}\small\item\em gets if this action is triggered \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInputSystem_1_1Action_ac097ce8026ff1bcd2cff1719ee0928bb}{Get\+Released}} () const
+\begin{DoxyCompactList}\small\item\em gets if this action is released \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classInputSystem_1_1Action_aa5f74f2830d4a115487bb03727aaddd8}{Get\+Axis}} () const
+\begin{DoxyCompactList}\small\item\em gets this action as an axis \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Read\+Method\+Map$<$ \mbox{\hyperlink{classInputSystem_1_1Action}{Action}} $>$ const \mbox{\hyperlink{classInputSystem_1_1Action_a21e3c476bd164a67d97e0c8a98c2c952}{s\+\_\+\+Read\+Methods}}
+\begin{DoxyCompactList}\small\item\em the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+action class, used to track an action with dynamic input 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a1cf11955e6defc299f56a2a88916bedf}\label{classInputSystem_1_1Action_a1cf11955e6defc299f56a2a88916bedf}} 
+\index{InputSystem::Action@{InputSystem::Action}!Action@{Action}}
+\index{Action@{Action}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{Action()}{Action()}}
+{\footnotesize\ttfamily Input\+System\+::\+Action\+::\+Action (\begin{DoxyParamCaption}\item[{std\+::string}]{name = {\ttfamily \char`\"{}\char`\"{}},  }\item[{std\+::string}]{description = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+contructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & of the action \\
+\hline
+{\em description} & of the action (viewable in editor) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a5711babbbdec727fbdc186820578c6e2}\label{classInputSystem_1_1Action_a5711babbbdec727fbdc186820578c6e2}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddAxis@{AddAxis}}
+\index{AddAxis@{AddAxis}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddAxis()}{AddAxis()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Axis (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+axis\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+adds a gamepad axis (stick/trigger) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & id to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_aa3c76d34883a92f561fff7c157c8e7ca}\label{classInputSystem_1_1Action_aa3c76d34883a92f561fff7c157c8e7ca}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddAxisAsInput@{AddAxisAsInput}}
+\index{AddAxisAsInput@{AddAxisAsInput}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddAxisAsInput()}{AddAxisAsInput()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Axis\+As\+Input (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+axis\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+adds an axis as a button (triggers) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & to add as input \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a617f0b8413775e1da5e6fb4657a9579b}\label{classInputSystem_1_1Action_a617f0b8413775e1da5e6fb4657a9579b}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddControllerAxisNegative@{AddControllerAxisNegative}}
+\index{AddControllerAxisNegative@{AddControllerAxisNegative}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddControllerAxisNegative()}{AddControllerAxisNegative()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Controller\+Axis\+Negative (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+controller\+\_\+negative }\end{DoxyParamCaption})}
+
+
+
+adds a controller input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+controller\+\_\+negative} & negative axis controller \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a4ecf6e0075ae1f8a2c1707a9574ccce6}\label{classInputSystem_1_1Action_a4ecf6e0075ae1f8a2c1707a9574ccce6}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddControllerAxisPositive@{AddControllerAxisPositive}}
+\index{AddControllerAxisPositive@{AddControllerAxisPositive}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddControllerAxisPositive()}{AddControllerAxisPositive()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Controller\+Axis\+Positive (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+controller }\end{DoxyParamCaption})}
+
+
+
+adds a controller input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+controller} & positive axis controller \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a9d616a5a3236aa7f0c1fe4e016ecb8c8}\label{classInputSystem_1_1Action_a9d616a5a3236aa7f0c1fe4e016ecb8c8}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddControllerInput@{AddControllerInput}}
+\index{AddControllerInput@{AddControllerInput}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddControllerInput()}{AddControllerInput()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Controller\+Input (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+button }\end{DoxyParamCaption})}
+
+
+
+adds a controller to the action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em controller} & input to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a56ad3f4daa9db1b7879a8bc3fc79ab8a}\label{classInputSystem_1_1Action_a56ad3f4daa9db1b7879a8bc3fc79ab8a}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddKeyAxisNegative@{AddKeyAxisNegative}}
+\index{AddKeyAxisNegative@{AddKeyAxisNegative}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddKeyAxisNegative()}{AddKeyAxisNegative()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Key\+Axis\+Negative (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key\+\_\+negative }\end{DoxyParamCaption})}
+
+
+
+adds a key input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+key\+\_\+negative} & negative axis key \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_ad6db74caee081c18807a4b7bb15c9785}\label{classInputSystem_1_1Action_ad6db74caee081c18807a4b7bb15c9785}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddKeyAxisPositive@{AddKeyAxisPositive}}
+\index{AddKeyAxisPositive@{AddKeyAxisPositive}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddKeyAxisPositive()}{AddKeyAxisPositive()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Key\+Axis\+Positive (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+adds a key input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+key} & positive axis key \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_af687411ad88cf7601a89be93437e7882}\label{classInputSystem_1_1Action_af687411ad88cf7601a89be93437e7882}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddKeyInput@{AddKeyInput}}
+\index{AddKeyInput@{AddKeyInput}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddKeyInput()}{AddKeyInput()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Key\+Input (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+adds a key to the action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a5c61fe4cb6c59d6a7b18f6ccf639698a}\label{classInputSystem_1_1Action_a5c61fe4cb6c59d6a7b18f6ccf639698a}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddMouseAxisNegative@{AddMouseAxisNegative}}
+\index{AddMouseAxisNegative@{AddMouseAxisNegative}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddMouseAxisNegative()}{AddMouseAxisNegative()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Mouse\+Axis\+Negative (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+mouse\+\_\+negative }\end{DoxyParamCaption})}
+
+
+
+adds a mouse input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+mouse\+\_\+negative} & negative axis mouse \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a00b45418ce229fb1221af2f339c6cbb1}\label{classInputSystem_1_1Action_a00b45418ce229fb1221af2f339c6cbb1}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddMouseAxisPositive@{AddMouseAxisPositive}}
+\index{AddMouseAxisPositive@{AddMouseAxisPositive}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddMouseAxisPositive()}{AddMouseAxisPositive()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Mouse\+Axis\+Positive (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+mouse }\end{DoxyParamCaption})}
+
+
+
+adds a mouse input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+mouse} & positive axis mouse \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_ab4db58e74c9e5f75e006137e8d176b7e}\label{classInputSystem_1_1Action_ab4db58e74c9e5f75e006137e8d176b7e}} 
+\index{InputSystem::Action@{InputSystem::Action}!AddMouseInput@{AddMouseInput}}
+\index{AddMouseInput@{AddMouseInput}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{AddMouseInput()}{AddMouseInput()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Add\+Mouse\+Input (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+mouse\+\_\+button }\end{DoxyParamCaption})}
+
+
+
+adds a mouse input to the action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse} & input to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a3bbbe328d929f8cc5d1c2335a6bf0794}\label{classInputSystem_1_1Action_a3bbbe328d929f8cc5d1c2335a6bf0794}} 
+\index{InputSystem::Action@{InputSystem::Action}!GetActionVector@{GetActionVector}}
+\index{GetActionVector@{GetActionVector}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{GetActionVector()}{GetActionVector()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ Input\+System\+::\+Action\+::\+Get\+Action\+Vector (\begin{DoxyParamCaption}\item[{int}]{vector }\end{DoxyParamCaption}) const}
+
+
+
+retrieves a private vector for inspector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_aa5f74f2830d4a115487bb03727aaddd8}\label{classInputSystem_1_1Action_aa5f74f2830d4a115487bb03727aaddd8}} 
+\index{InputSystem::Action@{InputSystem::Action}!GetAxis@{GetAxis}}
+\index{GetAxis@{GetAxis}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{GetAxis()}{GetAxis()}}
+{\footnotesize\ttfamily float Input\+System\+::\+Action\+::\+Get\+Axis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets this action as an axis 
+
+\begin{DoxyReturn}{Returns}
+axis status clamped to -\/1 and 1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a16119def54c40b8ccea2b5fe47803fbb}\label{classInputSystem_1_1Action_a16119def54c40b8ccea2b5fe47803fbb}} 
+\index{InputSystem::Action@{InputSystem::Action}!GetDescription@{GetDescription}}
+\index{GetDescription@{GetDescription}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{GetDescription()}{GetDescription()}}
+{\footnotesize\ttfamily std\+::string Input\+System\+::\+Action\+::\+Get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the description of this action 
+
+\begin{DoxyReturn}{Returns}
+the description of the action 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a6705cbec60e593e347ae3cd9daef3bcc}\label{classInputSystem_1_1Action_a6705cbec60e593e347ae3cd9daef3bcc}} 
+\index{InputSystem::Action@{InputSystem::Action}!GetDown@{GetDown}}
+\index{GetDown@{GetDown}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{GetDown()}{GetDown()}}
+{\footnotesize\ttfamily bool Input\+System\+::\+Action\+::\+Get\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets if this action is down 
+
+\begin{DoxyReturn}{Returns}
+action down status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_1_1Action_aa7f455d4ac8550ff95ed2a8749ec4e4b}\label{classInputSystem_1_1Action_aa7f455d4ac8550ff95ed2a8749ec4e4b}} 
+\index{InputSystem::Action@{InputSystem::Action}!GetName@{GetName}}
+\index{GetName@{GetName}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily std\+::string Input\+System\+::\+Action\+::\+Get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the name of this action 
+
+\begin{DoxyReturn}{Returns}
+the name of the action 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_1_1Action_ac097ce8026ff1bcd2cff1719ee0928bb}\label{classInputSystem_1_1Action_ac097ce8026ff1bcd2cff1719ee0928bb}} 
+\index{InputSystem::Action@{InputSystem::Action}!GetReleased@{GetReleased}}
+\index{GetReleased@{GetReleased}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{GetReleased()}{GetReleased()}}
+{\footnotesize\ttfamily bool Input\+System\+::\+Action\+::\+Get\+Released (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets if this action is released 
+
+\begin{DoxyReturn}{Returns}
+action released status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a6d27b8c918228b7a74b6cdde3b2f62f3}\label{classInputSystem_1_1Action_a6d27b8c918228b7a74b6cdde3b2f62f3}} 
+\index{InputSystem::Action@{InputSystem::Action}!GetTriggered@{GetTriggered}}
+\index{GetTriggered@{GetTriggered}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{GetTriggered()}{GetTriggered()}}
+{\footnotesize\ttfamily bool Input\+System\+::\+Action\+::\+Get\+Triggered (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets if this action is triggered 
+
+\begin{DoxyReturn}{Returns}
+action triggered status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a5541895bfdb9d323b741ed3549d3f2ab}\label{classInputSystem_1_1Action_a5541895bfdb9d323b741ed3549d3f2ab}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveAxis@{RemoveAxis}}
+\index{RemoveAxis@{RemoveAxis}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveAxis()}{RemoveAxis()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Axis (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+axis\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+removes a gamepad axis (stick/trigger) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & id to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_afe2f88aceef1d7141fb4dcc3664cbc1a}\label{classInputSystem_1_1Action_afe2f88aceef1d7141fb4dcc3664cbc1a}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveAxisAsInput@{RemoveAxisAsInput}}
+\index{RemoveAxisAsInput@{RemoveAxisAsInput}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveAxisAsInput()}{RemoveAxisAsInput()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Axis\+As\+Input (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+axis\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+removes an axis as a button (triggers) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & to remove from input \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a4efd664f22da8a936209b98af228622a}\label{classInputSystem_1_1Action_a4efd664f22da8a936209b98af228622a}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveControllerAxisNegative@{RemoveControllerAxisNegative}}
+\index{RemoveControllerAxisNegative@{RemoveControllerAxisNegative}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveControllerAxisNegative()}{RemoveControllerAxisNegative()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Controller\+Axis\+Negative (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+controller\+\_\+negative }\end{DoxyParamCaption})}
+
+
+
+removes a controller input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+controller} & positive axis controller \\
+\hline
+{\em glfw\+\_\+controller\+\_\+negative} & negative axis controller \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a2fa5d610fa7bdde06571647edb681307}\label{classInputSystem_1_1Action_a2fa5d610fa7bdde06571647edb681307}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveControllerAxisPositive@{RemoveControllerAxisPositive}}
+\index{RemoveControllerAxisPositive@{RemoveControllerAxisPositive}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveControllerAxisPositive()}{RemoveControllerAxisPositive()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Controller\+Axis\+Positive (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+controller }\end{DoxyParamCaption})}
+
+
+
+removes a controller input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+controller} & positive axis controller \\
+\hline
+{\em glfw\+\_\+controller\+\_\+negative} & negative axis controller \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a4bc905d953caa156b9312187c9961117}\label{classInputSystem_1_1Action_a4bc905d953caa156b9312187c9961117}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveControllerInput@{RemoveControllerInput}}
+\index{RemoveControllerInput@{RemoveControllerInput}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveControllerInput()}{RemoveControllerInput()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Controller\+Input (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+button }\end{DoxyParamCaption})}
+
+
+
+removes a controller input from the action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em controller} & input to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a28cc903cb0c46e330c94b20af3dea4f9}\label{classInputSystem_1_1Action_a28cc903cb0c46e330c94b20af3dea4f9}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveKeyAxisNegative@{RemoveKeyAxisNegative}}
+\index{RemoveKeyAxisNegative@{RemoveKeyAxisNegative}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveKeyAxisNegative()}{RemoveKeyAxisNegative()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Key\+Axis\+Negative (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key\+\_\+negative }\end{DoxyParamCaption})}
+
+
+
+removes a key input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+key\+\_\+negative} & negative axis key \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a7e7ff6bc2cda54606fa466d1214315cf}\label{classInputSystem_1_1Action_a7e7ff6bc2cda54606fa466d1214315cf}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveKeyAxisPositive@{RemoveKeyAxisPositive}}
+\index{RemoveKeyAxisPositive@{RemoveKeyAxisPositive}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveKeyAxisPositive()}{RemoveKeyAxisPositive()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Key\+Axis\+Positive (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+removes a key input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+key} & positive axis key \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_abdd17c852a632bb34433c085b363be74}\label{classInputSystem_1_1Action_abdd17c852a632bb34433c085b363be74}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveKeyInput@{RemoveKeyInput}}
+\index{RemoveKeyInput@{RemoveKeyInput}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveKeyInput()}{RemoveKeyInput()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Key\+Input (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+removes a key from the action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_ad2538d8c7265d0996a62f8b81bcf63a9}\label{classInputSystem_1_1Action_ad2538d8c7265d0996a62f8b81bcf63a9}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveMouseAxisNegative@{RemoveMouseAxisNegative}}
+\index{RemoveMouseAxisNegative@{RemoveMouseAxisNegative}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveMouseAxisNegative()}{RemoveMouseAxisNegative()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Mouse\+Axis\+Negative (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+mouse\+\_\+negative }\end{DoxyParamCaption})}
+
+
+
+removes a mouse input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+mouse\+\_\+negative} & negative axis mouse \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a60428efc5014c53add32a2104e4445a8}\label{classInputSystem_1_1Action_a60428efc5014c53add32a2104e4445a8}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveMouseAxisPositive@{RemoveMouseAxisPositive}}
+\index{RemoveMouseAxisPositive@{RemoveMouseAxisPositive}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveMouseAxisPositive()}{RemoveMouseAxisPositive()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Mouse\+Axis\+Positive (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+mouse }\end{DoxyParamCaption})}
+
+
+
+removes a mouse input axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+mouse} & positive axis mouse \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a4dbaf86bc5809c825384c0f339e437b6}\label{classInputSystem_1_1Action_a4dbaf86bc5809c825384c0f339e437b6}} 
+\index{InputSystem::Action@{InputSystem::Action}!RemoveMouseInput@{RemoveMouseInput}}
+\index{RemoveMouseInput@{RemoveMouseInput}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{RemoveMouseInput()}{RemoveMouseInput()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Remove\+Mouse\+Input (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+mouse\+\_\+button }\end{DoxyParamCaption})}
+
+
+
+removes a mouse input from the action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse} & input to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a51133223392d73b3b2be5eb1f43ca711}\label{classInputSystem_1_1Action_a51133223392d73b3b2be5eb1f43ca711}} 
+\index{InputSystem::Action@{InputSystem::Action}!SetDescription@{SetDescription}}
+\index{SetDescription@{SetDescription}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{SetDescription()}{SetDescription()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Set\+Description (\begin{DoxyParamCaption}\item[{std\+::string \&}]{description }\end{DoxyParamCaption})}
+
+
+
+sets the description of the action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new} & description of action \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_accee3a7a8cfbbab2318aba8ee572f2d8}\label{classInputSystem_1_1Action_accee3a7a8cfbbab2318aba8ee572f2d8}} 
+\index{InputSystem::Action@{InputSystem::Action}!SetName@{SetName}}
+\index{SetName@{SetName}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{SetName()}{SetName()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Action\+::\+Set\+Name (\begin{DoxyParamCaption}\item[{std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+sets the name of the action 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new} & name of action \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a125bd25f2baa9e77e1e04f93267b283a}\label{classInputSystem_1_1Action_a125bd25f2baa9e77e1e04f93267b283a}} 
+\index{InputSystem::Action@{InputSystem::Action}!Write@{Write}}
+\index{Write@{Write}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Input\+System\+::\+Action\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+write an \mbox{\hyperlink{classInputSystem_1_1Action}{Action}} to json 
+
+writes this \mbox{\hyperlink{classSystem}{System}} to json 
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a21e3c476bd164a67d97e0c8a98c2c952}\label{classInputSystem_1_1Action_a21e3c476bd164a67d97e0c8a98c2c952}} 
+\index{InputSystem::Action@{InputSystem::Action}!s\_ReadMethods@{s\_ReadMethods}}
+\index{s\_ReadMethods@{s\_ReadMethods}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{s\_ReadMethods}{s\_ReadMethods}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classInputSystem_1_1Action}{Input\+System\+::\+Action}} $>$ const Input\+System\+::\+Action\+::s\+\_\+\+Read\+Methods\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Name"{}},               \&readName               \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Description"{}},        \&readDescription        \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Keys"{}},               \&readKeys               \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Mouse"{}},              \&readMouse              \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Controller"{}},         \&readController         \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Key Axis"{}},           \&readKeyAxis            \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Mouse Axis"{}},         \&readMouseAxis          \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Controller Axis"{}},    \&readControllerAxis     \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Gamepad Axis Input"{}}, \&readGamepadAxisAsInput \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Gamepad Axis"{}},       \&readGamepadAxis        \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+map of the \mbox{\hyperlink{classSceneSystem}{Scene\+System}} read methods 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{InputSystem_8h}{Input\+System.\+h}}\item 
+Source/\mbox{\hyperlink{InputCallback_8cpp}{Input\+Callback.\+cpp}}\item 
+Source/\mbox{\hyperlink{InputInspector_8cpp}{Input\+Inspector.\+cpp}}\item 
+Source/\mbox{\hyperlink{InputSystem_8cpp}{Input\+System.\+cpp}}\end{DoxyCompactItemize}
