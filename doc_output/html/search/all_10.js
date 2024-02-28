@@ -107,7 +107,7 @@ var searchData=
   ['setsound_785',['SetSound',['../classAudioPlayer.html#af85cb91eb3e509de41a68da4cb3a14d4',1,'AudioPlayer']]],
   ['setstart_786',['SetStart',['../classAnimationAsset.html#a13e9bf9c09fcdee6685df4a11d3eb7d5',1,'AnimationAsset']]],
   ['setstrength_787',['SetStrength',['../classLight.html#aea7fd2657ab5a1a8201a5f5f2bd867a6',1,'Light']]],
-  ['settext_788',['SetText',['../classText.html#a21fb9900e98f5c5ecf308f0f9a52f752',1,'Text']]],
+  ['settext_788',['SetText',['../classText.html#abfad9c2c35e97c03070f0691daa1dfd7',1,'Text']]],
   ['settexture_789',['SetTexture',['../classSprite.html#a2e811377c115dbdd8dd8cfa1e442d9e7',1,'Sprite']]],
   ['settile_790',['SetTile',['../classTilemap.html#aed09b128aecb725cdb4ab7c6eafacd76',1,'Tilemap']]],
   ['settilemap_791',['SetTilemap',['../classTilemap.html#a5e605f11fa4c9ee52a3c05e2fbbec6bd',1,'Tilemap']]],
