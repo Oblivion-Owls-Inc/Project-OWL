@@ -29,7 +29,9 @@ digraph "Source/ComponentReference.t.h"
   Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node13 [label="Source/ResourcesUiManager.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8cpp.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
   Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node14 [label="Source/TilemapCollider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapCollider_8cpp.html",tooltip="tilemap collider"];
+  Node14 [label="Source/Text.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Text_8cpp.html",tooltip="Component that makes use of Tilemap to draw text."];
   Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node15 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
+  Node15 [label="Source/TilemapCollider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapCollider_8cpp.html",tooltip="tilemap collider"];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
 }

@@ -35,10 +35,12 @@ digraph "Source/StaticBody.h"
   Node5 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node15 [label="Source/ResourcesUiManager.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8cpp.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
   Node5 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node16 [label="Source/TilemapCollider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapCollider_8cpp.html",tooltip="tilemap collider"];
+  Node16 [label="Source/Text.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Text_8cpp.html",tooltip="Component that makes use of Tilemap to draw text."];
   Node5 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node17 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
-  Node1 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node18 [label="Source/StaticBody.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$StaticBody_8cpp.html",tooltip="pysics body which can be collided with and does not move"];
-  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="Source/TilemapCollider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapCollider_8cpp.html",tooltip="tilemap collider"];
+  Node5 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
+  Node1 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="Source/StaticBody.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$StaticBody_8cpp.html",tooltip="pysics body which can be collided with and does not move"];
+  Node1 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

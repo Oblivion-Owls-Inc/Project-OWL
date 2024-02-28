@@ -122,7 +122,7 @@ digraph "Graphical Class Hierarchy"
   Node13 -> Node58 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node58 [label="StaticBody",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classStaticBody.html",tooltip=" "];
   Node13 -> Node59 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node59 [label="Text",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classText.html",tooltip="Uses TilemapSprite attached to parent entity to draw text."];
+  Node59 [label="Text",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classText.html",tooltip="Component that makes use of Tilemap to draw text."];
   Node13 -> Node60 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node60 [label="TilemapBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTilemapBase.html",tooltip="untemplatized base Tilemap class"];
   Node60 -> Node61 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
