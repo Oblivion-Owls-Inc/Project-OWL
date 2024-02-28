@@ -431,13 +431,13 @@ void InputSystem::readActions(nlohmann::ordered_json const& data)
 /// @brief read the key inputs for an action
 void InputSystem::Action::readName(nlohmann::ordered_json const& json)
 {
-    m_name = Stream::Read<string>(json);
+    m_Name = Stream::Read<string>(json);
 }
 
 /// @brief read the key inputs for an action
 void InputSystem::Action::readDescription(nlohmann::ordered_json const& json)
 {
-    m_description = Stream::Read<string>(json);
+    m_Description = Stream::Read<string>(json);
 }
 
 /// @brief read the key inputs for an action
@@ -446,7 +446,7 @@ void InputSystem::Action::readKeys(nlohmann::ordered_json const& json)
     int size = (int)json.size();
     for (int i = 0; i < size; ++i)
     {
-        m_keys.push_back(Stream::Read<int>(json[i]));
+        m_Keys.push_back(Stream::Read<int>(json[i]));
     }
 }
 
@@ -456,7 +456,7 @@ void InputSystem::Action::readMouse(nlohmann::ordered_json const& json)
     int size = (int)json.size();
     for (int i = 0; i < size; ++i)
     {
-        m_mouse.push_back(Stream::Read<int>(json[i]));
+        m_Mouse.push_back(Stream::Read<int>(json[i]));
     }
 }
 
@@ -466,7 +466,7 @@ void InputSystem::Action::readController(nlohmann::ordered_json const& json)
     int size = (int)json.size();
     for (int i = 0; i < size; ++i)
     {
-        m_controller.push_back(Stream::Read<int>(json[i]));
+        m_Controller.push_back(Stream::Read<int>(json[i]));
     }
 }
 
@@ -476,7 +476,7 @@ void InputSystem::Action::readKeyAxis(nlohmann::ordered_json const& json)
     int size = (int)json.size();
     for (int i = 0; i < size; ++i)
     {
-        m_keyAxis.push_back(Stream::Read<int>(json[i]));
+        m_KeyAxis.push_back(Stream::Read<int>(json[i]));
     }
 }
 
@@ -486,7 +486,7 @@ void InputSystem::Action::readMouseAxis(nlohmann::ordered_json const& json)
     int size = (int)json.size();
     for (int i = 0; i < size; ++i)
     {
-        m_mouseAxis.push_back(Stream::Read<int>(json[i]));
+        m_MouseAxis.push_back(Stream::Read<int>(json[i]));
     }
 }
 
@@ -496,7 +496,7 @@ void InputSystem::Action::readControllerAxis(nlohmann::ordered_json const& json)
     int size = (int)json.size();
     for (int i = 0; i < size; ++i)
     {
-        m_controllerAxis.push_back(Stream::Read<int>(json[i]));
+        m_ControllerAxis.push_back(Stream::Read<int>(json[i]));
     }
 }
 
@@ -506,7 +506,7 @@ void InputSystem::Action::readGamepadAxisAsInput(nlohmann::ordered_json const& j
     int size = (int)json.size();
     for (int i = 0; i < size; ++i)
     {
-        m_gamepadAxisAsInput.push_back(Stream::Read<int>(json[i]));
+        m_GamepadAxisAsInput.push_back(Stream::Read<int>(json[i]));
     }
 }
 
@@ -516,7 +516,7 @@ void InputSystem::Action::readGamepadAxis(nlohmann::ordered_json const& json)
     int size = (int)json.size();
     for (int i = 0; i < size; ++i)
     {
-        m_gamepadAxis.push_back(Stream::Read<int>(json[i]));
+        m_GamepadAxis.push_back(Stream::Read<int>(json[i]));
     }
 }
 
@@ -558,64 +558,64 @@ nlohmann::ordered_json InputSystem::Action::Write() const
 {
     nlohmann::ordered_json data;
 
-    data["Name"] = m_name;
+    data["Name"] = m_Name;
 
-    data["Description"] = m_description;
+    data["Description"] = m_Description;
 
-    size_t size = m_keys.size();
+    size_t size = m_Keys.size();
     nlohmann::ordered_json& writeKeys = data["Keys"];
     for (size_t i = 0; i < size; i++)
     {
-        writeKeys.push_back(m_keys[i]);
+        writeKeys.push_back(m_Keys[i]);
     }
 
-    size = m_mouse.size();
+    size = m_Mouse.size();
     nlohmann::ordered_json& writeMouse = data["Mouse"];
     for (size_t i = 0; i < size; i++)
     {
-        writeMouse.push_back(m_mouse[i]);
+        writeMouse.push_back(m_Mouse[i]);
     }
 
-    size = m_controller.size();
+    size = m_Controller.size();
     nlohmann::ordered_json& writeController = data["Controller"];
     for (size_t i = 0; i < size; i++)
     {
-        writeController.push_back(m_controller[i]);
+        writeController.push_back(m_Controller[i]);
     }
 
-    size = m_keyAxis.size();
+    size = m_KeyAxis.size();
     nlohmann::ordered_json& writeKeyAxis = data["Key Axis"];
     for (size_t i = 0; i < size; i++)
     {
-        writeKeyAxis.push_back(m_keyAxis[i]);
+        writeKeyAxis.push_back(m_KeyAxis[i]);
     }
 
-    size = m_mouseAxis.size();
+    size = m_MouseAxis.size();
     nlohmann::ordered_json& writeMouseAxis = data["Mouse Axis"];
     for (size_t i = 0; i < size; i++)
     {
-        writeMouseAxis.push_back(m_mouseAxis[i]);
+        writeMouseAxis.push_back(m_MouseAxis[i]);
     }
 
-    size = m_controllerAxis.size();
+    size = m_ControllerAxis.size();
     nlohmann::ordered_json& writeControllerAxis = data["Controller Axis"];
     for (size_t i = 0; i < size; i++)
     {
-        writeControllerAxis.push_back(m_controllerAxis[i]);
+        writeControllerAxis.push_back(m_ControllerAxis[i]);
     }
 
-    size = m_gamepadAxisAsInput.size();
+    size = m_GamepadAxisAsInput.size();
     nlohmann::ordered_json& writeAxisInput = data["Gamepad Axis Input"];
     for (size_t i = 0; i < size; i++)
     {
-        writeAxisInput.push_back(m_gamepadAxisAsInput[i]);
+        writeAxisInput.push_back(m_GamepadAxisAsInput[i]);
     }
 
-    size = m_gamepadAxis.size();
+    size = m_GamepadAxis.size();
     nlohmann::ordered_json& writeAxis = data["Gamepad Axis"];
     for (size_t i = 0; i < size; i++)
     {
-        writeAxis.push_back(m_gamepadAxis[i]);
+        writeAxis.push_back(m_GamepadAxis[i]);
     }
 
     return data;

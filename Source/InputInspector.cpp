@@ -104,7 +104,7 @@ void InputSystem::DebugWindow()
                         {
                             ImGui::SameLine();
                         }
-                        keyVisual(vector[j]);
+                        ImGui::Text(GetDebugKeyName(vector[j]));
                     }
                     if (ImGui::Button("Add Key"))
                     {
@@ -298,7 +298,7 @@ void InputSystem::DebugWindow()
                         {
                             ImGui::SameLine();
                         }
-                        keyVisual(vector[j]);
+                        ImGui::Text(GetDebugKeyName(vector[j]));
                     }
                     if (ImGui::Button("Add Key"))
                     {
@@ -679,7 +679,7 @@ void InputSystem::DebugWindow()
 /// @param  name of the action
 /// @param  description of the action (viewable in editor)
 InputSystem::Action::Action(std::string name, std::string description) :
-    m_name(name), m_description(description)
+    m_Name(name), m_Description(description)
 {
 }
 
@@ -698,16 +698,16 @@ void InputSystem::Action::removeByInput(std::vector<int>* vector, int input)
 ///         and empties name/description
 void InputSystem::Action::Flush()
 {
-    m_keys.clear();
-    m_mouse.clear();
-    m_controller.clear();
-    m_keyAxis.clear();
-    m_mouseAxis.clear();
-    m_controllerAxis.clear();
-    m_gamepadAxisAsInput.clear();
-    m_gamepadAxis.clear();
-    m_name = "";
-    m_description = "";
+    m_Keys.clear();
+    m_Mouse.clear();
+    m_Controller.clear();
+    m_KeyAxis.clear();
+    m_MouseAxis.clear();
+    m_ControllerAxis.clear();
+    m_GamepadAxisAsInput.clear();
+    m_GamepadAxis.clear();
+    m_Name = "";
+    m_Description = "";
 }
 
 /// @brief  retrieves a private vector for inspector
@@ -717,23 +717,23 @@ std::vector<int> InputSystem::Action::GetActionVector(int vector) const
     switch (vector)
     {
     case 0:
-        return m_keys;
+        return m_Keys;
     case 1:
-        return m_mouse;
+        return m_Mouse;
     case 2:
-        return m_controller;
+        return m_Controller;
     case 3:
-        return m_keyAxis;
+        return m_KeyAxis;
     case 4:
-        return m_mouseAxis;
+        return m_MouseAxis;
     case 5:
-        return m_controllerAxis;
+        return m_ControllerAxis;
     case 6:
-        return m_gamepadAxisAsInput;
+        return m_GamepadAxisAsInput;
     case 7:
-        return m_gamepadAxis;
+        return m_GamepadAxis;
     default:
-        return m_keys;
+        return m_Keys;
     }
 }
 
@@ -741,56 +741,56 @@ std::vector<int> InputSystem::Action::GetActionVector(int vector) const
 /// @param  key to add
 void InputSystem::Action::AddKeyInput(int glfw_key)
 {
-    m_keys.push_back(glfw_key);
+    m_Keys.push_back(glfw_key);
 }
 
 /// @brief  removes a key from the action
 /// @param  key to remove
 void InputSystem::Action::RemoveKeyInput(int glfw_key)
 {
-    removeByInput(&m_keys, glfw_key);
+    removeByInput(&m_Keys, glfw_key);
 }
 
 /// @brief  adds a mouse input to the action
 /// @param  mouse input to add
 void InputSystem::Action::AddMouseInput(int glfw_mouse_button)
 {
-    m_mouse.push_back(glfw_mouse_button);
+    m_Mouse.push_back(glfw_mouse_button);
 }
 
 /// @brief  removes a mouse input from the action
 /// @param  mouse input to remove
 void InputSystem::Action::RemoveMouseInput(int glfw_mouse_button)
 {
-    removeByInput(&m_mouse, glfw_mouse_button);
+    removeByInput(&m_Mouse, glfw_mouse_button);
 }
 
 /// @brief  adds a controller to the action
 /// @param  controller input to add
 void InputSystem::Action::AddControllerInput(int glfw_button)
 {
-    m_controller.push_back(glfw_button);
+    m_Controller.push_back(glfw_button);
 }
 
 /// @brief  removes a controller input from the action
 /// @param  controller input to remove
 void InputSystem::Action::RemoveControllerInput(int glfw_button)
 {
-    removeByInput(&m_controller, glfw_button);
+    removeByInput(&m_Controller, glfw_button);
 }
 
 /// @brief  adds an axis as a button (triggers)
 /// @param  axis to add as input
 void InputSystem::Action::AddAxisAsInput(int glfw_axis_id)
 {
-    m_gamepadAxisAsInput.push_back(glfw_axis_id);
+    m_GamepadAxisAsInput.push_back(glfw_axis_id);
 }
 
 /// @brief  removes an axis as a button (triggers)
 /// @param  axis to remove from input
 void InputSystem::Action::RemoveAxisAsInput(int glfw_axis_id)
 {
-    removeByInput(&m_gamepadAxisAsInput, glfw_axis_id);
+    removeByInput(&m_GamepadAxisAsInput, glfw_axis_id);
 }
 
 /// @brief  adds a key input axis
@@ -804,7 +804,7 @@ void InputSystem::Action::AddKeyAxisPositive(int glfw_key)
 /// @param  glfw_key_negative negative axis key
 void InputSystem::Action::AddKeyAxisNegative(int glfw_key_negative)
 {
-    m_keyAxis.push_back(glfw_key_negative);
+    m_KeyAxis.push_back(glfw_key_negative);
 }
 
 /// @brief  removes a key input axis
@@ -818,21 +818,21 @@ void InputSystem::Action::RemoveKeyAxisPositive(int glfw_key)
 /// @param  glfw_key_negative negative axis key
 void InputSystem::Action::RemoveKeyAxisNegative(int glfw_key_negative)
 {
-    removeByInput(&m_keyAxis, glfw_key_negative);
+    removeByInput(&m_KeyAxis, glfw_key_negative);
 }
 
 /// @brief  adds a mouse input axis
 /// @param  glfw_mouse positive axis mouse
 void InputSystem::Action::AddMouseAxisPositive(int glfw_mouse)
 {
-    m_mouse.push_back(glfw_mouse);
+    m_Mouse.push_back(glfw_mouse);
 }
 
 /// @brief  adds a mouse input axis
 /// @param  glfw_mouse_negative negative axis mouse
 void InputSystem::Action::AddMouseAxisNegative(int glfw_mouse_negative)
 {
-    m_mouseAxis.push_back(glfw_mouse_negative);
+    m_MouseAxis.push_back(glfw_mouse_negative);
 }
 
 /// @brief  removes a mouse input axis
@@ -846,7 +846,7 @@ void InputSystem::Action::RemoveMouseAxisPositive(int glfw_mouse)
 /// @param  glfw_mouse_negative negative axis mouse
 void InputSystem::Action::RemoveMouseAxisNegative(int glfw_mouse_negative)
 {
-    removeByInput(&m_mouseAxis, glfw_mouse_negative);
+    removeByInput(&m_MouseAxis, glfw_mouse_negative);
 }
 
 /// @brief  adds a controller input axis
@@ -860,7 +860,7 @@ void InputSystem::Action::AddControllerAxisPositive(int glfw_controller)
 /// @param  glfw_controller_negative negative axis controller
 void InputSystem::Action::AddControllerAxisNegative(int glfw_controller_negative)
 {
-    m_controllerAxis.push_back(glfw_controller_negative);
+    m_ControllerAxis.push_back(glfw_controller_negative);
 }
 
 /// @brief  removes a controller input axis
@@ -876,87 +876,87 @@ void InputSystem::Action::RemoveControllerAxisPositive(int glfw_controller)
 /// @param  glfw_controller_negative negative axis controller
 void InputSystem::Action::RemoveControllerAxisNegative(int glfw_controller_negative)
 {
-    removeByInput(&m_controllerAxis, glfw_controller_negative);
+    removeByInput(&m_ControllerAxis, glfw_controller_negative);
 }
 
 /// @brief  adds a gamepad axis (stick/trigger)
 /// @param  axis id to add
 void InputSystem::Action::AddAxis(int glfw_axis_id)
 {
-    m_gamepadAxis.push_back(glfw_axis_id);
+    m_GamepadAxis.push_back(glfw_axis_id);
 }
 
 /// @brief  removes a gamepad axis (stick/trigger)
 /// @param  axis id to add
 void InputSystem::Action::RemoveAxis(int glfw_axis_id)
 {
-    removeByInput(&m_gamepadAxis, glfw_axis_id);
+    removeByInput(&m_GamepadAxis, glfw_axis_id);
 }
 
 /// @brief  sets the name of the action
 /// @param  new name of action
 void InputSystem::Action::SetName(std::string& name)
 {
-    m_name = name;
+    m_Name = name;
 }
 
 /// @brief  gets the name of this action
 /// @return the name of the action
 std::string InputSystem::Action::GetName() const
 {
-    return m_name != "" ? m_name : "NO NAME";
+    return m_Name != "" ? m_Name : "NO NAME";
 }
 
 /// @brief  sets the description of the action
 /// @param  new description of action
 void InputSystem::Action::SetDescription(std::string& description)
 {
-    m_description = description;
+    m_Description = description;
 }
 
 /// @brief  gets the description of this action
 /// @return the description of the action
 std::string InputSystem::Action::GetDescription() const
 {
-    return m_description;
+    return m_Description;
 }
 
 /// @brief  gets if this action is down
 /// @return action down status
 bool InputSystem::Action::GetDown() const
 {
-    int size = (int)m_keys.size();
+    int size = (int)m_Keys.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetKeyDown(m_keys[i]))
+        if (Input()->GetKeyDown(m_Keys[i]))
         {
             return true;
         }
     }
 
-    size = (int)m_mouse.size();
+    size = (int)m_Mouse.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetMouseDown(m_mouse[i]))
+        if (Input()->GetMouseDown(m_Mouse[i]))
         {
             return true;
         }
     }
 
-    size = (int)m_controller.size();
+    size = (int)m_Controller.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetGamepadButtonDown(m_controller[i]))
+        if (Input()->GetGamepadButtonDown(m_Controller[i]))
         {
             return true;
         }
     }
 
-    size = (int)m_gamepadAxisAsInput.size();
+    size = (int)m_GamepadAxisAsInput.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetGamepadAxisState(0, m_gamepadAxisAsInput[i]) > 0.5 ||
-            Input()->GetGamepadAxisState(0, m_gamepadAxisAsInput[i]) < -0.5)
+        if (Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]) > 0.5 ||
+            Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]) < -0.5)
         {
             return true;
         }
@@ -971,12 +971,12 @@ bool InputSystem::Action::GetTriggered() const
 {
     bool triggered = false;
 
-    int size = (int)m_keys.size();
+    int size = (int)m_Keys.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetKeyDown(m_keys[i]))
+        if (Input()->GetKeyDown(m_Keys[i]))
         {
-            if (Input()->GetKeyTriggered(m_keys[i]))
+            if (Input()->GetKeyTriggered(m_Keys[i]))
             {
                 triggered = true;
             }
@@ -987,12 +987,12 @@ bool InputSystem::Action::GetTriggered() const
         }
     }
 
-    size = (int)m_mouse.size();
+    size = (int)m_Mouse.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetMouseDown(m_mouse[i]))
+        if (Input()->GetMouseDown(m_Mouse[i]))
         {
-            if (Input()->GetMouseTriggered(m_mouse[i]))
+            if (Input()->GetMouseTriggered(m_Mouse[i]))
             {
                 triggered = true;
             }
@@ -1003,12 +1003,12 @@ bool InputSystem::Action::GetTriggered() const
         }
     }
 
-    size = (int)m_controller.size();
+    size = (int)m_Controller.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetGamepadButtonDown(m_controller[i]))
+        if (Input()->GetGamepadButtonDown(m_Controller[i]))
         {
-            if (Input()->GetGamepadButtonTriggered(m_controller[i]))
+            if (Input()->GetGamepadButtonTriggered(m_Controller[i]))
             {
                 triggered = true;
             }
@@ -1028,40 +1028,40 @@ bool InputSystem::Action::GetReleased() const
 {
     bool released = false;
 
-    int size = (int)m_keys.size();
+    int size = (int)m_Keys.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetKeyDown(m_keys[i]))
+        if (Input()->GetKeyDown(m_Keys[i]))
         {
             return false;
         }
-        if (Input()->GetKeyReleased(m_keys[i]))
+        if (Input()->GetKeyReleased(m_Keys[i]))
         {
             released = true;
         }
     }
 
-    size = (int)m_mouse.size();
+    size = (int)m_Mouse.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetMouseDown(m_mouse[i]))
+        if (Input()->GetMouseDown(m_Mouse[i]))
         {
             return false;
         }
-        if (Input()->GetMouseReleased(m_mouse[i]))
+        if (Input()->GetMouseReleased(m_Mouse[i]))
         {
             released = true;
         }
     }
 
-    size = (int)m_controller.size();
+    size = (int)m_Controller.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetGamepadButtonDown(m_controller[i]))
+        if (Input()->GetGamepadButtonDown(m_Controller[i]))
         {
             return false;
         }
-        if (Input()->GetGamepadButtonReleased(m_controller[i]))
+        if (Input()->GetGamepadButtonReleased(m_Controller[i]))
         {
             released = true;
         }
@@ -1075,62 +1075,62 @@ bool InputSystem::Action::GetReleased() const
 float InputSystem::Action::GetAxis() const
 {
     float result = 0.0f;
-    int size = (int)m_keys.size();
+    int size = (int)m_Keys.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetKeyDown(m_keys[i]))
+        if (Input()->GetKeyDown(m_Keys[i]))
         {
             result += 1;
         }
     }
-    size = (int)m_keyAxis.size();
+    size = (int)m_KeyAxis.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetKeyDown(m_keyAxis[i]))
+        if (Input()->GetKeyDown(m_KeyAxis[i]))
         {
             result -= 1;
         }
     }
 
-    size = (int)m_mouse.size();
+    size = (int)m_Mouse.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetMouseDown(m_mouse[i]))
+        if (Input()->GetMouseDown(m_Mouse[i]))
         {
             result += 1;
         }
     }
-    size = (int)m_mouseAxis.size();
+    size = (int)m_MouseAxis.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetMouseDown(m_mouseAxis[i]))
+        if (Input()->GetMouseDown(m_MouseAxis[i]))
         {
             result -= 1;
         }
     }
 
-    size = (int)m_controller.size();
+    size = (int)m_Controller.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetGamepadButtonDown(m_controller[i]))
+        if (Input()->GetGamepadButtonDown(m_Controller[i]))
         {
             result += 1;
         }
     }
-    size = (int)m_controllerAxis.size();
+    size = (int)m_ControllerAxis.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetGamepadButtonDown(m_controllerAxis[i]))
+        if (Input()->GetGamepadButtonDown(m_ControllerAxis[i]))
         {
             result -= 1;
         }
     }
 
-    size = (int)m_gamepadAxisAsInput.size();
+    size = (int)m_GamepadAxisAsInput.size();
     for (int i = 0; i < size; ++i)
     {
-        result += Input()->GetGamepadAxisState(0, m_gamepadAxisAsInput[i]);
-        result += Input()->GetGamepadAxisState(0, m_gamepadAxisAsInput[i]);
+        result += Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]);
+        result += Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]);
     }
 
     result = min(1.0f, result);

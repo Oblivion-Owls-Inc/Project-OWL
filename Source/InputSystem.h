@@ -46,8 +46,7 @@ public: // inspection
 
     /// @brief  displays a text version of a key to imgui (65 becomes "A", etc)
     /// @param  key to convert
-    void keyVisual(int key);
-
+    const char* GetDebugKeyName(int key) const;
 
     /// @brief Constructs the InputSystem
     InputSystem();
@@ -60,41 +59,56 @@ public: // public variables
 //-----------------------------------------------------------------------------
 
     // checks to indicate an action is being changed
+    /// @brief  int definition of which change state is occuring
     int M_changeingAction = 0;
+    /// @brief  name of action changing
     std::string M_whichAction = "";
 
 public:
     class Action; // forward reference
 
-protected:
+private:
     
     // bool array 0 down 1 triggered 2 released
+    /// @brief  window pointer
     GLFWwindow* handle;
 
     // debug window chech
+    /// @brief  is input open
     bool m_InputIsOpen = false;
 
     // pointers to maps for MapUpdate
+    /// @brief  pointer for key states
     map<int, bool[3]>* m_KeyStatesHold;
+    /// @brief  pointer for mouse states
     map<int, bool[3]>* m_MouseStatesHold;
+    /// @brief  pointer for controller states
     map<int, bool[3]>* m_ControllerStatesHold;
 
     // maps for various states (keys, mouse, controller etc)
+    /// @brief  key states map
     map<int, bool[3]> m_KeyStates;
+    /// @brief  fixed update key states map
     map<int, bool[3]> m_FixedKeyStates;
+    /// @brief  controller states map
     map<int, bool[3]> m_ControllerStates;
+    /// @brief  fixed update controller states map
     map<int, bool[3]> m_FixedControllerStates;
+    /// @brief  mouse states map
     map<int, bool[3]> m_MouseStates;
+    /// @brief  fixed update mouse states map
     map<int, bool[3]> m_FixedMouseStates;
 
     // handles for alternate windows
+    /// @brief  alternate window handles
     std::vector<GLFWwindow*> altHandles;
+    /// @brief  map for additional windows
     std::vector<map<int, bool[3]>> windows;
+    /// @brief  amount of additional windows
     int amount = 0;
 
-    
-
     // map of actions
+    /// @brief  map of actions
     vector<Action> m_Actions;
 
 //-----------------------------------------------------------------------------
@@ -117,25 +131,25 @@ public: // public class
     {
     private:
         /// @brief  key inputs
-        std::vector<int> m_keys; // 0
+        std::vector<int> m_Keys; // 0
         /// @brief  mouse inputs
-        std::vector<int> m_mouse; // 1
+        std::vector<int> m_Mouse; // 1
         /// @brief  controller inputs
-        std::vector<int> m_controller; // 2
+        std::vector<int> m_Controller; // 2
         /// @brief  opposing axis for key inputs
-        std::vector<int> m_keyAxis; // 3
+        std::vector<int> m_KeyAxis; // 3
         /// @brief  opposing axis for mouse inputs
-        std::vector<int> m_mouseAxis; // 4
+        std::vector<int> m_MouseAxis; // 4
         /// @brief  opposing axis for controller inputs
-        std::vector<int> m_controllerAxis; // 5
+        std::vector<int> m_ControllerAxis; // 5
         /// @brief  gamepad axis as input, sticks/triggers
-        std::vector<int> m_gamepadAxisAsInput; // 6
+        std::vector<int> m_GamepadAxisAsInput; // 6
         /// @brief  gamepad axis, sticks/triggers
-        std::vector<int> m_gamepadAxis; // 7
+        std::vector<int> m_GamepadAxis; // 7
         /// @brief  action name
-        std::string m_name;
+        std::string m_Name;
         /// @brief  editor description of action
-        std::string m_description;
+        std::string m_Description;
 
     private:
 
