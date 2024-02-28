@@ -16,15 +16,15 @@
 /// @brief  manual callback catch for keys since imgui hates glfw
 void InputSystem::Action::ManualKeyCallback()
 {
-    GLFWwindow* handle = Input()->GetHandle();
+    GLFWwindow* m_Handle = Input()->Getm_Handle();
 	bool found = false;
 	int key = 0;
     if (!found)
     {
-        // -1 handles unknown key
+        // -1 m_Handles unknown key
         for (int i = -1; i <= GLFW_KEY_LAST; ++i)
         {
-            if (glfwGetKey(Input()->GetHandle(), i))
+            if (glfwGetKey(Input()->Getm_Handle(), i))
             {
                 found = true;
                 key = i;
@@ -34,25 +34,25 @@ void InputSystem::Action::ManualKeyCallback()
     }
 	if (found)
 	{
-        int whichAction = Input()->M_changeingAction;
+        int whichAction = Input()->m_ChangingAction;
         switch (whichAction)
         {
         case 1:
-            Input()->GetActionByName(Input()->M_whichAction)->AddKeyInput(key);
+            Input()->GetActionByName(Input()->m_WhichAction)->AddKeyInput(key);
             break;
         case 2:
-            Input()->GetActionByName(Input()->M_whichAction)->RemoveKeyInput(key);
+            Input()->GetActionByName(Input()->m_WhichAction)->RemoveKeyInput(key);
             break;
         case 7:
-            Input()->GetActionByName(Input()->M_whichAction)->AddKeyAxisNegative(key);
+            Input()->GetActionByName(Input()->m_WhichAction)->AddKeyAxisNegative(key);
             break;
         case 8:
-            Input()->GetActionByName(Input()->M_whichAction)->RemoveKeyAxisNegative(key);
+            Input()->GetActionByName(Input()->m_WhichAction)->RemoveKeyAxisNegative(key);
             break;
         default:
             break;
         }
-        Input()->M_changeingAction = 0;
+        Input()->m_ChangingAction = 0;
 	}
 }
 

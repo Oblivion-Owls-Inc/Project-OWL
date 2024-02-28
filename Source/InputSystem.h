@@ -1,6 +1,6 @@
 /// @file InputSystem.h
 /// @author Tyler Birdsall (tyler.birdsall@digipen.edu
-/// @brief Input system, handles key and mouse inputs
+/// @brief Input system, m_Handles key and mouse inputs
 /// @version 0.1
 /// @date 2023-09-12
 /// 
@@ -12,7 +12,6 @@
 #include "System.h"
 #include "glm/glm.hpp"
 #include "glfw3.h"
-
 
 /// @brief Example System meant to be copy-pasted when creating new Systems
 using namespace std;
@@ -40,7 +39,6 @@ private: // virtual override methods
 public: // inspection
 //-----------------------------------------------------------------------------
 
-
     /// @brief Gets Called by the Debug system to display debug information
     virtual void DebugWindow() override;
 
@@ -48,30 +46,25 @@ public: // inspection
     /// @param  key to convert
     const char* GetDebugKeyName(int key) const;
 
-    /// @brief Constructs the InputSystem
-    InputSystem();
-
-    /// @brief The singleton instance of InputSystem
-    static InputSystem * instance;
-
 //-----------------------------------------------------------------------------
-public: // public variables
+public: // forward references
 //-----------------------------------------------------------------------------
 
-    // checks to indicate an action is being changed
-    /// @brief  int definition of which change state is occuring
-    int M_changeingAction = 0;
-    /// @brief  name of action changing
-    std::string M_whichAction = "";
-
-public:
     class Action; // forward reference
 
-private:
+//-----------------------------------------------------------------------------
+private: // private variables
+//-----------------------------------------------------------------------------
     
+    // checks to indicate an action is being changed
+    /// @brief  int definition of which change state is occuring
+    int m_ChangingAction = 0;
+    /// @brief  name of action changing
+    std::string m_WhichAction = "";
+
     // bool array 0 down 1 triggered 2 released
     /// @brief  window pointer
-    GLFWwindow* handle;
+    GLFWwindow* m_Handle;
 
     // debug window chech
     /// @brief  is input open
@@ -99,13 +92,13 @@ private:
     /// @brief  fixed update mouse states map
     map<int, bool[3]> m_FixedMouseStates;
 
-    // handles for alternate windows
-    /// @brief  alternate window handles
-    std::vector<GLFWwindow*> altHandles;
+    // m_Handles for alternate windows
+    /// @brief  alternate window m_Handles
+    std::vector<GLFWwindow*> m_AltHandles;
     /// @brief  map for additional windows
     std::vector<map<int, bool[3]>> windows;
-    /// @brief  amount of additional windows
-    int amount = 0;
+    /// @brief  m_Amount of additional windows
+    int m_Amount = 0;
 
     /// @brief  how much the mouse has scrolled this graphicsframe
     float m_DeltaScroll = 0.0f;
@@ -120,13 +113,11 @@ private:
 private: // private methods
 //-----------------------------------------------------------------------------
 
-
     /// @brief  updates map realted to fixed or standard update
     void mapUpdate();
 
     // callback called whenever the mouse scrolls
     static void onMouseScrollCallback(GLFWwindow* window, double scrollX, double scrollY);
-    
 
 //-----------------------------------------------------------------------------
 public: // public class
@@ -135,7 +126,10 @@ public: // public class
     /// @brief  action class, used to track an action with dynamic input
     class Action : public ISerializable
     {
-    private:
+    //-------------------------------------------------------------------------
+    private: // private class variables
+    //-------------------------------------------------------------------------
+
         /// @brief  key inputs
         std::vector<int> m_Keys; // 0
         /// @brief  mouse inputs
@@ -165,9 +159,6 @@ public: // public class
         /// @param  vector to remove from
         /// @param  input id to remove
         void removeByInput(std::vector<int>* vector, int input);
-        
-        /// @brief the map of read methods for this Component
-        static ReadMethodMap< Action > const s_ReadMethods;
 
         /// @brief read the key inputs for an action
         void readName(nlohmann::ordered_json const& json);
@@ -200,8 +191,11 @@ public: // public class
         void readGamepadAxis(nlohmann::ordered_json const& json);
 
     //-------------------------------------------------------------------------
-    public: // class writing
+    public: // class reading/writing
     //-------------------------------------------------------------------------
+
+        /// @brief the map of read methods for this Component
+        static ReadMethodMap< Action > const s_ReadMethods;
 
         /// @brief read method map for an Action
         virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
@@ -363,12 +357,12 @@ public: // accessors
     /// @return the instance of the InputSystem
     static InputSystem * GetInstance();
 
-    GLFWwindow* GetHandle() { return handle; }
+    GLFWwindow* Getm_Handle() { return m_Handle; }
 
-    /// @brief  sets a new window handle
-    /// @param  handle of new window
+    /// @brief  sets a new window m_Handle
+    /// @param  m_Handle of new window
     /// @return int, pass this back to check window
-    int InitAlternateWindow(GLFWwindow* handle);
+    int InitAlternateWindow(GLFWwindow* m_Handle);
 
     /// @brief checks if a given key is down
     /// @param glfw key to check
@@ -436,7 +430,6 @@ public: // accessors
     /// @return returns if mouse button is released
     bool GetMouseReleased(int glfw_mouse_button);
 
-
     /// @brief  gets the mouse pos in screen space
     /// @return the current mouse pos in screen space
     glm::vec2 GetMousePosScreen() const;
@@ -448,7 +441,6 @@ public: // accessors
     /// @brief gets mouse pos in world space
     /// @return returns the current mouse pos as a vec2
     glm::vec2 GetMousePosWorld();
-
 
     /// @brief  gets how much the mouse has scrolled since last frame
     /// @return how much the mouse has scrolled since last frame
@@ -471,10 +463,15 @@ private: // singleton stuff
     InputSystem(InputSystem& other) = delete;
     void operator=(const InputSystem&) = delete;
 
-//-----------------------------------------------------------------------------
-private: // reading
-//-----------------------------------------------------------------------------
+    /// @brief Constructs the InputSystem
+    InputSystem();
 
+    /// @brief The singleton instance of InputSystem
+    static InputSystem* instance;
+
+//-----------------------------------------------------------------------------
+public: // reading/writing
+//-----------------------------------------------------------------------------
 
     /// @brief  map of the SceneSystem read methods
     static ReadMethodMap< InputSystem > const s_ReadMethods;
@@ -486,6 +483,10 @@ private: // reading
         return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
     }
 
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
     void readActions(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
@@ -495,9 +496,6 @@ public: // writing
     /// @brief  writes this System to json
     virtual nlohmann::ordered_json Write() const override;
 };
-
-
-
 
 /// @brief shortens input get instance to simply input
 /// @return returns the input system instance

@@ -1,6 +1,6 @@
 /// @file InputSystem.cpp
 /// @author Tyler Birdsall (tyler.birdsall@digipen.edu)
-/// @brief Input system, handles key and mouse inputs
+/// @brief Input system, m_Handles key and mouse inputs
 /// @version 0.1
 /// @date 2023-09-12
 /// 
@@ -37,7 +37,7 @@ void InputSystem::mapUpdate()
     for (auto& key : *m_KeyStatesHold)
     {
         bool old = key.second[0];
-        key.second[0] = glfwGetKey(handle, key.first);
+        key.second[0] = glfwGetKey(m_Handle, key.first);
 
         if (key.second[0] == true && old == false)
         {
@@ -60,7 +60,7 @@ void InputSystem::mapUpdate()
     for (auto& key : *m_MouseStatesHold)
     {
         bool old = key.second[0];
-        key.second[0] = glfwGetMouseButton(handle, key.first);
+        key.second[0] = glfwGetMouseButton(m_Handle, key.first);
 
         if (key.second[0] == true && old == false)
         {
@@ -89,12 +89,12 @@ void InputSystem::mapUpdate()
         key.second[0] = state.buttons[key.first] == GLFW_PRESS;
     }
 
-    for (int i = 0; i < amount; i++)
+    for (int i = 0; i < m_Amount; i++)
     {
         for (auto& key : windows[i])
         {
             bool old = key.second[0];
-            key.second[0] = glfwGetKey(altHandles[i], key.first);
+            key.second[0] = glfwGetKey(m_AltHandles[i], key.first);
 
             if (key.second[0] == true && old == false)
             {
@@ -119,9 +119,9 @@ void InputSystem::mapUpdate()
 /// @brief  initialize system
 void InputSystem::OnInit()
 {
-    handle = PlatformSystem::GetInstance()->GetWindowHandle();
+    m_Handle = PlatformSystem::GetInstance()->GetWindowHandle();
 
-    glfwSetScrollCallback( handle, onMouseScrollCallback );
+    glfwSetScrollCallback( m_Handle, onMouseScrollCallback );
 }
 
 /// @brief  exit system
@@ -147,13 +147,13 @@ void InputSystem::OnUpdate(float dt)
     glfwPollEvents();
 }
 
-int InputSystem::InitAlternateWindow(GLFWwindow* handle)
+int InputSystem::InitAlternateWindow(GLFWwindow* m_Handle)
 {
-    altHandles.push_back(handle);
+    m_AltHandles.push_back(m_Handle);
     map<int, bool[3]> newMap;
     windows.push_back(newMap);
-    amount++;
-    return amount;
+    m_Amount++;
+    return m_Amount;
 }
 
 //-----------------------------------------------------------------------------
@@ -661,8 +661,8 @@ nlohmann::ordered_json InputSystem::Action::Write() const
         m_KeyStatesHold(&m_KeyStates),
         m_MouseStatesHold(&m_MouseStates),
         m_ControllerStatesHold(&m_ControllerStates),
-        handle(nullptr),
-        amount(0)
+        m_Handle(nullptr),
+        m_Amount(0)
     {
         // Updates the mapping of gamepad controllers.
         glfwUpdateGamepadMappings(Stream::ReadFromTXTFile("Data/Controller Mappings/gamecontrollerdb.txt").c_str());
