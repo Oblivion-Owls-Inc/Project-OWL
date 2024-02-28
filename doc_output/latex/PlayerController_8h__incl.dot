@@ -180,7 +180,7 @@ digraph "Source/PlayerController.h"
   Node61 [label="ActionReference.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ActionReference_8h.html",tooltip="a reference to an input Action"];
   Node61 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
   Node61 -> Node62 [color="midnightblue",fontsize="10",style="solid"];
-  Node62 [label="InputSystem.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$InputSystem_8h.html",tooltip="Input system, handles key and mouse inputs."];
+  Node62 [label="InputSystem.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$InputSystem_8h.html",tooltip="Input system, m_Handles key and mouse inputs."];
   Node62 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
   Node62 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
 }

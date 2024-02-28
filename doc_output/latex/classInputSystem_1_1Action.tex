@@ -95,6 +95,11 @@ bool \mbox{\hyperlink{classInputSystem_1_1Action_ac097ce8026ff1bcd2cff1719ee0928
 \begin{DoxyCompactList}\small\item\em gets if this action is released \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classInputSystem_1_1Action_aa5f74f2830d4a115487bb03727aaddd8}{Get\+Axis}} () const
 \begin{DoxyCompactList}\small\item\em gets this action as an axis \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Read\+Method\+Map$<$ \mbox{\hyperlink{classInputSystem_1_1Action}{Action}} $>$ const \mbox{\hyperlink{classInputSystem_1_1Action_a21e3c476bd164a67d97e0c8a98c2c952}{s\+\_\+\+Read\+Methods}}
+\begin{DoxyCompactList}\small\item\em the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -593,6 +598,35 @@ writes this \mbox{\hyperlink{classSystem}{System}} to json
 Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
 
 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classInputSystem_1_1Action_a21e3c476bd164a67d97e0c8a98c2c952}\label{classInputSystem_1_1Action_a21e3c476bd164a67d97e0c8a98c2c952}} 
+\index{InputSystem::Action@{InputSystem::Action}!s\_ReadMethods@{s\_ReadMethods}}
+\index{s\_ReadMethods@{s\_ReadMethods}!InputSystem::Action@{InputSystem::Action}}
+\doxysubsubsection{\texorpdfstring{s\_ReadMethods}{s\_ReadMethods}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classInputSystem_1_1Action}{Input\+System\+::\+Action}} $>$ const Input\+System\+::\+Action\+::s\+\_\+\+Read\+Methods\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Name"{}},               \&readName               \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Description"{}},        \&readDescription        \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Keys"{}},               \&readKeys               \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Mouse"{}},              \&readMouse              \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Controller"{}},         \&readController         \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Key Axis"{}},           \&readKeyAxis            \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Mouse Axis"{}},         \&readMouseAxis          \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Controller Axis"{}},    \&readControllerAxis     \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Gamepad Axis Input"{}}, \&readGamepadAxisAsInput \},}
+\DoxyCodeLine{    \{ \textcolor{stringliteral}{"{}Gamepad Axis"{}},       \&readGamepadAxis        \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+map of the \mbox{\hyperlink{classSceneSystem}{Scene\+System}} read methods 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

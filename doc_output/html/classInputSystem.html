@@ -65,7 +65,6 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classInputSystem-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -108,16 +107,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a7e3c9e3db7f53b846a922e1e2caae92e"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a7e3c9e3db7f53b846a922e1e2caae92e">GetDebugKeyName</a> (int key) const</td></tr>
 <tr class="memdesc:a7e3c9e3db7f53b846a922e1e2caae92e"><td class="mdescLeft">&#160;</td><td class="mdescRight">displays a text version of a key to imgui (65 becomes "A", etc)  <a href="classInputSystem.html#a7e3c9e3db7f53b846a922e1e2caae92e">More...</a><br /></td></tr>
 <tr class="separator:a7e3c9e3db7f53b846a922e1e2caae92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f18d9fdb44805c63984113c1433c223"><td class="memItemLeft" align="right" valign="top"><a id="a2f18d9fdb44805c63984113c1433c223"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a2f18d9fdb44805c63984113c1433c223">InputSystem</a> ()</td></tr>
-<tr class="memdesc:a2f18d9fdb44805c63984113c1433c223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the <a class="el" href="classInputSystem.html">InputSystem</a>. <br /></td></tr>
-<tr class="separator:a2f18d9fdb44805c63984113c1433c223"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace02d6c7346f7ba0562bf580ca31debc"><td class="memItemLeft" align="right" valign="top"><a id="ace02d6c7346f7ba0562bf580ca31debc"></a>
-GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>GetHandle</b> ()</td></tr>
-<tr class="separator:ace02d6c7346f7ba0562bf580ca31debc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e148d02bc1ff4eb04898e15242a3bec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a3e148d02bc1ff4eb04898e15242a3bec">InitAlternateWindow</a> (GLFWwindow *handle)</td></tr>
-<tr class="memdesc:a3e148d02bc1ff4eb04898e15242a3bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets a new window handle  <a href="classInputSystem.html#a3e148d02bc1ff4eb04898e15242a3bec">More...</a><br /></td></tr>
-<tr class="separator:a3e148d02bc1ff4eb04898e15242a3bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7af35c165101998b6b87336e3f39ffe"><td class="memItemLeft" align="right" valign="top"><a id="ad7af35c165101998b6b87336e3f39ffe"></a>
+GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>Getm_Handle</b> ()</td></tr>
+<tr class="separator:ad7af35c165101998b6b87336e3f39ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3c87041dbe89aa0f75f5220d16231b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#ab3c87041dbe89aa0f75f5220d16231b7">InitAlternateWindow</a> (GLFWwindow *m_Handle)</td></tr>
+<tr class="memdesc:ab3c87041dbe89aa0f75f5220d16231b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets a new window m_Handle  <a href="classInputSystem.html#ab3c87041dbe89aa0f75f5220d16231b7">More...</a><br /></td></tr>
+<tr class="separator:ab3c87041dbe89aa0f75f5220d16231b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf1000882f8617d5b87dfee51e0374cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#aaf1000882f8617d5b87dfee51e0374cf">GetKeyDown</a> (int glfw_key, int altWindow=0)</td></tr>
 <tr class="memdesc:aaf1000882f8617d5b87dfee51e0374cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a given key is down  <a href="classInputSystem.html#aaf1000882f8617d5b87dfee51e0374cf">More...</a><br /></td></tr>
 <tr class="separator:aaf1000882f8617d5b87dfee51e0374cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,6 +170,9 @@ GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>GetHandle</b>
 <tr class="memitem:aa635de5491dcd343eef28a620cf63e91"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classInputSystem_1_1Action.html">Action</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#aa635de5491dcd343eef28a620cf63e91">GetActions</a> () const</td></tr>
 <tr class="memdesc:aa635de5491dcd343eef28a620cf63e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the vector of Actions in the <a class="el" href="classInputSystem.html">InputSystem</a>  <a href="classInputSystem.html#aa635de5491dcd343eef28a620cf63e91">More...</a><br /></td></tr>
 <tr class="separator:aa635de5491dcd343eef28a620cf63e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70a0d3ad29912ecc7e41f05b0620cf66"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a70a0d3ad29912ecc7e41f05b0620cf66">GetReadMethods</a> () const override</td></tr>
+<tr class="memdesc:a70a0d3ad29912ecc7e41f05b0620cf66"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods  <a href="classInputSystem.html#a70a0d3ad29912ecc7e41f05b0620cf66">More...</a><br /></td></tr>
+<tr class="separator:a70a0d3ad29912ecc7e41f05b0620cf66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83e693fc73f696b8813590f1949f80d6"><td class="memItemLeft" align="right" valign="top"><a id="a83e693fc73f696b8813590f1949f80d6"></a>
 virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a83e693fc73f696b8813590f1949f80d6">Write</a> () const override</td></tr>
 <tr class="memdesc:a83e693fc73f696b8813590f1949f80d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> to json <br /></td></tr>
@@ -225,23 +223,11 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:af5fc404c7c6bc2303d741bd7b9abe7df"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the instance of <a class="el" href="classInputSystem.html">InputSystem</a>  <a href="classInputSystem.html#af5fc404c7c6bc2303d741bd7b9abe7df">More...</a><br /></td></tr>
 <tr class="separator:af5fc404c7c6bc2303d741bd7b9abe7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a6af71b0e541bfc75d5e7a3000c0a89b9"><td class="memItemLeft" align="right" valign="top"><a id="a6af71b0e541bfc75d5e7a3000c0a89b9"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a6af71b0e541bfc75d5e7a3000c0a89b9">M_changeingAction</a> = 0</td></tr>
-<tr class="memdesc:a6af71b0e541bfc75d5e7a3000c0a89b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">int definition of which change state is occuring <br /></td></tr>
-<tr class="separator:a6af71b0e541bfc75d5e7a3000c0a89b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23598af4e171864609cd16b88d3c90af"><td class="memItemLeft" align="right" valign="top"><a id="a23598af4e171864609cd16b88d3c90af"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a23598af4e171864609cd16b88d3c90af">M_whichAction</a> = &quot;&quot;</td></tr>
-<tr class="memdesc:a23598af4e171864609cd16b88d3c90af"><td class="mdescLeft">&#160;</td><td class="mdescRight">name of action changing <br /></td></tr>
-<tr class="separator:a23598af4e171864609cd16b88d3c90af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a50d3b930c61e298c624bce5eb9756990"><td class="memItemLeft" align="right" valign="top"><a id="a50d3b930c61e298c624bce5eb9756990"></a>
-static <a class="el" href="classInputSystem.html">InputSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a50d3b930c61e298c624bce5eb9756990">instance</a> = nullptr</td></tr>
-<tr class="memdesc:a50d3b930c61e298c624bce5eb9756990"><td class="mdescLeft">&#160;</td><td class="mdescRight">The singleton instance of <a class="el" href="classInputSystem.html">InputSystem</a>. <br /></td></tr>
-<tr class="separator:a50d3b930c61e298c624bce5eb9756990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a366316edee40bc24140bdfe80576c1"><td class="memItemLeft" align="right" valign="top">static ReadMethodMap&lt; <a class="el" href="classInputSystem.html">InputSystem</a> &gt; const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a3a366316edee40bc24140bdfe80576c1">s_ReadMethods</a></td></tr>
+<tr class="memdesc:a3a366316edee40bc24140bdfe80576c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">map of the <a class="el" href="classSceneSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">SceneSystem</a> read methods  <a href="classInputSystem.html#a3a366316edee40bc24140bdfe80576c1">More...</a><br /></td></tr>
+<tr class="separator:a3a366316edee40bc24140bdfe80576c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -866,8 +852,38 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a3e148d02bc1ff4eb04898e15242a3bec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e148d02bc1ff4eb04898e15242a3bec">&#9670;&nbsp;</a></span>InitAlternateWindow()</h2>
+<a id="a70a0d3ad29912ecc7e41f05b0620cf66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70a0d3ad29912ecc7e41f05b0620cf66">&#9670;&nbsp;</a></span>GetReadMethods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const&amp; InputSystem::GetReadMethods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods </p>
+<dl class="section return"><dt>Returns</dt><dd>this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classISerializable.html#a28ebd6e1c108281c986f97d36f3bbfd1">ISerializable</a>.</p>
+
+</div>
+</div>
+<a id="ab3c87041dbe89aa0f75f5220d16231b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3c87041dbe89aa0f75f5220d16231b7">&#9670;&nbsp;</a></span>InitAlternateWindow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -876,20 +892,48 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">int InputSystem::InitAlternateWindow </td>
           <td>(</td>
           <td class="paramtype">GLFWwindow *&#160;</td>
-          <td class="paramname"><em>handle</em></td><td>)</td>
+          <td class="paramname"><em>m_Handle</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>sets a new window handle </p>
+<p>sets a new window m_Handle </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>of new window </td></tr>
+    <tr><td class="paramname">m_Handle</td><td>of new window </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int, pass this back to check window </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a3a366316edee40bc24140bdfe80576c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a366316edee40bc24140bdfe80576c1">&#9670;&nbsp;</a></span>s_ReadMethods</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ReadMethodMap&lt; <a class="el" href="classInputSystem.html">InputSystem</a> &gt; const InputSystem::s_ReadMethods</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    { <span class="stringliteral">&quot;Actions&quot;</span>, &amp;readActions }</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>map of the <a class="el" href="classSceneSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">SceneSystem</a> read methods </p>
 
 </div>
 </div>
