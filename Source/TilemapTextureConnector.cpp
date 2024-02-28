@@ -282,7 +282,7 @@
 
         if ( ImGui::TreeNode( "Connection Rules" ) )
         {
-            int tileTypeCount = m_ConnectionRules.size();
+            int tileTypeCount = (int)m_ConnectionRules.size();
             changed |= Inspection::InspectArray< std::set< int > >(
                 "ConnectionRules", &m_ConnectionRules,
                 [ tileTypeCount ]( std::set< int >* set ) -> bool
