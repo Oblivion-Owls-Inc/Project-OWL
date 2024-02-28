@@ -11,6 +11,8 @@
 #include "ComponentReference.h"
 
 #include "Entity.h"
+
+// I don't know why these are needed here, but it complains if we don't have them
 #include "Collider.h"
 #include "StaticBody.h"
 #include "Transform.h"

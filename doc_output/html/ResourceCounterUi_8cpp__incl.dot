@@ -71,7 +71,7 @@ digraph "Source/ResourceCounterUi.cpp"
   Node24 [label="Transform.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Transform_8h.html",tooltip="Transform."];
   Node24 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node24 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node25 [label="basics.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$basics_8h_source.html",tooltip=" "];
+  Node25 [label="basics.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$basics_8h_source.html",tooltip=" "];
   Node25 -> Node26 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node26 [label="glew.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node25 -> Node27 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -82,11 +82,7 @@ digraph "Source/ResourceCounterUi.cpp"
   Node28 [label="cassert",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node25 -> Node29 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node29 [label="cstdlib",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
-  Node25 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node30 [label="atomic",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node25 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node25 -> Node31 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node31 [label="random",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node25 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node24 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node24 -> Node32 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -153,9 +149,23 @@ digraph "Source/ResourceCounterUi.cpp"
   Node1 -> Node52 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node52 [label="Text.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Text_8h.html",tooltip="Component that makes use of Tilemap to draw text."];
   Node52 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node52 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node53 [label="UiElement.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8h.html",tooltip="Ui element component."];
-  Node53 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node52 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node52 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 [label="Tilemap.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Tilemap_8h.html",tooltip="Tilemap component - loads and manages a tilemap array."];
+  Node53 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node53 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 -> Node54 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node54 [label="Tilemap.t.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Tilemap_8t_8cpp.html",tooltip="Tilemap component - loads and manages a tilemap array."];
+  Node54 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node54 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node54 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node54 -> Node38 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node55 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node55 [label="UiElement.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8h.html",tooltip="Ui element component."];
+  Node55 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node55 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }
