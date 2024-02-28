@@ -15,7 +15,7 @@ digraph "Source/Engine.h"
   Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node6 [label="Source/InputInspector.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$InputInspector_8cpp.html",tooltip="Input system addition, holds Action and Debug info."];
   Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node7 [label="Source/InputSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$InputSystem_8cpp.html",tooltip="Input system, handles key and mouse inputs."];
+  Node7 [label="Source/InputSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$InputSystem_8cpp.html",tooltip="Input system, m_Handles key and mouse inputs."];
   Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node8 [label="Source/Lifetime.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Lifetime_8cpp.html",tooltip="Component that destroys it's Enity after a given length of time."];
   Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
