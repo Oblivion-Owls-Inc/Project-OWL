@@ -22,10 +22,10 @@ Collaboration diagram for Engine\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classEngine_a9b23df7a1bc3a25e909b8eb472db8b01}\label{classEngine_a9b23df7a1bc3a25e909b8eb472db8b01}} 
-enum class {\bfseries Update\+Mode} \{ {\bfseries fixed\+Update}
+enum class \mbox{\hyperlink{classEngine_a9b23df7a1bc3a25e909b8eb472db8b01}{Update\+Mode}} \{ {\bfseries fixed\+Update}
 , {\bfseries update}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em enum saying which update mode the engine is currently in \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -34,16 +34,20 @@ void \mbox{\hyperlink{classEngine_af4c789fb939a0870426c698a5124a0ee}{Run}} ()
 \mbox{\Hypertarget{classEngine_ac7dc8c00262aee2a11183e4080fa5faf}\label{classEngine_ac7dc8c00262aee2a11183e4080fa5faf}} 
 void \mbox{\hyperlink{classEngine_ac7dc8c00262aee2a11183e4080fa5faf}{Close}} ()
 \begin{DoxyCompactList}\small\item\em Flags the engine to close once it finishes this loop. \end{DoxyCompactList}\item 
-Update\+Mode \mbox{\hyperlink{classEngine_a2f6f4831c70172dcc71a995d7e0ad488}{Get\+Current\+Update}} () const
+bool \mbox{\hyperlink{classEngine_acff67dbd8e2736e407852768d1fbd509}{Save\+Engine\+Config}} ()
+\begin{DoxyCompactList}\small\item\em Used To Create a Window to Save the \mbox{\hyperlink{classEngine}{Engine}} Config. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEngine_a9b23df7a1bc3a25e909b8eb472db8b01}{Update\+Mode}} \mbox{\hyperlink{classEngine_a2f6f4831c70172dcc71a995d7e0ad488}{Get\+Current\+Update}} () const
 \begin{DoxyCompactList}\small\item\em gets the current update status \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classEngine_a8b5b5213266b2be7fe2c1c94b43946aa}{Get\+Fixed\+Frame\+Duration}} () const
 \begin{DoxyCompactList}\small\item\em gets the duration of each fixed frame \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEngine_a0e98f1b1054e492ba78731b1a8e800d1}{Set\+Fixed\+Frame\+Duration}} (float fixed\+Frame\+Duration)
 \begin{DoxyCompactList}\small\item\em sets the duration of each fixed frame \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEngine_aaf09ae5be5a7f43804cedcb99ec52ed8}{Get\+Frame\+Count}} () const
+\begin{DoxyCompactList}\small\item\em gets the current graphics frame count \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEngine_a54a2b4d293680df3c4f6f978023da227}{Get\+Fixed\+Frame\+Count}} () const
+\begin{DoxyCompactList}\small\item\em gets the current simulation frame count \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classSystem}{System}} $\ast$ $>$ const  \& \mbox{\hyperlink{classEngine_a0b12e00c76c381b58c44ee4e468cfd3a}{Get\+Systems}} () const
 \begin{DoxyCompactList}\small\item\em gets the array of all Systems in the engine. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classEngine_acff67dbd8e2736e407852768d1fbd509}{Save\+Engine\+Config}} ()
-\begin{DoxyCompactList}\small\item\em Used To Create a Window to Save the \mbox{\hyperlink{classEngine}{Engine}} Config. \end{DoxyCompactList}\item 
 virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classEngine_abc01dc48e09185a4e093d67904cfef6d}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets the map of \mbox{\hyperlink{classEngine}{Engine}} read methods \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEngine_a2b35c45e93492eb6d52f004c05fdcf54}{Write}} () const override
@@ -66,7 +70,7 @@ static \mbox{\hyperlink{classEngine}{Engine}} $\ast$ \mbox{\hyperlink{classEngin
 \index{Engine@{Engine}!GetCurrentUpdate@{GetCurrentUpdate}}
 \index{GetCurrentUpdate@{GetCurrentUpdate}!Engine@{Engine}}
 \doxysubsubsection{\texorpdfstring{GetCurrentUpdate()}{GetCurrentUpdate()}}
-{\footnotesize\ttfamily Engine\+::\+Update\+Mode Engine\+::\+Get\+Current\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEngine_a9b23df7a1bc3a25e909b8eb472db8b01}{Engine\+::\+Update\+Mode}} Engine\+::\+Get\+Current\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -74,6 +78,19 @@ gets the current update status
 
 \begin{DoxyReturn}{Returns}
 the current status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_a54a2b4d293680df3c4f6f978023da227}\label{classEngine_a54a2b4d293680df3c4f6f978023da227}} 
+\index{Engine@{Engine}!GetFixedFrameCount@{GetFixedFrameCount}}
+\index{GetFixedFrameCount@{GetFixedFrameCount}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{GetFixedFrameCount()}{GetFixedFrameCount()}}
+{\footnotesize\ttfamily int Engine\+::\+Get\+Fixed\+Frame\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the current simulation frame count 
+
+\begin{DoxyReturn}{Returns}
+the number of simulation frames that have elapsed since the \mbox{\hyperlink{classEngine}{Engine}} started 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classEngine_a8b5b5213266b2be7fe2c1c94b43946aa}\label{classEngine_a8b5b5213266b2be7fe2c1c94b43946aa}} 
 \index{Engine@{Engine}!GetFixedFrameDuration@{GetFixedFrameDuration}}
@@ -87,6 +104,19 @@ gets the duration of each fixed frame
 
 \begin{DoxyReturn}{Returns}
 the amount of time in seconds that each fixed frame lasts 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEngine_aaf09ae5be5a7f43804cedcb99ec52ed8}\label{classEngine_aaf09ae5be5a7f43804cedcb99ec52ed8}} 
+\index{Engine@{Engine}!GetFrameCount@{GetFrameCount}}
+\index{GetFrameCount@{GetFrameCount}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{GetFrameCount()}{GetFrameCount()}}
+{\footnotesize\ttfamily int Engine\+::\+Get\+Frame\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the current graphics frame count 
+
+\begin{DoxyReturn}{Returns}
+the number of graphics frames that have elapsed since the \mbox{\hyperlink{classEngine}{Engine}} started 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classEngine_aab953f155f37bc03fe78de7cb4dbf721}\label{classEngine_aab953f155f37bc03fe78de7cb4dbf721}} 
 \index{Engine@{Engine}!GetInstance@{GetInstance}}

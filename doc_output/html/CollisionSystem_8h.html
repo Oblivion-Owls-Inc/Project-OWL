@@ -67,7 +67,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">CollisionSystem.h File Reference</div>  </div>
@@ -79,7 +78,8 @@ $(function() {
 <div class="textblock"><code>#include &quot;<a class="el" href="System_8h_source.html">System.h</a>&quot;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;typeindex&gt;</code><br />
-<code>#include &quot;CollisionData.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="CollisionData_8h_source.html">CollisionData.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="CollisionLayerFlags_8h_source.html">CollisionLayerFlags.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for CollisionSystem.h:</div>
 <div class="dyncontent">
@@ -123,24 +123,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1less_3_01glm_1_1ivec2_01_4.html">std::less&lt; glm::ivec2 &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCollisionSystem.html">CollisionSystem</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">responsible for checking collsisions between all Colliders  <a href="classCollisionSystem.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:ad4a15109fc5b785904b54d6044527336"><td class="memItemLeft" align="right" valign="top"><a id="ad4a15109fc5b785904b54d6044527336"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CollisionSystem_8h.html#ad4a15109fc5b785904b54d6044527336">CollisionCheckFunction</a> = bool(*)(<a class="el" href="classCollider.html">Collider</a> const  *colliderA, <a class="el" href="classCollider.html">Collider</a> const  *colliderB, <a class="el" href="structCollisionData.html">CollisionData</a> *collisionData)</td></tr>
-<tr class="memdesc:ad4a15109fc5b785904b54d6044527336"><td class="mdescLeft">&#160;</td><td class="mdescRight">function pointer to function that checks collisions between <a class="el" href="classCollider.html" title="component which is used for detecting collisions and information about them">Collider</a> types <br /></td></tr>
-<tr class="separator:ad4a15109fc5b785904b54d6044527336"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82fb835394855287a6873bf742462fdc"><td class="memItemLeft" align="right" valign="top"><a id="a82fb835394855287a6873bf742462fdc"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CollisionSystem_8h.html#a82fb835394855287a6873bf742462fdc">CollisionFunctionMap</a> = std::map&lt; std::pair&lt; std::type_index, std::type_index &gt;, <a class="el" href="CollisionSystem_8h.html#ad4a15109fc5b785904b54d6044527336">CollisionCheckFunction</a> &gt;</td></tr>
-<tr class="memdesc:a82fb835394855287a6873bf742462fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">map that stores the CollisionCheckMethods between each <a class="el" href="classCollider.html" title="component which is used for detecting collisions and information about them">Collider</a> type <br /></td></tr>
-<tr class="separator:a82fb835394855287a6873bf742462fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe804fe1964b76bbf5d5c5f63f0b25fd"><td class="memItemLeft" align="right" valign="top"><a id="abe804fe1964b76bbf5d5c5f63f0b25fd"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CollisionSystem_8h.html#abe804fe1964b76bbf5d5c5f63f0b25fd">CollisionLayerFlags</a> = unsigned</td></tr>
-<tr class="memdesc:abe804fe1964b76bbf5d5c5f63f0b25fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit flags of which layers a collider collides with <br /></td></tr>
-<tr class="separator:abe804fe1964b76bbf5d5c5f63f0b25fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>

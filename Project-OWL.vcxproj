@@ -316,6 +316,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Pathfinder.cpp" />
     <ClCompile Include="Source\CameraBehavior.cpp" />
     <ClCompile Include="Source\PauseSystem.cpp" />
+    <ClCompile Include="Source\PlayBar.cpp" />
     <ClCompile Include="Source\Pool.cpp" />
     <ClCompile Include="Source\Lua.cpp" />
     <ClCompile Include="Source\PlayerController.cpp" />
@@ -341,6 +342,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ResourceCounterUi.cpp" />
     <ClCompile Include="Source\ResourcesUiManager.cpp" />
     <ClCompile Include="Source\SceneChangeButton.cpp" />
+    <ClCompile Include="Source\SplashScreenController.cpp" />
     <ClCompile Include="Source\StaticBody.cpp" />
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
@@ -382,6 +384,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Console.h" />
     <ClInclude Include="Source\HideableForeground.h" />
     <ClInclude Include="Source\PauseSystem.h" />
+    <ClInclude Include="Source\PlayBar.h" />
     <ClInclude Include="Source\ResourceCounterUi.h" />
     <ClInclude Include="Source\AssetReference.h" />
     <ClInclude Include="Source\CollisionLayerFlags.h" />
@@ -398,6 +401,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\Nineslice.h" />
     <ClInclude Include="Source\ResourcesUiManager.h" />
     <ClInclude Include="Source\SceneChangeButton.h" />
+    <ClInclude Include="Source\SplashScreenController.h" />
     <ClInclude Include="Source\TilemapEditor.h" />
     <ClInclude Include="Source\TilemapTextureConnector.h" />
     <ClInclude Include="Source\UiBarSprite.h" />
@@ -496,6 +500,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\GameWin.scene.json" />
     <None Include="Data\Scenes\MapTest.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
+    <None Include="Data\Scenes\SplashScreen.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />
     <None Include="Data\shaders\nineslice.frag" />
     <None Include="Data\shaders\nineslice.vert" />

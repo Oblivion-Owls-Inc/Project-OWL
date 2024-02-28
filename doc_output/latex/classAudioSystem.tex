@@ -32,12 +32,22 @@ Collaboration diagram for Audio\+System\+:\nopagebreak
 \item 
 FMOD\+::\+System $\ast$ \mbox{\hyperlink{classAudioSystem_a1c110f51e7b41650b96e92f0a18a34dc}{Get\+FMOD}} ()
 \begin{DoxyCompactList}\small\item\em gets the internal FMOD\+::\+System \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classAudioSystem_a2672b4260e26cbccfcd4920672e76fcc}\label{classAudioSystem_a2672b4260e26cbccfcd4920672e76fcc}} 
-{\bfseries Audio\+System} (\mbox{\hyperlink{classAudioSystem}{Audio\+System}} \&other)=delete
-\item 
-\mbox{\Hypertarget{classAudioSystem_a34fe062cf88bd515a51e004409b86ac4}\label{classAudioSystem_a34fe062cf88bd515a51e004409b86ac4}} 
-void {\bfseries operator=} (const \mbox{\hyperlink{classAudioSystem}{Audio\+System}} \&)=delete
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{classAudioListener}{Audio\+Listener}} $\ast$ \mbox{\hyperlink{classAudioSystem_adbb637da6069d508ad2d616b21c3a1ac}{Get\+Active\+Listener}} () const
+\begin{DoxyCompactList}\small\item\em gets the currently active \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAudioSystem_a1f842c8d424813e250f485f78c16e7dd}{Set\+Active\+Listener}} (\mbox{\hyperlink{classAudioListener}{Audio\+Listener}} $\ast$listener)
+\begin{DoxyCompactList}\small\item\em gets the currently active \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAudioSystem_aa0f478c9589e3aa4e01cd054dc39bbab}\label{classAudioSystem_aa0f478c9589e3aa4e01cd054dc39bbab}} 
+virtual void \mbox{\hyperlink{classAudioSystem_aa0f478c9589e3aa4e01cd054dc39bbab}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em Gets called once when this \mbox{\hyperlink{classSystem}{System}} is added to the \mbox{\hyperlink{classEngine}{Engine}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classAudioSystem_a290ecab401e40ca7851a5a4a2c72e984}\label{classAudioSystem_a290ecab401e40ca7851a5a4a2c72e984}} 
+virtual void \mbox{\hyperlink{classAudioSystem_a290ecab401e40ca7851a5a4a2c72e984}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em Gets called once before the \mbox{\hyperlink{classEngine}{Engine}} closes. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classAudioSystem_af538b729a94bb39f0a9a88f4c21a1d96}{On\+Update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Gets called once every graphics frame. Do not use this function for anything that affects the simulation. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classAudioSystem_a07346304ecfea616e50ef5dea5cc8ca4}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classAudioSystem_aec39910904b71f2f33f43ff2d7043093}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classAudioSystem}{Audio\+System}} to json \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -50,6 +60,19 @@ static \mbox{\hyperlink{classAudioSystem}{Audio\+System}} $\ast$ \mbox{\hyperlin
 Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when creating new Systems. 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAudioSystem_adbb637da6069d508ad2d616b21c3a1ac}\label{classAudioSystem_adbb637da6069d508ad2d616b21c3a1ac}} 
+\index{AudioSystem@{AudioSystem}!GetActiveListener@{GetActiveListener}}
+\index{GetActiveListener@{GetActiveListener}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{GetActiveListener()}{GetActiveListener()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} $\ast$ Audio\+System\+::\+Get\+Active\+Listener (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the currently active \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} 
+
+\begin{DoxyReturn}{Returns}
+the currently active \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classAudioSystem_a1c110f51e7b41650b96e92f0a18a34dc}\label{classAudioSystem_a1c110f51e7b41650b96e92f0a18a34dc}} 
 \index{AudioSystem@{AudioSystem}!GetFMOD@{GetFMOD}}
 \index{GetFMOD@{GetFMOD}!AudioSystem@{AudioSystem}}
@@ -76,6 +99,74 @@ gets the instance of \mbox{\hyperlink{classAudioSystem}{Audio\+System}}
 \begin{DoxyReturn}{Returns}
 the instance of the \mbox{\hyperlink{classAudioSystem}{Audio\+System}} 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classAudioSystem_a07346304ecfea616e50ef5dea5cc8ca4}\label{classAudioSystem_a07346304ecfea616e50ef5dea5cc8ca4}} 
+\index{AudioSystem@{AudioSystem}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Audio\+System\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classAudioSystem_af538b729a94bb39f0a9a88f4c21a1d96}\label{classAudioSystem_af538b729a94bb39f0a9a88f4c21a1d96}} 
+\index{AudioSystem@{AudioSystem}!OnUpdate@{OnUpdate}}
+\index{OnUpdate@{OnUpdate}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
+{\footnotesize\ttfamily void Audio\+System\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets called once every graphics frame. Do not use this function for anything that affects the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & the elapsed time in seconds since the previous frame \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classSystem_ac80e6b0f679fe9befb8d45014ee389cb}{System}}.
+
+\mbox{\Hypertarget{classAudioSystem_a1f842c8d424813e250f485f78c16e7dd}\label{classAudioSystem_a1f842c8d424813e250f485f78c16e7dd}} 
+\index{AudioSystem@{AudioSystem}!SetActiveListener@{SetActiveListener}}
+\index{SetActiveListener@{SetActiveListener}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{SetActiveListener()}{SetActiveListener()}}
+{\footnotesize\ttfamily void Audio\+System\+::\+Set\+Active\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAudioListener}{Audio\+Listener}} $\ast$}]{listener }\end{DoxyParamCaption})}
+
+
+
+gets the currently active \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & the \mbox{\hyperlink{classAudioListener}{Audio\+Listener}} to make active \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAudioSystem_aec39910904b71f2f33f43ff2d7043093}\label{classAudioSystem_aec39910904b71f2f33f43ff2d7043093}} 
+\index{AudioSystem@{AudioSystem}!Write@{Write}}
+\index{Write@{Write}!AudioSystem@{AudioSystem}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Audio\+System\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classAudioSystem}{Audio\+System}} to json 
+
+\begin{DoxyReturn}{Returns}
+the json data of the \mbox{\hyperlink{classAudioSystem}{Audio\+System}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

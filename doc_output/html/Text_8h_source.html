@@ -69,70 +69,130 @@ $(function() {
 <div class="title">Text.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="Text_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Component_8h.html">Component.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span>  <span class="comment">// accept new text</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<a href="Text_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classText.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="classText.html">Text</a> : <span class="keyword">public</span> <a class="code" href="classComponent.html">Component</a></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classText.html#ab3e26143fccc52699bcc5149cae852bc">Text</a>();</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Component_8h.html">Component.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ComponentReference_8h.html">ComponentReference.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Tilemap_8h.html">Tilemap.h</a>&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="comment">// Inherited via Component</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classComponent.html">Component</a> * <a class="code" href="classText.html#ac971ea4d6d43c1635ffd078f1c0e7e95">Clone</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classText.html#ae0aeffd11075b567fa4a2d26049c0d5c">   23</a></span>&#160;    __inline std::string <span class="keyword">const</span>&amp; <a class="code" href="classText.html#ae0aeffd11075b567fa4a2d26049c0d5c">GetText</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_Text; }</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classText.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classText.html">Text</a> : <span class="keyword">public</span> <a class="code" href="classComponent.html">Component</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>: <span class="comment">// constructor</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classText.html#a21fb9900e98f5c5ecf308f0f9a52f752">   28</a></span>&#160;    __inline <span class="keywordtype">void</span> <a class="code" href="classText.html#a21fb9900e98f5c5ecf308f0f9a52f752">SetText</a>( std::string <span class="keyword">const</span>&amp; text ) { m_Text = text; loadTextIntoTilemap(); } </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classText.html#ab3e26143fccc52699bcc5149cae852bc">Text</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">private</span>: <span class="comment">// overrides</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnInit() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>: <span class="comment">// member variables / helpers</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::string m_Text;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>: <span class="comment">// accessors</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::string <span class="keyword">const</span>&amp; <a class="code" href="classText.html#acd9dd322e18214aafe707357b2704365">GetText</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classText.html#abfad9c2c35e97c03070f0691daa1dfd7">SetText</a>( std::string <span class="keyword">const</span>&amp; text );</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> loadTextIntoTilemap();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>: <span class="comment">// virutal override methods</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>: <span class="comment">// Reading</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> readText( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">static</span> ReadMethodMap&lt; Text &gt; <span class="keyword">const</span> s_ReadMethods;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classText.html#aeec5084758e26909da5236367373ddfc">OnInit</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classText.html#a0e7de2ef7dc0f0433595987d4b448f01">OnExit</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">private</span>: <span class="comment">// members</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; GetReadMethods()<span class="keyword"> const override</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> (ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp;)s_ReadMethods;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    std::string m_Text;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classComponentReference.html">ComponentReference&lt; Tilemap&lt; int &gt;</a> &gt; m_Tilemap;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classText.html#a47029e0070e938c6af896bf827a99f9d">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> loadTextIntoTilemap();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">public</span>: <span class="comment">// inspection</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classText.html#a455483830810e2fd5688a94ac1fe18f8">Inspector</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">private</span>: <span class="comment">// Reading</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> readText( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classText.html#a1ad30423a25b181b116e9298a7e27a9a">GetReadMethods</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classText.html#a47029e0070e938c6af896bf827a99f9d">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">public</span>: <span class="comment">// copying</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classText.html">Text</a>* <a class="code" href="classText.html#a8c42c21222b7db31b6d1355be1b23b58">Clone</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keyword">private</span>: <span class="comment">// copying</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="classText.html#ab3e26143fccc52699bcc5149cae852bc">Text</a>( <a class="code" href="classText.html">Text</a> <span class="keyword">const</span>&amp; other );</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="comment">// disable assignment</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordtype">void</span> operator =( <a class="code" href="classText.html">Text</a> <span class="keyword">const</span>&amp; ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;};</div>
+<div class="ttc" id="aComponentReference_8h_html"><div class="ttname"><a href="ComponentReference_8h.html">ComponentReference.h</a></div><div class="ttdoc">a reference to a component in the scene</div></div>
 <div class="ttc" id="aComponent_8h_html"><div class="ttname"><a href="Component_8h.html">Component.h</a></div><div class="ttdoc">Virtual component header.</div></div>
+<div class="ttc" id="aTilemap_8h_html"><div class="ttname"><a href="Tilemap_8h.html">Tilemap.h</a></div><div class="ttdoc">Tilemap component - loads and manages a tilemap array.</div></div>
+<div class="ttc" id="aclassComponentReference_html"><div class="ttname"><a href="classComponentReference.html">ComponentReference</a></div><div class="ttdoc">a reference to a component in the scene</div><div class="ttdef"><b>Definition:</b> ComponentReference.h:59</div></div>
 <div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:21</div></div>
-<div class="ttc" id="aclassText_html"><div class="ttname"><a href="classText.html">Text</a></div><div class="ttdoc">Uses TilemapSprite attached to parent entity to draw text.</div><div class="ttdef"><b>Definition:</b> Text.h:12</div></div>
-<div class="ttc" id="aclassText_html_a21fb9900e98f5c5ecf308f0f9a52f752"><div class="ttname"><a href="classText.html#a21fb9900e98f5c5ecf308f0f9a52f752">Text::SetText</a></div><div class="ttdeci">__inline void SetText(std::string const &amp;text)</div><div class="ttdoc">sets the text of this Text</div><div class="ttdef"><b>Definition:</b> Text.h:28</div></div>
-<div class="ttc" id="aclassText_html_a47029e0070e938c6af896bf827a99f9d"><div class="ttname"><a href="classText.html#a47029e0070e938c6af896bf827a99f9d">Text::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Text component data to a JSON file.</div><div class="ttdef"><b>Definition:</b> Text.cpp:65</div></div>
-<div class="ttc" id="aclassText_html_ab3e26143fccc52699bcc5149cae852bc"><div class="ttname"><a href="classText.html#ab3e26143fccc52699bcc5149cae852bc">Text::Text</a></div><div class="ttdeci">Text()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> Text.cpp:12</div></div>
-<div class="ttc" id="aclassText_html_ac971ea4d6d43c1635ffd078f1c0e7e95"><div class="ttname"><a href="classText.html#ac971ea4d6d43c1635ffd078f1c0e7e95">Text::Clone</a></div><div class="ttdeci">virtual Component * Clone() const override</div><div class="ttdef"><b>Definition:</b> Text.cpp:17</div></div>
-<div class="ttc" id="aclassText_html_ae0aeffd11075b567fa4a2d26049c0d5c"><div class="ttname"><a href="classText.html#ae0aeffd11075b567fa4a2d26049c0d5c">Text::GetText</a></div><div class="ttdeci">__inline std::string const  &amp; GetText() const</div><div class="ttdoc">gets the text of this Text</div><div class="ttdef"><b>Definition:</b> Text.h:23</div></div>
+<div class="ttc" id="aclassText_html"><div class="ttname"><a href="classText.html">Text</a></div><div class="ttdoc">Component that makes use of Tilemap to draw text.</div><div class="ttdef"><b>Definition:</b> Text.h:20</div></div>
+<div class="ttc" id="aclassText_html_a0e7de2ef7dc0f0433595987d4b448f01"><div class="ttname"><a href="classText.html#a0e7de2ef7dc0f0433595987d4b448f01">Text::OnExit</a></div><div class="ttdeci">virtual void OnExit() override</div><div class="ttdoc">called when exiting a scene</div><div class="ttdef"><b>Definition:</b> Text.cpp:65</div></div>
+<div class="ttc" id="aclassText_html_a1ad30423a25b181b116e9298a7e27a9a"><div class="ttname"><a href="classText.html#a1ad30423a25b181b116e9298a7e27a9a">Text::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">gets the map of read methods for this Component</div><div class="ttdef"><b>Definition:</b> Text.cpp:131</div></div>
+<div class="ttc" id="aclassText_html_a455483830810e2fd5688a94ac1fe18f8"><div class="ttname"><a href="classText.html#a455483830810e2fd5688a94ac1fe18f8">Text::Inspector</a></div><div class="ttdeci">virtual void Inspector() override</div><div class="ttdoc">inspects this Text Component</div><div class="ttdef"><b>Definition:</b> Text.cpp:102</div></div>
+<div class="ttc" id="aclassText_html_a47029e0070e938c6af896bf827a99f9d"><div class="ttname"><a href="classText.html#a47029e0070e938c6af896bf827a99f9d">Text::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">Write all Text component data to a JSON file.</div><div class="ttdef"><b>Definition:</b> Text.cpp:143</div></div>
+<div class="ttc" id="aclassText_html_a8c42c21222b7db31b6d1355be1b23b58"><div class="ttname"><a href="classText.html#a8c42c21222b7db31b6d1355be1b23b58">Text::Clone</a></div><div class="ttdeci">virtual Text * Clone() const override</div><div class="ttdoc">makes a copy of this Text Component</div><div class="ttdef"><b>Definition:</b> Text.cpp:159</div></div>
+<div class="ttc" id="aclassText_html_ab3e26143fccc52699bcc5149cae852bc"><div class="ttname"><a href="classText.html#ab3e26143fccc52699bcc5149cae852bc">Text::Text</a></div><div class="ttdeci">Text()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> Text.cpp:24</div></div>
+<div class="ttc" id="aclassText_html_abfad9c2c35e97c03070f0691daa1dfd7"><div class="ttname"><a href="classText.html#abfad9c2c35e97c03070f0691daa1dfd7">Text::SetText</a></div><div class="ttdeci">void SetText(std::string const &amp;text)</div><div class="ttdoc">sets the text of this Text</div><div class="ttdef"><b>Definition:</b> Text.cpp:44</div></div>
+<div class="ttc" id="aclassText_html_acd9dd322e18214aafe707357b2704365"><div class="ttname"><a href="classText.html#acd9dd322e18214aafe707357b2704365">Text::GetText</a></div><div class="ttdeci">std::string const  &amp; GetText() const</div><div class="ttdoc">gets the text of this Text</div><div class="ttdef"><b>Definition:</b> Text.cpp:36</div></div>
+<div class="ttc" id="aclassText_html_aeec5084758e26909da5236367373ddfc"><div class="ttname"><a href="classText.html#aeec5084758e26909da5236367373ddfc">Text::OnInit</a></div><div class="ttdeci">virtual void OnInit() override</div><div class="ttdoc">called when entering a scene</div><div class="ttdef"><b>Definition:</b> Text.cpp:57</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

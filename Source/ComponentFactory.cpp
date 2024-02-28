@@ -58,6 +58,7 @@
 #include "ResourceCounterUi.h"
 #include "ResourcesUiManager.h"
 #include "SceneChangeButton.h"
+#include "SplashScreenController.h"
 #include "HideableForeground.h"
 
 
@@ -195,12 +196,13 @@
         { "Generator"              , ComponentInfo< Generator               >() },
         { "TilemapEditor"          , ComponentInfo< TilemapEditor           >() },
         { "EditorCameraController" , ComponentInfo< EditorCameraController  >() },
-        { "WinState"               , ComponentInfo< WinState                >() },
-        { "Nineslice"              , ComponentInfo< Nineslice               >() },
         { "ResourceCounterUi"      , ComponentInfo< ResourceCounterUi       >() },
         { "ResourcesUiManager"     , ComponentInfo< ResourcesUiManager      >() },
         { "SceneChangeButton"      , ComponentInfo< SceneChangeButton       >() },
-        { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
+        { "WinState"               , ComponentInfo< WinState                >() },
+        { "Nineslice"              , ComponentInfo< Nineslice               >() },
+        { "SplashScreenController" , ComponentInfo< SplashScreenController  >() },
+        { "HideableForeground"     , ComponentInfo< HideableForeground      >() }
     };
 
 //-----------------------------------------------------------------------------

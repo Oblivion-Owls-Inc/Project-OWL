@@ -13,7 +13,7 @@
         "InputSystem": {},
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Prototype"
+            "NextSceneName": "SplashScreen"
         },
         "EntitySystem": {},
         "PauseSystem": {},
@@ -50,7 +50,7 @@
         },
         "CheatSystem": {},
         "DebugSystem": {
-            "ShowFpsWindow": false,
+            "ShowFpsWindow": true,
             "ShowDebugWindow": true
         },
         "AssetLibrary<Entity>": {},

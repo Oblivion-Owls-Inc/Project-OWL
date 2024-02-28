@@ -21,14 +21,26 @@ Collaboration diagram for Input\+System\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \mbox{\hyperlink{classInputSystem_a7164574fa58270fbca4828d10b33d367}{Get\+Key\+Down}} (int glfw\+\_\+key)
+int \mbox{\hyperlink{classInputSystem_a3e148d02bc1ff4eb04898e15242a3bec}{Init\+Alternate\+Window}} (GLFWwindow $\ast$handle)
+\begin{DoxyCompactList}\small\item\em sets a new window handle \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInputSystem_aaf1000882f8617d5b87dfee51e0374cf}{Get\+Key\+Down}} (int glfw\+\_\+key, int alt\+Window=0)
 \begin{DoxyCompactList}\small\item\em checks if a given key is down \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classInputSystem_a9969b85f4d1dc654f94e884d34565738}{Get\+Key\+Up}} (int glfw\+\_\+key)
+bool \mbox{\hyperlink{classInputSystem_a25408eb41abdd2b482a5d026c7b495d3}{Get\+Gamepad\+Button\+Down}} (int glfw\+\_\+button)
+\begin{DoxyCompactList}\small\item\em Checks if a given game pad button is down. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInputSystem_ac256c5fe1a5dea731854635d8f3e6f07}{Get\+Key\+Up}} (int glfw\+\_\+key, int alt\+Window=0)
 \begin{DoxyCompactList}\small\item\em checks if a given key is up \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classInputSystem_a316a694c0ccaf20ae38a02088f5d7aed}{Get\+Key\+Triggered}} (int glfw\+\_\+key)
+bool \mbox{\hyperlink{classInputSystem_a931cbc0049e92c06bc71150bf693c25c}{Get\+Gamepad\+Button\+Up}} (int glfw\+\_\+button)
+\begin{DoxyCompactList}\small\item\em Checks if a given game pad button is up. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInputSystem_aca4d87022c19249e096103fee042b491}{Get\+Key\+Triggered}} (int glfw\+\_\+key, int alt\+Window=0)
 \begin{DoxyCompactList}\small\item\em checks if a given key is triggered \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classInputSystem_a477593f77b154e764abf05c3eaebbbb8}{Get\+Key\+Released}} (int glfw\+\_\+key)
+bool \mbox{\hyperlink{classInputSystem_a09e0dbe63d78b2deb9b9f0f727b79c1f}{Get\+Gamepad\+Button\+Triggered}} (int glfw\+\_\+button)
+\begin{DoxyCompactList}\small\item\em Checks if a given game pad button is triggered. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInputSystem_a370411559b9479a165e08197c05e287f}{Get\+Key\+Released}} (int glfw\+\_\+key, int alt\+Window=0)
 \begin{DoxyCompactList}\small\item\em checks if a given key is released \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classInputSystem_aa6a58a33761d77355f1bb08d3746e017}{Get\+Gamepad\+Button\+Released}} (int glfw\+\_\+button)
+\begin{DoxyCompactList}\small\item\em Checks if a given game pad button is released. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classInputSystem_aa3d0144a1052d8271475a6acfa3daf0a}{Get\+Gamepad\+Axis\+State}} (int gamepad\+\_\+id, int axis\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Checks the state of a passed in input key. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classInputSystem_a67cc327fa217177f764e8ca15f77c040}{Get\+Mouse\+Down}} (int glfw\+\_\+mouse\+\_\+button)
 \begin{DoxyCompactList}\small\item\em checks if a given mouse button is down \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classInputSystem_a68b1a0fa7fc940a4a1eb4f4b803e1c3e}{Get\+Mouse\+Up}} (int glfw\+\_\+mouse\+\_\+button)
@@ -37,16 +49,14 @@ bool \mbox{\hyperlink{classInputSystem_aacfb56dd22442cd29afd75bcc43c51e4}{Get\+M
 \begin{DoxyCompactList}\small\item\em checks if a given mouse button is triggered \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classInputSystem_a31e73149cd8c6e9f2d6935471afd6d75}{Get\+Mouse\+Released}} (int glfw\+\_\+mouse\+\_\+button)
 \begin{DoxyCompactList}\small\item\em checks if a given mouse button is released \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{classInputSystem_ae6d0e0063c3900ed6678a21b3ea7817e}{Get\+Mouse\+Pos\+Screen}} () const
+\begin{DoxyCompactList}\small\item\em gets the mouse pos in screen space \end{DoxyCompactList}\item 
 glm\+::vec2 \mbox{\hyperlink{classInputSystem_a3c89c230ccf1c3d3fcfc41c9368e8e83}{Get\+Mouse\+Pos\+UI}} ()
 \begin{DoxyCompactList}\small\item\em gets mouse pos in UI space \end{DoxyCompactList}\item 
 glm\+::vec2 \mbox{\hyperlink{classInputSystem_a1a4c9201d7299d4ff7100a35fc030118}{Get\+Mouse\+Pos\+World}} ()
 \begin{DoxyCompactList}\small\item\em gets mouse pos in world space \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classInputSystem_a3c5d736864be0ddae0ea0066d8c6fa90}\label{classInputSystem_a3c5d736864be0ddae0ea0066d8c6fa90}} 
-{\bfseries Input\+System} (\mbox{\hyperlink{classInputSystem}{Input\+System}} \&other)=delete
-\item 
-\mbox{\Hypertarget{classInputSystem_a7e9cd50ed575cf88233c307f548d790e}\label{classInputSystem_a7e9cd50ed575cf88233c307f548d790e}} 
-void {\bfseries operator=} (const \mbox{\hyperlink{classInputSystem}{Input\+System}} \&)=delete
-\end{DoxyCompactItemize}
+float \mbox{\hyperlink{classInputSystem_a3f09ca7da9888ea5d3ef513ee49a029c}{Get\+Mouse\+Delta\+Scroll}} ()
+\begin{DoxyCompactList}\small\item\em gets how much the mouse has scrolled since last frame \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -55,11 +65,17 @@ static \mbox{\hyperlink{classInputSystem}{Input\+System}} $\ast$ \mbox{\hyperlin
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{classInputSystem_a6932d0a3a9fec54bc5f16c5792130fe6}\label{classInputSystem_a6932d0a3a9fec54bc5f16c5792130fe6}} 
+GLFWwindow $\ast$ {\bfseries handle}
+\item 
 \mbox{\Hypertarget{classInputSystem_a06e6a4f2a090251417efcb0c49a9efa2}\label{classInputSystem_a06e6a4f2a090251417efcb0c49a9efa2}} 
 map$<$ int, bool\mbox{[}3\mbox{]}$>$ $\ast$ {\bfseries m\+\_\+\+Key\+States\+Hold}
 \item 
 \mbox{\Hypertarget{classInputSystem_a3fe5f67e01538a23ce3e2947441ca8f5}\label{classInputSystem_a3fe5f67e01538a23ce3e2947441ca8f5}} 
 map$<$ int, bool\mbox{[}3\mbox{]}$>$ $\ast$ {\bfseries m\+\_\+\+Mouse\+States\+Hold}
+\item 
+\mbox{\Hypertarget{classInputSystem_a110d2a20b1792039169eef285def4f01}\label{classInputSystem_a110d2a20b1792039169eef285def4f01}} 
+map$<$ int, bool\mbox{[}3\mbox{]}$>$ $\ast$ {\bfseries m\+\_\+\+Controller\+States\+Hold}
 \item 
 \mbox{\Hypertarget{classInputSystem_a2b9aa4d1dbe8693f89f305198aa83fc4}\label{classInputSystem_a2b9aa4d1dbe8693f89f305198aa83fc4}} 
 map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Key\+States}
@@ -67,16 +83,159 @@ map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Key\+States}
 \mbox{\Hypertarget{classInputSystem_a2033d90f27fef1d08e1441ac199aeda5}\label{classInputSystem_a2033d90f27fef1d08e1441ac199aeda5}} 
 map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Fixed\+Key\+States}
 \item 
+\mbox{\Hypertarget{classInputSystem_a7da63858e8d542984a2dc12cad644f26}\label{classInputSystem_a7da63858e8d542984a2dc12cad644f26}} 
+map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Controller\+States}
+\item 
+\mbox{\Hypertarget{classInputSystem_a1feda43e880987edcbe4cac293889467}\label{classInputSystem_a1feda43e880987edcbe4cac293889467}} 
+map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Fixed\+Controller\+States}
+\item 
 \mbox{\Hypertarget{classInputSystem_a98df56265d9e034fa160981ebd056a12}\label{classInputSystem_a98df56265d9e034fa160981ebd056a12}} 
 map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Mouse\+States}
 \item 
 \mbox{\Hypertarget{classInputSystem_a4679f7d717904ab198f332a48c555502}\label{classInputSystem_a4679f7d717904ab198f332a48c555502}} 
 map$<$ int, bool\mbox{[}3\mbox{]}$>$ {\bfseries m\+\_\+\+Fixed\+Mouse\+States}
-\end{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classInputSystem_ac82b9600b4b7853302a0bb81a64399af}\label{classInputSystem_ac82b9600b4b7853302a0bb81a64399af}} 
+std\+::vector$<$ GLFWwindow $\ast$ $>$ {\bfseries alt\+Handles}
+\item 
+\mbox{\Hypertarget{classInputSystem_a93de3b3edb774846dc980a651b8046fb}\label{classInputSystem_a93de3b3edb774846dc980a651b8046fb}} 
+std\+::vector$<$ map$<$ int, bool\mbox{[}3\mbox{]}$>$ $>$ {\bfseries windows}
+\item 
+\mbox{\Hypertarget{classInputSystem_a97ebd940ae78cb1e1997c0544de1a77d}\label{classInputSystem_a97ebd940ae78cb1e1997c0544de1a77d}} 
+int {\bfseries amount} = 0
+\item 
+\mbox{\Hypertarget{classInputSystem_a4ab5505fcd02e2b33bc7437ed0042ee3}\label{classInputSystem_a4ab5505fcd02e2b33bc7437ed0042ee3}} 
+float \mbox{\hyperlink{classInputSystem_a4ab5505fcd02e2b33bc7437ed0042ee3}{m\+\_\+\+Delta\+Scroll}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em how much the mouse has scrolled this graphicsframe \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInputSystem_a6c605487d4bcf93d558dce7d59a1ee3b}\label{classInputSystem_a6c605487d4bcf93d558dce7d59a1ee3b}} 
+float \mbox{\hyperlink{classInputSystem_a6c605487d4bcf93d558dce7d59a1ee3b}{m\+\_\+\+Fixed\+Delta\+Scroll}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em how much the mouse has scrolled this simulation frame \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classInputSystem_aa3d0144a1052d8271475a6acfa3daf0a}\label{classInputSystem_aa3d0144a1052d8271475a6acfa3daf0a}} 
+\index{InputSystem@{InputSystem}!GetGamepadAxisState@{GetGamepadAxisState}}
+\index{GetGamepadAxisState@{GetGamepadAxisState}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetGamepadAxisState()}{GetGamepadAxisState()}}
+{\footnotesize\ttfamily float Input\+System\+::\+Get\+Gamepad\+Axis\+State (\begin{DoxyParamCaption}\item[{int}]{gamepad\+\_\+id,  }\item[{int}]{axis\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Checks the state of a passed in input key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em JID} & -\/ The ID of the controller to grab. \\
+\hline
+{\em input} & -\/ The button or axis to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the state of an axis (float). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a25408eb41abdd2b482a5d026c7b495d3}\label{classInputSystem_a25408eb41abdd2b482a5d026c7b495d3}} 
+\index{InputSystem@{InputSystem}!GetGamepadButtonDown@{GetGamepadButtonDown}}
+\index{GetGamepadButtonDown@{GetGamepadButtonDown}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetGamepadButtonDown()}{GetGamepadButtonDown()}}
+{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Gamepad\+Button\+Down (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+button }\end{DoxyParamCaption})}
+
+
+
+Checks if a given game pad button is down. 
+
+Checks if a given button is down.
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+key} & button to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns if the button is down.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+button} & the button to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns if the button is down. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_aa6a58a33761d77355f1bb08d3746e017}\label{classInputSystem_aa6a58a33761d77355f1bb08d3746e017}} 
+\index{InputSystem@{InputSystem}!GetGamepadButtonReleased@{GetGamepadButtonReleased}}
+\index{GetGamepadButtonReleased@{GetGamepadButtonReleased}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetGamepadButtonReleased()}{GetGamepadButtonReleased()}}
+{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Gamepad\+Button\+Released (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+button }\end{DoxyParamCaption})}
+
+
+
+Checks if a given game pad button is released. 
+
+Checks if a given button is released.
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+button} & button to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns if the button is released.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+button} & the button to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns if the button is released 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a09e0dbe63d78b2deb9b9f0f727b79c1f}\label{classInputSystem_a09e0dbe63d78b2deb9b9f0f727b79c1f}} 
+\index{InputSystem@{InputSystem}!GetGamepadButtonTriggered@{GetGamepadButtonTriggered}}
+\index{GetGamepadButtonTriggered@{GetGamepadButtonTriggered}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetGamepadButtonTriggered()}{GetGamepadButtonTriggered()}}
+{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Gamepad\+Button\+Triggered (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+button }\end{DoxyParamCaption})}
+
+
+
+Checks if a given game pad button is triggered. 
+
+Check if a given button is triggered.
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+key} & button to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns if the button is triggered.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+button} & the button to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns if button is triggered. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a931cbc0049e92c06bc71150bf693c25c}\label{classInputSystem_a931cbc0049e92c06bc71150bf693c25c}} 
+\index{InputSystem@{InputSystem}!GetGamepadButtonUp@{GetGamepadButtonUp}}
+\index{GetGamepadButtonUp@{GetGamepadButtonUp}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetGamepadButtonUp()}{GetGamepadButtonUp()}}
+{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Gamepad\+Button\+Up (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+button }\end{DoxyParamCaption})}
+
+
+
+Checks if a given game pad button is up. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em glfw\+\_\+key} & button to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns if the button is up. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classInputSystem_af5fc404c7c6bc2303d741bd7b9abe7df}\label{classInputSystem_af5fc404c7c6bc2303d741bd7b9abe7df}} 
 \index{InputSystem@{InputSystem}!GetInstance@{GetInstance}}
 \index{GetInstance@{GetInstance}!InputSystem@{InputSystem}}
@@ -90,11 +249,11 @@ gets the instance of \mbox{\hyperlink{classInputSystem}{Input\+System}}
 \begin{DoxyReturn}{Returns}
 the instance of the \mbox{\hyperlink{classInputSystem}{Input\+System}} 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classInputSystem_a7164574fa58270fbca4828d10b33d367}\label{classInputSystem_a7164574fa58270fbca4828d10b33d367}} 
+\mbox{\Hypertarget{classInputSystem_aaf1000882f8617d5b87dfee51e0374cf}\label{classInputSystem_aaf1000882f8617d5b87dfee51e0374cf}} 
 \index{InputSystem@{InputSystem}!GetKeyDown@{GetKeyDown}}
 \index{GetKeyDown@{GetKeyDown}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{GetKeyDown()}{GetKeyDown()}}
-{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Key\+Down (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Key\+Down (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key,  }\item[{int}]{alt\+Window = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
@@ -108,11 +267,11 @@ checks if a given key is down
 \begin{DoxyReturn}{Returns}
 returns if key is down 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classInputSystem_a477593f77b154e764abf05c3eaebbbb8}\label{classInputSystem_a477593f77b154e764abf05c3eaebbbb8}} 
+\mbox{\Hypertarget{classInputSystem_a370411559b9479a165e08197c05e287f}\label{classInputSystem_a370411559b9479a165e08197c05e287f}} 
 \index{InputSystem@{InputSystem}!GetKeyReleased@{GetKeyReleased}}
 \index{GetKeyReleased@{GetKeyReleased}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{GetKeyReleased()}{GetKeyReleased()}}
-{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Key\+Released (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Key\+Released (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key,  }\item[{int}]{alt\+Window = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
@@ -126,11 +285,11 @@ checks if a given key is released
 \begin{DoxyReturn}{Returns}
 returns if key is released 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classInputSystem_a316a694c0ccaf20ae38a02088f5d7aed}\label{classInputSystem_a316a694c0ccaf20ae38a02088f5d7aed}} 
+\mbox{\Hypertarget{classInputSystem_aca4d87022c19249e096103fee042b491}\label{classInputSystem_aca4d87022c19249e096103fee042b491}} 
 \index{InputSystem@{InputSystem}!GetKeyTriggered@{GetKeyTriggered}}
 \index{GetKeyTriggered@{GetKeyTriggered}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{GetKeyTriggered()}{GetKeyTriggered()}}
-{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Key\+Triggered (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Key\+Triggered (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key,  }\item[{int}]{alt\+Window = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
@@ -144,11 +303,11 @@ checks if a given key is triggered
 \begin{DoxyReturn}{Returns}
 returns if key is triggered 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classInputSystem_a9969b85f4d1dc654f94e884d34565738}\label{classInputSystem_a9969b85f4d1dc654f94e884d34565738}} 
+\mbox{\Hypertarget{classInputSystem_ac256c5fe1a5dea731854635d8f3e6f07}\label{classInputSystem_ac256c5fe1a5dea731854635d8f3e6f07}} 
 \index{InputSystem@{InputSystem}!GetKeyUp@{GetKeyUp}}
 \index{GetKeyUp@{GetKeyUp}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{GetKeyUp()}{GetKeyUp()}}
-{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Key\+Up (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Input\+System\+::\+Get\+Key\+Up (\begin{DoxyParamCaption}\item[{int}]{glfw\+\_\+key,  }\item[{int}]{alt\+Window = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
@@ -161,6 +320,19 @@ checks if a given key is up
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 returns if key is up 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a3f09ca7da9888ea5d3ef513ee49a029c}\label{classInputSystem_a3f09ca7da9888ea5d3ef513ee49a029c}} 
+\index{InputSystem@{InputSystem}!GetMouseDeltaScroll@{GetMouseDeltaScroll}}
+\index{GetMouseDeltaScroll@{GetMouseDeltaScroll}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetMouseDeltaScroll()}{GetMouseDeltaScroll()}}
+{\footnotesize\ttfamily float Input\+System\+::\+Get\+Mouse\+Delta\+Scroll (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets how much the mouse has scrolled since last frame 
+
+\begin{DoxyReturn}{Returns}
+how much the mouse has scrolled since last frame 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classInputSystem_a67cc327fa217177f764e8ca15f77c040}\label{classInputSystem_a67cc327fa217177f764e8ca15f77c040}} 
 \index{InputSystem@{InputSystem}!GetMouseDown@{GetMouseDown}}
@@ -179,6 +351,19 @@ checks if a given mouse button is down
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 returns if mouse button is down 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_ae6d0e0063c3900ed6678a21b3ea7817e}\label{classInputSystem_ae6d0e0063c3900ed6678a21b3ea7817e}} 
+\index{InputSystem@{InputSystem}!GetMousePosScreen@{GetMousePosScreen}}
+\index{GetMousePosScreen@{GetMousePosScreen}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{GetMousePosScreen()}{GetMousePosScreen()}}
+{\footnotesize\ttfamily glm\+::vec2 Input\+System\+::\+Get\+Mouse\+Pos\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the mouse pos in screen space 
+
+\begin{DoxyReturn}{Returns}
+the current mouse pos in screen space 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classInputSystem_a3c89c230ccf1c3d3fcfc41c9368e8e83}\label{classInputSystem_a3c89c230ccf1c3d3fcfc41c9368e8e83}} 
 \index{InputSystem@{InputSystem}!GetMousePosUI@{GetMousePosUI}}
@@ -261,6 +446,24 @@ checks if a given mouse button is up
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 returns if mouse button is up 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a3e148d02bc1ff4eb04898e15242a3bec}\label{classInputSystem_a3e148d02bc1ff4eb04898e15242a3bec}} 
+\index{InputSystem@{InputSystem}!InitAlternateWindow@{InitAlternateWindow}}
+\index{InitAlternateWindow@{InitAlternateWindow}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{InitAlternateWindow()}{InitAlternateWindow()}}
+{\footnotesize\ttfamily int Input\+System\+::\+Init\+Alternate\+Window (\begin{DoxyParamCaption}\item[{GLFWwindow $\ast$}]{handle }\end{DoxyParamCaption})}
+
+
+
+sets a new window handle 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & of new window \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int, pass this back to check window 
 \end{DoxyReturn}
 
 

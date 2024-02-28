@@ -105,6 +105,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">~Texture</a> ()</td></tr>
 <tr class="memdesc:a09c4bcb7462f64c1d20fa69dba3cee8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: deletes texture data from GPU. <br /></td></tr>
 <tr class="separator:a09c4bcb7462f64c1d20fa69dba3cee8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa1e67f2d4c62aa386f3f49604a93691"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#aaa1e67f2d4c62aa386f3f49604a93691">GetUvOffset</a> (int frameIndex) const</td></tr>
+<tr class="memdesc:aaa1e67f2d4c62aa386f3f49604a93691"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the uv offset for a given frame offset  <a href="classTexture.html#aaa1e67f2d4c62aa386f3f49604a93691">More...</a><br /></td></tr>
+<tr class="separator:aaa1e67f2d4c62aa386f3f49604a93691"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14a2a70d9f130ac91a5ac95c8a4c7831"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a14a2a70d9f130ac91a5ac95c8a4c7831">Bind</a> (unsigned int slot=0) const</td></tr>
 <tr class="memdesc:a14a2a70d9f130ac91a5ac95c8a4c7831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this texture as active, so it can be used by texture shader.  <a href="classTexture.html#a14a2a70d9f130ac91a5ac95c8a4c7831">More...</a><br /></td></tr>
 <tr class="separator:a14a2a70d9f130ac91a5ac95c8a4c7831"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,11 +115,14 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a8374f8cf2a8425a46e95ab2d1a0aebf5">Inspect</a> ()</td></tr>
 <tr class="memdesc:a8374f8cf2a8425a46e95ab2d1a0aebf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the Debug to display information about this <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a>. <br /></td></tr>
 <tr class="separator:a8374f8cf2a8425a46e95ab2d1a0aebf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1662711f5f736ae36c057f91d9dc5e1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a1662711f5f736ae36c057f91d9dc5e1c">DisplayInInspector</a> (int frameIndex=0, float scale=100.0f, glm::vec4 const &amp;tintColor={ 1.0f, 1.0f, 1.0f, 1.0f }, glm::vec4 const &amp;borderColor={ 0.0f, 0.0f, 0.0f, 0.0f }) const</td></tr>
+<tr class="memdesc:a1662711f5f736ae36c057f91d9dc5e1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">displays this <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> in ImGui  <a href="classTexture.html#a1662711f5f736ae36c057f91d9dc5e1c">More...</a><br /></td></tr>
+<tr class="separator:a1662711f5f736ae36c057f91d9dc5e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0d942070b7a0925f41511b6f2884ab3"><td class="memItemLeft" align="right" valign="top">__inline glm::ivec2 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">GetPixelDimensions</a> () const</td></tr>
 <tr class="memdesc:ae0d942070b7a0925f41511b6f2884ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the original image in pixels.  <a href="classTexture.html#ae0d942070b7a0925f41511b6f2884ab3">More...</a><br /></td></tr>
 <tr class="separator:ae0d942070b7a0925f41511b6f2884ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a359a101095f149dd1754242cc47472"><td class="memItemLeft" align="right" valign="top">__inline float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a6a359a101095f149dd1754242cc47472">GetAspectRatio</a> () const</td></tr>
-<tr class="memdesc:a6a359a101095f149dd1754242cc47472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the original image in pixels.  <a href="classTexture.html#a6a359a101095f149dd1754242cc47472">More...</a><br /></td></tr>
+<tr class="memdesc:a6a359a101095f149dd1754242cc47472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the aspect ratio (x / y) of the texture.  <a href="classTexture.html#a6a359a101095f149dd1754242cc47472">More...</a><br /></td></tr>
 <tr class="separator:a6a359a101095f149dd1754242cc47472"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a775ad645b4c61af24c1cbb53bec1fc49"><td class="memItemLeft" align="right" valign="top">__inline glm::ivec2 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">GetSheetDimensions</a> () const</td></tr>
 <tr class="memdesc:a775ad645b4c61af24c1cbb53bec1fc49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns how many tiles/frames are in the texture.  <a href="classTexture.html#a775ad645b4c61af24c1cbb53bec1fc49">More...</a><br /></td></tr>
@@ -127,6 +133,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a34824525978e7bc15067cd194bf6cfe2"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">SetMesh</a> (<a class="el" href="classMesh.html">Mesh</a> const *mesh)</td></tr>
 <tr class="memdesc:a34824525978e7bc15067cd194bf6cfe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the <a class="el" href="classMesh.html" title="Stores data needed to render a basic mesh.">Mesh</a> this <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> is using  <a href="classTexture.html#a34824525978e7bc15067cd194bf6cfe2">More...</a><br /></td></tr>
 <tr class="separator:a34824525978e7bc15067cd194bf6cfe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b1a1b0c2727a5ee3a8aec5880ae3085"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a3b1a1b0c2727a5ee3a8aec5880ae3085">GetTextureId</a> () const</td></tr>
+<tr class="memdesc:a3b1a1b0c2727a5ee3a8aec5880ae3085"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the OpenGL ID of this <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a>  <a href="classTexture.html#a3b1a1b0c2727a5ee3a8aec5880ae3085">More...</a><br /></td></tr>
+<tr class="separator:a3b1a1b0c2727a5ee3a8aec5880ae3085"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2138e1ba2d1695e394c3a3bdb025498d"><td class="memItemLeft" align="right" valign="top"><a id="a2138e1ba2d1695e394c3a3bdb025498d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a2138e1ba2d1695e394c3a3bdb025498d">AfterLoad</a> ()</td></tr>
 <tr class="memdesc:a2138e1ba2d1695e394c3a3bdb025498d"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets called after reading all arugments <br /></td></tr>
@@ -213,6 +222,57 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="a1662711f5f736ae36c057f91d9dc5e1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1662711f5f736ae36c057f91d9dc5e1c">&#9670;&nbsp;</a></span>DisplayInInspector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Texture::DisplayInInspector </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>frameIndex</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>100.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec4 const &amp;&#160;</td>
+          <td class="paramname"><em>tintColor</em> = <code>{&#160;1.0f,&#160;1.0f,&#160;1.0f,&#160;1.0f&#160;}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec4 const &amp;&#160;</td>
+          <td class="paramname"><em>borderColor</em> = <code>{&#160;0.0f,&#160;0.0f,&#160;0.0f,&#160;0.0f&#160;}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>displays this <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> in ImGui </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scale</td><td>the scale to display this image at </td></tr>
+    <tr><td class="paramname">frameIndex</td><td>the index of the frame of this texture to display </td></tr>
+    <tr><td class="paramname">tintColor</td><td>the tint color of the displayed button </td></tr>
+    <tr><td class="paramname">borderColor</td><td>the border color of the displayed button </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a6a359a101095f149dd1754242cc47472"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a359a101095f149dd1754242cc47472">&#9670;&nbsp;</a></span>GetAspectRatio()</h2>
 
@@ -236,8 +296,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table>
 </div><div class="memdoc">
 
-<p>Returns the size of the original image in pixels. </p>
-<dl class="section return"><dt>Returns</dt><dd>float: the aspec ratio of the <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> </dd></dl>
+<p>Returns the aspect ratio (x / y) of the texture. </p>
+<dl class="section return"><dt>Returns</dt><dd>float: the aspect ratio of the <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> </dd></dl>
 
 </div>
 </div>
@@ -352,6 +412,53 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Returns how many tiles/frames are in the texture. </p>
 <dl class="section return"><dt>Returns</dt><dd>ivec2: x = width , y = height </dd></dl>
+
+</div>
+</div>
+<a id="a3b1a1b0c2727a5ee3a8aec5880ae3085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b1a1b0c2727a5ee3a8aec5880ae3085">&#9670;&nbsp;</a></span>GetTextureId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned Texture::GetTextureId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the OpenGL ID of this <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>the OpenGL ID of this <a class="el" href="classTexture.html" title="Stores texture data, and allows to bind it for rendering.">Texture</a> </dd></dl>
+
+</div>
+</div>
+<a id="aaa1e67f2d4c62aa386f3f49604a93691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa1e67f2d4c62aa386f3f49604a93691">&#9670;&nbsp;</a></span>GetUvOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec2 Texture::GetUvOffset </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>frameIndex</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calculates the uv offset for a given frame offset </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frameIndex</td><td>the index of the frame to get the UV offset of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the UV offset of the frame index </dd></dl>
 
 </div>
 </div>

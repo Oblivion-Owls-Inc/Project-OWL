@@ -1,0 +1,92 @@
+\hypertarget{classHomeBase}{}\doxysection{Home\+Base Class Reference}
+\label{classHomeBase}\index{HomeBase@{HomeBase}}
+
+
+Inheritance diagram for Home\+Base\+:
+% FIG 0
+
+
+Collaboration diagram for Home\+Base\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHomeBase_ab05d3d9c867c4b1151d1efc1add9ec83}\label{classHomeBase_ab05d3d9c867c4b1151d1efc1add9ec83}} 
+\mbox{\hyperlink{classHomeBase_ab05d3d9c867c4b1151d1efc1add9ec83}{Home\+Base}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHomeBase_aabdb18d40403b8ffb34d675b124b1f7d}\label{classHomeBase_aabdb18d40403b8ffb34d675b124b1f7d}} 
+void \mbox{\hyperlink{classHomeBase_aabdb18d40403b8ffb34d675b124b1f7d}{Destroy}} ()
+\begin{DoxyCompactList}\small\item\em destroy the base \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHomeBase_afa5d3f76d77d624cb84b4ae84fc08f84}\label{classHomeBase_afa5d3f76d77d624cb84b4ae84fc08f84}} 
+virtual void \mbox{\hyperlink{classHomeBase_afa5d3f76d77d624cb84b4ae84fc08f84}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHomeBase_a3839bfabdd7c45cb2cb9027239b4a0f1}\label{classHomeBase_a3839bfabdd7c45cb2cb9027239b4a0f1}} 
+virtual void \mbox{\hyperlink{classHomeBase_a3839bfabdd7c45cb2cb9027239b4a0f1}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHomeBase_a64da24c3b22cb64f02a34fc28fb336e3}\label{classHomeBase_a64da24c3b22cb64f02a34fc28fb336e3}} 
+virtual void \mbox{\hyperlink{classHomeBase_a64da24c3b22cb64f02a34fc28fb336e3}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em inspector for this \mbox{\hyperlink{classHomeBase}{Home\+Base}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classHomeBase_aad78de7e5484bf1cb387b7ecebb52549}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classHomeBase}{Home\+Base}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classHomeBase_a8656f2d75ce8cd88bda71c365542276f}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Writes all \mbox{\hyperlink{classHomeBase}{Home\+Base}} data to a JSON file. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classHomeBase}{Home\+Base}} $\ast$ \mbox{\hyperlink{classHomeBase_aa6159af121dd5e0eb2e29486214dd10c}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em Base clone. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHomeBase_aa6159af121dd5e0eb2e29486214dd10c}\label{classHomeBase_aa6159af121dd5e0eb2e29486214dd10c}} 
+\index{HomeBase@{HomeBase}!Clone@{Clone}}
+\index{Clone@{Clone}!HomeBase@{HomeBase}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHomeBase}{Home\+Base}} $\ast$ Home\+Base\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Base clone. 
+
+clone 
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classHomeBase_aad78de7e5484bf1cb387b7ecebb52549}\label{classHomeBase_aad78de7e5484bf1cb387b7ecebb52549}} 
+\index{HomeBase@{HomeBase}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!HomeBase@{HomeBase}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Home\+Base\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classHomeBase}{Home\+Base}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classHomeBase}{Home\+Base}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classHomeBase_a8656f2d75ce8cd88bda71c365542276f}\label{classHomeBase_a8656f2d75ce8cd88bda71c365542276f}} 
+\index{HomeBase@{HomeBase}!Write@{Write}}
+\index{Write@{Write}!HomeBase@{HomeBase}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Home\+Base\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Writes all \mbox{\hyperlink{classHomeBase}{Home\+Base}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/Home\+Base.\+h\item 
+Source/Home\+Base.\+cpp\end{DoxyCompactItemize}

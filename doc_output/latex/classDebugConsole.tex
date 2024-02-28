@@ -1,16 +1,125 @@
 \hypertarget{classDebugConsole}{}\doxysection{Debug\+Console Class Reference}
 \label{classDebugConsole}\index{DebugConsole@{DebugConsole}}
+
+
+The \mbox{\hyperlink{classDebugConsole}{Debug\+Console}} class is a singleton that provides a console for debugging It Shows Warning Messages, Errors, and allows you to call commands.  
+
+
+
+
+{\ttfamily \#include $<$Console.\+h$>$}
+
+
+
+Inheritance diagram for Debug\+Console\+:
+% FIG 0
+
+
+Collaboration diagram for Debug\+Console\+:
+% FIG 1
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classDebugConsole_a7576ad3711b91ba8c9a823a48eaf4ba8}\label{classDebugConsole_a7576ad3711b91ba8c9a823a48eaf4ba8}} 
-{\bfseries Debug\+Console} (\mbox{\hyperlink{classDebugSystem}{Debug\+System}} \&system)
+void \mbox{\hyperlink{classDebugConsole_abae62228c75ebf99d4a53168db8e162c}{Add\+Log}} (std\+::string const \&log)
+\begin{DoxyCompactList}\small\item\em Adds a log to the console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDebugConsole_a93976db0a76d49e7d745ef4c4c412220}{Inspect}} ()
+\begin{DoxyCompactList}\small\item\em Shows the console window. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classDebugConsole_a2ef57d8c8007fde9f07772a1f75e3e23}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classDebugConsole}{Debug\+Console}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classDebugConsole_a9a4852174205e30102205e79c134634f}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classDebugConsole}{Debug\+Console}} to JSON \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classDebugConsole_a5539d5b58a26f8a38ed4526b4701bbd6}\label{classDebugConsole_a5539d5b58a26f8a38ed4526b4701bbd6}} 
-{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classDebugConsole}{Debug\+Console}} \& {\bfseries operator$<$$<$} (const T \&value)
-\end{DoxyCompactItemize}
+static \mbox{\hyperlink{classDebugConsole}{Debug\+Console}} $\ast$ \mbox{\hyperlink{classDebugConsole_af52321c6a860136810fe434ed4bc6ab0}{Get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em gets the instance of the \mbox{\hyperlink{classDebugConsole}{Debug\+Console}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classDebugConsole}{Debug\+Console}} class is a singleton that provides a console for debugging It Shows Warning Messages, Errors, and allows you to call commands. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDebugConsole_abae62228c75ebf99d4a53168db8e162c}\label{classDebugConsole_abae62228c75ebf99d4a53168db8e162c}} 
+\index{DebugConsole@{DebugConsole}!AddLog@{AddLog}}
+\index{AddLog@{AddLog}!DebugConsole@{DebugConsole}}
+\doxysubsubsection{\texorpdfstring{AddLog()}{AddLog()}}
+{\footnotesize\ttfamily void Debug\+Console\+::\+Add\+Log (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{log }\end{DoxyParamCaption})}
+
+
+
+Adds a log to the console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log} & -\/ A string to add to the console \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDebugConsole_af52321c6a860136810fe434ed4bc6ab0}\label{classDebugConsole_af52321c6a860136810fe434ed4bc6ab0}} 
+\index{DebugConsole@{DebugConsole}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!DebugConsole@{DebugConsole}}
+\doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDebugConsole}{Debug\+Console}} $\ast$ Debug\+Console\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+gets the instance of the \mbox{\hyperlink{classDebugConsole}{Debug\+Console}} 
+
+gets the instance of \mbox{\hyperlink{classDebugConsole}{Debug\+Console}}
+
+\begin{DoxyReturn}{Returns}
+the instance of the \mbox{\hyperlink{classDebugConsole}{Debug\+Console}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDebugConsole_a2ef57d8c8007fde9f07772a1f75e3e23}\label{classDebugConsole_a2ef57d8c8007fde9f07772a1f75e3e23}} 
+\index{DebugConsole@{DebugConsole}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!DebugConsole@{DebugConsole}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Debug\+Console\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets this \mbox{\hyperlink{classDebugConsole}{Debug\+Console}}\textquotesingle{}s read methods 
+
+gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classDebugConsole_a93976db0a76d49e7d745ef4c4c412220}\label{classDebugConsole_a93976db0a76d49e7d745ef4c4c412220}} 
+\index{DebugConsole@{DebugConsole}!Inspect@{Inspect}}
+\index{Inspect@{Inspect}!DebugConsole@{DebugConsole}}
+\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
+{\footnotesize\ttfamily void Debug\+Console\+::\+Inspect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Shows the console window. 
+
+Open a Context Menu to Close the Console
+
+Make the text yellow\mbox{\Hypertarget{classDebugConsole_a9a4852174205e30102205e79c134634f}\label{classDebugConsole_a9a4852174205e30102205e79c134634f}} 
+\index{DebugConsole@{DebugConsole}!Write@{Write}}
+\index{Write@{Write}!DebugConsole@{DebugConsole}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Debug\+Console\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classDebugConsole}{Debug\+Console}} to JSON 
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classDebugConsole}{Debug\+Console}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Source/Debug\+System.\+h\end{DoxyCompactItemize}
+Source/Console.\+h\item 
+Source/Console.\+cpp\end{DoxyCompactItemize}
