@@ -56,11 +56,11 @@ public: // accessors
 
 
     /// @brief  dereference operator
-    /// @return the Component this AssetReference refers to
+    /// @return the Asset this AssetReference refers to
     AssetType const& operator *() const;
 
     /// @brief  member dereference operator
-    /// @return the Component this AssetReference refers to
+    /// @return the Asset this AssetReference refers to
     AssetType const* operator ->() const;
 
     /// @brief  implicit cast operator
@@ -130,13 +130,13 @@ public: // reading / writing
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  gets the map of read methods for Entities
-    /// @return the map of read methods for Entities
+    /// @brief  gets the map of read methods for AssetReferences
+    /// @return the map of read methods for AssetReferences
     virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
 
 
-    /// @brief  Write all Asset data to a JSON file.
-    /// @return The JSON file containing the Asset data.
+    /// @brief  write all Asset data to JSON.
+    /// @return the JSON containing the Asset data.
     virtual nlohmann::ordered_json Write() const override;
 
 

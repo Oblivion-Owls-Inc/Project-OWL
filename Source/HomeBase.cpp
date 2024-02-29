@@ -32,7 +32,7 @@
     /// @brief	destroy the base
     void HomeBase::Destroy()
     {
-	    SceneSystem::GetInstance()->SetNextScene( "Gameover" );
+	    SceneSystem::GetInstance()->SetNextScene(m_GameOverSceneName);
     }
 
     

@@ -23,7 +23,7 @@ struct CollisionData
     glm::vec2 normal = { 0, 0 };
 
     /// @brief How deep the collision penetrated
-    float depth = 0;
+    float depth = -INFINITY;
 
     /// @brief  negate operator
     /// @return a negated version of this CollisionData

@@ -2,7 +2,7 @@
 \label{classText}\index{Text@{Text}}
 
 
-Uses \mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}} attached to parent entity to draw text.  
+\mbox{\hyperlink{classComponent}{Component}} that makes use of \mbox{\hyperlink{classTilemap}{Tilemap}} to draw text.  
 
 
 
@@ -11,40 +11,41 @@ Uses \mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}} attached to parent e
 
 
 
-Inheritance diagram for Text\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=157pt]{classText__inherit__graph}
-\end{center}
-\end{figure}
+Inheritance diagram for Text\+:
+% FIG 0
 
 
-Collaboration diagram for Text\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=157pt]{classText__coll__graph}
-\end{center}
-\end{figure}
+Collaboration diagram for Text\+:
+% FIG 1
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classText_ab3e26143fccc52699bcc5149cae852bc}{Text}} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{classComponent}{Component}} $\ast$ \mbox{\hyperlink{classText_ac971ea4d6d43c1635ffd078f1c0e7e95}{Clone}} () const override
-\item 
-\+\_\+\+\_\+inline std\+::string const  \& \mbox{\hyperlink{classText_ae0aeffd11075b567fa4a2d26049c0d5c}{Get\+Text}} () const
+std\+::string const  \& \mbox{\hyperlink{classText_acd9dd322e18214aafe707357b2704365}{Get\+Text}} () const
 \begin{DoxyCompactList}\small\item\em gets the text of this \mbox{\hyperlink{classText}{Text}} \end{DoxyCompactList}\item 
-\+\_\+\+\_\+inline void \mbox{\hyperlink{classText_a21fb9900e98f5c5ecf308f0f9a52f752}{Set\+Text}} (std\+::string const \&text)
+void \mbox{\hyperlink{classText_abfad9c2c35e97c03070f0691daa1dfd7}{Set\+Text}} (std\+::string const \&text)
 \begin{DoxyCompactList}\small\item\em sets the text of this \mbox{\hyperlink{classText}{Text}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classText_aeec5084758e26909da5236367373ddfc}\label{classText_aeec5084758e26909da5236367373ddfc}} 
+virtual void \mbox{\hyperlink{classText_aeec5084758e26909da5236367373ddfc}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called when entering a scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classText_a0e7de2ef7dc0f0433595987d4b448f01}\label{classText_a0e7de2ef7dc0f0433595987d4b448f01}} 
+virtual void \mbox{\hyperlink{classText_a0e7de2ef7dc0f0433595987d4b448f01}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called when exiting a scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classText_a455483830810e2fd5688a94ac1fe18f8}\label{classText_a455483830810e2fd5688a94ac1fe18f8}} 
+virtual void \mbox{\hyperlink{classText_a455483830810e2fd5688a94ac1fe18f8}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em inspects this \mbox{\hyperlink{classText}{Text}} \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classText_a1ad30423a25b181b116e9298a7e27a9a}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classText_a47029e0070e938c6af896bf827a99f9d}{Write}} () const override
-\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classText}{Text}} component data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classText}{Text}} component data to a JSON file. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classText}{Text}} $\ast$ \mbox{\hyperlink{classText_a8c42c21222b7db31b6d1355be1b23b58}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em makes a copy of this \mbox{\hyperlink{classText}{Text}} \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
-Uses \mbox{\hyperlink{classTilemapSprite}{Tilemap\+Sprite}} attached to parent entity to draw text. 
+\mbox{\hyperlink{classComponent}{Component}} that makes use of \mbox{\hyperlink{classTilemap}{Tilemap}} to draw text. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classText_ab3e26143fccc52699bcc5149cae852bc}\label{classText_ab3e26143fccc52699bcc5149cae852bc}} 
@@ -60,24 +61,47 @@ Default constructor.
 default constructor 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classText_ac971ea4d6d43c1635ffd078f1c0e7e95}\label{classText_ac971ea4d6d43c1635ffd078f1c0e7e95}} 
+\mbox{\Hypertarget{classText_a8c42c21222b7db31b6d1355be1b23b58}\label{classText_a8c42c21222b7db31b6d1355be1b23b58}} 
 \index{Text@{Text}!Clone@{Clone}}
 \index{Clone@{Clone}!Text@{Text}}
 \doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classComponent}{Component}} $\ast$ Text\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classText}{Text}} $\ast$ Text\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+makes a copy of this \mbox{\hyperlink{classText}{Text}} \mbox{\hyperlink{classComponent}{Component}} 
 
 \begin{DoxyReturn}{Returns}
+a copy of this \mbox{\hyperlink{classText}{Text}} \mbox{\hyperlink{classComponent}{Component}}
+
 copy of this component 
 \end{DoxyReturn}
 
 
 Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
 
-\mbox{\Hypertarget{classText_ae0aeffd11075b567fa4a2d26049c0d5c}\label{classText_ae0aeffd11075b567fa4a2d26049c0d5c}} 
+\mbox{\Hypertarget{classText_a1ad30423a25b181b116e9298a7e27a9a}\label{classText_a1ad30423a25b181b116e9298a7e27a9a}} 
+\index{Text@{Text}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Text@{Text}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Text\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classText_acd9dd322e18214aafe707357b2704365}\label{classText_acd9dd322e18214aafe707357b2704365}} 
 \index{Text@{Text}!GetText@{GetText}}
 \index{GetText@{GetText}!Text@{Text}}
 \doxysubsubsection{\texorpdfstring{GetText()}{GetText()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline std\+::string const\& Text\+::\+Get\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily std\+::string const  \& Text\+::\+Get\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -86,11 +110,11 @@ gets the text of this \mbox{\hyperlink{classText}{Text}}
 \begin{DoxyReturn}{Returns}
 the text of this \mbox{\hyperlink{classText}{Text}} 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classText_a21fb9900e98f5c5ecf308f0f9a52f752}\label{classText_a21fb9900e98f5c5ecf308f0f9a52f752}} 
+\mbox{\Hypertarget{classText_abfad9c2c35e97c03070f0691daa1dfd7}\label{classText_abfad9c2c35e97c03070f0691daa1dfd7}} 
 \index{Text@{Text}!SetText@{SetText}}
 \index{SetText@{SetText}!Text@{Text}}
 \doxysubsubsection{\texorpdfstring{SetText()}{SetText()}}
-{\footnotesize\ttfamily \+\_\+\+\_\+inline void Text\+::\+Set\+Text (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Text\+::\+Set\+Text (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{text }\end{DoxyParamCaption})}
 
 
 

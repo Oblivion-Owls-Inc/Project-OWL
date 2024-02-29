@@ -42,6 +42,16 @@ void \mbox{\hyperlink{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}{On\+Ex
 \begin{DoxyCompactList}\small\item\em Exit and clean up the \mbox{\hyperlink{classDebugSystem}{Debug\+System}}. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classDebugSystem_a2c641267002ad60b29e2d9704bb5f79b}{Debug\+Window}} () override
 \begin{DoxyCompactList}\small\item\em Gets Called by the Debug system to display debug information. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugSystem_acdc8dc6be7d1dece74ebb59c716911b4}\label{classDebugSystem_acdc8dc6be7d1dece74ebb59c716911b4}} 
+void \mbox{\hyperlink{classDebugSystem_acdc8dc6be7d1dece74ebb59c716911b4}{Reset\+Viewport}} ()
+\begin{DoxyCompactList}\small\item\em Resets the Viewport when debug is closed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDebugSystem_a5cfa3b382f2d154106d1b0de36012e47}{Set\+Non\+Editor\+Systems\+Enabled}} (bool enabled)
+\begin{DoxyCompactList}\small\item\em sets whether the non-\/editor systems are enabled \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDebugSystem_a8948f55ea425f82fb10f5a7855b6f0df}\label{classDebugSystem_a8948f55ea425f82fb10f5a7855b6f0df}} 
+bool \mbox{\hyperlink{classDebugSystem_a8948f55ea425f82fb10f5a7855b6f0df}{Is\+Editor\+Running}} () const
+\begin{DoxyCompactList}\small\item\em sets whether the editor systems are enabled \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlayBar}{Play\+Bar}} \& \mbox{\hyperlink{classDebugSystem_ab2113dc364ee350532591a248a221f22}{Get\+Play\+Bar}} ()
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} \mbox{\hyperlink{classPlayBar}{Play\+Bar}} \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Type $>$ }\\void \mbox{\hyperlink{classDebugSystem_a7fd8d26c421f240359aa2f553175cf47}{Write}} (const Type \&value)
 \begin{DoxyCompactList}\small\item\em Wrapper to write to the Debug\+Stream. \end{DoxyCompactList}\item 
 virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classDebugSystem_aae994854f516187647c79c65db6abb8e}{Write}} () const override
@@ -127,13 +137,13 @@ Toggles Fullscreen
 
 Shows the Im\+Gui Demo Window
 
-Pauses the Gameplay
-
 Insert menu which holds \mbox{[}New \mbox{\hyperlink{classEntity}{Entity}}, New Asset Prefab\mbox{]}
 
 Creates a new \mbox{\hyperlink{classEntity}{Entity}}
 
 Starts the Asset Prefab Menu which holds \mbox{[}New \mbox{\hyperlink{classSound}{Sound}}, New \mbox{\hyperlink{classTexture}{Texture}}, New \mbox{\hyperlink{classTransform}{Transform}} \mbox{\hyperlink{classAnimation}{Animation}}, New \mbox{\hyperlink{classSprite}{Sprite}} \mbox{\hyperlink{classAnimation}{Animation}}\mbox{]}
+
+Opens the New Archetype Window
 
 Opens the New \mbox{\hyperlink{classSound}{Sound}} Window
 
@@ -165,10 +175,25 @@ Opens the Different Windows for the Editor Window
 
 Creates a Spit Window for the Entity\+List and their components in the main editor window
 
+Show the Console Window
+
 Ends the Editor Window
 
 Reimplemented from \mbox{\hyperlink{classSystem_ac37b07a2ad20e2d2fe1f77766902af5d}{System}}.
 
+\mbox{\Hypertarget{classDebugSystem_ab2113dc364ee350532591a248a221f22}\label{classDebugSystem_ab2113dc364ee350532591a248a221f22}} 
+\index{DebugSystem@{DebugSystem}!GetPlayBar@{GetPlayBar}}
+\index{GetPlayBar@{GetPlayBar}!DebugSystem@{DebugSystem}}
+\doxysubsubsection{\texorpdfstring{GetPlayBar()}{GetPlayBar()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlayBar}{Play\+Bar}} \& Debug\+System\+::\+Get\+Play\+Bar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} \mbox{\hyperlink{classPlayBar}{Play\+Bar}} 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classDebugSystem}{Debug\+System}} \mbox{\hyperlink{classPlayBar}{Play\+Bar}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}\label{classDebugSystem_a78f423fc5d74b31b09ce8490355d5eff}} 
 \index{DebugSystem@{DebugSystem}!OnExit@{OnExit}}
 \index{OnExit@{OnExit}!DebugSystem@{DebugSystem}}
@@ -216,10 +241,32 @@ Perform updates.
 {\em dt} & The time elapsed since the last update. \\
 \hline
 \end{DoxyParams}
+Loop through all the Systems in the \mbox{\hyperlink{classEngine}{Engine}}
 
+If the \mbox{\hyperlink{classSystem}{System}} is enabled, then show the Debug Window
+
+Show the FPS Window
 
 Reimplemented from \mbox{\hyperlink{classSystem_ac80e6b0f679fe9befb8d45014ee389cb}{System}}.
 
+\mbox{\Hypertarget{classDebugSystem_a5cfa3b382f2d154106d1b0de36012e47}\label{classDebugSystem_a5cfa3b382f2d154106d1b0de36012e47}} 
+\index{DebugSystem@{DebugSystem}!SetNonEditorSystemsEnabled@{SetNonEditorSystemsEnabled}}
+\index{SetNonEditorSystemsEnabled@{SetNonEditorSystemsEnabled}!DebugSystem@{DebugSystem}}
+\doxysubsubsection{\texorpdfstring{SetNonEditorSystemsEnabled()}{SetNonEditorSystemsEnabled()}}
+{\footnotesize\ttfamily bool Debug\+System\+::\+Set\+Non\+Editor\+Systems\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{enabled }\end{DoxyParamCaption})}
+
+
+
+sets whether the non-\/editor systems are enabled 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enabled} & wether to enable ~\newline
+\\
+\hline
+{\em enabled} & wether to enable or disable the systems \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classDebugSystem_a1f04a27b70187956bf31a268ca12054f}\label{classDebugSystem_a1f04a27b70187956bf31a268ca12054f}} 
 \index{DebugSystem@{DebugSystem}!SetWindowHandle@{SetWindowHandle}}
 \index{SetWindowHandle@{SetWindowHandle}!DebugSystem@{DebugSystem}}

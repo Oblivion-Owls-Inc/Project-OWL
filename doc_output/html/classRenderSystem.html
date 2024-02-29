@@ -106,9 +106,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa77f91067057166ca86b69c584c6e815"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#aa77f91067057166ca86b69c584c6e815">DrawLine</a> (glm::vec2 const &amp;P1, glm::vec2 const &amp;P2, float thickness=1.0f, glm::vec4 const &amp;color={ 0.0f, 0.2f, 0.5f, 0.0f }, float alpha=0.5f, bool isDiegetic=true)</td></tr>
 <tr class="memdesc:aa77f91067057166ca86b69c584c6e815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a line between 2 points.  <a href="classRenderSystem.html#aa77f91067057166ca86b69c584c6e815">More...</a><br /></td></tr>
 <tr class="separator:aa77f91067057166ca86b69c584c6e815"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9e52679be69def55d96dc88fbd052eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#aa9e52679be69def55d96dc88fbd052eb">DrawTexture</a> (<a class="el" href="classTexture.html">Texture</a> const *texture, glm::vec2 const &amp;position, glm::vec2 const &amp;scale={ 1.0f, 1.0f }, float angle=0.0f, glm::vec4 const &amp;color={ 0.0f, 0.0f, 0.0f, 0.0f }, float alpha=1.0f, bool isDiegetic=true)</td></tr>
-<tr class="memdesc:aa9e52679be69def55d96dc88fbd052eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a texture.  <a href="classRenderSystem.html#aa9e52679be69def55d96dc88fbd052eb">More...</a><br /></td></tr>
-<tr class="separator:aa9e52679be69def55d96dc88fbd052eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5620a5863effda6b53e3c88e06b2e1c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#a5620a5863effda6b53e3c88e06b2e1c3">DrawTexture</a> (<a class="el" href="classTexture.html">Texture</a> const *texture, glm::vec2 const &amp;position, glm::vec2 const &amp;scale={ 1.0f, 1.0f }, float angle=0.0f, glm::vec4 const &amp;color={ 0.0f, 0.0f, 0.0f, 0.0f }, float alpha=1.0f, bool isDiegetic=true, int frameIndex=0)</td></tr>
+<tr class="memdesc:a5620a5863effda6b53e3c88e06b2e1c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a texture.  <a href="classRenderSystem.html#a5620a5863effda6b53e3c88e06b2e1c3">More...</a><br /></td></tr>
+<tr class="separator:a5620a5863effda6b53e3c88e06b2e1c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa568ccaf7a44b88dd7acccd37f7ab54a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#aa568ccaf7a44b88dd7acccd37f7ab54a">AddSprite</a> (<a class="el" href="classSprite.html">Sprite</a> *sprite)</td></tr>
 <tr class="memdesc:aa568ccaf7a44b88dd7acccd37f7ab54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a sprite so it can be rendered during update.  <a href="classRenderSystem.html#aa568ccaf7a44b88dd7acccd37f7ab54a">More...</a><br /></td></tr>
 <tr class="separator:aa568ccaf7a44b88dd7acccd37f7ab54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,8 +125,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:af0b12d0120dc0ccd05fa77e94302b246"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classShader.html">Shader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#af0b12d0120dc0ccd05fa77e94302b246">SetActiveShader</a> (const char *name)</td></tr>
 <tr class="memdesc:af0b12d0120dc0ccd05fa77e94302b246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets shader with given name as active, and returns pointer to it.  <a href="classRenderSystem.html#af0b12d0120dc0ccd05fa77e94302b246">More...</a><br /></td></tr>
 <tr class="separator:af0b12d0120dc0ccd05fa77e94302b246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad41369fc788c8d467d71065f5b0237bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSprite.html">Sprite</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#ad41369fc788c8d467d71065f5b0237bd">GetMouseOverSprite</a> ()</td></tr>
+<tr class="memdesc:ad41369fc788c8d467d71065f5b0237bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the topmost <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> the mouse is over  <a href="classRenderSystem.html#ad41369fc788c8d467d71065f5b0237bd">More...</a><br /></td></tr>
+<tr class="separator:ad41369fc788c8d467d71065f5b0237bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d2fbbd8eecb7149e10e74921d72d3ec"><td class="memItemLeft" align="right" valign="top">__inline <a class="el" href="classMesh.html">Mesh</a> const  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#a8d2fbbd8eecb7149e10e74921d72d3ec">GetDefaultMesh</a> () const</td></tr>
 <tr class="separator:a8d2fbbd8eecb7149e10e74921d72d3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27b50c146c22c5886ed95cde7b494f7d"><td class="memItemLeft" align="right" valign="top">__inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#a27b50c146c22c5886ed95cde7b494f7d">SetDrawToBuffer</a> (bool draw)</td></tr>
+<tr class="memdesc:a27b50c146c22c5886ed95cde7b494f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle rendering to off-screen buffer.  <a href="classRenderSystem.html#a27b50c146c22c5886ed95cde7b494f7d">More...</a><br /></td></tr>
+<tr class="separator:a27b50c146c22c5886ed95cde7b494f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbf529b1317e228ebb33d9de3c8a2ae5"><td class="memItemLeft" align="right" valign="top">__inline unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRenderSystem.html#acbf529b1317e228ebb33d9de3c8a2ae5">GetBufferTextureID</a> () const</td></tr>
+<tr class="memdesc:acbf529b1317e228ebb33d9de3c8a2ae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get texture ID of the off-screen buffer.  <a href="classRenderSystem.html#acbf529b1317e228ebb33d9de3c8a2ae5">More...</a><br /></td></tr>
+<tr class="separator:acbf529b1317e228ebb33d9de3c8a2ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1bfbbf8394d62575d921b9283c49ed6"><td class="memItemLeft" align="right" valign="top"><a id="af1bfbbf8394d62575d921b9283c49ed6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>RenderSystem</b> (<a class="el" href="classRenderSystem.html">RenderSystem</a> &amp;other)=delete</td></tr>
 <tr class="separator:af1bfbbf8394d62575d921b9283c49ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,6 +151,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a57235c9268a213e2944d83cffa3b4aae">OnSceneInit</a> ()</td></tr>
 <tr class="memdesc:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is initialized. <br /></td></tr>
 <tr class="separator:a57235c9268a213e2944d83cffa3b4aae inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="af16d6771ccada096b14a8aa823f9d051"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#af16d6771ccada096b14a8aa823f9d051">OnSceneExit</a> ()</td></tr>
+<tr class="memdesc:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called whenever a scene is exited. <br /></td></tr>
+<tr class="separator:af16d6771ccada096b14a8aa823f9d051 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="ac37b07a2ad20e2d2fe1f77766902af5d"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac37b07a2ad20e2d2fe1f77766902af5d">DebugWindow</a> ()</td></tr>
 <tr class="memdesc:ac37b07a2ad20e2d2fe1f77766902af5d inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Called by the Debug system to display debug information. <br /></td></tr>
@@ -415,8 +428,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa9e52679be69def55d96dc88fbd052eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9e52679be69def55d96dc88fbd052eb">&#9670;&nbsp;</a></span>DrawTexture()</h2>
+<a id="a5620a5863effda6b53e3c88e06b2e1c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5620a5863effda6b53e3c88e06b2e1c3">&#9670;&nbsp;</a></span>DrawTexture()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -461,7 +474,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isDiegetic</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>isDiegetic</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>frameIndex</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -484,6 +503,34 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="acbf529b1317e228ebb33d9de3c8a2ae5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbf529b1317e228ebb33d9de3c8a2ae5">&#9670;&nbsp;</a></span>GetBufferTextureID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">__inline unsigned int RenderSystem::GetBufferTextureID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get texture ID of the off-screen buffer. </p>
+<dl class="section return"><dt>Returns</dt><dd>texture ID </dd></dl>
 
 </div>
 </div>
@@ -538,6 +585,26 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Gets the instance of <a class="el" href="classRenderSystem.html" title="Renders all of the Sprite components, keeps track of shaders.">RenderSystem</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classRenderSystem.html" title="Renders all of the Sprite components, keeps track of shaders.">RenderSystem</a> pointer: new or existing instance of this system </dd></dl>
+
+</div>
+</div>
+<a id="ad41369fc788c8d467d71065f5b0237bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad41369fc788c8d467d71065f5b0237bd">&#9670;&nbsp;</a></span>GetMouseOverSprite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSprite.html">Sprite</a> * RenderSystem::GetMouseOverSprite </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>gets the topmost <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> the mouse is over </p>
+<dl class="section return"><dt>Returns</dt><dd>the topmost <a class="el" href="classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite.">Sprite</a> the mouse is over </dd></dl>
 
 </div>
 </div>
@@ -619,6 +686,40 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classShader.html" title="Compiles a shader program, and stores information for managing it.">Shader</a> pointer if the shader is found, nullptr if it isn't. </dd></dl>
+
+</div>
+</div>
+<a id="a27b50c146c22c5886ed95cde7b494f7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27b50c146c22c5886ed95cde7b494f7d">&#9670;&nbsp;</a></span>SetDrawToBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">__inline void RenderSystem::SetDrawToBuffer </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>draw</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Toggle rendering to off-screen buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">draw</td><td>true: draw off-screen. false: draw normally. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

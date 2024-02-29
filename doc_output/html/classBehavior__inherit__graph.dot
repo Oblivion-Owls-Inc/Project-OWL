@@ -1,0 +1,52 @@
+digraph "Behavior"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Behavior",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Component",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classComponent.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ISerializable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classISerializable.html",tooltip="interface for all serializable objects"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Animation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAnimation.html",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="AudioListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAudioListener.html",tooltip="component that picks up spatial audio"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="AudioPlayer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAudioPlayer.html",tooltip="Component that can play audio."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="CameraBehavior",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraBehavior.html",tooltip=" "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="ConstructionBehavior",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classConstructionBehavior.html",tooltip="Component that handles the construction of towers and modification of terrain."];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="EditorCameraController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEditorCameraController.html",tooltip="controls the camera while in the editor"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="EffectAnimator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEffectAnimator.html",tooltip="Component that can play audio."];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="EnemyBehavior",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEnemyBehavior.html",tooltip=" "];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="HealthBar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHealthBar.html",tooltip="health bar UI that displays offset from an Entity with a Health component"];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="HideableForeground",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHideableForeground.html",tooltip="Component that hides an attached Sprite when it overlaps something."];
+  Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="ItemCollector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classItemCollector.html",tooltip="Component that attracts and collects item entities in the world."];
+  Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="Lifetime",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLifetime.html",tooltip="Component that destroys it's Enity after a given length of time."];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="MiningLaser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classMiningLaser.html",tooltip="Digging laser controllable by an entity."];
+  Node1 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="PlayerController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPlayerController.html",tooltip=" "];
+  Node1 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="RigidBody",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classRigidBody.html",tooltip=" "];
+  Node1 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="SplashScreenController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classSplashScreenController.html",tooltip=" "];
+  Node1 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="TurretBehavior",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTurretBehavior.html",tooltip=" "];
+  Node1 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="UiButton",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classUiButton.html",tooltip="Ui Button that sends an event when clicked."];
+  Node1 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="WavesBehavior",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWavesBehavior.html",tooltip=" "];
+  Node1 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="WinState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWinState.html",tooltip=" "];
+}

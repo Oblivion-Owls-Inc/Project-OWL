@@ -137,7 +137,7 @@
         // Read in the data from the JSON.
         for (int i = 0; i < vec_data->size(); i++)
         {
-            Read( vec_data[ i ], json[ i ] );
+            Read( (*vec_data)[ i ], json[ i ] );
         }
     }
 
@@ -249,15 +249,15 @@
     /// @param vector     - the vector to write to JSON.
     /// @return The JSON object containing the vector data.
     template<typename ValueType>
-    nlohmann::ordered_json Stream::Write(std::vector<ValueType> const& vec_data)
+    nlohmann::ordered_json Stream::WriteArray(std::vector<ValueType> const& vec_data)
     {
         // The JSON object to store the vector in.
         nlohmann::ordered_json data;
 
         // Write the data to the JSON object.
-        for (int i = 0; i < vec_data.size(); i++)
+        for (ValueType const& element : vec_data)
         {
-            data[i] = vec_data[i];
+            data.push_back( Stream::Write(element) );
         }
 
         return data;
@@ -269,14 +269,15 @@
     /// @param array_data - Pointer to the array to write.
     /// @return A JSON object containing the array.
     template<typename ValueType, int Size>
-    nlohmann::ordered_json Stream::Write(ValueType* array_data)
+    nlohmann::ordered_json Stream::Write( ValueType const* array_data )
     {
         // The JSON object to store the array in.
-        nlohmann::ordered_json data;
+        nlohmann::ordered_json data = nlohmann::ordered_json::array();
+
         // Write the data to a JSON object.
         for (int i = 0; i < Size; i++)
         {
-            data[i] = array_data[i];
+            data.push_back( Stream::Write( array_data[ i ] ) );
         }
 
         return data;
@@ -422,7 +423,14 @@
     template< typename ValueType >
     void Stream::Read(ValueType& value, nlohmann::ordered_json const& json, IsISerializable<false>)
     {
-        value = json.get< ValueType >();
+        try
+        {
+            value = json.get< ValueType >();
+        }
+        catch ( std::exception error )
+        {
+            std::cout << "WARNING: json: \"" << error.what() << "\" at " << GetDebugLocation() << std::endl;
+        }
     }
 
 

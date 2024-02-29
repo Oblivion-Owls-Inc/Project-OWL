@@ -32,6 +32,8 @@
 #include "AssetReference.h"
 #include "AnimationAsset.h"
 
+#include "ActionReference.h"
+
 
 class PlayerController : public Behavior
 {
@@ -103,26 +105,22 @@ private: // member variables
     EntityReference m_MiningLaserEntity = EntityReference( { &m_MiningLaser } );
 
 
+    /// @brief  the control Action used for vertical movement
+    ActionReference m_MoveVertical;
+
+    /// @brief  the control Action used for vertical movement
+    ActionReference m_MoveHorizontal;
+
+    /// @brief  the control Action to fire the laser
+    ActionReference m_FireLaser;
+
+    /// @brief  the control Action to interact with something
+    ActionReference m_Interact;
+
+
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
-
-
-    /// @brief private helper function to move the player
-    /// @return if the player moved Right or not
-    bool moveRight();
-
-    /// @brief protected helper function to move the player
-    /// @return if the player moved Left or not
-    bool moveLeft();
-
-    /// @brief protected helper function to move the player
-    /// @return if the player Jumped or not
-    bool moveUp();
-
-    /// @brief protected helper function to move the player
-    /// @return if the player moved Down or not
-    bool moveDown();
 
 
     /// @brief  updates the mining laser
@@ -179,6 +177,23 @@ private: // reading
     /// @brief  reads the name of the MiningLaser entity this PlayerController uses
     /// @param  data    the JSON data to read from
     void readMiningLaserEntity( nlohmann::ordered_json const& data );
+
+
+    /// @brief  reads the control Action used for vertical movement
+    /// @param  data    the JSON data to read from
+    void readMoveVertical( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the control Action used for vertical movement
+    /// @param  data    the JSON data to read from
+    void readMoveHorizontal( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the control Action to fire the laser
+    /// @param  data    the JSON data to read from
+    void readFireLaser( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the control Action to interact with something
+    /// @param  data    the JSON data to read from
+    void readInteract( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------
