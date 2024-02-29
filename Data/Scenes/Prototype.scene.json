@@ -1235,7 +1235,7 @@
                                 ]
                             },
                             "Text": {
-                                "String": "1"
+                                "Text": ""
                             },
                             "TilemapSprite": {
                                 "Layer": 2,
@@ -6837,7 +6837,19 @@
                     "RespawnLocation": [
                         -15.0,
                         5.0
-                    ]
+                    ],
+                    "MoveVertical": {
+                        "ActionName": "Vertical Move"
+                    },
+                    "MoveHorizontal": {
+                        "ActionName": "Horizontal Move"
+                    },
+                    "FireLaser": {
+                        "ActionName": "Fire Laser"
+                    },
+                    "Interact": {
+                        "ActionName": "Interact"
+                    }
                 },
                 "RigidBody": {
                     "Velocity": [
