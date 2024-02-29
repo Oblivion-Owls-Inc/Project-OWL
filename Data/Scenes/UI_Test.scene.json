@@ -915,14 +915,14 @@
                             ]
                         },
                         {
-                            "WaveTime": 817.414794921875,
-                            "WaveNextTime": 817.414794921875,
+                            "WaveTime": 749.3997802734375,
+                            "WaveNextTime": 749.3997802734375,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
                                         "AssetName": ""
                                     },
-                                    "Amount": 910,
+                                    "Amount": 880,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
                                     "Spawner": 0
@@ -931,7 +931,7 @@
                                     "Enemy": {
                                         "AssetName": ""
                                     },
-                                    "Amount": 981,
+                                    "Amount": 975,
                                     "SpawnInterval": 10.0,
                                     "InitialOffset": 10.0,
                                     "Spawner": 0
@@ -6266,7 +6266,7 @@
                                 }
                             ],
                             "Texture": {
-                                "AssetName": ""
+                                "AssetName": "HealthBar"
                             },
                             "Layer": 6,
                             "Opacity": 1.0,
@@ -6620,74 +6620,6 @@
             },
             "Children": null
         },
-        "TheButton": {
-            "Name": "TheButton",
-            "Components": {
-                "AudioPlayer": {
-                    "Sound": {
-                        "AssetName": ""
-                    },
-                    "Volume": 1.0,
-                    "Pitch": 1.0,
-                    "VolumeVariance": 0.0,
-                    "PitchVariance": 0.0,
-                    "DefaultLoopCount": 0,
-                    "PlayOnInit": false,
-                    "IsSpatial": false,
-                    "AllowMultipleSounds": true
-                },
-                "Sprite": {
-                    "Layer": 10,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": {
-                        "AssetName": ""
-                    }
-                },
-                "UiButton": {
-                    "ClickEventName": "",
-                    "ShouldActivateOnPress": false,
-                    "IdleFrame": 0,
-                    "HoveredFrame": 1,
-                    "DownFrame": 2,
-                    "PressSound": {
-                        "AssetName": ""
-                    },
-                    "ReleaseSound": {
-                        "AssetName": ""
-                    }
-                },
-                "UiElement": {
-                    "Anchor": [
-                        0.0,
-                        0.0
-                    ],
-                    "Pivot": [
-                        0.0,
-                        0.0
-                    ],
-                    "Offset": [
-                        0.0,
-                        0.0
-                    ],
-                    "FrameSize": [
-                        0.4000000059604645,
-                        0.20000000298023224
-                    ],
-                    "SizeTypes": [
-                        "RelativeToWidth",
-                        "RelativeToHeight"
-                    ]
-                }
-            },
-            "Children": null
-        },
         "InventoryBar": {
             "Name": "InventoryBar",
             "Components": {
@@ -6938,7 +6870,7 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonRelease"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
@@ -7006,7 +6938,7 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonRelease"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
@@ -7074,7 +7006,7 @@
                             "Components": {
                                 "AudioPlayer": {
                                     "Sound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonRelease"
                                     },
                                     "Volume": 1.0,
                                     "Pitch": 1.0,
@@ -7152,6 +7084,9 @@
                                     "PlayOnInit": false,
                                     "IsSpatial": false,
                                     "AllowMultipleSounds": true
+                                },
+                                "SceneChangeButton": {
+                                    "SceneName": "Prototype"
                                 },
                                 "Sprite": {
                                     "Layer": 22,
