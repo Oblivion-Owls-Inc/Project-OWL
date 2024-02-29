@@ -339,6 +339,9 @@
     <Filter Include="Engine\Systems\DebugSystem\PlayBar">
       <UniqueIdentifier>{aded7ad9-3229-43a6-a373-872cb12acd49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Framework\References\ActionReference">
+      <UniqueIdentifier>{81b678ce-5e44-42cd-a61c-1ee4b4db7710}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -704,8 +707,14 @@
     <ClCompile Include="Source\PlayBar.cpp">
       <Filter>Engine\Systems\DebugSystem\PlayBar</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AssetLibrarySystem.cpp">
-      <Filter>Engine\Systems\AssetLibrarySystem</Filter>
+    <ClCompile Include="Source\InputCallback.cpp">
+      <Filter>Engine\Systems\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InputInspector.cpp">
+      <Filter>Engine\Systems\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ActionReference.cpp">
+      <Filter>Engine\Framework\References\ActionReference</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1077,6 +1086,9 @@
     </ClInclude>
     <ClInclude Include="Source\PlayBar.h">
       <Filter>Engine\Systems\DebugSystem\PlayBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ActionReference.h">
+      <Filter>Engine\Framework\References\ActionReference</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
