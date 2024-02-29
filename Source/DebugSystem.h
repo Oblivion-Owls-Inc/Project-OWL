@@ -75,7 +75,6 @@ public:
     /// @brief Exit and clean up the DebugSystem
     void OnExit() override;
 
-
     /// @brief Gets Called by the Debug system to display debug information
     virtual void DebugWindow() override;
 

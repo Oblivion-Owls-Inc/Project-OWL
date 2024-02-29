@@ -46,6 +46,11 @@
         {
             delete component;
         }
+
+        for (Entity* child : m_Children)
+        {
+            delete child;
+        }
     }
 
 
@@ -294,6 +299,8 @@
             entityReference->Clear();
         }
         m_EntityReferences.clear();
+
+        m_Children.clear();
 
         m_IsInScene = false;
 

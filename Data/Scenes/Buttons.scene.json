@@ -50,6 +50,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Blur": {
+                "Filepath": "Data/Textures/TransparentBlur.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "ButtonTexture": {
                 "Filepath": "Data/Textures/TestButton.png",
                 "SheetDimensions": [
@@ -330,6 +342,48 @@
         "TransformAnimations": null,
         "Animations": null,
         "Archetypes": {
+            "BackgroundBlur": {
+                "Name": "BackgroundBlur",
+                "Components": {
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 0.699999988079071,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Blur"
+                        }
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            0.0,
+                            0.0
+                        ],
+                        "Pivot": [
+                            0.0,
+                            0.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            0.0
+                        ],
+                        "FrameSize": [
+                            1.2100000381469727,
+                            1.4900000095367432
+                        ],
+                        "SizeTypes": [
+                            "RelativeToWidth",
+                            "RelativeToHeight"
+                        ]
+                    }
+                },
+                "Children": null
+            },
             "PauseMenu": {
                 "Name": "PauseMenu",
                 "Components": {
@@ -743,6 +797,48 @@
                                 "Children": null
                             }
                         ]
+                    },
+                    {
+                        "Name": "BackgroundBlur",
+                        "Components": {
+                            "Sprite": {
+                                "Layer": 2,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 0.699999988079071,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "Blur"
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    1.2100000381469727,
+                                    1.4900000095367432
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToWidth",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
                     }
                 ]
             }

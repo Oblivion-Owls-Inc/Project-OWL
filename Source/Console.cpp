@@ -295,6 +295,12 @@
         addCommands();
     }
 
+    /// @brief  Destructs the DebugConsole
+    DebugConsole::~DebugConsole()
+    {
+        ClearLog();
+    }
+
 
 //-----------------------------------------------------------------------------
 

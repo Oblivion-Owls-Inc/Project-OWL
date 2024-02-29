@@ -33,18 +33,27 @@ void PauseSystem::OnUpdate(float dt)
         {
             const Entity* Pause = AssetLibrary<Entity>()->GetAsset("PauseMenu");
 
-            if (Pause != nullptr)
+            const Entity* BlurTexture = AssetLibrary<Entity>()->GetAsset("BackgroundBlur");
+
+            if (Pause != nullptr && BlurTexture != nullptr)
             {
+                Entity* blur = BlurTexture->Clone();
+                blur->AddToScene();
+
                 Entity* pauseMenu = Pause->Clone();
                 pauseMenu->AddToScene();
+
             }
         }
         else
         {
             Entity* pauseMenu = Entities()->GetEntity("PauseMenu");
-            if (pauseMenu != nullptr)
+            Entity* BlurTexture = Entities()->GetEntity("BackgroundBlur");
+
+            if (pauseMenu != nullptr && BlurTexture != nullptr)
             {
                 pauseMenu->Destroy();
+                BlurTexture->Destroy();
             }
         }
     }

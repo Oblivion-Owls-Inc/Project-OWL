@@ -277,6 +277,11 @@
                 << std::endl << std::endl;
         }
 
+        for (System* system : m_Systems)
+        {
+            delete system;
+        }
+
         Debug() << "\nShutdown complete." << std::endl;
 
     }

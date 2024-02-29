@@ -580,6 +580,8 @@ void DebugSystem::OnExit()
     ImGui_ImplGlfw_Shutdown();
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
+
+    Console()->ClearLog();
 }
 
 

@@ -14,6 +14,8 @@
 #include <map>
 #include <string>
 
+#include "Entity.h"
+
 // base class so that LoadAssets can be called without knowing AssetType
 class BaseAssetLibrarySystem : public System
 {
@@ -51,6 +53,7 @@ private: // virtual override methods
     /// @return the written json data
     virtual nlohmann::ordered_json SaveAssets() const override;
 
+    /// @brief  Debug Window for the AssetLibrary
     virtual void DebugWindow() override;
 
 //-----------------------------------------------------------------------------
@@ -94,7 +97,7 @@ private: // private functions
     /// @brief  Automatically called on scene exit
     void FlushAssets();
 
-    ///
+    /// @brief  Lists all assets in the library
     void ListAssets();
 
 //-----------------------------------------------------------------------------
@@ -130,6 +133,11 @@ __inline AssetLibrarySystem< AssetType >* AssetLibrary()
     return AssetLibrarySystem< AssetType >::GetInstance();
 }
 
+/// @brief Specialized DebugWindow for AssetLibrarySystem of type Entity
+template<>
+void AssetLibrarySystem<Entity>::DebugWindow();
+
+
 #ifndef ASSETLIBRARYSYSTEM_C
-#include "AssetLibrarySystem.cpp"
+#include "AssetLibrarySystem.t.cpp"
 #endif

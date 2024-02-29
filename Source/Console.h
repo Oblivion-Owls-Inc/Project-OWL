@@ -29,6 +29,9 @@ public: // methods
     /// @brief Shows the console window
     void Inspect();
 
+    /// @brief Clears the console log
+    void ClearLog();
+
 //-----------------------------------------------------------------------------
 public: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -65,9 +68,6 @@ private: // methods
     /// @brief Adds the commands to the console
     void addCommands();
 
-    /// @brief Clears the console log
-    void ClearLog();
-
     /// @brief Calls a Command given a string
     /// @param command - The command to call
     void CallCommand(std::string const& command);
@@ -101,6 +101,9 @@ private: // singleton stuff
 
     /// @brief  creates the DebugConsole
     DebugConsole();
+    
+    /// @brief  destroys the DebugConsole
+    ~DebugConsole();
 
 	// Prevent Copying
 	DebugConsole(DebugConsole const&) = delete;
