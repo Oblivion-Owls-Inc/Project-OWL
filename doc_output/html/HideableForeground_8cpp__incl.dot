@@ -83,6 +83,7 @@ digraph "Source/HideableForeground.cpp"
   Node32 -> Node20 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node32 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node32 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 -> Node28 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node31 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node31 -> Node29 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node31 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

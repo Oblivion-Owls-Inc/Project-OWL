@@ -39,6 +39,8 @@ bool \mbox{\hyperlink{classEntitySystem_a86f324f2d492e696283f08a10a6f2ac0}{Has\+
 \mbox{\Hypertarget{classEntitySystem_a059958d05b4216676904beb227881bda}\label{classEntitySystem_a059958d05b4216676904beb227881bda}} 
 void \mbox{\hyperlink{classEntitySystem_a059958d05b4216676904beb227881bda}{Clear\+Selected\+Entity}} ()
 \begin{DoxyCompactList}\small\item\em Clears the \mbox{\hyperlink{classEntity}{Entity}} being inspected. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntitySystem_aee05e5a64b4bdadfb61fd96799a4abc3}{Display\+Entity\+Hierarchy}} (std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $\ast$ $>$ Entity\+List, const std\+::string Window\+Name, bool Drag\+And\+Drop=true)
+\begin{DoxyCompactList}\small\item\em Displays the \mbox{\hyperlink{classEntity}{Entity}} Hierarchy in the \mbox{\hyperlink{classEntity}{Entity}} List window. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classEntity}{Entity}} $\ast$ \mbox{\hyperlink{classEntitySystem_a3c0b97c3ff435b0fe85d9c82d480e011}{Get\+Selected\+Entity}} () const
 \begin{DoxyCompactList}\small\item\em returns the entity being viewed in the inspector \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classEntitySystem_a314fb5ad21955f6e5ccabc7f948161c0}{Queue\+Add\+Entity}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)
@@ -87,7 +89,38 @@ Display the \mbox{\hyperlink{classEntity}{Entity}} List
 
 Reimplemented from \mbox{\hyperlink{classSystem_ac37b07a2ad20e2d2fe1f77766902af5d}{System}}.
 
-\mbox{\Hypertarget{classEntitySystem_a409d4956a21b58cc77b086e405c171a6}\label{classEntitySystem_a409d4956a21b58cc77b086e405c171a6}} 
+\mbox{\Hypertarget{classEntitySystem_aee05e5a64b4bdadfb61fd96799a4abc3}\label{classEntitySystem_aee05e5a64b4bdadfb61fd96799a4abc3}} 
+\index{EntitySystem@{EntitySystem}!DisplayEntityHierarchy@{DisplayEntityHierarchy}}
+\index{DisplayEntityHierarchy@{DisplayEntityHierarchy}!EntitySystem@{EntitySystem}}
+\doxysubsubsection{\texorpdfstring{DisplayEntityHierarchy()}{DisplayEntityHierarchy()}}
+{\footnotesize\ttfamily void Entity\+System\+::\+Display\+Entity\+Hierarchy (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $\ast$ $>$}]{Entity\+List,  }\item[{const std\+::string}]{Window\+Name,  }\item[{bool}]{Drag\+And\+Drop = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Displays the \mbox{\hyperlink{classEntity}{Entity}} Hierarchy in the \mbox{\hyperlink{classEntity}{Entity}} List window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Entity\+List} & the list of Entities to display \\
+\hline
+{\em Window\+Name} & the name of the window to display \\
+\hline
+{\em Drag\+And\+Drop} & whether or not to allow drag and drop functionality \\
+\hline
+\end{DoxyParams}
+Get a Node Name for the entity
+
+Create a new entity
+
+Create a new transform
+
+Set the name of the entity
+
+Add the transform to the entity)
+
+If Drag and Drop is enabled
+
+If Drag and Drop is enabled\mbox{\Hypertarget{classEntitySystem_a409d4956a21b58cc77b086e405c171a6}\label{classEntitySystem_a409d4956a21b58cc77b086e405c171a6}} 
 \index{EntitySystem@{EntitySystem}!EntityCreateWindow@{EntityCreateWindow}}
 \index{EntityCreateWindow@{EntityCreateWindow}!EntitySystem@{EntitySystem}}
 \doxysubsubsection{\texorpdfstring{EntityCreateWindow()}{EntityCreateWindow()}}
