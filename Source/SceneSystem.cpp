@@ -491,18 +491,16 @@
         m_SceneNames()
     {}
 
-    /// @brief  The singleton instance of SceneSystem
-    SceneSystem* SceneSystem::s_Instance = nullptr;
-
     /// @brief  gets the instance of SceneSystem
     /// @return the instance of the SceneSystem
     SceneSystem* SceneSystem::GetInstance()
     {
-        if ( s_Instance == nullptr )
+        static std::unique_ptr< SceneSystem > s_Instance = nullptr;
+        if (s_Instance == nullptr )
         {
-            s_Instance = new SceneSystem();
+            s_Instance.reset( new SceneSystem() );
         }
-        return s_Instance;
+        return s_Instance.get();
     }
 
 //-----------------------------------------------------------------------------

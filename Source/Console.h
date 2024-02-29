@@ -101,9 +101,6 @@ private: // singleton stuff
 
     /// @brief  creates the DebugConsole
     DebugConsole();
-    
-    /// @brief  destroys the DebugConsole
-    ~DebugConsole();
 
 	// Prevent Copying
 	DebugConsole(DebugConsole const&) = delete;

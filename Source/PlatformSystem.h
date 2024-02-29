@@ -207,11 +207,6 @@ private: // singleton stuff
     /// @brief Constructor
     PlatformSystem();
 
-
-    /// @brief The singleton instance of the PlatformSystem
-    static PlatformSystem* instance;
-
-
 //-----------------------------------------------------------------------------
 public: // singleton stuff
 //-----------------------------------------------------------------------------

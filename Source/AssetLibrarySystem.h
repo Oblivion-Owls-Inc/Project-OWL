@@ -106,10 +106,6 @@ private: // singleton stuff
 
     /// @brief Constructs the AssetLibrarySystem
     AssetLibrarySystem();
-
-    /// @brief The singleton instance of AssetLibrarySystem
-    static AssetLibrarySystem* s_Instance;
-
 //-----------------------------------------------------------------------------
 public: // singleton stuff
 //-----------------------------------------------------------------------------

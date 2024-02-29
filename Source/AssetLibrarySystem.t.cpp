@@ -243,21 +243,18 @@ AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& n
     {
     }
 
-    /// @brief the singleton instance of AssetLibrarySystem
-    template< class AssetType >
-    AssetLibrarySystem< AssetType >* AssetLibrarySystem< AssetType >::s_Instance = nullptr;
-
-
     /// @brief gets the instance of AssetLibrarySystem
     /// @return the instance of the AssetLibrarySystem
     template< class AssetType >
     AssetLibrarySystem< AssetType >* AssetLibrarySystem< AssetType >::GetInstance()
     {
+        static std::unique_ptr< AssetLibrarySystem< AssetType > > s_Instance = nullptr;
+
         if ( s_Instance == nullptr )
         {
-            s_Instance = new AssetLibrarySystem();
+            s_Instance.reset( new AssetLibrarySystem< AssetType >() );
         }
-        return s_Instance;
+        return s_Instance.get();
     }
 
 

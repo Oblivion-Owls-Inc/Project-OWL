@@ -52,8 +52,8 @@ enum class MenuItemType {
 class DebugSystem : public System
 {
 public:
-    static DebugSystem* instance;
 
+    /// @brief  gets the instance of the DebugSystem
     static DebugSystem* GetInstance();
 
     /// @brief Constructor for DebugSystem

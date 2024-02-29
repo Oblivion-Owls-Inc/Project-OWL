@@ -124,16 +124,14 @@ System("PauseSystem")
 {
 }
 
-/// @brief The singleton s_Instance of PauseSystem
-PauseSystem* PauseSystem::s_Instance = nullptr;
-
 /// @brief Get the singleton instance of PauseSystem
 /// @return The singleton instance of PauseSystem
 PauseSystem* PauseSystem::GetInstance()
 {
+    static std::unique_ptr< PauseSystem > s_Instance = nullptr;
     if (s_Instance == nullptr)
     {
-        s_Instance = new PauseSystem();
+        s_Instance.reset( new PauseSystem() );
     }
-    return s_Instance;
+    return s_Instance.get();
 }

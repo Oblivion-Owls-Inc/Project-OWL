@@ -245,14 +245,14 @@
     /// @return the instance of the TileInfoSystem
     TileInfoSystem* TileInfoSystem::GetInstance()
     {
-        static TileInfoSystem* instance = nullptr;
+        static std::unique_ptr < TileInfoSystem > s_Instance = nullptr;
 
-        if ( instance == nullptr )
+        if (s_Instance == nullptr )
         {
-            instance = new TileInfoSystem();
+            s_Instance.reset( new TileInfoSystem());
         }
 
-        return instance;
+        return s_Instance.get();
     }
 
 //-----------------------------------------------------------------------------

@@ -277,11 +277,6 @@
                 << std::endl << std::endl;
         }
 
-        for (System* system : m_Systems)
-        {
-            delete system;
-        }
-
         Debug() << "\nShutdown complete." << std::endl;
 
     }
@@ -404,10 +399,6 @@
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-
-    /// @brief  The singleton instance of the Engine
-    Engine * Engine::s_Instance;
-
     /// @brief  Constructs a new Engine
     Engine::Engine() :
         m_ShouldExit( false ),
@@ -421,11 +412,14 @@
     /// @return the singleton instance of the Engine
     Engine* Engine::GetInstance()
     {
+
+        static std::unique_ptr < Engine > s_Instance = nullptr;
+
         if ( s_Instance == nullptr )
         {
-            s_Instance = new Engine();
+            s_Instance.reset( new Engine() );
         }
-        return s_Instance;
+        return s_Instance.get();
     }
 
 

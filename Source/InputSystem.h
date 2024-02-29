@@ -39,12 +39,6 @@ private: // virtual override methods
     /// @brief Constructs the InputSystem
     InputSystem();
 
-
-    /// @brief The singleton instance of InputSystem
-    static InputSystem * instance;
-
-
-
 protected:
     
     GLFWwindow* handle;

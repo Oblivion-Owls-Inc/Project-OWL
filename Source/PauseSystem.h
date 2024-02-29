@@ -98,10 +98,6 @@ private: // reading
 private: // singleton stuff
 //-----------------------------------------------------------------------------
 
-    /// @brief The singleton s_Instance of PauseSystem
-    static PauseSystem* s_Instance;
-
-
 //-----------------------------------------------------------------------------
 public: // singleton stuff
 //-----------------------------------------------------------------------------

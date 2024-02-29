@@ -630,13 +630,14 @@
     /// @return the instance of the EntitySystem
     EntitySystem* EntitySystem::GetInstance()
     {
-        static EntitySystem* instance = nullptr;
-        if ( instance == nullptr )
+        static std::unique_ptr< EntitySystem > s_Instance = nullptr;
+
+        if (s_Instance == nullptr )
         {
-            instance = new EntitySystem();
+            s_Instance.reset(new EntitySystem());
         }
 
-        return instance;
+        return s_Instance.get();
     }
 
     

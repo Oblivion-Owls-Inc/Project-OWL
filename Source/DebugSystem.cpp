@@ -578,6 +578,7 @@ void DebugSystem::OnExit()
     //ImGui::End();
     ImGui::Render();
     ImGui_ImplGlfw_Shutdown();
+    ImGui_ImplOpenGL3_Shutdown();
     ImPlot::DestroyContext();
     ImGui::DestroyContext();
 
@@ -738,17 +739,16 @@ void DebugSystem::WritetoConsole(const std::string& message)
         m_ShowFpsWindow(false)
     {}
 
-    DebugSystem* DebugSystem::instance = nullptr;
-
     DebugSystem* DebugSystem::GetInstance()
     {
+        static std::unique_ptr< DebugSystem > s_Instance = nullptr;
 
-        if (instance == nullptr) 
+        if (s_Instance == nullptr)
         {
-            instance = new DebugSystem();
+            s_Instance.reset(new DebugSystem());
         }
 
-        return instance;
+        return s_Instance.get();
 
     }
 

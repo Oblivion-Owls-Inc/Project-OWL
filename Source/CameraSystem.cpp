@@ -138,8 +138,6 @@
 // singleton stuff
 //-----------------------------------------------------------------------------
 
-    CameraSystem* CameraSystem::instance = nullptr;
-
     CameraSystem::CameraSystem() :
         System( "CameraSystem" )
     {
@@ -147,11 +145,13 @@
 
     CameraSystem* CameraSystem::GetInstance()
     {
-        if (instance == nullptr)
+        static std::unique_ptr<CameraSystem> s_Instance = nullptr;
+
+        if (s_Instance == nullptr)
         {
-            instance = new CameraSystem();
+            s_Instance.reset(new CameraSystem());
         }
-        return instance;
+        return s_Instance.get();
     }
 
 //-----------------------------------------------------------------------------

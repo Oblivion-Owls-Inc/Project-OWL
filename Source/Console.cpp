@@ -275,12 +275,12 @@
         /// @return the instance of the DebugConsole
     DebugConsole* DebugConsole::GetInstance()
     {
-        static DebugConsole* instance = nullptr;
-        if (instance == nullptr)
+        static std::unique_ptr < DebugConsole > s_Instance = nullptr;
+        if (s_Instance == nullptr)
         {
-            instance = new DebugConsole();
+            s_Instance.reset( new DebugConsole() );
         }
-        return instance;
+        return s_Instance.get();
     }
 
 
@@ -294,13 +294,6 @@
     {
         addCommands();
     }
-
-    /// @brief  Destructs the DebugConsole
-    DebugConsole::~DebugConsole()
-    {
-        ClearLog();
-    }
-
 
 //-----------------------------------------------------------------------------
 
