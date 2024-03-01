@@ -216,6 +216,7 @@
         static bool _open = true;
         if ( ImGui::Begin( "Collision System", &_open ) == false )
         {
+            ImGui::End();
             return;
         }
 
