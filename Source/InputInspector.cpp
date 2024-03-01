@@ -956,7 +956,7 @@ bool InputSystem::Action::GetDown() const
     {
         if (m_GamepadAxisAsInput[i] == 4 || m_GamepadAxisAsInput[i] == 5)
         {
-            if (Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]) > -0.5)
+            if ( glfwJoystickPresent( 0 ) == GLFW_TRUE && Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]) > -0.5)
             {
                 return true;
             }
