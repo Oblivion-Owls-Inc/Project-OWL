@@ -74,6 +74,7 @@ digraph "Source/AssetReference.t.cpp"
   Node2 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node24 [label="Source/ResourcesUiManager.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8h.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
   Node24 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node24 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node25 [label="Source/ResourcesUiManager.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8cpp.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
   Node2 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -121,6 +122,8 @@ digraph "Source/AssetReference.t.cpp"
   Node27 -> Node42 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node42 [label="Source/TilemapSprite.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapSprite_8h.html",tooltip="A version of Sprite specifically for rendering tiles."];
   Node42 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node42 -> Node40 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node42 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node42 -> Node43 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node43 [label="Source/TilemapSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapSprite_8cpp.html",tooltip="A version of Sprite specifically for rendering tiles."];
   Node27 -> Node44 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

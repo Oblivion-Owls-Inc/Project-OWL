@@ -9,7 +9,7 @@ out vec2 v_UV;
 uniform mat4 mvp = mat4(1,0,0,0, 
                         0,1,0,0, 
                         0,0,1,0, 
-                        0,0,0,1); // (it's transposed btw)
+                        0,0,0,1);
 
 uniform vec2 UV_offset = vec2(0,0);
 

@@ -38,7 +38,7 @@ void LightingSystem::OnInit()
 ///         to pre-calculate shadows.
 void LightingSystem::OnUpdate(float dt)
 {
-    if (!m_Enabled || !Cameras()->GetActiveCamera())
+    if (!m_Enabled || !Cameras()->GetActiveCamera() || !GetComponents().size())
         return;
 
     // get matrix inverse only when it's changed
@@ -153,6 +153,9 @@ void LightingSystem::DebugWindow()
 ///         rather than the sprite)
 void LightingSystem::reallocTexArray()
 {
+    if (!GetComponents().size())
+        return;
+
     // replace old texture array, if present
     if (m_TextureArrayID)
         glDeleteTextures(1, &m_TextureArrayID);

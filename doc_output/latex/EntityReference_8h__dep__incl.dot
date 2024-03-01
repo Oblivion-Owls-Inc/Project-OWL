@@ -44,6 +44,7 @@ digraph "Source/EntityReference.h"
   Node1 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node17 [label="Source/ResourcesUiManager.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8h.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
   Node17 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node17 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node18 [label="Source/ResourcesUiManager.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8cpp.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
   Node1 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid"];

@@ -9,17 +9,16 @@
 #include "Entity.h"
 #include "Transform.h"
 #include <vector>
-#include <algorithm>
+#include <algorithm>            // stable_sort
 #include "Mesh.h"
 #include "AssetLibrarySystem.h"
 #include "Texture.h"
 
+// for GetMouseOverSprite
 #include "InputSystem.h"
 #include "Engine.h"
 
-static std::vector<Entity*> shapes; // this is inefficient.
-// efficiency will improve once we have resource library.
-
+static std::vector<Entity*> shapes; // this is inefficient. But whatever, it's for debug env only.
 
 /// @brief      Initializes color and texture shaders for sprites
 void RenderSystem::OnInit()
@@ -34,7 +33,7 @@ void RenderSystem::OnInit()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // set background color
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClearColor( m_BackgroundColor.r, m_BackgroundColor.g, m_BackgroundColor.b, m_BackgroundColor.a );
 
     // enable debug output
     glEnable              ( GL_DEBUG_OUTPUT );
@@ -353,6 +352,72 @@ void RenderSystem::reallocScreenBufferTexture()
     // (this should also be adjusted when changing screen size)
     glViewport(0, 0, dims.x, dims.y);
 }
+
+
+//-----------------------------------------------------------------------------
+// public: Inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  displays the RenderSystem's Debug Window
+    void RenderSystem::DebugWindow()
+    {
+        bool showWindow = GetDebugEnabled();
+
+        if ( ImGui::Begin( "Render System", &showWindow ) )
+        {
+            if ( ImGui::ColorEdit4( "background color", &m_BackgroundColor[0] ) )
+            {
+                glClearColor( m_BackgroundColor.r, m_BackgroundColor.g, m_BackgroundColor.b, m_BackgroundColor.a );
+            }
+
+            ImGui::End();
+        }
+
+        SetDebugEnable( showWindow );
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    
+    /// @brief  reads the color to fill the background with
+    /// @param  data    the JSON data to read from
+    void RenderSystem::readBackgroundColor( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( &m_BackgroundColor, data );
+    }
+
+
+//-----------------------------------------------------------------------------
+// public: reading / writing
+//-----------------------------------------------------------------------------
+
+    
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    ReadMethodMap< ISerializable > const& RenderSystem::GetReadMethods() const
+    {
+        static ReadMethodMap< RenderSystem > const readMethods = {
+            { "BackGroundColor", &RenderSystem::readBackgroundColor }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
+
+    /// @brief  writes this ExampleSystem to JSON
+    /// @return the JSON data of this ExampleSystem
+    nlohmann::ordered_json RenderSystem::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        json[ "BackgroundColor" ] = Stream::Write( m_BackgroundColor );
+
+        return json;
+    }
 
 
 //-----------------------------------------------------------------------------

@@ -200,7 +200,7 @@
         }
         else
         {
-            mvp = Cameras()->GetMat_UItoClip() * mvp;
+            mvp = Cameras()->GetMat_UiToClip() * mvp;
         }
         glUniformMatrix4fv( shader->GetUniformID( "mvp" ), 1, false, &mvp[0][0] );
 
