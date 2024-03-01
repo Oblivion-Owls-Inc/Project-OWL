@@ -200,7 +200,7 @@
                 "UseAspectRatio": false
             },
             "Items": {
-                "Filepath": "Data/Textures/Items/TestItemSheet.png",
+                "Filepath": "Data/Textures/ResourceIcons.png",
                 "SheetDimensions": [
                     3,
                     1
@@ -1172,7 +1172,7 @@
                         }
                     },
                     "Sprite": {
-                        "Layer": 2,
+                        "Layer": 21,
                         "Color": [
                             0.0,
                             0.0,
@@ -1238,7 +1238,7 @@
                                 "Text": ""
                             },
                             "TilemapSprite": {
-                                "Layer": 2,
+                                "Layer": 21,
                                 "Color": [
                                     0.0,
                                     0.0,
@@ -1612,7 +1612,7 @@
                         },
                         {
                             "WaveTime": 0.0,
-                            "WaveNextTime": 6.524757385253906,
+                            "WaveNextTime": 3.351787805557251,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
@@ -3316,8 +3316,8 @@
                 },
                 "Tilemap<Entity*>": {
                     "Dimensions": [
-                        30,
-                        20
+                        47,
+                        35
                     ],
                     "TileScale": [
                         1.0,
@@ -6930,7 +6930,7 @@
                     "Name": "WinState",
                     "Components": {
                         "WinState": {
-                            "ItemID": 0,
+                            "ItemID": 2,
                             "ItemCount": 10,
                             "WinScene": "GameWin"
                         }
@@ -7160,7 +7160,7 @@
                         0.0,
                         0.0
                     ],
-                    "Layer": 2
+                    "Layer": 20
                 },
                 "ResourcesUiManager": {
                     "HideWhenEmpty": false,
@@ -7175,12 +7175,12 @@
                 },
                 "UiElement": {
                     "Anchor": [
-                        -1.0,
-                        1.0
+                        1.0,
+                        -1.0
                     ],
                     "Pivot": [
-                        -1.0,
-                        1.0
+                        1.0,
+                        -1.0
                     ],
                     "Offset": [
                         0.0,
@@ -7347,8 +7347,8 @@
                         "Flags": 3
                     },
                     "Direction": [
-                        -0.9299333691596985,
-                        0.36772796511650085
+                        -0.8938262462615967,
+                        0.4484134316444397
                     ],
                     "IsFiring": false
                 },
