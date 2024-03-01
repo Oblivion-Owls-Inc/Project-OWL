@@ -62,13 +62,17 @@ digraph "Source/Tilemap.h"
   Node1 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node22 [label="Source/TilemapSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapSprite_8cpp.html",tooltip="A version of Sprite specifically for rendering tiles."];
   Node1 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node23 [label="Source/TilemapTextureConnector.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapTextureConnector_8cpp.html",tooltip="Component that uses a parent 'source' tilemap to update a child tilemap with connected textures."];
+  Node23 [label="Source/TilemapSprite.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapSprite_8h.html",tooltip="A version of Sprite specifically for rendering tiles."];
+  Node23 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node24 [label="Source/TilemapTextureConnector.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapTextureConnector_8h.html",tooltip="Component that uses a parent 'source' tilemap to update a child tilemap with connected textures."];
-  Node24 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node24 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="Source/TilemapTextureConnector.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapTextureConnector_8cpp.html",tooltip="Component that uses a parent 'source' tilemap to update a child tilemap with connected textures."];
   Node1 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node25 [label="Source/WavesBehavior.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WavesBehavior_8cpp.html",tooltip="Definitions for wave and spawning behavior."];
+  Node25 [label="Source/TilemapTextureConnector.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapTextureConnector_8h.html",tooltip="Component that uses a parent 'source' tilemap to update a child tilemap with connected textures."];
+  Node25 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node25 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node26 [label="Source/WavesInspector.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WavesInspector_8cpp.html",tooltip="Definitions for wave and spawning editing in game."];
+  Node26 [label="Source/WavesBehavior.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WavesBehavior_8cpp.html",tooltip="Definitions for wave and spawning behavior."];
+  Node1 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node27 [label="Source/WavesInspector.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$WavesInspector_8cpp.html",tooltip="Definitions for wave and spawning editing in game."];
 }

@@ -8,10 +8,12 @@ layout(location = 3) in mat4 mvp;
 out vec2 v_UV;
 out float v_opacity;
 
+uniform vec2 UV_offset = vec2(0,0);
+
 void main()
 {
-    gl_Position = mvp * position;
-
-    v_UV = UV;
+    gl_Position = mvp * position;  // this mvp is per-particle
     v_opacity = opacity;
+
+    v_UV = UV + UV_offset;
 }

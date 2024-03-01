@@ -296,7 +296,11 @@ Sprite::Sprite(Sprite const& other) :
             SetOpacity(m_Opacity);
         }
 
-        m_Texture.Inspect( "texture" );
+        if (m_Texture.Inspect("texture") && GetEntity()->IsInScene())
+        {
+            OnExit();
+            OnInit();
+        }
 
         if (!m_Texture)
         {
@@ -306,8 +310,8 @@ Sprite::Sprite(Sprite const& other) :
         m_IsTextured = true;
 
         if ( ImGui::DragInt(
-            "Frame Index", &m_FrameIndex, 1, 0, 
-            m_Texture->GetSheetDimensions().x * m_Texture->GetSheetDimensions().y
+            "Frame Index", &m_FrameIndex, 0.05f, 0, 
+            m_Texture->GetSheetDimensions().x * m_Texture->GetSheetDimensions().y - 1
         ) )
         {
 			SetFrameIndex(m_FrameIndex);
