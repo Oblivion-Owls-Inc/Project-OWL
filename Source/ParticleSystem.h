@@ -113,9 +113,6 @@ private:
     /// @brief  Private constructor
     ParticleSystem();
 
-    /// @brief  The singleton instance of ParticleSystem
-    static ParticleSystem * s_Instance;
-
 public:
 
     /// @return   The singleton instance

@@ -273,6 +273,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\ActionReference.cpp" />
+    <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\AssetReference.t.cpp" />
     <ClCompile Include="Source\AudioListener.cpp" />
     <ClCompile Include="Source\CollisionLayerFlags.cpp" />
@@ -300,6 +302,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="imgui\implot_items.cpp" />
     <ClCompile Include="Source\HealthBar.cpp" />
     <ClCompile Include="Source\Generator.cpp" />
+    <ClCompile Include="Source\InputCallback.cpp" />
+    <ClCompile Include="Source\InputInspector.cpp" />
     <ClCompile Include="Source\Inspection.cpp" />
     <ClCompile Include="Source\EmitterSprite.cpp" />
     <ClCompile Include="Source\Inventory.cpp" />
@@ -320,7 +324,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Pool.cpp" />
     <ClCompile Include="Source\Lua.cpp" />
     <ClCompile Include="Source\PlayerController.cpp" />
-    <ClCompile Include="Source\AssetLibrarySystem.cpp" />
+    <ClCompile Include="Source\AssetLibrarySystem.t.cpp" />
     <ClCompile Include="Source\CameraSystem.cpp" />
     <ClCompile Include="Source\CollisionSystem.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -381,6 +385,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\ActionReference.h" />
     <ClInclude Include="Source\Console.h" />
     <ClInclude Include="Source\HideableForeground.h" />
     <ClInclude Include="Source\PauseSystem.h" />

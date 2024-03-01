@@ -178,8 +178,6 @@ private:
     //-------------------------------------------------------------------------
 private:
     RenderSystem();
-    static RenderSystem* instance;
-
 public:
     static RenderSystem* GetInstance();
 

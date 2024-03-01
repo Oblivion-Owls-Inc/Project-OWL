@@ -227,8 +227,6 @@
         m_CircleCollider(nullptr)
     {}
 
-    /// @brief The singleton instance of CheatSystem.
-    CheatSystem* CheatSystem::s_Instance = nullptr;
 
 //--------------------------------------------------------------------------------
 // public: Singleton
@@ -238,9 +236,11 @@
     /// @return The instance of the CheatSystem.
     CheatSystem* CheatSystem::GetInstance()
     {
+        static std::unique_ptr<CheatSystem> s_Instance = nullptr;
+
         if (s_Instance == nullptr)
         {
-            s_Instance = new CheatSystem();
+            s_Instance.reset(new CheatSystem());
         }
-        return s_Instance;
+        return s_Instance.get();
     }

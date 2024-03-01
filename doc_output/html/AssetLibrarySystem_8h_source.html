@@ -78,110 +78,114 @@ $(function() {
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// base class so that LoadAssets can be called without knowing AssetType</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classBaseAssetLibrarySystem.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a> : <span class="keyword">public</span> <a class="code" href="classSystem.html">System</a></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> LoadAssets( nlohmann::ordered_json <span class="keyword">const</span>&amp; data ) = 0;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json SaveAssets() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a>( std::string <span class="keyword">const</span>&amp; name ) :</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classSystem.html#a9cd1cf06022ecbde6f0b27be372a0cf6">System</a>( name )</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    {}</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// Prevent copying</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a>( <a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a>&amp; other ) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> operator=( <a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a> <span class="keyword">const</span>&amp; ) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> AssetType &gt;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classAssetLibrarySystem.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a> : <span class="keyword">public</span> <a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">private</span>: <span class="comment">// virtual override methods</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Entity_8h.html">Entity.h</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">// base class so that LoadAssets can be called without knowing AssetType</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classBaseAssetLibrarySystem.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a> : <span class="keyword">public</span> <a class="code" href="classSystem.html">System</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> LoadAssets( nlohmann::ordered_json <span class="keyword">const</span>&amp; data ) = 0;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json SaveAssets() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a>( std::string <span class="keyword">const</span>&amp; name ) :</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="classSystem.html#a9cd1cf06022ecbde6f0b27be372a0cf6">System</a>( name )</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {}</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// Prevent copying</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a>( <a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a>&amp; other ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> operator=( <a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a> <span class="keyword">const</span>&amp; ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">class</span> AssetType &gt;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classAssetLibrarySystem.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a> : <span class="keyword">public</span> <a class="code" href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnSceneExit() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> LoadAssets( nlohmann::ordered_json <span class="keyword">const</span>&amp; data ) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json SaveAssets() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> DebugWindow() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">private</span>: <span class="comment">// virtual override methods</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnSceneExit() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> LoadAssets( nlohmann::ordered_json <span class="keyword">const</span>&amp; data ) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json SaveAssets() <span class="keyword">const override</span>;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">public</span>: <span class="comment">// public functions</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    AssetType <span class="keyword">const</span>* <a class="code" href="classAssetLibrarySystem.html#afa2464ba44daf6d7e70baccc5fe50d02">GetAsset</a>( std::string <span class="keyword">const</span>&amp; name ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">char</span> <span class="keyword">const</span>* <a class="code" href="classAssetLibrarySystem.html#a5e907a5b6c2b3db7f73eaba16e6a3b1f">GetAssetName</a>( AssetType <span class="keyword">const</span>* asset ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classAssetLibrarySystem.html#a55746d2800bec315d38aea402c26dd1d">AddAsset</a>( std::string <span class="keyword">const</span>&amp; name, AssetType* asset );</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::map&lt; std::string, AssetType* &gt; <span class="keyword">const</span>&amp; <a class="code" href="classAssetLibrarySystem.html#ae87d5039fa55b29c883a1508d8e9ed70">GetAssets</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> DebugWindow() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">public</span>: <span class="comment">// public functions</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    AssetType <span class="keyword">const</span>* <a class="code" href="classAssetLibrarySystem.html#afa2464ba44daf6d7e70baccc5fe50d02">GetAsset</a>( std::string <span class="keyword">const</span>&amp; name ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">char</span> <span class="keyword">const</span>* <a class="code" href="classAssetLibrarySystem.html#a5e907a5b6c2b3db7f73eaba16e6a3b1f">GetAssetName</a>( AssetType <span class="keyword">const</span>* asset ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classAssetLibrarySystem.html#a55746d2800bec315d38aea402c26dd1d">AddAsset</a>( std::string <span class="keyword">const</span>&amp; name, AssetType* asset );</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classAssetLibrarySystem.html#ae0dcdc8020c390d0ae422c2b5a434e8f">DebugCreateAssetWindow</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::map&lt; std::string, AssetType* &gt; <span class="keyword">const</span>&amp; <a class="code" href="classAssetLibrarySystem.html#ae87d5039fa55b29c883a1508d8e9ed70">GetAssets</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">private</span>: <span class="comment">// private variables</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    std::map&lt; std::string, AssetType* &gt; m_Assets;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> s_ShowAssetLibraryList;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">private</span>: <span class="comment">// private functions</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> FlushAssets();</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> ListAssets();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classAssetLibrarySystem.html#ae0dcdc8020c390d0ae422c2b5a434e8f">DebugCreateAssetWindow</a>();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">private</span>: <span class="comment">// private variables</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    std::map&lt; std::string, AssetType* &gt; m_Assets;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> s_ShowAssetLibraryList;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">private</span>: <span class="comment">// private functions</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> FlushAssets();</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton stuff</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> ListAssets();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword">private</span>: <span class="comment">// singleton stuff</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">static</span> <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a>* s_Instance;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">static</span> <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a>* <a class="code" href="classAssetLibrarySystem.html#a74bf911f9210a9eb224d914c3f9288ba">GetInstance</a>();</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="comment">// Prevent copying</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a>( <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a>&amp; other ) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">void</span> operator=( <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a> <span class="keyword">const</span>&amp; ) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;};</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">template</span>&lt; <span class="keyword">class</span> AssetType &gt;</div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="AssetLibrarySystem_8h.html#aebb4c31c7ad5ba29a42208389548565b">  128</a></span>&#160;__inline <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem&lt; AssetType &gt;</a>* <a class="code" href="AssetLibrarySystem_8h.html#aebb4c31c7ad5ba29a42208389548565b">AssetLibrary</a>()</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classAssetLibrarySystem.html#a74bf911f9210a9eb224d914c3f9288ba">AssetLibrarySystem&lt; AssetType &gt;::GetInstance</a>();</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#ifndef ASSETLIBRARYSYSTEM_C</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AssetLibrarySystem_8cpp.html">AssetLibrarySystem.cpp</a>&quot;</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aAssetLibrarySystem_8cpp_html"><div class="ttname"><a href="AssetLibrarySystem_8cpp.html">AssetLibrarySystem.cpp</a></div><div class="ttdoc">AssetLibrarySystem.</div></div>
-<div class="ttc" id="aAssetLibrarySystem_8h_html_aebb4c31c7ad5ba29a42208389548565b"><div class="ttname"><a href="AssetLibrarySystem_8h.html#aebb4c31c7ad5ba29a42208389548565b">AssetLibrary</a></div><div class="ttdeci">__inline AssetLibrarySystem&lt; AssetType &gt; * AssetLibrary()</div><div class="ttdoc">shorthand function for getting an AssetLibrary instance</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.h:128</div></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a>();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton stuff</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">static</span> <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a>* <a class="code" href="classAssetLibrarySystem.html#a74bf911f9210a9eb224d914c3f9288ba">GetInstance</a>();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">// Prevent copying</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a>( <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a>&amp; other ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">void</span> operator=( <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem</a> <span class="keyword">const</span>&amp; ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;};</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keyword">template</span>&lt; <span class="keyword">class</span> AssetType &gt;</div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="AssetLibrarySystem_8h.html#aebb4c31c7ad5ba29a42208389548565b">  127</a></span>&#160;__inline <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem&lt; AssetType &gt;</a>* <a class="code" href="AssetLibrarySystem_8h.html#aebb4c31c7ad5ba29a42208389548565b">AssetLibrary</a>()</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classAssetLibrarySystem.html#a74bf911f9210a9eb224d914c3f9288ba">AssetLibrarySystem&lt; AssetType &gt;::GetInstance</a>();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;}</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keywordtype">void</span> <a class="code" href="classAssetLibrarySystem.html">AssetLibrarySystem&lt;Entity&gt;::DebugWindow</a>();</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#ifndef ASSETLIBRARYSYSTEM_C</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AssetLibrarySystem_8t_8cpp.html">AssetLibrarySystem.t.cpp</a>&quot;</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aAssetLibrarySystem_8h_html_aebb4c31c7ad5ba29a42208389548565b"><div class="ttname"><a href="AssetLibrarySystem_8h.html#aebb4c31c7ad5ba29a42208389548565b">AssetLibrary</a></div><div class="ttdeci">__inline AssetLibrarySystem&lt; AssetType &gt; * AssetLibrary()</div><div class="ttdoc">shorthand function for getting an AssetLibrary instance</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.h:127</div></div>
+<div class="ttc" id="aAssetLibrarySystem_8t_8cpp_html"><div class="ttname"><a href="AssetLibrarySystem_8t_8cpp.html">AssetLibrarySystem.t.cpp</a></div><div class="ttdoc">AssetLibrarySystem.</div></div>
+<div class="ttc" id="aEntity_8h_html"><div class="ttname"><a href="Entity_8h.html">Entity.h</a></div><div class="ttdoc">Entity class which holds Components.</div></div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
-<div class="ttc" id="aclassAssetLibrarySystem_html"><div class="ttname"><a href="classAssetLibrarySystem.html">AssetLibrarySystem</a></div><div class="ttdoc">Asset System meant to be copy-pasted when creating new Systems.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.h:37</div></div>
-<div class="ttc" id="aclassAssetLibrarySystem_html_a55746d2800bec315d38aea402c26dd1d"><div class="ttname"><a href="classAssetLibrarySystem.html#a55746d2800bec315d38aea402c26dd1d">AssetLibrarySystem::AddAsset</a></div><div class="ttdeci">void AddAsset(std::string const &amp;name, AssetType *asset)</div><div class="ttdoc">Adds an asset to the AssetLibrary.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.cpp:133</div></div>
-<div class="ttc" id="aclassAssetLibrarySystem_html_a5e907a5b6c2b3db7f73eaba16e6a3b1f"><div class="ttname"><a href="classAssetLibrarySystem.html#a5e907a5b6c2b3db7f73eaba16e6a3b1f">AssetLibrarySystem::GetAssetName</a></div><div class="ttdeci">char const  * GetAssetName(AssetType const *asset) const</div><div class="ttdoc">Finds an returns the name of the specified asset.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.cpp:115</div></div>
-<div class="ttc" id="aclassAssetLibrarySystem_html_a74bf911f9210a9eb224d914c3f9288ba"><div class="ttname"><a href="classAssetLibrarySystem.html#a74bf911f9210a9eb224d914c3f9288ba">AssetLibrarySystem::GetInstance</a></div><div class="ttdeci">static AssetLibrarySystem * GetInstance()</div><div class="ttdoc">gets the instance of AssetLibrarySystem</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.cpp:254</div></div>
-<div class="ttc" id="aclassAssetLibrarySystem_html_ae0dcdc8020c390d0ae422c2b5a434e8f"><div class="ttname"><a href="classAssetLibrarySystem.html#ae0dcdc8020c390d0ae422c2b5a434e8f">AssetLibrarySystem::DebugCreateAssetWindow</a></div><div class="ttdeci">bool DebugCreateAssetWindow()</div><div class="ttdoc">Asset Creation Window for Dev Console.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.cpp:151</div></div>
-<div class="ttc" id="aclassAssetLibrarySystem_html_ae87d5039fa55b29c883a1508d8e9ed70"><div class="ttname"><a href="classAssetLibrarySystem.html#ae87d5039fa55b29c883a1508d8e9ed70">AssetLibrarySystem::GetAssets</a></div><div class="ttdeci">std::map&lt; std::string, AssetType * &gt; const  &amp; GetAssets() const</div><div class="ttdoc">Gets All the assets in the AssetLibrary.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.cpp:142</div></div>
-<div class="ttc" id="aclassAssetLibrarySystem_html_afa2464ba44daf6d7e70baccc5fe50d02"><div class="ttname"><a href="classAssetLibrarySystem.html#afa2464ba44daf6d7e70baccc5fe50d02">AssetLibrarySystem::GetAsset</a></div><div class="ttdeci">AssetType const  * GetAsset(std::string const &amp;name) const</div><div class="ttdoc">Finds and returns an asset, builds if doesnt yet exist.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.cpp:98</div></div>
-<div class="ttc" id="aclassBaseAssetLibrarySystem_html"><div class="ttname"><a href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a></div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.h:19</div></div>
+<div class="ttc" id="aclassAssetLibrarySystem_html"><div class="ttname"><a href="classAssetLibrarySystem.html">AssetLibrarySystem</a></div><div class="ttdoc">Asset System meant to be copy-pasted when creating new Systems.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.h:39</div></div>
+<div class="ttc" id="aclassAssetLibrarySystem_html_a55746d2800bec315d38aea402c26dd1d"><div class="ttname"><a href="classAssetLibrarySystem.html#a55746d2800bec315d38aea402c26dd1d">AssetLibrarySystem::AddAsset</a></div><div class="ttdeci">void AddAsset(std::string const &amp;name, AssetType *asset)</div><div class="ttdoc">Adds an asset to the AssetLibrary.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.t.cpp:133</div></div>
+<div class="ttc" id="aclassAssetLibrarySystem_html_a5e907a5b6c2b3db7f73eaba16e6a3b1f"><div class="ttname"><a href="classAssetLibrarySystem.html#a5e907a5b6c2b3db7f73eaba16e6a3b1f">AssetLibrarySystem::GetAssetName</a></div><div class="ttdeci">char const  * GetAssetName(AssetType const *asset) const</div><div class="ttdoc">Finds an returns the name of the specified asset.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.t.cpp:115</div></div>
+<div class="ttc" id="aclassAssetLibrarySystem_html_a74bf911f9210a9eb224d914c3f9288ba"><div class="ttname"><a href="classAssetLibrarySystem.html#a74bf911f9210a9eb224d914c3f9288ba">AssetLibrarySystem::GetInstance</a></div><div class="ttdeci">static AssetLibrarySystem * GetInstance()</div><div class="ttdoc">gets the instance of AssetLibrarySystem</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.t.cpp:249</div></div>
+<div class="ttc" id="aclassAssetLibrarySystem_html_ae0dcdc8020c390d0ae422c2b5a434e8f"><div class="ttname"><a href="classAssetLibrarySystem.html#ae0dcdc8020c390d0ae422c2b5a434e8f">AssetLibrarySystem::DebugCreateAssetWindow</a></div><div class="ttdeci">bool DebugCreateAssetWindow()</div><div class="ttdoc">Asset Creation Window for Dev Console.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.t.cpp:151</div></div>
+<div class="ttc" id="aclassAssetLibrarySystem_html_ae87d5039fa55b29c883a1508d8e9ed70"><div class="ttname"><a href="classAssetLibrarySystem.html#ae87d5039fa55b29c883a1508d8e9ed70">AssetLibrarySystem::GetAssets</a></div><div class="ttdeci">std::map&lt; std::string, AssetType * &gt; const  &amp; GetAssets() const</div><div class="ttdoc">Gets All the assets in the AssetLibrary.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.t.cpp:142</div></div>
+<div class="ttc" id="aclassAssetLibrarySystem_html_afa2464ba44daf6d7e70baccc5fe50d02"><div class="ttname"><a href="classAssetLibrarySystem.html#afa2464ba44daf6d7e70baccc5fe50d02">AssetLibrarySystem::GetAsset</a></div><div class="ttdeci">AssetType const  * GetAsset(std::string const &amp;name) const</div><div class="ttdoc">Finds and returns an asset, builds if doesnt yet exist.</div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.t.cpp:98</div></div>
+<div class="ttc" id="aclassBaseAssetLibrarySystem_html"><div class="ttname"><a href="classBaseAssetLibrarySystem.html">BaseAssetLibrarySystem</a></div><div class="ttdef"><b>Definition:</b> AssetLibrarySystem.h:21</div></div>
 <div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:16</div></div>
 <div class="ttc" id="aclassSystem_html_a9cd1cf06022ecbde6f0b27be372a0cf6"><div class="ttname"><a href="classSystem.html#a9cd1cf06022ecbde6f0b27be372a0cf6">System::System</a></div><div class="ttdeci">System(std::string const &amp;name)</div><div class="ttdoc">Constructs a System.</div><div class="ttdef"><b>Definition:</b> System.h:75</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -123,10 +123,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7845593611dfdec427b41a907c66ea82"><td class="mdescLeft">&#160;</td><td class="mdescRight">inspects this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a>  <a href="classAssetReference.html#a7845593611dfdec427b41a907c66ea82">More...</a><br /></td></tr>
 <tr class="separator:a7845593611dfdec427b41a907c66ea82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada44d34d18f9356b930367ac09e2b77f"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetReference.html#ada44d34d18f9356b930367ac09e2b77f">GetReadMethods</a> () const override</td></tr>
-<tr class="memdesc:ada44d34d18f9356b930367ac09e2b77f"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the map of read methods for Entities  <a href="classAssetReference.html#ada44d34d18f9356b930367ac09e2b77f">More...</a><br /></td></tr>
+<tr class="memdesc:ada44d34d18f9356b930367ac09e2b77f"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the map of read methods for AssetReferences  <a href="classAssetReference.html#ada44d34d18f9356b930367ac09e2b77f">More...</a><br /></td></tr>
 <tr class="separator:ada44d34d18f9356b930367ac09e2b77f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1cdfff41826daf17cd2106dcd68ff6e2"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetReference.html#a1cdfff41826daf17cd2106dcd68ff6e2">Write</a> () const override</td></tr>
-<tr class="memdesc:a1cdfff41826daf17cd2106dcd68ff6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all Asset data to a JSON file.  <a href="classAssetReference.html#a1cdfff41826daf17cd2106dcd68ff6e2">More...</a><br /></td></tr>
+<tr class="memdesc:a1cdfff41826daf17cd2106dcd68ff6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">write all Asset data to JSON.  <a href="classAssetReference.html#a1cdfff41826daf17cd2106dcd68ff6e2">More...</a><br /></td></tr>
 <tr class="separator:a1cdfff41826daf17cd2106dcd68ff6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classISerializable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classISerializable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classISerializable.html">ISerializable</a></td></tr>
 <tr class="memitem:a7b60e4aca93fb97f18c9ff41ee53bc3a inherit pub_methods_classISerializable"><td class="memItemLeft" align="right" valign="top"><a id="a7b60e4aca93fb97f18c9ff41ee53bc3a"></a>
@@ -290,8 +290,9 @@ template&lt;class AssetType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>gets the map of read methods for Entities </p>
-<dl class="section return"><dt>Returns</dt><dd>the map of read methods for Entities</dd></dl>
+<p>gets the map of read methods for AssetReferences </p>
+<p>gets the map of read methods for Entities</p>
+<dl class="section return"><dt>Returns</dt><dd>the map of read methods for AssetReferences</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">AssetType</td><td>the type of asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to </td></tr>
@@ -407,7 +408,7 @@ template&lt;class AssetType &gt; </div>
 </div><div class="memdoc">
 
 <p>dereference operator </p>
-<dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="classComponent.html">Component</a> this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the Asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">AssetType</td><td>the type of asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to </td></tr>
@@ -433,7 +434,7 @@ template&lt;class AssetType &gt; </div>
 </div><div class="memdoc">
 
 <p>member dereference operator </p>
-<dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="classComponent.html">Component</a> this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the Asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">AssetType</td><td>the type of asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to </td></tr>
@@ -586,8 +587,9 @@ template&lt;class AssetType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Write all Asset data to a JSON file. </p>
-<dl class="section return"><dt>Returns</dt><dd>The JSON file containing the Asset data.</dd></dl>
+<p>write all Asset data to JSON. </p>
+<p>Write all Asset data to a JSON file.</p>
+<dl class="section return"><dt>Returns</dt><dd>the JSON containing the Asset data.</dd></dl>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">AssetType</td><td>the type of asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to </td></tr>

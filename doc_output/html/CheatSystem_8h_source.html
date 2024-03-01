@@ -128,27 +128,25 @@ $(function() {
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classCheatSystem.html">CheatSystem</a>();</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCheatSystem.html">CheatSystem</a>* s_Instance;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton </span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCheatSystem.html">CheatSystem</a>* <a class="code" href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">GetInstance</a>();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Prevent copying</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classCheatSystem.html">CheatSystem</a>(<a class="code" href="classCheatSystem.html">CheatSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classCheatSystem.html">CheatSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;};</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;__inline <a class="code" href="classCheatSystem.html">CheatSystem</a>* Cheats() {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">CheatSystem::GetInstance</a>();</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">public</span>: <span class="comment">// singleton </span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">static</span> <a class="code" href="classCheatSystem.html">CheatSystem</a>* <a class="code" href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">GetInstance</a>();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// Prevent copying</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classCheatSystem.html">CheatSystem</a>(<a class="code" href="classCheatSystem.html">CheatSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classCheatSystem.html">CheatSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;__inline <a class="code" href="classCheatSystem.html">CheatSystem</a>* Cheats() {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">CheatSystem::GetInstance</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
 <div class="ttc" id="aclassCheatSystem_html"><div class="ttname"><a href="classCheatSystem.html">CheatSystem</a></div><div class="ttdef"><b>Definition:</b> CheatSystem.h:22</div></div>
 <div class="ttc" id="aclassCheatSystem_html_a2bd6a0bc72c2e6b19858bf93dd28e04a"><div class="ttname"><a href="classCheatSystem.html#a2bd6a0bc72c2e6b19858bf93dd28e04a">CheatSystem::DebugWindow</a></div><div class="ttdeci">virtual void DebugWindow() override</div><div class="ttdoc">The cheat/console window.</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:47</div></div>
-<div class="ttc" id="aclassCheatSystem_html_ab950130b97dfb0089cd0413c1e1256dd"><div class="ttname"><a href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">CheatSystem::GetInstance</a></div><div class="ttdeci">static CheatSystem * GetInstance()</div><div class="ttdoc">gets the instance of AudioSystem</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:239</div></div>
+<div class="ttc" id="aclassCheatSystem_html_ab950130b97dfb0089cd0413c1e1256dd"><div class="ttname"><a href="classCheatSystem.html#ab950130b97dfb0089cd0413c1e1256dd">CheatSystem::GetInstance</a></div><div class="ttdeci">static CheatSystem * GetInstance()</div><div class="ttdoc">gets the instance of AudioSystem</div><div class="ttdef"><b>Definition:</b> CheatSystem.cpp:237</div></div>
 <div class="ttc" id="aclassCircleCollider_html"><div class="ttname"><a href="classCircleCollider.html">CircleCollider</a></div><div class="ttdoc">Circle-shaped Collider.</div><div class="ttdef"><b>Definition:</b> CircleCollider.h:17</div></div>
 <div class="ttc" id="aclassSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdoc">Base class for all Systems.</div><div class="ttdef"><b>Definition:</b> System.h:16</div></div>
 </div><!-- fragment --></div><!-- contents -->

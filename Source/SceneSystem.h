@@ -212,9 +212,6 @@ private: // singleton stuff
     /// @brief  Constructs the SceneSystem
     SceneSystem();
 
-    /// @brief  The singleton instance of SceneSystem
-    static SceneSystem * s_Instance;
-
 //-----------------------------------------------------------------------------
 public: // singleton stuff
 //-----------------------------------------------------------------------------

@@ -1,7 +1,0 @@
-<map id="BaseBehavior" name="BaseBehavior">
-<area shape="rect" id="node1" title=" " alt="" coords="26,304,138,331"/>
-<area shape="rect" id="node2" href="$classBasicEntityBehavior.html" title=" " alt="" coords="5,229,159,256"/>
-<area shape="rect" id="node3" href="$classBehavior.html" title=" " alt="" coords="42,155,122,181"/>
-<area shape="rect" id="node4" href="$classComponent.html" title=" " alt="" coords="33,80,131,107"/>
-<area shape="rect" id="node5" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="31,5,133,32"/>
-</map>

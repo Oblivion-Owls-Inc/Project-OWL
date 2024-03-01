@@ -4,8 +4,8 @@ permissions:
 
 on:
   push:
-    branches-ignore:
-      - main  # Exclude the main branch
+    branches:
+      - main  # Only the Main Branch
 
 jobs:
   build:
@@ -36,4 +36,4 @@ jobs:
 
     - name: Commit Files to Github
       run: |
-        git push https://${{ secrets.MY_GITHUB_TOKEN }}@github.com/Oblivion-Owls-Inc/Project-OWL.git ${{ github.ref_name }}
+        git push --force https://${{ secrets.MY_GITHUB_TOKEN }}@github.com/Oblivion-Owls-Inc/Project-OWL.git ${{ github.ref_name }}

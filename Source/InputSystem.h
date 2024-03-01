@@ -1,6 +1,6 @@
 /// @file InputSystem.h
 /// @author Tyler Birdsall (tyler.birdsall@digipen.edu
-/// @brief Input system, handles key and mouse inputs
+/// @brief Input system, m_Handles key and mouse inputs
 /// @version 0.1
 /// @date 2023-09-12
 /// 
@@ -13,7 +13,6 @@
 #include "glm/glm.hpp"
 #include "glfw3.h"
 
-
 /// @brief Example System meant to be copy-pasted when creating new Systems
 using namespace std;
 class InputSystem : public System
@@ -25,7 +24,7 @@ private: // virtual override methods
     /// @brief  Gets called when system initializes
     virtual void OnInit() override;
 
-    /// @brief  Gets called when system initializes
+    /// @brief  Gets called when system exits
     virtual void OnExit() override;
 
     /// @brief fixed update for input, must be called for input to function
@@ -36,44 +35,319 @@ private: // virtual override methods
 
 //-----------------------------------------------------------------------------
 
-    /// @brief Constructs the InputSystem
-    InputSystem();
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
 
+    /// @brief Gets Called by the Debug system to display debug information
+    virtual void DebugWindow() override;
 
-    /// @brief The singleton instance of InputSystem
-    static InputSystem * instance;
+    /// @brief  displays a text version of a key to imgui (65 becomes "A", etc)
+    /// @param  key to convert
+    const char* GetDebugKeyName(int key) const;
 
+//-----------------------------------------------------------------------------
+public: // forward references
+//-----------------------------------------------------------------------------
 
+    class Action; // forward reference
 
-protected:
+//-----------------------------------------------------------------------------
+private: // private variables
+//-----------------------------------------------------------------------------
     
-    GLFWwindow* handle;
+    // checks to indicate an action is being changed
+    /// @brief  int definition of which change state is occuring
+    int m_ChangingAction = 0;
+    /// @brief  name of action changing
+    std::string m_WhichAction = "";
+
+    // bool array 0 down 1 triggered 2 released
+    /// @brief  window pointer
+    GLFWwindow* m_Handle;
+
+    // debug window chech
+    /// @brief  is input open
+    bool m_InputIsOpen = false;
+
+    // pointers to maps for MapUpdate
+    /// @brief  pointer for key states
     map<int, bool[3]>* m_KeyStatesHold;
+    /// @brief  pointer for mouse states
     map<int, bool[3]>* m_MouseStatesHold;
+    /// @brief  pointer for controller states
     map<int, bool[3]>* m_ControllerStatesHold;
+
+    // maps for various states (keys, mouse, controller etc)
+    /// @brief  key states map
     map<int, bool[3]> m_KeyStates;
+    /// @brief  fixed update key states map
     map<int, bool[3]> m_FixedKeyStates;
+    /// @brief  controller states map
     map<int, bool[3]> m_ControllerStates;
+    /// @brief  fixed update controller states map
     map<int, bool[3]> m_FixedControllerStates;
+    /// @brief  mouse states map
     map<int, bool[3]> m_MouseStates;
+    /// @brief  fixed update mouse states map
     map<int, bool[3]> m_FixedMouseStates;
-    std::vector<GLFWwindow*> altHandles;
+
+    // m_Handles for alternate windows
+    /// @brief  alternate window m_Handles
+    std::vector<GLFWwindow*> m_AltHandles;
+    /// @brief  map for additional windows
     std::vector<map<int, bool[3]>> windows;
-    int amount = 0;
+    /// @brief  m_Amount of additional windows
+    int m_Amount = 0;
 
     /// @brief  how much the mouse has scrolled this graphicsframe
     float m_DeltaScroll = 0.0f;
     /// @brief  how much the mouse has scrolled this simulation frame
     float m_FixedDeltaScroll = 0.0f;
 
+    // map of actions
+    /// @brief  map of actions
+    vector<Action> m_Actions;
+
 //-----------------------------------------------------------------------------
 private: // private methods
 //-----------------------------------------------------------------------------
 
-
     /// @brief  updates map realted to fixed or standard update
     void mapUpdate();
-    
+
+    // callback called whenever the mouse scrolls
+    static void onMouseScrollCallback(GLFWwindow* window, double scrollX, double scrollY);
+
+//-----------------------------------------------------------------------------
+public: // public class
+//-----------------------------------------------------------------------------
+
+    /// @brief  action class, used to track an action with dynamic input
+    class Action : public ISerializable
+    {
+    //-------------------------------------------------------------------------
+    private: // private class variables
+    //-------------------------------------------------------------------------
+
+        /// @brief  key inputs
+        std::vector<int> m_Keys; // 0
+        /// @brief  mouse inputs
+        std::vector<int> m_Mouse; // 1
+        /// @brief  controller inputs
+        std::vector<int> m_Controller; // 2
+        /// @brief  opposing axis for key inputs
+        std::vector<int> m_KeyAxis; // 3
+        /// @brief  opposing axis for mouse inputs
+        std::vector<int> m_MouseAxis; // 4
+        /// @brief  opposing axis for controller inputs
+        std::vector<int> m_ControllerAxis; // 5
+        /// @brief  gamepad axis as input, sticks/triggers
+        std::vector<int> m_GamepadAxisAsInput; // 6
+        /// @brief  gamepad axis, sticks/triggers
+        std::vector<int> m_GamepadAxis; // 7
+        /// @brief  action name
+        std::string m_Name;
+        /// @brief  editor description of action
+        std::string m_Description;
+
+    //-------------------------------------------------------------------------
+    private: // private class reading
+    //-------------------------------------------------------------------------
+
+        /// @brief  remove an input from action by input id
+        /// @param  vector to remove from
+        /// @param  input id to remove
+        void removeByInput(std::vector<int>* vector, int input);
+
+        /// @brief read the key inputs for an action
+        void readName(nlohmann::ordered_json const& json);
+
+        /// @brief read the key inputs for an action
+        void readDescription(nlohmann::ordered_json const& json);
+
+        /// @brief read the key inputs for an action
+        void readKeys(nlohmann::ordered_json const& json);
+
+        /// @brief read the mouse inputs for an action
+        void readMouse(nlohmann::ordered_json const& json);
+
+        /// @brief read the controller inputs for an action
+        void readController(nlohmann::ordered_json const& json);
+
+        /// @brief read the key axis inputs for an action
+        void readKeyAxis(nlohmann::ordered_json const& json);
+
+        /// @brief read the mouse axis inputs for an action
+        void readMouseAxis(nlohmann::ordered_json const& json);
+
+        /// @brief read the controller axis inputs for an action
+        void readControllerAxis(nlohmann::ordered_json const& json);
+
+        /// @brief read the gamepad axis as input for an action
+        void readGamepadAxisAsInput(nlohmann::ordered_json const& json);
+
+        /// @brief read the gamepad axis inputs for an action
+        void readGamepadAxis(nlohmann::ordered_json const& json);
+
+    //-------------------------------------------------------------------------
+    public: // class reading/writing
+    //-------------------------------------------------------------------------
+
+        /// @brief the map of read methods for this Component
+        static ReadMethodMap< Action > const s_ReadMethods;
+
+        /// @brief read method map for an Action
+        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+        {
+            return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+        }
+
+        /// @brief	write an Action to json
+        virtual nlohmann::ordered_json Write() const override;
+
+    //-------------------------------------------------------------------------
+    public: // public class methods
+    //-------------------------------------------------------------------------
+
+        /// @brief  contructor
+        /// @param  name of the action
+        /// @param  description of the action (viewable in editor)
+        Action(std::string name = "", std::string description = "");
+        
+        /// @brief  removes all inputs for this action 
+        ///         and empties name/description
+        void Flush();
+
+        /// @brief  manual callback catch for keys since imgui hates glfw
+        void ManualKeyCallback();
+
+        /// @brief  retrieves a private vector for inspector
+        /// @param  vector number
+        std::vector<int> GetActionVector(int vector) const;
+
+        /// @brief  adds a key to the action
+        /// @param  key to add
+        void AddKeyInput(int glfw_key);
+
+        /// @brief  removes a key from the action
+        /// @param  key to remove
+        void RemoveKeyInput(int glfw_key);
+        
+        /// @brief  adds a mouse input to the action
+        /// @param  mouse input to add
+        void AddMouseInput(int glfw_mouse_button);
+
+        /// @brief  removes a mouse input from the action
+        /// @param  mouse input to remove
+        void RemoveMouseInput(int glfw_mouse_button);
+
+        /// @brief  adds a controller to the action
+        /// @param  controller input to add
+        void AddControllerInput(int glfw_button);
+
+        /// @brief  removes a controller input from the action
+        /// @param  controller input to remove
+        void RemoveControllerInput(int glfw_button);
+
+        /// @brief  adds an axis as a button (triggers)
+        /// @param  axis to add as input
+        void AddAxisAsInput(int glfw_axis_id);
+
+        /// @brief  removes an axis as a button (triggers)
+        /// @param  axis to remove from input
+        void RemoveAxisAsInput(int glfw_axis_id);
+
+        /// @brief  adds a key input axis
+        /// @param  glfw_key positive axis key
+        void AddKeyAxisPositive(int glfw_key);
+
+        /// @brief  adds a key input axis
+        /// @param  glfw_key_negative negative axis key
+        void AddKeyAxisNegative(int glfw_key_negative);
+
+        /// @brief  removes a key input axis
+        /// @param  glfw_key positive axis key
+        void RemoveKeyAxisPositive(int glfw_key);
+
+        /// @brief  removes a key input axis
+        /// @param  glfw_key_negative negative axis key
+        void RemoveKeyAxisNegative(int glfw_key_negative);
+
+        /// @brief  adds a mouse input axis
+        /// @param  glfw_mouse positive axis mouse
+        void AddMouseAxisPositive(int glfw_mouse);
+
+        /// @brief  adds a mouse input axis
+        /// @param  glfw_mouse_negative negative axis mouse
+        void AddMouseAxisNegative(int glfw_mouse_negative);
+
+        /// @brief  removes a mouse input axis
+        /// @param  glfw_mouse positive axis mouse
+        void RemoveMouseAxisPositive(int glfw_mouse);
+
+        /// @brief  removes a mouse input axis
+        /// @param  glfw_mouse_negative negative axis mouse
+        void RemoveMouseAxisNegative(int glfw_mouse_negative);
+
+        /// @brief  adds a controller input axis
+        /// @param  glfw_controller positive axis controller
+        void AddControllerAxisPositive(int glfw_controller);
+
+        /// @brief  adds a controller input axis
+        /// @param  glfw_controller_negative negative axis controller
+        void AddControllerAxisNegative(int glfw_controller_negative);
+
+        /// @brief  removes a controller input axis
+        /// @param  glfw_controller positive axis controller
+        /// @param  glfw_controller_negative negative axis controller
+        void RemoveControllerAxisPositive(int glfw_controller);
+
+        /// @brief  removes a controller input axis
+        /// @param  glfw_controller positive axis controller
+        /// @param  glfw_controller_negative negative axis controller
+        void RemoveControllerAxisNegative(int glfw_controller_negative);
+
+        /// @brief  adds a gamepad axis (stick/trigger)
+        /// @param  axis id to add
+        void AddAxis(int glfw_axis_id);
+        
+        /// @brief  removes a gamepad axis (stick/trigger)
+        /// @param  axis id to add
+        void RemoveAxis(int glfw_axis_id);
+
+        /// @brief  sets the name of the action
+        /// @param  new name of action
+        void SetName(std::string& name);
+
+        /// @brief  gets the name of this action
+        /// @return the name of the action
+        std::string GetName() const;
+
+        /// @brief  sets the description of the action
+        /// @param  new description of action
+        void SetDescription(std::string& discription);
+
+        /// @brief  gets the description of this action
+        /// @return the description of the action
+        std::string GetDescription() const;
+
+        /// @brief  gets if this action is down
+        /// @return action down status
+        bool GetDown() const;
+
+        /// @brief  gets if this action is triggered
+        /// @return action triggered status
+        bool GetTriggered() const;
+        
+        /// @brief  gets if this action is released
+        /// @return action released status
+        bool GetReleased() const;
+
+        /// @brief  gets this action as an axis
+        /// @return axis status clamped to -1 and 1
+        float GetAxis() const;
+    };
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -83,10 +357,12 @@ public: // accessors
     /// @return the instance of the InputSystem
     static InputSystem * GetInstance();
 
-    /// @brief  sets a new window handle
-    /// @param  handle of new window
+    GLFWwindow* Getm_Handle() { return m_Handle; }
+
+    /// @brief  sets a new window m_Handle
+    /// @param  m_Handle of new window
     /// @return int, pass this back to check window
-    int InitAlternateWindow(GLFWwindow* handle);
+    int InitAlternateWindow(GLFWwindow* m_Handle);
 
     /// @brief checks if a given key is down
     /// @param glfw key to check
@@ -154,7 +430,6 @@ public: // accessors
     /// @return returns if mouse button is released
     bool GetMouseReleased(int glfw_mouse_button);
 
-
     /// @brief  gets the mouse pos in screen space
     /// @return the current mouse pos in screen space
     glm::vec2 GetMousePosScreen() const;
@@ -167,28 +442,60 @@ public: // accessors
     /// @return returns the current mouse pos as a vec2
     glm::vec2 GetMousePosWorld();
 
-
     /// @brief  gets how much the mouse has scrolled since last frame
     /// @return how much the mouse has scrolled since last frame
     float GetMouseDeltaScroll();
 
-//-----------------------------------------------------------------------------
-private: // methods
-//-----------------------------------------------------------------------------
+    /// @brief  gets an action by its name
+    /// @param  name name of the action
+    /// @return  pointer to the action
+    Action* GetActionByName(std::string& name);
 
-
-    // callback called whenever the mouse scrolls
-    static void onMouseScrollCallback( GLFWwindow* window, double scrollX, double scrollY );
-
+    /// @brief  gets the vector of Actions in the InputSystem
+    /// @return the vector of Actions
+    std::vector< Action > const& GetActions() const;
 
 //-----------------------------------------------------------------------------
 private: // singleton stuff
 //-----------------------------------------------------------------------------
 
-
     // Prevent copying
     InputSystem(InputSystem& other) = delete;
     void operator=(const InputSystem&) = delete;
+
+    /// @brief Constructs the InputSystem
+    InputSystem();
+
+    /// @brief The singleton instance of InputSystem
+    static InputSystem* instance;
+
+//-----------------------------------------------------------------------------
+public: // reading/writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  map of the SceneSystem read methods
+    static ReadMethodMap< InputSystem > const s_ReadMethods;
+
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
+    {
+        return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
+    }
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief  read actions for input
+    void readActions(nlohmann::ordered_json const& data);
+
+//-----------------------------------------------------------------------------
+public: // writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  writes this System to json
+    virtual nlohmann::ordered_json Write() const override;
 };
 
 /// @brief shortens input get instance to simply input

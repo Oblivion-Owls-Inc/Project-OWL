@@ -1,7 +1,0 @@
-<map id="ParticleSprite" name="ParticleSprite">
-<area shape="rect" id="node1" title="A version of Sprite for rendering tilemaps using GPU instancing." alt="" coords="53,247,161,273"/>
-<area shape="rect" id="node2" href="$classSprite.html" title="Stores mesh + texture, along with other data needed to draw a basic 2D sprite." alt="" coords="77,171,137,197"/>
-<area shape="rect" id="node3" href="$classComponent.html" title=" " alt="" coords="5,81,103,108"/>
-<area shape="rect" id="node4" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="56,5,159,32"/>
-<area shape="rect" id="node5" href="$classTexture.html" title="Stores texture data, and allows to bind it for rendering." alt="" coords="127,81,197,108"/>
-</map>

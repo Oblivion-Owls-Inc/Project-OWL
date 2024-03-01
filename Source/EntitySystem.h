@@ -42,6 +42,11 @@ public: // methods
     /// @brief Clears the Entity being inspected
     void ClearSelectedEntity();
 
+    /// @brief Displays the Entity Hierarchy in the Entity List window
+    /// @param EntityList the list of Entities to display
+    /// @param WindowName the name of the window to display
+    /// @param DragAndDrop whether or not to allow drag and drop functionality
+    void DisplayEntityHierarchy(std::vector<Entity *> EntityList, const std::string WindowName, bool DragAndDrop = true);
 ///-----------------------------------------------------------------------------
 public: //Accessors
 ///-----------------------------------------------------------------------------
@@ -141,8 +146,6 @@ public: // inspection
 private: // inspection
 //-----------------------------------------------------------------------------
 
-    /// @brief Displays the Entity Hierarchy in the Entity List window
-    void DisplayEntityHierarchy();
 
     /// @brief Shows the Properites of the Selected Entity
     void entityPropertiesWindow(Entity* entity);
@@ -192,3 +195,6 @@ private: // singleton stuff
 /// @brief  shorthand function to get the EntitySystem instance
 /// @return the EntitySystem instance
 __inline EntitySystem* Entities() { return EntitySystem::GetInstance(); }
+
+
+

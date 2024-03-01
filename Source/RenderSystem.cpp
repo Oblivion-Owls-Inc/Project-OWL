@@ -362,14 +362,16 @@ RenderSystem::RenderSystem() :
     System( "RenderSystem" )
 {}
 
-RenderSystem* RenderSystem::instance = nullptr;
-
 /// @brief    Gets the instance of RenderSystem
 /// @return   RenderSystem pointer: new or existing instance of this system
 RenderSystem* RenderSystem::GetInstance()
 {
-    if (instance == nullptr)
-        instance = new RenderSystem();
+    static std::unique_ptr< RenderSystem > s_Instance = nullptr;
 
-    return instance;
+    if (s_Instance == nullptr)
+    {
+        s_Instance.reset(new RenderSystem());
+    }
+
+    return s_Instance.get();
 }

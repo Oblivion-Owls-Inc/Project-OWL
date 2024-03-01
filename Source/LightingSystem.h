@@ -127,9 +127,6 @@ private:
     /// @brief  Private constructor
     LightingSystem();
 
-    /// @brief  The singleton instance of LightingSystem
-    static LightingSystem * s_Instance;
-
 public:
 
     /// @return   The singleton instance
