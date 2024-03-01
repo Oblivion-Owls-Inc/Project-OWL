@@ -18,7 +18,7 @@
 // public: constructor / Destructor
 //-----------------------------------------------------------------------------
 
-
+ 
     /// @brief  default constructor
 SceneChangeButton::SceneChangeButton() :
     Component(typeid(SceneChangeButton))

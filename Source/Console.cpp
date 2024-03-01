@@ -15,7 +15,7 @@
 // public: methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Adds a log to the console
+    /// @brief Adds a log to the console 
     /// @param log  - A string to add to the console
     void DebugConsole::AddLog(const std::string& log) 
     {
@@ -275,12 +275,12 @@
         /// @return the instance of the DebugConsole
     DebugConsole* DebugConsole::GetInstance()
     {
-        static DebugConsole* instance = nullptr;
-        if (instance == nullptr)
+        static std::unique_ptr < DebugConsole > s_Instance = nullptr;
+        if (s_Instance == nullptr)
         {
-            instance = new DebugConsole();
+            s_Instance.reset( new DebugConsole() );
         }
-        return instance;
+        return s_Instance.get();
     }
 
 
@@ -294,7 +294,6 @@
     {
         addCommands();
     }
-
 
 //-----------------------------------------------------------------------------
 

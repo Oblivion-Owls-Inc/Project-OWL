@@ -118,14 +118,14 @@ $(function() {
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
 <div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classBehaviorSystem.html#ad9e0080d6449b9d8158870d346040d51">   63</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classBehaviorSystem.html">BehaviorSystem&lt; BehaviorType &gt;</a>* <a class="code" href="classBehaviorSystem.html#ad9e0080d6449b9d8158870d346040d51">GetInstance</a>()</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">static</span> <a class="code" href="classBehaviorSystem.html">BehaviorSystem&lt; BehaviorType &gt;</a>* instance = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">static</span> std::unique_ptr&lt; BehaviorSystem&lt; BehaviorType &gt; &gt; s_Instance = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">if</span> ( instance == <span class="keyword">nullptr</span> )</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">if</span> (s_Instance == <span class="keyword">nullptr</span> )</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            instance = <span class="keyword">new</span> <a class="code" href="classBehaviorSystem.html">BehaviorSystem</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            s_Instance.reset(<span class="keyword">new</span> <a class="code" href="classBehaviorSystem.html">BehaviorSystem&lt; BehaviorType &gt;</a>());</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> s_Instance.get();</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// Prevent copying</span></div>

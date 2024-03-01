@@ -85,35 +85,35 @@ $(function() {
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDebugConsole.html#a93976db0a76d49e7d745ef4c4c412220">Inspect</a>();</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual override methods</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDebugConsole.html#a0803b17849c26411c776c399ef51f11a">ClearLog</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">public</span>: <span class="comment">// virtual override methods</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">private</span>: <span class="comment">// members</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    ImGuiTextFilter  m_Filter;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">private</span>: <span class="comment">// members</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    std::string m_Buffer;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    ImGuiTextFilter  m_Filter;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::vector&lt;std::string&gt; m_Items;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::string m_Buffer;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::vector&lt;std::string&gt; m_Commands;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::vector&lt;std::string&gt; m_Items;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::vector&lt;std::string&gt; m_History;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::vector&lt;std::string&gt; m_Commands;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span> m_AutoScroll = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::vector&lt;std::string&gt; m_History;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">int</span> m_HistoryPos = -1;    </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> addCommands();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span> m_AutoScroll = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">int</span> m_HistoryPos = -1;    </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">private</span>: <span class="comment">// methods</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> ClearLog();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> addCommands();</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> CallCommand(std::string <span class="keyword">const</span>&amp; command);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
@@ -152,6 +152,7 @@ $(function() {
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
 <div class="ttc" id="aclassDebugConsole_html"><div class="ttname"><a href="classDebugConsole.html">DebugConsole</a></div><div class="ttdoc">The DebugConsole class is a singleton that provides a console for debugging It Shows Warning Messages...</div><div class="ttdef"><b>Definition:</b> Console.h:20</div></div>
+<div class="ttc" id="aclassDebugConsole_html_a0803b17849c26411c776c399ef51f11a"><div class="ttname"><a href="classDebugConsole.html#a0803b17849c26411c776c399ef51f11a">DebugConsole::ClearLog</a></div><div class="ttdeci">void ClearLog()</div><div class="ttdoc">Clears the console log.</div><div class="ttdef"><b>Definition:</b> Console.cpp:229</div></div>
 <div class="ttc" id="aclassDebugConsole_html_a2ef57d8c8007fde9f07772a1f75e3e23"><div class="ttname"><a href="classDebugConsole.html#a2ef57d8c8007fde9f07772a1f75e3e23">DebugConsole::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">gets this DebugConsole's read methods</div><div class="ttdef"><b>Definition:</b> Console.cpp:253</div></div>
 <div class="ttc" id="aclassDebugConsole_html_a93976db0a76d49e7d745ef4c4c412220"><div class="ttname"><a href="classDebugConsole.html#a93976db0a76d49e7d745ef4c4c412220">DebugConsole::Inspect</a></div><div class="ttdeci">void Inspect()</div><div class="ttdoc">Shows the console window.</div><div class="ttdef"><b>Definition:</b> Console.cpp:47</div></div>
 <div class="ttc" id="aclassDebugConsole_html_a9a4852174205e30102205e79c134634f"><div class="ttname"><a href="classDebugConsole.html#a9a4852174205e30102205e79c134634f">DebugConsole::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">writes this DebugConsole to JSON</div><div class="ttdef"><b>Definition:</b> Console.cpp:262</div></div>

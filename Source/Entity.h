@@ -193,7 +193,6 @@ private: // member variables
     /// @brief  all of the EntityReferences currently tracking this Entity
     std::set< EntityReference* > m_EntityReferences;
 
-
 //-----------------------------------------------------------------------------
 public: // engine methods
 //-----------------------------------------------------------------------------

@@ -31,14 +31,14 @@
     /// @return the instance of the EventSystem
     EventSystem* EventSystem::GetInstance()
     {
-        static EventSystem* instance = nullptr;
-        if ( instance == nullptr )
-        {
-            instance = new EventSystem();
-        }
-        return instance;
-    }
+        static std::unique_ptr< EventSystem > s_Instance = nullptr;
 
+        if (s_Instance == nullptr )
+        {
+            s_Instance.reset( new EventSystem() );
+        }
+        return s_Instance.get();
+    }
 
 //-----------------------------------------------------------------------------
 // private: singleton stuff

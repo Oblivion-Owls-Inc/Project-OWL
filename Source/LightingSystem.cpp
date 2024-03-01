@@ -221,20 +221,17 @@ LightingSystem::LightingSystem() :
     ComponentSystem( "LightingSystem" )
 {}
 
-/// @brief    The singleton instance of LightingSystem
-LightingSystem * LightingSystem::s_Instance = nullptr;
-
 /// @return   The singleton instance
 LightingSystem * LightingSystem::GetInstance()
 {
+   static std::unique_ptr< LightingSystem > s_Instance = nullptr;
+
     if ( s_Instance == nullptr )
     {
-        s_Instance = new LightingSystem();
+        s_Instance.reset( new LightingSystem());
     }
-    return s_Instance;
+    return s_Instance.get();
 }
-
-
 
 
 // ========================================================================= //

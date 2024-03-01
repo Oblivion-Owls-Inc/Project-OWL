@@ -951,12 +951,18 @@ bool InputSystem::Action::GetDown() const
             return true;
         }
     }
-
     size = (int)m_GamepadAxisAsInput.size();
     for (int i = 0; i < size; ++i)
     {
-        if (Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]) > 0.5 ||
-            Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]) < -0.5)
+        if (m_GamepadAxisAsInput[i] == 4 || m_GamepadAxisAsInput[i] == 5)
+        {
+            if ( glfwJoystickPresent( 0 ) == GLFW_TRUE && Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]) > -0.5)
+            {
+                return true;
+            }
+        }
+        else if (Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]) > 0.5 ||
+                 Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]) < -0.5)
         {
             return true;
         }
@@ -1126,11 +1132,25 @@ float InputSystem::Action::GetAxis() const
         }
     }
 
-    size = (int)m_GamepadAxisAsInput.size();
+    size = (int)m_GamepadAxis.size();
     for (int i = 0; i < size; ++i)
     {
-        result += Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]);
-        result += Input()->GetGamepadAxisState(0, m_GamepadAxisAsInput[i]);
+        float axisAddition = Input()->GetGamepadAxisState(0, m_GamepadAxis[i]);
+        if (m_GamepadAxis[i] == 4 || m_GamepadAxis[i] == 5)
+        {
+            if (axisAddition > 0.0)
+            {
+                result += axisAddition;
+            }
+        }
+        else if (axisAddition > 0.5 || axisAddition < -0.5)
+        {
+            if (m_GamepadAxis[i] == 1)
+            {
+                axisAddition *= -1;
+            }
+            result += axisAddition;
+        }
     }
 
     result = min(1.0f, result);

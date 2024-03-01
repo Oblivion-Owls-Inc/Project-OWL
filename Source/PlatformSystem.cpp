@@ -406,19 +406,19 @@
     {}
 
 
-    /// @brief The singleton instance of ExampleSystem
-    PlatformSystem* PlatformSystem::instance = nullptr;
-
 
     /// @brief    (Singleton) Gets the instance of this system.
     /// @return   PlatformSystem pointer: new or existing instance of this system.
     PlatformSystem* PlatformSystem::GetInstance()
     {
+        static std::unique_ptr< PlatformSystem > instance = nullptr;
+
         if ( instance == nullptr )
         {
-            instance = new PlatformSystem();
+            instance.reset( new PlatformSystem() );
         }
-        return instance;
+
+        return instance.get();
     }
 
 

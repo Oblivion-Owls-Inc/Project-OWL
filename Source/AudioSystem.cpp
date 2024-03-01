@@ -306,12 +306,12 @@
     /// @return the instance of the AudioSystem
     AudioSystem* AudioSystem::GetInstance()
     {
-        static AudioSystem* instance = nullptr;
-        if ( instance == nullptr )
+        static std::unique_ptr< AudioSystem > s_Instance = nullptr;
+        if (s_Instance == nullptr )
         {
-            instance = new AudioSystem();
+            s_Instance.reset( new AudioSystem() );
         }
-        return instance;
+        return s_Instance.get();
     }
 
 

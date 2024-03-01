@@ -342,6 +342,15 @@
     <Filter Include="Engine\Framework\References\ActionReference">
       <UniqueIdentifier>{81b678ce-5e44-42cd-a61c-1ee4b4db7710}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\PauseSystem">
+      <UniqueIdentifier>{72aa40ac-b0c6-4a3d-ae78-343fd2e41de5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\DebugSystem\Console">
+      <UniqueIdentifier>{fa6bc43d-ee67-4fcb-80b0-828f97367367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity\Component\SceneChangeButton">
+      <UniqueIdentifier>{d7d04071-2085-40c9-8456-07a77eb4a22c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -452,7 +461,7 @@
     <ClCompile Include="Source\ComponentFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AssetLibrarySystem.cpp">
+    <ClCompile Include="Source\AssetLibrarySystem.t.cpp">
       <Filter>Engine\Systems\AssetLibrarySystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\Animation.cpp">
@@ -562,12 +571,6 @@
     </ClCompile>
     <ClCompile Include="Source\CheatSystem.cpp">
       <Filter>Engine\Systems\CheatSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FileExplorer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_stdlib.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\LootTable.cpp">
       <Filter>Game\Item Handling\LootTable</Filter>
@@ -680,15 +683,6 @@
     <ClCompile Include="Source\Nineslice.cpp">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Console.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PauseSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SceneChangeButton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\SplashScreenController.cpp">
       <Filter>Game\Components\SplashScreen</Filter>
     </ClCompile>
@@ -715,6 +709,24 @@
     </ClCompile>
     <ClCompile Include="Source\ActionReference.cpp">
       <Filter>Engine\Framework\References\ActionReference</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PauseSystem.cpp">
+      <Filter>Engine\Systems\PauseSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Console.cpp">
+      <Filter>Engine\Systems\DebugSystem\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_stdlib.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FileExplorer.cpp">
+      <Filter>Engine\Systems\DebugSystem\FileExplorer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneChangeButton.cpp">
+      <Filter>Engine\Entity\Component\SceneChangeButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AssetLibrarySystem.cpp">
+      <Filter>Engine\Systems\AssetLibrarySystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -940,12 +952,6 @@
     <ClInclude Include="Source\CheatSystem.h">
       <Filter>Engine\Systems\CheatSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\FileExplorer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui_stdlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\TileInfoSystem.h">
       <Filter>Game\Systems\TileInfoSystem</Filter>
     </ClInclude>
@@ -1060,15 +1066,6 @@
     <ClInclude Include="Source\Nineslice.h">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PauseSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SceneChangeButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\SplashScreenController.h">
       <Filter>Game\Components\SplashScreen</Filter>
     </ClInclude>
@@ -1089,6 +1086,21 @@
     </ClInclude>
     <ClInclude Include="Source\ActionReference.h">
       <Filter>Engine\Framework\References\ActionReference</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_stdlib.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PauseSystem.h">
+      <Filter>Engine\Systems\PauseSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Console.h">
+      <Filter>Engine\Systems\DebugSystem\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FileExplorer.h">
+      <Filter>Engine\Systems\DebugSystem\FileExplorer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneChangeButton.h">
+      <Filter>Engine\Entity\Component\SceneChangeButton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1140,7 +1152,6 @@
     <None Include="Data\shaders\tile_instancing.vert">
       <Filter>Data\Shaders\Vertex</Filter>
     </None>
-    <None Include="Data\Scenes\MapTest.scene.json" />
     <None Include="Data\Scenes\collisionTest.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
@@ -1161,6 +1172,9 @@
     </None>
     <None Include="Data\shaders\nineslice.frag">
       <Filter>Data\Shaders\Fragment</Filter>
+    </None>
+    <None Include="Data\Scenes\MapTest.scene.json">
+      <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>
 </Project>
