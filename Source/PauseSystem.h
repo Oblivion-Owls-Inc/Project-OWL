@@ -22,6 +22,9 @@ public: // methods
     /// @param  running If the game is running
     void SetRunning(bool running) { m_Running = running; }
 
+    /// @brief  Gets if the game is running
+    bool GetRunning() const { return m_Running; }
+
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
