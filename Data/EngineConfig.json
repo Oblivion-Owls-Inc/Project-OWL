@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1806,
-                1009
+                1166,
+                649
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -92,7 +92,7 @@
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
-        "PauseSystem": null,
+        "PauseSystem": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},

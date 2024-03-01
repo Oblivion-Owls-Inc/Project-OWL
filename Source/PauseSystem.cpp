@@ -81,7 +81,7 @@ ReadMethodMap< PauseSystem > const PauseSystem::s_ReadMethods = {
 /// @return the written json data
 nlohmann::ordered_json PauseSystem::Write() const
 {
-    return nlohmann::ordered_json();
+    return nlohmann::ordered_json::object();
 }
 
 
