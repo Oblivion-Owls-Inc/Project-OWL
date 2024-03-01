@@ -70,12 +70,13 @@
     /// @return the instance of the ExampleSystem
     ExampleSystem* ExampleSystem::GetInstance()
     {
-        static ExampleSystem* instance = nullptr;
-        if ( instance == nullptr )
+        static std::unique_ptr< ExampleSystem > s_Instance = nullptr;
+
+        if (s_Instance == nullptr )
         {
-            instance = new ExampleSystem();
+            s_Instance.reset(new ExampleSystem());
         }
-        return instance;
+        return s_Instance.get();
     }
 
 

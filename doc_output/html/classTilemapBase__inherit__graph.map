@@ -1,9 +1,0 @@
-<map id="TilemapBase" name="TilemapBase">
-<area shape="rect" id="node1" title="untemplatized base Tilemap class" alt="" coords="176,229,283,256"/>
-<area shape="rect" id="node5" href="$classTilemap.html" title=" " alt="" coords="5,304,128,331"/>
-<area shape="rect" id="node6" href="$classTilemap.html" title=" " alt="" coords="152,304,307,331"/>
-<area shape="rect" id="node7" href="$classTilemap.html" title="Loads and manages a tilemap array." alt="" coords="331,304,490,331"/>
-<area shape="rect" id="node2" href="$classBehavior.html" title=" " alt="" coords="189,155,269,181"/>
-<area shape="rect" id="node3" href="$classComponent.html" title=" " alt="" coords="181,80,278,107"/>
-<area shape="rect" id="node4" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="178,5,281,32"/>
-</map>

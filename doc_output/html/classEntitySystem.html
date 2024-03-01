@@ -78,21 +78,11 @@ $(function() {
 Inheritance diagram for EntitySystem:</div>
 <div class="dyncontent">
 <div class="center"><img src="classEntitySystem__inherit__graph.png" border="0" usemap="#aEntitySystem_inherit__map" alt="Inheritance graph"/></div>
-<map name="aEntitySystem_inherit__map" id="aEntitySystem_inherit__map">
-<area shape="rect" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="5,155,115,181"/>
-<area shape="rect" href="classSystem.html" title="Base class for all Systems." alt="" coords="25,80,95,107"/>
-<area shape="rect" href="classISerializable.html" title="interface for all serializable objects" alt="" coords="9,5,111,32"/>
-</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for EntitySystem:</div>
 <div class="dyncontent">
 <div class="center"><img src="classEntitySystem__coll__graph.png" border="0" usemap="#aEntitySystem_coll__map" alt="Collaboration graph"/></div>
-<map name="aEntitySystem_coll__map" id="aEntitySystem_coll__map">
-<area shape="rect" title="Example System meant to be copy&#45;pasted when creating new Systems." alt="" coords="5,155,115,181"/>
-<area shape="rect" href="classSystem.html" title="Base class for all Systems." alt="" coords="25,80,95,107"/>
-<area shape="rect" href="classISerializable.html" title="interface for all serializable objects" alt="" coords="9,5,111,32"/>
-</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -110,6 +100,9 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#a059958d05b4216676904beb227881bda">ClearSelectedEntity</a> ()</td></tr>
 <tr class="memdesc:a059958d05b4216676904beb227881bda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the <a class="el" href="classEntity.html">Entity</a> being inspected. <br /></td></tr>
 <tr class="separator:a059958d05b4216676904beb227881bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee05e5a64b4bdadfb61fd96799a4abc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#aee05e5a64b4bdadfb61fd96799a4abc3">DisplayEntityHierarchy</a> (std::vector&lt; <a class="el" href="classEntity.html">Entity</a> * &gt; EntityList, const std::string WindowName, bool DragAndDrop=true)</td></tr>
+<tr class="memdesc:aee05e5a64b4bdadfb61fd96799a4abc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the <a class="el" href="classEntity.html">Entity</a> Hierarchy in the <a class="el" href="classEntity.html">Entity</a> List window.  <a href="classEntitySystem.html#aee05e5a64b4bdadfb61fd96799a4abc3">More...</a><br /></td></tr>
+<tr class="separator:aee05e5a64b4bdadfb61fd96799a4abc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c0b97c3ff435b0fe85d9c82d480e011"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEntity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySystem.html#a3c0b97c3ff435b0fe85d9c82d480e011">GetSelectedEntity</a> () const</td></tr>
 <tr class="memdesc:a3c0b97c3ff435b0fe85d9c82d480e011"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the entity being viewed in the inspector  <a href="classEntitySystem.html#a3c0b97c3ff435b0fe85d9c82d480e011">More...</a><br /></td></tr>
 <tr class="separator:a3c0b97c3ff435b0fe85d9c82d480e011"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -236,6 +229,57 @@ Additional Inherited Members</h2></td></tr>
 <p>Display the <a class="el" href="classEntity.html">Entity</a> List</p>
 
 <p>Reimplemented from <a class="el" href="classSystem.html#ac37b07a2ad20e2d2fe1f77766902af5d">System</a>.</p>
+
+</div>
+</div>
+<a id="aee05e5a64b4bdadfb61fd96799a4abc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee05e5a64b4bdadfb61fd96799a4abc3">&#9670;&nbsp;</a></span>DisplayEntityHierarchy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EntitySystem::DisplayEntityHierarchy </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classEntity.html">Entity</a> * &gt;&#160;</td>
+          <td class="paramname"><em>EntityList</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramname"><em>WindowName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>DragAndDrop</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Displays the <a class="el" href="classEntity.html">Entity</a> Hierarchy in the <a class="el" href="classEntity.html">Entity</a> List window. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">EntityList</td><td>the list of Entities to display </td></tr>
+    <tr><td class="paramname">WindowName</td><td>the name of the window to display </td></tr>
+    <tr><td class="paramname">DragAndDrop</td><td>whether or not to allow drag and drop functionality </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Get a Node Name for the entity</p>
+<p>Create a new entity</p>
+<p>Create a new transform</p>
+<p>Set the name of the entity</p>
+<p>Add the transform to the entity)</p>
+<p>If Drag and Drop is enabled</p>
+<p>If Drag and Drop is enabled</p>
 
 </div>
 </div>

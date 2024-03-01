@@ -127,14 +127,14 @@ public: // singleton stuff
     /// @return the instance of the ComponentSystem
     static ComponentSystem< ComponentType >* GetInstance()
     {
-        static ComponentSystem< ComponentType >* instance = nullptr;
+        static std::unique_ptr< ComponentSystem< ComponentType > > s_Instance = nullptr;
 
-        if ( instance == nullptr )
+        if (s_Instance == nullptr )
         {
-            instance = new ComponentSystem();
+            s_Instance.reset( new ComponentSystem< ComponentType >() );
         }
 
-        return instance;
+        return s_Instance.get();
     }
 
     // Prevent copying

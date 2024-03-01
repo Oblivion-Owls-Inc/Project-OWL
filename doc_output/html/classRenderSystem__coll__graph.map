@@ -1,5 +1,0 @@
-<map id="RenderSystem" name="RenderSystem">
-<area shape="rect" id="node1" title="Renders all of the Sprite components, keeps track of shaders." alt="" coords="5,155,123,181"/>
-<area shape="rect" id="node2" href="$classSystem.html" title="Base class for all Systems." alt="" coords="29,80,99,107"/>
-<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="13,5,115,32"/>
-</map>

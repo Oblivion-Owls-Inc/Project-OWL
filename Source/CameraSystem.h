@@ -84,9 +84,6 @@ private: // methods
 //-------------------------------------------------------------------------
 private: // singleton stuff
 //-------------------------------------------------------------------------
-
-    /// @brief    The singleton instance of CameraSystem 
-    static CameraSystem* instance;
     /// @brief    Private constructor
     CameraSystem();
 

@@ -129,18 +129,15 @@ ParticleSystem::ParticleSystem() :
     System( "ParticleSystem" )
 {}
 
-/// @brief    The singleton instance of ParticleSystem
-ParticleSystem * ParticleSystem::s_Instance = nullptr;
-
 /// @return   The singleton instance
 ParticleSystem * ParticleSystem::GetInstance()
 {
+    static std::unique_ptr<ParticleSystem> s_Instance = nullptr;
+
     if ( s_Instance == nullptr )
     {
-        s_Instance = new ParticleSystem();
+        s_Instance.reset(new ParticleSystem());
     }
-    return s_Instance;
+
+    return s_Instance.get();
 }
-
-
-

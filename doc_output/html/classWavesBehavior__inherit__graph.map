@@ -1,6 +1,0 @@
-<map id="WavesBehavior" name="WavesBehavior">
-<area shape="rect" id="node1" title=" " alt="" coords="5,229,128,256"/>
-<area shape="rect" id="node2" href="$classBehavior.html" title=" " alt="" coords="27,155,107,181"/>
-<area shape="rect" id="node3" href="$classComponent.html" title=" " alt="" coords="18,80,115,107"/>
-<area shape="rect" id="node4" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="15,5,118,32"/>
-</map>

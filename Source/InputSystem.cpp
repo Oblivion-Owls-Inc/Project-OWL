@@ -668,18 +668,17 @@ nlohmann::ordered_json InputSystem::Action::Write() const
         glfwUpdateGamepadMappings(Stream::ReadFromTXTFile("Data/Controller Mappings/gamecontrollerdb.txt").c_str());
     }
 
-    /// @brief The singleton instance of InputSystem
-    InputSystem * InputSystem::instance = nullptr;
-
     /// @brief gets the instance of InputSystem
     /// @return the instance of the InputSystem
     InputSystem * InputSystem::GetInstance()
     {
-        if ( instance == nullptr )
+        static std::unique_ptr< InputSystem > s_Instance = nullptr;
+
+        if (s_Instance == nullptr )
         {
-            instance = new InputSystem();
+            s_Instance.reset( new InputSystem());
         }
-        return instance;
+        return s_Instance.get();
     }
 
 //-----------------------------------------------------------------------------
