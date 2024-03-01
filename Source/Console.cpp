@@ -15,7 +15,7 @@
 // public: methods
 //-----------------------------------------------------------------------------
 
-    /// @brief Adds a log to the console
+    /// @brief Adds a log to the console 
     /// @param log  - A string to add to the console
     void DebugConsole::AddLog(const std::string& log) 
     {

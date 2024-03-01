@@ -18,7 +18,7 @@
 template<>
 void AssetLibrarySystem<Entity>::DebugWindow()
 {
-    s_ShowAssetLibraryList = GetDebugEnabled();
+    s_ShowAssetLibraryList = GetDebugEnabled(); 
 
     std::vector<Entity*> entities;
 

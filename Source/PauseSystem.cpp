@@ -18,7 +18,7 @@
 
 
 ///-----------------------------------------------------------------------------
-/// Private Virtual override methods
+/// Private Virtual override methods 
 ///-----------------------------------------------------------------------------
 
 /// @brief Update the PauseSystem
