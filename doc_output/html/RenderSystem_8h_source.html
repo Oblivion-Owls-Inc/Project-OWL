@@ -156,60 +156,91 @@ $(function() {
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordtype">unsigned</span> m_ScreenBufferFBO = -1;            </div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordtype">bool</span> m_DrawToBuffer = <span class="keyword">false</span>;                </div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="comment">//-------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="comment">//          helpers</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="comment">//-------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="classShader.html">Shader</a>* FindShader(<span class="keyword">const</span> <span class="keywordtype">char</span>* name);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> GLAPIENTRY errorCallback(</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        GLenum source,</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        GLenum type,</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        GLuint <span class="keywordtype">id</span>,</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        GLenum severity,</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        GLsizei length,</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keyword">const</span> GLchar* message,</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">void</span>* userParam</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    );</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="comment">//           (needs to happen when resizing the screen)</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keywordtype">void</span> reallocScreenBufferTexture();</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="comment">//-------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="comment">//          singleton stuff</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="comment">//-------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <a class="code" href="classRenderSystem.html">RenderSystem</a>();</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keyword">static</span> <a class="code" href="classRenderSystem.html">RenderSystem</a>* <a class="code" href="classRenderSystem.html#aee10caebfac0d2ef0b5a24e0f2c1d7b2">GetInstance</a>();</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="comment">// Prevent copying</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <a class="code" href="classRenderSystem.html">RenderSystem</a>(<a class="code" href="classRenderSystem.html">RenderSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classRenderSystem.html">RenderSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;};</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="RenderSystem_8h.html#a6b4916f8115d112de8aeb02aa889146a">  190</a></span>&#160;__inline <a class="code" href="classRenderSystem.html">RenderSystem</a>* <a class="code" href="RenderSystem_8h.html#a6b4916f8115d112de8aeb02aa889146a">Renderer</a>() { <span class="keywordflow">return</span> <a class="code" href="classRenderSystem.html#aee10caebfac0d2ef0b5a24e0f2c1d7b2">RenderSystem::GetInstance</a>(); }</div>
-<div class="ttc" id="aRenderSystem_8h_html_a6b4916f8115d112de8aeb02aa889146a"><div class="ttname"><a href="RenderSystem_8h.html#a6b4916f8115d112de8aeb02aa889146a">Renderer</a></div><div class="ttdeci">__inline RenderSystem * Renderer()</div><div class="ttdoc">Convenient function for getting RenderSystem instance.</div><div class="ttdef"><b>Definition:</b> RenderSystem.h:190</div></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    glm::vec4 m_BackgroundColor = glm::vec4( 0.2f, 0.3f, 0.3f, 1.0f );</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="comment">//          helpers</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <a class="code" href="classShader.html">Shader</a>* FindShader(<span class="keyword">const</span> <span class="keywordtype">char</span>* name);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> GLAPIENTRY errorCallback(</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        GLenum source,</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        GLenum type,</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        GLuint <span class="keywordtype">id</span>,</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        GLenum severity,</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        GLsizei length,</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keyword">const</span> GLchar* message,</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">void</span>* userParam</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    );</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="comment">//           (needs to happen when resizing the screen)</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordtype">void</span> reallocScreenBufferTexture();</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keyword">public</span>: <span class="comment">// Inspection</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classRenderSystem.html#ac7aa3ffbbc3288ddb92e8a99bd051bb7">DebugWindow</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="keyword">private</span>: <span class="comment">// reading</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordtype">void</span> readBackgroundColor( nlohmann::ordered_json <span class="keyword">const</span>&amp; data );</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="keyword">public</span>: <span class="comment">// reading / writing</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">//-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keyword">virtual</span> ReadMethodMap&lt; ISerializable &gt; <span class="keyword">const</span>&amp; <a class="code" href="classRenderSystem.html#a27cd362e7eba42f5dcbdb550d4d8e81a">GetReadMethods</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keyword">virtual</span> nlohmann::ordered_json <a class="code" href="classRenderSystem.html#a9dbc307623e95a4633243aeb8d2ebb5a">Write</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment">//          singleton stuff</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <a class="code" href="classRenderSystem.html">RenderSystem</a>();</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keyword">static</span> <a class="code" href="classRenderSystem.html">RenderSystem</a>* <a class="code" href="classRenderSystem.html#aee10caebfac0d2ef0b5a24e0f2c1d7b2">GetInstance</a>();</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="comment">// Prevent copying</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <a class="code" href="classRenderSystem.html">RenderSystem</a>(<a class="code" href="classRenderSystem.html">RenderSystem</a>&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="classRenderSystem.html">RenderSystem</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;};</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="RenderSystem_8h.html#a6b4916f8115d112de8aeb02aa889146a">  226</a></span>&#160;__inline <a class="code" href="classRenderSystem.html">RenderSystem</a>* <a class="code" href="RenderSystem_8h.html#a6b4916f8115d112de8aeb02aa889146a">Renderer</a>() { <span class="keywordflow">return</span> <a class="code" href="classRenderSystem.html#aee10caebfac0d2ef0b5a24e0f2c1d7b2">RenderSystem::GetInstance</a>(); }</div>
+<div class="ttc" id="aRenderSystem_8h_html_a6b4916f8115d112de8aeb02aa889146a"><div class="ttname"><a href="RenderSystem_8h.html#a6b4916f8115d112de8aeb02aa889146a">Renderer</a></div><div class="ttdeci">__inline RenderSystem * Renderer()</div><div class="ttdoc">Convenient function for getting RenderSystem instance.</div><div class="ttdef"><b>Definition:</b> RenderSystem.h:226</div></div>
 <div class="ttc" id="aShader_8h_html"><div class="ttname"><a href="Shader_8h.html">Shader.h</a></div><div class="ttdoc">Shader class declaration/interface.</div></div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
 <div class="ttc" id="aclassMesh_html"><div class="ttname"><a href="classMesh.html">Mesh</a></div><div class="ttdoc">Stores data needed to render a basic mesh.</div><div class="ttdef"><b>Definition:</b> Mesh.h:12</div></div>
 <div class="ttc" id="aclassRenderSystem_html"><div class="ttname"><a href="classRenderSystem.html">RenderSystem</a></div><div class="ttdoc">Renders all of the Sprite components, keeps track of shaders.</div><div class="ttdef"><b>Definition:</b> RenderSystem.h:20</div></div>
 <div class="ttc" id="aclassRenderSystem_html_a22427a72cf0570e5288b8dbd05761314"><div class="ttname"><a href="classRenderSystem.html#a22427a72cf0570e5288b8dbd05761314">RenderSystem::RemoveSprite</a></div><div class="ttdeci">void RemoveSprite(Sprite *sprite)</div><div class="ttdoc">Remove sprite from the list to stop rendering it on update.</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:203</div></div>
 <div class="ttc" id="aclassRenderSystem_html_a27b50c146c22c5886ed95cde7b494f7d"><div class="ttname"><a href="classRenderSystem.html#a27b50c146c22c5886ed95cde7b494f7d">RenderSystem::SetDrawToBuffer</a></div><div class="ttdeci">__inline void SetDrawToBuffer(bool draw)</div><div class="ttdoc">Toggle rendering to off-screen buffer.</div><div class="ttdef"><b>Definition:</b> RenderSystem.h:112</div></div>
+<div class="ttc" id="aclassRenderSystem_html_a27cd362e7eba42f5dcbdb550d4d8e81a"><div class="ttname"><a href="classRenderSystem.html#a27cd362e7eba42f5dcbdb550d4d8e81a">RenderSystem::GetReadMethods</a></div><div class="ttdeci">virtual ReadMethodMap&lt; ISerializable &gt; const  &amp; GetReadMethods() const override</div><div class="ttdoc">gets this System's read methods</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:401</div></div>
 <div class="ttc" id="aclassRenderSystem_html_a3a9bd5e1eedecd94901c1c8dd06dbdfb"><div class="ttname"><a href="classRenderSystem.html#a3a9bd5e1eedecd94901c1c8dd06dbdfb">RenderSystem::AddShader</a></div><div class="ttdeci">void AddShader(const char *name, Shader *shader)</div><div class="ttdoc">Adds a shader to keep track of, so it can be freed automatically upon shutdown. param name Name to re...</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:216</div></div>
 <div class="ttc" id="aclassRenderSystem_html_a5620a5863effda6b53e3c88e06b2e1c3"><div class="ttname"><a href="classRenderSystem.html#a5620a5863effda6b53e3c88e06b2e1c3">RenderSystem::DrawTexture</a></div><div class="ttdeci">void DrawTexture(Texture const *texture, glm::vec2 const &amp;position, glm::vec2 const &amp;scale={ 1.0f, 1.0f }, float angle=0.0f, glm::vec4 const &amp;color={ 0.0f, 0.0f, 0.0f, 0.0f }, float alpha=1.0f, bool isDiegetic=true, int frameIndex=0)</div><div class="ttdoc">Draws a texture.</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:165</div></div>
 <div class="ttc" id="aclassRenderSystem_html_a72d8675feca0d75abbac87664677bf56"><div class="ttname"><a href="classRenderSystem.html#a72d8675feca0d75abbac87664677bf56">RenderSystem::DrawCircle</a></div><div class="ttdeci">void DrawCircle(const glm::vec2 &amp;position, float radius=1.0f, const glm::vec4 &amp;color={ 0.1f, 0.6f, 0.1f, 0.0f }, float alpha=0.5f, bool isDiegetic=true)</div><div class="ttdoc">Draws a circle.</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:146</div></div>
 <div class="ttc" id="aclassRenderSystem_html_a765509f8084f56e75e8f3cf0ca58aed2"><div class="ttname"><a href="classRenderSystem.html#a765509f8084f56e75e8f3cf0ca58aed2">RenderSystem::DrawRect</a></div><div class="ttdeci">void DrawRect(glm::vec2 const &amp;position, glm::vec2 const &amp;scale={ 1.0f, 1.0f }, float angle=0.0f, glm::vec4 const &amp;color={ 0.1f, 0.6f, 0.1f, 0.0f }, float alpha=0.5f, bool isDiegetic=true)</div><div class="ttdoc">Draws a rectangle.</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:107</div></div>
 <div class="ttc" id="aclassRenderSystem_html_a8d2fbbd8eecb7149e10e74921d72d3ec"><div class="ttname"><a href="classRenderSystem.html#a8d2fbbd8eecb7149e10e74921d72d3ec">RenderSystem::GetDefaultMesh</a></div><div class="ttdeci">__inline Mesh const  * GetDefaultMesh() const</div><div class="ttdef"><b>Definition:</b> RenderSystem.h:108</div></div>
+<div class="ttc" id="aclassRenderSystem_html_a9dbc307623e95a4633243aeb8d2ebb5a"><div class="ttname"><a href="classRenderSystem.html#a9dbc307623e95a4633243aeb8d2ebb5a">RenderSystem::Write</a></div><div class="ttdeci">virtual nlohmann::ordered_json Write() const override</div><div class="ttdoc">writes this ExampleSystem to JSON</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:413</div></div>
 <div class="ttc" id="aclassRenderSystem_html_aa568ccaf7a44b88dd7acccd37f7ab54a"><div class="ttname"><a href="classRenderSystem.html#aa568ccaf7a44b88dd7acccd37f7ab54a">RenderSystem::AddSprite</a></div><div class="ttdeci">void AddSprite(Sprite *sprite)</div><div class="ttdoc">Add a sprite so it can be rendered during update.</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:195</div></div>
 <div class="ttc" id="aclassRenderSystem_html_aa77f91067057166ca86b69c584c6e815"><div class="ttname"><a href="classRenderSystem.html#aa77f91067057166ca86b69c584c6e815">RenderSystem::DrawLine</a></div><div class="ttdeci">void DrawLine(glm::vec2 const &amp;P1, glm::vec2 const &amp;P2, float thickness=1.0f, glm::vec4 const &amp;color={ 0.0f, 0.2f, 0.5f, 0.0f }, float alpha=0.5f, bool isDiegetic=true)</div><div class="ttdoc">Draws a line between 2 points.</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:125</div></div>
+<div class="ttc" id="aclassRenderSystem_html_ac7aa3ffbbc3288ddb92e8a99bd051bb7"><div class="ttname"><a href="classRenderSystem.html#ac7aa3ffbbc3288ddb92e8a99bd051bb7">RenderSystem::DebugWindow</a></div><div class="ttdeci">virtual void DebugWindow() override</div><div class="ttdoc">displays the RenderSystem's Debug Window</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:363</div></div>
 <div class="ttc" id="aclassRenderSystem_html_acbf529b1317e228ebb33d9de3c8a2ae5"><div class="ttname"><a href="classRenderSystem.html#acbf529b1317e228ebb33d9de3c8a2ae5">RenderSystem::GetBufferTextureID</a></div><div class="ttdeci">__inline unsigned int GetBufferTextureID() const</div><div class="ttdoc">Get texture ID of the off-screen buffer.</div><div class="ttdef"><b>Definition:</b> RenderSystem.h:116</div></div>
 <div class="ttc" id="aclassRenderSystem_html_ad41369fc788c8d467d71065f5b0237bd"><div class="ttname"><a href="classRenderSystem.html#ad41369fc788c8d467d71065f5b0237bd">RenderSystem::GetMouseOverSprite</a></div><div class="ttdeci">Sprite * GetMouseOverSprite()</div><div class="ttdoc">gets the topmost Sprite the mouse is over</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:257</div></div>
 <div class="ttc" id="aclassRenderSystem_html_ae3b5bc925d666ae6de4b27e08ab7fc22"><div class="ttname"><a href="classRenderSystem.html#ae3b5bc925d666ae6de4b27e08ab7fc22">RenderSystem::GetShader</a></div><div class="ttdeci">Shader * GetShader(const char *name)</div><div class="ttdoc">Returns pointer to a stored shader.</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:252</div></div>
-<div class="ttc" id="aclassRenderSystem_html_aee10caebfac0d2ef0b5a24e0f2c1d7b2"><div class="ttname"><a href="classRenderSystem.html#aee10caebfac0d2ef0b5a24e0f2c1d7b2">RenderSystem::GetInstance</a></div><div class="ttdeci">static RenderSystem * GetInstance()</div><div class="ttdoc">Gets the instance of RenderSystem.</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:367</div></div>
+<div class="ttc" id="aclassRenderSystem_html_aee10caebfac0d2ef0b5a24e0f2c1d7b2"><div class="ttname"><a href="classRenderSystem.html#aee10caebfac0d2ef0b5a24e0f2c1d7b2">RenderSystem::GetInstance</a></div><div class="ttdeci">static RenderSystem * GetInstance()</div><div class="ttdoc">Gets the instance of RenderSystem.</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:433</div></div>
 <div class="ttc" id="aclassRenderSystem_html_af0b12d0120dc0ccd05fa77e94302b246"><div class="ttname"><a href="classRenderSystem.html#af0b12d0120dc0ccd05fa77e94302b246">RenderSystem::SetActiveShader</a></div><div class="ttdeci">Shader * SetActiveShader(const char *name)</div><div class="ttdoc">Sets shader with given name as active, and returns pointer to it.</div><div class="ttdef"><b>Definition:</b> RenderSystem.cpp:236</div></div>
 <div class="ttc" id="aclassShader_html"><div class="ttname"><a href="classShader.html">Shader</a></div><div class="ttdoc">Compiles a shader program, and stores information for managing it.</div><div class="ttdef"><b>Definition:</b> Shader.h:11</div></div>
 <div class="ttc" id="aclassSprite_html"><div class="ttname"><a href="classSprite.html">Sprite</a></div><div class="ttdoc">Stores mesh + texture, along with other data needed to draw a basic 2D sprite.</div><div class="ttdef"><b>Definition:</b> Sprite.h:18</div></div>
