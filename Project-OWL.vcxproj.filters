@@ -689,6 +689,9 @@
     <ClCompile Include="Source\Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PauseSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\SceneChangeButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -724,9 +727,6 @@
     </ClCompile>
     <ClCompile Include="Source\AssetLibrarySystem.cpp">
       <Filter>Engine\Systems\AssetLibrarySystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PauseSystem.cpp">
-      <Filter>Engine\Systems\PauseSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1072,6 +1072,9 @@
     <ClInclude Include="Source\Console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PauseSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Source\SceneChangeButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1098,9 +1101,6 @@
     </ClInclude>
     <ClInclude Include="Source\SceneChangeButton.h">
       <Filter>Engine\Entity\Component\SceneChangeButton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PauseSystem.h">
-      <Filter>Engine\Systems\PauseSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1174,6 +1174,9 @@
       <Filter>Data\Shaders\Fragment</Filter>
     </None>
     <None Include="Data\Scenes\MapTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\AlphaScene.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>

@@ -591,7 +591,7 @@ nlohmann::ordered_json Pathfinder::Write() const
 {
     nlohmann::ordered_json json;
 
-    json[ "Destination" ] = Stream::Write( m_DestPos );
+    json[ "Targets" ] = { "Base", "Player - low" };
     json[ "Walkables" ] = Stream::Write( m_Walkables );
 
     return json;

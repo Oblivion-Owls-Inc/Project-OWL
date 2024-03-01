@@ -3476,7 +3476,10 @@
                     ]
                 },
                 "Pathfinder": {
-               
+                    "Targets": [
+                        "Base",
+                        "Player - low"
+                    ],
                     "Walkables": [
                         -1
                     ]
@@ -13879,7 +13882,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 33.233978271484375,
+                            "Width": 39.5220832824707,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -13897,8 +13900,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -13.049927711486816,
-                                10.31596851348877
+                                -7.411375999450684,
+                                2.7628564834594727
                             ],
                             "Rotation": 0.0,
                             "Scale": [
