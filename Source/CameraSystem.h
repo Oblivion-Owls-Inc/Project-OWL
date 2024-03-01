@@ -27,13 +27,13 @@ public: // accessors
 
 
     /// @return UI space to clip space matrix
-    glm::mat4 const& GetMat_UItoClip() const;
+    glm::mat4 const& GetMat_UiToClip() const;
 
     /// @return World space to clip space matrix
     glm::mat4 const& GetMat_WorldToClip() const;
 
     /// @return Screen to UI space matrix
-    glm::mat4 const& GetMat_ScreenToUI() const;
+    glm::mat4 const& GetMat_ScreenToUi() const;
 
     /// @return Screen to world space matrix
     glm::mat4 GetMat_ScreenToWorld() const;
@@ -54,13 +54,13 @@ private: // member variables
 
 
     /// @brief  Matrix for converting screen position to clip space
-    glm::mat4 m_ScreenToClip = glm::mat4( 0 );
+    glm::mat4 m_ScreenToClip = glm::mat4( 1 );
 
     /// @brief  Matrix for converting mouse position to UI coordinates
-    glm::mat4 m_ScreenToUi = glm::mat4( 0 );
+    glm::mat4 m_ScreenToUi = glm::mat4( 1 );
 
     /// @brief  Matrix for converting UI to clip space (for rendering)
-    glm::mat4 m_UiToClip = glm::mat4( 0 );
+    glm::mat4 m_UiToClip = glm::mat4( 1 );
 
 
     /// @brief  the current active camera in the scene

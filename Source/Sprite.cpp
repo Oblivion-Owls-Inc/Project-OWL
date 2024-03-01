@@ -132,7 +132,7 @@ Sprite::Sprite(Sprite const& other) :
             if ( m_Transform->GetIsDiegetic() )
                 mat = Cameras()->GetMat_WorldToClip() * mat;
             else
-                mat = Cameras()->GetMat_UItoClip() * mat;
+                mat = Cameras()->GetMat_UiToClip() * mat;
         }
 
         glUniformMatrix4fv(sh->GetUniformID("mvp"), 1, false, &mat[0][0]);

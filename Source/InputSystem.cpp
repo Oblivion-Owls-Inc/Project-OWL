@@ -383,7 +383,7 @@ glm::vec2 InputSystem::GetMousePosScreen() const
 /// @return returns the current mouse pos as a vec2
 glm::vec2 InputSystem::GetMousePosUI()
 {
-    return Cameras()->GetMat_ScreenToUI() * glm::vec4( GetMousePosScreen(), 0.0f, 1.0f );
+    return Cameras()->GetMat_ScreenToUi() * glm::vec4( GetMousePosScreen(), 0.0f, 1.0f );
 }
 
 /// @brief gets mouse pos in World space

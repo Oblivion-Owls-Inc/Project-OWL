@@ -543,7 +543,8 @@
                         "Resources": {
                             "ItemId": 0,
                             "Count": 1
-                        }
+                        },
+                        "Opacity": 1.0
                     },
                     "Sprite": {
                         "Layer": 21,
@@ -609,7 +610,7 @@
                                 ]
                             },
                             "Text": {
-                                "String": "1"
+                                "Text": ""
                             },
                             "TilemapSprite": {
                                 "Layer": 21,
@@ -6211,7 +6212,19 @@
                     "RespawnLocation": [
                         -15.0,
                         5.0
-                    ]
+                    ],
+                    "MoveVertical": {
+                        "ActionName": "MoveVertical"
+                    },
+                    "MoveHorizontal": {
+                        "ActionName": "MoveHorizontal"
+                    },
+                    "FireLaser": {
+                        "ActionName": "FireLaser"
+                    },
+                    "Interact": {
+                        "ActionName": "Interact"
+                    }
                 },
                 "RigidBody": {
                     "Velocity": [
@@ -6460,7 +6473,13 @@
                     },
                     "PlayerEntity": {
                         "EntityName": "Player"
+                    },
+                    "CostUiEntity": {
+                        "EntityName": "CostUi"
                     }
+                },
+                "Inventory": {
+                    "Items": null
                 },
                 "Sprite": {
                     "Layer": 4,
@@ -6528,6 +6547,7 @@
                     "HideWhenEmpty": false,
                     "Padding": 0.02500000037252903,
                     "Spacing": -0.02500000037252903,
+                    "Opacity": 1.0,
                     "InventoryEntity": {
                         "EntityName": "Player"
                     },
@@ -6725,6 +6745,46 @@
                         1.0
                     ],
                     "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "CostUi": {
+            "Name": "CostUi",
+            "Components": {
+                "ResourcesUiManager": {
+                    "HideWhenEmpty": false,
+                    "Padding": 0.02500000037252903,
+                    "Spacing": -0.02500000037252903,
+                    "Opacity": 1.0,
+                    "InventoryEntity": {
+                        "EntityName": "ConstructionManager"
+                    },
+                    "ResourceCounterPrefab": {
+                        "AssetName": "ResourceCounter"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        1.0,
+                        -1.0
+                    ],
+                    "Pivot": [
+                        -0.3333333134651184,
+                        -1.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.10000000149011612,
+                        0.05000000074505806
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToWidth"
+                    ]
                 }
             },
             "Children": null
