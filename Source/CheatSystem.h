@@ -77,9 +77,6 @@ private: // singleton
     /// @brief  Constructs the CheatSystem
     CheatSystem();
 
-    /// @brief  The singleton instance of CheatSystem
-    static CheatSystem* s_Instance;
-
 //--------------------------------------------------------------------------------
 public: // singleton 
 //--------------------------------------------------------------------------------

@@ -9,20 +9,23 @@
 #include "PauseSystem.h"
 #include "DebugSystem.h"
 #include "InputSystem.h"
+#include "AssetLibrarySystem.h"
+#include "Entity.h"
+#include "EntitySystem.h"
 #include "Engine.h"
 
 
 
 
 ///-----------------------------------------------------------------------------
-/// Private Virtual override methods
+/// Private Virtual override methods 
 ///-----------------------------------------------------------------------------
 
 /// @brief Update the PauseSystem
 /// @param dt The time elapsed since the last update
 void PauseSystem::OnUpdate(float dt)
 {
-    if (Input()->GetKeyTriggered(GLFW_KEY_TAB))
+    if (Input()->GetKeyTriggered(GLFW_KEY_ESCAPE))
     {
         m_Running = !m_Running;
     }
@@ -78,7 +81,7 @@ ReadMethodMap< PauseSystem > const PauseSystem::s_ReadMethods = {
 /// @return the written json data
 nlohmann::ordered_json PauseSystem::Write() const
 {
-    return nlohmann::ordered_json();
+    return nlohmann::ordered_json::object();
 }
 
 
@@ -93,16 +96,14 @@ System("PauseSystem")
 {
 }
 
-/// @brief The singleton s_Instance of PauseSystem
-PauseSystem* PauseSystem::s_Instance = nullptr;
-
 /// @brief Get the singleton instance of PauseSystem
 /// @return The singleton instance of PauseSystem
 PauseSystem* PauseSystem::GetInstance()
 {
+    static std::unique_ptr< PauseSystem > s_Instance = nullptr;
     if (s_Instance == nullptr)
     {
-        s_Instance = new PauseSystem();
+        s_Instance.reset( new PauseSystem() );
     }
-    return s_Instance;
+    return s_Instance.get();
 }

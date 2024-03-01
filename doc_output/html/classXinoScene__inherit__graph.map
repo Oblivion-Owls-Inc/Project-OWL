@@ -1,5 +1,0 @@
-<map id="XinoScene" name="XinoScene">
-<area shape="rect" id="node1" title="Sandbox system meant to mimic CS&#45;230 scenes." alt="" coords="11,155,102,181"/>
-<area shape="rect" id="node2" href="$classSystem.html" title="Base class for all Systems." alt="" coords="21,80,92,107"/>
-<area shape="rect" id="node3" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="5,5,108,32"/>
-</map>

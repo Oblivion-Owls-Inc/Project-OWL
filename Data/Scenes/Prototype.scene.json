@@ -79,6 +79,30 @@
                 ],
                 "UseAspectRatio": false
             },
+            "Blur": {
+                "Filepath": "Data/Textures/TransparentBlur.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "ButtonTexture": {
+                "Filepath": "Data/Textures/TestButton.png",
+                "SheetDimensions": [
+                    1,
+                    3
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "CastlTiles": {
                 "Filepath": "Data/Textures/CastleTiles.png",
                 "SheetDimensions": [
@@ -88,6 +112,54 @@
                 "Pivot": [
                     0.0,
                     1.0
+                ],
+                "UseAspectRatio": false
+            },
+            "ContinueHover": {
+                "Filepath": "",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "ContinueIdle": {
+                "Filepath": "",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "ContinuePressed": {
+                "Filepath": "",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "CreditsButton": {
+                "Filepath": "Data/Textures/PauseMenuAssets/CreditsButtonSheetpng.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
                 ],
                 "UseAspectRatio": false
             },
@@ -151,6 +223,54 @@
                 ],
                 "UseAspectRatio": false
             },
+            "PauseBackground": {
+                "Filepath": "Data/Textures/PauseMenuAssets/PauseBackground.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "PauseBase": {
+                "Filepath": "Data/Textures/PauseMenuAssets/PauseBase.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "PauseButton": {
+                "Filepath": "Data/Textures/PauseMenuAssets/ContinueButtonSheet.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "PauseLabel": {
+                "Filepath": "Data/Textures/PauseMenuAssets/Game Paused.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "PlayerSheet": {
                 "Filepath": "Data/Textures/Full Spritesheet.png",
                 "SheetDimensions": [
@@ -160,6 +280,54 @@
                 "Pivot": [
                     0.5,
                     0.3799999952316284
+                ],
+                "UseAspectRatio": false
+            },
+            "QuitButton": {
+                "Filepath": "Data/Textures/PauseMenuAssets/QuitGameSheet.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "SettingsButton": {
+                "Filepath": "Data/Textures/PauseMenuAssets/SettingsButtonSheet.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "SettingsHover": {
+                "Filepath": "",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "SettingsIdle": {
+                "Filepath": "",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
                 ],
                 "UseAspectRatio": false
             },
@@ -229,6 +397,48 @@
             }
         },
         "Archetypes": {
+            "BackgroundBlur": {
+                "Name": "BackgroundBlur",
+                "Components": {
+                    "Sprite": {
+                        "Layer": 20,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 0.699999988079071,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Blur"
+                        }
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            0.0,
+                            0.0
+                        ],
+                        "Pivot": [
+                            0.0,
+                            0.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            0.0
+                        ],
+                        "FrameSize": [
+                            1.2100000381469727,
+                            1.4900000095367432
+                        ],
+                        "SizeTypes": [
+                            "RelativeToWidth",
+                            "RelativeToHeight"
+                        ]
+                    }
+                },
+                "Children": null
+            },
             "Bullet": {
                 "Name": "Bullet",
                 "Components": {
@@ -536,6 +746,422 @@
                 },
                 "Children": null
             },
+            "PauseMenu": {
+                "Name": "PauseMenu",
+                "Components": {
+                    "Sprite": {
+                        "Layer": 21,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "PauseBackground"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            0.0,
+                            0.0
+                        ],
+                        "Pivot": [
+                            0.0,
+                            0.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            0.0
+                        ],
+                        "FrameSize": [
+                            1.0,
+                            1.0
+                        ],
+                        "SizeTypes": [
+                            "RelativeToWidth",
+                            "RelativeToHeight"
+                        ]
+                    }
+                },
+                "Children": [
+                    {
+                        "Name": "PauseBase",
+                        "Components": {
+                            "Sprite": {
+                                "Layer": 21,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "PauseBase"
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.6000000238418579,
+                                    0.949999988079071
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToWidth",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": [
+                            {
+                                "Name": "PauseLabel",
+                                "Components": {
+                                    "Sprite": {
+                                        "Layer": 22,
+                                        "Color": [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Opacity": 1.0,
+                                        "FrameIndex": 0,
+                                        "Texture": {
+                                            "AssetName": "PauseLabel"
+                                        }
+                                    },
+                                    "UiElement": {
+                                        "Anchor": [
+                                            0.0,
+                                            0.6700000166893005
+                                        ],
+                                        "Pivot": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "FrameSize": [
+                                            0.4000000059604645,
+                                            0.10000000149011612
+                                        ],
+                                        "SizeTypes": [
+                                            "RelativeToWidth",
+                                            "RelativeToHeight"
+                                        ]
+                                    }
+                                },
+                                "Children": null
+                            },
+                            {
+                                "Name": "PauseButton",
+                                "Components": {
+                                    "AudioPlayer": {
+                                        "Sound": {
+                                            "AssetName": "ButtonRelease"
+                                        },
+                                        "Volume": 1.0,
+                                        "Pitch": 1.0,
+                                        "VolumeVariance": 0.0,
+                                        "PitchVariance": 0.0,
+                                        "DefaultLoopCount": 0,
+                                        "PlayOnInit": false,
+                                        "IsSpatial": false,
+                                        "AllowMultipleSounds": true
+                                    },
+                                    "Sprite": {
+                                        "Layer": 22,
+                                        "Color": [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Opacity": 1.0,
+                                        "FrameIndex": 0,
+                                        "Texture": {
+                                            "AssetName": "PauseButton"
+                                        }
+                                    },
+                                    "UiButton": {
+                                        "ClickEventName": "",
+                                        "ShouldActivateOnPress": false,
+                                        "IdleFrame": 0,
+                                        "HoveredFrame": 1,
+                                        "DownFrame": 2,
+                                        "PressSound": {
+                                            "AssetName": "ButtonPress"
+                                        },
+                                        "ReleaseSound": {
+                                            "AssetName": "ButtonRelease"
+                                        }
+                                    },
+                                    "UiElement": {
+                                        "Anchor": [
+                                            0.0,
+                                            0.36000001430511475
+                                        ],
+                                        "Pivot": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "FrameSize": [
+                                            0.4000000059604645,
+                                            0.10000000149011612
+                                        ],
+                                        "SizeTypes": [
+                                            "RelativeToWidth",
+                                            "RelativeToHeight"
+                                        ]
+                                    }
+                                },
+                                "Children": null
+                            },
+                            {
+                                "Name": "QuitButton",
+                                "Components": {
+                                    "AudioPlayer": {
+                                        "Sound": {
+                                            "AssetName": "ButtonRelease"
+                                        },
+                                        "Volume": 1.0,
+                                        "Pitch": 1.0,
+                                        "VolumeVariance": 0.0,
+                                        "PitchVariance": 0.0,
+                                        "DefaultLoopCount": 0,
+                                        "PlayOnInit": false,
+                                        "IsSpatial": false,
+                                        "AllowMultipleSounds": true
+                                    },
+                                    "Sprite": {
+                                        "Layer": 22,
+                                        "Color": [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Opacity": 1.0,
+                                        "FrameIndex": 0,
+                                        "Texture": {
+                                            "AssetName": "QuitButton"
+                                        }
+                                    },
+                                    "UiButton": {
+                                        "ClickEventName": "",
+                                        "ShouldActivateOnPress": false,
+                                        "IdleFrame": 0,
+                                        "HoveredFrame": 1,
+                                        "DownFrame": 2,
+                                        "PressSound": {
+                                            "AssetName": "ButtonPress"
+                                        },
+                                        "ReleaseSound": {
+                                            "AssetName": "ButtonRelease"
+                                        }
+                                    },
+                                    "UiElement": {
+                                        "Anchor": [
+                                            0.0,
+                                            -0.6200000047683716
+                                        ],
+                                        "Pivot": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "FrameSize": [
+                                            0.4000000059604645,
+                                            0.10000000149011612
+                                        ],
+                                        "SizeTypes": [
+                                            "RelativeToWidth",
+                                            "RelativeToHeight"
+                                        ]
+                                    }
+                                },
+                                "Children": null
+                            },
+                            {
+                                "Name": "CreditsButton",
+                                "Components": {
+                                    "AudioPlayer": {
+                                        "Sound": {
+                                            "AssetName": "ButtonRelease"
+                                        },
+                                        "Volume": 1.0,
+                                        "Pitch": 1.0,
+                                        "VolumeVariance": 0.0,
+                                        "PitchVariance": 0.0,
+                                        "DefaultLoopCount": 0,
+                                        "PlayOnInit": false,
+                                        "IsSpatial": false,
+                                        "AllowMultipleSounds": true
+                                    },
+                                    "Sprite": {
+                                        "Layer": 22,
+                                        "Color": [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Opacity": 1.0,
+                                        "FrameIndex": 0,
+                                        "Texture": {
+                                            "AssetName": "CreditsButton"
+                                        }
+                                    },
+                                    "UiButton": {
+                                        "ClickEventName": "",
+                                        "ShouldActivateOnPress": false,
+                                        "IdleFrame": 0,
+                                        "HoveredFrame": 1,
+                                        "DownFrame": 2,
+                                        "PressSound": {
+                                            "AssetName": "ButtonPress"
+                                        },
+                                        "ReleaseSound": {
+                                            "AssetName": "ButtonRelease"
+                                        }
+                                    },
+                                    "UiElement": {
+                                        "Anchor": [
+                                            0.0,
+                                            -0.30000001192092896
+                                        ],
+                                        "Pivot": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "FrameSize": [
+                                            0.4000000059604645,
+                                            0.10000000149011612
+                                        ],
+                                        "SizeTypes": [
+                                            "RelativeToWidth",
+                                            "RelativeToHeight"
+                                        ]
+                                    }
+                                },
+                                "Children": null
+                            },
+                            {
+                                "Name": "SettingsButton",
+                                "Components": {
+                                    "AudioPlayer": {
+                                        "Sound": {
+                                            "AssetName": "ButtonRelease"
+                                        },
+                                        "Volume": 1.0,
+                                        "Pitch": 1.0,
+                                        "VolumeVariance": 0.0,
+                                        "PitchVariance": 0.0,
+                                        "DefaultLoopCount": 0,
+                                        "PlayOnInit": false,
+                                        "IsSpatial": false,
+                                        "AllowMultipleSounds": true
+                                    },
+                                    "SceneChangeButton": {
+                                        "SceneName": "Prototype",
+                                        "EventName": ""
+                                    },
+                                    "Sprite": {
+                                        "Layer": 22,
+                                        "Color": [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Opacity": 1.0,
+                                        "FrameIndex": 0,
+                                        "Texture": {
+                                            "AssetName": "SettingsButton"
+                                        }
+                                    },
+                                    "UiButton": {
+                                        "ClickEventName": "Prototype",
+                                        "ShouldActivateOnPress": false,
+                                        "IdleFrame": 0,
+                                        "HoveredFrame": 1,
+                                        "DownFrame": 2,
+                                        "PressSound": {
+                                            "AssetName": "ButtonPress"
+                                        },
+                                        "ReleaseSound": {
+                                            "AssetName": "ButtonRelease"
+                                        }
+                                    },
+                                    "UiElement": {
+                                        "Anchor": [
+                                            0.0,
+                                            0.03999999910593033
+                                        ],
+                                        "Pivot": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Offset": [
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "FrameSize": [
+                                            0.4000000059604645,
+                                            0.10000000149011612
+                                        ],
+                                        "SizeTypes": [
+                                            "RelativeToWidth",
+                                            "RelativeToHeight"
+                                        ]
+                                    }
+                                },
+                                "Children": null
+                            }
+                        ]
+                    }
+                ]
+            },
             "ResourceCounter": {
                 "Name": "ResourceCounter",
                 "Components": {
@@ -609,7 +1235,7 @@
                                 ]
                             },
                             "Text": {
-                                "String": "1"
+                                "Text": ""
                             },
                             "TilemapSprite": {
                                 "Layer": 21,
@@ -6211,7 +6837,19 @@
                     "RespawnLocation": [
                         -15.0,
                         5.0
-                    ]
+                    ],
+                    "MoveVertical": {
+                        "ActionName": "Vertical Move"
+                    },
+                    "MoveHorizontal": {
+                        "ActionName": "Horizontal Move"
+                    },
+                    "FireLaser": {
+                        "ActionName": "Fire Laser"
+                    },
+                    "Interact": {
+                        "ActionName": "Interact"
+                    }
                 },
                 "RigidBody": {
                     "Velocity": [

@@ -1,7 +1,0 @@
-<map id="Source/Emitter.h" name="Source/Emitter.h">
-<area shape="rect" id="node1" title="Controls timing of particle emissions, and their init data." alt="" coords="348,5,477,32"/>
-<area shape="rect" id="node2" href="$ComponentFactory_8cpp.html" title="Definitions for the component factory class." alt="" coords="5,80,223,107"/>
-<area shape="rect" id="node3" href="$Emitter_8cpp.html" title="Controls timing of particle emissions, and their init data." alt="" coords="247,80,391,107"/>
-<area shape="rect" id="node4" href="$ParticleSprite_8cpp.html" title="Renders particles using data from SSBO." alt="" coords="416,80,599,107"/>
-<area shape="rect" id="node5" href="$ParticleSystem_8cpp.html" title="Updates all particles using compute shader, spawns new ones in accordance with emitters&#39; timing." alt="" coords="623,80,818,107"/>
-</map>

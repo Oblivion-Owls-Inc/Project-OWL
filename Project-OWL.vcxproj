@@ -274,6 +274,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\ActionReference.cpp" />
+    <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\AssetReference.t.cpp" />
     <ClCompile Include="Source\AudioListener.cpp" />
     <ClCompile Include="Source\CollisionLayerFlags.cpp" />
@@ -323,7 +324,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\Pool.cpp" />
     <ClCompile Include="Source\Lua.cpp" />
     <ClCompile Include="Source\PlayerController.cpp" />
-    <ClCompile Include="Source\AssetLibrarySystem.cpp" />
+    <ClCompile Include="Source\AssetLibrarySystem.t.cpp" />
     <ClCompile Include="Source\CameraSystem.cpp" />
     <ClCompile Include="Source\CollisionSystem.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />

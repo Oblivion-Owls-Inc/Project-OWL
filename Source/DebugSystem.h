@@ -52,8 +52,8 @@ enum class MenuItemType {
 class DebugSystem : public System
 {
 public:
-    static DebugSystem* instance;
 
+    /// @brief  gets the instance of the DebugSystem
     static DebugSystem* GetInstance();
 
     /// @brief Constructor for DebugSystem
@@ -74,7 +74,6 @@ public:
 
     /// @brief Exit and clean up the DebugSystem
     void OnExit() override;
-
 
     /// @brief Gets Called by the Debug system to display debug information
     virtual void DebugWindow() override;

@@ -1,6 +1,0 @@
-<map id="TilemapCollider" name="TilemapCollider">
-<area shape="rect" id="node1" title="Circle&#45;shaped Collider." alt="" coords="5,229,131,256"/>
-<area shape="rect" id="node2" href="$classCollider.html" title="component which is used for detecting collisions and information about them" alt="" coords="32,155,104,181"/>
-<area shape="rect" id="node3" href="$classComponent.html" title=" " alt="" coords="19,80,117,107"/>
-<area shape="rect" id="node4" href="$classISerializable.html" title="interface for all serializable objects" alt="" coords="17,5,119,32"/>
-</map>

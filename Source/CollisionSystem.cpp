@@ -1274,12 +1274,12 @@
     /// @return the instance of the CollisionSystem
     CollisionSystem* CollisionSystem::GetInstance()
     {
-        static CollisionSystem* instance = nullptr;
+        static std::unique_ptr< CollisionSystem > instance = nullptr;
         if ( instance == nullptr )
         {
-            instance = new CollisionSystem();
+            instance.reset( new CollisionSystem() );
         }
-        return instance;
+        return instance.get();
     }
 
     

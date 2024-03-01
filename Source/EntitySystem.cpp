@@ -257,7 +257,7 @@
         }
 
         /// Display the Entity List
-	    DisplayEntityHierarchy();
+	    DisplayEntityHierarchy(m_Entities,"Entity List");
         entityPropertiesWindow( SelectedEntity );
     }
 
@@ -316,13 +316,13 @@
 //-----------------------------------------------------------------------------
 
     /// @brief Displays the Entity Hierarchy in the Entity List window
-    void EntitySystem::DisplayEntityHierarchy()
+    void EntitySystem::DisplayEntityHierarchy(std::vector<Entity*> EntityList, const std::string WindowName, bool DragAndDrop)
     {
         static bool showDeletePopup = false; // Flag to check if the delete popup should be shown
         static Entity* selectedEntityToDelete = nullptr; // Entity selected for deletion
 
         static ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_AlwaysAutoResize;
-        ImGui::Begin("Entity List", nullptr, window_flags);
+        ImGui::Begin(WindowName.c_str(), nullptr, window_flags);
         ImGui::SetWindowSize(ImVec2(500, 1000), ImGuiCond_FirstUseEver);
 
 
@@ -334,7 +334,7 @@
             // Get the children of the parent if it exists, otherwise get the root entities
             if (!child)
             {
-                entities = parent ? parent->GetChildren() : m_Entities; // Get the children of the parent if it exists, otherwise get the root entities
+                entities = parent ? parent->GetChildren() : EntityList; // Get the children of the parent if it exists, otherwise get the root entities
             }
             else
             {
@@ -417,6 +417,19 @@
                         selectedEntityToDelete = currentEntity;
                     }
 
+                    if (!DragAndDrop)
+                    {
+                       if(ImGui::MenuItem("Add Child"))
+                       {
+                            Entity* entity = new Entity(); /// Create a new entity
+                            Transform* transform = new Transform(); /// Create a new transform
+                            entity->SetName("New Entity"); /// Set the name of the entity
+                            entity->AddComponent(transform); /// Add the transform to the entity)
+                            entity->SetParent(currentEntity);
+                       }
+                    }
+
+
                     ImGui::EndPopup();
                 }
 
@@ -439,6 +452,12 @@
                         {
                             currentEntity->Destroy();
 
+                            if (!DragAndDrop)
+                            {
+                                currentEntity->Exit();
+                                delete currentEntity;
+                            }
+
                             if (SelectedEntity == currentEntity)
                             {
                                 SelectedEntity = nullptr;
@@ -459,30 +478,34 @@
                     }
                 }
 
-                // Drag Source
-                if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) 
+                if (DragAndDrop) /// If Drag and Drop is enabled
                 {
-                    // Set payload to be the entity's ID or reference
-                    ImGui::SetDragDropPayload("ENTITY_PAYLOAD", &currentEntity, sizeof(Entity*));
-                    ImGui::Text("Moving %s", currentEntity->GetName().c_str());
-                    ImGui::EndDragDropSource();
-                }
 
-                // Drop Target
-                if (ImGui::BeginDragDropTarget()) 
-                {
-                    const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ENTITY_PAYLOAD");
-
-                    if (payload != NULL) 
+                    // Drag Source
+                    if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) 
                     {
-                         Entity* droppedEntity = *(Entity**)payload->Data;
-
-                         // Set the parent of the dropped entity to the current entity
-                        droppedEntity->SetParent(currentEntity);
-                       
+                        // Set payload to be the entity's ID or reference
+                        ImGui::SetDragDropPayload("ENTITY_PAYLOAD", &currentEntity, sizeof(Entity*));
+                        ImGui::Text("Moving %s", currentEntity->GetName().c_str());
+                        ImGui::EndDragDropSource();
                     }
 
-                    ImGui::EndDragDropTarget();
+                    // Drop Target
+                    if (ImGui::BeginDragDropTarget())
+                    {
+                        const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ENTITY_PAYLOAD");
+
+                        if (payload != NULL)
+                        {
+                            Entity* droppedEntity = *(Entity**)payload->Data;
+
+                            // Set the parent of the dropped entity to the current entity
+                            droppedEntity->SetParent(currentEntity);
+
+                        }
+
+                        ImGui::EndDragDropTarget();
+                    }
                 }
 
                 if (ImGui::IsItemClicked())
@@ -501,20 +524,23 @@
             
         };
 
-        if (ImGui::BeginDragDropTargetCustom(ImGui::GetCurrentWindow()->Rect(), ImGui::GetID("ENTITY_PAYLOAD")))
+        if (DragAndDrop) /// If Drag and Drop is enabled
         {
-			const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ENTITY_PAYLOAD");
-
-            if (payload != NULL)
+            if (ImGui::BeginDragDropTargetCustom(ImGui::GetCurrentWindow()->Rect(), ImGui::GetID("ENTITY_PAYLOAD")))
             {
-				Entity* droppedEntity = *(Entity**)payload->Data;
+                const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ENTITY_PAYLOAD");
 
-				droppedEntity->SetParent(nullptr);
+                if (payload != NULL)
+                {
+                    Entity* droppedEntity = *(Entity**)payload->Data;
 
-			}
+                    droppedEntity->SetParent(nullptr);
 
-			ImGui::EndDragDropTarget();
-		}
+                }
+
+                ImGui::EndDragDropTarget();
+            }
+        }
         
         displayEntityRecursive(nullptr,false); // Start with null to display root entities
 
@@ -604,13 +630,14 @@
     /// @return the instance of the EntitySystem
     EntitySystem* EntitySystem::GetInstance()
     {
-        static EntitySystem* instance = nullptr;
-        if ( instance == nullptr )
+        static std::unique_ptr< EntitySystem > s_Instance = nullptr;
+
+        if (s_Instance == nullptr )
         {
-            instance = new EntitySystem();
+            s_Instance.reset(new EntitySystem());
         }
 
-        return instance;
+        return s_Instance.get();
     }
 
     

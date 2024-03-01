@@ -62,14 +62,14 @@ public: // singleton stuff
     /// @return the instance of the BehaviorSystem
     static BehaviorSystem< BehaviorType >* GetInstance()
     {
-        static BehaviorSystem< BehaviorType >* instance = nullptr;
+        static std::unique_ptr< BehaviorSystem< BehaviorType > > s_Instance = nullptr;
 
-        if ( instance == nullptr )
+        if (s_Instance == nullptr )
         {
-            instance = new BehaviorSystem();
+            s_Instance.reset(new BehaviorSystem< BehaviorType >());
         }
 
-        return instance;
+        return s_Instance.get();
     }
 
     // Prevent copying
