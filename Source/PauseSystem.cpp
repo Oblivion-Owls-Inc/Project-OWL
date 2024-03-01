@@ -28,34 +28,6 @@ void PauseSystem::OnUpdate(float dt)
     if (Input()->GetKeyTriggered(GLFW_KEY_ESCAPE))
     {
         m_Running = !m_Running;
-
-        if (!m_Running)
-        {
-            const Entity* Pause = AssetLibrary<Entity>()->GetAsset("PauseMenu");
-
-            const Entity* BlurTexture = AssetLibrary<Entity>()->GetAsset("BackgroundBlur");
-
-            if (Pause != nullptr && BlurTexture != nullptr)
-            {
-                Entity* blur = BlurTexture->Clone();
-                blur->AddToScene();
-
-                Entity* pauseMenu = Pause->Clone();
-                pauseMenu->AddToScene();
-
-            }
-        }
-        else
-        {
-            Entity* pauseMenu = Entities()->GetEntity("PauseMenu");
-            Entity* BlurTexture = Entities()->GetEntity("BackgroundBlur");
-
-            if (pauseMenu != nullptr && BlurTexture != nullptr)
-            {
-                pauseMenu->Destroy();
-                BlurTexture->Destroy();
-            }
-        }
     }
 
 	pauseGame();
