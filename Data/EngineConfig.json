@@ -3,26 +3,90 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                936,
-                957
+                1174,
+                632
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
         },
         "EventSystem": {},
-        "InputSystem": {},
+        "InputSystem": {
+            "Actions": [
+                {
+                    "Name": "MoveVertical",
+                    "Description": "",
+                    "Keys": [
+                        87
+                    ],
+                    "Mouse": null,
+                    "Controller": null,
+                    "Key Axis": [
+                        83
+                    ],
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "MoveHorizontal",
+                    "Description": "",
+                    "Keys": [
+                        68
+                    ],
+                    "Mouse": null,
+                    "Controller": null,
+                    "Key Axis": [
+                        65
+                    ],
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "FireLaser",
+                    "Description": "",
+                    "Keys": null,
+                    "Mouse": [
+                        0
+                    ],
+                    "Controller": null,
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "Interact",
+                    "Description": "",
+                    "Keys": [
+                        69
+                    ],
+                    "Mouse": null,
+                    "Controller": null,
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                }
+            ]
+        },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "SplashScreen"
+            "NextSceneName": "Prototype",
+            "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
-        "PauseSystem": {},
+        "PauseSystem": null,
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
         "BehaviorSystem<EditorCameraController>": {},
-        "BehaviorSystem<UiButton>": {}, 
+        "BehaviorSystem<UiButton>": {},
         "ComponentSystem<Generator>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
