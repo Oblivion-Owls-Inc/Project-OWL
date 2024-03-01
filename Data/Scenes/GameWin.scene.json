@@ -117,7 +117,7 @@
                     ]
                 },
                 "Text": {
-                    "String": "You Win"
+                    "Text": "You Win"
                 },
                 "TilemapSprite": {
                     "Layer": 4,
