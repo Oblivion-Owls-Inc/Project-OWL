@@ -186,7 +186,7 @@ var searchData=
   ['gettoughness_413',['GetToughness',['../classTileInfoSystem_1_1TileInfo.html#ac2662846db08c8b1af10e5f42c6dee8d',1,'TileInfoSystem::TileInfo']]],
   ['gettransform_414',['GetTransform',['../classMiningLaser.html#ac112e7388c3e21cf3dbf9077fe995e0b',1,'MiningLaser::GetTransform()'],['../classSprite.html#a1d9f3387b31f4066598deefd909bc1ca',1,'Sprite::GetTransform()'],['../classItemComponent.html#a0207e8fe87748c7579598365632b17f8',1,'ItemComponent::GetTransform()'],['../classGenerator.html#a5880f547205cf442fdb944e0291780f0',1,'Generator::GetTransform()'],['../classEnemyBehavior.html#a2c63f129124e57fce06f83a86eb27068',1,'EnemyBehavior::GetTransform()'],['../classCollider.html#a89895eccb2c5e34866d7cfc1395ae153',1,'Collider::GetTransform()'],['../classItemCollector.html#a795a7e0148b746d0c8e157743be315c5',1,'ItemCollector::GetTransform()']]],
   ['gettranslation_415',['GetTranslation',['../classTransform.html#a2bb042a5e38fcfb20876ca76777506fc',1,'Transform']]],
-  ['gettraveldistanceat_416',['GetTravelDistanceAt',['../classPathfinder.html#a08230584ed031550ede930ee77be4b32',1,'Pathfinder']]],
+  ['gettraveldistanceat_416',['GetTravelDistanceAt',['../classPathfinder.html#a64df28bff93403fba43e2f6b9ab09d57',1,'Pathfinder']]],
   ['gettriggered_417',['GetTriggered',['../classInputSystem_1_1Action.html#a6d27b8c918228b7a74b6cdde3b2f62f3',1,'InputSystem::Action']]],
   ['gettype_418',['GetType',['../classComponent.html#ab75652d7b0af6b7c604cc67efb34cfeb',1,'Component']]],
   ['gettypeid_419',['GetTypeId',['../classComponentFactory.html#a90a7b932233f5472585fcb4095998144',1,'ComponentFactory']]],

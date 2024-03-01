@@ -93,12 +93,12 @@ digraph "Component"
   Node48 [label="Text",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classText.html",tooltip="Component that makes use of Tilemap to draw text."];
   Node1 -> Node49 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node49 [label="TilemapBase",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classTilemapBase.html",tooltip="untemplatized base Tilemap class"];
+  Node1 -> Node51 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node51 [label="TilemapEditor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTilemapEditor.html",tooltip="Component that allows direct editing of a Tilemap."];
   Node1 -> Node52 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node52 [label="TilemapEditor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTilemapEditor.html",tooltip="Component that allows direct editing of a Tilemap."];
+  Node52 [label="TilemapItemDropper",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTilemapItemDropper.html",tooltip="Drops an item whenever a tile is broken."];
   Node1 -> Node53 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node53 [label="TilemapItemDropper",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTilemapItemDropper.html",tooltip="Drops an item whenever a tile is broken."];
+  Node53 [label="TilemapTextureConnector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTilemapTextureConnector.html",tooltip="Component that uses a parent 'source' tilemap to update a child tilemap with connected textures."];
   Node1 -> Node54 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node54 [label="TilemapTextureConnector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTilemapTextureConnector.html",tooltip="Component that uses a parent 'source' tilemap to update a child tilemap with connected textures."];
-  Node1 -> Node55 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node55 [label="Transform",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classTransform.html",tooltip=" "];
+  Node54 [label="Transform",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$classTransform.html",tooltip=" "];
 }
