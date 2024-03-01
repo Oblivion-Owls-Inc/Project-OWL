@@ -7,5 +7,9 @@ digraph "Source/TilemapSprite.h"
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node2 [label="Source/ComponentFactory.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ComponentFactory_8cpp.html",tooltip="Definitions for the component factory class."];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node3 [label="Source/TilemapSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapSprite_8cpp.html",tooltip="A version of Sprite specifically for rendering tiles."];
+  Node3 [label="Source/ResourceCounterUi.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourceCounterUi_8cpp.html",tooltip="Ui Component that displays a resource sprite and a count."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Source/ResourcesUiManager.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ResourcesUiManager_8cpp.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="Source/TilemapSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapSprite_8cpp.html",tooltip="A version of Sprite specifically for rendering tiles."];
 }

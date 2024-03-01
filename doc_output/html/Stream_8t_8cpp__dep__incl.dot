@@ -107,6 +107,7 @@ digraph "Source/Stream.t.cpp"
   Node12 -> Node83 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node83 [label="Source/ResourcesUiManager.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$ResourcesUiManager_8h.html",tooltip="Component that manages the UI for displaying what resources a player currently has."];
   Node83 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node83 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node12 -> Node45 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node12 -> Node122 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node122 [label="Source/SceneChangeButton.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$SceneChangeButton_8h.html",tooltip="Component that changes the scene when clicked."];

@@ -170,6 +170,21 @@
     }
 
 
+    /// @brief  clears all items from this Inventory
+    void Inventory::Clear()
+    {
+        for ( ItemStack const& itemStack : m_Items )
+        {
+            for ( auto& [ ownerId, callback ] : m_OnRemoveItemStackCallbacks )
+            {
+                callback( itemStack );
+            }
+        }
+
+        m_Items.clear();
+    }
+
+
     /// @brief  adds a callback to this Inventory that gets called whenever an ItemStack is added to the Inventory
     /// @param  ownerId     the ID of the owner of the callback
     /// @param  callback    the callback to call

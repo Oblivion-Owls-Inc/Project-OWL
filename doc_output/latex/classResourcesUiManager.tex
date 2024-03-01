@@ -23,6 +23,10 @@ Collaboration diagram for Resources\+Ui\+Manager\+:
 \mbox{\Hypertarget{classResourcesUiManager_a4e83fccc1924227100dc27f5c8e252f6}\label{classResourcesUiManager_a4e83fccc1924227100dc27f5c8e252f6}} 
 \mbox{\hyperlink{classResourcesUiManager_a4e83fccc1924227100dc27f5c8e252f6}{Resources\+Ui\+Manager}} ()
 \begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classResourcesUiManager_a3d2a9ad37a41b86c2a2e6030770ca74d}{Set\+Opacity}} (float opacity)
+\begin{DoxyCompactList}\small\item\em sets the opacity of the resources UI \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$ \mbox{\hyperlink{classResourcesUiManager_acac4fba83a4b49dd447998fa216eaa65}{Get\+Ui\+Element}} ()
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classUiElement}{Ui\+Element}} attached to this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classResourcesUiManager_a6761098422420cba6fe1f7e6c32a7bf9}\label{classResourcesUiManager_a6761098422420cba6fe1f7e6c32a7bf9}} 
 virtual void \mbox{\hyperlink{classResourcesUiManager_a6761098422420cba6fe1f7e6c32a7bf9}{On\+Init}} () override
 \begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
@@ -85,6 +89,19 @@ the map of read methods for this \mbox{\hyperlink{classComponent}{Component}}
 
 Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
 
+\mbox{\Hypertarget{classResourcesUiManager_acac4fba83a4b49dd447998fa216eaa65}\label{classResourcesUiManager_acac4fba83a4b49dd447998fa216eaa65}} 
+\index{ResourcesUiManager@{ResourcesUiManager}!GetUiElement@{GetUiElement}}
+\index{GetUiElement@{GetUiElement}!ResourcesUiManager@{ResourcesUiManager}}
+\doxysubsubsection{\texorpdfstring{GetUiElement()}{GetUiElement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUiElement}{Ui\+Element}} $\ast$ Resources\+Ui\+Manager\+::\+Get\+Ui\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the \mbox{\hyperlink{classUiElement}{Ui\+Element}} attached to this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classUiElement}{Ui\+Element}} attached to this \mbox{\hyperlink{classResourcesUiManager}{Resources\+Ui\+Manager}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classResourcesUiManager_ae28c75112e70509d85268fde360b3dd6}\label{classResourcesUiManager_ae28c75112e70509d85268fde360b3dd6}} 
 \index{ResourcesUiManager@{ResourcesUiManager}!OnRemoveChild@{OnRemoveChild}}
 \index{OnRemoveChild@{OnRemoveChild}!ResourcesUiManager@{ResourcesUiManager}}
@@ -104,6 +121,21 @@ called before a child is removed from this \mbox{\hyperlink{classEntity}{Entity}
 
 Reimplemented from \mbox{\hyperlink{classComponent_a4395f6697c9fb583a226c26754478eb0}{Component}}.
 
+\mbox{\Hypertarget{classResourcesUiManager_a3d2a9ad37a41b86c2a2e6030770ca74d}\label{classResourcesUiManager_a3d2a9ad37a41b86c2a2e6030770ca74d}} 
+\index{ResourcesUiManager@{ResourcesUiManager}!SetOpacity@{SetOpacity}}
+\index{SetOpacity@{SetOpacity}!ResourcesUiManager@{ResourcesUiManager}}
+\doxysubsubsection{\texorpdfstring{SetOpacity()}{SetOpacity()}}
+{\footnotesize\ttfamily void Resources\+Ui\+Manager\+::\+Set\+Opacity (\begin{DoxyParamCaption}\item[{float}]{opacity }\end{DoxyParamCaption})}
+
+
+
+sets the opacity of the resources UI 
+
+
+\begin{DoxyParams}{Parameters}
+{\em opacity} & the opacity the resources UI should be \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classResourcesUiManager_a40d92741d8e6a3f5c6eda17d1969f5f6}\label{classResourcesUiManager_a40d92741d8e6a3f5c6eda17d1969f5f6}} 
 \index{ResourcesUiManager@{ResourcesUiManager}!Write@{Write}}
 \index{Write@{Write}!ResourcesUiManager@{ResourcesUiManager}}
