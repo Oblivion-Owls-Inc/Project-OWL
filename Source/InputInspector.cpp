@@ -925,7 +925,7 @@ std::string InputSystem::Action::GetDescription() const
 /// @return action down status
 bool InputSystem::Action::GetDown() const
 {
-    int size = (int)m_Keys.size();
+    int size = static_cast<int>(m_Keys.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetKeyDown(m_Keys[i]))
@@ -934,7 +934,7 @@ bool InputSystem::Action::GetDown() const
         }
     }
 
-    size = (int)m_Mouse.size();
+    size = static_cast<int>(m_Mouse.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetMouseDown(m_Mouse[i]))
@@ -943,7 +943,7 @@ bool InputSystem::Action::GetDown() const
         }
     }
 
-    size = (int)m_Controller.size();
+    size = static_cast<int>(m_Controller.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetGamepadButtonDown(m_Controller[i]))
@@ -951,7 +951,7 @@ bool InputSystem::Action::GetDown() const
             return true;
         }
     }
-    size = (int)m_GamepadAxisAsInput.size();
+    size = static_cast<int>(m_GamepadAxisAsInput.size());
     for (int i = 0; i < size; ++i)
     {
         if (m_GamepadAxisAsInput[i] == 4 || m_GamepadAxisAsInput[i] == 5)
@@ -977,7 +977,7 @@ bool InputSystem::Action::GetTriggered() const
 {
     bool triggered = false;
 
-    int size = (int)m_Keys.size();
+    int size = static_cast<int>(m_Keys.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetKeyDown(m_Keys[i]))
@@ -993,7 +993,7 @@ bool InputSystem::Action::GetTriggered() const
         }
     }
 
-    size = (int)m_Mouse.size();
+    size = static_cast<int>(m_Mouse.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetMouseDown(m_Mouse[i]))
@@ -1009,7 +1009,7 @@ bool InputSystem::Action::GetTriggered() const
         }
     }
 
-    size = (int)m_Controller.size();
+    size = static_cast<int>(m_Controller.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetGamepadButtonDown(m_Controller[i]))
@@ -1034,7 +1034,7 @@ bool InputSystem::Action::GetReleased() const
 {
     bool released = false;
 
-    int size = (int)m_Keys.size();
+    int size = static_cast<int>(m_Keys.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetKeyDown(m_Keys[i]))
@@ -1047,7 +1047,7 @@ bool InputSystem::Action::GetReleased() const
         }
     }
 
-    size = (int)m_Mouse.size();
+    size = static_cast<int>(m_Mouse.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetMouseDown(m_Mouse[i]))
@@ -1060,7 +1060,7 @@ bool InputSystem::Action::GetReleased() const
         }
     }
 
-    size = (int)m_Controller.size();
+    size = static_cast<int>(m_Controller.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetGamepadButtonDown(m_Controller[i]))
@@ -1081,7 +1081,7 @@ bool InputSystem::Action::GetReleased() const
 float InputSystem::Action::GetAxis() const
 {
     float result = 0.0f;
-    int size = (int)m_Keys.size();
+    int size = static_cast<int>(m_Keys.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetKeyDown(m_Keys[i]))
@@ -1089,7 +1089,7 @@ float InputSystem::Action::GetAxis() const
             result += 1;
         }
     }
-    size = (int)m_KeyAxis.size();
+    size = static_cast<int>(m_KeyAxis.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetKeyDown(m_KeyAxis[i]))
@@ -1098,7 +1098,7 @@ float InputSystem::Action::GetAxis() const
         }
     }
 
-    size = (int)m_Mouse.size();
+    size = static_cast<int>(m_Mouse.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetMouseDown(m_Mouse[i]))
@@ -1106,7 +1106,7 @@ float InputSystem::Action::GetAxis() const
             result += 1;
         }
     }
-    size = (int)m_MouseAxis.size();
+    size = static_cast<int>(m_MouseAxis.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetMouseDown(m_MouseAxis[i]))
@@ -1115,7 +1115,7 @@ float InputSystem::Action::GetAxis() const
         }
     }
 
-    size = (int)m_Controller.size();
+    size = static_cast<int>(m_Controller.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetGamepadButtonDown(m_Controller[i]))
@@ -1123,7 +1123,7 @@ float InputSystem::Action::GetAxis() const
             result += 1;
         }
     }
-    size = (int)m_ControllerAxis.size();
+    size = static_cast<int>(m_ControllerAxis.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetGamepadButtonDown(m_ControllerAxis[i]))
@@ -1132,7 +1132,7 @@ float InputSystem::Action::GetAxis() const
         }
     }
 
-    size = (int)m_GamepadAxis.size();
+    size = static_cast<int>(m_GamepadAxis.size());
     for (int i = 0; i < size; ++i)
     {
         float axisAddition = Input()->GetGamepadAxisState(0, m_GamepadAxis[i]);

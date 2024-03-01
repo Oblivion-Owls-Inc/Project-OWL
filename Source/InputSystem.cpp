@@ -473,7 +473,7 @@ void InputSystem::Action::readDescription(nlohmann::ordered_json const& json)
 /// @brief read the key inputs for an action
 void InputSystem::Action::readKeys(nlohmann::ordered_json const& json)
 {
-    int size = (int)json.size();
+    int size = static_cast<int>(json.size());
     for (int i = 0; i < size; ++i)
     {
         m_Keys.push_back(Stream::Read<int>(json[i]));
@@ -483,7 +483,7 @@ void InputSystem::Action::readKeys(nlohmann::ordered_json const& json)
 /// @brief read the mouse inputs for an action
 void InputSystem::Action::readMouse(nlohmann::ordered_json const& json)
 {
-    int size = (int)json.size();
+    int size = static_cast<int>(json.size());
     for (int i = 0; i < size; ++i)
     {
         m_Mouse.push_back(Stream::Read<int>(json[i]));
@@ -493,7 +493,7 @@ void InputSystem::Action::readMouse(nlohmann::ordered_json const& json)
 /// @brief read the controller inputs for an action
 void InputSystem::Action::readController(nlohmann::ordered_json const& json)
 {
-    int size = (int)json.size();
+    int size = static_cast<int>(json.size());
     for (int i = 0; i < size; ++i)
     {
         m_Controller.push_back(Stream::Read<int>(json[i]));
@@ -503,7 +503,7 @@ void InputSystem::Action::readController(nlohmann::ordered_json const& json)
 /// @brief read the key axis inputs for an action
 void InputSystem::Action::readKeyAxis(nlohmann::ordered_json const& json)
 {
-    int size = (int)json.size();
+    int size = static_cast<int>(json.size());
     for (int i = 0; i < size; ++i)
     {
         m_KeyAxis.push_back(Stream::Read<int>(json[i]));
@@ -513,7 +513,7 @@ void InputSystem::Action::readKeyAxis(nlohmann::ordered_json const& json)
 /// @brief read the mouse axis inputs for an action
 void InputSystem::Action::readMouseAxis(nlohmann::ordered_json const& json)
 {
-    int size = (int)json.size();
+    int size = static_cast<int>(json.size());
     for (int i = 0; i < size; ++i)
     {
         m_MouseAxis.push_back(Stream::Read<int>(json[i]));
@@ -523,7 +523,7 @@ void InputSystem::Action::readMouseAxis(nlohmann::ordered_json const& json)
 /// @brief read the controller axis inputs for an action
 void InputSystem::Action::readControllerAxis(nlohmann::ordered_json const& json)
 {
-    int size = (int)json.size();
+    int size = static_cast<int>(json.size());
     for (int i = 0; i < size; ++i)
     {
         m_ControllerAxis.push_back(Stream::Read<int>(json[i]));
@@ -533,7 +533,7 @@ void InputSystem::Action::readControllerAxis(nlohmann::ordered_json const& json)
 /// @brief read the gamepad axis as input for an action
 void InputSystem::Action::readGamepadAxisAsInput(nlohmann::ordered_json const& json)
 {
-    int size = (int)json.size();
+    int size = static_cast<int>(json.size());
     for (int i = 0; i < size; ++i)
     {
         m_GamepadAxisAsInput.push_back(Stream::Read<int>(json[i]));
@@ -543,7 +543,7 @@ void InputSystem::Action::readGamepadAxisAsInput(nlohmann::ordered_json const& j
 /// @brief read the gamepad axis inputs for an action
 void InputSystem::Action::readGamepadAxis(nlohmann::ordered_json const& json)
 {
-    int size = (int)json.size();
+    int size = static_cast<int>(json.size());
     for (int i = 0; i < size; ++i)
     {
         m_GamepadAxis.push_back(Stream::Read<int>(json[i]));
