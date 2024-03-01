@@ -1,0 +1,285 @@
+\hypertarget{classEntityReference}{}\doxysection{Entity\+Reference Class Reference}
+\label{classEntityReference}\index{EntityReference@{EntityReference}}
+
+
+a reference to an \mbox{\hyperlink{classEntity}{Entity}} in the scene  
+
+
+
+
+{\ttfamily \#include $<$Entity\+Reference.\+h$>$}
+
+
+
+Inheritance diagram for Entity\+Reference\+:
+% FIG 0
+
+
+Collaboration diagram for Entity\+Reference\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEntityReference_ab82a7fa3f058bf40d326aaa3a423a7a7}{Entity\+Reference}} (std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{classComponentReferenceBase}{Component\+Reference\+Base}} $\ast$ $>$ component\+References)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntityReference_a189bedb7b921a95a859bf82729878b7b}{Entity\+Reference}} (\mbox{\hyperlink{classEntityReference}{Entity\+Reference}} const \&other, std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{classComponentReferenceBase}{Component\+Reference\+Base}} $\ast$ $>$ component\+References)
+\begin{DoxyCompactList}\small\item\em copy constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntityReference_a97ee04a75e357ca2790f43068cefe49a}\label{classEntityReference_a97ee04a75e357ca2790f43068cefe49a}} 
+void \mbox{\hyperlink{classEntityReference_a97ee04a75e357ca2790f43068cefe49a}{operator=}} (\mbox{\hyperlink{classEntityReference}{Entity\+Reference}} const \&)=delete
+\begin{DoxyCompactList}\small\item\em disable default assignment operator \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntityReference_a14a418def3753597fcdcd94172659cc3}\label{classEntityReference_a14a418def3753597fcdcd94172659cc3}} 
+\mbox{\hyperlink{classEntityReference_a14a418def3753597fcdcd94172659cc3}{Entity\+Reference}} (\mbox{\hyperlink{classEntityReference}{Entity\+Reference}} const \&)=delete
+\begin{DoxyCompactList}\small\item\em disable default copy constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntityReference_a3ebb651535e812b3684abbbcef3afcb4}\label{classEntityReference_a3ebb651535e812b3684abbbcef3afcb4}} 
+void \mbox{\hyperlink{classEntityReference_a3ebb651535e812b3684abbbcef3afcb4}{Init}} ()
+\begin{DoxyCompactList}\small\item\em initializes this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} to point to an \mbox{\hyperlink{classEntity}{Entity}} in the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntityReference_a2188315684d76aebc5493b5bc1931f13}\label{classEntityReference_a2188315684d76aebc5493b5bc1931f13}} 
+void \mbox{\hyperlink{classEntityReference_a2188315684d76aebc5493b5bc1931f13}{Exit}} ()
+\begin{DoxyCompactList}\small\item\em exits this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}}, stopping keeping track of any Entities \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntityReference_a599c5c1de783fdf0096efda95b8243db}{Set\+On\+Connect\+Callback}} (std\+::function$<$ void() $>$ callback)
+\begin{DoxyCompactList}\small\item\em sets the callback to call when this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} connects to an \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntityReference_aa029781c5e794578f84cc693dc769cd7}{Set\+On\+Disconnect\+Callback}} (std\+::function$<$ void() $>$ callback)
+\begin{DoxyCompactList}\small\item\em sets the callback to call when this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} disconnects from an \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+std\+::string const  \& \mbox{\hyperlink{classEntityReference_a5f19f0f34533e3adb9dff93f8f949554}{Get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em gets the name of the \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntityReference_a21a8acce87190313cca8786a1d0f7c1a}{Set\+Owner\+Name}} (std\+::string const \&owner\+Name)
+\begin{DoxyCompactList}\small\item\em sets this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}}\textquotesingle{}s Owner Name \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntityReference_a07090e0030461596f0b5ddd0b2559b87}{operator$\ast$}} () const
+\begin{DoxyCompactList}\small\item\em dereference operator \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} $\ast$ \mbox{\hyperlink{classEntityReference_a4cd8ec6300b97d29b1a4b013ee132b40}{operator-\/$>$}} () const
+\begin{DoxyCompactList}\small\item\em member dereference operator \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntityReference_a05b5c040d9b37d7932f6553e7d6926ea}{operator Entity $\ast$}} () const
+\begin{DoxyCompactList}\small\item\em implicit cast operator \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntityReference_af6c872bcd2eda2836e613a1f6adc1233}{operator=}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)
+\begin{DoxyCompactList}\small\item\em Entity$\ast$ assignment operator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntityReference_ac234dc1a657420655358b04636bd8178}{Clear}} ()
+\begin{DoxyCompactList}\small\item\em sets this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} to nullptr \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntityReference_a3823e46e9590694737915173a2e5463f}{Inspect}} (char const $\ast$label)
+\begin{DoxyCompactList}\small\item\em inspects this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classEntityReference_a766b424768c64ab828034c120d12fbed}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for Entities \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classEntityReference_a92ab14d6f3dedd1eb0ba4c9e2a8e19a9}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classEntity}{Entity}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+a reference to an \mbox{\hyperlink{classEntity}{Entity}} in the scene 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEntityReference_ab82a7fa3f058bf40d326aaa3a423a7a7}\label{classEntityReference_ab82a7fa3f058bf40d326aaa3a423a7a7}} 
+\index{EntityReference@{EntityReference}!EntityReference@{EntityReference}}
+\index{EntityReference@{EntityReference}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{EntityReference()}{EntityReference()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Entity\+Reference\+::\+Entity\+Reference (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{classComponentReferenceBase}{Component\+Reference\+Base}} $\ast$ $>$}]{component\+References }\end{DoxyParamCaption})}
+
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component\+References} & references to the Components attached to the \mbox{\hyperlink{classEntity}{Entity}} to keep track of \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEntityReference_a189bedb7b921a95a859bf82729878b7b}\label{classEntityReference_a189bedb7b921a95a859bf82729878b7b}} 
+\index{EntityReference@{EntityReference}!EntityReference@{EntityReference}}
+\index{EntityReference@{EntityReference}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{EntityReference()}{EntityReference()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Entity\+Reference\+::\+Entity\+Reference (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntityReference}{Entity\+Reference}} const \&}]{other,  }\item[{std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{classComponentReferenceBase}{Component\+Reference\+Base}} $\ast$ $>$}]{component\+References }\end{DoxyParamCaption})}
+
+
+
+copy constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} to copy \\
+\hline
+{\em component\+References} & references to the Components attached to the \mbox{\hyperlink{classEntity}{Entity}} to keep track of \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEntityReference_ac234dc1a657420655358b04636bd8178}\label{classEntityReference_ac234dc1a657420655358b04636bd8178}} 
+\index{EntityReference@{EntityReference}!Clear@{Clear}}
+\index{Clear@{Clear}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{Clear()}{Clear()}}
+{\footnotesize\ttfamily void Entity\+Reference\+::\+Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+sets this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} to nullptr 
+
+SHOULD ONLY BE CALLED BY \mbox{\hyperlink{classEntity_ae13ca332d493f1c1e523cdc27cb5f934}{Entity\+::\+Exit()}} \mbox{\Hypertarget{classEntityReference_a5f19f0f34533e3adb9dff93f8f949554}\label{classEntityReference_a5f19f0f34533e3adb9dff93f8f949554}} 
+\index{EntityReference@{EntityReference}!GetName@{GetName}}
+\index{GetName@{GetName}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily std\+::string const  \& Entity\+Reference\+::\+Get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the name of the \mbox{\hyperlink{classEntity}{Entity}} 
+
+\begin{DoxyReturn}{Returns}
+the name of the \mbox{\hyperlink{classEntity}{Entity}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntityReference_a766b424768c64ab828034c120d12fbed}\label{classEntityReference_a766b424768c64ab828034c120d12fbed}} 
+\index{EntityReference@{EntityReference}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Entity\+Reference\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for Entities 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for Entities 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classEntityReference_a3823e46e9590694737915173a2e5463f}\label{classEntityReference_a3823e46e9590694737915173a2e5463f}} 
+\index{EntityReference@{EntityReference}!Inspect@{Inspect}}
+\index{Inspect@{Inspect}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
+{\footnotesize\ttfamily bool Entity\+Reference\+::\+Inspect (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+inspects this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & what to label this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} inspector as \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} was modified 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntityReference_a05b5c040d9b37d7932f6553e7d6926ea}\label{classEntityReference_a05b5c040d9b37d7932f6553e7d6926ea}} 
+\index{EntityReference@{EntityReference}!operator Entity $\ast$@{operator Entity $\ast$}}
+\index{operator Entity $\ast$@{operator Entity $\ast$}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{operator Entity $\ast$()}{operator Entity *()}}
+{\footnotesize\ttfamily Entity\+Reference\+::operator \mbox{\hyperlink{classEntity}{Entity}} $\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+implicit cast operator 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}}\textquotesingle{}s internal pointer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntityReference_a07090e0030461596f0b5ddd0b2559b87}\label{classEntityReference_a07090e0030461596f0b5ddd0b2559b87}} 
+\index{EntityReference@{EntityReference}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}} \& Entity\+Reference\+::operator$\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+dereference operator 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classComponent}{Component}} this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} refers to 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntityReference_a4cd8ec6300b97d29b1a4b013ee132b40}\label{classEntityReference_a4cd8ec6300b97d29b1a4b013ee132b40}} 
+\index{EntityReference@{EntityReference}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}} $\ast$ Entity\+Reference\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+member dereference operator 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classComponent}{Component}} this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} refers to 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntityReference_af6c872bcd2eda2836e613a1f6adc1233}\label{classEntityReference_af6c872bcd2eda2836e613a1f6adc1233}} 
+\index{EntityReference@{EntityReference}!operator=@{operator=}}
+\index{operator=@{operator=}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily void Entity\+Reference\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{entity }\end{DoxyParamCaption})}
+
+
+
+Entity$\ast$ assignment operator. 
+
+assignment operator (also initializes)
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & the \mbox{\hyperlink{classEntity}{Entity}} to assign to this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEntityReference_a599c5c1de783fdf0096efda95b8243db}\label{classEntityReference_a599c5c1de783fdf0096efda95b8243db}} 
+\index{EntityReference@{EntityReference}!SetOnConnectCallback@{SetOnConnectCallback}}
+\index{SetOnConnectCallback@{SetOnConnectCallback}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{SetOnConnectCallback()}{SetOnConnectCallback()}}
+{\footnotesize\ttfamily void Entity\+Reference\+::\+Set\+On\+Connect\+Callback (\begin{DoxyParamCaption}\item[{std\+::function$<$ void() $>$}]{callback }\end{DoxyParamCaption})}
+
+
+
+sets the callback to call when this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} connects to an \mbox{\hyperlink{classEntity}{Entity}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & the callback to call \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEntityReference_aa029781c5e794578f84cc693dc769cd7}\label{classEntityReference_aa029781c5e794578f84cc693dc769cd7}} 
+\index{EntityReference@{EntityReference}!SetOnDisconnectCallback@{SetOnDisconnectCallback}}
+\index{SetOnDisconnectCallback@{SetOnDisconnectCallback}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{SetOnDisconnectCallback()}{SetOnDisconnectCallback()}}
+{\footnotesize\ttfamily void Entity\+Reference\+::\+Set\+On\+Disconnect\+Callback (\begin{DoxyParamCaption}\item[{std\+::function$<$ void() $>$}]{callback }\end{DoxyParamCaption})}
+
+
+
+sets the callback to call when this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} disconnects from an \mbox{\hyperlink{classEntity}{Entity}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & the callback to call \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEntityReference_a21a8acce87190313cca8786a1d0f7c1a}\label{classEntityReference_a21a8acce87190313cca8786a1d0f7c1a}} 
+\index{EntityReference@{EntityReference}!SetOwnerName@{SetOwnerName}}
+\index{SetOwnerName@{SetOwnerName}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{SetOwnerName()}{SetOwnerName()}}
+{\footnotesize\ttfamily void Entity\+Reference\+::\+Set\+Owner\+Name (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{owner\+Name }\end{DoxyParamCaption})}
+
+
+
+sets this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}}\textquotesingle{}s Owner Name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Name} & the name of the owner of this \mbox{\hyperlink{classEntityReference}{Entity\+Reference}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classEntityReference_a92ab14d6f3dedd1eb0ba4c9e2a8e19a9}\label{classEntityReference_a92ab14d6f3dedd1eb0ba4c9e2a8e19a9}} 
+\index{EntityReference@{EntityReference}!Write@{Write}}
+\index{Write@{Write}!EntityReference@{EntityReference}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Entity\+Reference\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classEntity}{Entity}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classEntity}{Entity}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{EntityReference_8h}{Entity\+Reference.\+h}}\item 
+Source/\mbox{\hyperlink{EntityReference_8cpp}{Entity\+Reference.\+cpp}}\end{DoxyCompactItemize}

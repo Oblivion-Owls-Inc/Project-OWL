@@ -1,0 +1,128 @@
+\hypertarget{classLifetime}{}\doxysection{Lifetime Class Reference}
+\label{classLifetime}\index{Lifetime@{Lifetime}}
+
+
+\mbox{\hyperlink{classComponent}{Component}} that destroys it\textquotesingle{}s Enity after a given length of time.  
+
+
+
+
+{\ttfamily \#include $<$Lifetime.\+h$>$}
+
+
+
+Inheritance diagram for Lifetime\+:
+% FIG 0
+
+
+Collaboration diagram for Lifetime\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLifetime_a94f4ace936706dd0c96d789a3f2fc101}\label{classLifetime_a94f4ace936706dd0c96d789a3f2fc101}} 
+\mbox{\hyperlink{classLifetime_a94f4ace936706dd0c96d789a3f2fc101}{Lifetime}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPool}{Pool}}$<$ float $>$ $\ast$ \mbox{\hyperlink{classLifetime_a3fdd23bd76149b6444e872845b5a08c5}{Get\+Lifetime}} ()
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classLifetime}{Lifetime}}\textquotesingle{}s lifetime pool \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLifetime_af8334590508ccd9540d7ad6136d21615}\label{classLifetime_af8334590508ccd9540d7ad6136d21615}} 
+virtual void \mbox{\hyperlink{classLifetime_af8334590508ccd9540d7ad6136d21615}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLifetime_a69b0556381e18acbc73e17db6b6bd0fa}\label{classLifetime_a69b0556381e18acbc73e17db6b6bd0fa}} 
+virtual void \mbox{\hyperlink{classLifetime_a69b0556381e18acbc73e17db6b6bd0fa}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLifetime_a73b68221265436e7240dd797a74da8aa}\label{classLifetime_a73b68221265436e7240dd797a74da8aa}} 
+virtual void \mbox{\hyperlink{classLifetime_a73b68221265436e7240dd797a74da8aa}{On\+Fixed\+Update}} () override
+\begin{DoxyCompactList}\small\item\em called every simulation frame \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLifetime_a626aa93f09ac2e79c6e8a977e19c5f9e}\label{classLifetime_a626aa93f09ac2e79c6e8a977e19c5f9e}} 
+virtual void \mbox{\hyperlink{classLifetime_a626aa93f09ac2e79c6e8a977e19c5f9e}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classLifetime}{Lifetime}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classLifetime_a079827e458decb7061ef019cd5788d21}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classLifetime_a851b16170581938da9fc1e712c176b40}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Writes all \mbox{\hyperlink{classHomeBase}{Home\+Base}} data to a JSON file. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classLifetime}{Lifetime}} $\ast$ \mbox{\hyperlink{classLifetime_ae261de904ca647e751c265007391f831}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classLifetime}{Lifetime}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classComponent}{Component}} that destroys it\textquotesingle{}s Enity after a given length of time. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classLifetime_ae261de904ca647e751c265007391f831}\label{classLifetime_ae261de904ca647e751c265007391f831}} 
+\index{Lifetime@{Lifetime}!Clone@{Clone}}
+\index{Clone@{Clone}!Lifetime@{Lifetime}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classLifetime}{Lifetime}} $\ast$ Lifetime\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classLifetime}{Lifetime}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classLifetime}{Lifetime}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classLifetime_a3fdd23bd76149b6444e872845b5a08c5}\label{classLifetime_a3fdd23bd76149b6444e872845b5a08c5}} 
+\index{Lifetime@{Lifetime}!GetLifetime@{GetLifetime}}
+\index{GetLifetime@{GetLifetime}!Lifetime@{Lifetime}}
+\doxysubsubsection{\texorpdfstring{GetLifetime()}{GetLifetime()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPool}{Pool}}$<$ float $>$ $\ast$ Lifetime\+::\+Get\+Lifetime (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets this \mbox{\hyperlink{classLifetime}{Lifetime}}\textquotesingle{}s lifetime pool 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classLifetime}{Lifetime}}\textquotesingle{}s lifetime pool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLifetime_a079827e458decb7061ef019cd5788d21}\label{classLifetime_a079827e458decb7061ef019cd5788d21}} 
+\index{Lifetime@{Lifetime}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Lifetime@{Lifetime}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Lifetime\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+gets the map of read methods for this \mbox{\hyperlink{classLifetime}{Lifetime}}
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}}
+
+the map of read methods for this \mbox{\hyperlink{classLifetime}{Lifetime}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classLifetime_a851b16170581938da9fc1e712c176b40}\label{classLifetime_a851b16170581938da9fc1e712c176b40}} 
+\index{Lifetime@{Lifetime}!Write@{Write}}
+\index{Write@{Write}!Lifetime@{Lifetime}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Lifetime\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Writes all \mbox{\hyperlink{classHomeBase}{Home\+Base}} data to a JSON file. 
+
+Writes all \mbox{\hyperlink{classLifetime}{Lifetime}} data to a JSON file.
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Lifetime_8h}{Lifetime.\+h}}\item 
+Source/\mbox{\hyperlink{Lifetime_8cpp}{Lifetime.\+cpp}}\end{DoxyCompactItemize}

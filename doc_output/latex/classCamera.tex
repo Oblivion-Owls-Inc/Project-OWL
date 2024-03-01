@@ -1,0 +1,221 @@
+\hypertarget{classCamera}{}\doxysection{Camera Class Reference}
+\label{classCamera}\index{Camera@{Camera}}
+
+
+Handles camera and coordinate systems / spaces.  
+
+
+
+
+{\ttfamily \#include $<$Camera.\+h$>$}
+
+
+
+Inheritance diagram for Camera\+:
+% FIG 0
+
+
+Collaboration diagram for Camera\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCamera_a01f94c3543f56ede7af49dc778f19331}\label{classCamera_a01f94c3543f56ede7af49dc778f19331}} 
+\mbox{\hyperlink{classCamera_a01f94c3543f56ede7af49dc778f19331}{Camera}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classCamera_affeaefe210600d4e5fad182924092345}{Get\+Width}} () const
+\begin{DoxyCompactList}\small\item\em gets the width of the \mbox{\hyperlink{classCamera}{Camera}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCamera_a9d7c01f192c19b746d0c727d854b8314}{Set\+Width}} (float width)
+\begin{DoxyCompactList}\small\item\em sets the width of the camera \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classCamera_a47ff77cd15789a92f0d86be83a743410}{Get\+Height}} () const
+\begin{DoxyCompactList}\small\item\em gets the height of the \mbox{\hyperlink{classCamera}{Camera}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCamera_a7d077295333c482ff762db11f27bc615}{Set\+Height}} (float height)
+\begin{DoxyCompactList}\small\item\em sets the height of the camera \end{DoxyCompactList}\item 
+glm\+::mat4 const  \& \mbox{\hyperlink{classCamera_ad85a1fa918b5a70e79ab522e1de5882e}{Get\+World\+To\+Clip}} () const
+\begin{DoxyCompactList}\small\item\em gets the world space to clip space matrix \end{DoxyCompactList}\item 
+glm\+::mat4 const  \& \mbox{\hyperlink{classCamera_a378750c10b47d23ad5f62cb0637c813c}{Get\+Clip\+To\+World}} () const
+\begin{DoxyCompactList}\small\item\em gets the clip space to world space matrix \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCamera_a3ae7992e1708480c12839853bbffe076}{Set\+Is\+Active}} (bool is\+Active)
+\begin{DoxyCompactList}\small\item\em sets the active state of this \mbox{\hyperlink{classCamera}{Camera}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCamera_a7412485475d29789f5aabee5c99c82ec}\label{classCamera_a7412485475d29789f5aabee5c99c82ec}} 
+void \mbox{\hyperlink{classCamera_a7412485475d29789f5aabee5c99c82ec}{Set\+Active}} ()
+\begin{DoxyCompactList}\small\item\em sets this \mbox{\hyperlink{classCamera}{Camera}} as the active \mbox{\hyperlink{classCamera}{Camera}} in the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCamera_a22f63de262413d51e6931d3c5904d781}\label{classCamera_a22f63de262413d51e6931d3c5904d781}} 
+virtual void \mbox{\hyperlink{classCamera_a22f63de262413d51e6931d3c5904d781}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the Inspector window \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classCamera_a215be5bde1e752d1210c8dd8ec479def}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
+nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCamera_ac0900b3ef7f5262ebfd1d7551453cb44}{Write}} () const
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classCamera}{Camera}} to json \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classCamera}{Camera}} $\ast$ \mbox{\hyperlink{classCamera_a5f9cd12c0227e459114bd912894c4aa4}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em creates a new copy of this \mbox{\hyperlink{classCamera}{Camera}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Handles camera and coordinate systems / spaces. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCamera_a5f9cd12c0227e459114bd912894c4aa4}\label{classCamera_a5f9cd12c0227e459114bd912894c4aa4}} 
+\index{Camera@{Camera}!Clone@{Clone}}
+\index{Clone@{Clone}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCamera}{Camera}} $\ast$ Camera\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+creates a new copy of this \mbox{\hyperlink{classCamera}{Camera}} 
+
+\begin{DoxyReturn}{Returns}
+the copy of this \mbox{\hyperlink{classCamera}{Camera}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classCamera_a378750c10b47d23ad5f62cb0637c813c}\label{classCamera_a378750c10b47d23ad5f62cb0637c813c}} 
+\index{Camera@{Camera}!GetClipToWorld@{GetClipToWorld}}
+\index{GetClipToWorld@{GetClipToWorld}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{GetClipToWorld()}{GetClipToWorld()}}
+{\footnotesize\ttfamily glm\+::mat4 const  \& Camera\+::\+Get\+Clip\+To\+World (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the clip space to world space matrix 
+
+\begin{DoxyReturn}{Returns}
+the clip space to world space matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCamera_a47ff77cd15789a92f0d86be83a743410}\label{classCamera_a47ff77cd15789a92f0d86be83a743410}} 
+\index{Camera@{Camera}!GetHeight@{GetHeight}}
+\index{GetHeight@{GetHeight}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{GetHeight()}{GetHeight()}}
+{\footnotesize\ttfamily float Camera\+::\+Get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the height of the \mbox{\hyperlink{classCamera}{Camera}} 
+
+\begin{DoxyReturn}{Returns}
+the height of the camera 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCamera_a215be5bde1e752d1210c8dd8ec479def}\label{classCamera_a215be5bde1e752d1210c8dd8ec479def}} 
+\index{Camera@{Camera}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Camera\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classCamera_affeaefe210600d4e5fad182924092345}\label{classCamera_affeaefe210600d4e5fad182924092345}} 
+\index{Camera@{Camera}!GetWidth@{GetWidth}}
+\index{GetWidth@{GetWidth}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{GetWidth()}{GetWidth()}}
+{\footnotesize\ttfamily float Camera\+::\+Get\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the width of the \mbox{\hyperlink{classCamera}{Camera}} 
+
+\begin{DoxyReturn}{Returns}
+the width of the camera 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCamera_ad85a1fa918b5a70e79ab522e1de5882e}\label{classCamera_ad85a1fa918b5a70e79ab522e1de5882e}} 
+\index{Camera@{Camera}!GetWorldToClip@{GetWorldToClip}}
+\index{GetWorldToClip@{GetWorldToClip}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{GetWorldToClip()}{GetWorldToClip()}}
+{\footnotesize\ttfamily glm\+::mat4 const  \& Camera\+::\+Get\+World\+To\+Clip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the world space to clip space matrix 
+
+\begin{DoxyReturn}{Returns}
+the world space to clip space matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCamera_a7d077295333c482ff762db11f27bc615}\label{classCamera_a7d077295333c482ff762db11f27bc615}} 
+\index{Camera@{Camera}!SetHeight@{SetHeight}}
+\index{SetHeight@{SetHeight}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{SetHeight()}{SetHeight()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Height (\begin{DoxyParamCaption}\item[{float}]{height }\end{DoxyParamCaption})}
+
+
+
+sets the height of the camera 
+
+
+\begin{DoxyParams}{Parameters}
+{\em height} & the height of the camera \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+also overrides width based on viewport aspect ratio 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCamera_a3ae7992e1708480c12839853bbffe076}\label{classCamera_a3ae7992e1708480c12839853bbffe076}} 
+\index{Camera@{Camera}!SetIsActive@{SetIsActive}}
+\index{SetIsActive@{SetIsActive}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{SetIsActive()}{SetIsActive()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Is\+Active (\begin{DoxyParamCaption}\item[{bool}]{is\+Active }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the active state of this \mbox{\hyperlink{classCamera}{Camera}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Active} & whether the \mbox{\hyperlink{classCamera}{Camera}} is active or not \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+SHOULD ONLY EVER BE CALLED BY CAMERASYSTEM 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCamera_a9d7c01f192c19b746d0c727d854b8314}\label{classCamera_a9d7c01f192c19b746d0c727d854b8314}} 
+\index{Camera@{Camera}!SetWidth@{SetWidth}}
+\index{SetWidth@{SetWidth}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{SetWidth()}{SetWidth()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Width (\begin{DoxyParamCaption}\item[{float}]{width }\end{DoxyParamCaption})}
+
+
+
+sets the width of the camera 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & the width of the camera \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+also overrides height based on viewport aspect ratio 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCamera_ac0900b3ef7f5262ebfd1d7551453cb44}\label{classCamera_ac0900b3ef7f5262ebfd1d7551453cb44}} 
+\index{Camera@{Camera}!Write@{Write}}
+\index{Write@{Write}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Camera\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classCamera}{Camera}} to json 
+
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Camera_8h}{Camera.\+h}}\item 
+Source/Camera.\+cpp\end{DoxyCompactItemize}

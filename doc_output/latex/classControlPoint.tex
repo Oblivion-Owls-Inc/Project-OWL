@@ -1,0 +1,207 @@
+\hypertarget{classControlPoint}{}\doxysection{Control\+Point$<$ dimensionality $>$ Class Template Reference}
+\label{classControlPoint}\index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}
+
+
+control points used by this \mbox{\hyperlink{classCurve}{Curve}}  
+
+
+
+
+{\ttfamily \#include $<$Curve.\+h$>$}
+
+
+
+Inheritance diagram for Control\+Point$<$ dimensionality $>$\+:
+% FIG 0
+
+
+Collaboration diagram for Control\+Point$<$ dimensionality $>$\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classControlPoint_a9d0dfb0f779b2c717288daeb57bf6f94}{Control\+Point}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classControlPoint_a89615827fa0ebd5953aacde7702c8858}{Control\+Point}} (glm\+::vec$<$ dimensionality, float $>$ const \&value, float time=0.\+0f, glm\+::vec$<$ dimensionality, float $>$ const \&derivative=glm\+::vec$<$ dimensionality, float $>$(0))
+\begin{DoxyCompactList}\small\item\em value constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classControlPoint_a34582e117e31ae87ab965744cfc04b08}\label{classControlPoint_a34582e117e31ae87ab965744cfc04b08}} 
+\mbox{\hyperlink{classControlPoint_a34582e117e31ae87ab965744cfc04b08}{$\sim$\+Control\+Point}} ()=default
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classControlPoint_afb49f19ebb4bb3df8afa1182dc1d1e66}{Get\+Time}} () const
+\begin{DoxyCompactList}\small\item\em gets the time of this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classControlPoint_a3a19e267bba3338c0b0cf981120fd26c}{Set\+Time}} (float time)
+\begin{DoxyCompactList}\small\item\em sets the time of this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classControlPoint_a6e8ef17440ddbb5d6f6fde0b096ec454}{operator$<$}} (\mbox{\hyperlink{classControlPoint}{Control\+Point}} const \&other) const
+\begin{DoxyCompactList}\small\item\em checks if one \mbox{\hyperlink{classControlPoint}{Control\+Point}} is before another (for sorting) \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classControlPoint_a9bea51f225dfff11bb2313580e6809b8}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classCurve}{Curve}} read method map \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classControlPoint_a252a623a13c8dec86c29438e023640b7}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classControlPoint}{Control\+Point}} to json \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classControlPoint_a5ea7412adfdec910413b587b47e8fe24}\label{classControlPoint_a5ea7412adfdec910413b587b47e8fe24}} 
+glm\+::vec$<$ dimensionality+1, float $>$ \mbox{\hyperlink{classControlPoint_a5ea7412adfdec910413b587b47e8fe24}{M\+\_\+\+Value}}
+\begin{DoxyCompactList}\small\item\em the value at this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classControlPoint_a64d505d65d684266d29c8035f4a07c41}\label{classControlPoint_a64d505d65d684266d29c8035f4a07c41}} 
+glm\+::vec$<$ dimensionality, float $>$ \mbox{\hyperlink{classControlPoint_a64d505d65d684266d29c8035f4a07c41}{M\+\_\+\+Derivative}}
+\begin{DoxyCompactList}\small\item\em the value at this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$int dimensionality$>$\newline
+class Control\+Point$<$ dimensionality $>$}
+
+control points used by this \mbox{\hyperlink{classCurve}{Curve}} 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classControlPoint_a9d0dfb0f779b2c717288daeb57bf6f94}\label{classControlPoint_a9d0dfb0f779b2c717288daeb57bf6f94}} 
+\index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}!ControlPoint@{ControlPoint}}
+\index{ControlPoint@{ControlPoint}!ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{ControlPoint()}{ControlPoint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$\+::\mbox{\hyperlink{classControlPoint}{Control\+Point}}}
+
+
+
+constructor 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em dimensionality} & the number of dimensions this curve goes through \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{classControlPoint_a89615827fa0ebd5953aacde7702c8858}\label{classControlPoint_a89615827fa0ebd5953aacde7702c8858}} 
+\index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}!ControlPoint@{ControlPoint}}
+\index{ControlPoint@{ControlPoint}!ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{ControlPoint()}{ControlPoint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$\+::\mbox{\hyperlink{classControlPoint}{Control\+Point}} (\begin{DoxyParamCaption}\item[{glm\+::vec$<$ dimensionality, float $>$ const \&}]{value,  }\item[{float}]{time = {\ttfamily 0.0f},  }\item[{glm\+::vec$<$ dimensionality, float $>$ const \&}]{derivative = {\ttfamily glm\+:\+:vec$<$~dimensionality,~float~$>$(~0~)} }\end{DoxyParamCaption})}
+
+
+
+value constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & the value to assign to this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \\
+\hline
+{\em time} & the time to assign to this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \\
+\hline
+{\em derivative} & the derivative to assign to this \mbox{\hyperlink{classControlPoint}{Control\+Point}}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em dimensionality} & the number of dimensions this curve goes through \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & the value to assing to this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \\
+\hline
+{\em time} & the time to assign to this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \\
+\hline
+{\em derivative} & the derivative to assign to this \mbox{\hyperlink{classControlPoint}{Control\+Point}} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classControlPoint_a9bea51f225dfff11bb2313580e6809b8}\label{classControlPoint_a9bea51f225dfff11bb2313580e6809b8}} 
+\index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$\+::Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the \mbox{\hyperlink{classCurve}{Curve}} read method map 
+
+\begin{DoxyReturn}{Returns}
+the read method map 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classControlPoint_afb49f19ebb4bb3df8afa1182dc1d1e66}\label{classControlPoint_afb49f19ebb4bb3df8afa1182dc1d1e66}} 
+\index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}!GetTime@{GetTime}}
+\index{GetTime@{GetTime}!ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetTime()}{GetTime()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+float \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$\+::Get\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the time of this \mbox{\hyperlink{classControlPoint}{Control\+Point}} 
+
+\begin{DoxyReturn}{Returns}
+the time of this \mbox{\hyperlink{classControlPoint}{Control\+Point}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classControlPoint_a6e8ef17440ddbb5d6f6fde0b096ec454}\label{classControlPoint_a6e8ef17440ddbb5d6f6fde0b096ec454}} 
+\index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+bool \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$\+::operator$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$ const \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+checks if one \mbox{\hyperlink{classControlPoint}{Control\+Point}} is before another (for sorting) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the \mbox{\hyperlink{classControlPoint}{Control\+Point}} to compare against \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classControlPoint}{Control\+Point}} is before the other 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classControlPoint_a3a19e267bba3338c0b0cf981120fd26c}\label{classControlPoint_a3a19e267bba3338c0b0cf981120fd26c}} 
+\index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}!SetTime@{SetTime}}
+\index{SetTime@{SetTime}!ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{SetTime()}{SetTime()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+void \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$\+::Set\+Time (\begin{DoxyParamCaption}\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the time of this \mbox{\hyperlink{classControlPoint}{Control\+Point}} 
+
+\begin{DoxyReturn}{Returns}
+the time of this \mbox{\hyperlink{classControlPoint}{Control\+Point}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classControlPoint_a252a623a13c8dec86c29438e023640b7}\label{classControlPoint_a252a623a13c8dec86c29438e023640b7}} 
+\index{ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}!Write@{Write}}
+\index{Write@{Write}!ControlPoint$<$ dimensionality $>$@{ControlPoint$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$\+::Write\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classControlPoint}{Control\+Point}} to json 
+
+\begin{DoxyReturn}{Returns}
+the written json data
+\end{DoxyReturn}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em dimensionality} & the number of dimensions this curve goes through \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Curve_8h}{Curve.\+h}}\item 
+Source/\mbox{\hyperlink{Curve_8cpp}{Curve.\+cpp}}\end{DoxyCompactItemize}

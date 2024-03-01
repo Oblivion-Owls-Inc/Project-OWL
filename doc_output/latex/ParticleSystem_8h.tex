@@ -1,0 +1,39 @@
+\hypertarget{ParticleSystem_8h}{}\doxysection{Source/\+Particle\+System.h File Reference}
+\label{ParticleSystem_8h}\index{Source/ParticleSystem.h@{Source/ParticleSystem.h}}
+
+
+\mbox{\hyperlink{classSystem}{System}} in charge of managing compute shader and emitters.  
+
+
+{\ttfamily \#include \char`\"{}System.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$map$>$}\newline
+Include dependency graph for Particle\+System.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classParticleSystem}{Particle\+System}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classSystem}{System}} in charge of managing compute shader and emitters. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structParticleSystem_1_1Particle}{Particle\+System\+::\+Particle}}
+\begin{DoxyCompactList}\small\item\em Not really utilized CPU-\/side, but useful for reference. Mirrors the \mbox{\hyperlink{structParticleSystem_1_1Particle}{Particle}} struct declared on the compute shader. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structParticleSystem_1_1EmitData}{Particle\+System\+::\+Emit\+Data}}
+\begin{DoxyCompactList}\small\item\em Mirrors the struct on the shader. Used for spawning new particles. This one is for internal use, allows proper UBO allocation/loading. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ParticleSystem_8h_a2ea03d2d7147238b8d25a162e78b1708}\label{ParticleSystem_8h_a2ea03d2d7147238b8d25a162e78b1708}} 
+\+\_\+\+\_\+inline \mbox{\hyperlink{classParticleSystem}{Particle\+System}} $\ast$ \mbox{\hyperlink{ParticleSystem_8h_a2ea03d2d7147238b8d25a162e78b1708}{Particles}} ()
+\begin{DoxyCompactList}\small\item\em Convenient function for getting \mbox{\hyperlink{classParticleSystem}{Particle\+System}} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classSystem}{System}} in charge of managing compute shader and emitters. 
+
+\begin{DoxyAuthor}{Author}
+Eli Tsereteli 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+October 2023 
+\end{DoxyDate}

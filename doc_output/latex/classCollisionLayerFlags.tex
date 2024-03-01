@@ -1,0 +1,152 @@
+\hypertarget{classCollisionLayerFlags}{}\doxysection{Collision\+Layer\+Flags Class Reference}
+\label{classCollisionLayerFlags}\index{CollisionLayerFlags@{CollisionLayerFlags}}
+
+
+Inheritance diagram for Collision\+Layer\+Flags\+:
+% FIG 0
+
+
+Collaboration diagram for Collision\+Layer\+Flags\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCollisionLayerFlags_aeb48253b6165f3fa6651ce253e7002a1}{Collision\+Layer\+Flags}} (unsigned flags=0)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCollisionLayerFlags_a3b31564c45b8cf581c42d705a2fdc7bd}{Includes}} (unsigned collision\+Layer) const
+\begin{DoxyCompactList}\small\item\em Checks whether this \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} contains a collision\+Layer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCollisionLayerFlags_ad42df4853f3002efba13b5d18e0797d9}{operator unsigned}} () const
+\begin{DoxyCompactList}\small\item\em implicit cast to unsigned \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollisionLayerFlags_ada43558842dc8016e86c8c9fccdca150}{operator=}} (unsigned bitflags)
+\begin{DoxyCompactList}\small\item\em assignment operator \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCollisionLayerFlags_a2e9b49982b8599b5ef2b899bae9761ec}{Inspect}} (char const $\ast$label)
+\begin{DoxyCompactList}\small\item\em inspects this \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classCollisionLayerFlags_a5bfe9b3d6f325658ceabfbc6a9e87c4e}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCollisionLayerFlags_a0bc64be0ae5544e2bb3ccdf1b15ebcf7}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCollisionLayerFlags_aeb48253b6165f3fa6651ce253e7002a1}\label{classCollisionLayerFlags_aeb48253b6165f3fa6651ce253e7002a1}} 
+\index{CollisionLayerFlags@{CollisionLayerFlags}!CollisionLayerFlags@{CollisionLayerFlags}}
+\index{CollisionLayerFlags@{CollisionLayerFlags}!CollisionLayerFlags@{CollisionLayerFlags}}
+\doxysubsubsection{\texorpdfstring{CollisionLayerFlags()}{CollisionLayerFlags()}}
+{\footnotesize\ttfamily Collision\+Layer\+Flags\+::\+Collision\+Layer\+Flags (\begin{DoxyParamCaption}\item[{unsigned}]{flags = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flags} & the bitflags of this \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCollisionLayerFlags_a5bfe9b3d6f325658ceabfbc6a9e87c4e}\label{classCollisionLayerFlags_a5bfe9b3d6f325658ceabfbc6a9e87c4e}} 
+\index{CollisionLayerFlags@{CollisionLayerFlags}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!CollisionLayerFlags@{CollisionLayerFlags}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Collision\+Layer\+Flags\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classCollisionLayerFlags_a3b31564c45b8cf581c42d705a2fdc7bd}\label{classCollisionLayerFlags_a3b31564c45b8cf581c42d705a2fdc7bd}} 
+\index{CollisionLayerFlags@{CollisionLayerFlags}!Includes@{Includes}}
+\index{Includes@{Includes}!CollisionLayerFlags@{CollisionLayerFlags}}
+\doxysubsubsection{\texorpdfstring{Includes()}{Includes()}}
+{\footnotesize\ttfamily bool Collision\+Layer\+Flags\+::\+Includes (\begin{DoxyParamCaption}\item[{unsigned}]{collision\+Layer }\end{DoxyParamCaption}) const}
+
+
+
+Checks whether this \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} contains a collision\+Layer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collision\+Layer} & the layer to check if these flags include \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the given layer is included 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollisionLayerFlags_a2e9b49982b8599b5ef2b899bae9761ec}\label{classCollisionLayerFlags_a2e9b49982b8599b5ef2b899bae9761ec}} 
+\index{CollisionLayerFlags@{CollisionLayerFlags}!Inspect@{Inspect}}
+\index{Inspect@{Inspect}!CollisionLayerFlags@{CollisionLayerFlags}}
+\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
+{\footnotesize\ttfamily bool Collision\+Layer\+Flags\+::\+Inspect (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label }\end{DoxyParamCaption})}
+
+
+
+inspects this \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the label of this Inspector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether a change was made 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollisionLayerFlags_ad42df4853f3002efba13b5d18e0797d9}\label{classCollisionLayerFlags_ad42df4853f3002efba13b5d18e0797d9}} 
+\index{CollisionLayerFlags@{CollisionLayerFlags}!operator unsigned@{operator unsigned}}
+\index{operator unsigned@{operator unsigned}!CollisionLayerFlags@{CollisionLayerFlags}}
+\doxysubsubsection{\texorpdfstring{operator unsigned()}{operator unsigned()}}
+{\footnotesize\ttfamily Collision\+Layer\+Flags\+::operator unsigned (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+implicit cast to unsigned 
+
+\begin{DoxyReturn}{Returns}
+the internal bitflags 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollisionLayerFlags_ada43558842dc8016e86c8c9fccdca150}\label{classCollisionLayerFlags_ada43558842dc8016e86c8c9fccdca150}} 
+\index{CollisionLayerFlags@{CollisionLayerFlags}!operator=@{operator=}}
+\index{operator=@{operator=}!CollisionLayerFlags@{CollisionLayerFlags}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily void Collision\+Layer\+Flags\+::operator= (\begin{DoxyParamCaption}\item[{unsigned}]{bitflags }\end{DoxyParamCaption})}
+
+
+
+assignment operator 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bitflags} & the bitflags to assign to this \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollisionLayerFlags_a0bc64be0ae5544e2bb3ccdf1b15ebcf7}\label{classCollisionLayerFlags_a0bc64be0ae5544e2bb3ccdf1b15ebcf7}} 
+\index{CollisionLayerFlags@{CollisionLayerFlags}!Write@{Write}}
+\index{Write@{Write}!CollisionLayerFlags@{CollisionLayerFlags}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Collision\+Layer\+Flags\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{CollisionLayerFlags_8h}{Collision\+Layer\+Flags.\+h}}\item 
+Source/\mbox{\hyperlink{CollisionLayerFlags_8cpp}{Collision\+Layer\+Flags.\+cpp}}\end{DoxyCompactItemize}

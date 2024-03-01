@@ -1,0 +1,98 @@
+\hypertarget{classComponentReferenceBase}{}\doxysection{Component\+Reference\+Base Class Reference}
+\label{classComponentReferenceBase}\index{ComponentReferenceBase@{ComponentReferenceBase}}
+
+
+abstract base class for templatized Component\+References  
+
+
+
+
+{\ttfamily \#include $<$Component\+Reference.\+h$>$}
+
+
+
+Inheritance diagram for Component\+Reference\+Base\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classComponentReferenceBase_aeb824c6d30fe0dde9b85ac7b1b490d79}{Init}} (\mbox{\hyperlink{classEntity}{Entity}} $\ast$entity)=0
+\begin{DoxyCompactList}\small\item\em initializes this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} to point to the appropriate \mbox{\hyperlink{classComponent}{Component}} attached to the specified \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classComponentReferenceBase_a2ee3e28546cd102bcb3e71cd81fdd9cd}\label{classComponentReferenceBase_a2ee3e28546cd102bcb3e71cd81fdd9cd}} 
+virtual void \mbox{\hyperlink{classComponentReferenceBase_a2ee3e28546cd102bcb3e71cd81fdd9cd}{Exit}} ()=0
+\begin{DoxyCompactList}\small\item\em separates this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} from the target \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classComponentReferenceBase_a1b4112c426b64b4104c939b555e1082f}\label{classComponentReferenceBase_a1b4112c426b64b4104c939b555e1082f}} 
+virtual void \mbox{\hyperlink{classComponentReferenceBase_a1b4112c426b64b4104c939b555e1082f}{Clear}} ()=0
+\begin{DoxyCompactList}\small\item\em sets this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} to nullptr \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classComponentReferenceBase_a970faf5c07d5505392698814084692ec}{Try\+Set}} (\mbox{\hyperlink{classComponent}{Component}} $\ast$component)=0
+\begin{DoxyCompactList}\small\item\em tries to set this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} to point to the component, checking if it\textquotesingle{}s valid \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classComponentReferenceBase_aa61252811aa199df8c9d806c387a6414}{Try\+Remove}} (\mbox{\hyperlink{classComponent}{Component}} $\ast$component)=0
+\begin{DoxyCompactList}\small\item\em compares the currently pointed to \mbox{\hyperlink{classComponent}{Component}} with the specified \mbox{\hyperlink{classComponent}{Component}}, and clears it if they match \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+abstract base class for templatized Component\+References 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classComponentReferenceBase_aeb824c6d30fe0dde9b85ac7b1b490d79}\label{classComponentReferenceBase_aeb824c6d30fe0dde9b85ac7b1b490d79}} 
+\index{ComponentReferenceBase@{ComponentReferenceBase}!Init@{Init}}
+\index{Init@{Init}!ComponentReferenceBase@{ComponentReferenceBase}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily virtual void Component\+Reference\+Base\+::\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}} $\ast$}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+initializes this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} to point to the appropriate \mbox{\hyperlink{classComponent}{Component}} attached to the specified \mbox{\hyperlink{classEntity}{Entity}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & the entity to look for this \mbox{\hyperlink{classComponentReference}{Component\+Reference}}\textquotesingle{}s Component\+Type in \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Component\+Type, required $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Collider, false $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Inventory $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Tilemap$<$ int $>$ $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Tilemap$<$ Entity $\ast$ $>$ $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Sprite $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Audio\+Player $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Rigid\+Body $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Collider $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Camera $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Mining\+Laser $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Transform $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Animation $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Pathfinder $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Static\+Body, false $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Transform, false $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Ui\+Bar\+Sprite $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Ui\+Element, false $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Health $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Ui\+Element $>$}}, \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Text $>$}}, and \mbox{\hyperlink{classComponentReference_a28c28d5ef24f7b479123adfaa4872cbd}{Component\+Reference$<$ Rigid\+Body, false $>$}}.
+
+\mbox{\Hypertarget{classComponentReferenceBase_aa61252811aa199df8c9d806c387a6414}\label{classComponentReferenceBase_aa61252811aa199df8c9d806c387a6414}} 
+\index{ComponentReferenceBase@{ComponentReferenceBase}!TryRemove@{TryRemove}}
+\index{TryRemove@{TryRemove}!ComponentReferenceBase@{ComponentReferenceBase}}
+\doxysubsubsection{\texorpdfstring{TryRemove()}{TryRemove()}}
+{\footnotesize\ttfamily virtual void Component\+Reference\+Base\+::\+Try\+Remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classComponent}{Component}} $\ast$}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+compares the currently pointed to \mbox{\hyperlink{classComponent}{Component}} with the specified \mbox{\hyperlink{classComponent}{Component}}, and clears it if they match 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & the component to compare with \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Component\+Type, required $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Collider, false $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Inventory $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Tilemap$<$ int $>$ $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Tilemap$<$ Entity $\ast$ $>$ $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Sprite $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Audio\+Player $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Rigid\+Body $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Collider $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Camera $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Mining\+Laser $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Transform $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Animation $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Pathfinder $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Static\+Body, false $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Transform, false $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Ui\+Bar\+Sprite $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Ui\+Element, false $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Health $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Ui\+Element $>$}}, \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Text $>$}}, and \mbox{\hyperlink{classComponentReference_aaa3de80fcab0b35cdc3fede769f3746e}{Component\+Reference$<$ Rigid\+Body, false $>$}}.
+
+\mbox{\Hypertarget{classComponentReferenceBase_a970faf5c07d5505392698814084692ec}\label{classComponentReferenceBase_a970faf5c07d5505392698814084692ec}} 
+\index{ComponentReferenceBase@{ComponentReferenceBase}!TrySet@{TrySet}}
+\index{TrySet@{TrySet}!ComponentReferenceBase@{ComponentReferenceBase}}
+\doxysubsubsection{\texorpdfstring{TrySet()}{TrySet()}}
+{\footnotesize\ttfamily virtual void Component\+Reference\+Base\+::\+Try\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classComponent}{Component}} $\ast$}]{component }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+tries to set this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} to point to the component, checking if it\textquotesingle{}s valid 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & the component to try to set this \mbox{\hyperlink{classComponentReference}{Component\+Reference}} to \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Component\+Type, required $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Collider, false $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Inventory $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Tilemap$<$ int $>$ $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Tilemap$<$ Entity $\ast$ $>$ $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Sprite $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Audio\+Player $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Rigid\+Body $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Collider $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Camera $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Mining\+Laser $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Transform $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Animation $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Pathfinder $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Static\+Body, false $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Transform, false $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Ui\+Bar\+Sprite $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Ui\+Element, false $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Health $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Ui\+Element $>$}}, \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Text $>$}}, and \mbox{\hyperlink{classComponentReference_a52f3788646f1a6c4c3bcf37a8f060efd}{Component\+Reference$<$ Rigid\+Body, false $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{ComponentReference_8h}{Component\+Reference.\+h}}\end{DoxyCompactItemize}

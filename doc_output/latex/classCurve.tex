@@ -1,0 +1,401 @@
+\hypertarget{classCurve}{}\doxysection{Curve$<$ dimensionality $>$ Class Template Reference}
+\label{classCurve}\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+
+
+Inheritance diagram for Curve$<$ dimensionality $>$\+:
+% FIG 0
+
+
+Collaboration diagram for Curve$<$ dimensionality $>$\+:
+% FIG 1
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCurve_a02d009722fc6da83ff31971a13bc8bfd}\label{classCurve_a02d009722fc6da83ff31971a13bc8bfd}} 
+enum class \mbox{\hyperlink{classCurve_a02d009722fc6da83ff31971a13bc8bfd}{Interpolation\+Type}} \{ {\bfseries none} = 0
+, {\bfseries linear} = 1
+, {\bfseries cubic} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em the type of interpolation this \mbox{\hyperlink{classCurve}{Curve}} uses \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCurve_a87b787a6cac286f7a567d68ce35e688c}{Curve}} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCurve_a3a4da98c7d975212f6c40c3d329b8a9e}{Curve}} (glm\+::vec$<$ dimensionality, float $>$ value)
+\begin{DoxyCompactList}\small\item\em value constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCurve_acff6b270423d9aeb224ff850040a56d4}\label{classCurve_acff6b270423d9aeb224ff850040a56d4}} 
+\mbox{\hyperlink{classCurve_acff6b270423d9aeb224ff850040a56d4}{$\sim$\+Curve}} ()=default
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+glm\+::vec$<$ dimensionality, float $>$ \mbox{\hyperlink{classCurve_a497280c6815f3fd3425b6ae2896890f2}{Get\+Value\+At\+Time}} (float time) const
+\begin{DoxyCompactList}\small\item\em gets the value of this \mbox{\hyperlink{classCurve}{Curve}} at the specified time \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCurve_a76e73bf6a64190014c311d16bf517dc9}\label{classCurve_a76e73bf6a64190014c311d16bf517dc9}} 
+void \mbox{\hyperlink{classCurve_a76e73bf6a64190014c311d16bf517dc9}{Mark\+Dirty}} ()
+\begin{DoxyCompactList}\small\item\em marks this \mbox{\hyperlink{classCurve}{Curve}} as dirty to be recalculated \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCurve_a20079e7143c4b878cd7750e83a9d864f}{Inspect}} ()
+\begin{DoxyCompactList}\small\item\em displays this curve in the Inspector \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline int \mbox{\hyperlink{classCurve_a261bfb86e72981f06da7498b91995ca8}{Get\+Control\+Point\+Count}} () const
+\begin{DoxyCompactList}\small\item\em gets how many control points are in this \mbox{\hyperlink{classCurve}{Curve}} \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline float \mbox{\hyperlink{classCurve_a70e37d1edf6fc07d5e71e3593289e879}{Get\+Total\+Time}} () const
+\begin{DoxyCompactList}\small\item\em gets the total amount of time the \mbox{\hyperlink{classCurve}{Curve}} takes up \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline glm\+::vec$<$ dimensionality, float $>$ const  \& \mbox{\hyperlink{classCurve_ad4c1b133355e4e9cc183702e358672c4}{Get\+Min\+Point\+Value}} () const
+\begin{DoxyCompactList}\small\item\em gets the smallest values of each axis among all Control\+Points \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline glm\+::vec$<$ dimensionality, float $>$ const  \& \mbox{\hyperlink{classCurve_aea821702785ef2fae91e9c440f946d10}{Get\+Max\+Point\+Value}} () const
+\begin{DoxyCompactList}\small\item\em gets the largest values of each axis among all Control\+Points \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$ const  \& \mbox{\hyperlink{classCurve_ac5177db956c46d8a4f268a8d1c4f3b7c}{operator\mbox{[}$\,$\mbox{]}}} (int index) const
+\begin{DoxyCompactList}\small\item\em gets a reference to the \mbox{\hyperlink{classControlPoint}{Control\+Point}} at the specified index \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$ \& \mbox{\hyperlink{classCurve_a5ba5a7172e282d909b0260a0f4c38966}{operator\mbox{[}$\,$\mbox{]}}} (int index)
+\begin{DoxyCompactList}\small\item\em gets a reference to the \mbox{\hyperlink{classControlPoint}{Control\+Point}} at the specified index \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classCurve_aaa4b0dc5f5a3fe2bb9ebc38e282d9792}{Add\+Control\+Point}} (\mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$ const \&control\+Point)
+\begin{DoxyCompactList}\small\item\em adds a control point to the \mbox{\hyperlink{classCurve}{Curve}} \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classCurve_adae032efa76063dd97bedcf632bff49f}{Remove\+Control\+Point}} (int index)
+\begin{DoxyCompactList}\small\item\em removes a control point to the \mbox{\hyperlink{classCurve}{Curve}} \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline \mbox{\hyperlink{classCurve_a02d009722fc6da83ff31971a13bc8bfd}{Interpolation\+Type}} \mbox{\hyperlink{classCurve_a7d730236a249d3246b6c2dacdf235a10}{Get\+Interpolation\+Type}} () const
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classCurve}{Curve}}\textquotesingle{}s interpolation type \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classCurve_a1b3b90ff797176a526fea41a6d840b39}{Set\+Interpolation\+Type}} (\mbox{\hyperlink{classCurve_a02d009722fc6da83ff31971a13bc8bfd}{Interpolation\+Type}} interpolation\+Type)
+\begin{DoxyCompactList}\small\item\em sets this \mbox{\hyperlink{classCurve}{Curve}}\textquotesingle{}s interpolation type \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline bool \mbox{\hyperlink{classCurve_a1f04e52ca324b910c5117542cab3f6af}{Get\+Is\+Looping}} () const
+\begin{DoxyCompactList}\small\item\em gets whether this curve loops \end{DoxyCompactList}\item 
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classCurve_a2aeb0f8a21a21444498ea5db3a7cad88}{Set\+Is\+Looping}} (bool is\+Looping)
+\begin{DoxyCompactList}\small\item\em sets whether this curve loops \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classCurve_a6e087f31889f8870af6913e09b049f34}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classCurve}{Curve}} read method map \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCurve_a5f48c58fbbd4b0cdf97f244138ae5132}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classCurve}{Curve}} to json \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCurve_a87b787a6cac286f7a567d68ce35e688c}\label{classCurve_a87b787a6cac286f7a567d68ce35e688c}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!Curve@{Curve}}
+\index{Curve@{Curve}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{Curve()}{Curve()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::\mbox{\hyperlink{classCurve}{Curve}}}
+
+
+
+constructor 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em dimensionality} & the number of dimensions this curve goes through \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{classCurve_a3a4da98c7d975212f6c40c3d329b8a9e}\label{classCurve_a3a4da98c7d975212f6c40c3d329b8a9e}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!Curve@{Curve}}
+\index{Curve@{Curve}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{Curve()}{Curve()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::\mbox{\hyperlink{classCurve}{Curve}} (\begin{DoxyParamCaption}\item[{glm\+::vec$<$ dimensionality, float $>$}]{value }\end{DoxyParamCaption})}
+
+
+
+value constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & the value to assign to the initial \mbox{\hyperlink{classControlPoint}{Control\+Point}}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em dimensionality} & the number of dimensions this curve goes through \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & the value to assign to the initial \mbox{\hyperlink{classControlPoint}{Control\+Point}} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCurve_aaa4b0dc5f5a3fe2bb9ebc38e282d9792}\label{classCurve_aaa4b0dc5f5a3fe2bb9ebc38e282d9792}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!AddControlPoint@{AddControlPoint}}
+\index{AddControlPoint@{AddControlPoint}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{AddControlPoint()}{AddControlPoint()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Add\+Control\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$ const \&}]{control\+Point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+adds a control point to the \mbox{\hyperlink{classCurve}{Curve}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em control\+Point} & the control point to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCurve_a261bfb86e72981f06da7498b91995ca8}\label{classCurve_a261bfb86e72981f06da7498b91995ca8}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!GetControlPointCount@{GetControlPointCount}}
+\index{GetControlPointCount@{GetControlPointCount}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetControlPointCount()}{GetControlPointCount()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline int \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Get\+Control\+Point\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets how many control points are in this \mbox{\hyperlink{classCurve}{Curve}} 
+
+\begin{DoxyReturn}{Returns}
+the nuber of control points in this \mbox{\hyperlink{classCurve}{Curve}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCurve_a7d730236a249d3246b6c2dacdf235a10}\label{classCurve_a7d730236a249d3246b6c2dacdf235a10}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!GetInterpolationType@{GetInterpolationType}}
+\index{GetInterpolationType@{GetInterpolationType}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetInterpolationType()}{GetInterpolationType()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline \mbox{\hyperlink{classCurve_a02d009722fc6da83ff31971a13bc8bfd}{Interpolation\+Type}} \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Get\+Interpolation\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets this \mbox{\hyperlink{classCurve}{Curve}}\textquotesingle{}s interpolation type 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classCurve}{Curve}}\textquotesingle{}s interpolation type 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCurve_a1f04e52ca324b910c5117542cab3f6af}\label{classCurve_a1f04e52ca324b910c5117542cab3f6af}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!GetIsLooping@{GetIsLooping}}
+\index{GetIsLooping@{GetIsLooping}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetIsLooping()}{GetIsLooping()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline bool \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Get\+Is\+Looping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets whether this curve loops 
+
+\begin{DoxyReturn}{Returns}
+whether this curve loops 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCurve_aea821702785ef2fae91e9c440f946d10}\label{classCurve_aea821702785ef2fae91e9c440f946d10}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!GetMaxPointValue@{GetMaxPointValue}}
+\index{GetMaxPointValue@{GetMaxPointValue}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetMaxPointValue()}{GetMaxPointValue()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline glm\+::vec$<$ dimensionality, float $>$ const\& \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Get\+Max\+Point\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the largest values of each axis among all Control\+Points 
+
+\begin{DoxyReturn}{Returns}
+the largest values of each axis among all Control\+Points 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCurve_ad4c1b133355e4e9cc183702e358672c4}\label{classCurve_ad4c1b133355e4e9cc183702e358672c4}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!GetMinPointValue@{GetMinPointValue}}
+\index{GetMinPointValue@{GetMinPointValue}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetMinPointValue()}{GetMinPointValue()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline glm\+::vec$<$ dimensionality, float $>$ const\& \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Get\+Min\+Point\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the smallest values of each axis among all Control\+Points 
+
+\begin{DoxyReturn}{Returns}
+the smallest values of each axis among all Control\+Points 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCurve_a6e087f31889f8870af6913e09b049f34}\label{classCurve_a6e087f31889f8870af6913e09b049f34}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the \mbox{\hyperlink{classCurve}{Curve}} read method map 
+
+\begin{DoxyReturn}{Returns}
+the read method map 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classCurve_a70e37d1edf6fc07d5e71e3593289e879}\label{classCurve_a70e37d1edf6fc07d5e71e3593289e879}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!GetTotalTime@{GetTotalTime}}
+\index{GetTotalTime@{GetTotalTime}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetTotalTime()}{GetTotalTime()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline float \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Get\+Total\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the total amount of time the \mbox{\hyperlink{classCurve}{Curve}} takes up 
+
+\begin{DoxyReturn}{Returns}
+the total time of the \mbox{\hyperlink{classCurve}{Curve}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCurve_a497280c6815f3fd3425b6ae2896890f2}\label{classCurve_a497280c6815f3fd3425b6ae2896890f2}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!GetValueAtTime@{GetValueAtTime}}
+\index{GetValueAtTime@{GetValueAtTime}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{GetValueAtTime()}{GetValueAtTime()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+glm\+::vec$<$ dimensionality, float $>$ \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Get\+Value\+At\+Time (\begin{DoxyParamCaption}\item[{float}]{time }\end{DoxyParamCaption}) const}
+
+
+
+gets the value of this \mbox{\hyperlink{classCurve}{Curve}} at the specified time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & the time to sample this \mbox{\hyperlink{classCurve}{Curve}} at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of this \mbox{\hyperlink{classCurve}{Curve}} at the specified time
+\end{DoxyReturn}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em dimensionality} & the number of dimensions this curve goes through \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em time} & the time to sample this \mbox{\hyperlink{classCurve}{Curve}} at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of this \mbox{\hyperlink{classCurve}{Curve}} at the specified time 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCurve_a20079e7143c4b878cd7750e83a9d864f}\label{classCurve_a20079e7143c4b878cd7750e83a9d864f}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!Inspect@{Inspect}}
+\index{Inspect@{Inspect}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{Inspect()}{Inspect()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+void \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Inspect}
+
+
+
+displays this curve in the Inspector 
+
+displays a 1d in the Inspector
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em dimensionality} & the number of dimensions this curve goes through \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{classCurve_a5ba5a7172e282d909b0260a0f4c38966}\label{classCurve_a5ba5a7172e282d909b0260a0f4c38966}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$\& \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets a reference to the \mbox{\hyperlink{classControlPoint}{Control\+Point}} at the specified index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & the index to get the control point at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to the \mbox{\hyperlink{classControlPoint}{Control\+Point}} 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+this method DOES NOT automatically clean up the \mbox{\hyperlink{classCurve}{Curve}} 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCurve_ac5177db956c46d8a4f268a8d1c4f3b7c}\label{classCurve_ac5177db956c46d8a4f268a8d1c4f3b7c}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline \mbox{\hyperlink{classControlPoint}{Control\+Point}}$<$ dimensionality $>$ const\& \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets a reference to the \mbox{\hyperlink{classControlPoint}{Control\+Point}} at the specified index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & the index to get the control point at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to the \mbox{\hyperlink{classControlPoint}{Control\+Point}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCurve_adae032efa76063dd97bedcf632bff49f}\label{classCurve_adae032efa76063dd97bedcf632bff49f}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!RemoveControlPoint@{RemoveControlPoint}}
+\index{RemoveControlPoint@{RemoveControlPoint}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{RemoveControlPoint()}{RemoveControlPoint()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Remove\+Control\+Point (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+removes a control point to the \mbox{\hyperlink{classCurve}{Curve}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & the index to remove a \mbox{\hyperlink{classControlPoint}{Control\+Point}} from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCurve_a1b3b90ff797176a526fea41a6d840b39}\label{classCurve_a1b3b90ff797176a526fea41a6d840b39}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!SetInterpolationType@{SetInterpolationType}}
+\index{SetInterpolationType@{SetInterpolationType}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{SetInterpolationType()}{SetInterpolationType()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Set\+Interpolation\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCurve_a02d009722fc6da83ff31971a13bc8bfd}{Interpolation\+Type}}}]{interpolation\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets this \mbox{\hyperlink{classCurve}{Curve}}\textquotesingle{}s interpolation type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interpolation\+Type} & the interpolation type to set this \mbox{\hyperlink{classCurve}{Curve}} to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCurve_a2aeb0f8a21a21444498ea5db3a7cad88}\label{classCurve_a2aeb0f8a21a21444498ea5db3a7cad88}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!SetIsLooping@{SetIsLooping}}
+\index{SetIsLooping@{SetIsLooping}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{SetIsLooping()}{SetIsLooping()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+\+\_\+\+\_\+inline void \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Set\+Is\+Looping (\begin{DoxyParamCaption}\item[{bool}]{is\+Looping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets whether this curve loops 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Looping} & whether this curve is looping \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCurve_a5f48c58fbbd4b0cdf97f244138ae5132}\label{classCurve_a5f48c58fbbd4b0cdf97f244138ae5132}} 
+\index{Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}!Write@{Write}}
+\index{Write@{Write}!Curve$<$ dimensionality $>$@{Curve$<$ dimensionality $>$}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily template$<$int dimensionality$>$ \\
+nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classCurve}{Curve}}$<$ dimensionality $>$\+::Write\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classCurve}{Curve}} to json 
+
+\begin{DoxyReturn}{Returns}
+the written json data
+\end{DoxyReturn}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em dimensionality} & the number of dimensions this curve goes through \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+the written json data 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Curve_8h}{Curve.\+h}}\item 
+Source/\mbox{\hyperlink{Curve_8cpp}{Curve.\+cpp}}\end{DoxyCompactItemize}

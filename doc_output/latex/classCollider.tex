@@ -1,0 +1,512 @@
+\hypertarget{classCollider}{}\doxysection{Collider Class Reference}
+\label{classCollider}\index{Collider@{Collider}}
+
+
+component which is used for detecting collisions and information about them  
+
+
+
+
+{\ttfamily \#include $<$Collider.\+h$>$}
+
+
+
+Inheritance diagram for Collider\+:
+% FIG 0
+
+
+Collaboration diagram for Collider\+:
+% FIG 1
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classCollider_a384459e39dda52ff078bd35b3c5aed14}{On\+Collision\+Callback}} = std\+::function$<$ void(\mbox{\hyperlink{classCollider}{Collider}} $\ast$collider, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} const  \&collision\+Data) $>$
+\begin{DoxyCompactList}\small\item\em Callback called whenever this \mbox{\hyperlink{classCollider}{Collider}} detects a collision. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classCollider_a1c359eff729c46c249d0123a8e11e719}{On\+Collision\+State\+Change\+Callback}} = std\+::function$<$ void(\mbox{\hyperlink{classCollider}{Collider}} $\ast$collider) $>$
+\begin{DoxyCompactList}\small\item\em Callback called whenever this \mbox{\hyperlink{classCollider}{Collider}} enters or exits a collision. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTransform}{Transform}} $\ast$ \mbox{\hyperlink{classCollider_a89895eccb2c5e34866d7cfc1395ae153}{Get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classTransform}{Transform}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRigidBody}{Rigid\+Body}} $\ast$ \mbox{\hyperlink{classCollider_a11445f0b3d522febfc7fa6c38fe02503}{Get\+Rigid\+Body}} () const
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStaticBody}{Static\+Body}} $\ast$ \mbox{\hyperlink{classCollider_abaebf49d5da2d0c43ce24f640569c1ea}{Get\+Static\+Body}} () const
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classStaticBody}{Static\+Body}} \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{classCollider_a462cc47eb9bc899ce3cfa4bea419daea}{Get\+Collision\+Layer}} () const
+\begin{DoxyCompactList}\small\item\em gets the collision layer of this \mbox{\hyperlink{classCollider}{Collider}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_a08c5a3d8846effbb9502f81d7a8c0cc1}{Set\+Collision\+Layer}} (unsigned layer\+Id)
+\begin{DoxyCompactList}\small\item\em sets the collision layer of this \mbox{\hyperlink{classCollider}{Collider}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} \mbox{\hyperlink{classCollider_a485cdb55e4251e6ded2222aad5a55674}{Get\+Collision\+Layer\+Flags}} () const
+\begin{DoxyCompactList}\small\item\em gets the flags of which layers this \mbox{\hyperlink{classCollider}{Collider}} collides with \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_af71aeec6daeb98d5bbd322ae96559aa1}{Set\+Collision\+Layer\+Flags}} (\mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} layer\+Flags)
+\begin{DoxyCompactList}\small\item\em sets the flags of which layers this \mbox{\hyperlink{classCollider}{Collider}} collides with \end{DoxyCompactList}\item 
+std\+::map$<$ \mbox{\hyperlink{classCollider}{Collider}} $\ast$, int $>$ const  \& \mbox{\hyperlink{classCollider_a0fad75445c6ee72d868b55bcd7bd6f98}{Get\+Contacts}} () const
+\begin{DoxyCompactList}\small\item\em gets the list of colliders this \mbox{\hyperlink{classCollider}{Collider}} is currently colliding with \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCollider_a89ad39149de5772742b72a3be552dd79}{Is\+Colliding}} (\mbox{\hyperlink{classCollider}{Collider}} $\ast$other)
+\begin{DoxyCompactList}\small\item\em checks if the collider is colliding with another collider \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_a33733c3e7ce7e43327672db3a464a5e4}{Add\+On\+Collision\+Callback}} (unsigned owner\+Id, \mbox{\hyperlink{classCollider_a384459e39dda52ff078bd35b3c5aed14}{On\+Collision\+Callback}} callback)
+\begin{DoxyCompactList}\small\item\em adds a callback function to be called when this collider collides; may be called multiple times per frame for the same collider \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_a384c91b7671e5f34e74a6322cb4270d0}{Remove\+On\+Collision\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em removes a callback function to be called when this collider collides \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_a339959ae52ea2ba44530dff0f616da85}{Add\+On\+Collision\+Enter\+Callback}} (unsigned owner\+Id, \mbox{\hyperlink{classCollider_a1c359eff729c46c249d0123a8e11e719}{On\+Collision\+State\+Change\+Callback}} callback)
+\begin{DoxyCompactList}\small\item\em adds a callback function to be called when a collision begins \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_a0d75c68ee843bc45550f8a7c1eb7847b}{Remove\+On\+Collision\+Enter\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em adds a callback function to be called when a collision begins \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_a3743abb788cb12fb9cd1e7179ae5e254}{Add\+On\+Collision\+Exit\+Callback}} (unsigned owner\+Id, \mbox{\hyperlink{classCollider_a1c359eff729c46c249d0123a8e11e719}{On\+Collision\+State\+Change\+Callback}} callback)
+\begin{DoxyCompactList}\small\item\em adds a callback function to be called when a collision ends \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_a89fd1f87a5b16ce26cab208b0fcf8fba}{Remove\+On\+Collision\+Exit\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em adds a callback function to be called when a collision ends \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_a4f4f9b69593e903b2bc06038f7033d2e}{Call\+On\+Collision\+Callbacks}} (\mbox{\hyperlink{classCollider}{Collider}} $\ast$other, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&collision\+Data)
+\begin{DoxyCompactList}\small\item\em calls all On\+Collision callbacks attached to this \mbox{\hyperlink{classCollider}{Collider}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_a0793d74db07c6f079873b812cf960e7c}{Try\+Add\+Contact}} (\mbox{\hyperlink{classCollider}{Collider}} $\ast$other, int current\+Frame)
+\begin{DoxyCompactList}\small\item\em tries to add a contact to this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s contacts array \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollider_aa51c0584d2ba88efd17ab8b0587a6647}\label{classCollider_aa51c0584d2ba88efd17ab8b0587a6647}} 
+void \mbox{\hyperlink{classCollider_aa51c0584d2ba88efd17ab8b0587a6647}{Remove\+Outdated\+Contacts}} ()
+\begin{DoxyCompactList}\small\item\em removes all outdated contacts from this \mbox{\hyperlink{classCollider}{Collider}} and calls On\+Collision\+Exit callbacks \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCollider_a9c724325eb4e1de7e55ace880f6c878d}{Collider}} (std\+::type\+\_\+index type)
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCollider_aa96a692fa2165726541642da9ada032f}{Collider}} (\mbox{\hyperlink{classCollider}{Collider}} const \&other)
+\begin{DoxyCompactList}\small\item\em copy constructor \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCollider_aaf015227ff68963c1bf5ddae364699e4}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em debug inspector for Colliders \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_a7e0fe48acaeefd146d642cf4d6e6e538}{read\+Collision\+Layer}} (nlohmann\+::ordered\+\_\+json const \&data)
+\begin{DoxyCompactList}\small\item\em reads the collision layer from json \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCollider_abd009298eefea59cb31b3156b5bf4b9f}{read\+Collision\+Layer\+Flags}} (nlohmann\+::ordered\+\_\+json const \&data)
+\begin{DoxyCompactList}\small\item\em reads the collision layer flags from json \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCollider_afa0cf9f1b71be0013bc91cc4a0213eaf}\label{classCollider_afa0cf9f1b71be0013bc91cc4a0213eaf}} 
+\mbox{\hyperlink{classComponentReference}{Component\+Reference}}$<$ \mbox{\hyperlink{classTransform}{Transform}} $>$ \mbox{\hyperlink{classCollider_afa0cf9f1b71be0013bc91cc4a0213eaf}{m\+\_\+\+Transform}}
+\begin{DoxyCompactList}\small\item\em the transform of this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollider_a8af3aa20a3c61391395f349cf5e2e484}\label{classCollider_a8af3aa20a3c61391395f349cf5e2e484}} 
+\mbox{\hyperlink{classComponentReference}{Component\+Reference}}$<$ \mbox{\hyperlink{classRigidBody}{Rigid\+Body}}, false $>$ \mbox{\hyperlink{classCollider_a8af3aa20a3c61391395f349cf5e2e484}{m\+\_\+\+Rigid\+Body}}
+\begin{DoxyCompactList}\small\item\em the \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} attached to this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollider_aef65414ade1256a67d0d28b851e86c6a}\label{classCollider_aef65414ade1256a67d0d28b851e86c6a}} 
+\mbox{\hyperlink{classComponentReference}{Component\+Reference}}$<$ \mbox{\hyperlink{classStaticBody}{Static\+Body}}, false $>$ \mbox{\hyperlink{classCollider_aef65414ade1256a67d0d28b851e86c6a}{m\+\_\+\+Static\+Body}}
+\begin{DoxyCompactList}\small\item\em the \mbox{\hyperlink{classStaticBody}{Static\+Body}} attached to this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollider_a453000b6c9082908248c44faa8032af9}\label{classCollider_a453000b6c9082908248c44faa8032af9}} 
+unsigned \mbox{\hyperlink{classCollider_a453000b6c9082908248c44faa8032af9}{m\+\_\+\+Collision\+Layer\+Id}} = 0
+\begin{DoxyCompactList}\small\item\em the collision layer of this \mbox{\hyperlink{classCollider}{Collider}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollider_a83f007aa2d722be8feaa418d1aab9302}\label{classCollider_a83f007aa2d722be8feaa418d1aab9302}} 
+\mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} \mbox{\hyperlink{classCollider_a83f007aa2d722be8feaa418d1aab9302}{m\+\_\+\+Collision\+Layer\+Flags}} = 0
+\begin{DoxyCompactList}\small\item\em flags of which layers this \mbox{\hyperlink{classCollider}{Collider}} collides with \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollider_a6e6e9d71d578b60f7b1272bee24f3e80}\label{classCollider_a6e6e9d71d578b60f7b1272bee24f3e80}} 
+std\+::map$<$ \mbox{\hyperlink{classCollider}{Collider}} $\ast$, int $>$ \mbox{\hyperlink{classCollider_a6e6e9d71d578b60f7b1272bee24f3e80}{m\+\_\+\+Contacts}} = \{\}
+\begin{DoxyCompactList}\small\item\em all of the Colliders this \mbox{\hyperlink{classCollider}{Collider}} is currently colliding with, and the last frame that they were colliding \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollider_a6ce7a481e013a4eba15455da5499235d}\label{classCollider_a6ce7a481e013a4eba15455da5499235d}} 
+std\+::vector$<$ std\+::pair$<$ unsigned, \mbox{\hyperlink{classCollider_a384459e39dda52ff078bd35b3c5aed14}{On\+Collision\+Callback}} $>$ $>$ \mbox{\hyperlink{classCollider_a6ce7a481e013a4eba15455da5499235d}{m\+\_\+\+On\+Collision\+Callbacks}} = \{\}
+\begin{DoxyCompactList}\small\item\em callbacks which get called whenever this collider collides \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollider_afad3292c6e09d08a3ab7ae5ebc7a702f}\label{classCollider_afad3292c6e09d08a3ab7ae5ebc7a702f}} 
+std\+::vector$<$ std\+::pair$<$ unsigned, \mbox{\hyperlink{classCollider_a1c359eff729c46c249d0123a8e11e719}{On\+Collision\+State\+Change\+Callback}} $>$ $>$ \mbox{\hyperlink{classCollider_afad3292c6e09d08a3ab7ae5ebc7a702f}{m\+\_\+\+On\+Collision\+Enter\+Callbacks}} = \{\}
+\begin{DoxyCompactList}\small\item\em callbacks which get called whenever a collision begins \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollider_ae1fc728d5b63ff0d3166da28fe7b0b68}\label{classCollider_ae1fc728d5b63ff0d3166da28fe7b0b68}} 
+std\+::vector$<$ std\+::pair$<$ unsigned, \mbox{\hyperlink{classCollider_a1c359eff729c46c249d0123a8e11e719}{On\+Collision\+State\+Change\+Callback}} $>$ $>$ \mbox{\hyperlink{classCollider_ae1fc728d5b63ff0d3166da28fe7b0b68}{m\+\_\+\+On\+Collision\+Exit\+Callbacks}} = \{\}
+\begin{DoxyCompactList}\small\item\em callbacks which get called whenever a collision ends \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+component which is used for detecting collisions and information about them 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classCollider_a384459e39dda52ff078bd35b3c5aed14}\label{classCollider_a384459e39dda52ff078bd35b3c5aed14}} 
+\index{Collider@{Collider}!OnCollisionCallback@{OnCollisionCallback}}
+\index{OnCollisionCallback@{OnCollisionCallback}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{OnCollisionCallback}{OnCollisionCallback}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classCollider_a384459e39dda52ff078bd35b3c5aed14}{Collider\+::\+On\+Collision\+Callback}} =  std\+::function$<$ void ( \mbox{\hyperlink{classCollider}{Collider}}$\ast$ collider, \mbox{\hyperlink{structCollisionData}{Collision\+Data}} const\& collision\+Data ) $>$}
+
+
+
+Callback called whenever this \mbox{\hyperlink{classCollider}{Collider}} detects a collision. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collider} & -\/ the other \mbox{\hyperlink{classCollider}{Collider}} that this \mbox{\hyperlink{classCollider}{Collider}} collided with \\
+\hline
+{\em collision\+Data} & -\/ physics information about the collision between the two objects \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollider_a1c359eff729c46c249d0123a8e11e719}\label{classCollider_a1c359eff729c46c249d0123a8e11e719}} 
+\index{Collider@{Collider}!OnCollisionStateChangeCallback@{OnCollisionStateChangeCallback}}
+\index{OnCollisionStateChangeCallback@{OnCollisionStateChangeCallback}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{OnCollisionStateChangeCallback}{OnCollisionStateChangeCallback}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classCollider_a1c359eff729c46c249d0123a8e11e719}{Collider\+::\+On\+Collision\+State\+Change\+Callback}} =  std\+::function$<$ void ( \mbox{\hyperlink{classCollider}{Collider}}$\ast$ collider ) $>$}
+
+
+
+Callback called whenever this \mbox{\hyperlink{classCollider}{Collider}} enters or exits a collision. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collider} & -\/ the other \mbox{\hyperlink{classCollider}{Collider}} that this \mbox{\hyperlink{classCollider}{Collider}} collided with \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCollider_a9c724325eb4e1de7e55ace880f6c878d}\label{classCollider_a9c724325eb4e1de7e55ace880f6c878d}} 
+\index{Collider@{Collider}!Collider@{Collider}}
+\index{Collider@{Collider}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{Collider()}{Collider()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Collider\+::\+Collider (\begin{DoxyParamCaption}\item[{std\+::type\+\_\+index}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+default constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & the type of \mbox{\hyperlink{classComponent}{Component}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollider_aa96a692fa2165726541642da9ada032f}\label{classCollider_aa96a692fa2165726541642da9ada032f}} 
+\index{Collider@{Collider}!Collider@{Collider}}
+\index{Collider@{Collider}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{Collider()}{Collider()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Collider\+::\+Collider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCollider}{Collider}} const \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+copy constructor 
+
+copy-\/constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the collider to copy \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCollider_a33733c3e7ce7e43327672db3a464a5e4}\label{classCollider_a33733c3e7ce7e43327672db3a464a5e4}} 
+\index{Collider@{Collider}!AddOnCollisionCallback@{AddOnCollisionCallback}}
+\index{AddOnCollisionCallback@{AddOnCollisionCallback}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{AddOnCollisionCallback()}{AddOnCollisionCallback()}}
+{\footnotesize\ttfamily void Collider\+::\+Add\+On\+Collision\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{\mbox{\hyperlink{classCollider_a384459e39dda52ff078bd35b3c5aed14}{On\+Collision\+Callback}}}]{callback }\end{DoxyParamCaption})}
+
+
+
+adds a callback function to be called when this collider collides; may be called multiple times per frame for the same collider 
+
+adds a callback function to be called when this collider collides
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & the function to be called when this collider collides \\
+\hline
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCollider_a339959ae52ea2ba44530dff0f616da85}\label{classCollider_a339959ae52ea2ba44530dff0f616da85}} 
+\index{Collider@{Collider}!AddOnCollisionEnterCallback@{AddOnCollisionEnterCallback}}
+\index{AddOnCollisionEnterCallback@{AddOnCollisionEnterCallback}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{AddOnCollisionEnterCallback()}{AddOnCollisionEnterCallback()}}
+{\footnotesize\ttfamily void Collider\+::\+Add\+On\+Collision\+Enter\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{\mbox{\hyperlink{classCollider_a1c359eff729c46c249d0123a8e11e719}{On\+Collision\+State\+Change\+Callback}}}]{callback }\end{DoxyParamCaption})}
+
+
+
+adds a callback function to be called when a collision begins 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & the function to be called when this collider collides \\
+\hline
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCollider_a3743abb788cb12fb9cd1e7179ae5e254}\label{classCollider_a3743abb788cb12fb9cd1e7179ae5e254}} 
+\index{Collider@{Collider}!AddOnCollisionExitCallback@{AddOnCollisionExitCallback}}
+\index{AddOnCollisionExitCallback@{AddOnCollisionExitCallback}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{AddOnCollisionExitCallback()}{AddOnCollisionExitCallback()}}
+{\footnotesize\ttfamily void Collider\+::\+Add\+On\+Collision\+Exit\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{\mbox{\hyperlink{classCollider_a1c359eff729c46c249d0123a8e11e719}{On\+Collision\+State\+Change\+Callback}}}]{callback }\end{DoxyParamCaption})}
+
+
+
+adds a callback function to be called when a collision ends 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & the function to be called when this collider collides \\
+\hline
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+YOU MUST REMOVE THE CALLBACK WHEN YOU ARE DONE WITH IT 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCollider_a4f4f9b69593e903b2bc06038f7033d2e}\label{classCollider_a4f4f9b69593e903b2bc06038f7033d2e}} 
+\index{Collider@{Collider}!CallOnCollisionCallbacks@{CallOnCollisionCallbacks}}
+\index{CallOnCollisionCallbacks@{CallOnCollisionCallbacks}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{CallOnCollisionCallbacks()}{CallOnCollisionCallbacks()}}
+{\footnotesize\ttfamily void Collider\+::\+Call\+On\+Collision\+Callbacks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCollider}{Collider}} $\ast$}]{other,  }\item[{\mbox{\hyperlink{structCollisionData}{Collision\+Data}} const \&}]{collision\+Data }\end{DoxyParamCaption})}
+
+
+
+calls all On\+Collision callbacks attached to this \mbox{\hyperlink{classCollider}{Collider}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the other entity this \mbox{\hyperlink{classCollider}{Collider}} collided with \\
+\hline
+{\em collision\+Data} & the collision\+Data of the collision \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+SHOULD ONLY BE CALLED BY COLLISIONSYSTEM 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCollider_a462cc47eb9bc899ce3cfa4bea419daea}\label{classCollider_a462cc47eb9bc899ce3cfa4bea419daea}} 
+\index{Collider@{Collider}!GetCollisionLayer@{GetCollisionLayer}}
+\index{GetCollisionLayer@{GetCollisionLayer}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{GetCollisionLayer()}{GetCollisionLayer()}}
+{\footnotesize\ttfamily unsigned Collider\+::\+Get\+Collision\+Layer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the collision layer of this \mbox{\hyperlink{classCollider}{Collider}} 
+
+\begin{DoxyReturn}{Returns}
+the collision layer of this \mbox{\hyperlink{classCollider}{Collider}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollider_a485cdb55e4251e6ded2222aad5a55674}\label{classCollider_a485cdb55e4251e6ded2222aad5a55674}} 
+\index{Collider@{Collider}!GetCollisionLayerFlags@{GetCollisionLayerFlags}}
+\index{GetCollisionLayerFlags@{GetCollisionLayerFlags}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{GetCollisionLayerFlags()}{GetCollisionLayerFlags()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}} Collider\+::\+Get\+Collision\+Layer\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the flags of which layers this \mbox{\hyperlink{classCollider}{Collider}} collides with 
+
+\begin{DoxyReturn}{Returns}
+the flags of which layers this \mbox{\hyperlink{classCollider}{Collider}} collides with 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollider_a0fad75445c6ee72d868b55bcd7bd6f98}\label{classCollider_a0fad75445c6ee72d868b55bcd7bd6f98}} 
+\index{Collider@{Collider}!GetContacts@{GetContacts}}
+\index{GetContacts@{GetContacts}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{GetContacts()}{GetContacts()}}
+{\footnotesize\ttfamily std\+::map$<$ \mbox{\hyperlink{classCollider}{Collider}} $\ast$, int $>$ const  \& Collider\+::\+Get\+Contacts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the list of colliders this \mbox{\hyperlink{classCollider}{Collider}} is currently colliding with 
+
+\begin{DoxyReturn}{Returns}
+the list of colliders this \mbox{\hyperlink{classCollider}{Collider}} is currently colliding with 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollider_a11445f0b3d522febfc7fa6c38fe02503}\label{classCollider_a11445f0b3d522febfc7fa6c38fe02503}} 
+\index{Collider@{Collider}!GetRigidBody@{GetRigidBody}}
+\index{GetRigidBody@{GetRigidBody}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{GetRigidBody()}{GetRigidBody()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} $\ast$ Collider\+::\+Get\+Rigid\+Body (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollider_abaebf49d5da2d0c43ce24f640569c1ea}\label{classCollider_abaebf49d5da2d0c43ce24f640569c1ea}} 
+\index{Collider@{Collider}!GetStaticBody@{GetStaticBody}}
+\index{GetStaticBody@{GetStaticBody}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{GetStaticBody()}{GetStaticBody()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStaticBody}{Static\+Body}} $\ast$ Collider\+::\+Get\+Static\+Body (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classStaticBody}{Static\+Body}} 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classStaticBody}{Static\+Body}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollider_a89895eccb2c5e34866d7cfc1395ae153}\label{classCollider_a89895eccb2c5e34866d7cfc1395ae153}} 
+\index{Collider@{Collider}!GetTransform@{GetTransform}}
+\index{GetTransform@{GetTransform}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{GetTransform()}{GetTransform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTransform}{Transform}} $\ast$ Collider\+::\+Get\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classTransform}{Transform}} 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classTransform}{Transform}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollider_aaf015227ff68963c1bf5ddae364699e4}\label{classCollider_aaf015227ff68963c1bf5ddae364699e4}} 
+\index{Collider@{Collider}!Inspector@{Inspector}}
+\index{Inspector@{Inspector}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{Inspector()}{Inspector()}}
+{\footnotesize\ttfamily void Collider\+::\+Inspector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+debug inspector for Colliders 
+
+collision layer flags
+
+Reimplemented from \mbox{\hyperlink{classComponent_a5bfbb00a07c361c4c8d7b1812b9937ff}{Component}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classCircleCollider_ad0e5b8df02c66afa78374c0ce1f91804}{Circle\+Collider}}.
+
+\mbox{\Hypertarget{classCollider_a89ad39149de5772742b72a3be552dd79}\label{classCollider_a89ad39149de5772742b72a3be552dd79}} 
+\index{Collider@{Collider}!IsColliding@{IsColliding}}
+\index{IsColliding@{IsColliding}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{IsColliding()}{IsColliding()}}
+{\footnotesize\ttfamily bool Collider\+::\+Is\+Colliding (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCollider}{Collider}} $\ast$}]{other }\end{DoxyParamCaption})}
+
+
+
+checks if the collider is colliding with another collider 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the other collider to check if is colliding with this one \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the colliders are colliding 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollider_a7e0fe48acaeefd146d642cf4d6e6e538}\label{classCollider_a7e0fe48acaeefd146d642cf4d6e6e538}} 
+\index{Collider@{Collider}!readCollisionLayer@{readCollisionLayer}}
+\index{readCollisionLayer@{readCollisionLayer}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{readCollisionLayer()}{readCollisionLayer()}}
+{\footnotesize\ttfamily void Collider\+::read\+Collision\+Layer (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+reads the collision layer from json 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the json data to read from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollider_abd009298eefea59cb31b3156b5bf4b9f}\label{classCollider_abd009298eefea59cb31b3156b5bf4b9f}} 
+\index{Collider@{Collider}!readCollisionLayerFlags@{readCollisionLayerFlags}}
+\index{readCollisionLayerFlags@{readCollisionLayerFlags}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{readCollisionLayerFlags()}{readCollisionLayerFlags()}}
+{\footnotesize\ttfamily void Collider\+::read\+Collision\+Layer\+Flags (\begin{DoxyParamCaption}\item[{nlohmann\+::ordered\+\_\+json const \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+reads the collision layer flags from json 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the json data to read from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollider_a384c91b7671e5f34e74a6322cb4270d0}\label{classCollider_a384c91b7671e5f34e74a6322cb4270d0}} 
+\index{Collider@{Collider}!RemoveOnCollisionCallback@{RemoveOnCollisionCallback}}
+\index{RemoveOnCollisionCallback@{RemoveOnCollisionCallback}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{RemoveOnCollisionCallback()}{RemoveOnCollisionCallback()}}
+{\footnotesize\ttfamily void Collider\+::\+Remove\+On\+Collision\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+removes a callback function to be called when this collider collides 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollider_a0d75c68ee843bc45550f8a7c1eb7847b}\label{classCollider_a0d75c68ee843bc45550f8a7c1eb7847b}} 
+\index{Collider@{Collider}!RemoveOnCollisionEnterCallback@{RemoveOnCollisionEnterCallback}}
+\index{RemoveOnCollisionEnterCallback@{RemoveOnCollisionEnterCallback}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{RemoveOnCollisionEnterCallback()}{RemoveOnCollisionEnterCallback()}}
+{\footnotesize\ttfamily void Collider\+::\+Remove\+On\+Collision\+Enter\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+adds a callback function to be called when a collision begins 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollider_a89fd1f87a5b16ce26cab208b0fcf8fba}\label{classCollider_a89fd1f87a5b16ce26cab208b0fcf8fba}} 
+\index{Collider@{Collider}!RemoveOnCollisionExitCallback@{RemoveOnCollisionExitCallback}}
+\index{RemoveOnCollisionExitCallback@{RemoveOnCollisionExitCallback}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{RemoveOnCollisionExitCallback()}{RemoveOnCollisionExitCallback()}}
+{\footnotesize\ttfamily void Collider\+::\+Remove\+On\+Collision\+Exit\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+adds a callback function to be called when a collision ends 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback to remove \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollider_a08c5a3d8846effbb9502f81d7a8c0cc1}\label{classCollider_a08c5a3d8846effbb9502f81d7a8c0cc1}} 
+\index{Collider@{Collider}!SetCollisionLayer@{SetCollisionLayer}}
+\index{SetCollisionLayer@{SetCollisionLayer}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{SetCollisionLayer()}{SetCollisionLayer()}}
+{\footnotesize\ttfamily void Collider\+::\+Set\+Collision\+Layer (\begin{DoxyParamCaption}\item[{unsigned}]{layer\+Id }\end{DoxyParamCaption})}
+
+
+
+sets the collision layer of this \mbox{\hyperlink{classCollider}{Collider}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer\+Id} & the collision layer to set \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollider_af71aeec6daeb98d5bbd322ae96559aa1}\label{classCollider_af71aeec6daeb98d5bbd322ae96559aa1}} 
+\index{Collider@{Collider}!SetCollisionLayerFlags@{SetCollisionLayerFlags}}
+\index{SetCollisionLayerFlags@{SetCollisionLayerFlags}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{SetCollisionLayerFlags()}{SetCollisionLayerFlags()}}
+{\footnotesize\ttfamily void Collider\+::\+Set\+Collision\+Layer\+Flags (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCollisionLayerFlags}{Collision\+Layer\+Flags}}}]{layer\+Flags }\end{DoxyParamCaption})}
+
+
+
+sets the flags of which layers this \mbox{\hyperlink{classCollider}{Collider}} collides with 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer\+Flags} & the flags of which layers this \mbox{\hyperlink{classCollider}{Collider}} should collide with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCollider_a0793d74db07c6f079873b812cf960e7c}\label{classCollider_a0793d74db07c6f079873b812cf960e7c}} 
+\index{Collider@{Collider}!TryAddContact@{TryAddContact}}
+\index{TryAddContact@{TryAddContact}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{TryAddContact()}{TryAddContact()}}
+{\footnotesize\ttfamily void Collider\+::\+Try\+Add\+Contact (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCollider}{Collider}} $\ast$}]{other,  }\item[{int}]{current\+Frame }\end{DoxyParamCaption})}
+
+
+
+tries to add a contact to this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s contacts array 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the contact to add \\
+\hline
+{\em current\+Frame} & the frame the Contact was added on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+SHOULD ONLY BE CALLED BY COLLISIONSYSTEM 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Collider_8h}{Collider.\+h}}\item 
+Source/\mbox{\hyperlink{Collider_8cpp}{Collider.\+cpp}}\end{DoxyCompactItemize}

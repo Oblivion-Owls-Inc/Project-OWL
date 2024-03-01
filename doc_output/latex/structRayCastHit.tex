@@ -1,0 +1,62 @@
+\hypertarget{structRayCastHit}{}\doxysection{Ray\+Cast\+Hit Struct Reference}
+\label{structRayCastHit}\index{RayCastHit@{RayCastHit}}
+
+
+the result of a raycast  
+
+
+
+
+{\ttfamily \#include $<$Collision\+Data.\+h$>$}
+
+
+
+Collaboration diagram for Ray\+Cast\+Hit\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structRayCastHit_adb7fedfef0afd08aab00b4e7b2f5dda0}\label{structRayCastHit_adb7fedfef0afd08aab00b4e7b2f5dda0}} 
+\mbox{\hyperlink{structRayCastHit_adb7fedfef0afd08aab00b4e7b2f5dda0}{operator bool}} () const
+\begin{DoxyCompactList}\small\item\em implicit conversion to bool \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structRayCastHit_a47df822401346b4a609e4069e23fa9e2}\label{structRayCastHit_a47df822401346b4a609e4069e23fa9e2}} 
+\mbox{\hyperlink{classCollider}{Collider}} $\ast$ \mbox{\hyperlink{structRayCastHit_a47df822401346b4a609e4069e23fa9e2}{collider\+Hit}} = nullptr
+\begin{DoxyCompactList}\small\item\em the collider that was hit \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structRayCastHit_a21dc8a0b501ddfbdffebb6357ead09bd}\label{structRayCastHit_a21dc8a0b501ddfbdffebb6357ead09bd}} 
+glm\+::vec2 \mbox{\hyperlink{structRayCastHit_a21dc8a0b501ddfbdffebb6357ead09bd}{normal}} = \{ 0, 0 \}
+\begin{DoxyCompactList}\small\item\em the normal of the collider where the ray hit it \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structRayCastHit_a194ef596fa86ada281f37f4b9716d280}\label{structRayCastHit_a194ef596fa86ada281f37f4b9716d280}} 
+float \mbox{\hyperlink{structRayCastHit_a194ef596fa86ada281f37f4b9716d280}{distance}} = 100.\+0f
+\begin{DoxyCompactList}\small\item\em the distance the ray travelled \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structRayCastHit_a3c7c5d38fe3dd5dc6c8365f2da9202ca}\label{structRayCastHit_a3c7c5d38fe3dd5dc6c8365f2da9202ca}} 
+glm\+::vec2 \mbox{\hyperlink{structRayCastHit_a3c7c5d38fe3dd5dc6c8365f2da9202ca}{position}} = \{ 0.\+0f, 0.\+0f \}
+\begin{DoxyCompactList}\small\item\em the position where the raycast hit \end{DoxyCompactList}\item 
+glm\+::ivec2 \mbox{\hyperlink{structRayCastHit_a03ddcf09cc43449b7c031e7384f97859}{tile\+Pos}} = \{ 0, 0 \}
+\begin{DoxyCompactList}\small\item\em the tilepos where the raycast hit \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+the result of a raycast 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structRayCastHit_a03ddcf09cc43449b7c031e7384f97859}\label{structRayCastHit_a03ddcf09cc43449b7c031e7384f97859}} 
+\index{RayCastHit@{RayCastHit}!tilePos@{tilePos}}
+\index{tilePos@{tilePos}!RayCastHit@{RayCastHit}}
+\doxysubsubsection{\texorpdfstring{tilePos}{tilePos}}
+{\footnotesize\ttfamily glm\+::ivec2 Ray\+Cast\+Hit\+::tile\+Pos = \{ 0, 0 \}}
+
+
+
+the tilepos where the raycast hit 
+
+\begin{DoxyNote}{Note}
+ONLY USED WHEN THE COLLIDER HIT IS A TILEMAP COLLIDER 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{CollisionData_8h}{Collision\+Data.\+h}}\end{DoxyCompactItemize}

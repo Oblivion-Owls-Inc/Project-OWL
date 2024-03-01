@@ -1,0 +1,445 @@
+\hypertarget{classTilemap}{}\doxysection{Tilemap$<$ Tile\+Type $>$ Class Template Reference}
+\label{classTilemap}\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+
+
+Loads and manages a tilemap array.  
+
+
+
+
+{\ttfamily \#include $<$Tilemap.\+h$>$}
+
+
+
+Inheritance diagram for Tilemap$<$ Tile\+Type $>$\+:
+% FIG 0
+
+
+Collaboration diagram for Tilemap$<$ Tile\+Type $>$\+:
+% FIG 1
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classTilemap_a07fe8ba0e8de31059e410e6618365e0a}{On\+Tilemap\+Changed\+Callback}} = std\+::function$<$ void(\mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$ $\ast$tilemap, glm\+::ivec2 const  \&tile\+Pos, Tile\+Type const  \&previous\+Value) $>$
+\begin{DoxyCompactList}\small\item\em On\+Tilemap\+Changed callback type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTilemap_ae9d45182485cdcf270ff31aaae499195}\label{classTilemap_ae9d45182485cdcf270ff31aaae499195}} 
+\mbox{\hyperlink{classTilemap_ae9d45182485cdcf270ff31aaae499195}{Tilemap}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classTilemap}{Tilemap}} $\ast$ \mbox{\hyperlink{classTilemap_a5fe3c0ebaee5169ce9b89815def8b279}{Clone}} () const override
+\item 
+std\+::vector$<$ Tile\+Type $>$ const  \& \mbox{\hyperlink{classTilemap_a4d7f05dd578a162f03666d7c88ef0dbd}{Get\+Tilemap}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve entire tilemap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTilemap_a5e605f11fa4c9ee52a3c05e2fbbec6bd}{Set\+Tilemap}} (std\+::vector$<$ Tile\+Type $>$ const \&tiles)
+\begin{DoxyCompactList}\small\item\em Sets the whole tilemap to a given array (vector) \end{DoxyCompactList}\item 
+Tile\+Type \mbox{\hyperlink{classTilemap_af9a9459864a2aeacbda8ae88381817d3}{Get\+Tile}} (glm\+::ivec2 coord) const
+\begin{DoxyCompactList}\small\item\em Gets the index of the tile at given coordinate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTilemap_aed09b128aecb725cdb4ab7c6eafacd76}{Set\+Tile}} (glm\+::ivec2 coord, Tile\+Type const \&tile)
+\begin{DoxyCompactList}\small\item\em Sets the tile at given coordinate to given index. \end{DoxyCompactList}\item 
+glm\+::ivec2 \mbox{\hyperlink{classTilemap_a29f6d7b57f5d0ef38c696bf69c1d26d5}{World\+Pos\+To\+Tile\+Coord}} (glm\+::vec2 pos) const
+\begin{DoxyCompactList}\small\item\em Gets tilemap coordinate of the tile at given world position. NOTE\+: this assumes the (0,0) tile is the top-\/left. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{classTilemap_a362d6e646791813361219a44aa39a6a9}{Tile\+Coord\+To\+World\+Pos}} (glm\+::ivec2 coord) const
+\begin{DoxyCompactList}\small\item\em Gets world position of the given tilemap coordinates. NOTE\+: this assumes the (0,0) tile is the top-\/left. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTilemap_a9ebc4bc7f923ce4305119efe92bae0b8}{Add\+On\+Tilemap\+Changed\+Callback}} (unsigned owner\+Id, \mbox{\hyperlink{classTilemap_a07fe8ba0e8de31059e410e6618365e0a}{On\+Tilemap\+Changed\+Callback}} callback)
+\begin{DoxyCompactList}\small\item\em Adds a function to the list of callbacks. The given function will get called whenever the tilemap is updated. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTilemap_ae5eaebc55b66897e902882c9626bac2b}{Remove\+On\+Tilemap\+Changed\+Callback}} (unsigned owner\+Id)
+\begin{DoxyCompactList}\small\item\em Removes a function from the list of callbacks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTilemap_a668de1386c521a3e0c87d80d356262b0}{Set\+Tile\+Scale}} (glm\+::vec2 mults)
+\begin{DoxyCompactList}\small\item\em Sets the tile scale. Default scale (1,1) is the full width/height of single tile. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{classTilemap_a6d48df9e9ed9f7fccc29d1103ab1b9f6}{Get\+Tile\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em Retreives the tile scale. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTilemap_a3233fb6b4ebd24ad4aca4e1194542282}{Set\+Dimensions}} (glm\+::ivec2 const \&dimensions)
+\begin{DoxyCompactList}\small\item\em sets the size of the tilemap in tiles \end{DoxyCompactList}\item 
+glm\+::ivec2 \mbox{\hyperlink{classTilemap_a71323c2c8dbd4bc2be4e4e1a3938b05e}{Get\+Dimensions}} () const
+\item 
+glm\+::mat4 const  \& \mbox{\hyperlink{classTilemap_ad5f9d5fc93d83d7db629052b7eacdf3e}{Get\+Tilemap\+To\+World\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classTilemap}{Tilemap}} to word matrix \end{DoxyCompactList}\item 
+glm\+::mat4 const  \& \mbox{\hyperlink{classTilemap_a8a0cd13814d208f601fbf76ff7383b26}{Get\+World\+To\+Tilemap\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em gets the World to \mbox{\hyperlink{classTilemap}{Tilemap}} matrix \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classTilemap_a6cd1e7107a5c4561d60817ab055b4a49}{Is\+Position\+Within\+Bounds}} (glm\+::ivec2 const \&tile\+Pos) const
+\begin{DoxyCompactList}\small\item\em gets whether a tile is within this \mbox{\hyperlink{classTilemap}{Tilemap}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classTilemap_a50c7004cd33b655adf5670ae775110f8}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classTilemap_af207096e5653313d7d46b86957a865ae}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all \mbox{\hyperlink{classTilemap}{Tilemap}} component data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Tile\+Type$>$\newline
+class Tilemap$<$ Tile\+Type $>$}
+
+Loads and manages a tilemap array. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classTilemap_a07fe8ba0e8de31059e410e6618365e0a}\label{classTilemap_a07fe8ba0e8de31059e410e6618365e0a}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!OnTilemapChangedCallback@{OnTilemapChangedCallback}}
+\index{OnTilemapChangedCallback@{OnTilemapChangedCallback}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{OnTilemapChangedCallback}{OnTilemapChangedCallback}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+using \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::\mbox{\hyperlink{classTilemap_a07fe8ba0e8de31059e410e6618365e0a}{On\+Tilemap\+Changed\+Callback}} =  std\+::function$<$ void ( \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$$\ast$ tilemap, glm\+::ivec2 const\& tile\+Pos, Tile\+Type const\& previous\+Value ) $>$}
+
+
+
+On\+Tilemap\+Changed callback type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tilemap} & the tilemap this callback was called from \\
+\hline
+{\em tilepos} & the position of the tile that was changed -\/ will be (-\/1, -\/1) if whole tilemap changed \\
+\hline
+{\em previous\+Value} & the value of the tile before it was changed -\/ garbage if whole tilemap changed \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTilemap_a9ebc4bc7f923ce4305119efe92bae0b8}\label{classTilemap_a9ebc4bc7f923ce4305119efe92bae0b8}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!AddOnTilemapChangedCallback@{AddOnTilemapChangedCallback}}
+\index{AddOnTilemapChangedCallback@{AddOnTilemapChangedCallback}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{AddOnTilemapChangedCallback()}{AddOnTilemapChangedCallback()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+void \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Add\+On\+Tilemap\+Changed\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id,  }\item[{\mbox{\hyperlink{classTilemap_a07fe8ba0e8de31059e410e6618365e0a}{On\+Tilemap\+Changed\+Callback}}}]{callback }\end{DoxyParamCaption})}
+
+
+
+Adds a function to the list of callbacks. The given function will get called whenever the tilemap is updated. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+{\em callback} & the callback function\\
+\hline
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+{\em callback} & the callback function \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Tile\+Type} & the data type of each tile \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{classTilemap_a5fe3c0ebaee5169ce9b89815def8b279}\label{classTilemap_a5fe3c0ebaee5169ce9b89815def8b279}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!Clone@{Clone}}
+\index{Clone@{Clone}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+\mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$ $\ast$ \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Clone\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+A copy of this component 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classTilemap_a71323c2c8dbd4bc2be4e4e1a3938b05e}\label{classTilemap_a71323c2c8dbd4bc2be4e4e1a3938b05e}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!GetDimensions@{GetDimensions}}
+\index{GetDimensions@{GetDimensions}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{GetDimensions()}{GetDimensions()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+glm\+::ivec2 \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Get\+Dimensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+size of the tilemap in tiles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemap_a50c7004cd33b655adf5670ae775110f8}\label{classTilemap_a50c7004cd33b655adf5670ae775110f8}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classTilemap_af9a9459864a2aeacbda8ae88381817d3}\label{classTilemap_af9a9459864a2aeacbda8ae88381817d3}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!GetTile@{GetTile}}
+\index{GetTile@{GetTile}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTile()}{GetTile()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+Tile\+Type \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Get\+Tile (\begin{DoxyParamCaption}\item[{glm\+::ivec2}]{coord }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the index of the tile at given coordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coord} & tile 2D coordinate (within the tilemap) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+index of the tile 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemap_a4d7f05dd578a162f03666d7c88ef0dbd}\label{classTilemap_a4d7f05dd578a162f03666d7c88ef0dbd}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!GetTilemap@{GetTilemap}}
+\index{GetTilemap@{GetTilemap}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTilemap()}{GetTilemap()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+std\+::vector$<$Tile\+Type$>$ const\& \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Get\+Tilemap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieve entire tilemap. 
+
+\begin{DoxyReturn}{Returns}
+array (vector) of tile IDs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemap_ad5f9d5fc93d83d7db629052b7eacdf3e}\label{classTilemap_ad5f9d5fc93d83d7db629052b7eacdf3e}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!GetTilemapToWorldMatrix@{GetTilemapToWorldMatrix}}
+\index{GetTilemapToWorldMatrix@{GetTilemapToWorldMatrix}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTilemapToWorldMatrix()}{GetTilemapToWorldMatrix()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+glm\+::mat4 const\& \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Get\+Tilemap\+To\+World\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the \mbox{\hyperlink{classTilemap}{Tilemap}} to word matrix 
+
+\begin{DoxyReturn}{Returns}
+the matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemap_a6d48df9e9ed9f7fccc29d1103ab1b9f6}\label{classTilemap_a6d48df9e9ed9f7fccc29d1103ab1b9f6}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!GetTileScale@{GetTileScale}}
+\index{GetTileScale@{GetTileScale}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTileScale()}{GetTileScale()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+glm\+::vec2 \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Get\+Tile\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retreives the tile scale. 
+
+\begin{DoxyReturn}{Returns}
+x=horizontal, y=vertical 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemap_a8a0cd13814d208f601fbf76ff7383b26}\label{classTilemap_a8a0cd13814d208f601fbf76ff7383b26}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!GetWorldToTilemapMatrix@{GetWorldToTilemapMatrix}}
+\index{GetWorldToTilemapMatrix@{GetWorldToTilemapMatrix}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{GetWorldToTilemapMatrix()}{GetWorldToTilemapMatrix()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+glm\+::mat4 const\& \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Get\+World\+To\+Tilemap\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the World to \mbox{\hyperlink{classTilemap}{Tilemap}} matrix 
+
+\begin{DoxyReturn}{Returns}
+the matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemap_a6cd1e7107a5c4561d60817ab055b4a49}\label{classTilemap_a6cd1e7107a5c4561d60817ab055b4a49}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!IsPositionWithinBounds@{IsPositionWithinBounds}}
+\index{IsPositionWithinBounds@{IsPositionWithinBounds}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{IsPositionWithinBounds()}{IsPositionWithinBounds()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+bool \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Is\+Position\+Within\+Bounds (\begin{DoxyParamCaption}\item[{glm\+::ivec2 const \&}]{tile\+Pos }\end{DoxyParamCaption}) const}
+
+
+
+gets whether a tile is within this \mbox{\hyperlink{classTilemap}{Tilemap}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Pos} & the tile position to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the tile position is within this \mbox{\hyperlink{classTilemap}{Tilemap}}
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Pos} & the tile position to check \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Tile\+Type} & the data type of each tile \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+whether the tile position is within this \mbox{\hyperlink{classTilemap}{Tilemap}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemap_ae5eaebc55b66897e902882c9626bac2b}\label{classTilemap_ae5eaebc55b66897e902882c9626bac2b}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!RemoveOnTilemapChangedCallback@{RemoveOnTilemapChangedCallback}}
+\index{RemoveOnTilemapChangedCallback@{RemoveOnTilemapChangedCallback}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{RemoveOnTilemapChangedCallback()}{RemoveOnTilemapChangedCallback()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+void \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Remove\+On\+Tilemap\+Changed\+Callback (\begin{DoxyParamCaption}\item[{unsigned}]{owner\+Id }\end{DoxyParamCaption})}
+
+
+
+Removes a function from the list of callbacks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner\+Id} & the ID of the owner of the callback\\
+\hline
+{\em owner\+Id} & the ID of the owner of the callback \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Tile\+Type} & the data type of each tile \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{classTilemap_a3233fb6b4ebd24ad4aca4e1194542282}\label{classTilemap_a3233fb6b4ebd24ad4aca4e1194542282}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!SetDimensions@{SetDimensions}}
+\index{SetDimensions@{SetDimensions}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{SetDimensions()}{SetDimensions()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+void \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Set\+Dimensions (\begin{DoxyParamCaption}\item[{glm\+::ivec2 const \&}]{dimensions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+sets the size of the tilemap in tiles 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dimensions} & the size of the tilemap \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTilemap_aed09b128aecb725cdb4ab7c6eafacd76}\label{classTilemap_aed09b128aecb725cdb4ab7c6eafacd76}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!SetTile@{SetTile}}
+\index{SetTile@{SetTile}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{SetTile()}{SetTile()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+void \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Set\+Tile (\begin{DoxyParamCaption}\item[{glm\+::ivec2}]{coord,  }\item[{Tile\+Type const \&}]{tile }\end{DoxyParamCaption})}
+
+
+
+Sets the tile at given coordinate to given index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coord} & Tile 2D coordinate (within the tilemap) \\
+\hline
+{\em tile\+ID} & Index to change the tile to\\
+\hline
+{\em x} & column \\
+\hline
+{\em y} & row \\
+\hline
+{\em tile\+ID} & index to change the tile to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTilemap_a5e605f11fa4c9ee52a3c05e2fbbec6bd}\label{classTilemap_a5e605f11fa4c9ee52a3c05e2fbbec6bd}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!SetTilemap@{SetTilemap}}
+\index{SetTilemap@{SetTilemap}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{SetTilemap()}{SetTilemap()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+void \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Set\+Tilemap (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Tile\+Type $>$ const \&}]{tiles }\end{DoxyParamCaption})}
+
+
+
+Sets the whole tilemap to a given array (vector) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tiles} & vector of tile IDs \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTilemap_a668de1386c521a3e0c87d80d356262b0}\label{classTilemap_a668de1386c521a3e0c87d80d356262b0}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!SetTileScale@{SetTileScale}}
+\index{SetTileScale@{SetTileScale}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{SetTileScale()}{SetTileScale()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+void \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Set\+Tile\+Scale (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{mults }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the tile scale. Default scale (1,1) is the full width/height of single tile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mults} & x=horizontal, y=vertical \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTilemap_a362d6e646791813361219a44aa39a6a9}\label{classTilemap_a362d6e646791813361219a44aa39a6a9}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!TileCoordToWorldPos@{TileCoordToWorldPos}}
+\index{TileCoordToWorldPos@{TileCoordToWorldPos}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{TileCoordToWorldPos()}{TileCoordToWorldPos()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+glm\+::vec2 \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Tile\+Coord\+To\+World\+Pos (\begin{DoxyParamCaption}\item[{glm\+::ivec2}]{coord }\end{DoxyParamCaption}) const}
+
+
+
+Gets world position of the given tilemap coordinates. NOTE\+: this assumes the (0,0) tile is the top-\/left. 
+
+Gets world position of the given tilemap coordinates.
+
+
+\begin{DoxyParams}{Parameters}
+{\em coord} & \mbox{\hyperlink{classTilemap}{Tilemap}} coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+World position of the tile at given tilemap coordinate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemap_a29f6d7b57f5d0ef38c696bf69c1d26d5}\label{classTilemap_a29f6d7b57f5d0ef38c696bf69c1d26d5}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!WorldPosToTileCoord@{WorldPosToTileCoord}}
+\index{WorldPosToTileCoord@{WorldPosToTileCoord}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{WorldPosToTileCoord()}{WorldPosToTileCoord()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+glm\+::ivec2 \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::World\+Pos\+To\+Tile\+Coord (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{pos }\end{DoxyParamCaption}) const}
+
+
+
+Gets tilemap coordinate of the tile at given world position. NOTE\+: this assumes the (0,0) tile is the top-\/left. 
+
+Gets tilemap coordinate of the tile at given world position.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Position in world space \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classTilemap}{Tilemap}} coordinate of the tile. If the provided location is outside the tilemap, returns (-\/1,-\/1) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTilemap_af207096e5653313d7d46b86957a865ae}\label{classTilemap_af207096e5653313d7d46b86957a865ae}} 
+\index{Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}!Write@{Write}}
+\index{Write@{Write}!Tilemap$<$ TileType $>$@{Tilemap$<$ TileType $>$}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily template$<$typename Tile\+Type $>$ \\
+nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ Tile\+Type $>$\+::Write\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all \mbox{\hyperlink{classTilemap}{Tilemap}} component data to a JSON file. 
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classTilemap}{Tilemap}} component data.
+\end{DoxyReturn}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Tile\+Type} & the data type of each tile in the tilemap \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The JSON file containing the \mbox{\hyperlink{classTilemap}{Tilemap}} component data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{ConstructionBehavior_8h}{Construction\+Behavior.\+h}}\item 
+Source/\mbox{\hyperlink{Tilemap_8h}{Tilemap.\+h}}\item 
+Source/\mbox{\hyperlink{Tilemap_8t_8cpp}{Tilemap.\+t.\+cpp}}\end{DoxyCompactItemize}

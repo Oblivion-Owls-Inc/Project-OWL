@@ -1,0 +1,114 @@
+\hypertarget{classInspection}{}\doxysection{Inspection Class Reference}
+\label{classInspection}\index{Inspection@{Inspection}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classInspection_a0ee88ee285431b0765ad985023774f1a}{Select\+File\+From\+Directory}} (char const $\ast$label, std\+::string $\ast$selected\+File, std\+::string const \&directory\+Path)
+\begin{DoxyCompactList}\small\item\em selects a file from a directory \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Data\+Type $>$ }\\static bool \mbox{\hyperlink{classInspection_af0bac19136fcbc95cbb78bf81d52021e}{Inspect\+Array}} (char const $\ast$label, std\+::vector$<$ Data\+Type $>$ $\ast$array, std\+::function$<$ bool(Data\+Type $\ast$) $>$ element\+Inspector)
+\begin{DoxyCompactList}\small\item\em inspects an array of elements \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Data\+Type , int count$>$ }\\static bool \mbox{\hyperlink{classInspection_a9d1b91273225c56cec7ab23a1c31db48}{Inspect\+Static\+Array}} (char const $\ast$label, Data\+Type $\ast$array, std\+::function$<$ bool(Data\+Type $\ast$) $>$ element\+Inspector)
+\begin{DoxyCompactList}\small\item\em inspects a static-\/sized array of elements \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classInspection_af0bac19136fcbc95cbb78bf81d52021e}\label{classInspection_af0bac19136fcbc95cbb78bf81d52021e}} 
+\index{Inspection@{Inspection}!InspectArray@{InspectArray}}
+\index{InspectArray@{InspectArray}!Inspection@{Inspection}}
+\doxysubsubsection{\texorpdfstring{InspectArray()}{InspectArray()}}
+{\footnotesize\ttfamily template$<$typename Data\+Type $>$ \\
+bool Inspection\+::\+Inspect\+Array (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{std\+::vector$<$ Data\+Type $>$ $\ast$}]{array,  }\item[{std\+::function$<$ bool(Data\+Type $\ast$) $>$}]{element\+Inspector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+inspects an array of elements 
+
+inspects a reorderable array of elements
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Data\+Type} & the type of data in the array \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the label of the array inspector \\
+\hline
+{\em array} & the array to inspect \\
+\hline
+{\em element\+Inspector} & the function to use to inspect each element of the array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(bool) whether the array was modified 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInspection_a9d1b91273225c56cec7ab23a1c31db48}\label{classInspection_a9d1b91273225c56cec7ab23a1c31db48}} 
+\index{Inspection@{Inspection}!InspectStaticArray@{InspectStaticArray}}
+\index{InspectStaticArray@{InspectStaticArray}!Inspection@{Inspection}}
+\doxysubsubsection{\texorpdfstring{InspectStaticArray()}{InspectStaticArray()}}
+{\footnotesize\ttfamily template$<$typename Data\+Type , int count$>$ \\
+bool Inspection\+::\+Inspect\+Static\+Array (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{Data\+Type $\ast$}]{array,  }\item[{std\+::function$<$ bool(Data\+Type $\ast$) $>$}]{element\+Inspector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+inspects a static-\/sized array of elements 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Data\+Type} & the type of data in the array \\
+\hline
+{\em count} & the number of elements in the array \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the label of the array inspector \\
+\hline
+{\em array} & the array to inspect \\
+\hline
+{\em element\+Inspector} & the funvtion to use to insepct each element of the array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(bool) whether the array was modified 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInspection_a0ee88ee285431b0765ad985023774f1a}\label{classInspection_a0ee88ee285431b0765ad985023774f1a}} 
+\index{Inspection@{Inspection}!SelectFileFromDirectory@{SelectFileFromDirectory}}
+\index{SelectFileFromDirectory@{SelectFileFromDirectory}!Inspection@{Inspection}}
+\doxysubsubsection{\texorpdfstring{SelectFileFromDirectory()}{SelectFileFromDirectory()}}
+{\footnotesize\ttfamily bool Inspection\+::\+Select\+File\+From\+Directory (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{std\+::string $\ast$}]{selected\+File,  }\item[{std\+::string const \&}]{directory\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+selects a file from a directory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the Im\+Gui label of the dropdown selector \\
+\hline
+{\em selected\+File} & pointer to the currently selected filepath \\
+\hline
+{\em directory\+Path} & path of the directory to select the file from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether a file was selected
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em label} & the Im\+Gui label of the dropdown selector \\
+\hline
+{\em selected\+File} & pointer to the currently selected filepath \\
+\hline
+{\em directory\+Path} & path of the directory to select the file from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether a new file was selected 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Inspection_8h}{Inspection.\+h}}\item 
+Source/\mbox{\hyperlink{Inspection_8cpp}{Inspection.\+cpp}}\end{DoxyCompactItemize}
