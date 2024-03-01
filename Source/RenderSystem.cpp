@@ -9,17 +9,16 @@
 #include "Entity.h"
 #include "Transform.h"
 #include <vector>
-#include <algorithm>
+#include <algorithm>            // stable_sort
 #include "Mesh.h"
 #include "AssetLibrarySystem.h"
 #include "Texture.h"
 
+// for GetMouseOverSprite
 #include "InputSystem.h"
 #include "Engine.h"
 
-static std::vector<Entity*> shapes; // this is inefficient.
-// efficiency will improve once we have resource library.
-
+static std::vector<Entity*> shapes; // this is inefficient. But whatever, it's for debug env only.
 
 /// @brief      Initializes color and texture shaders for sprites
 void RenderSystem::OnInit()

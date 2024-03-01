@@ -28,6 +28,14 @@
             "TurretShoot": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg"
+            },
+            "Bew": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Turret/bew.ogg"
+            },
+            "CyberBark": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Turret/cyberbark.ogg"
             }
         },
         "Textures": {
@@ -496,6 +504,72 @@
                         "Scale": [
                             0.30000001192092896,
                             0.30000001192092896
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            },
+            "ring": {
+                "Name": "ring",
+                "Components": {
+                    "Emitter": {
+                        "PPS": 116.96299743652344,
+                        "Delay": 0.0,
+                        "Max": 2048,
+                        "Continuous": true,
+                        "EmitData": [
+                            [
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                0.0,
+                                0.0
+                            ],
+                            4.936999797821045,
+                            0.5680000185966492,
+                            0.23000001907348633,
+                            0.0,
+                            3.140000104904175,
+                            0.023000000044703484,
+                            0.16500000655651093,
+                            0.0,
+                            0.36000001430511475,
+                            0.4399999976158142,
+                            1.1399999856948853,
+                            8.479999542236328,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    "EmitterSprite": {
+                        "Layer": 4,
+                        "Color": [
+                            0.30671507120132446,
+                            0.30671507120132446,
+                            0.30671507120132446,
+                            0.0
+                        ],
+                        "Opacity": 0.8299999833106995,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Ball1"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            12.151763916015625,
+                            -1.4550237655639648
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
                         ],
                         "IsDiegetic": true
                     }
@@ -1283,16 +1357,16 @@
                 "Components": {
                     "AudioPlayer": {
                         "Sound": {
-                            "AssetName": "TurretShoot"
+                            "AssetName": "Bew"
                         },
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
-                        "PitchVariance": 0.0,
+                        "PitchVariance": 0.3,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": false,
-                        "AllowMultipleSounds": false
+                        "AllowMultipleSounds": true
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -1321,9 +1395,9 @@
                         "IsDiegetic": true
                     },
                     "TurretBehavior": {
-                        "FireRate": 1.0,
+                        "FireRate": 4.0,
                         "Range": 5.0,
-                        "BulletDamage": 10,
+                        "BulletDamage": 5,
                         "BulletSpeed": 10.0,
                         "BulletSize": 0.30000001192092896,
                         "ObstructionLayers": {
@@ -3325,12 +3399,12 @@
                     ]
                 },
                 "Pathfinder": {
-                    "Destination": [
-                        -9.0,
-                        5.5
-                    ],
                     "Walkables": [
                         -1
+                    ],
+                    "Targets": [
+                        "Base - highest",
+                        "Player - low"
                     ]
                 },
                 "StaticBody": {
