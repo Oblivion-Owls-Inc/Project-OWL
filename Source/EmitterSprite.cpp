@@ -69,10 +69,11 @@ void EmitterSprite::Draw()
         return;
     }
 
-    Shader* sh = Renderer()->GetShader("particles");
-    sh->use();
-
+    Shader* sh = Renderer()->SetActiveShader("particles");
     glUniform1f(sh->GetUniformID("opacity"), m_Opacity);
+    glUniform4fv(sh->GetUniformID("tint"), 1, &m_Color[0]);
+    glm::vec2 uv_offset = calcUVoffset();
+    glUniform2f(sh->GetUniformID("UV_offset"), uv_offset.x, uv_offset.y);
 
     // Bind the texture and render instanced mesh using ParticleSystem's VAO
     glBindVertexArray(m_VAO);
