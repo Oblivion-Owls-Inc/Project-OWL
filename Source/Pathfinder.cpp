@@ -101,6 +101,23 @@ void Pathfinder::Inspector()
     inspectDestination();
 
     inspectWalkables();
+
+    ImGui::Text("Targets");
+    std::string id = "###00";  // TODO: account for more than 10 targets
+    for (size_t i = 0; i < m_TargetNames.size(); ++i)
+    {
+        ImGui::InputText(&id[0], &m_TargetNames[i]);
+        ++id[4];
+        ImGui::SameLine();
+        if (ImGui::Button("remove"))
+            m_TargetNames.erase(m_TargetNames.begin() + i);
+    }
+    if (ImGui::Button("Add"))
+        m_TargetNames.push_back("");
+    
+    ImGui::Spacing();
+    if (ImGui::Button("Apply targets"))
+        getTargets();
 }
 
 
@@ -188,9 +205,11 @@ void Pathfinder::AddTarget(Entity* entity, Priority priority)
     if (!t)
         return;
 
-    
-    if (m_Targets.size() >= 10) // hard limit for now
-        return;
+    // make sure it's not already added
+    for (std::vector<Target>::iterator it = m_Targets.begin(); it < m_Targets.end(); ++it)
+        if (it->transform == t)
+            return;
+
     m_Targets.push_back({ ComponentReference<Transform>(), priority });
     m_Targets.back().transform.Init(entity);
     t->AddOnTransformChangedCallback( GetId(), std::bind(&Pathfinder::exploreQueue, this) );
@@ -591,8 +610,14 @@ nlohmann::ordered_json Pathfinder::Write() const
 {
     nlohmann::ordered_json json;
 
-    json[ "Destination" ] = Stream::Write( m_DestPos );
-    json[ "Walkables" ] = Stream::Write( m_Walkables );
+    // Save target names + priorities as strings.
+    std::vector<std::string> names;
+    std::string prioritynames[] = {" - highest", " - high", " - mid", " - low"};
+    for (Target const& t : m_Targets)
+        names.push_back(t.transform.GetEntity()->GetName() + prioritynames[t.priority]);
+
+    json[ "Targets" ] = names;
+    json[ "Walkables" ] = m_Walkables;
 
     return json;
 }

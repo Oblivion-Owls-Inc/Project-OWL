@@ -15,6 +15,9 @@
 
 #include "Health.h"
 
+#include "Pathfinder.h"
+#include "EntitySystem.h"
+
 //-----------------------------------------------------------------------------
 // constructor / destructor 
 //-----------------------------------------------------------------------------
@@ -105,6 +108,17 @@ Generator* Generator::GetLowestGenerator()
     return lowest;
 }
 
+
+void Generator::Activate()
+{
+    m_IsActive = true;
+    Entity* map = Entities()->GetEntity("Tiles");
+    if (!map)
+        Debug() << "Generator warning: can't find map name \"Tiles\", unable to get removed from Pathfinder.\n";
+
+    map->GetComponent<Pathfinder>()->AddTarget(GetEntity(), Pathfinder::High);
+}
+
 //-----------------------------------------------------------------------------
 // private functions
 //-----------------------------------------------------------------------------
@@ -132,6 +146,12 @@ void Generator::onCollisionEnter(Collider* other)
         {
             m_IsActive = false;
             m_Health->GetHealth()->Reset();
+
+            Entity* map = Entities()->GetEntity("Tiles");
+            if (!map)
+                Debug() << "Generator warning: can't find map name \"Tiles\", unable to get removed from Pathfinder.\n";
+
+            map->GetComponent<Pathfinder>()->RemoveTarget(GetEntity());
         }
     }
 }

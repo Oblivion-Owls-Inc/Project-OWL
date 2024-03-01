@@ -72,7 +72,7 @@ public: // accessors
     bool GetActive() { return m_IsActive;  }
 
     /// @brief activate the generator
-    void Activate() { m_IsActive = true; }
+    void Activate();
 
     /// @brief  get the transform of the generator
     /// @return the generator transform
