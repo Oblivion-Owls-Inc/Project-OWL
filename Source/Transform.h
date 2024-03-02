@@ -70,43 +70,43 @@ public: // accessors
 
 	/// @brief  gets the translation
 	/// @return (gl::vec3)  the translation
-	glm::vec2 const& GetTranslation() const { return m_Translation; }
+	glm::vec2 const& GetTranslation() const;
 
 	/// @brief  sets the translation
 	/// @param  translation the new translation
-	void SetTranslation( glm::vec2 const& translation ) { m_Translation = translation; MarkChanged(); }
+	void SetTranslation( glm::vec2 const& translation );
 
 
     /// @brief  gets the rotation
     /// @return (float) the rotation
-	float GetRotation() const { return m_Rotation; }
+	float GetRotation() const;
 
     /// @brief  sets the rotation
     /// @param  rotation    the new rotation
-	void SetRotation( float rotation ) { m_Rotation = rotation; MarkChanged(); }
+	void SetRotation( float rotation );
 
 
     /// @brief  gets the scale
     /// @return (glm::vec3) the scale
-    glm::vec2 const& GetScale() const { return m_Scale; }
+    glm::vec2 const& GetScale() const;
 
     /// @brief  sets the scale
     /// @param  scale   the new scale
-    void SetScale( glm::vec2 const& scale ) { m_Scale = scale; MarkChanged(); }
+    void SetScale( glm::vec2 const& scale );
 
 
     /// @brief  gets the isDiagetic flag
     /// @return (bool)  the isDiagetic flag
-    bool const& GetIsDiegetic() const { return m_IsDiegetic; }
+    bool const& GetIsDiegetic() const;
 
     /// @brief  sets the isDiagetic flag
     /// @param  isDiagetic  the new isDiagetic flag
-    void SetIsDiegetic( bool isDiagetic ) { m_IsDiegetic = isDiagetic; }
+    void SetIsDiegetic( bool isDiagetic );
 
 
     /// @brief  sets the dirty flag of this Transform
     /// @param  dirty   whether this transform is dirty
-    void SetIsDirty( bool dirty ) { m_IsDirty = true; }
+    void SetIsDirty( bool dirty );
 
 
     /// @brief  gets the matrix
