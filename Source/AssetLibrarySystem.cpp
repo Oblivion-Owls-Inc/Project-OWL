@@ -27,7 +27,7 @@ void AssetLibrarySystem<Entity>::DebugWindow()
         entities.push_back(key.second);
     }
 
-    Entities()->DisplayEntityHierarchy(entities, "Prefab Library",false);
+    Entities()->DisplayEntityHierarchy(entities, "Prefab Library", false);
 
     /// Update the AssetLibarySystem Map
     

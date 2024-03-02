@@ -406,14 +406,16 @@
 
                     if (ImGui::MenuItem("Paste"))
                     {
-                        if (currentEntity->IsInScene())
+                        bool wasInScene = currentEntity->IsInScene();
+
+                        if (wasInScene)
                         {
                              currentEntity->Exit();
                         }
 
                         Stream::PasteFromClipboard(currentEntity);
 
-                        if (currentEntity->IsInScene())
+                        if (wasInScene)
                         {
                             currentEntity->Init();
                         }
