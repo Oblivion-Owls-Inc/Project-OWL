@@ -29,6 +29,8 @@ class Entity;
 
 #include  "AssetReference.h"
 
+#include "ActionReference.h"
+
 
 /// @brief  Component that handles the construction of towers and modification of terrain
 class ConstructionBehavior : public Behavior
@@ -51,6 +53,8 @@ private: // class BuildingInfo
         
         /// @brief  the cost of the building
         std::vector< ItemStack > M_Cost = {};
+
+        ActionReference M_BuildAction;
         
 
     //-------------------------------------------------------------------------
@@ -85,6 +89,9 @@ private: // class BuildingInfo
         /// @param  data    the json data to read from
         void readCost( nlohmann::ordered_json const& data );
 
+        /// @brief  the control Action to build this building
+        /// @param  data    the JSON data to read from
+        void readBuildAction(nlohmann::ordered_json const& data);
 
     //-------------------------------------------------------------------------
     public: // reading / writing
@@ -234,6 +241,11 @@ private: // members
     /// @brief  the sound played when placing a turret.
     ComponentReference< AudioPlayer > m_TurretPlacementSound;
 
+    /// @brief  the control Action used for canceling placement
+    ActionReference m_CancelPlacement;
+
+    /// @brief  the control Action used for placing a building
+    ActionReference m_PlaceAction;
 
 //-----------------------------------------------------------------------------
 private: // helper methods
@@ -329,6 +341,13 @@ private: // reading
     /// @param  data    the json data to read from
     void readPlayerEntity( nlohmann::ordered_json const& data );
 
+    /// @brief  the control Action to interact with something
+    /// @param  data    the JSON data to read from
+    void readCancelPlacement(nlohmann::ordered_json const& data);
+
+    /// @brief  the control Action to place a building
+    /// @param  data    the JSON data to read from
+    void readPlaceAction(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

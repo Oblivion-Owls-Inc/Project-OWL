@@ -73,6 +73,8 @@
                 }
             );
 
+            M_BuildAction.Inspect("Build Input");
+
             return changed;
         }
 
@@ -103,6 +105,12 @@
             }
         }
 
+        /// @brief  the control Action to build this building
+        /// @param  data    the JSON data to read from
+        void ConstructionBehavior::BuildingInfo::readBuildAction(nlohmann::ordered_json const& data)
+        {
+            Stream::Read(M_BuildAction, data);
+        }
 
     //-------------------------------------------------------------------------
     // public: reading / writing
@@ -114,8 +122,9 @@
         ReadMethodMap< ISerializable > const& ConstructionBehavior::BuildingInfo::GetReadMethods() const
         {
             static ReadMethodMap< BuildingInfo > const readMethods = {
-                { "Archetype", &BuildingInfo::readArchetype },
-                { "Cost"     , &BuildingInfo::readCost      }
+                { "Archetype"    , &BuildingInfo::readArchetype   },
+                { "Cost"         , &BuildingInfo::readCost        },
+                { "Build Action" , &BuildingInfo::readBuildAction }
             };
 
             return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -135,6 +144,8 @@
             }
 
             json[ "Archetype" ] = Stream::Write( M_Archetype );
+
+            json["Build Action"] = Stream::Write(M_BuildAction);
 
             return json;
         }
@@ -219,6 +230,8 @@
         m_Transform           .Init( GetEntity() );
         m_Sprite              .Init( GetEntity() );
         m_TurretPlacementSound.Init( GetEntity() );
+
+        m_CancelPlacement.Init();
 
         if (GetEntity()->GetChildren().size() != 0)
         {
@@ -309,7 +322,7 @@
     /// @brief  updates which building is currently selected
     void ConstructionBehavior::updateSelectedBuilding()
     {
-        if ( Input()->GetKeyReleased( GLFW_KEY_0 ) )
+        if ( m_CancelPlacement != nullptr && m_CancelPlacement->GetReleased() )
         {
             m_BuildingIndex = -1;
             return;
@@ -317,7 +330,8 @@
 
         for ( int i = 0; i < m_BuildingInfos.size() ; ++i )
         {
-            if ( Input()->GetKeyReleased( GLFW_KEY_1 + i ) == false )
+            if (m_BuildingInfos[i].M_BuildAction != nullptr &&
+                m_BuildingInfos[i].M_BuildAction->GetReleased() == false)
             {
                 continue;
             }
@@ -347,8 +361,7 @@
     void ConstructionBehavior::tryPlaceBuilding()
     {
         // skip if build button not pressed
-        if ( Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_2 ) == false &&
-            Input()->GetGamepadButtonTriggered(GLFW_GAMEPAD_BUTTON_A) == false)
+        if ( m_PlaceAction != nullptr && m_PlaceAction->GetTriggered() == false)
         {
             return;
         }
@@ -537,6 +550,10 @@
         ImGui::ColorEdit4( "Preview Color - NonPlaceable", &m_PreviewColorNonPlaceable[ 0 ] );
 
         ImGui::DragFloat( "Preview Alpha", &m_PreviewAlpha, 0.05f, 0.0f, 1.0f );
+
+        m_CancelPlacement.Inspect("Cancel Placement Action");
+
+        m_PlaceAction.Inspect("Place Action");
     }
 
     /// @brief  inspects the references to other entities
@@ -625,6 +642,20 @@
         Stream::Read( m_PlayerEntity, data );
     }
 
+    /// @brief  the control Action to cancel placement
+    /// @param  data    the JSON data to read from
+    void ConstructionBehavior::readCancelPlacement(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_CancelPlacement, data);
+    }
+
+    /// @brief  the control Action to place a building
+    /// @param  data    the JSON data to read from
+    void ConstructionBehavior::readPlaceAction(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_PlaceAction, data);
+    }
+
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
@@ -644,6 +675,8 @@
             { "PreviewAlpha"            , &ConstructionBehavior::readPreviewAlpha             },
             { "TilemapEntity"           , &ConstructionBehavior::readTilemapEntity            },
             { "PlayerEntity"            , &ConstructionBehavior::readPlayerEntity             },
+            { "CancelPlacement"         , &ConstructionBehavior::readCancelPlacement          },
+            { "PlaceAction"             , &ConstructionBehavior::readPlaceAction              },
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -674,6 +707,8 @@
         json[ "PreviewAlpha"             ] = Stream::Write( m_PreviewAlpha             );
         json[ "TilemapEntity"            ] = Stream::Write( m_TilemapEntity            );
         json[ "PlayerEntity"             ] = Stream::Write( m_PlayerEntity             );
+        json[ "CancelPlacement"          ] = Stream::Write( m_CancelPlacement          );
+        json[ "PlaceAction"              ] = Stream::Write( m_PlaceAction              );
 
         return json;
     }
