@@ -18,6 +18,7 @@
 #include "Sprite.h"
 #include "Text.h"
 #include "ResourceCounterUi.h"
+#include "TilemapSprite.h"
 
 
 
@@ -38,9 +39,35 @@
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  sets the opacity of the resources UI
+    /// @param  opacity the opacity the resources UI should be
+    void ResourcesUiManager::SetOpacity( float opacity )
+    {
+        m_Opacity = opacity;
+
+        if ( m_Sprite != nullptr )
+        {
+            m_Sprite->SetOpacity( opacity );
+        }
+
+        for ( auto& [ itemId, resourceCounter ] : m_ResourceCounters )
+        {
+            resourceCounter->SetOpacity( opacity );
+        }
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the UiElement attached to this ResourcesUiManager
+    /// @return the UiElement attached to this ResourcesUiManager
+    UiElement* ResourcesUiManager::GetUiElement()
+    {
+        return m_UiElement;
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -210,8 +237,8 @@
             return;
         }
 
-
         // set up the ResourceCounterUi and add it to the scene
+        resourceCounter->SetOpacity( m_Opacity );
         resourceCounter->SetResources( itemStack );
         resourceCounterEntity->SetParent( GetEntity() );
         resourceCounterEntity->AddToScene();
@@ -279,9 +306,11 @@
     void ResourcesUiManager::Inspector()
     {
         
-        ImGui::DragFloat( "padding", &m_Padding, 0.01f, 0.0f, 0.5f );
+        ImGui::DragFloat( "padding", &m_Padding, 0.01f, 0.0f, 1.0f );
 
         ImGui::DragFloat( "spacing", &m_Spacing, 0.05f );
+
+        ImGui::DragFloat( "opacity", &m_Opacity, 0.01f, 0.0f, 1.0f );
 
         if ( ImGui::Checkbox( "hide when empty", &m_HideWhenEmpty ) )
         {
@@ -326,6 +355,12 @@
         Stream::Read( m_Spacing, data );
     }
 
+    /// @brief  reads the opacity of the resources Ui
+    /// @param  data    the JSON data to read from
+    void ResourcesUiManager::readOpacity( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_Opacity, data );
+    }
     
     /// @brief  reads the reference to the Entity that has the Inventory to display
     /// @param  data    the JSON data to read from
@@ -355,6 +390,7 @@
             { "HideWhenEmpty"        , &ResourcesUiManager::readHideWhenEmpty         },
             { "Padding"              , &ResourcesUiManager::readPadding               },
             { "Spacing"              , &ResourcesUiManager::readSpacing               },
+            { "Opacity"              , &ResourcesUiManager::readOpacity               },
             { "InventoryEntity"      , &ResourcesUiManager::readInventoryEntity       },
             { "ResourceCounterPrefab", &ResourcesUiManager::readResourceCounterPrefab } 
         };
@@ -372,6 +408,7 @@
         json[ "HideWhenEmpty"         ] = Stream::Write( m_HideWhenEmpty         );
         json[ "Padding"               ] = Stream::Write( m_Padding               );
         json[ "Spacing"               ] = Stream::Write( m_Spacing               );
+        json[ "Opacity"               ] = Stream::Write( m_Opacity               );
         json[ "InventoryEntity"       ] = Stream::Write( m_InventoryEntity       );            
         json[ "ResourceCounterPrefab" ] = Stream::Write( m_ResourceCounterPrefab );
 
@@ -403,7 +440,8 @@
         Component( other ),
         m_HideWhenEmpty        ( other.m_HideWhenEmpty         ),
         m_Padding              ( other.m_Padding               ),
-        m_Spacing              ( other.m_Spacing               ),    
+        m_Spacing              ( other.m_Spacing               ),
+        m_Opacity              ( other.m_Opacity               ),
         m_ResourceCounterPrefab( other.m_ResourceCounterPrefab ),
 
         m_InventoryEntity( other.m_InventoryEntity, { &m_Inventory } )

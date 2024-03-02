@@ -18,6 +18,8 @@
 #include "Inventory.h"
 #include "Tilemap.h"
 #include "TurretBehavior.h"
+#include "ResourcesUiManager.h"
+#include "UiElement.h"
 
 
 #include "AssetLibrarySystem.h"
@@ -25,6 +27,7 @@
 #include "EntitySystem.h"
 #include "InputSystem.h"
 #include "BehaviorSystem.h"
+#include "CameraSystem.h"
 
 #include "Engine.h"
 
@@ -223,20 +226,23 @@
         Behaviors< Behavior >()->AddComponent( this );
 
         m_PlayerEntity .SetOwnerName( GetName() );
-        m_PlayerEntity .Init();
         m_TilemapEntity.SetOwnerName( GetName() );
+        m_CostUiEntity .SetOwnerName( GetName() );
+        m_PlayerEntity .Init();
         m_TilemapEntity.Init();
+        m_CostUiEntity .Init();
 
         m_Transform           .Init( GetEntity() );
         m_Sprite              .Init( GetEntity() );
         m_TurretPlacementSound.Init( GetEntity() );
+        m_CostInventory       .Init( GetEntity() );
 
         m_CancelPlacement.Init();
 
         if (GetEntity()->GetChildren().size() != 0)
         {
-            m_RadiusSprite.Init(GetEntity()->GetChildren()[0]);
-            m_RadiusTransform.Init(GetEntity()->GetChildren()[0]);
+            m_RadiusSprite   .Init( GetEntity()->GetChildren()[ 0 ] );
+            m_RadiusTransform.Init( GetEntity()->GetChildren()[ 0 ] );
         }
 
         for ( BuildingInfo& buildingInfo : m_BuildingInfos )
@@ -252,10 +258,13 @@
 
         m_PlayerEntity .Exit();
         m_TilemapEntity.Exit();
+        m_CostUiEntity .Exit();
 
         m_Transform           .Exit();
         m_Sprite              .Exit();
         m_TurretPlacementSound.Exit();
+        m_CostInventory       .Exit();
+
         m_RadiusSprite        .Exit();
         m_RadiusTransform     .Exit();
     }
@@ -344,6 +353,8 @@
                 Debug() << "WARNING: ConstructionManager building archetype is NULL" << std::endl;
                 return;
             }
+
+            setupCostUi();
 
             m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
             m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
@@ -454,10 +465,17 @@
         // no preview if out of range or no building selected
         if ( m_BuildingIndex == -1 || distance >= m_PlacementRange + m_PreviewFadeOutRadius )
         {
-            m_Sprite->SetOpacity( 0.0f );
-            if (m_RadiusSprite != nullptr)
+            if ( m_Sprite != nullptr )
             {
-                m_RadiusSprite->SetOpacity(0.0f);
+                m_Sprite->SetOpacity( 0.0f );
+            }
+            if ( m_RadiusSprite != nullptr )
+            {
+                m_RadiusSprite->SetOpacity( 0.0f );
+            }
+            if ( m_CostResourcesUiManager != nullptr )
+            {
+                m_CostResourcesUiManager->SetOpacity( 0.0f );
             }
             return;
         }
@@ -467,6 +485,8 @@
         {
             m_RadiusTransform->SetTranslation(m_TargetPos);
         }
+
+        moveCostUi();
         
         if ( isCurrentlyPlaceable() )
         {
@@ -476,6 +496,10 @@
             if (m_RadiusSprite != nullptr)
             {
                 m_RadiusSprite->SetOpacity(m_PreviewAlpha);
+            }
+            if ( m_CostResourcesUiManager != nullptr )
+            {
+                m_CostResourcesUiManager->SetOpacity( 1.0f );
             }
         }
         else
@@ -491,11 +515,47 @@
             {
                 m_RadiusSprite->SetOpacity(alpha / 2);
             }
+            if ( m_CostResourcesUiManager != nullptr )
+            {
+                m_CostResourcesUiManager->SetOpacity( alpha / m_PreviewAlpha );
+            }
         }
 
     }
 
-    
+
+    /// @brief  sets up the cost Ui with the currently selected turret's cost
+    void ConstructionBehavior::setupCostUi()
+    {
+        if ( m_CostInventory == nullptr )
+        {
+            return;
+        }
+
+        m_CostInventory->Clear();
+
+        if ( m_BuildingIndex == -1 )
+        {
+            return;
+        }
+
+        m_CostInventory->AddItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost );
+    }
+
+    /// @brief  moves the cost Ui to align with the mouse
+    void ConstructionBehavior::moveCostUi()
+    {
+        if ( m_CostResourcesUiManager == nullptr || m_CostResourcesUiManager->GetUiElement() == nullptr )
+        {
+            return;
+        }
+
+        m_CostResourcesUiManager->GetUiElement()->SetAnchor(
+            Cameras()->GetMat_WorldToClip() * glm::vec4( m_TargetPos, 0.0f, 1.0f )
+        );
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: inspection
 //-----------------------------------------------------------------------------
@@ -563,6 +623,8 @@
         m_PlayerEntity.Inspect( "player entity" );
         
         m_TilemapEntity.Inspect( "tilemap entity" );
+
+        m_CostUiEntity.Inspect( "Cost Ui Entity" );
 
     }
 
@@ -642,6 +704,13 @@
         Stream::Read( m_PlayerEntity, data );
     }
 
+    /// @brief  read the cost ui entity
+    /// @param  data    the json data to read from
+    void ConstructionBehavior::readCostUiEntity( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_CostUiEntity, data );
+    }
+
     /// @brief  the control Action to cancel placement
     /// @param  data    the JSON data to read from
     void ConstructionBehavior::readCancelPlacement(nlohmann::ordered_json const& data)
@@ -675,6 +744,7 @@
             { "PreviewAlpha"            , &ConstructionBehavior::readPreviewAlpha             },
             { "TilemapEntity"           , &ConstructionBehavior::readTilemapEntity            },
             { "PlayerEntity"            , &ConstructionBehavior::readPlayerEntity             },
+            { "CostUiEntity"            , &ConstructionBehavior::readCostUiEntity             },
             { "CancelPlacement"         , &ConstructionBehavior::readCancelPlacement          },
             { "PlaceAction"             , &ConstructionBehavior::readPlaceAction              },
         };
@@ -707,6 +777,7 @@
         json[ "PreviewAlpha"             ] = Stream::Write( m_PreviewAlpha             );
         json[ "TilemapEntity"            ] = Stream::Write( m_TilemapEntity            );
         json[ "PlayerEntity"             ] = Stream::Write( m_PlayerEntity             );
+        json[ "CostUiEntity"             ] = Stream::Write( m_CostUiEntity             );
         json[ "CancelPlacement"          ] = Stream::Write( m_CancelPlacement          );
         json[ "PlaceAction"              ] = Stream::Write( m_PlaceAction              );
 
@@ -744,7 +815,8 @@
         m_PreviewAlpha             ( other.m_PreviewAlpha             ),
 
         m_TilemapEntity( other.m_TilemapEntity, { &m_Tilemap, &m_Buildings               } ),
-        m_PlayerEntity ( other.m_PlayerEntity , { &m_PlayerTransform, &m_PlayerInventory } )
+        m_PlayerEntity ( other.m_PlayerEntity , { &m_PlayerTransform, &m_PlayerInventory } ),
+        m_CostUiEntity ( other.m_CostUiEntity , { &m_CostResourcesUiManager              } )
     {}
 
 

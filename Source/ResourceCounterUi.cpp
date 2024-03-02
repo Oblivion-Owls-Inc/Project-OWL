@@ -12,6 +12,7 @@
 #include "Sprite.h"
 #include "Text.h"
 #include "UiElement.h"
+#include "TilemapSprite.h"
 
 
 //-----------------------------------------------------------------------------
@@ -47,6 +48,23 @@
         }
     }
 
+
+    /// @brief  sets the opacity of this ResourceCounter
+    /// @param  opacity what the opacity of this ResourceCounter to be
+    void ResourceCounterUi::SetOpacity( float opacity )
+    {
+        m_Opacity = opacity;
+
+        if ( m_Sprite != nullptr )
+        {
+            m_Sprite->SetOpacity( opacity );
+        }
+
+        if ( m_TilemapSprite != nullptr )
+        {
+            m_TilemapSprite->SetOpacity( opacity );
+        }
+    }
 
 //-----------------------------------------------------------------------------
 // public: accessors
@@ -107,6 +125,7 @@
             [ this ]()
             {
                 m_Sprite->SetFrameIndex( m_Resources.M_ItemId );
+                m_Sprite->SetOpacity( m_Opacity );
             }
         );
         m_Text.SetOnConnectCallback(
@@ -115,22 +134,30 @@
                 m_Text->SetText( std::to_string( m_Resources.M_Count ) );
             }
         );
+        m_TilemapSprite.SetOnConnectCallback(
+            [ this ]()
+            {
+                m_TilemapSprite->SetOpacity( m_Opacity );
+            }
+        );
 
-        m_UiElement.Init( GetEntity() );
-        m_Sprite   .Init( GetEntity() );
+        m_UiElement    .Init( GetEntity() );
+        m_Sprite       .Init( GetEntity() );
 
         if ( GetEntity()->GetChildren().empty() == false )
         {
-            m_Text.Init( GetEntity()->GetChildren()[ 0 ] );
+            m_Text         .Init( GetEntity()->GetChildren()[ 0 ] );
+            m_TilemapSprite.Init( GetEntity()->GetChildren()[ 0 ] );
         }
     }
 
     /// @brief  called once when exiting the scene
     void ResourceCounterUi::OnExit()
     {
-        m_UiElement.Exit();
-        m_Sprite   .Exit();
-        m_Text     .Exit();
+        m_UiElement    .Exit();
+        m_Sprite       .Exit();
+        m_Text         .Exit();
+        m_TilemapSprite.Exit();
     }
 
     
@@ -188,6 +215,13 @@
         Stream::Read( m_Resources, data );
     }
 
+    /// @brief  reads the opacity of this ResourceCounter
+    /// @param  data    the JSON data to read from
+    void ResourceCounterUi::readOpacity( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_Opacity, data );
+    }
+
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -199,7 +233,8 @@
     ReadMethodMap< ISerializable > const& ResourceCounterUi::GetReadMethods() const
     {
         static ReadMethodMap< ResourceCounterUi > const readMethods = {
-            { "Resources", &ResourceCounterUi::readResources }
+            { "Resources", &ResourceCounterUi::readResources },
+            { "Opacity"  , &ResourceCounterUi::readOpacity   }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -213,6 +248,7 @@
         nlohmann::ordered_json json;
 
         json[ "Resources" ] = Stream::Write( m_Resources );
+        json[ "Opacity"   ] = Stream::Write( m_Opacity   );
 
         return json;
     }
@@ -240,7 +276,8 @@
     /// @param  other   the other ResourceCounterUi to copy
     ResourceCounterUi::ResourceCounterUi( ResourceCounterUi const& other ) :
         Component( other ),
-        m_Resources( other.m_Resources )
+        m_Resources( other.m_Resources ),
+        m_Opacity  ( other.m_Opacity   )
     {}
 
 

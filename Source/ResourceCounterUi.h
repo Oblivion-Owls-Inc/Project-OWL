@@ -16,6 +16,7 @@
 class Sprite;
 class Text;
 class UiElement;
+class TilemapSprite;
 
 
 /// @brief  Ui Component that displays a count of resources
@@ -38,6 +39,11 @@ public: // methods
     /// @brief  sets the resources this ResourceCounter should display
     /// @param  itemStack   the ItemStack of resources to display
     void SetResources( ItemStack const& itemStack );
+
+
+    /// @brief  sets the opacity of this ResourceCounter
+    /// @param  opacity what the opacity of this ResourceCounter to be
+    void SetOpacity( float opacity );
 
 
 //-----------------------------------------------------------------------------
@@ -93,12 +99,18 @@ private: // members
     ItemStack m_Resources;
 
 
+    /// @brief  the opacity of this ResourceCounter
+    float m_Opacity = 1.0f;
+
+
     /// @brief  the UiElement attached to this Entity
-    ComponentReference< UiElement, false > m_UiElement;
+    ComponentReference< UiElement > m_UiElement;
 
     /// @brief  the Sprite attached to this Entity
     ComponentReference< Sprite > m_Sprite;
-    
+
+    /// @brief  the TilemapSprite for text attached to the child of this Entity
+    ComponentReference< TilemapSprite > m_TilemapSprite;
 
     /// @brief  the Text Component attached to the child of this Entity
     ComponentReference< Text > m_Text;
@@ -126,6 +138,10 @@ private: // reading
     /// @brief  reads the resources this ResourceCounterUi displays
     /// @param  data    the JSON data to read from
     void readResources( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the opacity of this ResourceCounter
+    /// @param  data    the JSON data to read from
+    void readOpacity( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

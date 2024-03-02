@@ -77,6 +77,9 @@ public: //  methods
     int GetItemCount( int itemId ) const;
 
 
+    /// @brief  clears all items from this Inventory
+    void Clear();
+
 
     /// @brief  adds a callback to this Inventory that gets called whenever an ItemStack is added to the Inventory
     /// @param  ownerId     the ID of the owner of the callback

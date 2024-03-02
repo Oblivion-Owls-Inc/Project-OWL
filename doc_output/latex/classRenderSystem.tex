@@ -47,6 +47,13 @@ void \mbox{\hyperlink{classRenderSystem_a3a9bd5e1eedecd94901c1c8dd06dbdfb}{Add\+
 \begin{DoxyCompactList}\small\item\em Toggle rendering to off-\/screen buffer. \end{DoxyCompactList}\item 
 \+\_\+\+\_\+inline unsigned int \mbox{\hyperlink{classRenderSystem_acbf529b1317e228ebb33d9de3c8a2ae5}{Get\+Buffer\+Texture\+ID}} () const
 \begin{DoxyCompactList}\small\item\em Get texture ID of the off-\/screen buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRenderSystem_ac7aa3ffbbc3288ddb92e8a99bd051bb7}\label{classRenderSystem_ac7aa3ffbbc3288ddb92e8a99bd051bb7}} 
+virtual void \mbox{\hyperlink{classRenderSystem_ac7aa3ffbbc3288ddb92e8a99bd051bb7}{Debug\+Window}} () override
+\begin{DoxyCompactList}\small\item\em displays the \mbox{\hyperlink{classRenderSystem}{Render\+System}}\textquotesingle{}s Debug Window \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classRenderSystem_a27cd362e7eba42f5dcbdb550d4d8e81a}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classRenderSystem_a9dbc307623e95a4633243aeb8d2ebb5a}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classExampleSystem}{Example\+System}} to JSON \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classRenderSystem_af1bfbbf8394d62575d921b9283c49ed6}\label{classRenderSystem_af1bfbbf8394d62575d921b9283c49ed6}} 
 {\bfseries Render\+System} (\mbox{\hyperlink{classRenderSystem}{Render\+System}} \&other)=delete
 \item 
@@ -230,6 +237,23 @@ gets the topmost \mbox{\hyperlink{classSprite}{Sprite}} the mouse is over
 \begin{DoxyReturn}{Returns}
 the topmost \mbox{\hyperlink{classSprite}{Sprite}} the mouse is over 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classRenderSystem_a27cd362e7eba42f5dcbdb550d4d8e81a}\label{classRenderSystem_a27cd362e7eba42f5dcbdb550d4d8e81a}} 
+\index{RenderSystem@{RenderSystem}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!RenderSystem@{RenderSystem}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Render\+System\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+
+\begin{DoxyReturn}{Returns}
+this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
 \mbox{\Hypertarget{classRenderSystem_ae3b5bc925d666ae6de4b27e08ab7fc22}\label{classRenderSystem_ae3b5bc925d666ae6de4b27e08ab7fc22}} 
 \index{RenderSystem@{RenderSystem}!GetShader@{GetShader}}
 \index{GetShader@{GetShader}!RenderSystem@{RenderSystem}}
@@ -298,6 +322,23 @@ Toggle rendering to off-\/screen buffer.
 {\em draw} & true\+: draw off-\/screen. false\+: draw normally. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classRenderSystem_a9dbc307623e95a4633243aeb8d2ebb5a}\label{classRenderSystem_a9dbc307623e95a4633243aeb8d2ebb5a}} 
+\index{RenderSystem@{RenderSystem}!Write@{Write}}
+\index{Write@{Write}!RenderSystem@{RenderSystem}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Render\+System\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classExampleSystem}{Example\+System}} to JSON 
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classExampleSystem}{Example\+System}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
