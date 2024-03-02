@@ -406,9 +406,17 @@
 
                     if (ImGui::MenuItem("Paste"))
                     {
-                        currentEntity->Exit();
+                        if (currentEntity->IsInScene())
+                        {
+                             currentEntity->Exit();
+                        }
+
                         Stream::PasteFromClipboard(currentEntity);
-                        currentEntity->Init();
+
+                        if (currentEntity->IsInScene())
+                        {
+                            currentEntity->Init();
+                        }
                     }
 
                     if (ImGui::MenuItem("Delete"))
