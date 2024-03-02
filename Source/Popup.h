@@ -45,7 +45,7 @@ public: // virtual override methods
     virtual void OnExit() override;
 
     /// @brief  called once per frame
-    virtual void OnFixedUpdate() {};
+    virtual void OnFixedUpdate();
 
 //-----------------------------------------------------------------------------
 private: // members
