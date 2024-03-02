@@ -15,20 +15,19 @@
 
 #include <vector>
 
+#include "EntityReference.h"
 #include "ComponentReference.h"
 class Transform;
 class Sprite;
 class AudioPlayer;
-
-#include "EntityReference.h"
 class Inventory;
+class ResourcesUiManager;
 
 template < typename TileType >
 class Tilemap;
-class Entity;
 
 #include  "AssetReference.h"
-
+class Entity;
 
 /// @brief  Component that handles the construction of towers and modification of terrain
 class ConstructionBehavior : public Behavior
@@ -219,6 +218,13 @@ private: // members
     EntityReference m_TilemapEntity = EntityReference( { &m_Tilemap, &m_Buildings } );
 
 
+    /// @brief  the resources UI manager used to display cost
+    ComponentReference< ResourcesUiManager > m_CostResourcesUiManager;
+
+    /// @brief  the Entity used to display the cost UI
+    EntityReference m_CostUiEntity = EntityReference( { &m_CostResourcesUiManager } );
+
+
     /// @brief  the transform of the preview sprite
     ComponentReference< Transform > m_Transform;
 
@@ -233,6 +239,9 @@ private: // members
 
     /// @brief  the sound played when placing a turret.
     ComponentReference< AudioPlayer > m_TurretPlacementSound;
+
+    /// @brief  the Inventory component used to store the cost of the current turret
+    ComponentReference< Inventory > m_CostInventory;
 
 
 //-----------------------------------------------------------------------------
@@ -259,6 +268,13 @@ private: // helper methods
 
     /// @brief  displays the building preview
     void showBuildingPreview();
+
+
+    /// @brief  sets up the cost Ui with the currently selected turret's cost
+    void setupCostUi();
+
+    /// @brief  moves the cost Ui to align with the mouse
+    void moveCostUi();
 
 
 //-----------------------------------------------------------------------------
@@ -328,6 +344,10 @@ private: // reading
     /// @brief  read the player entity
     /// @param  data    the json data to read from
     void readPlayerEntity( nlohmann::ordered_json const& data );
+
+    /// @brief  read the cost ui entity
+    /// @param  data    the json data to read from
+    void readCostUiEntity( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

@@ -149,13 +149,11 @@
     void TileInfoSystem::DebugWindow()
     {
         bool windowShown = GetDebugEnabled();
-        if ( windowShown == false )
-        {
-            return;
-        }
 
         if ( ImGui::Begin( "Tile Info System", &windowShown ) == false )
         {
+            ImGui::End();
+            SetDebugEnable( windowShown );
             return;
         }
 
@@ -169,7 +167,6 @@
         );
 
         ImGui::End();
-
         SetDebugEnable( windowShown );
     }
 

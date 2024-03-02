@@ -22,6 +22,7 @@ Pathfinder::Pathfinder() : Component(typeid(Pathfinder))
 {
     m_Walkables.push_back(0);   // by default, 0 is considered empty space
                                 // (hence walkable)
+    //m_Targets.reserve(10);
 }
 
 /// @brief        Copy ctor
@@ -73,15 +74,21 @@ void Pathfinder::OnInit()
 
     getTargets();
 
+    // This will be depricated eventually. TODO
     if (m_DestPos.x || m_DestPos.y)
         SetDestination(m_DestPos);
+
+    exploreQueue();
 }
 
 
 /// @brief  called when exiting a scene - un-syncs (removes callback)
 void Pathfinder::OnExit()
 {
-    m_Tilemap.Exit();
+    m_Tilemap.Exit( );
+    for (Target& t : m_Targets)
+        if (t.transform)
+            t.transform.Exit();
 
     if (m_Thread.joinable())
         m_Thread.join();
@@ -148,7 +155,7 @@ glm::vec2 Pathfinder::GetDirectionAt(glm::vec2 pos) const
 /// @param pos   Position from which to travel
 /// @return      Amount of tiles to travel til destination. If out of bounds, 
 ///              returns -1.
-int Pathfinder::GetTravelDistanceAt(glm::vec2 pos)
+int Pathfinder::GetTravelDistanceAt(glm::vec2 pos) const
 {
     glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
     if (coord.x == -1)
@@ -182,9 +189,13 @@ void Pathfinder::AddTarget(Entity* entity, Priority priority)
         return;
 
     
-    m_Targets.push_back({t, priority});
+    if (m_Targets.size() >= 10) // hard limit for now
+        return;
+    m_Targets.push_back({ ComponentReference<Transform>(), priority });
+    m_Targets.back().transform.Init(entity);
     t->AddOnTransformChangedCallback( GetId(), std::bind(&Pathfinder::exploreQueue, this) );
 }
+
 
 /// @brief         Remove target entity from the list
 /// @param entity  Pointer to target entity
@@ -200,6 +211,7 @@ void Pathfinder::RemoveTarget(Entity* entity)
     {
         if (it->transform == t)
         {
+            it->transform.Exit();
             m_Targets.erase(it);
             break;
         }
@@ -237,9 +249,6 @@ void Pathfinder::exploreQueue()
     // if it isn't running already, start it up.
     if (!m_Thread.joinable())
         m_Thread = std::thread(&Pathfinder::explore, this);
-
-    // TODO: do I need to do any sync for the nodes? There will probably be race
-    //       conditions, but they're pretty benign I think... Let's just see if shit breaks.
 }
 
 
@@ -287,16 +296,24 @@ void Pathfinder::explore()
         }
 
         // and the target destinations
-        for (Target t : m_Targets)
+        int ti = (int)m_Targets.size();  // target index (start from back)
+        while (ti--)
         {
-            glm::ivec2 tile = m_Tilemap->WorldPosToTileCoord(t.transform->GetTranslation());
+            // if this target is gone, reference to its transform will be null
+            if (!m_Targets[ti].transform)
+            {
+                m_Targets.erase(m_Targets.begin() + ti);
+                continue;
+            }
+
+            glm::ivec2 tile = m_Tilemap->WorldPosToTileCoord(m_Targets[ti].transform->GetTranslation());
             if (tile.x != -1)
             {
                 int indx = tile.y * width + tile.x;
                 m_Nodes[indx].type = Seen;
                 m_Nodes[indx].direction = { 0,0 };
                 m_Nodes[indx].cost = 0;
-                m_Nodes[indx].priority = static_cast<int>(t.priority)*2;  // lower priority = higher number
+                m_Nodes[indx].priority = static_cast<int>(m_Targets[ti].priority) * 2;  // lower priority = higher number
             }
         }
 
@@ -580,5 +597,27 @@ nlohmann::ordered_json Pathfinder::Write() const
     return json;
 }
 
+
+
+//-----------------------------------------------------------------------------
+//              Custom constructors for Target
+//-----------------------------------------------------------------------------
+
+/// @brief         Move constructor (replacement for copy ctor)
+/// @param other   Target to copy/move
+Pathfinder::Target::Target(Target&& other) noexcept
+{
+    priority = other.priority;
+    transform = std::move(other.transform);
+}
+
+/// @brief         Parametric constructor. Moves the given transform reference.
+/// @param t       Target's Transform reference
+/// @param p       Target's priority enum
+Pathfinder::Target::Target(ComponentReference<Transform> t, Priority p)
+{
+    priority = p;
+    transform = std::move(t);
+}
 
 //-----------------------------------------------------------------------------

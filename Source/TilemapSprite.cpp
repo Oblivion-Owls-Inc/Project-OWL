@@ -93,6 +93,7 @@ void TilemapSprite::OnInit()
     }
 
     initInstancingStuff();
+    m_TilemapChanged = true;
 
     // Init text shader if it ain't.
     if ( Renderer()->GetShader( "tile" ) == nullptr )
@@ -109,7 +110,8 @@ void TilemapSprite::OnInit()
     // Set up callback for when Tilemap array changes
     if ( GetEntity() )
     {
-        m_Tilemap = GetEntity()->GetComponent< Tilemap<int> >();
+        m_Tilemap.Init(GetEntity());
+
         if ( m_Tilemap != nullptr )
         {
             m_Tilemap->AddOnTilemapChangedCallback(
@@ -143,9 +145,11 @@ void TilemapSprite::OnExit()
     glDeleteVertexArrays(1, &m_VAO);
     m_VAO = 0;
 
-    // current m_Tilemap could be garbage. re-acquire.
-    if (GetEntity()->GetComponent<Tilemap<int>>())
-        GetEntity()->GetComponent<Tilemap<int>>()->RemoveOnTilemapChangedCallback( GetId() );
+    if (m_Tilemap)
+    {
+        m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
+        m_Tilemap.Exit();
+    }
 }
 
 
@@ -189,7 +193,7 @@ void TilemapSprite::Draw()
         if (tr->GetIsDiegetic())
             proj = Cameras()->GetMat_WorldToClip();
         else
-            proj = Cameras()->GetMat_UItoClip();
+            proj = Cameras()->GetMat_UiToClip();
 
 
         // apply projection to stride vectors

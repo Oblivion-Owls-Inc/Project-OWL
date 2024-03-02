@@ -5,10 +5,8 @@
 #pragma once
 #include "Sprite.h"
 #include <vector>
-
-// fwd ref
-template< typename TileType >
-class Tilemap;
+#include "ComponentReference.h"
+#include "Tilemap.h"
 
 /// @brief      A version of Sprite for rendering tilemaps using GPU instancing.
 class TilemapSprite : public Sprite
@@ -82,7 +80,8 @@ private:
     unsigned int m_VAO = 0;          /// @brief   VAO that uses this specific buffer
     bool m_TilemapChanged = true;    /// @brief   Whether new tiles need to be loaded in
 
-    Tilemap<int>* m_Tilemap = nullptr;/// @brief   Parent's tilemap (to render)
+    /// @brief  Cached parent tilemap
+    ComponentReference< Tilemap< int > > m_Tilemap;
 
 
 //-----------------------------------------------------------------------------
