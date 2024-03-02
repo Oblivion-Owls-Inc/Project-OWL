@@ -30,12 +30,9 @@ void InputSystem::DebugWindow()
             static char nameBuffer[128] = ""; // Buffer to hold the input
             ImGui::InputText("Action Name", nameBuffer, IM_ARRAYSIZE(nameBuffer));
 
-            static char descriptionBuffer[256] = ""; // Buffer to hold the input
-            ImGui::InputText("Description", descriptionBuffer, IM_ARRAYSIZE(descriptionBuffer));
-
             if (ImGui::Button("Create"))
             {
-                m_Actions.push_back(Action(nameBuffer, descriptionBuffer));
+                m_Actions.push_back(Action(nameBuffer));
             }
             ImGui::TreePop();
         }
@@ -58,34 +55,6 @@ void InputSystem::DebugWindow()
                     {
                         std::string nameBuf = nameBuffer;
                         m_Actions[i].SetName(nameBuf);
-                    }
-
-                    ImGui::TreePop();
-                }
-
-                // set the description of the action
-                snprintf(title, sizeof(title), "Description");
-                if (ImGui::TreeNode(title))
-                {
-                    char buffer[512] = { 0 };
-                    char* offset = buffer;
-                    strncpy_s(buffer, m_Actions[i].GetDescription().c_str(), 512);
-                    size_t size = m_Actions[i].GetDescription().size();
-                    while (size > 0)
-                    {
-                        snprintf(title, sizeof(title), offset);
-                        ImGui::Text(title);
-                        size -= 32;
-                        offset += 32;
-                    }
-
-                    static char descriptionBuffer[512] = ""; // Buffer to hold the input
-                    ImGui::InputText("New Description", descriptionBuffer, IM_ARRAYSIZE(descriptionBuffer));
-
-                    if (ImGui::Button("Change"))
-                    {
-                        std::string descript = descriptionBuffer;
-                        m_Actions[i].SetDescription(descript);
                     }
 
                     ImGui::TreePop();
@@ -678,8 +647,8 @@ void InputSystem::DebugWindow()
 /// @brief  contructor
 /// @param  name of the action
 /// @param  description of the action (viewable in editor)
-InputSystem::Action::Action(std::string name, std::string description) :
-    m_Name(name), m_Description(description)
+InputSystem::Action::Action(std::string name) :
+    m_Name(name)
 {
 }
 
@@ -694,8 +663,7 @@ void InputSystem::Action::removeByInput(std::vector<int>* vector, int input)
     vector->erase(it);
 }
 
-/// @brief  removes all inputs for this action 
-///         and empties name/description
+/// @brief  removes all inputs for this action and empties name
 void InputSystem::Action::Flush()
 {
     m_Keys.clear();
@@ -707,7 +675,6 @@ void InputSystem::Action::Flush()
     m_GamepadAxisAsInput.clear();
     m_GamepadAxis.clear();
     m_Name = "";
-    m_Description = "";
 }
 
 /// @brief  retrieves a private vector for inspector
@@ -905,20 +872,6 @@ void InputSystem::Action::SetName(std::string& name)
 std::string InputSystem::Action::GetName() const
 {
     return m_Name != "" ? m_Name : "NO NAME";
-}
-
-/// @brief  sets the description of the action
-/// @param  new description of action
-void InputSystem::Action::SetDescription(std::string& description)
-{
-    m_Description = description;
-}
-
-/// @brief  gets the description of this action
-/// @return the description of the action
-std::string InputSystem::Action::GetDescription() const
-{
-    return m_Description;
 }
 
 /// @brief  gets if this action is down

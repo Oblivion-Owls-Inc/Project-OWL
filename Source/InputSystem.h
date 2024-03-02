@@ -148,8 +148,6 @@ public: // public class
         std::vector<int> m_GamepadAxis; // 7
         /// @brief  action name
         std::string m_Name;
-        /// @brief  editor description of action
-        std::string m_Description;
 
     //-------------------------------------------------------------------------
     private: // private class reading
@@ -162,9 +160,6 @@ public: // public class
 
         /// @brief read the key inputs for an action
         void readName(nlohmann::ordered_json const& json);
-
-        /// @brief read the key inputs for an action
-        void readDescription(nlohmann::ordered_json const& json);
 
         /// @brief read the key inputs for an action
         void readKeys(nlohmann::ordered_json const& json);
@@ -213,7 +208,7 @@ public: // public class
         /// @brief  contructor
         /// @param  name of the action
         /// @param  description of the action (viewable in editor)
-        Action(std::string name = "", std::string description = "");
+        Action(std::string name = "");
         
         /// @brief  removes all inputs for this action 
         ///         and empties name/description
@@ -323,14 +318,6 @@ public: // public class
         /// @brief  gets the name of this action
         /// @return the name of the action
         std::string GetName() const;
-
-        /// @brief  sets the description of the action
-        /// @param  new description of action
-        void SetDescription(std::string& discription);
-
-        /// @brief  gets the description of this action
-        /// @return the description of the action
-        std::string GetDescription() const;
 
         /// @brief  gets if this action is down
         /// @return action down status

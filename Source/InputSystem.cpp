@@ -465,12 +465,6 @@ void InputSystem::Action::readName(nlohmann::ordered_json const& json)
 }
 
 /// @brief read the key inputs for an action
-void InputSystem::Action::readDescription(nlohmann::ordered_json const& json)
-{
-    m_Description = Stream::Read<string>(json);
-}
-
-/// @brief read the key inputs for an action
 void InputSystem::Action::readKeys(nlohmann::ordered_json const& json)
 {
     int size = static_cast<int>(json.size());
@@ -558,7 +552,6 @@ ReadMethodMap< InputSystem > const InputSystem::s_ReadMethods = {
 /// @brief  map of the SceneSystem read methods
 ReadMethodMap< InputSystem::Action > const InputSystem::Action::s_ReadMethods = {
     { "Name",               &readName               },
-    { "Description",        &readDescription        },
     { "Keys",               &readKeys               },
     { "Mouse",              &readMouse              },
     { "Controller",         &readController         },
@@ -589,8 +582,6 @@ nlohmann::ordered_json InputSystem::Action::Write() const
     nlohmann::ordered_json data;
 
     data["Name"] = m_Name;
-
-    data["Description"] = m_Description;
 
     size_t size = m_Keys.size();
     nlohmann::ordered_json& writeKeys = data["Keys"];
