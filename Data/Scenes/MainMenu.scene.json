@@ -1,6 +1,15 @@
 {
     "Assets": {
-        "Sounds": null,
+        "Sounds": {
+            "ButtonPressedSound": {
+                "IsLoopable": false,
+                "Filepath": "Data/Sounds/Effects/button_press.ogg"
+            },
+            "ButtonReleasedSound": {
+                "IsLoopable": false,
+                "Filepath": "Data/Sounds/Effects/button_release.ogg"
+            }
+        },
         "Textures": {
             "BackgroundTexture": {
                 "Filepath": "Data/Textures/Background.png",
@@ -284,6 +293,23 @@
                         {
                             "Name": "PlayButton",
                             "Components": {
+                                "AudioPlayer": {
+                                    "Sound": {
+                                        "AssetName": "ButtonPressedSound"
+                                    },
+                                    "Volume": 1.0,
+                                    "Pitch": 1.0,
+                                    "VolumeVariance": 0.0,
+                                    "PitchVariance": 0.0,
+                                    "DefaultLoopCount": 0,
+                                    "PlayOnInit": false,
+                                    "IsSpatial": false,
+                                    "AllowMultipleSounds": false
+                                },
+                                "SceneChangeButton": {
+                                    "SceneName": "Prototype",
+                                    "EventName": "MainMenuToPrototype"
+                                },
                                 "Sprite": {
                                     "Layer": 3,
                                     "Color": [
@@ -299,16 +325,16 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "",
+                                    "ClickEventName": "MainMenuToPrototype",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 0,
                                     "DownFrame": 0,
                                     "PressSound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonPressedSound"
                                     },
                                     "ReleaseSound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonReleasedSound"
                                     }
                                 },
                                 "UiElement": {
@@ -339,6 +365,23 @@
                         {
                             "Name": "HowToPlayButton",
                             "Components": {
+                                "AudioPlayer": {
+                                    "Sound": {
+                                        "AssetName": "ButtonPressedSound"
+                                    },
+                                    "Volume": 1.0,
+                                    "Pitch": 1.0,
+                                    "VolumeVariance": 0.0,
+                                    "PitchVariance": 0.0,
+                                    "DefaultLoopCount": 0,
+                                    "PlayOnInit": false,
+                                    "IsSpatial": false,
+                                    "AllowMultipleSounds": false
+                                },
+                                "SceneChangeButton": {
+                                    "SceneName": "Tutorial",
+                                    "EventName": "MainMenuToTutorial"
+                                },
                                 "Sprite": {
                                     "Layer": 4,
                                     "Color": [
@@ -354,16 +397,16 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "",
+                                    "ClickEventName": "MainMenuToTutorial",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 0,
                                     "DownFrame": 0,
                                     "PressSound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonPressedSound"
                                     },
                                     "ReleaseSound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonReleasedSound"
                                     }
                                 },
                                 "UiElement": {
@@ -394,6 +437,19 @@
                         {
                             "Name": "SettingsButton",
                             "Components": {
+                                "AudioPlayer": {
+                                    "Sound": {
+                                        "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "Volume": 1.0,
+                                    "Pitch": 1.0,
+                                    "VolumeVariance": 0.0,
+                                    "PitchVariance": 0.0,
+                                    "DefaultLoopCount": 0,
+                                    "PlayOnInit": false,
+                                    "IsSpatial": false,
+                                    "AllowMultipleSounds": false
+                                },
                                 "Sprite": {
                                     "Layer": 2,
                                     "Color": [
@@ -415,10 +471,10 @@
                                     "HoveredFrame": 0,
                                     "DownFrame": 0,
                                     "PressSound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonPressedSound"
                                     },
                                     "ReleaseSound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonReleasedSound"
                                     }
                                 },
                                 "UiElement": {
@@ -449,6 +505,19 @@
                         {
                             "Name": "CreditsButton",
                             "Components": {
+                                "AudioPlayer": {
+                                    "Sound": {
+                                        "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "Volume": 1.0,
+                                    "Pitch": 1.0,
+                                    "VolumeVariance": 0.0,
+                                    "PitchVariance": 0.0,
+                                    "DefaultLoopCount": 0,
+                                    "PlayOnInit": false,
+                                    "IsSpatial": false,
+                                    "AllowMultipleSounds": false
+                                },
                                 "Sprite": {
                                     "Layer": 2,
                                     "Color": [
@@ -470,10 +539,10 @@
                                     "HoveredFrame": 0,
                                     "DownFrame": 0,
                                     "PressSound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonPressedSound"
                                     },
                                     "ReleaseSound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonReleasedSound"
                                     }
                                 },
                                 "UiElement": {
@@ -504,6 +573,19 @@
                         {
                             "Name": "QuitButton",
                             "Components": {
+                                "AudioPlayer": {
+                                    "Sound": {
+                                        "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "Volume": 1.0,
+                                    "Pitch": 1.0,
+                                    "VolumeVariance": 0.0,
+                                    "PitchVariance": 0.0,
+                                    "DefaultLoopCount": 0,
+                                    "PlayOnInit": false,
+                                    "IsSpatial": false,
+                                    "AllowMultipleSounds": false
+                                },
                                 "Sprite": {
                                     "Layer": 2,
                                     "Color": [
@@ -525,10 +607,10 @@
                                     "HoveredFrame": 0,
                                     "DownFrame": 0,
                                     "PressSound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonPressedSound"
                                     },
                                     "ReleaseSound": {
-                                        "AssetName": ""
+                                        "AssetName": "ButtonReleasedSound"
                                     }
                                 },
                                 "UiElement": {
