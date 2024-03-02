@@ -58,6 +58,7 @@ private: // Members
         "InputSystem",
         "CheatSystem",
         "BehaviorSystem<UiButton>",
+        "BehaviorSystem<Popup>",
         "SceneSystem",
         "EntitySystem",
         "CameraSystem",
@@ -66,7 +67,7 @@ private: // Members
         "DebugSystem",
         "ParticleSystem",
         "PauseSystem",
-        "EventSystem",
+        "EventSystem"
     };
 
 

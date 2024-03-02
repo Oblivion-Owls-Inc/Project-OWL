@@ -93,6 +93,7 @@
         },
         "EntitySystem": {},
         "PauseSystem": {},
+        "BehaviorSystem<Popup>": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
