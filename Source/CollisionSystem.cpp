@@ -509,7 +509,7 @@
         CollisionData collisionData;
         bool touching = checkCollision( colliderA, colliderB, &collisionData );
 
-        if ( touching == false )
+        if ( touching == false || collisionData.depth == -INFINITY )
         {
             return;
         }
@@ -690,9 +690,8 @@
 
         if ( std::abs( tileSize.x ) != std::abs( tileSize.y ) )
         {
-            throw std::runtime_error(
-                "Error: Tilemap must be uniformly scaled for collisions to work"
-            );
+            Debug() << "WARNING: Tilemap must be uniformly scaled for collisions to work" << std::endl;
+            return false;
         }
 
         // Renderer()->DrawRect( pos, glm::vec2( radius * 2.0f ) );
@@ -879,7 +878,7 @@
                 if ( enabledEdges & s_EdgeLeft )
                 {
                     float depth = (circlePos.x + circleRadius) - aabbMin.x;
-                    if ( depth < collisionData->depth )
+                    if ( collisionData->depth == -INFINITY || depth < collisionData->depth )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos + glm::vec2( circleRadius, 0 );
@@ -889,7 +888,7 @@
                 if ( enabledEdges & s_EdgeRight )
                 {
                     float depth = aabbMax.x - (circlePos.x - circleRadius);
-                    if ( depth < collisionData->depth )
+                    if ( collisionData->depth == -INFINITY || depth < collisionData->depth )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos - glm::vec2( circleRadius, 0 );
@@ -899,7 +898,7 @@
                 if ( enabledEdges & s_EdgeDown )
                 {
                     float depth = (circlePos.y + circleRadius) - aabbMin.y;
-                    if ( depth < collisionData->depth )
+                    if ( collisionData->depth == -INFINITY || depth < collisionData->depth )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos + glm::vec2( 0, circleRadius );
@@ -909,7 +908,7 @@
                 if ( enabledEdges & s_EdgeUp )
                 {
                     float depth = aabbMax.y - (circlePos.y - circleRadius);
-                    if ( depth < collisionData->depth )
+                    if ( collisionData->depth == -INFINITY || depth < collisionData->depth )
                     {
                         collisionData->depth = depth;
                         collisionData->position = circlePos - glm::vec2( 0, circleRadius );
