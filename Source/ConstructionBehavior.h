@@ -236,17 +236,18 @@ private: // members
     EntityReference m_CostUiEntity = EntityReference( { &m_CostResourcesUiManager } );
 
 
+    /// @brief  the preview radius sprite
+    ComponentReference< Sprite > m_RadiusSprite;
+
+    /// @brief  the transform of the radius
+    ComponentReference< Transform > m_RadiusTransform;
+
+
     /// @brief  the transform of the preview sprite
     ComponentReference< Transform > m_Transform;
 
     /// @brief  the preview sprite
     ComponentReference< Sprite > m_Sprite;
-
-    /// @brief  the preview radius sprite
-    ComponentReference< Sprite > m_RadiusSprite;
-
-    /// @brief  the transform of the player
-    ComponentReference< Transform > m_RadiusTransform;
 
     /// @brief  the sound played when placing a turret.
     ComponentReference< AudioPlayer > m_TurretPlacementSound;
@@ -259,6 +260,7 @@ private: // members
 
     /// @brief  the control Action used for placing a building
     ActionReference m_PlaceAction;
+
 
 //-----------------------------------------------------------------------------
 private: // helper methods

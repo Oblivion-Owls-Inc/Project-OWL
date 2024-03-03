@@ -361,7 +361,7 @@
         { "BehaviorSystem<EnemyBehavior>"         , &addSystem< BehaviorSystem< EnemyBehavior          > > },
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
 		{ "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
-
+        { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
         { "AssetLibrary<Sound>"                   , &addSystem< AssetLibrarySystem< Sound              > > },
@@ -370,7 +370,6 @@
         { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
                                                                                                           
         { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
-        { "ComponentSystem<Generator>"            , &addSystem< ComponentSystem< Generator     > >         },
                                                   
         { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
         { "LightingSystem"                        , &addSystem< LightingSystem >                           }

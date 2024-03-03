@@ -41,7 +41,6 @@ Generator* Generator::Clone() const
 void Generator::OnInit()
 {
     Behaviors< Generator >()->AddComponent(this);
-    Behaviors< Behavior >()->AddComponent(this);
 
     m_Collider.SetOnConnectCallback(
         [ this ]()
@@ -86,7 +85,6 @@ void Generator::OnInit()
 void Generator::OnExit()
 {
     Behaviors< Generator >()->RemoveComponent(this);
-    Behaviors< Behavior >()->RemoveComponent(this);
 
     m_Collider   .Exit();
     m_AudioPlayer.Exit();

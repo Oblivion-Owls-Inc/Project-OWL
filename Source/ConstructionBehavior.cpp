@@ -252,6 +252,10 @@
             m_RadiusSprite   .Init( GetEntity()->GetChildren()[ 0 ] );
             m_RadiusTransform.Init( GetEntity()->GetChildren()[ 0 ] );
         }
+        else
+        {
+            Debug() << "WARNING: no children attached to ConstructionBehavior to display preview radius" << std::endl;
+        }
 
         for ( BuildingInfo& buildingInfo : m_BuildingInfos )
         {

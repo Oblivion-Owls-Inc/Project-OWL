@@ -99,6 +99,18 @@
                 ],
                 "UseAspectRatio": false
             },
+            "CircleTexture": {
+                "Filepath": "Data/Textures/Debug/Circle.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "Fireball": {
                 "Filepath": "Data/Textures/Balls/Ball4.png",
                 "SheetDimensions": [
@@ -849,27 +861,11 @@
                         "Flags": 2
                     }
                 },
-                "Generator": {
-                    "Radius": 5.0,
-                    "ActivateRadius": 1.0,
-                    "GrowthSpeed": 10.0,
-                    "Depth": 0,
-                    "Active": true
-                },
-                "Health": {
-                    "Health": {
-                        "BaseValue": 5,
-                        "CurrentValue": 5
-                    }
-                },
-                "HomeBase": {
-                    "GameOverScene": "Gameover"
-                },
                 "Emitter": {
                     "PPS": 177.74400329589844,
                     "Delay": 0.0,
                     "Max": 2048,
-                    "Continuous": false,
+                    "Continuous": true,
                     "EmitData": [
                         [
                             0.0,
@@ -912,6 +908,22 @@
                     "Texture": {
                         "AssetName": "Ball1"
                     }
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 0,
+                    "Active": true,
+                    "GrowthSpeed": 10.0
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
+                },
+                "HomeBase": {
+                    "GameOverScene": "Gameover"
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -965,24 +977,11 @@
                         "Flags": 2
                     }
                 },
-                "Generator": {
-                    "Radius": 5.0,
-                    "ActivateRadius": 1.0,
-                    "GrowthSpeed": 10.0,
-                    "Depth": 1,
-                    "Active": true
-                },
-                "Health": {
-                    "Health": {
-                        "BaseValue": 5,
-                        "CurrentValue": 5
-                    }
-                },
                 "Emitter": {
                     "PPS": 177.74400329589844,
                     "Delay": 0.0,
                     "Max": 2048,
-                    "Continuous": false,
+                    "Continuous": true,
                     "EmitData": [
                         [
                             0.0,
@@ -1024,6 +1023,19 @@
                     "FrameIndex": 0,
                     "Texture": {
                         "AssetName": "Ball1"
+                    }
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 1,
+                    "Active": true,
+                    "GrowthSpeed": 10.0
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
                     }
                 },
                 "Sprite": {
@@ -1078,24 +1090,11 @@
                         "Flags": 2
                     }
                 },
-                "Generator": {
-                    "Radius": 5.0,
-                    "ActivateRadius": 1.0,
-                    "GrowthSpeed": 10.0,
-                    "Depth": 2,
-                    "Active": true
-                },
-                "Health": {
-                    "Health": {
-                        "BaseValue": 5,
-                        "CurrentValue": 5
-                    }
-                },
                 "Emitter": {
                     "PPS": 177.74400329589844,
                     "Delay": 0.0,
                     "Max": 2048,
-                    "Continuous": false,
+                    "Continuous": true,
                     "EmitData": [
                         [
                             0.0,
@@ -1137,6 +1136,19 @@
                     "FrameIndex": 0,
                     "Texture": {
                         "AssetName": "Ball1"
+                    }
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 2,
+                    "Active": true,
+                    "GrowthSpeed": 10.0
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
                     }
                 },
                 "Sprite": {
@@ -2927,6 +2939,12 @@
                     ],
                     "Walkables": [
                         -1
+                    ],
+                    "Targets": [
+                        "Player",
+                        "Base",
+                        "Generator",
+                        "Generator2"
                     ]
                 },
                 "StaticBody": {
@@ -6738,7 +6756,40 @@
                     "IsDiegetic": true
                 }
             },
-            "Children": null
+            "Children": [
+                {
+                    "Name": "PreviewRange",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                -0.501960813999176,
+                                -0.501960813999176,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "CircleTexture"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                0.0,
+                                0.0
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
         },
         "ResourcesUi": {
             "Name": "ResourcesUi",
