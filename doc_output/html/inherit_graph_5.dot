@@ -198,7 +198,7 @@ digraph "Graphical Class Hierarchy"
   Node81 -> Node96 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node96 [label="ExampleSystem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classExampleSystem.html",tooltip="DESCRIPTION HERE."];
   Node81 -> Node97 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node97 [label="InputSystem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classInputSystem.html",tooltip=" "];
+  Node97 [label="InputSystem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classInputSystem.html",tooltip="Example System meant to be copy-pasted when creating new Systems."];
   Node81 -> Node98 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node98 [label="ParticleSystem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classParticleSystem.html",tooltip="System in charge of managing compute shader and emitters."];
   Node81 -> Node99 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
