@@ -122,8 +122,7 @@ private: // variables
     ComponentReference< Health > m_Health;
 
     /// @brief  the Emitter component attached to this Generator
-    /// yes I understand this is wrong but the component reference hates emitter
-    Emitter* m_Emitter = nullptr;
+    ComponentReference< Emitter > m_Emitter;
 
 
 //-----------------------------------------------------------------------------

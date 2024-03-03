@@ -14,6 +14,8 @@
 #include "CollisionSystem.h"
 #include "EnemyBehavior.h"
 
+#include "ComponentReference.t.h"
+
 #include "Health.h"
 #include "Emitter.h"
 #include "EmitterSprite.h"
@@ -58,27 +60,30 @@ void Generator::OnInit()
         }
     );
 
+    m_Emitter.SetOnConnectCallback(
+        [ this ]()
+        {
+            if (m_IsActive)
+            {
+                m_GrowthRadius = m_PowerRadius;
+                ParticleSystem::EmitData data = m_Emitter->GetEmitData();
+                data.startAhead = m_GrowthRadius;
+                m_Emitter->SetEmitData(data);
+                m_Emitter->SetContinuous(true);
+            }
+            else
+            {
+                m_GrowthRadius = 0.0f;
+                m_Emitter->SetContinuous(false);
+            }
+        }
+    );
+
     m_Collider   .Init( GetEntity() );
     m_AudioPlayer.Init( GetEntity() );
     m_Transform  .Init( GetEntity() );
     m_Health     .Init( GetEntity() );
-
-    // yes I know this is wrong, but the component reference threw a fit 
-    // - please show me how to make it a reference later
-    m_Emitter = GetEntity()->GetComponent<Emitter>();
-    if (m_IsActive)
-    {
-        m_GrowthRadius = m_PowerRadius;
-        ParticleSystem::EmitData data = m_Emitter->GetEmitData();
-        data.startAhead = m_GrowthRadius;
-        m_Emitter->SetEmitData(data);
-        m_Emitter->SetContinuous(true);
-    }
-    else
-    {
-        m_GrowthRadius = 0.0f;
-        m_Emitter->SetContinuous(false);
-    }
+    m_Emitter    .Init( GetEntity() );
 }
 
 /// @brief	called on exit, handles loss state
@@ -90,10 +95,16 @@ void Generator::OnExit()
     m_AudioPlayer.Exit();
     m_Transform  .Exit();
     m_Health     .Exit();
+    m_Emitter    .Exit();
 }
 
 void Generator::OnUpdate(float dt)
 {
+    if ( m_Emitter == nullptr )
+    {
+        return;
+    }
+
     if (m_ActivateRing)
     {
         m_GrowthRadius += m_RadiusSpeed * dt;
