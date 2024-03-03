@@ -33,9 +33,16 @@ public: // methods
     /// @brief  initializes this ActionReference
     void Init();
 
+    /// @brief  exits this ActionReference
+    void Exit();
 
     /// @brief  sets this ActionReference to nullptr
     void Clear();
+
+
+    /// @brief  assignment operator
+    /// @param  action  the Action to assign to this ActionReference
+    void operator =( InputSystem::Action const* action );
 
 
 //-----------------------------------------------------------------------------
@@ -47,6 +54,10 @@ public: // accessors
     /// @return the name of the asset
     std::string const& GetName() const;
 
+
+    /// @brief  gets this ActionReference's Owner Name
+    /// @return this ActionReference's Owner Name
+    std::string const& GetOwnerName() const;
 
     /// @brief  sets this ActionReference's Owner Name
     /// @param  ownerName   the name of the owner of this ActionReference

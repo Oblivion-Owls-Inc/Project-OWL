@@ -13,6 +13,8 @@
 #include "Engine.h"
 #include "DebugSystem.h"
 
+#include "ActionReference.h"
+
 //-----------------------------------------------------------------------------
 // public: inspection
 //-----------------------------------------------------------------------------
@@ -35,7 +37,18 @@ void InputSystem::DebugWindow()
 
             if (ImGui::Button("Create"))
             {
+                size_t previousCapacity = m_Actions.capacity();
                 m_Actions.push_back(Action(nameBuffer, descriptionBuffer));
+
+                // detect when the vector reallocates
+                if ( previousCapacity != m_Actions.capacity() )
+                {
+                    // make all actionReferences find their actions again
+                    for ( ActionReference* reference : m_ActionReferences )
+                    {
+                        *reference = GetActionByName( reference->GetName() );
+                    }
+                }
             }
             ImGui::TreePop();
         }
@@ -895,16 +908,16 @@ void InputSystem::Action::RemoveAxis(int glfw_axis_id)
 
 /// @brief  sets the name of the action
 /// @param  new name of action
-void InputSystem::Action::SetName(std::string& name)
+void InputSystem::Action::SetName(std::string const& name)
 {
     m_Name = name;
 }
 
 /// @brief  gets the name of this action
 /// @return the name of the action
-std::string InputSystem::Action::GetName() const
+std::string const& InputSystem::Action::GetName() const
 {
-    return m_Name != "" ? m_Name : "NO NAME";
+    return m_Name;
 }
 
 /// @brief  sets the description of the action
@@ -1153,7 +1166,7 @@ float InputSystem::Action::GetAxis() const
         }
     }
 
-    result = min(1.0f, result);
-    result = max(-1.0f, result);
+    result = std::min(1.0f, result);
+    result = std::max(-1.0f, result);
     return result;
 }

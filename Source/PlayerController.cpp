@@ -128,6 +128,11 @@
         m_Collider   .Exit();
 
         m_MiningLaserEntity.Exit();
+
+        m_MoveHorizontal.Exit();
+        m_MoveVertical  .Exit();
+        m_FireLaser     .Exit();
+        m_Interact      .Exit();
     }
 
 
