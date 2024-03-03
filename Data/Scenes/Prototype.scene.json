@@ -5,6 +5,14 @@
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Base/BaseDamage.ogg"
             },
+            "Bew": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Turret/bew.ogg"
+            },
+            "CyberBark": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/Turret/cyberbark.ogg"
+            },
             "EnemySound": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Enemy/footsteps.ogg"
@@ -28,14 +36,6 @@
             "TurretShoot": {
                 "IsLoopable": true,
                 "Filepath": "Data/Sounds/Effects/Turret/TurretShoot.ogg"
-            },
-            "Bew": {
-                "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/Turret/bew.ogg"
-            },
-            "CyberBark": {
-                "IsLoopable": true,
-                "Filepath": "Data/Sounds/Effects/Turret/cyberbark.ogg"
             }
         },
         "Textures": {
@@ -294,72 +294,6 @@
                         "Scale": [
                             0.30000001192092896,
                             0.30000001192092896
-                        ],
-                        "IsDiegetic": true
-                    }
-                },
-                "Children": null
-            },
-            "ring": {
-                "Name": "ring",
-                "Components": {
-                    "Emitter": {
-                        "PPS": 116.96299743652344,
-                        "Delay": 0.0,
-                        "Max": 2048,
-                        "Continuous": true,
-                        "EmitData": [
-                            [
-                                0.0,
-                                0.0
-                            ],
-                            [
-                                0.0,
-                                0.0
-                            ],
-                            [
-                                0.0,
-                                0.0
-                            ],
-                            4.936999797821045,
-                            0.5680000185966492,
-                            0.23000001907348633,
-                            0.0,
-                            3.140000104904175,
-                            0.023000000044703484,
-                            0.16500000655651093,
-                            0.0,
-                            0.36000001430511475,
-                            0.4399999976158142,
-                            1.1399999856948853,
-                            8.479999542236328,
-                            0.0,
-                            0.0
-                        ]
-                    },
-                    "EmitterSprite": {
-                        "Layer": 4,
-                        "Color": [
-                            0.30671507120132446,
-                            0.30671507120132446,
-                            0.30671507120132446,
-                            0.0
-                        ],
-                        "Opacity": 0.8299999833106995,
-                        "FrameIndex": 0,
-                        "Texture": {
-                            "AssetName": "Ball1"
-                        }
-                    },
-                    "Transform": {
-                        "Translation": [
-                            12.151763916015625,
-                            -1.4550237655639648
-                        ],
-                        "Rotation": 0.0,
-                        "Scale": [
-                            1.0,
-                            1.0
                         ],
                         "IsDiegetic": true
                     }
@@ -737,7 +671,7 @@
                         "Volume": 1.0,
                         "Pitch": 1.0,
                         "VolumeVariance": 0.0,
-                        "PitchVariance": 0.3,
+                        "PitchVariance": 0.30000001192092896,
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": false,
@@ -784,6 +718,72 @@
                     }
                 },
                 "Children": null
+            },
+            "ring": {
+                "Name": "ring",
+                "Components": {
+                    "Emitter": {
+                        "PPS": 116.96299743652344,
+                        "Delay": 0.0,
+                        "Max": 2048,
+                        "Continuous": true,
+                        "EmitData": [
+                            [
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                0.0,
+                                0.0
+                            ],
+                            4.936999797821045,
+                            0.5680000185966492,
+                            0.23000001907348633,
+                            0.0,
+                            3.140000104904175,
+                            0.023000000044703484,
+                            0.16500000655651093,
+                            0.0,
+                            0.36000001430511475,
+                            0.4399999976158142,
+                            1.1399999856948853,
+                            8.479999542236328,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    "EmitterSprite": {
+                        "Layer": 4,
+                        "Color": [
+                            0.30671507120132446,
+                            0.30671507120132446,
+                            0.30671507120132446,
+                            0.0
+                        ],
+                        "Opacity": 0.8299999833106995,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Ball1"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            12.151763916015625,
+                            -1.4550237655639648
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
             }
         }
     },
@@ -800,7 +800,7 @@
                     "VolumeVariance": 0.0,
                     "PitchVariance": 0.0,
                     "DefaultLoopCount": 0,
-                    "PlayOnInit": true,
+                    "PlayOnInit": false,
                     "IsSpatial": false,
                     "AllowMultipleSounds": false
                 }
@@ -2774,12 +2774,12 @@
                     ]
                 },
                 "Pathfinder": {
+                    "Destination": [
+                        0.0,
+                        0.0
+                    ],
                     "Walkables": [
                         -1
-                    ],
-                    "Targets": [
-                        "Base - highest",
-                        "Player - low"
                     ]
                 },
                 "StaticBody": {
