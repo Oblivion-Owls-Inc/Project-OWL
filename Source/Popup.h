@@ -11,6 +11,7 @@
 #include "Behavior.h"
 #include "AssetReference.h"
 #include "ActionReference.h"
+#include "EventListener.h"
 
 /// @brief  A Popup is a behavior that will show a popup when a button is pressed
 class Popup : public Behavior
@@ -57,9 +58,21 @@ private: // members
     /// @brief  the button that will be used to open the popup
     ActionReference m_PopupButton;
 
+
+    /// @brief Listener for the button click
+    EventListener<std::string> m_Listener;
+
+    /// @brief  the name of the event to listen for
+    std::string m_EventName;
+
+
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  Creates/Destroys the popup
+    void TogglePopup() const;
 
 
 //-----------------------------------------------------------------------------

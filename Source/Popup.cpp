@@ -43,6 +43,19 @@ void Popup::OnInit()
     m_PopupEntity.SetOwnerName(GetName());
     m_PopupButton.SetOwnerName(GetName());
 
+    /// Set the filter function for the listener
+    m_Listener.SetFilterFunction([&](std::string const& EventName) -> bool
+    {
+        return EventName == m_EventName;
+    });
+
+    /// Set the Callback function for the listener
+    m_Listener.SetResponseFunction([&](std::string const& EventName)
+    {
+        TogglePopup();
+    });
+
+    m_Listener.Init();
     m_PopupEntity.Init();
     m_PopupButton.Init();
 
@@ -55,36 +68,42 @@ void Popup::OnFixedUpdate()
 {
     if (m_PopupButton->GetReleased())
     {
-        Entity* entity = Entities()->GetEntity(m_PopupEntity->GetName());
-
-        if (entity != nullptr)
-        {
-            entity->Destroy();
-        }
-        else
-        {
-            m_PopupEntity->Clone()->AddToScene();
-        }
+        TogglePopup();
     }
 }
 
 /// @brief  called once when exiting the scene
 void Popup::OnExit()
 {
-
+    m_Listener.Exit();
 }
 
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
 
+/// @brief  Creates/Destroys the popup
+void Popup::TogglePopup() const
+{
+    Entity* entity = Entities()->GetEntity(m_PopupEntity->GetName());
+
+    if (entity != nullptr)
+    {
+        entity->Destroy();
+    }
+    else
+    {
+        m_PopupEntity->Clone()->AddToScene();
+    }
+}
 
 //-----------------------------------------------------------------------------
 // public: inspection
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  shows the inspector for Popup
+
+/// @brief  shows the inspector for Popup
 void Popup::Inspector()
 {
     m_PopupEntity.Inspect("Popup Entity");
