@@ -6523,6 +6523,9 @@
                             ],
                             "Archetype": {
                                 "AssetName": "Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 1"
                             }
                         }
                     ],
@@ -6550,6 +6553,12 @@
                     },
                     "CostUiEntity": {
                         "EntityName": "CostUi"
+                    },
+                    "CancelPlacement": {
+                        "ActionName": "Cancel Place"
+                    },
+                    "PlaceAction": {
+                        "ActionName": "Place"
                     }
                 },
                 "Inventory": {

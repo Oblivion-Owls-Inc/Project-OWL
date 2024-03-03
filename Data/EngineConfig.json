@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1174,
-                632
+                1814,
+                1010
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -67,6 +67,51 @@
                     "Controller Axis": null,
                     "Gamepad Axis Input": null,
                     "Gamepad Axis": null
+                },
+                {
+                    "Name": "Place",
+                    "Keys": null,
+                    "Mouse": [
+                        1
+                    ],
+                    "Controller": [
+                        2
+                    ],
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "Cancel Place",
+                    "Keys": [
+                        50
+                    ],
+                    "Mouse": null,
+                    "Controller": [
+                        1
+                    ],
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "Build Turret 1",
+                    "Keys": [
+                        49
+                    ],
+                    "Mouse": null,
+                    "Controller": [
+                        3
+                    ],
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
                 }
             ]
         },
@@ -76,7 +121,7 @@
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
-        "PauseSystem": null,
+        "PauseSystem": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
@@ -104,7 +149,14 @@
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
         "CameraSystem": {},
-        "RenderSystem": {},
+        "RenderSystem": {
+            "BackgroundColor": [
+                0.20000000298023224,
+                0.30000001192092896,
+                0.30000001192092896,
+                1.0
+            ]
+        },
         "AudioSystem": {
             "MaxChannels": 1024
         },

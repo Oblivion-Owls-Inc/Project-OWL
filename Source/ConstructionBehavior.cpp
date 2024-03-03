@@ -611,9 +611,9 @@
 
         ImGui::DragFloat( "Preview Alpha", &m_PreviewAlpha, 0.05f, 0.0f, 1.0f );
 
-        m_CancelPlacement.Inspect("Cancel Placement Action");
-
         m_PlaceAction.Inspect("Place Action");
+
+        m_CancelPlacement.Inspect("Cancel Placement Action");
     }
 
     /// @brief  inspects the references to other entities
