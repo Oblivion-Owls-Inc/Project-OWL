@@ -65,6 +65,9 @@ private: // class BuildingInfo
         /// @brief  initializes this BuildingInfo
         void Init();
 
+        /// @brief  exits this BuildingInfo
+        void Exit();
+
 
     //-------------------------------------------------------------------------
     public: // inspection

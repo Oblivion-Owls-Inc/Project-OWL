@@ -15,9 +15,11 @@
 #include "Transform.h"
 #include "Collider.h"
 #include "Health.h"
+#include "Emitter.h"
+#include "EmitterSprite.h"
 
 
-class Generator : public Component
+class Generator : public Behavior
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructors
@@ -42,8 +44,9 @@ public: // virtual override methods
     /// @brief called when Generator exits
     virtual void OnExit() override;
 
-    
-    
+    /// @brief  called every frame
+    virtual void OnUpdate(float dt) override;
+
 //-----------------------------------------------------------------------------
 private: // copying
 //-----------------------------------------------------------------------------
@@ -72,7 +75,7 @@ public: // accessors
     bool GetActive() { return m_IsActive;  }
 
     /// @brief activate the generator
-    void Activate() { m_IsActive = true; }
+    void Activate();
 
     /// @brief  get the transform of the generator
     /// @return the generator transform
@@ -88,12 +91,14 @@ private: // variables
     /// @brief  radius the generator power turrets within
     float m_PowerRadius = 1.0f;         
 
+    /// @brief  radius the generator emits particles to
+    float m_GrowthRadius = 1.0f;
+
     /// @brief  radius a player can activate the generator within
     float m_ActivationRadius = 1.0f;
 
     /// @brief  depth value of the generator, used for determening lowest
     int m_Depth = 0;
-
 
     /// @brief  the transform of the generator
     ComponentReference< Transform > m_Transform;
@@ -106,6 +111,10 @@ private: // variables
 
     /// @brief  the Health component attached to this Generator
     ComponentReference< Health > m_Health;
+
+    /// @brief  the Emitter component attached to this Generator
+    /// yes I understand this is wrong but the component reference hates emitter
+    Emitter* m_Emitter;
 
 
 //-----------------------------------------------------------------------------

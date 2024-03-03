@@ -14,6 +14,8 @@
 #include "EnemyBehavior.h"
 
 #include "Health.h"
+#include "Emitter.h"
+#include "EmitterSprite.h"
 
 //-----------------------------------------------------------------------------
 // constructor / destructor 
@@ -21,7 +23,7 @@
 
 /// @brief  constructor
 Generator::Generator() :
-    Component( typeid( Generator ) )
+    Behavior( typeid( Generator ) )
 {}
 
 /// @brief  clone
@@ -60,6 +62,21 @@ void Generator::OnInit()
     m_Transform  .Init( GetEntity() );
     m_Health     .Init( GetEntity() );
 
+    // yes I know this is wrong, but the component reference threw a fit 
+    // - please show me how to make it a reference later
+    m_GrowthRadius = m_PowerRadius;
+    m_Emitter = GetEntity()->GetComponent<Emitter>();
+    if (m_IsActive)
+    {
+        ParticleSystem::EmitData data = m_Emitter->GetEmitData();
+        data.startAhead = m_GrowthRadius;
+        m_Emitter->SetEmitData(data);
+        m_Emitter->SetContinuous(true);
+    }
+    else
+    {
+        m_Emitter->SetContinuous(false);
+    }
 }
 
 /// @brief	called on exit, handles loss state
@@ -73,13 +90,18 @@ void Generator::OnExit()
     m_Health     .Exit();
 }
 
+void Generator::OnUpdate(float dt)
+{
+
+}
+
 //-----------------------------------------------------------------------------
 // copying
 //-----------------------------------------------------------------------------
 
 /// @brief  copy ctor
 Generator::Generator(const Generator& other) :
-    Component( other ),
+    Behavior( other ),
     m_IsActive        ( other.m_IsActive         ),
     m_PowerRadius     ( other.m_PowerRadius      ),
     m_ActivationRadius( other.m_ActivationRadius ),
@@ -103,6 +125,13 @@ Generator* Generator::GetLowestGenerator()
         }
     }
     return lowest;
+}
+
+/// @brief activate the generator
+void Generator::Activate() 
+{ 
+    m_IsActive = true;
+
 }
 
 //-----------------------------------------------------------------------------

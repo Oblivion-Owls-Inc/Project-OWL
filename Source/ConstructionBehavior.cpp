@@ -51,6 +51,13 @@
         {
             M_Archetype.SetOwnerName( "ConstructionBehavior" );
             M_Archetype.Init();
+            M_BuildAction.Init();
+        }
+
+        /// @brief  exits this BuildingInfo
+        void ConstructionBehavior::BuildingInfo::Exit()
+        {
+            M_BuildAction.Exit();
         }
 
 
@@ -237,6 +244,7 @@
         m_TurretPlacementSound.Init( GetEntity() );
         m_CostInventory       .Init( GetEntity() );
 
+        m_PlaceAction.Init();
         m_CancelPlacement.Init();
 
         if (GetEntity()->GetChildren().size() != 0)
@@ -267,6 +275,14 @@
 
         m_RadiusSprite        .Exit();
         m_RadiusTransform     .Exit();
+
+        m_PlaceAction.Exit();
+        m_CancelPlacement.Exit();
+
+        for (BuildingInfo& buildingInfo : m_BuildingInfos)
+        {
+            buildingInfo.Exit();
+        }
     }
 
     /// @brief  called every simulation frame
