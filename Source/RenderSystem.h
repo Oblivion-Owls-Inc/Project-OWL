@@ -139,6 +139,9 @@ private:
     unsigned m_ScreenBufferFBO = -1;            /// @brief   Framebuffer for rendering the screen
     bool m_DrawToBuffer = false;                /// @brief   When true, renders everything to off-screen
 
+    /// @brief  the color to fill the background with
+    glm::vec4 m_BackgroundColor = glm::vec4( 0.2f, 0.3f, 0.3f, 1.0f );
+
     //-------------------------------------------------------------------------
     //          helpers
     //-------------------------------------------------------------------------
@@ -171,11 +174,44 @@ private:
     /// @brief   Reallocates the texture for screen buffer.
     //           (needs to happen when resizing the screen)
     void reallocScreenBufferTexture();
+    
+//-----------------------------------------------------------------------------
+public: // Inspection
+//-----------------------------------------------------------------------------
 
 
-    //-------------------------------------------------------------------------
-    //          singleton stuff
-    //-------------------------------------------------------------------------
+    /// @brief  displays the RenderSystem's Debug Window
+    virtual void DebugWindow() override;
+
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    
+    /// @brief  reads the color to fill the background with
+    /// @param  data    the JSON data to read from
+    void readBackgroundColor( nlohmann::ordered_json const& data );
+
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
+    
+    /// @brief  gets this System's read methods
+    /// @return this System's read methods
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+
+
+    /// @brief  writes this ExampleSystem to JSON
+    /// @return the JSON data of this ExampleSystem
+    virtual nlohmann::ordered_json Write() const override;
+
+
+//-------------------------------------------------------------------------
+//          singleton stuff
+//-------------------------------------------------------------------------
 private:
     RenderSystem();
 public:

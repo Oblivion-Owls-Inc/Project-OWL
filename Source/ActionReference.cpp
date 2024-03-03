@@ -36,14 +36,30 @@
             Debug() << "WARNING: unable to find action with name \"" << m_ActionName
                 << "\" (ActionReference owned by " << m_OwnerName << ")" << std::endl;
         }
+
+        Input()->AddActionReference( this );
     }
 
+    /// @brief  exits this ActionReference
+    void ActionReference::Exit()
+    {
+        Input()->RemoveActionReference( this );
+    }
 
     /// @brief  sets this ActionReference to nullptr
     void ActionReference::Clear()
     {
-        m_ActionName = "";
         m_Action = nullptr;
+        m_ActionName = "";
+    }
+
+
+    /// @brief  assignment operator
+    /// @param  action  the Action to assign to this ActionReference
+    void ActionReference::operator =( InputSystem::Action const* action )
+    {
+        m_Action = action;
+        m_ActionName = action == nullptr ? "" : action->GetName();
     }
 
 
@@ -59,6 +75,13 @@
         return m_ActionName;
     }
 
+
+    /// @brief  gets this ActionReference's Owner Name
+    /// @return this ActionReference's Owner Name
+    std::string const& ActionReference::GetOwnerName() const
+    {
+        return m_OwnerName;
+    }
 
     /// @brief  sets this ActionReference's Owner Name
     /// @param  ownerName   the name of the owner of this ActionReference

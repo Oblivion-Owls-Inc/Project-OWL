@@ -88,11 +88,11 @@ $(function() {
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCameraSystem.html#a3c67f703c3417b50e843d011a9773284">SetActiveCamera</a>( <a class="code" href="classCamera.html">Camera</a>* camera );</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    glm::mat4 <span class="keyword">const</span>&amp; <a class="code" href="classCameraSystem.html#aa48529d539866da073abc98c328d514c">GetMat_UItoClip</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    glm::mat4 <span class="keyword">const</span>&amp; <a class="code" href="classCameraSystem.html#a13b6a116ca99172af788d12c7ed1f818">GetMat_UiToClip</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    glm::mat4 <span class="keyword">const</span>&amp; <a class="code" href="classCameraSystem.html#ad0aa41eb4a12eee9064013b26fc3f7d4">GetMat_WorldToClip</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    glm::mat4 <span class="keyword">const</span>&amp; <a class="code" href="classCameraSystem.html#a37d9714dfd1813cb5cf20682b4d3ed3f">GetMat_ScreenToUI</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    glm::mat4 <span class="keyword">const</span>&amp; <a class="code" href="classCameraSystem.html#a6d41b4a4aba7c47cf9093b7771c12833">GetMat_ScreenToUi</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    glm::mat4 <a class="code" href="classCameraSystem.html#abab996e132229851262679008a7ae1e0">GetMat_ScreenToWorld</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
@@ -110,11 +110,11 @@ $(function() {
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">//-------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    glm::mat4 m_ScreenToClip = glm::mat4( 0 );</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    glm::mat4 m_ScreenToClip = glm::mat4( 1 );</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    glm::mat4 m_ScreenToUi = glm::mat4( 0 );</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    glm::mat4 m_ScreenToUi = glm::mat4( 1 );</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    glm::mat4 m_UiToClip = glm::mat4( 0 );</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    glm::mat4 m_UiToClip = glm::mat4( 1 );</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classCamera.html">Camera</a>* m_ActiveCamera = <span class="keyword">nullptr</span>;</div>
@@ -154,11 +154,11 @@ $(function() {
 <div class="ttc" id="aCamera_8h_html"><div class="ttname"><a href="Camera_8h.html">Camera.h</a></div><div class="ttdoc">Camera component for rendering.</div></div>
 <div class="ttc" id="aSystem_8h_html"><div class="ttname"><a href="System_8h.html">System.h</a></div><div class="ttdoc">Base class for all Systems.</div></div>
 <div class="ttc" id="aclassCameraSystem_html"><div class="ttname"><a href="classCameraSystem.html">CameraSystem</a></div><div class="ttdoc">Handles camera and coordinate systems / spaces.</div><div class="ttdef"><b>Definition:</b> CameraSystem.h:14</div></div>
+<div class="ttc" id="aclassCameraSystem_html_a13b6a116ca99172af788d12c7ed1f818"><div class="ttname"><a href="classCameraSystem.html#a13b6a116ca99172af788d12c7ed1f818">CameraSystem::GetMat_UiToClip</a></div><div class="ttdeci">glm::mat4 const  &amp; GetMat_UiToClip() const</div><div class="ttdef"><b>Definition:</b> CameraSystem.cpp:45</div></div>
 <div class="ttc" id="aclassCameraSystem_html_a1ff86c1a7b7d25024efe58fbdfee6607"><div class="ttname"><a href="classCameraSystem.html#a1ff86c1a7b7d25024efe58fbdfee6607">CameraSystem::GetInstance</a></div><div class="ttdeci">static CameraSystem * GetInstance()</div><div class="ttdoc">Gets the instance of CameraSystem.</div><div class="ttdef"><b>Definition:</b> CameraSystem.cpp:146</div></div>
-<div class="ttc" id="aclassCameraSystem_html_a37d9714dfd1813cb5cf20682b4d3ed3f"><div class="ttname"><a href="classCameraSystem.html#a37d9714dfd1813cb5cf20682b4d3ed3f">CameraSystem::GetMat_ScreenToUI</a></div><div class="ttdeci">glm::mat4 const  &amp; GetMat_ScreenToUI() const</div><div class="ttdef"><b>Definition:</b> CameraSystem.cpp:62</div></div>
 <div class="ttc" id="aclassCameraSystem_html_a3c67f703c3417b50e843d011a9773284"><div class="ttname"><a href="classCameraSystem.html#a3c67f703c3417b50e843d011a9773284">CameraSystem::SetActiveCamera</a></div><div class="ttdeci">void SetActiveCamera(Camera *camera)</div><div class="ttdoc">gets the active Camera</div><div class="ttdef"><b>Definition:</b> CameraSystem.cpp:24</div></div>
+<div class="ttc" id="aclassCameraSystem_html_a6d41b4a4aba7c47cf9093b7771c12833"><div class="ttname"><a href="classCameraSystem.html#a6d41b4a4aba7c47cf9093b7771c12833">CameraSystem::GetMat_ScreenToUi</a></div><div class="ttdeci">glm::mat4 const  &amp; GetMat_ScreenToUi() const</div><div class="ttdef"><b>Definition:</b> CameraSystem.cpp:62</div></div>
 <div class="ttc" id="aclassCameraSystem_html_a95371f10fc03fe6780c151c8a31e3be7"><div class="ttname"><a href="classCameraSystem.html#a95371f10fc03fe6780c151c8a31e3be7">CameraSystem::GetActiveCamera</a></div><div class="ttdeci">Camera * GetActiveCamera()</div><div class="ttdoc">sets the active Camera</div><div class="ttdef"><b>Definition:</b> CameraSystem.cpp:17</div></div>
-<div class="ttc" id="aclassCameraSystem_html_aa48529d539866da073abc98c328d514c"><div class="ttname"><a href="classCameraSystem.html#aa48529d539866da073abc98c328d514c">CameraSystem::GetMat_UItoClip</a></div><div class="ttdeci">glm::mat4 const  &amp; GetMat_UItoClip() const</div><div class="ttdef"><b>Definition:</b> CameraSystem.cpp:45</div></div>
 <div class="ttc" id="aclassCameraSystem_html_abab996e132229851262679008a7ae1e0"><div class="ttname"><a href="classCameraSystem.html#abab996e132229851262679008a7ae1e0">CameraSystem::GetMat_ScreenToWorld</a></div><div class="ttdeci">glm::mat4 GetMat_ScreenToWorld() const</div><div class="ttdef"><b>Definition:</b> CameraSystem.cpp:68</div></div>
 <div class="ttc" id="aclassCameraSystem_html_ad0aa41eb4a12eee9064013b26fc3f7d4"><div class="ttname"><a href="classCameraSystem.html#ad0aa41eb4a12eee9064013b26fc3f7d4">CameraSystem::GetMat_WorldToClip</a></div><div class="ttdeci">glm::mat4 const  &amp; GetMat_WorldToClip() const</div><div class="ttdef"><b>Definition:</b> CameraSystem.cpp:51</div></div>
 <div class="ttc" id="aclassCamera_html"><div class="ttname"><a href="classCamera.html">Camera</a></div><div class="ttdoc">Handles camera and coordinate systems / spaces.</div><div class="ttdef"><b>Definition:</b> Camera.h:21</div></div>

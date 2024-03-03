@@ -82,6 +82,77 @@
         MarkChanged();
     }
 
+
+    /// @brief  gets the translation
+    /// @return (gl::vec3)  the translation
+    glm::vec2 const& Transform::GetTranslation() const
+    {
+        return m_Translation;
+    }
+
+    /// @brief  sets the translation
+    /// @param  translation the new translation
+    void Transform::SetTranslation( glm::vec2 const& translation )
+    {
+        m_Translation = translation;
+        MarkChanged();
+    }
+
+
+    /// @brief  gets the rotation
+    /// @return (float) the rotation
+    float Transform::GetRotation() const
+    {
+        return m_Rotation;
+    }
+
+    /// @brief  sets the rotation
+    /// @param  rotation    the new rotation
+    void Transform::SetRotation( float rotation )
+    {
+        m_Rotation = rotation;
+        MarkChanged();
+    }
+
+
+    /// @brief  gets the scale
+    /// @return (glm::vec3) the scale
+    glm::vec2 const& Transform::GetScale() const
+    {
+        return m_Scale;
+    }
+
+    /// @brief  sets the scale
+    /// @param  scale   the new scale
+    void Transform::SetScale( glm::vec2 const& scale )
+    {
+        m_Scale = scale;
+        MarkChanged();
+    }
+
+
+    /// @brief  gets the isDiagetic flag
+    /// @return (bool)  the isDiagetic flag
+    bool const& Transform::GetIsDiegetic() const
+    {
+        return m_IsDiegetic;
+    }
+
+    /// @brief  sets the isDiagetic flag
+    /// @param  isDiagetic  the new isDiagetic flag
+    void Transform::SetIsDiegetic( bool isDiagetic )
+    {
+        m_IsDiegetic = isDiagetic;
+    }
+
+
+    /// @brief  sets the dirty flag of this Transform
+    /// @param  dirty   whether this transform is dirty
+    void Transform::SetIsDirty( bool dirty )
+    {
+        m_IsDirty = true;
+    }
+
     /// @brief  Calculates and gets the translation matrix of the transform component.
     /// @return The translation matrix of the transform component.
     glm::mat4 const& Transform::GetMatrix() const
