@@ -357,12 +357,20 @@
             return;
         }
 
-        for ( int i = 0; i < m_BuildingInfos.size() ; ++i )
+        for ( int i = 0; i < m_BuildingInfos.size(); ++i )
         {
-            if (m_BuildingInfos[i].M_BuildAction != nullptr &&
-                m_BuildingInfos[i].M_BuildAction->GetReleased() == false)
+            if (
+                m_BuildingInfos[i].M_BuildAction == nullptr ||
+                m_BuildingInfos[i].M_BuildAction->GetReleased() == false
+            )
             {
                 continue;
+            }
+
+            if ( m_BuildingIndex == i )
+            {
+                m_BuildingIndex = -1;
+                return;
             }
 
             m_BuildingIndex = i;
@@ -376,12 +384,23 @@
 
             setupCostUi();
 
+            if ( m_Sprite == nullptr || m_Transform == nullptr )
+            {
+                return;
+            }
+
             m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
             m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
-            float scale = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >()->GetRange();
             if (m_RadiusTransform != nullptr)
             {
-                m_RadiusTransform->SetScale(glm::vec2(scale * 2));
+                if ( m_BuildingInfos[i].M_Archetype == nullptr )
+                {
+                    m_RadiusTransform->SetScale( glm::vec2( 0.0f ) );
+                    return;
+                }
+                TurretBehavior const* turretBehavior = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >();
+                float scale = turretBehavior == nullptr ? 0 : turretBehavior->GetRange() * 2;
+                m_RadiusTransform->SetScale( glm::vec2( scale ) );
             }
             return;
         }
@@ -419,7 +438,7 @@
         }
 
         // not enough funds
-        if ( m_IgnoreCosts == false && m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost ) == false )
+        if ( m_PlayerInventory == nullptr || (m_IgnoreCosts == false && m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost ) == false) )
         {
             return false;
         }
@@ -443,7 +462,7 @@
         }
 
         // target pos out of range
-        if ( glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos ) > m_PlacementRange )
+        if ( m_PlayerTransform == nullptr || glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos ) > m_PlacementRange )
         {
             return false;
         }
@@ -454,9 +473,14 @@
     /// @brief  palces the currently selected building
     void ConstructionBehavior::placeBuilding()
     {
-
         Entity* building = m_BuildingInfos[ m_BuildingIndex ].M_Archetype->Clone();
-        building->GetComponent< Transform >()->SetTranslation( m_TargetPos );
+
+        Transform* buildingTransform = building->GetComponent< Transform >();
+        if ( buildingTransform == nullptr )
+        {
+            return;
+        }
+        buildingTransform->SetTranslation( m_TargetPos );
         
         building->AddToScene();
         m_Buildings->SetTile( m_TargetTilePos, building ); // TODO: move this line into the Building's OnInit?
@@ -480,7 +504,8 @@
     /// @brief  displays the building preview
     void ConstructionBehavior::showBuildingPreview()
     {
-        float distance = glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos );
+
+        float distance = m_PlayerTransform == nullptr ? INFINITY : glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos );
 
         // no preview if out of range or no building selected
         if ( m_BuildingIndex == -1 || distance >= m_PlacementRange + m_PreviewFadeOutRadius )
@@ -510,8 +535,11 @@
         
         if ( isCurrentlyPlaceable() )
         {
-            m_Sprite->SetColor( m_PreviewColorPlaceable );
-            m_Sprite->SetOpacity( m_PreviewAlpha );
+            if ( m_Sprite != nullptr )
+            {
+                m_Sprite->SetColor( m_PreviewColorPlaceable );
+                m_Sprite->SetOpacity( m_PreviewAlpha );
+            }
 
             if (m_RadiusSprite != nullptr)
             {
@@ -524,13 +552,15 @@
         }
         else
         {
-            m_Sprite->SetColor( m_PreviewColorNonPlaceable );
-            
             // alpha fades away the further from the player it gets
             float alpha = m_PreviewAlpha * ( 1.0f - ( distance - m_PlacementRange ) / m_PreviewFadeOutRadius );
             alpha = std::min( alpha, m_PreviewAlpha );
-            m_Sprite->SetOpacity( alpha );
 
+            if ( m_Sprite != nullptr )
+            {
+                m_Sprite->SetColor( m_PreviewColorNonPlaceable );
+                m_Sprite->SetOpacity( alpha );
+            }
             if (m_RadiusSprite != nullptr)
             {
                 m_RadiusSprite->SetOpacity(alpha / 2);
