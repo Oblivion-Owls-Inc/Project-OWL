@@ -852,6 +852,7 @@
                 "Generator": {
                     "Radius": 5.0,
                     "ActivateRadius": 1.0,
+                    "GrowthSpeed": 10.0,
                     "Depth": 0,
                     "Active": true
                 },
@@ -967,6 +968,7 @@
                 "Generator": {
                     "Radius": 5.0,
                     "ActivateRadius": 1.0,
+                    "GrowthSpeed": 10.0,
                     "Depth": 1,
                     "Active": true
                 },
@@ -1079,6 +1081,7 @@
                 "Generator": {
                     "Radius": 5.0,
                     "ActivateRadius": 1.0,
+                    "GrowthSpeed": 10.0,
                     "Depth": 2,
                     "Active": true
                 },

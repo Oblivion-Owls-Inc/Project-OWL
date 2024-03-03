@@ -151,7 +151,7 @@
 
         if ( m_Interact != nullptr && m_Interact->GetDown() )
         {
-            for (auto& generator : Components<Generator>()->GetComponents())
+            for (auto& generator : Behaviors<Generator>()->GetComponents())
             {
                 float distance = glm::distance<>(generator->GetTransform()->GetTranslation(),
                     GetEntity()->GetComponent<Transform>()->GetTranslation());

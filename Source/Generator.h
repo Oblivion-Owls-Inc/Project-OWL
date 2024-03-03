@@ -86,7 +86,16 @@ private: // variables
 //-----------------------------------------------------------------------------
 
     /// @brief  is the generator active or not
-    bool m_IsActive = false;        
+    bool m_IsActive = false;  
+
+    /// @brief  is the generator active or not
+    bool m_ActivateRing = false;
+
+    /// @brief  is the generator active or not
+    bool m_DeactivateRing = false;
+
+    /// @brief  speed the particle ring grows and shrinks at
+    float m_RadiusSpeed = 1.0f;
 
     /// @brief  radius the generator power turrets within
     float m_PowerRadius = 1.0f;         
@@ -114,7 +123,7 @@ private: // variables
 
     /// @brief  the Emitter component attached to this Generator
     /// yes I understand this is wrong but the component reference hates emitter
-    Emitter* m_Emitter;
+    Emitter* m_Emitter = nullptr;
 
 
 //-----------------------------------------------------------------------------
@@ -162,6 +171,9 @@ private: // reading
 
     /// @brief read if the generator starts on or off
     void readActive(nlohmann::ordered_json const& json);
+
+    /// @brief	read the speed the particle ring changes
+    void readSpeed(nlohmann::ordered_json const& json);
 
 //-----------------------------------------------------------------------------
 public: // writing

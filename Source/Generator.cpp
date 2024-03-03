@@ -9,6 +9,7 @@
 #include "Generator.h"
 
 #include "ComponentSystem.h"
+#include "BehaviorSystem.h"
 
 #include "CollisionSystem.h"
 #include "EnemyBehavior.h"
@@ -39,7 +40,8 @@ Generator* Generator::Clone() const
 /// @brief	initialize Generator
 void Generator::OnInit()
 {
-    Components< Generator >()->AddComponent(this);
+    Behaviors< Generator >()->AddComponent(this);
+    Behaviors< Behavior >()->AddComponent(this);
 
     m_Collider.SetOnConnectCallback(
         [ this ]()
@@ -64,10 +66,10 @@ void Generator::OnInit()
 
     // yes I know this is wrong, but the component reference threw a fit 
     // - please show me how to make it a reference later
-    m_GrowthRadius = m_PowerRadius;
     m_Emitter = GetEntity()->GetComponent<Emitter>();
     if (m_IsActive)
     {
+        m_GrowthRadius = m_PowerRadius;
         ParticleSystem::EmitData data = m_Emitter->GetEmitData();
         data.startAhead = m_GrowthRadius;
         m_Emitter->SetEmitData(data);
@@ -75,6 +77,7 @@ void Generator::OnInit()
     }
     else
     {
+        m_GrowthRadius = 0.0f;
         m_Emitter->SetContinuous(false);
     }
 }
@@ -82,7 +85,8 @@ void Generator::OnInit()
 /// @brief	called on exit, handles loss state
 void Generator::OnExit()
 {
-    Components< Generator >()->RemoveComponent(this);
+    Behaviors< Generator >()->RemoveComponent(this);
+    Behaviors< Behavior >()->RemoveComponent(this);
 
     m_Collider   .Exit();
     m_AudioPlayer.Exit();
@@ -92,7 +96,33 @@ void Generator::OnExit()
 
 void Generator::OnUpdate(float dt)
 {
+    if (m_ActivateRing)
+    {
+        m_GrowthRadius += m_RadiusSpeed * dt;
+        if (m_GrowthRadius >= m_PowerRadius)
+        {
+            m_GrowthRadius = m_PowerRadius;
+            m_ActivateRing = false;
+        }
+        ParticleSystem::EmitData data = m_Emitter->GetEmitData();
+        data.startAhead = m_GrowthRadius;
+        m_Emitter->SetEmitData(data);
+        m_Emitter->SetContinuous(true);
+    }
+    else if (m_DeactivateRing)
+    {
+        m_GrowthRadius -= m_RadiusSpeed * dt;
+        if (m_GrowthRadius <= 0.0f)
+        {
+            m_GrowthRadius = 0.0f;
+            m_Emitter->SetContinuous(false);
+            m_DeactivateRing = false;
+        }
+        ParticleSystem::EmitData data = m_Emitter->GetEmitData();
+        data.startAhead = m_GrowthRadius;
+        m_Emitter->SetEmitData(data);
 
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -131,7 +161,7 @@ Generator* Generator::GetLowestGenerator()
 void Generator::Activate() 
 { 
     m_IsActive = true;
-
+    m_ActivateRing = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -160,6 +190,7 @@ void Generator::onCollisionEnter(Collider* other)
         if (m_Health->GetHealth()->GetCurrent() <= 0)
         {
             m_IsActive = false;
+            m_DeactivateRing = true;
             m_Health->GetHealth()->Reset();
         }
     }
@@ -174,6 +205,7 @@ void Generator::Inspector()
 {
     ImGui::InputFloat("Radius", &m_PowerRadius, 0.5f, 1.0f);
     ImGui::InputFloat("Activate Radius", &m_ActivationRadius, 0.5f, 1.0f);
+    ImGui::InputFloat("Growth Speed", &m_RadiusSpeed);
     ImGui::InputInt("Depth", &m_Depth, 1, 5);
     ImGui::Checkbox("Active", &m_IsActive);
 }
@@ -189,6 +221,7 @@ ReadMethodMap<Generator> const Generator::s_ReadMethods =
     { "ActivateRadius", &readARadius },
     { "Depth"         , &readDepth   },
     { "Active"        , &readActive  },
+    { "GrowthSpeed"   , &readSpeed   },
 };
 
 /// @brief	read the raidus from json
@@ -215,6 +248,12 @@ void Generator::readActive(nlohmann::ordered_json const& json)
     m_IsActive = Stream::Read<bool>(json);
 }
 
+/// @brief	read the speed the particle ring changes
+void Generator::readSpeed(nlohmann::ordered_json const& json)
+{
+    m_RadiusSpeed = Stream::Read<float>(json);
+}
+
 //-----------------------------------------------------------------------------
 // writing
 //-----------------------------------------------------------------------------
@@ -228,6 +267,7 @@ nlohmann::ordered_json Generator::Write() const
     data["ActivateRadius"] = m_ActivationRadius;
     data["Depth"] = m_Depth;
     data["Active"] = m_IsActive;
+    data["GrowthSpeed"] = m_RadiusSpeed;
 
 
     return data;
