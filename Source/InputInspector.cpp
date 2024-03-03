@@ -34,6 +34,7 @@ void InputSystem::DebugWindow()
 
             if (ImGui::Button("Create"))
             {
+                size_t previousCapacity = m_Actions.capacity();
                 m_Actions.push_back(Action(nameBuffer));
 
                 // detect when the vector reallocates
