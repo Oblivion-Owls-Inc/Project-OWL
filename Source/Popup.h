@@ -1,8 +1,8 @@
 /// @file       Popup.h
-/// @author     Steve Bukowinski (steve.bukowinski@digipen.edu)
-/// @brief      DESCRIPTION HERE
+/// @author    jax.clayton (jax.clayton@digipen.edu)
+/// @brief     A popup is a behavior that will show a popup when a button is pressed
 /// @version    0.1
-/// @date       DATE HERE
+/// @date       3/3/2024
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
@@ -10,16 +10,16 @@
 
 #include "Behavior.h"
 #include "AssetReference.h"
+#include "ActionReference.h"
 
-/// @brief  DESCRIPTION HERE
+/// @brief  A Popup is a behavior that will show a popup when a button is pressed
 class Popup : public Behavior
 {
 //-----------------------------------------------------------------------------
 public: // constructor / Destructor
 //-----------------------------------------------------------------------------
 
-
-        /// @brief  default constructor
+    /// @brief  default constructor
     Popup();
 
 
@@ -38,7 +38,7 @@ public: // virtual override methods
 //-----------------------------------------------------------------------------
 
 
-        /// @brief  called once when entering the scene
+    /// @brief  called once when entering the scene
     virtual void OnInit() override;
 
     /// @brief  called once when exiting the scene
@@ -51,9 +51,11 @@ public: // virtual override methods
 private: // members
 //-----------------------------------------------------------------------------
 
+    /// @brief  the entity that will be used as the popup
     AssetReference< Entity > m_PopupEntity;
-    
 
+    /// @brief  the button that will be used to open the popup
+    ActionReference m_PopupButton;
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -65,7 +67,7 @@ public: // inspection
 //-----------------------------------------------------------------------------
 
 
-        /// @brief  shows the inspector for Popup
+    /// @brief  shows the inspector for Popup
     virtual void Inspector() override;
 
 
@@ -74,7 +76,11 @@ private: // reading
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  reads the PopupEntity from JSON
     void ReadPopupEntity(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the PopupButton from JSON
+    void ReadPopupButton(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
