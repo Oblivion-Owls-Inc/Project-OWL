@@ -60,6 +60,7 @@
 #include "SceneChangeButton.h"
 #include "SplashScreenController.h"
 #include "HideableForeground.h"
+#include "Popup.h"
 
 
 
@@ -202,7 +203,8 @@
         { "WinState"               , ComponentInfo< WinState                >() },
         { "Nineslice"              , ComponentInfo< Nineslice               >() },
         { "SplashScreenController" , ComponentInfo< SplashScreenController  >() },
-        { "HideableForeground"     , ComponentInfo< HideableForeground      >() }
+        { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
+        { "Popup"                  , ComponentInfo< Popup                   >() }
     };
 
 //-----------------------------------------------------------------------------
