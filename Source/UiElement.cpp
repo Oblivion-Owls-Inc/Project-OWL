@@ -199,7 +199,7 @@
         glm::vec2 parentScale;
         if ( m_ParentElement == nullptr )
         {
-            glm::mat4 clipToUi = glm::inverse( Cameras()->GetMat_UItoClip() );
+            glm::mat4 clipToUi = glm::inverse( Cameras()->GetMat_UiToClip() );
             parentScale = clipToUi * glm::vec4( 1, 1, 0, 0 ) * 2.0f;
         }
         else

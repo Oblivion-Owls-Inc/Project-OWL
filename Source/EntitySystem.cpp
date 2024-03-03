@@ -124,7 +124,7 @@
     /// @param  entity  - the entity to move
     void EntitySystem::MoveEntityAfterParent( Entity* entity )
     {
-        auto destination = std::find( m_Entities.begin(), m_Entities.end(), entity->GetParent() ) + entity->GetParent()->GetNumDescendants() + 1;
+        auto destination = std::find( m_Entities.begin(), m_Entities.end(), entity->GetParent() ) + 1;
         auto sourceBegin = std::find( m_Entities.begin(), m_Entities.end(), entity );
         auto sourceEnd = sourceBegin + entity->GetNumDescendants();
 

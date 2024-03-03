@@ -13,6 +13,8 @@
 #include "Engine.h"
 #include "DebugSystem.h"
 
+#include "ActionReference.h"
+
 
 /// @brief  updates map realted to fixed or standard update
 void InputSystem::mapUpdate()
@@ -150,7 +152,7 @@ void InputSystem::OnUpdate(float dt)
 int InputSystem::InitAlternateWindow(GLFWwindow* m_Handle)
 {
     m_AltHandles.push_back(m_Handle);
-    map<int, bool[3]> newMap;
+    std::map<int, bool[3]> newMap;
     windows.push_back(newMap);
     m_Amount++;
     return m_Amount;
@@ -383,7 +385,7 @@ glm::vec2 InputSystem::GetMousePosScreen() const
 /// @return returns the current mouse pos as a vec2
 glm::vec2 InputSystem::GetMousePosUI()
 {
-    return Cameras()->GetMat_ScreenToUI() * glm::vec4( GetMousePosScreen(), 0.0f, 1.0f );
+    return Cameras()->GetMat_ScreenToUi() * glm::vec4( GetMousePosScreen(), 0.0f, 1.0f );
 }
 
 /// @brief gets mouse pos in World space
@@ -421,28 +423,51 @@ glm::vec2 InputSystem::GetMousePosWorld()
         Input()->m_FixedDeltaScroll += (float)scrollY;
     }
 
-/// @brief  gets an action by its name
-/// @param  name name of the action
-/// @retun  pointer to the action
-InputSystem::Action* InputSystem::GetActionByName(std::string& name)
-{
-    for (int i = 0; i < m_Actions.size(); ++i)
+    /// @brief  gets an action by its name
+    /// @param  name name of the action
+    /// @retun  pointer to the action
+    InputSystem::Action* InputSystem::GetActionByName(std::string const& name)
     {
-        if (m_Actions[i].GetName() == name)
+        for (int i = 0; i < m_Actions.size(); ++i)
         {
-            return &(m_Actions[i]);
+            if (m_Actions[i].GetName() == name)
+            {
+                return &(m_Actions[i]);
+            }
         }
+        return nullptr;
     }
-    return nullptr;
-}
 
 
-/// @brief  gets the vector of Actions in the InputSystem
-/// @return the vector of Actions
-std::vector< InputSystem::Action > const& InputSystem::GetActions() const
-{
-    return m_Actions;
-}
+    /// @brief  gets the vector of Actions in the InputSystem
+    /// @return the vector of Actions
+    std::vector< InputSystem::Action > const& InputSystem::GetActions() const
+    {
+        return m_Actions;
+    }
+
+
+    /// @brief  adds an ActionReference to the InputSystem
+    /// @param  actionReference the ActionReference to add
+    void InputSystem::AddActionReference( ActionReference* actionReference )
+    {
+        m_ActionReferences.push_back( actionReference );
+    }
+
+    /// @brief  removes an ActionReference from the InputSystem
+    /// @param  actionReference the ActionReference to remove
+    void InputSystem::RemoveActionReference( ActionReference* actionReference )
+    {
+        auto it = std::find( m_ActionReferences.begin(), m_ActionReferences.end(), actionReference );
+        if ( it == m_ActionReferences.end() )
+        {
+            char const* actionReferenceName = actionReference == nullptr ? "nullptr" : actionReference->GetOwnerName().c_str();
+            Debug() << "Error: could not find ActionReference owned by \"" << actionReferenceName << "\" to remove" << std::endl;
+            return;
+        }
+
+        m_ActionReferences.erase( it );
+    }
 
 
 //-----------------------------------------------------------------------------
@@ -461,13 +486,13 @@ void InputSystem::readActions(nlohmann::ordered_json const& data)
 /// @brief read the key inputs for an action
 void InputSystem::Action::readName(nlohmann::ordered_json const& json)
 {
-    m_Name = Stream::Read<string>(json);
+    m_Name = Stream::Read<std::string>(json);
 }
 
 /// @brief read the key inputs for an action
 void InputSystem::Action::readDescription(nlohmann::ordered_json const& json)
 {
-    m_Description = Stream::Read<string>(json);
+    m_Description = Stream::Read<std::string>(json);
 }
 
 /// @brief read the key inputs for an action

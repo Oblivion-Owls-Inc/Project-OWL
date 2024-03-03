@@ -273,6 +273,15 @@
     /// @brief Debug window for PlatformSystem
     void PlatformSystem::DebugWindow()
     {
+        bool windowShown = GetDebugEnabled();
+
+        if ( ImGui::Begin( "PlatformSystem", &windowShown ) == false )
+        {
+            ImGui::End();
+            SetDebugEnable( windowShown );
+            return;
+        }
+
         ImGui::Text( "Window Size: %d x %d", m_WindowSize.x, m_WindowSize.y );
         ImGui::Text( "Window Name: %s", m_WindowName.c_str() );
 
@@ -280,6 +289,9 @@
         {
             SetFullscreen( !m_IsFullscreen );
         }
+
+        ImGui::End();
+        SetDebugEnable( windowShown );
     }
 
 //-----------------------------------------------------------------------------

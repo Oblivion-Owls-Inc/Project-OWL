@@ -228,6 +228,15 @@
     void SceneSystem::DebugWindow()
     {
 
+        bool showWindow = GetDebugEnabled();
+
+        if ( ImGui::Begin( "Scene System", &showWindow ) == false )
+        {
+            ImGui::End();
+            SetDebugEnable( showWindow );
+            return;
+        }
+
         unsigned selectedScene = inspectorListScenes();
 
 
@@ -255,6 +264,8 @@
             SaveScene( buffer );
         }
 
+        ImGui::End();
+        SetDebugEnable( showWindow );
     }
 
 //-----------------------------------------------------------------------------

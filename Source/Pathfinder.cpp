@@ -226,15 +226,32 @@ void Pathfinder::RemoveTarget(Entity* entity)
     
     t->RemoveOnTransformChangedCallback( GetId() );
 
+
+    // ===================== DEBUGGING ==========================
+
+    const char* prioritynames[] = { "highest", "high", "mid", "low" };
+
+    Debug() << "Priorities before erasing:";
+    for (Target const& tgt : m_Targets)
+        Debug() << " " << prioritynames[tgt.priority];
+    Debug() << std::endl;
+
     for (std::vector<Target>::iterator it = m_Targets.begin(); it < m_Targets.end(); ++it)
     {
         if (it->transform == t)
         {
             it->transform.Exit();
-            m_Targets.erase(it);
+            Debug() << "Erasing priority: " << prioritynames[it->priority] << std::endl;
+            std::swap(*it, *(it + 1));
             break;
         }
     }
+
+    Debug() << "Priorities after erasing:";
+    for (Target const& tgt : m_Targets)
+        Debug() << " " << prioritynames[tgt.priority];
+    Debug() << std::endl;
+    // ==============================================================
 }
 
 
@@ -318,12 +335,8 @@ void Pathfinder::explore()
         int ti = (int)m_Targets.size();  // target index (start from back)
         while (ti--)
         {
-            // if this target is gone, reference to its transform will be null
             if (!m_Targets[ti].transform)
-            {
-                m_Targets.erase(m_Targets.begin() + ti);
                 continue;
-            }
 
             glm::ivec2 tile = m_Tilemap->WorldPosToTileCoord(m_Targets[ti].transform->GetTranslation());
             if (tile.x != -1)

@@ -45,9 +45,19 @@ public: // methods
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  sets the opacity of the resources UI
+    /// @param  opacity the opacity the resources UI should be
+    void SetOpacity( float opacity );
+
+
 //-----------------------------------------------------------------------------
 public: // accessors
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the UiElement attached to this ResourcesUiManager
+    /// @return the UiElement attached to this ResourcesUiManager
+    UiElement* GetUiElement();
 
 
 //-----------------------------------------------------------------------------
@@ -77,10 +87,14 @@ private: // members
 
 
     /// @brief  the amount of space between the top and bottom of the box and the resource counters
-    float m_Padding = true;
+    float m_Padding = 0.5f;
 
     /// @brief  the amount of space between each resource counter
-    float m_Spacing = true;
+    float m_Spacing = 0.5f;
+
+
+    /// @brief  the opacity of the resources Ui
+    float m_Opacity = 1.0f;
 
 
     /// @brief  prefab to spawn of a counter of a single resource type
@@ -98,7 +112,7 @@ private: // members
     ComponentReference< UiElement > m_UiElement;
 
     /// @brief  the Sprite Component of the box containing the resource counters
-    ComponentReference< Sprite > m_Sprite;
+    ComponentReference< Sprite, false > m_Sprite;
 
 
     /// @brief  The Resource Counters that are children of this UiElement
@@ -161,6 +175,10 @@ private: // reading
     /// @brief  reads the amount of space between the top and bottom of the box and the resource counters
     /// @param  data    the JSON data to read from
     void readSpacing( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the opacity of the resources Ui
+    /// @param  data    the JSON data to read from
+    void readOpacity( nlohmann::ordered_json const& data );
 
 
     /// @brief  reads the reference to the Entity that has the Inventory to display

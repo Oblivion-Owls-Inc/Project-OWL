@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1166,
-                649
+                1174,
+                632
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -13,48 +13,40 @@
         "InputSystem": {
             "Actions": [
                 {
-                    "Name": "Horizontal Move",
-                    "Description": "Move's the player left and right",
+                    "Name": "MoveVertical",
+                    "Description": "",
                     "Keys": [
-                        68,
-                        262
+                        87
                     ],
                     "Mouse": null,
                     "Controller": null,
                     "Key Axis": [
-                        65,
-                        263
+                        83
                     ],
                     "Mouse Axis": null,
                     "Controller Axis": null,
                     "Gamepad Axis Input": null,
-                    "Gamepad Axis": [
-                        0
-                    ]
+                    "Gamepad Axis": null
                 },
                 {
-                    "Name": "Vertical Move",
-                    "Description": "Move's the player up and down",
+                    "Name": "MoveHorizontal",
+                    "Description": "",
                     "Keys": [
-                        87,
-                        265
+                        68
                     ],
                     "Mouse": null,
                     "Controller": null,
                     "Key Axis": [
-                        83,
-                        264
+                        65
                     ],
                     "Mouse Axis": null,
                     "Controller Axis": null,
                     "Gamepad Axis Input": null,
-                    "Gamepad Axis": [
-                        1
-                    ]
+                    "Gamepad Axis": null
                 },
                 {
-                    "Name": "Fire Laser",
-                    "Description": "Fire's the players mining laser",
+                    "Name": "FireLaser",
+                    "Description": "",
                     "Keys": null,
                     "Mouse": [
                         0
@@ -63,21 +55,17 @@
                     "Key Axis": null,
                     "Mouse Axis": null,
                     "Controller Axis": null,
-                    "Gamepad Axis Input": [
-                        5
-                    ],
+                    "Gamepad Axis Input": null,
                     "Gamepad Axis": null
                 },
                 {
                     "Name": "Interact",
-                    "Description": "Player interact action",
+                    "Description": "",
                     "Keys": [
                         69
                     ],
                     "Mouse": null,
-                    "Controller": [
-                        0
-                    ],
+                    "Controller": null,
                     "Key Axis": null,
                     "Mouse Axis": null,
                     "Controller Axis": null,
@@ -92,7 +80,7 @@
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
-        "PauseSystem": {},
+        "PauseSystem": null,
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},

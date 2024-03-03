@@ -198,7 +198,7 @@ void TilemapSprite::Draw()
         if (tr->GetIsDiegetic())
             proj = Cameras()->GetMat_WorldToClip();
         else
-            proj = Cameras()->GetMat_UItoClip();
+            proj = Cameras()->GetMat_UiToClip();
 
 
         // apply projection to stride vectors

@@ -42,7 +42,7 @@
 
 
     /// @return     UI space to clip space matrix
-    glm::mat4 const& CameraSystem::GetMat_UItoClip() const
+    glm::mat4 const& CameraSystem::GetMat_UiToClip() const
     {
         return m_UiToClip;
     }
@@ -59,7 +59,7 @@
     }
 
     /// @return     Screen to UI space matrix
-    glm::mat4 const& CameraSystem::GetMat_ScreenToUI() const
+    glm::mat4 const& CameraSystem::GetMat_ScreenToUi() const
     {
         return m_ScreenToUi;
     }
