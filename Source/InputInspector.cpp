@@ -917,7 +917,8 @@ void InputSystem::Action::SetName(std::string const& name)
 /// @return the name of the action
 std::string const& InputSystem::Action::GetName() const
 {
-    return m_Name;
+    static const std::string defaultString = "NO NAME";
+    return m_Name != "" ? m_Name : defaultString;
 }
 
 /// @brief  sets the description of the action
