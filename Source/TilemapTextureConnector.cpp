@@ -42,6 +42,7 @@
                 }
             }
         );
+
         m_ParentTilemap.SetOnDisconnectCallback(
             [ this ]()
             {

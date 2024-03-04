@@ -16,6 +16,7 @@
 #include "RigidBody.h"
 #include "AudioPlayer.h"
 #include "Health.h"
+#include "Tilemap.h"
 
 class EnemyBehavior : public Behavior
 {
@@ -83,7 +84,7 @@ private: // Member Variables
     /// @brief  Health of this entity.
     ComponentReference< Health > m_Health;
 
-
+    ComponentReference< Tilemap< int > > m_Tilemap;
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
