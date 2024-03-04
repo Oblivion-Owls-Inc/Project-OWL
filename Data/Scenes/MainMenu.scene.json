@@ -24,9 +24,9 @@
                 "UseAspectRatio": true
             },
             "ButtonTexture": {
-                "Filepath": "Data/Textures/PauseMenuAssets/ContinueButton.png",
+                "Filepath": "Data/Textures/PauseMenuAssets/ContinueButtonSheet.png",
                 "SheetDimensions": [
-                    1,
+                    3,
                     1
                 ],
                 "Pivot": [
@@ -36,9 +36,9 @@
                 "UseAspectRatio": false
             },
             "CreditsButtonTexture": {
-                "Filepath": "Data/Textures/PauseMenuAssets/CreditsButton.png",
+                "Filepath": "Data/Textures/PauseMenuAssets/CreditsButtonSheetpng.png",
                 "SheetDimensions": [
-                    1,
+                    3,
                     1
                 ],
                 "Pivot": [
@@ -60,9 +60,9 @@
                 "UseAspectRatio": true
             },
             "HowToPlayButtonTexture": {
-                "Filepath": "Data/Textures/PauseMenuAssets/ContinueButton.png",
+                "Filepath": "Data/Textures/PauseMenuAssets/ContinueButtonSheet.png",
                 "SheetDimensions": [
-                    1,
+                    3,
                     1
                 ],
                 "Pivot": [
@@ -96,9 +96,9 @@
                 "UseAspectRatio": false
             },
             "QuitButtonTexture": {
-                "Filepath": "Data/Textures/PauseMenuAssets/QuitButton.png",
+                "Filepath": "Data/Textures/PauseMenuAssets/QuitGameSheet.png",
                 "SheetDimensions": [
-                    1,
+                    3,
                     1
                 ],
                 "Pivot": [
@@ -108,9 +108,9 @@
                 "UseAspectRatio": false
             },
             "SettingsButtonTexture": {
-                "Filepath": "Data/Textures/PauseMenuAssets/SettingsButton.png",
+                "Filepath": "Data/Textures/PauseMenuAssets/SettingsButtonSheet.png",
                 "SheetDimensions": [
-                    1,
+                    3,
                     1
                 ],
                 "Pivot": [
@@ -397,8 +397,8 @@
                                     "ClickEventName": "MainMenuToPrototype",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
-                                    "HoveredFrame": 0,
-                                    "DownFrame": 0,
+                                    "HoveredFrame": 1,
+                                    "DownFrame": 2,
                                     "PressSound": {
                                         "AssetName": "ButtonPressedSound"
                                     },
@@ -469,8 +469,8 @@
                                     "ClickEventName": "MainMenuToTutorial",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
-                                    "HoveredFrame": 0,
-                                    "DownFrame": 0,
+                                    "HoveredFrame": 1,
+                                    "DownFrame": 2,
                                     "PressSound": {
                                         "AssetName": "ButtonPressedSound"
                                     },
@@ -541,8 +541,8 @@
                                     "ClickEventName": "Settings",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
-                                    "HoveredFrame": 0,
-                                    "DownFrame": 0,
+                                    "HoveredFrame": 1,
+                                    "DownFrame": 2,
                                     "PressSound": {
                                         "AssetName": "ButtonPressedSound"
                                     },
@@ -613,8 +613,8 @@
                                     "ClickEventName": "Credits",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
-                                    "HoveredFrame": 0,
-                                    "DownFrame": 0,
+                                    "HoveredFrame": 1,
+                                    "DownFrame": 2,
                                     "PressSound": {
                                         "AssetName": "ButtonPressedSound"
                                     },
@@ -689,8 +689,8 @@
                                     "ClickEventName": "QuitMainMenu",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
-                                    "HoveredFrame": 0,
-                                    "DownFrame": 0,
+                                    "HoveredFrame": 1,
+                                    "DownFrame": 2,
                                     "PressSound": {
                                         "AssetName": "ButtonPressedSound"
                                     },
