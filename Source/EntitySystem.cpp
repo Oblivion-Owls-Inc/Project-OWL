@@ -328,6 +328,25 @@
         // Function to display entities recursively
         std::function<void(Entity*,bool)> displayEntityRecursive = [&](Entity* entity, bool child)
         {
+            if (ImGui::BeginDragDropTargetCustom(ImGui::GetCurrentWindow()->Rect(), ImGui::GetID("ENTITY_PAYLOAD")))
+            {
+                const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ENTITY_PAYLOAD");
+
+                if (payload != NULL)
+                {
+                    Entity* droppedEntity = *(Entity**)payload->Data;
+
+                    if (!droppedEntity->IsInScene())
+                    {
+                        droppedEntity->Clone()->AddToScene();
+                    }
+
+                    droppedEntity->SetParent(nullptr);
+                }
+
+                ImGui::EndDragDropTarget();
+            }
+
             std::vector< Entity* > entities;
             Entity* parent = entity ? entity->GetParent() : nullptr; // Get the parent of the current entity
             // Get the children of the parent if it exists, otherwise get the root entities
