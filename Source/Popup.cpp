@@ -66,6 +66,10 @@ void Popup::OnInit()
 /// @brief  called every frame
 void Popup::OnFixedUpdate()
 {
+    if (!m_PopupButton)
+        return
+
+
     if (m_PopupButton->GetReleased())
     {
         TogglePopup();
