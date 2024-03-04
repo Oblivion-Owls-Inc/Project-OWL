@@ -108,6 +108,8 @@ void Popup::Inspector()
 {
     m_PopupEntity.Inspect("Popup Entity");
     m_PopupButton.Inspect("Popup Button");
+    
+    ImGui::InputText("Event Name", &m_EventName);
 }
 
 

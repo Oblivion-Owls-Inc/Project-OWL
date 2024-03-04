@@ -40,3 +40,59 @@ void AssetLibrarySystem<Entity>::DebugWindow()
 
     SetDebugEnable(s_ShowAssetLibraryList);
 }
+
+
+/// @brief Specialized DebugCreateAssetWindow for AssetLibrarySystem of type Entity
+template<>
+bool AssetLibrarySystem<Entity>::DebugCreateAssetWindow()
+{
+    bool show = true;
+
+    std::string assetName("Entity"); 
+
+    std::string windowName = "Create New " + assetName;
+
+    ImGui::Begin(windowName.c_str(), &show, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::SetNextWindowSize(ImVec2(500, 100), ImGuiCond_FirstUseEver);
+    // Input text for asset name
+    static char buffer[128] = ""; // Buffer to hold the input, you can save this
+    ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.45f);
+    ImGui::InputText("##Asset Name", buffer, IM_ARRAYSIZE(buffer));
+
+    // add asset button
+    ImGui::SameLine();
+    if (ImGui::Button("Add Asset", ImVec2(100, 0)))
+    {
+        if (buffer[0] == '\0')
+        {
+            Debug() << "Warning: Asset must have a name" << std::endl;
+        }
+        else
+        {
+            Debug() << "Log: Creating new " << assetName << " with name: " << buffer << std::endl;
+
+            Entity* entity = new Entity();
+            entity->SetName(buffer);
+
+            AddAsset(buffer, entity);
+            ImGui::End();
+            return false; //close window
+        }
+    }
+    ImGui::SameLine();
+
+    if (ImGui::Button("Cancel", ImVec2(100, 0)))
+    {
+        ImGui::End();
+        return false; //close window
+    }
+
+    if (!show)
+    {
+        ImGui::End();
+        return false; //close window
+    }
+
+    ImGui::End();
+    return true; // keep window open
+}
