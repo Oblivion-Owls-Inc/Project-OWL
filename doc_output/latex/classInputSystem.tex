@@ -2,6 +2,15 @@
 \label{classInputSystem}\index{InputSystem@{InputSystem}}
 
 
+Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when creating new Systems.  
+
+
+
+
+{\ttfamily \#include $<$Input\+System.\+h$>$}
+
+
+
 Inheritance diagram for Input\+System\+:
 % FIG 0
 
@@ -21,8 +30,8 @@ virtual void \mbox{\hyperlink{classInputSystem_a54ce226da68c48fc59a9074f54938f87
 \begin{DoxyCompactList}\small\item\em Gets Called by the Debug system to display debug information. \end{DoxyCompactList}\item 
 const char $\ast$ \mbox{\hyperlink{classInputSystem_a7e3c9e3db7f53b846a922e1e2caae92e}{Get\+Debug\+Key\+Name}} (int key) const
 \begin{DoxyCompactList}\small\item\em displays a text version of a key to imgui (65 becomes \char`\"{}\+A\char`\"{}, etc) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classInputSystem_ad7af35c165101998b6b87336e3f39ffe}\label{classInputSystem_ad7af35c165101998b6b87336e3f39ffe}} 
-GLFWwindow $\ast$ {\bfseries Getm\+\_\+\+Handle} ()
+\mbox{\Hypertarget{classInputSystem_ace02d6c7346f7ba0562bf580ca31debc}\label{classInputSystem_ace02d6c7346f7ba0562bf580ca31debc}} 
+GLFWwindow $\ast$ {\bfseries Get\+Handle} ()
 \item 
 int \mbox{\hyperlink{classInputSystem_ab3c87041dbe89aa0f75f5220d16231b7}{Init\+Alternate\+Window}} (GLFWwindow $\ast$m\+\_\+\+Handle)
 \begin{DoxyCompactList}\small\item\em sets a new window m\+\_\+\+Handle \end{DoxyCompactList}\item 
@@ -60,10 +69,14 @@ glm\+::vec2 \mbox{\hyperlink{classInputSystem_a1a4c9201d7299d4ff7100a35fc030118}
 \begin{DoxyCompactList}\small\item\em gets mouse pos in world space \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classInputSystem_a3f09ca7da9888ea5d3ef513ee49a029c}{Get\+Mouse\+Delta\+Scroll}} ()
 \begin{DoxyCompactList}\small\item\em gets how much the mouse has scrolled since last frame \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classInputSystem_1_1Action}{Action}} $\ast$ \mbox{\hyperlink{classInputSystem_a94e6c29f77c4462f71c5d96c079d47a7}{Get\+Action\+By\+Name}} (std\+::string \&name)
+\mbox{\hyperlink{classInputSystem_1_1Action}{Action}} $\ast$ \mbox{\hyperlink{classInputSystem_a98f6ef4dc798c419b99a5d8994a38922}{Get\+Action\+By\+Name}} (std\+::string const \&name)
 \begin{DoxyCompactList}\small\item\em gets an action by its name \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{classInputSystem_1_1Action}{Action}} $>$ const  \& \mbox{\hyperlink{classInputSystem_aa635de5491dcd343eef28a620cf63e91}{Get\+Actions}} () const
 \begin{DoxyCompactList}\small\item\em gets the vector of Actions in the \mbox{\hyperlink{classInputSystem}{Input\+System}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_a0e1290a766827532c8312b872d78806e}{Add\+Action\+Reference}} (\mbox{\hyperlink{classActionReference}{Action\+Reference}} $\ast$action\+Reference)
+\begin{DoxyCompactList}\small\item\em adds an \mbox{\hyperlink{classActionReference}{Action\+Reference}} to the \mbox{\hyperlink{classInputSystem}{Input\+System}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInputSystem_a6c21637471f97e9dc8fdcd44247e348e}{Remove\+Action\+Reference}} (\mbox{\hyperlink{classActionReference}{Action\+Reference}} $\ast$action\+Reference)
+\begin{DoxyCompactList}\small\item\em removes an \mbox{\hyperlink{classActionReference}{Action\+Reference}} from the \mbox{\hyperlink{classInputSystem}{Input\+System}} \end{DoxyCompactList}\item 
 virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classInputSystem_a70a0d3ad29912ecc7e41f05b0620cf66}{Get\+Read\+Methods}} () const override
 \begin{DoxyCompactList}\small\item\em gets this \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s read methods \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classInputSystem_a83e693fc73f696b8813590f1949f80d6}\label{classInputSystem_a83e693fc73f696b8813590f1949f80d6}} 
@@ -82,12 +95,30 @@ static Read\+Method\+Map$<$ \mbox{\hyperlink{classInputSystem}{Input\+System}} $
 \doxysubsection*{Additional Inherited Members}
 
 
+\doxysubsection{Detailed Description}
+Example \mbox{\hyperlink{classSystem}{System}} meant to be copy-\/pasted when creating new Systems. 
+
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classInputSystem_a94e6c29f77c4462f71c5d96c079d47a7}\label{classInputSystem_a94e6c29f77c4462f71c5d96c079d47a7}} 
+\mbox{\Hypertarget{classInputSystem_a0e1290a766827532c8312b872d78806e}\label{classInputSystem_a0e1290a766827532c8312b872d78806e}} 
+\index{InputSystem@{InputSystem}!AddActionReference@{AddActionReference}}
+\index{AddActionReference@{AddActionReference}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{AddActionReference()}{AddActionReference()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Add\+Action\+Reference (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classActionReference}{Action\+Reference}} $\ast$}]{action\+Reference }\end{DoxyParamCaption})}
+
+
+
+adds an \mbox{\hyperlink{classActionReference}{Action\+Reference}} to the \mbox{\hyperlink{classInputSystem}{Input\+System}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action\+Reference} & the \mbox{\hyperlink{classActionReference}{Action\+Reference}} to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInputSystem_a98f6ef4dc798c419b99a5d8994a38922}\label{classInputSystem_a98f6ef4dc798c419b99a5d8994a38922}} 
 \index{InputSystem@{InputSystem}!GetActionByName@{GetActionByName}}
 \index{GetActionByName@{GetActionByName}!InputSystem@{InputSystem}}
 \doxysubsubsection{\texorpdfstring{GetActionByName()}{GetActionByName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classInputSystem_1_1Action}{Input\+System\+::\+Action}} $\ast$ Input\+System\+::\+Get\+Action\+By\+Name (\begin{DoxyParamCaption}\item[{std\+::string \&}]{name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classInputSystem_1_1Action}{Input\+System\+::\+Action}} $\ast$ Input\+System\+::\+Get\+Action\+By\+Name (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{name }\end{DoxyParamCaption})}
 
 
 
@@ -502,6 +533,21 @@ sets a new window m\+\_\+\+Handle
 \begin{DoxyReturn}{Returns}
 int, pass this back to check window 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classInputSystem_a6c21637471f97e9dc8fdcd44247e348e}\label{classInputSystem_a6c21637471f97e9dc8fdcd44247e348e}} 
+\index{InputSystem@{InputSystem}!RemoveActionReference@{RemoveActionReference}}
+\index{RemoveActionReference@{RemoveActionReference}!InputSystem@{InputSystem}}
+\doxysubsubsection{\texorpdfstring{RemoveActionReference()}{RemoveActionReference()}}
+{\footnotesize\ttfamily void Input\+System\+::\+Remove\+Action\+Reference (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classActionReference}{Action\+Reference}} $\ast$}]{action\+Reference }\end{DoxyParamCaption})}
+
+
+
+removes an \mbox{\hyperlink{classActionReference}{Action\+Reference}} from the \mbox{\hyperlink{classInputSystem}{Input\+System}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action\+Reference} & the \mbox{\hyperlink{classActionReference}{Action\+Reference}} to remove \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Member Data Documentation}

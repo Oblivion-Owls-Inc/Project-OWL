@@ -35,6 +35,7 @@
 #include "EnemyBehavior.h"
 #include "RigidBody.h"
 #include "PlayerController.h"
+#include "Popup.h"
 #include "TurretBehavior.h"
 #include "EffectAnimator.h"
 #include "WavesBehavior.h"
@@ -361,6 +362,8 @@
         { "BehaviorSystem<EnemyBehavior>"         , &addSystem< BehaviorSystem< EnemyBehavior          > > },
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
 		{ "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
+        { "BehaviorSystem<Popup>"                 , &addSystem< BehaviorSystem< Popup                  > > },
+
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },

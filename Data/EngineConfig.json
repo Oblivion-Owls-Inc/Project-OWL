@@ -1,239 +1,191 @@
 {
     "FixedFrameDuration": 0.016699999570846558,
-  "Systems": {
-    "PlatformSystem": {
-      "WindowSize": [
-        1814,
-        1010
-      ],
-      "WindowName": "Dig Deeper",
-      "VSync": true
-    },
-    "EventSystem": {},
-    "InputSystem": {
-      "Actions": [
-        {
-          "Name": "MoveVertical",
-          "Keys": [
-            87
-          ],
-          "Mouse": null,
-          "Controller": null,
-          "Key Axis": [
-            83
-          ],
-          "Mouse Axis": null,
-          "Controller Axis": null,
-          "Gamepad Axis Input": null,
-          "Gamepad Axis": null
+    "Systems": {
+        "PlatformSystem": {
+            "WindowSize": [
+                1174,
+                632
+            ],
+            "WindowName": "Dig Deeper",
+            "VSync": true
         },
-        {
-          "Name": "MoveHorizontal",
-          "Keys": [
-            68
-          ],
-          "Mouse": null,
-          "Controller": null,
-          "Key Axis": [
-            65
-          ],
-          "Mouse Axis": null,
-          "Controller Axis": null,
-          "Gamepad Axis Input": null,
-          "Gamepad Axis": null
+        "EventSystem": {},
+        "InputSystem": {
+            "Actions": [
+                {
+                    "Name": "MoveVertical",
+                    "Description": "",
+                    "Keys": [
+                        87
+                    ],
+                    "Mouse": null,
+                    "Controller": null,
+                    "Key Axis": [
+                        83
+                    ],
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "MoveHorizontal",
+                    "Description": "",
+                    "Keys": [
+                        68
+                    ],
+                    "Mouse": null,
+                    "Controller": null,
+                    "Key Axis": [
+                        65
+                    ],
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "FireLaser",
+                    "Description": "",
+                    "Keys": null,
+                    "Mouse": [
+                        0
+                    ],
+                    "Controller": null,
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "Interact",
+                    "Description": "",
+                    "Keys": [
+                        69
+                    ],
+                    "Mouse": null,
+                    "Controller": null,
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                }
+            ]
         },
-        {
-          "Name": "FireLaser",
-          "Keys": null,
-          "Mouse": [
-            0
-          ],
-          "Controller": null,
-          "Key Axis": null,
-          "Mouse Axis": null,
-          "Controller Axis": null,
-          "Gamepad Axis Input": null,
-          "Gamepad Axis": null
+        "SceneSystem": {
+            "BaseScenePath": "Data/Scenes/",
+            "NextSceneName": "SplashScreen",
+            "AutosaveName": "Autosaved_Scene"
         },
-        {
-          "Name": "Interact",
-          "Keys": [
-            69
-          ],
-          "Mouse": null,
-          "Controller": null,
-          "Key Axis": null,
-          "Mouse Axis": null,
-          "Controller Axis": null,
-          "Gamepad Axis Input": null,
-          "Gamepad Axis": null
+        "EntitySystem": {},
+        "PauseSystem": {},
+        "BehaviorSystem<Popup>": {},
+        "BehaviorSystem<Behavior>": {},
+        "BehaviorSystem<RigidBody>": {},
+        "BehaviorSystem<WavesBehavior>": {},
+        "BehaviorSystem<EnemyBehavior>": {},
+        "BehaviorSystem<EditorCameraController>": {},
+        "BehaviorSystem<UiButton>": {},
+        "ComponentSystem<Generator>": {},
+        "ComponentSystem<ItemComponent>": {},
+        "ParticleSystem": {},
+        "LightingSystem": {
+            "Enabled": false,
+            "Layer": 6
         },
-        {
-          "Name": "Place",
-          "Keys": null,
-          "Mouse": [
-            1
-          ],
-          "Controller": [
-            2
-          ],
-          "Key Axis": null,
-          "Mouse Axis": null,
-          "Controller Axis": null,
-          "Gamepad Axis Input": null,
-          "Gamepad Axis": null
+        "CollisionSystem": {
+            "CollisionLayerNames": [
+                "Terrain",
+                "Enemies",
+                "Player",
+                "Base",
+                "Projectiles"
+            ],
+            "CollisionSteps": 8,
+            "GridSize": 0.25
         },
-        {
-          "Name": "Cancel Place",
-          "Keys": [
-            50
-          ],
-          "Mouse": null,
-          "Controller": [
-            1
-          ],
-          "Key Axis": null,
-          "Mouse Axis": null,
-          "Controller Axis": null,
-          "Gamepad Axis Input": null,
-          "Gamepad Axis": null
+        "BehaviorSystem<Animation>": {},
+        "BehaviorSystem<EffectAnimator>": {},
+        "CameraSystem": {},
+        "RenderSystem": {},
+        "AudioSystem": {
+            "MaxChannels": 1024
         },
-        {
-          "Name": "Build Turret 1",
-          "Keys": [
-            49
-          ],
-          "Mouse": null,
-          "Controller": [
-            3
-          ],
-          "Key Axis": null,
-          "Mouse Axis": null,
-          "Controller Axis": null,
-          "Gamepad Axis Input": null,
-          "Gamepad Axis": null
+        "CheatSystem": {},
+        "DebugSystem": {
+            "ShowFpsWindow": true,
+            "ShowDebugWindow": true
+        },
+        "AssetLibrary<Entity>": {},
+        "AssetLibrary<Sound>": {},
+        "AssetLibrary<Texture>": {},
+        "AssetLibrary<TransformAnimation>": {},
+        "AssetLibrary<AnimationAsset>": {},
+        "TileInfoSystem": {
+            "TileInfo": [
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    0
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                },
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    1
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                },
+                {
+                    "LootTable": {
+                        "Entries": [
+                            {
+                                "ItemIds": [
+                                    2
+                                ],
+                                "MinCount": 1,
+                                "MaxCount": 1,
+                                "Probability": 1.0,
+                                "Weight": 1.0,
+                                "AllowMultipleRolls": true
+                            }
+                        ],
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                }
+            ]
         }
-      ]
-    },
-    "SceneSystem": {
-      "BaseScenePath": "Data/Scenes/",
-      "NextSceneName": "Prototype",
-      "AutosaveName": "Autosaved_Scene"
-    },
-    "EntitySystem": {},
-    "PauseSystem": {},
-    "BehaviorSystem<Behavior>": {},
-    "BehaviorSystem<RigidBody>": {},
-    "BehaviorSystem<WavesBehavior>": {},
-    "BehaviorSystem<EnemyBehavior>": {},
-    "BehaviorSystem<EditorCameraController>": {},
-    "BehaviorSystem<UiButton>": {},
-    "BehaviorSystem<Generator>": {},
-    "ComponentSystem<Generator>": {},
-    "ComponentSystem<ItemComponent>": {},
-    "ParticleSystem": {},
-    "LightingSystem": {
-      "Enabled": false,
-      "Layer": 6
-    },
-    "CollisionSystem": {
-      "CollisionLayerNames": [
-        "Terrain",
-        "Enemies",
-        "Player",
-        "Base",
-        "Projectiles"
-      ],
-      "CollisionSteps": 8,
-      "GridSize": 0.25
-    },
-    "BehaviorSystem<Animation>": {},
-    "BehaviorSystem<EffectAnimator>": {},
-    "CameraSystem": {},
-    "RenderSystem": {
-      "BackgroundColor": [
-        0.20000000298023224,
-        0.30000001192092896,
-        0.30000001192092896,
-        1.0
-      ]
-    },
-    "AudioSystem": {
-      "MaxChannels": 1024
-    },
-    "CheatSystem": {},
-    "DebugSystem": {
-      "ShowFpsWindow": true,
-      "ShowDebugWindow": true
-    },
-    "AssetLibrary<Entity>": {},
-    "AssetLibrary<Sound>": {},
-    "AssetLibrary<Texture>": {},
-    "AssetLibrary<TransformAnimation>": {},
-    "AssetLibrary<AnimationAsset>": {},
-    "TileInfoSystem": {
-      "TileInfo": [
-        {
-          "LootTable": {
-            "Entries": [
-              {
-                "ItemIds": [
-                  0
-                ],
-                "MinCount": 1,
-                "MaxCount": 1,
-                "Probability": 1.0,
-                "Weight": 1.0,
-                "AllowMultipleRolls": true
-              }
-            ],
-            "RandomRollsEnabled": false,
-            "MinRolls": 1,
-            "MaxRolls": 1
-          },
-          "Toughness": 0.0
-        },
-        {
-          "LootTable": {
-            "Entries": [
-              {
-                "ItemIds": [
-                  1
-                ],
-                "MinCount": 1,
-                "MaxCount": 1,
-                "Probability": 1.0,
-                "Weight": 1.0,
-                "AllowMultipleRolls": true
-              }
-            ],
-            "RandomRollsEnabled": false,
-            "MinRolls": 1,
-            "MaxRolls": 1
-          },
-          "Toughness": 0.0
-        },
-        {
-          "LootTable": {
-            "Entries": [
-              {
-                "ItemIds": [
-                  2
-                ],
-                "MinCount": 1,
-                "MaxCount": 1,
-                "Probability": 1.0,
-                "Weight": 1.0,
-                "AllowMultipleRolls": true
-              }
-            ],
-            "RandomRollsEnabled": false,
-            "MinRolls": 1,
-            "MaxRolls": 1
-          },
-          "Toughness": 0.0
-        }
-      ]
     }
-  }
 }

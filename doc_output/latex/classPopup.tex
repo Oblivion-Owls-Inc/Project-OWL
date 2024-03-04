@@ -1,0 +1,139 @@
+\hypertarget{classPopup}{}\doxysection{Popup Class Reference}
+\label{classPopup}\index{Popup@{Popup}}
+
+
+A \mbox{\hyperlink{classPopup}{Popup}} is a behavior that will show a popup when a button is pressed.  
+
+
+
+
+{\ttfamily \#include $<$Popup.\+h$>$}
+
+
+
+Inheritance diagram for Popup\+:
+% FIG 0
+
+
+Collaboration diagram for Popup\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPopup_a670d35e480ac48024204994fedc9b056}\label{classPopup_a670d35e480ac48024204994fedc9b056}} 
+\mbox{\hyperlink{classPopup_a670d35e480ac48024204994fedc9b056}{Popup}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classPopup_a3f0ef4bdfc99a5af62e5153813070ad5}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPopup_a8536a678b4c4b82e05721e83b072d123}\label{classPopup_a8536a678b4c4b82e05721e83b072d123}} 
+virtual void \mbox{\hyperlink{classPopup_a8536a678b4c4b82e05721e83b072d123}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classPopup_a7edeb66c35b0426bdaa00ac8ef956def}{On\+Fixed\+Update}} ()
+\begin{DoxyCompactList}\small\item\em called once per frame \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPopup_a27aa8271529ee3d88567cb3f427876b7}\label{classPopup_a27aa8271529ee3d88567cb3f427876b7}} 
+virtual void \mbox{\hyperlink{classPopup_a27aa8271529ee3d88567cb3f427876b7}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classPopup}{Popup}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classPopup_ad3ab11d13005c9d7d9e8d35cfbc27d4e}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classPopup}{Popup}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPopup_a6a03f7a622fcbab59abe7762b64d6fd0}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classPopup}{Popup}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classPopup}{Popup}} $\ast$ \mbox{\hyperlink{classPopup_a2ed7533d8ad2bc71e74871f136662d30}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classPopup}{Popup}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A \mbox{\hyperlink{classPopup}{Popup}} is a behavior that will show a popup when a button is pressed. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPopup_a2ed7533d8ad2bc71e74871f136662d30}\label{classPopup_a2ed7533d8ad2bc71e74871f136662d30}} 
+\index{Popup@{Popup}!Clone@{Clone}}
+\index{Clone@{Clone}!Popup@{Popup}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPopup}{Popup}} $\ast$ Popup\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classPopup}{Popup}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classPopup}{Popup}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classPopup_ad3ab11d13005c9d7d9e8d35cfbc27d4e}\label{classPopup_ad3ab11d13005c9d7d9e8d35cfbc27d4e}} 
+\index{Popup@{Popup}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!Popup@{Popup}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Popup\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classPopup}{Popup}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classPopup}{Popup}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classPopup_a7edeb66c35b0426bdaa00ac8ef956def}\label{classPopup_a7edeb66c35b0426bdaa00ac8ef956def}} 
+\index{Popup@{Popup}!OnFixedUpdate@{OnFixedUpdate}}
+\index{OnFixedUpdate@{OnFixedUpdate}!Popup@{Popup}}
+\doxysubsubsection{\texorpdfstring{OnFixedUpdate()}{OnFixedUpdate()}}
+{\footnotesize\ttfamily void Popup\+::\+On\+Fixed\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+called once per frame 
+
+called every frame 
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+\mbox{\Hypertarget{classPopup_a3f0ef4bdfc99a5af62e5153813070ad5}\label{classPopup_a3f0ef4bdfc99a5af62e5153813070ad5}} 
+\index{Popup@{Popup}!OnInit@{OnInit}}
+\index{OnInit@{OnInit}!Popup@{Popup}}
+\doxysubsubsection{\texorpdfstring{OnInit()}{OnInit()}}
+{\footnotesize\ttfamily void Popup\+::\+On\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called once when entering the scene 
+
+Set the filter function for the listener
+
+Set the Callback function for the listener
+
+Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
+
+\mbox{\Hypertarget{classPopup_a6a03f7a622fcbab59abe7762b64d6fd0}\label{classPopup_a6a03f7a622fcbab59abe7762b64d6fd0}} 
+\index{Popup@{Popup}!Write@{Write}}
+\index{Write@{Write}!Popup@{Popup}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Popup\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classPopup}{Popup}} to JSON 
+
+Writes all \mbox{\hyperlink{classPopup}{Popup}} data to a JSON file.
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classPopup}{Popup}}
+
+The JSON file containing the data. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{Popup_8h}{Popup.\+h}}\item 
+Source/\mbox{\hyperlink{Popup_8cpp}{Popup.\+cpp}}\end{DoxyCompactItemize}

@@ -99,12 +99,6 @@
     <Filter Include="Header Files\imgui">
       <UniqueIdentifier>{7f9af033-81e2-44c9-af1e-a9a713ab2083}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scenes">
-      <UniqueIdentifier>{248a6873-a0bc-44fa-8202-3e54136060d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Scenes\SandboxSystem">
-      <UniqueIdentifier>{2e6eff95-6e99-4d15-bb46-87a201aa10e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Framework\Curve">
       <UniqueIdentifier>{d2fc6db3-659e-4e13-91ec-b3a530965a57}</UniqueIdentifier>
     </Filter>
@@ -1174,6 +1168,9 @@
       <Filter>Data\Shaders\Fragment</Filter>
     </None>
     <None Include="Data\Scenes\MapTest.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
+    <None Include="Data\Scenes\MainMenu.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>

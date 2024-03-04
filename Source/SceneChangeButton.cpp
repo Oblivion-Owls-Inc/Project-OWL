@@ -19,7 +19,7 @@
 //-----------------------------------------------------------------------------
 
  
-    /// @brief  default constructor
+    /// @brief  default constructor 
 SceneChangeButton::SceneChangeButton() :
     Component(typeid(SceneChangeButton))
 {}
