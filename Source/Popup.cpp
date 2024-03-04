@@ -67,7 +67,7 @@ void Popup::OnInit()
 void Popup::OnFixedUpdate()
 {
     if (!m_PopupButton)
-        return
+        return;
 
 
     if (m_PopupButton->GetReleased())
