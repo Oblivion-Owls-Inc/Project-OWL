@@ -427,6 +427,11 @@
                             entity->AddComponent(transform); /// Add the transform to the entity)
                             entity->SetParent(currentEntity);
                        }
+
+                       if (ImGui::MenuItem("Add to Scene"))
+                       {
+                           currentEntity->Clone()->AddToScene();
+                       }
                     }
 
 
