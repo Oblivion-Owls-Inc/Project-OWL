@@ -351,6 +351,12 @@
     <Filter Include="Engine\Entity\Component\SceneChangeButton">
       <UniqueIdentifier>{d7d04071-2085-40c9-8456-07a77eb4a22c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\PathfinderTarget">
+      <UniqueIdentifier>{118d28b5-4ccc-4061-a0d4-412614a85a1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\PathfindSystem">
+      <UniqueIdentifier>{4929f0be-dbd3-432d-91b3-6b27b4f6297c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -521,9 +527,6 @@
     <ClCompile Include="Source\Text.cpp">
       <Filter>Engine\Entity\Component\Text</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Pathfinder.cpp">
-      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
-    </ClCompile>
     <ClCompile Include="Source\TilemapCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClCompile>
@@ -689,6 +692,9 @@
     <ClCompile Include="Source\Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PauseSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\SceneChangeButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -725,8 +731,14 @@
     <ClCompile Include="Source\AssetLibrarySystem.cpp">
       <Filter>Engine\Systems\AssetLibrarySystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PauseSystem.cpp">
-      <Filter>Engine\Systems\PauseSystem</Filter>
+    <ClCompile Include="Source\PathfinderTarget.cpp">
+      <Filter>Engine\Entity\Component\PathfinderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PathfindSystem.cpp">
+      <Filter>Engine\Systems\PathfindSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Pathfinder.cpp">
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -910,9 +922,6 @@
     <ClInclude Include="Source\ISerializable.h">
       <Filter>Engine\Framework\Serialization</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Pathfinder.h">
-      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
-    </ClInclude>
     <ClInclude Include="Source\TilemapCollider.h">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClInclude>
@@ -1072,6 +1081,9 @@
     <ClInclude Include="Source\Console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PauseSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Source\SceneChangeButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1099,8 +1111,14 @@
     <ClInclude Include="Source\SceneChangeButton.h">
       <Filter>Engine\Entity\Component\SceneChangeButton</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PauseSystem.h">
-      <Filter>Engine\Systems\PauseSystem</Filter>
+    <ClInclude Include="Source\PathfinderTarget.h">
+      <Filter>Engine\Entity\Component\PathfinderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PathfindSystem.h">
+      <Filter>Engine\Systems\PathfindSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Pathfinder.h">
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

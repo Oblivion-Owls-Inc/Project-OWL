@@ -81,6 +81,7 @@
         },
         "EntitySystem": {},
         "PauseSystem": null,
+        "PathfindSystem": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},

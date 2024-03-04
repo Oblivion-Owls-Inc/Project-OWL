@@ -1,3 +1,4 @@
+#if 0
 /*********************************************************************
 * \file   Pathfinder.cpp
 * \brief  Implementation of Pathfinder component. Runs vector field
@@ -22,7 +23,6 @@ Pathfinder::Pathfinder() : Component(typeid(Pathfinder))
 {
     m_Walkables.push_back(0);   // by default, 0 is considered empty space
                                 // (hence walkable)
-    //m_Targets.reserve(10);
 }
 
 /// @brief        Copy ctor
@@ -659,3 +659,4 @@ Pathfinder::Target::Target(ComponentReference<Transform> t, Priority p)
 }
 
 //-----------------------------------------------------------------------------
+#endif

@@ -18,7 +18,6 @@
 #include "Health.h"
 
 #include "EntityReference.h"
-#include "Pathfinder.h"
 
 class EnemyBehavior : public Behavior
 {
@@ -72,13 +71,6 @@ private: // Member Variables
 
     /// @brief how much damage the enemy does.
     int m_Damage = 1;
-
-
-    /// @brief  the Pathfinder this Enemy follows
-    ComponentReference< Pathfinder > m_Pathfinder;
-
-    /// @brief  the name of the Entity with the Pathfinder to follow
-    EntityReference m_PathfinderEntity = EntityReference( { &m_Pathfinder } );
 
 
     /// @brief  the transform attached to this Enemy

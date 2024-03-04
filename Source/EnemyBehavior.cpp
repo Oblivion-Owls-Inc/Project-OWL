@@ -14,7 +14,7 @@
 #include "EntitySystem.h"
 #include "Transform.h"
 #include "Engine.h"
-#include "Pathfinder.h"
+#include "PathfindSystem.h"
 #include "RigidBody.h"
 #include "basics.h"
 #include "Pool.h"
@@ -88,8 +88,6 @@
         m_AudioPlayer.Init( GetEntity() );
         m_Health     .Init( GetEntity() );
 
-        m_PathfinderEntity.SetOwnerName( GetName() );
-        m_PathfinderEntity.Init();
     }
 
     /// @brief Removes this behavior from the behavior system on exit
@@ -101,8 +99,6 @@
         m_Transform  .Exit();
         m_AudioPlayer.Exit();
         m_Health     .Exit();
-
-        m_PathfinderEntity.Exit();
     }
 
 
@@ -111,8 +107,7 @@
     {
         if (
             m_Transform == nullptr ||
-            m_RigidBody == nullptr ||
-            m_Pathfinder == nullptr
+            m_RigidBody == nullptr 
         )
         {
             return;
@@ -136,7 +131,7 @@
     void EnemyBehavior::chaseTarget()
     {
         // accelerate along path
-        glm::vec2 moveDir = m_Pathfinder->GetDirectionAt( m_Transform->GetTranslation() );
+        glm::vec2 moveDir = Pathfinder()->GetDirectionAt(m_Transform->GetTranslation());
         m_RigidBody->ApplyAcceleration( moveDir * m_Speed );
     }
 
@@ -178,8 +173,6 @@
         ImGui::DragFloat( "Speed", &m_Speed, 0.05f, 0.0f, INFINITY );
 
         ImGui::DragInt( "Damage", &m_Damage, 0.05f, 0, INT_MAX );
-
-        m_PathfinderEntity.Inspect( "pathfinder entity" );
     }
 
 
@@ -191,7 +184,7 @@
     /// @param  data    the json data to read from
     void EnemyBehavior::readPathfinderEntity( nlohmann::ordered_json const& data )
     {
-        Stream::Read( m_PathfinderEntity, data );
+        //Stream::Read( m_PathfinderEntity, data );
     }
 
     /// @brief  reads the speed
@@ -231,7 +224,7 @@
     {
         nlohmann::ordered_json data;
 
-        data[ "PathfinderEntity" ] = Stream::Write( m_PathfinderEntity );
+        //data[ "PathfinderEntity" ] = Stream::Write( m_PathfinderEntity );
         data[ "Speed"            ] = Stream::Write( m_Speed            );
         data[ "Damage"           ] = Stream::Write( m_Damage           );
 
@@ -262,9 +255,9 @@
     EnemyBehavior::EnemyBehavior( EnemyBehavior const& other ) :
         Behavior( other ),
         m_Speed ( other.m_Speed  ),
-        m_Damage( other.m_Damage ),
+        m_Damage( other.m_Damage )//,
 
-        m_PathfinderEntity( other.m_PathfinderEntity, { &m_Pathfinder } )
+        //m_PathfinderEntity( other.m_PathfinderEntity, { &m_Pathfinder } )
     {}
 
 
