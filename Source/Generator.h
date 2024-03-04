@@ -45,6 +45,7 @@ public: // virtual override methods
     virtual void OnExit() override;
 
     /// @brief  called every frame
+    /// @param  dt delta time
     virtual void OnUpdate(float dt) override;
 
 //-----------------------------------------------------------------------------

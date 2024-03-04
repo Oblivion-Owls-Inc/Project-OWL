@@ -98,6 +98,8 @@ void Generator::OnExit()
     m_Emitter    .Exit();
 }
 
+/// @brief  called every frame
+/// @param  dt delta time
 void Generator::OnUpdate(float dt)
 {
     if ( m_Emitter == nullptr )

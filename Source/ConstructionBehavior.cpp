@@ -244,7 +244,9 @@
         m_TurretPlacementSound.Init( GetEntity() );
         m_CostInventory       .Init( GetEntity() );
 
-        m_PlaceAction.Init();
+        m_PlaceAction    .SetOwnerName( GetName() );
+        m_CancelPlacement.SetOwnerName( GetName() );
+        m_PlaceAction    .Init();
         m_CancelPlacement.Init();
 
         if (GetEntity()->GetChildren().size() != 0)
@@ -259,6 +261,7 @@
 
         for ( BuildingInfo& buildingInfo : m_BuildingInfos )
         {
+            buildingInfo.M_BuildAction.SetOwnerName(GetName());
             buildingInfo.Init();
         }
     }
