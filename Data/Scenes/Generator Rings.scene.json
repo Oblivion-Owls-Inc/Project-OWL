@@ -2939,12 +2939,6 @@
                     ],
                     "Walkables": [
                         -1
-                    ],
-                    "Targets": [
-                        "Player",
-                        "Base",
-                        "Generator",
-                        "Generator2"
                     ]
                 },
                 "StaticBody": {

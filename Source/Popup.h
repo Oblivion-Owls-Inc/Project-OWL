@@ -64,6 +64,8 @@ private: // members
     /// @brief  the name of the event to listen for
     std::string m_EventName;
 
+    /// @brief the popup entity in the Entity System
+    Entity* m_Popup = nullptr;
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -71,7 +73,7 @@ private: // methods
 
 
     /// @brief  Creates/Destroys the popup
-    void TogglePopup() const;
+    void TogglePopup();
 
 
 //-----------------------------------------------------------------------------

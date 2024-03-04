@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1174,
-                632
+                1964,
+                1147
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -14,7 +14,6 @@
             "Actions": [
                 {
                     "Name": "MoveVertical",
-                    "Description": "",
                     "Keys": [
                         87
                     ],
@@ -30,7 +29,6 @@
                 },
                 {
                     "Name": "MoveHorizontal",
-                    "Description": "",
                     "Keys": [
                         68
                     ],
@@ -46,7 +44,6 @@
                 },
                 {
                     "Name": "FireLaser",
-                    "Description": "",
                     "Keys": null,
                     "Mouse": [
                         0
@@ -60,12 +57,56 @@
                 },
                 {
                     "Name": "Interact",
-                    "Description": "",
                     "Keys": [
                         69
                     ],
                     "Mouse": null,
                     "Controller": null,
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "Place",
+                    "Keys": null,
+                    "Mouse": [
+                        1
+                    ],
+                    "Controller": [
+                        2
+                    ],
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "Cancel Place",
+                    "Keys": [
+                        81
+                    ],
+                    "Mouse": null,
+                    "Controller": [
+                        1
+                    ],
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "Build Turret 1",
+                    "Keys": [
+                        49
+                    ],
+                    "Mouse": null,
+                    "Controller": [
+                        3
+                    ],
                     "Key Axis": null,
                     "Mouse Axis": null,
                     "Controller Axis": null,
@@ -88,7 +129,7 @@
         "BehaviorSystem<EnemyBehavior>": {},
         "BehaviorSystem<EditorCameraController>": {},
         "BehaviorSystem<UiButton>": {},
-        "ComponentSystem<Generator>": {},
+        "BehaviorSystem<Generator>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
         "LightingSystem": {
@@ -109,7 +150,14 @@
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
         "CameraSystem": {},
-        "RenderSystem": {},
+        "RenderSystem": {
+            "BackgroundColor": [
+                0.20000000298023224,
+                0.30000001192092896,
+                0.30000001192092896,
+                1.0
+            ]
+        },
         "AudioSystem": {
             "MaxChannels": 1024
         },
