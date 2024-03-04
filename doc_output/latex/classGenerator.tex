@@ -20,6 +20,8 @@ virtual void \mbox{\hyperlink{classGenerator_a41dd45c67d5a0cb67dca7039be5407fd}{
 \begin{DoxyCompactList}\small\item\em called when \mbox{\hyperlink{classGenerator}{Generator}} initializes \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classGenerator_ac5632e730509cd2ccb8bc80c35994b87}{On\+Exit}} () override
 \begin{DoxyCompactList}\small\item\em called when \mbox{\hyperlink{classGenerator}{Generator}} exits \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGenerator_abf816931e7eb054c11ed084d75330c0a}{On\+Update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em called every frame \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classGenerator_a16d04e7ba515d4f61f35e959b6c7240b}{Get\+Power\+Radius}} ()
 \begin{DoxyCompactList}\small\item\em returns the radius within turrets are powered \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classGenerator_a2613639cd42b906d9a98b51305fd352d}{Get\+Activation\+Radius}} ()
@@ -157,6 +159,25 @@ called when \mbox{\hyperlink{classGenerator}{Generator}} initializes
 initialize \mbox{\hyperlink{classGenerator}{Generator}} 
 
 Reimplemented from \mbox{\hyperlink{classComponent_a2a76b143949c4f40b890c182cdd18a22}{Component}}.
+
+\mbox{\Hypertarget{classGenerator_abf816931e7eb054c11ed084d75330c0a}\label{classGenerator_abf816931e7eb054c11ed084d75330c0a}} 
+\index{Generator@{Generator}!OnUpdate@{OnUpdate}}
+\index{OnUpdate@{OnUpdate}!Generator@{Generator}}
+\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
+{\footnotesize\ttfamily void Generator\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called every frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & delta time \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
 
 \mbox{\Hypertarget{classGenerator_a6cc819df33a3c49d209450066e006c1a}\label{classGenerator_a6cc819df33a3c49d209450066e006c1a}} 
 \index{Generator@{Generator}!Write@{Write}}
