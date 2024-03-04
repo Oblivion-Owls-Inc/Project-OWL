@@ -122,7 +122,76 @@
         },
         "TransformAnimations": null,
         "Animations": null,
-        "Archetypes": null
+        "Archetypes": {
+            "DestructiveAction": {
+                "Name": "DestructiveAction",
+                "Components": {
+                    "AudioPlayer": {
+                        "Sound": {
+                            "AssetName": "ButtonPressedSound"
+                        },
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": false,
+                        "IsSpatial": false,
+                        "AllowMultipleSounds": false
+                    },
+                    "Sprite": {
+                        "Layer": 5,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "ButtonTexture"
+                        }
+                    },
+                    "UiButton": {
+                        "ClickEventName": "",
+                        "ShouldActivateOnPress": false,
+                        "IdleFrame": 0,
+                        "HoveredFrame": 0,
+                        "DownFrame": 0,
+                        "PressSound": {
+                            "AssetName": "ButtonPressedSound"
+                        },
+                        "ReleaseSound": {
+                            "AssetName": "ButtonReleasedSound"
+                        }
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            0.0,
+                            0.0
+                        ],
+                        "Pivot": [
+                            0.0,
+                            0.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            0.0
+                        ],
+                        "FrameSize": [
+                            1.0,
+                            0.36000001430511475
+                        ],
+                        "SizeTypes": [
+                            "Absolute",
+                            "Absolute"
+                        ]
+                    }
+                },
+                "Children": null
+            }
+        }
     },
     "Entities": {
         "Camera": {
@@ -450,6 +519,10 @@
                                     "IsSpatial": false,
                                     "AllowMultipleSounds": false
                                 },
+                                "SceneChangeButton": {
+                                    "SceneName": "Settings",
+                                    "EventName": "Settings"
+                                },
                                 "Sprite": {
                                     "Layer": 2,
                                     "Color": [
@@ -465,7 +538,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "",
+                                    "ClickEventName": "Settings",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 0,
@@ -518,6 +591,10 @@
                                     "IsSpatial": false,
                                     "AllowMultipleSounds": false
                                 },
+                                "SceneChangeButton": {
+                                    "SceneName": "Credits",
+                                    "EventName": "Credits"
+                                },
                                 "Sprite": {
                                     "Layer": 2,
                                     "Color": [
@@ -533,7 +610,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "",
+                                    "ClickEventName": "Credits",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 0,
@@ -586,6 +663,14 @@
                                     "IsSpatial": false,
                                     "AllowMultipleSounds": false
                                 },
+                                "Popup": {
+                                    "PopupEntity": {
+                                        "AssetName": "DestructiveAction"
+                                    },
+                                    "PopupButton": {
+                                        "ActionName": ""
+                                    }
+                                },
                                 "Sprite": {
                                     "Layer": 2,
                                     "Color": [
@@ -601,7 +686,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "",
+                                    "ClickEventName": "QuitMainMenu",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 0,
