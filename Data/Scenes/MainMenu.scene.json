@@ -376,7 +376,7 @@
                                     "AllowMultipleSounds": false
                                 },
                                 "SceneChangeButton": {
-                                    "SceneName": "AlphaScene",
+                                    "SceneName": "Prototype",
                                     "EventName": "MainMenuToPrototype"
                                 },
                                 "Sprite": {

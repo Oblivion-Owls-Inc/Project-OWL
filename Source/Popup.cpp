@@ -88,17 +88,17 @@ void Popup::OnExit()
 //-----------------------------------------------------------------------------
 
 /// @brief  Creates/Destroys the popup
-void Popup::TogglePopup() const
+void Popup::TogglePopup()
 {
-    Entity* entity = Entities()->GetEntity(m_PopupEntity->GetName());
-
-    if (entity != nullptr)
+    if (m_Popup != nullptr)
     {
-        entity->Destroy();
+        m_Popup->Destroy();
+        m_Popup = nullptr;
     }
     else
     {
-        m_PopupEntity->Clone()->AddToScene();
+        m_Popup = m_PopupEntity->Clone();
+        m_Popup->AddToScene();
     }
 }
 

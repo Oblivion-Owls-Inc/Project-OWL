@@ -136,7 +136,7 @@
     /// @brief  checks if this Turret is in range of a Generator and updates it's active state
     void TurretBehavior::checkActive()
     {
-        for ( Generator* generator : Components< Generator >()->GetComponents() )
+        for ( Generator* generator : Behaviors< Generator >()->GetComponents() )
         {
             if ( generator->GetActive() == false )
             {

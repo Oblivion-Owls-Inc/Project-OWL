@@ -365,6 +365,7 @@
 		{ "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
         { "BehaviorSystem<Popup>"                 , &addSystem< BehaviorSystem< Popup                  > > },
 
+        { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
         { "AssetLibrary<Sound>"                   , &addSystem< AssetLibrarySystem< Sound              > > },
@@ -373,7 +374,6 @@
         { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
                                                                                                           
         { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
-        { "ComponentSystem<Generator>"            , &addSystem< ComponentSystem< Generator     > >         },
                                                   
         { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
         { "LightingSystem"                        , &addSystem< LightingSystem >                           },

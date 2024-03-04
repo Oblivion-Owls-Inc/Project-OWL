@@ -95,7 +95,7 @@
                 "Filepath": "Data/Textures/Tiles/ConnectedTextures.png",
                 "SheetDimensions": [
                     4,
-                    16
+                    24
                 ],
                 "Pivot": [
                     0.0,
@@ -190,7 +190,7 @@
             "TilePreview": {
                 "Filepath": "Data/Textures/Tiles/PreviewTextures.png",
                 "SheetDimensions": [
-                    2,
+                    6,
                     1
                 ],
                 "Pivot": [
@@ -388,9 +388,6 @@
                         }
                     },
                     "EnemyBehavior": {
-                        "PathfinderEntity": {
-                            "EntityName": "Tiles"
-                        },
                         "Speed": 10.0,
                         "Damage": 1
                     },
@@ -803,7 +800,8 @@
                     "Radius": 5.0,
                     "ActivateRadius": 1.0,
                     "Depth": 0,
-                    "Active": true
+                    "Active": true,
+                    "GrowthSpeed": 1.0
                 },
                 "Health": {
                     "Health": {
@@ -3473,15 +3471,6 @@
                     "TileScale": [
                         1.0,
                         1.0
-                    ]
-                },
-                "Pathfinder": {
-                    "Destination": [
-                        0.0,
-                        0.0
-                    ],
-                    "Walkables": [
-                        -1
                     ]
                 },
                 "StaticBody": {
@@ -14164,6 +14153,9 @@
                             ],
                             "Archetype": {
                                 "AssetName": "Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": ""
                             }
                         }
                     ],
@@ -14191,6 +14183,12 @@
                     },
                     "CostUiEntity": {
                         "EntityName": ""
+                    },
+                    "CancelPlacement": {
+                        "ActionName": ""
+                    },
+                    "PlaceAction": {
+                        "ActionName": ""
                     }
                 },
                 "Sprite": {
@@ -14385,7 +14383,8 @@
                     "Radius": 5.0,
                     "ActivateRadius": 1.0,
                     "Depth": 1,
-                    "Active": true
+                    "Active": true,
+                    "GrowthSpeed": 1.0
                 },
                 "Health": {
                     "Health": {

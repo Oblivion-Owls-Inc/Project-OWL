@@ -17,6 +17,7 @@
 #include "StaticBody.h"
 #include "Transform.h"
 #include "RigidBody.h"
+#include "Emitter.h"
 
 #include "DebugSystem.h"
 
