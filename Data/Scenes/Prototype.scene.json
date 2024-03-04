@@ -2773,15 +2773,6 @@
                         1.0
                     ]
                 },
-                "Pathfinder": {
-                    "Destination": [
-                        0.0,
-                        0.0
-                    ],
-                    "Walkables": [
-                        -1
-                    ]
-                },
                 "StaticBody": {
                     "Restitution": 0.0,
                     "Friction": 0.0
@@ -6340,7 +6331,8 @@
                         1.0
                     ],
                     "IsDiegetic": true
-                }
+                },
+                "PathfinderTarget": {}
             },
             "Children": [
                 {

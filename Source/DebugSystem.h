@@ -177,7 +177,8 @@ private: // Members
         "AudioSystem",
         "DebugSystem",
         "ParticleSystem",
-        "BehaviorSystem<EditorCameraController>"
+        "BehaviorSystem<EditorCameraController>",
+        "PathfindSystem"
     };
 
 //-----------------------------------------------------------------------------

@@ -27,7 +27,6 @@
 #include "EffectAnimator.h"
 #include "Text.h"
 #include "Tilemap.h"
-#include "Pathfinder.h"
 #include "TilemapCollider.h"
 #include "StaticBody.h"
 #include "ConstructionBehavior.h"
@@ -60,6 +59,7 @@
 #include "SceneChangeButton.h"
 #include "SplashScreenController.h"
 #include "HideableForeground.h"
+#include "PathfinderTarget.h"
 
 
 
@@ -170,7 +170,6 @@
         { "Tilemap<int>"           , ComponentInfo< Tilemap< int     >      >() },
         { "Tilemap<Entity*>"       , ComponentInfo< Tilemap< Entity* >      >() },
         { "TilemapSprite"          , ComponentInfo< TilemapSprite           >() },
-        { "Pathfinder"             , ComponentInfo< Pathfinder              >() },
         { "TilemapCollider"        , ComponentInfo< TilemapCollider         >() },
         { "StaticBody"             , ComponentInfo< StaticBody              >() },
         { "ConstructionBehavior"   , ComponentInfo< ConstructionBehavior    >() },
@@ -202,7 +201,8 @@
         { "WinState"               , ComponentInfo< WinState                >() },
         { "Nineslice"              , ComponentInfo< Nineslice               >() },
         { "SplashScreenController" , ComponentInfo< SplashScreenController  >() },
-        { "HideableForeground"     , ComponentInfo< HideableForeground      >() }
+        { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
+        { "PathfinderTarget"       , ComponentInfo< PathfinderTarget        >() }
     };
 
 //-----------------------------------------------------------------------------

@@ -48,6 +48,7 @@
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
 #include "LightingSystem.h"
+#include "PathfindSystem.h"
 
 
 //-----------------------------------------------------------------------------
@@ -373,7 +374,8 @@
         { "ComponentSystem<Generator>"            , &addSystem< ComponentSystem< Generator     > >         },
                                                   
         { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
-        { "LightingSystem"                        , &addSystem< LightingSystem >                           }
+        { "LightingSystem"                        , &addSystem< LightingSystem >                           },
+        { "PathfindSystem"                        , &addSystem< PathfindSystem >                           }
 
     };
 
