@@ -257,6 +257,7 @@ void DebugSystem::DebugWindow()
                 m_ShowDemoWindow = !m_ShowDemoWindow;
             }
 
+
             // This has been remove since it's now handled in the menu bar, and changing the running state may cause problems
             // /// Pauses the Gameplay
             // if (ImGui::MenuItem(m_EditorRunning ? "Pause Gameplay" : "Resume Gameplay"))
