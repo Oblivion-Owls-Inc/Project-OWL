@@ -133,6 +133,9 @@ __inline AssetLibrarySystem< AssetType >* AssetLibrary()
 template<>
 void AssetLibrarySystem<Entity>::DebugWindow();
 
+/// @brief Specialized DebugWindow for AssetLibrarySystem of type Entity
+template<>
+bool AssetLibrarySystem<Entity>::DebugCreateAssetWindow();
 
 #ifndef ASSETLIBRARYSYSTEM_C
 #include "AssetLibrarySystem.t.cpp"
