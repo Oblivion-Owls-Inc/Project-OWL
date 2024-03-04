@@ -84,6 +84,8 @@ void Generator::OnInit()
     m_Transform  .Init( GetEntity() );
     m_Health     .Init( GetEntity() );
     m_Emitter    .Init( GetEntity() );
+
+    m_ChangeActive = m_IsActive;
 }
 
 /// @brief	called on exit, handles loss state
@@ -102,6 +104,18 @@ void Generator::OnExit()
 /// @param  dt delta time
 void Generator::OnUpdate(float dt)
 {
+    if (m_IsActive != m_ChangeActive)
+    {
+        if (m_ChangeActive == true)
+        {
+            Activate();
+        }
+        else
+        {
+            Deactivate();
+        }
+    }
+
     if ( m_Emitter == nullptr )
     {
         return;
@@ -172,7 +186,16 @@ Generator* Generator::GetLowestGenerator()
 void Generator::Activate() 
 { 
     m_IsActive = true;
+    m_ChangeActive = true;
     m_ActivateRing = true;
+}
+
+/// @brief deactivate the generator
+void Generator::Deactivate()
+{
+    m_IsActive = false;
+    m_ChangeActive = false;
+    m_DeactivateRing = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -200,8 +223,7 @@ void Generator::onCollisionEnter(Collider* other)
 
         if (m_Health->GetHealth()->GetCurrent() <= 0)
         {
-            m_IsActive = false;
-            m_DeactivateRing = true;
+            Deactivate();
             m_Health->GetHealth()->Reset();
         }
     }
@@ -218,7 +240,7 @@ void Generator::Inspector()
     ImGui::InputFloat("Activate Radius", &m_ActivationRadius, 0.5f, 1.0f);
     ImGui::InputFloat("Growth Speed", &m_RadiusSpeed);
     ImGui::InputInt("Depth", &m_Depth, 1, 5);
-    ImGui::Checkbox("Active", &m_IsActive);
+    ImGui::Checkbox("Active", &m_ChangeActive);
 }
 
 //-----------------------------------------------------------------------------

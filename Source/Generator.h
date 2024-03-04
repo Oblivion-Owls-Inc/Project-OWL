@@ -78,6 +78,9 @@ public: // accessors
     /// @brief activate the generator
     void Activate();
 
+    /// @brief deactivate the generator
+    void Deactivate();
+
     /// @brief  get the transform of the generator
     /// @return the generator transform
     Transform* GetTransform() { return m_Transform; }
@@ -88,6 +91,9 @@ private: // variables
 
     /// @brief  is the generator active or not
     bool m_IsActive = false;  
+
+    /// @brief  is the generator active or not
+    bool m_ChangeActive = false;
 
     /// @brief  is the generator active or not
     bool m_ActivateRing = false;
