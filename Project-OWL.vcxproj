@@ -319,6 +319,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\ParticleSystem.cpp" />
     <ClCompile Include="Source\Pathfinder-old.cpp" />
     <ClCompile Include="Source\CameraBehavior.cpp" />
+    <ClCompile Include="Source\PathfinderSource.cpp" />
     <ClCompile Include="Source\PathfinderTarget.cpp" />
     <ClCompile Include="Source\PathfindSystem.cpp" />
     <ClCompile Include="Source\PauseSystem.cpp" />
@@ -390,6 +391,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\ActionReference.h" />
     <ClInclude Include="Source\Console.h" />
     <ClInclude Include="Source\HideableForeground.h" />
+    <ClInclude Include="Source\PathfinderSource.h" />
     <ClInclude Include="Source\PathfinderTarget.h" />
     <ClInclude Include="Source\PathfindSystem.h" />
     <ClInclude Include="Source\PauseSystem.h" />

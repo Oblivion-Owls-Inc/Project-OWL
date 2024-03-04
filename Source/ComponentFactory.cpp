@@ -60,7 +60,7 @@
 #include "SplashScreenController.h"
 #include "HideableForeground.h"
 #include "PathfinderTarget.h"
-
+#include "PathfinderSource.h"
 
 
 //-----------------------------------------------------------------------------
@@ -202,7 +202,8 @@
         { "Nineslice"              , ComponentInfo< Nineslice               >() },
         { "SplashScreenController" , ComponentInfo< SplashScreenController  >() },
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
-        { "PathfinderTarget"       , ComponentInfo< PathfinderTarget        >() }
+        { "PathfinderTarget"       , ComponentInfo< PathfinderTarget        >() },
+        { "PathfinderSource"       , ComponentInfo< PathfinderSource        >() }
     };
 
 //-----------------------------------------------------------------------------

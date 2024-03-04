@@ -55,14 +55,14 @@ public:
 //-----------------------------------------------------------------------------
 private:
 
-    /// @brief  Called every frame: 
+    /// @brief  Called every frame: manages the background thread
     virtual void OnUpdate(float dt) override;
 
     /// @brief  Called when system exits
     virtual void OnExit() override;
 
     /// @brief  ImGui
-    virtual void DebugWindow() override;
+    //virtual void DebugWindow() override;
 
 
 
@@ -125,10 +125,6 @@ public:
     virtual nlohmann::ordered_json Write() const override;
 
 
-private:
-
-    /// @brief  reads the list of walkable tile ID's
-    void readWalkables(nlohmann::ordered_json const& data);
 
 
 //-----------------------------------------------------------------------------

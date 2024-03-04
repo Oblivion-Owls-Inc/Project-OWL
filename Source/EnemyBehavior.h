@@ -17,8 +17,6 @@
 #include "AudioPlayer.h"
 #include "Health.h"
 
-#include "EntityReference.h"
-
 class EnemyBehavior : public Behavior
 {
 //-----------------------------------------------------------------------------
@@ -110,11 +108,6 @@ public: // inspection
 ///-----------------------------------------------------------------------------
 private: // Reading
 ///-----------------------------------------------------------------------------
-
-
-    /// @brief  reads the name of the pathfinder entity
-    /// @param  data    the json data to read from
-    void readPathfinderEntity( nlohmann::ordered_json const& data );
 
     /// @brief  reads the speed
     /// @param  data    the json data to read from

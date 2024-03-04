@@ -82,6 +82,7 @@ void PathfindSystem::SetActiveTilemap(Entity* entity)
 //              Virtual overrides
 //-----------------------------------------------------------------------------
 
+/// @brief  Called every frame: manages the background thread
 void PathfindSystem::OnUpdate(float dt)
 {
     if (!m_Tilemap)
@@ -98,6 +99,7 @@ void PathfindSystem::OnUpdate(float dt)
     (void) dt;
 }
 
+/// @brief  Called when system exits
 void PathfindSystem::OnExit()
 {
     if (m_Thread.joinable())
@@ -106,8 +108,7 @@ void PathfindSystem::OnExit()
 
 
 /// @brief Gets Called by the Debug system to display debug information
-void PathfindSystem::DebugWindow()
-{}
+//void PathfindSystem::DebugWindow(){}
 
 
 //-----------------------------------------------------------------------------
@@ -123,7 +124,7 @@ void PathfindSystem::explore()
 
     m_Done.store(false);
 
-    // update walkability of tiles  TODO: not separately
+    // update walkability of tiles
     m_Nodes.resize(m_Tilemap->GetTilemap().size());
     for (int i = 0; i < m_Nodes.size(); i++)
     {
@@ -149,7 +150,7 @@ void PathfindSystem::explore()
     // init target destinations
     for (PathfinderTarget const* target : GetComponents())
     {
-        if (!target->GetParentTransform())
+        if (!target->GetActive() || !target->GetParentTransform())
             continue;
 
         glm::ivec2 tile = m_Tilemap->WorldPosToTileCoord(target->GetParentTransform()->GetTranslation());
@@ -271,7 +272,6 @@ void PathfindSystem::explore()
 ReadMethodMap< ISerializable > const& PathfindSystem::GetReadMethods() const
 {
     static ReadMethodMap< PathfindSystem > const readMethods = {
-        {"Walkables", &PathfindSystem::readWalkables}
     };
     return (ReadMethodMap< ISerializable > const&)readMethods;
 }
@@ -283,21 +283,7 @@ nlohmann::ordered_json PathfindSystem::Write() const
 {
     nlohmann::ordered_json data;
 
-    data["Walkables"] = m_Walkables;
-
     return data;
-}
-
-
-void PathfindSystem::readWalkables(nlohmann::ordered_json const& data)
-{
-    m_Walkables.clear();
-
-    for (int i = 0; i < data.size(); ++i)
-    {
-        int x = Stream::Read<int>( data[i] );
-        m_Walkables.push_back(x);
-    }
 }
 
 

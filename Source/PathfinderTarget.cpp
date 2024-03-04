@@ -1,7 +1,7 @@
 /// @file     PathfinderTarget.cpp
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    
+/// @brief    Marks parent entity as a target for the enemies.
 #include "PathfinderTarget.h"
 #include "imgui.h"
 #include "PathfindSystem.h"
@@ -43,6 +43,15 @@ void PathfinderTarget::OnExit()
 /// @brief  Tweak properties in debug window
 void PathfinderTarget::Inspector()
 {
+    ImGui::Checkbox("Active", &m_Active);
+
+    ImGui::Spacing();
+
+    const char* names[] = {"highest", "high", "mid", "low"};
+    int ip = static_cast<int>( m_Priority );
+    if (ImGui::SliderInt("Priority", &ip, 0, 3, names[ip]))
+        m_Priority = static_cast<Priority>( ip );
+    
 }
 
 
@@ -50,10 +59,24 @@ void PathfinderTarget::Inspector()
 //              Reading / Writing
 //-----------------------------------------------------------------------------
 
+/// @brief          Read the priority for this target
+/// @param  stream  The json to read from.
+void PathfinderTarget::readPriority(nlohmann::ordered_json const& data)
+{
+    m_Priority = static_cast<Priority>( Stream::Read<int>(data) );
+}
+
+
+/// @brief          Read the active status for this target
+/// @param  stream  The json to read from.
+void PathfinderTarget::readActive(nlohmann::ordered_json const& data)
+{
+    m_Active = Stream::Read<bool>(data);
+}
 
 /// @brief  map of read methods
 ReadMethodMap< PathfinderTarget > const PathfinderTarget::s_ReadMethods = {
-//    { "stuff",   &stuff  }
+    { "Priority",   &readPriority  }
 };
 
 
@@ -63,8 +86,8 @@ nlohmann::ordered_json PathfinderTarget::Write() const
 {
     nlohmann::ordered_json data;
 
-    //data["Stuff"] = m_Stuff;
-    
+    data["Priority"] = static_cast<int>( m_Priority );
+    data["Active"] = m_Active;
 
     return data;
 }

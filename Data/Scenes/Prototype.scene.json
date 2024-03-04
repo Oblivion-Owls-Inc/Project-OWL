@@ -372,9 +372,6 @@
                         }
                     },
                     "EnemyBehavior": {
-                        "PathfinderEntity": {
-                            "EntityName": "Tiles"
-                        },
                         "Speed": 10.0,
                         "Damage": 1
                     },
@@ -863,6 +860,10 @@
                 },
                 "HomeBase": {
                     "GameOverScene": "Gameover"
+                },
+                "PathfinderTarget": {
+                    "Priority": 0,
+                    "Active": true
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -2771,6 +2772,11 @@
                     "TileScale": [
                         1.0,
                         1.0
+                    ]
+                },
+                "PathfinderSource": {
+                    "Walkables": [
+                        -1
                     ]
                 },
                 "StaticBody": {
@@ -6255,6 +6261,10 @@
                         0.0
                     ]
                 },
+                "PathfinderTarget": {
+                    "Priority": 3,
+                    "Active": true
+                },
                 "PlayerController": {
                     "Animations": [
                         {
@@ -6331,8 +6341,7 @@
                         1.0
                     ],
                     "IsDiegetic": true
-                },
-                "PathfinderTarget": {}
+                }
             },
             "Children": [
                 {

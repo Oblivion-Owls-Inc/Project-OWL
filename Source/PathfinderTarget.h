@@ -1,7 +1,7 @@
 /// @file     PathfinderTarget.h
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    
+/// @brief    Marks parent entity as a target for the enemies.
 #pragma once
 #include "ComponentReference.h"
 #include "Transform.h"
@@ -29,9 +29,18 @@ public:
 //-----------------------------------------------------------------------------
 public:
 
+    /// @brief   Gets the pointer to parent entity's Transform
+    /// @return  Pointer to Transform component
     __inline Transform* GetParentTransform() const { return m_ParentTransform; }
 
+    /// @return  This target's priority
     __inline unsigned int GetPriority() const { return static_cast<int>(m_Priority); }
+
+    /// @return  This target's active status
+    __inline bool GetActive() const { return m_Active; }
+
+    /// @brief   Sets this target's active status
+    __inline void SetActive(bool enabled) { m_Active = enabled; }
 
 
 //-----------------------------------------------------------------------------
@@ -55,17 +64,33 @@ private:
 //-----------------------------------------------------------------------------
 private:
 
+    /// @brief  Priority enumerator.
     enum Priority { Highest, High, Mid, Low };
 
+    /// @brief  Reference to transform of parent entity
     ComponentReference<Transform> m_ParentTransform;
 
+    /// @brief  How important this target is to enemies
     Priority m_Priority = Highest;
+
+    /// @brief  Should this target be considered
+    bool m_Active = true;
 
 
 //-----------------------------------------------------------------------------
 //              Reading / Writing
 //-----------------------------------------------------------------------------
 private:
+
+    /// @brief          Read the priority for this target
+    /// @param  stream  The json to read from.
+    void readPriority(nlohmann::ordered_json const& data);
+
+
+    /// @brief          Read the active status for this target
+    /// @param  stream  The json to read from.
+    void readActive(nlohmann::ordered_json const& data);
+
 
     /// @brief   the map of read methods for this Component
     static ReadMethodMap< PathfinderTarget > const s_ReadMethods;
