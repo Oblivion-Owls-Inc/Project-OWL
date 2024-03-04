@@ -1,6 +1,6 @@
 /// @file       PathfindSystem.h
 /// @author     Eli Tsereteli (ilya.tserete;o@digipen.edu)
-/// @brief      
+/// @brief      Manages pathfinding.
 /// @date       March 2024
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
@@ -90,7 +90,7 @@ private:
     std::vector<Node> m_Nodes;
 
     /// @brief  Tile IDs of "not walls"
-    std::vector<int> m_Walkables = { -1 };
+    std::vector<int> m_Walkables;
 
     /// @brief  Background thread for the actual algo
     std::thread m_Thread;
@@ -124,6 +124,11 @@ public:
     /// @return the JSON data of this PathfindSystem
     virtual nlohmann::ordered_json Write() const override;
 
+
+private:
+
+    /// @brief  reads the list of walkable tile ID's
+    void readWalkables(nlohmann::ordered_json const& data);
 
 
 //-----------------------------------------------------------------------------

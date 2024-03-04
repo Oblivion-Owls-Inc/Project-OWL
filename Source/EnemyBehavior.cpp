@@ -179,13 +179,6 @@
 // private: Reading
 //-----------------------------------------------------------------------------
 
-    /// @brief  reads the name of the pathfinder entity
-    /// @param  data    the json data to read from
-    void EnemyBehavior::readPathfinderEntity( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_PathfinderEntity, data );
-    }
-
     /// @brief  reads the speed
     /// @param  data    the json data to read from
     void EnemyBehavior::readSpeed( nlohmann::ordered_json const& data )

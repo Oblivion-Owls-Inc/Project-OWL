@@ -90,7 +90,9 @@
         "ComponentSystem<Generator>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
-        "PathfindSystem": {},
+        "PathfindSystem": {
+            "Walkables": [-1]
+        },
         "LightingSystem": {
             "Enabled": false,
             "Layer": 6

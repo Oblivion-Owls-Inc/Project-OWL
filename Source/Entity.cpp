@@ -278,8 +278,6 @@
         {
             component->OnInit();
         }
-        if (GetName() == "Tiles")
-            Pathfinder()->SetActiveTilemap(this);
     }
 
     /// @brief  exits all components / children of this Entity

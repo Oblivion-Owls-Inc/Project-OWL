@@ -5,7 +5,7 @@
 * 
 * \author Eli Tsereteli
 *********************************************************************/
-#include "Pathfinder.h"
+#include "Pathfinder-old.h"
 #include "EntitySystem.h"   // parent, finding entities
 #include "Transform.h"      // callback
 #include "DebugSystem.h"    // error log

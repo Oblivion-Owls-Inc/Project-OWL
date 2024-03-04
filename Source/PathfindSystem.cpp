@@ -270,7 +270,9 @@ void PathfindSystem::explore()
 /// @return this System's read methods
 ReadMethodMap< ISerializable > const& PathfindSystem::GetReadMethods() const
 {
-    static ReadMethodMap< PathfindSystem > const readMethods = {};
+    static ReadMethodMap< PathfindSystem > const readMethods = {
+        {"Walkables", &PathfindSystem::readWalkables}
+    };
     return (ReadMethodMap< ISerializable > const&)readMethods;
 }
 
@@ -279,8 +281,23 @@ ReadMethodMap< ISerializable > const& PathfindSystem::GetReadMethods() const
 /// @return the JSON data of this PathfindSystem
 nlohmann::ordered_json PathfindSystem::Write() const
 {
-    nlohmann::ordered_json json;
-    return json;
+    nlohmann::ordered_json data;
+
+    data["Walkables"] = m_Walkables;
+
+    return data;
+}
+
+
+void PathfindSystem::readWalkables(nlohmann::ordered_json const& data)
+{
+    m_Walkables.clear();
+
+    for (int i = 0; i < data.size(); ++i)
+    {
+        int x = Stream::Read<int>( data[i] );
+        m_Walkables.push_back(x);
+    }
 }
 
 
