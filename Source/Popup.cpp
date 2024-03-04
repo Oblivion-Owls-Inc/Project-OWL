@@ -80,6 +80,7 @@ void Popup::OnFixedUpdate()
 void Popup::OnExit()
 {
     m_Listener.Exit();
+    BehaviorSystem< Popup >::GetInstance()->RemoveComponent(this);
 }
 
 //-----------------------------------------------------------------------------
