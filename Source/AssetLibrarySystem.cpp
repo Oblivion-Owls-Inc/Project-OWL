@@ -31,6 +31,8 @@ void AssetLibrarySystem<Entity>::DebugWindow()
 
     /// Update the AssetLibarySystem Map
     
+    m_Assets.clear();
+
     for (auto& entity : entities)
     {
         m_Assets[entity->GetName()] = entity;
