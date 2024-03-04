@@ -15,6 +15,7 @@
 #include "Transform.h"
 #include "Collider.h"
 #include "Health.h"
+#include "PathfinderTarget.h"
 
 
 class Generator : public Component
@@ -106,6 +107,9 @@ private: // variables
 
     /// @brief  the Health component attached to this Generator
     ComponentReference< Health > m_Health;
+
+    /// @brief  the PathfinderTarget Component attached to this Generator
+    ComponentReference< PathfinderTarget > m_PathfinderTarget;
 
 
 //-----------------------------------------------------------------------------

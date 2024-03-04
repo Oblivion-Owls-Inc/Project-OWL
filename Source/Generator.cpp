@@ -55,10 +55,11 @@ void Generator::OnInit()
         }
     );
 
-    m_Collider   .Init( GetEntity() );
-    m_AudioPlayer.Init( GetEntity() );
-    m_Transform  .Init( GetEntity() );
-    m_Health     .Init( GetEntity() );
+    m_Collider        .Init( GetEntity() );
+    m_AudioPlayer     .Init( GetEntity() );
+    m_Transform       .Init( GetEntity() );
+    m_Health          .Init( GetEntity() );
+    m_PathfinderTarget.Init( GetEntity() );
 
 }
 
@@ -67,10 +68,11 @@ void Generator::OnExit()
 {
     Components< Generator >()->RemoveComponent(this);
 
-    m_Collider   .Exit();
-    m_AudioPlayer.Exit();
-    m_Transform  .Exit();
-    m_Health     .Exit();
+    m_Collider        .Exit();
+    m_AudioPlayer     .Exit();
+    m_Transform       .Exit();
+    m_Health          .Exit();
+    m_PathfinderTarget.Exit();
 }
 
 //-----------------------------------------------------------------------------
@@ -112,26 +114,37 @@ Generator* Generator::GetLowestGenerator()
 /// @brief collision callback for generators
 void Generator::onCollisionEnter(Collider* other)
 {
-    if (m_IsActive)
+    if ( m_IsActive == false )
     {
-        EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
-        if (!enemy)
-        {
-            return;
-        }
+        return;
+    }
 
-        m_Health->TakeDamage( enemy->GetDamage() );
+    if ( m_Health == nullptr )
+    {
+        return;
+    }
 
-        if (m_AudioPlayer)
-        {
-            m_AudioPlayer->Play();
-        }
-        enemy->GetEntity()->Destroy();
+    EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
+    if (!enemy)
+    {
+        return;
+    }
 
-        if (m_Health->GetHealth()->GetCurrent() <= 0)
+    m_Health->TakeDamage( enemy->GetDamage() );
+
+    if ( m_AudioPlayer )
+    {
+        m_AudioPlayer->Play();
+    }
+    enemy->GetEntity()->Destroy();
+
+    if ( m_Health->GetHealth()->GetCurrent() <= 0 )
+    {
+        m_IsActive = false;
+        m_Health->GetHealth()->Reset();
+        if ( m_PathfinderTarget != nullptr )
         {
-            m_IsActive = false;
-            m_Health->GetHealth()->Reset();
+            m_PathfinderTarget->SetActive( false );
         }
     }
 }
