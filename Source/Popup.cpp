@@ -135,6 +135,14 @@ void Popup::ReadPopupButton(nlohmann::ordered_json const& data)
 {
     Stream::Read(m_PopupButton, data);
 }
+
+/// @brief  reads the EventName from a JSON file
+/// @param data    the JSON file to read from
+void Popup::ReadEventName(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_EventName, data);
+}
+
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
@@ -146,7 +154,8 @@ ReadMethodMap< ISerializable > const& Popup::GetReadMethods() const
 {
     static ReadMethodMap< Popup > const readMethods = {
         { "PopupEntity" , &Popup::ReadPopupEntity },
-        { "PopupButton" , &Popup::ReadPopupButton }
+        { "PopupButton" , &Popup::ReadPopupButton },
+        { "EventName"   , &Popup::ReadEventName   }
     };
 
     return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -161,6 +170,7 @@ nlohmann::ordered_json Popup::Write() const
 
     json["PopupEntity"] = m_PopupEntity.Write();
     json["PopupButton"] = m_PopupButton.Write();
+    json["EventName"]   = m_EventName;
 
     return json;
 }
@@ -187,7 +197,8 @@ Popup* Popup::Clone() const
     /// @brief  copy-constructor for the Popup
     /// @param  other   the other Popup to copy
 Popup::Popup(Popup const& other) :
-    Behavior( other ), m_PopupEntity( other.m_PopupEntity ), m_PopupButton( other.m_PopupButton )
+    Behavior( other ), m_PopupEntity( other.m_PopupEntity ), 
+    m_PopupButton( other.m_PopupButton ), m_EventName( other.m_EventName )
 {}
 
 

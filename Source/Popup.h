@@ -58,7 +58,6 @@ private: // members
     /// @brief  the button that will be used to open the popup
     ActionReference m_PopupButton;
 
-
     /// @brief Listener for the button click
     EventListener<std::string> m_Listener;
 
@@ -94,6 +93,10 @@ private: // reading
 
     /// @brief  reads the PopupButton from JSON
     void ReadPopupButton(nlohmann::ordered_json const& data);
+
+    /// @brief  reads the EventName from a JSON file
+    /// @param data    the JSON file to read from
+    void ReadEventName(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing
