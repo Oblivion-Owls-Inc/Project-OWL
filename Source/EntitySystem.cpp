@@ -172,8 +172,7 @@
             entity->Exit();
         }
 
-        // delete the entities
-        for ( Entity* entity : entitiesToRemove )
+        for (Entity* entity : entitiesToRemove)
         {
             if (entity == SelectedEntity)
                 SelectedEntity = nullptr;
@@ -321,7 +320,7 @@
         static bool showDeletePopup = false; // Flag to check if the delete popup should be shown
         static Entity* selectedEntityToDelete = nullptr; // Entity selected for deletion
 
-        static ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_AlwaysAutoResize;
+        static ImGuiWindowFlags window_flags =   ImGuiWindowFlags_AlwaysAutoResize;
         ImGui::Begin(WindowName.c_str(), nullptr, window_flags);
         ImGui::SetWindowSize(ImVec2(500, 1000), ImGuiCond_FirstUseEver);
 
@@ -361,7 +360,6 @@
 					}
 				}
 
-                    
                 std::string popup_id = "EntityContextMenu##" + std::to_string(currentEntity->GetId());
                 std::string delete_id = "Confirm Deletion##" + std::to_string(currentEntity->GetId());
 
@@ -427,8 +425,12 @@
                             entity->AddComponent(transform); /// Add the transform to the entity)
                             entity->SetParent(currentEntity);
                        }
-                    }
 
+                       if (ImGui::MenuItem("Add to Scene"))
+                       {
+                           currentEntity->Clone()->AddToScene();
+                       }
+                    }
 
                     ImGui::EndPopup();
                 }
@@ -478,18 +480,17 @@
                     }
                 }
 
+                // Drag Source
+                if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) 
+                {
+                    // Set payload to be the entity's ID or reference
+                    ImGui::SetDragDropPayload("ENTITY_PAYLOAD", &currentEntity, sizeof(Entity*));
+                    ImGui::Text("Moving %s", currentEntity->GetName().c_str());
+                    ImGui::EndDragDropSource();
+                }
+
                 if (DragAndDrop) /// If Drag and Drop is enabled
                 {
-
-                    // Drag Source
-                    if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) 
-                    {
-                        // Set payload to be the entity's ID or reference
-                        ImGui::SetDragDropPayload("ENTITY_PAYLOAD", &currentEntity, sizeof(Entity*));
-                        ImGui::Text("Moving %s", currentEntity->GetName().c_str());
-                        ImGui::EndDragDropSource();
-                    }
-
                     // Drop Target
                     if (ImGui::BeginDragDropTarget())
                     {
@@ -498,9 +499,19 @@
                         if (payload != NULL)
                         {
                             Entity* droppedEntity = *(Entity**)payload->Data;
+                            Entity* ClonedEntity = nullptr;
 
-                            // Set the parent of the dropped entity to the current entity
-                            droppedEntity->SetParent(currentEntity);
+                            if (!droppedEntity->IsInScene())
+                            {
+                                ClonedEntity = droppedEntity->Clone();
+                                ClonedEntity->SetParent(currentEntity);
+                                ClonedEntity->AddToScene();
+                            }
+                            else
+                            {
+                                // Set the parent of the dropped entity to the current entity
+                                droppedEntity->SetParent(currentEntity);
+                            }
 
                         }
 
@@ -534,8 +545,12 @@
                 {
                     Entity* droppedEntity = *(Entity**)payload->Data;
 
-                    droppedEntity->SetParent(nullptr);
+                    if (!droppedEntity->IsInScene())
+                    {
+                        droppedEntity->Clone()->AddToScene();
+                    }
 
+                    droppedEntity->SetParent(nullptr);
                 }
 
                 ImGui::EndDragDropTarget();

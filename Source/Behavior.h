@@ -27,6 +27,6 @@ class Behavior : public Component
 
 		virtual void OnUpdate(float dt) {};
 
-        virtual void OnFixedUpdate() {};
+        virtual void OnFixedUpdate() {};  
 
 };

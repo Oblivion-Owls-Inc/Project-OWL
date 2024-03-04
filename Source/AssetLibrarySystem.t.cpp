@@ -172,6 +172,7 @@ AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& n
             }
             else
             {
+                Debug() << "Creating new " << assetName << " with name: " << buffer << std::endl;
                 AddAsset(buffer, new AssetType());
                 ImGui::End();
                 return false; //close window
