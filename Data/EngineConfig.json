@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1964,
-                1147
+                1142,
+                561
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -117,7 +117,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "SplashScreen",
+            "NextSceneName": "Prototype v3",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -132,7 +132,7 @@
         "BehaviorSystem<Generator>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
-        "PathfindSystem": {},
+        "PathfindSystem": null,
         "LightingSystem": {
             "Enabled": false,
             "Layer": 6
@@ -165,7 +165,41 @@
         "CheatSystem": {},
         "DebugSystem": {
             "ShowFpsWindow": true,
-            "ShowDebugWindow": true
+            "ShowDebugWindow": true,
+            "OpenSystemWindows": {
+                "AssetLibrary<AnimationAsset>": false,
+                "AssetLibrary<Entity>": true,
+                "AssetLibrary<Sound>": false,
+                "AssetLibrary<Texture>": false,
+                "AssetLibrary<TransformAnimation>": false,
+                "AudioSystem": false,
+                "BehaviorSystem<Animation>": false,
+                "BehaviorSystem<Behavior>": false,
+                "BehaviorSystem<EditorCameraController>": false,
+                "BehaviorSystem<EffectAnimator>": false,
+                "BehaviorSystem<EnemyBehavior>": false,
+                "BehaviorSystem<Generator>": false,
+                "BehaviorSystem<Popup>": false,
+                "BehaviorSystem<RigidBody>": false,
+                "BehaviorSystem<UiButton>": false,
+                "BehaviorSystem<WavesBehavior>": false,
+                "CameraSystem": false,
+                "CheatSystem": false,
+                "CollisionSystem": false,
+                "ComponentSystem<ItemComponent>": false,
+                "DebugSystem": true,
+                "EntitySystem": false,
+                "EventSystem": false,
+                "InputSystem": false,
+                "LightingSystem": false,
+                "ParticleSystem": false,
+                "PathfindSystem": false,
+                "PauseSystem": false,
+                "PlatformSystem": false,
+                "RenderSystem": false,
+                "SceneSystem": false,
+                "TileInfoSystem": false
+            }
         },
         "AssetLibrary<Entity>": {},
         "AssetLibrary<Sound>": {},

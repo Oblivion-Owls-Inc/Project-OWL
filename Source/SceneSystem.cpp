@@ -423,7 +423,7 @@
     {
         Debug() << "Initializing Scene \"" << m_CurrentSceneName << "\"..." << std::endl;
 
-        for ( System* system : Engine::GetInstance()->GetSystems() )
+        for ( System* system : GameEngine()->GetSystems() )
         {
             system->OnSceneInit();
         }
@@ -434,7 +434,7 @@
     {
         Debug() << "Exiting Scene \"" << m_CurrentSceneName << "\"..." << std::endl;
 
-        for ( System* system : Engine::GetInstance()->GetSystems() )
+        for ( System* system : GameEngine()->GetSystems() )
         {
             system->OnSceneExit();
         }

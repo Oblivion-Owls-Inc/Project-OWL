@@ -115,6 +115,12 @@ void DebugSystem::OnInit()
 
     SetDebugEnable( true );
     SetNonEditorSystemsEnabled(m_EditorRunning);
+
+
+    for (System* system : GameEngine()->GetSystems())
+    {
+        system->SetDebugEnable(m_SystemDebugWindows[system->GetName()]);
+    }
 }
 
 /// @brief Perform updates.
@@ -124,13 +130,16 @@ void DebugSystem::OnUpdate(float dt)
 
 #ifndef NDEBUG // Show the Debug Window in Debug Mode
 
-    /// Loop through all the Systems in the Engine
-    for ( System* system : Engine::GetInstance()->GetSystems() )
+
+    if (m_ShowDebugWindows)
     {
-        /// If the System is enabled, then show the Debug Window
-        if ( system->GetDebugEnabled() )
+        /// Loop through all the Systems in the Engine
+        for (System* system : GameEngine()->GetSystems())
         {
-            system->DebugWindow();
+            if (system->GetDebugEnabled())
+            {
+                system->DebugWindow();
+            }
         }
     }
 
@@ -519,7 +528,7 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
 
     if (prefix == "Other")
     {
-        for (auto& system : Engine::GetInstance()->GetSystems())
+        for (auto& system : GameEngine()->GetSystems())
         {
             /// I know this isnt... the best way to do this, but it works and im tired
             if (system->GetName().compare(0, std::string("AssetLibrary").length(), std::string("AssetLibrary")) != 0 &&
@@ -538,7 +547,7 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
     {
 
         /// Loops through all the Systems in the Engine
-        for (auto& system : Engine::GetInstance()->GetSystems())
+        for (auto& system : GameEngine()->GetSystems())
         {
             // Skip the debug system
             if (system == GetInstance())
@@ -570,27 +579,17 @@ void DebugSystem::OnFixedUpdate()
 {
     #ifndef NDEBUG  
 
-        if ( InputSystem::GetInstance()->GetKeyTriggered( GLFW_KEY_GRAVE_ACCENT ) )
-        {
-            for (System* system : GameEngine()->GetSystems())
-            {
-                if (system == &Debug())
-                    continue;
+    if ( InputSystem::GetInstance()->GetKeyTriggered( GLFW_KEY_GRAVE_ACCENT ) )
+    {
+        m_ShowDebugWindows = !m_ShowDebugWindows;
+    }
 
-                if (GetDebugEnabled())
-                {
-                    if (system->GetDebugEnabled())
-                        system->SetDebugEnable( !system->GetDebugEnabled() );
-                }
-                else
-                {
-                    if (!system->GetDebugEnabled())
-                        system->SetDebugEnable( !system->GetDebugEnabled() );
-                }
-            }
-
-            SetDebugEnable( !GetDebugEnabled() );
-        }
+    /// Loop through all the Systems in the Engine
+    for (System* system : GameEngine()->GetSystems())
+    {
+        /// Store the debug state of each system
+        m_SystemDebugWindows[system->GetName()] = system->GetDebugEnabled();
+    }
 
     #endif
 }
@@ -616,7 +615,7 @@ bool DebugSystem::SetNonEditorSystemsEnabled( bool enabled )
 {
     m_EditorRunning = enabled;
 
-    for ( System* system : Engine::GetInstance()->GetSystems() )
+    for ( System* system : GameEngine()->GetSystems() )
     {
         if (system == Cheats())
         {
@@ -728,10 +727,17 @@ void DebugSystem::WritetoConsole(const std::string& message)
         SetDebugEnable( Stream::Read<bool>( data ) );
     }
 
+    void DebugSystem::readOpenSystemWindows(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_SystemDebugWindows, data);
+    }
+
     /// @brief map containing read methods
     ReadMethodMap< DebugSystem > const DebugSystem::s_ReadMethods = {
-        { "ShowFpsWindow"  , &readShowFpsWindow   },
-        { "ShowDebugWindow", &readShowDebugWindow }
+        { "ShowFpsWindow"    , &readShowFpsWindow     },
+        { "ShowDebugWindow"  , &readShowDebugWindow   },
+        { "OpenSystemWindows", &readOpenSystemWindows }
+
     };
 
 //-----------------------------------------------------------------------------
@@ -746,6 +752,7 @@ void DebugSystem::WritetoConsole(const std::string& message)
         
         json[ "ShowFpsWindow"   ] = Stream::Write( m_ShowFpsWindow   );
         json[ "ShowDebugWindow" ] = Stream::Write( GetDebugEnabled() );
+        json[ "OpenSystemWindows"] = Stream::Write( m_SystemDebugWindows );
 
         return json;
     }

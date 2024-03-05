@@ -130,6 +130,7 @@ private: // Members
     /// @brief Flag to control display of the ImGui demo window
     bool m_ShowDemoWindow = false;
     
+    /// @brief flag to control if the window is fullscreen
     bool m_Fullscreen = false;
 
     /// @brief Flag to show the Asset System List
@@ -150,6 +151,7 @@ private: // Members
     /// @brief Flag to show the Load Scene Window
     bool m_ShowSceneLoadWindow = false;
 
+    /// @brief Flag to show if the Load File Window is open
     bool m_LoadDataFile = false;
     
     /// @brief Flag to Show the various Asset Prefab Windows
@@ -166,6 +168,9 @@ private: // Members
 
     /// @brief the buffer for the DebugStream
     std::stringstream _buffer;
+
+    /// @brief Whether to show the Debug windows for All the Systems
+    bool m_ShowDebugWindows = true;
 
     /// @brief  the names of all Systems that are enabled in the Editor
     std::set< std::string > const m_EditorSystemNames = {
@@ -218,6 +223,10 @@ private: // reading
     /// @brief Reads whether to show the debug window
     /// @param stream  the data to read from
     void readShowDebugWindow( nlohmann::ordered_json const& data );
+
+    /// @brief Reads which systems the debug windows were open for
+    /// @param data The json data to read from
+    void readOpenSystemWindows(nlohmann::ordered_json const& data);
 
 
     /// @brief map containing read methods

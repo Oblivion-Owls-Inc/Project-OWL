@@ -103,7 +103,7 @@
             if (ImGui::Button("Save Engine Config"))
             {
                 /// Save the engine config to the filepath
-                Stream::WriteToFile(buffer, Engine::GetInstance()->Write());
+                Stream::WriteToFile(buffer, GameEngine()->Write());
                 ImGui::End();
                 return false; //close window
             }

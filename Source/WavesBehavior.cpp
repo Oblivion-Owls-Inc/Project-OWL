@@ -109,7 +109,7 @@ void WavesBehavior::OnFixedUpdate()
 {
 	if (currentWave < numWaves)
 	{
-		float dt = Engine::GetInstance()->GetFixedFrameDuration();
+		float dt = GameEngine()->GetFixedFrameDuration();
 		if (waves[currentWave].remainingTime > 0.0f)
 		{
 			waves[currentWave].remainingTime -= dt;

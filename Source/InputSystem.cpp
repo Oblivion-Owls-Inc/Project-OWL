@@ -19,7 +19,7 @@
 /// @brief  updates map realted to fixed or standard update
 void InputSystem::mapUpdate()
 {
-    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    Engine::UpdateMode mode = GameEngine()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
         m_KeyStatesHold = &m_FixedKeyStates;
@@ -172,7 +172,7 @@ bool InputSystem::GetKeyDown(int glfw_key, int altWindow)
     {
         return windows[altWindow - 1][glfw_key][0];
     }
-    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    Engine::UpdateMode mode = GameEngine()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
         return m_FixedKeyStates[glfw_key][0];
@@ -189,7 +189,7 @@ bool InputSystem::GetKeyDown(int glfw_key, int altWindow)
 /// @return returns if the button is down.
 bool InputSystem::GetGamepadButtonDown(int glfw_button)
 {
-    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    Engine::UpdateMode mode = GameEngine()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
         return m_FixedControllerStates[glfw_button][0];
@@ -224,7 +224,7 @@ bool InputSystem::GetKeyTriggered(int glfw_key, int altWindow)
     {
         return windows[altWindow - 1][glfw_key][1];
     }
-    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    Engine::UpdateMode mode = GameEngine()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
         return m_FixedKeyStates[glfw_key][1];
@@ -241,7 +241,7 @@ bool InputSystem::GetKeyTriggered(int glfw_key, int altWindow)
 /// @return returns if button is triggered.
 bool InputSystem::GetGamepadButtonTriggered(int glfw_button)
 {
-    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    Engine::UpdateMode mode = GameEngine()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
         return m_FixedControllerStates[glfw_button][1];
@@ -262,7 +262,7 @@ bool InputSystem::GetKeyReleased(int glfw_key, int altWindow)
     {
         return windows[altWindow - 1][glfw_key][2];
     }
-    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    Engine::UpdateMode mode = GameEngine()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
         return m_FixedKeyStates[glfw_key][2];
@@ -279,7 +279,7 @@ bool InputSystem::GetKeyReleased(int glfw_key, int altWindow)
 /// @return returns if the button is released
 bool InputSystem::GetGamepadButtonReleased(int glfw_button)
 {
-    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    Engine::UpdateMode mode = GameEngine()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
         return m_FixedControllerStates[glfw_button][2];
@@ -314,7 +314,7 @@ float InputSystem::GetGamepadAxisState(int gamepad_id, int axis_id)
 /// @return returns if mouse button is down
 bool InputSystem::GetMouseDown(int glfw_mouse_button)
 {
-    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    Engine::UpdateMode mode = GameEngine()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
         return m_FixedMouseStates[glfw_mouse_button][0];
@@ -339,7 +339,7 @@ bool InputSystem::GetMouseUp(int glfw_mouse_button)
 /// @return returns if mouse button is triggered
 bool InputSystem::GetMouseTriggered(int glfw_mouse_button)
 {
-    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    Engine::UpdateMode mode = GameEngine()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
         return m_FixedMouseStates[glfw_mouse_button][1];
@@ -356,7 +356,7 @@ bool InputSystem::GetMouseTriggered(int glfw_mouse_button)
 /// @return returns if mouse button is released
 bool InputSystem::GetMouseReleased(int glfw_mouse_button)
 {
-    Engine::UpdateMode mode = Engine::GetInstance()->GetCurrentUpdate();
+    Engine::UpdateMode mode = GameEngine()->GetCurrentUpdate();
     if (mode == Engine::UpdateMode::fixedUpdate)
     {
         return m_FixedMouseStates[glfw_mouse_button][2];

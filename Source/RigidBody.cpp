@@ -33,7 +33,7 @@
     /// @param  acceleration    the acceleration to apply
     void RigidBody::ApplyAcceleration( glm::vec2 const& acceleration )
     {
-        m_Velocity += acceleration * Engine::GetInstance()->GetFixedFrameDuration();
+        m_Velocity += acceleration * GameEngine()->GetFixedFrameDuration();
     }
 
     /// @brief  adds to the Velocity of this Rigidbody
@@ -48,7 +48,7 @@
     /// @param  force   the force to apply
     void RigidBody::ApplyForce( glm::vec2 const& force )
     {
-        ApplyImpulse( force * Engine::GetInstance()->GetFixedFrameDuration() );
+        ApplyImpulse( force * GameEngine()->GetFixedFrameDuration() );
     }
 
     /// @brief  applies an impulse to this RigidBody this frame
@@ -114,7 +114,7 @@
             return;
         }
 
-        float dt = Engine::GetInstance()->GetFixedFrameDuration();
+        float dt = GameEngine()->GetFixedFrameDuration();
 
         // linear movement
         glm::vec2 position = m_Transform->GetTranslation();
