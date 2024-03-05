@@ -569,10 +569,29 @@ void DebugSystem::ShowSystemList(const std::string& prefix)
 void DebugSystem::OnFixedUpdate()
 {
     #ifndef NDEBUG  
-    if ( InputSystem::GetInstance()->GetKeyTriggered( GLFW_KEY_GRAVE_ACCENT ) )
-    {
-        SetDebugEnable( !GetDebugEnabled() );
-    }
+
+        if ( InputSystem::GetInstance()->GetKeyTriggered( GLFW_KEY_GRAVE_ACCENT ) )
+        {
+            for (System* system : GameEngine()->GetSystems())
+            {
+                if (system == &Debug())
+                    continue;
+
+                if (GetDebugEnabled())
+                {
+                    if (system->GetDebugEnabled())
+                        system->SetDebugEnable( !system->GetDebugEnabled() );
+                }
+                else
+                {
+                    if (!system->GetDebugEnabled())
+                        system->SetDebugEnable( !system->GetDebugEnabled() );
+                }
+            }
+
+            SetDebugEnable( !GetDebugEnabled() );
+        }
+
     #endif
 }
 

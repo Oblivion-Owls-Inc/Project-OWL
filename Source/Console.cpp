@@ -10,6 +10,7 @@
 ///*****************************************************************/
 
 #include "Console.h"
+#include "InputSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -66,31 +67,6 @@
         }
 
 
-#define TEST
-    #ifdef TEST
-        if (ImGui::SmallButton("Add Debug Warning")) 
-        { 
-            AddLog("Warning: Don't Do that\n");
-        }
-
-        ImGui::SameLine();
-
-        if (ImGui::SmallButton("Add Debug Error")) 
-        { 
-            AddLog("Error: something went wrong\n"); 
-        }
-
-        ImGui::SameLine();
-
-        if (ImGui::SmallButton("Add Debug Message")) 
-	    { 
-		    AddLog("Debug: This is a debug message\n"); 
-	    }
-
-        ImGui::SameLine();
-    #endif // TEST
-
-
         if (ImGui::SmallButton("Clear")) 
         { 
             ClearLog(); 
@@ -99,7 +75,7 @@
 
         bool copy_to_clipboard = ImGui::SmallButton("Copy");
 
-        ImGui::Separator();
+        ImGui::SameLine();
 
         // Options menu
         if (ImGui::BeginPopup("Options"))
@@ -142,29 +118,34 @@
                 ImGui::LogToClipboard();
             }
 
-            for (const std::string& item : m_Items) {
+            for (const std::string& item : m_Items) 
+            {
                 // If you don't have a filter, remove this conditional
                 if (!m_Filter.PassFilter(item.c_str()))
                     continue;
 
                 ImVec4 color;
                 bool has_color = false;
+
                 if (item.find("Warning:") != std::string::npos || item.find("WARNING:") != std::string::npos)
                 {
                     /// Make the text yellow
                     color = ImVec4(1.0f, 1.0f, 0.4f, 1.0f);
                     has_color = true;
                 }
+
 			    if (item.find("Error:") != std::string::npos) 
 			    {
 				    color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f);
 				    has_color = true;
 			    }
+
                 if (item.rfind("# ", 0) == 0) 
                 { // Efficient check for prefix
                     color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f);
                     has_color = true;
                 }
+
                 if(item.rfind("OpenGL Error:", 0) == 0)
 				{
                     continue;
@@ -200,6 +181,28 @@
         }
 
         ImGui::EndChild();
+
+        bool openCheatsConsole = Input()->GetKeyReleased(GLFW_KEY_F1);
+
+        if (openCheatsConsole)
+        {
+
+            ImGui::Separator();
+            // Command-line
+            std::string inputBuffer;
+            ImGuiInputTextFlags input_text_flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackCompletion | ImGuiInputTextFlags_CallbackHistory;
+            bool input = ImGui::InputText("Input", &inputBuffer, input_text_flags);
+
+            if (input)
+            {
+                CallCommand(inputBuffer);
+                inputBuffer.clear();
+            }
+
+            // Auto-focus on window apparition
+            ImGui::SetItemDefaultFocus();
+        }
+
         ImGui::End();
     }
 
@@ -235,10 +238,9 @@
     /// @param command - The command to call
     void DebugConsole::CallCommand(std::string const& command)
     {
-        if (command.empty())
-	    {
-		    return;
-	    }
+     
+        Debug() << "Command: " << command << std::endl;
+
     }
 
 //-----------------------------------------------------------------------------

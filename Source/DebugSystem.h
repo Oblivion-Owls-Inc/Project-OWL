@@ -155,10 +155,11 @@ private: // Members
     /// @brief Flag to Show the various Asset Prefab Windows
     bool m_CreationWindows[ (int)MenuItemType::_Count ] = { 0 };
 
+    /// @brief Map of all the systems and if they are currently open.
+    std::map< std::string, bool> m_SystemDebugWindows;
 
     /// @brief  the Play Bar
     PlayBar m_PlayBar;
-
 
     /// @brief Pointer to the ImGui Input/Output structure
     ImGuiIO* io;

@@ -204,6 +204,7 @@ xcopy /Y "$(SolutionDir)Data" "$(OutDir)Data"</Command>
       <AdditionalIncludeDirectories>$(SolutionDir)rapidjson;$(SolutionDir)imgui;$(SolutionDir)libraries\includes</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
