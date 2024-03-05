@@ -32,13 +32,10 @@ void InputSystem::DebugWindow()
             static char nameBuffer[128] = ""; // Buffer to hold the input
             ImGui::InputText("Action Name", nameBuffer, IM_ARRAYSIZE(nameBuffer));
 
-            static char descriptionBuffer[256] = ""; // Buffer to hold the input
-            ImGui::InputText("Description", descriptionBuffer, IM_ARRAYSIZE(descriptionBuffer));
-
             if (ImGui::Button("Create"))
             {
                 size_t previousCapacity = m_Actions.capacity();
-                m_Actions.push_back(Action(nameBuffer, descriptionBuffer));
+                m_Actions.push_back(Action(nameBuffer));
 
                 // detect when the vector reallocates
                 if ( previousCapacity != m_Actions.capacity() )
@@ -71,34 +68,6 @@ void InputSystem::DebugWindow()
                     {
                         std::string nameBuf = nameBuffer;
                         m_Actions[i].SetName(nameBuf);
-                    }
-
-                    ImGui::TreePop();
-                }
-
-                // set the description of the action
-                snprintf(title, sizeof(title), "Description");
-                if (ImGui::TreeNode(title))
-                {
-                    char buffer[512] = { 0 };
-                    char* offset = buffer;
-                    strncpy_s(buffer, m_Actions[i].GetDescription().c_str(), 512);
-                    size_t size = m_Actions[i].GetDescription().size();
-                    while (size > 0)
-                    {
-                        snprintf(title, sizeof(title), offset);
-                        ImGui::Text(title);
-                        size -= 32;
-                        offset += 32;
-                    }
-
-                    static char descriptionBuffer[512] = ""; // Buffer to hold the input
-                    ImGui::InputText("New Description", descriptionBuffer, IM_ARRAYSIZE(descriptionBuffer));
-
-                    if (ImGui::Button("Change"))
-                    {
-                        std::string descript = descriptionBuffer;
-                        m_Actions[i].SetDescription(descript);
                     }
 
                     ImGui::TreePop();
@@ -691,8 +660,8 @@ void InputSystem::DebugWindow()
 /// @brief  contructor
 /// @param  name of the action
 /// @param  description of the action (viewable in editor)
-InputSystem::Action::Action(std::string name, std::string description) :
-    m_Name(name), m_Description(description)
+InputSystem::Action::Action(std::string name) :
+    m_Name(name)
 {
 }
 
@@ -707,8 +676,7 @@ void InputSystem::Action::removeByInput(std::vector<int>* vector, int input)
     vector->erase(it);
 }
 
-/// @brief  removes all inputs for this action 
-///         and empties name/description
+/// @brief  removes all inputs for this action and empties name
 void InputSystem::Action::Flush()
 {
     m_Keys.clear();
@@ -720,7 +688,6 @@ void InputSystem::Action::Flush()
     m_GamepadAxisAsInput.clear();
     m_GamepadAxis.clear();
     m_Name = "";
-    m_Description = "";
 }
 
 /// @brief  retrieves a private vector for inspector
@@ -921,25 +888,11 @@ std::string const& InputSystem::Action::GetName() const
     return m_Name != "" ? m_Name : defaultString;
 }
 
-/// @brief  sets the description of the action
-/// @param  new description of action
-void InputSystem::Action::SetDescription(std::string& description)
-{
-    m_Description = description;
-}
-
-/// @brief  gets the description of this action
-/// @return the description of the action
-std::string InputSystem::Action::GetDescription() const
-{
-    return m_Description;
-}
-
 /// @brief  gets if this action is down
 /// @return action down status
 bool InputSystem::Action::GetDown() const
 {
-    int size = (int)m_Keys.size();
+    int size = static_cast<int>(m_Keys.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetKeyDown(m_Keys[i]))
@@ -948,7 +901,7 @@ bool InputSystem::Action::GetDown() const
         }
     }
 
-    size = (int)m_Mouse.size();
+    size = static_cast<int>(m_Mouse.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetMouseDown(m_Mouse[i]))
@@ -957,7 +910,7 @@ bool InputSystem::Action::GetDown() const
         }
     }
 
-    size = (int)m_Controller.size();
+    size = static_cast<int>(m_Controller.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetGamepadButtonDown(m_Controller[i]))
@@ -965,7 +918,7 @@ bool InputSystem::Action::GetDown() const
             return true;
         }
     }
-    size = (int)m_GamepadAxisAsInput.size();
+    size = static_cast<int>(m_GamepadAxisAsInput.size());
     for (int i = 0; i < size; ++i)
     {
         if (m_GamepadAxisAsInput[i] == 4 || m_GamepadAxisAsInput[i] == 5)
@@ -991,7 +944,7 @@ bool InputSystem::Action::GetTriggered() const
 {
     bool triggered = false;
 
-    int size = (int)m_Keys.size();
+    int size = static_cast<int>(m_Keys.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetKeyDown(m_Keys[i]))
@@ -1007,7 +960,7 @@ bool InputSystem::Action::GetTriggered() const
         }
     }
 
-    size = (int)m_Mouse.size();
+    size = static_cast<int>(m_Mouse.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetMouseDown(m_Mouse[i]))
@@ -1023,7 +976,7 @@ bool InputSystem::Action::GetTriggered() const
         }
     }
 
-    size = (int)m_Controller.size();
+    size = static_cast<int>(m_Controller.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetGamepadButtonDown(m_Controller[i]))
@@ -1048,7 +1001,7 @@ bool InputSystem::Action::GetReleased() const
 {
     bool released = false;
 
-    int size = (int)m_Keys.size();
+    int size = static_cast<int>(m_Keys.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetKeyDown(m_Keys[i]))
@@ -1061,7 +1014,7 @@ bool InputSystem::Action::GetReleased() const
         }
     }
 
-    size = (int)m_Mouse.size();
+    size = static_cast<int>(m_Mouse.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetMouseDown(m_Mouse[i]))
@@ -1074,7 +1027,7 @@ bool InputSystem::Action::GetReleased() const
         }
     }
 
-    size = (int)m_Controller.size();
+    size = static_cast<int>(m_Controller.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetGamepadButtonDown(m_Controller[i]))
@@ -1095,7 +1048,7 @@ bool InputSystem::Action::GetReleased() const
 float InputSystem::Action::GetAxis() const
 {
     float result = 0.0f;
-    int size = (int)m_Keys.size();
+    int size = static_cast<int>(m_Keys.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetKeyDown(m_Keys[i]))
@@ -1103,7 +1056,7 @@ float InputSystem::Action::GetAxis() const
             result += 1;
         }
     }
-    size = (int)m_KeyAxis.size();
+    size = static_cast<int>(m_KeyAxis.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetKeyDown(m_KeyAxis[i]))
@@ -1112,7 +1065,7 @@ float InputSystem::Action::GetAxis() const
         }
     }
 
-    size = (int)m_Mouse.size();
+    size = static_cast<int>(m_Mouse.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetMouseDown(m_Mouse[i]))
@@ -1120,7 +1073,7 @@ float InputSystem::Action::GetAxis() const
             result += 1;
         }
     }
-    size = (int)m_MouseAxis.size();
+    size = static_cast<int>(m_MouseAxis.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetMouseDown(m_MouseAxis[i]))
@@ -1129,7 +1082,7 @@ float InputSystem::Action::GetAxis() const
         }
     }
 
-    size = (int)m_Controller.size();
+    size = static_cast<int>(m_Controller.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetGamepadButtonDown(m_Controller[i]))
@@ -1137,7 +1090,7 @@ float InputSystem::Action::GetAxis() const
             result += 1;
         }
     }
-    size = (int)m_ControllerAxis.size();
+    size = static_cast<int>(m_ControllerAxis.size());
     for (int i = 0; i < size; ++i)
     {
         if (Input()->GetGamepadButtonDown(m_ControllerAxis[i]))
@@ -1146,7 +1099,7 @@ float InputSystem::Action::GetAxis() const
         }
     }
 
-    size = (int)m_GamepadAxis.size();
+    size = static_cast<int>(m_GamepadAxis.size());
     for (int i = 0; i < size; ++i)
     {
         float axisAddition = Input()->GetGamepadAxisState(0, m_GamepadAxis[i]);

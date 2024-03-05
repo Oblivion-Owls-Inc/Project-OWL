@@ -95,6 +95,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac5632e730509cd2ccb8bc80c35994b87"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#ac5632e730509cd2ccb8bc80c35994b87">OnExit</a> () override</td></tr>
 <tr class="memdesc:ac5632e730509cd2ccb8bc80c35994b87"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when <a class="el" href="classGenerator.html">Generator</a> exits  <a href="classGenerator.html#ac5632e730509cd2ccb8bc80c35994b87">More...</a><br /></td></tr>
 <tr class="separator:ac5632e730509cd2ccb8bc80c35994b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf816931e7eb054c11ed084d75330c0a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#abf816931e7eb054c11ed084d75330c0a">OnUpdate</a> (float dt) override</td></tr>
+<tr class="memdesc:abf816931e7eb054c11ed084d75330c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">called every frame  <a href="classGenerator.html#abf816931e7eb054c11ed084d75330c0a">More...</a><br /></td></tr>
+<tr class="separator:abf816931e7eb054c11ed084d75330c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16d04e7ba515d4f61f35e959b6c7240b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a16d04e7ba515d4f61f35e959b6c7240b">GetPowerRadius</a> ()</td></tr>
 <tr class="memdesc:a16d04e7ba515d4f61f35e959b6c7240b"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the radius within turrets are powered  <a href="classGenerator.html#a16d04e7ba515d4f61f35e959b6c7240b">More...</a><br /></td></tr>
 <tr class="separator:a16d04e7ba515d4f61f35e959b6c7240b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,6 +117,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a6cc819df33a3c49d209450066e006c1a"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::ordered_json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenerator.html#a6cc819df33a3c49d209450066e006c1a">Write</a> () const override</td></tr>
 <tr class="memdesc:a6cc819df33a3c49d209450066e006c1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all <a class="el" href="classGenerator.html">Generator</a> data to a JSON file.  <a href="classGenerator.html#a6cc819df33a3c49d209450066e006c1a">More...</a><br /></td></tr>
 <tr class="separator:a6cc819df33a3c49d209450066e006c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classBehavior"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classBehavior')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classBehavior.html">Behavior</a></td></tr>
+<tr class="memitem:a6416957ece445d094b45b13c02c16f98 inherit pub_methods_classBehavior"><td class="memItemLeft" align="right" valign="top"><a id="a6416957ece445d094b45b13c02c16f98"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnFixedUpdate</b> ()</td></tr>
+<tr class="separator:a6416957ece445d094b45b13c02c16f98 inherit pub_methods_classBehavior"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classComponent"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classComponent')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classComponent.html">Component</a></td></tr>
 <tr class="memitem:a2e9aa4348314d981f05f67397ad2f872 inherit pub_methods_classComponent"><td class="memItemLeft" align="right" valign="top"><a id="a2e9aa4348314d981f05f67397ad2f872"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#a2e9aa4348314d981f05f67397ad2f872">~Component</a> ()</td></tr>
@@ -160,6 +167,10 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classBehavior"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classBehavior')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classBehavior.html">Behavior</a></td></tr>
+<tr class="memitem:aad1c5d2f143b5d6d175c01da2941d2ac inherit pro_methods_classBehavior"><td class="memItemLeft" align="right" valign="top"><a id="aad1c5d2f143b5d6d175c01da2941d2ac"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Behavior</b> (std::type_index m_Type)</td></tr>
+<tr class="separator:aad1c5d2f143b5d6d175c01da2941d2ac inherit pro_methods_classBehavior"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classComponent"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classComponent')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classComponent.html">Component</a></td></tr>
 <tr class="memitem:ac70649aafa6c287ce26ed3237896d512 inherit pro_methods_classComponent"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComponent.html#ac70649aafa6c287ce26ed3237896d512">Component</a> (std::type_index m_Type)</td></tr>
 <tr class="memdesc:ac70649aafa6c287ce26ed3237896d512 inherit pro_methods_classComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">default component constructor  <a href="classComponent.html#ac70649aafa6c287ce26ed3237896d512">More...</a><br /></td></tr>
@@ -400,6 +411,42 @@ the lowest generator </dd></dl>
 <p>initialize <a class="el" href="classGenerator.html">Generator</a> </p>
 
 <p>Reimplemented from <a class="el" href="classComponent.html#a2a76b143949c4f40b890c182cdd18a22">Component</a>.</p>
+
+</div>
+</div>
+<a id="abf816931e7eb054c11ed084d75330c0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf816931e7eb054c11ed084d75330c0a">&#9670;&nbsp;</a></span>OnUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Generator::OnUpdate </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>called every frame </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>delta time </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classBehavior.html">Behavior</a>.</p>
 
 </div>
 </div>

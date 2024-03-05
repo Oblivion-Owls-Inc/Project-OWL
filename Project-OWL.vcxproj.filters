@@ -294,9 +294,6 @@
     <Filter Include="Engine\Entity\Component\Behavior\Lifetime">
       <UniqueIdentifier>{334bddc5-1ff2-4bb8-abf2-e472e77067cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Generator">
-      <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Systems\CollisonSystem\CollisionLayerFlags">
       <UniqueIdentifier>{e06163df-945e-4eea-a970-e79a5db2c22f}</UniqueIdentifier>
     </Filter>
@@ -344,6 +341,9 @@
     </Filter>
     <Filter Include="Engine\Entity\Component\SceneChangeButton">
       <UniqueIdentifier>{d7d04071-2085-40c9-8456-07a77eb4a22c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\Generator">
+      <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -633,7 +633,7 @@
       <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
     </ClCompile>
     <ClCompile Include="Source\Generator.cpp">
-      <Filter>Game\Components\Generator</Filter>
+      <Filter>Game\Components\Behaviors\Generator</Filter>
     </ClCompile>
     <ClCompile Include="Source\EditorCameraController.cpp">
       <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
@@ -1019,7 +1019,7 @@
       <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
     </ClInclude>
     <ClInclude Include="Source\Generator.h">
-      <Filter>Game\Components\Generator</Filter>
+      <Filter>Game\Components\Behaviors\Generator</Filter>
     </ClInclude>
     <ClInclude Include="Source\EditorCameraController.h">
       <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>

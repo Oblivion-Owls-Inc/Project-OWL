@@ -29,6 +29,9 @@ class Tilemap;
 #include  "AssetReference.h"
 class Entity;
 
+#include "ActionReference.h"
+
+
 /// @brief  Component that handles the construction of towers and modification of terrain
 class ConstructionBehavior : public Behavior
 {
@@ -50,6 +53,8 @@ private: // class BuildingInfo
         
         /// @brief  the cost of the building
         std::vector< ItemStack > M_Cost = {};
+
+        ActionReference M_BuildAction;
         
 
     //-------------------------------------------------------------------------
@@ -59,6 +64,9 @@ private: // class BuildingInfo
 
         /// @brief  initializes this BuildingInfo
         void Init();
+
+        /// @brief  exits this BuildingInfo
+        void Exit();
 
 
     //-------------------------------------------------------------------------
@@ -84,6 +92,9 @@ private: // class BuildingInfo
         /// @param  data    the json data to read from
         void readCost( nlohmann::ordered_json const& data );
 
+        /// @brief  the control Action to build this building
+        /// @param  data    the JSON data to read from
+        void readBuildAction(nlohmann::ordered_json const& data);
 
     //-------------------------------------------------------------------------
     public: // reading / writing
@@ -225,23 +236,30 @@ private: // members
     EntityReference m_CostUiEntity = EntityReference( { &m_CostResourcesUiManager } );
 
 
+    /// @brief  the preview radius sprite
+    ComponentReference< Sprite > m_RadiusSprite;
+
+    /// @brief  the transform of the radius
+    ComponentReference< Transform > m_RadiusTransform;
+
+
     /// @brief  the transform of the preview sprite
     ComponentReference< Transform > m_Transform;
 
     /// @brief  the preview sprite
     ComponentReference< Sprite > m_Sprite;
 
-    /// @brief  the preview radius sprite
-    ComponentReference< Sprite > m_RadiusSprite;
-
-    /// @brief  the transform of the player
-    ComponentReference< Transform > m_RadiusTransform;
-
     /// @brief  the sound played when placing a turret.
     ComponentReference< AudioPlayer > m_TurretPlacementSound;
 
     /// @brief  the Inventory component used to store the cost of the current turret
     ComponentReference< Inventory > m_CostInventory;
+
+    /// @brief  the control Action used for canceling placement
+    ActionReference m_CancelPlacement;
+
+    /// @brief  the control Action used for placing a building
+    ActionReference m_PlaceAction;
 
 
 //-----------------------------------------------------------------------------
@@ -349,6 +367,13 @@ private: // reading
     /// @param  data    the json data to read from
     void readCostUiEntity( nlohmann::ordered_json const& data );
 
+    /// @brief  the control Action to interact with something
+    /// @param  data    the JSON data to read from
+    void readCancelPlacement(nlohmann::ordered_json const& data);
+
+    /// @brief  the control Action to place a building
+    /// @param  data    the JSON data to read from
+    void readPlaceAction(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

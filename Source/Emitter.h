@@ -43,6 +43,9 @@ public:
     /// @brief   Sets the delay between emissions
     __inline void SetDelay(float delay) { m_Delay = delay; }
 
+    /// @brief   Sets the emit data
+    __inline void SetEmitData(ParticleSystem::EmitData const& data) { m_Init = data; }
+
     /// @return  Size of the particle buffer(s), which is also maximum particle count 
     __inline int GetBufferSize() const { return m_BufferSize; }
 
