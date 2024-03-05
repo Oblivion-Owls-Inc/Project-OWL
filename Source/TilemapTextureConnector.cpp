@@ -10,6 +10,7 @@
 
 #include "TilemapTextureConnector.h"
 
+#include "ComponentReference.t.h"
 #include "Tilemap.h"
 
 #include "Inspection.h"

@@ -84,7 +84,6 @@ private: // Member Variables
     /// @brief  Health of this entity.
     ComponentReference< Health > m_Health;
 
-    ComponentReference< Tilemap< int > > m_Tilemap;
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------

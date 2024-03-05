@@ -301,7 +301,7 @@
         }
         m_EntityReferences.clear();
 
-        for ( int i = m_Children.size() - 1; i >= 0; --i )
+        for ( int i = (int)m_Children.size() - 1; i >= 0; --i )
         {
             m_Children[ i ]->SetParent(nullptr);
         }

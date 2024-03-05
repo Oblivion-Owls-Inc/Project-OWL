@@ -77,13 +77,6 @@
             }
         );
 
-        m_Tilemap.SetOnDisconnectCallback(
-            [this]()
-            {
-                m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
-            }
-        );
-
         m_Health.SetOnDisconnectCallback(
             [ this ]()
             {
