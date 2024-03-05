@@ -12,11 +12,13 @@
 #include "System.h"
 #include "DebugSystem.h"
 
+
 //------------------------------------------------------------------------------
 // Forward References:
 //------------------------------------------------------------------------------
 
 class CircleCollider;
+class Health;
 
 class CheatSystem :public System
 {
@@ -49,26 +51,47 @@ private: // methods
     /// @brief Run the cheats.
     void RunCheats();
 
+    /// @brief Infinite Player Health.
+    void InfinitePlayerHealth();
+
+    /// @brief Kills enemy with one hit from the laser.
+    void OneShotOneKill();
+
     /// @brief Turns off player collisions.
     void noClip();
 
-    /// @brief  toggles the inifinite resources cheat
-    /// @return the current state of whether there are infinite resources
+    /// @brief  Toggles the infinite resources cheat
+    /// @return The current state of whether there are infinite resources
     bool toggleInfinteResources();
 
 //--------------------------------------------------------------------------------
 private: // members
 //--------------------------------------------------------------------------------
 
-    // Whether or not the console is open.
+    /// @brief Is the cheat menu open
     bool m_CheatMenuIsOpen;
-    // The different cheats
-    bool m_ResourceSwitch;
-    bool m_BaseGodMode;
-    bool m_NoClip;
+    /// @brief Toggles infinite resources
+    bool m_ToggleInfiniteResource;
+    /// @brief Toggles base infinite health
+    bool m_ToggleBaseGodMode;
+    /// @brief Toggles player infinite health
+    bool m_TogglePlayerInfiniteHealth;
+    /// @brief Mining Laser one shot one kill.
+    bool m_ToggleOneShotOneKill;
+    /// @brief Toggles player no clipping
+    bool m_ToggleNoClip;
+    /// @brief Store the previous value of the player's health
+    int m_PreviousPlayerHealth;
+    /// @brief Store the previous value of the base's health.
+    int m_PreviousBaseHealth;
+    /// @brief Store the previous value of the laser's damage.
+    float m_PreviousLaserDamage;
+
+    /// @brief Pauses the game (no longer necessary).
     bool m_Pause;
-    // The player's collider.
-    CircleCollider* m_CircleCollider;
+
+    /// @brief The player's circle collider.
+    CircleCollider* m_PlayerCircleCollider;
 
 //--------------------------------------------------------------------------------
 private: // singleton 

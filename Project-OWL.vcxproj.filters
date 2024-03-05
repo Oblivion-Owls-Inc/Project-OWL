@@ -722,6 +722,9 @@
     <ClCompile Include="Source\PauseSystem.cpp">
       <Filter>Engine\Systems\PauseSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Popup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1096,6 +1099,9 @@
     <ClInclude Include="Source\PauseSystem.h">
       <Filter>Engine\Systems\PauseSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Popup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -1173,5 +1179,6 @@
     <None Include="Data\Scenes\MainMenu.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
+    <None Include="Data\Scenes\Prototype v3.scene.json" />
   </ItemGroup>
 </Project>

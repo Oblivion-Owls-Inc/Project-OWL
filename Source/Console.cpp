@@ -66,7 +66,6 @@
         }
 
 
-#define TEST
     #ifdef TEST
         if (ImGui::SmallButton("Add Debug Warning")) 
         { 
