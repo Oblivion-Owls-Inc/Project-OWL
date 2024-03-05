@@ -35,6 +35,9 @@ void AssetLibrarySystem<Entity>::DebugWindow()
 
     for (auto& entity : entities)
     {
+        if (entity->IsInScene())
+            entity->Exit();
+
         m_Assets[entity->GetName()] = entity;
     }
 

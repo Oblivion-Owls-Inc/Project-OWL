@@ -541,7 +541,66 @@
             },
             "Generator": {
                 "Name": "Generator",
-                "Components": null,
+                "Components": {
+                    "AudioPlayer": {
+                        "Sound": {
+                            "AssetName": "BaseDamageSound"
+                        },
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": false,
+                        "IsSpatial": false,
+                        "AllowMultipleSounds": false
+                    },
+                    "CircleCollider": {
+                        "Radius": 2.0,
+                        "CollisionLayer": 3,
+                        "CollisionLayerFlags": {
+                            "Flags": 2
+                        }
+                    },
+                    "Generator": {
+                        "Radius": 5.0,
+                        "ActivateRadius": 1.0,
+                        "Depth": 1,
+                        "Active": true
+                    },
+                    "Health": {
+                        "Health": {
+                            "BaseValue": 5,
+                            "CurrentValue": 5
+                        }
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Van"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            -5.679166793823242,
+                            -0.4700002670288086
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
                 "Children": null
             },
             "Item": {
@@ -853,8 +912,8 @@
                 },
                 "Transform": {
                     "Translation": [
-                        -4.444206237792969,
-                        -52.7640380859375
+                        35.002586364746094,
+                        -37.2301025390625
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -106086,6 +106145,792 @@
                 }
             },
             "Children": null
+        },
+        "Generator 1": {
+            "Name": "Generator 1",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 1,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        27.088924407958984,
+                        -93.66276550292969
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "Ring",
+                    "Components": {
+                        "Emitter": {
+                            "PPS": 116.96299743652344,
+                            "Delay": 0.0,
+                            "Max": 2048,
+                            "Continuous": true,
+                            "EmitData": [
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                4.936999797821045,
+                                0.5680000185966492,
+                                0.23000001907348633,
+                                0.0,
+                                3.140000104904175,
+                                0.023000000044703484,
+                                0.16500000655651093,
+                                0.0,
+                                0.36000001430511475,
+                                0.4399999976158142,
+                                1.1399999856948853,
+                                8.479999542236328,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "EmitterSprite": {
+                            "Layer": 4,
+                            "Color": [
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.0
+                            ],
+                            "Opacity": 0.8299999833106995,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "Ball1"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                26.844009399414063,
+                                -93.56348419189453
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        "Generator": {
+            "Name": "Generator",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 1,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        29.0744571685791,
+                        -9.690689086914063
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "Ring",
+                    "Components": {
+                        "Emitter": {
+                            "PPS": 116.96299743652344,
+                            "Delay": 0.0,
+                            "Max": 2048,
+                            "Continuous": true,
+                            "EmitData": [
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                4.936999797821045,
+                                0.5680000185966492,
+                                0.23000001907348633,
+                                0.0,
+                                3.140000104904175,
+                                0.023000000044703484,
+                                0.16500000655651093,
+                                0.0,
+                                0.36000001430511475,
+                                0.4399999976158142,
+                                1.1399999856948853,
+                                8.479999542236328,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "EmitterSprite": {
+                            "Layer": 4,
+                            "Color": [
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.0
+                            ],
+                            "Opacity": 0.8299999833106995,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "Ball1"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                28.859615325927734,
+                                -9.710897445678711
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        "Generator 3": {
+            "Name": "Generator 3",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 1,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        53.30839538574219,
+                        -18.65210723876953
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "Ring",
+                    "Components": {
+                        "Emitter": {
+                            "PPS": 116.96299743652344,
+                            "Delay": 0.0,
+                            "Max": 2048,
+                            "Continuous": true,
+                            "EmitData": [
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                4.936999797821045,
+                                0.5680000185966492,
+                                0.23000001907348633,
+                                0.0,
+                                3.140000104904175,
+                                0.023000000044703484,
+                                0.16500000655651093,
+                                0.0,
+                                0.36000001430511475,
+                                0.4399999976158142,
+                                1.1399999856948853,
+                                8.479999542236328,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "EmitterSprite": {
+                            "Layer": 4,
+                            "Color": [
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.0
+                            ],
+                            "Opacity": 0.8299999833106995,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "Ball1"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                52.83832550048828,
+                                -18.65210723876953
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        "Generator 4": {
+            "Name": "Generator 4",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 1,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        33.114776611328125,
+                        -30.7271728515625
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "Ring",
+                    "Components": {
+                        "Emitter": {
+                            "PPS": 116.96299743652344,
+                            "Delay": 0.0,
+                            "Max": 2048,
+                            "Continuous": true,
+                            "EmitData": [
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                4.936999797821045,
+                                0.5680000185966492,
+                                0.23000001907348633,
+                                0.0,
+                                3.140000104904175,
+                                0.023000000044703484,
+                                0.16500000655651093,
+                                0.0,
+                                0.36000001430511475,
+                                0.4399999976158142,
+                                1.1399999856948853,
+                                8.479999542236328,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "EmitterSprite": {
+                            "Layer": 4,
+                            "Color": [
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.0
+                            ],
+                            "Opacity": 0.8299999833106995,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "Ball1"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                32.76960372924805,
+                                -30.639442443847656
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        "Generator 5": {
+            "Name": "Generator 5",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 1,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        33.131935119628906,
+                        -51.66532897949219
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "Ring",
+                    "Components": {
+                        "Emitter": {
+                            "PPS": 116.96299743652344,
+                            "Delay": 0.0,
+                            "Max": 2048,
+                            "Continuous": true,
+                            "EmitData": [
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                4.936999797821045,
+                                0.5680000185966492,
+                                0.23000001907348633,
+                                0.0,
+                                3.140000104904175,
+                                0.023000000044703484,
+                                0.16500000655651093,
+                                0.0,
+                                0.36000001430511475,
+                                0.4399999976158142,
+                                1.1399999856948853,
+                                8.479999542236328,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "EmitterSprite": {
+                            "Layer": 4,
+                            "Color": [
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.0
+                            ],
+                            "Opacity": 0.8299999833106995,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "Ball1"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                32.81855773925781,
+                                -51.743675231933594
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        "Generator 6": {
+            "Name": "Generator 6",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "BaseDamageSound"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
+                "CircleCollider": {
+                    "Radius": 2.0,
+                    "CollisionLayer": 3,
+                    "CollisionLayerFlags": {
+                        "Flags": 2
+                    }
+                },
+                "Generator": {
+                    "Radius": 5.0,
+                    "ActivateRadius": 1.0,
+                    "Depth": 1,
+                    "Active": true
+                },
+                "Health": {
+                    "Health": {
+                        "BaseValue": 5,
+                        "CurrentValue": 5
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Van"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        38.50839614868164,
+                        -67.66746520996094
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "Ring",
+                    "Components": {
+                        "Emitter": {
+                            "PPS": 116.96299743652344,
+                            "Delay": 0.0,
+                            "Max": 2048,
+                            "Continuous": true,
+                            "EmitData": [
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                [
+                                    0.0,
+                                    0.0
+                                ],
+                                4.936999797821045,
+                                0.5680000185966492,
+                                0.23000001907348633,
+                                0.0,
+                                3.140000104904175,
+                                0.023000000044703484,
+                                0.16500000655651093,
+                                0.0,
+                                0.36000001430511475,
+                                0.4399999976158142,
+                                1.1399999856948853,
+                                8.479999542236328,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        "EmitterSprite": {
+                            "Layer": 4,
+                            "Color": [
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.30671507120132446,
+                                0.0
+                            ],
+                            "Opacity": 0.8299999833106995,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "Ball1"
+                            }
+                        },
+                        "Transform": {
+                            "Translation": [
+                                38.2930908203125,
+                                -67.70661926269531
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
         }
     }
 }
