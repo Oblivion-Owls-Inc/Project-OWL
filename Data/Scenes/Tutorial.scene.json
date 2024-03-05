@@ -1,0 +1,203 @@
+{
+    "Assets": {
+        "Sounds": {
+            "ButtonPressedSound": {
+                "IsLoopable": false,
+                "Filepath": "Data/Sounds/Effects/button_press.ogg"
+            },
+            "ButtonReleasedSound": {
+                "IsLoopable": false,
+                "Filepath": "Data/Sounds/Effects/button_release.ogg"
+            }
+        },
+        "Textures": {
+            "ContinueButtonTexture": {
+                "Filepath": "Data/Textures/PauseMenuAssets/ContinueButtonSheet.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "TutorialPromptTexture": {
+                "Filepath": "Data/Textures/DigDeeper_TutorialTwo.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            }
+        },
+        "TransformAnimations": null,
+        "Animations": null,
+        "Archetypes": null
+    },
+    "Entities": {
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 5.0,
+                    "IsActive": true
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Tutorial": {
+            "Name": "Tutorial",
+            "Components": {
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "TutorialPromptTexture"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        -2.384185791015625e-07,
+                        0.14499999582767487
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        3.700000047683716,
+                        3.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "ContinueButton": {
+            "Name": "ContinueButton",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": {
+                        "AssetName": "ButtonPressedSound"
+                    },
+                    "Volume": 1.0,
+                    "Pitch": 1.0,
+                    "VolumeVariance": 0.0,
+                    "PitchVariance": 0.0,
+                    "DefaultLoopCount": 0,
+                    "PlayOnInit": false,
+                    "IsSpatial": false,
+                    "AllowMultipleSounds": false
+                },
+                "SceneChangeButton": {
+                    "SceneName": "Prototype",
+                    "EventName": "TutorialToPrototype"
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "ContinueButtonTexture"
+                    }
+                },
+                "UiButton": {
+                    "ClickEventName": "TutorialToPrototype",
+                    "ShouldActivateOnPress": false,
+                    "IdleFrame": 0,
+                    "HoveredFrame": 0,
+                    "DownFrame": 0,
+                    "PressSound": {
+                        "AssetName": "ButtonPressedSound"
+                    },
+                    "ReleaseSound": {
+                        "AssetName": "ButtonReleasedSound"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        -2.299999952316284
+                    ],
+                    "FrameSize": [
+                        2.9800000190734863,
+                        0.49000000953674316
+                    ],
+                    "SizeTypes": [
+                        "Absolute",
+                        "Absolute"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        "Background": {
+            "Name": "Background",
+            "Components": {
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": ""
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        }
+    }
+}

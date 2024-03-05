@@ -61,6 +61,7 @@
 #include "HideableForeground.h"
 #include "PathfinderTarget.h"
 #include "PathfinderSource.h"
+#include "Popup.h"
 
 
 //-----------------------------------------------------------------------------
@@ -204,6 +205,8 @@
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
         { "PathfinderTarget"       , ComponentInfo< PathfinderTarget        >() },
         { "PathfinderSource"       , ComponentInfo< PathfinderSource        >() }
+        { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
+        { "Popup"                  , ComponentInfo< Popup                   >() }
     };
 
 //-----------------------------------------------------------------------------
