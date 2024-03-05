@@ -19,6 +19,11 @@
 /// @return      Direction vector towards target(s). If out of bounds, returns <0,0>
 glm::vec2 PathfindSystem::GetDirectionAt(glm::vec2 pos) const
 {
+    if ( m_Tilemap == nullptr )
+    {
+        return glm::vec2( 0.0f );
+    }
+
     // get coord (2D index), check bounds
     glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
     if (coord.x == -1)
@@ -37,7 +42,7 @@ glm::vec2 PathfindSystem::GetDirectionAt(glm::vec2 pos) const
 ///              returns -1.
 int PathfindSystem::GetTravelDistanceAt(glm::vec2 pos) const
 {
-    if (!m_Tilemap)
+    if ( m_Tilemap != nullptr )
     {
         glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
 
@@ -54,7 +59,7 @@ int PathfindSystem::GetTravelDistanceAt(glm::vec2 pos) const
 /// @return      Walkable or not
 bool PathfindSystem::IsWalkable(glm::vec2 pos) const
 {
-    if (!m_Tilemap)
+    if ( m_Tilemap != nullptr )
     {
         int width = m_Tilemap->GetDimensions().x;
         glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
