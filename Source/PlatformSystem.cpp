@@ -11,6 +11,7 @@
 #include "DebugSystem.h"
 #include "RenderSystem.h"
 #include "Engine.h"
+#include "Entity.h"
 
 // #include <glew.h>       // initialize, error callback
 #include <glfw3.h>      // initialize / shutdown
@@ -226,15 +227,18 @@
         ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), dockspace_flags);
 
         #ifndef NDEBUG
+            
+        // Drop Target
 
             ImGui::PushStyleVar( ImGuiStyleVar_WindowPadding, ImVec2( 0.0f, 0.0f ) );
             /// Start the ImGui window with the window name
             ImGui::Begin( GetImguiWindowName().c_str() );
 
-                /// Get the window width and height
-                ImVec2 imGuiSize = ImGui::GetContentRegionAvail();
-                ImVec2 pos = ImGui::GetWindowPos();
-                ImVec2 max = ImVec2( pos.x + imGuiSize.x, pos.y + imGuiSize.y );
+
+            /// Get the window width and height
+            ImVec2 imGuiSize = ImGui::GetContentRegionAvail();
+            ImVec2 pos = ImGui::GetWindowPos();
+            ImVec2 max = ImVec2( pos.x + imGuiSize.x, pos.y + imGuiSize.y );
 
                 #pragma warning( push )
                 #pragma warning( disable: 4312 )
@@ -246,6 +250,7 @@
                     ImVec2(1, 0)
                 );
                 #pragma warning( pop )
+
 
             ImGui::End();
             ImGui::PopStyleVar();
