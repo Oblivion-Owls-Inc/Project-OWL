@@ -204,7 +204,7 @@
         { "SplashScreenController" , ComponentInfo< SplashScreenController  >() },
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
         { "PathfinderTarget"       , ComponentInfo< PathfinderTarget        >() },
-        { "PathfinderSource"       , ComponentInfo< PathfinderSource        >() }
+        { "PathfinderSource"       , ComponentInfo< PathfinderSource        >() },
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
         { "Popup"                  , ComponentInfo< Popup                   >() }
     };
