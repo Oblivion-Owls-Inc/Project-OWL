@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props')" />
   <ItemGroup Label="ProjectConfigurations">
@@ -507,6 +507,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <None Include="Data\Scenes\GameWin.scene.json" />
     <None Include="Data\Scenes\MainMenu.scene.json" />
     <None Include="Data\Scenes\MapTest.scene.json" />
+    <None Include="Data\Scenes\Prototype v3.scene.json" />
     <None Include="Data\Scenes\Prototype.scene.json" />
     <None Include="Data\Scenes\SplashScreen.scene.json" />
     <None Include="Data\Scenes\Template.scene.json" />

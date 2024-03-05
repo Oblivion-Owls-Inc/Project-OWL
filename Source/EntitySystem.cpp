@@ -172,6 +172,13 @@
             entity->Exit();
         }
 
+        for (Entity* entity : entitiesToRemove)
+        {
+            if (entity == SelectedEntity)
+                SelectedEntity = nullptr;
+
+            delete entity;
+        }
 
         // remove the entities from the System
         m_Entities.erase(
@@ -505,7 +512,6 @@
                                 // Set the parent of the dropped entity to the current entity
                                 droppedEntity->SetParent(currentEntity);
                             }
-
 
                         }
 
