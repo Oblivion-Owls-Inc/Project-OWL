@@ -17,6 +17,7 @@
 #include "Health.h"
 #include "Emitter.h"
 #include "EmitterSprite.h"
+#include "PathfinderTarget.h"
 
 
 class Generator : public Behavior
@@ -121,6 +122,9 @@ private: // variables
 
     /// @brief  the Health component attached to this Generator
     ComponentReference< Health > m_Health;
+
+    /// @brief  the PathfinderTarget Component attached to this Generator
+    ComponentReference< PathfinderTarget > m_PathfinderTarget;
 
     /// @brief  the Emitter component attached to this Generator
     ComponentReference< Emitter > m_Emitter;

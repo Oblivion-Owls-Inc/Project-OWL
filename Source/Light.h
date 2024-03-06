@@ -4,7 +4,6 @@
 /// @brief    Light source component. It shines.
 #pragma once
 #include "Component.h"
-#include <sstream>  // accept new Light
 
 
 /// @brief       Light source.

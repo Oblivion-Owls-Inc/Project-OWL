@@ -47,6 +47,9 @@ TilemapSprite::~TilemapSprite()
 /// @param size         array size
 void TilemapSprite::LoadTileArray(const char* tiles, int size)
 {
+    if (!size)
+        return;
+
     // Until I figure out what's wrong with reading ints from buffer, convert to floats.
     std::vector<float> chars(size);
     for (int i = 0; i < size; i++)
@@ -63,6 +66,8 @@ void TilemapSprite::LoadTileArray(const char* tiles, int size)
 void TilemapSprite::LoadTileArray(std::vector<int> tiles)
 {
     int size = (int)tiles.size();
+    if (!size)
+        return;
 
     // Until I figure out what's wrong with reading ints from buffer, convert to floats.
     std::vector<float> chars(size);         // (this one will load directly)
