@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                957,
-                548
+                960,
+                686
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -132,7 +132,7 @@
         "BehaviorSystem<Generator>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
-        "PathfindSystem": {},
+        "PathfindSystem": null,
         "LightingSystem": {
             "Enabled": false,
             "Layer": 6
@@ -164,7 +164,7 @@
         },
         "CheatSystem": {},
         "DebugSystem": {
-            "ShowFpsWindow": true,
+            "ShowFpsWindow": false,
             "ShowDebugWindow": true
         },
         "AssetLibrary<Entity>": {},
