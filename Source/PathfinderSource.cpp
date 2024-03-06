@@ -1,7 +1,10 @@
-/// @file     Pathfinder.cpp
-/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// @file       PathfinderSource.cpp
+/// @author     Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    Defines parent entity as the map for pathfinding.
+/// @brief      Defines parent entity as the map for pathfinding.
+/// @date       March 2024
+/// 
+/// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
 #include "PathfinderSource.h"
 #include "PathfindSystem.h"
 #include "imgui.h"
@@ -10,9 +13,14 @@
 /// @brief   Default constructor
 PathfinderSource::PathfinderSource() : Component(typeid(PathfinderSource)) {}
 
+/// @brief   Copy ctor
+PathfinderSource::PathfinderSource(PathfinderSource const& other) : 
+    Component(typeid(PathfinderSource)),
+    m_Walkables(other.m_Walkables) 
+{}
 
 /// @brief   Clones this component
-Component* PathfinderSource::Clone() const { return new PathfinderSource(*this); }
+PathfinderSource* PathfinderSource::Clone() const { return new PathfinderSource(*this); }
 
 
 /// @brief   Sets this component's parent entity as the active tilemap for pathfinding.

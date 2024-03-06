@@ -1,7 +1,10 @@
-/// @file     Pathfinder.h
-/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// @file       PathfinderSource.h
+/// @author     Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    Defines parent entity as the map for pathfinding.
+/// @brief      Defines parent entity as the map for pathfinding.
+/// @date       March 2024
+/// 
+/// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
 #pragma once
 #include "Component.h"
 
@@ -14,7 +17,7 @@ public:
     PathfinderSource();
 
     // Inherited via Component
-    virtual Component * Clone() const override;
+    virtual PathfinderSource * Clone() const override;
 
 
 
@@ -47,14 +50,18 @@ private:
 //-----------------------------------------------------------------------------
 private:
 
+    /// @brief   List of tile IDs that are "not walls"
     std::vector<int> m_Walkables;
+
 
 
 //-----------------------------------------------------------------------------
 //              Helpers
 //-----------------------------------------------------------------------------
 
+    /// @brief   For inspector. View/modify the array of walkable tile IDs
     void inspectWalkables();
+
 
 
 //-----------------------------------------------------------------------------
@@ -84,5 +91,18 @@ public:
     virtual nlohmann::ordered_json Write() const override;
 
 
+
+//-----------------------------------------------------------------------------
+//              Copying
+//-----------------------------------------------------------------------------
+private:
+
+    /// @brief   Copy constructor
+    PathfinderSource(PathfinderSource const& other);
+
+    /// @brief   Disable assignment 
+    void operator =(PathfinderSource const&) = delete;
+
+    
 //-----------------------------------------------------------------------------
 };

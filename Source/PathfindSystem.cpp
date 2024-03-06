@@ -77,8 +77,33 @@ bool PathfindSystem::IsWalkable(glm::vec2 pos) const
 /// @param entity   Level map
 void PathfindSystem::SetActiveTilemap(Entity* entity)
 {
+    if (m_Tilemap)
+        m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
+
     m_Tilemap.Exit();
     m_Tilemap.Init(entity);
+
+    if (m_Tilemap)
+        m_Tilemap->AddOnTilemapChangedCallback( GetId(), std::bind(&PathfindSystem::MarkDirty, 
+                                                                    this ) );
+    MarkDirty();
+}
+
+
+/// @brief    Makes sure MarkDirty() is called whenever given Transform changes.
+/// @param t  Transform component
+void PathfindSystem::AddTransformCallback(Transform* t)
+{
+    if (t)
+        t->AddOnTransformChangedCallback( GetId(), std::bind(&PathfindSystem::MarkDirty,
+                                                              this) );
+}
+
+/// @brief    Remove the callback from transform
+/// @param t  Transform component
+void PathfindSystem::RemoveTransformCallback(Transform* t)
+{
+    t->RemoveOnTransformChangedCallback( GetId() );
 }
 
 
@@ -93,13 +118,15 @@ void PathfindSystem::OnUpdate(float dt)
     if (!m_Tilemap)
         return;
 
-    if (m_Done.load())
+    if (m_Done.load() == true)
     {
         if (m_Thread.joinable())
             m_Thread.join();
 
-        m_Thread = std::thread(&PathfindSystem::explore, this);
+        if (m_Dirty.load() == true)
+            m_Thread = std::thread(&PathfindSystem::explore, this);
     }
+
 
     (void) dt;
 }
@@ -114,6 +141,7 @@ void PathfindSystem::OnExit()
 
 /// @brief Gets Called by the Debug system to display debug information
 //void PathfindSystem::DebugWindow(){}
+// nothing to tweak here. Everything is set/controlled by components.
 
 
 //-----------------------------------------------------------------------------
@@ -124,10 +152,12 @@ void PathfindSystem::OnExit()
 ///             but it doens't need to be
 void PathfindSystem::explore()
 {
+    // if no targets, leave.
     if (!GetComponents().size())
         return;
 
     m_Done.store(false);
+    m_Dirty.store(false);
 
     // update walkability of tiles
     m_Nodes.resize(m_Tilemap->GetTilemap().size());
