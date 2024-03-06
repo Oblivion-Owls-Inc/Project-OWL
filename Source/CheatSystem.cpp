@@ -152,37 +152,56 @@
         if(m_ToggleBaseGodMode)
         {
            Entity* base = Entities()->GetEntity( "Base" );
-           if ( base )
+           if ( base != nullptr )
            {
                Health* health = base->GetComponent< Health >();
-               health->GetHealth()->SetCurrent( 9999 );
+               if (health != nullptr)
+               {
+                   health->SetHealth(9999);
+               }
            }
-        } 
+        }
+
+        if (m_TogglePlayerInfiniteHealth)
+        {
+            Entity* player = Entities()->GetEntity("Player");
+            if (player != nullptr)
+            {
+                Health* health = player->GetComponent<Health>();
+                if (health != nullptr)
+                {
+                    health->SetHealth(9999);
+                }
+            }
+        }
     }
 
     /// @brief Infinite Player Health Cheat
     void CheatSystem::InfinitePlayerHealth()
     {
+        Entity* player = Entities()->GetEntity("Player");
+        if (player == nullptr)
+        {
+            Debug() << "Infinite Player Health: Player Entity does not exist" << std::endl;
+            return;
+        }
+        Health* health = player->GetComponent<Health>();
+        if (health == nullptr)
+        {
+            Debug() << "Infinite Player Health: Player health component is NULL" << std::endl;
+            return;
+        }
+
+
         if(m_TogglePlayerInfiniteHealth == false)
         {
-            Entity* player = Entities()->GetEntity("Player");
-            if (player)
-            {
-                Health* health = player->GetComponent<Health>();
-                m_PreviousPlayerHealth = health->GetHealth()->GetCurrent();
-                health->GetHealth()->SetCurrent(9999);
-                m_TogglePlayerInfiniteHealth = true;
-            }
+            m_PreviousPlayerHealth = health->GetHealth()->GetCurrent();
+            m_TogglePlayerInfiniteHealth = true;
         }
         else
         {
-            Entity* player = Entities()->GetEntity("Player");
-            if (player)
-            {
-                Health* health = player->GetComponent<Health>();
-                health->GetHealth()->SetCurrent(m_PreviousPlayerHealth);
-                m_TogglePlayerInfiniteHealth = false;
-            }
+            health->SetHealth(m_PreviousPlayerHealth);
+            m_TogglePlayerInfiniteHealth = false;
         }
     }
 
