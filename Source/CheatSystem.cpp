@@ -13,17 +13,17 @@
 #include "InputSystem.h"  // GetInstance, GetKeyTriggered
 #include "EntitySystem.h" // Entities, Destroy, GetComponent, GetEntities
 #include "AssetLibrarySystem.h"
-#include "Health.h" // GetHealth
+#include "Health.h"       // GetHealth
 #include "Pool.h"         // SetCurrent
 #include "ConstructionBehavior.h"
 #include "SceneSystem.h"  // GetInstance
 #include "CircleCollider.h"
 #include "Entity.h"
+#include "MiningLaser.h"
 
 //--------------------------------------------------------------------------------
 // private: virtual overrides
 //--------------------------------------------------------------------------------
-
 
     /// @brief Gets called once every graphics frame. Do not use this function for anything that affects the simulation.
     /// @param dt The elapsed time in seconds since the previous frame.
@@ -54,20 +54,28 @@
             ImGui::SetNextWindowSize(ImVec2(500, 100), ImGuiCond_FirstUseEver);
 
             // The infinite resources button.
-            if ( ImGui::Button( m_ResourceSwitch ? "Turn Off InfResources" : "Turn On InfResources") )
+            if ( ImGui::Button( m_ToggleInfiniteResource ? "Turn Off InfResources" : "Turn On InfResources") )
             {
-                m_ResourceSwitch = toggleInfinteResources();
+                m_ToggleInfiniteResource = toggleInfinteResources();
             }
             ImGui::SameLine();
             ImGui::Text("Infinite Resources");
 
             // The infinite base health button
-            if (ImGui::Button(m_BaseGodMode ? "Turn Off InfBase" : "Turn On InfBase"))
+            if (ImGui::Button(m_ToggleBaseGodMode ? "Turn Off InfBase Health" : "Turn On InfBase Health"))
             {
-                m_BaseGodMode = !m_BaseGodMode;
+                m_ToggleBaseGodMode = !m_ToggleBaseGodMode;
             }
             ImGui::SameLine();
             ImGui::Text("Infinite Base Health");
+
+            // The infinite player health button
+            if (ImGui::Button(m_TogglePlayerInfiniteHealth ? "Turn Off InfPlayerHealth" : "Turn On InfPlayerHealth"))
+            {
+                m_TogglePlayerInfiniteHealth = !m_TogglePlayerInfiniteHealth;
+            }
+            ImGui::SameLine();
+            ImGui::Text("Infinite Player Health");
 
             // The kill all enemies button.
             if (ImGui::Button("Kill all enemies"))
@@ -84,9 +92,9 @@
             ImGui::Text("Kill All Enemies");
 
             // The No Clip Button
-            if (ImGui::Button(m_NoClip ? "Turn Off No Clip" : "Turn On No Clip"))
+            if (ImGui::Button(m_ToggleNoClip ? "Turn Off No Clip" : "Turn On No Clip"))
             {
-                m_NoClip = !m_NoClip;
+                m_ToggleNoClip = !m_ToggleNoClip;
                 noClip();
             }
             ImGui::SameLine();
@@ -116,14 +124,6 @@
             ImGui::SameLine();
             ImGui::Text("Resets the game");
 
-            // Pauses the game
-            if (ImGui::Button(m_Pause ? "Unpause the game" : "Pause the game"))
-            {
-                m_Pause = !m_Pause;
-                Debug().SetNonEditorSystemsEnabled(!m_Pause);
-            }
-            ImGui::SameLine();
-            ImGui::Text("Pauses the game");
         }
     
         ImGui::End();
@@ -149,7 +149,7 @@
     void CheatSystem::RunCheats()
     {
         // The infinite base health cheat.
-        if(m_BaseGodMode)
+        if(m_ToggleBaseGodMode)
         {
            Entity* base = Entities()->GetEntity( "Base" );
            if ( base )
@@ -157,8 +157,49 @@
                Health* health = base->GetComponent< Health >();
                health->GetHealth()->SetCurrent( 9999 );
            }
+        } 
+    }
+
+    /// @brief Infinite Player Health Cheat
+    void CheatSystem::InfinitePlayerHealth()
+    {
+        if(m_TogglePlayerInfiniteHealth == false)
+        {
+            Entity* player = Entities()->GetEntity("Player");
+            if (player)
+            {
+                Health* health = player->GetComponent<Health>();
+                m_PreviousPlayerHealth = health->GetHealth()->GetCurrent();
+                health->GetHealth()->SetCurrent(9999);
+                m_TogglePlayerInfiniteHealth = true;
+            }
+        }
+        else
+        {
+            Entity* player = Entities()->GetEntity("Player");
+            if (player)
+            {
+                Health* health = player->GetComponent<Health>();
+                health->GetHealth()->SetCurrent(m_PreviousPlayerHealth);
+                m_TogglePlayerInfiniteHealth = false;
+            }
         }
     }
+
+    /// @brief 
+    void CheatSystem::OneShotOneKill()
+    {
+        Entity* player = Entities()->GetEntity("Player");
+        if (player)
+        {
+            MiningLaser* laser = player->GetComponent<MiningLaser>();
+            laser->SetDamageRate(9999.0f);
+        }
+    }
+
+    
+
+
 
     /// @brief Turns off player collisions
     void CheatSystem::noClip()
@@ -167,23 +208,23 @@
         Entity* player = Entities()->GetEntity("Player");
         if(player)
         {
-            m_CircleCollider = player->GetComponent<CircleCollider>();
-            if (m_CircleCollider)
+            m_PlayerCircleCollider = player->GetComponent<CircleCollider>();
+            if (m_PlayerCircleCollider)
             {
                 static int flag;
                 static int ID;
 
-                if (m_NoClip)
+                if (m_ToggleNoClip)
                 {
-                    flag = m_CircleCollider->GetCollisionLayerFlags();
-                    ID = m_CircleCollider->GetCollisionLayer();
-                    m_CircleCollider->SetCollisionLayerFlags(0);
-                    m_CircleCollider->SetCollisionLayer(INT_MAX);
+                    flag = m_PlayerCircleCollider->GetCollisionLayerFlags();
+                    ID = m_PlayerCircleCollider->GetCollisionLayer();
+                    m_PlayerCircleCollider->SetCollisionLayerFlags(0);
+                    m_PlayerCircleCollider->SetCollisionLayer(INT_MAX);
                 }
                 else
                 {
-                    m_CircleCollider->SetCollisionLayerFlags(flag);
-                    m_CircleCollider->SetCollisionLayer(ID);
+                    m_PlayerCircleCollider->SetCollisionLayerFlags(flag);
+                    m_PlayerCircleCollider->SetCollisionLayer(ID);
                 }
             }
         }
@@ -217,14 +258,19 @@
 //--------------------------------------------------------------------------------
 
     /// @brief Default constructor.
-    CheatSystem::CheatSystem():
+    CheatSystem::CheatSystem() :
         System("CheatSystem"),
         m_CheatMenuIsOpen(false),
-        m_BaseGodMode(false),
-        m_ResourceSwitch(false),
-        m_NoClip(false),
+        m_ToggleBaseGodMode(false),
+        m_ToggleInfiniteResource(false),
+        m_ToggleNoClip(false),
         m_Pause(false),
-        m_CircleCollider(nullptr)
+        m_PlayerCircleCollider(nullptr),
+        m_ToggleOneShotOneKill(false),
+        m_TogglePlayerInfiniteHealth(false),
+        m_PreviousBaseHealth(0),
+        m_PreviousPlayerHealth(0),
+        m_PreviousLaserDamage(0.0f)
     {}
 
 
