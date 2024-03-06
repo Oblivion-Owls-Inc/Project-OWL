@@ -71,6 +71,11 @@ $(function() {
 <div class="title">InputSystem Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Example <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> meant to be copy-pasted when creating new Systems.  
+ <a href="classInputSystem.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="InputSystem_8h_source.html">InputSystem.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for InputSystem:</div>
 <div class="dyncontent">
@@ -97,9 +102,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a7e3c9e3db7f53b846a922e1e2caae92e"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a7e3c9e3db7f53b846a922e1e2caae92e">GetDebugKeyName</a> (int key) const</td></tr>
 <tr class="memdesc:a7e3c9e3db7f53b846a922e1e2caae92e"><td class="mdescLeft">&#160;</td><td class="mdescRight">displays a text version of a key to imgui (65 becomes "A", etc)  <a href="classInputSystem.html#a7e3c9e3db7f53b846a922e1e2caae92e">More...</a><br /></td></tr>
 <tr class="separator:a7e3c9e3db7f53b846a922e1e2caae92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7af35c165101998b6b87336e3f39ffe"><td class="memItemLeft" align="right" valign="top"><a id="ad7af35c165101998b6b87336e3f39ffe"></a>
-GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>Getm_Handle</b> ()</td></tr>
-<tr class="separator:ad7af35c165101998b6b87336e3f39ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace02d6c7346f7ba0562bf580ca31debc"><td class="memItemLeft" align="right" valign="top"><a id="ace02d6c7346f7ba0562bf580ca31debc"></a>
+GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>GetHandle</b> ()</td></tr>
+<tr class="separator:ace02d6c7346f7ba0562bf580ca31debc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3c87041dbe89aa0f75f5220d16231b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#ab3c87041dbe89aa0f75f5220d16231b7">InitAlternateWindow</a> (GLFWwindow *m_Handle)</td></tr>
 <tr class="memdesc:ab3c87041dbe89aa0f75f5220d16231b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets a new window m_Handle  <a href="classInputSystem.html#ab3c87041dbe89aa0f75f5220d16231b7">More...</a><br /></td></tr>
 <tr class="separator:ab3c87041dbe89aa0f75f5220d16231b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,12 +159,18 @@ GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>Getm_Handle</
 <tr class="memitem:a3f09ca7da9888ea5d3ef513ee49a029c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a3f09ca7da9888ea5d3ef513ee49a029c">GetMouseDeltaScroll</a> ()</td></tr>
 <tr class="memdesc:a3f09ca7da9888ea5d3ef513ee49a029c"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets how much the mouse has scrolled since last frame  <a href="classInputSystem.html#a3f09ca7da9888ea5d3ef513ee49a029c">More...</a><br /></td></tr>
 <tr class="separator:a3f09ca7da9888ea5d3ef513ee49a029c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94e6c29f77c4462f71c5d96c079d47a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classInputSystem_1_1Action.html">Action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a94e6c29f77c4462f71c5d96c079d47a7">GetActionByName</a> (std::string &amp;name)</td></tr>
-<tr class="memdesc:a94e6c29f77c4462f71c5d96c079d47a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets an action by its name  <a href="classInputSystem.html#a94e6c29f77c4462f71c5d96c079d47a7">More...</a><br /></td></tr>
-<tr class="separator:a94e6c29f77c4462f71c5d96c079d47a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98f6ef4dc798c419b99a5d8994a38922"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classInputSystem_1_1Action.html">Action</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a98f6ef4dc798c419b99a5d8994a38922">GetActionByName</a> (std::string const &amp;name)</td></tr>
+<tr class="memdesc:a98f6ef4dc798c419b99a5d8994a38922"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets an action by its name  <a href="classInputSystem.html#a98f6ef4dc798c419b99a5d8994a38922">More...</a><br /></td></tr>
+<tr class="separator:a98f6ef4dc798c419b99a5d8994a38922"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa635de5491dcd343eef28a620cf63e91"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classInputSystem_1_1Action.html">Action</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#aa635de5491dcd343eef28a620cf63e91">GetActions</a> () const</td></tr>
-<tr class="memdesc:aa635de5491dcd343eef28a620cf63e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the vector of Actions in the <a class="el" href="classInputSystem.html">InputSystem</a>  <a href="classInputSystem.html#aa635de5491dcd343eef28a620cf63e91">More...</a><br /></td></tr>
+<tr class="memdesc:aa635de5491dcd343eef28a620cf63e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the vector of Actions in the <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a>  <a href="classInputSystem.html#aa635de5491dcd343eef28a620cf63e91">More...</a><br /></td></tr>
 <tr class="separator:aa635de5491dcd343eef28a620cf63e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1290a766827532c8312b872d78806e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a0e1290a766827532c8312b872d78806e">AddActionReference</a> (<a class="el" href="classActionReference.html">ActionReference</a> *actionReference)</td></tr>
+<tr class="memdesc:a0e1290a766827532c8312b872d78806e"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds an <a class="el" href="classActionReference.html" title="a reference to an Action">ActionReference</a> to the <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a>  <a href="classInputSystem.html#a0e1290a766827532c8312b872d78806e">More...</a><br /></td></tr>
+<tr class="separator:a0e1290a766827532c8312b872d78806e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c21637471f97e9dc8fdcd44247e348e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a6c21637471f97e9dc8fdcd44247e348e">RemoveActionReference</a> (<a class="el" href="classActionReference.html">ActionReference</a> *actionReference)</td></tr>
+<tr class="memdesc:a6c21637471f97e9dc8fdcd44247e348e"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes an <a class="el" href="classActionReference.html" title="a reference to an Action">ActionReference</a> from the <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a>  <a href="classInputSystem.html#a6c21637471f97e9dc8fdcd44247e348e">More...</a><br /></td></tr>
+<tr class="separator:a6c21637471f97e9dc8fdcd44247e348e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70a0d3ad29912ecc7e41f05b0620cf66"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#a70a0d3ad29912ecc7e41f05b0620cf66">GetReadMethods</a> () const override</td></tr>
 <tr class="memdesc:a70a0d3ad29912ecc7e41f05b0620cf66"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets this <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>'s read methods  <a href="classInputSystem.html#a70a0d3ad29912ecc7e41f05b0620cf66">More...</a><br /></td></tr>
 <tr class="separator:a70a0d3ad29912ecc7e41f05b0620cf66"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,7 +221,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:af5fc404c7c6bc2303d741bd7b9abe7df"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classInputSystem.html">InputSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputSystem.html#af5fc404c7c6bc2303d741bd7b9abe7df">GetInstance</a> ()</td></tr>
-<tr class="memdesc:af5fc404c7c6bc2303d741bd7b9abe7df"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the instance of <a class="el" href="classInputSystem.html">InputSystem</a>  <a href="classInputSystem.html#af5fc404c7c6bc2303d741bd7b9abe7df">More...</a><br /></td></tr>
+<tr class="memdesc:af5fc404c7c6bc2303d741bd7b9abe7df"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the instance of <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a>  <a href="classInputSystem.html#af5fc404c7c6bc2303d741bd7b9abe7df">More...</a><br /></td></tr>
 <tr class="separator:af5fc404c7c6bc2303d741bd7b9abe7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -227,9 +238,37 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a9cd1cf06022ecbde6f0b27be372a0cf6 inherit pro_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a>. <br /></td></tr>
 <tr class="separator:a9cd1cf06022ecbde6f0b27be372a0cf6 inherit pro_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a94e6c29f77c4462f71c5d96c079d47a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94e6c29f77c4462f71c5d96c079d47a7">&#9670;&nbsp;</a></span>GetActionByName()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Example <a class="el" href="classSystem.html" title="Base class for all Systems.">System</a> meant to be copy-pasted when creating new Systems. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0e1290a766827532c8312b872d78806e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e1290a766827532c8312b872d78806e">&#9670;&nbsp;</a></span>AddActionReference()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InputSystem::AddActionReference </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActionReference.html">ActionReference</a> *&#160;</td>
+          <td class="paramname"><em>actionReference</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>adds an <a class="el" href="classActionReference.html" title="a reference to an Action">ActionReference</a> to the <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actionReference</td><td>the <a class="el" href="classActionReference.html" title="a reference to an Action">ActionReference</a> to add </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a98f6ef4dc798c419b99a5d8994a38922"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98f6ef4dc798c419b99a5d8994a38922">&#9670;&nbsp;</a></span>GetActionByName()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,7 +276,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classInputSystem_1_1Action.html">InputSystem::Action</a> * InputSystem::GetActionByName </td>
           <td>(</td>
-          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
@@ -276,7 +315,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>gets the vector of Actions in the <a class="el" href="classInputSystem.html">InputSystem</a> </p>
+<p>gets the vector of Actions in the <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>the vector of Actions </dd></dl>
 
 </div>
@@ -500,8 +539,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>gets the instance of <a class="el" href="classInputSystem.html">InputSystem</a> </p>
-<dl class="section return"><dt>Returns</dt><dd>the instance of the <a class="el" href="classInputSystem.html">InputSystem</a> </dd></dl>
+<p>gets the instance of <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>the instance of the <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a> </dd></dl>
 
 </div>
 </div>
@@ -896,6 +935,32 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int, pass this back to check window </dd></dl>
+
+</div>
+</div>
+<a id="a6c21637471f97e9dc8fdcd44247e348e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c21637471f97e9dc8fdcd44247e348e">&#9670;&nbsp;</a></span>RemoveActionReference()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InputSystem::RemoveActionReference </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classActionReference.html">ActionReference</a> *&#160;</td>
+          <td class="paramname"><em>actionReference</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>removes an <a class="el" href="classActionReference.html" title="a reference to an Action">ActionReference</a> from the <a class="el" href="classInputSystem.html" title="Example System meant to be copy-pasted when creating new Systems.">InputSystem</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actionReference</td><td>the <a class="el" href="classActionReference.html" title="a reference to an Action">ActionReference</a> to remove </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

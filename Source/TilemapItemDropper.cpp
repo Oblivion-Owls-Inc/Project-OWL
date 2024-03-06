@@ -10,8 +10,9 @@
 
 #include "TilemapItemDropper.h"
 
+#include "ComponentReference.t.h"
 #include "Tilemap.h"
-#include "Entity.h"
+
 #include "AssetLibrarySystem.h"
 
 #include "RigidBody.h"
@@ -68,6 +69,7 @@
                 );
             }
         );
+
         m_Tilemap.SetOnDisconnectCallback(
             [ this ]()
             {

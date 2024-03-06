@@ -51,6 +51,13 @@
         {
             M_Archetype.SetOwnerName( "ConstructionBehavior" );
             M_Archetype.Init();
+            M_BuildAction.Init();
+        }
+
+        /// @brief  exits this BuildingInfo
+        void ConstructionBehavior::BuildingInfo::Exit()
+        {
+            M_BuildAction.Exit();
         }
 
 
@@ -75,6 +82,8 @@
                     return itemStack->Inspect();
                 }
             );
+
+            M_BuildAction.Inspect("Build Input");
 
             return changed;
         }
@@ -106,6 +115,12 @@
             }
         }
 
+        /// @brief  the control Action to build this building
+        /// @param  data    the JSON data to read from
+        void ConstructionBehavior::BuildingInfo::readBuildAction(nlohmann::ordered_json const& data)
+        {
+            Stream::Read(M_BuildAction, data);
+        }
 
     //-------------------------------------------------------------------------
     // public: reading / writing
@@ -117,8 +132,9 @@
         ReadMethodMap< ISerializable > const& ConstructionBehavior::BuildingInfo::GetReadMethods() const
         {
             static ReadMethodMap< BuildingInfo > const readMethods = {
-                { "Archetype", &BuildingInfo::readArchetype },
-                { "Cost"     , &BuildingInfo::readCost      }
+                { "Archetype"    , &BuildingInfo::readArchetype   },
+                { "Cost"         , &BuildingInfo::readCost        },
+                { "Build Action" , &BuildingInfo::readBuildAction }
             };
 
             return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -138,6 +154,8 @@
             }
 
             json[ "Archetype" ] = Stream::Write( M_Archetype );
+
+            json["Build Action"] = Stream::Write(M_BuildAction);
 
             return json;
         }
@@ -226,14 +244,24 @@
         m_TurretPlacementSound.Init( GetEntity() );
         m_CostInventory       .Init( GetEntity() );
 
-        if ( GetEntity()->GetChildren().size() != 0 )
+        m_PlaceAction    .SetOwnerName( GetName() );
+        m_CancelPlacement.SetOwnerName( GetName() );
+        m_PlaceAction    .Init();
+        m_CancelPlacement.Init();
+
+        if (GetEntity()->GetChildren().size() != 0)
         {
             m_RadiusSprite   .Init( GetEntity()->GetChildren()[ 0 ] );
             m_RadiusTransform.Init( GetEntity()->GetChildren()[ 0 ] );
         }
+        else
+        {
+            Debug() << "WARNING: no children attached to ConstructionBehavior to display preview radius" << std::endl;
+        }
 
         for ( BuildingInfo& buildingInfo : m_BuildingInfos )
         {
+            buildingInfo.M_BuildAction.SetOwnerName(GetName());
             buildingInfo.Init();
         }
     }
@@ -254,6 +282,14 @@
 
         m_RadiusSprite        .Exit();
         m_RadiusTransform     .Exit();
+
+        m_PlaceAction.Exit();
+        m_CancelPlacement.Exit();
+
+        for (BuildingInfo& buildingInfo : m_BuildingInfos)
+        {
+            buildingInfo.Exit();
+        }
     }
 
     /// @brief  called every simulation frame
@@ -318,17 +354,26 @@
     /// @brief  updates which building is currently selected
     void ConstructionBehavior::updateSelectedBuilding()
     {
-        if ( Input()->GetKeyReleased( GLFW_KEY_0 ) )
+        if ( m_CancelPlacement != nullptr && m_CancelPlacement->GetReleased() )
         {
             m_BuildingIndex = -1;
             return;
         }
 
-        for ( int i = 0; i < m_BuildingInfos.size() ; ++i )
+        for ( int i = 0; i < m_BuildingInfos.size(); ++i )
         {
-            if ( Input()->GetKeyReleased( GLFW_KEY_1 + i ) == false )
+            if (
+                m_BuildingInfos[i].M_BuildAction == nullptr ||
+                m_BuildingInfos[i].M_BuildAction->GetReleased() == false
+            )
             {
                 continue;
+            }
+
+            if ( m_BuildingIndex == i )
+            {
+                m_BuildingIndex = -1;
+                return;
             }
 
             m_BuildingIndex = i;
@@ -342,12 +387,23 @@
 
             setupCostUi();
 
+            if ( m_Sprite == nullptr || m_Transform == nullptr )
+            {
+                return;
+            }
+
             m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
             m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
-            float scale = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >()->GetRange();
             if (m_RadiusTransform != nullptr)
             {
-                m_RadiusTransform->SetScale(glm::vec2(scale * 2));
+                if ( m_BuildingInfos[i].M_Archetype == nullptr )
+                {
+                    m_RadiusTransform->SetScale( glm::vec2( 0.0f ) );
+                    return;
+                }
+                TurretBehavior const* turretBehavior = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >();
+                float scale = turretBehavior == nullptr ? 0 : turretBehavior->GetRange() * 2;
+                m_RadiusTransform->SetScale( glm::vec2( scale ) );
             }
             return;
         }
@@ -358,8 +414,7 @@
     void ConstructionBehavior::tryPlaceBuilding()
     {
         // skip if build button not pressed
-        if ( Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_2 ) == false &&
-            Input()->GetGamepadButtonTriggered(GLFW_GAMEPAD_BUTTON_A) == false)
+        if ( m_PlaceAction != nullptr && m_PlaceAction->GetTriggered() == false)
         {
             return;
         }
@@ -386,7 +441,7 @@
         }
 
         // not enough funds
-        if ( m_IgnoreCosts == false && m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost ) == false )
+        if ( m_PlayerInventory == nullptr || (m_IgnoreCosts == false && m_PlayerInventory->ContainsItemStacks( m_BuildingInfos[ m_BuildingIndex ].M_Cost ) == false) )
         {
             return false;
         }
@@ -410,7 +465,7 @@
         }
 
         // target pos out of range
-        if ( glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos ) > m_PlacementRange )
+        if ( m_PlayerTransform == nullptr || glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos ) > m_PlacementRange )
         {
             return false;
         }
@@ -421,9 +476,14 @@
     /// @brief  palces the currently selected building
     void ConstructionBehavior::placeBuilding()
     {
-
         Entity* building = m_BuildingInfos[ m_BuildingIndex ].M_Archetype->Clone();
-        building->GetComponent< Transform >()->SetTranslation( m_TargetPos );
+
+        Transform* buildingTransform = building->GetComponent< Transform >();
+        if ( buildingTransform == nullptr )
+        {
+            return;
+        }
+        buildingTransform->SetTranslation( m_TargetPos );
         
         building->AddToScene();
         m_Buildings->SetTile( m_TargetTilePos, building ); // TODO: move this line into the Building's OnInit?
@@ -447,7 +507,8 @@
     /// @brief  displays the building preview
     void ConstructionBehavior::showBuildingPreview()
     {
-        float distance = glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos );
+
+        float distance = m_PlayerTransform == nullptr ? INFINITY : glm::distance( m_PlayerTransform->GetTranslation(), m_TargetPos );
 
         // no preview if out of range or no building selected
         if ( m_BuildingIndex == -1 || distance >= m_PlacementRange + m_PreviewFadeOutRadius )
@@ -477,8 +538,11 @@
         
         if ( isCurrentlyPlaceable() )
         {
-            m_Sprite->SetColor( m_PreviewColorPlaceable );
-            m_Sprite->SetOpacity( m_PreviewAlpha );
+            if ( m_Sprite != nullptr )
+            {
+                m_Sprite->SetColor( m_PreviewColorPlaceable );
+                m_Sprite->SetOpacity( m_PreviewAlpha );
+            }
 
             if (m_RadiusSprite != nullptr)
             {
@@ -491,13 +555,15 @@
         }
         else
         {
-            m_Sprite->SetColor( m_PreviewColorNonPlaceable );
-            
             // alpha fades away the further from the player it gets
             float alpha = m_PreviewAlpha * ( 1.0f - ( distance - m_PlacementRange ) / m_PreviewFadeOutRadius );
             alpha = std::min( alpha, m_PreviewAlpha );
-            m_Sprite->SetOpacity( alpha );
 
+            if ( m_Sprite != nullptr )
+            {
+                m_Sprite->SetColor( m_PreviewColorNonPlaceable );
+                m_Sprite->SetOpacity( alpha );
+            }
             if (m_RadiusSprite != nullptr)
             {
                 m_RadiusSprite->SetOpacity(alpha / 2);
@@ -597,6 +663,10 @@
         ImGui::ColorEdit4( "Preview Color - NonPlaceable", &m_PreviewColorNonPlaceable[ 0 ] );
 
         ImGui::DragFloat( "Preview Alpha", &m_PreviewAlpha, 0.05f, 0.0f, 1.0f );
+
+        m_PlaceAction.Inspect("Place Action");
+
+        m_CancelPlacement.Inspect("Cancel Placement Action");
     }
 
     /// @brief  inspects the references to other entities
@@ -694,6 +764,20 @@
         Stream::Read( m_CostUiEntity, data );
     }
 
+    /// @brief  the control Action to cancel placement
+    /// @param  data    the JSON data to read from
+    void ConstructionBehavior::readCancelPlacement(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_CancelPlacement, data);
+    }
+
+    /// @brief  the control Action to place a building
+    /// @param  data    the JSON data to read from
+    void ConstructionBehavior::readPlaceAction(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_PlaceAction, data);
+    }
+
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
@@ -714,6 +798,8 @@
             { "TilemapEntity"           , &ConstructionBehavior::readTilemapEntity            },
             { "PlayerEntity"            , &ConstructionBehavior::readPlayerEntity             },
             { "CostUiEntity"            , &ConstructionBehavior::readCostUiEntity             },
+            { "CancelPlacement"         , &ConstructionBehavior::readCancelPlacement          },
+            { "PlaceAction"             , &ConstructionBehavior::readPlaceAction              },
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -745,6 +831,8 @@
         json[ "TilemapEntity"            ] = Stream::Write( m_TilemapEntity            );
         json[ "PlayerEntity"             ] = Stream::Write( m_PlayerEntity             );
         json[ "CostUiEntity"             ] = Stream::Write( m_CostUiEntity             );
+        json[ "CancelPlacement"          ] = Stream::Write( m_CancelPlacement          );
+        json[ "PlaceAction"              ] = Stream::Write( m_PlaceAction              );
 
         return json;
     }

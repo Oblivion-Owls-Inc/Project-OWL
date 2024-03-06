@@ -122,6 +122,7 @@ digraph "Source/Emitter.cpp"
   Node39 [label="CollisionData.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$CollisionData_8h.html",tooltip="struct that holds collision information"];
   Node39 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node37 -> Node22 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node33 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node33 -> Node40 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node40 [label="DebugSystem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$DebugSystem_8h_source.html",tooltip=" "];
   Node40 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

@@ -6,17 +6,13 @@ digraph "Source/ComponentFactory.cpp"
   Node1 [label="Source/ComponentFactory.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Definitions for the component factory class."];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node2 [label="ComponentFactory.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$ComponentFactory_8h.html",tooltip="Declaration for the component factory class."];
-  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
-  Node3 [label="map",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
   Node6 [label="Transform.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Transform_8h.html",tooltip="Transform."];
-  Node6 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node24 [color="midnightblue",fontsize="10",style="solid"];
   Node24 [label="TilemapSprite.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$TilemapSprite_8h.html",tooltip="A version of Sprite specifically for rendering tiles."];
   Node24 -> Node45 [color="midnightblue",fontsize="10",style="solid"];
   Node45 [label="Tilemap.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Tilemap_8h.html",tooltip="Tilemap component - loads and manages a tilemap array."];
   Node45 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
-  Node45 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
   Node47 [label="RigidBody.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$RigidBody_8h_source.html",tooltip=" "];
   Node1 -> Node50 [color="midnightblue",fontsize="10",style="solid"];
@@ -31,7 +27,6 @@ digraph "Source/ComponentFactory.cpp"
   Node55 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
   Node53 -> Node58 [color="midnightblue",fontsize="10",style="solid"];
   Node58 [label="Health.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Health_8h_source.html",tooltip=" "];
-  Node58 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
   Node53 -> Node60 [color="midnightblue",fontsize="10",style="solid"];
   Node60 [label="Pathfinder.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Pathfinder_8h.html",tooltip="Interface file of Pathfinder component."];
   Node60 -> Node45 [color="midnightblue",fontsize="10",style="solid"];
@@ -56,7 +51,6 @@ digraph "Source/ComponentFactory.cpp"
   Node68 -> Node50 [color="midnightblue",fontsize="10",style="solid"];
   Node68 -> Node69 [color="midnightblue",fontsize="10",style="solid"];
   Node69 [label="MiningLaser.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$MiningLaser_8h.html",tooltip="Digging laser controllable by an entity."];
-  Node69 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
   Node69 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
   Node69 -> Node45 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node74 [color="midnightblue",fontsize="10",style="solid"];
@@ -94,6 +88,8 @@ digraph "Source/ComponentFactory.cpp"
   Node92 -> Node55 [color="midnightblue",fontsize="10",style="solid"];
   Node92 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
   Node92 -> Node58 [color="midnightblue",fontsize="10",style="solid"];
+  Node92 -> Node89 [color="midnightblue",fontsize="10",style="solid"];
+  Node92 -> Node88 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node93 [color="midnightblue",fontsize="10",style="solid"];
   Node93 [label="UiElement.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$UiElement_8h.html",tooltip="Ui element component."];
   Node93 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
@@ -151,4 +147,6 @@ digraph "Source/ComponentFactory.cpp"
   Node113 [label="SplashScreenController.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$SplashScreenController_8h_source.html",tooltip=" "];
   Node1 -> Node114 [color="midnightblue",fontsize="10",style="solid"];
   Node114 [label="HideableForeground.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$HideableForeground_8h.html",tooltip="Component that hides an attached Sprite when it overlaps something."];
+  Node1 -> Node115 [color="midnightblue",fontsize="10",style="solid"];
+  Node115 [label="Popup.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Popup_8h.html",tooltip="A popup is a behavior that will show a popup when a button is pressed."];
 }

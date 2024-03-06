@@ -16,9 +16,7 @@
 #include "RigidBody.h"
 #include "AudioPlayer.h"
 #include "Health.h"
-
-#include "EntityReference.h"
-#include "Pathfinder.h"
+#include "Tilemap.h"
 
 class EnemyBehavior : public Behavior
 {
@@ -74,13 +72,6 @@ private: // Member Variables
     int m_Damage = 1;
 
 
-    /// @brief  the Pathfinder this Enemy follows
-    ComponentReference< Pathfinder > m_Pathfinder;
-
-    /// @brief  the name of the Entity with the Pathfinder to follow
-    EntityReference m_PathfinderEntity = EntityReference( { &m_Pathfinder } );
-
-
     /// @brief  the transform attached to this Enemy
     ComponentReference< Transform > m_Transform;
 
@@ -92,7 +83,6 @@ private: // Member Variables
 
     /// @brief  Health of this entity.
     ComponentReference< Health > m_Health;
-
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -118,11 +108,6 @@ public: // inspection
 ///-----------------------------------------------------------------------------
 private: // Reading
 ///-----------------------------------------------------------------------------
-
-
-    /// @brief  reads the name of the pathfinder entity
-    /// @param  data    the json data to read from
-    void readPathfinderEntity( nlohmann::ordered_json const& data );
 
     /// @brief  reads the speed
     /// @param  data    the json data to read from

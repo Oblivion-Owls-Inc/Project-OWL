@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1814,
-                1135
+                960,
+                686
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -14,7 +14,6 @@
             "Actions": [
                 {
                     "Name": "MoveVertical",
-                    "Description": "",
                     "Keys": [
                         87
                     ],
@@ -30,7 +29,6 @@
                 },
                 {
                     "Name": "MoveHorizontal",
-                    "Description": "",
                     "Keys": [
                         68
                     ],
@@ -46,7 +44,6 @@
                 },
                 {
                     "Name": "FireLaser",
-                    "Description": "",
                     "Keys": null,
                     "Mouse": [
                         0
@@ -60,7 +57,6 @@
                 },
                 {
                     "Name": "Interact",
-                    "Description": "",
                     "Keys": [
                         69
                     ],
@@ -71,25 +67,72 @@
                     "Controller Axis": null,
                     "Gamepad Axis Input": null,
                     "Gamepad Axis": null
+                },
+                {
+                    "Name": "Place",
+                    "Keys": null,
+                    "Mouse": [
+                        1
+                    ],
+                    "Controller": [
+                        2
+                    ],
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "Cancel Place",
+                    "Keys": [
+                        81
+                    ],
+                    "Mouse": null,
+                    "Controller": [
+                        1
+                    ],
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
+                },
+                {
+                    "Name": "Build Turret 1",
+                    "Keys": [
+                        49
+                    ],
+                    "Mouse": null,
+                    "Controller": [
+                        3
+                    ],
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
                 }
             ]
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Level_Editor_Full_Map",
+            "NextSceneName": "SplashScreen",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
         "PauseSystem": {},
+        "BehaviorSystem<Popup>": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
         "BehaviorSystem<EditorCameraController>": {},
         "BehaviorSystem<UiButton>": {},
-        "ComponentSystem<Generator>": {},
+        "BehaviorSystem<Generator>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
+        "PathfindSystem": null,
         "LightingSystem": {
             "Enabled": false,
             "Layer": 6
@@ -110,9 +153,9 @@
         "CameraSystem": {},
         "RenderSystem": {
             "BackgroundColor": [
-                0.0,
-                0.0,
-                0.0,
+                0.20000000298023224,
+                0.30000001192092896,
+                0.30000001192092896,
                 1.0
             ]
         },
@@ -133,18 +176,34 @@
             "TileInfo": [
                 {
                     "LootTable": {
-                        "Entries": [
-                            {
-                                "ItemIds": [
-                                    0
-                                ],
-                                "MinCount": 1,
-                                "MaxCount": 1,
-                                "Probability": 1.0,
-                                "Weight": 1.0,
-                                "AllowMultipleRolls": true
-                            }
-                        ],
+                        "Entries": null,
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                },
+                {
+                    "LootTable": {
+                        "Entries": null,
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                },
+                {
+                    "LootTable": {
+                        "Entries": null,
+                        "RandomRollsEnabled": false,
+                        "MinRolls": 1,
+                        "MaxRolls": 1
+                    },
+                    "Toughness": 0.0
+                },
+                {
+                    "LootTable": {
+                        "Entries": null,
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
@@ -176,7 +235,7 @@
                         "Entries": [
                             {
                                 "ItemIds": [
-                                    2
+                                    0
                                 ],
                                 "MinCount": 1,
                                 "MaxCount": 1,
