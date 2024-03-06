@@ -112,8 +112,8 @@
                     "AllowMultipleSounds": false
                 },
                 "SceneChangeButton": {
-                    "SceneName": "Prototype",
-                    "EventName": "TutorialToPrototype"
+                    "SceneName": "AlphaScene",
+                    "EventName": "ContinueButtonClicked"
                 },
                 "Sprite": {
                     "Layer": 2,
@@ -130,7 +130,7 @@
                     }
                 },
                 "UiButton": {
-                    "ClickEventName": "TutorialToPrototype",
+                    "ClickEventName": "ContinueButtonClicked",
                     "ShouldActivateOnPress": false,
                     "IdleFrame": 0,
                     "HoveredFrame": 0,
@@ -163,38 +163,6 @@
                         "Absolute",
                         "Absolute"
                     ]
-                }
-            },
-            "Children": null
-        },
-        "Background": {
-            "Name": "Background",
-            "Components": {
-                "Sprite": {
-                    "Layer": 2,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": {
-                        "AssetName": ""
-                    }
-                },
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        0.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
                 }
             },
             "Children": null

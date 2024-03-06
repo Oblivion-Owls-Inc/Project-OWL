@@ -33,7 +33,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": true
             },
             "CreditsButtonTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/CreditsButtonSheetpng.png",
@@ -45,7 +45,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": true
             },
             "GameTitleTexture": {
                 "Filepath": "Data/Textures/DigDeeperLogo-export.png",
@@ -69,7 +69,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": true
             },
             "MainMenuBackgroundTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/PauseBackground.png",
@@ -105,7 +105,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": true
             },
             "SettingsButtonTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/SettingsButtonSheet.png",
@@ -117,7 +117,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": true
             }
         },
         "TransformAnimations": null,
@@ -233,7 +233,7 @@
                     "AllowMultipleSounds": false
                 },
                 "Sprite": {
-                    "Layer": 2,
+                    "Layer": 0,
                     "Color": [
                         0.0,
                         0.0,
@@ -246,17 +246,27 @@
                         "AssetName": "BackgroundTexture"
                     }
                 },
-                "Transform": {
-                    "Translation": [
+                "UiElement": {
+                    "Anchor": [
                         0.0,
                         0.0
                     ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        5.099999904632568,
-                        2.9000000953674316
+                    "Pivot": [
+                        0.0,
+                        0.0
                     ],
-                    "IsDiegetic": true
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        1.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToWidth"
+                    ]
                 }
             },
             "Children": null
@@ -293,7 +303,7 @@
                     ],
                     "FrameSize": [
                         1.0,
-                        0.9200000166893005
+                        1.0
                     ],
                     "SizeTypes": [
                         "RelativeToWidth",
@@ -305,56 +315,40 @@
                 {
                     "Name": "MainMenuBase",
                     "Components": {
-                        "Nineslice": {
-                            "MinInternalEdge": [
-                                0.05000000074505806,
-                                0.05000000074505806
-                            ],
-                            "MaxInternalEdge": [
-                                0.949999988079071,
-                                0.949999988079071
-                            ],
-                            "MinBorderWidths": [
-                                0.25,
-                                0.5
-                            ],
-                            "MaxBorderWidths": [
-                                0.25,
-                                0.5
-                            ],
-                            "Texture": {
-                                "AssetName": "MainMenubaseTexture"
-                            },
-                            "Opacity": 1.0,
-                            "FrameIndex": 0,
+                        "Sprite": {
+                            "Layer": 1,
                             "Color": [
                                 0.0,
                                 0.0,
                                 0.0,
                                 0.0
                             ],
-                            "Layer": 2
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "MainMenubaseTexture"
+                            }
                         },
                         "UiElement": {
                             "Anchor": [
                                 0.0,
-                                -0.4300000071525574
+                                -0.949999988079071
                             ],
                             "Pivot": [
                                 0.0,
-                                0.0
+                                -1.0
                             ],
                             "Offset": [
                                 0.0,
                                 0.0
                             ],
                             "FrameSize": [
-                                0.33000001311302185,
-                                0.33000001311302185
+                                0.5,
+                                0.5
                             ],
                             "SizeTypes": [
-                                "RelativeToWidth",
-                                "RelativeToWidth"
+                                "RelativeToHeight",
+                                "RelativeToHeight"
                             ]
                         }
                     },
@@ -376,8 +370,8 @@
                                     "AllowMultipleSounds": false
                                 },
                                 "SceneChangeButton": {
-                                    "SceneName": "Prototype",
-                                    "EventName": "MainMenuToPrototype"
+                                    "SceneName": "AlphaScene",
+                                    "EventName": "PlayButtonClicked"
                                 },
                                 "Sprite": {
                                     "Layer": 3,
@@ -394,7 +388,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "MainMenuToPrototype",
+                                    "ClickEventName": "PlayButtonClicked",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
@@ -409,7 +403,7 @@
                                 "UiElement": {
                                     "Anchor": [
                                         0.0,
-                                        0.0
+                                        0.699999988079071
                                     ],
                                     "Pivot": [
                                         0.0,
@@ -417,15 +411,15 @@
                                     ],
                                     "Offset": [
                                         0.0,
-                                        1.2000000476837158
+                                        0.0
                                     ],
                                     "FrameSize": [
-                                        2.9800000190734863,
-                                        0.5299999713897705
+                                        0.15000000596046448,
+                                        0.15000000596046448
                                     ],
                                     "SizeTypes": [
-                                        "Absolute",
-                                        "Absolute"
+                                        "RelativeToHeight",
+                                        "RelativeToHeight"
                                     ]
                                 }
                             },
@@ -449,7 +443,7 @@
                                 },
                                 "SceneChangeButton": {
                                     "SceneName": "Tutorial",
-                                    "EventName": "MainMenuToTutorial"
+                                    "EventName": "TutorialButtonClicked"
                                 },
                                 "Sprite": {
                                     "Layer": 4,
@@ -466,7 +460,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "MainMenuToTutorial",
+                                    "ClickEventName": "TutorialButtonClicked",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
@@ -481,7 +475,7 @@
                                 "UiElement": {
                                     "Anchor": [
                                         0.0,
-                                        0.0
+                                        0.3499999940395355
                                     ],
                                     "Pivot": [
                                         0.0,
@@ -489,15 +483,15 @@
                                     ],
                                     "Offset": [
                                         0.0,
-                                        0.6000000238418579
+                                        0.0
                                     ],
                                     "FrameSize": [
-                                        2.9800000190734863,
-                                        0.5299999713897705
+                                        0.15000000596046448,
+                                        0.15000000596046448
                                     ],
                                     "SizeTypes": [
-                                        "Absolute",
-                                        "Absolute"
+                                        "RelativeToHeight",
+                                        "RelativeToHeight"
                                     ]
                                 }
                             },
@@ -521,7 +515,7 @@
                                 },
                                 "SceneChangeButton": {
                                     "SceneName": "Settings",
-                                    "EventName": "Settings"
+                                    "EventName": "SettingsButtonClicked"
                                 },
                                 "Sprite": {
                                     "Layer": 2,
@@ -538,7 +532,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "Settings",
+                                    "ClickEventName": "SettingsButtonClicked",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
@@ -564,12 +558,12 @@
                                         0.0
                                     ],
                                     "FrameSize": [
-                                        2.9800000190734863,
-                                        0.5299999713897705
+                                        0.15000000596046448,
+                                        0.15000000596046448
                                     ],
                                     "SizeTypes": [
-                                        "Absolute",
-                                        "Absolute"
+                                        "RelativeToHeight",
+                                        "RelativeToHeight"
                                     ]
                                 }
                             },
@@ -593,7 +587,7 @@
                                 },
                                 "SceneChangeButton": {
                                     "SceneName": "Credits",
-                                    "EventName": "Credits"
+                                    "EventName": "CreditsButtonClicked"
                                 },
                                 "Sprite": {
                                     "Layer": 2,
@@ -610,7 +604,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "Credits",
+                                    "ClickEventName": "CreditsButtonClicked",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
@@ -625,7 +619,7 @@
                                 "UiElement": {
                                     "Anchor": [
                                         0.0,
-                                        0.0
+                                        -0.3499999940395355
                                     ],
                                     "Pivot": [
                                         0.0,
@@ -633,15 +627,15 @@
                                     ],
                                     "Offset": [
                                         0.0,
-                                        -0.6000000238418579
+                                        0.0
                                     ],
                                     "FrameSize": [
-                                        2.9800000190734863,
-                                        0.5299999713897705
+                                        0.15000000596046448,
+                                        0.15000000596046448
                                     ],
                                     "SizeTypes": [
-                                        "Absolute",
-                                        "Absolute"
+                                        "RelativeToHeight",
+                                        "RelativeToHeight"
                                     ]
                                 }
                             },
@@ -687,7 +681,7 @@
                                     }
                                 },
                                 "UiButton": {
-                                    "ClickEventName": "QuitMainMenu",
+                                    "ClickEventName": "QuitButtonClicked",
                                     "ShouldActivateOnPress": false,
                                     "IdleFrame": 0,
                                     "HoveredFrame": 1,
@@ -702,7 +696,7 @@
                                 "UiElement": {
                                     "Anchor": [
                                         0.0,
-                                        0.0
+                                        -0.699999988079071
                                     ],
                                     "Pivot": [
                                         0.0,
@@ -710,53 +704,63 @@
                                     ],
                                     "Offset": [
                                         0.0,
-                                        -1.2000000476837158
-                                    ],
-                                    "FrameSize": [
-                                        2.9800000190734863,
-                                        0.5299999713897705
-                                    ],
-                                    "SizeTypes": [
-                                        "Absolute",
-                                        "Absolute"
-                                    ]
-                                }
-                            },
-                            "Children": null
-                        },
-                        {
-                            "Name": "GameTitle",
-                            "Components": {
-                                "Sprite": {
-                                    "Layer": 2,
-                                    "Color": [
-                                        0.0,
-                                        0.0,
-                                        0.0,
                                         0.0
                                     ],
-                                    "Opacity": 1.0,
-                                    "FrameIndex": 0,
-                                    "Texture": {
-                                        "AssetName": "GameTitleTexture"
-                                    }
-                                },
-                                "Transform": {
-                                    "Translation": [
-                                        0.0,
-                                        0.7000969052314758
+                                    "FrameSize": [
+                                        0.15000000596046448,
+                                        0.15000000596046448
                                     ],
-                                    "Rotation": 0.0,
-                                    "Scale": [
-                                        1.149999976158142,
-                                        1.100000023841858
-                                    ],
-                                    "IsDiegetic": true
+                                    "SizeTypes": [
+                                        "RelativeToHeight",
+                                        "RelativeToHeight"
+                                    ]
                                 }
                             },
                             "Children": null
                         }
                     ]
+                },
+                {
+                    "Name": "GameTitle",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "GameTitleTexture"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                0.0,
+                                1.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                1.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                0.5,
+                                0.5
+                            ],
+                            "SizeTypes": [
+                                "RelativeToHeight",
+                                "RelativeToHeight"
+                            ]
+                        }
+                    },
+                    "Children": null
                 }
             ]
         }

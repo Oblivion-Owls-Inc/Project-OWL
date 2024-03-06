@@ -22,7 +22,7 @@
                 ],
                 "Pivot": [
                     0.0,
-                    1.0
+                    0.5
                 ],
                 "UseAspectRatio": false
             }
@@ -118,7 +118,7 @@
                     ]
                 },
                 "Text": {
-                    "String": "You Lose"
+                    "Text": "You Lose"
                 },
                 "TilemapSprite": {
                     "Layer": 4,
@@ -136,8 +136,8 @@
                 },
                 "Transform": {
                     "Translation": [
-                        -1.0499999523162842,
-                        1.149999976158142
+                        -1.2999999523162842,
+                        0.0
                     ],
                     "Rotation": 0.0,
                     "Scale": [
