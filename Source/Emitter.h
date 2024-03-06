@@ -58,6 +58,9 @@ public:
     /// @return  Emit data (particle system needs it)
     __inline ParticleSystem::EmitData const& GetEmitData() const { return m_Init; }
 
+    /// @brief   Emits current PPS amount (for when not continuous)
+    __inline void Emit() { m_ParticleCount = m_PPS; }
+
     /// @brief          Called by particle system after loading emit data. Accepts
     ///                 some locations of uniforms on compute shader, dispatches
     ///                 the compute shader to update its particles.

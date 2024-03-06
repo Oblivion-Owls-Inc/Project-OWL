@@ -61,6 +61,7 @@
 #include "SplashScreenController.h"
 #include "HideableForeground.h"
 #include "Popup.h"
+#include "DigEffect.h"
 
 
 
@@ -204,7 +205,8 @@
         { "Nineslice"              , ComponentInfo< Nineslice               >() },
         { "SplashScreenController" , ComponentInfo< SplashScreenController  >() },
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
-        { "Popup"                  , ComponentInfo< Popup                   >() }
+        { "Popup"                  , ComponentInfo< Popup                   >() },
+        { "DigEffect"              , ComponentInfo< DigEffect               >() }
     };
 
 //-----------------------------------------------------------------------------

@@ -731,14 +731,86 @@
                 },
                 "Children": null
             },
+            "break": {
+                "Name": "break",
+                "Components": {
+                    "DigEffect": {
+                        "Timer": 1.0
+                    },
+                    "Emitter": {
+                        "PPS": 200.0,
+                        "Delay": 0.0,
+                        "Max": 2048,
+                        "Continuous": false,
+                        "EmitData": [
+                            [
+                                0.0,
+                                0.0
+                            ],
+                            [
+                                0.28999999165534973,
+                                0.27000001072883606
+                            ],
+                            [
+                                0.0,
+                                -15.0
+                            ],
+                            1.5700000524520874,
+                            3.2300000190734863,
+                            0.20000000298023224,
+                            0.0,
+                            0.8069999814033508,
+                            1.8459999561309814,
+                            0.1509999930858612,
+                            0.0,
+                            0.0,
+                            0.3199999928474426,
+                            0.6499999761581421,
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    "EmitterSprite": {
+                        "Layer": 4,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 51,
+                        "Texture": {
+                            "AssetName": "Level Assets"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            -1.0542831420898438,
+                            5.450350761413574
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            },
             "ring": {
                 "Name": "ring",
                 "Components": {
+                    "DigEffect": {
+                        "Timer": 1.0
+                    },
                     "Emitter": {
                         "PPS": 116.96299743652344,
                         "Delay": 0.0,
                         "Max": 2048,
-                        "Continuous": true,
+                        "Continuous": false,
                         "EmitData": [
                             [
                                 0.0,
@@ -1220,7 +1292,7 @@
                         },
                         {
                             "WaveTime": 0.0,
-                            "WaveNextTime": 3.351787805557251,
+                            "WaveNextTime": 0.4960828125476837,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
@@ -2939,12 +3011,6 @@
                     ],
                     "Walkables": [
                         -1
-                    ],
-                    "Targets": [
-                        "Player",
-                        "Base",
-                        "Generator",
-                        "Generator2"
                     ]
                 },
                 "StaticBody": {
@@ -6375,12 +6441,12 @@
             "Name": "Player",
             "Components": {
                 "Animation": {
-                    "FrameIndex": 12,
-                    "FrameDelay": 0.06618662178516388,
+                    "FrameIndex": 36,
+                    "FrameDelay": 0.031194627285003662,
                     "IsRunning": false,
                     "LoopCount": 0,
                     "Animation": {
-                        "AssetName": "PlayerMoveUp"
+                        "AssetName": "PlayerMoveLeft"
                     }
                 },
                 "AudioListener": {
@@ -6467,8 +6533,8 @@
                 },
                 "RigidBody": {
                     "Velocity": [
-                        0.0,
-                        0.0
+                        -0.0012158487224951386,
+                        2.8412388002226063e-13
                     ],
                     "Acceleration": [
                         0.0,
@@ -6489,15 +6555,15 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 12,
+                    "FrameIndex": 36,
                     "Texture": {
                         "AssetName": "PlayerSheet"
                     }
                 },
                 "Transform": {
                     "Translation": [
-                        -15.0,
-                        5.5
+                        -16.054637908935547,
+                        6.138070106506348
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -6512,7 +6578,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 47.0,
+                            "Width": 32.10193634033203,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -6525,10 +6591,13 @@
                                 16.0
                             ]
                         },
+                        "EditorCameraController": {
+                            "Sensativity": -0.550000011920929
+                        },
                         "Transform": {
                             "Translation": [
-                                0.0,
-                                -4.0
+                                -5.629192352294922,
+                                6.269120216369629
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -6570,8 +6639,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -15.0,
-                                6.5
+                                -16.054637908935547,
+                                7.138070106506348
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -6768,7 +6837,7 @@
                                 0.0,
                                 0.0
                             ],
-                            "Opacity": 1.0,
+                            "Opacity": 0.0,
                             "FrameIndex": 0,
                             "Texture": {
                                 "AssetName": "CircleTexture"
@@ -6868,7 +6937,7 @@
                     "PPS": 116.96399688720703,
                     "Delay": 0.0,
                     "Max": 2048,
-                    "Continuous": true,
+                    "Continuous": false,
                     "EmitData": [
                         [
                             0.0,
@@ -7010,15 +7079,15 @@
                         "Flags": 3
                     },
                     "Direction": [
-                        -0.8938262462615967,
-                        0.4484134316444397
+                        0.02077857218682766,
+                        0.9997841119766235
                     ],
                     "IsFiring": false
                 },
                 "Transform": {
                     "Translation": [
-                        -15.0,
-                        5.5
+                        -16.05461311340332,
+                        6.138070106506348
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -7037,7 +7106,7 @@
                     "HideWhenEmpty": false,
                     "Padding": 0.02500000037252903,
                     "Spacing": -0.02500000037252903,
-                    "Opacity": 1.0,
+                    "Opacity": 0.0,
                     "InventoryEntity": {
                         "EntityName": "ConstructionManager"
                     },
