@@ -20,6 +20,8 @@
 #include "CircleCollider.h"
 #include "Entity.h"
 #include "MiningLaser.h"
+#include "PlayerController.h"
+#include "BehaviorSystem.h"
 
 //--------------------------------------------------------------------------------
 // private: virtual overrides
@@ -164,10 +166,9 @@
 
         if (m_TogglePlayerInfiniteHealth)
         {
-            Entity* player = Entities()->GetEntity("Player");
-            if (player != nullptr)
+            for (PlayerController* player : Behaviors< PlayerController >()->GetComponents())
             {
-                Health* health = player->GetComponent<Health>();
+                Health* health = player->GetHealth();
                 if (health != nullptr)
                 {
                     health->SetHealth(9999);

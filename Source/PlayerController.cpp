@@ -44,6 +44,19 @@
     {}
 
 
+//-----------------------------------------------------------------------------
+// public: accessors
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the Health Component attached to this Entity
+    /// @return the Health Component attached to this Entity
+    Health* PlayerController::GetHealth()
+    {
+        return m_Health;
+    }
+
+
 ///----------------------------------------------------------------------------
 /// Public: methods
 ///----------------------------------------------------------------------------
@@ -51,7 +64,7 @@
     /// @brief Adds this behavior to the behavior system on init.
     void PlayerController::OnInit()
     {
-	    Behaviors< Behavior >()->AddComponent( this );
+	    Behaviors< PlayerController >()->AddComponent( this );
 
 
         m_Health.SetOnConnectCallback(
@@ -118,7 +131,7 @@
     /// @brief Removes this behavior from the behavior system on exit
     void PlayerController::OnExit()
     {
-        Behaviors<Behavior>()->RemoveComponent(this);
+        Behaviors<PlayerController>()->RemoveComponent(this);
 
         m_RigidBody  .Exit();
         m_Animation  .Exit();

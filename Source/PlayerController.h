@@ -48,6 +48,16 @@ public: // constructor / destructor
     /// @brief Destructor for the PlayerController class.
     ~PlayerController() = default;
 
+    
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  gets the Health Component attached to this Entity
+    /// @return the Health Component attached to this Entity
+    Health* GetHealth();
+
 
 //-----------------------------------------------------------------------------
 public: // virtual override methods

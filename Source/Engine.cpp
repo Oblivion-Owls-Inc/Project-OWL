@@ -364,6 +364,7 @@
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
 		{ "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
         { "BehaviorSystem<Popup>"                 , &addSystem< BehaviorSystem< Popup                  > > },
+        { "BehaviorSystem<PlayerController>"      , &addSystem< BehaviorSystem< PlayerController       > > },
 
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
 
