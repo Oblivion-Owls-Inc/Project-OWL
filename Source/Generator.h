@@ -102,6 +102,9 @@ private: // variables
     /// @brief  is the generator active or not
     bool m_DeactivateRing = false;
 
+    /// @brief  shrink ring to match edited value if true
+    bool m_ShrinkRing = false;
+
     /// @brief  speed the particle ring grows and shrinks at
     float m_RadiusSpeed = 1.0f;
 

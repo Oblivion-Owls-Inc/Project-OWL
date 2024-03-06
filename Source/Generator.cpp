@@ -150,6 +150,37 @@ void Generator::OnUpdate(float dt)
         m_Emitter->SetEmitData(data);
 
     }
+    else if (m_ShrinkRing)
+    {
+        m_GrowthRadius -= m_RadiusSpeed * dt;
+        if (m_GrowthRadius >= m_PowerRadius)
+        {
+            m_GrowthRadius = m_PowerRadius;
+            m_ShrinkRing = false;
+        }
+        ParticleSystem::EmitData data = m_Emitter->GetEmitData();
+        data.startAhead = m_GrowthRadius;
+        m_Emitter->SetEmitData(data);
+        m_Emitter->SetContinuous(true);
+    }
+    else if (m_PowerRadius != m_GrowthRadius)
+    {
+        if (m_IsActive)
+        {
+            if (m_GrowthRadius <= m_PowerRadius)
+            {
+                Activate();
+            }
+            else
+            {
+                m_ShrinkRing = true;
+            }
+        }
+        else
+        {
+            m_GrowthRadius = m_PowerRadius;
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------
