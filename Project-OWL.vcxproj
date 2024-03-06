@@ -317,8 +317,10 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\MiningLaser.cpp" />
     <ClCompile Include="Source\Nineslice.cpp" />
     <ClCompile Include="Source\ParticleSystem.cpp" />
-    <ClCompile Include="Source\Pathfinder.cpp" />
     <ClCompile Include="Source\CameraBehavior.cpp" />
+    <ClCompile Include="Source\PathfinderSource.cpp" />
+    <ClCompile Include="Source\PathfinderTarget.cpp" />
+    <ClCompile Include="Source\PathfindSystem.cpp" />
     <ClCompile Include="Source\PauseSystem.cpp" />
     <ClCompile Include="Source\PlayBar.cpp" />
     <ClCompile Include="Source\Pool.cpp" />
@@ -390,6 +392,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\ActionReference.h" />
     <ClInclude Include="Source\Console.h" />
     <ClInclude Include="Source\HideableForeground.h" />
+    <ClInclude Include="Source\PathfinderSource.h" />
+    <ClInclude Include="Source\PathfinderTarget.h" />
+    <ClInclude Include="Source\PathfindSystem.h" />
     <ClInclude Include="Source\PauseSystem.h" />
     <ClInclude Include="Source\PlayBar.h" />
     <ClInclude Include="Source\ResourceCounterUi.h" />
@@ -440,7 +445,6 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\ISerializable.h" />
     <ClInclude Include="Source\EmitterSprite.h" />
     <ClInclude Include="Source\ParticleSystem.h" />
-    <ClInclude Include="Source\Pathfinder.h" />
     <ClInclude Include="Source\Pool.h" />
     <ClInclude Include="Source\CollisionData.h" />
     <ClInclude Include="Source\PlayerController.h" />

@@ -33,6 +33,4 @@ digraph "Source/Light.h"
   Node8 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
   Node12 [label="Stream.t.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Stream_8t_8cpp.html",tooltip="JSON File reading/writing."];
   Node12 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
-  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
-  Node13 [label="sstream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
 }
