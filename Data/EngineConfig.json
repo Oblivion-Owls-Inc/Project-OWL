@@ -130,6 +130,7 @@
         "BehaviorSystem<EditorCameraController>": {},
         "BehaviorSystem<UiButton>": {},
         "BehaviorSystem<Generator>": {},
+        "BehaviorSystem<PlayerController>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
         "PathfindSystem": null,
