@@ -132,6 +132,7 @@
         "BehaviorSystem<Generator>": {},
         "ComponentSystem<ItemComponent>": {},
         "ParticleSystem": {},
+        "PathfindSystem": {},
         "LightingSystem": {
             "Enabled": false,
             "Layer": 6

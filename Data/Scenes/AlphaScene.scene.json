@@ -95,7 +95,7 @@
                 "Filepath": "Data/Textures/Tiles/ConnectedTextures.png",
                 "SheetDimensions": [
                     4,
-                    16
+                    24
                 ],
                 "Pivot": [
                     0.0,
@@ -140,7 +140,7 @@
                 "UseAspectRatio": false
             },
             "Items": {
-                "Filepath": "Data/Textures/Items/TestItemSheet.png",
+                "Filepath": "Data/Textures/ResourceIcons.png",
                 "SheetDimensions": [
                     3,
                     1
@@ -190,7 +190,7 @@
             "TilePreview": {
                 "Filepath": "Data/Textures/Tiles/PreviewTextures.png",
                 "SheetDimensions": [
-                    2,
+                    6,
                     1
                 ],
                 "Pivot": [
@@ -388,9 +388,6 @@
                         }
                     },
                     "EnemyBehavior": {
-                        "PathfinderEntity": {
-                            "EntityName": "Tiles"
-                        },
                         "Speed": 10.0,
                         "Damage": 1
                     },
@@ -803,7 +800,8 @@
                     "Radius": 5.0,
                     "ActivateRadius": 1.0,
                     "Depth": 0,
-                    "Active": true
+                    "Active": true,
+                    "GrowthSpeed": 1.0
                 },
                 "Health": {
                     "Health": {
@@ -3473,12 +3471,6 @@
                     "TileScale": [
                         1.0,
                         1.0
-                    ]
-                },
-                "Pathfinder": {
-               
-                    "Walkables": [
-                        -1
                     ]
                 },
                 "StaticBody": {
@@ -13879,7 +13871,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 33.233978271484375,
+                            "Width": 31.82482147216797,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -13897,8 +13889,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -13.049927711486816,
-                                10.31596851348877
+                                -11.573090553283691,
+                                10.067035675048828
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -14161,6 +14153,9 @@
                             ],
                             "Archetype": {
                                 "AssetName": "Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": ""
                             }
                         }
                     ],
@@ -14188,6 +14183,12 @@
                     },
                     "CostUiEntity": {
                         "EntityName": ""
+                    },
+                    "CancelPlacement": {
+                        "ActionName": ""
+                    },
+                    "PlaceAction": {
+                        "ActionName": ""
                     }
                 },
                 "Sprite": {
@@ -14266,12 +14267,12 @@
                 },
                 "UiElement": {
                     "Anchor": [
-                        -1.0,
-                        1.0
+                        1.0,
+                        -1.0
                     ],
                     "Pivot": [
-                        -1.0,
-                        1.0
+                        1.0,
+                        -1.0
                     ],
                     "Offset": [
                         0.0,
@@ -14382,7 +14383,8 @@
                     "Radius": 5.0,
                     "ActivateRadius": 1.0,
                     "Depth": 1,
-                    "Active": true
+                    "Active": true,
+                    "GrowthSpeed": 1.0
                 },
                 "Health": {
                     "Health": {

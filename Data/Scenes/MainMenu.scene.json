@@ -669,7 +669,8 @@
                                     },
                                     "PopupButton": {
                                         "ActionName": ""
-                                    }
+                                    },
+                                    "EventName": ""
                                 },
                                 "Sprite": {
                                     "Layer": 2,
