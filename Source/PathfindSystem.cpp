@@ -1,6 +1,7 @@
 /// @file       PathfindSystem.cpp
 /// @author     Eli Tsereteli (ilya.tserete;o@digipen.edu)
-/// @brief      
+/// @brief      System in charge of pathfinding. Keeps track of targets,
+///             runs the flowfield algorithm.
 /// @date       March 2024
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
