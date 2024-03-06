@@ -1,0 +1,235 @@
+{
+    "Assets": {
+        "Sounds": {
+            "Music": {
+                "Filepath": "Data/Sounds/test.mp3"
+            }
+        },
+        "Textures": {
+            "Ball1": {
+                "Filepath": "Data/Textures/Balls/Ball.png"
+            },
+            "Ball2": {
+                "Filepath": "Data/Textures/Balls/Ball2.png"
+            },
+            "Ball4": {
+                "Filepath": "Data/Textures/Balls/Ball4.png"
+            },
+            "Ball5": {
+                "Filepath": "Data/Textures/Balls/Ball5.png"
+            },
+            "Wall": {
+                "Filepath": "Data/Textures/Wall.png"
+            },
+            "FontSheet": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [ 16, 8 ]
+            },
+            "PlayerSheet": {
+                "Filepath": "Data/Textures/Full Spritesheet.png",
+                "SheetDimensions": [ 12, 15 ],
+                "Pivot": [ 0.5, 0.16 ]
+            }
+        },
+        "Animations": {
+            "PlayerMoveDown": {
+                "Start": 0,
+                "End": 12,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveUp": {
+                "Start": 12,
+                "End": 24,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveRight": {
+                "Start": 24,
+                "End": 36,
+                "FrameRate": 12,
+                "IsLooping": true
+            },
+            "PlayerMoveLeft": {
+                "Start": 36,
+                "End": 48,
+                "FrameRate": 12,
+                "IsLooping": true
+            }
+        },
+        "Archetypes": {
+            "Ball": {
+                "Name": "Ball",
+                "Components": {
+                    "Sprite": {
+                        "Texture": "Ball5",
+                        "Layer": 1
+                    },
+                    "RigidBody": {
+                    },
+                    "CircleCollider": {
+                        "CollisionLayerFlags": [ "physics" ],
+                        "Radius": 0.5
+                    },
+                    "Transform": {},
+                    "MovementAI": {}
+                }
+            }
+        }
+    },
+    "Entities": [
+        {
+            "Name": "Sound",
+            "Components": {
+                "AudioPlayer": {
+                    "Sound": "Music"
+                }
+            }
+        },
+        {
+            "Name": "Wall",
+            "Components": {
+                "Sprite": {
+                    "Texture": "Wall",
+                    "Layer": 0
+                },
+                "Transform": {
+                    "Translation": [ 0, -3, 0 ],
+                    "Scale": [ 10, 10, 10 ]
+                }
+            }
+        },
+        {
+            "Name": "Ball",
+            "Components": {
+                "Sprite": {
+                    "Texture": "Ball5",
+                    "Layer": 1
+                },
+                "RigidBody": {
+                    "Velocity": [ 3, 1, 0 ]
+                },
+                "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
+                    "Radius": 0.5
+                },
+                "Transform": {
+                    "Translation": [ 0, 0, 1 ]
+                },
+                "MovementAI": {}
+            }
+        },
+        {
+            "Name": "Ball",
+            "Components": {
+                "Sprite": {
+                    "Texture": "Ball2",
+                    "Layer": 1
+                },
+                "RigidBody": {
+                    "Velocity": [ -2, -1, 0 ]
+                },
+                "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
+                    "Radius": 0.5
+                },
+                "Transform": {
+                    "Translation": [ 2, 1, 1 ]
+                },
+                "MovementAI": {}
+            }
+        },
+        {
+            "Name": "Ball",
+            "Components": {
+                "Sprite": {
+                    "Texture": "Ball1",
+                    "Layer": 1
+                },
+                "RigidBody": {
+                    "Velocity": [ 1.5, 4.3, 0 ]
+                },
+                "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
+                    "Radius": 0.5
+                },
+                "Transform": {
+                    "Translation": [ 1, 0, 1 ]
+                },
+                "MovementAI": {}
+            }
+        },
+        {
+            "Name": "TextEnt",
+            "Components": {
+                "Text": {
+                    "String": "The Quick Brown Fox Jumps Over The Lazy Dog"
+                },
+                "Transform": {
+                    "Translation": [ -4.9, 2, 0 ],
+                    "Scale": [ 0.35, 0.35, 0 ]
+                }
+            }
+        },
+        {
+            "Name": "Player",
+            "Components": {
+                "Transform": {
+                    "Translation": [ -4, -1],
+                    "Scale": [ 2, 2 ]
+                },
+                "Sprite": {
+                    "Texture": "PlayerSheet"
+                },
+                "CircleCollider": {
+                    "CollisionLayerFlags": [ "physics" ],
+                    "Radius": 0.5
+                },
+                "RigidBody": {
+                    "Acceleration": [ 0, 0 ],
+                    "Drag": 15
+                },
+                "PlayerController": {
+                    "left": [ -1, 0 ],
+                    "right": [ 1, 0 ],
+                    "up": [ 0, 1 ],
+                    "down": [ 0, -1 ],
+                    "maxSpeed": 1,
+                    "animationName": ["PlayerMoveRight", "PlayerMoveLeft", "PlayerMoveUp", "PlayerMoveDown"]
+                },
+                "Animation": {
+                    "Animation": "PlayerMoveRight",
+                    "IsRunning": true
+                }
+            }
+        },
+        {
+            "Name": "Planet1",
+            "Components": {
+              "Transform": {
+                "Translation": [ 2, 1, 0 ],
+                "Scale": [ 2.5, 2.5, 1 ]
+              },
+              "Sprite": {
+                "Texture": "Ball4",
+                "Layer":  2
+              }
+            }
+      
+          },
+          {
+            "Name": "Planet2",
+            "Components": {
+              "Transform": {
+                "Translation": [ 2, 1, 0 ],
+                "Scale": [ 1, 1, 1 ]
+              },
+              "Sprite": {
+                "Texture": "Ball5",
+                "Layer":  3
+              }
+            }
+      
+          }
+    ]
+}

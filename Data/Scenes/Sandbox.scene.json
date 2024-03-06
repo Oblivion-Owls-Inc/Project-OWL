@@ -1,0 +1,43 @@
+{
+    "Assets": {
+        "Textures": {
+            "Turret": {
+                "Filepath": "Data/Textures/Turret.png",
+                "SheetDimensions": [ 19, 1 ]
+            },
+            "FontSheet": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [ 16, 8 ]
+            },
+            "Ball": {
+                "Filepath": "Data/Textures/Balls/Ball.png"
+            },
+            "Ball2": {
+                "Filepath": "Data/Textures/Balls/Ball2.png"
+            },
+            "Ball3": {
+                "Filepath": "Data/Textures/Balls/Ball3.png"
+            },
+            "Ball4": {
+                "Filepath": "Data/Textures/Balls/Ball4.png"
+            },
+            "Ball5": {
+                "Filepath": "Data/Textures/Balls/Ball5.png"
+            }
+        }
+    },
+    "Entities": {
+
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 10
+                },
+                "Transform": {}
+            }
+        }
+
+
+    }
+}

@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1174,
-                632
+                1814,
+                1135
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -76,11 +76,11 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "Prototype",
+            "NextSceneName": "Level_Editor_Full_Map",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
-        "PauseSystem": null,
+        "PauseSystem": {},
         "BehaviorSystem<Behavior>": {},
         "BehaviorSystem<RigidBody>": {},
         "BehaviorSystem<WavesBehavior>": {},
@@ -108,13 +108,20 @@
         "BehaviorSystem<Animation>": {},
         "BehaviorSystem<EffectAnimator>": {},
         "CameraSystem": {},
-        "RenderSystem": {},
+        "RenderSystem": {
+            "BackgroundColor": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        },
         "AudioSystem": {
             "MaxChannels": 1024
         },
         "CheatSystem": {},
         "DebugSystem": {
-            "ShowFpsWindow": true,
+            "ShowFpsWindow": false,
             "ShowDebugWindow": true
         },
         "AssetLibrary<Entity>": {},

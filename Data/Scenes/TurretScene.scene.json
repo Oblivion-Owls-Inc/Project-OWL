@@ -1,0 +1,173 @@
+{
+    "Assets": {
+        "Textures": {
+            "Turret": {
+                "Filepath": "Data/Textures/Turret.png",
+                "SheetDimensions": [ 19, 1 ]
+            },
+            "Ball5": {
+                "Filepath": "Data/Textures/Balls/Ball5.png"
+            },
+            "Ball2": {
+                "Filepath": "Data/Textures/Balls/Ball2.png"
+            },
+            "Ball1": {
+                "Filepath": "Data/Textures/Balls/Ball.png"
+            }
+        },
+        "TransformAnimations": {
+            "Bounce": {
+                "ScaleCurve": {
+                    "InterpolationType": 2,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [ 1.0, 1.0 ],
+                            "Derivative": [ 1.1, -1.1 ]
+                        },
+                        {
+                            "Time": 0.25,
+                            "Value": [ 1.2, 0.833 ]
+                        },
+                        {
+                            "Time": 0.75,
+                            "Value": [ 0.833, 1.1 ]
+                        },
+                        {
+                            "Time": 1.0,
+                            "Value": [ 1.0, 1.0 ],
+                            "Derivative": [ 1.1, -1.1 ]
+                        }
+                    ]
+                }
+            },
+            "Spin": {
+                "RotationCurve": {
+                    "InterpolationType": 2,
+                    "ControlPoints": [
+                        {
+                            "Time": 0.0,
+                            "Value": [ 0.0 ]
+                        },
+                        {
+                            "Time": 0.5,
+                            "Value": [ -1.0 ]
+                        },
+                        {
+                            "Time": 1.5,
+                            "Value": [ 7.28 ]
+                        },
+                        {
+                            "Time": 2.0,
+                            "Value": [ 6.283 ]
+                        },
+                        {
+                            "Time": 3.0,
+                            "Value": [ 6.283 ]
+                        }
+                    ]
+                }
+            }
+        },
+        "Animations": {
+            "TurretSpin": {
+                "Start": 0,
+                "End": 19,
+                "FrameRate": 8,
+                "IsLooping": false
+            }
+        },
+        "Archetypes": {
+            "Ball": {
+                "Name": "Ball",
+                "Components": {
+                    "Sprite": {
+                        "Texture": "Ball1",
+                        "Layer": 1
+                    },
+                    "RigidBody": {},
+                    "CircleCollider": {
+                        "Radius": 0.5,
+                        "CollisionLayer": "physics",
+                        "CollisionLayerFlags": [ "physics" ]
+                    },
+                    "Transform": {},
+                    "MovementAI": {}
+
+                }
+            }
+        }
+    },
+    "Entities": [
+        {
+            "Name": "Turret",
+            "Components": {
+                "Sprite": {
+                    "Texture": "Turret",
+                    "Layer": 1
+                },
+                "Animation": {
+                    "FrameIndex": 0,
+                    "IsRunning": true,
+                    "Animation": "TurretSpin"
+                },
+                "Transform": {
+                    "Translation": [ -4, 1 ],
+                    "Scale": [ 2, 2 ]
+                },
+                "TurretBehavior": {},
+                "EffectAnimator": {
+                    "CurrentEffect": "Bounce",
+                    "IsPlaying": true,
+                    "LoopCount": -1,
+                    "Speed": 2.0
+                }
+            }
+        },
+        {
+            "Archetype": "Ball",
+            "Name": "Ball1",
+            "Components": {
+                "Sprite": {
+                    "Texture": "Ball5"
+                },
+                "RigidBody": {
+                    "Velocity": [ 3, 1, 0 ]
+                },
+                "Transform": {
+                    "Translation": [ 0, 0, 0 ]
+                }
+            }
+        },
+        {
+            "Archetype": "Ball",
+            "Name": "Ball2",
+            "Components": {
+                "Sprite": {
+                    "Texture": "Ball2"
+                },
+                "RigidBody": {
+                    "Velocity": [ -2, -1, 0 ]
+                },
+                "Transform": {
+                    "Translation": [ 2, 1, 0 ]
+                }
+            }
+        },
+        {
+            "Archetype": "Ball",
+            "Name": "Ball3",
+            "Components": {
+                "Sprite": {
+                    "Texture": "Ball1"
+                },
+                "RigidBody": {
+                    "Velocity": [ 1.5, 4.3, 0 ]
+                },
+                "Transform": {
+                    "Translation": [ 1, 0, 0 ]
+                }
+            }
+        }
+    ]
+}
