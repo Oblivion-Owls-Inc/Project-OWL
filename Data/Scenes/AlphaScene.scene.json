@@ -360,7 +360,7 @@
                         "Radius": 0.30000001192092896,
                         "CollisionLayer": 1,
                         "CollisionLayerFlags": {
-                            "Flags": 13
+                            "Flags": 15
                         }
                     },
                     "Emitter": {
@@ -412,9 +412,6 @@
                         }
                     },
                     "EnemyBehavior": {
-                        "PathfinderEntity": {
-                            "EntityName": "Tiles"
-                        },
                         "Speed": 10.0,
                         "Damage": 1
                     },
@@ -18388,11 +18385,7 @@
                         1.0
                     ]
                 },
-                "Pathfinder": {
-                    "Destination": [
-                        0.0,
-                        0.0
-                    ],
+                "PathfinderSource": {
                     "Walkables": [
                         -1
                     ]
@@ -88596,6 +88589,10 @@
                         0.0
                     ]
                 },
+                "PathfinderTarget": {
+                    "Priority": 3,
+                    "Active": true
+                },
                 "PlayerController": {
                     "Animations": [
                         {
@@ -88679,7 +88676,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 93.99988555908203,
+                            "Width": 66.46795654296875,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -88697,8 +88694,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -8.984771728515625,
-                                90.64852905273438
+                                -3.6473751068115234,
+                                110.26228332519531
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -106871,6 +106868,10 @@
                 "HomeBase": {
                     "GameOverScene": "Gameover"
                 },
+                "PathfinderTarget": {
+                    "Priority": 0,
+                    "Active": true
+                },
                 "Sprite": {
                     "Layer": 2,
                     "Color": [
@@ -106984,6 +106985,10 @@
                         "CurrentValue": 5
                     }
                 },
+                "PathfinderTarget": {
+                    "Priority": 1,
+                    "Active": false
+                },
                 "Sprite": {
                     "Layer": 2,
                     "Color": [
@@ -107096,6 +107101,10 @@
                         "BaseValue": 5,
                         "CurrentValue": 5
                     }
+                },
+                "PathfinderTarget": {
+                    "Priority": 1,
+                    "Active": false
                 },
                 "Sprite": {
                     "Layer": 2,
