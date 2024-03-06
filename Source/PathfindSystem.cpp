@@ -165,7 +165,7 @@ void PathfindSystem::explore()
     for (int i = 0; i < m_Nodes.size(); i++)
     {
         m_Nodes[i].type = Unwalkable;
-        m_Nodes[i].direction = glm::ivec2(0);
+        // m_Nodes[i].direction = glm::ivec2(0);
 
         for (int j : m_Walkables)
         {

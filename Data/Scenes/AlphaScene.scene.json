@@ -459,10 +459,10 @@
                                     0.0,
                                     1.0
                                 ],
-                                "HideWhenFull": false,
-                                "OpacityAnimationTime": 1.0,
-                                "MaxOpacity": 1.0,
-                                "RecentHealthAcceleration": 1.0,
+                                "HideWhenFull": true,
+                                "OpacityAnimationTime": 0.25,
+                                "MaxOpacity": 0.75,
+                                "RecentHealthAcceleration": 3.0,
                                 "TargetEntity": {
                                     "EntityName": ""
                                 }
@@ -88676,7 +88676,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 66.46795654296875,
+                            "Width": 132.9359130859375,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -88694,8 +88694,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -3.6473751068115234,
-                                110.26228332519531
+                                5.152097702026367,
+                                85.15367126464844
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -88727,10 +88727,10 @@
                                 0.0,
                                 1.0
                             ],
-                            "HideWhenFull": false,
-                            "OpacityAnimationTime": 1.0,
-                            "MaxOpacity": 1.0,
-                            "RecentHealthAcceleration": 1.0,
+                            "HideWhenFull": true,
+                            "OpacityAnimationTime": 0.25,
+                            "MaxOpacity": 0.75,
+                            "RecentHealthAcceleration": 3.0,
                             "TargetEntity": {
                                 "EntityName": "Player"
                             }
@@ -88898,38 +88898,6 @@
                     "Children": null
                 }
             ]
-        },
-        "Background": {
-            "Name": "Background",
-            "Components": {
-                "Sprite": {
-                    "Layer": 0,
-                    "Color": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0
-                    ],
-                    "Opacity": 1.0,
-                    "FrameIndex": 0,
-                    "Texture": {
-                        "AssetName": "Background"
-                    }
-                },
-                "Transform": {
-                    "Translation": [
-                        -10.454585075378418,
-                        18.865156173706055
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        26.549999237060547,
-                        21.049999237060547
-                    ],
-                    "IsDiegetic": true
-                }
-            },
-            "Children": null
         },
         "ConstructionManager": {
             "Name": "ConstructionManager",
