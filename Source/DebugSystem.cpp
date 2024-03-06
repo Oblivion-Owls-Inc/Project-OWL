@@ -116,6 +116,7 @@ void DebugSystem::OnInit()
     SetDebugEnable( true );
     SetNonEditorSystemsEnabled(m_EditorRunning);
 
+    Stream::ReadFromFile(this, "Data/Config/DebugSystem.json");
 
     for (System* system : GameEngine()->GetSystems())
     {
@@ -598,6 +599,8 @@ void DebugSystem::OnFixedUpdate()
 /// @brief Perform cleanup and shutdown.
 void DebugSystem::OnExit()
 {
+    Stream::WriteToFile("Data/Config/DebugSystem.json", Write());
+
     //ImGui::End();
     ImGui::Render();
     ImGui_ImplGlfw_Shutdown();
