@@ -1,0 +1,86 @@
+\hypertarget{classPathfinderSource}{}\doxysection{Pathfinder\+Source Class Reference}
+\label{classPathfinderSource}\index{PathfinderSource@{PathfinderSource}}
+
+
+Pathfinder source.  
+
+
+
+
+{\ttfamily \#include $<$Pathfinder\+Source.\+h$>$}
+
+
+
+Inheritance diagram for Pathfinder\+Source\+:
+% FIG 0
+
+
+Collaboration diagram for Pathfinder\+Source\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPathfinderSource_afc24e4f9c4562e615f9c92fe6d5ea130}\label{classPathfinderSource_afc24e4f9c4562e615f9c92fe6d5ea130}} 
+\mbox{\hyperlink{classPathfinderSource_afc24e4f9c4562e615f9c92fe6d5ea130}{Pathfinder\+Source}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPathfinderSource_ad032fdd71e1e230e093733f012bf515f}\label{classPathfinderSource_ad032fdd71e1e230e093733f012bf515f}} 
+virtual \mbox{\hyperlink{classPathfinderSource}{Pathfinder\+Source}} $\ast$ \mbox{\hyperlink{classPathfinderSource_ad032fdd71e1e230e093733f012bf515f}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em Clones this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPathfinderSource_a17c4dd9df5d575edf47ceb3657b612e8}\label{classPathfinderSource_a17c4dd9df5d575edf47ceb3657b612e8}} 
+void \mbox{\hyperlink{classPathfinderSource_a17c4dd9df5d575edf47ceb3657b612e8}{Set\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Sets this component\textquotesingle{}s parent entity as the active tilemap for pathfinding. \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classPathfinderSource_a2e14fd67ed31b3c96932aa58d6db3f0c}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classPathfinderSource_af48a33edf012e2b4c9cf32268f446719}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em Write all Pathfinder component data to a JSON file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Pathfinder source. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPathfinderSource_a2e14fd67ed31b3c96932aa58d6db3f0c}\label{classPathfinderSource_a2e14fd67ed31b3c96932aa58d6db3f0c}} 
+\index{PathfinderSource@{PathfinderSource}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!PathfinderSource@{PathfinderSource}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const\& Pathfinder\+Source\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classPathfinderSource_af48a33edf012e2b4c9cf32268f446719}\label{classPathfinderSource_af48a33edf012e2b4c9cf32268f446719}} 
+\index{PathfinderSource@{PathfinderSource}!Write@{Write}}
+\index{Write@{Write}!PathfinderSource@{PathfinderSource}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Pathfinder\+Source\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write all Pathfinder component data to a JSON file. 
+
+Writes component data to a JSON file.
+
+\begin{DoxyReturn}{Returns}
+The JSON file containing the Pathfinder component data.
+
+JSON data to write 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{PathfinderSource_8h}{Pathfinder\+Source.\+h}}\item 
+Source/\mbox{\hyperlink{PathfinderSource_8cpp}{Pathfinder\+Source.\+cpp}}\end{DoxyCompactItemize}

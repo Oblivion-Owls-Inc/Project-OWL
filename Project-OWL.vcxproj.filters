@@ -345,6 +345,18 @@
     <Filter Include="Game\Components\Behaviors\Generator">
       <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Systems\PathfindSystem">
+      <UniqueIdentifier>{a8c7bc82-572f-4984-828f-8e1a2f7d997c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\WinState">
+      <UniqueIdentifier>{420574a2-d603-4fff-abee-f59668b31f97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\Popup">
+      <UniqueIdentifier>{4ad37196-ce14-4abd-aa13-be68442d0cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\SceneChangeButton">
+      <UniqueIdentifier>{1d8900dd-7c60-4907-b4a4-cc9b65981f74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -647,9 +659,6 @@
     <ClCompile Include="Source\CollisionLayerFlags.cpp">
       <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
     </ClCompile>
-    <ClCompile Include="Source\WinState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Nineslice.cpp">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClCompile>
@@ -668,20 +677,11 @@
     <ClCompile Include="Source\ComponentReference.t.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\WinState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Nineslice.cpp">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClCompile>
     <ClCompile Include="Source\SplashScreenController.cpp">
       <Filter>Game\Components\SplashScreen</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Console.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SceneChangeButton.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\HideableForeground.cpp">
       <Filter>Game\Components\Behaviors\HideableForeground</Filter>
@@ -719,17 +719,29 @@
     <ClCompile Include="Source\PauseSystem.cpp">
       <Filter>Engine\Systems\PauseSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PathfindSystem.cpp">
+      <Filter>Engine\Systems\PathfindSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WinState.cpp">
+      <Filter>Game\Components\Behaviors\WinState</Filter>
+    </ClCompile>
     <ClCompile Include="Source\PathfinderSource.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
     </ClCompile>
     <ClCompile Include="Source\PathfinderTarget.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PathfindSystem.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\Console.cpp">
+      <Filter>Engine\Systems\DebugSystem\Console</Filter>
     </ClCompile>
     <ClCompile Include="Source\Popup.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game\Components\Behaviors\Popup</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneChangeButton.cpp">
+      <Filter>Game\Components\SceneChangeButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WinState.cpp">
+      <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1045,9 +1057,6 @@
     <ClInclude Include="Source\CollisionLayerFlags.h">
       <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
     </ClInclude>
-    <ClInclude Include="Source\WinState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Nineslice.h">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClInclude>
@@ -1060,20 +1069,11 @@
     <ClInclude Include="Source\CollisionLayerFlags.h">
       <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
     </ClInclude>
-    <ClInclude Include="Source\WinState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Nineslice.h">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClInclude>
     <ClInclude Include="Source\SplashScreenController.h">
       <Filter>Game\Components\SplashScreen</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SceneChangeButton.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\HideableForeground.h">
       <Filter>Game\Components\Behaviors\HideableForeground</Filter>
@@ -1102,17 +1102,29 @@
     <ClInclude Include="Source\PauseSystem.h">
       <Filter>Engine\Systems\PauseSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Popup.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\PathfindSystem.h">
+      <Filter>Engine\Systems\PathfindSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PathfinderSource.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\WinState.h">
+      <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClInclude>
     <ClInclude Include="Source\PathfinderTarget.h">
-      <Filter>Header Files</Filter>
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PathfindSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\PathfinderSource.h">
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Console.h">
+      <Filter>Engine\Systems\DebugSystem\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Popup.h">
+      <Filter>Game\Components\Behaviors\Popup</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneChangeButton.h">
+      <Filter>Game\Components\SceneChangeButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WinState.h">
+      <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

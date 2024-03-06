@@ -249,21 +249,24 @@
         if ( m_FireLaser != nullptr && m_FireLaser->GetDown() )
         {
             m_MiningLaser->SetIsFiring( true );
-            if (Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER) >= 1.0f)
+
+            glm::vec2 direction;
+            if ( Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER ) >= 1.0f )
             {
                 // Get the data from the right thumbstick.
-                float xAxis = Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_X);
-                float yAxis = Input()->GetGamepadAxisState(GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_Y);
-                glm::vec2 controllerAxis(xAxis, -yAxis);
-                glm::vec2 controllerDirection = glm::normalize(controllerAxis);
-                m_MiningLaser->SetDirection(controllerDirection);
+                direction.x = Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_X );
+                direction.y = Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_Y );
             }
             else
             {
-                glm::vec2 direction = glm::normalize(Input()->GetMousePosWorld() - m_Transform->GetTranslation());
-                m_MiningLaser->SetDirection(direction);
+                direction = Input()->GetMousePosWorld() - m_Transform->GetTranslation();
             }
-            
+
+            m_MiningLaser->SetDirection(
+                direction == glm::vec2( 0.0f ) ?
+                    glm::vec2( 1.0f, 0.0f ) :
+                    glm::normalize( direction )
+            );
         }
         else
         {

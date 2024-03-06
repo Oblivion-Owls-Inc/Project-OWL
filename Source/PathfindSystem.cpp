@@ -1,6 +1,7 @@
 /// @file       PathfindSystem.cpp
 /// @author     Eli Tsereteli (ilya.tserete;o@digipen.edu)
-/// @brief      
+/// @brief      System in charge of pathfinding. Keeps track of targets,
+///             runs the flowfield algorithm.
 /// @date       March 2024
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
@@ -19,6 +20,11 @@
 /// @return      Direction vector towards target(s). If out of bounds, returns <0,0>
 glm::vec2 PathfindSystem::GetDirectionAt(glm::vec2 pos) const
 {
+    if ( m_Tilemap == nullptr )
+    {
+        return glm::vec2( 0.0f );
+    }
+
     // get coord (2D index), check bounds
     glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
     if (coord.x == -1)
@@ -37,7 +43,7 @@ glm::vec2 PathfindSystem::GetDirectionAt(glm::vec2 pos) const
 ///              returns -1.
 int PathfindSystem::GetTravelDistanceAt(glm::vec2 pos) const
 {
-    if (!m_Tilemap)
+    if ( m_Tilemap != nullptr )
     {
         glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
 
@@ -54,7 +60,7 @@ int PathfindSystem::GetTravelDistanceAt(glm::vec2 pos) const
 /// @return      Walkable or not
 bool PathfindSystem::IsWalkable(glm::vec2 pos) const
 {
-    if (!m_Tilemap)
+    if ( m_Tilemap != nullptr )
     {
         int width = m_Tilemap->GetDimensions().x;
         glm::ivec2 coord = m_Tilemap->WorldPosToTileCoord(pos);
@@ -72,8 +78,33 @@ bool PathfindSystem::IsWalkable(glm::vec2 pos) const
 /// @param entity   Level map
 void PathfindSystem::SetActiveTilemap(Entity* entity)
 {
+    if (m_Tilemap)
+        m_Tilemap->RemoveOnTilemapChangedCallback( GetId() );
+
     m_Tilemap.Exit();
     m_Tilemap.Init(entity);
+
+    if (m_Tilemap)
+        m_Tilemap->AddOnTilemapChangedCallback( GetId(), std::bind(&PathfindSystem::MarkDirty, 
+                                                                    this ) );
+    MarkDirty();
+}
+
+
+/// @brief    Makes sure MarkDirty() is called whenever given Transform changes.
+/// @param t  Transform component
+void PathfindSystem::AddTransformCallback(Transform* t)
+{
+    if (t)
+        t->AddOnTransformChangedCallback( GetId(), std::bind(&PathfindSystem::MarkDirty,
+                                                              this) );
+}
+
+/// @brief    Remove the callback from transform
+/// @param t  Transform component
+void PathfindSystem::RemoveTransformCallback(Transform* t)
+{
+    t->RemoveOnTransformChangedCallback( GetId() );
 }
 
 
@@ -88,13 +119,15 @@ void PathfindSystem::OnUpdate(float dt)
     if (!m_Tilemap)
         return;
 
-    if (m_Done.load())
+    if (m_Done.load() == true)
     {
         if (m_Thread.joinable())
             m_Thread.join();
 
-        m_Thread = std::thread(&PathfindSystem::explore, this);
+        if (m_Dirty.load() == true)
+            m_Thread = std::thread(&PathfindSystem::explore, this);
     }
+
 
     (void) dt;
 }
@@ -109,6 +142,7 @@ void PathfindSystem::OnExit()
 
 /// @brief Gets Called by the Debug system to display debug information
 //void PathfindSystem::DebugWindow(){}
+// nothing to tweak here. Everything is set/controlled by components.
 
 
 //-----------------------------------------------------------------------------
@@ -119,17 +153,19 @@ void PathfindSystem::OnExit()
 ///             but it doens't need to be
 void PathfindSystem::explore()
 {
+    // if no targets, leave.
     if (!GetComponents().size())
         return;
 
     m_Done.store(false);
+    m_Dirty.store(false);
 
     // update walkability of tiles
     m_Nodes.resize(m_Tilemap->GetTilemap().size());
     for (int i = 0; i < m_Nodes.size(); i++)
     {
         m_Nodes[i].type = Unwalkable;
-        m_Nodes[i].direction = glm::ivec2(0);
+        // m_Nodes[i].direction = glm::ivec2(0);
 
         for (int j : m_Walkables)
         {

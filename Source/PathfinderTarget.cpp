@@ -1,7 +1,10 @@
-/// @file     PathfinderTarget.cpp
-/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// @file       PathfinderTarget.cpp
+/// @author     Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    Marks parent entity as a target for the enemies.
+/// @brief      Marks parent entity as a target for the enemies.
+/// @date       March 2024
+/// 
+/// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
 #include "PathfinderTarget.h"
 #include "imgui.h"
 #include "PathfindSystem.h"
@@ -11,15 +14,14 @@ PathfinderTarget::PathfinderTarget() : Component(typeid(PathfinderTarget)) {}
 
 /// @brief        Copy ctor
 /// @param other  component to copy
-PathfinderTarget::PathfinderTarget(PathfinderTarget const& other) : Component(other) { }
-
-/// @brief   Destructor : removes itself from system, if not removed already
-//PathfinderTarget::~PathfinderTarget() { Pathfinder()->RemoveComponent(this); }
+PathfinderTarget::PathfinderTarget(PathfinderTarget const& other) : 
+    Component(other), 
+    m_Active(other.m_Active),
+    m_Priority(other.m_Priority)
+{}
 
 /// @brief   Clones this component
-Component* PathfinderTarget::Clone() const { return new PathfinderTarget(*this); }
-
-// TODO: issues may arise when trying to clone a component that has active references?
+PathfinderTarget* PathfinderTarget::Clone() const { return new PathfinderTarget(*this); }
 
 
 //-----------------------------------------------------------------------------
@@ -31,11 +33,13 @@ void PathfinderTarget::OnInit()
 {
     m_ParentTransform.Init(GetEntity());
     Pathfinder()->AddComponent(this);
+    Pathfinder()->AddTransformCallback(m_ParentTransform);
 }
 
 /// @brief  Exit: PathfinderTarget removes itself from PathfinderTargeting system
 void PathfinderTarget::OnExit()
 {
+    Pathfinder()->RemoveTransformCallback(m_ParentTransform);
     Pathfinder()->RemoveComponent(this);
     m_ParentTransform.Exit();
 }
@@ -76,7 +80,8 @@ void PathfinderTarget::readActive(nlohmann::ordered_json const& data)
 
 /// @brief  map of read methods
 ReadMethodMap< PathfinderTarget > const PathfinderTarget::s_ReadMethods = {
-    { "Priority",   &readPriority  }
+    { "Priority",   &readPriority  },
+    { "Active",     &readActive    }
 };
 
 

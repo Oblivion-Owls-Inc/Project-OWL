@@ -1,7 +1,10 @@
-/// @file     PathfinderTarget.h
-/// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
+/// @file       PathfinderTarget.h
+/// @author     Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
-/// @brief    Marks parent entity as a target for the enemies.
+/// @brief      Marks parent entity as a target for the enemies.
+/// @date       March 2024
+/// 
+/// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
 #pragma once
 #include "ComponentReference.h"
 #include "Transform.h"
@@ -13,14 +16,8 @@ public:
     /// @brief   Default constructor
     PathfinderTarget();
 
-    /// @brief   Copy constructor
-    PathfinderTarget(PathfinderTarget const& other);
-
-    /// @brief   Destructor : removes itself from system, if not removed already
-    //~PathfinderTarget();
-
     // Inherited via Component
-    virtual Component * Clone() const override;
+    virtual PathfinderTarget * Clone() const override;
 
 
 
@@ -108,6 +105,18 @@ public:
     /// @brief      Write all PathfinderTarget component data to a JSON file.
     /// @return     The JSON file containing the PathfinderTarget component data.
     virtual nlohmann::ordered_json Write() const override;
+
+
+//-----------------------------------------------------------------------------
+//              Copying
+//-----------------------------------------------------------------------------
+private:
+
+    /// @brief   Copy constructor
+    PathfinderTarget(PathfinderTarget const& other);
+
+    /// @brief   Disable assignment 
+    void operator =(PathfinderTarget const&) = delete;
 
 
 //-----------------------------------------------------------------------------

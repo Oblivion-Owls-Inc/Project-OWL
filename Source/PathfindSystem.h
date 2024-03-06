@@ -1,6 +1,7 @@
 /// @file       PathfindSystem.h
 /// @author     Eli Tsereteli (ilya.tserete;o@digipen.edu)
-/// @brief      Manages pathfinding.
+/// @brief      System in charge of pathfinding. Keeps track of targets,
+///             runs the flowfield algorithm.
 /// @date       March 2024
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
@@ -49,6 +50,17 @@ public:
     /// @param entity   Level map entity (usage: PathfindMap should pass its parent here)
     void SetActiveTilemap(Entity* entity);
 
+    /// @brief   Marks dirty - vector field needs to be updated.
+    __inline void MarkDirty() { m_Dirty.store(true); }
+
+    /// @brief    Makes sure MarkDirty() is called whenever given Transform changes.
+    /// @param t  Transform component
+    void AddTransformCallback(Transform* t);
+
+    /// @brief    Remove the callback from transform
+    /// @param t  Transform component
+    void RemoveTransformCallback(Transform* t);
+
 
 //-----------------------------------------------------------------------------
 //              Virtual overrides
@@ -63,7 +75,6 @@ private:
 
     /// @brief  ImGui
     //virtual void DebugWindow() override;
-
 
 
 //-----------------------------------------------------------------------------
@@ -95,8 +106,11 @@ private:
     /// @brief  Background thread for the actual algo
     std::thread m_Thread;
 
-    /// @brief  Thread sync
+    /// @brief  When true, vector field is finished updating.
     std::atomic_bool m_Done = true;
+
+    /// @brief  When true, vector field needs to be updated.
+    std::atomic_bool m_Dirty = true;
 
 
 
@@ -123,7 +137,6 @@ public:
     /// @brief  writes this PathfindSystem to JSON
     /// @return the JSON data of this PathfindSystem
     virtual nlohmann::ordered_json Write() const override;
-
 
 
 
