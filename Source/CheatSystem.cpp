@@ -74,7 +74,7 @@
             // The infinite player health button
             if (ImGui::Button(m_TogglePlayerInfiniteHealth ? "Turn Off InfPlayerHealth" : "Turn On InfPlayerHealth"))
             {
-                m_TogglePlayerInfiniteHealth = !m_TogglePlayerInfiniteHealth;
+                InfinitePlayerHealth();
             }
             ImGui::SameLine();
             ImGui::Text("Infinite Player Health");

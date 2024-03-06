@@ -832,8 +832,8 @@
                             ]
                         },
                         {
-                            "WaveTime": 944.8154296875,
-                            "WaveNextTime": 944.8154296875,
+                            "WaveTime": 943.54443359375,
+                            "WaveNextTime": 943.54443359375,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
@@ -88613,8 +88613,8 @@
                         "EntityName": "MiningLaser"
                     },
                     "RespawnLocation": [
-                        -15.0,
-                        5.0
+                        -14.5,
+                        121.5
                     ],
                     "MoveVertical": {
                         "ActionName": "MoveVertical"
@@ -88676,7 +88676,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 132.9359130859375,
+                            "Width": 16.616989135742188,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -88694,8 +88694,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                5.152097702026367,
-                                85.15367126464844
+                                -13.574503898620605,
+                                117.63900756835938
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -88784,7 +88784,7 @@
                                 "AssetName": "HealthBar"
                             },
                             "Layer": 6,
-                            "Opacity": 1.0,
+                            "Opacity": 0.0,
                             "BorderPositions": [
                                 -0.20000000298023224,
                                 1.2000000476837158
@@ -88877,15 +88877,15 @@
                                 "Flags": 3
                             },
                             "Direction": [
-                                0.5194836854934692,
-                                0.8544803261756897
+                                -0.7844414114952087,
+                                0.6202030181884766
                             ],
                             "IsFiring": false
                         },
                         "Transform": {
                             "Translation": [
-                                -17.672508239746094,
-                                5.389375686645508
+                                -14.5,
+                                121.5
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -106716,7 +106716,7 @@
                     "HideWhenEmpty": false,
                     "Padding": 0.02500000037252903,
                     "Spacing": -0.02500000037252903,
-                    "Opacity": 1.0,
+                    "Opacity": 0.0,
                     "InventoryEntity": {
                         "EntityName": "ConstructionManager"
                     },
