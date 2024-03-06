@@ -677,9 +677,6 @@
     <ClCompile Include="Source\ComponentReference.t.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\WinState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Nineslice.cpp">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClCompile>
@@ -742,6 +739,9 @@
     </ClCompile>
     <ClCompile Include="Source\SceneChangeButton.cpp">
       <Filter>Game\Components\SceneChangeButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WinState.cpp">
+      <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1069,9 +1069,6 @@
     <ClInclude Include="Source\CollisionLayerFlags.h">
       <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
     </ClInclude>
-    <ClInclude Include="Source\WinState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Nineslice.h">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClInclude>
@@ -1125,6 +1122,9 @@
     </ClInclude>
     <ClInclude Include="Source\SceneChangeButton.h">
       <Filter>Game\Components\SceneChangeButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WinState.h">
+      <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
