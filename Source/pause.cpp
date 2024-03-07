@@ -128,7 +128,8 @@ void PauseComponent::readEventName(nlohmann::ordered_json const& data)
 ReadMethodMap< ISerializable > const& PauseComponent::GetReadMethods() const
 {
     static ReadMethodMap< PauseComponent > const readMethods = {
-
+        { "PauseButton", &PauseComponent::readPauseButton   },
+        { "EventName"  , &PauseComponent::readEventName     }
     };
 
     return (ReadMethodMap< ISerializable > const&)readMethods;

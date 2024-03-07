@@ -107750,9 +107750,9 @@
             "Components": {
                 "PauseComponent": {
                     "PauseButton": {
-                        "ActionName": ""
+                        "ActionName": "Pause"
                     },
-                    "EventName": ""
+                    "EventName": "Continue"
                 },
                 "Popup": {
                     "PopupEntity": {
