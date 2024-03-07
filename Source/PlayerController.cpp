@@ -49,12 +49,13 @@
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  gets the Health Component attached to this Entity
-    /// @return the Health Component attached to this Entity
-    Health* PlayerController::GetHealth()
-    {
-        return m_Health;
-    }
+    /// @brief  Gets the Health Component attached to this Entity.
+    /// @return The Health Component attached to this Entity.
+    Health* PlayerController::GetHealth() { return m_Health; }
+
+    /// @brief  Gets the MiningLaser component attached to this Entity.
+    /// @return The MiningLaser component attached to this Entity.
+    MiningLaser* PlayerController::GetMiningLaser() { return m_MiningLaser; }
 
 
 ///----------------------------------------------------------------------------

@@ -22,6 +22,8 @@
 #include "MiningLaser.h"
 #include "PlayerController.h"
 #include "BehaviorSystem.h"
+#include "HomeBase.h"
+
 
 //--------------------------------------------------------------------------------
 // private: virtual overrides
@@ -48,7 +50,6 @@
     /// @brief The cheat menu/console.
     void CheatSystem::DebugWindow()
     {
-    
         // The ImGui window.
         if (ImGui::Begin("Cheat Menu", &m_CheatMenuIsOpen, ImGuiWindowFlags_AlwaysAutoResize))
         {
@@ -66,7 +67,7 @@
             // The infinite base health button
             if (ImGui::Button(m_ToggleBaseGodMode ? "Turn Off InfBase Health" : "Turn On InfBase Health"))
             {
-                m_ToggleBaseGodMode = !m_ToggleBaseGodMode;
+                InfiniteBaseHealth();
             }
             ImGui::SameLine();
             ImGui::Text("Infinite Base Health");
@@ -78,6 +79,14 @@
             }
             ImGui::SameLine();
             ImGui::Text("Infinite Player Health");
+
+            // The one shot one kill button
+            if (ImGui::Button(m_ToggleOneShotOneKill ? "Turn Off One Shot One Kill" : "Turn On One Shot One Kill"))
+            {
+                OneShotOneKill();
+            }
+            ImGui::SameLine();
+            ImGui::Text("One Shot One Kill");
 
             // The kill all enemies button.
             if (ImGui::Button("Kill all enemies"))
@@ -150,20 +159,23 @@
     /// @brief  The code for the cheats.
     void CheatSystem::RunCheats()
     {
-        // The infinite base health cheat.
+        // While the cheat is active constantly sets base health to 9999
         if(m_ToggleBaseGodMode)
         {
-           Entity* base = Entities()->GetEntity( "Base" );
-           if ( base != nullptr )
+           for(HomeBase* base : Components<HomeBase>()->GetComponents())
            {
-               Health* health = base->GetComponent< Health >();
-               if (health != nullptr)
+               if (base != nullptr)
                {
-                   health->SetHealth(9999);
+                   Health* health = base->GetHealth();
+                   if (health != nullptr)
+                   {
+                       health->SetHealth(9999);
+                   }
                }
            }
         }
 
+        // While the cheat is active constantly sets player health to 9999
         if (m_TogglePlayerInfiniteHealth)
         {
             for (PlayerController* player : Behaviors< PlayerController >()->GetComponents())
@@ -180,47 +192,82 @@
     /// @brief Infinite Player Health Cheat
     void CheatSystem::InfinitePlayerHealth()
     {
-        Entity* player = Entities()->GetEntity("Player");
-        if (player == nullptr)
+        for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
         {
-            Debug() << "Infinite Player Health: Player Entity does not exist" << std::endl;
-            return;
-        }
-        Health* health = player->GetComponent<Health>();
-        if (health == nullptr)
-        {
-            Debug() << "Infinite Player Health: Player health component is NULL" << std::endl;
-            return;
-        }
+            Health* health = player->GetHealth();
+            if (health == nullptr)
+            {
+                Debug() << "Infinite Player Health: Health Component is NULL" << std::endl;
+                continue;
+            }
 
-
-        if(m_TogglePlayerInfiniteHealth == false)
-        {
-            m_PreviousPlayerHealth = health->GetHealth()->GetCurrent();
-            m_TogglePlayerInfiniteHealth = true;
-        }
-        else
-        {
-            health->SetHealth(m_PreviousPlayerHealth);
-            m_TogglePlayerInfiniteHealth = false;
+            // Save previous health value and turn on cheat
+            if (m_TogglePlayerInfiniteHealth == false)
+            {
+                m_PreviousPlayerHealth = health->GetHealth()->GetCurrent();
+                m_TogglePlayerInfiniteHealth = true;
+            }
+            else
+            {
+                health->SetHealth(m_PreviousPlayerHealth);
+                m_TogglePlayerInfiniteHealth = false;
+            }
         }
     }
 
-    /// @brief 
+    /// @brief Infinite Base Health Cheat
+    void CheatSystem::InfiniteBaseHealth()
+    {
+        for (HomeBase* base : Components<HomeBase>()->GetComponents())
+        {
+            Health* health = base->GetHealth();
+            if (health == nullptr)
+            {
+                Debug() << "Infinite Base Health: Health Component is NULL" << std::endl;
+                continue;
+            }
+
+            if (m_ToggleBaseGodMode == false)
+            {
+                m_PreviousBaseHealth = health->GetHealth()->GetCurrent();
+                m_ToggleBaseGodMode = true;
+            }
+            else
+            {
+                health->SetHealth(m_PreviousBaseHealth);
+                m_ToggleBaseGodMode = false;
+            }
+        }
+    }
+
+    /// @brief Sets the laser to do massive damage.
     void CheatSystem::OneShotOneKill()
     {
-        Entity* player = Entities()->GetEntity("Player");
-        if (player)
+        for (PlayerController* player : Behaviors<PlayerController>()->GetComponents())
         {
-            MiningLaser* laser = player->GetComponent<MiningLaser>();
-            laser->SetDamageRate(9999.0f);
+            MiningLaser* laser = player->GetMiningLaser();
+            if (laser == nullptr)
+            {
+                Debug() << "One Shot One Kill: Mining Laser Component is NULL" << std::endl;
+                continue;
+            }
+
+
+            if (m_ToggleOneShotOneKill == false)
+            {
+                m_PreviousLaserDamage = laser->GetDamageRate();
+                laser->SetDamageRate(9999.0f);
+                m_ToggleOneShotOneKill = true;
+            }
+            else
+            {
+                laser->SetDamageRate(m_PreviousLaserDamage);
+                m_ToggleOneShotOneKill = false;
+            }
         }
     }
 
     
-
-
-
     /// @brief Turns off player collisions
     void CheatSystem::noClip()
     {

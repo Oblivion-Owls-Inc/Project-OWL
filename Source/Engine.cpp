@@ -45,6 +45,7 @@
 #include "EditorCameraController.h"
 
 #include "ItemComponent.h"
+#include "HomeBase.h"
 
 #include "ParticleSystem.h"
 #include "CheatSystem.h"
@@ -375,6 +376,7 @@
         { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
                                                                                                           
         { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
+        { "ComponentSystem<HomeBase>"             , &addSystem< ComponentSystem< HomeBase > >              },
                                                   
         { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
         { "LightingSystem"                        , &addSystem< LightingSystem >                           },

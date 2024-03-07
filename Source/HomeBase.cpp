@@ -10,6 +10,7 @@
 
 #include "ComponentReference.t.h"
 #include "Health.h"
+#include "ComponentSystem.h"
 
 #include "SceneSystem.h"
 
@@ -22,6 +23,14 @@
     HomeBase::HomeBase() :
         Component( typeid( HomeBase ) )
     {}
+
+//-----------------------------------------------------------------------------
+// public: accessors
+//-----------------------------------------------------------------------------
+
+    /// @brief  gets the Health Component attached to this Entity
+    /// @return the Health Component attached to this Entity
+    Health* HomeBase::GetHealth() { return m_Health; }
 
 
 //-----------------------------------------------------------------------------
@@ -44,6 +53,8 @@
     /// @brief  called once when entering the scene
     void HomeBase::OnInit()
     {
+        Components<HomeBase>()->AddComponent(this);
+
         m_Health.SetOnConnectCallback(
             [ this ]()
             {
@@ -72,6 +83,7 @@
     /// @brief  called once when exiting the scene
     void HomeBase::OnExit()
     {
+        Components<HomeBase>()->RemoveComponent(this);
         m_Health.Exit();
     }
 

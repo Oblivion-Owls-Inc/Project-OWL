@@ -54,6 +54,8 @@ private: // methods
     /// @brief Infinite Player Health.
     void InfinitePlayerHealth();
 
+    void InfiniteBaseHealth();
+
     /// @brief Kills enemy with one hit from the laser.
     void OneShotOneKill();
 
