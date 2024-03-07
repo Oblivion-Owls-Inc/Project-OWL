@@ -391,12 +391,13 @@ void WavesBehavior::guiSpawners()
 	{
 		for (int i = 0; i < spawners.size(); i++)
 		{
+			ImGui::PushID(i);
 			ImGui::Text("Spawner: %i", i);
 			char location[20] = {0};
 			snprintf(location, sizeof(location), "Location %i:", i);
 			ImGui::DragFloat2("", &spawners[i][0], 0.05f);
 			int size = (int)spawners.size();
-			ImGui::PushID(i);
+			
 			// arrow buttons to reorder spawners
 			if (size > 1)
 			{
