@@ -14,6 +14,7 @@
 
 #include "Engine.h"
 #include <string>
+#include <thread>
 
 /// @brief  Example System meant to be copy-pasted when creating new Systems
 class SceneSystem : public System
