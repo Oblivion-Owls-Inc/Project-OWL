@@ -65,6 +65,7 @@
 #include "PathfinderSource.h"
 #include "Popup.h"
 #include "pause.h"
+#include "orbitbehavior.h"
 
 
 //-----------------------------------------------------------------------------
@@ -210,7 +211,8 @@
         { "PathfinderSource"       , ComponentInfo< PathfinderSource        >() },
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
         { "Popup"                  , ComponentInfo< Popup                   >() },
-        { "PauseComponent"         , ComponentInfo< PauseComponent          >() }
+        { "PauseComponent"         , ComponentInfo< PauseComponent          >() },
+        { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() }
     };
 
 //-----------------------------------------------------------------------------

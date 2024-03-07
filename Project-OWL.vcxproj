@@ -344,6 +344,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\LootTable.cpp" />
     <ClCompile Include="Source\MiningLaser.cpp" />
     <ClCompile Include="Source\Nineslice.cpp" />
+    <ClCompile Include="Source\orbitbehavior.cpp" />
     <ClCompile Include="Source\ParticleSystem.cpp" />
     <ClCompile Include="Source\CameraBehavior.cpp" />
     <ClCompile Include="Source\PathfinderSource.cpp" />
@@ -456,6 +457,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\orbitbehavior.h" />
     <ClInclude Include="Source\pause.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Popup.h" />

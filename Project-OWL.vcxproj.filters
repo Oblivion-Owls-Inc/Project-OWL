@@ -752,6 +752,9 @@
     <ClCompile Include="Source\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\orbitbehavior.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1139,6 +1142,9 @@
       <Filter>Engine\Entity\Component\Behavior\Pause</Filter>
     </ClInclude>
     <ClInclude Include="Source\pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\orbitbehavior.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

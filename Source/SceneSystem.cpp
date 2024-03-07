@@ -220,6 +220,10 @@
         exitScene();
 
         m_CurrentSceneName = "";
+        if (m_PreparseThread.joinable()) 
+        {
+            m_PreparseThread.join(); 
+        }
     }
 
     /// @brief  Displays the DebugWindow GUI for this System
