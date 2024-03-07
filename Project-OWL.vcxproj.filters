@@ -749,6 +749,9 @@
     <ClCompile Include="Source\pause.cpp">
       <Filter>Engine\Entity\Component\Behavior\Pause</Filter>
     </ClCompile>
+    <ClCompile Include="Source\pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1134,6 +1137,9 @@
     </ClInclude>
     <ClInclude Include="Source\pause.h">
       <Filter>Engine\Entity\Component\Behavior\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\pch.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

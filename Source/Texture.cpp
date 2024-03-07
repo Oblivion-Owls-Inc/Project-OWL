@@ -2,15 +2,15 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    Wrapper/manager for OpenGL texture.
+
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "Texture.h"
-#include "glew.h"
+#include "RenderSystem.h"   // default mesh
+#include "Inspection.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"      // loading images
-#include <iostream>         // error msg
-#include "RenderSystem.h"   // default mesh
-
-#include "Inspection.h"
-#include <imgui.h>
 
 //-----------------------------------------------------------------------------
 // public: constructors/destructors

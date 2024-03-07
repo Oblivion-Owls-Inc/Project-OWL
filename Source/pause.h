@@ -8,6 +8,8 @@
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 /////////////////////////////////////////////////////////////////////////////////
 #pragma once
+
+
 #include "behavior.h"
 #include "ActionReference.h"
 #include "EventListener.h"

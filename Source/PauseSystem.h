@@ -7,9 +7,10 @@
 ///*****************************************************************/
 
 #pragma once
+
+#include "pch.h" // precompiled header has to be included first
 #include "System.h"
-#include <sstream>
-#include <set>
+
 
 class PauseSystem : public System
 {

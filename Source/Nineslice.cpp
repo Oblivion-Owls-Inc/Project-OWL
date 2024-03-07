@@ -6,6 +6,8 @@
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
+
+#include "pch.h" // precompiled header
 #include "Nineslice.h"
 
 #include "RenderSystem.h"

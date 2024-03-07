@@ -12,6 +12,7 @@
 //------------------------------------------------------------------------------
 
 
+#include "pch.h" // precompiled header has to be included first
 #define STREAM_T_CPP
 
 #ifndef STREAM_H

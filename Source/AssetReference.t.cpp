@@ -5,8 +5,10 @@
 /// @date       2024-02-12
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
+#include "pch.h" // precompiled header has to be included first
 
 #define ASSETREFERENCE_T
+
 
 #ifndef ASSETREFERENCE_H
 #include "AssetReference.h"

@@ -5,8 +5,10 @@
 /// @date       March 2024
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "PathfinderTarget.h"
-#include "imgui.h"
 #include "PathfindSystem.h"
 
 /// @brief   Default constructor

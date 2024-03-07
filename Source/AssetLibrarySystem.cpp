@@ -9,6 +9,8 @@
 /// ///////////////////////////////////////////////////////////////////
 
 
+#include "pch.h" // precompiled header has to be included first
+
 #include "AssetLibrarySystem.h"
 #include "EntitySystem.h"
 #include "Entity.h"

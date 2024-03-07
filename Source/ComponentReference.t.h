@@ -8,6 +8,8 @@
 
 #pragma once
 
+
+#include "pch.h" 
 #include "ComponentReference.h"
 
 #include "Entity.h"

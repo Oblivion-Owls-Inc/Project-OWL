@@ -8,10 +8,9 @@
 
 #pragma once
 
-#include "Behavior.h"
 #include "basics.h"
+#include "Behavior.h"
 
-#include <functional>
 
 #include "AssetReference.h"
 #include "TransformAnimation.h"

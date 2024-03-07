@@ -6,6 +6,8 @@
 /// @copyright  Digipen LLC (c) 2024
 ///*****************************************************************/
 
+
+#include "pch.h" // precompiled header has to be included first
 #include "Generator.h"
 
 #include "ComponentSystem.h"

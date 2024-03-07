@@ -12,12 +12,9 @@
 // includes
 //-----------------------------------------------------------------------------
 
+#include "pch.h" // precompiled header has to be included first
 #include "System.h"
 
-#include <glew.h>
-
-#include <glm/glm.hpp>
-#include <string>
 
 //-----------------------------------------------------------------------------
 // forward references

@@ -2,10 +2,10 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 ///
 /// @brief    System that handles the camera and coordinate systems / spaces.
-#pragma once
-#include "System.h"
-#include "glm/glm.hpp"
 
+
+#include "pch.h" // precompiled header has to be included first
+#include "System.h"
 #include "Camera.h"
 
 

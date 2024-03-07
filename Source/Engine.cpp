@@ -8,10 +8,11 @@
 
 #pragma once
 
+
+#include "pch.h" // precompiled header has to be included first
+#include "basics.h"
 #include "Engine.h"
 
-#include "basics.h"
-#include <fstream>
 
 #include "PlatformSystem.h"
 #include "SceneSystem.h"

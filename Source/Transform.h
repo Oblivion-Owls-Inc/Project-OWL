@@ -7,13 +7,11 @@
  *********************************************************************/
 
 #pragma once
-#include "Component.h"
-#include "basics.h"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
 
-#include <functional>
-#include <map>
+#include "pch.h" 
+#include "basics.h"
+#include "Component.h"
+
 
 class Texture;
 
