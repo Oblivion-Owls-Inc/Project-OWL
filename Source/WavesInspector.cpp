@@ -33,24 +33,19 @@ void WavesBehavior::guiWaves()
 {
 	ImGui::Text("Total Waves: %i", numWaves);
 	// add/remove waves
-	ImGui::SameLine();
-	ImVec2 vector;
-	vector.x = 20;
-	vector.y = 20;
-	if (ImGui::Button("-", vector))
-	{
-		guiRemoveWave();
-	}
-	ImGui::SameLine();
-	if (ImGui::Button("+", vector))
+	if (ImGui::Button("Add Wave"))
 	{
 		guiAddWave();
 	}
+	if (ImGui::Button("Remove Wave"))
+	{
+		guiRemoveWave();
+	}
+	
 	if (numWaves > 0)
 	{
-		ImGui::Text("Wave: %i", inspectorWave + 1);
 
-		ImGui::InputInt("Wave", &inspectorWave);
+		ImGui::InputInt("Wave in View", &inspectorWave);
 		if (inspectorWave >= numWaves)
 		{
 			inspectorWave = numWaves - 1;
@@ -97,8 +92,6 @@ void WavesBehavior::guiWaves()
 		}
 		ImGui::PopID();
 		// time values
-		ImGui::InputFloat("Remaining Time",
-			&waves[inspectorWave].remainingTime);
 		ImGui::InputFloat("Time to Next Wave",
 			&waves[inspectorWave].timeToNextWave);
 
@@ -109,22 +102,18 @@ void WavesBehavior::guiWaves()
 /// @brief displays group data to edit
 void WavesBehavior::guiGroups()
 {
-	ImGui::Text("Groups in Wave: %i", waves[inspectorWave].groups.size());
+	ImGui::Text("Number of Groups in this Wave: %i", waves[inspectorWave].groups.size());
 	// buttons to add/remove a group
-	ImGui::SameLine();
-	ImVec2 vector;
-	vector.x = 20;
-	vector.y = 20;
 	ImGui::PushID(1);
-	if (ImGui::Button("-", vector))
-	{
-		guiRemoveGroup();
-	}
-	ImGui::SameLine();
-	if (ImGui::Button("+", vector))
+	if (ImGui::Button("Add Group"))
 	{
 		guiAddGroup();
 	}
+	if (ImGui::Button("Remove Group"))
+	{
+		guiRemoveGroup();
+	}
+	
 	ImGui::PopID();
 	if (waves[inspectorWave].groups.size() > 0)
 	{
@@ -132,8 +121,7 @@ void WavesBehavior::guiGroups()
 		{
 			inspectorGroup = (int)waves[inspectorWave].groups.size() - 1;
 		}
-		ImGui::Text("Group: %i", inspectorGroup + 1);
-		ImGui::InputInt("Group", &inspectorGroup);
+		ImGui::InputInt("Group in View", &inspectorGroup);
 		if (inspectorGroup >= waves[inspectorWave].groups.size())
 		{
 			inspectorGroup = (int)waves[inspectorWave].groups.size() - 1;
@@ -198,12 +186,43 @@ void WavesBehavior::guiGroups()
 			waves[inspectorWave].groups[inspectorGroup].spawner = 0;
 		}
 
-		ImGui::InputFloat("Timer", &waves[inspectorWave].groups[inspectorGroup].timer);
-		ImGui::InputFloat("Interval", &waves[inspectorWave].groups[inspectorGroup].spawnInterval);
-		ImGui::InputFloat("Offset", &waves[inspectorWave].groups[inspectorGroup].offset);
+		ImGui::InputFloat("Spawn Interval", &waves[inspectorWave].groups[inspectorGroup].spawnInterval);
+		ImGui::InputFloat("Initial Spawn Offset", &waves[inspectorWave].groups[inspectorGroup].offset);
 
 	}
 	ImGui::Text("");
+}
+
+/// @brief displays the currently active wave data
+void WavesBehavior::guiInViewWave()
+{
+
+	if (numWaves > 0)
+	{
+		ImGui::Text("Wave: %i", inspectorWave);
+		ImGui::Text("Time to Next Wave: %f", waves[inspectorWave].timeToNextWave);
+	}
+	else
+	{
+		ImGui::Text("No Waves");
+	}
+}
+
+/// @brief displays the currently active enemy groups data
+void WavesBehavior::guiInViewGroups()
+{
+	if (numWaves > 0)
+	{
+		for (int i = 0; i < waves[inspectorWave].groups.size(); i++)
+		{
+			ImGui::Text("Group: %i", i + 1);
+			ImGui::Text("Enemy Type: %s", waves[inspectorWave].groups[i].enemy.GetName().c_str());
+			ImGui::Text("Amount: %i", waves[inspectorWave].groups[i].enemyAmount);
+			ImGui::Text("Spawner: %i", waves[inspectorWave].groups[i].spawner);
+			ImGui::Text("Timer: %f", waves[inspectorWave].groups[i].timer);
+			ImGui::Text("");
+		}
+	}
 }
 
 /// @brief displays the currently active wave data
@@ -213,7 +232,6 @@ void WavesBehavior::guiCurrentWave()
 	if (currentWave < numWaves)
 	{
 		ImGui::Text("Wave: %i", currentWave + 1);
-		ImGui::Text("Remaining Time: %f", waves[currentWave].remainingTime);
 		ImGui::Text("Time to Next Wave: %f", waves[currentWave].timeToNextWave);
 	}
 	else
@@ -236,6 +254,20 @@ void WavesBehavior::guiCurrentGroups()
 			ImGui::Text("Timer: %f", waves[currentWave].groups[i].timer);
 			ImGui::Text("");
 		}
+	}
+}
+
+/// @brief calls the in view gui handlers
+void WavesBehavior::guiInView()
+{
+	char title[20];
+	snprintf(title, sizeof(title), "Inspected Wave Data:");
+	if (ImGui::TreeNode(title))
+	{
+		guiInViewWave();
+		ImGui::Text("");
+		guiInViewGroups();
+		ImGui::TreePop();
 	}
 }
 
@@ -440,6 +472,8 @@ void WavesBehavior::Inspector()
 	{
 		guiGroups();
 	}
+
+	guiInView();
 
 	guiCurrent();
 
