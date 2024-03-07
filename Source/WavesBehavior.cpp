@@ -54,7 +54,6 @@ WavesBehavior::~WavesBehavior()
 
 /// @brief wave default constructor
 WavesBehavior::Wave::Wave() :
-	remainingTime(0),
 	timeToNextWave(0)
 {}
 
@@ -110,9 +109,9 @@ void WavesBehavior::OnFixedUpdate()
 	if (currentWave < numWaves)
 	{
 		float dt = Engine::GetInstance()->GetFixedFrameDuration();
-		if (waves[currentWave].remainingTime > 0.0f)
+		if (waves[currentWave].timeToNextWave > 0.0f)
 		{
-			waves[currentWave].remainingTime -= dt;
+			waves[currentWave].timeToNextWave -= dt;
 			for (int i = 0; i < waves[currentWave].groups.size(); i++)
 			{
 				if (waves[currentWave].groups[i].enemyAmount > 0)
@@ -137,12 +136,7 @@ void WavesBehavior::OnFixedUpdate()
 				}
 			}
 		}
-		else
-		{
-			waves[currentWave].remainingTime = 0.0f;
-		}
-		waves[currentWave].timeToNextWave -= dt;
-		if (waves[currentWave].timeToNextWave < 0.0f)
+		if (waves[currentWave].timeToNextWave <= 0.0f)
 		{
 			waves[currentWave].timeToNextWave = 0.0f;
 			currentWave++;
@@ -158,14 +152,7 @@ void WavesBehavior::OnFixedUpdate()
 /// @brief this should probably be fancier
 float WavesBehavior::getTimer()
 {
-	if (waves[currentWave].remainingTime > 0.0f)
-	{
-		return waves[currentWave].remainingTime;
-	}
-	else
-	{
-		return waves[currentWave].timeToNextWave;
-	}
+	return waves[currentWave].timeToNextWave;
 }
 
 //-----------------------------------------------------------------------------
@@ -218,12 +205,6 @@ void WavesBehavior::readSpawners(nlohmann::ordered_json const& data)
 	{
 		spawners.push_back(Stream::Read<2, float>(location));
 	}
-}
-
-/// @brief read the time in a wave
-void WavesBehavior::Wave::readWaveTime(nlohmann::ordered_json const& json)
-{
-	remainingTime = Stream::Read<float>(json);
 }
 
 /// @brief read the time to next wave
@@ -299,7 +280,6 @@ nlohmann::ordered_json WavesBehavior::Wave::Write() const
 {
 	nlohmann::ordered_json data;
 
-	data["WaveTime"] = remainingTime;
 	data["WaveNextTime"] = timeToNextWave;
 	nlohmann::ordered_json& eGroups = data["EnemyGroups"];
 	for (int i = 0; i < groups.size(); i++)
@@ -335,7 +315,6 @@ ReadMethodMap<WavesBehavior> const WavesBehavior::s_ReadMethods =
 /// @brief read method map for a wave
 ReadMethodMap<WavesBehavior::Wave> const WavesBehavior::Wave::s_ReadMethods =
 {
-	{ "WaveTime",			  &readWaveTime},
 	{ "WaveNextTime",		  &readNextTime},
 	{ "EnemyGroups",		  &readGroups},
 };

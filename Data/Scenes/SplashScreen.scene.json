@@ -136,5 +136,8 @@
             },
             "Children": null
         }
-    }
+    },
+    "PreparsedScenes": [
+        "MainMenu"
+    ]
 }

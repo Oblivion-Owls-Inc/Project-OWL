@@ -21,21 +21,45 @@
 // public: static methods
 //------------------------------------------------------------------------------
 
-    /// @brief	Opens and parses a json document.
-    /// @param  object      the object to read the JSON data into
+
+    /// @brief	opens and parses a json document
     /// @param  filepath    name of the file to read from
-    void Stream::ReadFromFile( ISerializable* object, std::string const& filepath )
+    /// @return the parsed JSON data
+    nlohmann::ordered_json Stream::ParseFromFile( std::string const& filepath )
     {
         std::ifstream file( filepath );
         if ( file.is_open() == false )
         {
             Debug() << "Warning: unable to open file \"" << filepath << "\"" << std::endl;
+            return nlohmann::ordered_json();
+        }
+
+        try
+        {
+            return nlohmann::ordered_json::parse( file );
+        }
+        catch ( std::runtime_error const& error )
+        {
+            Debug() << "WARNING: unable to parse JSON file \"" << filepath << "\" - " << error.what() << std::endl;
+            return nlohmann::ordered_json();
+        }
+    }
+
+
+    /// @brief	Opens and parses a json document.
+    /// @param  object      the object to read the JSON data into
+    /// @param  filepath    name of the file to read from
+    void Stream::ReadFromFile( ISerializable* object, std::string const& filepath )
+    {
+        nlohmann::ordered_json json = ParseFromFile( filepath );
+        if ( json.is_null() )
+        {
             return;
         }
 
-        s_DebugLocationStack.push_back( filepath + ":" );
+        s_DebugLocationStack.push_back( filepath + "::" );
 
-        Stream::Read( *object, nlohmann::ordered_json::parse( file ) );
+        Stream::Read( *object, json );
 
         s_DebugLocationStack.pop_back();
     }
