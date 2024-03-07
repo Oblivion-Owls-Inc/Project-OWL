@@ -14,6 +14,7 @@
 
 #include "Engine.h"
 #include <string>
+#include <thread>
 
 /// @brief  Example System meant to be copy-pasted when creating new Systems
 class SceneSystem : public System
@@ -60,13 +61,14 @@ private: // member variables
 //-----------------------------------------------------------------------------
 
     /// @brief  The name of the current Scene
-    std::string m_CurrentSceneName;
+    std::string m_CurrentSceneName = "";
 
     /// @brief  The name of the next Scene
-    std::string m_NextSceneName;
+    std::string m_NextSceneName = "";
 
     /// @brief  The base path of all Scene files
-    std::string m_BaseScenePath;
+    /// @brief  NOTE: this is also accessed from a separate thread. be careful with it
+    std::string m_BaseScenePath = "Data/Scenes/";
 
 
     /// @brief  the name of the autosave scene
@@ -76,15 +78,26 @@ private: // member variables
     bool m_MustCopyAutosave = true;
 
 
+    /// @brief  scene JSON files parsed in advance
+    /// @brief  NOTE: this is also accessed from a separate thread. be careful with it
+    std::map< std::string, nlohmann::ordered_json > m_PreparsedScenes = {};
+
+    /// @brief  thread used to parse scene files in the background
+    std::thread m_PreparseThread;
+
+
     /// @brief  array of all Scene names in the Scenes directory
-    std::vector< std::string > m_SceneNames;
+    std::vector< std::string > m_SceneNames = {};
+
 
 //-----------------------------------------------------------------------------
 private: // constants
 //-----------------------------------------------------------------------------
 
+
     /// @brief  The file extension for Scene files
     static std::string const s_SceneFileExtension;
+
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
@@ -161,6 +174,12 @@ private: // methods
     /// @brief  Gets all of the Scenes in the scenes directory
     void getSceneNames();
 
+
+    /// @brief  preparses the JSON files of the scenes in the PreparsedScenes map
+    /// @brief  intended to be run on a separate thread
+    void preparseScenes();
+
+
 //-----------------------------------------------------------------------------
 private: // scene loading
 //-----------------------------------------------------------------------------
@@ -176,6 +195,11 @@ private: // scene loading
         /// @brief  reads the entities in a Scene
         /// @param  stream  the data to read from
         void readEntities( nlohmann::ordered_json const& data );
+
+        /// @brief  reads the names of scenes to pre-parse from this scene
+        /// @param  data    the JSON data to read from
+        void readPreparsedScenes( nlohmann::ordered_json const& data );
+
         
         /// @brief  the read methods for a Scene
         static ReadMethodMap< Scene > const s_ReadMethods;
