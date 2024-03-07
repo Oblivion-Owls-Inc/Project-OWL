@@ -321,6 +321,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\PathfinderSource.cpp" />
     <ClCompile Include="Source\PathfinderTarget.cpp" />
     <ClCompile Include="Source\PathfindSystem.cpp" />
+    <ClCompile Include="Source\pause.cpp" />
     <ClCompile Include="Source\PauseSystem.cpp" />
     <ClCompile Include="Source\PlayBar.cpp" />
     <ClCompile Include="Source\Pool.cpp" />
@@ -388,6 +389,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\pause.h" />
     <ClInclude Include="Source\Popup.h" />
     <ClInclude Include="Source\ActionReference.h" />
     <ClInclude Include="Source\Console.h" />

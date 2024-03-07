@@ -25,7 +25,6 @@ public: // methods
     /// @brief  Gets if the game is running
     bool GetRunning() const { return m_Running; }
 
-
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -59,6 +58,7 @@ private: // Members
         "CheatSystem",
         "BehaviorSystem<UiButton>",
         "BehaviorSystem<Popup>",
+        "BehaviorSystem<PauseComponent>",
         "SceneSystem",
         "EntitySystem",
         "CameraSystem",
@@ -98,9 +98,6 @@ private: // reading
     /// @return the written json data
     virtual nlohmann::ordered_json Write() const override;
 
-//-----------------------------------------------------------------------------
-private: // singleton stuff
-//-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 public: // singleton stuff

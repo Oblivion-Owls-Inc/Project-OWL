@@ -25,12 +25,7 @@
 /// @param dt The time elapsed since the last update
 void PauseSystem::OnUpdate(float dt)
 {
-    if (Input()->GetKeyTriggered(GLFW_KEY_ESCAPE))
-    {
-        m_Running = !m_Running;
-    }
-
-	pauseGame();
+    pauseGame();
 }
 
 /// @brief  Gets called whenever a scene is exited
