@@ -15,8 +15,6 @@
 #include <string>
 #include <map>
 
-typedef void (*CheatFunction)(void); // function pointer type
-
 
 /// @brief The DebugConsole class is a singleton that provides a console for debugging
 ///        It Shows Warning Messages, Errors, and allows you to call commands
@@ -42,6 +40,13 @@ public: // virtual override methods
 
 
 //-----------------------------------------------------------------------------
+private: // types
+//-----------------------------------------------------------------------------
+
+    /// @brief Functor for the cheats
+    using CheatFunction = std::function< void() >;
+
+//-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
 
@@ -54,11 +59,8 @@ private: // members
     /// @brief The list of items in the console
     std::vector<std::string> m_Items;
 
-    /// @brief commands history, filter
-    std::vector<std::string> m_Commands;
-
     /// @brief A map of cheat codes.
-    std::unordered_map<std::string, CheatFunction> m_CheatMap;
+    std::unordered_map<std::string, CheatFunction> m_ConsoleCommandsMap;
 
     /// @brief Chached user input text
     std::vector<std::string> m_History;
@@ -78,14 +80,6 @@ private: // methods
     /// @brief Calls a Command given a string
     /// @param command - The command to call
     void CallCommand(std::string const& command);
-
-//-----------------------------------------------------------------------------
-private: // reading
-//-----------------------------------------------------------------------------
-
-    /// @brief Reads all the console commands from a JSON file.
-    /// @param data - The JSON file to read from.
-    void readCommands(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

@@ -41,7 +41,7 @@ public: // virtual override methods
     virtual void DebugWindow() override;
 
 //--------------------------------------------------------------------------------
-private: // methods
+public: // methods
 //--------------------------------------------------------------------------------
 
     /// @brief Opens the console.
@@ -60,11 +60,11 @@ private: // methods
     void OneShotOneKill();
 
     /// @brief Turns off player collisions.
-    void noClip();
+    void NoClip();
 
     /// @brief  Toggles the infinite resources cheat
     /// @return The current state of whether there are infinite resources
-    bool toggleInfinteResources();
+    bool ToggleInfinteResources();
 
 //--------------------------------------------------------------------------------
 private: // members

@@ -11,6 +11,7 @@
 
 #include "Console.h"
 #include "InputSystem.h"
+#include "CheatSystem.h"
 
 //-----------------------------------------------------------------------------
 // public: methods
@@ -182,9 +183,9 @@
 
         ImGui::EndChild();
 
-        bool openCheatsConsole = Input()->GetKeyReleased(GLFW_KEY_F1);
+        //bool openCheatsConsole = Input()->GetKeyReleased(GLFW_KEY_F1);
 
-        if (openCheatsConsole)
+        //if (openCheatsConsole)
         {
 
             ImGui::Separator();
@@ -221,13 +222,11 @@
     void DebugConsole::addCommands()
     {
         // Add commands
-	    m_Commands.push_back("HELP");
-	    m_Commands.push_back("HISTORY");
-	    m_Commands.push_back("CLEAR");
-	    m_Commands.push_back("CLASS");
-	    m_Commands.push_back("EXIT");
-
-        m_CheatMap.emplace();
+        m_ConsoleCommandsMap.emplace("InfinitePlayerHealth", std::bind(&CheatSystem::InfinitePlayerHealth, Cheats()));
+        m_ConsoleCommandsMap.emplace("InfiniteBaseHealth", std::bind(&CheatSystem::InfiniteBaseHealth, Cheats()));
+        m_ConsoleCommandsMap.emplace("OneShotOneKill", std::bind(&CheatSystem::OneShotOneKill, Cheats()));
+        m_ConsoleCommandsMap.emplace("NoClip", std::bind(&CheatSystem::NoClip, Cheats()));
+        m_ConsoleCommandsMap.emplace("InfiniteResources", std::bind(&CheatSystem::ToggleInfinteResources, Cheats()));
     }
 
     /// @brief Clears the console log
@@ -240,20 +239,14 @@
     /// @param command - The command to call
     void DebugConsole::CallCommand(std::string const& command)
     {
-     
-        Debug() << "Command: " << command << std::endl;
+        auto it = m_ConsoleCommandsMap.find(command);
+        if (it == m_ConsoleCommandsMap.end())
+        {
+            Debug() << "Warning: Command not found: " << command << std::endl;
+            return;
+        }
 
-    }
-
-//-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
-
-    /// @brief Reads all the console commands from a JSON file.
-    /// @param data - The JSON file to read from.
-    void DebugConsole::readCommands(nlohmann::ordered_json const& data)
-    {
-        Stream::Read<std::string>(&m_Commands, data);
+        it->second();
     }
 
 //-----------------------------------------------------------------------------
@@ -264,9 +257,7 @@
     /// @return this System's read methods
     ReadMethodMap< ISerializable > const& DebugConsole::GetReadMethods() const
     {
-        static ReadMethodMap< DebugConsole > const readMethods = {
-            { "Commands", &DebugConsole::readCommands }
-        };
+        static ReadMethodMap< DebugConsole > const readMethods = {};
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
     }
@@ -277,9 +268,6 @@
     nlohmann::ordered_json DebugConsole::Write() const
     {
         nlohmann::ordered_json data;
-
-        data["Commands"] = Stream::WriteArray(m_Commands);
-
         return data;
     }
 

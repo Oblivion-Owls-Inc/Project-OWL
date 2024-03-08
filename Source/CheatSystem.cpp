@@ -38,6 +38,8 @@
         {
             DebugWindow();
         }
+
+        RunCheats();
     }
 
     /// @brief Gets called once before the engine closes.
@@ -59,7 +61,7 @@
             // The infinite resources button.
             if ( ImGui::Button( m_ToggleInfiniteResource ? "Turn Off InfResources" : "Turn On InfResources") )
             {
-                m_ToggleInfiniteResource = toggleInfinteResources();
+                m_ToggleInfiniteResource = ToggleInfinteResources();
             }
             ImGui::SameLine();
             ImGui::Text("Infinite Resources");
@@ -106,7 +108,7 @@
             if (ImGui::Button(m_ToggleNoClip ? "Turn Off No Clip" : "Turn On No Clip"))
             {
                 m_ToggleNoClip = !m_ToggleNoClip;
-                noClip();
+                NoClip();
             }
             ImGui::SameLine();
             ImGui::Text("Disable Player Collisions");
@@ -138,12 +140,10 @@
         }
     
         ImGui::End();
-
-        RunCheats();
     }
 
 //--------------------------------------------------------------------------------
-// private: methods
+// public: cheat functions
 //--------------------------------------------------------------------------------
 
     /// @brief  Are the left shift and tilde keys pressed?
@@ -269,7 +269,7 @@
 
     
     /// @brief Turns off player collisions
-    void CheatSystem::noClip()
+    void CheatSystem::NoClip()
     {
         // Get the player's circle collider.
         Entity* player = Entities()->GetEntity("Player");
@@ -297,10 +297,9 @@
         }
     }
 
-
     /// @brief  toggles the inifinite resources cheat
     /// @return the current state of whether there are infinite resources
-    bool CheatSystem::toggleInfinteResources()
+    bool CheatSystem::ToggleInfinteResources()
     {
         Entity* constructionEntity = Entities()->GetEntity( "ConstructionManager" );
         if ( constructionEntity == nullptr )
