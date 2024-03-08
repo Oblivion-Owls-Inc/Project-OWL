@@ -26,14 +26,12 @@ public: // methods
     /// @brief  Gets if the game is running
     bool GetRunning() const { return m_Running; }
 
+    /// @brief  Pause the systems in the game
+    void TogglePause();
+
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
-
-     
-    /// @brief Update the PauseSystem
-    /// @param dt The time elapsed since the last update
-    virtual void OnUpdate(float dt) override;
 
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
@@ -75,10 +73,6 @@ private: // Members
 ///-----------------------------------------------------------------------------
 private: // Methods
 ///-----------------------------------------------------------------------------
-
-
-    /// @brief  Pause the systems in the game
-    void pauseGame();
 
 
 //-----------------------------------------------------------------------------

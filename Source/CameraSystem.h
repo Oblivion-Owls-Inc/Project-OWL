@@ -3,7 +3,7 @@
 ///
 /// @brief    System that handles the camera and coordinate systems / spaces.
 
-
+#pragma once
 #include "pch.h" // precompiled header has to be included first
 #include "System.h"
 #include "Camera.h"

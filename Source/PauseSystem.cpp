@@ -16,27 +16,35 @@
 #include "EntitySystem.h"
 #include "Engine.h"
 
+///-----------------------------------------------------------------------------
+/// Public Methods
+///-----------------------------------------------------------------------------
 
+/// @brief  Pause the systems in the game
+void PauseSystem::TogglePause()
+{
+    m_Running = !m_Running;
 
+    for (System* system : GameEngine()->GetSystems())
+    {
+
+        if (m_EditorSystemNames.contains(system->GetName()) == false)
+        {
+            system->SetEnabled(m_Running); 
+        }
+    }
+}
 
 ///-----------------------------------------------------------------------------
 /// Private Virtual override methods 
 ///-----------------------------------------------------------------------------
 
-/// @brief Update the PauseSystem
-/// @param dt The time elapsed since the last update
-void PauseSystem::OnUpdate(float dt)
-{
-    pauseGame();
-}
-
 /// @brief  Gets called whenever a scene is exited
 void PauseSystem::OnSceneExit()
 {
-    if (m_Running && Debug().IsEditorRunning())
+    if (!m_Running && Debug().IsEditorRunning())
     {
-	   m_Running = true;
-	   pauseGame();
+	   TogglePause();
     }
 }
 
@@ -52,18 +60,6 @@ void PauseSystem::DebugWindow()
 /// Private Methods
 ///-----------------------------------------------------------------------------
 
-/// @brief  Pause the systems in the game
-void PauseSystem::pauseGame()
-{
-    for (System* system : GameEngine()->GetSystems())
-    {
-
-        if (m_EditorSystemNames.contains(system->GetName()) == false)
-        {
-            system->SetEnabled(m_Running); 
-        }
-    }
-}
 
 
 ///-----------------------------------------------------------------------------

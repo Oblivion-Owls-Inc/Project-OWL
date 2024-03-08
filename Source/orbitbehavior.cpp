@@ -52,40 +52,50 @@ void OrbitBehavior::OnInit()
 }
 
 
-/// @brief  Called at a fixed framerate
-void OrbitBehavior::OnFixedUpdate()
+void OrbitBehavior::OnUpdate(float deltaTime)
 {
     if (!m_Transform || !m_OrbitPoint || !m_Sprite)
     {
-        return;
+        return; // Exit if any component is missing
     }
 
-    float deltaTime = GameEngine()->GetFixedFrameDuration();
+    // Update and clamp the orbit angle
+    m_Angle += m_RotationSpeed * deltaTime;
+    m_Angle = glm::mod(m_Angle, 2 * glm::pi<float>());
 
-    // Update the orbit angle based on the orbit speed
-    m_Angle += m_Frequency * deltaTime;
+    // Calculate new position
+    float x = m_OrbitPoint->GetTranslation().x + m_Radius.x * glm::cos(m_Angle);
+    float y = m_OrbitPoint->GetTranslation().y + m_Radius.y * glm::sin(m_Angle);
 
-    // Calculate the new position
-    float x = m_OrbitPoint->GetTranslation().x + m_Radius.x * glm::cos( m_Angle );
-    float y = m_OrbitPoint->GetTranslation().y + m_Radius.y * glm::sin( m_Angle );
+    // Set the new position
+    m_Transform->SetTranslation(glm::vec2(x, y));
 
-    // Set the new position for diagonal movement
-    m_Transform->SetTranslation( glm::vec2(x, y) );
+    // Oscillation for scale modulation
+    float Oscillation = 0.2f * glm::cos(glm::abs(m_Angle));
 
-     
-    float Oscillation = 0.2f * glm::cos( glm::abs(m_Angle) );
-
-    // Set sprite layer based on the phase of oscillation
-    if (Oscillation > 0)
+    if (m_FlipGrowth)
     {
-        m_Sprite->SetLayer(3);
+        Oscillation *= -1.0f;
+    }
+
+    glm::vec2 newScale = m_BaseScale * (1.0f + Oscillation);
+    m_Transform->SetScale(newScale);
+
+    // Determine the current angle relative to orbit center for layer change
+    float currentAngle = atan2(y - m_OrbitPoint->GetTranslation().y, x - m_OrbitPoint->GetTranslation().x);
+    float thresholdAngle = glm::radians(m_ThresholdAngle);
+
+    // Set sprite layer based on current angle
+    if (glm::abs(currentAngle) < thresholdAngle)
+    {
+        m_Sprite->SetLayer(m_FirstLayer);
     }
     else
     {
-        m_Sprite->SetLayer(1);
+        m_Sprite->SetLayer(m_SecondLayer);
     }
-
 }
+
 
 
 /// @brief  called once when exiting the scene
@@ -112,28 +122,75 @@ void OrbitBehavior::OnExit()
 /// @brief  shows the inspector for OrbitBehavior
 void OrbitBehavior::Inspector()
 {
-    ImGui::DragFloat("Frequency", &m_Frequency, 0.1f);
+    ImGui::Checkbox("Flip Growth", &m_FlipGrowth);
+    ImGui::DragFloat("RotationSpeed", &m_RotationSpeed, 0.1f);
     ImGui::DragFloat("Angle", &m_Angle, 0.01f);
+    ImGui::DragFloat("Threshold Angle", &m_ThresholdAngle, 0.1f);
     ImGui::DragFloat2("Radius", &m_Radius[0], 0.1f);
+    ImGui::DragInt("First Layer", &m_FirstLayer, 1);
+    ImGui::DragInt("Second Layer", &m_SecondLayer, 1);
+    ImGui::DragFloat2("Base Scale", &m_BaseScale[0], 0.1f);
 }
 
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
 
-void OrbitBehavior::readFrequency(nlohmann::ordered_json const& data)
+
+/// @brief Reads the Rotation Speed from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::readRotationSpeed(nlohmann::ordered_json const& data)
 {
-    Stream::Read(m_Frequency, data);
+    Stream::Read(m_RotationSpeed, data);
 }
 
+/// @brief Reads the Angle from JSON
+/// @param data - the JSON data to read from
 void OrbitBehavior::readAngle(nlohmann::ordered_json const& data)
 {
     Stream::Read(m_Angle, data);
 }
 
+/// @brief Reads the Radius from JSON
+/// @param data - the JSON data to read from
 void OrbitBehavior::readRadius(nlohmann::ordered_json const& data)
 {
     m_Radius = Stream::Read< 2, float >(data);
+}
+
+/// @brief Reads the First Layer from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::readFirstLayer(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_FirstLayer, data);
+}
+
+/// @brief Reads the Second Layer from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::readSecondLayer(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_SecondLayer, data);
+}
+
+/// @brief Reads the Threshold Angle from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::readThresholdAngle(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_ThresholdAngle, data);
+}
+
+/// @brief Reads the Base Scale from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::readBaseScale(nlohmann::ordered_json const& data)
+{
+    m_BaseScale = Stream::Read< 2, float >(data);
+}
+
+/// @brief Reads the Flip Growth from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::readFlipGrowth(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_FlipGrowth, data);
 }
 
 //-----------------------------------------------------------------------------
@@ -146,9 +203,14 @@ void OrbitBehavior::readRadius(nlohmann::ordered_json const& data)
 ReadMethodMap< ISerializable > const& OrbitBehavior::GetReadMethods() const
 {
     static ReadMethodMap< OrbitBehavior > const readMethods = {
-        { "Frequency", &OrbitBehavior::readFrequency },
-        { "Angle",     &OrbitBehavior::readAngle     },
-        { "Radius",    &OrbitBehavior::readRadius    }
+        { "RotationSpeed",   &OrbitBehavior::readRotationSpeed  },
+        { "Angle",           &OrbitBehavior::readAngle          },
+        { "Radius",          &OrbitBehavior::readRadius         },
+        { "First Layer",     &OrbitBehavior::readFirstLayer     },
+        { "Second Layer",    &OrbitBehavior::readSecondLayer    },
+        { "Threshold Angle", &OrbitBehavior::readThresholdAngle },
+        { "Base Scale",      &OrbitBehavior::readBaseScale      },
+        { "Flip Growth",     &OrbitBehavior::readFlipGrowth     }
 
     };
 
@@ -162,9 +224,14 @@ nlohmann::ordered_json OrbitBehavior::Write() const
 {
     nlohmann::ordered_json json;
 
-    json["Frequency"] = m_Frequency;
-    json["Angle"]     = m_Angle;
-    json["Radius"]    = Stream::Write(m_Radius);
+    json["RotationSpeed"]   = m_RotationSpeed;
+    json["Angle"]           = m_Angle;
+    json["Radius"]          = Stream::Write(m_Radius);
+    json["First Layer"]     = m_FirstLayer;
+    json["Second Layer"]    = m_SecondLayer;
+    json["Threshold Angle"] = m_ThresholdAngle;
+    json["Base Scale"]      = Stream::Write(m_BaseScale);
+    json["Flip Growth"]     = m_FlipGrowth;
 
     return json;
 }
@@ -191,7 +258,15 @@ OrbitBehavior* OrbitBehavior::Clone() const
 /// @brief  copy-constructor for the OrbitBehavior
 /// @param  other   the other OrbitBehavior to copy
 OrbitBehavior::OrbitBehavior(OrbitBehavior const& other) :
-    Behavior(other), m_Frequency(other.m_Frequency), m_Angle(other.m_Angle), m_Radius(other.m_Radius)
+    Behavior(other), 
+    m_RotationSpeed(other.m_RotationSpeed),
+    m_Angle(other.m_Angle), 
+    m_Radius(other.m_Radius),
+    m_FirstLayer(other.m_FirstLayer),
+    m_SecondLayer(other.m_SecondLayer),
+    m_ThresholdAngle(other.m_ThresholdAngle),
+    m_BaseScale(other.m_BaseScale),
+    m_FlipGrowth(other.m_FlipGrowth)
 {}
 
 

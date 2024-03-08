@@ -46,8 +46,9 @@ public: // virtual override methods
         /// @brief  called once when entering the scene
     virtual void OnInit() override;
 
-    /// @brief  called At a fixed framerate
-    virtual void OnFixedUpdate();
+    /// @brief Updates the OrbitBehavior every frame
+    /// @param deltaTime - the time since the last frame
+    virtual void OnUpdate(float deltaTime) override;
 
 
     /// @brief  called once when exiting the scene
@@ -68,15 +69,26 @@ private: // members
     ComponentReference< Sprite > m_Sprite;
 
     /// @brief how fast the entity orbits in a direction
-    float m_Frequency = 1.0f;
+    float m_RotationSpeed = 1.0f;
 
     /// @brief  the angle of the orbit
     float m_Angle = 5.0f;
 
-    /// @brief the radius of the orbit
-    glm::vec2 m_Radius = {0.48,0.48};
-  
+    /// @brief the threshold angle to change the sprite layer
+    float m_ThresholdAngle = 90.0f;
 
+    /// @brief the radius of the orbit
+    glm::vec2 m_Radius = { 0.48 , 0.48 };
+
+    /// @brief The first layer to set the sprite to
+    int m_FirstLayer = 3;
+    
+    /// @brief The second layer to set the sprite to
+    int m_SecondLayer = 1;
+
+    glm::vec2 m_BaseScale = { .5f, .5f };
+
+    bool m_FlipGrowth = false;
     //-----------------------------------------------------------------------------
 private: // methods
     //-----------------------------------------------------------------------------
@@ -91,14 +103,13 @@ public: // inspection
     virtual void Inspector() override;
 
 
-
     //-----------------------------------------------------------------------------
 private: // reading
     //-----------------------------------------------------------------------------
 
-    /// @brief Reads the Frequency from JSON
+    /// @brief Reads the Rotation Speed from JSON
     /// @param data - the JSON data to read from
-    void readFrequency(nlohmann::ordered_json const& data);
+    void readRotationSpeed(nlohmann::ordered_json const& data);
 
     /// @brief Reads the Angle from JSON
     /// @param data - the JSON data to read from
@@ -107,6 +118,27 @@ private: // reading
     /// @brief Reads the Radius from JSON
     /// @param data - the JSON data to read from
     void readRadius(nlohmann::ordered_json const& data);
+
+    /// @brief Reads the First Layer from JSON
+    /// @brief data - the JSON data to read from
+    void readFirstLayer(nlohmann::ordered_json const& data);
+
+    /// @brief Reads the Second Layer from JSON
+    /// @param data - the JSON data to read from
+    void readSecondLayer(nlohmann::ordered_json const& data);
+
+    /// @brief Reads the Threshold Angle from JSON
+    /// @param data - the JSON data to read from
+    void readThresholdAngle(nlohmann::ordered_json const& data);
+
+    /// @brief Reads the Base Scale from JSON
+    /// @param data - the JSON data to read from
+    void readBaseScale(nlohmann::ordered_json const& data);
+
+
+    /// @brief Reads the Flip Growth from JSON
+    /// @param data - the JSON data to read from
+    void readFlipGrowth(nlohmann::ordered_json const& data);
 
     //-----------------------------------------------------------------------------
 public: // reading / writing
