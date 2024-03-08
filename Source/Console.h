@@ -12,6 +12,10 @@
 #pragma once
 #include "basics.h"
 #include "DebugSystem.h"
+#include <string>
+#include <map>
+
+typedef void (*CheatFunction)(void); // function pointer type
 
 
 /// @brief The DebugConsole class is a singleton that provides a console for debugging
@@ -53,6 +57,9 @@ private: // members
     /// @brief commands history, filter
     std::vector<std::string> m_Commands;
 
+    /// @brief A map of cheat codes.
+    std::unordered_map<std::string, CheatFunction> m_CheatMap;
+
     /// @brief Chached user input text
     std::vector<std::string> m_History;
 
@@ -71,6 +78,14 @@ private: // methods
     /// @brief Calls a Command given a string
     /// @param command - The command to call
     void CallCommand(std::string const& command);
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief Reads all the console commands from a JSON file.
+    /// @param data - The JSON file to read from.
+    void readCommands(nlohmann::ordered_json const& data);
 
 //-----------------------------------------------------------------------------
 public: // reading / writing

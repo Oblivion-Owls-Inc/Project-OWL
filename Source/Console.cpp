@@ -226,6 +226,8 @@
 	    m_Commands.push_back("CLEAR");
 	    m_Commands.push_back("CLASS");
 	    m_Commands.push_back("EXIT");
+
+        m_CheatMap.emplace();
     }
 
     /// @brief Clears the console log
@@ -244,17 +246,28 @@
     }
 
 //-----------------------------------------------------------------------------
+// private: reading
+//-----------------------------------------------------------------------------
+
+    /// @brief Reads all the console commands from a JSON file.
+    /// @param data - The JSON file to read from.
+    void DebugConsole::readCommands(nlohmann::ordered_json const& data)
+    {
+        Stream::Read<std::string>(&m_Commands, data);
+    }
+
+//-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
 
-
-
-
     /// @brief  gets this System's read methods
-        /// @return this System's read methods
+    /// @return this System's read methods
     ReadMethodMap< ISerializable > const& DebugConsole::GetReadMethods() const
     {
-        static ReadMethodMap< DebugConsole > const readMethods = {};
+        static ReadMethodMap< DebugConsole > const readMethods = {
+            { "Commands", &DebugConsole::readCommands }
+        };
+
         return (ReadMethodMap< ISerializable > const&)readMethods;
     }
 
@@ -263,8 +276,11 @@
     /// @return the JSON data of this DebugConsole
     nlohmann::ordered_json DebugConsole::Write() const
     {
-        nlohmann::ordered_json json;
-        return json;
+        nlohmann::ordered_json data;
+
+        data["Commands"] = Stream::WriteArray(m_Commands);
+
+        return data;
     }
 
 
@@ -272,9 +288,8 @@
 // public: singleton stuff
 //-----------------------------------------------------------------------------
 
-
-        /// @brief  gets the instance of DebugConsole
-        /// @return the instance of the DebugConsole
+    /// @brief  gets the instance of DebugConsole
+    /// @return the instance of the DebugConsole
     DebugConsole* DebugConsole::GetInstance()
     {
         static std::unique_ptr < DebugConsole > s_Instance = nullptr;
@@ -290,8 +305,7 @@
 // private: singleton stuff
 //-----------------------------------------------------------------------------
 
-
-        /// @brief  Constructs the DebugConsole
+    /// @brief  Constructs the DebugConsole
     DebugConsole::DebugConsole()
     {
         addCommands();

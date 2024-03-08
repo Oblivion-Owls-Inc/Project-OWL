@@ -214,6 +214,10 @@ SplashScreenController::SplashScreenController()
         Stream::Read< LogoData >( &m_Logos, data);
     }
 
+//--------------------------------------------------------------------------------
+// public: Reading/Writing
+//--------------------------------------------------------------------------------
+
     /// @brief A map of the read methods for this class
     /// @return The map of this class's read methods.
     ReadMethodMap<ISerializable> const& SplashScreenController::GetReadMethods() const
@@ -227,9 +231,6 @@ SplashScreenController::SplashScreenController()
         return (ReadMethodMap< ISerializable > const&)readMethodsMap;
     }
 
-//-----------------------------------------------------------------------------
-// public: reading / writing
-//-----------------------------------------------------------------------------
     /// @brief  Writes all data in this class into a JSON file.
     /// @return The JSON object containing the data.
     nlohmann::ordered_json SplashScreenController::Write() const
