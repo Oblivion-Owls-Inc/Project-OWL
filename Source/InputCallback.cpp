@@ -16,7 +16,7 @@
 /// @brief  manual callback catch for keys since imgui hates glfw
 void InputSystem::Action::ManualKeyCallback()
 {
-    GLFWwindow* m_Handle = Input()->Getm_Handle();
+    GLFWwindow* m_Handle = Input()->GetHandle();
 	bool found = false;
 	int key = 0;
     if (!found)
@@ -24,7 +24,7 @@ void InputSystem::Action::ManualKeyCallback()
         // -1 m_Handles unknown key
         for (int i = -1; i <= GLFW_KEY_LAST; ++i)
         {
-            if (glfwGetKey(Input()->Getm_Handle(), i))
+            if (glfwGetKey(Input()->GetHandle(), i))
             {
                 found = true;
                 key = i;

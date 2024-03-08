@@ -371,8 +371,8 @@ void RenderSystem::reallocScreenBufferTexture()
                 glClearColor( m_BackgroundColor.r, m_BackgroundColor.g, m_BackgroundColor.b, m_BackgroundColor.a );
             }
 
-            ImGui::End();
         }
+        ImGui::End();
 
         SetDebugEnable( showWindow );
     }

@@ -168,8 +168,12 @@ void DebugSystem::DebugWindow()
     window_flags |= ImGuiWindowFlags_NoBackground;
     
 
-    ImGui::Begin("Editor Window", &debugWindowShown, window_flags);
-    SetDebugEnable( debugWindowShown );
+    if ( ImGui::Begin( "Editor Window", &debugWindowShown, window_flags ) == false )
+    {
+        ImGui::End();
+        SetDebugEnable( debugWindowShown );
+        return;
+    }
 
     ImGui::SetWindowSize(ImVec2(700, 700), ImGuiCond_FirstUseEver);
     ImGui::SetWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
@@ -252,6 +256,7 @@ void DebugSystem::DebugWindow()
             {
                 m_ShowDemoWindow = !m_ShowDemoWindow;
             }
+
 
             // This has been remove since it's now handled in the menu bar, and changing the running state may cause problems
             // /// Pauses the Gameplay

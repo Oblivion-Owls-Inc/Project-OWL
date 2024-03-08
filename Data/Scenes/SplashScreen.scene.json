@@ -82,7 +82,7 @@
             "Name": "Background",
             "Components": {
                 "SplashScreenController": {
-                    "NextSceneName": "Prototype",
+                    "NextSceneName": "MainMenu",
                     "Logos": [
                         {
                             "Timer": 2.0,
@@ -136,5 +136,8 @@
             },
             "Children": null
         }
-    }
+    },
+    "PreparsedScenes": [
+        "MainMenu"
+    ]
 }

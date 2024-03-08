@@ -3,8 +3,10 @@
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+static nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classStream_a5f2dbfec48b79a7800417805fc7baa52}{Parse\+From\+File}} (std\+::string const \&filepath)
+\begin{DoxyCompactList}\small\item\em opens and parses a json document \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{classStream_ad4df1d704d41d2009fe712f508b8cd57}{Read\+From\+File}} (\mbox{\hyperlink{classISerializable}{ISerializable}} $\ast$object, std\+::string const \&filepath)
-\begin{DoxyCompactList}\small\item\em Opens and parses a json document. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em reads json data from a file into an object \end{DoxyCompactList}\item 
 static std\+::string \mbox{\hyperlink{classStream_a14b022796bfd5c8176210c179f2832af}{Read\+From\+TXTFile}} (std\+::string const \&filepath)
 \begin{DoxyCompactList}\small\item\em Read the SDL Controller Mappings. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{classStream_adbc7ecc866c78d9a29b12d1d5ae4d91d}{Write\+To\+File}} (std\+::string const \&filepath, nlohmann\+::ordered\+\_\+json const \&json)
@@ -82,6 +84,24 @@ gets the Debug\+Location as a string to print
 
 \begin{DoxyReturn}{Returns}
 the Debug\+Location as a string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classStream_a5f2dbfec48b79a7800417805fc7baa52}\label{classStream_a5f2dbfec48b79a7800417805fc7baa52}} 
+\index{Stream@{Stream}!ParseFromFile@{ParseFromFile}}
+\index{ParseFromFile@{ParseFromFile}!Stream@{Stream}}
+\doxysubsubsection{\texorpdfstring{ParseFromFile()}{ParseFromFile()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Stream\+::\+Parse\+From\+File (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{filepath }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+opens and parses a json document 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filepath} & name of the file to read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the parsed JSON data 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classStream_aaa8375568a2704214d77168c3727bdc2}\label{classStream_aaa8375568a2704214d77168c3727bdc2}} 
 \index{Stream@{Stream}!PasteFromClipboard@{PasteFromClipboard}}
@@ -294,7 +314,9 @@ Reads an array of a standard type from a JSON file.
 
 
 
-Opens and parses a json document. 
+reads json data from a file into an object 
+
+Opens and parses a json document.
 
 
 \begin{DoxyParams}{Parameters}

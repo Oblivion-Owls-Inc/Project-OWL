@@ -13,8 +13,9 @@
 #include "glm/glm.hpp"
 #include "glfw3.h"
 
+class ActionReference;
+
 /// @brief Example System meant to be copy-pasted when creating new Systems
-using namespace std;
 class InputSystem : public System
 {
 //-----------------------------------------------------------------------------
@@ -72,31 +73,31 @@ private: // private variables
 
     // pointers to maps for MapUpdate
     /// @brief  pointer for key states
-    map<int, bool[3]>* m_KeyStatesHold;
+    std::map<int, bool[3]>* m_KeyStatesHold;
     /// @brief  pointer for mouse states
-    map<int, bool[3]>* m_MouseStatesHold;
+    std::map<int, bool[3]>* m_MouseStatesHold;
     /// @brief  pointer for controller states
-    map<int, bool[3]>* m_ControllerStatesHold;
+    std::map<int, bool[3]>* m_ControllerStatesHold;
 
     // maps for various states (keys, mouse, controller etc)
     /// @brief  key states map
-    map<int, bool[3]> m_KeyStates;
+    std::map<int, bool[3]> m_KeyStates;
     /// @brief  fixed update key states map
-    map<int, bool[3]> m_FixedKeyStates;
+    std::map<int, bool[3]> m_FixedKeyStates;
     /// @brief  controller states map
-    map<int, bool[3]> m_ControllerStates;
+    std::map<int, bool[3]> m_ControllerStates;
     /// @brief  fixed update controller states map
-    map<int, bool[3]> m_FixedControllerStates;
+    std::map<int, bool[3]> m_FixedControllerStates;
     /// @brief  mouse states map
-    map<int, bool[3]> m_MouseStates;
+    std::map<int, bool[3]> m_MouseStates;
     /// @brief  fixed update mouse states map
-    map<int, bool[3]> m_FixedMouseStates;
+    std::map<int, bool[3]> m_FixedMouseStates;
 
     // m_Handles for alternate windows
     /// @brief  alternate window m_Handles
     std::vector<GLFWwindow*> m_AltHandles;
     /// @brief  map for additional windows
-    std::vector<map<int, bool[3]>> windows;
+    std::vector<std::map<int, bool[3]>> windows;
     /// @brief  m_Amount of additional windows
     int m_Amount = 0;
 
@@ -107,7 +108,12 @@ private: // private variables
 
     // map of actions
     /// @brief  map of actions
-    vector<Action> m_Actions;
+    std::vector<Action> m_Actions = {};
+
+
+    /// @brief  the ActionReferences currently attached to the InputSystem
+    std::vector< ActionReference* > m_ActionReferences = {};
+
 
 //-----------------------------------------------------------------------------
 private: // private methods
@@ -148,8 +154,6 @@ public: // public class
         std::vector<int> m_GamepadAxis; // 7
         /// @brief  action name
         std::string m_Name;
-        /// @brief  editor description of action
-        std::string m_Description;
 
     //-------------------------------------------------------------------------
     private: // private class reading
@@ -162,9 +166,6 @@ public: // public class
 
         /// @brief read the key inputs for an action
         void readName(nlohmann::ordered_json const& json);
-
-        /// @brief read the key inputs for an action
-        void readDescription(nlohmann::ordered_json const& json);
 
         /// @brief read the key inputs for an action
         void readKeys(nlohmann::ordered_json const& json);
@@ -213,7 +214,7 @@ public: // public class
         /// @brief  contructor
         /// @param  name of the action
         /// @param  description of the action (viewable in editor)
-        Action(std::string name = "", std::string description = "");
+        Action(std::string name = "");
         
         /// @brief  removes all inputs for this action 
         ///         and empties name/description
@@ -318,19 +319,11 @@ public: // public class
 
         /// @brief  sets the name of the action
         /// @param  new name of action
-        void SetName(std::string& name);
+        void SetName( std::string const& name );
 
         /// @brief  gets the name of this action
         /// @return the name of the action
-        std::string GetName() const;
-
-        /// @brief  sets the description of the action
-        /// @param  new description of action
-        void SetDescription(std::string& discription);
-
-        /// @brief  gets the description of this action
-        /// @return the description of the action
-        std::string GetDescription() const;
+        std::string const& GetName() const;
 
         /// @brief  gets if this action is down
         /// @return action down status
@@ -357,7 +350,7 @@ public: // accessors
     /// @return the instance of the InputSystem
     static InputSystem * GetInstance();
 
-    GLFWwindow* Getm_Handle() { return m_Handle; }
+    GLFWwindow* GetHandle() { return m_Handle; }
 
     /// @brief  sets a new window m_Handle
     /// @param  m_Handle of new window
@@ -449,11 +442,21 @@ public: // accessors
     /// @brief  gets an action by its name
     /// @param  name name of the action
     /// @return  pointer to the action
-    Action* GetActionByName(std::string& name);
+    Action* GetActionByName(std::string const& name);
 
     /// @brief  gets the vector of Actions in the InputSystem
     /// @return the vector of Actions
     std::vector< Action > const& GetActions() const;
+
+
+    /// @brief  adds an ActionReference to the InputSystem
+    /// @param  actionReference the ActionReference to add
+    void AddActionReference( ActionReference* actionReference );
+
+    /// @brief  removes an ActionReference from the InputSystem
+    /// @param  actionReference the ActionReference to remove
+    void RemoveActionReference( ActionReference* actionReference );
+
 
 //-----------------------------------------------------------------------------
 private: // singleton stuff

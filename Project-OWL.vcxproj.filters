@@ -99,12 +99,6 @@
     <Filter Include="Header Files\imgui">
       <UniqueIdentifier>{7f9af033-81e2-44c9-af1e-a9a713ab2083}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scenes">
-      <UniqueIdentifier>{248a6873-a0bc-44fa-8202-3e54136060d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Scenes\SandboxSystem">
-      <UniqueIdentifier>{2e6eff95-6e99-4d15-bb46-87a201aa10e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Framework\Curve">
       <UniqueIdentifier>{d2fc6db3-659e-4e13-91ec-b3a530965a57}</UniqueIdentifier>
     </Filter>
@@ -300,9 +294,6 @@
     <Filter Include="Engine\Entity\Component\Behavior\Lifetime">
       <UniqueIdentifier>{334bddc5-1ff2-4bb8-abf2-e472e77067cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\Generator">
-      <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Systems\CollisonSystem\CollisionLayerFlags">
       <UniqueIdentifier>{e06163df-945e-4eea-a970-e79a5db2c22f}</UniqueIdentifier>
     </Filter>
@@ -350,6 +341,21 @@
     </Filter>
     <Filter Include="Engine\Entity\Component\SceneChangeButton">
       <UniqueIdentifier>{d7d04071-2085-40c9-8456-07a77eb4a22c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\Generator">
+      <UniqueIdentifier>{00da8a8a-2170-414b-a802-8a6eb4a94217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\PathfindSystem">
+      <UniqueIdentifier>{a8c7bc82-572f-4984-828f-8e1a2f7d997c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\WinState">
+      <UniqueIdentifier>{420574a2-d603-4fff-abee-f59668b31f97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\Behaviors\Popup">
+      <UniqueIdentifier>{4ad37196-ce14-4abd-aa13-be68442d0cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Components\SceneChangeButton">
+      <UniqueIdentifier>{1d8900dd-7c60-4907-b4a4-cc9b65981f74}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -521,9 +527,6 @@
     <ClCompile Include="Source\Text.cpp">
       <Filter>Engine\Entity\Component\Text</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Pathfinder.cpp">
-      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
-    </ClCompile>
     <ClCompile Include="Source\TilemapCollider.cpp">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClCompile>
@@ -639,7 +642,7 @@
       <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
     </ClCompile>
     <ClCompile Include="Source\Generator.cpp">
-      <Filter>Game\Components\Generator</Filter>
+      <Filter>Game\Components\Behaviors\Generator</Filter>
     </ClCompile>
     <ClCompile Include="Source\EditorCameraController.cpp">
       <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
@@ -655,9 +658,6 @@
     </ClCompile>
     <ClCompile Include="Source\CollisionLayerFlags.cpp">
       <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\WinState.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Nineslice.cpp">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
@@ -677,23 +677,11 @@
     <ClCompile Include="Source\ComponentReference.t.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\WinState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Nineslice.cpp">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClCompile>
     <ClCompile Include="Source\SplashScreenController.cpp">
       <Filter>Game\Components\SplashScreen</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Console.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PauseSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SceneChangeButton.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\HideableForeground.cpp">
       <Filter>Game\Components\Behaviors\HideableForeground</Filter>
@@ -727,6 +715,33 @@
     </ClCompile>
     <ClCompile Include="Source\AssetLibrarySystem.cpp">
       <Filter>Engine\Systems\AssetLibrarySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PauseSystem.cpp">
+      <Filter>Engine\Systems\PauseSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PathfindSystem.cpp">
+      <Filter>Engine\Systems\PathfindSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WinState.cpp">
+      <Filter>Game\Components\Behaviors\WinState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PathfinderSource.cpp">
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PathfinderTarget.cpp">
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Console.cpp">
+      <Filter>Engine\Systems\DebugSystem\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Popup.cpp">
+      <Filter>Game\Components\Behaviors\Popup</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneChangeButton.cpp">
+      <Filter>Game\Components\SceneChangeButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WinState.cpp">
+      <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -910,9 +925,6 @@
     <ClInclude Include="Source\ISerializable.h">
       <Filter>Engine\Framework\Serialization</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Pathfinder.h">
-      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
-    </ClInclude>
     <ClInclude Include="Source\TilemapCollider.h">
       <Filter>Engine\Entity\Component\Collider\TilemapCollider</Filter>
     </ClInclude>
@@ -1025,7 +1037,7 @@
       <Filter>Engine\Entity\Component\Tilemap\TilemapEditor</Filter>
     </ClInclude>
     <ClInclude Include="Source\Generator.h">
-      <Filter>Game\Components\Generator</Filter>
+      <Filter>Game\Components\Behaviors\Generator</Filter>
     </ClInclude>
     <ClInclude Include="Source\EditorCameraController.h">
       <Filter>Engine\Entity\Component\Camera\EditorCameraController</Filter>
@@ -1045,9 +1057,6 @@
     <ClInclude Include="Source\CollisionLayerFlags.h">
       <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
     </ClInclude>
-    <ClInclude Include="Source\WinState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Nineslice.h">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClInclude>
@@ -1060,23 +1069,11 @@
     <ClInclude Include="Source\CollisionLayerFlags.h">
       <Filter>Engine\Systems\CollisonSystem\CollisionLayerFlags</Filter>
     </ClInclude>
-    <ClInclude Include="Source\WinState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Nineslice.h">
       <Filter>Engine\Entity\Component\Sprite\Nineslice</Filter>
     </ClInclude>
     <ClInclude Include="Source\SplashScreenController.h">
       <Filter>Game\Components\SplashScreen</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PauseSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SceneChangeButton.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\HideableForeground.h">
       <Filter>Game\Components\Behaviors\HideableForeground</Filter>
@@ -1101,6 +1098,33 @@
     </ClInclude>
     <ClInclude Include="Source\SceneChangeButton.h">
       <Filter>Engine\Entity\Component\SceneChangeButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PauseSystem.h">
+      <Filter>Engine\Systems\PauseSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PathfindSystem.h">
+      <Filter>Engine\Systems\PathfindSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WinState.h">
+      <Filter>Game\Components\Behaviors\WinState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PathfinderTarget.h">
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PathfinderSource.h">
+      <Filter>Engine\Entity\Component\Tilemap\Pathfinder</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Console.h">
+      <Filter>Engine\Systems\DebugSystem\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Popup.h">
+      <Filter>Game\Components\Behaviors\Popup</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneChangeButton.h">
+      <Filter>Game\Components\SceneChangeButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WinState.h">
+      <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1176,8 +1200,9 @@
     <None Include="Data\Scenes\MapTest.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
-    <None Include="Data\Scenes\AlphaScene.scene.json">
+    <None Include="Data\Scenes\MainMenu.scene.json">
       <Filter>Data\Scenes</Filter>
     </None>
+    <None Include="Data\Scenes\Prototype v3.scene.json" />
   </ItemGroup>
 </Project>
