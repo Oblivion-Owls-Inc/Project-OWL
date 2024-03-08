@@ -76,6 +76,19 @@
     }
 
 
+    /// @brief  gets the world bounds of the camera
+    /// @return the world bounds of the camera (min, max)
+    std::pair< glm::vec2, glm::vec2 > CameraSystem::GetCameraWorldBounds() const
+    {
+        glm::mat4 screenToWorld = GetMat_ScreenToWorld();
+
+        return std::pair< glm::vec2, glm::vec2 >(
+            screenToWorld * glm::vec4( 0.0f, 0.0f, 0.0f, 1.0f ),
+            screenToWorld * glm::vec4( Platform()->GetWindowDimensions(), 0.f, 1.0f )
+        );
+    }
+
+
 //-------------------------------------------------------------------------
 // private: virtual override methods
 //-------------------------------------------------------------------------

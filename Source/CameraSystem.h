@@ -39,6 +39,11 @@ public: // accessors
     glm::mat4 GetMat_ScreenToWorld() const;
 
 
+    /// @brief  gets the world bounds of the camera
+    /// @return the world bounds of the camera (min, max)
+    std::pair< glm::vec2, glm::vec2 > GetCameraWorldBounds() const;
+
+
 //-------------------------------------------------------------------------
 private: // virtual override methods
 //-------------------------------------------------------------------------

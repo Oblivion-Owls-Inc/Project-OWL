@@ -213,12 +213,14 @@
     /// @brief  creates the debug window for the CollisionSystem
     void CollisionSystem::DebugWindow()
     {
-        static bool _open = true;
-        if ( ImGui::Begin( "Collision System", &_open ) == false )
+        bool windowShown = GetDebugEnabled();
+        if ( ImGui::Begin( "Collision System", &windowShown ) == false )
         {
+            SetDebugEnable( windowShown );
             ImGui::End();
             return;
         }
+        SetDebugEnable( windowShown );
 
         Inspection::InspectArray< std::string >(
             "Collision Layer Names",
@@ -237,12 +239,37 @@
         ImGui::DragInt( "collision steps", &m_CollisionSteps, 0.05f, 1, INT_MAX );
 
         ImGui::End();
+
+        debugDrawColliders();
     }
 
 
 //-----------------------------------------------------------------------------
 // private: methods
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  debug draw all of the colliders
+    void CollisionSystem::debugDrawColliders()
+    {
+        for ( TilemapCollider* tilemapCollider : m_TilemapColliders )
+        {
+            tilemapCollider->DebugDraw();
+        }
+
+        for ( CircleCollider* circleCollider : m_LargeCircleColliders )
+        {
+            circleCollider->DebugDraw();
+        }
+
+        for ( auto& [ cellPos, colliders ] : m_CircleCollidersGrid )
+        {
+            for ( CircleCollider* circleCollider : colliders )
+            {
+                circleCollider->DebugDraw();
+            }
+        }
+    }
 
 
     /// @brief Checks and handles all Collisions
@@ -676,14 +703,26 @@
     /// @return whether or not the two colliders are colliding
     bool CollisionSystem::checkCollision( CircleCollider const* circleCollider, TilemapCollider const* tilemapCollider, CollisionData* collisionData )
     {
-        if (collisionData)
-            *collisionData = CollisionData();
+        if ( tilemapCollider->GetTransform() == nullptr )
+        {
+            return false;
+        }
+
 
         Tilemap< int > const* tilemap = (tilemapCollider)->GetTilemap();
+        if ( tilemap == nullptr )
+        {
+            return false;
+        }
+
+        if ( collisionData )
+        {
+            *collisionData = CollisionData();
+        }
 
         glm::mat4 const& worldToTile = tilemap->GetWorldToTilemapMatrix();
         glm::mat4 const& tileToWorld = tilemap->GetTilemapToWorldMatrix();
-        glm::vec2 const& tileSize = tilemap->GetTileScale();
+        glm::vec2 tileSize = tilemap->GetTileScale() * tilemapCollider->GetTransform()->GetScale();
 
         glm::vec2 pos = circleCollider->GetTransform()->GetTranslation();
         float radius = circleCollider->GetRadius() / tileSize.x;
@@ -693,8 +732,6 @@
             Debug() << "WARNING: Tilemap must be uniformly scaled for collisions to work" << std::endl;
             return false;
         }
-
-        // Renderer()->DrawRect( pos, glm::vec2( radius * 2.0f ) );
 
         pos = worldToTile * glm::vec4( pos, 0, 1 );
         glm::vec2 extents = glm::vec2( radius, radius );

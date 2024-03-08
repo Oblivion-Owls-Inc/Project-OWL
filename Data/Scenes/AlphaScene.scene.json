@@ -802,7 +802,6 @@
                     ],
                     "Waves": [
                         {
-                            "WaveTime": 0.0,
                             "WaveNextTime": 0.0,
                             "EnemyGroups": [
                                 {
@@ -817,7 +816,6 @@
                             ]
                         },
                         {
-                            "WaveTime": 0.0,
                             "WaveNextTime": 0.0,
                             "EnemyGroups": [
                                 {
@@ -832,7 +830,6 @@
                             ]
                         },
                         {
-                            "WaveTime": 944.8154296875,
                             "WaveNextTime": 944.8154296875,
                             "EnemyGroups": [
                                 {
@@ -18377,8 +18374,8 @@
                 },
                 "Tilemap<Entity*>": {
                     "Dimensions": [
-                        32,
-                        32
+                        70,
+                        250
                     ],
                     "TileScale": [
                         1.0,
@@ -107103,5 +107100,8 @@
             },
             "Children": null
         }
-    }
+    },
+    "PreparsedScenes": [
+        "MainMenu"
+    ]
 }

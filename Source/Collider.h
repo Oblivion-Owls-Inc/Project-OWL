@@ -170,6 +170,15 @@ public: // methods
     /// @brief  removes all outdated contacts from this Collider and calls OnCollisionExit callbacks
     void RemoveOutdatedContacts();
 
+    
+//-----------------------------------------------------------------------------
+public: // virtual override methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  draws the collision shape of this collider for debug purposes
+    virtual void DebugDraw() const = 0;
+
 
 //-----------------------------------------------------------------------------
 protected: // member variables

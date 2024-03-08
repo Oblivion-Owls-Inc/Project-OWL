@@ -17,6 +17,9 @@
 
 #include "CollisionSystem.h"
 
+#include "CameraSystem.h"
+#include "RenderSystem.h"
+
 //-----------------------------------------------------------------------------
 // public: constructor
 //-----------------------------------------------------------------------------
@@ -29,7 +32,7 @@
 
 
 //-----------------------------------------------------------------------------
-// private: virtual overrides
+// public: virtual overrides
 //-----------------------------------------------------------------------------
 
 
@@ -63,6 +66,62 @@
         m_RigidBody .Exit();
         m_StaticBody.Exit();
         m_Tilemap   .Exit();
+    }
+
+
+    /// @brief  draws the collision shape of this collider for debug purposes
+    void TilemapCollider::DebugDraw() const
+    {
+        if ( m_Tilemap == nullptr || m_Transform == nullptr )
+        {
+            return;
+        }
+
+        auto [ minWorldPos, maxWorldPos ] = Cameras()->GetCameraWorldBounds();
+
+        glm::mat4 const& toTileMat = m_Tilemap->GetWorldToTilemapMatrix();
+
+        glm::ivec2 minTile = toTileMat * glm::vec4( minWorldPos, 0.0f, 1.0f );
+        glm::ivec2 maxTile = toTileMat * glm::vec4( maxWorldPos, 0.0f, 1.0f );
+
+        if ( minTile.x > maxTile.x )
+        {
+            std::swap( minTile.x, maxTile.x );
+        }
+        if ( minTile.y > maxTile.y )
+        {
+            std::swap( minTile.y, maxTile.y );
+        }
+
+        minTile.x = std::max( minTile.x, 0 );
+        minTile.y = std::max( minTile.y, 0 );
+
+        glm::ivec2 const& dimensions = m_Tilemap->GetDimensions();
+
+        maxTile.x = std::min( maxTile.x, dimensions.x - 1 );
+        maxTile.y = std::min( maxTile.y, dimensions.y - 1 );
+
+        if (
+            minTile.x >= dimensions.x || maxTile.x < 0 ||
+            minTile.y >= dimensions.y || maxTile.y < 0
+        )
+        {
+            return;
+        }
+
+        glm::ivec2 tilePos;
+        for ( tilePos.x = minTile.x; tilePos.x <= maxTile.x; ++tilePos.x )
+        {
+            for ( tilePos.y = minTile.y; tilePos.y <= maxTile.y; ++tilePos.y )
+            {
+                if ( m_Tilemap->GetTile( tilePos ) == -1 )
+                {
+                    continue;
+                }
+
+                Renderer()->DrawRect( m_Tilemap->TileCoordToWorldPos( tilePos ), m_Tilemap->GetTileScale() * m_Transform->GetScale() );
+            }
+        }
     }
 
 
