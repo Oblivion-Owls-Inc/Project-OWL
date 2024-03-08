@@ -74,6 +74,15 @@ private: // inspector methods
 	/// @brief displays group data to edit
 	void guiGroups();
 
+	/// @brief displays the currently in view wave data
+	void guiInViewWave();
+
+	/// @brief displays the currently in view enemy groups data
+	void guiInViewGroups();
+
+	/// @brief calls the in view gui handlers
+	void guiInView();
+
 	/// @brief displays the currently active wave data
 	void guiCurrentWave();
 
@@ -172,7 +181,6 @@ private: // data
 		Wave();
 		// container of attached groups
 		std::vector<EnemyGroup> groups;
-		float remainingTime;
 		float timeToNextWave;
 
 	private:

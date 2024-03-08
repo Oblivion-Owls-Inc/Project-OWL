@@ -236,36 +236,43 @@
             SetDebugEnable( showWindow );
             return;
         }
+        SetDebugEnable( showWindow );
 
-        unsigned selectedScene = inspectorListScenes();
-
-
-        // Input text for typing scene name
-        static char buffer[128] = ""; // Buffer to hold the input, you can save this
-        ImGui::InputText("Type Scene Name", buffer, IM_ARRAYSIZE(buffer));
-
-        // Possibly a button to load the scene, either from the dropdown or the input text
-        if (ImGui::Button("Load Scene"))
+        // wait for thread to finish before changing preparsed scenes
+        if ( m_PreparseThread.joinable() )
         {
-            if (strlen(buffer) > 0)
+            m_PreparseThread.join();
+        }
+
+        auto sceneToRemove = m_PreparsedScenes.end();
+        for ( auto it = m_PreparsedScenes.begin(); it != m_PreparsedScenes.end(); ++it )
+        {
+            ImGui::Text( it->first.c_str() );
+            ImGui::SameLine();
+            if ( ImGui::SmallButton( "X" ) )
             {
-                std::string sceneName(buffer);
-                SetNextScene(sceneName); // Load scene using name typed into buffer
-                buffer[0] = '\0'; // Clear the buffer
+                sceneToRemove = it;
             }
-            else
+        }
+        if ( sceneToRemove != m_PreparsedScenes.end() )
+        {
+            m_PreparsedScenes.erase( sceneToRemove );
+        }
+
+        unsigned sceneToAdd = inspectorListScenes();
+        if ( ImGui::Button( "Add Preparsed Scene" ) )
+        {
+            if ( sceneToAdd != -1 && m_SceneNames[ sceneToAdd ] != m_CurrentSceneName )
             {
-                SetNextScene(m_SceneNames[selectedScene]); // Load scene using selected scene
+                m_PreparsedScenes.emplace(
+                    m_SceneNames[ sceneToAdd ],
+                    Stream::ParseFromFile( scenePath( m_SceneNames[ sceneToAdd ] ) )
+                );
             }
         }
 
-        if ( ImGui::Button( "Save Scene" ) )
-        {
-            SaveScene( buffer );
-        }
 
         ImGui::End();
-        SetDebugEnable( showWindow );
     }
 
 //-----------------------------------------------------------------------------
@@ -350,10 +357,34 @@
         EntitySystem::GetInstance()->LoadEntities( data );
     }
 
+    /// @brief  reads the names of scenes to pre-parse from this scene
+    /// @param  data    the JSON data to read from
+    void SceneSystem::Scene::readPreparsedScenes( nlohmann::ordered_json const& data )
+    {
+        // wait for the preparse thread to finish
+        if ( Scenes()->m_PreparseThread.joinable() )
+        {
+            Scenes()->m_PreparseThread.join();
+        }
+        // clean up previously preparsed scenes
+        Scenes()->m_PreparsedScenes.clear();
+
+        // load the new preparsed scene names
+        for ( nlohmann::ordered_json const& sceneName : data )
+        {
+            Scenes()->m_PreparsedScenes.emplace( Stream::Read< std::string >( sceneName ), nlohmann::ordered_json() );
+        }
+
+        // start the thread to preparse the scenes
+        Scenes()->m_PreparseThread = std::thread( &SceneSystem::preparseScenes, Scenes() );
+    }
+
+
     /// @brief  the read methods for a Scene
     ReadMethodMap< SceneSystem::Scene > const SceneSystem::Scene::s_ReadMethods = {
-        { "Assets",   &readAssets   },
-        { "Entities", &readEntities }
+        { "Assets",          &readAssets          },
+        { "Entities",        &readEntities        },
+        { "PreparsedScenes", &readPreparsedScenes }
     };
 
     /// @brief  gets the asset library of the specified type
@@ -388,6 +419,12 @@
 
         json[ "Entities" ] = Entities()->SaveEntities();
 
+        nlohmann::ordered_json& preparsedScenes = json[ "PreparsedScenes" ];
+        for ( auto const& [ name, sceneJson ] : Scenes()->m_PreparsedScenes )
+        {
+            preparsedScenes.push_back( Stream::Write( name ) );
+        }
+
         return json;
     }
 
@@ -408,12 +445,35 @@
     {
         Debug() << "Loading Scene \"" << m_CurrentSceneName << "\"..." << std::endl;
 
+        // wait for preparsing to finish, if it's not done already
+        if ( m_PreparseThread.joinable() )
+        {
+            m_PreparseThread.join();
+        }
+
+        nlohmann::ordered_json sceneJson;
+
+        auto it = m_PreparsedScenes.find( m_CurrentSceneName );
+        if ( it == m_PreparsedScenes.end() )
+        {
+            sceneJson = Stream::ParseFromFile( scenePath( m_CurrentSceneName ) );
+        }
+        else
+        {
+            sceneJson = std::move( it->second );
+            m_PreparsedScenes.erase( it );
+        }
+
+        Stream::PushDebugLocation( scenePath( m_CurrentSceneName ) + "::" );
+
         Scene scene = Scene();
-        Stream::ReadFromFile( &scene, scenePath( m_CurrentSceneName ) );
+        Stream::Read( scene, sceneJson );
+
+        Stream::PopDebugLocation();
 
         if ( m_MustCopyAutosave )
         {
-            SaveScene( m_AutosaveName );
+            Stream::WriteToFile( scenePath( m_AutosaveName ), sceneJson );
             m_MustCopyAutosave = false;
         }
     }
@@ -489,17 +549,26 @@
         }
     }
 
+
+    /// @brief  preparses the JSON files of the scenes in the PreparsedScenes map
+    /// @brief  intended to be run on a separate thread
+    void SceneSystem::preparseScenes()
+    {
+        for ( auto& [ name, json ] : m_PreparsedScenes )
+        {
+            std::string filepath = scenePath( name );
+            json = Stream::ParseFromFile( filepath );
+        }
+    }
+
+
 //-----------------------------------------------------------------------------
 // singleton stuff
 //-----------------------------------------------------------------------------
 
     /// @brief  Constructs the SceneSystem
     SceneSystem::SceneSystem() :
-        System( "SceneSystem" ),
-        m_NextSceneName( "" ),
-        m_CurrentSceneName( "" ),
-        m_BaseScenePath( "Data/Scenes/" ),
-        m_SceneNames()
+        System( "SceneSystem" )
     {}
 
     /// @brief  gets the instance of SceneSystem
