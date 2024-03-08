@@ -20,31 +20,26 @@
 /// Public Methods
 ///-----------------------------------------------------------------------------
 
-/// @brief  Pause the systems in the game
-void PauseSystem::TogglePause()
-{
-    m_Running = !m_Running;
-
-    for (System* system : GameEngine()->GetSystems())
-    {
-
-        if (m_EditorSystemNames.contains(system->GetName()) == false)
-        {
-            system->SetEnabled(m_Running); 
-        }
-    }
-}
 
 ///-----------------------------------------------------------------------------
 /// Private Virtual override methods 
 ///-----------------------------------------------------------------------------
+
+void PauseSystem::SetRunning(bool running)
+{
+    if (m_Running != running)
+    {
+        m_Running = running;
+        togglePause();
+    }
+}
 
 /// @brief  Gets called whenever a scene is exited
 void PauseSystem::OnSceneExit()
 {
     if (!m_Running && Debug().IsEditorRunning())
     {
-	   TogglePause();
+	   togglePause();
     }
 }
 
@@ -60,6 +55,18 @@ void PauseSystem::DebugWindow()
 /// Private Methods
 ///-----------------------------------------------------------------------------
 
+/// @brief  Pause the systems in the game
+void PauseSystem::togglePause()
+{
+    for (System* system : GameEngine()->GetSystems())
+    {
+
+        if (m_EditorSystemNames.contains(system->GetName()) == false)
+        {
+            system->SetEnabled(m_Running); 
+        }
+    }
+}
 
 
 ///-----------------------------------------------------------------------------

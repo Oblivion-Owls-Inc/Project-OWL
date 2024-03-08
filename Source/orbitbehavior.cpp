@@ -52,6 +52,51 @@ void OrbitBehavior::OnInit()
 }
 
 
+//void OrbitBehavior::OnUpdate(float deltaTime)
+//{
+//    if (!m_Transform || !m_OrbitPoint || !m_Sprite)
+//    {
+//        return; // Exit if any component is missing
+//    }
+//
+//    // Update and clamp the orbit angle
+//    m_Angle += m_RotationSpeed * deltaTime;
+//    m_Angle = glm::mod(m_Angle, 2 * glm::pi<float>());
+//
+//    // Calculate new position
+//    float x = m_OrbitPoint->GetTranslation().x + m_Radius.x * glm::cos(m_Angle);
+//    float y = m_OrbitPoint->GetTranslation().y + m_Radius.y * glm::sin(m_Angle);
+//
+//    // Set the new position
+//    m_Transform->SetTranslation(glm::vec2(x, y));
+//
+//    // Oscillation for scale modulation
+//    float Oscillation = 0.2f * glm::cos(glm::abs(m_Angle));
+//
+//    if (m_FlipGrowth)
+//    {
+//        Oscillation *= -1.0f;
+//    }
+//
+//    glm::vec2 newScale = m_BaseScale * (1.0f + Oscillation);
+//    m_Transform->SetScale(newScale);
+//
+//    // Determine the current angle relative to orbit center for layer change
+//    float currentAngle = atan2(y - m_OrbitPoint->GetTranslation().y, x - m_OrbitPoint->GetTranslation().x);
+//    float thresholdAngle = glm::radians(m_ThresholdAngle);
+//
+//    // Set sprite layer based on current angle
+//    if (glm::abs(currentAngle) < thresholdAngle)
+//    {
+//        m_Sprite->SetLayer(m_FirstLayer);
+//    }
+//    else
+//    {
+//        m_Sprite->SetLayer(m_SecondLayer);
+//    }
+//}
+
+
 void OrbitBehavior::OnUpdate(float deltaTime)
 {
     if (!m_Transform || !m_OrbitPoint || !m_Sprite)
@@ -59,9 +104,13 @@ void OrbitBehavior::OnUpdate(float deltaTime)
         return; // Exit if any component is missing
     }
 
+    // Calculate the maximum angle
+    constexpr float MaxAngle = 2 * glm::pi<float>();
+
+
     // Update and clamp the orbit angle
     m_Angle += m_RotationSpeed * deltaTime;
-    m_Angle = glm::mod(m_Angle, 2 * glm::pi<float>());
+    m_Angle = glm::mod(m_Angle, MaxAngle);
 
     // Calculate new position
     float x = m_OrbitPoint->GetTranslation().x + m_Radius.x * glm::cos(m_Angle);
@@ -71,22 +120,20 @@ void OrbitBehavior::OnUpdate(float deltaTime)
     m_Transform->SetTranslation(glm::vec2(x, y));
 
     // Oscillation for scale modulation
-    float Oscillation = 0.2f * glm::cos(glm::abs(m_Angle));
 
-    if (m_FlipGrowth)
-    {
-        Oscillation *= -1.0f;
-    }
+    float calculatedAngle = m_Angle - m_ScaleExtremesAngle;
 
-    glm::vec2 newScale = m_BaseScale * (1.0f + Oscillation);
+
+    float Oscillation = ( m_ScaleOscillationMagnitude * glm::cos(MaxAngle * calculatedAngle / MaxAngle) ) + 1.0f;
+
+    glm::vec2 newScale = m_BaseScale * Oscillation;
     m_Transform->SetScale(newScale);
 
     // Determine the current angle relative to orbit center for layer change
-    float currentAngle = atan2(y - m_OrbitPoint->GetTranslation().y, x - m_OrbitPoint->GetTranslation().x);
-    float thresholdAngle = glm::radians(m_ThresholdAngle);
+    float currentAngle = glm::mod( atan2( y - m_OrbitPoint->GetTranslation().y, x - m_OrbitPoint->GetTranslation().x ) - m_LayerSwitchAngle, MaxAngle);
 
     // Set sprite layer based on current angle
-    if (glm::abs(currentAngle) < thresholdAngle)
+    if (currentAngle < glm::pi<float>())
     {
         m_Sprite->SetLayer(m_FirstLayer);
     }
@@ -122,7 +169,6 @@ void OrbitBehavior::OnExit()
 /// @brief  shows the inspector for OrbitBehavior
 void OrbitBehavior::Inspector()
 {
-    ImGui::Checkbox("Flip Growth", &m_FlipGrowth);
     ImGui::DragFloat("RotationSpeed", &m_RotationSpeed, 0.1f);
     ImGui::DragFloat("Angle", &m_Angle, 0.01f);
     ImGui::DragFloat("Threshold Angle", &m_ThresholdAngle, 0.1f);
@@ -130,6 +176,9 @@ void OrbitBehavior::Inspector()
     ImGui::DragInt("First Layer", &m_FirstLayer, 1);
     ImGui::DragInt("Second Layer", &m_SecondLayer, 1);
     ImGui::DragFloat2("Base Scale", &m_BaseScale[0], 0.1f);
+    ImGui::DragFloat("Scale Oscillation Magnitude", &m_ScaleOscillationMagnitude, 0.1f);
+    ImGui::DragFloat("Scale Extremes Angle", &m_ScaleExtremesAngle, 0.1f);
+    ImGui::DragFloat("Layer Switch Angle", &m_LayerSwitchAngle, 0.1f);
 }
 
 //-----------------------------------------------------------------------------
@@ -186,13 +235,6 @@ void OrbitBehavior::readBaseScale(nlohmann::ordered_json const& data)
     m_BaseScale = Stream::Read< 2, float >(data);
 }
 
-/// @brief Reads the Flip Growth from JSON
-/// @param data - the JSON data to read from
-void OrbitBehavior::readFlipGrowth(nlohmann::ordered_json const& data)
-{
-    Stream::Read(m_FlipGrowth, data);
-}
-
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
@@ -210,7 +252,6 @@ ReadMethodMap< ISerializable > const& OrbitBehavior::GetReadMethods() const
         { "Second Layer",    &OrbitBehavior::readSecondLayer    },
         { "Threshold Angle", &OrbitBehavior::readThresholdAngle },
         { "Base Scale",      &OrbitBehavior::readBaseScale      },
-        { "Flip Growth",     &OrbitBehavior::readFlipGrowth     }
 
     };
 
@@ -231,7 +272,6 @@ nlohmann::ordered_json OrbitBehavior::Write() const
     json["Second Layer"]    = m_SecondLayer;
     json["Threshold Angle"] = m_ThresholdAngle;
     json["Base Scale"]      = Stream::Write(m_BaseScale);
-    json["Flip Growth"]     = m_FlipGrowth;
 
     return json;
 }
@@ -265,8 +305,7 @@ OrbitBehavior::OrbitBehavior(OrbitBehavior const& other) :
     m_FirstLayer(other.m_FirstLayer),
     m_SecondLayer(other.m_SecondLayer),
     m_ThresholdAngle(other.m_ThresholdAngle),
-    m_BaseScale(other.m_BaseScale),
-    m_FlipGrowth(other.m_FlipGrowth)
+    m_BaseScale(other.m_BaseScale)
 {}
 
 

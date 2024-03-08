@@ -86,9 +86,20 @@ private: // members
     /// @brief The second layer to set the sprite to
     int m_SecondLayer = 1;
 
+    /// @brief The Base Scale of the sprite
     glm::vec2 m_BaseScale = { .5f, .5f };
 
-    bool m_FlipGrowth = false;
+    // Controls the magnitude of scale oscillation
+    float m_ScaleOscillationMagnitude = 0.2f; 
+
+    // Angle at which the object is largest or smallest
+    float m_ScaleExtremesAngle = 0.0f; 
+
+    // Angle in orbit to switch layers (radians)
+    float m_LayerSwitchAngle = glm::pi<float>(); // Angle in orbit to switch layers (radians)
+
+
+
     //-----------------------------------------------------------------------------
 private: // methods
     //-----------------------------------------------------------------------------

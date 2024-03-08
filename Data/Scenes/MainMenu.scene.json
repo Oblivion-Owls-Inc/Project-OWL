@@ -1111,10 +1111,10 @@
             "Name": "Moon",
             "Components": {
                 "Animation": {
-                    "FrameIndex": 50,
-                    "FrameDelay": 0.05118955671787262,
+                    "FrameIndex": 8,
+                    "FrameDelay": 0.07123465090990067,
                     "IsRunning": true,
-                    "LoopCount": 99872,
+                    "LoopCount": 99847,
                     "Animation": {
                         "AssetName": "Moon_Animation"
                     }
@@ -1128,7 +1128,7 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 50,
+                    "FrameIndex": 8,
                     "Texture": {
                         "AssetName": "Moon_Texture"
                     }
@@ -1151,24 +1151,24 @@
                     "Name": "Lava",
                     "Components": {
                         "Animation": {
-                            "FrameIndex": 50,
-                            "FrameDelay": 0.05118955671787262,
+                            "FrameIndex": 8,
+                            "FrameDelay": 0.07123465090990067,
                             "IsRunning": true,
-                            "LoopCount": 99872,
+                            "LoopCount": 99847,
                             "Animation": {
                                 "AssetName": "Lava_Animation"
                             }
                         },
                         "OrbitBehavior": {
                             "RotationSpeed": 1.0,
-                            "Angle": 3.4048290252685547,
+                            "Angle": 3.4209256172180176,
                             "Radius": [
-                                -0.5199999809265137,
+                                -0.6200000047683716,
                                 0.800000011920929
                             ],
                             "First Layer": 3,
                             "Second Layer": 1,
-                            "Threshold Angle": 90.0,
+                            "Threshold Angle": 86.9000015258789,
                             "Base Scale": [
                                 0.550000011920929,
                                 0.550000011920929
@@ -1184,20 +1184,20 @@
                                 0.0
                             ],
                             "Opacity": 1.0,
-                            "FrameIndex": 50,
+                            "FrameIndex": 8,
                             "Texture": {
                                 "AssetName": "LavaTexture"
                             }
                         },
                         "Transform": {
                             "Translation": [
-                                2.346418857574463,
-                                0.6399732828140259
+                                2.4402999877929688,
+                                0.6275670528411865
                             ],
                             "Rotation": 0.0,
                             "Scale": [
-                                0.6562108397483826,
-                                0.6562108397483826
+                                0.6557363271713257,
+                                0.6557363271713257
                             ],
                             "IsDiegetic": true
                         }

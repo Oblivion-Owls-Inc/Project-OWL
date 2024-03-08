@@ -21,13 +21,10 @@ public: // methods
 
     /// @brief  Sets the game to running or not
     /// @param  running If the game is running
-    void SetRunning(bool running) { m_Running = running; }
+    void SetRunning(bool running);
 
     /// @brief  Gets if the game is running
     bool GetRunning() const { return m_Running; }
-
-    /// @brief  Pause the systems in the game
-    void TogglePause();
 
 //-----------------------------------------------------------------------------
 private: // virtual override methods
@@ -73,6 +70,9 @@ private: // Members
 ///-----------------------------------------------------------------------------
 private: // Methods
 ///-----------------------------------------------------------------------------
+
+    /// @brief  Pause the systems in the game
+    void togglePause();
 
 
 //-----------------------------------------------------------------------------

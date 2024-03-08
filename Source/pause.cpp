@@ -74,7 +74,7 @@ void PauseComponent::OnFixedUpdate()
 
     if (m_PauseButton->GetReleased())
     {
-        Pause()->TogglePause();
+        Pause()->SetRunning(!Pause()->GetRunning());
     }
 }
 
