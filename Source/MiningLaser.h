@@ -19,8 +19,9 @@
 
 #include "EntityReference.h"
 #include "ComponentReference.h"
-#include "Transform.h"
-#include "Tilemap.h"
+#include "DestructibleTilemap.h"
+class Transform;
+
 
 /// @brief  Digging laser controllable by an entity
 class MiningLaser : public Behavior
@@ -34,17 +35,6 @@ public: // constructor / Destructor
 
     /// @brief  destructor
     ~MiningLaser() = default;
-
-//-----------------------------------------------------------------------------
-public: // types
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  callback called when a MiningLaser breaks a tile
-    /// @param  tilemap - the tilemap that the tile was broken in
-    /// @param  tilePos - the position of the tile in the tilemap
-    /// @param  tileID  - the ID of the broken tile
-    using OnBreakTileCallback = std::function< void ( Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int tileId ) >;
 
     
 //-----------------------------------------------------------------------------
@@ -84,15 +74,6 @@ public: // accessors
     /// @brief  sets how quickly the laser breaks blocks
     /// @param  miningSpeed  how quickly the laser breaks blocks
     void SetMiningSpeed( float miningSpeed );
-
-
-    /// @brief  gets the max in progress tiles
-    /// @return the max in progress tiles
-    int GetMaxInProgressTiles() const;
-
-    /// @brief  sets the max in progress tiles
-    /// @param  maxInProgressTiles  the max in progress tiles
-    void SetMaxInProgressTiles( int maxInProgressTiles );
 
 
     /// @brief  gets the beam color
@@ -151,28 +132,13 @@ public: // accessors
 
     /// @brief  gets the Transform attached to this MiningLaser
     /// @return the Transform attached to this MiningLaser
-    Transform* GetTransform() const;
-
-
-    /// @brief  gets the Tilemap this MiningLaser digs in
-    /// @return the Tilemap this MiningLaser digs in
-    Tilemap< int >* GetTilemap() const;
+    Transform* GetTransform();
 
 
 
 //-----------------------------------------------------------------------------
 public: //  methods
 //-----------------------------------------------------------------------------
-
-
-    /// @brief  adds an OnBreakTile callback to this MiningLaser
-    /// @param  ownerId     the ID of the owner of the callback
-    /// @param  callback    the callback to add
-    void AddOnBreakTileCallback( unsigned ownerId, OnBreakTileCallback callback );
-
-    /// @brief  removes an OnBreakTile callback from this MiningLaser
-    /// @param  ownerId     the ID of the owner of the callback to remove
-    void RemoveOnBreakTileCallback( unsigned ownerId );
 
 
 //-----------------------------------------------------------------------------
@@ -203,10 +169,10 @@ private: // members
 
 
     /// @brief  the Tilemap this mining laser digs in
-    ComponentReference< Tilemap< int > > m_Tilemap;
+    ComponentReference< DestructibleTilemap > m_DestructibleTilemap;
 
     /// @brief  the Entity that the target Tilemap is a part of
-    EntityReference m_TilemapEntity = EntityReference( { &m_Tilemap } );
+    EntityReference m_TilemapEntity = EntityReference( { &m_DestructibleTilemap } );
 
 
     /// @brief  the range of the mining laser
@@ -215,14 +181,6 @@ private: // members
 
     /// @brief  how quickly the laser breaks tiles
     float m_MiningSpeed = 1.0f;
-
-
-    /// @brief  how many tiles can be in the process of being destroyed at once
-    int m_MaxInProgressTiles = 32;
-
-
-    /// @brief  all tiles currently in the process of being destroyed
-    std::deque< InProgressTile > m_InProgressTiles;
 
 
     /// @brief  the color of the beam
@@ -254,33 +212,26 @@ private: // members
     float m_beamLength = 0.0f;
 
 
-    /// @brief  callbacks called whenever the laser breaks a tile
-    std::map< unsigned, OnBreakTileCallback > m_OnBreakTileCallbacks;
-
-
 //-----------------------------------------------------------------------------
 private: // helper methods
 //-----------------------------------------------------------------------------
 
     
+    /// @brief  fires the laser
+    /// @param  tileDamage  the amount of damage to deal to tiles. May be called recursively if damage overkills
+    void fireLaser( float tileDamage );
+
+
     /// @brief  tries to damages the specified entity
     /// @param  entity  the entity to damage
-    void tryDamageEntity( Entity* entity );
-
+    /// @param  damage  the amount of damage to deal to the entity
+    void tryDamageEntity( Entity* entity, float damage );
 
     /// @brief  damages the specified tile
     /// @param  tilePos the tile to damage
-    void damageTile( glm::ivec2 const& tilePos );
-
-    /// @brief  breaks the specified tile
-    /// @param  tilePos the tile to break
-    void breakTile( std::deque< MiningLaser::InProgressTile >::iterator const& tilePos );
-
-
-    /// @brief  gets an in progress tile, and adds it to the queue if it doesn't exist yet
-    /// @param  tilePos the position of the tile to get
-    /// @return the in progress tile data for that tile
-    std::deque< MiningLaser::InProgressTile >::iterator getInProgressTile( glm::ivec2 tilePos );
+    /// @param  damage  the amount of damage to deal to the tile
+    /// @return the amount of overkill damage dealt, if the tile was destroyed
+    float damageTile( glm::ivec2 const& tilePos, float damage );
 
 
 //-----------------------------------------------------------------------------
@@ -310,11 +261,6 @@ private: // reading
     /// @brief  reads how quickly the mining laser breaks tiles
     /// @param  data the json data to read from
     void readMiningSpeed( nlohmann::ordered_json const& data );
-
-
-    /// @brief  reads how many tiles the laser can damage at once
-    /// @param  data the json data to read from
-    void readMaxInProgressTiles( nlohmann::ordered_json const& data );
 
 
     /// @brief  reads the color of the beam

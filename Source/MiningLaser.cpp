@@ -10,13 +10,10 @@
 
 #include "BehaviorSystem.h"
 
+#include "ComponentReference.t.h"
 #include "Transform.h"
-#include "AudioPlayer.h"
 #include "Health.h"
-#include "Emitter.h"
-#include "Tilemap.h"
 
-#include "Collider.h"
 #include "TilemapCollider.h"
 
 #include "EntitySystem.h"
@@ -72,21 +69,6 @@
     void MiningLaser::SetMiningSpeed( float miningSpeed )
     {
         m_MiningSpeed = miningSpeed;
-    }
-
-
-    /// @brief  gets the max in progress tiles
-    /// @return the max in progress tiles
-    int MiningLaser::GetMaxInProgressTiles() const
-    {
-        return m_MaxInProgressTiles;
-    }
-
-    /// @brief  sets the max in progress tiles
-    /// @param  maxInProgressTiles  the max in progress tiles
-    void MiningLaser::SetMaxInProgressTiles( int maxInProgressTiles )
-    {
-        m_MaxInProgressTiles = maxInProgressTiles;
     }
 
 
@@ -182,42 +164,15 @@
 
     /// @brief  gets the Transform attached to this MiningLaser
     /// @return the Transform attached to this MiningLaser
-    Transform* MiningLaser::GetTransform() const
+    Transform* MiningLaser::GetTransform()
     {
         return m_Transform;
-    }
-
-    /// @brief  gets the Tilemap this MiningLaser digs in
-    /// @return the Tilemap this MiningLaser digs in
-    Tilemap< int >* MiningLaser::GetTilemap() const
-    {
-        return m_Tilemap;
     }
 
 
 //-----------------------------------------------------------------------------
 // public:  methods
 //-----------------------------------------------------------------------------
-
-
-    /// @brief  adds an OnBreakTile callback to this MiningLaser
-    /// @param  ownerId     the ID of the owner of the callback
-    /// @param  callback    the callback to add
-    void MiningLaser::AddOnBreakTileCallback( unsigned ownerId, OnBreakTileCallback callback )
-    {
-        m_OnBreakTileCallbacks.emplace( ownerId, callback );
-    }
-
-    /// @brief  removes an OnBreakTile callback from this MiningLaser
-    /// @param  ownerId     the ID of the owner of the callback to remove
-    void MiningLaser::RemoveOnBreakTileCallback( unsigned ownerId )
-    {
-        auto it = m_OnBreakTileCallbacks.find( ownerId );
-        if ( it != m_OnBreakTileCallbacks.end() )
-        {
-            m_OnBreakTileCallbacks.erase( it );
-        }
-    }
 
 
 //-----------------------------------------------------------------------------
@@ -276,6 +231,20 @@
             return;
         }
 
+        fireLaser( m_MiningSpeed * GameEngine()->GetFixedFrameDuration() );
+
+    }
+
+
+//-----------------------------------------------------------------------------
+// private: helper methods
+//-----------------------------------------------------------------------------
+
+    
+    /// @brief  fires the laser
+    /// @param  tileDamage  the amount of damage to deal to tiles. May be called recursively if damage overkills
+    void MiningLaser::fireLaser( float tileDamage )
+    {
         RayCastHit hit = Collisions()->RayCast( m_Transform->GetTranslation(), m_Direction, m_Range, m_CollisionLayers );
         m_beamLength = hit.distance;
 
@@ -286,109 +255,50 @@
 
         if (
             hit.colliderHit->GetType() == typeid( TilemapCollider ) &&
-            m_Tilemap != nullptr &&
-            static_cast< TilemapCollider* >( hit.colliderHit )->GetTilemap() == m_Tilemap
-        )
+            m_DestructibleTilemap != nullptr &&
+            static_cast< TilemapCollider* >( hit.colliderHit )->GetTilemap() == m_DestructibleTilemap->GetTilemap()
+            )
         {
-            damageTile( hit.tilePos );
+            float overkill = damageTile( hit.tilePos, tileDamage );
+            if ( overkill > 0.0f )
+            {
+                fireLaser( overkill );
+            }
         }
         else
         {
-            tryDamageEntity( hit.colliderHit->GetEntity() );
+            tryDamageEntity( hit.colliderHit->GetEntity(), m_DamageRate * tileDamage / m_MiningSpeed );
         }
-
     }
 
 
-//-----------------------------------------------------------------------------
-// private: helper methods
-//-----------------------------------------------------------------------------
-
-    
     /// @brief  tries to damages the specified entity
     /// @param  entity  the entity to damage
-    void MiningLaser::tryDamageEntity( Entity* entity )
+    /// @param  damage  the amount of damage to deal to the entity
+    void MiningLaser::tryDamageEntity( Entity* entity, float damage )
     {
-        Health* entityHealth = entity->GetComponent<Health>();
-
-        if (entityHealth)
+        Health* entityHealth = entity->GetComponent< Health >();
+        if ( entityHealth )
         {
-            m_AccumulatedDamage += GameEngine()->GetFixedFrameDuration() * m_DamageRate;
+            m_AccumulatedDamage += damage;
             
-            int damage = static_cast<int>(m_AccumulatedDamage);
+            int damageInt = static_cast<int>(m_AccumulatedDamage);
             
-            entityHealth->TakeDamage(damage);
+            entityHealth->TakeDamage( damageInt );
 
-            m_AccumulatedDamage -= damage;
+            m_AccumulatedDamage -= damageInt;
         }
     }
 
     /// @brief  damages the specified tile
     /// @param  tilePos the tile to damage
-    void MiningLaser::damageTile( glm::ivec2 const& tilePos )
+    /// @param  damage  the amount of damage to deal to the tile
+    /// @return the amount of overkill damage dealt, if the tile was destroyed
+    float MiningLaser::damageTile( glm::ivec2 const& tilePos, float damage )
     {
-        auto ipt = getInProgressTile( tilePos );
-
         // TODO: run damage tile effect?
 
-        ipt->remainingTime -= GameEngine()->GetFixedFrameDuration() * m_MiningSpeed;
-
-        if ( ipt->remainingTime <= 0 )
-        {
-            breakTile( ipt );
-        }
-    }
-
-    /// @brief  breaks the specified tile
-    /// @param  tilePos the tile to break
-    void MiningLaser::breakTile( std::deque< MiningLaser::InProgressTile >::iterator const& ipt )
-    {
-
-        // call callbacks
-        for ( auto const& [ ownerId, callback ] : m_OnBreakTileCallbacks )
-        {
-            callback( m_Tilemap, ipt->M_TilePos, m_Tilemap->GetTile( ipt->M_TilePos ) );
-        }
-
-        // TODO: play delete tile effect
-
-        m_Tilemap->SetTile( ipt->M_TilePos, -1 );
-
-        m_InProgressTiles.erase( ipt );
-    }
-
-
-    /// @brief  gets an in progress tile, adding it to the queue if it doesn't exist yet
-    /// @param  tilePos the position of the tile to get
-    /// @return the in progress tile data for that tile
-    std::deque< MiningLaser::InProgressTile >::iterator MiningLaser::getInProgressTile( glm::ivec2 tilePos )
-    {
-        auto it = std::find_if(
-            m_InProgressTiles.begin(),
-            m_InProgressTiles.end(),
-            [ tilePos ]( InProgressTile const& ipt ) -> bool
-            {
-                return ipt.M_TilePos == tilePos;
-            }
-        );
-
-        if ( it != m_InProgressTiles.end() )
-        {
-            return it;
-        }
-
-        if ( m_InProgressTiles.size() == m_MaxInProgressTiles )
-        {
-            m_InProgressTiles.pop_front();
-        }
-
-        InProgressTile newIpt;
-        newIpt.M_TilePos = tilePos;
-        newIpt.remainingTime = 1.0f; // TEMP: this should be based on the type of tile, not constant
-
-        m_InProgressTiles.push_back( newIpt );
-
-        return m_InProgressTiles.end() - 1;
+        return m_DestructibleTilemap->DamageTile( tilePos, damage );
     }
 
 
@@ -404,7 +314,7 @@
         {
             ImGui::Text( "WARNING: no Transform attached" );
         }
-        if ( m_Tilemap == nullptr )
+        if ( m_DestructibleTilemap == nullptr )
         {
             ImGui::Text( "WARNING: target Entity doesn't exist or doesn't have a tilemap" );
         }
@@ -415,8 +325,6 @@
         ImGui::DragFloat( "Max Range", &m_Range, 0.05f, 0.0f, INFINITY );
         
         ImGui::DragFloat( "Mining Speed", &m_MiningSpeed, 0.05f, 0.0f, INFINITY );
-        
-        ImGui::DragInt( "Max In-Progress Tiles", &m_MaxInProgressTiles, 0.05f, 1, INT_MAX );
         
         ImGui::ColorEdit4( "Beam Color", &m_BeamColor[0] );
         
@@ -462,14 +370,6 @@
     void MiningLaser::readMiningSpeed( nlohmann::ordered_json const& data )
     {
         Stream::Read( m_MiningSpeed, data );
-    }
-
-
-    /// @brief  reads how many tiles the laser can damage at once
-    /// @param  data the json data to read from
-    void MiningLaser::readMaxInProgressTiles( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_MaxInProgressTiles, data );
     }
 
 
@@ -525,7 +425,6 @@
         { "TilemapEntity"       , &readTilemapEntity        },
         { "Range"               , &readRange                },
         { "MiningSpeed"         , &readMiningSpeed          },
-        { "MaxInProgressTiles"  , &readMaxInProgressTiles   },
         { "BeamColor"           , &readBeamColor            },
         { "BeamWidth"           , &readBeamWidth            },
         { "DamageRate"          , &readDamageRate           },
@@ -549,7 +448,6 @@
         json[ "TilemapEntity"       ] = Stream::Write( m_TilemapEntity      );
         json[ "Range"               ] = Stream::Write( m_Range              );
         json[ "MiningSpeed"         ] = Stream::Write( m_MiningSpeed        );
-        json[ "MaxInProgressTiles"  ] = Stream::Write( m_MaxInProgressTiles );
         json[ "BeamColor"           ] = Stream::Write( m_BeamColor          );
         json[ "BeamWidth"           ] = Stream::Write( m_BeamWidth          );
         json[ "DamageRate"          ] = Stream::Write( m_DamageRate         );
@@ -571,7 +469,6 @@
         Behavior( typeid( MiningLaser ) ),
         m_Range             ( other.m_Range              ),
         m_MiningSpeed       ( other.m_MiningSpeed        ),
-        m_MaxInProgressTiles( other.m_MaxInProgressTiles ),
         m_BeamColor         ( other.m_BeamColor          ),
         m_BeamWidth         ( other.m_BeamWidth          ),
         m_DamageRate        ( other.m_DamageRate         ),
@@ -580,7 +477,7 @@
         m_IsFiring          ( other.m_IsFiring           ),
         m_AccumulatedDamage ( other.m_AccumulatedDamage  ),
 
-        m_TilemapEntity( other.m_TilemapEntity, { &m_Tilemap } )
+        m_TilemapEntity( other.m_TilemapEntity, { &m_DestructibleTilemap } )
     {}
 
 //-----------------------------------------------------------------------------

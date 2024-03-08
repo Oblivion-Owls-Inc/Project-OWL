@@ -354,8 +354,8 @@
     <Filter Include="Game\Components\Behaviors\Popup">
       <UniqueIdentifier>{4ad37196-ce14-4abd-aa13-be68442d0cc8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\SceneChangeButton">
-      <UniqueIdentifier>{1d8900dd-7c60-4907-b4a4-cc9b65981f74}</UniqueIdentifier>
+    <Filter Include="Game\Components\DestructibleTilemap">
+      <UniqueIdentifier>{b6dc52e2-d205-4f8d-9153-2969faf9b9db}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -743,6 +743,9 @@
     <ClCompile Include="Source\WinState.cpp">
       <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClCompile>
+    <ClCompile Include="Source\DestructibleTilemap.cpp">
+      <Filter>Game\Components\DestructibleTilemap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1125,6 +1128,9 @@
     </ClInclude>
     <ClInclude Include="Source\WinState.h">
       <Filter>Game\Components\Behaviors\WinState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DestructibleTilemap.h">
+      <Filter>Game\Components\DestructibleTilemap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

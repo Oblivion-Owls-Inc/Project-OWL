@@ -4,7 +4,7 @@
         "PlatformSystem": {
             "WindowSize": [
                 960,
-                686
+                548
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -180,8 +180,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -189,8 +188,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -198,8 +196,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -207,8 +204,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -227,8 +223,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -247,8 +242,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 }
             ]
         }
