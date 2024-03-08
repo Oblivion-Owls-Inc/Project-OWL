@@ -802,55 +802,67 @@
                     ],
                     "Waves": [
                         {
-                            "WaveTime": 0.0,
-                            "WaveNextTime": 0.0,
+                            "WaveTime": 138.0,
+                            "WaveNextTime": 150.0,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
                                         "AssetName": "Enemy"
                                     },
-                                    "Amount": 0,
+                                    "Amount": 10,
+                                    "SpawnInterval": 5.0,
+                                    "InitialOffset": 40.0,
+                                    "Spawner": 0
+                                },
+                                {
+                                    "Enemy": {
+                                        "AssetName": ""
+                                    },
+                                    "Amount": 14,
                                     "SpawnInterval": 2.0,
-                                    "InitialOffset": 5.0,
+                                    "InitialOffset": 60.0,
+                                    "Spawner": 0
+                                },
+                                {
+                                    "Enemy": {
+                                        "AssetName": ""
+                                    },
+                                    "Amount": 35,
+                                    "SpawnInterval": 2.0,
+                                    "InitialOffset": 110.0,
                                     "Spawner": 0
                                 }
                             ]
                         },
                         {
-                            "WaveTime": 0.0,
-                            "WaveNextTime": 0.0,
+                            "WaveTime": 50.0,
+                            "WaveNextTime": 60.0,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
                                         "AssetName": "Enemy"
                                     },
-                                    "Amount": 0,
-                                    "SpawnInterval": 2.0,
-                                    "InitialOffset": 5.0,
-                                    "Spawner": 0
-                                }
-                            ]
-                        },
-                        {
-                            "WaveTime": 944.8154296875,
-                            "WaveNextTime": 944.8154296875,
-                            "EnemyGroups": [
-                                {
-                                    "Enemy": {
-                                        "AssetName": "Enemy"
-                                    },
-                                    "Amount": 978,
+                                    "Amount": 23,
                                     "SpawnInterval": 2.0,
                                     "InitialOffset": 5.0,
                                     "Spawner": 0
                                 },
                                 {
                                     "Enemy": {
-                                        "AssetName": "Enemy"
+                                        "AssetName": ""
                                     },
-                                    "Amount": 995,
-                                    "SpawnInterval": 10.0,
-                                    "InitialOffset": 10.0,
+                                    "Amount": 31,
+                                    "SpawnInterval": 0.0,
+                                    "InitialOffset": 0.0,
+                                    "Spawner": 0
+                                },
+                                {
+                                    "Enemy": {
+                                        "AssetName": ""
+                                    },
+                                    "Amount": 43,
+                                    "SpawnInterval": 0.0,
+                                    "InitialOffset": 0.0,
                                     "Spawner": 0
                                 }
                             ]
@@ -18377,8 +18389,8 @@
                 },
                 "Tilemap<Entity*>": {
                     "Dimensions": [
-                        32,
-                        32
+                        70,
+                        250
                     ],
                     "TileScale": [
                         1.0,
