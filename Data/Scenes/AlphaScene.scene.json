@@ -151,6 +151,42 @@
                 ],
                 "UseAspectRatio": false
             },
+            "InventoryBase": {
+                "Filepath": "Data/Textures/InventoryBase.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "InventoryFrame": {
+                "Filepath": "Data/Textures/InventoryInner.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "InventorySlot": {
+                "Filepath": "Data/Textures/InventorySlot.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
             "Items": {
                 "Filepath": "Data/Textures/ResourceIcons.png",
                 "SheetDimensions": [
@@ -528,6 +564,48 @@
                     }
                 ]
             },
+            "InventorySlot": {
+                "Name": "InventorySlot",
+                "Components": {
+                    "Sprite": {
+                        "Layer": 22,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "InventorySlot"
+                        }
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            -0.949999988079071,
+                            0.0
+                        ],
+                        "Pivot": [
+                            -1.0,
+                            0.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            0.0
+                        ],
+                        "FrameSize": [
+                            0.15000000596046448,
+                            0.800000011920929
+                        ],
+                        "SizeTypes": [
+                            "RelativeToWidth",
+                            "RelativeToHeight"
+                        ]
+                    }
+                },
+                "Children": null
+            },
             "Item": {
                 "Name": "Item",
                 "Components": {
@@ -802,7 +880,6 @@
                     ],
                     "Waves": [
                         {
-                            "WaveTime": 0.0,
                             "WaveNextTime": 0.0,
                             "EnemyGroups": [
                                 {
@@ -817,7 +894,6 @@
                             ]
                         },
                         {
-                            "WaveTime": 0.0,
                             "WaveNextTime": 0.0,
                             "EnemyGroups": [
                                 {
@@ -832,7 +908,6 @@
                             ]
                         },
                         {
-                            "WaveTime": 944.8154296875,
                             "WaveNextTime": 944.8154296875,
                             "EnemyGroups": [
                                 {
@@ -88676,7 +88751,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 132.9359130859375,
+                            "Width": 223.57066345214844,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -88694,8 +88769,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                5.152097702026367,
-                                85.15367126464844
+                                -6.993343353271484,
+                                -59.16165542602539
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -107102,6 +107177,347 @@
                 }
             },
             "Children": null
+        },
+        "InventoryUI": {
+            "Name": "InventoryUI",
+            "Components": {
+                "Sprite": {
+                    "Layer": 20,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "InventoryBase"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        -0.8999999761581421
+                    ],
+                    "Pivot": [
+                        0.0,
+                        -1.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.6000000238418579,
+                        0.18000000715255737
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": [
+                {
+                    "Name": "InventoryFrame",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 21,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "InventoryFrame"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                0.0,
+                                0.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                0.949999988079071,
+                                0.800000011920929
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToHeight"
+                            ]
+                        }
+                    },
+                    "Children": [
+                        {
+                            "Name": "InventorySlot1",
+                            "Components": {
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "InventorySlot"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        -0.9900000095367432,
+                                        0.0
+                                    ],
+                                    "Pivot": [
+                                        -0.8999999761581421,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.20000000298023224,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.10999999940395355,
+                                        0.7699999809265137
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        },
+                        {
+                            "Name": "InventorySlot2",
+                            "Components": {
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "InventorySlot"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        -0.6600000262260437,
+                                        0.0
+                                    ],
+                                    "Pivot": [
+                                        -0.8999999761581421,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.20000000298023224,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.10999999940395355,
+                                        0.7699999809265137
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        },
+                        {
+                            "Name": "InventorySlot3",
+                            "Components": {
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "InventorySlot"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        -0.33000001311302185,
+                                        0.0
+                                    ],
+                                    "Pivot": [
+                                        -0.8999999761581421,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.20000000298023224,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.10999999940395355,
+                                        0.7699999809265137
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        },
+                        {
+                            "Name": "InventorySlot4",
+                            "Components": {
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "InventorySlot"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        0.33000001311302185,
+                                        0.0
+                                    ],
+                                    "Pivot": [
+                                        0.8999999761581421,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        -0.20000000298023224,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.10999999940395355,
+                                        0.7699999809265137
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        },
+                        {
+                            "Name": "InventorySlot5",
+                            "Components": {
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "InventorySlot"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        0.6600000262260437,
+                                        0.0
+                                    ],
+                                    "Pivot": [
+                                        0.8999999761581421,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        -0.20000000298023224,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.10999999940395355,
+                                        0.7699999809265137
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        },
+                        {
+                            "Name": "InventorySlot6",
+                            "Components": {
+                                "Sprite": {
+                                    "Layer": 22,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "InventorySlot"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        0.9900000095367432,
+                                        0.0
+                                    ],
+                                    "Pivot": [
+                                        0.8999999761581421,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        -0.20000000298023224,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.10999999940395355,
+                                        0.7699999809265137
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        }
+                    ]
+                }
+            ]
         }
-    }
+    },
+    "PreparsedScenes": [
+        "MainMenu"
+    ]
 }
