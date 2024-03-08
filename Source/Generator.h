@@ -17,6 +17,7 @@
 #include "Health.h"
 #include "Emitter.h"
 #include "EmitterSprite.h"
+#include "PathfinderTarget.h"
 
 
 class Generator : public Behavior
@@ -78,6 +79,9 @@ public: // accessors
     /// @brief activate the generator
     void Activate();
 
+    /// @brief deactivate the generator
+    void Deactivate();
+
     /// @brief  get the transform of the generator
     /// @return the generator transform
     Transform* GetTransform() { return m_Transform; }
@@ -90,10 +94,16 @@ private: // variables
     bool m_IsActive = false;  
 
     /// @brief  is the generator active or not
+    bool m_ChangeActive = false;
+
+    /// @brief  is the generator active or not
     bool m_ActivateRing = false;
 
     /// @brief  is the generator active or not
     bool m_DeactivateRing = false;
+
+    /// @brief  shrink ring to match edited value if true
+    bool m_ShrinkRing = false;
 
     /// @brief  speed the particle ring grows and shrinks at
     float m_RadiusSpeed = 1.0f;
@@ -121,6 +131,9 @@ private: // variables
 
     /// @brief  the Health component attached to this Generator
     ComponentReference< Health > m_Health;
+
+    /// @brief  the PathfinderTarget Component attached to this Generator
+    ComponentReference< PathfinderTarget > m_PathfinderTarget;
 
     /// @brief  the Emitter component attached to this Generator
     ComponentReference< Emitter > m_Emitter;

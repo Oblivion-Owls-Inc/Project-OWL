@@ -39,7 +39,14 @@ class Stream
 public: // methods
 //------------------------------------------------------------------------------
 
-	/// @brief	Opens and parses a json document
+
+    /// @brief	opens and parses a json document
+	/// @param  filepath    name of the file to read from
+    /// @return the parsed JSON data
+    static nlohmann::ordered_json ParseFromFile( std::string const& filepath );
+
+
+	/// @brief	reads json data from a file into an object
     /// @param  object      the object to read the JSON data into
 	/// @param  filepath    name of the file to read from
 	static void ReadFromFile( ISerializable* object, std::string const& filepath );

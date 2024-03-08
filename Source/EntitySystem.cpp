@@ -130,7 +130,7 @@
 
         if ( destination > sourceBegin )
         {
-            std::rotate( sourceBegin, sourceEnd, destination );
+            std::rotate( sourceBegin, sourceEnd + 1, destination );
         }
         else
         {
@@ -144,7 +144,12 @@
     void EntitySystem::MoveToEnd( Entity* entity )
     {
         auto it = std::find( m_Entities.begin(), m_Entities.end(), entity );
-        std::rotate( it, it + entity->GetNumDescendants() + 1, m_Entities.end() );
+        
+        // only rotate if not already at end
+        if ( it + entity->GetNumDescendants() + 1 != m_Entities.end() )
+        {
+            std::rotate( it, it + entity->GetNumDescendants() + 1, m_Entities.end() );
+        }
     }
     
 

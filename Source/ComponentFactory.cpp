@@ -27,7 +27,6 @@
 #include "EffectAnimator.h"
 #include "Text.h"
 #include "Tilemap.h"
-#include "Pathfinder.h"
 #include "TilemapCollider.h"
 #include "StaticBody.h"
 #include "ConstructionBehavior.h"
@@ -60,9 +59,10 @@
 #include "SceneChangeButton.h"
 #include "SplashScreenController.h"
 #include "HideableForeground.h"
+#include "PathfinderTarget.h"
+#include "PathfinderSource.h"
 #include "Popup.h"
 #include "DigEffect.h"
-
 
 
 //-----------------------------------------------------------------------------
@@ -172,7 +172,6 @@
         { "Tilemap<int>"           , ComponentInfo< Tilemap< int     >      >() },
         { "Tilemap<Entity*>"       , ComponentInfo< Tilemap< Entity* >      >() },
         { "TilemapSprite"          , ComponentInfo< TilemapSprite           >() },
-        { "Pathfinder"             , ComponentInfo< Pathfinder              >() },
         { "TilemapCollider"        , ComponentInfo< TilemapCollider         >() },
         { "StaticBody"             , ComponentInfo< StaticBody              >() },
         { "ConstructionBehavior"   , ComponentInfo< ConstructionBehavior    >() },
@@ -204,6 +203,9 @@
         { "WinState"               , ComponentInfo< WinState                >() },
         { "Nineslice"              , ComponentInfo< Nineslice               >() },
         { "SplashScreenController" , ComponentInfo< SplashScreenController  >() },
+        { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
+        { "PathfinderTarget"       , ComponentInfo< PathfinderTarget        >() },
+        { "PathfinderSource"       , ComponentInfo< PathfinderSource        >() },
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
         { "Popup"                  , ComponentInfo< Popup                   >() },
         { "DigEffect"              , ComponentInfo< DigEffect               >() }

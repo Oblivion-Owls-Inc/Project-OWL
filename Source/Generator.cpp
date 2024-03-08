@@ -79,11 +79,14 @@ void Generator::OnInit()
         }
     );
 
-    m_Collider   .Init( GetEntity() );
-    m_AudioPlayer.Init( GetEntity() );
-    m_Transform  .Init( GetEntity() );
-    m_Health     .Init( GetEntity() );
-    m_Emitter    .Init( GetEntity() );
+    m_Collider        .Init( GetEntity() );
+    m_AudioPlayer     .Init( GetEntity() );
+    m_Transform       .Init( GetEntity() );
+    m_Health          .Init( GetEntity() );
+    m_Emitter         .Init( GetEntity() );
+    m_PathfinderTarget.Init( GetEntity() );
+
+    m_ChangeActive = m_IsActive;
 }
 
 /// @brief	called on exit, handles loss state
@@ -91,17 +94,30 @@ void Generator::OnExit()
 {
     Behaviors< Generator >()->RemoveComponent(this);
 
-    m_Collider   .Exit();
-    m_AudioPlayer.Exit();
-    m_Transform  .Exit();
-    m_Health     .Exit();
-    m_Emitter    .Exit();
+    m_Collider        .Exit();
+    m_AudioPlayer     .Exit();
+    m_Transform       .Exit();
+    m_Health          .Exit();
+    m_Emitter         .Exit();
+    m_PathfinderTarget.Exit();
 }
 
 /// @brief  called every frame
 /// @param  dt delta time
 void Generator::OnUpdate(float dt)
 {
+    if (m_IsActive != m_ChangeActive)
+    {
+        if (m_ChangeActive == true)
+        {
+            Activate();
+        }
+        else
+        {
+            Deactivate();
+        }
+    }
+
     if ( m_Emitter == nullptr )
     {
         return;
@@ -133,6 +149,37 @@ void Generator::OnUpdate(float dt)
         data.startAhead = m_GrowthRadius;
         m_Emitter->SetEmitData(data);
 
+    }
+    else if (m_ShrinkRing)
+    {
+        m_GrowthRadius -= m_RadiusSpeed * dt;
+        if (m_GrowthRadius >= m_PowerRadius)
+        {
+            m_GrowthRadius = m_PowerRadius;
+            m_ShrinkRing = false;
+        }
+        ParticleSystem::EmitData data = m_Emitter->GetEmitData();
+        data.startAhead = m_GrowthRadius;
+        m_Emitter->SetEmitData(data);
+        m_Emitter->SetContinuous(true);
+    }
+    else if (m_PowerRadius != m_GrowthRadius)
+    {
+        if (m_IsActive)
+        {
+            if (m_GrowthRadius <= m_PowerRadius)
+            {
+                Activate();
+            }
+            else
+            {
+                m_ShrinkRing = true;
+            }
+        }
+        else
+        {
+            m_GrowthRadius = m_PowerRadius;
+        }
     }
 }
 
@@ -172,7 +219,21 @@ Generator* Generator::GetLowestGenerator()
 void Generator::Activate() 
 { 
     m_IsActive = true;
+    m_ChangeActive = true;
     m_ActivateRing = true;
+
+    if ( m_PathfinderTarget != nullptr )
+    {
+        m_PathfinderTarget->SetActive( true );
+    }
+}
+
+/// @brief deactivate the generator
+void Generator::Deactivate()
+{
+    m_IsActive = false;
+    m_ChangeActive = false;
+    m_DeactivateRing = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -182,27 +243,38 @@ void Generator::Activate()
 /// @brief collision callback for generators
 void Generator::onCollisionEnter(Collider* other)
 {
-    if (m_IsActive)
+    if ( m_IsActive == false )
     {
-        EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
-        if (!enemy)
-        {
-            return;
-        }
+        return;
+    }
 
-        m_Health->TakeDamage( enemy->GetDamage() );
+    if ( m_Health == nullptr )
+    {
+        return;
+    }
 
-        if (m_AudioPlayer)
-        {
-            m_AudioPlayer->Play();
-        }
-        enemy->GetEntity()->Destroy();
+    EnemyBehavior* enemy = other->GetEntity()->GetComponent<EnemyBehavior>();
+    if (!enemy)
+    {
+        return;
+    }
 
-        if (m_Health->GetHealth()->GetCurrent() <= 0)
+    m_Health->TakeDamage( enemy->GetDamage() );
+
+    if ( m_AudioPlayer )
+    {
+        m_AudioPlayer->Play();
+    }
+    enemy->GetEntity()->Destroy();
+
+    if (m_Health->GetHealth()->GetCurrent() <= 0)
+    {
+        Deactivate();
+        m_Health->GetHealth()->Reset();
+
+        if ( m_PathfinderTarget != nullptr )
         {
-            m_IsActive = false;
-            m_DeactivateRing = true;
-            m_Health->GetHealth()->Reset();
+            m_PathfinderTarget->SetActive( false );
         }
     }
 }
@@ -218,7 +290,7 @@ void Generator::Inspector()
     ImGui::InputFloat("Activate Radius", &m_ActivationRadius, 0.5f, 1.0f);
     ImGui::InputFloat("Growth Speed", &m_RadiusSpeed);
     ImGui::InputInt("Depth", &m_Depth, 1, 5);
-    ImGui::Checkbox("Active", &m_IsActive);
+    ImGui::Checkbox("Active", &m_ChangeActive);
 }
 
 //-----------------------------------------------------------------------------

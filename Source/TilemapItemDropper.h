@@ -13,7 +13,8 @@
 #include "ItemStack.h"
 
 #include "ComponentReference.h"
-#include "Tilemap.h"
+template < typename TileType >
+class Tilemap;
 
 #include "AssetReference.h"
 

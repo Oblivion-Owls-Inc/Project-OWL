@@ -1,0 +1,30 @@
+digraph "Source/PathfinderTarget.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Source/PathfinderTarget.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Marks parent entity as a target for the enemies."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="Source/ComponentFactory.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ComponentFactory_8cpp.html",tooltip="Definitions for the component factory class."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Source/Generator.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Generator_8h_source.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Source/Engine.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Engine_8cpp.html",tooltip="Engine class."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="Source/PlayerController.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PlayerController_8cpp.html",tooltip="PlayerController Behaviour Class."];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="Source/TurretBehavior.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TurretBehavior_8cpp.html",tooltip="Behavior Compenent for Basic Turret"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="Source/PathfinderTarget.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PathfinderTarget_8cpp.html",tooltip="Marks parent entity as a target for the enemies."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="Source/PathfindSystem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PathfindSystem_8h.html",tooltip="System in charge of pathfinding. Keeps track of targets, runs the flowfield algorithm."];
+  Node8 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="Source/Entity.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Entity_8cpp.html",tooltip="Function definitions for the Entity class."];
+  Node8 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="Source/PathfinderSource.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PathfinderSource_8cpp.html",tooltip="Defines parent entity as the map for pathfinding."];
+  Node8 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="Source/PathfindSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$PathfindSystem_8cpp.html",tooltip="System in charge of pathfinding. Keeps track of targets, runs the flowfield algorithm."];
+}
