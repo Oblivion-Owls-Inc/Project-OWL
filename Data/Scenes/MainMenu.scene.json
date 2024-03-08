@@ -764,5 +764,10 @@
                 }
             ]
         }
-    }
+    },
+    "PreparsedScenes": [
+        "AlphaScene",
+        "Settings",
+        "Tutorial"
+    ]
 }

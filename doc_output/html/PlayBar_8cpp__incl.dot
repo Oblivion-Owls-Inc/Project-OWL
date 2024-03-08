@@ -106,5 +106,7 @@ digraph "Source/PlayBar.cpp"
   Node35 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node35 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node30 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 -> Node36 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node36 [label="thread",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node1 -> Node23 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }
