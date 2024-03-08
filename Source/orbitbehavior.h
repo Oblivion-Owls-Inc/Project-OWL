@@ -74,9 +74,6 @@ private: // members
     /// @brief  the angle of the orbit
     float m_Angle = 5.0f;
 
-    /// @brief the threshold angle to change the sprite layer
-    float m_ThresholdAngle = 90.0f;
-
     /// @brief the radius of the orbit
     glm::vec2 m_Radius = { 0.48 , 0.48 };
 
@@ -89,14 +86,14 @@ private: // members
     /// @brief The Base Scale of the sprite
     glm::vec2 m_BaseScale = { .5f, .5f };
 
-    // Controls the magnitude of scale oscillation
+    /// Controls the magnitude of scale oscillation
     float m_ScaleOscillationMagnitude = 0.2f; 
 
-    // Angle at which the object is largest or smallest
+    /// Angle at which the object is largest or smallest
     float m_ScaleExtremesAngle = 0.0f; 
 
-    // Angle in orbit to switch layers (radians)
-    float m_LayerSwitchAngle = glm::pi<float>(); // Angle in orbit to switch layers (radians)
+    /// Angle in orbit to switch layers (radians)
+    float m_LayerSwitchAngle = glm::pi<float>(); 
 
 
 
@@ -138,18 +135,16 @@ private: // reading
     /// @param data - the JSON data to read from
     void readSecondLayer(nlohmann::ordered_json const& data);
 
-    /// @brief Reads the Threshold Angle from JSON
-    /// @param data - the JSON data to read from
-    void readThresholdAngle(nlohmann::ordered_json const& data);
-
     /// @brief Reads the Base Scale from JSON
     /// @param data - the JSON data to read from
     void readBaseScale(nlohmann::ordered_json const& data);
 
+    void readScaleOscillationMagnitude(nlohmann::ordered_json const& data);
 
-    /// @brief Reads the Flip Growth from JSON
-    /// @param data - the JSON data to read from
-    void readFlipGrowth(nlohmann::ordered_json const& data);
+    void readScaleExtremesAngle(nlohmann::ordered_json const& data);
+
+    void readLayerSwitchAngle(nlohmann::ordered_json const& data);
+
 
     //-----------------------------------------------------------------------------
 public: // reading / writing

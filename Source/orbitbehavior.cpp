@@ -120,9 +120,7 @@ void OrbitBehavior::OnUpdate(float deltaTime)
     m_Transform->SetTranslation(glm::vec2(x, y));
 
     // Oscillation for scale modulation
-
     float calculatedAngle = m_Angle - m_ScaleExtremesAngle;
-
 
     float Oscillation = ( m_ScaleOscillationMagnitude * glm::cos(MaxAngle * calculatedAngle / MaxAngle) ) + 1.0f;
 
@@ -169,16 +167,15 @@ void OrbitBehavior::OnExit()
 /// @brief  shows the inspector for OrbitBehavior
 void OrbitBehavior::Inspector()
 {
-    ImGui::DragFloat("RotationSpeed", &m_RotationSpeed, 0.1f);
+    ImGui::DragFloat2("Base Scale", &m_BaseScale[0], 0.1f);
     ImGui::DragFloat("Angle", &m_Angle, 0.01f);
-    ImGui::DragFloat("Threshold Angle", &m_ThresholdAngle, 0.1f);
     ImGui::DragFloat2("Radius", &m_Radius[0], 0.1f);
+    ImGui::DragFloat("Layer Switch Angle", &m_LayerSwitchAngle, 0.1f);
+    ImGui::DragFloat("RotationSpeed", &m_RotationSpeed, 0.1f);
+    ImGui::DragFloat("Scale Oscillation Magnitude", &m_ScaleOscillationMagnitude, 0.1f, -1.0f, 1.0f);
+    ImGui::DragFloat("Scale Extremes Angle", &m_ScaleExtremesAngle, 0.1f);
     ImGui::DragInt("First Layer", &m_FirstLayer, 1);
     ImGui::DragInt("Second Layer", &m_SecondLayer, 1);
-    ImGui::DragFloat2("Base Scale", &m_BaseScale[0], 0.1f);
-    ImGui::DragFloat("Scale Oscillation Magnitude", &m_ScaleOscillationMagnitude, 0.1f);
-    ImGui::DragFloat("Scale Extremes Angle", &m_ScaleExtremesAngle, 0.1f);
-    ImGui::DragFloat("Layer Switch Angle", &m_LayerSwitchAngle, 0.1f);
 }
 
 //-----------------------------------------------------------------------------
@@ -221,19 +218,35 @@ void OrbitBehavior::readSecondLayer(nlohmann::ordered_json const& data)
     Stream::Read(m_SecondLayer, data);
 }
 
-/// @brief Reads the Threshold Angle from JSON
-/// @param data - the JSON data to read from
-void OrbitBehavior::readThresholdAngle(nlohmann::ordered_json const& data)
-{
-    Stream::Read(m_ThresholdAngle, data);
-}
-
 /// @brief Reads the Base Scale from JSON
 /// @param data - the JSON data to read from
 void OrbitBehavior::readBaseScale(nlohmann::ordered_json const& data)
 {
     m_BaseScale = Stream::Read< 2, float >(data);
 }
+
+
+/// @brief Reads the Scale Oscillation Magnitude from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::readScaleOscillationMagnitude(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_ScaleOscillationMagnitude, data);
+}
+
+/// @brief Reads the Scale Extremes Angle from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::readScaleExtremesAngle(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_ScaleExtremesAngle, data);
+}
+
+/// @brief Reads the Layer Switch Angle from JSON
+/// @param data - the JSON data to read from
+void OrbitBehavior::readLayerSwitchAngle(nlohmann::ordered_json const& data)
+{
+    Stream::Read(m_LayerSwitchAngle, data);
+}
+
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -245,13 +258,15 @@ void OrbitBehavior::readBaseScale(nlohmann::ordered_json const& data)
 ReadMethodMap< ISerializable > const& OrbitBehavior::GetReadMethods() const
 {
     static ReadMethodMap< OrbitBehavior > const readMethods = {
-        { "RotationSpeed",   &OrbitBehavior::readRotationSpeed  },
-        { "Angle",           &OrbitBehavior::readAngle          },
-        { "Radius",          &OrbitBehavior::readRadius         },
-        { "First Layer",     &OrbitBehavior::readFirstLayer     },
-        { "Second Layer",    &OrbitBehavior::readSecondLayer    },
-        { "Threshold Angle", &OrbitBehavior::readThresholdAngle },
-        { "Base Scale",      &OrbitBehavior::readBaseScale      },
+        { "RotationSpeed",               &OrbitBehavior::readRotationSpeed             },
+        { "Angle",                       &OrbitBehavior::readAngle                     },
+        { "Radius",                      &OrbitBehavior::readRadius                    },
+        { "First Layer",                 &OrbitBehavior::readFirstLayer                },
+        { "Second Layer",                &OrbitBehavior::readSecondLayer               },
+        { "Base Scale",                  &OrbitBehavior::readBaseScale                 },
+        { "Scale Oscillation Magnitude", &OrbitBehavior::readScaleOscillationMagnitude },
+        { "Scale Extremes Angle",        &OrbitBehavior::readScaleExtremesAngle        },
+        { "Layer Switch Angle",          &OrbitBehavior::readLayerSwitchAngle          }
 
     };
 
@@ -270,8 +285,12 @@ nlohmann::ordered_json OrbitBehavior::Write() const
     json["Radius"]          = Stream::Write(m_Radius);
     json["First Layer"]     = m_FirstLayer;
     json["Second Layer"]    = m_SecondLayer;
-    json["Threshold Angle"] = m_ThresholdAngle;
     json["Base Scale"]      = Stream::Write(m_BaseScale);
+
+
+    json["Scale Oscillation Magnitude"] = m_ScaleOscillationMagnitude;
+    json["Scale Extremes Angle"]        = m_ScaleExtremesAngle;
+    json["Layer Switch Angle"]          = m_LayerSwitchAngle;
 
     return json;
 }
@@ -304,8 +323,10 @@ OrbitBehavior::OrbitBehavior(OrbitBehavior const& other) :
     m_Radius(other.m_Radius),
     m_FirstLayer(other.m_FirstLayer),
     m_SecondLayer(other.m_SecondLayer),
-    m_ThresholdAngle(other.m_ThresholdAngle),
-    m_BaseScale(other.m_BaseScale)
+    m_BaseScale(other.m_BaseScale),
+    m_ScaleOscillationMagnitude(other.m_ScaleOscillationMagnitude),
+    m_ScaleExtremesAngle(other.m_ScaleExtremesAngle),
+    m_LayerSwitchAngle(other.m_LayerSwitchAngle)
 {}
 
 

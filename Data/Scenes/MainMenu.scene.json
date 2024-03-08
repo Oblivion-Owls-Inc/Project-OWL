@@ -33,7 +33,7 @@
                     0.5,
                     0.5
                 ],
-                "UseAspectRatio": true
+                "UseAspectRatio": false
             },
             "CreditsButtonTexture": {
                 "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
@@ -54,8 +54,8 @@
                     8
                 ],
                 "Pivot": [
-                    0.0,
-                    1.0
+                    0.5,
+                    0.5
                 ],
                 "UseAspectRatio": false
             },
@@ -374,12 +374,12 @@
                         0.0
                     ],
                     "FrameSize": [
-                        1.0,
-                        1.0
+                        2.0,
+                        2.0
                     ],
                     "SizeTypes": [
-                        "RelativeToWidth",
-                        "RelativeToWidth"
+                        "RelativeToHeight",
+                        "RelativeToHeight"
                     ]
                 }
             },
@@ -528,7 +528,7 @@
                                         0.0
                                     ],
                                     "FrameSize": [
-                                        0.15000000596046448,
+                                        0.75,
                                         0.15000000596046448
                                     ],
                                     "SizeTypes": [
@@ -547,7 +547,7 @@
                                                 0
                                             ],
                                             "TileScale": [
-                                                1.0,
+                                                0.75,
                                                 1.0
                                             ],
                                             "TileData": [
@@ -561,7 +561,7 @@
                                             "Text": "Play"
                                         },
                                         "TilemapSprite": {
-                                            "Layer": 4,
+                                            "Layer": 5,
                                             "Color": [
                                                 0.0,
                                                 0.0,
@@ -574,17 +574,27 @@
                                                 "AssetName": "FontSheet"
                                             }
                                         },
-                                        "Transform": {
-                                            "Translation": [
-                                                -0.30879878997802734,
-                                                -0.0740271806716919
+                                        "UiElement": {
+                                            "Anchor": [
+                                                -0.5299999713897705,
+                                                -0.029999999329447746
                                             ],
-                                            "Rotation": 0.0,
-                                            "Scale": [
-                                                0.15000000596046448,
-                                                0.15000000596046448
+                                            "Pivot": [
+                                                -1.0,
+                                                0.0
                                             ],
-                                            "IsDiegetic": true
+                                            "Offset": [
+                                                0.0,
+                                                0.0
+                                            ],
+                                            "FrameSize": [
+                                                0.1599999964237213,
+                                                0.7200000286102295
+                                            ],
+                                            "SizeTypes": [
+                                                "RelativeToWidth",
+                                                "RelativeToHeight"
+                                            ]
                                         }
                                     },
                                     "Children": null
@@ -689,7 +699,7 @@
                                             "Text": "Tutorial"
                                         },
                                         "TilemapSprite": {
-                                            "Layer": 5,
+                                            "Layer": 6,
                                             "Color": [
                                                 0.0,
                                                 0.0,
@@ -702,17 +712,27 @@
                                                 "AssetName": "FontSheet"
                                             }
                                         },
-                                        "Transform": {
-                                            "Translation": [
-                                                -0.38494086265563965,
-                                                -0.3405245542526245
+                                        "UiElement": {
+                                            "Anchor": [
+                                                0.0,
+                                                0.0
                                             ],
-                                            "Rotation": 0.0,
-                                            "Scale": [
-                                                0.10000000149011612,
-                                                0.10000000149011612
+                                            "Pivot": [
+                                                0.0,
+                                                0.0
                                             ],
-                                            "IsDiegetic": true
+                                            "Offset": [
+                                                0.0,
+                                                0.0
+                                            ],
+                                            "FrameSize": [
+                                                0.5,
+                                                0.5
+                                            ],
+                                            "SizeTypes": [
+                                                "RelativeToWidth",
+                                                "RelativeToHeight"
+                                            ]
                                         }
                                     },
                                     "Children": null
@@ -830,17 +850,27 @@
                                                 "AssetName": "FontSheet"
                                             }
                                         },
-                                        "Transform": {
-                                            "Translation": [
-                                                -0.38917088508605957,
-                                                -0.5901015996932983
+                                        "UiElement": {
+                                            "Anchor": [
+                                                0.0,
+                                                0.0
                                             ],
-                                            "Rotation": 0.0,
-                                            "Scale": [
-                                                0.10000000149011612,
-                                                0.10000000149011612
+                                            "Pivot": [
+                                                0.0,
+                                                0.0
                                             ],
-                                            "IsDiegetic": true
+                                            "Offset": [
+                                                0.0,
+                                                0.0
+                                            ],
+                                            "FrameSize": [
+                                                0.5,
+                                                0.5
+                                            ],
+                                            "SizeTypes": [
+                                                "RelativeToWidth",
+                                                "RelativeToHeight"
+                                            ]
                                         }
                                     },
                                     "Children": null
@@ -944,7 +974,7 @@
                                             "Text": "Credits"
                                         },
                                         "TilemapSprite": {
-                                            "Layer": 2,
+                                            "Layer": 7,
                                             "Color": [
                                                 0.0,
                                                 0.0,
@@ -957,17 +987,27 @@
                                                 "AssetName": "FontSheet"
                                             }
                                         },
-                                        "Transform": {
-                                            "Translation": [
-                                                -0.34686970710754395,
-                                                -0.848138689994812
+                                        "UiElement": {
+                                            "Anchor": [
+                                                0.0,
+                                                0.0
                                             ],
-                                            "Rotation": 0.0,
-                                            "Scale": [
-                                                0.10000000149011612,
-                                                0.10000000149011612
+                                            "Pivot": [
+                                                0.03999999910593033,
+                                                0.0
                                             ],
-                                            "IsDiegetic": true
+                                            "Offset": [
+                                                0.0,
+                                                0.0
+                                            ],
+                                            "FrameSize": [
+                                                0.699999988079071,
+                                                0.699999988079071
+                                            ],
+                                            "SizeTypes": [
+                                                "RelativeToWidth",
+                                                "RelativeToHeight"
+                                            ]
                                         }
                                     },
                                     "Children": null
@@ -1071,32 +1111,6 @@
                                         },
                                         "Text": {
                                             "Text": "Quit"
-                                        },
-                                        "TilemapSprite": {
-                                            "Layer": 2,
-                                            "Color": [
-                                                0.0,
-                                                0.0,
-                                                0.0,
-                                                0.0
-                                            ],
-                                            "Opacity": 1.0,
-                                            "FrameIndex": 0,
-                                            "Texture": {
-                                                "AssetName": "FontSheet"
-                                            }
-                                        },
-                                        "Transform": {
-                                            "Translation": [
-                                                -0.30879878997802734,
-                                                -1.0638748407363892
-                                            ],
-                                            "Rotation": 0.0,
-                                            "Scale": [
-                                                0.15000000596046448,
-                                                0.15000000596046448
-                                            ],
-                                            "IsDiegetic": true
                                         }
                                     },
                                     "Children": null
@@ -1111,10 +1125,10 @@
             "Name": "Moon",
             "Components": {
                 "Animation": {
-                    "FrameIndex": 8,
-                    "FrameDelay": 0.07123465090990067,
+                    "FrameIndex": 20,
+                    "FrameDelay": 0.05058419704437256,
                     "IsRunning": true,
-                    "LoopCount": 99847,
+                    "LoopCount": 99696,
                     "Animation": {
                         "AssetName": "Moon_Animation"
                     }
@@ -1128,15 +1142,15 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 8,
+                    "FrameIndex": 20,
                     "Texture": {
                         "AssetName": "Moon_Texture"
                     }
                 },
                 "Transform": {
                     "Translation": [
-                        1.8443315029144287,
-                        0.848138689994812
+                        1.907688856124878,
+                        0.7526934742927551
                     ],
                     "Rotation": 0.0,
                     "Scale": [
@@ -1151,29 +1165,30 @@
                     "Name": "Lava",
                     "Components": {
                         "Animation": {
-                            "FrameIndex": 8,
-                            "FrameDelay": 0.07123465090990067,
+                            "FrameIndex": 20,
+                            "FrameDelay": 0.05058419704437256,
                             "IsRunning": true,
-                            "LoopCount": 99847,
+                            "LoopCount": 99696,
                             "Animation": {
                                 "AssetName": "Lava_Animation"
                             }
                         },
                         "OrbitBehavior": {
                             "RotationSpeed": 1.0,
-                            "Angle": 3.4209256172180176,
+                            "Angle": 5.442389965057373,
                             "Radius": [
-                                -0.6200000047683716,
-                                0.800000011920929
+                                -1.0199999809265137,
+                                0.6000000238418579
                             ],
                             "First Layer": 3,
                             "Second Layer": 1,
-                            "Threshold Angle": 86.9000015258789,
                             "Base Scale": [
-                                0.550000011920929,
-                                0.550000011920929
+                                0.5,
+                                0.5
                             ],
-                            "Flip Growth": true
+                            "Scale Oscillation Magnitude": 0.5,
+                            "Scale Extremes Angle": 4.300000190734863,
+                            "Layer Switch Angle": 3.1415927410125732
                         },
                         "Sprite": {
                             "Layer": 3,
@@ -1184,20 +1199,20 @@
                                 0.0
                             ],
                             "Opacity": 1.0,
-                            "FrameIndex": 8,
+                            "FrameIndex": 20,
                             "Texture": {
                                 "AssetName": "LavaTexture"
                             }
                         },
                         "Transform": {
                             "Translation": [
-                                2.4402999877929688,
-                                0.6275670528411865
+                                1.2274811267852783,
+                                0.3055891990661621
                             ],
                             "Rotation": 0.0,
                             "Scale": [
-                                0.6557363271713257,
-                                0.6557363271713257
+                                0.6038554906845093,
+                                0.6038554906845093
                             ],
                             "IsDiegetic": true
                         }
