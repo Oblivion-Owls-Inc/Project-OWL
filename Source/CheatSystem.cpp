@@ -318,6 +318,7 @@
         bool cheatIsOn = !constructionBehavior->GetIgnoreCosts();
         constructionBehavior->SetIgnoreCosts( cheatIsOn );
 
+        m_ToggleInfiniteResource = cheatIsOn;
         return cheatIsOn;
     }
 
