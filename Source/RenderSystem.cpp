@@ -401,7 +401,7 @@ void RenderSystem::reallocScreenBufferTexture()
     ReadMethodMap< ISerializable > const& RenderSystem::GetReadMethods() const
     {
         static ReadMethodMap< RenderSystem > const readMethods = {
-            { "BackGroundColor", &RenderSystem::readBackgroundColor }
+            { "BackgroundColor", &RenderSystem::readBackgroundColor }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;

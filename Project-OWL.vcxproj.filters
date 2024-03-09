@@ -357,6 +357,9 @@
     <Filter Include="Game\Components\SceneChangeButton">
       <UniqueIdentifier>{1d8900dd-7c60-4907-b4a4-cc9b65981f74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\Building">
+      <UniqueIdentifier>{79c556a0-4527-4bf3-bfbb-5463d4ee800a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -743,6 +746,9 @@
     <ClCompile Include="Source\WinState.cpp">
       <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Building.cpp">
+      <Filter>Engine\Entity\Component\Building</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1125,6 +1131,9 @@
     </ClInclude>
     <ClInclude Include="Source\WinState.h">
       <Filter>Game\Components\Behaviors\WinState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Building.h">
+      <Filter>Engine\Entity\Component\Building</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

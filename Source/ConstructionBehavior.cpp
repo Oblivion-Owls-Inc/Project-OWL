@@ -486,7 +486,6 @@
         buildingTransform->SetTranslation( m_TargetPos );
         
         building->AddToScene();
-        m_Buildings->SetTile( m_TargetTilePos, building ); // TODO: move this line into the Building's OnInit?
         
         if ( m_IgnoreCosts == false )
         {
