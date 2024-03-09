@@ -8,9 +8,9 @@
 
 #pragma once
 
+#include "pch.h" // precompiled header has to be included first
 #include "ISerializable.h"
 
-#include <set>
 
 class Entity;
 class Component;

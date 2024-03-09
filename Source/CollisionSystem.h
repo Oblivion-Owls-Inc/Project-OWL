@@ -12,9 +12,8 @@
 // Includes:
 //-----------------------------------------------------------------------------
 
+    #include "pch.h" 
     #include "System.h"
-    #include <vector>
-    #include <typeindex>
 
     #include "CollisionData.h"
     #include "CollisionLayerFlags.h"

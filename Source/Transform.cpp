@@ -8,6 +8,8 @@
 /// @copyright (c) 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 
+
+#include "pch.h" // precompiled header has to be included first
 #include "Transform.h"
 
 #include "DebugSystem.h"

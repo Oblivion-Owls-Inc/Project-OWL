@@ -6,6 +6,7 @@
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
+#include "pch.h" 
 #include "EntityReference.h"
 
 #include "Entity.h"
@@ -17,7 +18,6 @@
 
 #include "EntitySystem.h"
 
-#include <imgui.h>
 
 
 //-----------------------------------------------------------------------------

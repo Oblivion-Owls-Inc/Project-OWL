@@ -6,7 +6,7 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
-#pragma once
+#include "pch.h" // precompiled header has to be included first
 
 #include "AudioPlayer.h"
 #include "AssetLibrarySystem.h"

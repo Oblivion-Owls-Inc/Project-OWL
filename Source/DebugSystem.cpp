@@ -12,6 +12,8 @@
 ///*****************************************************************/
 /// Includes
 ///*****************************************************************/
+
+#include "pch.h" // precompiled header has to be included first
 #include "DebugSystem.h"
 #include "PlatformSystem.h"
 #include "InputSystem.h"
@@ -29,8 +31,6 @@
 #include "Engine.h"
 #include "EntitySystem.h"
 #include "Entity.h"
-#include <chrono>
-#include <string>
 
 ///*****************************************************************/
 /// @struct ScrollingBuffer

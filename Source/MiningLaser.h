@@ -8,14 +8,12 @@
 
 #pragma once
 
-#include "Behavior.h"
+#include "pch.h" // precompiled header has to be included first
+
 #include "basics.h"
+#include "Behavior.h"
 
 #include "CollisionLayerFlags.h"
-
-#include <deque>
-#include <functional>
-#include <map>
 
 #include "EntityReference.h"
 #include "ComponentReference.h"

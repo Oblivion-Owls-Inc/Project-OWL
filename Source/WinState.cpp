@@ -5,6 +5,8 @@
 *
 * \author Eli Tsereteli
 *********************************************************************/
+
+#include "pch.h" // precompiled header has to be included first
 #include "BehaviorSystem.h"
 #include "WinState.h"
 #include "Entity.h"

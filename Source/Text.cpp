@@ -6,13 +6,11 @@
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
-
+#include "pch.h" // precompiled header has to be included first
 #include "Text.h"
 
 #include "ComponentReference.t.h"
 #include "Tilemap.h"
-
-#include "imgui_stdlib.h"
 
 
 //-----------------------------------------------------------------------------

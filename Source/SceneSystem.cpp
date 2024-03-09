@@ -6,6 +6,9 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
+
+#include "pch.h" // precompiled header has to be included first
+#include "basics.h"
 #include "SceneSystem.h"
 
 #include "EntitySystem.h"
@@ -19,12 +22,7 @@
 #include "TransformAnimation.h"
 #include "AnimationAsset.h"
 
-#include "basics.h"
 #include "Stream.h"
-
-#include <filesystem>
-#include <algorithm>
-
 //-----------------------------------------------------------------------------
 // public methods
 //-----------------------------------------------------------------------------

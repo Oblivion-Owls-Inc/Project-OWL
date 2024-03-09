@@ -7,23 +7,16 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #pragma once
+#include "pch.h" // precompiled header has to be included first
 
 #define CURVE_C
+
 
 #ifndef CURVE_H
 #include "Curve.h"
 #endif
 
 #include "basics.h"
-
-#include <glm/glm.hpp>
-#include <vector>
-#include <algorithm>
-
-#include "imgui.h"
-#include "implot.h"
-
-#include <sstream>
 
 #include "Stream.h"
 

@@ -5,6 +5,8 @@
 /// @date       2023-10-06
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
+
+#include "pch.h" // precompiled header has to be included first
 #define POOL_C
 
 #ifndef POOL_H
