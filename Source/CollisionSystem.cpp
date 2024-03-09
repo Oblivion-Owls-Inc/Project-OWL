@@ -532,11 +532,15 @@
             return;
         }
 
-        // check the collision
-        CollisionData collisionData;
-        bool touching = checkCollision( colliderA, colliderB, &collisionData );
+        CollisionData collisionData = CollisionData();
 
-        if ( touching == false || collisionData.depth == -INFINITY )
+        // check the collision
+        bool needCollisionData = (aCollidesB && colliderA->HasOnCollisionCallbacks()) || (bCollidesA && colliderB->HasOnCollisionCallbacks());
+
+        bool touching = checkCollision( colliderA, colliderB, needCollisionData ? &collisionData : nullptr );
+
+
+        if ( touching == false )
         {
             return;
         }
@@ -715,11 +719,6 @@
             return false;
         }
 
-        if ( collisionData )
-        {
-            *collisionData = CollisionData();
-        }
-
         glm::mat4 const& worldToTile = tilemap->GetWorldToTilemapMatrix();
         glm::mat4 const& tileToWorld = tilemap->GetTilemapToWorldMatrix();
         glm::vec2 tileSize = tilemap->GetTileScale() * tilemapCollider->GetTransform()->GetScale();
@@ -735,9 +734,24 @@
 
         pos = worldToTile * glm::vec4( pos, 0, 1 );
         glm::vec2 extents = glm::vec2( radius, radius );
-        glm::ivec2 minTile = pos - extents;
-        glm::ivec2 maxTile = pos + extents;
+        glm::ivec2 minTile = glm::ivec2( std::floor( pos.x - extents.x ), std::floor( pos.y - extents.y ) );
+        glm::ivec2 maxTile = glm::ivec2( std::floor( pos.x + extents.x ), std::floor( pos.y + extents.y ) );
 
+        minTile.x = std::max( minTile.x, 0 );
+        minTile.y = std::max( minTile.y, 0 );
+
+        glm::ivec2 const& dimensions = tilemap->GetDimensions();
+
+        maxTile.x = std::min( maxTile.x, dimensions.x - 1 );
+        maxTile.y = std::min( maxTile.y, dimensions.y - 1 );
+
+        if (
+            minTile.x >= dimensions.x || maxTile.x < 0 ||
+            minTile.y >= dimensions.y || maxTile.y < 0
+        )
+        {
+            return false;
+        }
 
 
         bool collision = false;
@@ -747,11 +761,6 @@
         {
             for ( tilePos.x = minTile.x; tilePos.x <= maxTile.x; ++tilePos.x )
             {
-                if ( tilemap->IsPositionWithinBounds( tilePos ) == false )
-                {
-                    continue;
-                }
-
                 if ( tilemap->GetTile( tilePos ) < 0 )
                 {
                     continue;
@@ -808,22 +817,17 @@
         int enabledEdges
     )
     {
-        if ( enabledEdges == 0 )
+        if ( circlePos.x >= aabbMax.x && (enabledEdges & s_EdgeRight || enabledEdges == 0) )
         {
-            return false;
-        }
-
-        if ( circlePos.x >= aabbMax.x && (enabledEdges & s_EdgeRight) )
-        {
-            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp) )
+            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp || enabledEdges == 0) )
             { // top right corner
                 return checkCirclePoint( circlePos, circleRadius, aabbMax, collisionData );
             }
-            else if ( circlePos.y <= aabbMin.y && (enabledEdges & s_EdgeDown) )
+            else if ( circlePos.y <= aabbMin.y && (enabledEdges & s_EdgeDown || enabledEdges == 0) )
             { // bottom right corner
                 return checkCirclePoint( circlePos, circleRadius, glm::vec2( aabbMax.x, aabbMin.y ), collisionData );
             }
-            else
+            else if ( enabledEdges != 0 )
             { // right edge
                 if ( collisionData == nullptr )
                 {
@@ -837,13 +841,13 @@
                     collisionData->position = circlePos - glm::vec2( circleRadius, 0 );
                     collisionData->normal = glm::vec2( 1, 0 );
                 }
-
-                return true;
             }
+
+            return true;
         }
-        else if ( circlePos.x <= aabbMin.x && (enabledEdges & s_EdgeLeft) )
+        else if ( circlePos.x <= aabbMin.x && (enabledEdges & s_EdgeLeft || enabledEdges == 0) )
         {
-            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp) )
+            if ( circlePos.y >= aabbMax.y && (enabledEdges & s_EdgeUp || enabledEdges == 0) )
             { // top left corner
                 return checkCirclePoint( circlePos, circleRadius, glm::vec2( aabbMin.x, aabbMax.y ), collisionData);
             }

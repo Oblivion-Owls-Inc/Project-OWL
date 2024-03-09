@@ -130,6 +130,10 @@ public: // methods
     /// @param  ownerId     the ID of the owner of the callback to remove
     void RemoveOnCollisionCallback( unsigned ownerId );
 
+    /// @brief  gets whether this Collider has any OnCollisionCallbacks
+    /// @return whether this Collider has any OnCollisionCallbacks
+    bool HasOnCollisionCallbacks() const;
+
 
     /// @brief  adds a callback function to be called when a collision begins
     /// @param  callback    the function to be called when this collider collides

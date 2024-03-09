@@ -52,10 +52,10 @@
             }
         );
 
-        m_Transform .Init( GetEntity() );
         m_RigidBody .Init( GetEntity() );
         m_StaticBody.Init( GetEntity() );
         m_Tilemap   .Init( GetEntity() );
+        m_Transform .Init( GetEntity() );
     }
 
 
