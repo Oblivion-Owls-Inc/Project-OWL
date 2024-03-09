@@ -75,7 +75,7 @@
     /// @brief  shows the inspector for Building
     void Building::Inspector()
     {
-
+        m_BuildingsEntity.Inspect("Building Tilemap Entity");
     }
 
 
