@@ -164,7 +164,7 @@ void TilemapSprite::OnExit()
 ///                       just NOT allow transform-less rendering?...
 void TilemapSprite::Draw()
 {
-    if (!m_Tilemap)
+    if (!m_Tilemap || !m_Texture)
         return;
 
     Mesh const* mesh = m_Texture->GetMesh();
