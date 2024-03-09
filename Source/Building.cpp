@@ -46,18 +46,26 @@
         m_BuildingsEntity.SetOwnerName(GetName());
         m_BuildingsEntity.Init();
 
+        m_BuildingsTransform.Init(GetEntity());
+
         // Make sure both component references are initialised.
-        if ( m_Buildings == nullptr && m_BuildingsTransform == nullptr)
+        if ( m_Buildings == nullptr || m_BuildingsTransform == nullptr)
         {
             return;
         }
 
-        m_Buildings->SetTile(m_BuildingsTransform->GetTranslation(), m_BuildingsEntity);
+        m_Buildings->SetTile( m_Buildings->WorldPosToTileCoord( m_BuildingsTransform->GetTranslation() ), GetEntity() );
     }
 
     /// @brief  called once when exiting the scene
     void Building::OnExit()
     {
+        if (m_Buildings != nullptr && m_BuildingsTransform != nullptr)
+        {
+            m_Buildings->SetTile( m_Buildings->WorldPosToTileCoord( m_BuildingsTransform->GetTranslation() ), nullptr );
+        }
+
+        m_BuildingsTransform.Exit();
         m_BuildingsEntity.Exit();
     }
 
