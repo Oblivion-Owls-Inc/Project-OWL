@@ -23,7 +23,6 @@ class BulletAoe : public Bullet
 public: // constructor / destructors
 //-----------------------------------------------------------------------------
 
-
     /// @brief  constructor
     BulletAoe();
 
@@ -43,6 +42,13 @@ private: // methods
     /// @param  other   the collider that was collided with
     void onCollisionEnter( Collider* other ) override;
 
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+
+
+    /// @brief Used by the Debug System to display information about this Component
+    virtual void Inspector() override;
 
 //-----------------------------------------------------------------------------
 private: // reading

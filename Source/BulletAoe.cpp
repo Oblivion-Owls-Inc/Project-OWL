@@ -22,8 +22,7 @@
 
     /// @brief  constructor
     BulletAoe::BulletAoe()
-    {
-    }
+    {}
 
 
 //-----------------------------------------------------------------------------
@@ -72,6 +71,17 @@
         }
 
         GetEntity()->Destroy();
+    }
+
+//-----------------------------------------------------------------------------
+// public: inspection
+//-----------------------------------------------------------------------------
+
+    /// @brief Used by the Debug System to display information about this Component
+    void BulletAoe::Inspector()
+    {
+        ImGui::Text("Aoe Bullet");
+        Bullet::Inspector();
     }
 
 
