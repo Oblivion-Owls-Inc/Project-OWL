@@ -14,6 +14,7 @@
         "BehaviorSystem<EffectAnimator>": false,
         "BehaviorSystem<EnemyBehavior>": false,
         "BehaviorSystem<Generator>": false,
+        "BehaviorSystem<PauseComponent>": false,
         "BehaviorSystem<PlayerController>": false,
         "BehaviorSystem<Popup>": false,
         "BehaviorSystem<RigidBody>": false,
