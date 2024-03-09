@@ -66,6 +66,7 @@
 #include "Popup.h"
 #include "pause.h"
 #include "orbitbehavior.h"
+#include "DestructibleTilemap.h"
 #include "Building.h"
 
 
@@ -174,6 +175,7 @@
         { "TurretBehavior"         , ComponentInfo< TurretBehavior          >() },
         { "EffectAnimator"         , ComponentInfo< EffectAnimator          >() },
         { "Tilemap<int>"           , ComponentInfo< Tilemap< int     >      >() },
+        { "Tilemap<float>"         , ComponentInfo< Tilemap< float   >      >() },
         { "Tilemap<Entity*>"       , ComponentInfo< Tilemap< Entity* >      >() },
         { "TilemapSprite"          , ComponentInfo< TilemapSprite           >() },
         { "TilemapCollider"        , ComponentInfo< TilemapCollider         >() },
@@ -212,8 +214,10 @@
         { "PathfinderSource"       , ComponentInfo< PathfinderSource        >() },
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
         { "Popup"                  , ComponentInfo< Popup                   >() },
+        { "PauseComponent"         , ComponentInfo< PauseComponent          >() },
+        { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() },
+        { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
         { "Building"               , ComponentInfo< Building                >() },
-        { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() }
     };
 
 //-----------------------------------------------------------------------------
