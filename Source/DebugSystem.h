@@ -222,7 +222,11 @@ private: // reading
     /// @brief Reads which systems the debug windows were open for
     /// @param data The json data to read from
     void readOpenSystemWindows(nlohmann::ordered_json const& data);
+    
+        
+    void LoadDebugWindowStates();
 
+    nlohmann::ordered_json WriteSystemDebugWindowStates();
 
     /// @brief map containing read methods
     static ReadMethodMap< DebugSystem > const s_ReadMethods;

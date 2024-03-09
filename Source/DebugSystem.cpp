@@ -115,8 +115,7 @@ void DebugSystem::OnInit()
 
     SetDebugEnable( true );
     SetNonEditorSystemsEnabled(m_EditorRunning);
-
-    Stream::ReadFromFile(this, "Data/Config/DebugSystem.json");
+    LoadDebugWindowStates();
 
     for (System* system : GameEngine()->GetSystems())
     {
@@ -599,7 +598,7 @@ void DebugSystem::OnFixedUpdate()
 /// @brief Perform cleanup and shutdown.
 void DebugSystem::OnExit()
 {
-    Stream::WriteToFile("Data/Config/DebugSystem.json", Write());
+    Stream::WriteToFile( "Data/Config/DebugSystem.json", WriteSystemDebugWindowStates() );
 
     //ImGui::End();
     ImGui::Render();
@@ -732,7 +731,38 @@ void DebugSystem::WritetoConsole(const std::string& message)
 
     void DebugSystem::readOpenSystemWindows(nlohmann::ordered_json const& data)
     {
-        Stream::Read(m_SystemDebugWindows, data);
+        for (auto const& [key, val] : data.items())
+        {
+            m_SystemDebugWindows[key] = val;
+        }
+    }
+
+    /// @brief Reads the Open System Windows from the data
+    void DebugSystem::LoadDebugWindowStates()
+    {
+        nlohmann::ordered_json data;
+
+        data = Stream::ParseFromFile("Data/Config/DebugSystem.json");
+
+        readOpenSystemWindows(data);
+    }
+
+    nlohmann::ordered_json DebugSystem::WriteSystemDebugWindowStates()
+    {
+        nlohmann::ordered_json json;
+
+        /// For each key in the map, write the value to the json
+        for (auto const& [key, val] : m_SystemDebugWindows)
+        {
+            if (val == false)
+            {
+                continue;
+            }
+
+            json[key] = val;
+        }
+
+        return json;
     }
 
     /// @brief map containing read methods
