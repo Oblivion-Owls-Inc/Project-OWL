@@ -6,6 +6,8 @@
 /// @copyright  Digipen LLC (c) 2023
 ///*****************************************************************/
 
+
+#include "pch.h" // precompiled header has to be included first
 #include "HomeBase.h"
 
 #include "ComponentReference.t.h"

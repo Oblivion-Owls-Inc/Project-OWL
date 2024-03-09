@@ -6,10 +6,9 @@
 /// 
 /// @copyright Copyright (c) 2023 Digipen Institute of Technology
 
-#include "Component.h"
+#include "pch.h" 
 #include "basics.h"
-
-#include <imgui.h>
+#include "Component.h"
 
 #include "Entity.h"
 

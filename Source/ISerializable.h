@@ -7,11 +7,7 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 #pragma once
-
-#include <map>
-#include <string>
-
-#include <nlohmann/json.hpp>
+#include "pch.h" // precompiled header has to be included first
 
 template < typename T >
 using ReadMethod = void (T::*)( nlohmann::ordered_json const& json );

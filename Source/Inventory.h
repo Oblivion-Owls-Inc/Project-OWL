@@ -8,10 +8,10 @@
 
 #pragma once
 
+#include "pch.h" // precompiled header has to be included first
 #include "Component.h"
 
 #include "ItemStack.h"
-#include <vector>
 
 
 /// @brief  Inventory component that stores items

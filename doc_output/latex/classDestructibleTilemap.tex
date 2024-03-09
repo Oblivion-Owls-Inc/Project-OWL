@@ -1,0 +1,196 @@
+\hypertarget{classDestructibleTilemap}{}\doxysection{Destructible\+Tilemap Class Reference}
+\label{classDestructibleTilemap}\index{DestructibleTilemap@{DestructibleTilemap}}
+
+
+\mbox{\hyperlink{classComponent}{Component}} responsible for handling the breaking of tiles with varrying strengths.  
+
+
+
+
+{\ttfamily \#include $<$Destructible\+Tilemap.\+h$>$}
+
+
+
+Inheritance diagram for Destructible\+Tilemap\+:
+% FIG 0
+
+
+Collaboration diagram for Destructible\+Tilemap\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDestructibleTilemap_ace864622a13b0a0f35ed01e56cda85d8}\label{classDestructibleTilemap_ace864622a13b0a0f35ed01e56cda85d8}} 
+\mbox{\hyperlink{classDestructibleTilemap_ace864622a13b0a0f35ed01e56cda85d8}{Destructible\+Tilemap}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classDestructibleTilemap_a4ee6df97d96d12f0893d64e555668e13}{Damage\+Tile}} (glm\+::ivec2 const \&tile\+Pos, float damage)
+\begin{DoxyCompactList}\small\item\em damages a tile in the tilemap \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classDestructibleTilemap_a82b59b6390c87fd5fc53b37c19f9ab7e}{Get\+Tile\+Health\+Proportion}} (glm\+::ivec2 const \&tile\+Pos) const
+\begin{DoxyCompactList}\small\item\em gets the health proportion of the specified tile pos \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classDestructibleTilemap_a359dc6a90a8cd3314fbd7aa0a3fd938b}{Get\+Max\+Health}} (int tile\+Id) const
+\begin{DoxyCompactList}\small\item\em gets the maximum health of tile type \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTilemap}{Tilemap}}$<$ int $>$ const  $\ast$ \mbox{\hyperlink{classDestructibleTilemap_ae36108f223e2f640e5aa0c8e7b47f830}{Get\+Tilemap}} () const
+\begin{DoxyCompactList}\small\item\em gets the source \mbox{\hyperlink{classTilemap}{Tilemap}} attached to this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTilemap}{Tilemap}}$<$ float $>$ const  $\ast$ \mbox{\hyperlink{classDestructibleTilemap_a1d4a936d8363bf40a5dfd9a00249279e}{Get\+Health\+Tilemap}} () const
+\begin{DoxyCompactList}\small\item\em gets the health \mbox{\hyperlink{classTilemap}{Tilemap}} attached to this \mbox{\hyperlink{classEntity}{Entity}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDestructibleTilemap_a532235a55ce2efd3ac0946c10f458364}\label{classDestructibleTilemap_a532235a55ce2efd3ac0946c10f458364}} 
+virtual void \mbox{\hyperlink{classDestructibleTilemap_a532235a55ce2efd3ac0946c10f458364}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDestructibleTilemap_ac22c4f906ff6c8ef7fb0aa731c337016}\label{classDestructibleTilemap_ac22c4f906ff6c8ef7fb0aa731c337016}} 
+virtual void \mbox{\hyperlink{classDestructibleTilemap_ac22c4f906ff6c8ef7fb0aa731c337016}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDestructibleTilemap_a816096ce46ccd2d994c5ccb88b9d6439}\label{classDestructibleTilemap_a816096ce46ccd2d994c5ccb88b9d6439}} 
+virtual void \mbox{\hyperlink{classDestructibleTilemap_a816096ce46ccd2d994c5ccb88b9d6439}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classDestructibleTilemap_ace77109ee223100752ae91188d7b543b}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classDestructibleTilemap_a710169060e9064c27046e3d597b30863}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} $\ast$ \mbox{\hyperlink{classDestructibleTilemap_a7f0a9b48ca1a380f86837e28f9f7c71a}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classComponent}{Component}} responsible for handling the breaking of tiles with varrying strengths. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDestructibleTilemap_a7f0a9b48ca1a380f86837e28f9f7c71a}\label{classDestructibleTilemap_a7f0a9b48ca1a380f86837e28f9f7c71a}} 
+\index{DestructibleTilemap@{DestructibleTilemap}!Clone@{Clone}}
+\index{Clone@{Clone}!DestructibleTilemap@{DestructibleTilemap}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} $\ast$ Destructible\+Tilemap\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classDestructibleTilemap_a4ee6df97d96d12f0893d64e555668e13}\label{classDestructibleTilemap_a4ee6df97d96d12f0893d64e555668e13}} 
+\index{DestructibleTilemap@{DestructibleTilemap}!DamageTile@{DamageTile}}
+\index{DamageTile@{DamageTile}!DestructibleTilemap@{DestructibleTilemap}}
+\doxysubsubsection{\texorpdfstring{DamageTile()}{DamageTile()}}
+{\footnotesize\ttfamily float Destructible\+Tilemap\+::\+Damage\+Tile (\begin{DoxyParamCaption}\item[{glm\+::ivec2 const \&}]{tile\+Pos,  }\item[{float}]{damage }\end{DoxyParamCaption})}
+
+
+
+damages a tile in the tilemap 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Pos} & the tile to damage \\
+\hline
+{\em damage} & the amount to damage the tile \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the amount of overkill damage dealt, if the tile was destroyed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDestructibleTilemap_a1d4a936d8363bf40a5dfd9a00249279e}\label{classDestructibleTilemap_a1d4a936d8363bf40a5dfd9a00249279e}} 
+\index{DestructibleTilemap@{DestructibleTilemap}!GetHealthTilemap@{GetHealthTilemap}}
+\index{GetHealthTilemap@{GetHealthTilemap}!DestructibleTilemap@{DestructibleTilemap}}
+\doxysubsubsection{\texorpdfstring{GetHealthTilemap()}{GetHealthTilemap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ float $>$ const  $\ast$ Destructible\+Tilemap\+::\+Get\+Health\+Tilemap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the health \mbox{\hyperlink{classTilemap}{Tilemap}} attached to this \mbox{\hyperlink{classEntity}{Entity}} 
+
+\begin{DoxyReturn}{Returns}
+the health \mbox{\hyperlink{classTilemap}{Tilemap}} attached to this \mbox{\hyperlink{classEntity}{Entity}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDestructibleTilemap_a359dc6a90a8cd3314fbd7aa0a3fd938b}\label{classDestructibleTilemap_a359dc6a90a8cd3314fbd7aa0a3fd938b}} 
+\index{DestructibleTilemap@{DestructibleTilemap}!GetMaxHealth@{GetMaxHealth}}
+\index{GetMaxHealth@{GetMaxHealth}!DestructibleTilemap@{DestructibleTilemap}}
+\doxysubsubsection{\texorpdfstring{GetMaxHealth()}{GetMaxHealth()}}
+{\footnotesize\ttfamily float Destructible\+Tilemap\+::\+Get\+Max\+Health (\begin{DoxyParamCaption}\item[{int}]{tile\+Id }\end{DoxyParamCaption}) const}
+
+
+
+gets the maximum health of tile type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Id} & the ID of the tile type to get the max heath of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the max health of the specified tile type 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDestructibleTilemap_ace77109ee223100752ae91188d7b543b}\label{classDestructibleTilemap_ace77109ee223100752ae91188d7b543b}} 
+\index{DestructibleTilemap@{DestructibleTilemap}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!DestructibleTilemap@{DestructibleTilemap}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Destructible\+Tilemap\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classDestructibleTilemap_a82b59b6390c87fd5fc53b37c19f9ab7e}\label{classDestructibleTilemap_a82b59b6390c87fd5fc53b37c19f9ab7e}} 
+\index{DestructibleTilemap@{DestructibleTilemap}!GetTileHealthProportion@{GetTileHealthProportion}}
+\index{GetTileHealthProportion@{GetTileHealthProportion}!DestructibleTilemap@{DestructibleTilemap}}
+\doxysubsubsection{\texorpdfstring{GetTileHealthProportion()}{GetTileHealthProportion()}}
+{\footnotesize\ttfamily float Destructible\+Tilemap\+::\+Get\+Tile\+Health\+Proportion (\begin{DoxyParamCaption}\item[{glm\+::ivec2 const \&}]{tile\+Pos }\end{DoxyParamCaption}) const}
+
+
+
+gets the health proportion of the specified tile pos 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Pos} & the position of the tile to get the health of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the health of the tile from 1 to 0 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDestructibleTilemap_ae36108f223e2f640e5aa0c8e7b47f830}\label{classDestructibleTilemap_ae36108f223e2f640e5aa0c8e7b47f830}} 
+\index{DestructibleTilemap@{DestructibleTilemap}!GetTilemap@{GetTilemap}}
+\index{GetTilemap@{GetTilemap}!DestructibleTilemap@{DestructibleTilemap}}
+\doxysubsubsection{\texorpdfstring{GetTilemap()}{GetTilemap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTilemap}{Tilemap}}$<$ int $>$ const  $\ast$ Destructible\+Tilemap\+::\+Get\+Tilemap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the source \mbox{\hyperlink{classTilemap}{Tilemap}} attached to this \mbox{\hyperlink{classEntity}{Entity}} 
+
+\begin{DoxyReturn}{Returns}
+the source \mbox{\hyperlink{classTilemap}{Tilemap}} attached to this \mbox{\hyperlink{classEntity}{Entity}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDestructibleTilemap_a710169060e9064c27046e3d597b30863}\label{classDestructibleTilemap_a710169060e9064c27046e3d597b30863}} 
+\index{DestructibleTilemap@{DestructibleTilemap}!Write@{Write}}
+\index{Write@{Write}!DestructibleTilemap@{DestructibleTilemap}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Destructible\+Tilemap\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} to JSON 
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classDestructibleTilemap}{Destructible\+Tilemap}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{DestructibleTilemap_8h}{Destructible\+Tilemap.\+h}}\item 
+Source/Destructible\+Tilemap.\+cpp\end{DoxyCompactItemize}

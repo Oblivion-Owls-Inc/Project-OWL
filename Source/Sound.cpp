@@ -6,12 +6,13 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "Sound.h"
 #include "AudioSystem.h"
 
 #include "Inspection.h"
-
-#include <imgui.h>
 
 //-----------------------------------------------------------------------------
 // constructor / destructor

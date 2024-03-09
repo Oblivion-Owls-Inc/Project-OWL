@@ -9,6 +9,8 @@
 ///			 while in Editor 
 ///*****************************************************************/
 
+
+#include "pch.h" 
 #include "Console.h"
 #include "InputSystem.h"
 #include "CheatSystem.h"

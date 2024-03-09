@@ -6,6 +6,8 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 ///*****************************************************************/
 
+
+#include "pch.h" // precompiled header has to be included first
 #include "PauseSystem.h"
 #include "DebugSystem.h"
 #include "InputSystem.h"
@@ -14,32 +16,30 @@
 #include "EntitySystem.h"
 #include "Engine.h"
 
-
+///-----------------------------------------------------------------------------
+/// Public Methods
+///-----------------------------------------------------------------------------
 
 
 ///-----------------------------------------------------------------------------
 /// Private Virtual override methods 
 ///-----------------------------------------------------------------------------
 
-/// @brief Update the PauseSystem
-/// @param dt The time elapsed since the last update
-void PauseSystem::OnUpdate(float dt)
+void PauseSystem::SetRunning(bool running)
 {
-    if (Input()->GetKeyTriggered(GLFW_KEY_ESCAPE))
+    if (m_Running != running)
     {
-        m_Running = !m_Running;
+        m_Running = running;
+        togglePause();
     }
-
-	pauseGame();
 }
 
 /// @brief  Gets called whenever a scene is exited
 void PauseSystem::OnSceneExit()
 {
-    if (m_Running && Debug().IsEditorRunning())
+    if (!m_Running && Debug().IsEditorRunning())
     {
-	   m_Running = true;
-	   pauseGame();
+	   togglePause();
     }
 }
 
@@ -56,7 +56,7 @@ void PauseSystem::DebugWindow()
 ///-----------------------------------------------------------------------------
 
 /// @brief  Pause the systems in the game
-void PauseSystem::pauseGame()
+void PauseSystem::togglePause()
 {
     for (System* system : GameEngine()->GetSystems())
     {

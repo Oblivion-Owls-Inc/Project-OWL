@@ -32,10 +32,6 @@ public: // TileInfo class
         /// @return the loot table of the tile type
         LootTable const& GetLootTable() const;
 
-        /// @brief  gets the toughness of the tile type
-        /// @return the toughness of the tile type
-        float GetToughness() const;
-
 
     //-----------------------------------------------------------------------------
     private: // members
@@ -44,9 +40,6 @@ public: // TileInfo class
 
         /// @brief  the loot table of the tile type
         LootTable m_LootTable;
-    
-        /// @brief  the toughness of the tile type
-        float m_Toughness;
 
 
     //-----------------------------------------------------------------------------
@@ -67,10 +60,6 @@ public: // TileInfo class
         /// @brief  reads the loot table of the tile type
         /// @param  data    - the json data to read from
         void readLootTable( nlohmann::ordered_json const& data );
-
-        /// @brief  reads the toughness of the tile type
-        /// @param  data    - the json data to read from
-        void readToughness( nlohmann::ordered_json const& data );
 
 
     //-----------------------------------------------------------------------------

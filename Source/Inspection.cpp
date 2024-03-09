@@ -6,6 +6,8 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
+
+#include "pch.h" // precompiled header has to be included first
 #include "Inspection.h"
 
 #include "Entity.h"
@@ -13,8 +15,6 @@
 
 #include "CollisionSystem.h"
 
-#include <filesystem>
-#include <imgui.h>
 
 //-----------------------------------------------------------------------------
 // public: public methods

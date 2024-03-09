@@ -72,9 +72,9 @@ $(function() {
 <a href="EntityReference_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ISerializable_8h.html">ISerializable.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="pch_8h.html">pch.h</a>&quot;</span> <span class="comment">// precompiled header has to be included first</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ISerializable_8h.html">ISerializable.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="classEntity.html">Entity</a>;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="classComponent.html">Component</a>;</div>
@@ -208,7 +208,7 @@ $(function() {
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;};</div>
 <div class="ttc" id="aISerializable_8h_html"><div class="ttname"><a href="ISerializable_8h.html">ISerializable.h</a></div><div class="ttdoc">interface for all serializable objects</div></div>
 <div class="ttc" id="aclassComponentReferenceBase_html"><div class="ttname"><a href="classComponentReferenceBase.html">ComponentReferenceBase</a></div><div class="ttdoc">abstract base class for templatized ComponentReferences</div><div class="ttdef"><b>Definition:</b> ComponentReference.h:19</div></div>
-<div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:21</div></div>
+<div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:18</div></div>
 <div class="ttc" id="aclassEntityReference_html"><div class="ttname"><a href="classEntityReference.html">EntityReference</a></div><div class="ttdoc">a reference to an Entity in the scene</div><div class="ttdef"><b>Definition:</b> EntityReference.h:23</div></div>
 <div class="ttc" id="aclassEntityReference_html_a07090e0030461596f0b5ddd0b2559b87"><div class="ttname"><a href="classEntityReference.html#a07090e0030461596f0b5ddd0b2559b87">EntityReference::operator*</a></div><div class="ttdeci">Entity &amp; operator*() const</div><div class="ttdoc">dereference operator</div><div class="ttdef"><b>Definition:</b> EntityReference.cpp:122</div></div>
 <div class="ttc" id="aclassEntityReference_html_a14a418def3753597fcdcd94172659cc3"><div class="ttname"><a href="classEntityReference.html#a14a418def3753597fcdcd94172659cc3">EntityReference::EntityReference</a></div><div class="ttdeci">EntityReference(EntityReference const &amp;)=delete</div><div class="ttdoc">disable default copy constructor</div></div>
@@ -225,8 +225,9 @@ $(function() {
 <div class="ttc" id="aclassEntityReference_html_aa029781c5e794578f84cc693dc769cd7"><div class="ttname"><a href="classEntityReference.html#aa029781c5e794578f84cc693dc769cd7">EntityReference::SetOnDisconnectCallback</a></div><div class="ttdeci">void SetOnDisconnectCallback(std::function&lt; void() &gt; callback)</div><div class="ttdoc">sets the callback to call when this EntityReference disconnects from an Entity</div><div class="ttdef"><b>Definition:</b> EntityReference.cpp:93</div></div>
 <div class="ttc" id="aclassEntityReference_html_ab82a7fa3f058bf40d326aaa3a423a7a7"><div class="ttname"><a href="classEntityReference.html#ab82a7fa3f058bf40d326aaa3a423a7a7">EntityReference::EntityReference</a></div><div class="ttdeci">EntityReference(std::initializer_list&lt; ComponentReferenceBase * &gt; componentReferences)</div><div class="ttdoc">constructor</div><div class="ttdef"><b>Definition:</b> EntityReference.cpp:30</div></div>
 <div class="ttc" id="aclassEntityReference_html_ac234dc1a657420655358b04636bd8178"><div class="ttname"><a href="classEntityReference.html#ac234dc1a657420655358b04636bd8178">EntityReference::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdoc">sets this EntityReference to nullptr</div><div class="ttdef"><b>Definition:</b> EntityReference.cpp:171</div></div>
-<div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:33</div></div>
-<div class="ttc" id="aclassISerializable_html"><div class="ttname"><a href="classISerializable.html">ISerializable</a></div><div class="ttdoc">interface for all serializable objects</div><div class="ttdef"><b>Definition:</b> ISerializable.h:24</div></div>
+<div class="ttc" id="aclassEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:28</div></div>
+<div class="ttc" id="aclassISerializable_html"><div class="ttname"><a href="classISerializable.html">ISerializable</a></div><div class="ttdoc">interface for all serializable objects</div><div class="ttdef"><b>Definition:</b> ISerializable.h:20</div></div>
+<div class="ttc" id="apch_8h_html"><div class="ttname"><a href="pch_8h.html">pch.h</a></div><div class="ttdoc">This is a precompiled header file.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

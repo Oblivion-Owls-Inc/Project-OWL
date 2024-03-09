@@ -8,6 +8,8 @@
 /// @copyright (c) 2023 DigiPen (USA) Corporation.
 ///-----------------------------------------------------------------------------//
 
+
+#include "pch.h" // precompiled header has to be included first
 #include "CheatSystem.h"
 #include "basics.h"
 #include "InputSystem.h"  // GetInstance, GetKeyTriggered

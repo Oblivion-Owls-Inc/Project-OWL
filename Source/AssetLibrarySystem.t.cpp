@@ -6,7 +6,10 @@
 /// 
 /// @copyright Copyright (c) 2023
 
+#include "pch.h" // precompiled header has to be included first
+
 #define ASSETLIBRARYSYSTEM_C
+
 
 #ifndef ASSETLIBRARYSYSTEM_H
 #include "AssetLibrarySystem.h"

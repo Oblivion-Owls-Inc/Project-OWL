@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <functional>
+#include "pch.h" 
 
 class Entity;
 class Component;

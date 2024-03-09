@@ -8,6 +8,7 @@
 /// @copyright (c) 2023 DigiPen (USA) Corporation.
 ///-----------------------------------------------------------------------------//
 
+#include "pch.h" // precompiled header has to be included first
 #include "PlayerController.h" 
 #include "BehaviorSystem.h"     // GetInstance, AddBehavior, RemoveBehavior
 
@@ -17,7 +18,6 @@
 #include "DebugSystem.h"
 #include "EnemyBehavior.h"
 #include "EntitySystem.h"
-#include "glm/glm.hpp"
 #include "Generator.h"
 
 #include "ComponentReference.t.h"

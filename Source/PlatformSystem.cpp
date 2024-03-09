@@ -6,18 +6,15 @@
 /// @version      0.1
 /// @copyright    Copyright (c) 2023 Digipen Institute of Technology
 
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "PlatformSystem.h"
 
 #include "DebugSystem.h"
 #include "RenderSystem.h"
 #include "Engine.h"
 #include "Entity.h"
-
-// #include <glew.h>       // initialize, error callback
-#include <glfw3.h>      // initialize / shutdown
-#include <glm/vec2.hpp> // for returning window dimensions
-#include <iostream>     // cout
-#include <cassert>
 
 
 //-----------------------------------------------------------------------------
