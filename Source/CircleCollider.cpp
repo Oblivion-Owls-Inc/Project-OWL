@@ -8,6 +8,8 @@
 
 #pragma once
 
+
+#include "pch.h" // precompiled header has to be included first
 #include "CircleCollider.h"
 
 #include "ComponentReference.t.h"

@@ -8,13 +8,14 @@
 
 #pragma once
 
+
+#include "pch.h" 
 #include "System.h"
 #include "Component.h"
 #include "Entity.h"
 
 #include "Inspection.h"
 
-#include <vector>
 
 /// @brief  System that keeps track of a specific kind of Component
 /// @tparam ComponentType   the type of Component this ComponentSystem keeps track of

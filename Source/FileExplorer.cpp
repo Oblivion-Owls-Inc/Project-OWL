@@ -1,11 +1,8 @@
-#include "FileExplorer.h"
 
+#include "pch.h" // precompiled header has to be included first
+#include "FileExplorer.h"
 #include "DebugSystem.h"
-#include <filesystem>
-#include <filesystem>
-#include <fstream>
-#include <iterator>
-#include <string>
+
 
 void FileExplorer::Explore(bool* open)
 {

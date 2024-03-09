@@ -14,17 +14,11 @@
 ///*****************************************************************/
 /// Includes:
 ///*****************************************************************/
+
+#include "pch.h" 
 #include "basics.h"
 #include "System.h"
-#include <vector>
-#include "imgui.h"
-#include "imgui_stdlib.h"
-#include "imgui_impl_opengl3.h"
-#include "imgui_impl_glfw.h"
 #include "Console.h"
-#include <iostream>
-#include <sstream>
-#include <set>
 
 #include "PlayBar.h"
 

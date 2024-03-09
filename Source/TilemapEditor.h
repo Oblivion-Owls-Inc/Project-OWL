@@ -8,12 +8,8 @@
 
 #pragma once
 
+#include "pch.h" 
 #include "Component.h"
-
-#include "glew.h"
-#include "glfw3.h"
-
-#include <deque>
 
 #include "ComponentReference.h"
 #include "Tilemap.h"

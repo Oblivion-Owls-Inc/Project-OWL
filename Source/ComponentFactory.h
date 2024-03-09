@@ -13,9 +13,7 @@
 // Include Files:
 //-----------------------------------------------------------------------------
 
-#include <map>       // std::map
-#include <string>    // std::string
-#include <typeindex> // std::typeindex
+#include "pch.h" 
 
 //-----------------------------------------------------------------------------
 // Forward References:

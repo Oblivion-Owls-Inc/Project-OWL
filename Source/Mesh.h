@@ -3,9 +3,8 @@
 /// 
 /// @brief    Mesh class - holds on to buffer/VAO references, draws their contents.
 #pragma once
-#include <vector>       // for LoadVertices()
-#include "glm/glm.hpp"  // for Vertex struct and UV size
 
+#include "pch.h" // precompiled header has to be included first
 
 /// @brief       Stores data needed to render a basic mesh.
 class Mesh

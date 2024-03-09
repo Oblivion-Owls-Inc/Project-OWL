@@ -11,7 +11,7 @@
 //-----------------------------------------------------------------------------
 // include files
 //-----------------------------------------------------------------------------
-
+#include "pch.h" // precompiled header has to be included first
 #include "Component.h"
 
 #include "ComponentReference.h"
@@ -20,9 +20,6 @@ class RigidBody;
 class StaticBody;
 
 #include "CollisionLayerFlags.h"
-
-#include <map>
-#include <functional>
 
 //-----------------------------------------------------------------------------
 // forward references

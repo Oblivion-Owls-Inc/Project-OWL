@@ -8,10 +8,8 @@
 
 #pragma once
 
-#include <map>
+#include "pch.h" // precompiled header has to be included first
 #include "System.h"
-#include "glm/glm.hpp"
-#include "glfw3.h"
 
 class ActionReference;
 

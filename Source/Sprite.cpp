@@ -2,6 +2,10 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    Implementation of Sprite component.
+/// 
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "Sprite.h"
 #include "RenderSystem.h"
 #include "Mesh.h"
@@ -9,8 +13,6 @@
 #include "Transform.h"      // matrix
 #include "Entity.h"         // parent
 #include "CameraSystem.h"   // projection matrix
-#include <algorithm>        // min/max
-#include <iostream>         // error msg
 
 #include "AssetLibrarySystem.h"
 #include "Inspection.h"

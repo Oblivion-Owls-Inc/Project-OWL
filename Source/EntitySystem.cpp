@@ -6,15 +6,14 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
+
+#include "pch.h" // precompiled header has to be included first
 #include "EntitySystem.h"
 
 #include "Entity.h"
 #include "Transform.h"
 
 #include "DebugSystem.h"
-#include "imgui_internal.h"
-#include <algorithm>
-
 //-----------------------------------------------------------------------------
 // public: methods
 //-----------------------------------------------------------------------------

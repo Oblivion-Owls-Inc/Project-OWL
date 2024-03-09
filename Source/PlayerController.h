@@ -13,10 +13,8 @@
 // Includes:
 //------------------------------------------------------------------------------
 
+#include "pch.h" // precompiled header has to be included first
 #include "Behavior.h"
-#include <glm/glm.hpp> // glm::vec2
-#include <string>
-
 
 #include "ComponentReference.h"
 #include "RigidBody.h"

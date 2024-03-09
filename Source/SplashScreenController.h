@@ -13,10 +13,8 @@
 //------------------------------------------------------------------------------
 // Includes:
 //------------------------------------------------------------------------------
+#include "pch.h" 
 #include "Behavior.h"
-
-#include <string>
-#include <vector>
 #include "ComponentReference.h"
 #include "EntityReference.h"
 #include "AssetReference.h"

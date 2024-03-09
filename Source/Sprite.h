@@ -4,7 +4,6 @@
 /// @brief    Sprite component - stores mesh and texture that together draw an image on screen. Supports spritesheets.
 #pragma once
 #include "Component.h"
-#include "glm/glm.hpp"  // vec4
 #include "Stream.h"
 
 #include "ComponentReference.h"

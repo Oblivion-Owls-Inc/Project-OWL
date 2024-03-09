@@ -3,7 +3,7 @@
 /// 
 /// @brief    Header for the OpenGL texture wrapper
 #pragma once
-#include "glm/glm.hpp"
+#include "pch.h" 
 
 #include "ISerializable.h"
 

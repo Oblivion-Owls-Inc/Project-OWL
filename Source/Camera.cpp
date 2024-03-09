@@ -6,7 +6,8 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
-#pragma once
+
+#include "pch.h" // precompiled header has to be included first
 
 #include "Camera.h"
 
@@ -16,7 +17,6 @@
 #include "ComponentReference.t.h"
 #include "Transform.h"
 
-#include <imgui.h>
 
 
 //-------------------------------------------------------------------------

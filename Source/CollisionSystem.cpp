@@ -11,7 +11,7 @@
 //-----------------------------------------------------------------------------
 // Includes:
 //-----------------------------------------------------------------------------
-
+#include "pch.h" // precompiled header has to be included first
 #include "CollisionSystem.h"
 
 #include "Collider.h"
@@ -24,10 +24,6 @@
 #include "Entity.h"
 #include "Behavior.h"
 #include "Transform.h"
-
-#include <sstream>
-#include <algorithm>
-#include <cmath>
 
 #include "DebugSystem.h"
 #include "RenderSystem.h"
