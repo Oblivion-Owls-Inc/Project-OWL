@@ -9,7 +9,7 @@
 
 #include "pch.h" // precompiled header has to be included first
 #include "EntitySystem.h"
-
+#include "AssetLibrarySystem.h"
 #include "Entity.h"
 #include "Transform.h"
 
@@ -448,11 +448,6 @@
                             entity->AddComponent(transform); /// Add the transform to the entity)
                             entity->SetParent(currentEntity);
                        }
-
-                       if (ImGui::MenuItem("Add to Scene"))
-                       {
-                           currentEntity->Clone()->AddToScene();
-                       }
                     }
 
                     ImGui::EndPopup();
@@ -479,14 +474,14 @@
 
                             if (!DragAndDrop)
                             {
-                                currentEntity->Exit();
-                                delete currentEntity;
+                                currentEntity->Destroy();
                             }
 
                             if (SelectedEntity == currentEntity)
                             {
                                 SelectedEntity = nullptr;
                             }
+
                             showDeletePopup = false;
                             selectedEntityToDelete = nullptr;
                         }
@@ -558,8 +553,8 @@
             
         };
 
-        if (DragAndDrop) /// If Drag and Drop is enabled
-        {
+        if (!DragAndDrop) /// This allows for Entities to be dropped into the Prefab List
+        {               
             if (ImGui::BeginDragDropTargetCustom(ImGui::GetCurrentWindow()->Rect(), ImGui::GetID("ENTITY_PAYLOAD")))
             {
                 const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ENTITY_PAYLOAD");
@@ -567,13 +562,9 @@
                 if (payload != NULL)
                 {
                     Entity* droppedEntity = *(Entity**)payload->Data;
+                    Entity* ClonedEntity = droppedEntity->Clone();
 
-                    if (!droppedEntity->IsInScene())
-                    {
-                        droppedEntity->Clone()->AddToScene();
-                    }
-
-                    droppedEntity->SetParent(nullptr);
+                    AssetLibrarySystem<Entity>::GetInstance()->AddAsset(ClonedEntity->GetName(), ClonedEntity);
                 }
 
                 ImGui::EndDragDropTarget();
