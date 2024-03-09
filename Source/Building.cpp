@@ -149,7 +149,8 @@
     /// @brief  copy-constructor for the Building
     /// @param  other   the other Building to copy
     Building::Building(Building const& other) :
-        Component(other)
+        Component(other),
+        m_BuildingsEntity(other.m_BuildingsEntity, {&m_Buildings})
     {}
 
 

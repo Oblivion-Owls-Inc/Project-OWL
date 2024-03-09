@@ -69,7 +69,7 @@ private: // members
     ComponentReference<Transform> m_BuildingsTransform;
 
     /// @brief  the player entity
-    EntityReference m_BuildingsEntity = EntityReference({ &m_Buildings, &m_BuildingsTransform });
+    EntityReference m_BuildingsEntity = EntityReference({ &m_Buildings });
 
 
  //-----------------------------------------------------------------------------
