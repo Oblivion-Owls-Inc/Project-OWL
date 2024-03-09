@@ -471,18 +471,18 @@
             ImGui::EndCombo();
         }
 
-        if ( ImGui::BeginCombo( "##Remove Component", "Remove Component" , ImGuiComboFlags_HeightLarge ) )
-        {
-            for ( auto& [ key, component ] : m_Components )
-            {
-                if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
-                {
-                    removeComponent( component );
-                    break;
-                }
-            }
-            ImGui::EndCombo();
-        }
+        //if ( ImGui::BeginCombo( "##Remove Component", "Remove Component" , ImGuiComboFlags_HeightLarge ) )
+        //{
+        //    for ( auto& [ key, component ] : m_Components )
+        //    {
+        //        if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
+        //        {
+        //            removeComponent( component );
+        //            break;
+        //        }
+        //    }
+        //    ImGui::EndCombo();
+        //}
 
         static std::string name = "";
         ImGui::InputText( "Entity Name", &name );
