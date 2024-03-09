@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                853,
-                556
+                896,
+                548
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -157,7 +157,8 @@
                 "Enemies",
                 "Player",
                 "Base",
-                "Projectiles"
+                "Projectiles",
+                "Foreground"
             ],
             "CollisionSteps": 8,
             "GridSize": 0.25

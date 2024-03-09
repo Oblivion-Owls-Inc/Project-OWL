@@ -59,6 +59,10 @@ public: // virtual overrides
     virtual void OnExit() override;
 
 
+    /// @brief  draws the collision shape of this collider for debug purposes
+    virtual void DebugDraw() const override;
+
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
