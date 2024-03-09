@@ -430,7 +430,7 @@
                     "Name": "MainMenuBase",
                     "Components": {
                         "Sprite": {
-                            "Layer": 1,
+                            "Layer": 4,
                             "Color": [
                                 0.0,
                                 0.0,
@@ -488,7 +488,7 @@
                                     "EventName": "PlayButtonClicked"
                                 },
                                 "Sprite": {
-                                    "Layer": 3,
+                                    "Layer": 5,
                                     "Color": [
                                         0.0,
                                         0.0,
@@ -561,7 +561,7 @@
                                             "Text": "Play"
                                         },
                                         "TilemapSprite": {
-                                            "Layer": 5,
+                                            "Layer": 6,
                                             "Color": [
                                                 0.0,
                                                 0.0,
@@ -577,7 +577,7 @@
                                         "UiElement": {
                                             "Anchor": [
                                                 -0.5299999713897705,
-                                                -0.029999999329447746
+                                                0.0
                                             ],
                                             "Pivot": [
                                                 -1.0,
@@ -588,8 +588,8 @@
                                                 0.0
                                             ],
                                             "FrameSize": [
-                                                0.1599999964237213,
-                                                0.7200000286102295
+                                                0.15000000596046448,
+                                                0.75
                                             ],
                                             "SizeTypes": [
                                                 "RelativeToWidth",
@@ -622,7 +622,7 @@
                                     "EventName": "TutorialButtonClicked"
                                 },
                                 "Sprite": {
-                                    "Layer": 4,
+                                    "Layer": 5,
                                     "Color": [
                                         0.0,
                                         0.0,
@@ -632,7 +632,7 @@
                                     "Opacity": 1.0,
                                     "FrameIndex": 0,
                                     "Texture": {
-                                        "AssetName": "HowToPlayButtonTexture"
+                                        "AssetName": "ButtonTexture"
                                     }
                                 },
                                 "UiButton": {
@@ -662,7 +662,7 @@
                                         0.0
                                     ],
                                     "FrameSize": [
-                                        0.15000000596046448,
+                                        0.75,
                                         0.15000000596046448
                                     ],
                                     "SizeTypes": [
@@ -681,7 +681,7 @@
                                                 0
                                             ],
                                             "TileScale": [
-                                                1.0,
+                                                0.75,
                                                 1.0
                                             ],
                                             "TileData": [
@@ -714,7 +714,7 @@
                                         },
                                         "UiElement": {
                                             "Anchor": [
-                                                0.0,
+                                                -0.7900000214576721,
                                                 0.0
                                             ],
                                             "Pivot": [
@@ -726,8 +726,8 @@
                                                 0.0
                                             ],
                                             "FrameSize": [
-                                                0.5,
-                                                0.5
+                                                0.15000000596046448,
+                                                0.75
                                             ],
                                             "SizeTypes": [
                                                 "RelativeToWidth",
@@ -760,7 +760,7 @@
                                     "EventName": "SettingsButtonClicked"
                                 },
                                 "Sprite": {
-                                    "Layer": 2,
+                                    "Layer": 5,
                                     "Color": [
                                         0.0,
                                         0.0,
@@ -770,7 +770,7 @@
                                     "Opacity": 1.0,
                                     "FrameIndex": 0,
                                     "Texture": {
-                                        "AssetName": "SettingsButtonTexture"
+                                        "AssetName": "ButtonTexture"
                                     }
                                 },
                                 "UiButton": {
@@ -800,7 +800,7 @@
                                         0.0
                                     ],
                                     "FrameSize": [
-                                        0.15000000596046448,
+                                        0.75,
                                         0.15000000596046448
                                     ],
                                     "SizeTypes": [
@@ -819,7 +819,7 @@
                                                 0
                                             ],
                                             "TileScale": [
-                                                1.0,
+                                                0.75,
                                                 1.0
                                             ],
                                             "TileData": [
@@ -837,7 +837,7 @@
                                             "Text": "Settings"
                                         },
                                         "TilemapSprite": {
-                                            "Layer": 2,
+                                            "Layer": 6,
                                             "Color": [
                                                 0.0,
                                                 0.0,
@@ -852,7 +852,7 @@
                                         },
                                         "UiElement": {
                                             "Anchor": [
-                                                0.0,
+                                                -0.7900000214576721,
                                                 0.0
                                             ],
                                             "Pivot": [
@@ -864,8 +864,8 @@
                                                 0.0
                                             ],
                                             "FrameSize": [
-                                                0.5,
-                                                0.5
+                                                0.15000000596046448,
+                                                0.75
                                             ],
                                             "SizeTypes": [
                                                 "RelativeToWidth",
@@ -898,7 +898,7 @@
                                     "EventName": "CreditsButtonClicked"
                                 },
                                 "Sprite": {
-                                    "Layer": 2,
+                                    "Layer": 5,
                                     "Color": [
                                         0.0,
                                         0.0,
@@ -908,7 +908,7 @@
                                     "Opacity": 1.0,
                                     "FrameIndex": 0,
                                     "Texture": {
-                                        "AssetName": "CreditsButtonTexture"
+                                        "AssetName": "ButtonTexture"
                                     }
                                 },
                                 "UiButton": {
@@ -938,7 +938,7 @@
                                         0.0
                                     ],
                                     "FrameSize": [
-                                        0.15000000596046448,
+                                        0.75,
                                         0.15000000596046448
                                     ],
                                     "SizeTypes": [
@@ -957,7 +957,7 @@
                                                 0
                                             ],
                                             "TileScale": [
-                                                1.0,
+                                                0.75,
                                                 1.0
                                             ],
                                             "TileData": [
@@ -974,7 +974,7 @@
                                             "Text": "Credits"
                                         },
                                         "TilemapSprite": {
-                                            "Layer": 7,
+                                            "Layer": 6,
                                             "Color": [
                                                 0.0,
                                                 0.0,
@@ -989,7 +989,7 @@
                                         },
                                         "UiElement": {
                                             "Anchor": [
-                                                0.0,
+                                                -0.6299999952316284,
                                                 0.0
                                             ],
                                             "Pivot": [
@@ -1001,8 +1001,8 @@
                                                 0.0
                                             ],
                                             "FrameSize": [
-                                                0.699999988079071,
-                                                0.699999988079071
+                                                0.15000000596046448,
+                                                0.75
                                             ],
                                             "SizeTypes": [
                                                 "RelativeToWidth",
@@ -1040,7 +1040,7 @@
                                     "EventName": ""
                                 },
                                 "Sprite": {
-                                    "Layer": 2,
+                                    "Layer": 5,
                                     "Color": [
                                         0.0,
                                         0.0,
@@ -1050,7 +1050,7 @@
                                     "Opacity": 1.0,
                                     "FrameIndex": 0,
                                     "Texture": {
-                                        "AssetName": "QuitButtonTexture"
+                                        "AssetName": "ButtonTexture"
                                     }
                                 },
                                 "UiButton": {
@@ -1080,7 +1080,7 @@
                                         0.0
                                     ],
                                     "FrameSize": [
-                                        0.15000000596046448,
+                                        0.75,
                                         0.15000000596046448
                                     ],
                                     "SizeTypes": [
@@ -1099,7 +1099,7 @@
                                                 0
                                             ],
                                             "TileScale": [
-                                                1.0,
+                                                0.75,
                                                 1.0
                                             ],
                                             "TileData": [
@@ -1111,6 +1111,42 @@
                                         },
                                         "Text": {
                                             "Text": "Quit"
+                                        },
+                                        "TilemapSprite": {
+                                            "Layer": 6,
+                                            "Color": [
+                                                0.0,
+                                                0.0,
+                                                0.0,
+                                                0.0
+                                            ],
+                                            "Opacity": 1.0,
+                                            "FrameIndex": 0,
+                                            "Texture": {
+                                                "AssetName": "FontSheet"
+                                            }
+                                        },
+                                        "UiElement": {
+                                            "Anchor": [
+                                                -0.3100000023841858,
+                                                0.0
+                                            ],
+                                            "Pivot": [
+                                                0.0,
+                                                0.0
+                                            ],
+                                            "Offset": [
+                                                0.0,
+                                                0.0
+                                            ],
+                                            "FrameSize": [
+                                                0.15000000596046448,
+                                                0.75
+                                            ],
+                                            "SizeTypes": [
+                                                "RelativeToWidth",
+                                                "RelativeToHeight"
+                                            ]
                                         }
                                     },
                                     "Children": null
@@ -1125,10 +1161,10 @@
             "Name": "Moon",
             "Components": {
                 "Animation": {
-                    "FrameIndex": 20,
-                    "FrameDelay": 0.05058419704437256,
+                    "FrameIndex": 2,
+                    "FrameDelay": 0.009689879603683949,
                     "IsRunning": true,
-                    "LoopCount": 99696,
+                    "LoopCount": 99641,
                     "Animation": {
                         "AssetName": "Moon_Animation"
                     }
@@ -1142,7 +1178,7 @@
                         0.0
                     ],
                     "Opacity": 1.0,
-                    "FrameIndex": 20,
+                    "FrameIndex": 2,
                     "Texture": {
                         "AssetName": "Moon_Texture"
                     }
@@ -1165,20 +1201,20 @@
                     "Name": "Lava",
                     "Components": {
                         "Animation": {
-                            "FrameIndex": 20,
-                            "FrameDelay": 0.05058419704437256,
+                            "FrameIndex": 2,
+                            "FrameDelay": 0.009689879603683949,
                             "IsRunning": true,
-                            "LoopCount": 99696,
+                            "LoopCount": 99641,
                             "Animation": {
                                 "AssetName": "Lava_Animation"
                             }
                         },
                         "OrbitBehavior": {
-                            "RotationSpeed": 1.0,
-                            "Angle": 5.442389965057373,
+                            "RotationSpeed": -1.0,
+                            "Angle": 0.0,
                             "Radius": [
-                                -1.0199999809265137,
-                                0.6000000238418579
+                                1.0,
+                                0.30000001192092896
                             ],
                             "First Layer": 3,
                             "Second Layer": 1,
@@ -1186,8 +1222,8 @@
                                 0.5,
                                 0.5
                             ],
-                            "Scale Oscillation Magnitude": 0.5,
-                            "Scale Extremes Angle": 4.300000190734863,
+                            "Scale Oscillation Magnitude": 0.30000001192092896,
+                            "Scale Extremes Angle": 4.711999893188477,
                             "Layer Switch Angle": 3.1415927410125732
                         },
                         "Sprite": {
@@ -1199,20 +1235,20 @@
                                 0.0
                             ],
                             "Opacity": 1.0,
-                            "FrameIndex": 20,
+                            "FrameIndex": 2,
                             "Texture": {
                                 "AssetName": "LavaTexture"
                             }
                         },
                         "Transform": {
                             "Translation": [
-                                1.2274811267852783,
-                                0.3055891990661621
+                                0.9280614852905273,
+                                0.6924462914466858
                             ],
                             "Rotation": 0.0,
                             "Scale": [
-                                0.6038554906845093,
-                                0.6038554906845093
+                                0.5301807522773743,
+                                0.5301807522773743
                             ],
                             "IsDiegetic": true
                         }
@@ -1225,7 +1261,7 @@
             "Name": "GameTitle",
             "Components": {
                 "Sprite": {
-                    "Layer": 2,
+                    "Layer": 4,
                     "Color": [
                         0.0,
                         0.0,
