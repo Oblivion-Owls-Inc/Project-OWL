@@ -2,6 +2,9 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    A version of Sprite specifically for rendering tiles.
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "TilemapSprite.h"
 #include "RenderSystem.h"
 #include "Tilemap.h"        // callback for when tilemap array updates
@@ -9,8 +12,6 @@
 #include "Entity.h"         // parent
 #include "Transform.h"
 #include "Texture.h"
-#include "glew.h"
-#include <functional>       // callback binding
 
 #ifndef NDEBUG
 #include <iostream>

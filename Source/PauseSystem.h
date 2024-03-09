@@ -7,9 +7,10 @@
 ///*****************************************************************/
 
 #pragma once
+
+#include "pch.h" // precompiled header has to be included first
 #include "System.h"
-#include <sstream>
-#include <set>
+
 
 class PauseSystem : public System
 {
@@ -20,20 +21,14 @@ public: // methods
 
     /// @brief  Sets the game to running or not
     /// @param  running If the game is running
-    void SetRunning(bool running) { m_Running = running; }
+    void SetRunning(bool running);
 
     /// @brief  Gets if the game is running
     bool GetRunning() const { return m_Running; }
 
-
 //-----------------------------------------------------------------------------
 private: // virtual override methods
 //-----------------------------------------------------------------------------
-
-     
-    /// @brief Update the PauseSystem
-    /// @param dt The time elapsed since the last update
-    virtual void OnUpdate(float dt) override;
 
     /// @brief  Gets called whenever a scene is exited
     virtual void OnSceneExit() override;
@@ -59,6 +54,7 @@ private: // Members
         "CheatSystem",
         "BehaviorSystem<UiButton>",
         "BehaviorSystem<Popup>",
+        "BehaviorSystem<PauseComponent>",
         "SceneSystem",
         "EntitySystem",
         "CameraSystem",
@@ -75,9 +71,8 @@ private: // Members
 private: // Methods
 ///-----------------------------------------------------------------------------
 
-
     /// @brief  Pause the systems in the game
-    void pauseGame();
+    void togglePause();
 
 
 //-----------------------------------------------------------------------------
@@ -98,9 +93,6 @@ private: // reading
     /// @return the written json data
     virtual nlohmann::ordered_json Write() const override;
 
-//-----------------------------------------------------------------------------
-private: // singleton stuff
-//-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 public: // singleton stuff

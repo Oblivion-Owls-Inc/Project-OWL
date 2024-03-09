@@ -3,8 +3,9 @@
 /// 
 /// @brief    A version of Sprite specifically for rendering tiles.
 #pragma once
+
+#include "pch.h" 
 #include "Sprite.h"
-#include <vector>
 #include "ComponentReference.h"
 #include "Tilemap.h"
 

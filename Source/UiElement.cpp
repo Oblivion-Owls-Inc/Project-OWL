@@ -9,7 +9,7 @@
 //-----------------------------------------------------------------------------
 // includes
 //-----------------------------------------------------------------------------
-
+#include "pch.h" // precompiled header has to be included first
 #include "UiElement.h"
 
 #include "EntitySystem.h"

@@ -6,6 +6,9 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "HealthBar.h"
 
 #include "ComponentReference.t.h"

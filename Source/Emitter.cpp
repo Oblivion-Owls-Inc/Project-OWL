@@ -5,8 +5,9 @@
  * \author Eli
  * \date   October 2023
  *********************************************************************/
+
+#include "pch.h" // precompiled header has to be included first
 #include "Emitter.h"
-#include "imgui.h"          // inspector
 #include "RenderSystem.h"   // shader uniform locations
 #include "Entity.h"         // parent transform
 #include "Transform.h"

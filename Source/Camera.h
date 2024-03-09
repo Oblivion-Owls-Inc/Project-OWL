@@ -8,9 +8,8 @@
 
 #pragma once
 
+#include "pch.h" // precompiled header has to be included first
 #include "Component.h"
-
-#include <glm/glm.hpp>
 
 #include "ComponentReference.h"
 class Transform;

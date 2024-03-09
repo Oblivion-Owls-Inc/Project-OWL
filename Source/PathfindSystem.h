@@ -6,12 +6,12 @@
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Instutute of Technology
 #pragma once
+
+#include "pch.h" // precompiled header has to be included first
 #include "ComponentSystem.h"
 #include "ComponentReference.h"
 #include "PathfinderTarget.h"
 
-#include <thread>  // run the algorithm in the background
-#include <atomic>  // thread sync
 #include "Tilemap.h"
 
 

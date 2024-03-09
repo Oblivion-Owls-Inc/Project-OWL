@@ -8,12 +8,11 @@
 
 #pragma once
 
-#include "Behavior.h"
 #include "basics.h"
+#include "Behavior.h"
 
 #include "ItemStack.h"
 
-#include <vector>
 
 #include "EntityReference.h"
 #include "ComponentReference.h"

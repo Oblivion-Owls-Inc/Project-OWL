@@ -6,11 +6,12 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
+#include "pch.h" // precompiled header has to be included first
+
 #include "AnimationAsset.h"
 
 #include "Stream.h"
 
-#include <imgui.h>
 
 //-----------------------------------------------------------------------------
 // public: constructor

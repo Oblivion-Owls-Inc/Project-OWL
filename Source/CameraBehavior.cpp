@@ -4,6 +4,10 @@
 *
 * \author Eli Tsereteli
 *********************************************************************/
+
+
+#include "pch.h" // precompiled header has to be included first
+
 #include "BehaviorSystem.h"
 #include "CameraBehavior.h"
 #include "CameraSystem.h"

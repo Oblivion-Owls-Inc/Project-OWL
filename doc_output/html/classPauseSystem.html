@@ -98,6 +98,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#a024e9a831c897c60edb310224be27da8">OnFixedUpdate</a> ()</td></tr>
 <tr class="memdesc:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every simulation frame. Use this function for anything that affects the simulation. <br /></td></tr>
 <tr class="separator:a024e9a831c897c60edb310224be27da8 inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">OnUpdate</a> (float dt)</td></tr>
+<tr class="memdesc:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once every graphics frame. Do not use this function for anything that affects the simulation.  <a href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">More...</a><br /></td></tr>
+<tr class="separator:ac80e6b0f679fe9befb8d45014ee389cb inherit pub_methods_classSystem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaebe51536352d44fea4c0e44f449eb5 inherit pub_methods_classSystem"><td class="memItemLeft" align="right" valign="top"><a id="abaebe51536352d44fea4c0e44f449eb5"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSystem.html#abaebe51536352d44fea4c0e44f449eb5">OnExit</a> ()</td></tr>
 <tr class="memdesc:abaebe51536352d44fea4c0e44f449eb5 inherit pub_methods_classSystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets called once before the <a class="el" href="classEngine.html">Engine</a> closes. <br /></td></tr>
@@ -188,9 +191,6 @@ The singleton instance of <a class="el" href="classPauseSystem.html">PauseSystem
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void PauseSystem::SetRunning </td>
@@ -200,20 +200,21 @@ The singleton instance of <a class="el" href="classPauseSystem.html">PauseSystem
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Sets the game to running or not. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">running</td><td>If the game is running </td></tr>
+    <tr><td class="paramname">running</td><td>If the game is running</td></tr>
   </table>
   </dd>
 </dl>
+<hr  />
+ <h2><a class="anchor" id="autotoc_md4"></a>
+Public Methods</h2>
+<hr  />
+ <h2><a class="anchor" id="autotoc_md5"></a>
+Private Virtual override methods</h2>
 
 </div>
 </div>

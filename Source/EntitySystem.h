@@ -8,9 +8,8 @@
 
 #pragma once
 
+#include "pch.h"
 #include "System.h"
-
-#include <vector>
 
 
 class Entity;

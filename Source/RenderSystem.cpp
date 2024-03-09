@@ -2,14 +2,15 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    System responsible for drawing sprites and basic shapes.
-#include "glew.h"
+
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "RenderSystem.h"
 #include "Sprite.h"
 #include "PlatformSystem.h"     // screen size
 #include "Entity.h"
 #include "Transform.h"
-#include <vector>
-#include <algorithm>            // stable_sort
 #include "Mesh.h"
 #include "AssetLibrarySystem.h"
 #include "Texture.h"

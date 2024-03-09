@@ -7,6 +7,9 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 
+
+#include "pch.h" // precompiled header has to be included first
+
 #include "AudioListener.h"
 
 #include "AudioSystem.h"
@@ -15,7 +18,6 @@
 
 #include "EntitySystem.h"
 
-#include <imgui.h>
 
 
 //-----------------------------------------------------------------------------

@@ -15,8 +15,6 @@
 #include "ComponentReference.h"
 #include "Sprite.h"
 
-#include <functional>
-
 #include "AssetReference.h"
 #include "Sprite.h"
 

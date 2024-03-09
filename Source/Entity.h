@@ -14,13 +14,8 @@
 //-----------------------------------------------------------------------------
 // Include Files:
 //-----------------------------------------------------------------------------
-
+#include "pch.h" 
 #include "Component.h"
-#include <map>        // std::map
-#include <string>	  // std::string
-#include <vector>	  // std::vector
-#include <set>
-
 #include "ISerializable.h"
 
 class EntityReference;
