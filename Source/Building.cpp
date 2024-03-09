@@ -8,6 +8,7 @@
 /// @copyright (c) 2024 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 
+#include "pch.h"
 #include "Building.h"
 #include "Tilemap.h"
 #include "Entity.h"
