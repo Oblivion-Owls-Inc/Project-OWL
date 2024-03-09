@@ -743,6 +743,9 @@
     <ClCompile Include="Source\WinState.cpp">
       <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BulletAoe.cpp">
+      <Filter>Game\Components\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1126,6 +1129,9 @@
     <ClInclude Include="Source\WinState.h">
       <Filter>Game\Components\Behaviors\WinState</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BulletAoe.h">
+      <Filter>Game\Components\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -1204,5 +1210,8 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype v3.scene.json" />
+    <None Include="Data\Scenes\AlphaScene.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>

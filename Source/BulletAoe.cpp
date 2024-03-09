@@ -1,14 +1,14 @@
 ///*****************************************************************/
-/// @file	    Bullet.cpp
-/// @author     Jax Clayton (jax.clayton@digipen.edu)
-/// @date	    9/15/2021
-/// @brief      Component that destroys itself and deals damage on contact
+/// @file	    BulletAoe.cpp
+/// @author     Tyler Birdsall (tyler.birdsall@digipen.edu)
+/// @date	    3//2024
+/// @brief      Component that destroys itself and deals aoe damage on contact
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 ///*****************************************************************/
 
 
-#include "Bullet.h"
+#include "BulletAoe.h"
 
 #include "ComponentReference.t.h"
 #include "Collider.h"
@@ -21,27 +21,8 @@
 
 
     /// @brief  constructor
-    Bullet::Bullet() :
-        Component( typeid( Bullet ) )
-    {}
-
-
-//-----------------------------------------------------------------------------
-// public: accessors
-//-----------------------------------------------------------------------------
-
-
-    /// @brief Set the damage the bullet will do
-    /// @param damage - the damage the bullet will do
-    void Bullet::SetDamage( int damage )
+    BulletAoe::BulletAoe()
     {
-        m_Damage = damage;
-    }
-
-    /// @brief Get the damage the bullet will do
-    int Bullet::GetDamage() const
-    {
-        return m_Damage;
     }
 
 
@@ -50,15 +31,15 @@
 //-----------------------------------------------------------------------------
 
 
-    /// @brief Default constructor for the Bullet class.
-    void Bullet::OnInit()
+    /// @brief Default constructor for the BulletAoe class.
+    /*void BulletAoe::OnInit()
     {
         m_Collider.SetOnConnectCallback(
             [ this ]()
             {
                 m_Collider->AddOnCollisionEnterCallback(
                     GetId(),
-                    std::bind( &Bullet::onCollisionEnter, this, std::placeholders::_1 )
+                    std::bind( &BulletAoe::onCollisionEnter, this, std::placeholders::_1 )
                 );
             }
         );
@@ -70,13 +51,9 @@
         );
 
         m_Collider.Init( GetEntity() );
-    }
+    }*/
 
-    /// @brief  called when this Component's Entity is removed from the Scene
-    void Bullet::OnExit()
-    {
-        m_Collider.Exit();
-    }
+
 
 
 //-----------------------------------------------------------------------------
@@ -86,32 +63,15 @@
 
     /// @brief  called whenever this Entity's Collider enters a collision
     /// @param  other   the collider that was collided with
-    void Bullet::onCollisionEnter( Collider* other )
+    void BulletAoe::onCollisionEnter( Collider* other )
     {
         Health* health = other->GetEntity()->GetComponent< Health >();
         if ( health != nullptr )
         {
-            health->TakeDamage( m_Damage );
+            health->TakeDamage( GetDamage() );
         }
 
         GetEntity()->Destroy();
-    }
-
-    
-//-----------------------------------------------------------------------------
-// public: inspection
-//-----------------------------------------------------------------------------
-
-
-    /// @brief Used by the Debug System to display information about this Component
-    void Bullet::Inspector()
-    {
-        if ( m_Collider == nullptr )
-        {
-            ImGui::Text( "WARNING: no Collider component attached" );
-        }
-
-        ImGui::DragInt( "damage", &m_Damage, 0.05f, 0, INT_MAX );
     }
 
 
@@ -120,11 +80,13 @@
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  reads this Bullet's damage
+    /// @brief  reads this BulletAoe's damage
     /// @param  data    the json data to read from
-    void Bullet::readDamage( nlohmann::ordered_json const& data )
+    void BulletAoe::readDamage( nlohmann::ordered_json const& data )
     {
+        int m_Damage = 0;
         Stream::Read( m_Damage, data );
+        SetDamage(m_Damage);
     }
 
 
@@ -135,22 +97,22 @@
 
     /// @brief gets the map of read methods for this Component
     /// @return the map of read methods for this Component
-    ReadMethodMap< ISerializable > const& Bullet::GetReadMethods() const
+    ReadMethodMap< ISerializable > const& BulletAoe::GetReadMethods() const
     {
-        static ReadMethodMap< Bullet > const readMethods = {
-            { "Damage", &Bullet::readDamage }
+        static ReadMethodMap< BulletAoe > const readMethods = {
+            { "Damage", &BulletAoe::readDamage }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
     }
 
-    /// @brief  writes this Bullet to json
+    /// @brief  writes this BulletAoe to json
     /// @return the written json data
-    nlohmann::ordered_json Bullet::Write() const
+    nlohmann::ordered_json BulletAoe::Write() const
     {
         nlohmann::ordered_json json;
 
-        json[ "Damage" ] = Stream::Write( m_Damage );
+        json[ "Damage" ] = Stream::Write( GetDamage() );
 
         return json;
     }
@@ -163,9 +125,9 @@
 
     /// @brief  clones this RigidBody
     /// @return the newly created clone of this RigidBody
-    Bullet* Bullet::Clone() const
+    BulletAoe* BulletAoe::Clone() const
     {
-        return new Bullet( *this );
+        return new BulletAoe( *this );
     }
 
 
@@ -176,9 +138,7 @@
 
     /// @brief  copy-constructor for the RigidBody
     /// @param  other   the other RigidBody to copy
-    Bullet::Bullet( const Bullet& other ) :
-        Component( other ),
-        m_Damage( other.m_Damage )
+    BulletAoe::BulletAoe( const BulletAoe& other )
     {}
 
 

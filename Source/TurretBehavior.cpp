@@ -109,24 +109,30 @@
     void TurretBehavior::fireBullet( glm::vec2 const& direction )
     {
         // Create a new bullet entity
-        Entity* bullet = m_BulletPrefab->Clone();
-
-        // Sets the data within the bullet
-        Transform* bulletTransform = bullet->GetComponent<Transform>();
-        bulletTransform->SetTranslation( m_Transform->GetTranslation() );
-        bulletTransform->SetScale( glm::vec2( m_BulletSize ) );
-
-        bullet->GetComponent< Bullet         >()->SetDamage( m_BulletDamage );
-        bullet->GetComponent< RigidBody      >()->SetVelocity( direction * m_BulletSpeed );
-        bullet->GetComponent< CircleCollider >()->SetRadius( 0.5f * m_BulletSize );
-
-        // Add the bullet to the entity system
-        bullet->AddToScene();
-
-        // Play turret shoot sound
-        if ( m_AudioPlayer != nullptr )
+        if (m_BulletPrefab)
         {
-            m_AudioPlayer->Play();
+            Entity* bullet = m_BulletPrefab->Clone();
+
+            // Sets the data within the bullet
+            Transform* bulletTransform = bullet->GetComponent<Transform>();
+            if (bulletTransform)
+            {
+                bulletTransform->SetTranslation(m_Transform->GetTranslation());
+                bulletTransform->SetScale(glm::vec2(m_BulletSize));
+            }
+
+            bullet->GetComponent< Bullet         >()->SetDamage(m_BulletDamage);
+            bullet->GetComponent< RigidBody      >()->SetVelocity(direction * m_BulletSpeed);
+            bullet->GetComponent< CircleCollider >()->SetRadius(0.5f * m_BulletSize);
+
+            // Add the bullet to the entity system
+            bullet->AddToScene();
+
+            // Play turret shoot sound
+            if (m_AudioPlayer != nullptr)
+            {
+                m_AudioPlayer->Play();
+            }
         }
 
         m_FireCooldown += 1.0f / m_FireRate;
