@@ -8,7 +8,7 @@
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 /////////////////////////////////////////////////////////////////////////////////
 
-
+#include "pch.h" // precompiled header has to be included first
 #include "SceneChangeButton.h"
 #include "InputSystem.h"
 #include "SceneSystem.h"

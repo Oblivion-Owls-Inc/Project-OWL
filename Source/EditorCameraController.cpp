@@ -7,7 +7,7 @@
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
 #pragma once
-
+#include "pch.h" // precompiled header has to be included first
 #include "EditorCameraController.h"
 #include "BehaviorSystem.h"
 

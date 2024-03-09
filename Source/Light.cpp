@@ -2,8 +2,11 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    Light source component. It shines.
+/// 
+
+#include "pch.h" // precompiled header has to be included first
 #include "LightingSystem.h" // + Light.h
-#include "imgui.h"
+
 
 
 /// @brief   Default constructor

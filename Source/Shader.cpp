@@ -2,8 +2,10 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    Shader class implementation.
-#include <iostream>     // error output
-#include <fstream>      // reading shader source code from files
+
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "glew.h"
 #include "Shader.h"
 #include "DebugSystem.h"

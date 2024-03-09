@@ -5,7 +5,8 @@
  * \author Eli Tsereteli
  * \date   Jan 2024
  *********************************************************************/
-#include "glew.h"
+
+#include "pch.h" // precompiled header has to be included first
 #include "LightingSystem.h"
 #include "RenderSystem.h"   // sprite implementation
 #include "PlatformSystem.h" // screen size
@@ -13,7 +14,7 @@
 #include "CameraSystem.h"   // world-to-screen matrix for frag shader uniforms
 #include "Entity.h"         // parent position
 #include "Transform.h"      // parent position
-#include "imgui.h"
+
 
 
 //-----------------------------------------------------------------------------

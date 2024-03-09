@@ -8,11 +8,9 @@
 
 #pragma once
 
+#include "pch.h" // precompiled header has to be included first
 #include "AssetLibrarySystem.h"
 
-#include <string>
-#include <vector>
-#include <functional>
 
 class Entity;
 

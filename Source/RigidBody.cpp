@@ -5,6 +5,10 @@
 /// @brief   RigidBody  
 /// @details Contains Basic Physics for the Entities
 ///*****************************************************************/
+/// 
+ 
+
+#include "pch.h" // precompiled header has to be included first
 #include "RigidBody.h"
 #include "BehaviorSystem.h"
 #include "DebugSystem.h"

@@ -12,6 +12,8 @@
 //------------------------------------------------------------------------------
 // Includes:
 //------------------------------------------------------------------------------
+
+#include "pch.h" // precompiled header has to be included first
 #include "SplashScreenController.h"
 #include "BehaviorSystem.h" // AddBehavior, RemoveBehavior
 #include "InputSystem.h"    // GetKeyTriggered, GetGamepadButtonDown

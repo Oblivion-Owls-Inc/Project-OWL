@@ -3,11 +3,11 @@
 ///
 /// @brief    System responsible for drawing sprites and basic shapes.
 #pragma once
+
+#include "pch.h" 
 #include "System.h"
 #include "Shader.h"
-#include "glm/glm.hpp"
-#include <vector>       // for sprite references
-#include <map>          // for shader storage
+
 
 // fwd references
 class Sprite;

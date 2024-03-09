@@ -11,9 +11,10 @@
 // Include Files
 //------------------------------------------------------------------------------
 
+#include "pch.h" // precompiled header has to be included first
 #include "Stream.h"
 #include "DebugSystem.h"
-#include <fstream> // std::ifstream
+
 #include <shlobj_core.h>
 
 

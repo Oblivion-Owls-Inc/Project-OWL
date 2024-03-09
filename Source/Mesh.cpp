@@ -2,8 +2,10 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 /// 
 /// @brief    Implementation of Mesh class.
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "Mesh.h"
-#include "glew.h"
 #include "RenderSystem.h"
 
 /// @brief  Creates mesh as a quad.

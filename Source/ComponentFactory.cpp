@@ -11,6 +11,8 @@
 //-----------------------------------------------------------------------------
 // Include Files:
 //-----------------------------------------------------------------------------
+
+#include "pch.h" 
 #include "ComponentFactory.h"
 
 #include "Transform.h"
@@ -62,6 +64,8 @@
 #include "PathfinderTarget.h"
 #include "PathfinderSource.h"
 #include "Popup.h"
+#include "pause.h"
+#include "orbitbehavior.h"
 
 
 //-----------------------------------------------------------------------------
@@ -206,7 +210,9 @@
         { "PathfinderTarget"       , ComponentInfo< PathfinderTarget        >() },
         { "PathfinderSource"       , ComponentInfo< PathfinderSource        >() },
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
-        { "Popup"                  , ComponentInfo< Popup                   >() }
+        { "Popup"                  , ComponentInfo< Popup                   >() },
+        { "PauseComponent"         , ComponentInfo< PauseComponent          >() },
+        { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() }
     };
 
 //-----------------------------------------------------------------------------

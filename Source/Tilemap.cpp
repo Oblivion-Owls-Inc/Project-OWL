@@ -6,10 +6,8 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
+#include "pch.h" // precompiled header has to be included first
 #include "Tilemap.h"
-
-#include <imgui.h>
-#include <imgui_stdlib.h>
 
 // @brief  inspector for int tilemaps
 template<>

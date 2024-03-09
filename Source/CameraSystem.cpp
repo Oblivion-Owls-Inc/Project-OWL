@@ -2,9 +2,11 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 ///
 /// @brief    System that handles the camera and coordinate systems / spaces.
+/// 
+
+#include "pch.h" // precompiled header has to be included first
 #include "CameraSystem.h"
 #include "PlatformSystem.h"
-#include "glm/gtc/matrix_transform.hpp"
 #include "DebugSystem.h"
 
 //-------------------------------------------------------------------------

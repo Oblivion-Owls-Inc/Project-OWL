@@ -6,9 +6,10 @@
 /// 
 /// @copyright Copyright (c) 2023
 
+
+#include "pch.h" // precompiled header has to be included first
 #include "InputSystem.h"
 #include "PlatformSystem.h"
-#include <map>
 #include "CameraSystem.h"
 #include "Engine.h"
 #include "DebugSystem.h"
