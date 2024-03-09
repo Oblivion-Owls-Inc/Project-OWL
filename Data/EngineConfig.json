@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                1182,
-                566
+                853,
+                556
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -130,7 +130,7 @@
         },
         "SceneSystem": {
             "BaseScenePath": "Data/Scenes/",
-            "NextSceneName": "MainMenu",
+            "NextSceneName": "SplashScreen",
             "AutosaveName": "Autosaved_Scene"
         },
         "EntitySystem": {},
@@ -194,8 +194,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -203,8 +202,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -212,8 +210,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -221,8 +218,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -241,8 +237,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -261,8 +256,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 }
             ]
         }

@@ -292,6 +292,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\CollisionLayerFlags.cpp" />
     <ClCompile Include="Source\ComponentReference.t.h" />
     <ClCompile Include="Source\Console.cpp" />
+    <ClCompile Include="Source\DestructibleTilemap.cpp" />
     <ClCompile Include="Source\EditorCameraController.cpp" />
     <ClCompile Include="Source\EntityReference.cpp" />
     <ClCompile Include="Source\EventSystem.cpp" />
@@ -460,6 +461,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\orbitbehavior.h" />
     <ClInclude Include="Source\pause.h" />
     <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\DestructibleTilemap.h" />
     <ClInclude Include="Source\Popup.h" />
     <ClInclude Include="Source\ActionReference.h" />
     <ClInclude Include="Source\Console.h" />

@@ -215,14 +215,13 @@
     /// @brief  Gets called once before the Engine closes
     void SceneSystem::OnExit()
     {
-        assert ( m_CurrentSceneName != "" );
+        assert( m_CurrentSceneName != "" );
 
         exitScene();
 
-        m_CurrentSceneName = "";
-        if (m_PreparseThread.joinable()) 
+        if ( m_PreparseThread.joinable() )
         {
-            m_PreparseThread.join(); 
+            m_PreparseThread.join();
         }
     }
 
