@@ -214,8 +214,7 @@
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
         { "Popup"                  , ComponentInfo< Popup                   >() },
         { "PauseComponent"         , ComponentInfo< PauseComponent          >() },
-        { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() }
-        { "Popup"                  , ComponentInfo< Popup                   >() },
+        { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() },
         { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() }
     };
 
