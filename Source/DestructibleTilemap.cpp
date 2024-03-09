@@ -6,6 +6,9 @@
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
+
+#include "pch.h"
+
 #include "DestructibleTilemap.h"
 
 #include "ComponentReference.t.h"
