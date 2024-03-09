@@ -6,6 +6,9 @@
  * \date   September 2023
  *********************************************************************/
 
+
+#include "pch.h" // precompiled header has to be included first
+
 #include "Animation.h"
 
 #include "BehaviorSystem.h"
@@ -15,6 +18,7 @@
 #include "Entity.h"
 
 #include "Inspection.h"
+
 
 //-----------------------------------------------------------------------------
 // public: constructor

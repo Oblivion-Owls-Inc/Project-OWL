@@ -10,6 +10,7 @@
 // Includes
 //-----------------------------------------------------------------------------
 
+#include "pch.h" // precompiled header has to be included first
 #include "StaticBody.h"
 
 #include "DebugSystem.h"

@@ -7,7 +7,7 @@
 ///
 /// @copyright (c) 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
-
+#include "pch.h" // precompiled header has to be included first
 #include "WavesBehavior.h"
 #include "BehaviorSystem.h"
 #include "EntitySystem.h"

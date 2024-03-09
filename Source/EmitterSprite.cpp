@@ -5,7 +5,9 @@
  * \author Eli Tsereteli
  * \date   October 2023
  *********************************************************************/
-#include "glew.h"
+
+
+#include "pch.h" // precompiled header has to be included first
 #include "EmitterSprite.h"
 #include "Texture.h"
 #include "Emitter.h"

@@ -3,7 +3,8 @@
 /// 
 /// @brief    Shader class declaration/interface.
 #pragma once
-#include <map>  // to store uniform ID's
+
+#include "pch.h" 
 
 
 /// @brief          Compiles a shader program, and stores information for managing it.

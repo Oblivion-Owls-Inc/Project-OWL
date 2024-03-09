@@ -6,10 +6,12 @@
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 
+
+#include "pch.h" // precompiled header has to be included first
 #include "CollisionLayerFlags.h"
 
 #include "CollisionSystem.h"
-#include "imgui.h"
+
 
 //-----------------------------------------------------------------------------
 // public: constructor

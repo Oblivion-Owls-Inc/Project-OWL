@@ -7,7 +7,7 @@
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 ///*****************************************************************/
 
-
+#include "pch.h" // precompiled header has to be included first
 #include "Bullet.h"
 
 #include "ComponentReference.t.h"

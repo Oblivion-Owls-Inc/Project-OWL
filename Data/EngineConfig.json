@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                960,
-                686
+                896,
+                548
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -112,6 +112,19 @@
                     "Controller Axis": null,
                     "Gamepad Axis Input": null,
                     "Gamepad Axis": null
+                },
+                {
+                    "Name": "Pause",
+                    "Keys": [
+                        258
+                    ],
+                    "Mouse": null,
+                    "Controller": null,
+                    "Key Axis": null,
+                    "Mouse Axis": null,
+                    "Controller Axis": null,
+                    "Gamepad Axis Input": null,
+                    "Gamepad Axis": null
                 }
             ]
         },
@@ -128,6 +141,7 @@
         "BehaviorSystem<WavesBehavior>": {},
         "BehaviorSystem<EnemyBehavior>": {},
         "BehaviorSystem<EditorCameraController>": {},
+        "BehaviorSystem<PauseComponent>": {},
         "BehaviorSystem<UiButton>": {},
         "BehaviorSystem<Generator>": {},
         "ComponentSystem<ItemComponent>": {},
@@ -143,7 +157,8 @@
                 "Enemies",
                 "Player",
                 "Base",
-                "Projectiles"
+                "Projectiles",
+                "Foreground"
             ],
             "CollisionSteps": 8,
             "GridSize": 0.25
@@ -180,8 +195,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -189,8 +203,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -198,8 +211,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -207,8 +219,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -227,8 +238,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 },
                 {
                     "LootTable": {
@@ -247,8 +257,7 @@
                         "RandomRollsEnabled": false,
                         "MinRolls": 1,
                         "MaxRolls": 1
-                    },
-                    "Toughness": 0.0
+                    }
                 }
             ]
         }

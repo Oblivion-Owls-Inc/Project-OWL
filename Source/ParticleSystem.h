@@ -6,8 +6,9 @@
  * \date   October 2023
  *********************************************************************/
 #pragma once
+#include "pch.h" // precompiled header has to be included first
 #include "System.h"
-#include <map>
+
 
 // fwd reference
 class Emitter;

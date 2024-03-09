@@ -7,7 +7,7 @@
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 ///*****************************************************************/
 
-
+#include "pch.h"
 #include "BulletAoe.h"
 
 #include "ComponentReference.t.h"
@@ -81,6 +81,7 @@
     void BulletAoe::Inspector()
     {
         ImGui::Text("Aoe Bullet");
+        m_AoePulsePrefab.Inspect("Aoe Pulse Prefab");
         Bullet::Inspector();
     }
 
@@ -89,6 +90,12 @@
 // private: reading
 //-----------------------------------------------------------------------------
 
+    /// @brief Reads the name of the AoePulse prefab to grab from AssetLib
+    /// @param data - the json data to read from
+    void BulletAoe::readAoePulsePrefab(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_AoePulsePrefab, data);
+    }
 
     /// @brief  reads this BulletAoe's damage
     /// @param  data    the json data to read from
@@ -110,7 +117,8 @@
     ReadMethodMap< ISerializable > const& BulletAoe::GetReadMethods() const
     {
         static ReadMethodMap< BulletAoe > const readMethods = {
-            { "Damage", &BulletAoe::readDamage }
+            { "Damage", &BulletAoe::readDamage },
+            { "AoePulsePrefab", &BulletAoe::readAoePulsePrefab}
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -123,6 +131,7 @@
         nlohmann::ordered_json json;
 
         json[ "Damage" ] = Stream::Write( GetDamage() );
+        json["AoePulsePrefab"] = Stream::Write(m_AoePulsePrefab);
 
         return json;
     }

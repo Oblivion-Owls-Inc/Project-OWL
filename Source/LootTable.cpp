@@ -7,6 +7,7 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 
+#include "pch.h" // precompiled header has to be included first
 #include "LootTable.h"
 
 #include "Inspection.h"

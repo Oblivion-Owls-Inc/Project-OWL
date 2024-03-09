@@ -2,15 +2,7 @@
 
 #pragma once
 
-#include <glew.h>
-#include <glfw/glfw3.h>
-#include <glm/glm.hpp>
-#include <iostream>
-#include <cassert>
-#include <cstdlib>
-#include <atomic>
-#include <typeindex>
-#include <random>
+#include "pch.h" 
 
 #include "ISerializable.h"
 #pragma warning( disable : 26451 )

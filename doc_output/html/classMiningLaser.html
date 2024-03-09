@@ -63,7 +63,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classMiningLaser-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -86,12 +85,6 @@ Collaboration diagram for MiningLaser:</div>
 <div class="center"><img src="classMiningLaser__coll__graph.png" border="0" usemap="#aMiningLaser_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:a14036df214b9b8728c48a861f52c2fe3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#a14036df214b9b8728c48a861f52c2fe3">OnBreakTileCallback</a> = std::function&lt; void(<a class="el" href="classTilemap.html">Tilemap</a>&lt; int &gt; *tilemap, glm::ivec2 const  &amp;tilePos, int tileId) &gt;</td></tr>
-<tr class="memdesc:a14036df214b9b8728c48a861f52c2fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">callback called when a <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a> breaks a tile  <a href="classMiningLaser.html#a14036df214b9b8728c48a861f52c2fe3">More...</a><br /></td></tr>
-<tr class="separator:a14036df214b9b8728c48a861f52c2fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a68abf7a5bdb22740326c860df7f43f23"><td class="memItemLeft" align="right" valign="top"><a id="a68abf7a5bdb22740326c860df7f43f23"></a>
@@ -114,12 +107,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a935f0b5a2d45d38c1d4a2e8aeb65c075"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#a935f0b5a2d45d38c1d4a2e8aeb65c075">SetMiningSpeed</a> (float miningSpeed)</td></tr>
 <tr class="memdesc:a935f0b5a2d45d38c1d4a2e8aeb65c075"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets how quickly the laser breaks blocks  <a href="classMiningLaser.html#a935f0b5a2d45d38c1d4a2e8aeb65c075">More...</a><br /></td></tr>
 <tr class="separator:a935f0b5a2d45d38c1d4a2e8aeb65c075"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ff14838a664b2d771821577186e0f9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#a7ff14838a664b2d771821577186e0f9b">GetMaxInProgressTiles</a> () const</td></tr>
-<tr class="memdesc:a7ff14838a664b2d771821577186e0f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the max in progress tiles  <a href="classMiningLaser.html#a7ff14838a664b2d771821577186e0f9b">More...</a><br /></td></tr>
-<tr class="separator:a7ff14838a664b2d771821577186e0f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a99a76e175c19a97740e21e52e624d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#a2a99a76e175c19a97740e21e52e624d0">SetMaxInProgressTiles</a> (int maxInProgressTiles)</td></tr>
-<tr class="memdesc:a2a99a76e175c19a97740e21e52e624d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the max in progress tiles  <a href="classMiningLaser.html#a2a99a76e175c19a97740e21e52e624d0">More...</a><br /></td></tr>
-<tr class="separator:a2a99a76e175c19a97740e21e52e624d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa94644890e85b90406529c781e15d9fb"><td class="memItemLeft" align="right" valign="top">glm::vec4 const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#aa94644890e85b90406529c781e15d9fb">GetBeamColor</a> () const</td></tr>
 <tr class="memdesc:aa94644890e85b90406529c781e15d9fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the beam color  <a href="classMiningLaser.html#aa94644890e85b90406529c781e15d9fb">More...</a><br /></td></tr>
 <tr class="separator:aa94644890e85b90406529c781e15d9fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,18 +143,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa6f317cb0a3645f9c858444f5a393801"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#aa6f317cb0a3645f9c858444f5a393801">SetIsFiring</a> (bool isFiring)</td></tr>
 <tr class="memdesc:aa6f317cb0a3645f9c858444f5a393801"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets whether the beam is firing  <a href="classMiningLaser.html#aa6f317cb0a3645f9c858444f5a393801">More...</a><br /></td></tr>
 <tr class="separator:aa6f317cb0a3645f9c858444f5a393801"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac112e7388c3e21cf3dbf9077fe995e0b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTransform.html">Transform</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#ac112e7388c3e21cf3dbf9077fe995e0b">GetTransform</a> () const</td></tr>
-<tr class="memdesc:ac112e7388c3e21cf3dbf9077fe995e0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classTransform.html">Transform</a> attached to this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a>  <a href="classMiningLaser.html#ac112e7388c3e21cf3dbf9077fe995e0b">More...</a><br /></td></tr>
-<tr class="separator:ac112e7388c3e21cf3dbf9077fe995e0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26766705a464f8408e966ffe6b932feb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTilemap.html">Tilemap</a>&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#a26766705a464f8408e966ffe6b932feb">GetTilemap</a> () const</td></tr>
-<tr class="memdesc:a26766705a464f8408e966ffe6b932feb"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classTilemap.html" title="Loads and manages a tilemap array.">Tilemap</a> this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a> digs in  <a href="classMiningLaser.html#a26766705a464f8408e966ffe6b932feb">More...</a><br /></td></tr>
-<tr class="separator:a26766705a464f8408e966ffe6b932feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9c93c53f39011ea797a89fbd1947585"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#ab9c93c53f39011ea797a89fbd1947585">AddOnBreakTileCallback</a> (unsigned ownerId, <a class="el" href="classMiningLaser.html#a14036df214b9b8728c48a861f52c2fe3">OnBreakTileCallback</a> callback)</td></tr>
-<tr class="memdesc:ab9c93c53f39011ea797a89fbd1947585"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds an OnBreakTile callback to this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a>  <a href="classMiningLaser.html#ab9c93c53f39011ea797a89fbd1947585">More...</a><br /></td></tr>
-<tr class="separator:ab9c93c53f39011ea797a89fbd1947585"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3cc9fae62fb16adbec5e2b1b7e7c103"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#af3cc9fae62fb16adbec5e2b1b7e7c103">RemoveOnBreakTileCallback</a> (unsigned ownerId)</td></tr>
-<tr class="memdesc:af3cc9fae62fb16adbec5e2b1b7e7c103"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes an OnBreakTile callback from this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a>  <a href="classMiningLaser.html#af3cc9fae62fb16adbec5e2b1b7e7c103">More...</a><br /></td></tr>
-<tr class="separator:af3cc9fae62fb16adbec5e2b1b7e7c103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52a2c754e8bbdaae44f4b4b276d94ed0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTransform.html">Transform</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#a52a2c754e8bbdaae44f4b4b276d94ed0">GetTransform</a> ()</td></tr>
+<tr class="memdesc:a52a2c754e8bbdaae44f4b4b276d94ed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the <a class="el" href="classTransform.html">Transform</a> attached to this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a>  <a href="classMiningLaser.html#a52a2c754e8bbdaae44f4b4b276d94ed0">More...</a><br /></td></tr>
+<tr class="separator:a52a2c754e8bbdaae44f4b4b276d94ed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68ea8a114340a0b06f4eac1da4c6ed74"><td class="memItemLeft" align="right" valign="top">virtual ReadMethodMap&lt; <a class="el" href="classISerializable.html">ISerializable</a> &gt; const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiningLaser.html#a68ea8a114340a0b06f4eac1da4c6ed74">GetReadMethods</a> () const override</td></tr>
 <tr class="memdesc:a68ea8a114340a0b06f4eac1da4c6ed74"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the map of read methods for this <a class="el" href="classComponent.html">Component</a>  <a href="classMiningLaser.html#a68ea8a114340a0b06f4eac1da4c6ed74">More...</a><br /></td></tr>
 <tr class="separator:a68ea8a114340a0b06f4eac1da4c6ed74"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -231,69 +209,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Digging laser controllable by an entity. </p>
-</div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a14036df214b9b8728c48a861f52c2fe3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14036df214b9b8728c48a861f52c2fe3">&#9670;&nbsp;</a></span>OnBreakTileCallback</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classMiningLaser.html#a14036df214b9b8728c48a861f52c2fe3">MiningLaser::OnBreakTileCallback</a> =  std::function&lt; void ( <a class="el" href="classTilemap.html">Tilemap</a>&lt; int &gt;* tilemap, glm::ivec2 const&amp; tilePos, int tileId ) &gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>callback called when a <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a> breaks a tile </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tilemap</td><td>- the tilemap that the tile was broken in </td></tr>
-    <tr><td class="paramname">tilePos</td><td>- the position of the tile in the tilemap </td></tr>
-    <tr><td class="paramname">tileID</td><td>- the ID of the broken tile </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab9c93c53f39011ea797a89fbd1947585"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9c93c53f39011ea797a89fbd1947585">&#9670;&nbsp;</a></span>AddOnBreakTileCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MiningLaser::AddOnBreakTileCallback </td>
-          <td>(</td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>ownerId</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classMiningLaser.html#a14036df214b9b8728c48a861f52c2fe3">OnBreakTileCallback</a>&#160;</td>
-          <td class="paramname"><em>callback</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>adds an OnBreakTile callback to this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a> </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ownerId</td><td>the ID of the owner of the callback </td></tr>
-    <tr><td class="paramname">callback</td><td>the callback to add </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa94644890e85b90406529c781e15d9fb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa94644890e85b90406529c781e15d9fb">&#9670;&nbsp;</a></span>GetBeamColor()</h2>
 
@@ -414,26 +330,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a7ff14838a664b2d771821577186e0f9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ff14838a664b2d771821577186e0f9b">&#9670;&nbsp;</a></span>GetMaxInProgressTiles()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int MiningLaser::GetMaxInProgressTiles </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>gets the max in progress tiles </p>
-<dl class="section return"><dt>Returns</dt><dd>the max in progress tiles </dd></dl>
-
-</div>
-</div>
 <a id="aab0af419d0b77c5ee9e01055ec7b7306"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aab0af419d0b77c5ee9e01055ec7b7306">&#9670;&nbsp;</a></span>GetMiningSpeed()</h2>
 
@@ -504,28 +400,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a26766705a464f8408e966ffe6b932feb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a26766705a464f8408e966ffe6b932feb">&#9670;&nbsp;</a></span>GetTilemap()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classTilemap.html">Tilemap</a>&lt; int &gt; * MiningLaser::GetTilemap </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>gets the <a class="el" href="classTilemap.html" title="Loads and manages a tilemap array.">Tilemap</a> this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a> digs in </p>
-<dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="classTilemap.html" title="Loads and manages a tilemap array.">Tilemap</a> this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a> digs in </dd></dl>
-
-</div>
-</div>
-<a id="ac112e7388c3e21cf3dbf9077fe995e0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac112e7388c3e21cf3dbf9077fe995e0b">&#9670;&nbsp;</a></span>GetTransform()</h2>
+<a id="a52a2c754e8bbdaae44f4b4b276d94ed0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52a2c754e8bbdaae44f4b4b276d94ed0">&#9670;&nbsp;</a></span>GetTransform()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -534,39 +410,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="classTransform.html">Transform</a> * MiningLaser::GetTransform </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>gets the <a class="el" href="classTransform.html">Transform</a> attached to this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="classTransform.html">Transform</a> attached to this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a> </dd></dl>
-
-</div>
-</div>
-<a id="af3cc9fae62fb16adbec5e2b1b7e7c103"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3cc9fae62fb16adbec5e2b1b7e7c103">&#9670;&nbsp;</a></span>RemoveOnBreakTileCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MiningLaser::RemoveOnBreakTileCallback </td>
-          <td>(</td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>ownerId</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>removes an OnBreakTile callback from this <a class="el" href="classMiningLaser.html" title="Digging laser controllable by an entity.">MiningLaser</a> </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ownerId</td><td>the ID of the owner of the callback to remove </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -718,32 +568,6 @@ Additional Inherited Members</h2></td></tr>
 
 <p>sets whether the beam is firing </p>
 <dl class="section return"><dt>Returns</dt><dd>whether the beam is firing </dd></dl>
-
-</div>
-</div>
-<a id="a2a99a76e175c19a97740e21e52e624d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a99a76e175c19a97740e21e52e624d0">&#9670;&nbsp;</a></span>SetMaxInProgressTiles()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MiningLaser::SetMaxInProgressTiles </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>maxInProgressTiles</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>sets the max in progress tiles </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">maxInProgressTiles</td><td>the max in progress tiles </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

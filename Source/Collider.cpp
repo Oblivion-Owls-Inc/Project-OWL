@@ -6,7 +6,7 @@
 /// 
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
-
+#include "pch.h" // precompiled header has to be included first
 #include "Collider.h"
 
 #include "DebugSystem.h"
@@ -147,6 +147,13 @@
         }
     }
 
+    /// @brief  gets whether this Collider has any OnCollisionCallbacks
+    /// @return whether this Collider has any OnCollisionCallbacks
+    bool Collider::HasOnCollisionCallbacks() const
+    {
+        return m_OnCollisionCallbacks.empty() == false;
+    }
+
 
     /// @brief  adds a callback function to be called when a collision begins
     /// @param  callback    the function to be called when this collider collides
@@ -232,7 +239,7 @@
         // [] operator adds element if it doesn't exist
         int& previousFrame = m_Contacts[ other ];
 
-        // check if it already existed
+        // check if the contact already existed
         if ( previousFrame == 0 )
         {
             CallOnCollisionEnterCallbacks( other );
@@ -296,9 +303,11 @@
     void Collider::Inspector()
     {
         std::vector< std::string > const& collisionLayerNames = Collisions()->GetLayerNames();
-
         // collision layer
-        if ( ImGui::BeginCombo( ( std::string( "Collision Layer##" ) + std::to_string( GetId() ) ).c_str(), collisionLayerNames[ m_CollisionLayerId ].c_str()) ) // Default displayed
+        if ( ImGui::BeginCombo(
+            ( std::string( "Collision Layer##" ) + std::to_string( GetId() ) ).c_str(),
+            m_CollisionLayerId >= collisionLayerNames.size() ? "Unknown Layer" : collisionLayerNames[m_CollisionLayerId].c_str() // Default displayed
+        ) )
         {
             for (int i = 0; i < collisionLayerNames.size(); ++i)
             {

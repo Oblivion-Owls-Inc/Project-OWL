@@ -3,10 +3,12 @@
 /// 
 /// @brief    Tilemap component - loads and manages a tilemap array.
 
+#include "pch.h" // precompiled header has to be included first
 #define TILEMAP_C
 
 // TODO: callbacks should also get called whenever updating stride mult and row width.
 //       (those setters are currently inlines in .h)
+
 
 #ifndef TILEMAP_H
 #include "Tilemap.h"
@@ -15,7 +17,6 @@
 #include "Entity.h"  // parent
 #include "Transform.h"
 
-#include <imgui.h>
 
 
 //-----------------------------------------------------------------------------
@@ -256,8 +257,8 @@
     template < typename TileType >
     void Tilemap<TileType>::readTilemap( nlohmann::ordered_json const& data )
     {
-        if ( std::is_pointer_v< TileType > )
-        { // don't read data if data is pointers
+        if ( std::is_same_v< TileType , int > == false )
+        { // only serialize int tilemaps
             return;
         }
 
@@ -319,7 +320,7 @@
         data[ "Dimensions" ] = Stream::Write( m_Dimensions );
         data[ "TileScale" ] = Stream::Write( m_TileScale );
 
-        if ( std::is_pointer_v< TileType > )
+        if ( std::is_same_v< TileType, int > == false )
         {
             return data;
         }

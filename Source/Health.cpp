@@ -8,6 +8,7 @@
 /// @copyright © 2024 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 
+#include "pch.h" // precompiled header has to be included first
 #include "Health.h"
 
 ///--------------------------------------------------------------------------//

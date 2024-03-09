@@ -2,10 +2,10 @@
 /// @author   Eli Tsereteli (ilya.tsereteli@digipen.edu)
 ///
 /// @brief    System that handles the camera and coordinate systems / spaces.
-#pragma once
-#include "System.h"
-#include "glm/glm.hpp"
 
+#pragma once
+#include "pch.h" // precompiled header has to be included first
+#include "System.h"
 #include "Camera.h"
 
 
@@ -37,6 +37,11 @@ public: // accessors
 
     /// @return Screen to world space matrix
     glm::mat4 GetMat_ScreenToWorld() const;
+
+
+    /// @brief  gets the world bounds of the camera
+    /// @return the world bounds of the camera (min, max)
+    std::pair< glm::vec2, glm::vec2 > GetCameraWorldBounds() const;
 
 
 //-------------------------------------------------------------------------

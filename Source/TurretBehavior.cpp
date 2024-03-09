@@ -7,7 +7,7 @@
 /// @copyright  Copyright (c) 2023 Digipen Institute of Technology
 
 
-
+#include "pch.h" // precompiled header has to be included first
 #include "TurretBehavior.h"
 
 #include "BehaviorSystem.h"
@@ -24,7 +24,6 @@
 #include "DebugSystem.h"
 #include "RenderSystem.h"
 
-#include "glm/glm.hpp"
 
 //-------------------------------------------------------------------------------------------
 // public: constructor

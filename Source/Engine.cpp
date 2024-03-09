@@ -8,10 +8,11 @@
 
 #pragma once
 
+
+#include "pch.h" // precompiled header has to be included first
+#include "basics.h"
 #include "Engine.h"
 
-#include "basics.h"
-#include <fstream>
 
 #include "PlatformSystem.h"
 #include "SceneSystem.h"
@@ -36,6 +37,7 @@
 #include "RigidBody.h"
 #include "PlayerController.h"
 #include "Popup.h"
+#include "pause.h"
 #include "TurretBehavior.h"
 #include "EffectAnimator.h"
 #include "WavesBehavior.h"
@@ -364,6 +366,7 @@
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
 		{ "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
         { "BehaviorSystem<Popup>"                 , &addSystem< BehaviorSystem< Popup                  > > },
+        { "BehaviorSystem<PauseComponent>"        , &addSystem< BehaviorSystem< PauseComponent         > > },
 
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
 

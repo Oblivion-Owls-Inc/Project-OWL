@@ -8,6 +8,9 @@
 
 #pragma once
 
+
+#include "pch.h" // precompiled header has to be included first
+
 #include "TilemapItemDropper.h"
 
 #include "ComponentReference.t.h"
@@ -23,7 +26,6 @@
 #include "EntitySystem.h"
 #include "TileInfoSystem.h"
 
-#include <cmath>
 
 //-----------------------------------------------------------------------------
 // public: types

@@ -13,6 +13,7 @@
 #include "Bullet.h"
 
 #include "ComponentReference.h"
+#include "AssetReference.h"
 class Collider;
 
 
@@ -26,12 +27,13 @@ public: // constructor / destructors
     /// @brief  constructor
     BulletAoe();
 
+
 //-----------------------------------------------------------------------------
-public: // virtual override methods
+private: /// Members
 //-----------------------------------------------------------------------------
 
-    /// @brief Default constructor for the BulletAoe class.
-    //virtual void OnInit() override;
+    /// @brief The aoe pulse prefab to spawn
+    AssetReference< Entity > m_AoePulsePrefab;
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -54,6 +56,9 @@ public: // inspection
 private: // reading
 //-----------------------------------------------------------------------------
 
+    /// @brief Reads the name of the AoePulse prefab to grab from AssetLib
+    /// @param data - the json data to read from
+    void readAoePulsePrefab(nlohmann::ordered_json const& data);
 
     /// @brief  reads this BulletAoe's damage
     /// @param  data    the json data to read from

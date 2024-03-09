@@ -11,6 +11,8 @@
 //-----------------------------------------------------------------------------
 // Include Files:
 //-----------------------------------------------------------------------------
+
+#include "pch.h" 
 #include "ComponentFactory.h"
 
 #include "Transform.h"
@@ -22,6 +24,7 @@
 #include "AudioListener.h"
 #include "Bullet.h"
 #include "BulletAoe.h"
+#include "BulletAoePulse.h"
 #include "Animation.h"
 #include "TurretBehavior.h"
 #include "PlayerController.h"
@@ -63,6 +66,9 @@
 #include "PathfinderTarget.h"
 #include "PathfinderSource.h"
 #include "Popup.h"
+#include "pause.h"
+#include "orbitbehavior.h"
+#include "DestructibleTilemap.h"
 
 
 //-----------------------------------------------------------------------------
@@ -168,9 +174,11 @@
 		{ "EnemyBehavior"          , ComponentInfo< EnemyBehavior           >() },
 		{ "Bullet"                 , ComponentInfo< Bullet                  >() },
         { "BulletAoe"              , ComponentInfo< BulletAoe               >() },
+        { "BulletAoePulse"         , ComponentInfo< BulletAoePulse          >() },
         { "TurretBehavior"         , ComponentInfo< TurretBehavior          >() },
         { "EffectAnimator"         , ComponentInfo< EffectAnimator          >() },
         { "Tilemap<int>"           , ComponentInfo< Tilemap< int     >      >() },
+        { "Tilemap<float>"         , ComponentInfo< Tilemap< float   >      >() },
         { "Tilemap<Entity*>"       , ComponentInfo< Tilemap< Entity* >      >() },
         { "TilemapSprite"          , ComponentInfo< TilemapSprite           >() },
         { "TilemapCollider"        , ComponentInfo< TilemapCollider         >() },
@@ -208,7 +216,10 @@
         { "PathfinderTarget"       , ComponentInfo< PathfinderTarget        >() },
         { "PathfinderSource"       , ComponentInfo< PathfinderSource        >() },
         { "HideableForeground"     , ComponentInfo< HideableForeground      >() },
-        { "Popup"                  , ComponentInfo< Popup                   >() }
+        { "Popup"                  , ComponentInfo< Popup                   >() },
+        { "PauseComponent"         , ComponentInfo< PauseComponent          >() },
+        { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() },
+        { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() }
     };
 
 //-----------------------------------------------------------------------------
