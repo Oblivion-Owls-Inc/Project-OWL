@@ -97,8 +97,6 @@ digraph "Source/SceneSystem.h"
   Node1 -> Node42 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node42 [label="AssetLibrarySystem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AssetLibrarySystem_8h.html",tooltip="Asset System."];
   Node42 -> Node36 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node42 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node42 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node42 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node43 [label="Entity.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Entity_8h.html",tooltip="Entity class which holds Components."];
   Node43 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
