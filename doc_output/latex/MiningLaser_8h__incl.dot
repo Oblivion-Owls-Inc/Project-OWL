@@ -112,24 +112,7 @@ digraph "Source/MiningLaser.h"
   Node46 [label="ComponentReference.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ComponentReference_8h.html",tooltip="a reference to a component in the scene"];
   Node46 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
-  Node47 [label="Transform.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Transform_8h.html",tooltip="Transform."];
-  Node47 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
-  Node47 -> Node36 [color="midnightblue",fontsize="10",style="solid"];
+  Node47 [label="DestructibleTilemap.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$DestructibleTilemap_8h.html",tooltip="Component responsible for handling the breaking of tiles with varrying strengths."];
   Node47 -> Node39 [color="midnightblue",fontsize="10",style="solid"];
-  Node1 -> Node48 [color="midnightblue",fontsize="10",style="solid"];
-  Node48 [label="Tilemap.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Tilemap_8h.html",tooltip="Tilemap component - loads and manages a tilemap array."];
-  Node48 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
-  Node48 -> Node39 [color="midnightblue",fontsize="10",style="solid"];
-  Node48 -> Node46 [color="midnightblue",fontsize="10",style="solid"];
-  Node48 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
-  Node48 -> Node49 [color="midnightblue",fontsize="10",style="solid"];
-  Node49 [label="Tilemap.t.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Tilemap_8t_8cpp.html",tooltip="Tilemap component - loads and manages a tilemap array."];
-  Node49 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
-  Node49 -> Node48 [color="midnightblue",fontsize="10",style="solid"];
-  Node49 -> Node50 [color="midnightblue",fontsize="10",style="solid"];
-  Node50 [label="Entity.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Entity_8h.html",tooltip="Entity class which holds Components."];
-  Node50 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
-  Node50 -> Node39 [color="midnightblue",fontsize="10",style="solid"];
-  Node50 -> Node37 [color="midnightblue",fontsize="10",style="solid"];
-  Node49 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
+  Node47 -> Node46 [color="midnightblue",fontsize="10",style="solid"];
 }
