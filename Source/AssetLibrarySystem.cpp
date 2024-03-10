@@ -37,8 +37,7 @@ void AssetLibrarySystem<Entity>::DebugWindow()
     {
         Entity* entity = entities[i];
 
-        if (entity->IsInScene() ||
-            entity->IsDestroyed())
+        if (entity->IsInScene())
         {
             entity->Exit();
         }

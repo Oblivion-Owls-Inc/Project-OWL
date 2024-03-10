@@ -472,11 +472,6 @@
                         {
                             currentEntity->Destroy();
 
-                            if (!DragAndDrop)
-                            {
-                                currentEntity->Destroy();
-                            }
-
                             if (SelectedEntity == currentEntity)
                             {
                                 SelectedEntity = nullptr;
