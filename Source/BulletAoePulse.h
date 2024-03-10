@@ -31,7 +31,7 @@ public: // virtual override methods
 //-----------------------------------------------------------------------------
 
     /// @brief Default constructor for the BulletAoePulse class.
-    //virtual void OnInit() override;
+    virtual void OnInit() override;
 
 //-----------------------------------------------------------------------------
 private: // methods

@@ -21,7 +21,7 @@
 
 
     /// @brief  constructor
-    BulletAoePulse::BulletAoePulse()
+    BulletAoePulse::BulletAoePulse() : Bullet(typeid(BulletAoePulse))
     {}
 
 
@@ -31,26 +31,11 @@
 
 
     /// @brief Default constructor for the BulletAoePulse class.
-    /*void BulletAoePulse::OnInit()
+    void BulletAoePulse::OnInit()
     {
-        m_Collider.SetOnConnectCallback(
-            [ this ]()
-            {
-                m_Collider->AddOnCollisionEnterCallback(
-                    GetId(),
-                    std::bind( &BulletAoePulse::onCollisionEnter, this, std::placeholders::_1 )
-                );
-            }
-        );
-        m_Collider.SetOnDisconnectCallback(
-            [ this ]()
-            {
-                m_Collider->RemoveOnCollisionEnterCallback( GetId() );
-            }
-        );
-
-        m_Collider.Init( GetEntity() );
-    }*/
+        Bullet::OnInit();
+        GetEntity()->Destroy();
+    }
 
 
 
@@ -67,10 +52,8 @@
         Health* health = other->GetEntity()->GetComponent< Health >();
         if ( health != nullptr )
         {
-            health->TakeDamage( GetDamage() *5 );
+            health->TakeDamage( GetDamage() );
         }
-
-        GetEntity()->Destroy();
     }
 
 //-----------------------------------------------------------------------------
@@ -80,7 +63,7 @@
     /// @brief Used by the Debug System to display information about this Component
     void BulletAoePulse::Inspector()
     {
-        ImGui::Text("Aoe Bullet");
+        ImGui::Text("Aoe Pulse");
         Bullet::Inspector();
     }
 
