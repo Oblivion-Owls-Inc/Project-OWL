@@ -102,8 +102,6 @@ digraph "Source/ItemStack.cpp"
   Node44 [label="Stream.t.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Stream_8t_8cpp.html",tooltip="JSON File reading/writing."];
   Node44 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node44 -> Node42 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node39 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node39 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node39 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node45 [label="Entity.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Entity_8h.html",tooltip="Entity class which holds Components."];
   Node45 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

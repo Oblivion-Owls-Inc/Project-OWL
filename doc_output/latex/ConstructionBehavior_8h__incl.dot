@@ -117,8 +117,6 @@ digraph "Source/ConstructionBehavior.h"
   Node50 [label="System.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$System_8h.html",tooltip="Base class for all Systems."];
   Node50 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node50 -> Node40 [color="midnightblue",fontsize="10",style="solid"];
-  Node49 -> Node14 [color="midnightblue",fontsize="10",style="solid"];
-  Node49 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node56 [color="midnightblue",fontsize="10",style="solid"];
   Node56 [label="ActionReference.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ActionReference_8h.html",tooltip="a reference to an input Action"];
   Node56 -> Node37 [color="midnightblue",fontsize="10",style="solid"];
