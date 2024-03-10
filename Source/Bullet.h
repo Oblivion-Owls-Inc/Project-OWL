@@ -26,6 +26,9 @@ public: // constructor / destructors
     /// @brief  constructor
     Bullet();
 
+    /// @brief  derived constructor
+    Bullet(std::type_index m_Type);
+
 
 //-----------------------------------------------------------------------------
 public: // accessors

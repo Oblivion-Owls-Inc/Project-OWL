@@ -12,6 +12,7 @@
 
 #include "ComponentReference.t.h"
 #include "Collider.h"
+#include "CircleCollider.h"
 
 #include "Health.h"
 
@@ -21,7 +22,7 @@
 
 
     /// @brief  constructor
-    BulletAoe::BulletAoe()
+    BulletAoe::BulletAoe() : Bullet(typeid(BulletAoe))
     {}
 
 
@@ -29,31 +30,13 @@
 // public: virtual override methods
 //-----------------------------------------------------------------------------
 
-
     /// @brief Default constructor for the BulletAoe class.
-    /*void BulletAoe::OnInit()
+    void BulletAoe::OnInit()
     {
-        m_Collider.SetOnConnectCallback(
-            [ this ]()
-            {
-                m_Collider->AddOnCollisionEnterCallback(
-                    GetId(),
-                    std::bind( &BulletAoe::onCollisionEnter, this, std::placeholders::_1 )
-                );
-            }
-        );
-        m_Collider.SetOnDisconnectCallback(
-            [ this ]()
-            {
-                m_Collider->RemoveOnCollisionEnterCallback( GetId() );
-            }
-        );
-
-        m_Collider.Init( GetEntity() );
-    }*/
-
-
-
+        m_AoePulsePrefab.SetOwnerName(GetName());
+        m_AoePulsePrefab.Init();
+        Bullet::OnInit();
+    }
 
 //-----------------------------------------------------------------------------
 // private: methods
@@ -64,10 +47,24 @@
     /// @param  other   the collider that was collided with
     void BulletAoe::onCollisionEnter( Collider* other )
     {
-        Health* health = other->GetEntity()->GetComponent< Health >();
-        if ( health != nullptr )
+        if (m_AoePulsePrefab)
         {
-            health->TakeDamage( GetDamage() );
+            Entity* bullet = m_AoePulsePrefab->Clone();
+
+            // Sets the data within the bullet
+            Transform* bulletTransform = bullet->GetComponent<Transform>();
+            if (bulletTransform)
+            {
+                bulletTransform->SetTranslation(GetEntity()->GetComponent<Transform>()->GetTranslation());
+                bulletTransform->SetScale(bulletTransform->GetScale());
+                bullet->GetComponent< CircleCollider >()->SetRadius(0.5f * bulletTransform->GetScale().x);
+            }
+
+            bullet->GetComponent<Bullet>()->SetDamage(GetEntity()->GetComponent<Bullet>()->GetDamage());
+            
+
+            // Add the bullet to the entity system
+            bullet->AddToScene();
         }
 
         GetEntity()->Destroy();
@@ -157,7 +154,8 @@
 
     /// @brief  copy-constructor for the RigidBody
     /// @param  other   the other RigidBody to copy
-    BulletAoe::BulletAoe( const BulletAoe& other )
+    BulletAoe::BulletAoe( const BulletAoe& other ) :
+        m_AoePulsePrefab(other.m_AoePulsePrefab)
     {}
 
 

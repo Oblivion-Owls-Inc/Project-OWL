@@ -27,6 +27,12 @@ public: // constructor / destructors
     /// @brief  constructor
     BulletAoe();
 
+//-----------------------------------------------------------------------------
+public: //virtual override methods
+//-----------------------------------------------------------------------------
+
+    /// @brief Default constructor for the BulletAoe class.
+    void OnInit();
 
 //-----------------------------------------------------------------------------
 private: /// Members

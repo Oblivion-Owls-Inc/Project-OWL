@@ -25,6 +25,11 @@
         Component( typeid( Bullet ) )
     {}
 
+    /// @brief  derived constructor
+    Bullet::Bullet(std::type_index m_Type) :
+        Component(m_Type)
+    {}
+
 
 //-----------------------------------------------------------------------------
 // public: accessors
