@@ -81,42 +81,6 @@
     }
 
 
-    /// @brief  gets the keyboard mappings (GLFW id, texture index)
-    /// @return the keyboard mappings (GLFW id, texture index)
-    std::vector< std::array< int, 2 > > const& ControlPromptSystem::getKeyboardMappings() const
-    {
-        return m_KeyboardMappings;
-    }
-
-    /// @brief  gets the mouse button mappings (GLFW id, texture index)
-    /// @return the mouse button mappings (GLFW id, texture index)
-    std::vector< std::array< int, 2 > > const& ControlPromptSystem::getMouseMappings() const
-    {
-        return m_MouseMappings;
-    }
-
-    /// @brief  gets the gamepad button Xbox mappings (GLFW id, texture index)
-    /// @return the gamepad button Xbox mappings (GLFW id, texture index)
-    std::vector< std::array< int, 2 > > const& ControlPromptSystem::getGamepadButtonsXboxMappings() const
-    {
-        return m_GamepadButtonsXboxMappings;
-    }
-
-    /// @brief  gets the gamepad button Playstation mappings (GLFW id, texture index)
-    /// @return the gamepad button Playstation mappings (GLFW id, texture index)
-    std::vector< std::array< int, 2 > > const& ControlPromptSystem::getGamepadButtonsPlaystationMappings() const
-    {
-        return m_GamepadButtonsPlaystationMappings;
-    }
-
-    /// @brief  gets the gamepad axes mappings (GLFW id, texture index)
-    /// @return the gamepad axes mappings (GLFW id, texture index)
-    std::vector< std::array< int, 2 > > const& ControlPromptSystem::getGamepadAxesMappings() const
-    {
-        return m_GamepadAxesMappings;
-    }
-
-
 //-----------------------------------------------------------------------------
 // public: virtual override methods
 //-----------------------------------------------------------------------------
@@ -169,7 +133,7 @@
                 // ensure the mapping follows the correct format
                 if (
                     mappingData.is_array() == false || mappingData.size() != 2 ||
-                    mappingData[ 0 ].is_number_integer() == false || mappingData[ 1 ].is_number_unsigned() == false
+                    mappingData[ 0 ].is_number_integer() == false || mappingData[ 1 ].is_number_integer() == false
                     )
                 {
                     Debug() << "Warning: ControlPromptMappings JSON \"" << mappingName << "\" has the incorrect format" << std::endl;
@@ -196,7 +160,7 @@
     {
         bool showWindow = GetDebugEnabled();
 
-        if ( ImGui::Begin( "Render System", &showWindow ) )
+        if ( ImGui::Begin( "Control Prompt System", &showWindow ) )
         {
             // inspect textures
             std::pair< Texture*, char const* > const promptsTextures[] = {

@@ -63,27 +63,6 @@ public: // accessors
     Texture const* GetGamepadPromptTexture() const;
 
 
-    /// @brief  gets the keyboard mappings (GLFW id, texture index)
-    /// @return the keyboard mappings (GLFW id, texture index)
-    std::vector< std::array< int, 2 > > const& getKeyboardMappings() const;
-
-    /// @brief  gets the mouse button mappings (GLFW id, texture index)
-    /// @return the mouse button mappings (GLFW id, texture index)
-    std::vector< std::array< int, 2 > > const& getMouseMappings() const;
-
-    /// @brief  gets the gamepad button Xbox mappings (GLFW id, texture index)
-    /// @return the gamepad button Xbox mappings (GLFW id, texture index)
-    std::vector< std::array< int, 2 > > const& getGamepadButtonsXboxMappings() const;
-
-    /// @brief  gets the gamepad button Playstation mappings (GLFW id, texture index)
-    /// @return the gamepad button Playstation mappings (GLFW id, texture index)
-    std::vector< std::array< int, 2 > > const& getGamepadButtonsPlaystationMappings() const;
-
-    /// @brief  gets the gamepad axes mappings (GLFW id, texture index)
-    /// @return the gamepad axes mappings (GLFW id, texture index)
-    std::vector< std::array< int, 2 > > const& getGamepadAxesMappings() const;
-
-
 //-----------------------------------------------------------------------------
 public: // virtual override methods
 //-----------------------------------------------------------------------------

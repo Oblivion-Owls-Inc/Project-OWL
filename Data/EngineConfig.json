@@ -3,8 +3,8 @@
     "Systems": {
         "PlatformSystem": {
             "WindowSize": [
-                896,
-                548
+                1039,
+                694
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -181,6 +181,9 @@
         "DebugSystem": {
             "ShowFpsWindow": false,
             "ShowDebugWindow": true
+        },
+        "ControlPromptSystem": {
+            "PromptMappingFilepath": "Data/ButtonPromptMappings/ButtonPrompts.json"
         },
         "AssetLibrary<Entity>": {},
         "AssetLibrary<Sound>": {},
