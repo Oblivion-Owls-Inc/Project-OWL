@@ -463,7 +463,7 @@
                     "BulletAoe": {
                         "Damage": 1,
                         "AoePulsePrefab": {
-                            "AssetName": "Bullet"
+                            "AssetName": "AoePulse"
                         }
                     },
                     "CircleCollider": {
@@ -517,6 +517,63 @@
                         "Scale": [
                             0.30000001192092896,
                             0.30000001192092896
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            },
+            "AoePulse": {
+                "Name": "AoePulse",
+                "Components": {
+                    "BulletAoePulse": {
+                        "Damage": 5,
+                        "Radius": 5.0
+                    },
+                    "Lifetime": {
+                        "Lifetime": {
+                            "BaseValue": 2.0,
+                            "CurrentValue": 2.0
+                        }
+                    },
+                    "RigidBody": {
+                        "Velocity": [
+                            0.0,
+                            0.0
+                        ],
+                        "Acceleration": [
+                            0.0,
+                            0.0
+                        ],
+                        "RotationalVelocity": 0.0,
+                        "Mass": 0.25,
+                        "Restitution": 0.0,
+                        "Friction": 0.0,
+                        "Drag": 0.0
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Fireball"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            5.0,
+                            5.0
                         ],
                         "IsDiegetic": true
                     }
@@ -1458,7 +1515,7 @@
                             "Flags": 1
                         },
                         "BulletPrefab": {
-                            "AssetName": "Bullet"
+                            "AssetName": "AoeBullet"
                         }
                     }
                 },

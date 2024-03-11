@@ -17,7 +17,7 @@ class Collider;
 
 
 /// @brief   Component that destroys itself and deals aoe damage on contact
-class BulletAoePulse : public Bullet
+class BulletAoePulse : public Component
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructors
@@ -34,13 +34,33 @@ public: // virtual override methods
     virtual void OnInit() override;
 
 //-----------------------------------------------------------------------------
-private: // methods
+private: // member variables
 //-----------------------------------------------------------------------------
 
+    /// @brief  how much damage this Bullet will do
+    int m_Damage = 1;
 
-    /// @brief  called whenever this Entity's Collider enters a collision
-    /// @param  other   the collider that was collided with
-    void onCollisionEnter( Collider* other ) override;
+    /// @brief  how large the aoe pulse is
+    float m_Radius = 1.0f;
+
+//-----------------------------------------------------------------------------
+public: // accessors
+//-----------------------------------------------------------------------------
+
+    /// @brief Set the damage the bullet will do
+    /// @param damage - the damage the bullet will do
+    void SetDamage(int damage);
+
+    /// @brief get the damage the bullet will do
+    int GetDamage();
+
+    /// @brief Set the radius of the bullet pulse
+    /// @param radius - the radius of the bullet pulse
+    void SetRadius(float radius);
+
+    /// @brief Get the radius of the bullet pulse
+    float GetRadius();
+    
 
 //-----------------------------------------------------------------------------
 public: // inspection
@@ -58,6 +78,10 @@ private: // reading
     /// @brief  reads this BulletAoePulse's damage
     /// @param  data    the json data to read from
     void readDamage( nlohmann::ordered_json const& data );
+
+    /// @brief  reads this BulletAoePulse's radius
+    /// @param  data    the json data to read from
+    void readRadius(nlohmann::ordered_json const& data);
 
 
 //-----------------------------------------------------------------------------

@@ -12,6 +12,8 @@
 
 #include "ComponentReference.t.h"
 #include "Collider.h"
+#include "EnemyBehavior.h"
+#include "BehaviorSystem.h"
 
 #include "Health.h"
 
@@ -21,7 +23,7 @@
 
 
     /// @brief  constructor
-    BulletAoePulse::BulletAoePulse() : Bullet(typeid(BulletAoePulse))
+    BulletAoePulse::BulletAoePulse() : Component(typeid(BulletAoePulse))
     {}
 
 
@@ -33,27 +35,61 @@
     /// @brief Default constructor for the BulletAoePulse class.
     void BulletAoePulse::OnInit()
     {
-        Bullet::OnInit();
+        for (EnemyBehavior const* enemy : Behaviors< EnemyBehavior >()->GetComponents())
+        {
+            /// Get the position of the turret
+            glm::vec2 turretPosition = GetEntity()->GetComponent<Transform>()->GetTranslation();
+
+            /// Get the position of the entity
+            glm::vec2 enemyPosition = enemy->GetTransform()->GetTranslation();
+
+            /// Calculate the direction from the turret to the entity
+            glm::vec2 offsetToEntity = enemyPosition - turretPosition;
+
+            // check if the target is within range
+            float distanceSquared = glm::dot(offsetToEntity, offsetToEntity);
+            if (distanceSquared > m_Radius * m_Radius)
+            {
+                continue;
+            }
+
+            Health* health = enemy->GetEntity()->GetComponent< Health >();
+            if (health != nullptr)
+            {
+                health->TakeDamage(m_Damage);
+            }
+        }
         GetEntity()->Destroy();
     }
 
-
-
-
 //-----------------------------------------------------------------------------
-// private: methods
+// public: accessors
 //-----------------------------------------------------------------------------
 
-
-    /// @brief  called whenever this Entity's Collider enters a collision
-    /// @param  other   the collider that was collided with
-    void BulletAoePulse::onCollisionEnter( Collider* other )
+    /// @brief Set the damage the bullet will do
+    /// @param damage - the damage the bullet will do
+    void BulletAoePulse::SetDamage(int damage)
     {
-        Health* health = other->GetEntity()->GetComponent< Health >();
-        if ( health != nullptr )
-        {
-            health->TakeDamage( GetDamage() );
-        }
+        m_Damage = damage;
+    }
+
+    /// @brief Set the damage the bullet will do
+    int BulletAoePulse::GetDamage()
+    {
+        return m_Damage;
+    }
+
+    /// @brief Set the radius of the bullet pulse
+    /// @param radius - the radius of the bullet pulse
+    void BulletAoePulse::SetRadius(float radius)
+    {
+        m_Radius = radius;
+    }
+
+    /// @brief Get the radius of the bullet pulse
+    float BulletAoePulse::GetRadius()
+    {
+        return m_Radius;
     }
 
 //-----------------------------------------------------------------------------
@@ -64,7 +100,8 @@
     void BulletAoePulse::Inspector()
     {
         ImGui::Text("Aoe Pulse");
-        Bullet::Inspector();
+        ImGui::DragInt("damage", &m_Damage, 0.05f, 0, INT_MAX);
+        ImGui::DragFloat("radius", &m_Radius, 0.5f);
     }
 
 
@@ -77,11 +114,15 @@
     /// @param  data    the json data to read from
     void BulletAoePulse::readDamage( nlohmann::ordered_json const& data )
     {
-        int m_Damage = 0;
         Stream::Read( m_Damage, data );
-        SetDamage(m_Damage);
     }
 
+    /// @brief  reads this BulletAoePulse's radius
+    /// @param  data    the json data to read from
+    void BulletAoePulse::readRadius(nlohmann::ordered_json const& data)
+    {
+        Stream::Read( m_Radius, data );
+    }
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -93,7 +134,8 @@
     ReadMethodMap< ISerializable > const& BulletAoePulse::GetReadMethods() const
     {
         static ReadMethodMap< BulletAoePulse > const readMethods = {
-            { "Damage", &BulletAoePulse::readDamage }
+            { "Damage", &BulletAoePulse::readDamage },
+            { "Radius", &BulletAoePulse::readRadius }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -105,7 +147,8 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "Damage" ] = Stream::Write( GetDamage() );
+        json[ "Damage" ] = Stream::Write( m_Damage );
+        json[ "Radius" ] = Stream::Write( m_Radius );
 
         return json;
     }
@@ -131,7 +174,10 @@
 
     /// @brief  copy-constructor for the RigidBody
     /// @param  other   the other RigidBody to copy
-    BulletAoePulse::BulletAoePulse( const BulletAoePulse& other )
+    BulletAoePulse::BulletAoePulse( const BulletAoePulse& other ) :
+        Component(other),
+        m_Damage(other.m_Damage),
+        m_Radius(other.m_Radius)
     {}
 
 

@@ -9,6 +9,7 @@
 
 #include "pch.h"
 #include "BulletAoe.h"
+#include "BulletAoePulse.h"
 
 #include "ComponentReference.t.h"
 #include "Collider.h"
@@ -57,10 +58,17 @@
             {
                 bulletTransform->SetTranslation(GetEntity()->GetComponent<Transform>()->GetTranslation());
                 bulletTransform->SetScale(bulletTransform->GetScale());
-                bullet->GetComponent< CircleCollider >()->SetRadius(0.5f * bulletTransform->GetScale().x);
             }
 
-            bullet->GetComponent<Bullet>()->SetDamage(GetEntity()->GetComponent<Bullet>()->GetDamage());
+            if (bullet->GetComponent<Bullet>())
+            {
+                bullet->GetComponent< CircleCollider >()->SetRadius(0.5f * bulletTransform->GetScale().x);
+                bullet->GetComponent<Bullet>()->SetDamage(GetEntity()->GetComponent<Bullet>()->GetDamage());
+            }
+            /*if (bullet->GetComponent<BulletAoePulse>())
+            {
+                bullet->GetComponent<Bullet>()->SetDamage(GetEntity()->GetComponent<Bullet>()->GetDamage());
+            }*/
             
 
             // Add the bullet to the entity system
