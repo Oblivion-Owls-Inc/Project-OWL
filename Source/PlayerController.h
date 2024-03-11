@@ -68,8 +68,11 @@ private: // member variables
 //-----------------------------------------------------------------------------
    
 
-    /// @brief  Define the maximum speed for smooth movement.
-    float m_MaxSpeed = 1.0f;
+    /// @brief The amount of force to apply to the player when moving vertically
+    glm::vec2 m_VerticalMoveforce = { 1.0f, 1.0f };
+
+    /// @brief The amount of force to apply to the player when moving horizontally
+    glm::vec2 m_HorizontalMoveforce = { 1.0f, 1.0f };
 
     /// @brief  Player respawn location
     glm::vec2 m_PlayerRespawnLocation = { -15.0f, 5.0f };
@@ -160,9 +163,14 @@ private: // reading
 //-----------------------------------------------------------------------------
 
 
-    /// @brief Read in the max speed for the player.
-    /// @param data The JSON file to read from.
-    void readMaxSpeed(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the amount of force to apply to the player when moving vertically.
+    /// @param data - the JSON file to read from.
+    void readVerticalMoveForce( nlohmann::ordered_json const& data );
+
+    /// @brief Read in the amount of force to apply to the player when moving horizontally.
+    /// @param data - the JSON file to read from.
+    void readHorizontalMoveForce( nlohmann::ordered_json const& data );
 
     /// @brief Read in the respawn location for the player.
     /// @param data - the JSON file to read from.

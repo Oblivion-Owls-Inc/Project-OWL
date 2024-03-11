@@ -165,40 +165,41 @@
 
         // The normalised direction vector.
         glm::vec2 direction = { 0.0f, 0.0f };
+        glm::vec2 NormalizedDirection = { 0.0f, 0.0f };
 
         direction.x = m_MoveHorizontal != nullptr ? m_MoveHorizontal->GetAxis() : 0.0f;
         direction.y = m_MoveVertical != nullptr ? m_MoveVertical->GetAxis() : 0.0f;
-    
 
         if ( direction != glm::vec2( 0 ) )
         {
-            direction = glm::normalize( direction );
+            NormalizedDirection = glm::normalize( direction );
 
-            if ( std::abs( direction.x ) >= std::abs( direction.y ) )
+            if (NormalizedDirection.x > 0 )
             {
-                if ( direction.x > 0 )
-                {
-                    // 0 is right
-                    m_Animation->SetAsset( m_Animations[ 0 ] );
-                }
-                else
-                {
-                    // 1 is left
-                    m_Animation->SetAsset( m_Animations[ 1 ] );
-                }
+                // 0 is right
+                m_Animation->SetAsset( m_Animations[ 0 ] );
+                NormalizedDirection.x *= m_HorizontalMoveforce[0];
             }
             else
             {
-                if ( direction.y > 0 )
-                {
-                    // 2 is up
-                    m_Animation->SetAsset( m_Animations[ 2 ] );
-                }
-                else
-                {
-                    // 3 is down
-                    m_Animation->SetAsset( m_Animations[ 3 ] );
-                }
+                // 1 is left
+                m_Animation->SetAsset( m_Animations[ 1 ] );
+                NormalizedDirection.x *= m_HorizontalMoveforce[1];
+            }
+            
+
+            if (NormalizedDirection.y > 0 )
+            {
+                // 2 is up
+                m_Animation->SetAsset( m_Animations[ 2 ] );
+                NormalizedDirection.y *= m_VerticalMoveforce[0];
+
+            }
+            else
+            {
+                // 3 is down
+                m_Animation->SetAsset( m_Animations[ 3 ] );
+                NormalizedDirection.y *= m_VerticalMoveforce[1];
             }
 
             m_AudioPlayer->Play();
@@ -211,8 +212,9 @@
             m_AudioPlayer->Stop();
         }
 
-        m_RigidBody->ApplyVelocity( direction * m_MaxSpeed );
 
+       
+        m_RigidBody->ApplyAcceleration( NormalizedDirection );
 
         updateMiningLaser();
     }
@@ -237,7 +239,7 @@
         {
             m_MiningLaser->SetIsFiring( true );
 
-            glm::vec2 direction;
+            glm::vec2 direction = { 0 , 0 };
             if ( Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER ) >= 1.0f )
             {
                 // Get the data from the right thumbstick.
@@ -324,7 +326,8 @@
     /// @brief Helper function for inspector.
     void PlayerController::vectorInspector()
     {
-        ImGui::DragFloat( "Max Speed", &m_MaxSpeed, 0.05f, 0.0f, INFINITY );
+        ImGui::DragFloat2( "Vertical Moveforce",   &m_VerticalMoveforce[ 0 ],   0.05f );
+        ImGui::DragFloat2( "Horizontal Moveforce", &m_HorizontalMoveforce[ 0 ], 0.05f );
 
         // Change the respawn location in the editor.
         ImGui::DragFloat2( "Respawn Location", &m_PlayerRespawnLocation[ 0 ], 0.05f );
@@ -347,11 +350,18 @@
 //-----------------------------------------------------------------------------
 
 
-    /// @brief Read in the max speed for the player.
-    /// @param data The JSON file to read from.
-    void PlayerController::readMaxSpeed(nlohmann::ordered_json const& data)
+    /// @brief Read in the amount of force to apply to the player when moving vertically.
+    /// @param data - the JSON file to read from.
+    void PlayerController::readVerticalMoveForce(nlohmann::ordered_json const& data)
     {
-        Stream::Read( m_MaxSpeed, data );
+        m_VerticalMoveforce = Stream::Read<2, float>(data);
+    }
+
+    /// @brief Read in the amount of force to apply to the player when moving horizontally.
+    /// @param data - the JSON file to read from.
+    void PlayerController::readHorizontalMoveForce(nlohmann::ordered_json const& data)
+    {
+        m_HorizontalMoveforce = Stream::Read<2, float>(data);
     }
 
     /// @brief Read in the respawn location for the player.
@@ -417,14 +427,15 @@
     ReadMethodMap< ISerializable > const& PlayerController::GetReadMethods() const
     {
         static ReadMethodMap< PlayerController > const readMethods = {
-            { "MaxSpeed"         , &PlayerController::readMaxSpeed          },
-            { "RespawnLocation"  , &PlayerController::readRespawnLocation   },
-            { "Animations"       , &PlayerController::readAnimations        },
-            { "MiningLaserEntity", &PlayerController::readMiningLaserEntity },
-            { "MoveVertical"     , &PlayerController::readMoveVertical      },
-            { "MoveHorizontal"   , &PlayerController::readMoveHorizontal    },
-            { "FireLaser"        , &PlayerController::readFireLaser         },
-            { "Interact"         , &PlayerController::readInteract          }
+            { "VerticalMoveforce"  , &PlayerController::readVerticalMoveForce   },
+            { "HorizontalMoveforce", &PlayerController::readHorizontalMoveForce },
+            { "RespawnLocation"    , &PlayerController::readRespawnLocation     },
+            { "Animations"         , &PlayerController::readAnimations          },
+            { "MiningLaserEntity"  , &PlayerController::readMiningLaserEntity   },
+            { "MoveVertical"       , &PlayerController::readMoveVertical        },
+            { "MoveHorizontal"     , &PlayerController::readMoveHorizontal      },
+            { "FireLaser"          , &PlayerController::readFireLaser           },
+            { "Interact"           , &PlayerController::readInteract            }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -444,13 +455,14 @@
             animationNames.push_back( Stream::Write( animation ) );
         }
 
-        data[ "MaxSpeed"          ] = Stream::Write( m_MaxSpeed              );
-        data[ "MiningLaserEntity" ] = Stream::Write( m_MiningLaserEntity     );
-        data[ "RespawnLocation"   ] = Stream::Write( m_PlayerRespawnLocation );
-        data[ "MoveVertical"      ] = Stream::Write( m_MoveVertical          );
-        data[ "MoveHorizontal"    ] = Stream::Write( m_MoveHorizontal        );
-        data[ "FireLaser"         ] = Stream::Write( m_FireLaser             );
-        data[ "Interact"          ] = Stream::Write( m_Interact              );
+        data[ "MiningLaserEntity"   ] = Stream::Write( m_MiningLaserEntity     );
+        data[ "RespawnLocation"     ] = Stream::Write( m_PlayerRespawnLocation );
+        data[ "MoveVertical"        ] = Stream::Write( m_MoveVertical          );
+        data[ "MoveHorizontal"      ] = Stream::Write( m_MoveHorizontal        );
+        data[ "FireLaser"           ] = Stream::Write( m_FireLaser             );
+        data[ "Interact"            ] = Stream::Write( m_Interact              );
+        data[ "VerticalMoveforce"   ] = Stream::Write( m_VerticalMoveforce     );
+        data[ "HorizontalMoveforce" ] = Stream::Write( m_HorizontalMoveforce   );
 
         return data;
     }
@@ -478,12 +490,13 @@
     /// @param other A PlayerController to copy.
     PlayerController::PlayerController(PlayerController const& other):
         Behavior( other ),
-        m_MaxSpeed             ( other.m_MaxSpeed              ),
         m_PlayerRespawnLocation( other.m_PlayerRespawnLocation ),
         m_MoveVertical         ( other.m_MoveVertical          ),
         m_MoveHorizontal       ( other.m_MoveHorizontal        ),
         m_FireLaser            ( other.m_FireLaser             ),
-        m_Interact             ( other.m_Interact              )
+        m_Interact             ( other.m_Interact              ),
+        m_VerticalMoveforce    ( other.m_VerticalMoveforce     ),
+        m_HorizontalMoveforce  ( other.m_HorizontalMoveforce   )
     {
         // Copy the animations
         for (int i = 0; i < NUM_ANIMATIONS; i++)
