@@ -8,13 +8,13 @@
 /// @copyright © 2023 DigiPen (USA) Corporation.
 ///--------------------------------------------------------------------------//
 
+#include "pch.h" // precompiled header has to be included first
 #include "Entity.h"
 
 #include "EntitySystem.h"
 
-#include <algorithm>		  // std::sort
+
 #include "Component.h"		  // Type
-#include <cassert>			  // assert
 #include "ComponentFactory.h" // Create.
 #include "InputSystem.h"
 #include "AssetLibrarySystem.h"
@@ -471,18 +471,18 @@
             ImGui::EndCombo();
         }
 
-        if ( ImGui::BeginCombo( "##Remove Component", "Remove Component" , ImGuiComboFlags_HeightLarge ) )
-        {
-            for ( auto& [ key, component ] : m_Components )
-            {
-                if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
-                {
-                    removeComponent( component );
-                    break;
-                }
-            }
-            ImGui::EndCombo();
-        }
+        //if ( ImGui::BeginCombo( "##Remove Component", "Remove Component" , ImGuiComboFlags_HeightLarge ) )
+        //{
+        //    for ( auto& [ key, component ] : m_Components )
+        //    {
+        //        if ( ImGui::Selectable( PrefixlessName( key ).c_str(), false ) )
+        //        {
+        //            removeComponent( component );
+        //            break;
+        //        }
+        //    }
+        //    ImGui::EndCombo();
+        //}
 
         static std::string name = "";
         ImGui::InputText( "Entity Name", &name );

@@ -11,9 +11,6 @@
 #define ASSETLIBRARYSYSTEM_H
 
 #include "System.h"
-#include <map>
-#include <string>
-
 #include "Entity.h"
 
 // base class so that LoadAssets can be called without knowing AssetType

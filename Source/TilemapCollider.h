@@ -38,7 +38,7 @@ public: // accessors
 
 
 //-----------------------------------------------------------------------------
-private: // virtual overrides
+public: // virtual overrides
 //-----------------------------------------------------------------------------
 
 
@@ -47,6 +47,10 @@ private: // virtual overrides
 
     /// @brief  called once when exiting the scene
     virtual void OnExit() override;
+
+
+    /// @brief  draws the collision shape of this collider for debug purposes
+    virtual void DebugDraw() const override;
 
 
 //-----------------------------------------------------------------------------

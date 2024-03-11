@@ -11,7 +11,7 @@
 //-----------------------------------------------------------------------------
 // include files
 //-----------------------------------------------------------------------------
-
+#include "pch.h" // precompiled header has to be included first
 #include "Component.h"
 
 #include "ComponentReference.h"
@@ -20,9 +20,6 @@ class RigidBody;
 class StaticBody;
 
 #include "CollisionLayerFlags.h"
-
-#include <map>
-#include <functional>
 
 //-----------------------------------------------------------------------------
 // forward references
@@ -130,6 +127,10 @@ public: // methods
     /// @param  ownerId     the ID of the owner of the callback to remove
     void RemoveOnCollisionCallback( unsigned ownerId );
 
+    /// @brief  gets whether this Collider has any OnCollisionCallbacks
+    /// @return whether this Collider has any OnCollisionCallbacks
+    bool HasOnCollisionCallbacks() const;
+
 
     /// @brief  adds a callback function to be called when a collision begins
     /// @param  callback    the function to be called when this collider collides
@@ -169,6 +170,15 @@ public: // methods
 
     /// @brief  removes all outdated contacts from this Collider and calls OnCollisionExit callbacks
     void RemoveOutdatedContacts();
+
+    
+//-----------------------------------------------------------------------------
+public: // virtual override methods
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  draws the collision shape of this collider for debug purposes
+    virtual void DebugDraw() const = 0;
 
 
 //-----------------------------------------------------------------------------

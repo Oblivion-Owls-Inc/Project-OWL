@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "pch.h" // precompiled header has to be included first
 #include "TilemapEditor.h"
 
 #include "ComponentReference.t.h"

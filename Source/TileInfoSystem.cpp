@@ -6,7 +6,7 @@
 /// 
 /// @copyright  Copyright (c) 2023
 
-
+#include "pch.h" // precompiled header has to be included first
 #include "TileInfoSystem.h"
 
 #include "Inspection.h"
@@ -28,13 +28,6 @@
             return m_LootTable;
         }
 
-        /// @brief  gets the toughness of the tile type
-        /// @return the toughness of the tile type
-        float TileInfoSystem::TileInfo::GetToughness() const
-        {
-            return m_Toughness;
-        }
-
 
     //-----------------------------------------------------------------------------
     // public: inspection
@@ -45,13 +38,11 @@
         /// @return whether the TileInfo was changed
         bool TileInfoSystem::TileInfo::Inspect()
         {
-            bool changed;
-
-            changed = ImGui::DragFloat( "toughness", &m_Toughness, 0.05f, 0.0f, INFINITY );
+            bool changed = false;
 
             if ( ImGui::TreeNode( "loot table" ) )
             {
-                changed = m_LootTable.Inspect() || changed;
+                changed |= m_LootTable.Inspect();
                 ImGui::TreePop();
             }
 
@@ -71,13 +62,6 @@
             Stream::Read( m_LootTable, data );
         }
 
-        /// @brief  reads the toughness of the tile type
-        /// @param  data    - the json data to read from
-        void TileInfoSystem::TileInfo::readToughness( nlohmann::ordered_json const& data )
-        {
-            Stream::Read( m_Toughness, data );
-        }
-
 
     //-----------------------------------------------------------------------------
     // public: reading
@@ -89,8 +73,7 @@
         ReadMethodMap< ISerializable > const& TileInfoSystem::TileInfo::GetReadMethods() const
         {
             static ReadMethodMap< TileInfo > const readMethods = {
-                { "LootTable", &TileInfo::readLootTable },
-                { "Toughness", &TileInfo::readToughness }
+                { "LootTable", &TileInfo::readLootTable }
             };
 
             return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -104,7 +87,6 @@
             nlohmann::ordered_json json;
 
             json[ "LootTable" ] = Stream::Write( m_LootTable );
-            json[ "Toughness" ] = Stream::Write( m_Toughness );
 
             return json;
         }

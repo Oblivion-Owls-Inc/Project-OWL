@@ -25,9 +25,11 @@ digraph "Source/CameraSystem.h"
   Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node11 [label="Source/Sprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Sprite_8cpp.html",tooltip="Implementation of Sprite component."];
   Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node12 [label="Source/TilemapSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapSprite_8cpp.html",tooltip="A version of Sprite specifically for rendering tiles."];
+  Node12 [label="Source/TilemapCollider.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapCollider_8cpp.html",tooltip="tilemap collider"];
   Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node13 [label="Source/UiBarSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiBarSprite_8cpp.html",tooltip="sprite that renders a ui bar"];
+  Node13 [label="Source/TilemapSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TilemapSprite_8cpp.html",tooltip="A version of Sprite specifically for rendering tiles."];
   Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node14 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
+  Node14 [label="Source/UiBarSprite.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiBarSprite_8cpp.html",tooltip="sprite that renders a ui bar"];
+  Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="Source/UiElement.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$UiElement_8cpp.html",tooltip="Ui element component."];
 }

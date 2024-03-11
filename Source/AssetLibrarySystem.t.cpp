@@ -6,7 +6,10 @@
 /// 
 /// @copyright Copyright (c) 2023
 
+#include "pch.h" // precompiled header has to be included first
+
 #define ASSETLIBRARYSYSTEM_C
+
 
 #ifndef ASSETLIBRARYSYSTEM_H
 #include "AssetLibrarySystem.h"
@@ -79,7 +82,7 @@ bool AssetLibrarySystem< AssetType >::s_ShowAssetLibraryList = false;
         {
             ImGui::SetWindowSize(ImVec2(500, 500), ImGuiCond_FirstUseEver);
 
-                ListAssets();
+            ListAssets();
         }
 
         ImGui::End();
@@ -217,16 +220,49 @@ AssetType const* AssetLibrarySystem< AssetType >::GetAsset( std::string const& n
     void AssetLibrarySystem<AssetType>::ListAssets()
     {
         // list assets
-        for (auto& key : m_Assets)
+
+        for (auto ComponentIt = m_Assets.begin(); ComponentIt != m_Assets.end(); /* no increment here */)
         {
-            if ( !ImGui::TreeNode( key.first.c_str() ) )
+            bool erase = false;
+
+            if (!ImGui::TreeNode(ComponentIt->first.c_str()))
             {
-                continue;
+                if (ImGui::BeginPopupContextItem(ComponentIt->first.c_str()))
+                {
+                    if (ImGui::MenuItem("Copy"))
+                    {
+                        Stream::CopyToClipboard(ComponentIt->second);
+                    }
+                    if (ImGui::MenuItem("Paste"))
+                    {
+                        Stream::PasteFromClipboard(ComponentIt->second);
+                    }
+                    if (ImGui::MenuItem("Delete"))
+                    {
+                        Debug() << "Deleting " << ComponentIt->first << std::endl;
+                        delete ComponentIt->second; // Delete the asset
+                        erase = true;
+                        // Don't continue here since we're erasing this element
+                    }
+                    ImGui::EndPopup();
+                }
+
+                if (!erase)
+                {
+                    ++ComponentIt; // Only increment if we're not erasing this element
+                }
+            }
+            else
+            {
+                ComponentIt->second->Inspect();
+                ImGui::TreePop();
+                ++ComponentIt; // Increment here since no deletion is happening
             }
 
-            key.second->Inspect();
-
-            ImGui::TreePop();
+            if (erase)
+            {
+                ComponentIt = m_Assets.erase(ComponentIt);
+            }
         }
 	    
     }

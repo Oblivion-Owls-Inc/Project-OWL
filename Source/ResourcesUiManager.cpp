@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "pch.h" // precompiled header has to be included first
 #include "ResourcesUiManager.h"
 
 #include "ItemStack.h"

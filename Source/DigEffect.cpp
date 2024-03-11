@@ -8,6 +8,7 @@
 * \date       March 2024
 * \copyright  Copyright (c) 2024 Digipen Instutute of Technology
 *********************************************************************/
+#include "pch.h"
 #include "BehaviorSystem.h"  // add/remove from behaviorsystem
 #include "DigEffect.h"
 #include "Emitter.h"
@@ -40,33 +41,28 @@ void DigEffect::OnInit()
 {
 	Behaviors< Behavior >()->AddComponent(this);
 
-	m_Emitter.Init( GetEntity() );
-	if (m_Emitter == nullptr)
-		return;
-
-	m_ESprite = GetEntity()->GetComponent<EmitterSprite>();
-
 	// if timer is non-zero, this is temp entity
 	if (m_Timer > 0.0f)
 	{
-		// if this is temporary entity, emit 50 particles and that's that.
-		m_Emitter->Emit();
+		// if this is temporary entity, emit particles.
+		Emitter* emitter = GetEntity()->GetComponent<Emitter>();
+		if (emitter != nullptr)
+			emitter->Emit();
 	}
 	else if (m_Timer == 0.0f)
 	{
-		// if it's not, this should be laser's child entity. init references, set callback
+		// if it's not, this should be part of tilemap entity. It will be spawning archetypes.
+		Tilemap<int>* tm = GetEntity()->GetComponent< Tilemap<int> >();
+		if (tm)			// TODO: does it need to be removed?
+			tm->AddOnTilemapChangedCallback( GetId(), std::bind( &DigEffect::spawnTemp,
+																 this,
+																 std::placeholders::_1,
+																 std::placeholders::_2,
+																 std::placeholders::_3 ) );
+
 		m_Archetype.SetOwnerName( GetEntity()->GetName() );
 		m_Archetype.Init();
-
-		m_Laser.Init( GetEntity()->GetParent() );
-		if (m_Laser == nullptr)
-			return;
-
-		m_Laser->AddOnBreakTileCallback( GetId(), std::bind( &DigEffect::spawnTemp, 
-															 this,
-															 std::placeholders::_1, 
-															 std::placeholders::_2, 
-															 std::placeholders::_3) );
+		m_TSprite = GetEntity()->GetComponent< TilemapSprite >();
 	}
 }
 
@@ -76,15 +72,6 @@ void DigEffect::OnExit()
 { 
 	Behaviors< Behavior >()->RemoveComponent(this);
 
-	if (m_Emitter)
-		m_Emitter.Exit();
-	
-	if (m_Laser)
-	{
-		m_Laser->RemoveOnBreakTileCallback( GetId() );
-		m_Laser.Exit();
-	}
-
 	if (m_Archetype)
 		m_Archetype.Clear();
 }
@@ -93,7 +80,7 @@ void DigEffect::OnExit()
 /// @brief  Keeps an eye on item count
 void DigEffect::OnUpdate(float dt)
 {
-	// if timer is not 0, it will run. And destroy entity once it runs out.
+	// if timer is not 0, it will run. And destroy parent entity once it runs out.
 	if (m_Timer > 0.0f)
 	{
 		m_Timer -= dt;
@@ -114,11 +101,14 @@ void DigEffect::Inspector()
 
 
 
-void DigEffect::spawnTemp(Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int tileId)
+void DigEffect::spawnTemp(Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int prevTileId)
 {
-	// is there a uh.. more efficient way to do this?
-	TilemapSprite* tspr = tilemap->GetEntity()->GetComponent<TilemapSprite>();
-	if (!tspr || !m_ESprite)
+	if (!m_Archetype || !m_TSprite)
+		return;
+
+	// skip if the tile wasn't changed to empty
+	int tileId = tilemap->GetTile(tilePos);
+	if (tileId != -1)
 		return;
 
 	glm::vec2 pos = tilemap->TileCoordToWorldPos(tilePos);
@@ -126,8 +116,8 @@ void DigEffect::spawnTemp(Tilemap< int >* tilemap, glm::ivec2 const& tilePos, in
 	Entity* temp = m_Archetype->Clone();
 	temp->GetComponent<Transform>()->SetTranslation(pos);
 	EmitterSprite* es = temp->GetComponent<EmitterSprite>();
-	es->SetTexture( tspr->GetTexture() );
-	es->SetFrameIndex( tileId );
+	es->SetTexture( m_TSprite->GetTexture() );
+	es->SetFrameIndex( prevTileId );
 	temp->AddToScene();
 }
 

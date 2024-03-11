@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include <vector>
-
 #include "basics.h"
 #include "ISerializable.h"
 

@@ -12,9 +12,8 @@
 // Includes:
 //-----------------------------------------------------------------------------
 
+    #include "pch.h" 
     #include "System.h"
-    #include <vector>
-    #include <typeindex>
 
     #include "CollisionData.h"
     #include "CollisionLayerFlags.h"
@@ -110,6 +109,7 @@ private: // virtual override methods
     /// @brief  Gets called once every simulation frame. Use this function for anything that affects the simulation.
     virtual void OnFixedUpdate() override;
 
+
     /// @brief  creates the debug window for the CollisionSystem
     virtual void DebugWindow() override;
 
@@ -152,6 +152,10 @@ private: // members
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  debug draw all of the colliders
+    void debugDrawColliders();
 
 
     /// @brief  Checks and handles all Collisions

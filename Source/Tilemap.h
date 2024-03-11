@@ -7,14 +7,12 @@
 
 #define TILEMAP_H
 
+#include "pch.h" 
 #include "Component.h"
 
 #include "ComponentReference.h"
 #include "Transform.h"
-#include <functional>   // callbacks
-#include <map>
 
-#include <iostream>
 
 /// @brief  untemplatized base Tilemap class
 class TilemapBase : public Component

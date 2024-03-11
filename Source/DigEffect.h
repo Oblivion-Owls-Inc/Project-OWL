@@ -18,7 +18,7 @@
 // fwd refs
 class Emitter;
 class MiningLaser;
-class EmitterSprite;
+class TilemapSprite;
 
 /// @brief    
 class DigEffect : public Behavior
@@ -73,13 +73,7 @@ private:
     ///          isn't considered a temporary entity.
     float m_Timer = 0.0f;
 
-    /// @brief   Cached parent's emitter component
-    ComponentReference<Emitter> m_Emitter;
-
-    EmitterSprite* m_ESprite = nullptr;  // TODO: Link errors when using component reference. Figure it out.
-
-    /// @brief   Cached parent's laser component
-    ComponentReference<MiningLaser> m_Laser;
+    TilemapSprite* m_TSprite = nullptr;  // TODO: Link errors when using component reference. Figure it out.
 
     /// @brief   Reference to archetype version of this entity
     AssetReference< Entity > m_Archetype;
@@ -93,8 +87,8 @@ private:
     /// @brief          Spawns new temporary entity at the broken tile's location
     /// @param tilemap  pointer to tilemap whose tile just broke
     /// @param tilePos  2D index of the broken tile
-    /// @param tileId   ID/frame of the broken tile
-    void spawnTemp(Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int tileId);
+    /// @param tileId   old ID/frame of the changed tile
+    void spawnTemp(Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int prevTileId);
 
 
 //-----------------------------------------------------------------------------

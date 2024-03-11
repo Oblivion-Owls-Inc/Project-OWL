@@ -2919,6 +2919,16 @@
                         0
                     ]
                 },
+                "Tilemap<float>": {
+                    "Dimensions": [
+                        47,
+                        35
+                    ],
+                    "TileScale": [
+                        1.0,
+                        1.0
+                    ]
+                },
                 "Tilemap<Entity*>": {
                     "Dimensions": [
                         47,
@@ -2928,6 +2938,20 @@
                         1.0,
                         1.0
                     ]
+                },
+                "DestructibleTilemap": {
+                    "TileTypeHealths": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                "DigEffect": {
+                    "Timer": 0.0,
+                    "Archetype": {
+                        "AssetName": "break"
+                    }
                 },
                 "PathfinderSource": {
                     "Walkables": [
@@ -6991,7 +7015,6 @@
                     },
                     "Range": 4.0,
                     "MiningSpeed": 4.0,
-                    "MaxInProgressTiles": 32,
                     "BeamColor": [
                         1.0,
                         0.0,
@@ -7022,80 +7045,7 @@
                     "IsDiegetic": true
                 }
             },
-            "Children": [
-                {
-                    "Name": "DigEffect",
-                    "Components": {
-                        "DigEffect": {
-                            "Timer": 0.0,
-                            "Archetype": {
-                                "AssetName": "break"
-                            }
-                        },
-                        "Emitter": {
-                            "PPS": 100.0,
-                            "Delay": 0.0,
-                            "Max": 128,
-                            "Continuous": false,
-                            "EmitData": [
-                                [
-                                    0.0,
-                                    0.0
-                                ],
-                                [
-                                    0.4000000059604645,
-                                    0.4000000059604645
-                                ],
-                                [
-                                    0.0,
-                                    -15.0
-                                ],
-                                1.5700000524520874,
-                                3.2300000190734863,
-                                0.15999998152256012,
-                                0.0,
-                                0.8069999814033508,
-                                1.8459999561309814,
-                                0.1509999930858612,
-                                0.0,
-                                0.0,
-                                0.3199999928474426,
-                                0.6499999761581421,
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
-                        },
-                        "EmitterSprite": {
-                            "Layer": 4,
-                            "Color": [
-                                0.0,
-                                0.0,
-                                0.0,
-                                0.0
-                            ],
-                            "Opacity": 1.0,
-                            "FrameIndex": 51,
-                            "Texture": {
-                                "AssetName": "Level Assets"
-                            }
-                        },
-                        "Transform": {
-                            "Translation": [
-                                -1.0542831420898438,
-                                5.450350761413574
-                            ],
-                            "Rotation": 0.0,
-                            "Scale": [
-                                1.0,
-                                1.0
-                            ],
-                            "IsDiegetic": true
-                        }
-                    },
-                    "Children": null
-                }
-            ]
+            "Children": null
         },
         "CostUi": {
             "Name": "CostUi",
@@ -7137,5 +7087,6 @@
             },
             "Children": null
         }
-    }
+    },
+    "PreparsedScenes": null
 }
