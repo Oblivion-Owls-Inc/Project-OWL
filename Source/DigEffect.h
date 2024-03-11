@@ -13,12 +13,12 @@
 #include "ComponentReference.h"
 #include "AssetReference.h"
 #include "Tilemap.h"
-#include "MiningLaser.h"	 // tile break callback
 
 
 // fwd refs
 class Emitter;
 class MiningLaser;
+class EmitterSprite;
 
 /// @brief    
 class DigEffect : public Behavior
@@ -76,6 +76,8 @@ private:
     /// @brief   Cached parent's emitter component
     ComponentReference<Emitter> m_Emitter;
 
+    EmitterSprite* m_ESprite = nullptr;  // TODO: Link errors when using component reference. Figure it out.
+
     /// @brief   Cached parent's laser component
     ComponentReference<MiningLaser> m_Laser;
 
@@ -87,12 +89,6 @@ private:
 //              Helpers
 //-----------------------------------------------------------------------------
 private:
-
-    /// @brief    When this is player's child component (for laser tip)
-    //void updateChild(float dt);
-
-    /// @brief    When this is temporary entity (for broken tiles)
-    //void updateTemp(float dt);
 
     /// @brief          Spawns new temporary entity at the broken tile's location
     /// @param tilemap  pointer to tilemap whose tile just broke

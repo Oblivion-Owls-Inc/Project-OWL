@@ -186,17 +186,15 @@ void Emitter::Inspector()
     ImGui::Checkbox("Continuous", &m_Continuous);
     if (!m_Continuous)
     {
-        static int amt = 5;
-
-        ImGui::SliderInt("Amount", &amt, 1, m_BufferSize);
+        ImGui::DragFloat("Amount / PPS", &m_PPS, 0.1f, 0.0f, (float)m_BufferSize);
 
         if (ImGui::Button("Emit"))
-            m_ParticleCount = (float)amt;
+            m_ParticleCount = m_PPS;
     }
     else
     {
         ImGui::Text("Particles per sec");
-        ImGui::SliderFloat("###PPS", &m_PPS, 1.0f, 2000.0f);
+        ImGui::DragFloat("###PPS", &m_PPS, 0.1f, 0.0f, (float)m_BufferSize);
         ImGui::SliderFloat("Delay", &m_Delay, 0.0f, 2.0f);
     }
     ImGui::Spacing();
@@ -238,9 +236,6 @@ void Emitter::Inspector()
         resizeBuffers();
         initChanged = true;
     }
-    ImGui::TextWrapped("Note: if it starts acting up when adjusting this number, "\
-                        "just readjust again until it's ok. (This only happens " \
-                        "during real-time adjustments)");
 
     if (initChanged)
         Particles()->SetEmitDataDirty();

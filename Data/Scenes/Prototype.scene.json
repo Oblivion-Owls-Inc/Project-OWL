@@ -732,12 +732,15 @@
                 "Name": "break",
                 "Components": {
                     "DigEffect": {
-                        "Timer": 1.0
+                        "Timer": 1.0,
+                        "Archetype": {
+                            "AssetName": ""
+                        }
                     },
                     "Emitter": {
-                        "PPS": 200.0,
+                        "PPS": 80.0,
                         "Delay": 0.0,
-                        "Max": 2048,
+                        "Max": 128,
                         "Continuous": false,
                         "EmitData": [
                             [
@@ -745,19 +748,19 @@
                                 0.0
                             ],
                             [
-                                0.28999999165534973,
-                                0.27000001072883606
+                                0.4000000059604645,
+                                0.4000000059604645
                             ],
                             [
                                 0.0,
                                 -15.0
                             ],
                             1.5700000524520874,
-                            3.2300000190734863,
-                            0.20000000298023224,
+                            3.0950000286102295,
+                            0.15999998152256012,
                             0.0,
                             0.8069999814033508,
-                            1.8459999561309814,
+                            2.0360000133514404,
                             0.1509999930858612,
                             0.0,
                             0.0,
@@ -801,7 +804,10 @@
                 "Name": "ring",
                 "Components": {
                     "DigEffect": {
-                        "Timer": 1.0
+                        "Timer": 1.0,
+                        "Archetype": {
+                            "AssetName": ""
+                        }
                     },
                     "Emitter": {
                         "PPS": 116.96299743652344,
@@ -1249,88 +1255,6 @@
                         1.0
                     ],
                     "IsDiegetic": true
-                }
-            },
-            "Children": null
-        },
-        "Wave": {
-            "Name": "Wave",
-            "Components": {
-                "Transform": {
-                    "Translation": [
-                        0.0,
-                        0.0
-                    ],
-                    "Rotation": 0.0,
-                    "Scale": [
-                        1.0,
-                        1.0
-                    ],
-                    "IsDiegetic": true
-                },
-                "WavesBehavior": {
-                    "Spawners": [
-                        [
-                            -12.0,
-                            -23.5
-                        ]
-                    ],
-                    "Waves": [
-                        {
-                            "WaveTime": 0.0,
-                            "WaveNextTime": 0.0,
-                            "EnemyGroups": [
-                                {
-                                    "Enemy": {
-                                        "AssetName": "Enemy"
-                                    },
-                                    "Amount": 0,
-                                    "SpawnInterval": 2.0,
-                                    "InitialOffset": 5.0,
-                                    "Spawner": 0
-                                }
-                            ]
-                        },
-                        {
-                            "WaveTime": 0.0,
-                            "WaveNextTime": 0.4960828125476837,
-                            "EnemyGroups": [
-                                {
-                                    "Enemy": {
-                                        "AssetName": "Enemy"
-                                    },
-                                    "Amount": 0,
-                                    "SpawnInterval": 2.0,
-                                    "InitialOffset": 5.0,
-                                    "Spawner": 0
-                                }
-                            ]
-                        },
-                        {
-                            "WaveTime": 999.0,
-                            "WaveNextTime": 999.0,
-                            "EnemyGroups": [
-                                {
-                                    "Enemy": {
-                                        "AssetName": "Enemy"
-                                    },
-                                    "Amount": 999,
-                                    "SpawnInterval": 2.0,
-                                    "InitialOffset": 5.0,
-                                    "Spawner": 0
-                                },
-                                {
-                                    "Enemy": {
-                                        "AssetName": "Enemy"
-                                    },
-                                    "Amount": 999,
-                                    "SpawnInterval": 10.0,
-                                    "InitialOffset": 10.0,
-                                    "Spawner": 0
-                                }
-                            ]
-                        }
-                    ]
                 }
             },
             "Children": null
@@ -7105,13 +7029,13 @@
                         "DigEffect": {
                             "Timer": 0.0,
                             "Archetype": {
-                                 "AssetName": "break"
+                                "AssetName": "break"
                             }
                         },
                         "Emitter": {
-                            "PPS": 200.0,
+                            "PPS": 100.0,
                             "Delay": 0.0,
-                            "Max": 2048,
+                            "Max": 128,
                             "Continuous": false,
                             "EmitData": [
                                 [
@@ -7119,8 +7043,8 @@
                                     0.0
                                 ],
                                 [
-                                    0.28999999165534973,
-                                    0.27000001072883606
+                                    0.4000000059604645,
+                                    0.4000000059604645
                                 ],
                                 [
                                     0.0,
@@ -7128,7 +7052,7 @@
                                 ],
                                 1.5700000524520874,
                                 3.2300000190734863,
-                                0.20000000298023224,
+                                0.15999998152256012,
                                 0.0,
                                 0.8069999814033508,
                                 1.8459999561309814,

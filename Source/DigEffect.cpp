@@ -13,10 +13,11 @@
 #include "Emitter.h"
 #include "Entity.h"			 // destroy/spawn entity
 #include "MiningLaser.h"	 // tile break callback
-#include "TilemapSprite.h"   // get tile texture
-#include "EmitterSprite.h"   // (and assign it to particles)
+#include "TilemapSprite.h"   // callback
+#include "EmitterSprite.h"   // emitter texture/frame
 #include "EntitySystem.h"	 // spawn entity
 #include "Transform.h"	     // (and set its position)
+#include "Texture.h"
 
 /// @brief  Default constructor
 DigEffect::DigEffect() : Behavior(typeid(DigEffect)) {}
@@ -43,11 +44,12 @@ void DigEffect::OnInit()
 	if (m_Emitter == nullptr)
 		return;
 
+	m_ESprite = GetEntity()->GetComponent<EmitterSprite>();
+
 	// if timer is non-zero, this is temp entity
 	if (m_Timer > 0.0f)
 	{
 		// if this is temporary entity, emit 50 particles and that's that.
-		m_Emitter->SetPPS(50.0f);
 		m_Emitter->Emit();
 	}
 	else if (m_Timer == 0.0f)
@@ -98,8 +100,6 @@ void DigEffect::OnUpdate(float dt)
 		if (m_Timer <= 0.0f)
 			GetEntity()->Destroy();
 	}
-	//else
-	//	updateChild(dt);  // TODO: rename this to something less confusing
 }
 
 
@@ -107,18 +107,28 @@ void DigEffect::OnUpdate(float dt)
 void DigEffect::Inspector()
 {
 	ImGui::InputFloat("Timer", &m_Timer, 0.01f);
+	ImGui::PushID(0);
+	m_Archetype.Inspect("Archetype (to spawn when tile breaks)");
+	ImGui::PopID();
 }
 
 
 
 void DigEffect::spawnTemp(Tilemap< int >* tilemap, glm::ivec2 const& tilePos, int tileId)
 {
+	// is there a uh.. more efficient way to do this?
+	TilemapSprite* tspr = tilemap->GetEntity()->GetComponent<TilemapSprite>();
+	if (!tspr || !m_ESprite)
+		return;
+
 	glm::vec2 pos = tilemap->TileCoordToWorldPos(tilePos);
 
 	Entity* temp = m_Archetype->Clone();
 	temp->GetComponent<Transform>()->SetTranslation(pos);
+	EmitterSprite* es = temp->GetComponent<EmitterSprite>();
+	es->SetTexture( tspr->GetTexture() );
+	es->SetFrameIndex( tileId );
 	temp->AddToScene();
-	Debug() << "Broken tile pos:  " << pos.x << ", " << pos.y << "  ID: " << tileId << std::endl;
 }
 
 
@@ -152,6 +162,7 @@ nlohmann::ordered_json DigEffect::Write() const
 	nlohmann::ordered_json data;
 
 	data["Timer"] = m_Timer;
+	data["Archetype"] = Stream::Write(m_Archetype);
 
 	return data;
 }
