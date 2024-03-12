@@ -28,7 +28,7 @@
 
     /// @brief  move-constructor
     /// @param  other   the Action to move into this one
-    Action::Action( Action&& other ) :
+    Action::Action( Action&& other ) noexcept :
         m_Inputs( std::move( other.m_Inputs ) ),
         m_Name( std::move( other.m_Name ) )
     {}

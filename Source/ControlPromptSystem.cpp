@@ -27,11 +27,11 @@
     {
         // get the appropriate texture mappings array
         std::vector< std::array< int, 2 > > const* const textureMappingArrays[] = {
-            &m_KeyboardMappings,
-            &m_MouseMappings,
-            &m_GamepadButtonsXboxMappings,
-            &m_GamepadButtonsPlaystationMappings,
-            &m_GamepadAxesMappings
+            &m_MappingInfo.M_KeyboardMappings,
+            &m_MappingInfo.M_MouseMappings,
+            &m_MappingInfo.M_GamepadButtonsXboxMappings,
+            &m_MappingInfo.M_GamepadButtonsPlaystationMappings,
+            &m_MappingInfo.M_GamepadAxesMappings
         };
         std::vector< std::array< int, 2 > > const* textureMappingArray = textureMappingArrays[ static_cast< int >( inputType ) ];
 
@@ -54,31 +54,30 @@
     }
 
 
+    /// @brief  gets the texture of the specified InputType
+    /// @param  inputType   the input type to get the texture for
+    /// @return the prompts texture for the specified input type
+    Texture const* ControlPromptSystem::GetPromptTexture( InputType inputType ) const
+    {
+        switch ( inputType )
+        {
+            case InputType::Keyboard:
+                return &m_MappingInfo.M_KeyboardPromptsTexture;
+            case InputType::Mouse:
+                return &m_MappingInfo.M_MousePromptsTexture;
+            case InputType::GamepadButtonsXbox:
+            case InputType::GamepadButtonsPlaystation:
+            case InputType::GamepadAxes:
+                return &m_MappingInfo.M_MousePromptsTexture;
+            default:
+                return &m_MappingInfo.M_KeyboardPromptsTexture;
+        }
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: accessors
 //-----------------------------------------------------------------------------
-
-
-    /// @brief  gets the keyboard prompts Texture
-    /// @return the keyboard prompts texture
-    Texture const* ControlPromptSystem::GetKeyboardPromptTexture() const
-    {
-        return &m_KeyboardPromptsTexture;
-    }
-
-    /// @brief  gets the mouse prompts Texture
-    /// @return the mouse prompts texture
-    Texture const* ControlPromptSystem::GetMousePromptTexture() const
-    {
-        return &m_MousePromptsTexture;
-    }
-
-    /// @brief  gets the gamepad prompts Texture
-    /// @return the gamepad prompts texture
-    Texture const* ControlPromptSystem::GetGamepadPromptTexture() const
-    {
-        return &m_GamepadPromptsTexture;
-    }
 
 
 //-----------------------------------------------------------------------------
@@ -89,65 +88,191 @@
     /// @brief  Gets called once when this System is added to the Engine
     void ControlPromptSystem::OnInit()
     {
-        loadTextureMappings();
+        if ( m_PromptMappingFilepath.empty() )
+        {
+            Debug() << "Error: ControlPromptSystem.m_PromptMappingFilepath is empty" << std::endl;
+            return;
+        }
+
+        Stream::PushDebugLocation( m_PromptMappingFilepath + "::" );
+
+        Stream::Read( m_MappingInfo, Stream::ParseFromFile( m_PromptMappingFilepath ) );
+
+        Stream::PopDebugLocation();
+    }
+
+    /// @brief  Gets called once when the Engine closes
+    void ControlPromptSystem::OnExit()
+    {
+        if ( m_PromptMappingFilepath.empty() )
+        {
+            Debug() << "Error: ControlPromptSystem.m_PromptMappingFilepath is empty" << std::endl;
+            return;
+        }
+
+        Stream::WriteToFile( m_PromptMappingFilepath, Stream::Write( m_MappingInfo ) );
     }
 
     
 //-----------------------------------------------------------------------------
-// private: methods
+// private: struct MappingInfo
 //-----------------------------------------------------------------------------
 
+        
+    //-------------------------------------------------------------------------
+    // private: reading / writing
+    //-------------------------------------------------------------------------
 
-    /// @brief  loads the prompt texture mappings from JSON
-    void ControlPromptSystem::loadTextureMappings()
-    {
-        // parse the JSON file and ensure it's valid
-        nlohmann::ordered_json mappingData = Stream::ParseFromFile( m_PromptMappingFilepath );
-        if ( mappingData.is_object() == false )
+
+        /// @brief  loads the prompt texture mappings from JSON
+        /// @param  mappings    the mappings array to load into
+        /// @param  data        the JSON data to read from
+        void ControlPromptSystem::MappingInfo::loadMappings( std::vector< std::array< int, 2 > >& mappings, nlohmann::ordered_json const& data )
         {
-            Debug() << "Warning: ControlPromptMappings JSON is not an object" << std::endl;
-            return;
-        }
-
-        // loop through each array of texture mappings
-        std::pair< std::vector< std::array< int, 2 > >*, std::string const > const mappingArrays[] = {
-            { &m_KeyboardMappings                 , "Keyboard"                  },
-            { &m_MouseMappings                    , "Mouse"                     },
-            { &m_GamepadButtonsXboxMappings       , "GamepadButtonsXbox"        },
-            { &m_GamepadButtonsPlaystationMappings, "GamepadButtonsPlaystation" },
-            { &m_GamepadAxesMappings              , "GamepadAxes"               }
-        };
-        for ( auto& [ mappingArray, mappingName ] : mappingArrays )
-        {
-            // verify that the JSON contains the array
-            if ( mappingData.contains( mappingName ) == false )
-            {
-                Debug() << "Warning: ControlPromptMappings JSON does not contain \"" << mappingName << "\"" << std::endl;
-                return;
-            }
-            nlohmann::ordered_json const& mappingArrayData = mappingData.at( mappingName );
-
             // loop through each mapping in the array
-            for ( nlohmann::ordered_json const& mappingData : mappingArrayData )
+            for ( nlohmann::ordered_json const& mappingData : data )
             {
                 // ensure the mapping follows the correct format
                 if (
                     mappingData.is_array() == false || mappingData.size() != 2 ||
                     mappingData[ 0 ].is_number_integer() == false || mappingData[ 1 ].is_number_integer() == false
-                    )
+                )
                 {
-                    Debug() << "Warning: ControlPromptMappings JSON \"" << mappingName << "\" has the incorrect format" << std::endl;
+                    Debug() << "Warning: incorrect format at " << Stream::GetDebugLocation() << std::endl;
                     return;
                 }
 
-                // save the mapping
-                mappingArray->emplace_back();
-
-                mappingArray->back()[ 0 ] = mappingData[ 0 ].get< int >();
-                mappingArray->back()[ 1 ] = mappingData[ 1 ].get< int >();
+                // load the mapping
+                mappings.emplace_back();
+                mappings.back()[ 0 ] = mappingData[ 0 ].get< int >();
+                mappings.back()[ 1 ] = mappingData[ 1 ].get< int >();
             }
         }
-    }
+
+        /// @brief  loads the prompt texture mappings from JSON
+        /// @param  mappings    the mappings array to save
+        /// @return the JSON data of the mappings array
+        nlohmann::ordered_json ControlPromptSystem::MappingInfo::saveMappings( std::vector< std::array< int, 2 > > const& mappings )
+        {
+            nlohmann::ordered_json json = nlohmann::ordered_json::array();
+
+            for ( std::array< int, 2 > const& mapping : mappings )
+            {
+                json.push_back( mapping );
+            }
+
+            return json;
+        }
+
+
+        /// @brief  reads Texture to display keyboard prompts with
+        /// @param  data    the JSON data to read from
+        void ControlPromptSystem::MappingInfo::readKeyboardPromptsTexture( nlohmann::ordered_json const& data )
+        {
+            Stream::Read( M_KeyboardPromptsTexture, data );
+        }
+
+        /// @brief  reads Texture to display mouse prompts with
+        /// @param  data    the JSON data to read from
+        void ControlPromptSystem::MappingInfo::readMousePromptsTexture( nlohmann::ordered_json const& data )
+        {
+            Stream::Read( M_MousePromptsTexture, data );
+        }
+
+        /// @brief  reads Texture to display gamepad prompts with
+        /// @param  data    the JSON data to read from
+        void ControlPromptSystem::MappingInfo::readGamepadPromptsTexture( nlohmann::ordered_json const& data )
+        {
+            Stream::Read( M_GamepadPromptsTexture, data );
+        }
+
+
+        /// @brief  reads keyboard mappings (GLFW id, texture index)
+        /// @param  data    the JSON data to read from
+        void ControlPromptSystem::MappingInfo::readKeyboardMappings( nlohmann::ordered_json const& data )
+        {
+            loadMappings( M_KeyboardMappings, data );
+        }
+
+        /// @brief  reads mouse button mappings (GLFW id, texture index)
+        /// @param  data    the JSON data to read from
+        void ControlPromptSystem::MappingInfo::readMouseMappings( nlohmann::ordered_json const& data )
+        {
+            loadMappings( M_MouseMappings, data );
+        }
+
+        /// @brief  reads gamepad button Xbox mappings (GLFW id, texture index)
+        /// @param  data    the JSON data to read from
+        void ControlPromptSystem::MappingInfo::readGamepadButtonsXboxMappings( nlohmann::ordered_json const& data )
+        {
+            loadMappings( M_GamepadButtonsXboxMappings, data );
+        }
+
+        /// @brief  reads gamepad button Playstation mappings (GLFW id, texture index)
+        /// @param  data    the JSON data to read from
+        void ControlPromptSystem::MappingInfo::readGamepadButtonsPlaystationMappings( nlohmann::ordered_json const& data )
+        {
+            loadMappings( M_GamepadButtonsPlaystationMappings, data );
+        }
+
+        /// @brief  reads gamepad axes mappings (GLFW id, texture index)
+        /// @param  data    the JSON data to read from
+        void ControlPromptSystem::MappingInfo::readGamepadAxesMappings( nlohmann::ordered_json const& data )
+        {
+            loadMappings( M_GamepadAxesMappings, data );
+        }
+
+
+    //-------------------------------------------------------------------------
+    // public: reading / writing
+    //-------------------------------------------------------------------------
+
+
+        /// @brief  gets this System's read methods
+        /// @return this System's read methods
+        ReadMethodMap< ISerializable > const& ControlPromptSystem::MappingInfo::GetReadMethods() const
+        {
+            static ReadMethodMap< MappingInfo > const readMethods = {
+                { "KeyboardPromptsTexture"           , &MappingInfo::readKeyboardPromptsTexture            },
+                { "MousePromptsTexture"              , &MappingInfo::readMousePromptsTexture               },
+                { "GamepadPromptsTexture"            , &MappingInfo::readGamepadPromptsTexture             },
+                { "KeyboardMappings"                 , &MappingInfo::readKeyboardMappings                  },
+                { "MouseMappings"                    , &MappingInfo::readMouseMappings                     },
+                { "GamepadButtonsXboxMappings"       , &MappingInfo::readGamepadButtonsXboxMappings        },
+                { "GamepadButtonsPlaystationMappings", &MappingInfo::readGamepadButtonsPlaystationMappings },
+                { "GamepadAxesMappings"              , &MappingInfo::readGamepadAxesMappings               }
+            };
+
+            return (ReadMethodMap< ISerializable > const&)readMethods;
+        }
+
+
+        /// @brief  writes this ControlPromptSystem to JSON
+        /// @return the JSON data of this ControlPromptSystem
+        nlohmann::ordered_json ControlPromptSystem::MappingInfo::Write() const
+        {
+            nlohmann::ordered_json json = nlohmann::ordered_json::object();
+
+            json[ "KeyboardPromptsTexture"            ] = Stream::Write( M_KeyboardPromptsTexture );
+            json[ "MousePromptsTexture"               ] = Stream::Write( M_MousePromptsTexture    );
+            json[ "GamepadPromptsTexture"             ] = Stream::Write( M_GamepadPromptsTexture  );
+
+            json[ "KeyboardMappings"                  ] = saveMappings( M_KeyboardMappings                  );
+            json[ "MouseMappings"                     ] = saveMappings( M_MouseMappings                     );
+            json[ "GamepadButtonsXboxMappings"        ] = saveMappings( M_GamepadButtonsXboxMappings        );
+            json[ "GamepadButtonsPlaystationMappings" ] = saveMappings( M_GamepadButtonsPlaystationMappings );
+            json[ "GamepadAxesMappings"               ] = saveMappings( M_GamepadAxesMappings               );
+
+            return json;
+        }
+
+
+    //-------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+// private: methods
+//-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
@@ -164,9 +289,9 @@
         {
             // inspect textures
             std::pair< Texture*, char const* > const promptsTextures[] = {
-                { &m_KeyboardPromptsTexture, "Keyboard Prompts Texture" },
-                { &m_MousePromptsTexture   , "Mouse Prompts Texture"    },
-                { &m_GamepadPromptsTexture , "Gamepad Prompts Texture"  },
+                { &m_MappingInfo.M_KeyboardPromptsTexture, "Keyboard Prompts Texture" },
+                { &m_MappingInfo.M_MousePromptsTexture   , "Mouse Prompts Texture"    },
+                { &m_MappingInfo.M_GamepadPromptsTexture , "Gamepad Prompts Texture"  },
             };
             for ( auto& [ texture, label ] : promptsTextures )
             {
@@ -181,10 +306,6 @@
 
             // inspect mappings source
             ImGui::InputText( "texture mappings filename", &m_PromptMappingFilepath );
-            if ( ImGui::Button( "Reload Texture Mappings" ) )
-            {
-                loadTextureMappings();
-            }
 
         }
         ImGui::End();
@@ -266,3 +387,11 @@
 
 
 //-----------------------------------------------------------------------------
+
+
+/// @brief  shorthand method for ControlPromptSystem::GetInstance()
+/// @return the ControlPromptSystem instance
+ControlPromptSystem* ControlPrompts()
+{
+    return ControlPromptSystem::GetInstance();
+}

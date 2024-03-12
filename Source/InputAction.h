@@ -51,7 +51,7 @@ public: // constructor
 
     /// @brief  move-constructor
     /// @param  other   the Action to move into this one
-    Action( Action&& other );
+    Action( Action&& other ) noexcept;
 
     
 //-------------------------------------------------------------------------

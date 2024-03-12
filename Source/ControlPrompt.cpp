@@ -76,11 +76,59 @@
 //-----------------------------------------------------------------------------
 
 
+    /// @brief  converts from an Action::InputType to a ControlPromptSystem::InputType
+    /// @param  inputType   the Action::InputType to convert
+    /// @return the ControlPromptSystem::InputType cooresponding to the Action::InputType
+    ControlPromptSystem::InputType ControlPrompt::convertInputType( Action::InputType inputType )
+    {
+        switch ( inputType )
+        {
+            case Action::InputType::KeyboardButton:
+            case Action::InputType::KeyboardButtonNegative:
+                return ControlPromptSystem::InputType::Keyboard;
+            case Action::InputType::MouseButton:
+            case Action::InputType::MouseButtonNegative:
+                return ControlPromptSystem::InputType::Mouse;
+            case Action::InputType::ControllerButton:
+            case Action::InputType::ControllerButtonNegative:
+                return ControlPromptSystem::InputType::GamepadButtonsXbox;
+                // TODO: make sure using the correct controller type
+                // return ControlPromptSystem::InputType::GamepadButtonsPlaystation;
+            case Action::InputType::ControllerAxisAsButton:
+            case Action::InputType::ControllerAxis:
+                return ControlPromptSystem::InputType::GamepadAxes;
+            default:
+                return ControlPromptSystem::InputType::Keyboard;
+        }
+    }
+
+
     /// @brief  updates the attached Sprite to match the attached Action
     /// @brief  assumes m_Sprite is non-null, doesn't assume m_Action
     void ControlPrompt::updateSprite()
     {
-        // TODO
+        if ( m_Action == nullptr )
+        {
+            return;
+        }
+
+        // TODO: determine whether to display keyboard+mouse prompts, or controller prompts
+        // TODO: if displaying controller prompts, determine which controller prompts to display
+
+        for ( int inputType = (int)Action::InputType::_First; inputType < (int)Action::InputType::_Count; ++inputType )
+        {
+            std::vector< int > const& inputs = m_Action->GetInputVector( (Action::InputType)inputType );
+
+            if ( inputs.empty() )
+            {
+                continue;
+            }
+
+            ControlPromptSystem::InputType promptType = convertInputType( (Action::InputType)inputType );
+
+            m_Sprite->SetTexture( ControlPrompts()->GetPromptTexture( promptType ) );
+            m_Sprite->SetFrameIndex( ControlPrompts()->GetPromptFrameIndex( promptType, inputs[ 0 ] ) );
+        }
     }
 
 

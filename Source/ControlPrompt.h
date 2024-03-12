@@ -12,6 +12,8 @@
 
 #include "ActionReference.h"
 
+#include "ControlPromptSystem.h"
+
 #include "ComponentReference.h"
 class Sprite;
 
@@ -71,6 +73,12 @@ private: // members
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  converts from an Action::InputType to a ControlPromptSystem::InputType
+    /// @param  inputType   the Action::InputType to convert
+    /// @return the ControlPromptSystem::InputType cooresponding to the Action::InputType
+    ControlPromptSystem::InputType convertInputType( Action::InputType inputType );
 
 
     /// @brief  updates the attached Sprite to match the attached Action
