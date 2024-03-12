@@ -242,7 +242,7 @@
             {
                 // Get the data from the right thumbstick.
                 direction.x = Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_X );
-                direction.y = Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_Y );
+                direction.y = -Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_Y );
             }
             else
             {

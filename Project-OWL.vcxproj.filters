@@ -363,6 +363,12 @@
     <Filter Include="Engine\Systems\InputSystem\ControlPromptSystem">
       <UniqueIdentifier>{a9989eb4-f90d-4487-972b-31923ef03d5e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Entity\Component\ControlPrompt">
+      <UniqueIdentifier>{284bf7fa-011e-43d6-b295-0cdf9ca3ee08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Systems\InputSystem\InputAction">
+      <UniqueIdentifier>{a319788b-2f2e-4063-887f-345ee52fdfd9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -764,6 +770,12 @@
     <ClCompile Include="Source\ControlPromptSystem.cpp">
       <Filter>Engine\Systems\InputSystem\ControlPromptSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ControlPrompt.cpp">
+      <Filter>Engine\Entity\Component\ControlPrompt</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InputAction.cpp">
+      <Filter>Engine\Systems\InputSystem\InputAction</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1161,6 +1173,12 @@
     </ClInclude>
     <ClInclude Include="Source\ControlPromptSystem.h">
       <Filter>Engine\Systems\InputSystem\ControlPromptSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ControlPrompt.h">
+      <Filter>Engine\Entity\Component\ControlPrompt</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InputAction.h">
+      <Filter>Engine\Systems\InputSystem\InputAction</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

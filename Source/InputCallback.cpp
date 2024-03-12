@@ -8,58 +8,14 @@
 
 
 #include "pch.h" // precompiled header has to be included first
+
 #include "InputSystem.h"
-#include "PlatformSystem.h"
-#include "CameraSystem.h"
-#include "Engine.h"
-#include "DebugSystem.h"
 
-/// @brief  manual callback catch for keys since imgui hates glfw
-void InputSystem::Action::ManualKeyCallback()
-{
-    GLFWwindow* m_Handle = Input()->GetHandle();
-	bool found = false;
-	int key = 0;
-    if (!found)
-    {
-        // -1 m_Handles unknown key
-        for (int i = -1; i <= GLFW_KEY_LAST; ++i)
-        {
-            if (glfwGetKey(Input()->GetHandle(), i))
-            {
-                found = true;
-                key = i;
-                break;
-            }
-        }
-    }
-	if (found)
-	{
-        int whichAction = Input()->m_ChangingAction;
-        switch (whichAction)
-        {
-        case 1:
-            Input()->GetActionByName(Input()->m_WhichAction)->AddKeyInput(key);
-            break;
-        case 2:
-            Input()->GetActionByName(Input()->m_WhichAction)->RemoveKeyInput(key);
-            break;
-        case 7:
-            Input()->GetActionByName(Input()->m_WhichAction)->AddKeyAxisNegative(key);
-            break;
-        case 8:
-            Input()->GetActionByName(Input()->m_WhichAction)->RemoveKeyAxisNegative(key);
-            break;
-        default:
-            break;
-        }
-        Input()->m_ChangingAction = 0;
-	}
-}
 
-/// @brief  displays a text version of a key to imgui (65 becomes "A", etc)
-/// @param  key to convert
-const char* InputSystem::GetDebugKeyName(int key) const
+/// @brief  gets the name of a GLFW keyboard button
+/// @param  glfwId  the ID of the keyboard button to get the name of
+/// @return the name of the keyboard button
+const char* InputSystem::GetKeyboardButtonName( int glfwId ) const
 {
     static std::map< int, char const* > const keyNames = {
         { GLFW_KEY_UNKNOWN      , "UNKNOWN"  },
@@ -185,8 +141,88 @@ const char* InputSystem::GetDebugKeyName(int key) const
         { GLFW_KEY_MENU         , "MENU"     }
     };
 
-    auto itr = keyNames.find(key);
-    if (itr == keyNames.end())
+    auto itr = keyNames.find( glfwId );
+    if ( itr == keyNames.end() )
+    {
+        return "ERRKEY";
+    }
+
+    return itr->second;
+}
+
+/// @brief  gets the name of a GLFW mouse button
+/// @param  glfwId  the ID of the mouse button to get the name of
+/// @return the name of the mouse button
+char const* InputSystem::GetMouseButtonName( int glfwId ) const
+{
+    static std::map< int, char const* > const keyNames = {
+        { GLFW_MOUSE_BUTTON_1, "LMB" },
+        { GLFW_MOUSE_BUTTON_2, "RMB" },
+        { GLFW_MOUSE_BUTTON_3, "MMB" },
+        { GLFW_MOUSE_BUTTON_4, "M4"  },
+        { GLFW_MOUSE_BUTTON_5, "M5"  },
+        { GLFW_MOUSE_BUTTON_6, "M6"  },
+        { GLFW_MOUSE_BUTTON_7, "M7"  },
+        { GLFW_MOUSE_BUTTON_8, "M8"  }
+    };
+
+    auto itr = keyNames.find( glfwId );
+    if ( itr == keyNames.end() )
+    {
+        return "ERRKEY";
+    }
+
+    return itr->second;
+}
+
+/// @brief  gets the name of a GLFW controller button
+/// @param  glfwId  the ID of the controller button to get the name of
+/// @return the name of the controller button
+char const* InputSystem::GetControllerButtonName( int glfwId ) const
+{
+    static std::map< int, char const* > const keyNames = {
+        { GLFW_GAMEPAD_BUTTON_A           , "A"            },
+        { GLFW_GAMEPAD_BUTTON_B           , "B"            },
+        { GLFW_GAMEPAD_BUTTON_X           , "X"            },
+        { GLFW_GAMEPAD_BUTTON_Y           , "Y"            },
+        { GLFW_GAMEPAD_BUTTON_LEFT_BUMPER , "LEFT_BUMPER"  },
+        { GLFW_GAMEPAD_BUTTON_RIGHT_BUMPER, "RIGHT_BUMPER" },
+        { GLFW_GAMEPAD_BUTTON_BACK        , "BACK"         },
+        { GLFW_GAMEPAD_BUTTON_START       , "START"        },
+        { GLFW_GAMEPAD_BUTTON_GUIDE       , "GUIDE"        },
+        { GLFW_GAMEPAD_BUTTON_LEFT_THUMB  , "LEFT_THUMB"   },
+        { GLFW_GAMEPAD_BUTTON_RIGHT_THUMB , "RIGHT_THUMB"  },
+        { GLFW_GAMEPAD_BUTTON_DPAD_UP     , "DPAD_UP"      },
+        { GLFW_GAMEPAD_BUTTON_DPAD_RIGHT  , "DPAD_RIGHT"   },
+        { GLFW_GAMEPAD_BUTTON_DPAD_DOWN   , "DPAD_DOWN"    },
+        { GLFW_GAMEPAD_BUTTON_DPAD_LEFT   , "DPAD_LEFT"    }
+    };
+
+    auto itr = keyNames.find( glfwId );
+    if ( itr == keyNames.end() )
+    {
+        return "ERRKEY";
+    }
+
+    return itr->second;
+}
+
+/// @brief  gets the name of a GLFW controller axis
+/// @param  glfwId  the ID of the controller axis to get the name of
+/// @return the name of the controller axis
+char const* InputSystem::GetControllerAxisName( int glfwId ) const
+{
+    static std::map< int, char const* > const keyNames = {
+        { GLFW_GAMEPAD_AXIS_LEFT_X       , "LEFT_X"        },
+        { GLFW_GAMEPAD_AXIS_LEFT_Y       , "LEFT_Y"        },
+        { GLFW_GAMEPAD_AXIS_RIGHT_X      , "RIGHT_X"       },
+        { GLFW_GAMEPAD_AXIS_RIGHT_Y      , "RIGHT_Y"       },
+        { GLFW_GAMEPAD_AXIS_LEFT_TRIGGER , "LEFT_TRIGGER"  },
+        { GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER, "RIGHT_TRIGGER" }
+    };
+
+    auto itr = keyNames.find( glfwId );
+    if ( itr == keyNames.end() )
     {
         return "ERRKEY";
     }

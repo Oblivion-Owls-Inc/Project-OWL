@@ -427,7 +427,7 @@ glm::vec2 InputSystem::GetMousePosWorld()
     /// @brief  gets an action by its name
     /// @param  name name of the action
     /// @retun  pointer to the action
-    InputSystem::Action* InputSystem::GetActionByName(std::string const& name)
+    Action* InputSystem::GetActionByName(std::string const& name)
     {
         for (int i = 0; i < m_Actions.size(); ++i)
         {
@@ -442,9 +442,96 @@ glm::vec2 InputSystem::GetMousePosWorld()
 
     /// @brief  gets the vector of Actions in the InputSystem
     /// @return the vector of Actions
-    std::vector< InputSystem::Action > const& InputSystem::GetActions() const
+    std::vector< Action > const& InputSystem::GetActions() const
     {
         return m_Actions;
+    }
+
+
+    /// @brief  gets the currently down keyboard button
+    /// @return the GLFW id of the currently down keyboard button (-1 if no button down)
+    int InputSystem::GetCurrentKeyboardButton() const
+    {
+        for ( int i = 0; i <= GLFW_KEY_LAST; ++i )
+        {
+            if ( glfwGetKey( Input()->GetHandle(), i ) == GLFW_PRESS )
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /// @brief  gets the currently down mouse button
+    /// @return the GLFW id of the currently down mouse button (-1 if no button down)
+    int InputSystem::GetCurrentMouseButton() const
+    {
+        for ( int i = 0; i <= GLFW_MOUSE_BUTTON_LAST; ++i )
+        {
+            if ( glfwGetMouseButton( Input()->GetHandle(), i ) == GLFW_PRESS )
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /// @brief  gets the currently down controller button
+    /// @return the GLFW id of the currently down controller button (-1 if no button down)
+    int InputSystem::GetCurrentControllerButton() const
+    {
+        if ( glfwJoystickIsGamepad( 0 ) == GLFW_FALSE )
+        {
+            return -1;
+        }
+
+        GLFWgamepadstate gamepadState;
+        glfwGetGamepadState( 0, &gamepadState );
+
+        for ( int i = 0; i <= GLFW_GAMEPAD_BUTTON_LAST; ++i )
+        {
+            if ( gamepadState.buttons[ i ] == GLFW_PRESS )
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /// @brief  gets the currently down controller axis
+    /// @return the GLFW id of the currently down controller axis (-1 if no axis active)
+    int InputSystem::GetCurrentControllerAxis() const
+    {
+        if ( glfwJoystickIsGamepad( 0 ) == GLFW_FALSE )
+        {
+            return -1;
+        }
+
+        GLFWgamepadstate gamepadState;
+        glfwGetGamepadState( 0, &gamepadState );
+
+        for ( int i = 0; i <= GLFW_GAMEPAD_AXIS_LAST; ++i )
+        {
+            if ( i == GLFW_GAMEPAD_AXIS_LEFT_TRIGGER || i == GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER )
+            {
+                if ( gamepadState.axes[ i ] > -0.5f )
+                {
+                    return i;
+                }
+            }
+            else
+            {
+                if ( gamepadState.axes[ i ] > 0.5f || gamepadState.axes[ i ] < -0.5f )
+                {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
     }
 
 
@@ -475,117 +562,17 @@ glm::vec2 InputSystem::GetMousePosWorld()
 // private: reading
 //-----------------------------------------------------------------------------
 
-void InputSystem::readActions(nlohmann::ordered_json const& data)
-{
-    m_Actions.resize(data.size());
-    for (int i = 0; i < data.size(); ++i)
-    {
-        Stream::Read(m_Actions[i], data[i]);
-    }
-}
 
-/// @brief read the key inputs for an action
-void InputSystem::Action::readName(nlohmann::ordered_json const& json)
-{
-    m_Name = Stream::Read<std::string>(json);
-}
-
-/// @brief read the key inputs for an action
-void InputSystem::Action::readKeys(nlohmann::ordered_json const& json)
-{
-    int size = static_cast<int>(json.size());
-    for (int i = 0; i < size; ++i)
+    /// @brief  read actions for input
+    void InputSystem::readActions( nlohmann::ordered_json const& data )
     {
-        m_Keys.push_back(Stream::Read<int>(json[i]));
+        Stream::Read< Action >( &m_Actions, data );
     }
-}
 
-/// @brief read the mouse inputs for an action
-void InputSystem::Action::readMouse(nlohmann::ordered_json const& json)
-{
-    int size = static_cast<int>(json.size());
-    for (int i = 0; i < size; ++i)
-    {
-        m_Mouse.push_back(Stream::Read<int>(json[i]));
-    }
-}
-
-/// @brief read the controller inputs for an action
-void InputSystem::Action::readController(nlohmann::ordered_json const& json)
-{
-    int size = static_cast<int>(json.size());
-    for (int i = 0; i < size; ++i)
-    {
-        m_Controller.push_back(Stream::Read<int>(json[i]));
-    }
-}
-
-/// @brief read the key axis inputs for an action
-void InputSystem::Action::readKeyAxis(nlohmann::ordered_json const& json)
-{
-    int size = static_cast<int>(json.size());
-    for (int i = 0; i < size; ++i)
-    {
-        m_KeyAxis.push_back(Stream::Read<int>(json[i]));
-    }
-}
-
-/// @brief read the mouse axis inputs for an action
-void InputSystem::Action::readMouseAxis(nlohmann::ordered_json const& json)
-{
-    int size = static_cast<int>(json.size());
-    for (int i = 0; i < size; ++i)
-    {
-        m_MouseAxis.push_back(Stream::Read<int>(json[i]));
-    }
-}
-
-/// @brief read the controller axis inputs for an action
-void InputSystem::Action::readControllerAxis(nlohmann::ordered_json const& json)
-{
-    int size = static_cast<int>(json.size());
-    for (int i = 0; i < size; ++i)
-    {
-        m_ControllerAxis.push_back(Stream::Read<int>(json[i]));
-    }
-}
-
-/// @brief read the gamepad axis as input for an action
-void InputSystem::Action::readGamepadAxisAsInput(nlohmann::ordered_json const& json)
-{
-    int size = static_cast<int>(json.size());
-    for (int i = 0; i < size; ++i)
-    {
-        m_GamepadAxisAsInput.push_back(Stream::Read<int>(json[i]));
-    }
-}
-
-/// @brief read the gamepad axis inputs for an action
-void InputSystem::Action::readGamepadAxis(nlohmann::ordered_json const& json)
-{
-    int size = static_cast<int>(json.size());
-    for (int i = 0; i < size; ++i)
-    {
-        m_GamepadAxis.push_back(Stream::Read<int>(json[i]));
-    }
-}
 
 /// @brief  map of the SceneSystem read methods
 ReadMethodMap< InputSystem > const InputSystem::s_ReadMethods = {
     { "Actions", &readActions }
-};
-
-/// @brief  map of the SceneSystem read methods
-ReadMethodMap< InputSystem::Action > const InputSystem::Action::s_ReadMethods = {
-    { "Name",               &readName               },
-    { "Keys",               &readKeys               },
-    { "Mouse",              &readMouse              },
-    { "Controller",         &readController         },
-    { "Key Axis",           &readKeyAxis            },
-    { "Mouse Axis",         &readMouseAxis          },
-    { "Controller Axis",    &readControllerAxis     },
-    { "Gamepad Axis Input", &readGamepadAxisAsInput },
-    { "Gamepad Axis",       &readGamepadAxis        }
 };
 
 /// @brief  writes this System to json
@@ -602,71 +589,6 @@ nlohmann::ordered_json InputSystem::Write() const
     return data;
 }
 
-/// @brief  writes this System to json
-nlohmann::ordered_json InputSystem::Action::Write() const
-{
-    nlohmann::ordered_json data;
-
-    data["Name"] = m_Name;
-
-    size_t size = m_Keys.size();
-    nlohmann::ordered_json& writeKeys = data["Keys"];
-    for (size_t i = 0; i < size; i++)
-    {
-        writeKeys.push_back(m_Keys[i]);
-    }
-
-    size = m_Mouse.size();
-    nlohmann::ordered_json& writeMouse = data["Mouse"];
-    for (size_t i = 0; i < size; i++)
-    {
-        writeMouse.push_back(m_Mouse[i]);
-    }
-
-    size = m_Controller.size();
-    nlohmann::ordered_json& writeController = data["Controller"];
-    for (size_t i = 0; i < size; i++)
-    {
-        writeController.push_back(m_Controller[i]);
-    }
-
-    size = m_KeyAxis.size();
-    nlohmann::ordered_json& writeKeyAxis = data["Key Axis"];
-    for (size_t i = 0; i < size; i++)
-    {
-        writeKeyAxis.push_back(m_KeyAxis[i]);
-    }
-
-    size = m_MouseAxis.size();
-    nlohmann::ordered_json& writeMouseAxis = data["Mouse Axis"];
-    for (size_t i = 0; i < size; i++)
-    {
-        writeMouseAxis.push_back(m_MouseAxis[i]);
-    }
-
-    size = m_ControllerAxis.size();
-    nlohmann::ordered_json& writeControllerAxis = data["Controller Axis"];
-    for (size_t i = 0; i < size; i++)
-    {
-        writeControllerAxis.push_back(m_ControllerAxis[i]);
-    }
-
-    size = m_GamepadAxisAsInput.size();
-    nlohmann::ordered_json& writeAxisInput = data["Gamepad Axis Input"];
-    for (size_t i = 0; i < size; i++)
-    {
-        writeAxisInput.push_back(m_GamepadAxisAsInput[i]);
-    }
-
-    size = m_GamepadAxis.size();
-    nlohmann::ordered_json& writeAxis = data["Gamepad Axis"];
-    for (size_t i = 0; i < size; i++)
-    {
-        writeAxis.push_back(m_GamepadAxis[i]);
-    }
-
-    return data;
-}
 
 //-----------------------------------------------------------------------------
 // singleton stuff
