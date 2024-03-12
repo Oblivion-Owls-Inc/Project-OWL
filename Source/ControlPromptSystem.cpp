@@ -68,7 +68,7 @@
             case InputType::GamepadButtonsXbox:
             case InputType::GamepadButtonsPlaystation:
             case InputType::GamepadAxes:
-                return &m_MappingInfo.M_MousePromptsTexture;
+                return &m_MappingInfo.M_GamepadPromptsTexture;
             default:
                 return &m_MappingInfo.M_KeyboardPromptsTexture;
         }

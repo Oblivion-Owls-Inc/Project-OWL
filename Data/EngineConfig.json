@@ -125,9 +125,14 @@
                 },
                 {
                     "Name": "Pause",
-                    "KeyboardButtons": [],
+                    "KeyboardButtons": [
+                        256
+                    ],
                     "MouseButtons": [],
-                    "ControllerButtons": [],
+                    "ControllerButtons": [
+                        7,
+                        6
+                    ],
                     "KeyboardButtonsNegative": [],
                     "MouseButtonsNegative": [],
                     "ControllerButtonsNegative": [],
