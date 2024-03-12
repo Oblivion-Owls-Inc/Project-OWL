@@ -128,6 +128,8 @@
 
             m_Sprite->SetTexture( ControlPrompts()->GetPromptTexture( promptType ) );
             m_Sprite->SetFrameIndex( ControlPrompts()->GetPromptFrameIndex( promptType, inputs[ 0 ] ) );
+
+            return;
         }
     }
 
