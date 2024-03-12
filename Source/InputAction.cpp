@@ -99,7 +99,7 @@
         }
 
         // skip remaining of no controller connected
-        if ( glfwJoystickPresent( 0 ) == GLFW_FALSE )
+        if ( glfwJoystickIsGamepad( 0 ) == GLFW_FALSE )
         {
             return false;
         }
@@ -175,7 +175,7 @@
         }
 
         // skip remaining of no controller connected
-        if ( glfwJoystickPresent( 0 ) == GLFW_FALSE )
+        if ( glfwJoystickIsGamepad( 0 ) == GLFW_FALSE )
         {
             return triggered;
         }
@@ -235,7 +235,7 @@
         }
 
         // skip remaining of no controller connected
-        if ( glfwJoystickPresent( 0 ) == GLFW_FALSE )
+        if ( glfwJoystickIsGamepad( 0 ) == GLFW_FALSE )
         {
             return released;
         }
