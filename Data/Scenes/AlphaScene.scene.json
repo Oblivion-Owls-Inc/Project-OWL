@@ -36528,8 +36528,8 @@
                 },
                 "Tilemap<Entity*>": {
                     "Dimensions": [
-                        32,
-                        32
+                        70,
+                        250
                     ],
                     "TileScale": [
                         1.0,

@@ -98,8 +98,6 @@ digraph "Source/WavesBehavior.cpp"
   Node51 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
   Node47 [label="AssetLibrarySystem.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$AssetLibrarySystem_8h.html",tooltip="Asset System."];
-  Node47 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
-  Node47 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node66 [color="midnightblue",fontsize="10",style="solid"];
   Node66 [label="Engine.h",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$Engine_8h.html",tooltip="Engine class."];
   Node1 -> Node67 [color="midnightblue",fontsize="10",style="solid"];

@@ -96,8 +96,6 @@ digraph "Source/AssetLibrarySystem.t.cpp"
   Node42 [label="Stream.t.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Stream_8t_8cpp.html",tooltip="JSON File reading/writing."];
   Node42 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node42 -> Node40 [color="midnightblue",fontsize="10",style="solid"];
-  Node36 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
-  Node36 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
   Node36 -> Node43 [color="midnightblue",fontsize="10",style="solid"];
   Node43 [label="Entity.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Entity_8h.html",tooltip="Entity class which holds Components."];
   Node43 -> Node2 [color="midnightblue",fontsize="10",style="solid"];

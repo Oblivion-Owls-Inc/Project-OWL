@@ -49,6 +49,8 @@ void \mbox{\hyperlink{classCollider_a33733c3e7ce7e43327672db3a464a5e4}{Add\+On\+
 \begin{DoxyCompactList}\small\item\em adds a callback function to be called when this collider collides; may be called multiple times per frame for the same collider \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classCollider_a384c91b7671e5f34e74a6322cb4270d0}{Remove\+On\+Collision\+Callback}} (unsigned owner\+Id)
 \begin{DoxyCompactList}\small\item\em removes a callback function to be called when this collider collides \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCollider_a297a50bf79184448bd82b117fd91b425}{Has\+On\+Collision\+Callbacks}} () const
+\begin{DoxyCompactList}\small\item\em gets whether this \mbox{\hyperlink{classCollider}{Collider}} has any On\+Collision\+Callbacks \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classCollider_a339959ae52ea2ba44530dff0f616da85}{Add\+On\+Collision\+Enter\+Callback}} (unsigned owner\+Id, \mbox{\hyperlink{classCollider_a1c359eff729c46c249d0123a8e11e719}{On\+Collision\+State\+Change\+Callback}} callback)
 \begin{DoxyCompactList}\small\item\em adds a callback function to be called when a collision begins \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classCollider_a0d75c68ee843bc45550f8a7c1eb7847b}{Remove\+On\+Collision\+Enter\+Callback}} (unsigned owner\+Id)
@@ -63,7 +65,10 @@ void \mbox{\hyperlink{classCollider_a0793d74db07c6f079873b812cf960e7c}{Try\+Add\
 \begin{DoxyCompactList}\small\item\em tries to add a contact to this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s contacts array \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classCollider_aa51c0584d2ba88efd17ab8b0587a6647}\label{classCollider_aa51c0584d2ba88efd17ab8b0587a6647}} 
 void \mbox{\hyperlink{classCollider_aa51c0584d2ba88efd17ab8b0587a6647}{Remove\+Outdated\+Contacts}} ()
-\begin{DoxyCompactList}\small\item\em removes all outdated contacts from this \mbox{\hyperlink{classCollider}{Collider}} and calls On\+Collision\+Exit callbacks \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em removes all outdated contacts from this \mbox{\hyperlink{classCollider}{Collider}} and calls On\+Collision\+Exit callbacks \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCollider_ac260f3f8c209c1db8fb69b9a118619db}\label{classCollider_ac260f3f8c209c1db8fb69b9a118619db}} 
+virtual void \mbox{\hyperlink{classCollider_ac260f3f8c209c1db8fb69b9a118619db}{Debug\+Draw}} () const =0
+\begin{DoxyCompactList}\small\item\em draws the collision shape of this collider for debug purposes \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -342,6 +347,19 @@ gets this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\h
 
 \begin{DoxyReturn}{Returns}
 this \mbox{\hyperlink{classCollider}{Collider}}\textquotesingle{}s \mbox{\hyperlink{classTransform}{Transform}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCollider_a297a50bf79184448bd82b117fd91b425}\label{classCollider_a297a50bf79184448bd82b117fd91b425}} 
+\index{Collider@{Collider}!HasOnCollisionCallbacks@{HasOnCollisionCallbacks}}
+\index{HasOnCollisionCallbacks@{HasOnCollisionCallbacks}!Collider@{Collider}}
+\doxysubsubsection{\texorpdfstring{HasOnCollisionCallbacks()}{HasOnCollisionCallbacks()}}
+{\footnotesize\ttfamily bool Collider\+::\+Has\+On\+Collision\+Callbacks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets whether this \mbox{\hyperlink{classCollider}{Collider}} has any On\+Collision\+Callbacks 
+
+\begin{DoxyReturn}{Returns}
+whether this \mbox{\hyperlink{classCollider}{Collider}} has any On\+Collision\+Callbacks 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classCollider_aaf015227ff68963c1bf5ddae364699e4}\label{classCollider_aaf015227ff68963c1bf5ddae364699e4}} 
 \index{Collider@{Collider}!Inspector@{Inspector}}
