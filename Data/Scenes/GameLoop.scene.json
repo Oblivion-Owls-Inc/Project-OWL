@@ -1,0 +1,194 @@
+{
+    "Assets": {
+        "Sounds": null,
+        "Textures": {
+            "ConnectedTextures": {
+                "Filepath": "Data/Textures/Tiles/ConnectedTextures.png",
+                "SheetDimensions": [
+                    4,
+                    8
+                ],
+                "Pivot": [
+                    0.0,
+                    1.0
+                ]
+            },
+            "PreviewTextures": {
+                "Filepath": "Data/Textures/Tiles/PreviewTextures.png",
+                "SheetDimensions": [
+                    2,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ]
+            }
+        },
+        "TransformAnimations": null,
+        "Animations": null,
+        "Archetypes": null
+    },
+    "Entities": {
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 5.0,
+                    "IsActive": true
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "Tilemap": {
+            "Name": "Tilemap",
+            "Components": {
+                "Tilemap<int>": {
+                    "Dimensions": [
+                        10,
+                        0
+                    ],
+                    "TileScale": [
+                        1.0,
+                        1.0
+                    ],
+                    "TileData": null
+                },
+                "TilemapEditor": {
+                    "PreviewTexture": {
+                        "AssetName": "PreviewTextures"
+                    },
+                    "UndoStackCapacity": 64,
+                    "SelectionColor": [
+                        0.30000001192092896,
+                        0.30000001192092896,
+                        1.0,
+                        0.0
+                    ],
+                    "SelectionAlpha": 0.4000000059604645,
+                    "GridAlpha": 0.4000000059604645,
+                    "PreviewAlpha": 0.4000000059604645,
+                    "ToolButtons": [
+                        0,
+                        1,
+                        2,
+                        3
+                    ]
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": [
+                {
+                    "Name": "TilemapDisplay",
+                    "Components": {
+                        "Tilemap<int>": {
+                            "Dimensions": [
+                                20,
+                                0
+                            ],
+                            "TileScale": [
+                                1.0,
+                                1.0
+                            ],
+                            "TileData": null
+                        },
+                        "TilemapSprite": {
+                            "Layer": 2,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "ConnectedTextures"
+                            }
+                        },
+                        "TilemapTextureConnector": {
+                            "FirstTileOffset": 0,
+                            "TexturesPerTile": 24,
+                            "TopLeftTextures": [
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "TopRightTextures": [
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "BottomLeftTextures": [
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "BottomRightTextures": [
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0
+                            ]
+                        },
+                        "Transform": {
+                            "Translation": [
+                                0.0,
+                                0.0
+                            ],
+                            "Rotation": 0.0,
+                            "Scale": [
+                                1.0,
+                                1.0
+                            ],
+                            "IsDiegetic": true
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        }
+    }
+}
