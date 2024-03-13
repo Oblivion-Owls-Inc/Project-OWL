@@ -44,8 +44,6 @@
     void Action::AddInput( InputType inputType, int glfwId )
     {
         m_Inputs[ (int)inputType ].push_back( glfwId );
-
-
     }
 
     /// @brief  removes an input from the action
