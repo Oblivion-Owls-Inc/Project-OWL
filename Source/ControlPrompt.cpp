@@ -14,6 +14,8 @@
 #include "ComponentReference.t.h"
 #include "Sprite.h"
 
+#include "ControlPromptSystem.h"
+
 
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
@@ -22,7 +24,7 @@
 
     /// @brief  default constructor
     ControlPrompt::ControlPrompt() :
-        Component( typeid( ControlPrompt ) )
+        Behavior( typeid( ControlPrompt ) )
     {}
 
 
@@ -52,22 +54,28 @@
     /// @brief  called once when entering the scene
     void ControlPrompt::OnInit()
     {
-        m_Sprite.SetOnConnectCallback(
-            [ this ]() {
-                updateSprite();
-            }
-        );
-
         m_Action.SetOwnerName( GetName() );
         m_Action.Init();
 
         m_Sprite.Init( GetEntity() );
+
+        ControlPrompts()->AddComponent( this );
     }
 
     /// @brief  called once when exiting the scene
     void ControlPrompt::OnExit()
     {
         m_Sprite.Exit();
+
+        ControlPrompts()->RemoveComponent( this );
+    }
+
+
+    /// @brief  called every graphics frame
+    /// @param  dt  the amount of time since the last frame
+    void ControlPrompt::OnUpdate( float dt )
+    {
+        updateSprite();
     }
 
 
@@ -76,61 +84,80 @@
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  converts from an Action::InputType to a ControlPromptSystem::InputType
+    /// @brief  converts from an Action::InputType to a ControlPrompt::InputType
     /// @param  inputType   the Action::InputType to convert
-    /// @return the ControlPromptSystem::InputType cooresponding to the Action::InputType
-    ControlPromptSystem::InputType ControlPrompt::convertInputType( Action::InputType inputType )
+    /// @return the ControlPrompt::InputType cooresponding to the Action::InputType
+    ControlPrompt::InputType ControlPrompt::convertInputType( Action::InputType inputType )
     {
         switch ( inputType )
         {
             case Action::InputType::KeyboardButton:
             case Action::InputType::KeyboardButtonNegative:
-                return ControlPromptSystem::InputType::Keyboard;
+                return ControlPrompt::InputType::Keyboard;
             case Action::InputType::MouseButton:
             case Action::InputType::MouseButtonNegative:
-                return ControlPromptSystem::InputType::Mouse;
+                return ControlPrompt::InputType::Mouse;
             case Action::InputType::ControllerButton:
             case Action::InputType::ControllerButtonNegative:
-                return ControlPromptSystem::InputType::GamepadButtonsXbox;
-                // TODO: make sure using the correct controller type
-                // return ControlPromptSystem::InputType::GamepadButtonsPlaystation;
+                return (
+                    Input()->ControllerIsPlaystation() ? 
+                        ControlPrompt::InputType::GamepadButtonsPlaystation :
+                        ControlPrompt::InputType::GamepadButtonsXbox
+                );
             case Action::InputType::ControllerAxisAsButton:
             case Action::InputType::ControllerAxis:
-                return ControlPromptSystem::InputType::GamepadAxes;
+                return ControlPrompt::InputType::GamepadAxes;
             default:
-                return ControlPromptSystem::InputType::Keyboard;
+                return ControlPrompt::InputType::Keyboard;
         }
     }
 
 
     /// @brief  updates the attached Sprite to match the attached Action
-    /// @brief  assumes m_Sprite is non-null, doesn't assume m_Action
     void ControlPrompt::updateSprite()
     {
-        if ( m_Action == nullptr )
+        if ( m_Action == nullptr || m_Sprite == nullptr )
         {
             return;
         }
 
-        // TODO: determine whether to display keyboard+mouse prompts, or controller prompts
-        // TODO: if displaying controller prompts, determine which controller prompts to display
+        // input types to use if displaying mouse+keyboard prompts
+        Action::InputType constexpr keyboardInputTypes[] = {
+            Action::InputType::MouseButton,
+            Action::InputType::MouseButtonNegative,
+            Action::InputType::KeyboardButton,
+            Action::InputType::KeyboardButtonNegative
+        };
 
-        for ( int inputType = (int)Action::InputType::_First; inputType < (int)Action::InputType::_Count; ++inputType )
+        // input types to use if displaying controller prompts
+        Action::InputType constexpr controllerInputTypes[] = {
+            Action::InputType::ControllerButton,
+            Action::InputType::ControllerButtonNegative,
+            Action::InputType::ControllerAxisAsButton,
+            Action::InputType::ControllerAxis
+        };
+
+        // NOTE: this range-based for loop only works because the two arrays are the same size and therefore the same type
+        // if their sizes ever need to be different, an alternative solution must be found
+        for ( Action::InputType inputType : Input()->IsControllerMostRecentInput() ? controllerInputTypes : keyboardInputTypes )
         {
-            std::vector< int > const& inputs = m_Action->GetInputVector( (Action::InputType)inputType );
+            std::vector< int > const& inputs = m_Action->GetInputVector( inputType );
 
             if ( inputs.empty() )
             {
                 continue;
             }
 
-            ControlPromptSystem::InputType promptType = convertInputType( (Action::InputType)inputType );
+            ControlPrompt::InputType promptType = convertInputType( inputType );
 
             m_Sprite->SetTexture( ControlPrompts()->GetPromptTexture( promptType ) );
             m_Sprite->SetFrameIndex( ControlPrompts()->GetPromptFrameIndex( promptType, inputs[ 0 ] ) );
 
             return;
         }
+
+        // if no input found, display no prompt
+        m_Sprite->SetFrameIndex( -1 );
     }
 
 
@@ -142,13 +169,7 @@
     /// @brief  shows the inspector for ControlPrompt
     void ControlPrompt::Inspector()
     {
-        if ( m_Action.Inspect( "Control Action" ) )
-        {
-            if ( m_Sprite != nullptr )
-            {
-                updateSprite();
-            }
-        }
+        m_Action.Inspect( "Control Action" );
     }
 
 
@@ -215,7 +236,7 @@
     /// @brief  copy-constructor for the ControlPrompt
     /// @param  other   the other ControlPrompt to copy
     ControlPrompt::ControlPrompt( ControlPrompt const& other ) :
-        Component( other ),
+        Behavior( other ),
         m_Action( other.m_Action )
     {}
 

@@ -34,62 +34,81 @@ void InputSystem::mapUpdate()
         m_ControllerStatesHold = &m_ControllerStates;
     }
 
-    GLFWgamepadstate state;
-    glfwGetGamepadState(GLFW_JOYSTICK_1, &state);
-
-    for (auto& key : *m_KeyStatesHold)
+    for ( int key = 0; key < m_KeyStatesHold->size(); ++key )
     {
-        bool old = key.second[0];
-        key.second[0] = glfwGetKey(m_Handle, key.first);
+        auto& state = (*m_KeyStatesHold)[ key ];
+        bool old = state[ 0 ];
+        state[ 0 ] = glfwGetKey( m_Handle, key );
 
-        if (key.second[0] == true && old == false)
+        if ( state[ 0 ] )
         {
-            key.second[1] = true;
+            m_ControllerIsMostRecentInput = false;
+        }
+
+        if (state[0] == true && old == false)
+        {
+            state[1] = true;
         }
         else
         {
-            key.second[1] = false;
+            state[1] = false;
         }
-        if (key.second[0] == false && old == true)
+        if (state[0] == false && old == true)
         {
-            key.second[2] = true;
+            state[2] = true;
         }
         else
         {
-            key.second[2] = false;
+            state[2] = false;
         }
     }
 
-    for (auto& key : *m_MouseStatesHold)
+    for ( int key = 0; key < m_MouseStatesHold->size(); ++key )
     {
-        bool old = key.second[0];
-        key.second[0] = glfwGetMouseButton(m_Handle, key.first);
+        auto& state = (*m_MouseStatesHold)[ key ];
+        bool old = state[0];
+        state[0] = glfwGetMouseButton(m_Handle, key);
 
-        if (key.second[0] == true && old == false)
+        if ( state[ 0 ] )
         {
-            key.second[1] = true;
+            m_ControllerIsMostRecentInput = false;
+        }
+
+        if (state[0] == true && old == false)
+        {
+            state[1] = true;
         }
         else
         {
-            key.second[1] = false;
+            state[1] = false;
         }
-        if (key.second[0] == false && old == true)
+        if (state[0] == false && old == true)
         {
-            key.second[2] = true;
+            state[2] = true;
         }
         else
         {
-            key.second[2] = false;
+            state[2] = false;
         }
     }
 
-    for (auto& key : *m_ControllerStatesHold)
+    GLFWgamepadstate controllerState;
+    glfwGetGamepadState(GLFW_JOYSTICK_1, &controllerState);
+
+    for ( int key = 0; key < m_ControllerStatesHold->size(); ++key )
     {
-        key.second[1] = (key.second[0] == false && state.buttons[key.first] == GLFW_PRESS);
+        auto& state = (*m_ControllerStatesHold)[ key ];
+
+        state[1] = (state[0] == false && controllerState.buttons[key] == GLFW_PRESS);
        
-        key.second[2] = (key.second[0] == true && state.buttons[key.first] == GLFW_RELEASE);
+        state[2] = (state[0] == true && controllerState.buttons[key] == GLFW_RELEASE);
 
-        key.second[0] = state.buttons[key.first] == GLFW_PRESS;
+        state[0] = controllerState.buttons[key] == GLFW_PRESS;
+
+        if ( state[ 0 ] )
+        {
+            m_ControllerIsMostRecentInput = true;
+        }
     }
 
     for (int i = 0; i < m_Amount; i++)
@@ -532,6 +551,27 @@ glm::vec2 InputSystem::GetMousePosWorld()
         }
 
         return -1;
+    }
+
+
+    /// @brief  was the most recent input from a controller
+    /// @return whether the most recent input was from a controller
+    bool InputSystem::IsControllerMostRecentInput() const
+    {
+        return m_ControllerIsMostRecentInput && glfwJoystickIsGamepad( GLFW_JOYSTICK_1 );
+    }
+
+    /// @brief  gets whether there is a playstation controller plugged in
+    /// @return whether there is a playstation controller plugged in
+    bool InputSystem::ControllerIsPlaystation() const
+    {
+        if ( glfwJoystickIsGamepad( GLFW_JOYSTICK_1 ) == GLFW_FALSE )
+        {
+            return false;
+        }
+
+        std::string name = glfwGetJoystickName( GLFW_JOYSTICK_1 );
+        return name == "PS4 Controller" || name == "PS5 Controller";
     }
 
 

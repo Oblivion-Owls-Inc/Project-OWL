@@ -83,25 +83,25 @@ private: // private variables
 
     // pointers to maps for MapUpdate
     /// @brief  pointer for key states
-    std::map<int, bool[3]>* m_KeyStatesHold;
+    std::array< bool[ 3 ], GLFW_KEY_LAST + 1 >* m_KeyStatesHold;
     /// @brief  pointer for mouse states
-    std::map<int, bool[3]>* m_MouseStatesHold;
+    std::array< bool[ 3 ], GLFW_MOUSE_BUTTON_LAST + 1 >* m_MouseStatesHold;
     /// @brief  pointer for controller states
-    std::map<int, bool[3]>* m_ControllerStatesHold;
+    std::array< bool[ 3 ], GLFW_GAMEPAD_BUTTON_LAST + 1 >* m_ControllerStatesHold;
 
     // maps for various states (keys, mouse, controller etc)
     /// @brief  key states map
-    std::map<int, bool[3]> m_KeyStates;
+    std::array< bool[ 3 ], GLFW_KEY_LAST + 1 > m_KeyStates;
     /// @brief  fixed update key states map
-    std::map<int, bool[3]> m_FixedKeyStates;
+    std::array< bool[ 3 ], GLFW_KEY_LAST + 1 > m_FixedKeyStates;
     /// @brief  controller states map
-    std::map<int, bool[3]> m_ControllerStates;
+    std::array< bool[ 3 ], GLFW_GAMEPAD_BUTTON_LAST + 1 > m_ControllerStates;
     /// @brief  fixed update controller states map
-    std::map<int, bool[3]> m_FixedControllerStates;
+    std::array< bool[ 3 ], GLFW_GAMEPAD_BUTTON_LAST + 1 > m_FixedControllerStates;
     /// @brief  mouse states map
-    std::map<int, bool[3]> m_MouseStates;
+    std::array< bool[ 3 ], GLFW_MOUSE_BUTTON_LAST + 1 > m_MouseStates;
     /// @brief  fixed update mouse states map
-    std::map<int, bool[3]> m_FixedMouseStates;
+    std::array< bool[ 3 ], GLFW_MOUSE_BUTTON_LAST + 1 > m_FixedMouseStates;
 
     // m_Handles for alternate windows
     /// @brief  alternate window m_Handles
@@ -115,6 +115,11 @@ private: // private variables
     float m_DeltaScroll = 0.0f;
     /// @brief  how much the mouse has scrolled this simulation frame
     float m_FixedDeltaScroll = 0.0f;
+
+
+    /// @brief  whether a controller is plugged in and was used more recently than mouse+keyboard
+    bool m_ControllerIsMostRecentInput = false;
+
 
     /// @brief  map of actions
     std::vector<Action> m_Actions = {};
@@ -256,6 +261,15 @@ public: // accessors
     /// @brief  gets the currently down controller axis
     /// @return the GLFW id of the currently down controller axis (-1 if no axis active)
     int GetCurrentControllerAxis() const;
+
+
+    /// @brief  gets whether the most recent input was from a controller and a controller is plugged in
+    /// @return whether the most recent input was from a controller
+    bool IsControllerMostRecentInput() const;
+
+    /// @brief  gets whether there is a playstation controller plugged in
+    /// @return whether there is a playstation controller plugged in
+    bool ControllerIsPlaystation() const;
 
 
     /// @brief  adds an ActionReference to the InputSystem

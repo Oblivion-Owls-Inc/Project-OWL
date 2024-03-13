@@ -138,6 +138,32 @@
                     "ControllerButtonsNegative": [],
                     "ControllerAxisAsButton": [],
                     "ControllerAxis": []
+                },
+                {
+                    "Name": "AimHorizontal",
+                    "KeyboardButtons": [],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": [
+                        2
+                    ]
+                },
+                {
+                    "Name": "AimVertical",
+                    "KeyboardButtons": [],
+                    "MouseButtons": [],
+                    "ControllerButtons": [],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": [
+                        3
+                    ]
                 }
             ]
         },

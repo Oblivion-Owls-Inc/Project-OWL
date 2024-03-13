@@ -44,6 +44,8 @@
     void Action::AddInput( InputType inputType, int glfwId )
     {
         m_Inputs[ (int)inputType ].push_back( glfwId );
+
+
     }
 
     /// @brief  removes an input from the action
@@ -321,21 +323,29 @@
         // controller axes
         for ( int controllerAxis : m_Inputs[ (int)InputType::ControllerAxis ] )
         {
-            float axisAddition = Input()->GetGamepadAxisState( 0, controllerAxis );
+            float axisValue = Input()->GetGamepadAxisState( 0, controllerAxis );
             if ( controllerAxis == GLFW_GAMEPAD_AXIS_LEFT_TRIGGER || controllerAxis == GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER )
             {
-                if ( axisAddition > 0.0f )
+                if ( axisValue > 0.0f )
                 {
-                    result += axisAddition;
+                    result += axisValue;
                 }
             }
-            else if (axisAddition > 0.5f || axisAddition < -0.5f )
+            else
             {
+                // snap to 0 if in deadzone
+                int perpendicularAxis = controllerAxis ^ 1; // toggle the final bit to swap between x and y axis
+                float perpendicularAxisValue = Input()->GetGamepadAxisState( 0, perpendicularAxis );
+                if ( axisValue * axisValue + perpendicularAxisValue * perpendicularAxisValue < 0.1 * 0.1 )
+                {
+                    continue;
+                }
+
                 if ( controllerAxis == GLFW_GAMEPAD_AXIS_LEFT_Y || controllerAxis == GLFW_GAMEPAD_AXIS_RIGHT_Y )
                 {
-                    axisAddition *= -1.0f;
+                    axisValue *= -1.0f;
                 }
-                result += axisAddition;
+                result += axisValue;
             }
         }
 

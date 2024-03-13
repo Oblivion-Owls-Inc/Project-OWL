@@ -23,7 +23,7 @@
     /// @param  inputType   the type of input to get the prompt frame index of
     /// @param  glfwId      the GLFW id of the input
     /// @return the frame index of the input
-    int ControlPromptSystem::GetPromptFrameIndex( InputType inputType, int glfwId ) const
+    int ControlPromptSystem::GetPromptFrameIndex( ControlPrompt::InputType inputType, int glfwId ) const
     {
         // get the appropriate texture mappings array
         std::vector< std::array< int, 2 > > const* const textureMappingArrays[] = {
@@ -54,20 +54,20 @@
     }
 
 
-    /// @brief  gets the texture of the specified InputType
+    /// @brief  gets the texture of the specified ControlPrompt::InputType
     /// @param  inputType   the input type to get the texture for
     /// @return the prompts texture for the specified input type
-    Texture const* ControlPromptSystem::GetPromptTexture( InputType inputType ) const
+    Texture const* ControlPromptSystem::GetPromptTexture( ControlPrompt::InputType inputType ) const
     {
         switch ( inputType )
         {
-            case InputType::Keyboard:
+            case ControlPrompt::InputType::Keyboard:
                 return &m_MappingInfo.M_KeyboardPromptsTexture;
-            case InputType::Mouse:
+            case ControlPrompt::InputType::Mouse:
                 return &m_MappingInfo.M_MousePromptsTexture;
-            case InputType::GamepadButtonsXbox:
-            case InputType::GamepadButtonsPlaystation:
-            case InputType::GamepadAxes:
+            case ControlPrompt::InputType::GamepadButtonsXbox:
+            case ControlPrompt::InputType::GamepadButtonsPlaystation:
+            case ControlPrompt::InputType::GamepadAxes:
                 return &m_MappingInfo.M_GamepadPromptsTexture;
             default:
                 return &m_MappingInfo.M_KeyboardPromptsTexture;
@@ -382,7 +382,7 @@
 
     /// @brief  Constructs the ControlPromptSystem
     ControlPromptSystem::ControlPromptSystem() :
-        System( "ControlPromptSystem" )
+        BehaviorSystem< ControlPrompt >( "ControlPromptSystem" )
     {}
 
 

@@ -10,29 +10,15 @@
 
 #include "pch.h"
 
-#include "System.h"
+#include "BehaviorSystem.h"
 
 #include "Texture.h"
 
+#include "ControlPrompt.h"
+
 /// @brief  System that displays ControlPrompts from Actions
-class ControlPromptSystem : public System
+class ControlPromptSystem : public BehaviorSystem< ControlPrompt >
 {
-//-----------------------------------------------------------------------------
-public: // types
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  type of input to display a prompt for
-    enum class InputType
-    {
-        Keyboard = 0             , /// @brief Keyboard buttons
-        Mouse                    , /// @brief Mouse buttons
-        GamepadButtonsXbox       , /// @brief Xbox gamepad buttons
-        GamepadButtonsPlaystation, /// @brief Playstation gamepad buttons
-        GamepadAxes              , /// @brief gamepad axes
-    };
-
-
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
@@ -42,13 +28,13 @@ public: // methods
     /// @param  inputType   the type of input to get the prompt frame index of
     /// @param  glfwId      the GLFW id of the input
     /// @return the frame index of the input
-    int GetPromptFrameIndex( InputType inputType, int glfwId ) const;
+    int GetPromptFrameIndex( ControlPrompt::InputType inputType, int glfwId ) const;
 
 
-    /// @brief  gets the texture of the specified InputType
+    /// @brief  gets the texture of the specified ControlPrompt::InputType
     /// @param  inputType   the input type to get the texture for
     /// @return the prompts texture for the specified input type
-    Texture const* GetPromptTexture( InputType inputType ) const;
+    Texture const* GetPromptTexture( ControlPrompt::InputType inputType ) const;
 
     
 //-----------------------------------------------------------------------------

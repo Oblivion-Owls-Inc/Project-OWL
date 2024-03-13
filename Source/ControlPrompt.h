@@ -8,19 +8,33 @@
 
 #pragma once
 
-#include "Component.h"
+#include "Behavior.h"
 
 #include "ActionReference.h"
-
-#include "ControlPromptSystem.h"
 
 #include "ComponentReference.h"
 class Sprite;
 
 
 /// @brief  Displays a control prompt for an ActionReference
-class ControlPrompt : public Component
+class ControlPrompt : public Behavior
 {
+//-----------------------------------------------------------------------------
+public: // types
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  type of input to display a prompt for
+    enum class InputType
+    {
+        Keyboard = 0             , /// @brief Keyboard buttons
+        Mouse                    , /// @brief Mouse buttons
+        GamepadButtonsXbox       , /// @brief Xbox gamepad buttons
+        GamepadButtonsPlaystation, /// @brief Playstation gamepad buttons
+        GamepadAxes              , /// @brief gamepad axes
+    };
+
+
 //-----------------------------------------------------------------------------
 public: // constructor / Destructor
 //-----------------------------------------------------------------------------
@@ -57,6 +71,11 @@ public: // virtual override methods
     virtual void OnExit() override;
 
 
+    /// @brief  called every graphics frame
+    /// @param  dt  the amount of time since the last frame
+    virtual void OnUpdate( float dt ) override;
+
+
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
@@ -75,14 +94,13 @@ private: // methods
 //-----------------------------------------------------------------------------
 
 
-    /// @brief  converts from an Action::InputType to a ControlPromptSystem::InputType
+    /// @brief  converts from an Action::InputType to a ControlPrompt::InputType
     /// @param  inputType   the Action::InputType to convert
-    /// @return the ControlPromptSystem::InputType cooresponding to the Action::InputType
-    ControlPromptSystem::InputType convertInputType( Action::InputType inputType );
+    /// @return the ControlPrompt::InputType cooresponding to the Action::InputType
+    ControlPrompt::InputType convertInputType( Action::InputType inputType );
 
 
     /// @brief  updates the attached Sprite to match the attached Action
-    /// @brief  assumes m_Sprite is non-null, doesn't assume m_Action
     void updateSprite();
 
 
