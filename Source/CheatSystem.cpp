@@ -109,8 +109,8 @@
             // The No Clip Button
             if (ImGui::Button(m_ToggleNoClip ? "Turn Off No Clip" : "Turn On No Clip"))
             {
-                m_ToggleNoClip = !m_ToggleNoClip;
                 NoClip();
+                
             }
             ImGui::SameLine();
             ImGui::Text("Disable Player Collisions");
@@ -283,17 +283,19 @@
                 static int flag;
                 static int ID;
 
-                if (m_ToggleNoClip)
+                if (m_ToggleNoClip == false)
                 {
                     flag = m_PlayerCircleCollider->GetCollisionLayerFlags();
                     ID = m_PlayerCircleCollider->GetCollisionLayer();
                     m_PlayerCircleCollider->SetCollisionLayerFlags(0);
                     m_PlayerCircleCollider->SetCollisionLayer(INT_MAX);
+                    m_ToggleNoClip = true;
                 }
                 else
                 {
                     m_PlayerCircleCollider->SetCollisionLayerFlags(flag);
                     m_PlayerCircleCollider->SetCollisionLayer(ID);
+                    m_ToggleNoClip = false;
                 }
             }
         }
