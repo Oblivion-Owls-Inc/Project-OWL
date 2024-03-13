@@ -135,6 +135,9 @@ $(function() {
 <li>GetBuildingIndex()
 : <a class="el" href="classConstructionBehavior.html#a89e30b981a67226c2364bd37b4964400">ConstructionBehavior</a>
 </li>
+<li>GetCameraWorldBounds()
+: <a class="el" href="classCameraSystem.html#a03cb772a2ff1f3a71493bdc7201268f7">CameraSystem</a>
+</li>
 <li>GetChildren()
 : <a class="el" href="classEntity.html#a972b8bdc5f29ccf637a047db8b544e88">Entity</a>
 </li>
@@ -293,6 +296,9 @@ $(function() {
 <li>GetHealth()
 : <a class="el" href="classHealth.html#a957c9ae5c3cfee8ae3f801d91cf1ab1c">Health</a>
 </li>
+<li>GetHealthTilemap()
+: <a class="el" href="classDestructibleTilemap.html#a1d4a936d8363bf40a5dfd9a00249279e">DestructibleTilemap</a>
+</li>
 <li>GetHeight()
 : <a class="el" href="classCamera.html#a47ff77cd15789a92f0d86be83a743410">Camera</a>
 </li>
@@ -392,7 +398,7 @@ $(function() {
 : <a class="el" href="classCollisionSystem.html#a6718f5eb32ffeccb6161374180c5cf96">CollisionSystem</a>
 </li>
 <li>GetLayerNames()
-: <a class="el" href="classCollisionSystem.html#a99936a53abc19e4fa6e493bed4086dda">CollisionSystem</a>
+: <a class="el" href="classCollisionSystem.html#a8c40544ea78bbcf20d85f07dc3a3c97f">CollisionSystem</a>
 </li>
 <li>GetLength()
 : <a class="el" href="classSound.html#a53409029f147921fe18d255394e971eb">Sound</a>
@@ -432,11 +438,11 @@ $(function() {
 <li>GetMatSSBO()
 : <a class="el" href="classEmitter.html#a330622fd7fb2aa119330fc45a7d969be">Emitter</a>
 </li>
+<li>GetMaxHealth()
+: <a class="el" href="classDestructibleTilemap.html#a359dc6a90a8cd3314fbd7aa0a3fd938b">DestructibleTilemap</a>
+</li>
 <li>GetMaximum()
 : <a class="el" href="classPool.html#a3a96a39f1d46f5b891bffa08e01d7c8f">Pool&lt; Value &gt;</a>
-</li>
-<li>GetMaxInProgressTiles()
-: <a class="el" href="classMiningLaser.html#a7ff14838a664b2d771821577186e0f9b">MiningLaser</a>
 </li>
 <li>GetMaxPointValue()
 : <a class="el" href="classCurve.html#aea821702785ef2fae91e9c440f946d10">Curve&lt; dimensionality &gt;</a>
@@ -512,7 +518,7 @@ $(function() {
 : <a class="el" href="classActionReference.html#ad8c3bae76a1b650684b711cf11c9b1c1">ActionReference</a>
 </li>
 <li>GetParent()
-: <a class="el" href="classEntity.html#abaf877d014a69e798de80ddec51a7634">Entity</a>
+: <a class="el" href="classEntity.html#a33f9bbd4d813c25b7ed87b639d05ec64">Entity</a>
 </li>
 <li>GetParentElement()
 : <a class="el" href="classUiElement.html#a76db7a6309955f9610d0e75e063da295">UiElement</a>
@@ -573,6 +579,7 @@ $(function() {
 , <a class="el" href="classControlPoint.html#a9bea51f225dfff11bb2313580e6809b8">ControlPoint&lt; dimensionality &gt;</a>
 , <a class="el" href="classCurve.html#a6e087f31889f8870af6913e09b049f34">Curve&lt; dimensionality &gt;</a>
 , <a class="el" href="classDebugConsole.html#a2ef57d8c8007fde9f07772a1f75e3e23">DebugConsole</a>
+, <a class="el" href="classDestructibleTilemap.html#ace77109ee223100752ae91188d7b543b">DestructibleTilemap</a>
 , <a class="el" href="classEditorCameraController.html#a8eec091d19de871dfaa47cdeace05117">EditorCameraController</a>
 , <a class="el" href="classEffectAnimator.html#addf9f460b6e8142ed39403ee083666d4">EffectAnimator</a>
 , <a class="el" href="classEnemyBehavior.html#a45f952361af86bed638e7ea348bbc78c">EnemyBehavior</a>
@@ -720,8 +727,11 @@ $(function() {
 <li>GetTile()
 : <a class="el" href="classTilemap.html#af9a9459864a2aeacbda8ae88381817d3">Tilemap&lt; TileType &gt;</a>
 </li>
+<li>GetTileHealthProportion()
+: <a class="el" href="classDestructibleTilemap.html#a82b59b6390c87fd5fc53b37c19f9ab7e">DestructibleTilemap</a>
+</li>
 <li>GetTilemap()
-: <a class="el" href="classMiningLaser.html#a26766705a464f8408e966ffe6b932feb">MiningLaser</a>
+: <a class="el" href="classDestructibleTilemap.html#ae36108f223e2f640e5aa0c8e7b47f830">DestructibleTilemap</a>
 , <a class="el" href="classTilemap.html#a4d7f05dd578a162f03666d7c88ef0dbd">Tilemap&lt; TileType &gt;</a>
 , <a class="el" href="classTilemapCollider.html#ad49c8b648a9baaa707386ed040b8a521">TilemapCollider</a>
 </li>
@@ -743,16 +753,13 @@ $(function() {
 : <a class="el" href="classCurve.html#a70e37d1edf6fc07d5e71e3593289e879">Curve&lt; dimensionality &gt;</a>
 , <a class="el" href="classTransformAnimation.html#a6c4c353f8ecb3bf2ef9477ef5fa43b7f">TransformAnimation</a>
 </li>
-<li>GetToughness()
-: <a class="el" href="classTileInfoSystem_1_1TileInfo.html#ac2662846db08c8b1af10e5f42c6dee8d">TileInfoSystem::TileInfo</a>
-</li>
 <li>GetTransform()
 : <a class="el" href="classCollider.html#a89895eccb2c5e34866d7cfc1395ae153">Collider</a>
 , <a class="el" href="classEnemyBehavior.html#a2c63f129124e57fce06f83a86eb27068">EnemyBehavior</a>
 , <a class="el" href="classGenerator.html#a5880f547205cf442fdb944e0291780f0">Generator</a>
 , <a class="el" href="classItemCollector.html#a795a7e0148b746d0c8e157743be315c5">ItemCollector</a>
 , <a class="el" href="classItemComponent.html#a0207e8fe87748c7579598365632b17f8">ItemComponent</a>
-, <a class="el" href="classMiningLaser.html#ac112e7388c3e21cf3dbf9077fe995e0b">MiningLaser</a>
+, <a class="el" href="classMiningLaser.html#a52a2c754e8bbdaae44f4b4b276d94ed0">MiningLaser</a>
 , <a class="el" href="classSprite.html#a1d9f3387b31f4066598deefd909bc1ca">Sprite</a>
 </li>
 <li>GetTranslation()

@@ -354,8 +354,8 @@
     <Filter Include="Game\Components\Behaviors\Popup">
       <UniqueIdentifier>{4ad37196-ce14-4abd-aa13-be68442d0cc8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Components\SceneChangeButton">
-      <UniqueIdentifier>{1d8900dd-7c60-4907-b4a4-cc9b65981f74}</UniqueIdentifier>
+    <Filter Include="Game\Components\DestructibleTilemap">
+      <UniqueIdentifier>{b6dc52e2-d205-4f8d-9153-2969faf9b9db}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Entity\Component\Behavior\Pause">
       <UniqueIdentifier>{5aad3456-40ef-47ce-b2b1-fe8bfc60134b}</UniqueIdentifier>
@@ -755,6 +755,9 @@
     <ClCompile Include="Source\orbitbehavior.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\DestructibleTilemap.cpp">
+      <Filter>Game\Components\DestructibleTilemap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1146,6 +1149,9 @@
     </ClInclude>
     <ClInclude Include="Source\orbitbehavior.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DestructibleTilemap.h">
+      <Filter>Game\Components\DestructibleTilemap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
