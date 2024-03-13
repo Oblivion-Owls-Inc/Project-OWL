@@ -142,8 +142,6 @@ protected: // member variables
 
     glm::vec4 m_Color;
 
-    bool m_IsTextured;
-
     /// @brief  the texture that this Sprite uses
     AssetReference< Texture > m_Texture;
 
