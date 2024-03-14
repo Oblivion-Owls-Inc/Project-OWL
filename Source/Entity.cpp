@@ -439,36 +439,65 @@
 //------------------------------------------------------------------------------
 
 
+
+
     /// @brief used by the Debug System to display information about this Entity
     void Entity::Inspect()
     {
-        if ( ImGui::BeginCombo( "##Add Component", "Add Component" , ImGuiComboFlags_HeightLarge) )
+        int selected = -1; 
+        std::vector<std::string> componentNames;
+
+        /// For some reason auto wasnt working maybe I was awake too long
+        std::map< std::string, std::pair< std::type_index, Component* (*)() > > componentTypes = ComponentFactory::GetComponentTypes();
+
+        for (auto& [name, info] : ComponentFactory::GetComponentTypes())
         {
-            for ( auto& [ name, info ] : ComponentFactory::GetComponentTypes() )
+            if (!m_Components.contains(info.first))
             {
-                if ( m_Components.contains( info.first ) )
-                {
-                    continue;
-                }
+                componentNames.push_back(name);
+            }
+        }
 
-                if ( ImGui::Selectable( name.c_str(), false ) )
-                {
-                    Component* component = info.second();
-                    AddComponent( component );
+        // Define an item getter lambda that ComboAutoSelect can use to fetch item names.
+        auto itemGetter = [](const std::vector<std::string>& items, int index) -> const char* 
+        {
+                /// Check if the index is within the bounds of the vector
+            if (index >= 0 && index < static_cast<int>(items.size()))
+            {
+                return items[index].c_str();
+            }
+            return ""; /// Return an empty string if the index is out of bounds
+        };
 
-                    if ( IsInScene() )
+        //// THIS IS WHY DO I HAVE TO SPECIFY THE TYPE FOR THE FUNCTION
+        if ( ImGui::ComboAutoSelect< std::vector< std::string >, const std::vector< std::string > & >(
+            "Add Component", selected, componentNames, itemGetter, ImGuiComboFlags_None ) )
+        {
+            if (selected >= 0)
+            {
+                const std::string& selectedTypeName = componentNames[selected];
+                auto typeIt = componentTypes.find(selectedTypeName);
+                if (typeIt != componentTypes.end())
+                {
+                    // Create the component using the factory function.
+                    Component* newComponent = typeIt->second.second();
+                    AddComponent(newComponent); // Add the component to your entity.
+
+                    if (IsInScene())
                     {
-                        component->OnInit();
+                        newComponent->OnInit(); // Initialize the component if the entity is part of the scene.
 
-                        // tell other components that a component was added
-                        for ( ComponentReferenceBase* componentReference : m_ComponentReferences )
+                        // Notify other components that a new component was added.
+                        for (ComponentReferenceBase* componentReference : m_ComponentReferences)
                         {
-                            componentReference->TrySet( component );
+                            componentReference->TrySet(newComponent);
                         }
                     }
+
+                    ImGui::ClearComboData("Add Component"); /// This Clears the combo box data 
+                    /// Because otherwise the combo box will have garbage data in it
                 }
             }
-            ImGui::EndCombo();
         }
 
         //if ( ImGui::BeginCombo( "##Remove Component", "Remove Component" , ImGuiComboFlags_HeightLarge ) )

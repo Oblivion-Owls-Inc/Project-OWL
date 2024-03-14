@@ -45,12 +45,13 @@
 /// ImGui / ImPlot
 ////////////////////////////////////////////////////////////////////////////////
 #include <imgui.h>    // ImGui Functions
-#include "implot.h"
+#include <implot.h>
 #include <imgui_stdlib.h>
 #include <imgui_impl_opengl3.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_internal.h>
-
+#include <imgui-combo-filter.h>
+#include <demo.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 /// GLFW / GLEW / GLM

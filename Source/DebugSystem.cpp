@@ -408,6 +408,8 @@ void DebugSystem::MenuWindows()
     {
         /// if the Demo Window is closed, then close the window
         ImGui::ShowDemoWindow(&m_ShowDemoWindow);
+        ImGui::ShowComboFilterDemo(&m_ShowDemoWindow);
+        ImGui::ShowComboAutoSelectDemo(&m_ShowDemoWindow);
     }
     
     /// Opens the Asset System List
