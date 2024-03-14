@@ -27,6 +27,11 @@ public: // constructor
     AssetReference();
 
 
+    /// @brief  value contructor
+    /// @param  asset   the asset this AssetReference will point to
+    AssetReference( AssetType const* asset );
+
+
 //-----------------------------------------------------------------------------
 public: // methods
 //-----------------------------------------------------------------------------
@@ -91,6 +96,10 @@ public: // copying
 //-----------------------------------------------------------------------------
 private: // members
 //-----------------------------------------------------------------------------
+
+
+    /// @brief  constant name used to denote non-serialized assets
+    static constexpr char const* const s_NonSerializedName = "[non-serialized asset]";
 
 
     /// @brief  the name of the Asset this AssetReference points to

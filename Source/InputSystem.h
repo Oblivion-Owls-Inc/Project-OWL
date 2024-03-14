@@ -11,6 +11,7 @@
 #include "pch.h" // precompiled header has to be included first
 #include "System.h"
 
+#include "InputAction.h"
 class ActionReference;
 
 /// @brief Example System meant to be copy-pasted when creating new Systems
@@ -33,23 +34,34 @@ private: // virtual override methods
     virtual void OnUpdate(float dt) override;
 
 //-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
 public: // inspection
 //-----------------------------------------------------------------------------
+
 
     /// @brief Gets Called by the Debug system to display debug information
     virtual void DebugWindow() override;
 
-    /// @brief  displays a text version of a key to imgui (65 becomes "A", etc)
-    /// @param  key to convert
-    const char* GetDebugKeyName(int key) const;
 
-//-----------------------------------------------------------------------------
-public: // forward references
-//-----------------------------------------------------------------------------
+    /// @brief  gets the name of a GLFW keyboard button
+    /// @param  glfwId  the ID of the keyboard button to get the name of
+    /// @return the name of the keyboard button
+    char const* GetKeyboardButtonName( int glfwId ) const;
 
-    class Action; // forward reference
+    /// @brief  gets the name of a GLFW mouse button
+    /// @param  glfwId  the ID of the mouse button to get the name of
+    /// @return the name of the mouse button
+    char const* GetMouseButtonName( int glfwId ) const;
+
+    /// @brief  gets the name of a GLFW controller button
+    /// @param  glfwId  the ID of the controller button to get the name of
+    /// @return the name of the controller button
+    char const* GetControllerButtonName( int glfwId ) const;
+
+    /// @brief  gets the name of a GLFW controller axis
+    /// @param  glfwId  the ID of the controller axis to get the name of
+    /// @return the name of the controller axis
+    char const* GetControllerAxisName( int glfwId ) const;
+
 
 //-----------------------------------------------------------------------------
 private: // private variables
@@ -71,25 +83,25 @@ private: // private variables
 
     // pointers to maps for MapUpdate
     /// @brief  pointer for key states
-    std::map<int, bool[3]>* m_KeyStatesHold;
+    std::array< bool[ 3 ], GLFW_KEY_LAST + 1 >* m_KeyStatesHold;
     /// @brief  pointer for mouse states
-    std::map<int, bool[3]>* m_MouseStatesHold;
+    std::array< bool[ 3 ], GLFW_MOUSE_BUTTON_LAST + 1 >* m_MouseStatesHold;
     /// @brief  pointer for controller states
-    std::map<int, bool[3]>* m_ControllerStatesHold;
+    std::array< bool[ 3 ], GLFW_GAMEPAD_BUTTON_LAST + 1 >* m_ControllerStatesHold;
 
     // maps for various states (keys, mouse, controller etc)
     /// @brief  key states map
-    std::map<int, bool[3]> m_KeyStates;
+    std::array< bool[ 3 ], GLFW_KEY_LAST + 1 > m_KeyStates;
     /// @brief  fixed update key states map
-    std::map<int, bool[3]> m_FixedKeyStates;
+    std::array< bool[ 3 ], GLFW_KEY_LAST + 1 > m_FixedKeyStates;
     /// @brief  controller states map
-    std::map<int, bool[3]> m_ControllerStates;
+    std::array< bool[ 3 ], GLFW_GAMEPAD_BUTTON_LAST + 1 > m_ControllerStates;
     /// @brief  fixed update controller states map
-    std::map<int, bool[3]> m_FixedControllerStates;
+    std::array< bool[ 3 ], GLFW_GAMEPAD_BUTTON_LAST + 1 > m_FixedControllerStates;
     /// @brief  mouse states map
-    std::map<int, bool[3]> m_MouseStates;
+    std::array< bool[ 3 ], GLFW_MOUSE_BUTTON_LAST + 1 > m_MouseStates;
     /// @brief  fixed update mouse states map
-    std::map<int, bool[3]> m_FixedMouseStates;
+    std::array< bool[ 3 ], GLFW_MOUSE_BUTTON_LAST + 1 > m_FixedMouseStates;
 
     // m_Handles for alternate windows
     /// @brief  alternate window m_Handles
@@ -104,7 +116,11 @@ private: // private variables
     /// @brief  how much the mouse has scrolled this simulation frame
     float m_FixedDeltaScroll = 0.0f;
 
-    // map of actions
+
+    /// @brief  whether a controller is plugged in and was used more recently than mouse+keyboard
+    bool m_ControllerIsMostRecentInput = false;
+
+
     /// @brief  map of actions
     std::vector<Action> m_Actions = {};
 
@@ -122,223 +138,6 @@ private: // private methods
 
     // callback called whenever the mouse scrolls
     static void onMouseScrollCallback(GLFWwindow* window, double scrollX, double scrollY);
-
-//-----------------------------------------------------------------------------
-public: // public class
-//-----------------------------------------------------------------------------
-
-    /// @brief  action class, used to track an action with dynamic input
-    class Action : public ISerializable
-    {
-    //-------------------------------------------------------------------------
-    private: // private class variables
-    //-------------------------------------------------------------------------
-
-        /// @brief  key inputs
-        std::vector<int> m_Keys; // 0
-        /// @brief  mouse inputs
-        std::vector<int> m_Mouse; // 1
-        /// @brief  controller inputs
-        std::vector<int> m_Controller; // 2
-        /// @brief  opposing axis for key inputs
-        std::vector<int> m_KeyAxis; // 3
-        /// @brief  opposing axis for mouse inputs
-        std::vector<int> m_MouseAxis; // 4
-        /// @brief  opposing axis for controller inputs
-        std::vector<int> m_ControllerAxis; // 5
-        /// @brief  gamepad axis as input, sticks/triggers
-        std::vector<int> m_GamepadAxisAsInput; // 6
-        /// @brief  gamepad axis, sticks/triggers
-        std::vector<int> m_GamepadAxis; // 7
-        /// @brief  action name
-        std::string m_Name;
-
-    //-------------------------------------------------------------------------
-    private: // private class reading
-    //-------------------------------------------------------------------------
-
-        /// @brief  remove an input from action by input id
-        /// @param  vector to remove from
-        /// @param  input id to remove
-        void removeByInput(std::vector<int>* vector, int input);
-
-        /// @brief read the key inputs for an action
-        void readName(nlohmann::ordered_json const& json);
-
-        /// @brief read the key inputs for an action
-        void readKeys(nlohmann::ordered_json const& json);
-
-        /// @brief read the mouse inputs for an action
-        void readMouse(nlohmann::ordered_json const& json);
-
-        /// @brief read the controller inputs for an action
-        void readController(nlohmann::ordered_json const& json);
-
-        /// @brief read the key axis inputs for an action
-        void readKeyAxis(nlohmann::ordered_json const& json);
-
-        /// @brief read the mouse axis inputs for an action
-        void readMouseAxis(nlohmann::ordered_json const& json);
-
-        /// @brief read the controller axis inputs for an action
-        void readControllerAxis(nlohmann::ordered_json const& json);
-
-        /// @brief read the gamepad axis as input for an action
-        void readGamepadAxisAsInput(nlohmann::ordered_json const& json);
-
-        /// @brief read the gamepad axis inputs for an action
-        void readGamepadAxis(nlohmann::ordered_json const& json);
-
-    //-------------------------------------------------------------------------
-    public: // class reading/writing
-    //-------------------------------------------------------------------------
-
-        /// @brief the map of read methods for this Component
-        static ReadMethodMap< Action > const s_ReadMethods;
-
-        /// @brief read method map for an Action
-        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override
-        {
-            return (ReadMethodMap< ISerializable > const&)s_ReadMethods;
-        }
-
-        /// @brief	write an Action to json
-        virtual nlohmann::ordered_json Write() const override;
-
-    //-------------------------------------------------------------------------
-    public: // public class methods
-    //-------------------------------------------------------------------------
-
-        /// @brief  contructor
-        /// @param  name of the action
-        /// @param  description of the action (viewable in editor)
-        Action(std::string name = "");
-        
-        /// @brief  removes all inputs for this action 
-        ///         and empties name/description
-        void Flush();
-
-        /// @brief  manual callback catch for keys since imgui hates glfw
-        void ManualKeyCallback();
-
-        /// @brief  retrieves a private vector for inspector
-        /// @param  vector number
-        std::vector<int> GetActionVector(int vector) const;
-
-        /// @brief  adds a key to the action
-        /// @param  key to add
-        void AddKeyInput(int glfw_key);
-
-        /// @brief  removes a key from the action
-        /// @param  key to remove
-        void RemoveKeyInput(int glfw_key);
-        
-        /// @brief  adds a mouse input to the action
-        /// @param  mouse input to add
-        void AddMouseInput(int glfw_mouse_button);
-
-        /// @brief  removes a mouse input from the action
-        /// @param  mouse input to remove
-        void RemoveMouseInput(int glfw_mouse_button);
-
-        /// @brief  adds a controller to the action
-        /// @param  controller input to add
-        void AddControllerInput(int glfw_button);
-
-        /// @brief  removes a controller input from the action
-        /// @param  controller input to remove
-        void RemoveControllerInput(int glfw_button);
-
-        /// @brief  adds an axis as a button (triggers)
-        /// @param  axis to add as input
-        void AddAxisAsInput(int glfw_axis_id);
-
-        /// @brief  removes an axis as a button (triggers)
-        /// @param  axis to remove from input
-        void RemoveAxisAsInput(int glfw_axis_id);
-
-        /// @brief  adds a key input axis
-        /// @param  glfw_key positive axis key
-        void AddKeyAxisPositive(int glfw_key);
-
-        /// @brief  adds a key input axis
-        /// @param  glfw_key_negative negative axis key
-        void AddKeyAxisNegative(int glfw_key_negative);
-
-        /// @brief  removes a key input axis
-        /// @param  glfw_key positive axis key
-        void RemoveKeyAxisPositive(int glfw_key);
-
-        /// @brief  removes a key input axis
-        /// @param  glfw_key_negative negative axis key
-        void RemoveKeyAxisNegative(int glfw_key_negative);
-
-        /// @brief  adds a mouse input axis
-        /// @param  glfw_mouse positive axis mouse
-        void AddMouseAxisPositive(int glfw_mouse);
-
-        /// @brief  adds a mouse input axis
-        /// @param  glfw_mouse_negative negative axis mouse
-        void AddMouseAxisNegative(int glfw_mouse_negative);
-
-        /// @brief  removes a mouse input axis
-        /// @param  glfw_mouse positive axis mouse
-        void RemoveMouseAxisPositive(int glfw_mouse);
-
-        /// @brief  removes a mouse input axis
-        /// @param  glfw_mouse_negative negative axis mouse
-        void RemoveMouseAxisNegative(int glfw_mouse_negative);
-
-        /// @brief  adds a controller input axis
-        /// @param  glfw_controller positive axis controller
-        void AddControllerAxisPositive(int glfw_controller);
-
-        /// @brief  adds a controller input axis
-        /// @param  glfw_controller_negative negative axis controller
-        void AddControllerAxisNegative(int glfw_controller_negative);
-
-        /// @brief  removes a controller input axis
-        /// @param  glfw_controller positive axis controller
-        /// @param  glfw_controller_negative negative axis controller
-        void RemoveControllerAxisPositive(int glfw_controller);
-
-        /// @brief  removes a controller input axis
-        /// @param  glfw_controller positive axis controller
-        /// @param  glfw_controller_negative negative axis controller
-        void RemoveControllerAxisNegative(int glfw_controller_negative);
-
-        /// @brief  adds a gamepad axis (stick/trigger)
-        /// @param  axis id to add
-        void AddAxis(int glfw_axis_id);
-        
-        /// @brief  removes a gamepad axis (stick/trigger)
-        /// @param  axis id to add
-        void RemoveAxis(int glfw_axis_id);
-
-        /// @brief  sets the name of the action
-        /// @param  new name of action
-        void SetName( std::string const& name );
-
-        /// @brief  gets the name of this action
-        /// @return the name of the action
-        std::string const& GetName() const;
-
-        /// @brief  gets if this action is down
-        /// @return action down status
-        bool GetDown() const;
-
-        /// @brief  gets if this action is triggered
-        /// @return action triggered status
-        bool GetTriggered() const;
-        
-        /// @brief  gets if this action is released
-        /// @return action released status
-        bool GetReleased() const;
-
-        /// @brief  gets this action as an axis
-        /// @return axis status clamped to -1 and 1
-        float GetAxis() const;
-    };
 
 //-----------------------------------------------------------------------------
 public: // accessors
@@ -445,6 +244,32 @@ public: // accessors
     /// @brief  gets the vector of Actions in the InputSystem
     /// @return the vector of Actions
     std::vector< Action > const& GetActions() const;
+
+
+    /// @brief  gets the currently down keyboard button
+    /// @return the GLFW id of the currently down keyboard button (-1 if no button down)
+    int GetCurrentKeyboardButton() const;
+
+    /// @brief  gets the currently down mouse button
+    /// @return the GLFW id of the currently down mouse button (-1 if no button down)
+    int GetCurrentMouseButton() const;
+
+    /// @brief  gets the currently down controller button
+    /// @return the GLFW id of the currently down controller button (-1 if no button down)
+    int GetCurrentControllerButton() const;
+
+    /// @brief  gets the currently down controller axis
+    /// @return the GLFW id of the currently down controller axis (-1 if no axis active)
+    int GetCurrentControllerAxis() const;
+
+
+    /// @brief  gets whether the most recent input was from a controller and a controller is plugged in
+    /// @return whether the most recent input was from a controller
+    bool IsControllerMostRecentInput() const;
+
+    /// @brief  gets whether there is a playstation controller plugged in
+    /// @return whether there is a playstation controller plugged in
+    bool ControllerIsPlaystation() const;
 
 
     /// @brief  adds an ActionReference to the InputSystem

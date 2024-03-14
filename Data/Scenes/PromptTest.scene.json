@@ -1,0 +1,73 @@
+{
+    "Assets": {
+        "Sounds": null,
+        "Textures": null,
+        "TransformAnimations": null,
+        "Animations": null,
+        "Archetypes": null
+    },
+    "Entities": {
+        "Camera": {
+            "Name": "Camera",
+            "Components": {
+                "Camera": {
+                    "Width": 5.0,
+                    "IsActive": true
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        },
+        "prompt": {
+            "Name": "prompt",
+            "Components": {
+                "ControlPrompt": {
+                    "Action": {
+                        "ActionName": "Pause"
+                    }
+                },
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 36,
+                    "Texture": {
+                        "AssetName": "[non-serialized asset]"
+                    }
+                },
+                "Transform": {
+                    "Translation": [
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": 0.0,
+                    "Scale": [
+                        1.0,
+                        1.0
+                    ],
+                    "IsDiegetic": true
+                }
+            },
+            "Children": null
+        }
+    },
+    "PreparsedScenes": [
+        "MainMenu"
+    ]
+}
