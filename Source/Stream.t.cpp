@@ -253,7 +253,7 @@
     nlohmann::ordered_json Stream::WriteArray(std::vector<ValueType> const& vec_data)
     {
         // The JSON object to store the vector in.
-        nlohmann::ordered_json data;
+        nlohmann::ordered_json data = nlohmann::ordered_json::array();
 
         // Write the data to the JSON object.
         for (ValueType const& element : vec_data)
