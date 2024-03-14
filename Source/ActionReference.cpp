@@ -57,7 +57,7 @@
 
     /// @brief  assignment operator
     /// @param  action  the Action to assign to this ActionReference
-    void ActionReference::operator =( InputSystem::Action const* action )
+    void ActionReference::operator =( Action const* action )
     {
         m_Action = action;
         m_ActionName = action == nullptr ? "" : action->GetName();
@@ -94,21 +94,21 @@
 
     /// @brief  dereference operator
     /// @return the Action this ActionReference refers to
-    InputSystem::Action const& ActionReference::operator *() const
+    Action const& ActionReference::operator *() const
     {
         return *m_Action;
     }
 
     /// @brief  member dereference operator
     /// @return the Action this ActionReference refers to
-    InputSystem::Action const* ActionReference::operator ->() const
+    Action const* ActionReference::operator ->() const
     {
         return m_Action;
     }
 
     /// @brief  implicit cast operator
     /// @return the Action this ActionReference refers to
-    ActionReference::operator InputSystem::Action const*() const
+    ActionReference::operator Action const*() const
     {
         return m_Action;
     }
@@ -154,7 +154,7 @@
                 return true;
             }
 
-            for ( InputSystem::Action const& action : Input()->GetActions() )
+            for ( Action const& action : Input()->GetActions() )
             {
                 if ( ImGui::Selectable( action.GetName().c_str(), m_Action == &action ) )
                 {

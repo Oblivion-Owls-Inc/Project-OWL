@@ -116,10 +116,14 @@
         m_MoveVertical  .SetOwnerName( GetName() );
         m_FireLaser     .SetOwnerName( GetName() );
         m_Interact      .SetOwnerName( GetName() );
+        m_AimHorizontal .SetOwnerName( GetName() );
+        m_AimVertical   .SetOwnerName( GetName() );
         m_MoveHorizontal.Init();
         m_MoveVertical  .Init();
         m_FireLaser     .Init();
         m_Interact      .Init();
+        m_AimHorizontal .Init();
+        m_AimVertical   .Init();
 
         for ( AssetReference< AnimationAsset >& assetReference : m_Animations )
         {
@@ -147,6 +151,8 @@
         m_MoveVertical  .Exit();
         m_FireLaser     .Exit();
         m_Interact      .Exit();
+        m_AimHorizontal .Exit();
+        m_AimVertical   .Exit();
     }
 
 
@@ -252,11 +258,11 @@
             m_MiningLaser->SetIsFiring( true );
 
             glm::vec2 direction;
-            if ( Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER ) >= 1.0f )
+            if ( Input()->IsControllerMostRecentInput() && m_AimHorizontal != nullptr && m_AimVertical != nullptr )
             {
                 // Get the data from the right thumbstick.
-                direction.x = Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_X );
-                direction.y = Input()->GetGamepadAxisState( GLFW_JOYSTICK_1, GLFW_GAMEPAD_AXIS_RIGHT_Y );
+                direction.x = m_AimHorizontal->GetAxis();
+                direction.y = m_AimVertical  ->GetAxis();
             }
             else
             {
@@ -323,10 +329,12 @@
 
         m_MiningLaserEntity.Inspect( "Mining Laser Entity" );
 
-        m_MoveVertical.Inspect( "Vertical Control Action" );
         m_MoveHorizontal.Inspect( "Horizontal Control Action" );
-        m_FireLaser.Inspect( "Fire Laser Control Action" );
-        m_Interact.Inspect( "Interact Control Action" );
+        m_MoveVertical  .Inspect( "Vertical Control Action"   );
+        m_FireLaser     .Inspect( "Fire Laser Control Action" );
+        m_Interact      .Inspect( "Interact Control Action"   );
+        m_AimHorizontal .Inspect( "Horizontal Aim Action"     );
+        m_AimVertical   .Inspect( "Vertical Aim Action"       );
     }
 
 
@@ -421,6 +429,21 @@
         Stream::Read( m_Interact, data );
     }
 
+    /// @brief  reads the control action for horizontal aim
+    /// @param  data    the JSON data to read from
+    void PlayerController::readAimHorizontal( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_AimHorizontal, data );
+    }
+
+    /// @brief  reads the control action for vertical aim
+    /// @param  data    the JSON data to read from
+    void PlayerController::readAimVertical( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_AimVertical, data );
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: reading writing
 //-----------------------------------------------------------------------------
@@ -438,7 +461,9 @@
             { "MoveVertical"     , &PlayerController::readMoveVertical      },
             { "MoveHorizontal"   , &PlayerController::readMoveHorizontal    },
             { "FireLaser"        , &PlayerController::readFireLaser         },
-            { "Interact"         , &PlayerController::readInteract          }
+            { "Interact"         , &PlayerController::readInteract          },
+            { "AimVertical"      , &PlayerController::readAimVertical       },
+            { "AimHorizontal"    , &PlayerController::readAimHorizontal     }
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
@@ -465,6 +490,8 @@
         data[ "MoveHorizontal"    ] = Stream::Write( m_MoveHorizontal        );
         data[ "FireLaser"         ] = Stream::Write( m_FireLaser             );
         data[ "Interact"          ] = Stream::Write( m_Interact              );
+        data[ "AimVertical"       ] = Stream::Write( m_AimVertical           );
+        data[ "AimHorizontal"     ] = Stream::Write( m_AimHorizontal         );
 
         return data;
     }
@@ -497,7 +524,9 @@
         m_MoveVertical         ( other.m_MoveVertical          ),
         m_MoveHorizontal       ( other.m_MoveHorizontal        ),
         m_FireLaser            ( other.m_FireLaser             ),
-        m_Interact             ( other.m_Interact              )
+        m_Interact             ( other.m_Interact              ),
+        m_AimVertical          ( other.m_AimVertical           ),
+        m_AimHorizontal        ( other.m_AimHorizontal         )
     {
         // Copy the animations
         for (int i = 0; i < NUM_ANIMATIONS; i++)

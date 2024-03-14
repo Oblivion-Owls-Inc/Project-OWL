@@ -42,7 +42,7 @@ public: // methods
 
     /// @brief  assignment operator
     /// @param  action  the Action to assign to this ActionReference
-    void operator =( InputSystem::Action const* action );
+    void operator =( Action const* action );
 
 
 //-----------------------------------------------------------------------------
@@ -66,15 +66,15 @@ public: // accessors
 
     /// @brief  dereference operator
     /// @return the Action this ActionReference refers to
-    InputSystem::Action const& operator *() const;
+    Action const& operator *() const;
 
     /// @brief  member dereference operator
     /// @return the Action this ActionReference refers to
-    InputSystem::Action const* operator ->() const;
+    Action const* operator ->() const;
 
     /// @brief  implicit cast operator
     /// @return the Action this ActionReference refers to
-    operator InputSystem::Action const*() const;
+    operator Action const*() const;
 
     
 //-----------------------------------------------------------------------------
@@ -100,7 +100,7 @@ private: // members
     std::string m_ActionName = "";
 
     /// @brief  the component this ActionReference is referring to
-    InputSystem::Action const* m_Action = nullptr;
+    Action const* m_Action = nullptr;
 
 
     /// @brief  the name of the owner of this ActionReference (for debug logging)

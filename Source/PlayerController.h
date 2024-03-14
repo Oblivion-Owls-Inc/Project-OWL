@@ -129,6 +129,12 @@ private: // member variables
     /// @brief  the control Action to interact with something
     ActionReference m_Interact;
 
+    /// @brief  the control action for horizontal aim
+    ActionReference m_AimHorizontal;
+
+    /// @brief  the control action for vertical aim
+    ActionReference m_AimVertical;
+
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -206,6 +212,14 @@ private: // reading
     /// @brief  reads the control Action to interact with something
     /// @param  data    the JSON data to read from
     void readInteract( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the control action for horizontal aim
+    /// @param  data    the JSON data to read from
+    void readAimHorizontal( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the control action for vertical aim
+    /// @param  data    the JSON data to read from
+    void readAimVertical( nlohmann::ordered_json const& data );
 
 
 //-----------------------------------------------------------------------------

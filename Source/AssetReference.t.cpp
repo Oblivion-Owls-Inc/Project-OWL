@@ -17,8 +17,6 @@
 #include "AssetLibrarySystem.h"
 
 
-/// @brief  a reference to an Asset
-/// @tparam AssetType   the type of asset this AssetReference refers to
 //-----------------------------------------------------------------------------
 // public: constructor
 //-----------------------------------------------------------------------------
@@ -28,6 +26,16 @@
     /// @tparam AssetType   the type of asset this AssetReference refers to
     template< class AssetType >
     AssetReference< AssetType >::AssetReference()
+    {}
+
+
+    /// @brief  value contructor
+    /// @tparam AssetType   the type of asset this AssetReference refers to
+    /// @param  asset   the asset this AssetReference will point to
+    template< class AssetType >
+    AssetReference< AssetType >:: AssetReference( AssetType const* asset ) :
+        m_Asset( asset ),
+        m_AssetName( s_NonSerializedName )
     {}
 
 
@@ -41,6 +49,11 @@
     template< class AssetType >
     void AssetReference< AssetType >::Init()
     {
+        if ( m_AssetName == s_NonSerializedName )
+        {
+            return;
+        }
+
         m_Asset = AssetLibrary< AssetType >()->GetAsset( m_AssetName );
 
         #ifdef _DEBUG
@@ -126,7 +139,7 @@
     void AssetReference< AssetType >::operator =( AssetType const* asset )
     {
         m_Asset = asset;
-        m_AssetName.clear();
+        m_AssetName = s_NonSerializedName;
     }
 
     
