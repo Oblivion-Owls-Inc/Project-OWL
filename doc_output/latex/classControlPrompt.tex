@@ -1,0 +1,183 @@
+\hypertarget{classControlPrompt}{}\doxysection{Control\+Prompt Class Reference}
+\label{classControlPrompt}\index{ControlPrompt@{ControlPrompt}}
+
+
+Displays a control prompt for an \mbox{\hyperlink{classActionReference}{Action\+Reference}}.  
+
+
+
+
+{\ttfamily \#include $<$Control\+Prompt.\+h$>$}
+
+
+
+Inheritance diagram for Control\+Prompt\+:
+% FIG 0
+
+
+Collaboration diagram for Control\+Prompt\+:
+% FIG 1
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38}{Input\+Type}} \{ \newline
+{\bfseries Keyboard} = 0
+, \mbox{\hyperlink{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38af2a47c6809d88e175dade0ef7b16aa13}{Mouse}}
+, \mbox{\hyperlink{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38aed02f259ed2588dd5c3795ffaee839a4}{Gamepad\+Buttons\+Xbox}}
+, \mbox{\hyperlink{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38ac505b3fd486604a05119adf712c8a213}{Gamepad\+Buttons\+Playstation}}
+, \newline
+\mbox{\hyperlink{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38a381b2aab39cdd7f290b5934b643dc839}{Gamepad\+Axes}}
+ \}
+\begin{DoxyCompactList}\small\item\em type of input to display a prompt for \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classControlPrompt_af13d0304c516a2c2843adc928d8325f6}\label{classControlPrompt_af13d0304c516a2c2843adc928d8325f6}} 
+\mbox{\hyperlink{classControlPrompt_af13d0304c516a2c2843adc928d8325f6}{Control\+Prompt}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSprite}{Sprite}} $\ast$ \mbox{\hyperlink{classControlPrompt_a81fe12577d83a10f852ba2bc4d8be7f6}{Get\+Sprite}} ()
+\begin{DoxyCompactList}\small\item\em gets the \mbox{\hyperlink{classSprite}{Sprite}} \mbox{\hyperlink{classComponent}{Component}} attached \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classControlPrompt_a38bb57d618864e60507f82151f9b47f2}\label{classControlPrompt_a38bb57d618864e60507f82151f9b47f2}} 
+virtual void \mbox{\hyperlink{classControlPrompt_a38bb57d618864e60507f82151f9b47f2}{On\+Init}} () override
+\begin{DoxyCompactList}\small\item\em called once when entering the scene \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classControlPrompt_abed9ac9a524de00e13661c6d2671c4b7}\label{classControlPrompt_abed9ac9a524de00e13661c6d2671c4b7}} 
+virtual void \mbox{\hyperlink{classControlPrompt_abed9ac9a524de00e13661c6d2671c4b7}{On\+Exit}} () override
+\begin{DoxyCompactList}\small\item\em called once when exiting the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classControlPrompt_aaa8a6b0a8f65f0ce02e1413e62a2158a}{On\+Update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em called every graphics frame \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classControlPrompt_ad44e705d6d9c5e22d516d7103a1c029e}\label{classControlPrompt_ad44e705d6d9c5e22d516d7103a1c029e}} 
+virtual void \mbox{\hyperlink{classControlPrompt_ad44e705d6d9c5e22d516d7103a1c029e}{Inspector}} () override
+\begin{DoxyCompactList}\small\item\em shows the inspector for \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} \end{DoxyCompactList}\item 
+virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classControlPrompt_acc3e82e1a1d1da53feaccf430163c550}{Get\+Read\+Methods}} () const override
+\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} \end{DoxyCompactList}\item 
+virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classControlPrompt_aa4fba16b4f10b1344718cc2e8962e369}{Write}} () const override
+\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} to JSON \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} $\ast$ \mbox{\hyperlink{classControlPrompt_afb6004964f92eb7558278da0f02ee044}{Clone}} () const override
+\begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Displays a control prompt for an \mbox{\hyperlink{classActionReference}{Action\+Reference}}. 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38}\label{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38}} 
+\index{ControlPrompt@{ControlPrompt}!InputType@{InputType}}
+\index{InputType@{InputType}!ControlPrompt@{ControlPrompt}}
+\doxysubsubsection{\texorpdfstring{InputType}{InputType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38}{Control\+Prompt\+::\+Input\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+type of input to display a prompt for 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mouse@{Mouse}!ControlPrompt@{ControlPrompt}}\index{ControlPrompt@{ControlPrompt}!Mouse@{Mouse}}}\mbox{\Hypertarget{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38af2a47c6809d88e175dade0ef7b16aa13}\label{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38af2a47c6809d88e175dade0ef7b16aa13}} 
+Mouse&Keyboard buttons. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GamepadButtonsXbox@{GamepadButtonsXbox}!ControlPrompt@{ControlPrompt}}\index{ControlPrompt@{ControlPrompt}!GamepadButtonsXbox@{GamepadButtonsXbox}}}\mbox{\Hypertarget{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38aed02f259ed2588dd5c3795ffaee839a4}\label{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38aed02f259ed2588dd5c3795ffaee839a4}} 
+Gamepad\+Buttons\+Xbox&Mouse buttons. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GamepadButtonsPlaystation@{GamepadButtonsPlaystation}!ControlPrompt@{ControlPrompt}}\index{ControlPrompt@{ControlPrompt}!GamepadButtonsPlaystation@{GamepadButtonsPlaystation}}}\mbox{\Hypertarget{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38ac505b3fd486604a05119adf712c8a213}\label{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38ac505b3fd486604a05119adf712c8a213}} 
+Gamepad\+Buttons\+Playstation&Xbox gamepad buttons. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GamepadAxes@{GamepadAxes}!ControlPrompt@{ControlPrompt}}\index{ControlPrompt@{ControlPrompt}!GamepadAxes@{GamepadAxes}}}\mbox{\Hypertarget{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38a381b2aab39cdd7f290b5934b643dc839}\label{classControlPrompt_af22a5b9b529bc7c11402e079c8782b38a381b2aab39cdd7f290b5934b643dc839}} 
+Gamepad\+Axes&Playstation gamepad buttons. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classControlPrompt_afb6004964f92eb7558278da0f02ee044}\label{classControlPrompt_afb6004964f92eb7558278da0f02ee044}} 
+\index{ControlPrompt@{ControlPrompt}!Clone@{Clone}}
+\index{Clone@{Clone}!ControlPrompt@{ControlPrompt}}
+\doxysubsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} $\ast$ Control\+Prompt\+::\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+clones this \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} 
+
+\begin{DoxyReturn}{Returns}
+the newly created clone of this \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
+
+\mbox{\Hypertarget{classControlPrompt_acc3e82e1a1d1da53feaccf430163c550}\label{classControlPrompt_acc3e82e1a1d1da53feaccf430163c550}} 
+\index{ControlPrompt@{ControlPrompt}!GetReadMethods@{GetReadMethods}}
+\index{GetReadMethods@{GetReadMethods}!ControlPrompt@{ControlPrompt}}
+\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
+{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Control\+Prompt\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+gets the map of read methods for this \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} 
+
+\begin{DoxyReturn}{Returns}
+the map of read methods for this \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+
+\mbox{\Hypertarget{classControlPrompt_a81fe12577d83a10f852ba2bc4d8be7f6}\label{classControlPrompt_a81fe12577d83a10f852ba2bc4d8be7f6}} 
+\index{ControlPrompt@{ControlPrompt}!GetSprite@{GetSprite}}
+\index{GetSprite@{GetSprite}!ControlPrompt@{ControlPrompt}}
+\doxysubsubsection{\texorpdfstring{GetSprite()}{GetSprite()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSprite}{Sprite}} $\ast$ Control\+Prompt\+::\+Get\+Sprite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+gets the \mbox{\hyperlink{classSprite}{Sprite}} \mbox{\hyperlink{classComponent}{Component}} attached 
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{classSprite}{Sprite}} \mbox{\hyperlink{classComponent}{Component}} attached 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classControlPrompt_aaa8a6b0a8f65f0ce02e1413e62a2158a}\label{classControlPrompt_aaa8a6b0a8f65f0ce02e1413e62a2158a}} 
+\index{ControlPrompt@{ControlPrompt}!OnUpdate@{OnUpdate}}
+\index{OnUpdate@{OnUpdate}!ControlPrompt@{ControlPrompt}}
+\doxysubsubsection{\texorpdfstring{OnUpdate()}{OnUpdate()}}
+{\footnotesize\ttfamily void Control\+Prompt\+::\+On\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+called every graphics frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & the amount of time since the last frame \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classBehavior}{Behavior}}.
+
+\mbox{\Hypertarget{classControlPrompt_aa4fba16b4f10b1344718cc2e8962e369}\label{classControlPrompt_aa4fba16b4f10b1344718cc2e8962e369}} 
+\index{ControlPrompt@{ControlPrompt}!Write@{Write}}
+\index{Write@{Write}!ControlPrompt@{ControlPrompt}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Control\+Prompt\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+writes this \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} to JSON 
+
+\begin{DoxyReturn}{Returns}
+the JSON data of this \mbox{\hyperlink{classControlPrompt}{Control\+Prompt}} 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\mbox{\hyperlink{ControlPrompt_8h}{Control\+Prompt.\+h}}\item 
+Source/\mbox{\hyperlink{ControlPrompt_8cpp}{Control\+Prompt.\+cpp}}\end{DoxyCompactItemize}

@@ -75,6 +75,8 @@ $(function() {
 , <a class="el" href="classBullet.html#a8f14ad55e2a0532f9857bc7e6b75dd41">Bullet</a>
 , <a class="el" href="classCircleCollider.html#aea029ecff617fcff6c581ff9f2f33c2f">CircleCollider</a>
 , <a class="el" href="classComponent.html#a71b5ee92e9f8e65ab040a80e149fc596">Component</a>
+, <a class="el" href="classControlPrompt.html#abed9ac9a524de00e13661c6d2671c4b7">ControlPrompt</a>
+, <a class="el" href="classControlPromptSystem.html#ad37158eec0a734e8be4a8207dc771d09">ControlPromptSystem</a>
 , <a class="el" href="classDebugSystem.html#a78f423fc5d74b31b09ce8490355d5eff">DebugSystem</a>
 , <a class="el" href="classDestructibleTilemap.html#ac22c4f906ff6c8ef7fb0aa731c337016">DestructibleTilemap</a>
 , <a class="el" href="classEditorCameraController.html#a3bf9e84d085fbc7abd900d73a58b98f1">EditorCameraController</a>
@@ -124,6 +126,8 @@ $(function() {
 , <a class="el" href="classBullet.html#afaafef6e6a4229eb447179ea6a268305">Bullet</a>
 , <a class="el" href="classCircleCollider.html#ac2ee77410468623f939f92124a103040">CircleCollider</a>
 , <a class="el" href="classComponent.html#a2a76b143949c4f40b890c182cdd18a22">Component</a>
+, <a class="el" href="classControlPrompt.html#a38bb57d618864e60507f82151f9b47f2">ControlPrompt</a>
+, <a class="el" href="classControlPromptSystem.html#af45d350749ac6d1c9cd6cda63ca7f339">ControlPromptSystem</a>
 , <a class="el" href="classDebugSystem.html#a19de560b73dd0ed49eb314a07a138f5d">DebugSystem</a>
 , <a class="el" href="classDestructibleTilemap.html#a532235a55ce2efd3ac0946c10f458364">DestructibleTilemap</a>
 , <a class="el" href="classEditorCameraController.html#a7bd86f340f332b752235eba403930926">EditorCameraController</a>
@@ -169,6 +173,7 @@ $(function() {
 : <a class="el" href="classAudioListener.html#aaab30f1ca07cf373510eb51532e86673">AudioListener</a>
 , <a class="el" href="classAudioPlayer.html#a844ce12793a65829a49af970f1b6ddd1">AudioPlayer</a>
 , <a class="el" href="classAudioSystem.html#af538b729a94bb39f0a9a88f4c21a1d96">AudioSystem</a>
+, <a class="el" href="classControlPrompt.html#aaa8a6b0a8f65f0ce02e1413e62a2158a">ControlPrompt</a>
 , <a class="el" href="classDebugSystem.html#a2e42eb16bc553dcaf7fd3dc8feb764ea">DebugSystem</a>
 , <a class="el" href="classEditorCameraController.html#a8b44f2e32cec476ab723427110a0d212">EditorCameraController</a>
 , <a class="el" href="classGenerator.html#abf816931e7eb054c11ed084d75330c0a">Generator</a>
@@ -178,6 +183,9 @@ $(function() {
 , <a class="el" href="classSplashScreenController.html#aae39df88e792fb25b8a9629133b4f204">SplashScreenController</a>
 , <a class="el" href="classSystem.html#ac80e6b0f679fe9befb8d45014ee389cb">System</a>
 , <a class="el" href="classUiButton.html#ae2e0c47ca79a86b7317bdad7bd92d995">UiButton</a>
+</li>
+<li>operator Action const *()
+: <a class="el" href="classActionReference.html#a9882b8a869b7390ec13936150bc51d63">ActionReference</a>
 </li>
 <li>operator AssetType const *()
 : <a class="el" href="classAssetReference.html#aa5983cf7f01c4c44b6c51725a0863176">AssetReference&lt; AssetType &gt;</a>
@@ -191,14 +199,11 @@ $(function() {
 <li>operator Entity *()
 : <a class="el" href="classEntityReference.html#a05b5c040d9b37d7932f6553e7d6926ea">EntityReference</a>
 </li>
-<li>operator InputSystem::Action const *()
-: <a class="el" href="classActionReference.html#ad361660136e4b818211c604ad241ad39">ActionReference</a>
-</li>
 <li>operator unsigned()
 : <a class="el" href="classCollisionLayerFlags.html#ad42df4853f3002efba13b5d18e0797d9">CollisionLayerFlags</a>
 </li>
 <li>operator*()
-: <a class="el" href="classActionReference.html#acadfa77cdffd7e8c63f9151a12db99e9">ActionReference</a>
+: <a class="el" href="classActionReference.html#af7cc7bfdfe588401a8a6722d35af51b4">ActionReference</a>
 , <a class="el" href="classAssetReference.html#a96abfe4291da259b8238b3cd2e1a8be3">AssetReference&lt; AssetType &gt;</a>
 , <a class="el" href="classComponentReference.html#a9849cccfc618cb9909ca23059020d087">ComponentReference&lt; ComponentType, required &gt;</a>
 , <a class="el" href="classEntityReference.html#a07090e0030461596f0b5ddd0b2559b87">EntityReference</a>
@@ -216,7 +221,7 @@ $(function() {
 : <a class="el" href="classPool.html#acfc5331c09bbcccd0c35da13d16d2d3b">Pool&lt; Value &gt;</a>
 </li>
 <li>operator-&gt;()
-: <a class="el" href="classActionReference.html#acd9e47d5ed39aeeee5fcc29d5b79bdd0">ActionReference</a>
+: <a class="el" href="classActionReference.html#a9aee8841b3f6ed8991de7588287b5228">ActionReference</a>
 , <a class="el" href="classAssetReference.html#a68d41e00a6b06beb9896ebc251a8d94d">AssetReference&lt; AssetType &gt;</a>
 , <a class="el" href="classComponentReference.html#ad7ef99858809491cc3cdbe814c349896">ComponentReference&lt; ComponentType, required &gt;</a>
 , <a class="el" href="classEntityReference.html#a4cd8ec6300b97d29b1a4b013ee132b40">EntityReference</a>
@@ -228,7 +233,7 @@ $(function() {
 : <a class="el" href="classControlPoint.html#a6e8ef17440ddbb5d6f6fde0b096ec454">ControlPoint&lt; dimensionality &gt;</a>
 </li>
 <li>operator=()
-: <a class="el" href="classActionReference.html#a230ecb50b69a65d08dc5e14398459f6a">ActionReference</a>
+: <a class="el" href="classActionReference.html#a1c44b02bf19a8ac212ff98efe60017cf">ActionReference</a>
 , <a class="el" href="classAssetReference.html#a77e27deb4b1f4fea83f8616e709c7e7e">AssetReference&lt; AssetType &gt;</a>
 , <a class="el" href="classCollisionLayerFlags.html#ada43558842dc8016e86c8c9fccdca150">CollisionLayerFlags</a>
 , <a class="el" href="classComponentReference.html#af2b2529b5b9290940be5d175cf9ef258">ComponentReference&lt; ComponentType, required &gt;</a>
