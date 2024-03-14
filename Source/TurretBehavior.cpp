@@ -118,24 +118,30 @@
             if (bulletTransform)
             {
                 bulletTransform->SetTranslation(m_Transform->GetTranslation());
-                bulletTransform->SetScale(glm::vec2(m_BulletSize));
+                //bulletTransform->SetScale(glm::vec2(m_BulletSize));
             }
+            
+            bullet->GetComponent< RigidBody      >()->SetVelocity(direction * m_BulletSpeed);
+            
             if (bullet->GetComponent< Bullet >())
             {
                 bullet->GetComponent< Bullet >()->SetDamage(m_BulletDamage);
+            }
+            if (bullet->GetComponent< CircleCollider >())
+            {
                 bullet->GetComponent< CircleCollider >()->SetRadius(0.5f * m_BulletSize);
             }
-            bullet->GetComponent< RigidBody      >()->SetVelocity(direction * m_BulletSpeed);
-            
             if (bullet->GetComponent<BulletAoePulse>())
             {
                 bullet->GetComponent<BulletAoePulse>()->SetDamage(m_BulletDamage);
-                bullet->GetComponent<BulletAoePulse>()->SetRadius(0.5f * m_BulletSize);
-                bulletTransform->SetScale(glm::vec2(bullet->GetComponent<BulletAoePulse>()->GetRadius()));
+                //bullet->GetComponent<BulletAoePulse>()->SetRadius(0.5f * m_BulletSize);
+                //bulletTransform->SetScale(glm::vec2(bullet->GetComponent<BulletAoePulse>()->GetRadius() * 0.5f));
             }
-
+            
             // Add the bullet to the entity system
             bullet->AddToScene();
+            
+            
 
             // Play turret shoot sound
             if (m_AudioPlayer != nullptr)

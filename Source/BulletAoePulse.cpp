@@ -23,7 +23,7 @@
 
 
     /// @brief  constructor
-    BulletAoePulse::BulletAoePulse() : Component(typeid(BulletAoePulse))
+    BulletAoePulse::BulletAoePulse() : Bullet(typeid(BulletAoePulse))
     {}
 
 
@@ -175,7 +175,6 @@
     /// @brief  copy-constructor for the RigidBody
     /// @param  other   the other RigidBody to copy
     BulletAoePulse::BulletAoePulse( const BulletAoePulse& other ) :
-        Component(other),
         m_Damage(other.m_Damage),
         m_Radius(other.m_Radius)
     {}

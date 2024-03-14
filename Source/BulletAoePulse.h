@@ -17,7 +17,7 @@ class Collider;
 
 
 /// @brief   Component that destroys itself and deals aoe damage on contact
-class BulletAoePulse : public Component
+class BulletAoePulse : public Bullet
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructors
@@ -60,7 +60,6 @@ public: // accessors
 
     /// @brief Get the radius of the bullet pulse
     float GetRadius();
-    
 
 //-----------------------------------------------------------------------------
 public: // inspection
