@@ -96,6 +96,7 @@ void DebugSystem::OnInit()
     #ifdef NDEBUG //if in release mode
         SetupImGuiConfigPath(); //set up the imgui config path to the appdata folder
         Renderer()->SetDrawToBuffer(false); //disable drawing to off-screen buffer
+        SetNonEditorSystemsEnabled(true);
     #endif // NDEBUG
 
     ImFont* font = io->Fonts->AddFontDefault();
@@ -149,6 +150,7 @@ void DebugSystem::OnUpdate(float dt)
         m_Fullscreen = !m_Fullscreen;
         PlatformSystem::GetInstance()->SetFullscreen(m_Fullscreen);
     }
+
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

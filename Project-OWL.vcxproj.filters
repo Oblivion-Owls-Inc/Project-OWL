@@ -1231,5 +1231,8 @@
       <Filter>Data\Scenes</Filter>
     </None>
     <None Include="Data\Scenes\Prototype v3.scene.json" />
+    <None Include="..\..\..\..\..\Downloads\Tutorial.scene.json">
+      <Filter>Data\Scenes</Filter>
+    </None>
   </ItemGroup>
 </Project>
