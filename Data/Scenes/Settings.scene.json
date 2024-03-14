@@ -1,10 +1,206 @@
 {
     "Assets": {
-        "Sounds": null,
-        "Textures": null,
+        "Sounds": {
+            "ButtonPress": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/button_press.ogg"
+            },
+            "ButtonRelease": {
+                "IsLoopable": true,
+                "Filepath": "Data/Sounds/Effects/button_release.ogg"
+            }
+        },
+        "Textures": {
+            "ButtonBase": {
+                "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
+            "ButtonBase2": {
+                "Filepath": "Data/Textures/PauseMenuAssets/BlankButtonSheetpng.png",
+                "SheetDimensions": [
+                    3,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Checkbox": {
+                "Filepath": "Data/Textures/CheckboxSheet.png",
+                "SheetDimensions": [
+                    2,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "Fontsheet": {
+                "Filepath": "Data/Textures/Roboto_Mono_white_16x8.png",
+                "SheetDimensions": [
+                    16,
+                    8
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "SettingsBase": {
+                "Filepath": "Data/Textures/SettingsBase.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "SettingsBaseTemp": {
+                "Filepath": "Data/Textures/Group 2.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": false
+            },
+            "SliderBase": {
+                "Filepath": "Data/Textures/SliderBase.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
+            "SliderFill": {
+                "Filepath": "Data/Textures/SliderFill.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            },
+            "SliderPull": {
+                "Filepath": "Data/Textures/SliderPull.png",
+                "SheetDimensions": [
+                    1,
+                    1
+                ],
+                "Pivot": [
+                    0.5,
+                    0.5
+                ],
+                "UseAspectRatio": true
+            }
+        },
         "TransformAnimations": null,
         "Animations": null,
-        "Archetypes": null
+        "Archetypes": {
+            "Text": {
+                "Name": "Text",
+                "Components": {
+                    "Tilemap<int>": {
+                        "Dimensions": [
+                            10,
+                            2
+                        ],
+                        "TileScale": [
+                            1.0,
+                            1.0
+                        ],
+                        "TileData": [
+                            52,
+                            69,
+                            83,
+                            84,
+                            83,
+                            68,
+                            70,
+                            83,
+                            68,
+                            70,
+                            83,
+                            68,
+                            70,
+                            83,
+                            68,
+                            70,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "Text": {
+                        "Text": "Testsdfsdfsdfsdf"
+                    },
+                    "TilemapSprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Fontsheet"
+                        }
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            0.0,
+                            0.0
+                        ],
+                        "Pivot": [
+                            0.0,
+                            0.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            0.0
+                        ],
+                        "FrameSize": [
+                            1.0,
+                            1.0
+                        ],
+                        "SizeTypes": [
+                            "RelativeToWidth",
+                            "RelativeToHeight"
+                        ]
+                    }
+                },
+                "Children": null
+            }
+        }
     },
     "Entities": {
         "Camera": {
@@ -28,6 +224,944 @@
                 }
             },
             "Children": null
+        },
+        "SettingsBase": {
+            "Name": "SettingsBase",
+            "Components": {
+                "Sprite": {
+                    "Layer": 2,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "SettingsBase"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.0,
+                        0.0
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        1.0,
+                        1.0
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": [
+                {
+                    "Name": "SaveButton",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 3,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "ButtonBase2"
+                            }
+                        },
+                        "UiButton": {
+                            "ClickEventName": "",
+                            "ShouldActivateOnPress": false,
+                            "IdleFrame": 0,
+                            "HoveredFrame": 1,
+                            "DownFrame": 2,
+                            "PressSound": {
+                                "AssetName": "ButtonPress"
+                            },
+                            "ReleaseSound": {
+                                "AssetName": "ButtonRelease"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                0.8199999928474426,
+                                0.75
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                0.15000000596046448,
+                                0.10000000149011612
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToHeight"
+                            ]
+                        }
+                    },
+                    "Children": [
+                        {
+                            "Name": "Text",
+                            "Components": {
+                                "Tilemap<int>": {
+                                    "Dimensions": [
+                                        10,
+                                        0
+                                    ],
+                                    "TileScale": [
+                                        0.800000011920929,
+                                        0.5
+                                    ],
+                                    "TileData": [
+                                        51,
+                                        65,
+                                        86,
+                                        69,
+                                        11,
+                                        49,
+                                        85,
+                                        73,
+                                        84
+                                    ]
+                                },
+                                "Text": {
+                                    "Text": "Save+Quit"
+                                },
+                                "TilemapSprite": {
+                                    "Layer": 4,
+                                    "Color": [
+                                        0.0,
+                                        0.0,
+                                        -1.0,
+                                        0.0
+                                    ],
+                                    "Opacity": 1.0,
+                                    "FrameIndex": 0,
+                                    "Texture": {
+                                        "AssetName": "Fontsheet"
+                                    }
+                                },
+                                "UiElement": {
+                                    "Anchor": [
+                                        -0.800000011920929,
+                                        -0.05000000074505806
+                                    ],
+                                    "Pivot": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "FrameSize": [
+                                        0.125,
+                                        0.6000000238418579
+                                    ],
+                                    "SizeTypes": [
+                                        "RelativeToWidth",
+                                        "RelativeToHeight"
+                                    ]
+                                }
+                            },
+                            "Children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        "MasterVolumePrompt": {
+            "Name": "MasterVolumePrompt",
+            "Components": {
+                "Tilemap<int>": {
+                    "Dimensions": [
+                        14,
+                        1
+                    ],
+                    "TileScale": [
+                        0.800000011920929,
+                        0.5
+                    ],
+                    "TileData": [
+                        45,
+                        65,
+                        83,
+                        84,
+                        69,
+                        82,
+                        0,
+                        54,
+                        79,
+                        76,
+                        85,
+                        77,
+                        69,
+                        26
+                    ]
+                },
+                "Text": {
+                    "Text": "Master Volume:"
+                },
+                "TilemapSprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        -1.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Fontsheet"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        -0.7250000238418579,
+                        0.25
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.014999999664723873,
+                        0.03999999910593033
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        "SFXVolumePrompt": {
+            "Name": "SFXVolumePrompt",
+            "Components": {
+                "Tilemap<int>": {
+                    "Dimensions": [
+                        14,
+                        0
+                    ],
+                    "TileScale": [
+                        0.800000011920929,
+                        0.5
+                    ],
+                    "TileData": [
+                        51,
+                        38,
+                        56,
+                        0,
+                        54,
+                        79,
+                        76,
+                        85,
+                        77,
+                        69,
+                        26
+                    ]
+                },
+                "Text": {
+                    "Text": "SFX Volume:"
+                },
+                "TilemapSprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        -1.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Fontsheet"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        -0.7250000238418579,
+                        -0.019999999552965164
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.014999999664723873,
+                        0.03999999910593033
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        "MusicVolumePrompt": {
+            "Name": "MusicVolumePrompt",
+            "Components": {
+                "Tilemap<int>": {
+                    "Dimensions": [
+                        14,
+                        0
+                    ],
+                    "TileScale": [
+                        0.800000011920929,
+                        0.5
+                    ],
+                    "TileData": [
+                        51,
+                        38,
+                        56,
+                        0,
+                        54,
+                        79,
+                        76,
+                        85,
+                        77,
+                        69,
+                        26
+                    ]
+                },
+                "Text": {
+                    "Text": "SFX Volume:"
+                },
+                "TilemapSprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        -1.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Fontsheet"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        -0.7250000238418579,
+                        -0.27000001072883606
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.014999999664723873,
+                        0.03999999910593033
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        "FullscreenTogglePrompt": {
+            "Name": "FullscreenTogglePrompt",
+            "Components": {
+                "Tilemap<int>": {
+                    "Dimensions": [
+                        20,
+                        0
+                    ],
+                    "TileScale": [
+                        0.800000011920929,
+                        0.5
+                    ],
+                    "TileData": [
+                        38,
+                        85,
+                        76,
+                        76,
+                        83,
+                        67,
+                        82,
+                        69,
+                        69,
+                        78,
+                        0,
+                        52,
+                        79,
+                        71,
+                        71,
+                        76,
+                        69,
+                        26
+                    ]
+                },
+                "Text": {
+                    "Text": "Fullscreen Toggle:"
+                },
+                "TilemapSprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        -1.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Fontsheet"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        -0.7250000238418579,
+                        -0.5170000195503235
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.014999999664723873,
+                        0.03999999910593033
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        "MasterSlider": {
+            "Name": "MasterSlider",
+            "Components": {
+                "Sprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "SliderBase"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.2750000059604645,
+                        0.2549999952316284
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.029999999329447746,
+                        0.05000000074505806
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": [
+                {
+                    "Name": "MasterFill",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 5,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "SliderFill"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                0.0,
+                                0.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                1.0,
+                                1.0
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToHeight"
+                            ]
+                        }
+                    },
+                    "Children": null
+                },
+                {
+                    "Name": "MasterPull",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 6,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "SliderPull"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                15.0,
+                                0.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                1.25,
+                                1.25
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToHeight"
+                            ]
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        "SFXSlider": {
+            "Name": "SFXSlider",
+            "Components": {
+                "Sprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "SliderBase"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.2750000059604645,
+                        -0.012500000186264515
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.029999999329447746,
+                        0.05000000074505806
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": [
+                {
+                    "Name": "SFXFill",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 5,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "SliderFill"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                0.0,
+                                0.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                1.0,
+                                1.0
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToHeight"
+                            ]
+                        }
+                    },
+                    "Children": null
+                },
+                {
+                    "Name": "SFXPull",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 6,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "SliderPull"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                15.0,
+                                0.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                1.25,
+                                1.25
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToHeight"
+                            ]
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        "MusicSlider": {
+            "Name": "MusicSlider",
+            "Components": {
+                "Sprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "SliderBase"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.2750000059604645,
+                        -0.26124998927116394
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.029999999329447746,
+                        0.05000000074505806
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": [
+                {
+                    "Name": "MusicFill",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 5,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "SliderFill"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                0.0,
+                                0.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                1.0,
+                                1.0
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToHeight"
+                            ]
+                        }
+                    },
+                    "Children": null
+                },
+                {
+                    "Name": "MusicPull",
+                    "Components": {
+                        "Sprite": {
+                            "Layer": 6,
+                            "Color": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Opacity": 1.0,
+                            "FrameIndex": 0,
+                            "Texture": {
+                                "AssetName": "SliderPull"
+                            }
+                        },
+                        "UiElement": {
+                            "Anchor": [
+                                15.0,
+                                0.0
+                            ],
+                            "Pivot": [
+                                0.0,
+                                0.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0
+                            ],
+                            "FrameSize": [
+                                1.25,
+                                1.25
+                            ],
+                            "SizeTypes": [
+                                "RelativeToWidth",
+                                "RelativeToHeight"
+                            ]
+                        }
+                    },
+                    "Children": null
+                }
+            ]
+        },
+        "FullscreenToggle": {
+            "Name": "FullscreenToggle",
+            "Components": {
+                "Sprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 1,
+                    "Texture": {
+                        "AssetName": "Checkbox"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        0.7250000238418579,
+                        -0.5099999904632568
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.5,
+                        0.5
+                    ],
+                    "SizeTypes": [
+                        "Absolute",
+                        "Absolute"
+                    ]
+                }
+            },
+            "Children": null
+        },
+        "SettingsLabel": {
+            "Name": "SettingsLabel",
+            "Components": {
+                "Tilemap<int>": {
+                    "Dimensions": [
+                        14,
+                        0
+                    ],
+                    "TileScale": [
+                        0.800000011920929,
+                        0.5
+                    ],
+                    "TileData": [
+                        51,
+                        69,
+                        84,
+                        84,
+                        73,
+                        78,
+                        71,
+                        83
+                    ]
+                },
+                "Text": {
+                    "Text": "Settings"
+                },
+                "TilemapSprite": {
+                    "Layer": 4,
+                    "Color": [
+                        0.0,
+                        0.0,
+                        -1.0,
+                        0.0
+                    ],
+                    "Opacity": 1.0,
+                    "FrameIndex": 0,
+                    "Texture": {
+                        "AssetName": "Fontsheet"
+                    }
+                },
+                "UiElement": {
+                    "Anchor": [
+                        -0.9100000262260437,
+                        0.7649999856948853
+                    ],
+                    "Pivot": [
+                        0.0,
+                        0.0
+                    ],
+                    "Offset": [
+                        0.0,
+                        0.0
+                    ],
+                    "FrameSize": [
+                        0.029999999329447746,
+                        0.07999999821186066
+                    ],
+                    "SizeTypes": [
+                        "RelativeToWidth",
+                        "RelativeToHeight"
+                    ]
+                }
+            },
+            "Children": null
         }
-    }
+    },
+    "PreparsedScenes": [
+        "MainMenu"
+    ]
 }
