@@ -66,11 +66,6 @@ private: // reading
     /// @param data - the json data to read from
     void readAoePulsePrefab(nlohmann::ordered_json const& data);
 
-    /// @brief  reads this BulletAoe's damage
-    /// @param  data    the json data to read from
-    void readDamage( nlohmann::ordered_json const& data );
-
-
 //-----------------------------------------------------------------------------
 public: // reading / writing
 //-----------------------------------------------------------------------------

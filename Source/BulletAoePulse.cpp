@@ -100,7 +100,7 @@
     void BulletAoePulse::Inspector()
     {
         ImGui::Text("Aoe Pulse");
-        ImGui::DragInt("damage", &m_Damage, 0.05f, 0, INT_MAX);
+        //ImGui::DragInt("damage", &m_Damage, 0.05f, 0, INT_MAX);
         ImGui::DragFloat("radius", &m_Radius, 0.5f);
     }
 
@@ -108,14 +108,6 @@
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
-
-
-    /// @brief  reads this BulletAoePulse's damage
-    /// @param  data    the json data to read from
-    void BulletAoePulse::readDamage( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_Damage, data );
-    }
 
     /// @brief  reads this BulletAoePulse's radius
     /// @param  data    the json data to read from
@@ -134,7 +126,6 @@
     ReadMethodMap< ISerializable > const& BulletAoePulse::GetReadMethods() const
     {
         static ReadMethodMap< BulletAoePulse > const readMethods = {
-            { "Damage", &BulletAoePulse::readDamage },
             { "Radius", &BulletAoePulse::readRadius }
         };
 
@@ -147,7 +138,6 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "Damage" ] = Stream::Write( m_Damage );
         json[ "Radius" ] = Stream::Write( m_Radius );
 
         return json;

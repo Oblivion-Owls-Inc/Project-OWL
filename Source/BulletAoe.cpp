@@ -67,9 +67,10 @@
                 {
                     bullet->GetComponent< CircleCollider >()->SetRadius(0.5f * bulletTransform->GetScale().x);
                 }
-                if (bullet->GetComponent<BulletAoePulse>())
+                BulletAoePulse* pulse = bullet->GetComponent<BulletAoePulse>();
+                if (pulse)
                 {
-                    bullet->GetComponent<BulletAoePulse>()->SetDamage(Bullet::GetDamage());
+                    pulse->SetDamage(Bullet::GetDamage());
                 }
             }
 
@@ -104,15 +105,6 @@
         Stream::Read(m_AoePulsePrefab, data);
     }
 
-    /// @brief  reads this BulletAoe's damage
-    /// @param  data    the json data to read from
-    void BulletAoe::readDamage( nlohmann::ordered_json const& data )
-    {
-        int m_Damage = 0;
-        Stream::Read( m_Damage, data );
-        SetDamage(m_Damage);
-    }
-
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -124,7 +116,6 @@
     ReadMethodMap< ISerializable > const& BulletAoe::GetReadMethods() const
     {
         static ReadMethodMap< BulletAoe > const readMethods = {
-            { "Damage", &BulletAoe::readDamage },
             { "AoePulsePrefab", &BulletAoe::readAoePulsePrefab}
         };
 
@@ -137,7 +128,6 @@
     {
         nlohmann::ordered_json json;
 
-        json[ "Damage" ] = Stream::Write( GetDamage() );
         json["AoePulsePrefab"] = Stream::Write(m_AoePulsePrefab);
 
         return json;

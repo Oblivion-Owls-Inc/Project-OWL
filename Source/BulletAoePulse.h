@@ -73,11 +73,6 @@ public: // inspection
 private: // reading
 //-----------------------------------------------------------------------------
 
-
-    /// @brief  reads this BulletAoePulse's damage
-    /// @param  data    the json data to read from
-    void readDamage( nlohmann::ordered_json const& data );
-
     /// @brief  reads this BulletAoePulse's radius
     /// @param  data    the json data to read from
     void readRadius(nlohmann::ordered_json const& data);

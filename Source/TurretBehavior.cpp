@@ -118,10 +118,10 @@
             if (bulletTransform)
             {
                 bulletTransform->SetTranslation(m_Transform->GetTranslation());
-                //bulletTransform->SetScale(glm::vec2(m_BulletSize));
+                bulletTransform->SetScale(glm::vec2(m_BulletSize));
             }
             
-            bullet->GetComponent< RigidBody      >()->SetVelocity(direction * m_BulletSpeed);
+            bullet->GetComponent< RigidBody >()->SetVelocity(direction * m_BulletSpeed);
             
             if (bullet->GetComponent< Bullet >())
             {
@@ -131,11 +131,11 @@
             {
                 bullet->GetComponent< CircleCollider >()->SetRadius(0.5f * m_BulletSize);
             }
-            if (bullet->GetComponent<BulletAoePulse>())
+            BulletAoePulse* pulse = bullet->GetComponent< BulletAoePulse >();
+            if (pulse)
             {
-                bullet->GetComponent<BulletAoePulse>()->SetDamage(m_BulletDamage);
-                //bullet->GetComponent<BulletAoePulse>()->SetRadius(0.5f * m_BulletSize);
-                //bulletTransform->SetScale(glm::vec2(bullet->GetComponent<BulletAoePulse>()->GetRadius() * 0.5f));
+                pulse->SetDamage(m_BulletDamage);
+                pulse->SetRadius(m_BulletSize);
             }
             
             // Add the bullet to the entity system
