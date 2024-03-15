@@ -35,12 +35,16 @@ public: // public methods
     /// @param  label               the label of the array inspector
     /// @param  array               the array to inspect
     /// @param  elementInspector    the function to use to inspect each element of the array
+    /// @param  elementInitializer  function to call after adding an element
+    /// @param  elementExiter       function to call before removing an element
     /// @return (bool)              whether the array was modified
     template< typename DataType >
     static bool InspectArray(
         char const* label,
         std::vector< DataType >* array,
-        std::function< bool ( DataType* ) > elementInspector
+        std::function< bool ( DataType* ) > elementInspector,
+        std::function< void ( DataType* ) > elementInitializer = []( DataType* ) {},
+        std::function< void ( DataType* ) > elementExiter = []( DataType* ) {}
     );
 
     /// @brief  inspects a static-sized array of elements
@@ -87,12 +91,16 @@ private: // helper methods
     /// @param  label               the label of the array inspector
     /// @param  array               the array to inspect
     /// @param  elementInspector    the function to use to inspect each element of the array
+    /// @param  elementInitializer  function to call after adding an element
+    /// @param  elementExiter       function to call before removing an element
     /// @return (bool)              whether the array was modified
     template< typename DataType >
     bool Inspection::InspectArray(
         char const* label,
         std::vector< DataType >* array,
-        std::function< bool ( DataType* ) > elementInspector
+        std::function< bool ( DataType* ) > elementInspector,
+        std::function< void ( DataType* ) > elementInitializer,
+        std::function< void ( DataType* ) > elementExiter
     )
     {
 
@@ -159,6 +167,7 @@ private: // helper methods
             ImGui::TableNextColumn();
             if ( ImGui::Button( "X", ImVec2( 23, 23 ) ) )
             {
+                elementExiter( &(*array)[ i ] );
                 array->erase( array->begin() + i );
                 modified = true;
             }
@@ -173,6 +182,7 @@ private: // helper methods
         if ( ImGui::Button( "+", ImVec2( 40, 23 ) ) )
         {
             array->push_back( DataType() );
+            elementInitializer( &array->back() );
             modified = true;
         }
 
