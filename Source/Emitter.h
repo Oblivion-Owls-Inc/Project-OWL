@@ -44,7 +44,7 @@ public:
     __inline void SetDelay(float delay) { m_Delay = delay; }
 
     /// @brief   Sets the emit data
-    __inline void SetEmitData(ParticleSystem::EmitData const& data) { m_Init = data; }
+    __inline void SetEmitData(ParticleSystem::EmitData const& data) { m_Init = data; Particles()->SetEmitDataDirty(); }
 
     /// @return  Size of the particle buffer(s), which is also maximum particle count 
     __inline int GetBufferSize() const { return m_BufferSize; }

@@ -292,6 +292,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\CollisionLayerFlags.cpp" />
     <ClCompile Include="Source\ComponentReference.t.h" />
     <ClCompile Include="Source\Console.cpp" />
+    <ClCompile Include="Source\ControlPrompt.cpp" />
+    <ClCompile Include="Source\ControlPromptSystem.cpp" />
     <ClCompile Include="Source\DestructibleTilemap.cpp" />
     <ClCompile Include="Source\EditorCameraController.cpp" />
     <ClCompile Include="Source\EntityReference.cpp" />
@@ -331,6 +333,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     </ClCompile>
     <ClCompile Include="Source\HealthBar.cpp" />
     <ClCompile Include="Source\Generator.cpp" />
+    <ClCompile Include="Source\InputAction.cpp" />
     <ClCompile Include="Source\InputCallback.cpp" />
     <ClCompile Include="Source\InputInspector.cpp" />
     <ClCompile Include="Source\Inspection.cpp" />
@@ -459,6 +462,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\ControlPrompt.h" />
+    <ClInclude Include="Source\ControlPromptSystem.h" />
+    <ClInclude Include="Source\InputAction.h" />
     <ClInclude Include="Source\orbitbehavior.h" />
     <ClInclude Include="Source\pause.h" />
     <ClInclude Include="Source\pch.h" />
@@ -580,7 +586,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\WinState.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\ButtonPromptMappings\ButtonPrompts.json" />
     <None Include="Data\EngineConfig.json" />
+    <None Include="Data\Scenes\AlphaScene.scene.json" />
     <None Include="Data\Scenes\collisionTest.scene.json" />
     <None Include="Data\Scenes\ConstructionTest.scene.json" />
     <None Include="Data\Scenes\GameOver.scene.json" />

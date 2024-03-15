@@ -270,9 +270,9 @@ void Emitter::resizeBuffers()
 
     // transform matrices buffer
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_MatSSBO);
-    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(glm::mat4) * 
-                    m_BufferSize, NULL, GL_STREAM_DRAW);
-    // allow it to be read by vertex shader
+    std::vector<char> emptiness(sizeof(glm::mat4) * m_BufferSize);  // FFS, NULL DOES NOT ZERO-INIT!!! 
+    glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(glm::mat4) *      // Thanks for the headache, chatgpt...
+                    m_BufferSize, &emptiness[0], GL_STREAM_DRAW);
 
     m_Zinit = true;
 }

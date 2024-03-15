@@ -1,13 +1,16 @@
-/*********************************************************************
+/***************************************************************************
 * \file       DigEffect.h
 * \author     Eli Tsereteli
 * 
 * \brief      Controls the temporary entity used for emitting particles
-*             when a tile breaks. 
+*             when a tile breaks. If timer is initialized to 0, acts as 
+*             the spawner of temporary entities (should be attached to 
+*             the map entity). If timer is greater than 0, simply destroys
+*             parent entty when timer runs out. (should be attached to prefab)
 * 
 * \date       March 2024
 * \copyright  Copyright (c) 2024 Digipen Instutute of Technology
-*********************************************************************/
+****************************************************************************/
 #pragma once
 #include "Behavior.h"
 #include "ComponentReference.h"
@@ -18,14 +21,15 @@
 // fwd refs
 class Emitter;
 class MiningLaser;
-class TilemapSprite;
+class Texture;
 
-/// @brief    
+/// @brief    Behavior class for the dig particle effect.
 class DigEffect : public Behavior
 {
 //-----------------------------------------------------------------------------
-public: // constructors / destructors
+//              Constructors/destructors
 //-----------------------------------------------------------------------------
+public:
 
     /// @brief  Default constructor
     DigEffect();
@@ -43,13 +47,13 @@ private:
 //              Overrides
 //-----------------------------------------------------------------------------
 private:
-    /// @brief  Adds itself to behavior system
+    /// @brief  Adds itself to behavior system, inits references/callbacks
     virtual void OnInit() override;
 
-    /// @brief  Keeps an eye on item count
+    /// @brief  Executed every frame: runs the timer
     virtual void OnUpdate(float dt) override;
 
-    /// @brief  Removes itself from behavior system
+    /// @brief  Removes itself from behavior system, clears references
     virtual void OnExit() override;
     
     /// @brief  Tweak properties in debug window
@@ -57,11 +61,17 @@ private:
 
 
 //-----------------------------------------------------------------------------
-//              Public methods
+//              Accessors
 //-----------------------------------------------------------------------------
 public:
 
+    /// @brief      Timer setter
+    /// @param sec  time, in seconds
     __inline void SetTimer(float sec) { m_Timer = sec; }
+
+    /// @brief      Timer getter
+    /// @return     time, in seconds
+    __inline float GetTimer() const { return m_Timer; }
 
 
 //-----------------------------------------------------------------------------
@@ -70,12 +80,13 @@ public:
 private:
 
     /// @brief   When timer runs out, entity is destroyed. If timer is 0, this
-    ///          isn't considered a temporary entity.
+    ///          isn't a temporary entity, but rather one that spawns temps.
     float m_Timer = 0.0f;
 
-    TilemapSprite* m_TSprite = nullptr;  // TODO: Link errors when using component reference. Figure it out.
+    /// @brief   Texture to use for the particles
+    AssetReference< Texture > m_Texture;
 
-    /// @brief   Reference to archetype version of this entity
+    /// @brief   Archetype to spawn when a tile breaks
     AssetReference< Entity > m_Archetype;
 
 
@@ -100,12 +111,17 @@ private:
     /// @param data   json to read from
     void readTimer(nlohmann::ordered_json const& data);
 
+    /// @brief        reads the archetype to spawn
+    /// @param data   json to read from
     void readArchetype(nlohmann::ordered_json const& data);
+    
+    /// @brief        reads the texture to use for particles
+    /// @param data   json to read from
+    void readTexture(nlohmann::ordered_json const& data);
 
 
     /// @brief   the map of read methods for this Component
     static ReadMethodMap< DigEffect > const s_ReadMethods;
-
 
 public:
 

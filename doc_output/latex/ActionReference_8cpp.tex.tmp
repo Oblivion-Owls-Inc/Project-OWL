@@ -2,7 +2,7 @@
 \label{ActionReference_8cpp}\index{Source/ActionReference.cpp@{Source/ActionReference.cpp}}
 
 
-a reference to an input Action  
+a reference to an input \mbox{\hyperlink{classAction}{Action}}  
 
 
 {\ttfamily \#include \char`\"{}pch.\+h\char`\"{}}\newline
@@ -13,7 +13,7 @@ Include dependency graph for Action\+Reference.\+cpp\+:
 
 
 \doxysubsection{Detailed Description}
-a reference to an input Action 
+a reference to an input \mbox{\hyperlink{classAction}{Action}} 
 
 \begin{DoxyAuthor}{Author}
 Steve Bukowinski (\href{mailto:steve.bukowinski@digipen.edu}{\texttt{ steve.\+bukowinski@digipen.\+edu}}) 
