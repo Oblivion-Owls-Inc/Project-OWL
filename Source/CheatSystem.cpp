@@ -35,10 +35,14 @@
     /// @param dt The elapsed time in seconds since the previous frame.
     void CheatSystem::OnUpdate(float dt)
     {
-        OpenCheatMenu();
+        if (Input()->GetKeyTriggered(GLFW_KEY_F1))
+        {
+            m_CheatMenuIsOpen = !m_CheatMenuIsOpen;
+        }
+
         if (m_CheatMenuIsOpen)
         {
-            DebugWindow();
+            CheatMenu();
         }
 
         RunCheats();
@@ -54,6 +58,25 @@
     /// @brief The cheat menu/console.
     void CheatSystem::DebugWindow()
     {
+        bool open = GetDebugEnabled();
+        if(ImGui::Begin("CheatSystem", &open ))
+        {
+            ImGui::InputText("Lose Scene", &m_LoseSceneName);
+            ImGui::InputText("Restart Scene", &m_RestartSceneName);
+            ImGui::InputText("Win Scene", &m_WinSceneName);
+        }
+
+        ImGui::End();
+        SetDebugEnable(open);
+    }
+
+//--------------------------------------------------------------------------------
+// public: cheat functions
+//--------------------------------------------------------------------------------
+
+    /// @brief The actual cheat menu
+    void CheatSystem::CheatMenu()
+    {
         // The ImGui window.
         if (ImGui::Begin("Cheat Menu", &m_CheatMenuIsOpen, ImGuiWindowFlags_AlwaysAutoResize))
         {
@@ -61,7 +84,7 @@
             ImGui::SetNextWindowSize(ImVec2(500, 100), ImGuiCond_FirstUseEver);
 
             // The infinite resources button.
-            if ( ImGui::Button( m_ToggleInfiniteResource ? "Turn Off InfResources" : "Turn On InfResources") )
+            if (ImGui::Button(m_ToggleInfiniteResource ? "Turn Off InfResources" : "Turn On InfResources"))
             {
                 m_ToggleInfiniteResource = ToggleInfinteResources();
             }
@@ -110,7 +133,7 @@
             if (ImGui::Button(m_ToggleNoClip ? "Turn Off No Clip" : "Turn On No Clip"))
             {
                 NoClip();
-                
+
             }
             ImGui::SameLine();
             ImGui::Text("Disable Player Collisions");
@@ -118,7 +141,7 @@
             // The instant win button
             if (ImGui::Button("Instant Win"))
             {
-                Scenes()->SetNextScene("GameWin");
+                Scenes()->SetNextScene(m_WinSceneName);
             }
             ImGui::SameLine();
             ImGui::Text("Instantly wins the game");
@@ -126,7 +149,7 @@
             // The instant lose button
             if (ImGui::Button("Instant Lose"))
             {
-                Scenes()->SetNextScene("GameOver");
+                Scenes()->SetNextScene(m_LoseSceneName);
             }
             ImGui::SameLine();
             ImGui::Text("Instantly loses the game");
@@ -134,28 +157,14 @@
             // Resets the game scene.
             if (ImGui::Button("Reset Game"))
             {
-                Scenes()->SetNextScene("Prototype");
+                Scenes()->SetNextScene(m_RestartSceneName);
             }
             ImGui::SameLine();
             ImGui::Text("Resets the game");
 
         }
-    
+
         ImGui::End();
-    }
-
-//--------------------------------------------------------------------------------
-// public: cheat functions
-//--------------------------------------------------------------------------------
-
-    /// @brief  Are the left shift and tilde keys pressed?
-    /// @return If they are open the cheat menu.
-    void CheatSystem::OpenCheatMenu()
-    {
-        if (Input()->GetKeyTriggered(GLFW_KEY_F1) )
-        {
-            m_CheatMenuIsOpen = !m_CheatMenuIsOpen;
-        }
     }
 
     /// @brief  The code for the cheats.
@@ -269,7 +278,6 @@
         }
     }
 
-    
     /// @brief Turns off player collisions
     void CheatSystem::NoClip()
     {
@@ -325,6 +333,61 @@
     }
 
 //--------------------------------------------------------------------------------
+// private: read
+//--------------------------------------------------------------------------------
+
+    /// @brief Read in the name of the lose scene from JSON
+    /// @param data The JSON to read from.
+    void CheatSystem::readLoseSceneName(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_LoseSceneName, data);
+    }
+
+    /// @brief Read in the name of the restart scene from JSON
+    /// @param data The JSON to read from.
+    void CheatSystem::readRestartSceneName(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_RestartSceneName, data);
+    }
+
+    /// @brief Read in the name of the lose scene from JSON
+    /// @param data The JSON to read from.
+    void CheatSystem::readWinSceneName(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_WinSceneName, data);
+    }
+
+//--------------------------------------------------------------------------------
+// public: reading/writing
+//--------------------------------------------------------------------------------
+
+    /// @brief  Gets this system's read methods.
+    /// @return This system's read methods
+    ReadMethodMap<ISerializable> const& CheatSystem::GetReadMethods() const
+    {
+        static ReadMethodMap<CheatSystem> const readMethods = {
+            { "LoseSceneName"    , &CheatSystem::readLoseSceneName    },
+            { "RestartSceneName" , &CheatSystem::readRestartSceneName },
+            { "WinSceneName"     , &CheatSystem::readWinSceneName     }
+        };
+
+        return (ReadMethodMap< ISerializable > const&)readMethods;
+    }
+
+    /// @brief  Writes this CheatSystem to JSON
+    /// @return The JSON data of this CheatSystem
+    nlohmann::ordered_json CheatSystem::Write() const
+    {
+        nlohmann::ordered_json json;
+
+        json["LoseSceneName"] = Stream::Write(m_LoseSceneName);
+        json["RestartSceneName"] = Stream::Write(m_RestartSceneName);
+        json["WinSceneName"] = Stream::Write(m_WinSceneName);
+
+        return json;
+    }
+
+//--------------------------------------------------------------------------------
 // private: Singleton
 //--------------------------------------------------------------------------------
 
@@ -335,7 +398,6 @@
         m_ToggleBaseGodMode(false),
         m_ToggleInfiniteResource(false),
         m_ToggleNoClip(false),
-        m_Pause(false),
         m_PlayerCircleCollider(nullptr),
         m_ToggleOneShotOneKill(false),
         m_TogglePlayerInfiniteHealth(false),

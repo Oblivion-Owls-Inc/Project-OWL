@@ -11,6 +11,7 @@
 #pragma once
 #include "System.h"
 #include "DebugSystem.h"
+#include <string>
 
 
 //------------------------------------------------------------------------------
@@ -44,9 +45,8 @@ public: // virtual override methods
 public: // methods
 //--------------------------------------------------------------------------------
 
-    /// @brief Opens the console.
-    /// @return Whether or not the key to open the console was pressed
-    void OpenCheatMenu();
+    /// @brief The actual cheat menu
+    void CheatMenu();
 
     /// @brief Run the cheats.
     void RunCheats();
@@ -88,12 +88,46 @@ private: // members
     int m_PreviousBaseHealth;
     /// @brief Store the previous value of the laser's damage.
     float m_PreviousLaserDamage;
-
-    /// @brief Pauses the game (no longer necessary).
-    bool m_Pause;
+    /// @brief The name of the lose scene.
+    std::string m_LoseSceneName;
+    /// @brief The name of the scene to reset too.
+    std::string m_RestartSceneName;
+    /// @brief The name of the win scene.
+    std::string m_WinSceneName;
 
     /// @brief The player's circle collider.
     CircleCollider* m_PlayerCircleCollider;
+
+
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief Read in the name of the lose scene from JSON.
+    /// @param data The JSON file to read from.
+    void readLoseSceneName(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the name of the restart scene from JSON.
+    /// @param data The JSON file to read from.
+    void readRestartSceneName(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the name of the win scene from JSON.
+    /// @param data The JSON file to read from.
+    void readWinSceneName(nlohmann::ordered_json const& data);
+
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
+    /// @brief  Gets this System's read methods
+    /// @return This System's read methods
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+
+
+    /// @brief  Writes this CheatSystem to JSON
+    /// @return The JSON data of this CheatSystem
+    virtual nlohmann::ordered_json Write() const override;
 
 //--------------------------------------------------------------------------------
 private: // singleton 
