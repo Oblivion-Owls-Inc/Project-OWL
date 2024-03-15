@@ -49,6 +49,26 @@ public: // methods
     FMOD::ChannelGroup* GetChannelGroup( std::string const& name );
 
 
+    /// @brief  gets the volume of the master channel
+    /// @return the volume of the master channel
+    float GetVolume() const;
+
+    /// @brief  sets the volume of the master channel
+    /// @param  volume  the volume to set the master channel to
+    void SetVolume( float volume );
+
+
+    /// @brief  gets the volume of the specified channel
+    /// @param  name    the name of the channel to get the volume of
+    /// @return the volume of the channel
+    float GetVolume( std::string const& name ) const;
+
+    /// @brief  sets the volume of the specified channel
+    /// @param  name    the name of the channel to set the volume of
+    /// @param  volume  the volume to set the channel to
+    void SetVolume( std::string const& name, float volume );
+
+
 //-----------------------------------------------------------------------------
 public: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -168,6 +188,10 @@ private: // member variables
     int m_MaxChannels = 256;
 
 
+    /// @brief  the master volume of the AudioSystem
+    float m_Volume = 1.0f;
+
+
     /// @brief  the currently active AudioListener
     AudioListener* m_ActiveListener = nullptr;
 
@@ -223,12 +247,15 @@ private: // reading
     /// @param  data  the data to read from
     void readMaxChannels( nlohmann::ordered_json const& data );
 
+    /// @brief  reads the master volume of the AudioSystem
+    /// @param  data    the JSON data to read from
+    void readVolume( nlohmann::ordered_json const& data );
 
     /// @brief  reads the groups in the AudioSystem
     /// @param  data    the JSON data to read from
     void readGroups( nlohmann::ordered_json const& data );
 
-    
+
 //-----------------------------------------------------------------------------
 public: // reading / writing
 //-----------------------------------------------------------------------------

@@ -83,6 +83,67 @@
     }
 
 
+    /// @brief  gets the volume of the master channel
+    /// @return the volume of the master channel
+    float AudioSystem::GetVolume() const
+    {
+        return m_Volume;
+    }
+
+    /// @brief  sets the volume of the master channel
+    /// @param  volume  the volume to set the master channel to
+    void AudioSystem::SetVolume( float volume )
+    {
+        m_Volume = volume;
+
+        FMOD::ChannelGroup* masterGroup;
+        m_System->getMasterChannelGroup( &masterGroup );
+        masterGroup->setVolume( m_Volume );
+    }
+
+
+    /// @brief  gets the volume of the specified channel
+    /// @param  name    the name of the channel to get the volume of
+    /// @return the volume of the channel
+    float AudioSystem::GetVolume( std::string const& name ) const
+    {
+        auto it = std::find_if(
+            m_Groups.begin(), m_Groups.end(),
+            [ name ]( AudioGroup const& group ) -> bool
+            {
+                return name == group.M_Name;
+            }
+        );
+        if ( it == m_Groups.end() )
+        {
+            Debug() << "WARNING: unable to find AudioGroup with name \"" << name << "\"" << std::endl;
+        }
+
+        return it->M_Volume;
+    }
+
+    /// @brief  sets the volume of the specified channel
+    /// @param  name    the name of the channel to set the volume of
+    /// @param  volume  the volume to set the channel to
+    void AudioSystem::SetVolume( std::string const& name, float volume )
+    {
+        auto it = std::find_if(
+            m_Groups.begin(), m_Groups.end(),
+            [ name ]( AudioGroup const& group ) -> bool
+            {
+                return name == group.M_Name;
+            }
+        );
+        if ( it == m_Groups.end() )
+        {
+            Debug() << "WARNING: unable to find AudioGroup with name \"" << name << "\"" << std::endl;
+        }
+
+        it->M_Volume = volume;
+        it->M_Group->setVolume( volume );
+    }
+
+
 //-----------------------------------------------------------------------------
 // public: virtual overrides
 //-----------------------------------------------------------------------------
@@ -96,22 +157,27 @@
         result = FMOD::System_Create( &m_System );
         if ( result != FMOD_OK )
         {
-            Debug() << "Failed to create FMOD system" << std::endl << std::endl;
+            Debug() << "ERROR: Failed to create FMOD system" << std::endl << std::endl;
             return;
         }
 
         result = m_System->init( m_MaxChannels, FMOD_INIT_3D_RIGHTHANDED, 0 );
         if ( result != FMOD_OK )
         {
-            Debug() << "Failed to initialize FMOD system" << std::endl << std::endl;
+            Debug() << "ERROR: Failed to initialize FMOD system" << std::endl << std::endl;
             return;
         }
 
         result = m_System->setCallback( fmodCallback, FMOD_SYSTEM_CALLBACK_ERROR );
         if ( result != FMOD_OK )
         {
-            Debug() << "Failed to set FMOD callback" << std::endl << std::endl;
+            Debug() << "ERROR: Failed to set FMOD callback" << std::endl << std::endl;
         }
+
+
+        FMOD::ChannelGroup* masterGroup;
+        m_System->getMasterChannelGroup( &masterGroup );
+        masterGroup->setVolume( m_Volume );
 
 
         for ( AudioGroup& group : m_Groups )
@@ -457,6 +523,17 @@
     void AudioSystem::DebugWindow()
     {
         ImGui::DragInt( "max channels", &m_MaxChannels, 0.05f, 1, INT_MAX );
+        ImGui::SetItemTooltip( "max channels will not update until the Engine restarts" );
+
+        if ( ImGui::DragFloat( "Master Volume", &m_Volume, 0.05f, 0.0f, INFINITY ) )
+        {
+            if ( m_System != nullptr )
+            {
+                FMOD::ChannelGroup* masterChannelGroup;
+                m_System->getMasterChannelGroup( &masterChannelGroup );
+                masterChannelGroup->setVolume( m_Volume );
+            }
+        }
 
         Inspection::InspectArray< AudioGroup >(
             "audio groups", &m_Groups,
@@ -488,6 +565,12 @@
         Stream::Read( m_MaxChannels, data );
     }
 
+    /// @brief  reads the master volume of the AudioSystem
+    /// @param  data    the JSON data to read from
+    void AudioSystem::readVolume( nlohmann::ordered_json const& data )
+    {
+        Stream::Read( m_Volume, data );
+    }
 
     /// @brief  reads the groups in the AudioSystem
     /// @param  data    the JSON data to read from
@@ -496,7 +579,7 @@
         Stream::Read< AudioGroup >( &m_Groups, data );
     }
 
-    
+
 //-----------------------------------------------------------------------------
 // public: reading / writing
 //-----------------------------------------------------------------------------
@@ -508,6 +591,7 @@
     {
         static ReadMethodMap< AudioSystem > const readMethods = {
             { "MaxChannels", &AudioSystem::readMaxChannels },
+            { "Volume"     , &AudioSystem::readVolume      },
             { "Groups"     , &AudioSystem::readGroups      }
         };
 
@@ -522,6 +606,7 @@
         nlohmann::ordered_json json;
 
         json[ "MaxChannels" ] = Stream::Write( m_MaxChannels );
+        json[ "Volume"      ] = Stream::Write( m_Volume      );
         json[ "Groups"      ] = Stream::WriteArray( m_Groups );
 
         return json;
