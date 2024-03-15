@@ -1093,6 +1093,15 @@
                                         "IsSpatial": false,
                                         "AllowMultipleSounds": false
                                     },
+                                    "Popup": {
+                                        "PopupEntity": {
+                                            "AssetName": "QuitConfirmationBase"
+                                        },
+                                        "PopupButton": {
+                                            "ActionName": ""
+                                        },
+                                        "EventName": "Quit"
+                                    },
                                     "Sprite": {
                                         "Layer": 22,
                                         "Color": [
@@ -1543,7 +1552,7 @@
                 "Name": "QuitConfirmationBase",
                 "Components": {
                     "Sprite": {
-                        "Layer": 2,
+                        "Layer": 26,
                         "Color": [
                             0.0,
                             0.0,
@@ -1586,7 +1595,7 @@
                             "Tilemap<int>": {
                                 "Dimensions": [
                                     16,
-                                    1
+                                    2
                                 ],
                                 "TileScale": [
                                     0.5,
@@ -1622,14 +1631,16 @@
                                     85,
                                     73,
                                     84,
-                                    31
+                                    31,
+                                    0,
+                                    0
                                 ]
                             },
                             "Text": {
                                 "Text": "Are You Sure You Want To Quit?"
                             },
                             "TilemapSprite": {
-                                "Layer": 5,
+                                "Layer": 34,
                                 "Color": [
                                     0.0,
                                     0.0,
@@ -1683,8 +1694,12 @@
                                 "IsSpatial": false,
                                 "AllowMultipleSounds": false
                             },
+                            "SceneChangeButton": {
+                                "SceneName": "MainMenu",
+                                "EventName": "QuitConfirmation"
+                            },
                             "Sprite": {
-                                "Layer": 5,
+                                "Layer": 40,
                                 "Color": [
                                     0.0,
                                     0.0,
@@ -1740,7 +1755,7 @@
                                     "Tilemap<int>": {
                                         "Dimensions": [
                                             10,
-                                            0
+                                            1
                                         ],
                                         "TileScale": [
                                             0.6000000238418579,
@@ -1749,14 +1764,21 @@
                                         "TileData": [
                                             57,
                                             69,
-                                            83
+                                            83,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0
                                         ]
                                     },
                                     "Text": {
                                         "Text": "Yes"
                                     },
                                     "TilemapSprite": {
-                                        "Layer": 23,
+                                        "Layer": 50,
                                         "Color": [
                                             0.0,
                                             0.0,
@@ -1813,7 +1835,7 @@
                                 "AllowMultipleSounds": false
                             },
                             "Sprite": {
-                                "Layer": 5,
+                                "Layer": 40,
                                 "Color": [
                                     0.0,
                                     0.0,
@@ -1827,7 +1849,7 @@
                                 }
                             },
                             "UiButton": {
-                                "ClickEventName": "QuitDecline",
+                                "ClickEventName": "Quit",
                                 "ShouldActivateOnPress": false,
                                 "IdleFrame": 0,
                                 "HoveredFrame": 1,
@@ -1869,7 +1891,7 @@
                                     "Tilemap<int>": {
                                         "Dimensions": [
                                             10,
-                                            0
+                                            1
                                         ],
                                         "TileScale": [
                                             0.6000000238418579,
@@ -1877,14 +1899,22 @@
                                         ],
                                         "TileData": [
                                             46,
-                                            79
+                                            79,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0,
+                                            0
                                         ]
                                     },
                                     "Text": {
                                         "Text": "No"
                                     },
                                     "TilemapSprite": {
-                                        "Layer": 23,
+                                        "Layer": 50,
                                         "Color": [
                                             0.0,
                                             0.0,
@@ -2252,7 +2282,7 @@
                             ]
                         },
                         {
-                            "WaveNextTime": 941.8218994140625,
+                            "WaveNextTime": 938.05908203125,
                             "EnemyGroups": [
                                 {
                                     "Enemy": {
@@ -90139,8 +90169,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                11.132328987121582,
-                                103.12543487548828
+                                -13.697749137878418,
+                                120.92491149902344
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -90321,8 +90351,8 @@
                                 "Flags": 3
                             },
                             "Direction": [
-                                -0.7842270135879517,
-                                0.6204739809036255
+                                -0.8051182627677917,
+                                0.5931141972541809
                             ],
                             "IsFiring": false
                         },
