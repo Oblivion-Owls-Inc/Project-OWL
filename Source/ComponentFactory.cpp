@@ -69,6 +69,7 @@
 #include "pause.h"
 #include "orbitbehavior.h"
 #include "DestructibleTilemap.h"
+#include "ControlPrompt.h"
 
 
 //-----------------------------------------------------------------------------
@@ -219,7 +220,8 @@
         { "Popup"                  , ComponentInfo< Popup                   >() },
         { "PauseComponent"         , ComponentInfo< PauseComponent          >() },
         { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() },
-        { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() }
+        { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
+        { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() }
     };
 
 //-----------------------------------------------------------------------------

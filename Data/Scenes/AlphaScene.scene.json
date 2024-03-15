@@ -89409,6 +89409,12 @@
                     },
                     "Interact": {
                         "ActionName": "Interact"
+                    },
+                    "AimVertical": {
+                        "ActionName": "AimVertical"
+                    },
+                    "AimHorizontal": {
+                        "ActionName": "AimHorizontal"
                     }
                 },
                 "RigidBody": {
