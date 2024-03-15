@@ -52,6 +52,7 @@
 #include "CheatSystem.h"
 #include "LightingSystem.h"
 #include "PathfindSystem.h"
+#include "ControlPromptSystem.h"
 
 
 //-----------------------------------------------------------------------------
@@ -343,19 +344,23 @@
     /// @brief contains the function for adding each System type to the Engine. Used for Loading systems from config.
     std::map< std::string, System* (Engine::*)()> const Engine::s_AddSystemMethods = {
 
-        { "PlatformSystem"                        , &addSystem< PlatformSystem  >                          },
-	    { "CollisionSystem"                       , &addSystem< CollisionSystem >                          },
-        { "CameraSystem"                          , &addSystem< CameraSystem    >                          },  
-        { "InputSystem"                           , &addSystem< InputSystem     >                          },
-        { "SceneSystem"                           , &addSystem< SceneSystem     >                          },
-        { "RenderSystem"                          , &addSystem< RenderSystem    >                          },
-        { "DebugSystem"                           , &addSystem< DebugSystem     >                          },
-        { "AudioSystem"                           , &addSystem< AudioSystem     >                          },
-        { "EntitySystem"                          , &addSystem< EntitySystem    >                          },
-        { "ParticleSystem"                        , &addSystem< ParticleSystem  >                          },
-        { "CheatSystem"                           , &addSystem< CheatSystem     >                          },
-        { "EventSystem"                           , &addSystem< EventSystem     >                          },
-        { "PauseSystem"                           , &addSystem< PauseSystem     >                          },
+        { "PlatformSystem"                        , &addSystem< PlatformSystem      >                      },
+        { "CollisionSystem"                       , &addSystem< CollisionSystem     >                      },
+        { "CameraSystem"                          , &addSystem< CameraSystem        >                      },  
+        { "InputSystem"                           , &addSystem< InputSystem         >                      },
+        { "SceneSystem"                           , &addSystem< SceneSystem         >                      },
+        { "RenderSystem"                          , &addSystem< RenderSystem        >                      },
+        { "DebugSystem"                           , &addSystem< DebugSystem         >                      },
+        { "AudioSystem"                           , &addSystem< AudioSystem         >                      },
+        { "EntitySystem"                          , &addSystem< EntitySystem        >                      },
+        { "ParticleSystem"                        , &addSystem< ParticleSystem      >                      },
+        { "CheatSystem"                           , &addSystem< CheatSystem         >                      },
+        { "EventSystem"                           , &addSystem< EventSystem         >                      },
+        { "PauseSystem"                           , &addSystem< PauseSystem         >                      },
+        { "TileInfoSystem"                        , &addSystem< TileInfoSystem      >                      },
+        { "LightingSystem"                        , &addSystem< LightingSystem      >                      },
+        { "PathfindSystem"                        , &addSystem< PathfindSystem      >                      },
+        { "ControlPromptSystem"                   , &addSystem< ControlPromptSystem >                      },
                                                   
         { "BehaviorSystem<RigidBody>"             , &addSystem< BehaviorSystem< RigidBody              > > },
         { "BehaviorSystem<Behavior>"              , &addSystem< BehaviorSystem< Behavior               > > },
@@ -364,23 +369,18 @@
         { "BehaviorSystem<WavesBehavior>"         , &addSystem< BehaviorSystem< WavesBehavior          > > },
         { "BehaviorSystem<EnemyBehavior>"         , &addSystem< BehaviorSystem< EnemyBehavior          > > },
         { "BehaviorSystem<EditorCameraController>", &addSystem< BehaviorSystem< EditorCameraController > > },
-		{ "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
+        { "BehaviorSystem<UiButton>"              , &addSystem< BehaviorSystem< UiButton               > > },
         { "BehaviorSystem<Popup>"                 , &addSystem< BehaviorSystem< Popup                  > > },
         { "BehaviorSystem<PauseComponent>"        , &addSystem< BehaviorSystem< PauseComponent         > > },
-
         { "BehaviorSystem<Generator>"             , &addSystem< BehaviorSystem< Generator              > > },
+
+        { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
 
         { "AssetLibrary<Entity>"                  , &addSystem< AssetLibrarySystem< Entity             > > },
         { "AssetLibrary<Sound>"                   , &addSystem< AssetLibrarySystem< Sound              > > },
         { "AssetLibrary<Texture>"                 , &addSystem< AssetLibrarySystem< Texture            > > },
         { "AssetLibrary<TransformAnimation>"      , &addSystem< AssetLibrarySystem< TransformAnimation > > },
         { "AssetLibrary<AnimationAsset>"          , &addSystem< AssetLibrarySystem< AnimationAsset     > > },
-                                                                                                          
-        { "ComponentSystem<ItemComponent>"        , &addSystem< ComponentSystem< ItemComponent > >         },
-                                                  
-        { "TileInfoSystem"                        , &addSystem< TileInfoSystem >                           },
-        { "LightingSystem"                        , &addSystem< LightingSystem >                           },
-        { "PathfindSystem"                        , &addSystem< PathfindSystem >                           }
 
     };
 

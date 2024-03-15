@@ -89,6 +89,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a69f44ab169b82f945a2afc89f713bfcd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetReference.html#a69f44ab169b82f945a2afc89f713bfcd">AssetReference</a> ()</td></tr>
 <tr class="memdesc:a69f44ab169b82f945a2afc89f713bfcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor  <a href="classAssetReference.html#a69f44ab169b82f945a2afc89f713bfcd">More...</a><br /></td></tr>
 <tr class="separator:a69f44ab169b82f945a2afc89f713bfcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49428fa335e74d707cbc2b0fd56d9aa3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetReference.html#a49428fa335e74d707cbc2b0fd56d9aa3">AssetReference</a> (AssetType const *asset)</td></tr>
+<tr class="memdesc:a49428fa335e74d707cbc2b0fd56d9aa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">value contructor  <a href="classAssetReference.html#a49428fa335e74d707cbc2b0fd56d9aa3">More...</a><br /></td></tr>
+<tr class="separator:a49428fa335e74d707cbc2b0fd56d9aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5963a849fd54bc0b45e6706a5210cd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssetReference.html#aa5963a849fd54bc0b45e6706a5210cd3">Init</a> ()</td></tr>
 <tr class="memdesc:aa5963a849fd54bc0b45e6706a5210cd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">initializes this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a>  <a href="classAssetReference.html#aa5963a849fd54bc0b45e6706a5210cd3">More...</a><br /></td></tr>
 <tr class="separator:aa5963a849fd54bc0b45e6706a5210cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,7 +150,7 @@ class AssetReference&lt; AssetType &gt;</h3>
 </dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a69f44ab169b82f945a2afc89f713bfcd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69f44ab169b82f945a2afc89f713bfcd">&#9670;&nbsp;</a></span>AssetReference() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a69f44ab169b82f945a2afc89f713bfcd">&#9670;&nbsp;</a></span>AssetReference() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,14 +164,7 @@ template&lt;class AssetType &gt; </div>
 </div><div class="memdoc">
 
 <p>constructor </p>
-<p>a reference to an Asset</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">AssetType</td><td>the type of asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>constructor </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">AssetType</td><td>the type of asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to </td></tr>
   </table>
@@ -177,8 +173,48 @@ template&lt;class AssetType &gt; </div>
 
 </div>
 </div>
+<a id="a49428fa335e74d707cbc2b0fd56d9aa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49428fa335e74d707cbc2b0fd56d9aa3">&#9670;&nbsp;</a></span>AssetReference() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class AssetType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAssetReference.html">AssetReference</a>&lt; AssetType &gt;::<a class="el" href="classAssetReference.html">AssetReference</a> </td>
+          <td>(</td>
+          <td class="paramtype">AssetType const *&#160;</td>
+          <td class="paramname"><em>asset</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>value contructor </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">asset</td><td>the asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> will point to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">AssetType</td><td>the type of asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> refers to </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">asset</td><td>the asset this <a class="el" href="classAssetReference.html" title="a reference to an Asset">AssetReference</a> will point to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a5c69bc656bd7202fdb6b12a0052a3e0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c69bc656bd7202fdb6b12a0052a3e0f">&#9670;&nbsp;</a></span>AssetReference() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c69bc656bd7202fdb6b12a0052a3e0f">&#9670;&nbsp;</a></span>AssetReference() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

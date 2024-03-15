@@ -173,7 +173,8 @@ private: // Members
         "ParticleSystem",
         "BehaviorSystem<EditorCameraController>",
         "PathfindSystem",
-        "BehaviorSystem<Generator>"
+        "BehaviorSystem<Generator>",
+        "ControlPromptSystem"
     };
 
 //-----------------------------------------------------------------------------
