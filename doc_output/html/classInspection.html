@@ -74,18 +74,18 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0ee88ee285431b0765ad985023774f1a"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInspection.html#a0ee88ee285431b0765ad985023774f1a">SelectFileFromDirectory</a> (char const *label, std::string *selectedFile, std::string const &amp;directoryPath)</td></tr>
 <tr class="memdesc:a0ee88ee285431b0765ad985023774f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">selects a file from a directory  <a href="classInspection.html#a0ee88ee285431b0765ad985023774f1a">More...</a><br /></td></tr>
 <tr class="separator:a0ee88ee285431b0765ad985023774f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0bac19136fcbc95cbb78bf81d52021e"><td class="memTemplParams" colspan="2">template&lt;typename DataType &gt; </td></tr>
-<tr class="memitem:af0bac19136fcbc95cbb78bf81d52021e"><td class="memTemplItemLeft" align="right" valign="top">static bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classInspection.html#af0bac19136fcbc95cbb78bf81d52021e">InspectArray</a> (char const *label, std::vector&lt; DataType &gt; *array, std::function&lt; bool(DataType *) &gt; elementInspector)</td></tr>
-<tr class="memdesc:af0bac19136fcbc95cbb78bf81d52021e"><td class="mdescLeft">&#160;</td><td class="mdescRight">inspects an array of elements  <a href="classInspection.html#af0bac19136fcbc95cbb78bf81d52021e">More...</a><br /></td></tr>
-<tr class="separator:af0bac19136fcbc95cbb78bf81d52021e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a843f4b6955630c0bec88cab8ed3a8d27"><td class="memTemplParams" colspan="2">template&lt;typename DataType &gt; </td></tr>
+<tr class="memitem:a843f4b6955630c0bec88cab8ed3a8d27"><td class="memTemplItemLeft" align="right" valign="top">static bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classInspection.html#a843f4b6955630c0bec88cab8ed3a8d27">InspectArray</a> (char const *label, std::vector&lt; DataType &gt; *array, std::function&lt; bool(DataType *) &gt; elementInspector, std::function&lt; void(DataType *) &gt; elementInitializer=[](DataType *) {}, std::function&lt; void(DataType *) &gt; elementExiter=[](DataType *) {})</td></tr>
+<tr class="memdesc:a843f4b6955630c0bec88cab8ed3a8d27"><td class="mdescLeft">&#160;</td><td class="mdescRight">inspects an array of elements  <a href="classInspection.html#a843f4b6955630c0bec88cab8ed3a8d27">More...</a><br /></td></tr>
+<tr class="separator:a843f4b6955630c0bec88cab8ed3a8d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d1b91273225c56cec7ab23a1c31db48"><td class="memTemplParams" colspan="2">template&lt;typename DataType , int count&gt; </td></tr>
 <tr class="memitem:a9d1b91273225c56cec7ab23a1c31db48"><td class="memTemplItemLeft" align="right" valign="top">static bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classInspection.html#a9d1b91273225c56cec7ab23a1c31db48">InspectStaticArray</a> (char const *label, DataType *array, std::function&lt; bool(DataType *) &gt; elementInspector)</td></tr>
 <tr class="memdesc:a9d1b91273225c56cec7ab23a1c31db48"><td class="mdescLeft">&#160;</td><td class="mdescRight">inspects a static-sized array of elements  <a href="classInspection.html#a9d1b91273225c56cec7ab23a1c31db48">More...</a><br /></td></tr>
 <tr class="separator:a9d1b91273225c56cec7ab23a1c31db48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af0bac19136fcbc95cbb78bf81d52021e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0bac19136fcbc95cbb78bf81d52021e">&#9670;&nbsp;</a></span>InspectArray()</h2>
+<a id="a843f4b6955630c0bec88cab8ed3a8d27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a843f4b6955630c0bec88cab8ed3a8d27">&#9670;&nbsp;</a></span>InspectArray()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -111,7 +111,19 @@ template&lt;typename DataType &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::function&lt; bool(DataType *) &gt;&#160;</td>
-          <td class="paramname"><em>elementInspector</em>&#160;</td>
+          <td class="paramname"><em>elementInspector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(DataType *) &gt;&#160;</td>
+          <td class="paramname"><em>elementInitializer</em> = <code>[](&#160;DataType*&#160;)&#160;{}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(DataType *) &gt;&#160;</td>
+          <td class="paramname"><em>elementExiter</em> = <code>[](&#160;DataType*&#160;)&#160;{}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -139,6 +151,8 @@ template&lt;typename DataType &gt; </div>
     <tr><td class="paramname">label</td><td>the label of the array inspector </td></tr>
     <tr><td class="paramname">array</td><td>the array to inspect </td></tr>
     <tr><td class="paramname">elementInspector</td><td>the function to use to inspect each element of the array </td></tr>
+    <tr><td class="paramname">elementInitializer</td><td>function to call after adding an element </td></tr>
+    <tr><td class="paramname">elementExiter</td><td>function to call before removing an element </td></tr>
   </table>
   </dd>
 </dl>
