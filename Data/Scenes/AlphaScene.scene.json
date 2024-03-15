@@ -224,16 +224,16 @@
                 "UseAspectRatio": false
             },
             "Turret": {
-                "Filepath": "Data/Textures/Turret.png",
+                "Filepath": "Data/Textures/TurretBody.png",
                 "SheetDimensions": [
-                    19,
+                    3,
                     1
                 ],
                 "Pivot": [
-                    0.699999988079071,
-                    0.6000000238418579
+                    0.5,
+                    0.5
                 ],
-                "UseAspectRatio": false
+                "UseAspectRatio": true
             },
             "Van": {
                 "Filepath": "Data/Textures/van_large.png",
@@ -735,8 +735,8 @@
                         ],
                         "Rotation": 0.0,
                         "Scale": [
-                            1.0,
-                            1.0
+                            1.5,
+                            1.5
                         ],
                         "IsDiegetic": true
                     },
@@ -88686,7 +88686,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 111.78533172607422,
+                            "Width": 93.99988555908203,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -88704,8 +88704,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                21.33197021484375,
-                                -62.882591247558594
+                                0.5634689331054688,
+                                95.63407135009766
                             ],
                             "Rotation": 0.0,
                             "Scale": [
