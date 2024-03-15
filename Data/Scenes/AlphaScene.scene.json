@@ -578,7 +578,8 @@
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": true,
-                        "AllowMultipleSounds": false
+                        "AllowMultipleSounds": false,
+                        "ChannelGroupName": "Effects"
                     },
                     "CircleCollider": {
                         "Radius": 0.30000001192092896,
@@ -955,7 +956,8 @@
                                         "DefaultLoopCount": 0,
                                         "PlayOnInit": false,
                                         "IsSpatial": false,
-                                        "AllowMultipleSounds": false
+                                        "AllowMultipleSounds": true,
+                                        "ChannelGroupName": ""
                                     },
                                     "Sprite": {
                                         "Layer": 22,
@@ -1091,7 +1093,8 @@
                                         "DefaultLoopCount": 0,
                                         "PlayOnInit": false,
                                         "IsSpatial": false,
-                                        "AllowMultipleSounds": false
+                                        "AllowMultipleSounds": true,
+                                        "ChannelGroupName": ""
                                     },
                                     "Popup": {
                                         "PopupEntity": {
@@ -1236,7 +1239,8 @@
                                         "DefaultLoopCount": 0,
                                         "PlayOnInit": false,
                                         "IsSpatial": false,
-                                        "AllowMultipleSounds": false
+                                        "AllowMultipleSounds": true,
+                                        "ChannelGroupName": ""
                                     },
                                     "SceneChangeButton": {
                                         "SceneName": "Credits",
@@ -1376,7 +1380,8 @@
                                         "DefaultLoopCount": 0,
                                         "PlayOnInit": false,
                                         "IsSpatial": false,
-                                        "AllowMultipleSounds": false
+                                        "AllowMultipleSounds": true,
+                                        "ChannelGroupName": ""
                                     },
                                     "SceneChangeButton": {
                                         "SceneName": "Settings",
@@ -2164,7 +2169,8 @@
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": false,
-                        "AllowMultipleSounds": false
+                        "AllowMultipleSounds": false,
+                        "ChannelGroupName": "Effects"
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -2225,7 +2231,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": true,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": "Music"
                 }
             },
             "Children": null
@@ -90027,7 +90034,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": "Effects"
                 },
                 "CircleCollider": {
                     "Radius": 0.30000001192092896,
@@ -90283,7 +90291,8 @@
                             "DefaultLoopCount": 0,
                             "PlayOnInit": false,
                             "IsSpatial": false,
-                            "AllowMultipleSounds": false
+                            "AllowMultipleSounds": false,
+                            "ChannelGroupName": ""
                         },
                         "Emitter": {
                             "PPS": 200.0,
@@ -90387,7 +90396,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": "Effects"
                 },
                 "ConstructionBehavior": {
                     "Buildings": [
@@ -108237,7 +108247,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": "Effects"
                 },
                 "CircleCollider": {
                     "Radius": 1.0,
@@ -108357,7 +108368,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": "Effects"
                 },
                 "CircleCollider": {
                     "Radius": 1.0,
@@ -108474,7 +108486,8 @@
                     "DefaultLoopCount": 0,
                     "PlayOnInit": false,
                     "IsSpatial": false,
-                    "AllowMultipleSounds": false
+                    "AllowMultipleSounds": false,
+                    "ChannelGroupName": "Effects"
                 },
                 "CircleCollider": {
                     "Radius": 1.0,
