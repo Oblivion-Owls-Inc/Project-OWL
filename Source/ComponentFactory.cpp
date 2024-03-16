@@ -68,6 +68,7 @@
 #include "orbitbehavior.h"
 #include "DestructibleTilemap.h"
 #include "ControlPrompt.h"
+#include "BuildingSelectionButton.h"
 
 
 //-----------------------------------------------------------------------------
@@ -217,7 +218,8 @@
         { "PauseComponent"         , ComponentInfo< PauseComponent          >() },
         { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() },
         { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
-        { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() }
+        { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
+        { "BuildingSelectionButton", ComponentInfo< BuildingSelectionButton >() }
     };
 
 //-----------------------------------------------------------------------------
