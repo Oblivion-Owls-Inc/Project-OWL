@@ -22,6 +22,8 @@
 
 #include "RenderSystem.h"
 
+#include "Engine.h"
+
     
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
@@ -77,14 +79,26 @@
     {
         Behaviors< UiButton >()->AddComponent( this );
 
-        m_UiElement  .Init( GetEntity() );
-        m_Sprite     .Init( GetEntity() );
-        m_AudioPlayer.Init( GetEntity() );
+        m_UiElement        .Init( GetEntity() );
+        m_Sprite           .Init( GetEntity() );
+        m_AudioPlayer      .Init( GetEntity() );
 
-        m_PressSound  .SetOwnerName( GetName() );
-        m_PressSound  .Init();
-        m_ReleaseSound.SetOwnerName( GetName() );
-        m_ReleaseSound.Init();
+        m_PressSound       .SetOwnerName( GetName() );
+        m_PressSound       .Init();
+        m_ReleaseSound     .SetOwnerName( GetName() );
+        m_ReleaseSound     .Init();
+
+        m_UpButtonEntity   .SetOwnerName(GetName());
+        m_UpButtonEntity   .Init();
+        m_BelowButtonEntity.SetOwnerName(GetName());
+        m_BelowButtonEntity.Init();
+
+        m_NavigationAction .SetOwnerName(GetName());
+        m_NavigationAction .Init();
+        m_PressAction      .SetOwnerName(GetName());
+        m_PressAction      .Init();
+
+        s_currentlyTargetedButton = this;
     }
 
     /// @brief  called once when exiting the scene
@@ -92,9 +106,20 @@
     {
         Behaviors< UiButton >()->RemoveComponent( this );
 
-        m_UiElement  .Exit();
-        m_Sprite     .Exit();
-        m_AudioPlayer.Exit();
+        m_UiElement        .Exit();
+        m_Sprite           .Exit();
+        m_AudioPlayer      .Exit();
+
+        m_UpButtonEntity   .Exit();
+        m_BelowButtonEntity.Exit();
+
+        m_NavigationAction .Exit();
+        m_PressAction      .Exit();
+
+        if (s_currentlyTargetedButton == this && Behaviors< UiButton >()->GetComponents().empty() == false)
+        {
+            s_currentlyTargetedButton = Behaviors< UiButton >()->GetComponents().back();
+        }
     }
 
 
@@ -122,6 +147,27 @@
         {
             updateWhenDown();
         }
+
+        if (m_NavigationAction == nullptr)
+        {
+            return;
+        }
+
+        m_NavigationTimer -= GameEngine()->GetFixedFrameDuration();
+
+        if (isTargeted() && s_currentlyDownButton == nullptr && m_NavigationTimer <= 0.0f)
+        {
+            if (m_NavigationAction->GetAxis() > 0)
+            {
+                s_currentlyTargetedButton = m_UpButtonComponent;
+                m_UpButtonComponent->m_NavigationTimer = m_NavigationDelay;
+            }
+            else if (m_NavigationAction->GetAxis() < 0)
+            {
+                s_currentlyTargetedButton = m_BelowButtonComponent;
+                m_BelowButtonComponent->m_NavigationTimer = m_NavigationDelay;
+            }
+        }
     }
 
     /// @brief  called every simulation frame
@@ -143,6 +189,8 @@
     /// @brief  the button that is currently down. static to ensure only one button is interacted with at a time
     UiButton const* UiButton::s_currentlyDownButton = nullptr;
 
+    /// @brief Keeps track of currently targeted button
+    UiButton const* UiButton::s_currentlyTargetedButton = nullptr;
 
 //-----------------------------------------------------------------------------
 // private: methods
@@ -153,9 +201,10 @@
     void UiButton::updateWhenIdle()
     {
         // check if the button should switch to the hovered state
-        if ( s_currentlyDownButton == nullptr && isMouseOver() == true )
+        if ( s_currentlyDownButton == nullptr && isTargeted() == true )
         {
             m_State = ButtonState::Hovered;
+            s_currentlyTargetedButton = this;
             if ( m_Sprite != nullptr )
             {
                 m_Sprite->SetFrameIndex( m_HoveredFrame );
@@ -167,7 +216,7 @@
     void UiButton::updateWhenHovered()
     {
         // check if the button should switch to the idle state
-        if ( s_currentlyDownButton != nullptr || isMouseOver() == false )
+        if ( s_currentlyDownButton != nullptr || isTargeted() == false )
         {
             m_State = ButtonState::Idle;
             if ( m_Sprite != nullptr )
@@ -178,7 +227,7 @@
         }
 
         // check if the button should switch to the down state
-        if ( Input()->GetMouseTriggered( GLFW_MOUSE_BUTTON_1 ) )
+        if ( m_PressAction != nullptr && m_PressAction->GetTriggered() )
         {
             // activate now if that's how this button is configured
             if ( m_ShouldActivateOnPress == true )
@@ -206,7 +255,7 @@
     void UiButton::updateWhenDown()
     {
         // wait for the mouse to be released
-        if ( Input()->GetMouseReleased( GLFW_MOUSE_BUTTON_1 ) )
+        if (m_PressAction != nullptr && m_PressAction->GetReleased())
         {
             s_currentlyDownButton = nullptr;
 
@@ -217,7 +266,7 @@
             }
 
             // only activate if still hovered
-            if ( isMouseOver() == true )
+            if ( isTargeted() == true )
             {
                 // activate now if that's how this button is configured
                 if ( m_ShouldActivateOnPress == false )
@@ -244,15 +293,6 @@
         }
     }
 
-
-    /// @brief  checks if the mouse is currently over this button
-    /// @return whether the mouse is over this button
-    bool UiButton::isMouseOver() const
-    {
-        return Renderer()->GetMouseOverSprite() == m_Sprite;
-    }
-
-
     /// @brief  calls all callbacks and events attached to this Button
     void UiButton::callCallbacksAndEvents()
     {
@@ -264,6 +304,20 @@
         for ( auto& [ id, callback ] : m_OnClickedCallbacks )
         {
             callback();
+        }
+    }
+
+    /// @brief  Determines if a button is being hovered.
+    /// @return Is the button in a hovered state.
+    bool UiButton::isTargeted() const
+    {
+        if ( Input()->IsControllerMostRecentInput() == false )
+        {
+            return Renderer()->GetMouseOverSprite() == m_Sprite;
+        }
+        else
+        {
+            return s_currentlyTargetedButton == this;
         }
     }
 
@@ -284,17 +338,22 @@
         ImGui::DragInt( "idle frame index"   , (int*)&m_IdleFrame   , 0.05f, 0, INT_MAX );
         ImGui::DragInt( "hovered frame index", (int*)&m_HoveredFrame, 0.05f, 0, INT_MAX );
         ImGui::DragInt( "down frame index"   , (int*)&m_DownFrame   , 0.05f, 0, INT_MAX );
+        ImGui::DragFloat( "Navigation Delay" , &m_NavigationDelay, 0.05f, 0, INFINITY   );
 
-        m_PressSound  .Inspect( "button down sound" );
-        m_ReleaseSound.Inspect( "button up sound"   );
+        m_PressSound       .Inspect( "button down sound" );
+        m_ReleaseSound     .Inspect( "button up sound"   );
 
+        m_UpButtonEntity   .Inspect("Button Above This One");
+        m_BelowButtonEntity.Inspect("Button Below This One");
+
+        m_NavigationAction .Inspect("Action for Navigating The Menu");
+        m_PressAction      .Inspect("Action for Controller Button Pressing");
     }
 
 
 //-----------------------------------------------------------------------------
 // private: reading
 //-----------------------------------------------------------------------------
-
 
     /// @brief  reads the name of the event this UiButton broadcasts when it's clicked.
     /// @param  data    the JSON data to read from
@@ -345,6 +404,40 @@
         Stream::Read( m_ReleaseSound, data );
     }
 
+    /// @brief Reads in a reference to the button above this one.
+    /// @param data The JSON data to read from.
+    void UiButton::readUpButtonEntity(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_UpButtonEntity, data);
+    }
+
+    /// @brief Reads in a reference to the button below this one.
+    /// @param data The JSON data to read from.
+    void UiButton::readBelowButtonEntity(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_BelowButtonEntity, data);
+    }
+
+    /// @brief Read in the action from a JSON file.
+    /// @param data The JSON data to read from.
+    void UiButton::readNavigationAction(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_NavigationAction, data);
+    }
+
+    /// @brief Read in the action from a JSON file.
+    /// @param data The JSON data to read from.
+    void UiButton::readPressAction(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_PressAction, data);
+    }
+
+    /// @brief Read in the action from a JSON file.
+    /// @param data The JSON data to read from.
+    void UiButton::readNavigationDelay(nlohmann::ordered_json const& data)
+    {
+        Stream::Read(m_NavigationDelay, data);
+    }
 
 //-----------------------------------------------------------------------------
 // public: reading / writing
@@ -362,12 +455,16 @@
             { "HoveredFrame"         , &UiButton::readHoveredFrame          },
             { "DownFrame"            , &UiButton::readDownFrame             },
             { "PressSound"           , &UiButton::readPressSound            },
-            { "ReleaseSound"         , &UiButton::readReleaseSound          }
+            { "ReleaseSound"         , &UiButton::readReleaseSound          },
+            { "UpButton"             , &UiButton::readUpButtonEntity        },
+            { "BelowButton"          , &UiButton::readBelowButtonEntity     },
+            { "NavigationAction"     , &UiButton::readNavigationAction      },
+            { "PressAction"          , &UiButton::readPressAction           },
+            { "NavigationDelay"      , &UiButton::readNavigationDelay       },
         };
 
         return (ReadMethodMap< ISerializable > const&)readMethods;
     }
-
 
     /// @brief  Writes all AudioPlayr data to a JSON file.
     /// @return The JSON file containing the data.
@@ -382,11 +479,15 @@
         json [ "DownFrame"             ] = Stream::Write( m_DownFrame             );
         json [ "PressSound"            ] = Stream::Write( m_PressSound            );
         json [ "ReleaseSound"          ] = Stream::Write( m_ReleaseSound          );
+        json [ "UpButton"              ] = m_UpButtonEntity.Write(                );
+        json [ "BelowButton"           ] = m_BelowButtonEntity.Write(             );
+        json [ "NavigationAction"      ] = m_NavigationAction.Write(              );
+        json [ "PressAction"           ] = m_PressAction.Write(                   );
+        json [ "NavigationDelay"       ] = Stream::Write( m_NavigationDelay       );
 
         return json;
     }
 
-    
 //-----------------------------------------------------------------------------
 // public: copying
 //-----------------------------------------------------------------------------
@@ -399,7 +500,6 @@
         return new UiButton( *this );
     }
 
-
 //-----------------------------------------------------------------------------
 // private: copying
 //-----------------------------------------------------------------------------
@@ -409,13 +509,18 @@
     /// @param  other   the other UiButton to copy
     UiButton::UiButton( UiButton const& other ) :
         Behavior( other ),
-        m_ClickEventName       ( other.m_ClickEventName        ),
-        m_ShouldActivateOnPress( other.m_ShouldActivateOnPress ),
-        m_IdleFrame            ( other.m_IdleFrame             ),
-        m_HoveredFrame         ( other.m_HoveredFrame          ),
-        m_DownFrame            ( other.m_DownFrame             ),
-        m_PressSound           ( other.m_PressSound            ),
-        m_ReleaseSound         ( other.m_ReleaseSound          )
+        m_ClickEventName       ( other.m_ClickEventName                               ),
+        m_ShouldActivateOnPress( other.m_ShouldActivateOnPress                        ),
+        m_IdleFrame            ( other.m_IdleFrame                                    ),
+        m_HoveredFrame         ( other.m_HoveredFrame                                 ),
+        m_DownFrame            ( other.m_DownFrame                                    ),
+        m_PressSound           ( other.m_PressSound                                   ),
+        m_ReleaseSound         ( other.m_ReleaseSound                                 ),
+        m_UpButtonEntity       ( other.m_UpButtonEntity, {&m_UpButtonComponent}       ),
+        m_BelowButtonEntity    ( other.m_BelowButtonEntity, {&m_BelowButtonComponent} ),
+        m_NavigationAction     ( other.m_NavigationAction                             ),
+        m_PressAction          ( other.m_PressAction                                  ),
+        m_NavigationDelay      ( other.m_NavigationDelay                              )  
     {}
 
 

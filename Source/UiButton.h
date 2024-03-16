@@ -14,9 +14,11 @@
 #include "UiElement.h"
 #include "Sprite.h"
 #include "AudioPlayer.h"
+#include "ActionReference.h"
 
 #include "AssetReference.h"
 #include "Sound.h"
+#include "EntityReference.h"
 
 /// @brief  Ui Button that sends an event when clicked
 class UiButton : public Behavior
@@ -106,6 +108,12 @@ private: // configurable members
     /// @brief  the frame the UiButton displays when down
     unsigned m_DownFrame = 0;
 
+    /// @brief Pause between selecting buttons with a controller joystick
+    float m_NavigationTimer = 0.0f;
+
+    /// @brief How much to set the navigation pause timer when using joysticks.
+    float m_NavigationDelay = 0.5f;
+
 
     /// @brief  the sound this UiButton plays when it is pressed
     AssetReference< Sound > m_PressSound;
@@ -113,6 +121,23 @@ private: // configurable members
     /// @brief  the sound this UiButton plays when it is released
     AssetReference< Sound > m_ReleaseSound;
 
+    /// @brief The UiButton component of the button above this one.
+    ComponentReference <UiButton> m_UpButtonComponent;
+
+    /// @brief The UiButton component of the button below this one.
+    ComponentReference <UiButton> m_BelowButtonComponent;
+
+    /// @brief The button above this one
+    EntityReference m_UpButtonEntity = EntityReference({&m_UpButtonComponent});
+
+    /// @brief The button below this one.
+    EntityReference m_BelowButtonEntity = EntityReference({&m_BelowButtonComponent});
+
+    /// @brief Used for joystick operation in the menus.
+    ActionReference m_NavigationAction;
+
+    /// @brief Used for game controller confirmation of buttons
+    ActionReference m_PressAction;
 
 //-----------------------------------------------------------------------------
 private: // nonconfigurable members
@@ -139,7 +164,6 @@ private: // nonconfigurable members
     /// @brief  callbacks to be called whenever this UiButton is clicked
     std::map< unsigned, std::function< void () > > m_OnClickedCallbacks = {};
 
-
 //-----------------------------------------------------------------------------
 private: // static members
 //-----------------------------------------------------------------------------
@@ -148,6 +172,8 @@ private: // static members
     /// @brief  the button that is currently down. static to ensure only one button is interacted with at a time
     static UiButton const* s_currentlyDownButton;
 
+    /// @brief Keeps track of currently targeted button
+    static UiButton const* s_currentlyTargetedButton;
 
 //-----------------------------------------------------------------------------
 private: // methods
@@ -171,6 +197,10 @@ private: // methods
 
     /// @brief  calls all callbacks and events attached to this Button
     void callCallbacksAndEvents();
+
+    /// @brief  Determines if a button is being hovered.
+    /// @return Is the button in a hovered state.
+    bool isTargeted() const;
 
 
 //-----------------------------------------------------------------------------
@@ -214,6 +244,26 @@ private: // reading
     /// @brief  reads the sound this UiButton plays when it is released
     /// @param  data    the JSON data to read from
     void readReleaseSound( nlohmann::ordered_json const& data );
+
+    /// @brief Reads in a reference to the button above this one.
+    /// @param data The JSON data to read from.
+    void readUpButtonEntity(nlohmann::ordered_json const& data);
+
+    /// @brief Reads in a reference to the button below this one.
+    /// @param data The JSON data to read from.
+    void readBelowButtonEntity(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the action from a JSON file.
+    /// @param data The JSON data to read from.
+    void readNavigationAction(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the action from a JSON file.
+    /// @param data The JSON data to read from.
+    void readPressAction(nlohmann::ordered_json const& data);
+
+    /// @brief Read in the action from a JSON file.
+    /// @param data The JSON data to read from.
+    void readNavigationDelay(nlohmann::ordered_json const& data);
 
 
 //-----------------------------------------------------------------------------

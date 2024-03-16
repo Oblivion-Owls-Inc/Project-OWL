@@ -4,7 +4,7 @@
         "PlatformSystem": {
             "WindowSize": [
                 1039,
-                556
+                686
             ],
             "WindowName": "Dig Deeper",
             "VSync": true
@@ -164,6 +164,47 @@
                     "ControllerAxis": [
                         3
                     ]
+                },
+                {
+                    "Name": "MenuVerticalNavigation",
+                    "KeyboardButtons": [
+                        265,
+                        87
+                    ],
+                    "MouseButtons": [],
+                    "ControllerButtons": [
+                        11
+                    ],
+                    "KeyboardButtonsNegative": [
+                        264,
+                        83
+                    ],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [
+                        13
+                    ],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": [
+                        1,
+                        3
+                    ]
+                },
+                {
+                    "Name": "MenuButtonPress",
+                    "KeyboardButtons": [
+                        257
+                    ],
+                    "MouseButtons": [
+                        0
+                    ],
+                    "ControllerButtons": [
+                        0
+                    ],
+                    "KeyboardButtonsNegative": [],
+                    "MouseButtonsNegative": [],
+                    "ControllerButtonsNegative": [],
+                    "ControllerAxisAsButton": [],
+                    "ControllerAxis": []
                 }
             ]
         },

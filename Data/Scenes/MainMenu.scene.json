@@ -211,6 +211,18 @@
                         },
                         "ReleaseSound": {
                             "AssetName": "ButtonReleasedSound"
+                        },
+                        "UpButton": {
+                            "EntityName": ""
+                        },
+                        "BelowButton": {
+                            "EntityName": ""
+                        },
+                        "NavigationAction": {
+                            "ActionName": ""
+                        },
+                        "PressAction": {
+                            "ActionName": ""
                         }
                     },
                     "UiElement": {
@@ -512,6 +524,18 @@
                                     },
                                     "ReleaseSound": {
                                         "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "UpButton": {
+                                        "EntityName": "QuitButton"
+                                    },
+                                    "BelowButton": {
+                                        "EntityName": "HowToPlayButton"
+                                    },
+                                    "NavigationAction": {
+                                        "ActionName": "MenuVerticalNavigation"
+                                    },
+                                    "PressAction": {
+                                        "ActionName": "MenuButtonPress"
                                     }
                                 },
                                 "UiElement": {
@@ -646,6 +670,18 @@
                                     },
                                     "ReleaseSound": {
                                         "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "UpButton": {
+                                        "EntityName": "PlayButton"
+                                    },
+                                    "BelowButton": {
+                                        "EntityName": "SettingsButton"
+                                    },
+                                    "NavigationAction": {
+                                        "ActionName": "MenuVerticalNavigation"
+                                    },
+                                    "PressAction": {
+                                        "ActionName": "MenuButtonPress"
                                     }
                                 },
                                 "UiElement": {
@@ -784,6 +820,18 @@
                                     },
                                     "ReleaseSound": {
                                         "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "UpButton": {
+                                        "EntityName": "HowToPlayButton"
+                                    },
+                                    "BelowButton": {
+                                        "EntityName": "CreditsButton"
+                                    },
+                                    "NavigationAction": {
+                                        "ActionName": "MenuVerticalNavigation"
+                                    },
+                                    "PressAction": {
+                                        "ActionName": "MenuButtonPress"
                                     }
                                 },
                                 "UiElement": {
@@ -922,6 +970,18 @@
                                     },
                                     "ReleaseSound": {
                                         "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "UpButton": {
+                                        "EntityName": "SettingsButton"
+                                    },
+                                    "BelowButton": {
+                                        "EntityName": "QuitButton"
+                                    },
+                                    "NavigationAction": {
+                                        "ActionName": "MenuVerticalNavigation"
+                                    },
+                                    "PressAction": {
+                                        "ActionName": "MenuButtonPress"
                                     }
                                 },
                                 "UiElement": {
@@ -1064,6 +1124,18 @@
                                     },
                                     "ReleaseSound": {
                                         "AssetName": "ButtonReleasedSound"
+                                    },
+                                    "UpButton": {
+                                        "EntityName": "CreditsButton"
+                                    },
+                                    "BelowButton": {
+                                        "EntityName": "PlayButton"
+                                    },
+                                    "NavigationAction": {
+                                        "ActionName": "MenuVerticalNavigation"
+                                    },
+                                    "PressAction": {
+                                        "ActionName": "MenuButtonPress"
                                     }
                                 },
                                 "UiElement": {
