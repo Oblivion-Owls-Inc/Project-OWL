@@ -247,6 +247,7 @@ void PathfindSystem::explore()
                         // 14 if it's diagonal from current, 10 if it's straight
                         int new_cost = m_Nodes[indx].cost + ((k & 1) ? 14 : 10)
                             * (m_Nodes[indx].priority + 1);
+                        int reverse_cost = 2 * m_Nodes[indx].cost - new_cost;
 
                         // set new values if neighbor node isn't seen yet.
                         // or update it if new cost is lower.
@@ -260,6 +261,8 @@ void PathfindSystem::explore()
                             node.direction = { -dir[k].x, dir[k].y };
                             node.priority = m_Nodes[indx].priority;
                         }
+                        else if (node.cost < reverse_cost)
+                            m_Nodes[indx].direction = { dir[k].x, -dir[k].y };
                     }
 
                     // The following is to ensure nodes don't point at corners (diagonally).

@@ -23,8 +23,14 @@ Collaboration diagram for Bullet\+:
 \mbox{\Hypertarget{classBullet_acd7befc0bc18907cc1d871d37bbdddeb}\label{classBullet_acd7befc0bc18907cc1d871d37bbdddeb}} 
 \mbox{\hyperlink{classBullet_acd7befc0bc18907cc1d871d37bbdddeb}{Bullet}} ()
 \begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBullet_aa026a9e41212a4d18f46f1c54c51f486}\label{classBullet_aa026a9e41212a4d18f46f1c54c51f486}} 
+\mbox{\hyperlink{classBullet_aa026a9e41212a4d18f46f1c54c51f486}{Bullet}} (std\+::type\+\_\+index m\+\_\+\+Type)
+\begin{DoxyCompactList}\small\item\em derived constructor \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classBullet_a342f1fed70dc0025aadc39f656ab5ad6}{Set\+Damage}} (int damage)
 \begin{DoxyCompactList}\small\item\em Set the damage the bullet will do. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBullet_a4cf8ca726a6fe8bb8b67a9d101f1249f}\label{classBullet_a4cf8ca726a6fe8bb8b67a9d101f1249f}} 
+int \mbox{\hyperlink{classBullet_a4cf8ca726a6fe8bb8b67a9d101f1249f}{Get\+Damage}} () const
+\begin{DoxyCompactList}\small\item\em Get the damage the bullet will do. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classBullet_afaafef6e6a4229eb447179ea6a268305}\label{classBullet_afaafef6e6a4229eb447179ea6a268305}} 
 virtual void \mbox{\hyperlink{classBullet_afaafef6e6a4229eb447179ea6a268305}{On\+Init}} () override
 \begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{classBullet}{Bullet}} class. \end{DoxyCompactList}\item 
@@ -34,10 +40,6 @@ virtual void \mbox{\hyperlink{classBullet_a8f14ad55e2a0532f9857bc7e6b75dd41}{On\
 \mbox{\Hypertarget{classBullet_a5bb7b8be152eedf53f47d466875f94e2}\label{classBullet_a5bb7b8be152eedf53f47d466875f94e2}} 
 virtual void \mbox{\hyperlink{classBullet_a5bb7b8be152eedf53f47d466875f94e2}{Inspector}} () override
 \begin{DoxyCompactList}\small\item\em Used by the Debug \mbox{\hyperlink{classSystem}{System}} to display information about this \mbox{\hyperlink{classComponent}{Component}}. \end{DoxyCompactList}\item 
-virtual Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& \mbox{\hyperlink{classBullet_aa9b4106179b6ac83fea50fa0ae1e76ee}{Get\+Read\+Methods}} () const override
-\begin{DoxyCompactList}\small\item\em gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} \end{DoxyCompactList}\item 
-virtual nlohmann\+::ordered\+\_\+json \mbox{\hyperlink{classBullet_a02cbbeba3dcad8d65943817e8b62d254}{Write}} () const override
-\begin{DoxyCompactList}\small\item\em writes this \mbox{\hyperlink{classBullet}{Bullet}} to json \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classBullet}{Bullet}} $\ast$ \mbox{\hyperlink{classBullet_abbdc2a132a643708d11f6342642874a1}{Clone}} () const override
 \begin{DoxyCompactList}\small\item\em clones this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
@@ -64,22 +66,9 @@ the newly created clone of this \mbox{\hyperlink{classRigidBody}{Rigid\+Body}}
 
 Implements \mbox{\hyperlink{classComponent_a84ffb31637b6208fc8114114fb60dc4a}{Component}}.
 
-\mbox{\Hypertarget{classBullet_aa9b4106179b6ac83fea50fa0ae1e76ee}\label{classBullet_aa9b4106179b6ac83fea50fa0ae1e76ee}} 
-\index{Bullet@{Bullet}!GetReadMethods@{GetReadMethods}}
-\index{GetReadMethods@{GetReadMethods}!Bullet@{Bullet}}
-\doxysubsubsection{\texorpdfstring{GetReadMethods()}{GetReadMethods()}}
-{\footnotesize\ttfamily Read\+Method\+Map$<$ \mbox{\hyperlink{classISerializable}{ISerializable}} $>$ const  \& Bullet\+::\+Get\+Read\+Methods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
-
-gets the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
-
-\begin{DoxyReturn}{Returns}
-the map of read methods for this \mbox{\hyperlink{classComponent}{Component}} 
-\end{DoxyReturn}
-
-
-Reimplemented from \mbox{\hyperlink{classISerializable_a28ebd6e1c108281c986f97d36f3bbfd1}{ISerializable}}.
+Reimplemented in \mbox{\hyperlink{classBulletAoePulse_a99917b09ebbf2f2d73ae19bf024682e1}{Bullet\+Aoe\+Pulse}}, and \mbox{\hyperlink{classBulletAoe_a8af195a1e4cf3bab31db6a913ff6b6af}{Bullet\+Aoe}}.
 
 \mbox{\Hypertarget{classBullet_a342f1fed70dc0025aadc39f656ab5ad6}\label{classBullet_a342f1fed70dc0025aadc39f656ab5ad6}} 
 \index{Bullet@{Bullet}!SetDamage@{SetDamage}}
@@ -96,23 +85,6 @@ Set the damage the bullet will do.
 {\em damage} & -\/ the damage the bullet will do \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classBullet_a02cbbeba3dcad8d65943817e8b62d254}\label{classBullet_a02cbbeba3dcad8d65943817e8b62d254}} 
-\index{Bullet@{Bullet}!Write@{Write}}
-\index{Write@{Write}!Bullet@{Bullet}}
-\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
-{\footnotesize\ttfamily nlohmann\+::ordered\+\_\+json Bullet\+::\+Write (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
-
-
-
-writes this \mbox{\hyperlink{classBullet}{Bullet}} to json 
-
-\begin{DoxyReturn}{Returns}
-the written json data 
-\end{DoxyReturn}
-
-
-Reimplemented from \mbox{\hyperlink{classISerializable_a9fa16420df0e7bb8f2c51adc9b920655}{ISerializable}}.
-
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

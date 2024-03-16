@@ -7,9 +7,11 @@ digraph "Source/AudioSystem.h"
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="Source/AudioListener.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AudioListener_8cpp.html",tooltip="Component that picks up spatial audio."];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="Source/AudioSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AudioSystem_8cpp.html",tooltip="System that implements FMOD and allows the loading and playing of audio."];
+  Node3 [label="Source/AudioPlayer.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AudioPlayer_8cpp.html",tooltip="Component that plays audio."];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="Source/Engine.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Engine_8cpp.html",tooltip="Engine class."];
+  Node4 [label="Source/AudioSystem.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AudioSystem_8cpp.html",tooltip="System that implements FMOD and allows the loading and playing of audio."];
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="Source/Sound.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Sound_8cpp.html",tooltip="Wrapper class for FMOD sounds."];
+  Node5 [label="Source/Engine.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Engine_8cpp.html",tooltip="Engine class."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Source/Sound.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Sound_8cpp.html",tooltip="Wrapper class for FMOD sounds."];
 }

@@ -289,6 +289,8 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\AssetReference.t.cpp" />
     <ClCompile Include="Source\AudioListener.cpp" />
+    <ClCompile Include="Source\BulletAoe.cpp" />
+    <ClCompile Include="Source\BulletAoePulse.cpp" />
     <ClCompile Include="Source\BuildingSelectionButton.cpp" />
     <ClCompile Include="Source\CollisionLayerFlags.cpp" />
     <ClCompile Include="Source\ComponentReference.t.h" />
@@ -425,6 +427,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\SceneChangeButton.cpp" />
     <ClCompile Include="Source\SplashScreenController.cpp" />
     <ClCompile Include="Source\StaticBody.cpp" />
+    <ClCompile Include="Source\DigEffect.cpp" />
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Tilemap.cpp" />
     <ClCompile Include="Source\TilemapCollider.cpp" />
@@ -466,10 +469,12 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\ControlPrompt.h" />
     <ClInclude Include="Source\ControlPromptSystem.h" />
     <ClInclude Include="Source\InputAction.h" />
+    <ClInclude Include="Source\BulletAoePulse.h" />
     <ClInclude Include="Source\orbitbehavior.h" />
     <ClInclude Include="Source\pause.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\DestructibleTilemap.h" />
+    <ClInclude Include="Source\BulletAoe.h" />
     <ClInclude Include="Source\Popup.h" />
     <ClInclude Include="Source\ActionReference.h" />
     <ClInclude Include="Source\Console.h" />
@@ -496,6 +501,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClInclude Include="Source\ResourcesUiManager.h" />
     <ClInclude Include="Source\SceneChangeButton.h" />
     <ClInclude Include="Source\SplashScreenController.h" />
+    <ClInclude Include="Source\DigEffect.h" />
     <ClInclude Include="Source\TilemapEditor.h" />
     <ClInclude Include="Source\TilemapTextureConnector.h" />
     <ClInclude Include="Source\UiBarSprite.h" />
@@ -588,6 +594,7 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
   <ItemGroup>
     <None Include="Data\ButtonPromptMappings\ButtonPrompts.json" />
     <None Include="Data\EngineConfig.json" />
+    <None Include="Data\Scenes\AlphaScene.scene.json" />
     <None Include="Data\Scenes\collisionTest.scene.json" />
     <None Include="Data\Scenes\ConstructionTest.scene.json" />
     <None Include="Data\Scenes\GameOver.scene.json" />

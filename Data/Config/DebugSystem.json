@@ -1,0 +1,5 @@
+{
+    "AssetLibrary<Entity>": true,
+    "DebugSystem": true,
+    "InputSystem": true
+}

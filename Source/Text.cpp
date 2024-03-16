@@ -168,7 +168,8 @@
     /// @brief  copy constructor
     /// @param  other   the Text component to copy
     Text::Text( Text const& other ) :
-        Component( other )
+        Component( other ), 
+        m_Text( other.m_Text )
     {}
 
 
