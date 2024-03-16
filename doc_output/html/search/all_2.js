@@ -10,5 +10,7 @@ var searchData=
   ['behaviorsystem_3c_20controlprompt_20_3e_77',['BehaviorSystem&lt; ControlPrompt &gt;',['../classBehaviorSystem.html',1,'']]],
   ['bind_78',['Bind',['../classTexture.html#a14a2a70d9f130ac91a5ac95c8a4c7831',1,'Texture']]],
   ['broadcastevent_79',['BroadcastEvent',['../classEventSystem.html#aae98795a7cc67af6bf6830eedc3772bf',1,'EventSystem']]],
-  ['bullet_80',['Bullet',['../classBullet.html',1,'Bullet'],['../classBullet.html#acd7befc0bc18907cc1d871d37bbdddeb',1,'Bullet::Bullet()']]]
+  ['bullet_80',['Bullet',['../classBullet.html',1,'Bullet'],['../classBullet.html#acd7befc0bc18907cc1d871d37bbdddeb',1,'Bullet::Bullet()'],['../classBullet.html#aa026a9e41212a4d18f46f1c54c51f486',1,'Bullet::Bullet(std::type_index m_Type)']]],
+  ['bulletaoe_81',['BulletAoe',['../classBulletAoe.html',1,'BulletAoe'],['../classBulletAoe.html#a5bfb93e4b2d598cbff6cc0ae07a9b601',1,'BulletAoe::BulletAoe()']]],
+  ['bulletaoepulse_82',['BulletAoePulse',['../classBulletAoePulse.html',1,'BulletAoePulse'],['../classBulletAoePulse.html#ad0e56600e9b9e475839cd722903e8071',1,'BulletAoePulse::BulletAoePulse()']]]
 ];

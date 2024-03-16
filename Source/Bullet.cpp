@@ -25,6 +25,11 @@
         Component( typeid( Bullet ) )
     {}
 
+    /// @brief  derived constructor
+    Bullet::Bullet(std::type_index m_Type) :
+        Component(m_Type)
+    {}
+
 
 //-----------------------------------------------------------------------------
 // public: accessors
@@ -36,6 +41,12 @@
     void Bullet::SetDamage( int damage )
     {
         m_Damage = damage;
+    }
+
+    /// @brief Get the damage the bullet will do
+    int Bullet::GetDamage() const
+    {
+        return m_Damage;
     }
 
 
@@ -105,48 +116,7 @@
             ImGui::Text( "WARNING: no Collider component attached" );
         }
 
-        ImGui::DragInt( "damage", &m_Damage, 0.05f, 0, INT_MAX );
-    }
-
-
-//-----------------------------------------------------------------------------
-// private: reading
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  reads this Bullet's damage
-    /// @param  data    the json data to read from
-    void Bullet::readDamage( nlohmann::ordered_json const& data )
-    {
-        Stream::Read( m_Damage, data );
-    }
-
-
-//-----------------------------------------------------------------------------
-// public: reading / writing
-//-----------------------------------------------------------------------------
-
-
-    /// @brief gets the map of read methods for this Component
-    /// @return the map of read methods for this Component
-    ReadMethodMap< ISerializable > const& Bullet::GetReadMethods() const
-    {
-        static ReadMethodMap< Bullet > const readMethods = {
-            { "Damage", &Bullet::readDamage }
-        };
-
-        return (ReadMethodMap< ISerializable > const&)readMethods;
-    }
-
-    /// @brief  writes this Bullet to json
-    /// @return the written json data
-    nlohmann::ordered_json Bullet::Write() const
-    {
-        nlohmann::ordered_json json;
-
-        json[ "Damage" ] = Stream::Write( m_Damage );
-
-        return json;
+        //ImGui::DragInt( "damage", &m_Damage, 0.05f, 0, INT_MAX );
     }
 
     
