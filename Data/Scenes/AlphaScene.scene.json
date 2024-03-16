@@ -501,12 +501,189 @@
             }
         },
         "Archetypes": {
+            "AoeBullet": {
+                "Name": "AoeBullet",
+                "Components": {
+                    "BulletAoe": {
+                        "AoePulsePrefab": {
+                            "AssetName": "AoePulse"
+                        }
+                    },
+                    "CircleCollider": {
+                        "Radius": 0.10000000149011612,
+                        "CollisionLayer": 4,
+                        "CollisionLayerFlags": {
+                            "Flags": 3
+                        }
+                    },
+                    "Lifetime": {
+                        "Lifetime": {
+                            "BaseValue": 2.0,
+                            "CurrentValue": 2.0
+                        }
+                    },
+                    "RigidBody": {
+                        "Velocity": [
+                            0.0,
+                            0.0
+                        ],
+                        "Acceleration": [
+                            0.0,
+                            0.0
+                        ],
+                        "RotationalVelocity": 0.0,
+                        "Mass": 0.25,
+                        "Restitution": 0.0,
+                        "Friction": 0.0,
+                        "Drag": 0.0
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Ball1"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            0.30000001192092896,
+                            0.30000001192092896
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            },
+            "AoePulse": {
+                "Name": "AoePulse",
+                "Components": {
+                    "BulletAoePulse": {
+                        "Radius": 5.0
+                    },
+                    "Lifetime": {
+                        "Lifetime": {
+                            "BaseValue": 2.0,
+                            "CurrentValue": 2.0
+                        }
+                    },
+                    "RigidBody": {
+                        "Velocity": [
+                            0.0,
+                            0.0
+                        ],
+                        "Acceleration": [
+                            0.0,
+                            0.0
+                        ],
+                        "RotationalVelocity": 0.0,
+                        "Mass": 0.25,
+                        "Restitution": 0.0,
+                        "Friction": 0.0,
+                        "Drag": 0.0
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 0.25,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Fireball"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            5.0,
+                            5.0
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            },
+            "Auto Turret": {
+                "Name": "Auto Turret",
+                "Components": {
+                    "AudioPlayer": {
+                        "Sound": {
+                            "AssetName": "TurretShoot"
+                        },
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": true,
+                        "IsSpatial": false,
+                        "AllowMultipleSounds": false
+                    },
+                    "Sprite": {
+                        "Layer": 1,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Turret"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    },
+                    "TurretBehavior": {
+                        "FireRate": 6.0,
+                        "Range": 5.0,
+                        "BulletDamage": 2,
+                        "BulletSpeed": 15.0,
+                        "BulletSize": 0.30000001192092896,
+                        "ObstructionLayers": {
+                            "Flags": 1
+                        },
+                        "BulletPrefab": {
+                            "AssetName": "Bullet"
+                        }
+                    }
+                },
+                "Children": null
+            },
             "Bullet": {
                 "Name": "Bullet",
                 "Components": {
-                    "Bullet": {
-                        "Damage": 1
-                    },
+                    "Bullet": {},
                     "CircleCollider": {
                         "Radius": 0.10000000149011612,
                         "CollisionLayer": 4,
@@ -752,6 +929,183 @@
                         "Children": null
                     }
                 ]
+            },
+            "Explosive Turret": {
+                "Name": "Explosive Turret",
+                "Components": {
+                    "AudioPlayer": {
+                        "Sound": {
+                            "AssetName": "TurretShoot"
+                        },
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": true,
+                        "IsSpatial": false,
+                        "AllowMultipleSounds": false
+                    },
+                    "Sprite": {
+                        "Layer": 1,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Turret"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    },
+                    "TurretBehavior": {
+                        "FireRate": 1.0,
+                        "Range": 5.0,
+                        "BulletDamage": 5,
+                        "BulletSpeed": 7.0,
+                        "BulletSize": 0.30000001192092896,
+                        "ObstructionLayers": {
+                            "Flags": 1
+                        },
+                        "BulletPrefab": {
+                            "AssetName": "AoeBullet"
+                        }
+                    }
+                },
+                "Children": null
+            },
+            "Force Bullet": {
+                "Name": "Force Bullet",
+                "Components": {
+                    "Bullet": {},
+                    "CircleCollider": {
+                        "Radius": 1.0,
+                        "CollisionLayer": 4,
+                        "CollisionLayerFlags": {
+                            "Flags": 3
+                        }
+                    },
+                    "Lifetime": {
+                        "Lifetime": {
+                            "BaseValue": 2.0,
+                            "CurrentValue": 2.0
+                        }
+                    },
+                    "RigidBody": {
+                        "Velocity": [
+                            0.0,
+                            0.0
+                        ],
+                        "Acceleration": [
+                            0.0,
+                            0.0
+                        ],
+                        "RotationalVelocity": 0.0,
+                        "Mass": 5.0,
+                        "Restitution": 0.0,
+                        "Friction": 0.0,
+                        "Drag": 0.0
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Ball3"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            },
+            "Force Turret": {
+                "Name": "Force Turret",
+                "Components": {
+                    "AudioPlayer": {
+                        "Sound": {
+                            "AssetName": "TurretShoot"
+                        },
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": true,
+                        "IsSpatial": false,
+                        "AllowMultipleSounds": false
+                    },
+                    "Sprite": {
+                        "Layer": 1,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Turret"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    },
+                    "TurretBehavior": {
+                        "FireRate": 12.0,
+                        "Range": 5.0,
+                        "BulletDamage": 0,
+                        "BulletSpeed": 10.0,
+                        "BulletSize": 0.30000001192092896,
+                        "ObstructionLayers": {
+                            "Flags": 1
+                        },
+                        "BulletPrefab": {
+                            "AssetName": "Bullet"
+                        }
+                    }
+                },
+                "Children": null
             },
             "Item": {
                 "Name": "Item",
@@ -1960,6 +2314,183 @@
                         ]
                     }
                 ]
+            },
+            "Pulsar Turret": {
+                "Name": "Pulsar Turret",
+                "Components": {
+                    "AudioPlayer": {
+                        "Sound": {
+                            "AssetName": "TurretShoot"
+                        },
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": true,
+                        "IsSpatial": false,
+                        "AllowMultipleSounds": false
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Turret"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    },
+                    "TurretBehavior": {
+                        "FireRate": 1.0,
+                        "Range": 2.5,
+                        "BulletDamage": 5,
+                        "BulletSpeed": 1.0,
+                        "BulletSize": 5.0,
+                        "ObstructionLayers": {
+                            "Flags": 1
+                        },
+                        "BulletPrefab": {
+                            "AssetName": "AoePulse"
+                        }
+                    }
+                },
+                "Children": null
+            },
+            "Rail Shot": {
+                "Name": "Rail Shot",
+                "Components": {
+                    "Bullet": {},
+                    "CircleCollider": {
+                        "Radius": 0.10000000149011612,
+                        "CollisionLayer": 4,
+                        "CollisionLayerFlags": {
+                            "Flags": 3
+                        }
+                    },
+                    "Lifetime": {
+                        "Lifetime": {
+                            "BaseValue": 2.0,
+                            "CurrentValue": 2.0
+                        }
+                    },
+                    "RigidBody": {
+                        "Velocity": [
+                            0.0,
+                            0.0
+                        ],
+                        "Acceleration": [
+                            0.0,
+                            0.0
+                        ],
+                        "RotationalVelocity": 0.0,
+                        "Mass": 20.0,
+                        "Restitution": 0.0,
+                        "Friction": 0.0,
+                        "Drag": 0.0
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Ball"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    }
+                },
+                "Children": null
+            },
+            "Railgun Turret": {
+                "Name": "Railgun Turret",
+                "Components": {
+                    "AudioPlayer": {
+                        "Sound": {
+                            "AssetName": "TurretShoot"
+                        },
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": true,
+                        "IsSpatial": false,
+                        "AllowMultipleSounds": false
+                    },
+                    "Sprite": {
+                        "Layer": 1,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Turret"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    },
+                    "TurretBehavior": {
+                        "FireRate": 0.25,
+                        "Range": 25.0,
+                        "BulletDamage": 40,
+                        "BulletSpeed": 30.0,
+                        "BulletSize": 0.5,
+                        "ObstructionLayers": {
+                            "Flags": 1
+                        },
+                        "BulletPrefab": {
+                            "AssetName": "Rail Shot"
+                        }
+                    }
+                },
+                "Children": null
             },
             "ResourceCounter": {
                 "Name": "ResourceCounter",
@@ -90413,6 +90944,88 @@
                             },
                             "Build Action": {
                                 "ActionName": "Build Turret 1"
+                            }
+                        },
+                        {
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 2
+                                },
+                                {
+                                    "ItemId": 1,
+                                    "Count": 5
+                                }
+                            ],
+                            "Archetype": {
+                                "AssetName": "Auto Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 2"
+                            }
+                        },
+                        {
+                            "Cost": [
+                                {
+                                    "ItemId": 1,
+                                    "Count": 5
+                                }
+                            ],
+                            "Archetype": {
+                                "AssetName": "Pulsar Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 3"
+                            }
+                        },
+                        {
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 1
+                                },
+                                {
+                                    "ItemId": 1,
+                                    "Count": 3
+                                }
+                            ],
+                            "Archetype": {
+                                "AssetName": "Explosive Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 4"
+                            }
+                        },
+                        {
+                            "Cost": [
+                                {
+                                    "ItemId": 1,
+                                    "Count": 10
+                                }
+                            ],
+                            "Archetype": {
+                                "AssetName": "Railgun Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 5"
+                            }
+                        },
+                        {
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 1
+                                },
+                                {
+                                    "ItemId": 1,
+                                    "Count": 4
+                                }
+                            ],
+                            "Archetype": {
+                                "AssetName": "Force Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 6"
                             }
                         }
                     ],

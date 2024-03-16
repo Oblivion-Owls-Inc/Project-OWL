@@ -776,6 +776,12 @@
     <ClCompile Include="Source\InputAction.cpp">
       <Filter>Engine\Systems\InputSystem\InputAction</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BulletAoe.cpp">
+      <Filter>Game\Components\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BulletAoePulse.cpp">
+      <Filter>Game\Components\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -1180,6 +1186,12 @@
     <ClInclude Include="Source\InputAction.h">
       <Filter>Engine\Systems\InputSystem\InputAction</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BulletAoe.h">
+      <Filter>Game\Components\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BulletAoePulse.h">
+      <Filter>Game\Components\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\EngineConfig.json">
@@ -1260,6 +1272,9 @@
     <None Include="Data\Scenes\Prototype v3.scene.json" />
     <None Include="Data\ButtonPromptMappings\ButtonPrompts.json">
       <Filter>Data</Filter>
+    </None>
+    <None Include="Data\Scenes\AlphaScene.scene.json">
+      <Filter>Data\Scenes</Filter>
     </None>
   </ItemGroup>
 </Project>

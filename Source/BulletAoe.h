@@ -1,8 +1,8 @@
 ///*****************************************************************/
-/// @file	    Bullet.h
-/// @author     Jax Clayton (jax.clayton@digipen.edu)
-/// @date	    9/15/2021
-/// @brief      Component that destroys itself and deals damage on contact
+/// @file	    BulletAoe.h
+/// @author     Tyler Birdsall (tyler.birdsall@digipen.edu)
+/// @date	    3//2024
+/// @brief      Component that destroys itself and deals aoe damage on contact
 /// 
 /// @copyright  Copyright (c) 2024 Digipen Institute of Technology
 ///*****************************************************************/
@@ -10,64 +10,37 @@
 #pragma once
 
 #include "Component.h"
+#include "Bullet.h"
 
 #include "ComponentReference.h"
+#include "AssetReference.h"
 class Collider;
 
 
-/// @brief   Component that destroys itself and deals damage on contact
-class Bullet : public Component
+/// @brief   Component that destroys itself and deals aoe damage on contact
+class BulletAoe : public Bullet
 {
 //-----------------------------------------------------------------------------
 public: // constructor / destructors
 //-----------------------------------------------------------------------------
 
-
     /// @brief  constructor
-    Bullet();
-
-    /// @brief  derived constructor
-    Bullet(std::type_index m_Type);
-
+    BulletAoe();
 
 //-----------------------------------------------------------------------------
-public: // accessors
+public: //virtual override methods
 //-----------------------------------------------------------------------------
 
-
-    /// @brief Set the damage the bullet will do
-    /// @param damage - the damage the bullet will do
-    void SetDamage( int damage );
-
-    /// @brief Get the damage the bullet will do
-    int GetDamage() const;
-
+    /// @brief Default constructor for the BulletAoe class.
+    void OnInit();
 
 //-----------------------------------------------------------------------------
-public: // virtual override methods
+private: /// Members
 //-----------------------------------------------------------------------------
 
+    /// @brief The aoe pulse prefab to spawn
+    AssetReference< Entity > m_AoePulsePrefab;
 
-    /// @brief Default constructor for the Bullet class.
-    virtual void OnInit() override;
-
-    /// @brief  called when this Component's Entity is removed from the Scene
-    virtual void OnExit() override;
-
-
-//-----------------------------------------------------------------------------
-private: // member variables
-//-----------------------------------------------------------------------------
-
-
-    /// @brief  how much damage this Bullet will do
-    int m_Damage = 1;
-
-
-    /// @brief  the Collider attached to this Bullet
-    ComponentReference< Collider > m_Collider;
-
-    
 //-----------------------------------------------------------------------------
 private: // methods
 //-----------------------------------------------------------------------------
@@ -75,8 +48,7 @@ private: // methods
 
     /// @brief  called whenever this Entity's Collider enters a collision
     /// @param  other   the collider that was collided with
-    virtual void onCollisionEnter( Collider* other );
-
+    void onCollisionEnter( Collider* other ) override;
 
 //-----------------------------------------------------------------------------
 public: // inspection
@@ -86,6 +58,27 @@ public: // inspection
     /// @brief Used by the Debug System to display information about this Component
     virtual void Inspector() override;
 
+//-----------------------------------------------------------------------------
+private: // reading
+//-----------------------------------------------------------------------------
+
+    /// @brief Reads the name of the AoePulse prefab to grab from AssetLib
+    /// @param data - the json data to read from
+    void readAoePulsePrefab(nlohmann::ordered_json const& data);
+
+//-----------------------------------------------------------------------------
+public: // reading / writing
+//-----------------------------------------------------------------------------
+
+
+    /// @brief gets the map of read methods for this Component
+    /// @return the map of read methods for this Component
+    virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+
+    /// @brief  writes this BulletAoe to json
+    /// @return the written json data
+    virtual nlohmann::ordered_json Write() const override;
+
     
 //-----------------------------------------------------------------------------
 public: // copying
@@ -94,7 +87,7 @@ public: // copying
 
     /// @brief  clones this RigidBody
     /// @return the newly created clone of this RigidBody
-    virtual Bullet* Clone() const override;
+    virtual BulletAoe* Clone() const override;
 
 
 //-----------------------------------------------------------------------------
@@ -104,11 +97,11 @@ private: // copying
 
     /// @brief  copy-constructor for the RigidBody
     /// @param  other   the other RigidBody to copy
-    Bullet( const Bullet& other );
+    BulletAoe( const BulletAoe& other );
 
 
     // disable assignment operator
-    void operator =( const Bullet& ) = delete;
+    void operator =( const BulletAoe& ) = delete;
 
 
 //-----------------------------------------------------------------------------
