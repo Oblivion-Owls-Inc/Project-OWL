@@ -90125,6 +90125,88 @@
                             "Build Action": {
                                 "ActionName": "Build Turret 1"
                             }
+                        },
+                        {
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 2
+                                },
+                                {
+                                    "ItemId": 1,
+                                    "Count": 5
+                                }
+                            ],
+                            "Archetype": {
+                                "AssetName": "Auto Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 2"
+                            }
+                        },
+                        {
+                            "Cost": [
+                                {
+                                    "ItemId": 1,
+                                    "Count": 5
+                                }
+                            ],
+                            "Archetype": {
+                                "AssetName": "Pulsar Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 3"
+                            }
+                        },
+                        {
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 1
+                                },
+                                {
+                                    "ItemId": 1,
+                                    "Count": 3
+                                }
+                            ],
+                            "Archetype": {
+                                "AssetName": "Explosive Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 4"
+                            }
+                        },
+                        {
+                            "Cost": [
+                                {
+                                    "ItemId": 1,
+                                    "Count": 10
+                                }
+                            ],
+                            "Archetype": {
+                                "AssetName": "Railgun Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 5"
+                            }
+                        },
+                        {
+                            "Cost": [
+                                {
+                                    "ItemId": 0,
+                                    "Count": 1
+                                },
+                                {
+                                    "ItemId": 1,
+                                    "Count": 4
+                                }
+                            ],
+                            "Archetype": {
+                                "AssetName": "Force Turret"
+                            },
+                            "Build Action": {
+                                "ActionName": "Build Turret 6"
+                            }
                         }
                     ],
                     "BuildingIndex": -1,
