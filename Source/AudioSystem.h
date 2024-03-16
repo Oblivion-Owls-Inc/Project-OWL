@@ -43,6 +43,32 @@ public: // methods
     void SetActiveListener( AudioListener* listener );
 
 
+    /// @brief  gets the channel group with the specified name
+    /// @param  name    the name of the channel group to get
+    /// @return the FMOD::ChannelGroup with the specified name
+    FMOD::ChannelGroup* GetChannelGroup( std::string const& name );
+
+
+    /// @brief  gets the volume of the master channel
+    /// @return the volume of the master channel
+    float GetVolume() const;
+
+    /// @brief  sets the volume of the master channel
+    /// @param  volume  the volume to set the master channel to
+    void SetVolume( float volume );
+
+
+    /// @brief  gets the volume of the specified channel
+    /// @param  name    the name of the channel to get the volume of
+    /// @return the volume of the channel
+    float GetVolume( std::string const& name ) const;
+
+    /// @brief  sets the volume of the specified channel
+    /// @param  name    the name of the channel to set the volume of
+    /// @param  volume  the volume to set the channel to
+    void SetVolume( std::string const& name, float volume );
+
+
 //-----------------------------------------------------------------------------
 public: // virtual override methods
 //-----------------------------------------------------------------------------
@@ -61,6 +87,96 @@ public: // virtual override methods
 
     
 //-----------------------------------------------------------------------------
+private: // struct AudioGroup
+//-----------------------------------------------------------------------------
+
+
+    /// @brief  struct used to load and save data about audio groups
+    struct AudioGroup : public ISerializable
+    {
+    //-----------------------------------------------------------------------------
+    public: // members
+    //-----------------------------------------------------------------------------
+
+        
+        /// @brief  the name of this AudioGroup
+        std::string M_Name = "";
+
+
+        /// @brief  the volume of this AudioGroup
+        float M_Volume = 1.0f;
+
+        /// @brief  whether this AudioGroup is muted
+        bool M_Mute = false;
+
+
+        /// @brief  the underlying FMOD ChannelGroup
+        FMOD::ChannelGroup* M_Group = nullptr;
+        
+        
+    //-----------------------------------------------------------------------------
+    public: // methods
+    //-----------------------------------------------------------------------------
+    
+        
+        /// @brief  initializes this AudioGroup
+        /// @param  system  the FMOD system to initialize the AudioGroup in
+        void Init( FMOD::System* system );
+
+
+        /// @brief  exits this AudioGroup;
+        void Exit();
+
+
+    //-----------------------------------------------------------------------------
+    public: // inspection
+    //-----------------------------------------------------------------------------
+    
+
+        /// @brief  inspects this ChannelGroup
+        /// @return whether this ChannelGroup was changed
+        bool Inspect();
+
+        
+    //-----------------------------------------------------------------------------
+    public: // reading / writing
+    //-----------------------------------------------------------------------------
+    
+
+        /// @brief  gets this System's read methods
+        /// @return this System's read methods
+        virtual ReadMethodMap< ISerializable > const& GetReadMethods() const override;
+
+
+        /// @brief  writes this AudioSystem to json
+        /// @return the json data of the AudioSystem
+        virtual nlohmann::ordered_json Write() const override;
+
+        
+    //-----------------------------------------------------------------------------
+    private: // reading
+    //-----------------------------------------------------------------------------
+    
+
+        /// @brief  reads the name of this AudioGroup
+        /// @param  data    the JSON data to read from
+        void readName( nlohmann::ordered_json const& data );
+
+
+        /// @brief  reads the volume of this AudioGroup
+        /// @param  data    the JSON data to read from
+        void readVolume( nlohmann::ordered_json const& data );
+
+        /// @brief  reads whether this AudioGroup is muted
+        /// @param  data    the JSON data to read from
+        void readMute( nlohmann::ordered_json const& data );
+
+
+    //-----------------------------------------------------------------------------
+    };
+
+
+//-----------------------------------------------------------------------------
 private: // member variables
 //-----------------------------------------------------------------------------
 
@@ -72,8 +188,16 @@ private: // member variables
     int m_MaxChannels = 256;
 
 
+    /// @brief  the master volume of the AudioSystem
+    float m_Volume = 1.0f;
+
+
     /// @brief  the currently active AudioListener
     AudioListener* m_ActiveListener = nullptr;
+
+
+    /// @brief  all of the AudioGroups
+    std::vector< AudioGroup > m_Groups = {};
 
 
 //-----------------------------------------------------------------------------
@@ -95,8 +219,25 @@ private: // static methods
         void* commandData2,
         void* userData
     );
-
     
+
+//-----------------------------------------------------------------------------
+public: // inspection
+//-----------------------------------------------------------------------------
+    
+
+    /// @brief  inspects a reference to a channel group
+    /// @param  label           the label of the channel group
+    /// @param  groupName       the name of the channel group reference being inspected
+    /// @param  channelGroup    the channel group reference being inspeced
+    /// @return whether the reference to the channel group was changed
+    bool InspectChannelGroup( char const* label, std::string* groupName, FMOD::ChannelGroup** channelGroup );
+
+
+    /// @brief  shows this System's DebugWindow
+    virtual void DebugWindow() override;
+
+
 //-----------------------------------------------------------------------------
 private: // reading
 //-----------------------------------------------------------------------------
@@ -106,7 +247,15 @@ private: // reading
     /// @param  data  the data to read from
     void readMaxChannels( nlohmann::ordered_json const& data );
 
-    
+    /// @brief  reads the master volume of the AudioSystem
+    /// @param  data    the JSON data to read from
+    void readVolume( nlohmann::ordered_json const& data );
+
+    /// @brief  reads the groups in the AudioSystem
+    /// @param  data    the JSON data to read from
+    void readGroups( nlohmann::ordered_json const& data );
+
+
 //-----------------------------------------------------------------------------
 public: // reading / writing
 //-----------------------------------------------------------------------------
