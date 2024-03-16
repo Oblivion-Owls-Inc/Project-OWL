@@ -20,6 +20,8 @@
 #include "ResourcesUiManager.h"
 #include "Popup.h"
 
+#include "BehaviorSystem.h"
+
 
 //-----------------------------------------------------------------------------
 // public: constructor / Destructor
@@ -50,6 +52,8 @@
     /// @brief  called once when entering the scene
     void BuildingSelectionButton::OnInit()
     {
+        Behaviors< Behavior >()->AddComponent( this );
+
         m_UiButton.SetOnConnectCallback(
             [ this ]()
             {
@@ -75,6 +79,11 @@
         m_UiButton.Init( GetEntity() );
         m_Sprite  .Init( GetEntity() );
 
+        m_UnselectedTexture.SetOwnerName( GetName() );
+        m_SelectedTexture  .SetOwnerName( GetName() );
+        m_UnselectedTexture.Init();
+        m_SelectedTexture  .Init();
+
         m_ConstructionEntity.SetOwnerName( GetName() );
         m_ConstructionEntity.Init();
     }
@@ -82,6 +91,8 @@
     /// @brief  called once when exiting the scene
     void BuildingSelectionButton::OnExit()
     {
+        Behaviors< Behavior >()->RemoveComponent( this );
+
         m_UiButton.Exit();
         m_Sprite  .Exit();
 

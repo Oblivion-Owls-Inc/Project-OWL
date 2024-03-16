@@ -289,9 +289,9 @@ xcopy /Y /E "$(SolutionDir)Data\" "$(OutDir)\Data\"</Command>
     <ClCompile Include="Source\AssetLibrarySystem.cpp" />
     <ClCompile Include="Source\AssetReference.t.cpp" />
     <ClCompile Include="Source\AudioListener.cpp" />
+    <ClCompile Include="Source\BuildingSelectionButton.cpp" />
     <ClCompile Include="Source\BulletAoe.cpp" />
     <ClCompile Include="Source\BulletAoePulse.cpp" />
-    <ClCompile Include="Source\BuildingSelectionButton.cpp" />
     <ClCompile Include="Source\CollisionLayerFlags.cpp" />
     <ClCompile Include="Source\ComponentReference.t.h" />
     <ClCompile Include="Source\Console.cpp" />

@@ -208,6 +208,38 @@
     void ConstructionBehavior::SetBuildingIndex( int buildingIndex )
     {
         m_BuildingIndex = buildingIndex;
+        if ( buildingIndex == -1 )
+        {
+            return;
+        }
+
+        // update preview sprite
+        if ( m_BuildingInfos[ m_BuildingIndex ].M_Archetype == nullptr )
+        {
+            Debug() << "WARNING: ConstructionManager building archetype is NULL" << std::endl;
+            return;
+        }
+
+        setupCostUi();
+
+        if ( m_Sprite == nullptr || m_Transform == nullptr )
+        {
+            return;
+        }
+
+        m_Sprite->SetTexture( m_BuildingInfos[ m_BuildingIndex ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
+        m_Transform->SetScale( m_BuildingInfos[ m_BuildingIndex ].M_Archetype->GetComponent< Transform >()->GetScale() );
+        if (m_RadiusTransform != nullptr)
+        {
+            if ( m_BuildingInfos[ m_BuildingIndex ].M_Archetype == nullptr )
+            {
+                m_RadiusTransform->SetScale( glm::vec2( 0.0f ) );
+                return;
+            }
+            TurretBehavior const* turretBehavior = m_BuildingInfos[ m_BuildingIndex ].M_Archetype->GetComponent< TurretBehavior >();
+            float scale = turretBehavior == nullptr ? 0 : turretBehavior->GetRange() * 2;
+            m_RadiusTransform->SetScale( glm::vec2( scale ) );
+        }
     }
 
 
@@ -366,46 +398,13 @@
                 continue;
             }
 
-            if ( m_BuildingIndex == i )
-            {
-                m_BuildingIndex = -1;
-                return;
-            }
-
-            m_BuildingIndex = i;
-
             if ( m_Popup != nullptr )
             {
                 m_Popup->SetOpen( true );
             }
 
-            // update preview sprite
-            if ( m_BuildingInfos[ i ].M_Archetype == nullptr )
-            {
-                Debug() << "WARNING: ConstructionManager building archetype is NULL" << std::endl;
-                return;
-            }
+            SetBuildingIndex( i );
 
-            setupCostUi();
-
-            if ( m_Sprite == nullptr || m_Transform == nullptr )
-            {
-                return;
-            }
-
-            m_Sprite->SetTexture( m_BuildingInfos[ i ].M_Archetype->GetComponent< Sprite >()->GetTexture() );
-            m_Transform->SetScale( m_BuildingInfos[ i ].M_Archetype->GetComponent< Transform >()->GetScale() );
-            if (m_RadiusTransform != nullptr)
-            {
-                if ( m_BuildingInfos[i].M_Archetype == nullptr )
-                {
-                    m_RadiusTransform->SetScale( glm::vec2( 0.0f ) );
-                    return;
-                }
-                TurretBehavior const* turretBehavior = m_BuildingInfos[i].M_Archetype->GetComponent< TurretBehavior >();
-                float scale = turretBehavior == nullptr ? 0 : turretBehavior->GetRange() * 2;
-                m_RadiusTransform->SetScale( glm::vec2( scale ) );
-            }
             return;
         }
 

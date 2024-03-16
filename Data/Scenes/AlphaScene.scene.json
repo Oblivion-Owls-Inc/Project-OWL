@@ -648,7 +648,8 @@
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": false,
-                        "AllowMultipleSounds": false
+                        "AllowMultipleSounds": false,
+                        "ChannelGroupName": ""
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -691,6 +692,132 @@
                     }
                 },
                 "Children": null
+            },
+            "BuildingSelectionUi": {
+                "Name": "BuildingSelectionUi",
+                "Components": {
+                    "Nineslice": {
+                        "MinInternalEdge": [
+                            0.25,
+                            0.25
+                        ],
+                        "MaxInternalEdge": [
+                            0.75,
+                            0.75
+                        ],
+                        "MinBorderWidths": [
+                            0.25,
+                            0.25
+                        ],
+                        "MaxBorderWidths": [
+                            0.25,
+                            0.25
+                        ],
+                        "Texture": {
+                            "AssetName": "TestNineslice"
+                        },
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Layer": 7
+                    },
+                    "UiElement": {
+                        "Anchor": [
+                            0.0,
+                            -0.949999988079071
+                        ],
+                        "Pivot": [
+                            0.0,
+                            -1.0
+                        ],
+                        "Offset": [
+                            0.0,
+                            0.0
+                        ],
+                        "FrameSize": [
+                            0.800000011920929,
+                            0.10000000149011612
+                        ],
+                        "SizeTypes": [
+                            "RelativeToWidth",
+                            "RelativeToWidth"
+                        ]
+                    }
+                },
+                "Children": [
+                    {
+                        "Name": "Building1Selector",
+                        "Components": {
+                            "BuildingSelectionButton": {
+                                "BuildingIndex": 0,
+                                "UnselectedTexture": {
+                                    "AssetName": "ButtonTexture"
+                                },
+                                "SelectedTexture": {
+                                    "AssetName": "Turret"
+                                },
+                                "ConstructionEntity": {
+                                    "EntityName": "ConstructionManager"
+                                }
+                            },
+                            "Sprite": {
+                                "Layer": 8,
+                                "Color": [
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "Opacity": 1.0,
+                                "FrameIndex": 0,
+                                "Texture": {
+                                    "AssetName": "ButtonTexture"
+                                }
+                            },
+                            "UiButton": {
+                                "ClickEventName": "",
+                                "ShouldActivateOnPress": false,
+                                "IdleFrame": 0,
+                                "HoveredFrame": 1,
+                                "DownFrame": 2,
+                                "PressSound": {
+                                    "AssetName": ""
+                                },
+                                "ReleaseSound": {
+                                    "AssetName": ""
+                                }
+                            },
+                            "UiElement": {
+                                "Anchor": [
+                                    -0.875,
+                                    0.0
+                                ],
+                                "Pivot": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0
+                                ],
+                                "FrameSize": [
+                                    0.800000011920929,
+                                    0.800000011920929
+                                ],
+                                "SizeTypes": [
+                                    "RelativeToHeight",
+                                    "RelativeToHeight"
+                                ]
+                            }
+                        },
+                        "Children": null
+                    }
+                ]
             },
             "Bullet": {
                 "Name": "Bullet",
@@ -956,7 +1083,8 @@
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": false,
-                        "AllowMultipleSounds": false
+                        "AllowMultipleSounds": false,
+                        "ChannelGroupName": ""
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -1075,7 +1203,8 @@
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": false,
-                        "AllowMultipleSounds": false
+                        "AllowMultipleSounds": false,
+                        "ChannelGroupName": ""
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -1919,6 +2048,65 @@
                     }
                 ]
             },
+            "Pulsar Turret": {
+                "Name": "Pulsar Turret",
+                "Components": {
+                    "AudioPlayer": {
+                        "Sound": {
+                            "AssetName": "TurretShoot"
+                        },
+                        "Volume": 1.0,
+                        "Pitch": 1.0,
+                        "VolumeVariance": 0.0,
+                        "PitchVariance": 0.0,
+                        "DefaultLoopCount": 0,
+                        "PlayOnInit": true,
+                        "IsSpatial": false,
+                        "AllowMultipleSounds": false,
+                        "ChannelGroupName": ""
+                    },
+                    "Sprite": {
+                        "Layer": 2,
+                        "Color": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Opacity": 1.0,
+                        "FrameIndex": 0,
+                        "Texture": {
+                            "AssetName": "Turret"
+                        }
+                    },
+                    "Transform": {
+                        "Translation": [
+                            0.0,
+                            0.0
+                        ],
+                        "Rotation": 0.0,
+                        "Scale": [
+                            1.0,
+                            1.0
+                        ],
+                        "IsDiegetic": true
+                    },
+                    "TurretBehavior": {
+                        "FireRate": 1.0,
+                        "Range": 2.5,
+                        "BulletDamage": 5,
+                        "BulletSpeed": 1.0,
+                        "BulletSize": 5.0,
+                        "ObstructionLayers": {
+                            "Flags": 1
+                        },
+                        "BulletPrefab": {
+                            "AssetName": "AoePulse"
+                        }
+                    }
+                },
+                "Children": null
+            },
             "QuitConfirmationBase": {
                 "Name": "QuitConfirmationBase",
                 "Components": {
@@ -2063,7 +2251,8 @@
                                 "DefaultLoopCount": 0,
                                 "PlayOnInit": false,
                                 "IsSpatial": false,
-                                "AllowMultipleSounds": false
+                                "AllowMultipleSounds": false,
+                                "ChannelGroupName": ""
                             },
                             "SceneChangeButton": {
                                 "SceneName": "MainMenu",
@@ -2203,7 +2392,8 @@
                                 "DefaultLoopCount": 0,
                                 "PlayOnInit": false,
                                 "IsSpatial": false,
-                                "AllowMultipleSounds": false
+                                "AllowMultipleSounds": false,
+                                "ChannelGroupName": ""
                             },
                             "Sprite": {
                                 "Layer": 40,
@@ -2327,64 +2517,6 @@
                     }
                 ]
             },
-            "Pulsar Turret": {
-                "Name": "Pulsar Turret",
-                "Components": {
-                    "AudioPlayer": {
-                        "Sound": {
-                            "AssetName": "TurretShoot"
-                        },
-                        "Volume": 1.0,
-                        "Pitch": 1.0,
-                        "VolumeVariance": 0.0,
-                        "PitchVariance": 0.0,
-                        "DefaultLoopCount": 0,
-                        "PlayOnInit": true,
-                        "IsSpatial": false,
-                        "AllowMultipleSounds": false
-                    },
-                    "Sprite": {
-                        "Layer": 2,
-                        "Color": [
-                            0.0,
-                            0.0,
-                            0.0,
-                            0.0
-                        ],
-                        "Opacity": 1.0,
-                        "FrameIndex": 0,
-                        "Texture": {
-                            "AssetName": "Turret"
-                        }
-                    },
-                    "Transform": {
-                        "Translation": [
-                            0.0,
-                            0.0
-                        ],
-                        "Rotation": 0.0,
-                        "Scale": [
-                            1.0,
-                            1.0
-                        ],
-                        "IsDiegetic": true
-                    },
-                    "TurretBehavior": {
-                        "FireRate": 1.0,
-                        "Range": 2.5,
-                        "BulletDamage": 5,
-                        "BulletSpeed": 1.0,
-                        "BulletSize": 5.0,
-                        "ObstructionLayers": {
-                            "Flags": 1
-                        },
-                        "BulletPrefab": {
-                            "AssetName": "AoePulse"
-                        }
-                    }
-                },
-                "Children": null
-            },
             "Rail Shot": {
                 "Name": "Rail Shot",
                 "Components": {
@@ -2460,7 +2592,8 @@
                         "DefaultLoopCount": 0,
                         "PlayOnInit": true,
                         "IsSpatial": false,
-                        "AllowMultipleSounds": false
+                        "AllowMultipleSounds": false,
+                        "ChannelGroupName": ""
                     },
                     "Sprite": {
                         "Layer": 1,
@@ -90786,7 +90919,7 @@
                     "Name": "Camera",
                     "Components": {
                         "Camera": {
-                            "Width": 19.393348693847656,
+                            "Width": 27.426332473754883,
                             "IsActive": true
                         },
                         "CameraBehavior": {
@@ -90804,8 +90937,8 @@
                         },
                         "Transform": {
                             "Translation": [
-                                -12.788121223449707,
-                                122.1669921875
+                                -11.880346298217773,
+                                122.42386627197266
                             ],
                             "Rotation": 0.0,
                             "Scale": [
@@ -90919,7 +91052,7 @@
                             "PlayOnInit": false,
                             "IsSpatial": false,
                             "AllowMultipleSounds": false,
-                            "ChannelGroupName": ""
+                            "ChannelGroupName": "Effects"
                         },
                         "Emitter": {
                             "PPS": 200.0,
@@ -91150,15 +91283,21 @@
                     "CostUiEntity": {
                         "EntityName": "CostUi"
                     },
-                    "CancelPlacement": {
-                        "ActionName": "Cancel Place"
-                    },
                     "PlaceAction": {
                         "ActionName": "Place"
                     }
                 },
                 "Inventory": {
                     "Items": null
+                },
+                "Popup": {
+                    "PopupEntity": {
+                        "AssetName": "BuildingSelectionUi"
+                    },
+                    "PopupButton": {
+                        "ActionName": "OpenBuildMenu"
+                    },
+                    "EventName": ""
                 },
                 "Sprite": {
                     "Layer": 4,

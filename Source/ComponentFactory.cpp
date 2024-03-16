@@ -224,8 +224,7 @@
         { "OrbitBehavior"          , ComponentInfo< OrbitBehavior           >() },
         { "DestructibleTilemap"    , ComponentInfo< DestructibleTilemap     >() },
         { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
-        { "BuildingSelectionButton", ComponentInfo< BuildingSelectionButton >() }
-        { "ControlPrompt"          , ComponentInfo< ControlPrompt           >() },
+        { "BuildingSelectionButton", ComponentInfo< BuildingSelectionButton >() },
         { "DigEffect"              , ComponentInfo< DigEffect               >() }
     };
 
