@@ -5,19 +5,19 @@
 \item 
 static bool \mbox{\hyperlink{classInspection_a0ee88ee285431b0765ad985023774f1a}{Select\+File\+From\+Directory}} (char const $\ast$label, std\+::string $\ast$selected\+File, std\+::string const \&directory\+Path)
 \begin{DoxyCompactList}\small\item\em selects a file from a directory \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename Data\+Type $>$ }\\static bool \mbox{\hyperlink{classInspection_af0bac19136fcbc95cbb78bf81d52021e}{Inspect\+Array}} (char const $\ast$label, std\+::vector$<$ Data\+Type $>$ $\ast$array, std\+::function$<$ bool(Data\+Type $\ast$) $>$ element\+Inspector)
+{\footnotesize template$<$typename Data\+Type $>$ }\\static bool \mbox{\hyperlink{classInspection_a843f4b6955630c0bec88cab8ed3a8d27}{Inspect\+Array}} (char const $\ast$label, std\+::vector$<$ Data\+Type $>$ $\ast$array, std\+::function$<$ bool(Data\+Type $\ast$) $>$ element\+Inspector, std\+::function$<$ void(Data\+Type $\ast$) $>$ element\+Initializer=\mbox{[}$\,$\mbox{]}(Data\+Type $\ast$) \{\}, std\+::function$<$ void(Data\+Type $\ast$) $>$ element\+Exiter=\mbox{[}$\,$\mbox{]}(Data\+Type $\ast$) \{\})
 \begin{DoxyCompactList}\small\item\em inspects an array of elements \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Data\+Type , int count$>$ }\\static bool \mbox{\hyperlink{classInspection_a9d1b91273225c56cec7ab23a1c31db48}{Inspect\+Static\+Array}} (char const $\ast$label, Data\+Type $\ast$array, std\+::function$<$ bool(Data\+Type $\ast$) $>$ element\+Inspector)
 \begin{DoxyCompactList}\small\item\em inspects a static-\/sized array of elements \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classInspection_af0bac19136fcbc95cbb78bf81d52021e}\label{classInspection_af0bac19136fcbc95cbb78bf81d52021e}} 
+\mbox{\Hypertarget{classInspection_a843f4b6955630c0bec88cab8ed3a8d27}\label{classInspection_a843f4b6955630c0bec88cab8ed3a8d27}} 
 \index{Inspection@{Inspection}!InspectArray@{InspectArray}}
 \index{InspectArray@{InspectArray}!Inspection@{Inspection}}
 \doxysubsubsection{\texorpdfstring{InspectArray()}{InspectArray()}}
 {\footnotesize\ttfamily template$<$typename Data\+Type $>$ \\
-bool Inspection\+::\+Inspect\+Array (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{std\+::vector$<$ Data\+Type $>$ $\ast$}]{array,  }\item[{std\+::function$<$ bool(Data\+Type $\ast$) $>$}]{element\+Inspector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+bool Inspection\+::\+Inspect\+Array (\begin{DoxyParamCaption}\item[{char const $\ast$}]{label,  }\item[{std\+::vector$<$ Data\+Type $>$ $\ast$}]{array,  }\item[{std\+::function$<$ bool(Data\+Type $\ast$) $>$}]{element\+Inspector,  }\item[{std\+::function$<$ void(Data\+Type $\ast$) $>$}]{element\+Initializer = {\ttfamily \mbox{[}\mbox{]}(~DataType$\ast$~)~\{\}},  }\item[{std\+::function$<$ void(Data\+Type $\ast$) $>$}]{element\+Exiter = {\ttfamily \mbox{[}\mbox{]}(~DataType$\ast$~)~\{\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -37,6 +37,10 @@ inspects a reorderable array of elements
 {\em array} & the array to inspect \\
 \hline
 {\em element\+Inspector} & the function to use to inspect each element of the array \\
+\hline
+{\em element\+Initializer} & function to call after adding an element \\
+\hline
+{\em element\+Exiter} & function to call before removing an element \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

@@ -29,16 +29,24 @@ void AssetLibrarySystem<Entity>::DebugWindow()
         entities.push_back(key.second);
     }
 
-    Entities()->DisplayEntityHierarchy(entities, "Prefab Library",false);
-
-    /// Update the AssetLibarySystem Map
-    
     m_Assets.clear();
 
-    for (auto& entity : entities)
+    Entities()->DisplayEntityHierarchy(entities, "Prefab Library",false);
+
+    for (int i = 0; i < entities.size(); i++)
     {
+        Entity* entity = entities[i];
+
         if (entity->IsInScene())
+        {
             entity->Exit();
+        }
+
+        if (entity->IsDestroyed())
+        {
+            delete entity;
+            continue;
+        }
 
         m_Assets[entity->GetName()] = entity;
     }
